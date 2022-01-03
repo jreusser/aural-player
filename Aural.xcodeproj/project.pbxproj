@@ -497,7 +497,6 @@
 		3E6C11D825CEBDBE00BF0D07 /* PlaybackSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C106925CEB98600BF0D07 /* PlaybackSegment.swift */; };
 		3E6C11DE25CEBDBE00BF0D07 /* StartPlaybackChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C108325CEB98600BF0D07 /* StartPlaybackChain.swift */; };
 		3E6C11DF25CEBDBE00BF0D07 /* AVFScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C106625CEB98600BF0D07 /* AVFScheduler.swift */; };
-		3E6C11E125CEBDBE00BF0D07 /* LegacyAVFScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C106825CEB98600BF0D07 /* LegacyAVFScheduler.swift */; };
 		3E6C11E325CEBDBE00BF0D07 /* StartPlaybackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C108525CEB98600BF0D07 /* StartPlaybackAction.swift */; };
 		3E6C11E525CEBDC400BF0D07 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C108C25CEB98600BF0D07 /* Player.swift */; };
 		3E6C11E725CEBDC400BF0D07 /* TrackPlaybackCompletedChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C108A25CEB98600BF0D07 /* TrackPlaybackCompletedChain.swift */; };
@@ -1855,7 +1854,6 @@
 		3E6C106325CEB98600BF0D07 /* SequencerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequencerDelegate.swift; sourceTree = "<group>"; };
 		3E6C106625CEB98600BF0D07 /* AVFScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVFScheduler.swift; sourceTree = "<group>"; };
 		3E6C106725CEB98600BF0D07 /* PlaybackSchedulerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackSchedulerProtocol.swift; sourceTree = "<group>"; };
-		3E6C106825CEB98600BF0D07 /* LegacyAVFScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyAVFScheduler.swift; sourceTree = "<group>"; };
 		3E6C106925CEB98600BF0D07 /* PlaybackSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackSegment.swift; sourceTree = "<group>"; };
 		3E6C106A25CEB98600BF0D07 /* AuralPlayerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuralPlayerNode.swift; sourceTree = "<group>"; };
 		3E6C106B25CEB98600BF0D07 /* PlaybackParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackParams.swift; sourceTree = "<group>"; };
@@ -4526,7 +4524,6 @@
 			isa = PBXGroup;
 			children = (
 				3E6C106625CEB98600BF0D07 /* AVFScheduler.swift */,
-				3E6C106825CEB98600BF0D07 /* LegacyAVFScheduler.swift */,
 			);
 			path = AVFoundation;
 			sourceTree = "<group>";
@@ -5633,7 +5630,6 @@
 				3E6C126725CEBE0600BF0D07 /* LayoutPreviewView.swift in Sources */,
 				3E6C125825CEBE0600BF0D07 /* LayoutsManagerViewController.swift in Sources */,
 				3E380DAE262F4D6500BDF7B4 /* LazyViewLoader.swift in Sources */,
-				3E6C11E125CEBDBE00BF0D07 /* LegacyAVFScheduler.swift in Sources */,
 				3EA89DAB269A3D690021CDB9 /* LRUArray.swift in Sources */,
 				3E36BD3426A68EAA00B6E28B /* LyricsTrackInfoViewController.swift in Sources */,
 				3E6C11AC25CEBDA200BF0D07 /* M3UPlaylistIO.swift in Sources */,
@@ -6660,7 +6656,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3.5.0;
+				CURRENT_PROJECT_VERSION = 4.0.0;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/**";
@@ -6670,8 +6666,8 @@
 					"@executable_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 3.5.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kv.Aural;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Aural-Bridging-Header.h";
@@ -6691,7 +6687,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3.5.0;
+				CURRENT_PROJECT_VERSION = 4.0.0;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/**";
@@ -6701,8 +6697,8 @@
 					"@executable_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 3.5.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kv.Aural;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Aural-Bridging-Header.h";
