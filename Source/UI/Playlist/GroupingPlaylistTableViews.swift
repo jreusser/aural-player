@@ -14,10 +14,6 @@ import Cocoa
  */
 class AuralPlaylistOutlineView: NSOutlineView, Destroyable {
     
-    static var cachedDisclosureIcon_collapsed: NSImage = Images.imgDisclosure_collapsed.filledWithColor(Colors.Playlist.groupDisclosureTriangleColor)
-    static var cachedDisclosureIcon_expanded: NSImage = Images.imgDisclosure_expanded.filledWithColor(Colors.Playlist.groupDisclosureTriangleColor)
-    static var cachedGroupIcon: NSImage = Images.imgGroup.filledWithColor(Colors.Playlist.groupIconColor)
-    
     static var disclosureButtons: [NSButton] = []
     
     // Enable drag/drop.
@@ -29,28 +25,11 @@ class AuralPlaylistOutlineView: NSOutlineView, Destroyable {
         disclosureButtons.removeAll()
     }
     
-    static func updateCachedImages() {
-        
-        cachedDisclosureIcon_collapsed = Images.imgDisclosure_collapsed.filledWithColor(Colors.Playlist.groupDisclosureTriangleColor)
-        cachedDisclosureIcon_expanded = Images.imgDisclosure_expanded.filledWithColor(Colors.Playlist.groupDisclosureTriangleColor)
-        
-        cachedGroupIcon = Images.imgGroup.filledWithColor(Colors.Playlist.groupIconColor)
-    }
-    
     static func changeDisclosureTriangleColor(_ color: NSColor) {
         
-        cachedDisclosureIcon_collapsed = Images.imgDisclosure_collapsed.filledWithColor(color)
-        cachedDisclosureIcon_expanded = Images.imgDisclosure_expanded.filledWithColor(color)
-        
         for button in disclosureButtons {
-            
-            button.image = cachedDisclosureIcon_collapsed
-            button.alternateImage = cachedDisclosureIcon_expanded
+            button.contentTintColor = color
         }
-    }
-    
-    static func changeGroupIconColor(_ color: NSColor) {
-        cachedGroupIcon = Images.imgGroup.filledWithColor(color)
     }
     
     override func menu(for event: NSEvent) -> NSMenu? {
@@ -64,8 +43,11 @@ class AuralPlaylistOutlineView: NSOutlineView, Destroyable {
         
         if identifier == NSOutlineView.disclosureButtonIdentifier, let disclosureButton = view as? NSButton {
             
-            disclosureButton.image = Self.cachedDisclosureIcon_collapsed
-            disclosureButton.alternateImage = Self.cachedDisclosureIcon_expanded
+            disclosureButton.image = Images.imgDisclosure_collapsed
+            disclosureButton.image?.isTemplate = true
+            
+            disclosureButton.alternateImage = Images.imgDisclosure_expanded
+            disclosureButton.alternateImage?.isTemplate = true
             
             Self.disclosureButtons.append(disclosureButton)
         }

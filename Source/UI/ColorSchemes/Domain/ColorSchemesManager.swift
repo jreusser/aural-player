@@ -43,7 +43,7 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
         
         // Update color / gradient caches whenever the system scheme changes.
         Colors.Player.updateSliderColors()
-        AuralPlaylistOutlineView.updateCachedImages()
+//        AuralPlaylistOutlineView.updateCachedImages()
     }
     
     // Applies a color scheme to the system color scheme and returns the modified system scheme.

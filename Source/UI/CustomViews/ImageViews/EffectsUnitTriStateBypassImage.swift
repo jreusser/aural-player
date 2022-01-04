@@ -15,6 +15,19 @@ import Cocoa
 @IBDesignable
 class EffectsUnitTriStateBypassImage: NSImageView, Tintable {
     
+    override var image: NSImage? {
+        
+        didSet {
+            image?.isTemplate = true
+        }
+    }
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        image?.isTemplate = true
+    }
+    
     var stateFunction: EffectsUnitStateFunction?
     
     var unitState: EffectsUnitState {
@@ -78,7 +91,7 @@ class EffectsUnitTriStateBypassImage: NSImageView, Tintable {
     }
     
     func mixed() {
-        self.image = self.image?.filledWithColor(mixedStateTintFunction())
+        contentTintColor = mixedStateTintFunction()
     }
     
     private var _isOn: Bool = false
@@ -86,14 +99,14 @@ class EffectsUnitTriStateBypassImage: NSImageView, Tintable {
     // Sets the button state to be "Off"
     func off() {
         
-        self.image = self.image?.filledWithColor(offStateTintFunction())
+        contentTintColor = offStateTintFunction()
         _isOn = false
     }
     
     // Sets the button state to be "On"
     func on() {
         
-        self.image = self.image?.filledWithColor(onStateTintFunction())
+        contentTintColor = onStateTintFunction()
         _isOn = true
     }
     

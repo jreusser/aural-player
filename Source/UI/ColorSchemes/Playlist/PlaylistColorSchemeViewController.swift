@@ -175,8 +175,6 @@ class PlaylistColorSchemeViewController: ColorSchemeViewController {
     private func changeGroupIconColor() {
         
         playlistScheme.groupIconColor = groupIconColorPicker.color
-        AuralPlaylistOutlineView.changeGroupIconColor(groupIconColorPicker.color)
-        
         messenger.publish(.playlist_changeGroupIconColor, payload: groupIconColorPicker.color)
     }
     

@@ -12,8 +12,17 @@ import Cocoa
 @IBDesignable
 class TintedImageView: NSImageView, Tintable {
     
-    @IBInspectable var baseImage: NSImage? {
-        didSet {reTint()}
+    override var image: NSImage? {
+        
+        didSet {
+            image?.isTemplate = true
+        }
+    }
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        image?.isTemplate = true
     }
     
     var tintFunction: () -> NSColor = {Colors.functionButtonColor} {
@@ -21,6 +30,6 @@ class TintedImageView: NSImageView, Tintable {
     }
     
     func reTint() {
-        self.image = self.baseImage?.filledWithColor(tintFunction())
+        contentTintColor = tintFunction()
     }
 }

@@ -130,7 +130,7 @@ class PlayerAudioViewController: NSViewController, Destroyable {
 
         if muted {
             
-            btnVolume.baseImage = Images.imgMute
+            btnVolume.image = Images.imgMute
             
         } else {
 
@@ -140,19 +140,19 @@ class PlayerAudioViewController: NSViewController, Destroyable {
                 
             case highVolumeRange:
                 
-                btnVolume.baseImage = Images.imgVolumeHigh
+                btnVolume.image = Images.imgVolumeHigh
                 
             case mediumVolumeRange:
                 
-                btnVolume.baseImage = Images.imgVolumeMedium
+                btnVolume.image = Images.imgVolumeMedium
                 
             case lowVolumeRange:
                 
-                btnVolume.baseImage = Images.imgVolumeLow
+                btnVolume.image = Images.imgVolumeLow
                 
             default:
                 
-                btnVolume.baseImage = Images.imgVolumeZero
+                btnVolume.image = Images.imgVolumeZero
             }
         }
     }

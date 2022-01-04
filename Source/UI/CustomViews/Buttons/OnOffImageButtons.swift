@@ -20,6 +20,8 @@ class OnOffImageButton: NSButton, Tintable {
         
         didSet {
             
+            offStateImage?.isTemplate = true
+            
             if !_isOn {
                 reTint()
             }
@@ -30,6 +32,8 @@ class OnOffImageButton: NSButton, Tintable {
     @IBInspectable var onStateImage: NSImage? {
         
         didSet {
+            
+            onStateImage?.isTemplate = true
             
             if _isOn {
                 reTint()
@@ -70,16 +74,20 @@ class OnOffImageButton: NSButton, Tintable {
     // Sets the button state to be "Off"
     override func off() {
         
-        self.image = offStateImage?.filledWithColor(offStateTintFunction())
-        self.toolTip = offStateTooltip
+        image = offStateImage
+        contentTintColor = offStateTintFunction()
+        toolTip = offStateTooltip
+        
         _isOn = false
     }
     
     // Sets the button state to be "On"
     override func on() {
         
-        self.image = onStateImage?.filledWithColor(onStateTintFunction())
-        self.toolTip = onStateTooltip
+        image = onStateImage
+        contentTintColor = onStateTintFunction()
+        toolTip = onStateTooltip
+        
         _isOn = true
     }
     
@@ -101,11 +109,8 @@ class OnOffImageButton: NSButton, Tintable {
     // Re-apply the tint depending on state.
     func reTint() {
         
-        if _isOn {
-            self.image = onStateImage?.filledWithColor(onStateTintFunction())
-        } else {
-            self.image = offStateImage?.filledWithColor(offStateTintFunction())
-        }
+        image = _isOn ? onStateImage : offStateImage
+        contentTintColor = _isOn ? onStateTintFunction() : offStateTintFunction()
     }
 }
 

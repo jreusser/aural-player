@@ -14,6 +14,13 @@ import Cocoa
  */
 class EffectsUnitTriStateBypassButton: OnOffImageButton {
     
+    override var image: NSImage? {
+        
+        didSet {
+            image?.isTemplate = true
+        }
+    }
+    
     var stateFunction: EffectsUnitStateFunction?
     
     var unitState: EffectsUnitState {
@@ -35,7 +42,10 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton {
     
     override func awakeFromNib() {
         
-        self.image = Images.imgSwitch
+        super.awakeFromNib()
+        
+        image = Images.imgSwitch
+        image?.isTemplate = true
         
         // Override the tint functions from OnOffImageButton
         offStateTintFunction = {Colors.Effects.bypassedUnitStateColor}
@@ -80,23 +90,23 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton {
     // Sets the button state to be "Off"
     override func off() {
         
-        self.image = self.image?.filledWithColor(offStateTintFunction())
-        self.toolTip = offStateTooltip
+        contentTintColor = offStateTintFunction()
+        toolTip = offStateTooltip
         _isOn = false
     }
     
     // Sets the button state to be "On"
     override func on() {
         
-        self.image = self.image?.filledWithColor(onStateTintFunction())
-        self.toolTip = onStateTooltip
+        contentTintColor = onStateTintFunction()
+        toolTip = onStateTooltip
         _isOn = true
     }
     
     func mixed() {
         
-        self.image = self.image?.filledWithColor(mixedStateTintFunction())
-        self.toolTip = mixedStateTooltip
+        contentTintColor = mixedStateTintFunction()
+        toolTip = mixedStateTooltip
     }
     
     override func reTint() {

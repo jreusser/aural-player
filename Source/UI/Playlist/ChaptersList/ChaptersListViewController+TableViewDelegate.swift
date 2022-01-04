@@ -89,7 +89,8 @@ extension ChaptersListViewController: NSTableViewDelegate {
         cell.text = text
         cell.textField?.showIf(!showCurrentChapterMarker)
         
-        cell.image = showCurrentChapterMarker ? Images.imgPlayingTrack.filledWithColor(Colors.Playlist.playingTrackIconColor) : nil
+        cell.image = showCurrentChapterMarker ? Images.imgPlayingTrack : nil
+        cell.imageView?.contentTintColor = Colors.Playlist.playingTrackIconColor
         cell.imageView?.showIf(showCurrentChapterMarker)
         
         return cell

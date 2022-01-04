@@ -15,13 +15,17 @@ import Cocoa
 @IBDesignable
 class TintedImageButton: NSButton, Tintable {
     
-    // A base image that is used as an image template.
-    @IBInspectable var baseImage: NSImage? {
+    override var image: NSImage? {
         
-        // Re-tint the image whenever the base image is updated.
         didSet {
-            reTint()
+            image?.isTemplate = true
         }
+    }
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        image?.isTemplate = true
     }
  
     // A function that produces a color used to tint the base image.
@@ -35,7 +39,12 @@ class TintedImageButton: NSButton, Tintable {
     
     // Reapplies the tint (eg. when the tint color has changed or the base image has changed).
     func reTint() {
-        self.image = self.baseImage?.filledWithColor(tintFunction())
+        
+        if !(image?.isTemplate ?? true) {
+            print("\n\(self): NOT TEMPLATE !!!")
+        }
+        
+        contentTintColor = tintFunction()
     }
 }
 

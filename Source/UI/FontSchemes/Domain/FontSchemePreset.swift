@@ -244,7 +244,7 @@ enum FontSchemePreset: String, CaseIterable {
                 
             case .programmer:  return -1
                 
-            case .futuristic:   return -2
+            case .futuristic:   return -1
                 
             case .novelist:  return -1
                 

@@ -59,10 +59,12 @@ class BasicFlatPlaylistCellView: NSTableCellView {
         imageView?.hide()
     }
     
-    func updateImage(_ image: NSImage) {
+    func updateImage(_ image: NSImage, color: NSColor) {
         
         self.image = image
+        
         imageView?.show()
+        imageView?.contentTintColor = color
         
         textField?.hide()
     }

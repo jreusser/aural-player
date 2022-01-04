@@ -50,7 +50,7 @@ extension TracksPlaylistViewController: NSTableViewDelegate {
             
             // Check if there is a track currently playing, and if this row matches that track.
             if track == playbackInfo.playingTrack {
-                return createIndexImageCell(tableView, row, Images.imgPlayingTrack.filledWithColor(Colors.Playlist.playingTrackIconColor))
+                return createIndexImageCell(tableView, row, Images.imgPlayingTrack, color: Colors.Playlist.playingTrackIconColor)
             }
             
             // Otherwise, create a text cell with the track index
@@ -81,12 +81,12 @@ extension TracksPlaylistViewController: NSTableViewDelegate {
         return cell
     }
     
-    private func createIndexImageCell(_ tableView: NSTableView, _ row: Int, _ image: NSImage) -> IndexCellView? {
+    private func createIndexImageCell(_ tableView: NSTableView, _ row: Int, _ image: NSImage, color: NSColor) -> IndexCellView? {
         
         guard let cell = tableView.makeView(withIdentifier: .cid_index, owner: nil) as? IndexCellView else {return nil}
             
         cell.rowSelectionStateFunction = {[weak tableView] in tableView?.isRowSelected(row) ?? false}
-        cell.updateImage(image)
+        cell.updateImage(image, color: color)
         
         return cell
     }

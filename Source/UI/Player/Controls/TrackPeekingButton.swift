@@ -22,6 +22,8 @@ class TrackPeekingButton: TintedImageButton {
     
     override func awakeFromNib() {
         
+        super.awakeFromNib()
+        
         // Create a tracking area that covers the bounds of the view. It should respond whenever the mouse enters or exits.
         addTrackingArea(NSTrackingArea(rect: self.bounds, options: [NSTrackingArea.Options.activeAlways, NSTrackingArea.Options.mouseEnteredAndExited], owner: self, userInfo: nil))
         

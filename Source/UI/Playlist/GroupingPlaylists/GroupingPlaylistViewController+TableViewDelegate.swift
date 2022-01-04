@@ -88,7 +88,10 @@ extension GroupingPlaylistViewController: NSOutlineViewDelegate {
         cell.realignText(yOffset: fontSchemesManager.systemScheme.playlist.trackTextYOffset)
         
         if track == playbackInfo.playingTrack {
-            cell.image = Images.imgPlayingTrack.filledWithColor(Colors.Playlist.playingTrackIconColor)
+            
+            cell.image = Images.imgPlayingTrack
+            cell.imageView?.contentTintColor = Colors.Playlist.playingTrackIconColor
+            
         } else {
             cell.image = nil
         }
@@ -139,7 +142,11 @@ extension GroupingPlaylistViewController: NSOutlineViewDelegate {
         cell.updateText(fontSchemesManager.systemScheme.playlist.groupTextFont, String(format: "%@ (%d)", group.name, group.size))
         cell.realignText(yOffset: fontSchemesManager.systemScheme.playlist.groupTextYOffset)
         cell.textField?.lineBreakMode = .byTruncatingMiddle
-        cell.image = AuralPlaylistOutlineView.cachedGroupIcon
+        
+        // TODO: Change the imageView to a TintedImageView
+        cell.image = Images.imgGroup
+        cell.image?.isTemplate = true
+        cell.imageView?.contentTintColor = Colors.Playlist.groupIconColor
         
         // Constraints
         cell.reActivateConstraints(imgViewCenterY: -1, imgViewLeading: 7, textFieldLeading: 5)
