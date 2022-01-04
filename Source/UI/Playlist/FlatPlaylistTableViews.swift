@@ -63,8 +63,8 @@ class BasicFlatPlaylistCellView: NSTableCellView {
         
         self.image = image
         
-        imageView?.show()
         imageView?.contentTintColor = color
+        imageView?.show()
         
         textField?.hide()
     }

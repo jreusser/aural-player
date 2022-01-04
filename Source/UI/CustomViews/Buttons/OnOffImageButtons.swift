@@ -15,29 +15,10 @@ import Cocoa
 @IBDesignable
 class OnOffImageButton: NSButton, Tintable {
     
-    // The image displayed when the button is in an "Off" state
-    @IBInspectable var offStateImage: NSImage? {
+    override var image: NSImage? {
         
         didSet {
-            
-            offStateImage?.isTemplate = true
-            
-            if !_isOn {
-                reTint()
-            }
-        }
-    }
-    
-    // The image displayed when the button is in an "On" state
-    @IBInspectable var onStateImage: NSImage? {
-        
-        didSet {
-            
-            onStateImage?.isTemplate = true
-            
-            if _isOn {
-                reTint()
-            }
+            image?.isTemplate = true
         }
     }
     
@@ -71,10 +52,15 @@ class OnOffImageButton: NSButton, Tintable {
     
     var _isOn: Bool = false
     
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        image?.isTemplate = true
+    }
+    
     // Sets the button state to be "Off"
     override func off() {
         
-        image = offStateImage
         contentTintColor = offStateTintFunction()
         toolTip = offStateTooltip
         
@@ -83,8 +69,7 @@ class OnOffImageButton: NSButton, Tintable {
     
     // Sets the button state to be "On"
     override func on() {
-        
-        image = onStateImage
+
         contentTintColor = onStateTintFunction()
         toolTip = onStateTooltip
         
@@ -102,14 +87,10 @@ class OnOffImageButton: NSButton, Tintable {
     }
     
     // Returns true if the button is in the On state, false otherwise.
-    override var isOn: Bool {
-        return _isOn
-    }
+    override var isOn: Bool {_isOn}
     
     // Re-apply the tint depending on state.
     func reTint() {
-        
-        image = _isOn ? onStateImage : offStateImage
         contentTintColor = _isOn ? onStateTintFunction() : offStateTintFunction()
     }
 }
