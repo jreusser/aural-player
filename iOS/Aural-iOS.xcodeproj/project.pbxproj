@@ -13,6 +13,7 @@
 		3EA198AE278640E00069C814 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EA198AC278640E00069C814 /* Main.storyboard */; };
 		3EA198B0278640E10069C814 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EA198AF278640E10069C814 /* Assets.xcassets */; };
 		3EA198B3278640E10069C814 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EA198B1278640E10069C814 /* LaunchScreen.storyboard */; };
+		3EC2975C27864D6300B29551 /* Aural.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC2975B27864D6300B29551 /* Aural.xcassets */; };
 		3EFE35D42786464C006F8B8C /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE35D32786464B006F8B8C /* TypeAliases.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		3EA198AF278640E10069C814 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3EA198B2278640E10069C814 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3EA198B4278640E10069C814 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EC2975B27864D6300B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Aural.xcassets; path = ../Core/Aural.xcassets; sourceTree = "<group>"; };
 		3EFE35D32786464B006F8B8C /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -42,6 +44,7 @@
 		3EA1989A278640E00069C814 = {
 			isa = PBXGroup;
 			children = (
+				3EC2975B27864D6300B29551 /* Aural.xcassets */,
 				3EA198A5278640E00069C814 /* Aural-iOS */,
 				3EA198A4278640E00069C814 /* Products */,
 			);
@@ -131,6 +134,7 @@
 				3EA198B3278640E10069C814 /* LaunchScreen.storyboard in Resources */,
 				3EA198B0278640E10069C814 /* Assets.xcassets in Resources */,
 				3EA198AE278640E00069C814 /* Main.storyboard in Resources */,
+				3EC2975C27864D6300B29551 /* Aural.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +309,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kv.Aural-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -333,7 +337,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kv.Aural-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

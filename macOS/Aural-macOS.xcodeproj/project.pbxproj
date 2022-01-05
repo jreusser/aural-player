@@ -546,6 +546,7 @@
 		3EBF29332686979700D87021 /* EffectsTextButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF29322686979700D87021 /* EffectsTextButtonCell.swift */; };
 		3EBF293526869A1200D87021 /* PreferencesPopupMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF293426869A1200D87021 /* PreferencesPopupMenuCell.swift */; };
 		3EBF293726869A9300D87021 /* EffectsUnitPopupMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF293626869A9300D87021 /* EffectsUnitPopupMenuCell.swift */; };
+		3EC2975A27864CD400B29551 /* Aural.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC2975927864CD400B29551 /* Aural.xcassets */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
 		3ECB54E825E552A9002259C4 /* ragingredlotus-bb.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3ECB54E625E552A1002259C4 /* ragingredlotus-bb.regular.ttf */; };
 		3ECB54EA25E552AC002259C4 /* shufen.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3ECB54E725E552A1002259C4 /* shufen.regular.ttf */; };
@@ -1977,6 +1978,7 @@
 		3EBF29322686979700D87021 /* EffectsTextButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsTextButtonCell.swift; sourceTree = "<group>"; };
 		3EBF293426869A1200D87021 /* PreferencesPopupMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPopupMenuCell.swift; sourceTree = "<group>"; };
 		3EBF293626869A9300D87021 /* EffectsUnitPopupMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsUnitPopupMenuCell.swift; sourceTree = "<group>"; };
+		3EC2975927864CD400B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
 		3ECB54E625E552A1002259C4 /* ragingredlotus-bb.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ragingredlotus-bb.regular.ttf"; sourceTree = "<group>"; };
 		3ECB54E725E552A1002259C4 /* shufen.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shufen.regular.ttf; sourceTree = "<group>"; };
@@ -4200,6 +4202,7 @@
 				3EFE375227864895006F8B8C /* RemoteControl */,
 				3EFE375627864895006F8B8C /* Messaging */,
 				3EFE377627864895006F8B8C /* TrackIO */,
+				3EC2975927864CD400B29551 /* Aural.xcassets */,
 			);
 			name = Core;
 			path = ../Core;
@@ -5247,6 +5250,7 @@
 				3E6C122225CEBDE600BF0D07 /* SoundPreferences.xib in Resources */,
 				3E6C12F725CEBE8F00BF0D07 /* InfoPopup.xib in Resources */,
 				3E6C12C825CEBE6700BF0D07 /* ReverbUnit.xib in Resources */,
+				3EC2975A27864CD400B29551 /* Aural.xcassets in Resources */,
 				3E6C121D25CEBDE600BF0D07 /* Preferences.xib in Resources */,
 				3E6C130225CEBE8F00BF0D07 /* DetailedTrackInfo.xib in Resources */,
 				3E6C12EE25CEBE8100BF0D07 /* FilterBand.xib in Resources */,
