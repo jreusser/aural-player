@@ -98,7 +98,7 @@ class GeneralColorSchemeViewController: ColorSchemeViewController {
     private func changeBackgroundColor() {
         
         generalScheme.backgroundColor = backgroundColorPicker.color
-        messenger.publish(.changeBackgroundColor, payload: backgroundColorPicker.color)
+//        messenger.publish(.changeBackgroundColor, payload: backgroundColorPicker.color)
     }
     
     @IBAction func functionButtonColorAction(_ sender: Any) {
@@ -111,7 +111,7 @@ class GeneralColorSchemeViewController: ColorSchemeViewController {
     private func changeFunctionButtonColor() {
         
         generalScheme.functionButtonColor = functionButtonColorPicker.color
-        messenger.publish(.changeFunctionButtonColor, payload: functionButtonColorPicker.color)
+//        messenger.publish(.changeFunctionButtonColor, payload: functionButtonColorPicker.color)
     }
     
     @IBAction func textButtonMenuColorAction(_ sender: Any) {

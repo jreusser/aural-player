@@ -113,18 +113,35 @@ class MainWindowController: NSWindowController, Destroyable {
         eventMonitor.startMonitoring()
     }
     
+    private var kvoTokens: [NSKeyValueObservation] = []
+    
     private func initSubscriptions() {
+        
+        
+        btnQuit.observeColorProperty(\.functionButtonColor, of: colorSchemesManager.systemScheme.general)
         
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
         messenger.subscribe(to: .changeAppLogoColor, handler: changeAppLogoColor(_:))
-        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
-        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
+//        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
+//        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
         messenger.subscribe(to: .changeToggleButtonOffStateColor, handler: changeToggleButtonOffStateColor(_:))
 
         messenger.subscribe(to: .windowManager_layoutChanged, handler: windowLayoutChanged)
         
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
+        
+//        kvoTokens.append(colorSchemesManager.systemScheme.general.observe(\.backgroundColor, options: [.initial, .new]) {[weak self] generalColorScheme, _ in
+//
+//            print("\nKVO BC !!!")
+//            self?.changeBackgroundColor(generalColorScheme.backgroundColor)
+//        })
+//
+//        kvoTokens.append(colorSchemesManager.systemScheme.general.observe(\.functionButtonColor, options: [.initial, .new]) {[weak self] generalColorScheme, _ in
+//
+//            print("\nKVO !!!")
+//            self?.changeFunctionButtonColor(generalColorScheme.functionButtonColor)
+//        })
     }
     
     func destroy() {

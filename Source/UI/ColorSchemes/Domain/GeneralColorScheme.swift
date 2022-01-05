@@ -13,12 +13,12 @@ import Cocoa
 /*
     Encapsulates color values that are generally applicable to the entire UI, e.g. window background color.
  */
-class GeneralColorScheme {
+class GeneralColorScheme: NSObject {
     
     var appLogoColor: NSColor
-    var backgroundColor: NSColor
+    @objc dynamic var backgroundColor: NSColor
     
-    var functionButtonColor: NSColor
+    @objc dynamic var functionButtonColor: NSColor
     var textButtonMenuColor: NSColor
     var toggleButtonOffStateColor: NSColor
     var selectedTabButtonColor: NSColor

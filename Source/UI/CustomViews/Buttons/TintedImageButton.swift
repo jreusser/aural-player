@@ -15,6 +15,15 @@ import Cocoa
 @IBDesignable
 class TintedImageButton: NSButton, Tintable {
     
+    private var kvoToken: NSKeyValueObservation?
+    
+    func observeColorProperty<Object>(_ keyPath: KeyPath<Object, NSColor>, of object: Object) where Object : NSObject {
+        
+        kvoToken = object.observe(keyPath, options: [.initial, .new]) {[weak self] changedObject, changedValue in
+            self?.contentTintColor = changedValue.newValue
+        }
+    }
+    
     override var image: NSImage? {
         
         didSet {
@@ -46,12 +55,25 @@ class TintedImageButton: NSButton, Tintable {
         
         contentTintColor = tintFunction()
     }
+    
+    deinit {
+        
+        kvoToken?.invalidate()
+        kvoToken = nil
+    }
 }
 
 // A contract for any object to which a tint can be applied (and re-applied). This is used by various UI elements to conform to the system color scheme.
 protocol Tintable {
     
+    func observeColorProperty<Object, Value>(_ keyPath: KeyPath<Object, Value>, of object: Object) where Object: NSObject
+    
     func reTint()
+}
+
+extension Tintable {
+    
+    func observeColorProperty<Object, Value>(_ keyPath: KeyPath<Object, Value>, of object: Object) where Object: NSObject {}
 }
 
 typealias TintFunction = () -> NSColor

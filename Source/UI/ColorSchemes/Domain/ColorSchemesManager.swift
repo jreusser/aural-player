@@ -15,9 +15,7 @@ import Cocoa
 class ColorSchemesManager: UserManagedObjects<ColorScheme> {
     
     // The current system color scheme. It is initialized with the default scheme.
-    private(set) var systemScheme: ColorScheme = ColorScheme("_system_", ColorSchemePreset.defaultScheme) {
-        didSet {systemSchemeChanged()}
-    }
+    let systemScheme: ColorScheme
     
     private lazy var messenger = Messenger(for: self)
     
