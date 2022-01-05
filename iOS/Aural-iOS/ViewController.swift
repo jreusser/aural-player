@@ -8,12 +8,13 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var btnPlay: UIButton!
+    @IBOutlet weak var btnSeekForward: UIButton!
+    @IBOutlet weak var btnSeekBackward: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
 }
 
