@@ -14,7 +14,6 @@ import MediaPlayer
 /// Manages remote command registration and handling to respond to playback commands from the macOS Control Center or
 /// accessories capable of sending remote commands.
 ///
-@available(OSX 10.12.2, *)
 class RemoteCommandManager: NSObject {
     
     /// The underlying command center.
@@ -177,7 +176,12 @@ class RemoteCommandManager: NSObject {
     ///
     @objc func handleSkipBackward(_ event: MPSkipIntervalCommandEvent) -> MPRemoteCommandHandlerStatus {
         
+        #if os(macOS)
         messenger.publish(.player_seekBackward, payload: UserInputMode.discrete)
+        #elseif os(iOS)
+        messenger.publish(.player_seekBackward)
+        #endif
+        
         return .success
     }
     
@@ -190,7 +194,12 @@ class RemoteCommandManager: NSObject {
     ///
     @objc func handleSkipForward(_ event: MPSkipIntervalCommandEvent) -> MPRemoteCommandHandlerStatus {
         
+        #if os(macOS)
         messenger.publish(.player_seekForward, payload: UserInputMode.discrete)
+        #elseif os(iOS)
+        messenger.publish(.player_seekForward)
+        #endif
+        
         return .success
     }
     

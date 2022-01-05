@@ -29,7 +29,7 @@ class NowPlayingInfoManager: NSObject {
     private let sequencer: SequencerInfoDelegateProtocol
     
     /// 50x50 is the size of the image view in macOS Control Center.
-    private static let optimalArtworkSize: NSSize = NSMakeSize(50, 50)
+    private static let optimalArtworkSize: CGSize = CGSize(width: 50, height: 50)
     
     /// An image to display when the currently playing track does not have any associated cover art, resized to an optimal size for display in Control Center.
     private static let defaultArtwork: PlatformImage = Images.imgPlayingArt.copy(ofSize: optimalArtworkSize)

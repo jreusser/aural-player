@@ -8,5 +8,6 @@
 import UIKit
 
 typealias PlatformImage = UIImage
+typealias PlatformView = UIView
 typealias PlatformViewController = UIViewController
 typealias PlatformColor = UIColor

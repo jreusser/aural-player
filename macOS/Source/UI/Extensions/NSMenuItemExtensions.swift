@@ -9,18 +9,6 @@
 //
 import Cocoa
 
-protocol MenuItemMappable {
-    
-    var name: String {get}
-    
-    var representedObject: Any? {get}
-}
-
-extension MenuItemMappable {
-    
-    var representedObject: Any? {nil}
-}
-
 extension NSMenu {
     
     func addItem(withTitle title: String) {

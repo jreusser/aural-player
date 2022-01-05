@@ -7,6 +7,8 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
+#if os(macOS)
+
 import AVFoundation
 
 ///
@@ -90,3 +92,5 @@ extension Notification.Name {
     // Signifies that the list of audio output devices has been updated.
     static let deviceManager_deviceListUpdated = Notification.Name("deviceManager_deviceListUpdated")
 }
+
+#endif

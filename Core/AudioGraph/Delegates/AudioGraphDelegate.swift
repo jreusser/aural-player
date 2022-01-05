@@ -24,6 +24,8 @@ import AVFoundation
 ///
 class AudioGraphDelegate: AudioGraphDelegateProtocol {
     
+#if os(macOS)
+    
     var availableDevices: AudioDeviceList {graph.availableDevices}
     
     var systemDevice: AudioDevice {graph.systemDevice}
@@ -41,6 +43,8 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
     }
     
     var outputDeviceSampleRate: Double {graph.outputDeviceSampleRate}
+    
+#endif
     
     var masterUnit: MasterUnitDelegateProtocol
     var eqUnit: EQUnitDelegateProtocol
@@ -94,6 +98,8 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
         filterUnit = FilterUnitDelegate(for: graph.filterUnit)
         audioUnits = graph.audioUnits.map {HostedAudioUnitDelegate(for: $0)}
         
+        #if os(macOS)
+        
         // Set output device based on user preference
         
         // Check if remembered device is available (based on name and UID).
@@ -111,6 +117,8 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
             
             self.graph.outputDevice = foundDevice
         }
+        
+        #endif
         
         // Set volume and effects based on user preference
         
@@ -217,6 +225,8 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
         return descendingIndices.map {audioUnits.remove(at: $0)}
     }
     
+#if os(macOS)
+    
     func registerRenderObserver(_ observer: AudioGraphRenderObserverProtocol) {
         graph.registerRenderObserver(observer)
     }
@@ -224,6 +234,8 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
     func removeRenderObserver(_ observer: AudioGraphRenderObserverProtocol) {
         graph.removeRenderObserver(observer)
     }
+    
+#endif
     
     // MARK: Message handling
     

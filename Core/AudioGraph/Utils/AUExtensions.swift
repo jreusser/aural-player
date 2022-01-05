@@ -7,6 +7,8 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
+#if os(macOS)
+
 import AudioToolbox
 
 ///
@@ -173,3 +175,5 @@ let sizeOfPropertyAddress: UInt32 = UInt32(MemoryLayout<AudioObjectPropertyAddre
 let sizeOfDeviceId: UInt32 = UInt32(MemoryLayout<AudioDeviceID>.size)
 let sizeOfCFStringOptional: UInt32 = UInt32(MemoryLayout<CFString?>.size)
 let sizeOfUInt32: UInt32 = UInt32(MemoryLayout<UInt32>.size)
+
+#endif

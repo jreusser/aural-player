@@ -7,9 +7,15 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
+import Foundation
+
+#if os(macOS)
 import Cocoa
+#endif
 
 extension String {
+    
+#if os(macOS)
     
     func truncate(font: NSFont, maxWidth: CGFloat) -> String {
         
@@ -68,6 +74,8 @@ extension String {
         let size: CGSize = self.size(withAttributes: [.font: font])
         return Int(ceil(size.width / lineWidth))
     }
+    
+    #endif
     
     func withEncodingAndNullsRemoved() -> String {
         (self.removingPercentEncoding ?? self).replacingOccurrences(of: "\0", with: "")
@@ -255,6 +263,8 @@ extension String {
         self.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? self.replacingOccurrences(of: " ", with: "%20")
     }
     
+#if os(macOS)
+    
     func draw(in rect: NSRect, withFont font: NSFont, andColor color: NSColor) {
         self.draw(in: rect, withAttributes: [.font: font, .foregroundColor: color])
     }
@@ -317,6 +327,8 @@ extension String {
             return fullLengthString.truncate(font: font, maxWidth: maxWidth)
         }
     }
+    
+    #endif
 }
 
 extension Character {
@@ -330,6 +342,8 @@ extension Substring.SubSequence {
         return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
 }
+
+#if os(macOS)
 
 extension NSParagraphStyle {
     
@@ -349,3 +363,5 @@ extension NSMutableParagraphStyle {
         self.lineSpacing = lineSpacing
     }
 }
+
+#endif

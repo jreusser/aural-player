@@ -7,6 +7,8 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
+#if os(macOS)
+
 import Foundation
 
 ///
@@ -125,3 +127,5 @@ enum AppModeStartupOptions: String, CaseIterable {
     case specific
     case rememberFromLastAppLaunch
 }
+
+#endif

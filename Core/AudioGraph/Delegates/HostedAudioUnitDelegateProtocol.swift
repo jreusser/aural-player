@@ -6,9 +6,8 @@
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
-//  
+//
 
-import AppKit
 import AVFoundation
 
 ///
@@ -39,5 +38,5 @@ protocol HostedAudioUnitDelegateProtocol: EffectsUnitDelegateProtocol {
     
     func applyFactoryPreset(named presetName: String)
     
-    func presentView(_ handler: @escaping (NSView) -> Void)
+    func presentView(_ handler: @escaping (PlatformView) -> Void)
 }

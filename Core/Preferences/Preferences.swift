@@ -25,15 +25,28 @@ class Preferences {
     var playlistPreferences: PlaylistPreferences
     var playbackPreferences: PlaybackPreferences
     var soundPreferences: SoundPreferences
+    
+#if os(macOS)
     var viewPreferences: ViewPreferences
+#endif
+    
     var historyPreferences: HistoryPreferences
     var controlsPreferences: ControlsPreferences
     var metadataPreferences: MetadataPreferences
     
     var allPreferences: [PersistentPreferencesProtocol] {
         
+#if os(macOS)
+        
         [playbackPreferences, soundPreferences, playlistPreferences, viewPreferences,
                           historyPreferences, controlsPreferences, metadataPreferences]
+        
+        #elseif os(iOS)
+        
+        [playbackPreferences, soundPreferences, playlistPreferences,
+                          historyPreferences, controlsPreferences, metadataPreferences]
+        
+        #endif
     }
     
     init(defaults: UserDefaults) {
@@ -46,7 +59,10 @@ class Preferences {
         soundPreferences = SoundPreferences(defaultsDictionary, controlsPreferences.gestures)
         playlistPreferences = PlaylistPreferences(defaultsDictionary)
         
+#if os(macOS)
         viewPreferences = ViewPreferences(defaultsDictionary)
+#endif
+        
         historyPreferences = HistoryPreferences(defaultsDictionary)
         metadataPreferences = MetadataPreferences(defaultsDictionary)
     }

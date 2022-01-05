@@ -74,6 +74,8 @@ struct PreferencesDefaults {
         static let showChaptersList: Bool = true
     }
     
+#if os(macOS)
+    
     ///
     /// An enumeration of default values for UI / view preferences.
     ///
@@ -85,6 +87,8 @@ struct PreferencesDefaults {
         static let snapToScreen: Bool = true
         static let windowGap: Float = 0
     }
+    
+#endif
     
     ///
     /// An enumeration of default values for history preferences.

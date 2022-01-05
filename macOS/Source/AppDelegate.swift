@@ -105,3 +105,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 let objectGraph: ObjectGraph = .instance
+
+let appVersion: String = NSApp.appVersion

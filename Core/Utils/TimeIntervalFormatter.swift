@@ -7,7 +7,7 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
-import Cocoa
+import Foundation
 
 ///
 /// A utility used to format time intervals into a human-readable (user-friendly) format.

@@ -7,7 +7,7 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
-import AppKit
+import Foundation
 
 ///
 /// A utility / service that sends web requests to MusicBrainz to retrieve cover art or other music-related information.
@@ -42,7 +42,7 @@ class MusicBrainzRESTClient {
     /// We should set this header to "gzip" to inform the server to compress the response payload using gzip.
     /// Compression will reduce the transit time of the payload.
     ///
-    private let standardHeaders: [String: String] = ["User-Agent": "Aural Player/\(NSApp.appVersion) ( \(appContact) )",
+    private let standardHeaders: [String: String] = ["User-Agent": "Aural Player/\(appVersion) ( \(appContact) )",
                                                              "Accept-Encoding": "gzip"]
     
     ///

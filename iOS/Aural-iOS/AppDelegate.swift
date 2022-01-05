@@ -13,7 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         // Override point for customization after application launch.
+        let userDocumentsDirectory: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        print("\nUser Docs Dir: \(userDocumentsDirectory)")
+        
         return true
     }
 
@@ -34,3 +38,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+let appVersion: String = Bundle.main.infoDictionary!["CFBundleShortVersionString", String.self]!

@@ -14,7 +14,10 @@ import Foundation
 ///
 struct UIPersistentState: Codable {
     
+    #if os(macOS)
     let appMode: AppMode?
+    #endif
+    
     let windowLayout: WindowLayoutsPersistentState?
     let themes: ThemesPersistentState?
     let fontSchemes: FontSchemesPersistentState?

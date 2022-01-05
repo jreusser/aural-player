@@ -34,7 +34,10 @@ class AudioGraph: AudioGraphProtocol, PersistentModelObject {
     let auxMixer: AVAudioMixerNode  // Used for conversions of sample rates / channel counts
     
     private let audioUnitsManager: AudioUnitsManager
+    
+#if os(macOS)
     private let deviceManager: DeviceManager
+#endif
     
     // Effects units
     var masterUnit: MasterUnit
@@ -71,7 +74,9 @@ class AudioGraph: AudioGraphProtocol, PersistentModelObject {
         
         outputNode = audioEngine.outputNode
         
+#if os(macOS)
         deviceManager = DeviceManager(outputAudioUnit: outputNode.audioUnit!)
+#endif
         
         eqUnit = EQUnit(persistentState: persistentState?.eqUnit)
         pitchShiftUnit = PitchShiftUnit(persistentState: persistentState?.pitchUnit)
@@ -103,12 +108,16 @@ class AudioGraph: AudioGraphProtocol, PersistentModelObject {
         
         soundProfiles = SoundProfiles(persistentState: persistentState?.soundProfiles)
         
+#if os(macOS)
+        
         audioGraphInstance = self
         
         // Register self as an observer for notifications when the audio output device has changed (e.g. headphones)
         messenger.subscribe(to: .AVAudioEngineConfigurationChange, handler: outputDeviceChanged)
         
         deviceManager.maxFramesPerSlice = visualizationAnalysisBufferSize
+#endif
+        
         audioEngine.start()
     }
     
@@ -151,6 +160,8 @@ class AudioGraph: AudioGraphProtocol, PersistentModelObject {
         set {auxMixer.muted = newValue}
     }
     
+#if os(macOS)
+    
     // MARK: Device management ----------------------------------
     
     var availableDevices: AudioDeviceList {deviceManager.allDevices}
@@ -179,6 +190,8 @@ class AudioGraph: AudioGraphProtocol, PersistentModelObject {
         // Send out a notification
         messenger.publish(.audioGraph_outputDeviceChanged)
     }
+    
+#endif
     
     // MARK: Audio Units management ----------------------------------
     
@@ -220,6 +233,8 @@ class AudioGraph: AudioGraphProtocol, PersistentModelObject {
 
     var persistentState: AudioGraphPersistentState {
         
+        #if os(macOS)
+        
         AudioGraphPersistentState(outputDevice: AudioDevicePersistentState(name: outputDevice.name,
                                                                            uid: outputDevice.uid),
                                   volume: volume,
@@ -234,8 +249,27 @@ class AudioGraph: AudioGraphProtocol, PersistentModelObject {
                                   filterUnit: filterUnit.persistentState,
                                   audioUnits: audioUnits.map {$0.persistentState},
                                   soundProfiles: soundProfiles.persistentState)
+        
+        #elseif os(iOS)
+        
+        AudioGraphPersistentState(volume: volume,
+                                  muted: muted,
+                                  pan: pan,
+                                  masterUnit: masterUnit.persistentState,
+                                  eqUnit: eqUnit.persistentState,
+                                  pitchUnit: pitchShiftUnit.persistentState,
+                                  timeUnit: timeStretchUnit.persistentState,
+                                  reverbUnit: reverbUnit.persistentState,
+                                  delayUnit: delayUnit.persistentState,
+                                  filterUnit: filterUnit.persistentState,
+                                  audioUnits: audioUnits.map {$0.persistentState},
+                                  soundProfiles: soundProfiles.persistentState)
+        
+        #endif
     }
 }
+
+#if os(macOS)
 
 // MARK: Callbacks (render observer)
 
@@ -319,3 +353,5 @@ fileprivate func sampleRateChanged(inRefCon: UnsafeMutableRawPointer,
         renderObserver?.deviceSampleRateChanged(newSampleRate: audioGraphInstance.outputDeviceSampleRate)
     }
 }
+
+#endif

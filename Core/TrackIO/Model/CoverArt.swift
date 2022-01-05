@@ -7,7 +7,9 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
+
 import Foundation
+import CoreGraphics
 
 ///
 /// Encapsulates album art and metadata about the image.
@@ -52,10 +54,10 @@ struct ImageMetadata {
     var type: String? = nil
     
     // e.g. 1680x1050
-    var dimensions: NSSize? = nil
+    var dimensions: CGSize? = nil
     
     // e.g. 72x72 DPI
-    var resolution: NSSize? = nil
+    var resolution: CGSize? = nil
     
     // e.g. RGB
     var colorSpace: String? = nil

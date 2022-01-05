@@ -320,11 +320,11 @@ class ParserUtils {
         imgMetadata.bitDepth = dict.intValue(forKey: "Depth")
         
         if let wd = dict.cgFloatValue(forKey: "PixelWidth"), let ht = dict.cgFloatValue(forKey: "PixelHeight") {
-            imgMetadata.dimensions = NSSize(width: wd, height: ht)
+            imgMetadata.dimensions = CGSize(width: wd, height: ht)
         }
         
         if let xRes = dict.cgFloatValue(forKey: "DPIWidth"), let yRes = dict.cgFloatValue(forKey: "DPIHeight") {
-            imgMetadata.resolution = NSSize(width: xRes, height: yRes)
+            imgMetadata.resolution = CGSize(width: xRes, height: yRes)
         }
         
         imgMetadata.hasAlpha = dict["HasAlpha", Bool.self]
