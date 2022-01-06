@@ -3,8 +3,8 @@
     <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -60,6 +60,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="cNJ-CT-SrB"/>
                                 </constraints>
+                                <color key="thumbTintColor" red="0.13552114792655845" green="0.32473217547987848" blue="0.67093697774041561" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="seekAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="0fD-OL-PPe"/>
                                 </connections>
@@ -70,6 +71,7 @@
                                     <constraint firstAttribute="height" constant="29" id="72P-Q5-3Da"/>
                                     <constraint firstAttribute="width" constant="124" id="CBq-sb-4pb"/>
                                 </constraints>
+                                <color key="thumbTintColor" red="0.1355211479" green="0.3247321755" blue="0.67093697770000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="volumeAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="QJg-sN-7EX"/>
                                 </connections>
@@ -85,22 +87,24 @@
                                 <state key="normal" backgroundImage="volume.2" catalog="system"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="i0K-ww-GDr">
-                                <rect key="frame" x="25" y="37" width="784" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="25" y="25" width="784" height="908"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaylistCell" id="9vA-wk-ha8" customClass="PlaylistCell" customModule="Aural_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="784" height="43"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaylistCell" rowHeight="55" id="9vA-wk-ha8" customClass="PlaylistCell" customModule="Aural_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="784" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9vA-wk-ha8" id="iQS-Pk-6NB">
-                                            <rect key="frame" x="0.0" y="0.0" width="784" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="784" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Fa-3U-h4Z">
-                                                    <rect key="frame" x="16" y="11" width="752" height="21"/>
+                                                    <rect key="frame" x="16" y="11" width="752" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="752" id="P0r-AQ-9kl"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -111,6 +115,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="4Fa-3U-h4Z" secondAttribute="bottom" id="xH1-Pf-sE2"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="titleLabel" destination="4Fa-3U-h4Z" id="MFv-fh-RTO"/>
                                         </connections>
@@ -141,10 +146,16 @@
                             <constraint firstItem="1Mv-lH-0b5" firstAttribute="centerY" secondItem="ifU-Np-iuA" secondAttribute="centerY" id="nIc-FW-plF"/>
                             <constraint firstItem="xeV-Pv-UZu" firstAttribute="top" secondItem="3yl-M8-Eh5" secondAttribute="bottom" constant="29.5" id="nnh-rE-dmt"/>
                             <constraint firstItem="xeV-Pv-UZu" firstAttribute="leading" secondItem="cg6-zo-4Kx" secondAttribute="trailing" constant="40" id="v0l-8y-Md1"/>
-                            <constraint firstItem="i0K-ww-GDr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="37" id="vMq-ul-lhJ"/>
+                            <constraint firstItem="i0K-ww-GDr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="vMq-ul-lhJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TIV-zn-xrk">
+                        <leftBarButtonItems>
+                            <barButtonItem title="Item" image="music.note.list" catalog="system" id="XYl-bL-67c"/>
+                            <barButtonItem title="Item" id="Jng-5A-Xk0">
+                                <imageReference key="image" image="slider.vertical.3" catalog="system" symbolScale="large"/>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="gear" catalog="system" id="fth-5I-gh9"/>
                     </navigationItem>
                     <connections>
@@ -183,10 +194,9 @@
         <image name="backward.end" catalog="system" width="128" height="120"/>
         <image name="forward.end" catalog="system" width="128" height="120"/>
         <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="music.note.list" catalog="system" width="128" height="115"/>
         <image name="play" catalog="system" width="120" height="128"/>
+        <image name="slider.vertical.3" catalog="system" width="128" height="111"/>
         <image name="volume.2" catalog="system" width="128" height="90"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

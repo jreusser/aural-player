@@ -46,6 +46,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         playlist.size
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        65
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlaylistCell", for: indexPath)
@@ -69,6 +73,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
            let track = playlist.trackAtIndex(indexPath.row) {
             
             player.play(track)
+            updatePlayPauseButton()
         }
     }
     
@@ -79,6 +84,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func playPauseAction(_ sender: Any) {
         
         player.togglePlayPause()
+        updatePlayPauseButton()
+    }
+    
+    private func updatePlayPauseButton() {
         
         if player.state == .playing {
             btnPlay.setBackgroundImage(PlatformImage(systemName: "pause"), for: .normal)
