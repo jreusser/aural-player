@@ -107,7 +107,7 @@ let audioSession: AVAudioSession = .sharedInstance()
         let nativeSlaveUnits = [eqUnit, pitchShiftUnit, timeStretchUnit, reverbUnit, delayUnit, filterUnit]
         masterUnit = MasterUnit(persistentState: persistentState?.masterUnit, nativeSlaveUnits: nativeSlaveUnits,
                                 audioUnits: audioUnits)
-
+        
         let permanentNodes = [playerNode, auxMixer] + (nativeSlaveUnits.flatMap {$0.avNodes})
         let removableNodes = audioUnits.flatMap {$0.avNodes}
         audioEngine.addNodes(permanentNodes: permanentNodes, removableNodes: removableNodes)
@@ -143,7 +143,7 @@ let audioSession: AVAudioSession = .sharedInstance()
             
             try audioSession.setCategory(.playback)
             try audioSession.setActive(true)
-            try audioSession.setPreferredSampleRate(44100)
+            try audioSession.setPreferredSampleRate(48000)
             
         } catch {
             fatalError("Could not set Audio Session active error: \(error.localizedDescription).")
@@ -155,7 +155,16 @@ let audioSession: AVAudioSession = .sharedInstance()
     // MARK: Audio engine functions ----------------------------------
     
     func reconnectPlayerNode(withFormat format: AVAudioFormat) {
+        
         audioEngine.reconnect(outputOf: playerNode, toInputOf: auxMixer, withFormat: format)
+        
+//        let fileSampleRate = format.sampleRate
+//        
+//        do {
+//            try audioSession.setPreferredSampleRate(fileSampleRate)
+//        } catch {
+//            print("\nError setting session sample rate to \(fileSampleRate): \(error)")
+//        }
     }
     
     func clearSoundTails() {

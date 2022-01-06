@@ -7,7 +7,7 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
-import Cocoa
+import Foundation
 
 ///
 /// (Lazily) Initializes all the core objects and state required by the application (mostly singletons), and exposes them for application-wide
@@ -24,8 +24,12 @@ class ObjectGraph {
     
     let preferences: Preferences = Preferences(defaults: .standard)
     
+#if os(macOS)
+    
     lazy var appModeManager: AppModeManager = AppModeManager(persistentState: persistentState.ui,
                                                              preferences: preferences.viewPreferences)
+    
+    #endif
     
     private lazy var playlist: Playlist = Playlist(FlatPlaylist(),
                                                                  [GroupingPlaylist(.artists), GroupingPlaylist(.albums), GroupingPlaylist(.genres)])
@@ -56,18 +60,32 @@ class ObjectGraph {
     lazy var audioGraphDelegate: AudioGraphDelegateProtocol = AudioGraphDelegate(graph: audioGraph, persistentState: persistentState.audioGraph,
                                                                                  player: playbackDelegate, preferences: preferences.soundPreferences)
     
+#if os(macOS)
     private lazy var player: PlayerProtocol = Player(graph: audioGraph, avfScheduler: avfScheduler, ffmpegScheduler: ffmpegScheduler)
+    #elseif os(iOS)
+    private lazy var player: PlayerProtocol = Player(graph: audioGraph, avfScheduler: avfScheduler, ffmpegScheduler: avfScheduler)
+    #endif
+    
     private lazy var avfScheduler: PlaybackSchedulerProtocol = AVFScheduler(audioGraph.playerNode)
+    
+#if os(macOS)
     
     private lazy var ffmpegScheduler: PlaybackSchedulerProtocol = FFmpegScheduler(playerNode: audioGraph.playerNode,
                                                                                     sampleConverter: FFmpegSampleConverter())
+    
+    #endif
+    
     private lazy var sequencer: Sequencer = {
         
         var playlistType: PlaylistType = .tracks
         
+#if os(macOS)
+        
         if let viewString = persistentState.ui?.playlist?.view?.lowercased(), let view = PlaylistType(rawValue: viewString) {
             playlistType = view
         }
+        
+        #endif
         
         return Sequencer(persistentState: persistentState.playbackSequence, playlist, playlistType)
     }()
@@ -112,6 +130,8 @@ class ObjectGraph {
     lazy var musicBrainzCache: MusicBrainzCache = MusicBrainzCache(state: persistentState.musicBrainzCache,
                                                                      preferences: preferences.metadataPreferences.musicBrainz)
     
+#if os(macOS)
+    
     lazy var windowLayoutsManager: WindowLayoutsManager = WindowLayoutsManager(persistentState: persistentState.ui?.windowLayout,
                                                                                  viewPreferences: preferences.viewPreferences)
     
@@ -128,7 +148,8 @@ class ObjectGraph {
     
     let mediaKeyHandler: MediaKeyHandler
     
-    @available(OSX 10.12.2, *)
+    #endif
+    
     lazy var remoteControlManager: RemoteControlManager = RemoteControlManager(playbackInfo: playbackInfoDelegate, audioGraph: audioGraphDelegate,
                                                                                sequencer: sequencerDelegate, preferences: preferences)
     
@@ -138,11 +159,13 @@ class ObjectGraph {
          // Force initialization of objects that would not be initialized soon enough otherwise
         // (they are not referred to in code that is executed on app startup).
         
+#if os(macOS)
+        
         self.mediaKeyHandler = MediaKeyHandler(preferences.controlsPreferences.mediaKeys)
         
-        if #available(OSX 10.12.2, *) {
-            _ = remoteControlManager
-        }
+        #endif
+        
+        _ = remoteControlManager
         
         DispatchQueue.global(qos: .background).async {
             self.cleanUpLegacyFolders()
@@ -171,12 +194,14 @@ class ObjectGraph {
         // Gather all pieces of persistent state into the persistentState object
         var persistentState: AppPersistentState = AppPersistentState()
         
-        persistentState.appVersion = NSApp.appVersion
+        persistentState.appVersion = appVersion
         
         persistentState.audioGraph = audioGraph.persistentState
         persistentState.playlist = playlist.persistentState
         persistentState.playbackSequence = sequencer.persistentState
         persistentState.playbackProfiles = playbackDelegate.profiles.all().map {PlaybackProfilePersistentState(profile: $0)}
+        
+        #if os(macOS)
         
         persistentState.ui = UIPersistentState(appMode: appModeManager.currentMode,
                                                windowLayout: windowLayoutsManager.persistentState,
@@ -189,6 +214,8 @@ class ObjectGraph {
                                                windowAppearance: windowAppearanceState.persistentState,
                                                menuBarPlayer: menuBarPlayerUIState.persistentState,
                                                controlBarPlayer: controlBarPlayerUIState.persistentState)
+        
+        #endif
         
         persistentState.history = _historyDelegate.persistentState
         persistentState.favorites = _favoritesDelegate.persistentState

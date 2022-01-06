@@ -6,40 +6,28 @@
 //
 
 import UIKit
+import AVFoundation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let player = objectGraph.playbackDelegate
+    let playlist = objectGraph.playlistDelegate
 
-    let engine = AudioEngine()
-    lazy var audioGraph = AudioGraph(audioEngine: engine, audioUnitsManager: AudioUnitsManager(), persistentState: nil)
-    lazy var scheduler = AVFScheduler(audioGraph.playerNode)
-    lazy var player = Player(graph: audioGraph, avfScheduler: scheduler, ffmpegScheduler: scheduler)
-    
-    let fileReader: FileReader = FileReader()
-    
     let userDocumentsDirectory: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     lazy var file = userDocumentsDirectory.appendingPathComponent("Here.mp3")
-    lazy var track = Track(file, fileMetadata: nil)
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
         
         print("\nUser Docs Dir: \(userDocumentsDirectory)")
-        track.playbackContext = try! fileReader.getPlaybackMetadata(for: track.file)
-        track.duration = track.playbackContext!.duration
         
-        print("\nTrackDuration is: \(track.duration)")
-        
-        player.play(track, 0)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            print("\nSeekPos = \(self.player.seekPosition), Volume: \(self.audioGraph.volume), Muted: \(self.audioGraph.muted)\n")
-        }
+        playlist.addFiles(userDocumentsDirectory.children ?? [])
         
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -58,3 +46,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 let appVersion: String = Bundle.main.infoDictionary!["CFBundleShortVersionString", String.self]!
+
+let objectGraph: ObjectGraph = .instance

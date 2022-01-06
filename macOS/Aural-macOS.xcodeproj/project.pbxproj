@@ -2805,7 +2805,6 @@
 			isa = PBXGroup;
 			children = (
 				3E6C0EC225CEB3ED00BF0D07 /* AppDelegate.swift */,
-				3E6C105725CEB98600BF0D07 /* ObjectGraph.swift */,
 				3EFE3B0927864958006F8B8C /* TypeAliases.swift */,
 				3EDB335125E8ADBA004DF7DE /* Aural-Bridging-Header.h */,
 				3EFE3A9B27864942006F8B8C /* FFmpeg */,
@@ -4197,6 +4196,7 @@
 		3EFE35D527864895006F8B8C /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				3E6C105725CEB98600BF0D07 /* ObjectGraph.swift */,
 				3EFE361827864895006F8B8C /* Preferences */,
 				3EFE362827864895006F8B8C /* Playlist */,
 				3EFE365727864895006F8B8C /* Constants */,

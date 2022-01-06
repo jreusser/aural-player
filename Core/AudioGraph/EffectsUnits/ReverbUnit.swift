@@ -25,9 +25,19 @@ class ReverbUnit: EffectsUnit, ReverbUnitProtocol {
         
         avSpace = (persistentState?.space ?? AudioGraphDefaults.reverbSpace).avPreset
         presets = ReverbPresets(persistentState: persistentState)
-        super.init(unitType: .reverb, unitState: persistentState?.state ?? AudioGraphDefaults.reverbState)
+        
+        #if os(iOS)
         
         amount = persistentState?.amount ?? AudioGraphDefaults.reverbAmount
+        node.bypass = false
+        
+        #endif
+        
+        super.init(unitType: .reverb, unitState: persistentState?.state ?? AudioGraphDefaults.reverbState)
+        
+        #if os(macOS)
+        amount = persistentState?.amount ?? AudioGraphDefaults.reverbAmount
+        #endif
     }
     
     override var avNodes: [AVAudioNode] {[node]}
@@ -46,16 +56,39 @@ class ReverbUnit: EffectsUnit, ReverbUnitProtocol {
         set {avSpace = newValue.avPreset}
     }
     
+    #if os(macOS)
+    
     var amount: Float {
         
         get {node.wetDryMix}
         set {node.wetDryMix = newValue}
     }
     
+    #elseif os(iOS)
+    
+    // HACK: Without this, no sound is produced in the simulator.
+    
+    var amount: Float {
+        
+        didSet {
+            
+            if state == .active {
+                node.wetDryMix = amount
+            }
+        }
+    }
+    
+    #endif
+    
     override func stateChanged() {
         
         super.stateChanged()
+        
+        #if os(macOS)
         node.bypass = !isActive
+        #elseif os(iOS)
+        node.wetDryMix = isActive ? amount : 0
+        #endif
     }
     
     override func savePreset(named presetName: String) {
