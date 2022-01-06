@@ -31,6 +31,8 @@ extension AVAudioFormat {
             return aclPtr?.pointee.description ?? AVAudioChannelLayout.defaultDescription(channelCount: channelCount)
         }
     }
+    
+    #if os(macOS)
 
     ///
     /// A convenient way to instantiate an AVAudioFormat given an ffmpeg sample format, sample rate, and channel layout identifier.
@@ -65,4 +67,6 @@ extension AVAudioFormat {
         self.init(commonFormat: commonFmt, sampleRate: Double(ffmpegFormat.sampleRate),
                   interleaved: ffmpegFormat.isInterleaved, channelLayout: avfChannelLayout)
     }
+    
+    #endif
 }

@@ -199,9 +199,6 @@
 		3EC299B02786587000B29551 /* SequencerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298312786586F00B29551 /* SequencerProtocol.swift */; };
 		3EC299B12786587000B29551 /* ShuffleMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298322786586F00B29551 /* ShuffleMode.swift */; };
 		3EC299B22786587000B29551 /* SequencerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298332786586F00B29551 /* SequencerDelegate.swift */; };
-		3EC299B32786587000B29551 /* FFmpegPlaybackContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298342786586F00B29551 /* FFmpegPlaybackContext.swift */; };
-		3EC299B42786587000B29551 /* FFmpegLoopScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298372786586F00B29551 /* FFmpegLoopScheduling.swift */; };
-		3EC299B52786587000B29551 /* FFmpegScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298382786586F00B29551 /* FFmpegScheduler.swift */; };
 		3EC299B62786587000B29551 /* AVFScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC2983A2786586F00B29551 /* AVFScheduler.swift */; };
 		3EC299B72786587000B29551 /* PlaybackSchedulerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC2983B2786586F00B29551 /* PlaybackSchedulerProtocol.swift */; };
 		3EC299B82786587000B29551 /* PlaybackSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC2983C2786586F00B29551 /* PlaybackSegment.swift */; };
@@ -293,15 +290,6 @@
 		3EC29A242786587000B29551 /* TrackPlaybackCommandNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298BA2786586F00B29551 /* TrackPlaybackCommandNotification.swift */; };
 		3EC29A252786587000B29551 /* PlaylistCommandNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298BB2786586F00B29551 /* PlaylistCommandNotification.swift */; };
 		3EC29A262786587000B29551 /* ChapterChangedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298BC2786586F00B29551 /* ChapterChangedNotification.swift */; };
-		3EC29A272786587000B29551 /* ID3FFmpegParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298BF2786586F00B29551 /* ID3FFmpegParser.swift */; };
-		3EC29A282786587000B29551 /* FFmpegMetadataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298C02786586F00B29551 /* FFmpegMetadataParser.swift */; };
-		3EC29A292786587000B29551 /* DefaultFFMpegMetadataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298C12786586F00B29551 /* DefaultFFMpegMetadataParser.swift */; };
-		3EC29A2A2786587000B29551 /* CommonFFMpegMetadataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298C22786586F00B29551 /* CommonFFMpegMetadataParser.swift */; };
-		3EC29A2B2786587000B29551 /* FFmpegMappedMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298C32786586F00B29551 /* FFmpegMappedMetadata.swift */; };
-		3EC29A2C2786587000B29551 /* FFmpegFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298C42786586F00B29551 /* FFmpegFileReader.swift */; };
-		3EC29A2D2786587000B29551 /* ApeV2Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298C52786586F00B29551 /* ApeV2Parser.swift */; };
-		3EC29A2E2786587000B29551 /* WMParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298C62786586F00B29551 /* WMParser.swift */; };
-		3EC29A2F2786587000B29551 /* VorbisCommentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298C72786586F00B29551 /* VorbisCommentParser.swift */; };
 		3EC29A302786587000B29551 /* FileCoverArtReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298C82786586F00B29551 /* FileCoverArtReader.swift */; };
 		3EC29A312786587000B29551 /* ID3Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298CA2786586F00B29551 /* ID3Spec.swift */; };
 		3EC29A322786587000B29551 /* LanguageMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC298CB2786586F00B29551 /* LanguageMap.swift */; };
@@ -546,9 +534,6 @@
 		3EC298312786586F00B29551 /* SequencerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerProtocol.swift; sourceTree = "<group>"; };
 		3EC298322786586F00B29551 /* ShuffleMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShuffleMode.swift; sourceTree = "<group>"; };
 		3EC298332786586F00B29551 /* SequencerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerDelegate.swift; sourceTree = "<group>"; };
-		3EC298342786586F00B29551 /* FFmpegPlaybackContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegPlaybackContext.swift; sourceTree = "<group>"; };
-		3EC298372786586F00B29551 /* FFmpegLoopScheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegLoopScheduling.swift; sourceTree = "<group>"; };
-		3EC298382786586F00B29551 /* FFmpegScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegScheduler.swift; sourceTree = "<group>"; };
 		3EC2983A2786586F00B29551 /* AVFScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFScheduler.swift; sourceTree = "<group>"; };
 		3EC2983B2786586F00B29551 /* PlaybackSchedulerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackSchedulerProtocol.swift; sourceTree = "<group>"; };
 		3EC2983C2786586F00B29551 /* PlaybackSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackSegment.swift; sourceTree = "<group>"; };
@@ -640,15 +625,6 @@
 		3EC298BA2786586F00B29551 /* TrackPlaybackCommandNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackPlaybackCommandNotification.swift; sourceTree = "<group>"; };
 		3EC298BB2786586F00B29551 /* PlaylistCommandNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistCommandNotification.swift; sourceTree = "<group>"; };
 		3EC298BC2786586F00B29551 /* ChapterChangedNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChapterChangedNotification.swift; sourceTree = "<group>"; };
-		3EC298BF2786586F00B29551 /* ID3FFmpegParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ID3FFmpegParser.swift; sourceTree = "<group>"; };
-		3EC298C02786586F00B29551 /* FFmpegMetadataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegMetadataParser.swift; sourceTree = "<group>"; };
-		3EC298C12786586F00B29551 /* DefaultFFMpegMetadataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultFFMpegMetadataParser.swift; sourceTree = "<group>"; };
-		3EC298C22786586F00B29551 /* CommonFFMpegMetadataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFFMpegMetadataParser.swift; sourceTree = "<group>"; };
-		3EC298C32786586F00B29551 /* FFmpegMappedMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegMappedMetadata.swift; sourceTree = "<group>"; };
-		3EC298C42786586F00B29551 /* FFmpegFileReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegFileReader.swift; sourceTree = "<group>"; };
-		3EC298C52786586F00B29551 /* ApeV2Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApeV2Parser.swift; sourceTree = "<group>"; };
-		3EC298C62786586F00B29551 /* WMParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WMParser.swift; sourceTree = "<group>"; };
-		3EC298C72786586F00B29551 /* VorbisCommentParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VorbisCommentParser.swift; sourceTree = "<group>"; };
 		3EC298C82786586F00B29551 /* FileCoverArtReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCoverArtReader.swift; sourceTree = "<group>"; };
 		3EC298CA2786586F00B29551 /* ID3Spec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ID3Spec.swift; sourceTree = "<group>"; };
 		3EC298CB2786586F00B29551 /* LanguageMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageMap.swift; sourceTree = "<group>"; };
@@ -1138,7 +1114,6 @@
 			isa = PBXGroup;
 			children = (
 				3EC298292786586F00B29551 /* Sequencing */,
-				3EC298342786586F00B29551 /* FFmpegPlaybackContext.swift */,
 				3EC298352786586F00B29551 /* Scheduling */,
 				3EC2983E2786586F00B29551 /* PlayerSeekResult.swift */,
 				3EC2983F2786586F00B29551 /* PlaybackParams.swift */,
@@ -1175,22 +1150,12 @@
 		3EC298352786586F00B29551 /* Scheduling */ = {
 			isa = PBXGroup;
 			children = (
-				3EC298362786586F00B29551 /* FFmpeg */,
 				3EC298392786586F00B29551 /* AVFoundation */,
 				3EC2983B2786586F00B29551 /* PlaybackSchedulerProtocol.swift */,
 				3EC2983C2786586F00B29551 /* PlaybackSegment.swift */,
 				3EC2983D2786586F00B29551 /* AuralPlayerNode.swift */,
 			);
 			path = Scheduling;
-			sourceTree = "<group>";
-		};
-		3EC298362786586F00B29551 /* FFmpeg */ = {
-			isa = PBXGroup;
-			children = (
-				3EC298372786586F00B29551 /* FFmpegLoopScheduling.swift */,
-				3EC298382786586F00B29551 /* FFmpegScheduler.swift */,
-			);
-			path = FFmpeg;
 			sourceTree = "<group>";
 		};
 		3EC298392786586F00B29551 /* AVFoundation */ = {
@@ -1395,7 +1360,6 @@
 		3EC298BD2786586F00B29551 /* TrackIO */ = {
 			isa = PBXGroup;
 			children = (
-				3EC298BE2786586F00B29551 /* FFmpeg */,
 				3EC298C82786586F00B29551 /* FileCoverArtReader.swift */,
 				3EC298C92786586F00B29551 /* Specifications */,
 				3EC298CE2786586F00B29551 /* MusicBrainz */,
@@ -1408,22 +1372,6 @@
 				3EC298F72786586F00B29551 /* FileReader.swift */,
 			);
 			path = TrackIO;
-			sourceTree = "<group>";
-		};
-		3EC298BE2786586F00B29551 /* FFmpeg */ = {
-			isa = PBXGroup;
-			children = (
-				3EC298BF2786586F00B29551 /* ID3FFmpegParser.swift */,
-				3EC298C02786586F00B29551 /* FFmpegMetadataParser.swift */,
-				3EC298C12786586F00B29551 /* DefaultFFMpegMetadataParser.swift */,
-				3EC298C22786586F00B29551 /* CommonFFMpegMetadataParser.swift */,
-				3EC298C32786586F00B29551 /* FFmpegMappedMetadata.swift */,
-				3EC298C42786586F00B29551 /* FFmpegFileReader.swift */,
-				3EC298C52786586F00B29551 /* ApeV2Parser.swift */,
-				3EC298C62786586F00B29551 /* WMParser.swift */,
-				3EC298C72786586F00B29551 /* VorbisCommentParser.swift */,
-			);
-			path = FFmpeg;
 			sourceTree = "<group>";
 		};
 		3EC298C92786586F00B29551 /* Specifications */ = {
@@ -1638,10 +1586,8 @@
 				3EC29A3A2786587000B29551 /* MusicBrainzArtist.swift in Sources */,
 				3EC299FA2786587000B29551 /* AudioUnitPersistentState.swift in Sources */,
 				3EC299EE2786587000B29551 /* GroupingPlaylistPersistentState.swift in Sources */,
-				3EC299B42786587000B29551 /* FFmpegLoopScheduling.swift in Sources */,
 				3EC2990B2786586F00B29551 /* TracksSort.swift in Sources */,
 				3EC29A0A2786587000B29551 /* NowPlayingInfoManager.swift in Sources */,
-				3EC299B52786587000B29551 /* FFmpegScheduler.swift in Sources */,
 				3EC299932786587000B29551 /* URLExtensions.swift in Sources */,
 				3EC299962786587000B29551 /* IndexSetExtensions.swift in Sources */,
 				3EC2997F2786587000B29551 /* Stack.swift in Sources */,
@@ -1725,7 +1671,6 @@
 				3EC299972786587000B29551 /* EnumExtensions.swift in Sources */,
 				3EC299D02786587000B29551 /* Player.swift in Sources */,
 				3EC29A072786587000B29551 /* HistoryDelegate.swift in Sources */,
-				3EC29A282786587000B29551 /* FFmpegMetadataParser.swift in Sources */,
 				3EC2998C2786587000B29551 /* NSApplicationExtensions.swift in Sources */,
 				3EC299B22786587000B29551 /* SequencerDelegate.swift in Sources */,
 				3EC299C42786587000B29551 /* EndPlaybackSequenceAction.swift in Sources */,
@@ -1743,7 +1688,6 @@
 				3EC29A492786587000B29551 /* MetadataFormat.swift in Sources */,
 				3EC299982786587000B29551 /* DateExtensions.swift in Sources */,
 				3EC299262786586F00B29551 /* GroupedTracksRemovalResult.swift in Sources */,
-				3EC29A2B2786587000B29551 /* FFmpegMappedMetadata.swift in Sources */,
 				3EC29A312786587000B29551 /* ID3Spec.swift in Sources */,
 				3EC2998A2786587000B29551 /* AVAudioFormatExtensions.swift in Sources */,
 				3EC2992E2786586F00B29551 /* PlaylistDelegateProtocol.swift in Sources */,
@@ -1762,7 +1706,6 @@
 				3EC299182786586F00B29551 /* SearchResultMatch.swift in Sources */,
 				3EC299A02786587000B29551 /* HTTPErrors.swift in Sources */,
 				3EC29A052786587000B29551 /* HistoryItem.swift in Sources */,
-				3EC29A2D2786587000B29551 /* ApeV2Parser.swift in Sources */,
 				3EC29A152786587000B29551 /* PlaylistNotifications.swift in Sources */,
 				3EC2993A2786586F00B29551 /* HostedAudioUnit.swift in Sources */,
 				3EC2996C2786587000B29551 /* EffectsUnitDelegate.swift in Sources */,
@@ -1771,7 +1714,6 @@
 				3EC29A1C2786587000B29551 /* TrackTransitionNotification.swift in Sources */,
 				3EC29A512786587000B29551 /* PlaylistMetadata.swift in Sources */,
 				3EC29A542786587000B29551 /* Chapter.swift in Sources */,
-				3EC29A2C2786587000B29551 /* FFmpegFileReader.swift in Sources */,
 				3EC299522786586F00B29551 /* SoundProfiles.swift in Sources */,
 				3EC2990E2786586F00B29551 /* SortResults.swift in Sources */,
 				3EC299002786586F00B29551 /* MetadataPreferences.swift in Sources */,
@@ -1793,7 +1735,6 @@
 				3EC299342786586F00B29551 /* FavoritesDelegateProtocol.swift in Sources */,
 				3EC299F42786587000B29551 /* TimeStretchUnitPersistentState.swift in Sources */,
 				3EC29A3B2786587000B29551 /* MusicBrainzRelease.swift in Sources */,
-				3EC29A2A2786587000B29551 /* CommonFFMpegMetadataParser.swift in Sources */,
 				3EC299842786587000B29551 /* Queue.swift in Sources */,
 				3EC29A412786587000B29551 /* AudioToolboxParser.swift in Sources */,
 				3EC299122786586F00B29551 /* PlaylistIO.swift in Sources */,
@@ -1819,7 +1760,6 @@
 				3EC2999C2786587000B29551 /* AtomicCounter.swift in Sources */,
 				3EC2990A2786586F00B29551 /* SortComparator.swift in Sources */,
 				3EC299CF2786587000B29551 /* PlaybackChain.swift in Sources */,
-				3EC299B32786587000B29551 /* FFmpegPlaybackContext.swift in Sources */,
 				3EC299382786586F00B29551 /* EffectsUnitProtocol.swift in Sources */,
 				3EC29A562786587000B29551 /* TrackReader.swift in Sources */,
 				3EC299212786586F00B29551 /* TrackRemovalResults.swift in Sources */,
@@ -1827,7 +1767,6 @@
 				3EC29A402786587000B29551 /* ParserUtils.swift in Sources */,
 				3EC298FA2786586F00B29551 /* ViewPreferences.swift in Sources */,
 				3EC2999D2786587000B29551 /* ExclusiveAccessSemaphore.swift in Sources */,
-				3EC29A2E2786587000B29551 /* WMParser.swift in Sources */,
 				3EC2995F2786587000B29551 /* ParametricEQNode.swift in Sources */,
 				3EC299BB2786587000B29551 /* PlaybackParams.swift in Sources */,
 				3EC2991B2786586F00B29551 /* SearchType.swift in Sources */,
@@ -1855,15 +1794,12 @@
 				3EC29A4A2786587000B29551 /* FileMetadata.swift in Sources */,
 				3EC299302786586F00B29551 /* SupportedTypes.swift in Sources */,
 				3EC299492786586F00B29551 /* EQType.swift in Sources */,
-				3EC29A292786587000B29551 /* DefaultFFMpegMetadataParser.swift in Sources */,
 				3EC29A1A2786587000B29551 /* TrackAddedNotification.swift in Sources */,
 				3EC299F92786587000B29551 /* EQUnitPersistentState.swift in Sources */,
 				3EC299C12786587000B29551 /* ChapterPlayback.swift in Sources */,
 				3EC29A322786587000B29551 /* LanguageMap.swift in Sources */,
-				3EC29A272786587000B29551 /* ID3FFmpegParser.swift in Sources */,
 				3EC29A042786587000B29551 /* PlayedItem.swift in Sources */,
 				3EC299AB2786587000B29551 /* Sequencer.swift in Sources */,
-				3EC29A2F2786587000B29551 /* VorbisCommentParser.swift in Sources */,
 				3EC299952786587000B29551 /* IntExtensions.swift in Sources */,
 				3EC29A002786587000B29551 /* FavoritePersistentState.swift in Sources */,
 				3EC299BD2786587000B29551 /* AVFPlaybackContext.swift in Sources */,
