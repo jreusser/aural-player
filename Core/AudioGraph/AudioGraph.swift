@@ -55,6 +55,12 @@ class AudioGraph: AudioGraphProtocol, PersistentModelObject {
     
     let visualizationAnalysisBufferSize: Int = 2048
     
+#if os(iOS)
+
+let audioSession: AVAudioSession = .sharedInstance()
+    
+    #endif
+    
     // Used by callbacks
     fileprivate lazy var unmanagedReferenceToSelf: UnsafeMutableRawPointer = Unmanaged.passUnretained(self).toOpaque()
     fileprivate lazy var outputAudioUnit: AudioUnit = outputNode.audioUnit!
@@ -116,9 +122,34 @@ class AudioGraph: AudioGraphProtocol, PersistentModelObject {
         messenger.subscribe(to: .AVAudioEngineConfigurationChange, handler: outputDeviceChanged)
         
         deviceManager.maxFramesPerSlice = visualizationAnalysisBufferSize
+        
+#elseif os(iOS)
+
+        setUpAudioSession()
+
 #endif
         
         audioEngine.start()
+    }
+    
+    ///
+    /// Sets preferred buffer size, sample rate, and other parameters for the audio session.
+    ///
+    func setUpAudioSession() {
+        
+        #if os(iOS)
+        
+        do {
+            
+            try audioSession.setCategory(.playback)
+            try audioSession.setActive(true)
+            try audioSession.setPreferredSampleRate(44100)
+            
+        } catch {
+            fatalError("Could not set Audio Session active error: \(error.localizedDescription).")
+        }
+        
+        #endif
     }
     
     // MARK: Audio engine functions ----------------------------------
