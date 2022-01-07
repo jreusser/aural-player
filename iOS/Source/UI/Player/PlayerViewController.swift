@@ -20,6 +20,7 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var lblTitleOnly: UILabel!
     
     @IBOutlet weak var lblTimeElapsed: UILabel!
+    @IBOutlet weak var lblTimeRemaining: UILabel!
     
     // Timer that periodically updates the seek position slider and label
     var seekTimer: RepeatingTaskExecutor?
@@ -35,8 +36,7 @@ class PlayerViewController: UIViewController {
         volumeSlider.value = audioGraph.volume
         
         imgArt.layer.cornerRadius = 4
-        lblTimeElapsed.text = "0:00"
-        [lblTitle, lblArtistAlbum, lblTitleOnly, lblTimeElapsed].forEach {$0?.isHidden = true}
+        [lblTitle, lblArtistAlbum, lblTitleOnly, lblTimeElapsed, lblTimeRemaining].forEach {$0?.isHidden = true}
         
         let seekTimerInterval = 500
         seekTimer = RepeatingTaskExecutor(intervalMillis: seekTimerInterval,
@@ -81,7 +81,9 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func seekAction(_ sender: Any) {
+        
         player.seekToPercentage(Double(seekSlider.value))
+        updateSeekPosition()
     }
     
     func updateSeekPosition() {
@@ -91,7 +93,8 @@ class PlayerViewController: UIViewController {
         
         let trackTimes = ValueFormatter.formatTrackTimes(seekPosn.timeElapsed, seekPosn.trackDuration, seekPosn.percentageElapsed, .formatted, .formatted)
         
-        lblTimeElapsed.text = "\(trackTimes.elapsed)  /  \(trackTimes.remaining)"
+        lblTimeElapsed.text = trackTimes.elapsed
+        lblTimeRemaining.text = trackTimes.remaining
     }
     
     // MARK: Notification handling
@@ -103,15 +106,14 @@ class PlayerViewController: UIViewController {
         
         guard let newTrack = notif.endTrack else {
             
-            lblTimeElapsed.text = "0:00"
-            [lblTitle, lblArtistAlbum, lblTitleOnly, lblTimeElapsed].forEach {$0?.isHidden = true}
+            [lblTitle, lblArtistAlbum, lblTitleOnly, lblTimeElapsed, lblTimeRemaining].forEach {$0?.isHidden = true}
             imgArt.image = nil
             seekTimer?.pause()
             
             return
         }
         
-        lblTimeElapsed.isHidden = false
+        [lblTimeElapsed, lblTimeRemaining].forEach {$0.isHidden = false}
         seekTimer?.startOrResume()
         
         imgArt.image = newTrack.art?.image

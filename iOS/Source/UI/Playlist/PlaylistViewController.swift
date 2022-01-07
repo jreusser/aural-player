@@ -36,8 +36,9 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         let trackIndex = indexPath.row
-        playlistCell.titleLabel.text = playlist.trackAtIndex(trackIndex)?.displayName ?? "<None>"
-        playlistCell.titleLabel.textColor = .white
+        
+        playlistCell.lblIndex.text = "\(trackIndex + 1)"
+        playlistCell.lblTitle.text = playlist.trackAtIndex(trackIndex)?.displayName ?? "<None>"
         
         return playlistCell
     }
@@ -57,5 +58,7 @@ class PlaylistViewController: UIViewController, UITableViewDataSource, UITableVi
 }
 
 class PlaylistCell: UITableViewCell {
-    @IBOutlet var titleLabel: UILabel!
+    
+    @IBOutlet var lblIndex: UILabel!
+    @IBOutlet var lblTitle: UILabel!
 }
