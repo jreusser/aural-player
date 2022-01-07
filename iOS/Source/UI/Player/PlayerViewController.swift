@@ -19,6 +19,11 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var lblArtistAlbum: UILabel!
     @IBOutlet weak var lblTitleOnly: UILabel!
     
+    @IBOutlet weak var lblTimeElapsed: UILabel!
+    
+    // Timer that periodically updates the seek position slider and label
+    var seekTimer: RepeatingTaskExecutor?
+    
     let player = objectGraph.playbackDelegate
     var audioGraph = objectGraph.audioGraphDelegate
     
@@ -30,6 +35,13 @@ class PlayerViewController: UIViewController {
         volumeSlider.value = audioGraph.volume
         
         imgArt.layer.cornerRadius = 4
+        lblTimeElapsed.text = "0:00"
+        [lblTitle, lblArtistAlbum, lblTitleOnly, lblTimeElapsed].forEach {$0?.isHidden = true}
+        
+        let seekTimerInterval = 500
+        seekTimer = RepeatingTaskExecutor(intervalMillis: seekTimerInterval,
+                                          task: updateSeekPosition,
+                                          queue: .main)
         
         messenger.subscribe(to: .player_trackTransitioned, handler: trackTransitioned(_:))
         messenger.subscribeAsync(to: .player_trackInfoUpdated, handler: trackInfoUpdated(_:))
@@ -69,6 +81,17 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func seekAction(_ sender: Any) {
+        player.seekToPercentage(Double(seekSlider.value))
+    }
+    
+    func updateSeekPosition() {
+        
+        let seekPosn = player.seekPosition
+        seekSlider.value = Float(seekPosn.percentageElapsed)
+        
+        let trackTimes = ValueFormatter.formatTrackTimes(seekPosn.timeElapsed, seekPosn.trackDuration, seekPosn.percentageElapsed, .formatted, .formatted)
+        
+        lblTimeElapsed.text = "\(trackTimes.elapsed)  /  \(trackTimes.remaining)"
     }
     
     // MARK: Notification handling
@@ -80,11 +103,16 @@ class PlayerViewController: UIViewController {
         
         guard let newTrack = notif.endTrack else {
             
-            [lblTitle, lblArtistAlbum, lblTitleOnly].forEach {$0?.isHidden = true}
+            lblTimeElapsed.text = "0:00"
+            [lblTitle, lblArtistAlbum, lblTitleOnly, lblTimeElapsed].forEach {$0?.isHidden = true}
             imgArt.image = nil
+            seekTimer?.pause()
             
             return
         }
+        
+        lblTimeElapsed.isHidden = false
+        seekTimer?.startOrResume()
         
         imgArt.image = newTrack.art?.image
             
