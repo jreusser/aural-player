@@ -103,7 +103,7 @@ class PlaylistWindowController: NSWindowController, NSTabViewDelegate, Destroyab
         
         theWindow.isMovableByWindowBackground = true
         
-        btnClose.tintFunction = {Colors.functionButtonColor}
+//        btnClose.tintFunction = {Colors.functionButtonColor}
         
         setUpTabGroup()
         
@@ -448,10 +448,10 @@ class PlaylistWindowController: NSWindowController, NSTabViewDelegate, Destroyab
     
     private func applyColorScheme(_ scheme: ColorScheme) {
         
-        changeBackgroundColor(scheme.general.backgroundColor)
-        changeMainCaptionTextColor(scheme.general.mainCaptionTextColor)
-        changeFunctionButtonColor(scheme.general.functionButtonColor)
-        changeSummaryInfoColor(scheme.playlist.summaryInfoColor)
+        changeBackgroundColor(scheme.backgroundColor)
+        changeMainCaptionTextColor(scheme.captionTextColor)
+        changeFunctionButtonColor(scheme.buttonColor)
+//        changeSummaryInfoColor(scheme.playlist.summaryInfoColor)
     }
     
     private func changeBackgroundColor(_ color: NSColor) {

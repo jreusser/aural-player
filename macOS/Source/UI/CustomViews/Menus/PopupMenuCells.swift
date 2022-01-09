@@ -22,7 +22,7 @@ class PopupMenuCell: NSPopUpButtonCell {
     var menuGradient: NSGradient {.sliderBarGradient}
     
     var titleFont: NSFont {.popupMenuFont}
-    var titleColor: NSColor {Colors.Effects.defaultPopupMenuTextColor}
+//    var titleColor: NSColor {Colors.Effects.defaultPopupMenuTextColor}
     
     var arrowXMargin: CGFloat {5}
     var arrowYMargin: CGFloat {5}
@@ -46,8 +46,8 @@ class PopupMenuCell: NSPopUpButtonCell {
     
     override func drawTitle(_ title: NSAttributedString, withFrame: NSRect, in inView: NSView) -> NSRect {
         
-        title.string.draw(in: withFrame.offsetBy(dx: textOffsetX, dy: textOffsetY), withFont: titleFont,
-                          andColor: titleColor, style: .centeredText)
+//        title.string.draw(in: withFrame.offsetBy(dx: textOffsetX, dy: textOffsetY), withFont: titleFont,
+//                          andColor: titleColor, style: .centeredText)
         
         return withFrame
     }
@@ -79,11 +79,11 @@ class FontsPopupMenuCell: PopupMenuCell {
 
 class EffectsPreviewPopupMenuCell: NicerPopupMenuCell {
     
-    override var menuGradient: NSGradient {Colors.Effects.defaultPopupMenuGradient}
+//    override var menuGradient: NSGradient {Colors.Effects.defaultPopupMenuGradient}
+//
+//    override var titleColor: NSColor {Colors.Effects.defaultPopupMenuTextColor}
     
-    override var titleColor: NSColor {Colors.Effects.defaultPopupMenuTextColor}
-    
-    override var arrowColor: NSColor {titleColor}
+//    override var arrowColor: NSColor {titleColor}
     
     override var textOffsetY: CGFloat {-1}
 }

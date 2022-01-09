@@ -16,20 +16,20 @@ class EffectsUnitTabButton: OnOffImageButton {
     
     @IBInspectable var mixedStateTooltip: String?
     
-    var mixedStateTintFunction: () -> NSColor = {Colors.Effects.suppressedUnitStateColor} {
-        didSet {reTint()}
-    }
+//    var mixedStateTintFunction: () -> NSColor = {Colors.Effects.suppressedUnitStateColor} {
+//        didSet {reTint()}
+//    }
     
     override func awakeFromNib() {
         
         // Override the tint functions from OnOffImageButton
-        offStateTintFunction = {Colors.Effects.bypassedUnitStateColor}
-        onStateTintFunction = {Colors.Effects.activeUnitStateColor}
+//        offStateTintFunction = {Colors.Effects.bypassedUnitStateColor}
+//        onStateTintFunction = {Colors.Effects.activeUnitStateColor}
     }
     
     override func off() {
         
-        self.image = self.image?.filledWithColor(offStateTintFunction())
+//        self.image = self.image?.filledWithColor(offStateTintFunction())
         self.toolTip = offStateTooltip
         _isOn = false
         
@@ -42,7 +42,7 @@ class EffectsUnitTabButton: OnOffImageButton {
     
     override func on() {
         
-        self.image = self.image?.filledWithColor(onStateTintFunction())
+//        self.image = self.image?.filledWithColor(onStateTintFunction())
         self.toolTip = onStateTooltip
         _isOn = true
         
@@ -55,7 +55,7 @@ class EffectsUnitTabButton: OnOffImageButton {
     
     func mixed() {
         
-        self.image = self.image?.filledWithColor(mixedStateTintFunction())
+//        self.image = self.image?.filledWithColor(mixedStateTintFunction())
         self.toolTip = mixedStateTooltip
         
         if let cell = self.cell as? EffectsUnitTabButtonCell {
@@ -65,25 +65,25 @@ class EffectsUnitTabButton: OnOffImageButton {
         }
     }
     
-    override func reTint() {
-        
-        let tintColor: NSColor
-        
-        switch unitState {
-            
-        case .bypassed: tintColor = offStateTintFunction()
-            
-        case .active: tintColor = onStateTintFunction()
-            
-        case .suppressed: tintColor = mixedStateTintFunction()
-            
-        }
-        
-        self.image = self.image?.filledWithColor(tintColor)
-        
-        // Need to redraw because we are using a custom button cell which needs to render the updated image itself
-        redraw()
-    }
+//    override func reTint() {
+//
+//        let tintColor: NSColor
+//
+//        switch unitState {
+//
+//        case .bypassed: tintColor = offStateTintFunction()
+//
+//        case .active: tintColor = onStateTintFunction()
+//
+//        case .suppressed: tintColor = mixedStateTintFunction()
+//
+//        }
+//
+//        self.image = self.image?.filledWithColor(tintColor)
+//
+//        // Need to redraw because we are using a custom button cell which needs to render the updated image itself
+//        redraw()
+//    }
     
     func updateState() {
         

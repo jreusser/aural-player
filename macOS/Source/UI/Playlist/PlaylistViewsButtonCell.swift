@@ -12,11 +12,11 @@ import Cocoa
 
 class PlaylistViewsButtonCell: TabGroupButtonCell {
     
-    override var unselectedTextColor: NSColor {Colors.tabButtonTextColor}
-    override var selectedTextColor: NSColor {Colors.selectedTabButtonTextColor}
+//    override var unselectedTextColor: NSColor {Colors.tabButtonTextColor}
+//    override var selectedTextColor: NSColor {Colors.selectedTabButtonTextColor}
     
     override var borderRadius: CGFloat {3}
-    override var selectionBoxColor: NSColor {Colors.selectedTabButtonColor}
+//    override var selectionBoxColor: NSColor {Colors.selectedTabButtonColor}
     
     @IBInspectable var imgWidth: Int = 16
     @IBInspectable var imgHeight: Int = 16

@@ -147,10 +147,6 @@
 		3E62979426A3C0F100C96AB8 /* SnappingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */; };
 		3E62979A26A3CD3800C96AB8 /* Destroyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979926A3CD3800C96AB8 /* Destroyable.swift */; };
 		3E62979D26A3CEBF00C96AB8 /* Restorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979C26A3CEBF00C96AB8 /* Restorable.swift */; };
-		3E6361F62685082B006F5A2A /* GeneralColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6361F52685082B006F5A2A /* GeneralColorScheme.swift */; };
-		3E6361F82685085C006F5A2A /* PlayerColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6361F72685085C006F5A2A /* PlayerColorScheme.swift */; };
-		3E6361FA26850883006F5A2A /* PlaylistColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6361F926850883006F5A2A /* PlaylistColorScheme.swift */; };
-		3E6361FC268508B0006F5A2A /* EffectsColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6361FB268508B0006F5A2A /* EffectsColorScheme.swift */; };
 		3E63620026850AC5006F5A2A /* PlayerFontScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6361FF26850AC5006F5A2A /* PlayerFontScheme.swift */; };
 		3E63620226850AED006F5A2A /* PlaylistFontScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63620126850AED006F5A2A /* PlaylistFontScheme.swift */; };
 		3E63620426850B13006F5A2A /* EffectsFontScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63620326850B13006F5A2A /* EffectsFontScheme.swift */; };
@@ -258,18 +254,13 @@
 		3E6C127125CEBE0600BF0D07 /* FilterPresetsManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C0F8125CEB98600BF0D07 /* FilterPresetsManager.xib */; };
 		3E6C127225CEBE0600BF0D07 /* EQPresetsManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0F7325CEB98600BF0D07 /* EQPresetsManagerViewController.swift */; };
 		3E6C127425CEBE1800BF0D07 /* EffectsUnitTabButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FB825CEB98600BF0D07 /* EffectsUnitTabButtonCell.swift */; };
-		3E6C127625CEBE1800BF0D07 /* EffectsColorSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FA525CEB98600BF0D07 /* EffectsColorSchemeViewController.swift */; };
 		3E6C127725CEBE1800BF0D07 /* ColorSchemesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FAC25CEB98600BF0D07 /* ColorSchemesManager.swift */; };
-		3E6C127825CEBE1800BF0D07 /* PlayerColorScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C0FAF25CEB98600BF0D07 /* PlayerColorScheme.xib */; };
 		3E6C127A25CEBE1800BF0D07 /* ColorSchemes.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C0F9B25CEB98600BF0D07 /* ColorSchemes.xib */; };
-		3E6C127B25CEBE1800BF0D07 /* PlaylistColorSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0F9E25CEB98600BF0D07 /* PlaylistColorSchemeViewController.swift */; };
-		3E6C127C25CEBE1800BF0D07 /* GeneralColorSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FA025CEB98600BF0D07 /* GeneralColorSchemeViewController.swift */; };
 		3E6C127D25CEBE1800BF0D07 /* AutoHidingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FB225CEB98600BF0D07 /* AutoHidingView.swift */; };
 		3E6C127E25CEBE1800BF0D07 /* MultiStateImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FB725CEB98600BF0D07 /* MultiStateImageButton.swift */; };
 		3E6C127F25CEBE1800BF0D07 /* GradientOptionsRadioButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FAD25CEB98600BF0D07 /* GradientOptionsRadioButtonGroup.swift */; };
 		3E6C128025CEBE1800BF0D07 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FA825CEB98600BF0D07 /* ColorScheme.swift */; };
 		3E6C128125CEBE1800BF0D07 /* ModalDialogButtonCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FB625CEB98600BF0D07 /* ModalDialogButtonCells.swift */; };
-		3E6C128225CEBE1800BF0D07 /* EffectsColorScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C0FA625CEB98600BF0D07 /* EffectsColorScheme.xib */; };
 		3E6C128325CEBE1800BF0D07 /* TintedImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FBC25CEB98600BF0D07 /* TintedImageButton.swift */; };
 		3E6C128525CEBE1800BF0D07 /* AuralColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FA225CEB98600BF0D07 /* AuralColorPicker.swift */; };
 		3E6C128625CEBE1800BF0D07 /* TrackPeekingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FBD25CEB98600BF0D07 /* TrackPeekingButton.swift */; };
@@ -277,12 +268,9 @@
 		3E6C128825CEBE1800BF0D07 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0F9825CEB98600BF0D07 /* Fonts.swift */; };
 		3E6C128925CEBE1800BF0D07 /* OnOffImageButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FB925CEB98600BF0D07 /* OnOffImageButtons.swift */; };
 		3E6C128A25CEBE1800BF0D07 /* ColorSchemesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FA325CEB98600BF0D07 /* ColorSchemesWindowController.swift */; };
-		3E6C128B25CEBE1800BF0D07 /* PlayerColorSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FB025CEB98600BF0D07 /* PlayerColorSchemeViewController.swift */; };
 		3E6C128C25CEBE1800BF0D07 /* ColorClipboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FAB25CEB98600BF0D07 /* ColorClipboard.swift */; };
-		3E6C128D25CEBE1800BF0D07 /* GeneralColorScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C0FA125CEB98600BF0D07 /* GeneralColorScheme.xib */; };
 		3E6C128E25CEBE1800BF0D07 /* ColorSchemePreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FA925CEB98600BF0D07 /* ColorSchemePreset.swift */; };
 		3E6C128F25CEBE1800BF0D07 /* CheckRadioButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FBB25CEB98600BF0D07 /* CheckRadioButtonCell.swift */; };
-		3E6C129025CEBE1800BF0D07 /* PlaylistColorScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C0F9D25CEB98600BF0D07 /* PlaylistColorScheme.xib */; };
 		3E6C129125CEBE1800BF0D07 /* ColorSchemeHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FAA25CEB98600BF0D07 /* ColorSchemeHistory.swift */; };
 		3E6C129225CEBE1800BF0D07 /* ColorSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0F9A25CEB98600BF0D07 /* ColorSchemeViewController.swift */; };
 		3E6C129325CEBE1800BF0D07 /* IntervalPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FB425CEB98600BF0D07 /* IntervalPicker.swift */; };
@@ -404,6 +392,7 @@
 		3E84AFFA26B5DC5B00B5F0B7 /* GroupingPlaylistTests+TrackInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84AFF926B5DC5B00B5F0B7 /* GroupingPlaylistTests+TrackInfo.swift */; };
 		3E84AFFC26B5E9C300B5F0B7 /* GroupingPlaylistTests+SearchByArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84AFFB26B5E9C300B5F0B7 /* GroupingPlaylistTests+SearchByArtist.swift */; };
 		3E84AFFE26B613E000B5F0B7 /* GroupingPlaylistTests+SearchByAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84AFFD26B613E000B5F0B7 /* GroupingPlaylistTests+SearchByAlbum.swift */; };
+		3E852ED62788B5410066CE83 /* EQSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E852ED52788B5410066CE83 /* EQSlider.swift */; };
 		3E8719FD2698BD0D00C626DC /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8719FC2698BD0D00C626DC /* Library.swift */; };
 		3E871A002698BDC500C626DC /* library.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E8719FF2698BDC500C626DC /* library.txt */; };
 		3E871A3D2698F13900C626DC /* EQUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E871A3C2698F13900C626DC /* EQUnitTests.swift */; };
@@ -495,10 +484,6 @@
 		3EABDDFD2694C57B008066E8 /* ControlBarPlayerUIPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDDFC2694C57B008066E8 /* ControlBarPlayerUIPersistenceTests.swift */; };
 		3EABDE012694C98B008066E8 /* ColorSchemesPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDE002694C98B008066E8 /* ColorSchemesPersistenceTests.swift */; };
 		3EABDE052694C9A6008066E8 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FA825CEB98600BF0D07 /* ColorScheme.swift */; };
-		3EABDE072694C9AD008066E8 /* GeneralColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6361F52685082B006F5A2A /* GeneralColorScheme.swift */; };
-		3EABDE092694C9B4008066E8 /* PlayerColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6361F72685085C006F5A2A /* PlayerColorScheme.swift */; };
-		3EABDE0B2694C9BB008066E8 /* PlaylistColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6361F926850883006F5A2A /* PlaylistColorScheme.swift */; };
-		3EABDE0D2694C9C1008066E8 /* EffectsColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6361FB268508B0006F5A2A /* EffectsColorScheme.swift */; };
 		3EABDE1A2694CFD4008066E8 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDE192694CFD4008066E8 /* ColorConstants.swift */; };
 		3EABDE1C2694D002008066E8 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDE192694CFD4008066E8 /* ColorConstants.swift */; };
 		3EAF886F26B706530051871E /* GroupingPlaylistTests+SortGenresPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF886E26B706530051871E /* GroupingPlaylistTests+SortGenresPlaylist.swift */; };
@@ -1107,14 +1092,6 @@
 		3EFE39A827864897006F8B8C /* ColorPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372427864895006F8B8C /* ColorPersistentState.swift */; };
 		3EFE39A927864897006F8B8C /* ColorSchemesPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372527864895006F8B8C /* ColorSchemesPersistentState.swift */; };
 		3EFE39AA27864897006F8B8C /* ColorSchemesPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372527864895006F8B8C /* ColorSchemesPersistentState.swift */; };
-		3EFE39AB27864897006F8B8C /* GeneralColorSchemePersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372627864895006F8B8C /* GeneralColorSchemePersistentState.swift */; };
-		3EFE39AC27864897006F8B8C /* GeneralColorSchemePersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372627864895006F8B8C /* GeneralColorSchemePersistentState.swift */; };
-		3EFE39AD27864897006F8B8C /* PlayerColorSchemePersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372727864895006F8B8C /* PlayerColorSchemePersistentState.swift */; };
-		3EFE39AE27864897006F8B8C /* PlayerColorSchemePersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372727864895006F8B8C /* PlayerColorSchemePersistentState.swift */; };
-		3EFE39AF27864897006F8B8C /* PlaylistColorSchemePersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372827864895006F8B8C /* PlaylistColorSchemePersistentState.swift */; };
-		3EFE39B027864897006F8B8C /* PlaylistColorSchemePersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372827864895006F8B8C /* PlaylistColorSchemePersistentState.swift */; };
-		3EFE39B127864897006F8B8C /* EffectsColorSchemePersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372927864895006F8B8C /* EffectsColorSchemePersistentState.swift */; };
-		3EFE39B227864897006F8B8C /* EffectsColorSchemePersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372927864895006F8B8C /* EffectsColorSchemePersistentState.swift */; };
 		3EFE39B327864897006F8B8C /* MenuBarPlayerUIPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372A27864895006F8B8C /* MenuBarPlayerUIPersistentState.swift */; };
 		3EFE39B427864897006F8B8C /* MenuBarPlayerUIPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372A27864895006F8B8C /* MenuBarPlayerUIPersistentState.swift */; };
 		3EFE39B527864897006F8B8C /* ThemesPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE372B27864895006F8B8C /* ThemesPersistentState.swift */; };
@@ -1479,7 +1456,6 @@
 		3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlayerUIState.swift; sourceTree = "<group>"; };
 		3E3DFFCD260D9BBA0092F0BF /* MetadataPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MetadataPreferences.xib; sourceTree = "<group>"; };
 		3E3DFFD1260DA0560092F0BF /* MetadataPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataPreferencesViewController.swift; sourceTree = "<group>"; };
-		3E427EFA25D9065F00465569 /* Release Notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "Release Notes.md"; sourceTree = "<group>"; };
 		3E4322742687C96E009E8ADB /* ControlBarAppModeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarAppModeController.swift; sourceTree = "<group>"; };
 		3E43227A2687D531009E8ADB /* ScrollingTrackInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTrackInfoView.swift; sourceTree = "<group>"; };
 		3E43227C2687D65F009E8ADB /* ControlBarPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ControlBarPlayer.xib; sourceTree = "<group>"; };
@@ -1501,7 +1477,6 @@
 		3E51F345262AFDCA0048452F /* ThemesManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemesManager.xib; sourceTree = "<group>"; };
 		3E51F347262AFDF80048452F /* ThemePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreviewView.swift; sourceTree = "<group>"; };
 		3E51F349262AFF300048452F /* ThemesManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesManagerViewController.swift; sourceTree = "<group>"; };
-		3E525C00261E3330001D9186 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		3E53C40F25E2E05900B30A03 /* neo-latina-demo-FFP.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "neo-latina-demo-FFP.ttf"; sourceTree = "<group>"; };
 		3E53C41025E2E05900B30A03 /* control-freak.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "control-freak.regular.ttf"; sourceTree = "<group>"; };
 		3E55639F269D642B00864598 /* ChaptersListTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaptersListTableCellView.swift; sourceTree = "<group>"; };
@@ -1528,10 +1503,6 @@
 		3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappingWindowDelegate.swift; sourceTree = "<group>"; };
 		3E62979926A3CD3800C96AB8 /* Destroyable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destroyable.swift; sourceTree = "<group>"; };
 		3E62979C26A3CEBF00C96AB8 /* Restorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restorable.swift; sourceTree = "<group>"; };
-		3E6361F52685082B006F5A2A /* GeneralColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralColorScheme.swift; sourceTree = "<group>"; };
-		3E6361F72685085C006F5A2A /* PlayerColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerColorScheme.swift; sourceTree = "<group>"; };
-		3E6361F926850883006F5A2A /* PlaylistColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistColorScheme.swift; sourceTree = "<group>"; };
-		3E6361FB268508B0006F5A2A /* EffectsColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsColorScheme.swift; sourceTree = "<group>"; };
 		3E6361FF26850AC5006F5A2A /* PlayerFontScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFontScheme.swift; sourceTree = "<group>"; };
 		3E63620126850AED006F5A2A /* PlaylistFontScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistFontScheme.swift; sourceTree = "<group>"; };
 		3E63620326850B13006F5A2A /* EffectsFontScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsFontScheme.swift; sourceTree = "<group>"; };
@@ -1635,22 +1606,14 @@
 		3E6C0F9825CEB98600BF0D07 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		3E6C0F9A25CEB98600BF0D07 /* ColorSchemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeViewController.swift; sourceTree = "<group>"; };
 		3E6C0F9B25CEB98600BF0D07 /* ColorSchemes.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorSchemes.xib; sourceTree = "<group>"; };
-		3E6C0F9D25CEB98600BF0D07 /* PlaylistColorScheme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaylistColorScheme.xib; sourceTree = "<group>"; };
-		3E6C0F9E25CEB98600BF0D07 /* PlaylistColorSchemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistColorSchemeViewController.swift; sourceTree = "<group>"; };
-		3E6C0FA025CEB98600BF0D07 /* GeneralColorSchemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralColorSchemeViewController.swift; sourceTree = "<group>"; };
-		3E6C0FA125CEB98600BF0D07 /* GeneralColorScheme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralColorScheme.xib; sourceTree = "<group>"; };
 		3E6C0FA225CEB98600BF0D07 /* AuralColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuralColorPicker.swift; sourceTree = "<group>"; };
 		3E6C0FA325CEB98600BF0D07 /* ColorSchemesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemesWindowController.swift; sourceTree = "<group>"; };
-		3E6C0FA525CEB98600BF0D07 /* EffectsColorSchemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsColorSchemeViewController.swift; sourceTree = "<group>"; };
-		3E6C0FA625CEB98600BF0D07 /* EffectsColorScheme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectsColorScheme.xib; sourceTree = "<group>"; };
 		3E6C0FA825CEB98600BF0D07 /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		3E6C0FA925CEB98600BF0D07 /* ColorSchemePreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemePreset.swift; sourceTree = "<group>"; };
 		3E6C0FAA25CEB98600BF0D07 /* ColorSchemeHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeHistory.swift; sourceTree = "<group>"; };
 		3E6C0FAB25CEB98600BF0D07 /* ColorClipboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorClipboard.swift; sourceTree = "<group>"; };
 		3E6C0FAC25CEB98600BF0D07 /* ColorSchemesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemesManager.swift; sourceTree = "<group>"; };
 		3E6C0FAD25CEB98600BF0D07 /* GradientOptionsRadioButtonGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientOptionsRadioButtonGroup.swift; sourceTree = "<group>"; };
-		3E6C0FAF25CEB98600BF0D07 /* PlayerColorScheme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerColorScheme.xib; sourceTree = "<group>"; };
-		3E6C0FB025CEB98600BF0D07 /* PlayerColorSchemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerColorSchemeViewController.swift; sourceTree = "<group>"; };
 		3E6C0FB225CEB98600BF0D07 /* AutoHidingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoHidingView.swift; sourceTree = "<group>"; };
 		3E6C0FB325CEB98600BF0D07 /* PrettyScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyScroller.swift; sourceTree = "<group>"; };
 		3E6C0FB425CEB98600BF0D07 /* IntervalPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalPicker.swift; sourceTree = "<group>"; };
@@ -1789,6 +1752,7 @@
 		3E84AFF926B5DC5B00B5F0B7 /* GroupingPlaylistTests+TrackInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupingPlaylistTests+TrackInfo.swift"; sourceTree = "<group>"; };
 		3E84AFFB26B5E9C300B5F0B7 /* GroupingPlaylistTests+SearchByArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupingPlaylistTests+SearchByArtist.swift"; sourceTree = "<group>"; };
 		3E84AFFD26B613E000B5F0B7 /* GroupingPlaylistTests+SearchByAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupingPlaylistTests+SearchByAlbum.swift"; sourceTree = "<group>"; };
+		3E852ED52788B5410066CE83 /* EQSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EQSlider.swift; sourceTree = "<group>"; };
 		3E8719FC2698BD0D00C626DC /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		3E8719FF2698BDC500C626DC /* library.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = library.txt; sourceTree = "<group>"; };
 		3E871A3C2698F13900C626DC /* EQUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EQUnitTests.swift; sourceTree = "<group>"; };
@@ -1893,7 +1857,6 @@
 		3E9CA7F1261A21E8006133B6 /* AudioUnitEditorDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioUnitEditorDialog.xib; sourceTree = "<group>"; };
 		3E9CA7F3261A2209006133B6 /* AudioUnitEditorDialogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitEditorDialogController.swift; sourceTree = "<group>"; };
 		3E9CF7F426A7D36D0068A21B /* ChangeHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeHistory.swift; sourceTree = "<group>"; };
-		3E9E36242684A21C008DAC00 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		3E9E58FF25DB6B150064EB5F /* MenuBarAppModeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarAppModeController.swift; sourceTree = "<group>"; };
 		3E9E590025DB6B150064EB5F /* AppModeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppModeManager.swift; sourceTree = "<group>"; };
 		3E9E590125DB6B150064EB5F /* WindowedAppModeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowedAppModeController.swift; sourceTree = "<group>"; };
@@ -2028,6 +1991,7 @@
 		3EE7CB9B25E22D5D0075F1DD /* EffectsFontScheme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectsFontScheme.xib; sourceTree = "<group>"; };
 		3EE7CB9E25E22D6B0075F1DD /* EffectsFontSchemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsFontSchemeViewController.swift; sourceTree = "<group>"; };
 		3EE9BBE8268F90BE0073321A /* TimeStretchUnitPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStretchUnitPersistenceTests.swift; sourceTree = "<group>"; };
+		3EE9BCB5278A715A00DFFDD7 /* Aural-4.0.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "Aural-4.0.rtf"; path = "../Aural-4.0.rtf"; sourceTree = "<group>"; };
 		3EEC04122687A8E1004478CE /* MenuBarPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlaybackViewController.swift; sourceTree = "<group>"; };
 		3EEC04142687A940004478CE /* WindowedModePlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowedModePlaybackViewController.swift; sourceTree = "<group>"; };
 		3EEC04162687A982004478CE /* MenuBarPlayerSequencingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayerSequencingViewController.swift; sourceTree = "<group>"; };
@@ -2288,10 +2252,6 @@
 		3EFE372227864895006F8B8C /* UIPersistentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPersistentState.swift; sourceTree = "<group>"; };
 		3EFE372427864895006F8B8C /* ColorPersistentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPersistentState.swift; sourceTree = "<group>"; };
 		3EFE372527864895006F8B8C /* ColorSchemesPersistentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSchemesPersistentState.swift; sourceTree = "<group>"; };
-		3EFE372627864895006F8B8C /* GeneralColorSchemePersistentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralColorSchemePersistentState.swift; sourceTree = "<group>"; };
-		3EFE372727864895006F8B8C /* PlayerColorSchemePersistentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerColorSchemePersistentState.swift; sourceTree = "<group>"; };
-		3EFE372827864895006F8B8C /* PlaylistColorSchemePersistentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistColorSchemePersistentState.swift; sourceTree = "<group>"; };
-		3EFE372927864895006F8B8C /* EffectsColorSchemePersistentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectsColorSchemePersistentState.swift; sourceTree = "<group>"; };
 		3EFE372A27864895006F8B8C /* MenuBarPlayerUIPersistentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarPlayerUIPersistentState.swift; sourceTree = "<group>"; };
 		3EFE372B27864895006F8B8C /* ThemesPersistentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesPersistentState.swift; sourceTree = "<group>"; };
 		3EFE372C27864895006F8B8C /* NSRectPersistentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRectPersistentState.swift; sourceTree = "<group>"; };
@@ -2610,15 +2570,6 @@
 			path = Metadata;
 			sourceTree = "<group>";
 		};
-		3E427EC525D9065F00465569 /* Documentation */ = {
-			isa = PBXGroup;
-			children = (
-				3E525C00261E3330001D9186 /* README.md */,
-				3E427EFA25D9065F00465569 /* Release Notes.md */,
-			);
-			path = Documentation;
-			sourceTree = "<group>";
-		};
 		3E4322792687D519009E8ADB /* ControlBarPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2785,10 +2736,9 @@
 				3E6C114C25CEB9C100BF0D07 /* Resources */,
 				3E6C114825CEB9C100BF0D07 /* Fonts */,
 				3EDB334825E8AD89004DF7DE /* Frameworks */,
-				3E427EC525D9065F00465569 /* Documentation */,
 				3E6C0EC025CEB3ED00BF0D07 /* Products */,
 				3E6C0EC925CEB3EE00BF0D07 /* Info.plist */,
-				3E9E36242684A21C008DAC00 /* LICENSE */,
+				3EE9BCB5278A715A00DFFDD7 /* Aural-4.0.rtf */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3177,64 +3127,20 @@
 				3E6C0F9A25CEB98600BF0D07 /* ColorSchemeViewController.swift */,
 				3E6C0FA225CEB98600BF0D07 /* AuralColorPicker.swift */,
 				3E6C0FAD25CEB98600BF0D07 /* GradientOptionsRadioButtonGroup.swift */,
-				3E6C0F9F25CEB98600BF0D07 /* General */,
-				3E6C0FAE25CEB98600BF0D07 /* Player */,
-				3E6C0F9C25CEB98600BF0D07 /* Playlist */,
-				3E6C0FA425CEB98600BF0D07 /* Effects */,
 				3E6C0FA725CEB98600BF0D07 /* Domain */,
 				3E6361FD26850957006F5A2A /* Utils */,
 			);
 			path = ColorSchemes;
 			sourceTree = "<group>";
 		};
-		3E6C0F9C25CEB98600BF0D07 /* Playlist */ = {
-			isa = PBXGroup;
-			children = (
-				3E6C0F9D25CEB98600BF0D07 /* PlaylistColorScheme.xib */,
-				3E6C0F9E25CEB98600BF0D07 /* PlaylistColorSchemeViewController.swift */,
-			);
-			path = Playlist;
-			sourceTree = "<group>";
-		};
-		3E6C0F9F25CEB98600BF0D07 /* General */ = {
-			isa = PBXGroup;
-			children = (
-				3E6C0FA125CEB98600BF0D07 /* GeneralColorScheme.xib */,
-				3E6C0FA025CEB98600BF0D07 /* GeneralColorSchemeViewController.swift */,
-			);
-			path = General;
-			sourceTree = "<group>";
-		};
-		3E6C0FA425CEB98600BF0D07 /* Effects */ = {
-			isa = PBXGroup;
-			children = (
-				3E6C0FA625CEB98600BF0D07 /* EffectsColorScheme.xib */,
-				3E6C0FA525CEB98600BF0D07 /* EffectsColorSchemeViewController.swift */,
-			);
-			path = Effects;
-			sourceTree = "<group>";
-		};
 		3E6C0FA725CEB98600BF0D07 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
 				3E6C0FA825CEB98600BF0D07 /* ColorScheme.swift */,
-				3E6361F52685082B006F5A2A /* GeneralColorScheme.swift */,
-				3E6361F72685085C006F5A2A /* PlayerColorScheme.swift */,
-				3E6361F926850883006F5A2A /* PlaylistColorScheme.swift */,
-				3E6361FB268508B0006F5A2A /* EffectsColorScheme.swift */,
 				3E6C0FAC25CEB98600BF0D07 /* ColorSchemesManager.swift */,
 				3E6C0FA925CEB98600BF0D07 /* ColorSchemePreset.swift */,
 			);
 			path = Domain;
-			sourceTree = "<group>";
-		};
-		3E6C0FAE25CEB98600BF0D07 /* Player */ = {
-			isa = PBXGroup;
-			children = (
-				3E6C0FAF25CEB98600BF0D07 /* PlayerColorScheme.xib */,
-				3E6C0FB025CEB98600BF0D07 /* PlayerColorSchemeViewController.swift */,
-			);
-			path = Player;
 			sourceTree = "<group>";
 		};
 		3E6C0FB125CEB98600BF0D07 /* CustomViews */ = {
@@ -3382,6 +3288,7 @@
 				3E6C0FFB25CEB98600BF0D07 /* EQUnitSubview.swift */,
 				3EBF29242686940600D87021 /* EQSelectorButtonCell.swift */,
 				3E6C0FD725CEB98600BF0D07 /* EQSliderCell.swift */,
+				3E852ED52788B5410066CE83 /* EQSlider.swift */,
 			);
 			path = EQ;
 			sourceTree = "<group>";
@@ -4764,10 +4671,6 @@
 			children = (
 				3EFE372427864895006F8B8C /* ColorPersistentState.swift */,
 				3EFE372527864895006F8B8C /* ColorSchemesPersistentState.swift */,
-				3EFE372627864895006F8B8C /* GeneralColorSchemePersistentState.swift */,
-				3EFE372727864895006F8B8C /* PlayerColorSchemePersistentState.swift */,
-				3EFE372827864895006F8B8C /* PlaylistColorSchemePersistentState.swift */,
-				3EFE372927864895006F8B8C /* EffectsColorSchemePersistentState.swift */,
 			);
 			path = ColorSchemes;
 			sourceTree = "<group>";
@@ -5263,7 +5166,6 @@
 				3E6C121D25CEBDE600BF0D07 /* Preferences.xib in Resources */,
 				3E6C130225CEBE8F00BF0D07 /* DetailedTrackInfo.xib in Resources */,
 				3E6C12EE25CEBE8100BF0D07 /* FilterBand.xib in Resources */,
-				3E6C128D25CEBE1800BF0D07 /* GeneralColorScheme.xib in Resources */,
 				3E6C121525CEBDE500BF0D07 /* ViewPreferences.xib in Resources */,
 				3E6C126125CEBE0600BF0D07 /* LayoutsManager.xib in Resources */,
 				3E6C123525CEBDF400BF0D07 /* ChaptersList.xib in Resources */,
@@ -5291,17 +5193,14 @@
 				3EE7CB9C25E22D5D0075F1DD /* EffectsFontScheme.xib in Resources */,
 				3E6C123425CEBDF400BF0D07 /* GenresPlaylistSort.xib in Resources */,
 				3E6C123B25CEBDF400BF0D07 /* Genres.xib in Resources */,
-				3E6C128225CEBE1800BF0D07 /* EffectsColorScheme.xib in Resources */,
 				3E6C12ED25CEBE8100BF0D07 /* DelayUnit.xib in Resources */,
 				3E51F346262AFDCA0048452F /* ThemesManager.xib in Resources */,
 				3E6C124225CEBDF400BF0D07 /* ArtistsPlaylistSort.xib in Resources */,
-				3E6C127825CEBE1800BF0D07 /* PlayerColorScheme.xib in Resources */,
 				3E6C125425CEBE0600BF0D07 /* ColorSchemesManager.xib in Resources */,
 				3E6C122E25CEBDE600BF0D07 /* PlaybackPreferences.xib in Resources */,
 				3E6C121A25CEBDE600BF0D07 /* PlaylistPreferences.xib in Resources */,
 				3E6C12E525CEBE8100BF0D07 /* EffectsWindow.xib in Resources */,
 				3E6C126E25CEBE0600BF0D07 /* MasterPresetsManager.xib in Resources */,
-				3E6C129025CEBE1800BF0D07 /* PlaylistColorScheme.xib in Resources */,
 				3E6C126825CEBE0600BF0D07 /* PitchShiftPresetsManager.xib in Resources */,
 				3E6C124625CEBDF400BF0D07 /* PlaylistWindow.xib in Resources */,
 				3E6C125925CEBE0600BF0D07 /* BookmarksManager.xib in Resources */,
@@ -5537,10 +5436,8 @@
 				3E5F943625E571A6002DEF80 /* DiscoBall.swift in Sources */,
 				3E6C12B225CEBE5800BF0D07 /* DockMenuController.swift in Sources */,
 				3EFE39F327864898006F8B8C /* PlayedItem.swift in Sources */,
-				3E6361FC268508B0006F5A2A /* EffectsColorScheme.swift in Sources */,
 				3EFE3A9327864898006F8B8C /* Chapter.swift in Sources */,
 				3EFE382B27864896006F8B8C /* PlaylistProtocol.swift in Sources */,
-				3E6C127625CEBE1800BF0D07 /* EffectsColorSchemeViewController.swift in Sources */,
 				3E63620426850B13006F5A2A /* EffectsFontScheme.swift in Sources */,
 				3EE7CB9F25E22D6C0075F1DD /* EffectsFontSchemeViewController.swift in Sources */,
 				3EFE37FD27864896006F8B8C /* PlaylistsManager.swift in Sources */,
@@ -5579,6 +5476,7 @@
 				3E6C129E25CEBE2700BF0D07 /* EQSliderCell.swift in Sources */,
 				3EFE394727864897006F8B8C /* PlaybackSequence.swift in Sources */,
 				3E6C12D325CEBE6700BF0D07 /* EQUnitSubview.swift in Sources */,
+				3E852ED62788B5410066CE83 /* EQSlider.swift in Sources */,
 				3EFE38BB27864896006F8B8C /* PitchShiftUnitDelegate.swift in Sources */,
 				3E6C12C425CEBE6700BF0D07 /* EQUnitView.swift in Sources */,
 				3E6C12BF25CEBE6700BF0D07 /* EQUnitViewController.swift in Sources */,
@@ -5636,14 +5534,12 @@
 				3EFE383D27864896006F8B8C /* TrackMoveResult.swift in Sources */,
 				3EFE3A2327864898006F8B8C /* TrackTransitionNotification.swift in Sources */,
 				3EB3A62126A773350060487C /* FontSizeStepper.swift in Sources */,
-				3E6361F62685082B006F5A2A /* GeneralColorScheme.swift in Sources */,
 				3EFE39C327864897006F8B8C /* ControlBarPlayerUIPersistentState.swift in Sources */,
 				3EFE385927864896006F8B8C /* FavoritesDelegate.swift in Sources */,
 				3EFE3A1B27864898006F8B8C /* HistoryNotifications.swift in Sources */,
 				3EFE384B27864896006F8B8C /* PlaylistDelegate.swift in Sources */,
 				3EFE386527864896006F8B8C /* PitchShiftUnit.swift in Sources */,
 				3EFE38B127864896006F8B8C /* FilterBandType.swift in Sources */,
-				3E6C127C25CEBE1800BF0D07 /* GeneralColorSchemeViewController.swift in Sources */,
 				3E91932C25E0D96A00F30F81 /* GeneralFontSchemeViewController.swift in Sources */,
 				3E3579D026835A6A009522A0 /* GenericPresetPopupMenuController.swift in Sources */,
 				3E6C124B25CEBDF400BF0D07 /* GenresPlaylistSortViewController.swift in Sources */,
@@ -5772,7 +5668,6 @@
 				3E7C978D268BB8BE00287158 /* NSLayoutConstraintExtensions.swift in Sources */,
 				3EAFB5F0267FEDD700F0DC96 /* NSMenuItemExtensions.swift in Sources */,
 				3EB3A60726A73E720060487C /* NSPopoverExtensions.swift in Sources */,
-				3EFE39AB27864897006F8B8C /* GeneralColorSchemePersistentState.swift in Sources */,
 				3EFE39A527864897006F8B8C /* UIPersistentState.swift in Sources */,
 				3EFE399327864897006F8B8C /* PlaybackState.swift in Sources */,
 				3EAFB605267FF1E700F0DC96 /* NSRectExtensions.swift in Sources */,
@@ -5811,8 +5706,6 @@
 				3E6C130425CEBE8F00BF0D07 /* PlaybackViewController.swift in Sources */,
 				3E6C12FD25CEBE8F00BF0D07 /* PlayerAudioViewController.swift in Sources */,
 				3EFE397D27864897006F8B8C /* HaltPlaybackAction.swift in Sources */,
-				3E6361F82685085C006F5A2A /* PlayerColorScheme.swift in Sources */,
-				3E6C128B25CEBE1800BF0D07 /* PlayerColorSchemeViewController.swift in Sources */,
 				3E63620026850AC5006F5A2A /* PlayerFontScheme.swift in Sources */,
 				3E45C03625E1269500C1519C /* PlayerFontSchemeViewController.swift in Sources */,
 				3EFE398327864897006F8B8C /* StartPlaybackAction.swift in Sources */,
@@ -5831,9 +5724,7 @@
 				3E6C12DF25CEBE8100BF0D07 /* PlayingTrackTextView.swift in Sources */,
 				3E6C12EC25CEBE8100BF0D07 /* PlayingTrackView.swift in Sources */,
 				3EC29A5927865BC900B29551 /* MenuItemMappable.swift in Sources */,
-				3E6361FA26850883006F5A2A /* PlaylistColorScheme.swift in Sources */,
 				3EFE384527864896006F8B8C /* Group.swift in Sources */,
-				3E6C127B25CEBE1800BF0D07 /* PlaylistColorSchemeViewController.swift in Sources */,
 				3E6C124E25CEBDF400BF0D07 /* PlaylistContextMenuController.swift in Sources */,
 				3EFE39F927864898006F8B8C /* HistoryDelegate.swift in Sources */,
 				3EFE38C127864896006F8B8C /* ReverbUnitDelegateProtocol.swift in Sources */,
@@ -5904,7 +5795,6 @@
 				3EFE394327864897006F8B8C /* Sequencer.swift in Sources */,
 				3E6C122325CEBDE600BF0D07 /* SettingsPopupMenuController.swift in Sources */,
 				3EFE3ADD27864942006F8B8C /* FFmpegAudioStream.swift in Sources */,
-				3EFE39B127864897006F8B8C /* EffectsColorSchemePersistentState.swift in Sources */,
 				3EB3A60E26A744C80060487C /* SingletonPopoverViewController.swift in Sources */,
 				3EFE385B27864896006F8B8C /* TimeStretchUnitProtocol.swift in Sources */,
 				3EB3A60B26A7425C0060487C /* SingletonWindowController.swift in Sources */,
@@ -5978,7 +5868,6 @@
 				3EFE388527864896006F8B8C /* AudioUnitPresets.swift in Sources */,
 				3EFE3A1D27864898006F8B8C /* WindowManagerNotifications.swift in Sources */,
 				3EFE37DF27864896006F8B8C /* PlaybackPreferences.swift in Sources */,
-				3EFE39AF27864897006F8B8C /* PlaylistColorSchemePersistentState.swift in Sources */,
 				3EFE39C927864897006F8B8C /* AppPersistentState.swift in Sources */,
 				3EBF2931268696FA00D87021 /* TrackInfoPopoverTabButtonCell.swift in Sources */,
 				3EFE39A127864897006F8B8C /* PlaylistUIPersistentState.swift in Sources */,
@@ -6059,7 +5948,6 @@
 				3EFE384F27864896006F8B8C /* FilesAndPaths.swift in Sources */,
 				3EFE37E527864896006F8B8C /* UserDefaultsExtensions.swift in Sources */,
 				3E6C130C25CEBE8F00BF0D07 /* WindowLayoutPresets.swift in Sources */,
-				3EFE39AD27864897006F8B8C /* PlayerColorSchemePersistentState.swift in Sources */,
 				3EFE39CB27864897006F8B8C /* PitchShiftUnitPersistentState.swift in Sources */,
 				3EFE3A6527864898006F8B8C /* CoverArtReader.swift in Sources */,
 				3E6C130525CEBE8F00BF0D07 /* WindowLayoutsManager.swift in Sources */,
@@ -6112,7 +6000,6 @@
 				3EFE394E27864897006F8B8C /* SequencerProtocol.swift in Sources */,
 				3E475BC6269652320065FD53 /* FlatPlaylistTests+RemoveTracks.swift in Sources */,
 				3EFE39D427864897006F8B8C /* TimeStretchUnitPersistentState.swift in Sources */,
-				3EABDE092694C9B4008066E8 /* PlayerColorScheme.swift in Sources */,
 				3EFE386427864896006F8B8C /* FilterUnitProtocol.swift in Sources */,
 				3EFE380E27864896006F8B8C /* PlaylistItem.swift in Sources */,
 				3EFE37F827864896006F8B8C /* SoundPreferences.swift in Sources */,
@@ -6147,7 +6034,6 @@
 				3EFE38C027864896006F8B8C /* HostedAudioUnitDelegate.swift in Sources */,
 				3EFE3A8627864898006F8B8C /* IndexedChapter.swift in Sources */,
 				3EFE398C27864897006F8B8C /* PlaybackChain.swift in Sources */,
-				3EFE39B227864897006F8B8C /* EffectsColorSchemePersistentState.swift in Sources */,
 				3EFE38F227864897006F8B8C /* ConcurrentMap.swift in Sources */,
 				3EFE38F627864897006F8B8C /* Queue.swift in Sources */,
 				3EFE3A3227864898006F8B8C /* SelectSearchResultCommandNotification.swift in Sources */,
@@ -6259,7 +6145,6 @@
 				3EFE398827864897006F8B8C /* PredictiveTrackPreparationAction.swift in Sources */,
 				3E2EADDD26B17F6100A95119 /* TrackPlaybackCompletedChainTests.swift in Sources */,
 				3EFE39DA27864897006F8B8C /* ReverbUnitPersistentState.swift in Sources */,
-				3EFE39AE27864897006F8B8C /* PlayerColorSchemePersistentState.swift in Sources */,
 				3EFE3A2027864898006F8B8C /* TrackAddedNotification.swift in Sources */,
 				3EFE383427864896006F8B8C /* GroupMoveResult.swift in Sources */,
 				3EFE38A427864896006F8B8C /* DeviceManager.swift in Sources */,
@@ -6414,7 +6299,6 @@
 				3EFE38C427864896006F8B8C /* MasterUnitDelegateProtocol.swift in Sources */,
 				3EE9BBE9268F90BE0073321A /* TimeStretchUnitPersistenceTests.swift in Sources */,
 				3E60C97E26B0790600D9404C /* TestablePlaybackChains.swift in Sources */,
-				3EABDE0D2694C9C1008066E8 /* EffectsColorScheme.swift in Sources */,
 				3EFE3AE627864942006F8B8C /* FFmpegResamplingContext.swift in Sources */,
 				3EFE388627864896006F8B8C /* AudioUnitPresets.swift in Sources */,
 				3EABDD9426948657008066E8 /* MusicBrainzCachePersistenceTests.swift in Sources */,
@@ -6527,7 +6411,6 @@
 				3EA62F5E2693E180004A780A /* FavoritesPersistenceTests.swift in Sources */,
 				3E2EADDC26B17DD700A95119 /* PlaybackRequestContextTests.swift in Sources */,
 				3EFE387627864896006F8B8C /* ReverbUnit.swift in Sources */,
-				3EABDE0B2694C9BB008066E8 /* PlaylistColorScheme.swift in Sources */,
 				3EFE383027864896006F8B8C /* TrackRemovalResults.swift in Sources */,
 				3EFE39E427864898006F8B8C /* MusicBrainzCachePersistentState.swift in Sources */,
 				3EFE3A6027864898006F8B8C /* MusicBrainzArtist.swift in Sources */,
@@ -6578,7 +6461,6 @@
 				3EFE3A0827864898006F8B8C /* EffectsNotifications.swift in Sources */,
 				3EFE384E27864896006F8B8C /* SupportedTypes.swift in Sources */,
 				3EFE3A1E27864898006F8B8C /* WindowManagerNotifications.swift in Sources */,
-				3EFE39B027864897006F8B8C /* PlaylistColorSchemePersistentState.swift in Sources */,
 				3EDDEFC5269156B200219BDA /* PlayerTests.swift in Sources */,
 				3EFE3A4C27864898006F8B8C /* FileCoverArtReader.swift in Sources */,
 				3E5ECA53268F4E46000AE8B7 /* AVAudioExtensionsTests.swift in Sources */,
@@ -6588,13 +6470,11 @@
 				3EFE38EA27864897006F8B8C /* TrackKeyedMap.swift in Sources */,
 				3EFE396227864897006F8B8C /* PlayerSeekResult.swift in Sources */,
 				3EFE3A8E27864898006F8B8C /* PlaylistMetadata.swift in Sources */,
-				3EFE39AC27864897006F8B8C /* GeneralColorSchemePersistentState.swift in Sources */,
 				3EFE380227864896006F8B8C /* SortComparator.swift in Sources */,
 				3EFE3A8227864898006F8B8C /* CoverArt.swift in Sources */,
 				3EAF886F26B706530051871E /* GroupingPlaylistTests+SortGenresPlaylist.swift in Sources */,
 				3EFE3A3A27864898006F8B8C /* ID3FFmpegParser.swift in Sources */,
 				3EC29A6027865CB500B29551 /* Images.swift in Sources */,
-				3EABDE072694C9AD008066E8 /* GeneralColorScheme.swift in Sources */,
 				3EFE38D027864896006F8B8C /* EQUnitDelegate.swift in Sources */,
 				3EFE395027864897006F8B8C /* ShuffleMode.swift in Sources */,
 				3EFE392827864897006F8B8C /* ExclusiveAccessSemaphore.swift in Sources */,

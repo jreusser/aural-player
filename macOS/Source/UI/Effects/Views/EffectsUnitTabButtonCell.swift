@@ -12,7 +12,7 @@ import Cocoa
 @IBDesignable
 class EffectsUnitTabButtonCell: NSButtonCell {
     
-    private var selectionBoxColor: NSColor {Colors.selectedTabButtonColor}
+//    private var selectionBoxColor: NSColor {Colors.selectedTabButtonColor}
     
     var unitState: EffectsUnitState = .bypassed
 
@@ -40,7 +40,7 @@ class EffectsUnitTabButtonCell: NSButtonCell {
             let drawRect = NSRect(x: cellFrame.centerX - (imgRect.width / 2), y: cellFrame.maxY - 2,
                                   width: imgRect.width, height: 2)
             
-            drawRect.fill(withColor: selectionBoxColor)
+//            drawRect.fill(withColor: selectionBoxColor)
         }
     }
 }

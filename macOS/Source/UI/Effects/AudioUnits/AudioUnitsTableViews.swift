@@ -20,7 +20,7 @@ class AudioUnitsTableRowView: NSTableRowView {
         if self.selectionHighlightStyle != .none {
             
             let selectionRect = self.bounds.insetBy(dx: 30, dy: 0).offsetBy(dx: -5, dy: 0)
-            NSBezierPath.fillRoundedRect(selectionRect, radius: 2, withColor: Colors.Playlist.selectionBoxColor)
+//            NSBezierPath.fillRoundedRect(selectionRect, radius: 2, withColor: Colors.Playlist.selectionBoxColor)
         }
     }
 }
@@ -29,8 +29,8 @@ class AudioUnitNameCellView: NSTableCellView {
     
     var rowSelectionStateFunction: () -> Bool = {false}
     
-    var unselectedTextColor: NSColor {Colors.Playlist.trackNameTextColor}
-    var selectedTextColor: NSColor {Colors.Playlist.trackNameSelectedTextColor}
+//    var unselectedTextColor: NSColor {Colors.Playlist.trackNameTextColor}
+//    var selectedTextColor: NSColor {Colors.Playlist.trackNameSelectedTextColor}
     
     var rowIsSelected: Bool {rowSelectionStateFunction()}
     
@@ -46,7 +46,7 @@ class AudioUnitNameCellView: NSTableCellView {
     func backgroundStyleChanged() {
         
         // Check if this row is selected, change color accordingly.
-        textColor = rowIsSelected ?  selectedTextColor : unselectedTextColor
+//        textColor = rowIsSelected ?  selectedTextColor : unselectedTextColor
     }
     
     // Constraints

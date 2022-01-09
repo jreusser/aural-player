@@ -105,7 +105,7 @@ class PitchShiftUnitView: NSView {
     func applyColorScheme(_ scheme: ColorScheme) {
         
         redrawSliders()
-        changeFunctionButtonColor(scheme.general.functionButtonColor)
+        changeFunctionButtonColor(scheme.buttonColor)
     }
     
     func changeFunctionButtonColor(_ color: NSColor) {

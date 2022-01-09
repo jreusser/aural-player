@@ -11,19 +11,19 @@ import Cocoa
 
 class FilterPreviewChart: FilterChart {
     
-    override var inactiveUnitGradient: NSGradient {
-        Colors.Effects.defaultSliderBackgroundGradient
-    }
-    
-    override var bandStopGradient: NSGradient {
-        Colors.Effects.defaultBypassedSliderGradient
-    }
-    
-    override var bandPassGradient: NSGradient {
-        Colors.Effects.defaultActiveSliderGradient
-    }
-    
-    override var backgroundColor: NSColor {.black}
-    
-    override var textColor: NSColor {.white}
+//    override var inactiveUnitGradient: NSGradient {
+//        Colors.Effects.defaultSliderBackgroundGradient
+//    }
+//
+//    override var bandStopGradient: NSGradient {
+//        Colors.Effects.defaultBypassedSliderGradient
+//    }
+//
+//    override var bandPassGradient: NSGradient {
+//        Colors.Effects.defaultActiveSliderGradient
+//    }
+//
+//    override var backgroundColor: NSColor {.black}
+//
+//    override var textColor: NSColor {.white}
 }

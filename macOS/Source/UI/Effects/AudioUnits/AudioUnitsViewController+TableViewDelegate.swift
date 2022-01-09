@@ -97,7 +97,7 @@ extension AudioUnitsViewController: NSTableViewDelegate {
         
         let audioUnit = audioGraph.audioUnits[row]
         
-        cell.btnEdit.tintFunction = {[weak self] in self?.colorSchemesManager.systemScheme.general.functionButtonColor ?? ColorSchemePreset.blackAttack.functionButtonColor}
+//        cell.btnEdit.tintFunction = {[weak self] in self?.colorSchemesManager.systemScheme.buttonColor ?? ColorSchemePreset.blackAttack.functionButtonColor}
         
         cell.btnEdit.reTint()
         

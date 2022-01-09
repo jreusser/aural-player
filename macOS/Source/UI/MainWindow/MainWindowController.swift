@@ -81,15 +81,15 @@ class MainWindowController: NSWindowController, Destroyable {
         
         containerBox.addSubview(playerViewController.view)
         
-        [btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode].forEach {$0?.tintFunction = {Colors.functionButtonColor}}
+//        [btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode].forEach {$0?.tintFunction = {Colors.functionButtonColor}}
         
-        [btnToggleEffects, btnTogglePlaylist].forEach {
-            
-            $0?.onStateTintFunction = {Colors.functionButtonColor}
-            $0?.offStateTintFunction = {Colors.toggleButtonOffStateColor}
-        }
+//        [btnToggleEffects, btnTogglePlaylist].forEach {
+//
+////            $0?.onStateTintFunction = {Colors.functionButtonColor}
+////            $0?.offStateTintFunction = {Colors.toggleButtonOffStateColor}
+//        }
         
-        logoImage.tintFunction = {Colors.appLogoColor}
+//        logoImage.tintFunction = {Colors.appLogoColor}
 
         btnTogglePlaylist.onIf(windowLayoutsManager.isShowingPlaylist)
         btnToggleEffects.onIf(windowLayoutsManager.isShowingEffects)
@@ -113,12 +113,9 @@ class MainWindowController: NSWindowController, Destroyable {
         eventMonitor.startMonitoring()
     }
     
-    private var kvoTokens: [NSKeyValueObservation] = []
-    
     private func initSubscriptions() {
         
-        
-        btnQuit.observeColorProperty(\.functionButtonColor, of: colorSchemesManager.systemScheme.general)
+//        btnQuit.observeColorProperty(\.buttonColor, of: colorSchemesManager.systemScheme)
         
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
@@ -213,10 +210,10 @@ class MainWindowController: NSWindowController, Destroyable {
     
     private func applyColorScheme(_ scheme: ColorScheme) {
         
-        changeBackgroundColor(scheme.general.backgroundColor)
-        changeFunctionButtonColor(scheme.general.functionButtonColor)
-        changeToggleButtonOffStateColor(scheme.general.toggleButtonOffStateColor)
-        changeAppLogoColor(scheme.general.appLogoColor)
+        changeBackgroundColor(scheme.backgroundColor)
+        changeFunctionButtonColor(scheme.buttonColor)
+        changeToggleButtonOffStateColor(scheme.buttonOffColor)
+        changeAppLogoColor(scheme.captionTextColor)
     }
     
     private func changeBackgroundColor(_ color: NSColor) {
@@ -225,11 +222,11 @@ class MainWindowController: NSWindowController, Destroyable {
     
     private func changeFunctionButtonColor(_ color: NSColor) {
         
-        [btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode,
-         btnTogglePlaylist, btnToggleEffects, settingsMenuIconItem].forEach {
-            
-            ($0 as? Tintable)?.reTint()
-        }
+//        [btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode,
+//         btnTogglePlaylist, btnToggleEffects, settingsMenuIconItem].forEach {
+//
+////            ($0 as? Tintable)?.reTint()
+//        }
     }
     
     private func changeToggleButtonOffStateColor(_ color: NSColor) {
@@ -241,7 +238,7 @@ class MainWindowController: NSWindowController, Destroyable {
     }
     
     private func changeAppLogoColor(_ color: NSColor) {
-        logoImage.reTint()
+//        logoImage.reTint()
     }
     
     // MARK: Message handling -----------------------------------------------------------

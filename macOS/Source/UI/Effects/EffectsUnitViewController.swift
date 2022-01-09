@@ -62,8 +62,8 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     func oneTimeSetup() {
         
         btnBypass.stateFunction = self.unitStateFunction
-        btnSavePreset.tintFunction = {Colors.functionButtonColor}
-        presetsMenuIconItem.tintFunction = {Colors.functionButtonColor}
+//        btnSavePreset.tintFunction = {Colors.functionButtonColor}
+//        presetsMenuIconItem.tintFunction = {Colors.functionButtonColor}
         
         initSubscriptions()
         
@@ -195,15 +195,15 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     
     func applyColorScheme(_ scheme: ColorScheme) {
         
-        changeMainCaptionTextColor(scheme.general.mainCaptionTextColor)
+        changeMainCaptionTextColor(scheme.captionTextColor)
         
-        changeFunctionButtonColor(scheme.general.functionButtonColor)
-        changeFunctionCaptionTextColor(scheme.effects.functionCaptionTextColor)
-        changeFunctionValueTextColor(scheme.effects.functionValueTextColor)
+        changeFunctionButtonColor(scheme.buttonColor)
+        changeFunctionCaptionTextColor(scheme.secondaryTextColor)
+        changeFunctionValueTextColor(scheme.primaryTextColor)
         
-        changeActiveUnitStateColor(scheme.effects.activeUnitStateColor)
-        changeBypassedUnitStateColor(scheme.effects.bypassedUnitStateColor)
-        changeSuppressedUnitStateColor(scheme.effects.suppressedUnitStateColor)
+        changeActiveUnitStateColor(scheme.activeControlColor)
+        changeBypassedUnitStateColor(scheme.bypassedControlColor)
+        changeSuppressedUnitStateColor(scheme.suppressedControlColor)
     }
     
     func changeMainCaptionTextColor(_ color: NSColor) {
@@ -242,7 +242,7 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     func changeFunctionButtonColor(_ color: NSColor) {
         
         btnSavePreset.reTint()
-        presetsMenuIconItem.reTint()
+//        presetsMenuIconItem.reTint()
     }
     
     func changeSliderColors() {

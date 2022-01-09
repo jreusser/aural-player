@@ -16,10 +16,10 @@ class EQSelectorButtonCell: TabGroupButtonCell {
     
     override var borderRadius: CGFloat {1}
     
-    override var selectionBoxColor: NSColor {Colors.selectedTabButtonColor}
-    
-    override var unselectedTextColor: NSColor {Colors.tabButtonTextColor}
-    override var selectedTextColor: NSColor {Colors.selectedTabButtonTextColor}
+//    override var selectionBoxColor: NSColor {Colors.selectedTabButtonColor}
+//
+//    override var unselectedTextColor: NSColor {Colors.tabButtonTextColor}
+//    override var selectedTextColor: NSColor {Colors.selectedTabButtonTextColor}
     
     override var yOffset: CGFloat {0}
     

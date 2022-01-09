@@ -112,7 +112,7 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
     
     func applyColorScheme(_ scheme: ColorScheme) {
         
-        changeBackgroundColor(scheme.general.backgroundColor)
+        changeBackgroundColor(scheme.backgroundColor)
         textView.applyColorScheme(scheme)
     }
     

@@ -118,7 +118,7 @@ class ControlBarSeekSliderView: SeekSliderView {
     
     override func applyColorScheme(_ colorScheme: ColorScheme) {
         
-        lblSeekPosition.textColor = colorScheme.player.trackInfoPrimaryTextColor
+//        lblSeekPosition.textColor = colorScheme.player.trackInfoPrimaryTextColor
         seekSlider.redraw()
     }
     

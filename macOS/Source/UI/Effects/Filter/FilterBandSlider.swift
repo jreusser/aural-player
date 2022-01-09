@@ -15,39 +15,39 @@ class FilterBandSlider: RangeSlider {
         didSet {redraw()}
     }
     
-    override var barFillColor: NSColor {
-        
-        switch unitState {
-            
-        case .active:   return filterType == .bandPass ?
-                                Colors.Effects.activeUnitStateColor :
-                                Colors.Effects.bypassedUnitStateColor
-            
-        case .bypassed: return Colors.Effects.bypassedUnitStateColor
-            
-        case .suppressed:   return Colors.Effects.suppressedUnitStateColor
-            
-        }
-    }
+//    override var barFillColor: NSColor {
+//
+//        switch unitState {
+//
+//        case .active:   return filterType == .bandPass ?
+//                                Colors.Effects.activeUnitStateColor :
+//                                Colors.Effects.bypassedUnitStateColor
+//
+//        case .bypassed: return Colors.Effects.bypassedUnitStateColor
+//
+//        case .suppressed:   return Colors.Effects.suppressedUnitStateColor
+//
+//        }
+//    }
+//
+//    override var knobColor: NSColor {
+//
+//        switch unitState {
+//
+//        case .active:   return filterType == .bandPass ?
+//                                Colors.Effects.activeUnitStateColor :
+//                                Colors.Effects.bypassedUnitStateColor
+//
+//        case .bypassed: return Colors.Effects.bypassedUnitStateColor
+//
+//        case .suppressed:   return Colors.Effects.suppressedUnitStateColor
+//
+//        }
+//    }
     
-    override var knobColor: NSColor {
-        
-        switch unitState {
-            
-        case .active:   return filterType == .bandPass ?
-                                Colors.Effects.activeUnitStateColor :
-                                Colors.Effects.bypassedUnitStateColor
-            
-        case .bypassed: return Colors.Effects.bypassedUnitStateColor
-            
-        case .suppressed:   return Colors.Effects.suppressedUnitStateColor
-            
-        }
-    }
-    
-    override var barBackgroundColor: NSColor {
-        Colors.Effects.sliderBackgroundColor
-    }
+//    override var barBackgroundColor: NSColor {
+//        Colors.Effects.sliderBackgroundColor
+//    }
     
     var startFrequency: Float {
         Float(20 * pow(10, (start - 20) / 6660))

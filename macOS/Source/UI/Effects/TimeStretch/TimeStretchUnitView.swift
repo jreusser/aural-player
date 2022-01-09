@@ -41,7 +41,7 @@ class TimeStretchUnitView: NSView {
     func initialize(stateFunction: @escaping EffectsUnitStateFunction) {
         
         timeSlider.stateFunction = stateFunction
-        btnShiftPitch.stateFunction = stateFunction
+//        btnShiftPitch.stateFunction = stateFunction
     }
     
     // ------------------------------------------------------------------------
@@ -51,7 +51,7 @@ class TimeStretchUnitView: NSView {
     func setUnitState(_ state: EffectsUnitState) {
         
         timeSlider.setUnitState(state)
-        btnShiftPitch.reTint()
+//        btnShiftPitch.reTint()
     }
     
     func stateChanged() {
@@ -103,10 +103,10 @@ class TimeStretchUnitView: NSView {
         
         redrawSliders()
         
-        btnShiftPitch.reTint()
+//        btnShiftPitch.reTint()
         
         btnShiftPitch.attributedAlternateTitle = NSAttributedString(string: btnShiftPitch.title,
-                                                                    attributes: [.foregroundColor: scheme.effects.functionCaptionTextColor])
+                                                                    attributes: [.foregroundColor: scheme.secondaryTextColor])
     }
     
     func redrawSliders() {

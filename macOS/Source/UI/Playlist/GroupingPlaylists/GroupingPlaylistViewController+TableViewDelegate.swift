@@ -90,7 +90,7 @@ extension GroupingPlaylistViewController: NSOutlineViewDelegate {
         if track == playbackInfo.playingTrack {
             
             cell.image = Images.imgPlayingTrack
-            cell.imageView?.contentTintColor = Colors.Playlist.playingTrackIconColor
+//            cell.imageView?.contentTintColor = Colors.Playlist.playingTrackIconColor
             
         } else {
             cell.image = nil
@@ -146,7 +146,7 @@ extension GroupingPlaylistViewController: NSOutlineViewDelegate {
         // TODO: Change the imageView to a TintedImageView
         cell.image = Images.imgGroup
         cell.image?.isTemplate = true
-        cell.imageView?.contentTintColor = Colors.Playlist.groupIconColor
+//        cell.imageView?.contentTintColor = Colors.Playlist.groupIconColor
         
         // Constraints
         cell.reActivateConstraints(imgViewCenterY: -1, imgViewLeading: 7, textFieldLeading: 5)

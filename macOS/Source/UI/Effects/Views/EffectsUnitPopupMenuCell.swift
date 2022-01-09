@@ -15,21 +15,21 @@ class EffectsUnitPopupMenuCell: NicerPopupMenuCell {
     override var rectRadius: CGFloat {2}
     override var arrowXMargin: CGFloat {10}
     override var arrowYMargin: CGFloat {7}
-    override var arrowColor: NSColor {Colors.buttonMenuTextColor}
+//    override var arrowColor: NSColor {Colors.buttonMenuTextColor}
     
     override var arrowWidth: CGFloat {3}
     override var arrowHeight: CGFloat {4}
     override var arrowLineWidth: CGFloat {1}
     
-    override var menuGradient: NSGradient {Colors.textButtonMenuGradient}
+//    override var menuGradient: NSGradient {Colors.textButtonMenuGradient}
     
     override var titleFont: NSFont {Fonts.Effects.unitFunctionFont}
-    override var titleColor: NSColor {Colors.buttonMenuTextColor}
+//    override var titleColor: NSColor {Colors.buttonMenuTextColor}
     
     override func drawTitle(_ title: NSAttributedString, withFrame: NSRect, in inView: NSView) -> NSRect {
         
-        title.string.drawCentered(in: withFrame,
-                                  withFont: titleFont, andColor: titleColor, yOffset: -1)
+//        title.string.drawCentered(in: withFrame,
+//                                  withFont: titleFont, andColor: titleColor, yOffset: -1)
         
         return withFrame
     }

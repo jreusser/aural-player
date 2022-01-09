@@ -239,7 +239,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate, Destroya
     }
     
     func applyColorScheme(_ colorScheme: ColorScheme) {
-        textView.textColor = colorScheme.player.trackInfoPrimaryTextColor
+//        textView.textColor = colorScheme.player.trackInfoPrimaryTextColor
     }
     
     // MARK: View settings menu delegate functions and action handlers -----------------

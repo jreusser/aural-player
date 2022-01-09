@@ -209,7 +209,7 @@ class SeekSliderView: NSView {
     
     func applyColorScheme(_ scheme: ColorScheme) {
         
-        changeSliderValueTextColor(scheme.player.sliderValueTextColor)
+        changeSliderValueTextColor(scheme.secondaryTextColor)
         changeSliderColors()
     }
     

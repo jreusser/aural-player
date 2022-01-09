@@ -81,8 +81,8 @@ extension ChaptersListViewController: NSTableViewDelegate {
         cell.unselectedTextFont = fontScheme.trackTextFont
         cell.selectedTextFont = fontScheme.trackTextFont
         
-        cell.unselectedTextColor = Colors.Playlist.indexDurationTextColor
-        cell.selectedTextColor = Colors.Playlist.indexDurationSelectedTextColor
+//        cell.unselectedTextColor = Colors.Playlist.indexDurationTextColor
+//        cell.selectedTextColor = Colors.Playlist.indexDurationSelectedTextColor
         
         cell.rowSelectionStateFunction = {[weak tableView] in tableView?.isRowSelected(row) ?? false}
         
@@ -90,7 +90,7 @@ extension ChaptersListViewController: NSTableViewDelegate {
         cell.textField?.showIf(!showCurrentChapterMarker)
         
         cell.image = showCurrentChapterMarker ? Images.imgPlayingTrack : nil
-        cell.imageView?.contentTintColor = Colors.Playlist.playingTrackIconColor
+//        cell.imageView?.contentTintColor = Colors.Playlist.playingTrackIconColor
         cell.imageView?.showIf(showCurrentChapterMarker)
         
         return cell
@@ -103,8 +103,8 @@ extension ChaptersListViewController: NSTableViewDelegate {
         cell.unselectedTextFont = fontScheme.trackTextFont
         cell.selectedTextFont = fontScheme.trackTextFont
         
-        cell.unselectedTextColor = Colors.Playlist.trackNameTextColor
-        cell.selectedTextColor = Colors.Playlist.trackNameSelectedTextColor
+//        cell.unselectedTextColor = Colors.Playlist.trackNameTextColor
+//        cell.selectedTextColor = Colors.Playlist.trackNameSelectedTextColor
         
         cell.text = text
         cell.textField?.show()
@@ -121,8 +121,8 @@ extension ChaptersListViewController: NSTableViewDelegate {
         cell.unselectedTextFont = fontScheme.trackTextFont
         cell.selectedTextFont = fontScheme.trackTextFont
         
-        cell.unselectedTextColor = Colors.Playlist.indexDurationTextColor
-        cell.selectedTextColor = Colors.Playlist.indexDurationSelectedTextColor
+//        cell.unselectedTextColor = Colors.Playlist.indexDurationTextColor
+//        cell.selectedTextColor = Colors.Playlist.indexDurationSelectedTextColor
         
         cell.text = text
         cell.textField?.show()

@@ -40,8 +40,8 @@ class TimeStretchSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
     // Draw entire bar with single gradient
     override internal func drawBar(inside aRect: NSRect, flipped: Bool) {
         
-        NSBezierPath.fillRoundedRect(aRect.leftHalf, radius: barRadius, withGradient: backgroundGradient.reversed(), angle: .horizontalGradientDegrees)
-        NSBezierPath.fillRoundedRect(aRect.rightHalf, radius: barRadius, withGradient: backgroundGradient, angle: .horizontalGradientDegrees)
+//        NSBezierPath.fillRoundedRect(aRect.leftHalf, radius: barRadius, withGradient: backgroundGradient.reversed(), angle: .horizontalGradientDegrees)
+//        NSBezierPath.fillRoundedRect(aRect.rightHalf, radius: barRadius, withGradient: backgroundGradient, angle: .horizontalGradientDegrees)
         
         drawTicks(aRect)
         
@@ -54,28 +54,28 @@ class TimeStretchSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
         if panRectWidth > 0 {
             
             let panRect = NSRect(x: panRectX, y: aRect.minY, width: panRectWidth, height: aRect.height)
-            let gradient = integerValue > 0 ? foregroundGradient : foregroundGradient.reversed()
-            
-            NSBezierPath.fillRoundedRect(panRect, radius: barRadius, withGradient: gradient, angle: -.horizontalGradientDegrees)
+//            let gradient = integerValue > 0 ? foregroundGradient : foregroundGradient.reversed()
+//
+//            NSBezierPath.fillRoundedRect(panRect, radius: barRadius, withGradient: gradient, angle: -.horizontalGradientDegrees)
         }
     }
     
-    override var foregroundGradient: NSGradient {
-    
-        switch unitState {
-        
-        case .active:   return Colors.Effects.activeSliderGradient
-        
-        case .bypassed: return Colors.Effects.bypassedSliderGradient
-        
-        case .suppressed:   return Colors.Effects.suppressedSliderGradient
-        
-        }
-    }
-    
-    override var knobColor: NSColor {
-        Colors.Effects.sliderKnobColorForState(unitState)
-    }
+//    override var foregroundGradient: NSGradient {
+//
+//        switch unitState {
+//
+//        case .active:   return Colors.Effects.activeSliderGradient
+//
+//        case .bypassed: return Colors.Effects.bypassedSliderGradient
+//
+//        case .suppressed:   return Colors.Effects.suppressedSliderGradient
+//
+//        }
+//    }
+//
+//    override var knobColor: NSColor {
+//        Colors.Effects.sliderKnobColorForState(unitState)
+//    }
     
     override func knobRect(flipped: Bool) -> NSRect {
         

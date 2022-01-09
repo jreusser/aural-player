@@ -94,8 +94,8 @@ class FilterBandView: NSView {
         
         functionCaptionLabels = findFunctionCaptionLabels(under: self)
         
-        presetRangesIconMenuItem.tintFunction = {Colors.functionButtonColor}
-        presetCutoffsIconMenuItem.tintFunction = {Colors.functionButtonColor}
+//        presetRangesIconMenuItem.tintFunction = {Colors.functionButtonColor}
+//        presetCutoffsIconMenuItem.tintFunction = {Colors.functionButtonColor}
     }
     
     private func updateFields() {
@@ -284,14 +284,14 @@ class FilterBandView: NSView {
         
         changeFunctionButtonColor()
         changeTextButtonMenuColor()
-        changeFunctionCaptionTextColor(scheme.effects.functionCaptionTextColor)
-        changeFunctionValueTextColor(scheme.effects.functionValueTextColor)
+        changeFunctionCaptionTextColor(scheme.secondaryTextColor)
+        changeFunctionValueTextColor(scheme.primaryTextColor)
         redrawSliders()
         tabButton.redraw()
     }
     
     func changeFunctionButtonColor() {
-        [presetCutoffsIconMenuItem, presetRangesIconMenuItem].forEach {$0?.reTint()}
+//        [presetCutoffsIconMenuItem, presetRangesIconMenuItem].forEach {$0?.reTint()}
     }
 
     func changeTextButtonMenuColor() {

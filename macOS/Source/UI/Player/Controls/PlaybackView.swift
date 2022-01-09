@@ -46,7 +46,7 @@ class PlaybackView: NSView {
         btnLoop.stateImageMappings = [(PlaybackLoopState.none, (Images.imgLoop, offStateTintFunction)), (PlaybackLoopState.started, (Images.imgLoopStarted, onStateTintFunction)), (PlaybackLoopState.complete, (Images.imgLoop, onStateTintFunction))]
 
         // Play/pause button does not really have an "off" state
-        btnPlayPause.offStateTintFunction = onStateTintFunction
+//        btnPlayPause.offStateTintFunction = onStateTintFunction
         
         // Button tool tips
         btnPreviousTrack.toolTipFunction = {[weak self]
@@ -143,7 +143,7 @@ class PlaybackView: NSView {
     func applyColorScheme(_ scheme: ColorScheme) {
         
         // This call will also take care of toggle buttons
-        changeFunctionButtonColor(scheme.general.functionButtonColor)
+        changeFunctionButtonColor(scheme.buttonColor)
         sliderView.applyColorScheme(scheme)
     }
     
@@ -156,7 +156,7 @@ class PlaybackView: NSView {
     }
     
     func changeFunctionButtonColor(_ color: NSColor) {
-        functionButtons.forEach {$0.reTint()}
+//        functionButtons.forEach {$0.reTint()}
     }
     
     func changeToggleButtonOffStateColor(_ color: NSColor) {

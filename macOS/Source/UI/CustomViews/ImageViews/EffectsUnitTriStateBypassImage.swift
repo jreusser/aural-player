@@ -34,35 +34,35 @@ class EffectsUnitTriStateBypassImage: NSImageView, Tintable {
         stateFunction?() ?? .bypassed
     }
     
-    var offStateTintFunction: () -> NSColor = {Colors.Effects.bypassedUnitStateColor} {
-        
-        didSet {
-            
-            if !_isOn {
-                reTint()
-            }
-        }
-    }
-    
-    var onStateTintFunction: () -> NSColor = {Colors.Effects.activeUnitStateColor} {
-        
-        didSet {
-            
-            if _isOn {
-                reTint()
-            }
-        }
-    }
-    
-    var mixedStateTintFunction: () -> NSColor = {Colors.Effects.suppressedUnitStateColor} {
-        
-        didSet {
-            
-            if unitState == .suppressed {
-                reTint()
-            }
-        }
-    }
+//    var offStateTintFunction: () -> NSColor = {Colors.Effects.bypassedUnitStateColor} {
+//
+//        didSet {
+//
+//            if !_isOn {
+//                reTint()
+//            }
+//        }
+//    }
+//
+//    var onStateTintFunction: () -> NSColor = {Colors.Effects.activeUnitStateColor} {
+//
+//        didSet {
+//
+//            if _isOn {
+//                reTint()
+//            }
+//        }
+//    }
+//
+//    var mixedStateTintFunction: () -> NSColor = {Colors.Effects.suppressedUnitStateColor} {
+//
+//        didSet {
+//
+//            if unitState == .suppressed {
+//                reTint()
+//            }
+//        }
+//    }
     
     func updateState() {
         
@@ -91,7 +91,7 @@ class EffectsUnitTriStateBypassImage: NSImageView, Tintable {
     }
     
     func mixed() {
-        contentTintColor = mixedStateTintFunction()
+//        contentTintColor = mixedStateTintFunction()
     }
     
     private var _isOn: Bool = false
@@ -99,14 +99,14 @@ class EffectsUnitTriStateBypassImage: NSImageView, Tintable {
     // Sets the button state to be "Off"
     func off() {
         
-        contentTintColor = offStateTintFunction()
+//        contentTintColor = offStateTintFunction()
         _isOn = false
     }
     
     // Sets the button state to be "On"
     func on() {
         
-        contentTintColor = onStateTintFunction()
+//        contentTintColor = onStateTintFunction()
         _isOn = true
     }
     
@@ -139,8 +139,8 @@ class EffectsUnitTriStateBypassPreviewImage: EffectsUnitTriStateBypassImage {
     
     override func awakeFromNib() {
         
-        offStateTintFunction = {Colors.Effects.defaultBypassedUnitColor}
-        onStateTintFunction = {Colors.Effects.defaultActiveUnitColor}
-        mixedStateTintFunction = {Colors.Effects.defaultSuppressedUnitColor}
+//        offStateTintFunction = {Colors.Effects.defaultBypassedUnitColor}
+//        onStateTintFunction = {Colors.Effects.defaultActiveUnitColor}
+//        mixedStateTintFunction = {Colors.Effects.defaultSuppressedUnitColor}
     }
 }

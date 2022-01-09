@@ -24,12 +24,4 @@ class TintedImageView: NSImageView, Tintable {
         super.awakeFromNib()
         image?.isTemplate = true
     }
-    
-    var tintFunction: () -> NSColor = {Colors.functionButtonColor} {
-        didSet {reTint()}
-    }
-    
-    func reTint() {
-        contentTintColor = tintFunction()
-    }
 }

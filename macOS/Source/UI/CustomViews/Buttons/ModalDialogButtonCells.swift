@@ -88,9 +88,9 @@ class ColoredNavigationButtonCell: ModalDialogButtonCell {
 
 class ColorAwareButtonCell: ModalDialogButtonCell {
     
-    override var textColor: NSColor {Colors.buttonMenuTextColor}
-    override var textColor_disabled: NSColor {Colors.buttonMenuTextColor}
-    
-    override var backgroundFillGradient: NSGradient {Colors.textButtonMenuGradient}
-    override var backgroundFillGradient_disabled: NSGradient {Colors.textButtonMenuGradient}
+//    override var textColor: NSColor {Colors.buttonMenuTextColor}
+//    override var textColor_disabled: NSColor {Colors.buttonMenuTextColor}
+//
+//    override var backgroundFillGradient: NSGradient {Colors.textButtonMenuGradient}
+//    override var backgroundFillGradient_disabled: NSGradient {Colors.textButtonMenuGradient}
 }

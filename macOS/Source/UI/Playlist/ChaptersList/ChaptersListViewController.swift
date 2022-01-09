@@ -383,12 +383,12 @@ class ChaptersListViewController: NSViewController, Destroyable {
     
     private func applyColorScheme(_ scheme: ColorScheme) {
         
-        changeBackgroundColor(scheme.general.backgroundColor)
+        changeBackgroundColor(scheme.backgroundColor)
         
-        changeSummaryInfoColor(scheme.playlist.summaryInfoColor)
-        changeMainCaptionTextColor(scheme.general.mainCaptionTextColor)
+//        changeSummaryInfoColor(scheme.playlist.summaryInfoColor)
+        changeMainCaptionTextColor(scheme.captionTextColor)
         
-        changeFunctionButtonColor(scheme.general.functionButtonColor)
+        changeFunctionButtonColor(scheme.buttonColor)
         
         redrawSearchField()
         
@@ -402,7 +402,7 @@ class ChaptersListViewController: NSViewController, Destroyable {
     }
     
     private func changeFunctionButtonColor(_ color: NSColor) {
-        functionButtons.forEach {$0.reTint()}
+//        functionButtons.forEach {$0.reTint()}
     }
     
     private func changeToggleButtonOffStateColor(_ color: NSColor) {
@@ -423,7 +423,7 @@ class ChaptersListViewController: NSViewController, Destroyable {
     
     private func redrawSearchField() {
         
-        txtSearch.textColor = Colors.Playlist.trackNameTextColor
+//        txtSearch.textColor = Colors.Playlist.trackNameTextColor
         
         if let cell: NSSearchFieldCell = txtSearch.cell as? NSSearchFieldCell {
             
@@ -432,8 +432,8 @@ class ChaptersListViewController: NSViewController, Destroyable {
             cell.resetSearchButtonCell()
             
             // Tint the 2 cell images according to the appropriate color.
-            cell.cancelButtonCell?.image = cell.cancelButtonCell?.image?.filledWithColor(Colors.Playlist.trackNameTextColor)
-            cell.searchButtonCell?.image = cell.searchButtonCell?.image?.filledWithColor(Colors.Playlist.trackNameTextColor)
+//            cell.cancelButtonCell?.image = cell.cancelButtonCell?.image?.filledWithColor(Colors.Playlist.trackNameTextColor)
+//            cell.searchButtonCell?.image = cell.searchButtonCell?.image?.filledWithColor(Colors.Playlist.trackNameTextColor)
         }
         
         txtSearch.redraw()

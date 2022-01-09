@@ -13,47 +13,48 @@ import Cocoa
 @IBDesignable
 class EffectsUnitTriStateCheckButton: NSButton {
     
-    var stateFunction: (() -> EffectsUnitState)? {
-        didSet {reTint()}
-    }
+//    var stateFunction: (() -> EffectsUnitState)? {
+//        didSet {reTint()}
+//    }
 
     var unitState: EffectsUnitState {
-        return stateFunction?() ?? .bypassed
+//        return stateFunction?() ?? .bypassed
+        .bypassed
     }
     
-    var activeStateColor: NSColor {Colors.Effects.activeUnitStateColor}
-    
-    var bypassedStateColor: NSColor {Colors.Effects.bypassedUnitStateColor}
-    
-    var suppressedStateColor: NSColor {Colors.Effects.suppressedUnitStateColor}
+//    var activeStateColor: NSColor {Colors.Effects.activeUnitStateColor}
+//
+//    var bypassedStateColor: NSColor {Colors.Effects.bypassedUnitStateColor}
+//
+//    var suppressedStateColor: NSColor {Colors.Effects.suppressedUnitStateColor}
         
     func stateChanged() {
-        reTint()
+//        reTint()
     }
     
-    func reTint() {
-        
-        switch unitState {
-
-        case .bypassed:
-            contentTintColor = bypassedStateColor
-
-        case .active:
-            contentTintColor = activeStateColor
-
-        case .suppressed:
-            contentTintColor = suppressedStateColor
-        }
-    }
+//    func reTint() {
+//
+//        switch unitState {
+//
+//        case .bypassed:
+//            contentTintColor = bypassedStateColor
+//
+//        case .active:
+//            contentTintColor = activeStateColor
+//
+//        case .suppressed:
+//            contentTintColor = suppressedStateColor
+//        }
+//    }
 }
 
 class EffectsUnitTriStatePreviewCheckButton: EffectsUnitTriStateCheckButton {
     
-    override var activeStateColor: NSColor {Colors.Effects.defaultActiveUnitColor}
-    
-    override var bypassedStateColor: NSColor {Colors.Effects.defaultBypassedUnitColor}
-    
-    override var suppressedStateColor: NSColor {Colors.Effects.defaultSuppressedUnitColor}
+//    override var activeStateColor: NSColor {Colors.Effects.defaultActiveUnitColor}
+//
+//    override var bypassedStateColor: NSColor {Colors.Effects.defaultBypassedUnitColor}
+//
+//    override var suppressedStateColor: NSColor {Colors.Effects.defaultSuppressedUnitColor}
     
     override func awakeFromNib() {
         stateChanged()

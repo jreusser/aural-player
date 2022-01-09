@@ -114,9 +114,9 @@ class GroupedItemNameCellView: GroupedItemCellView {
         didSet {
             
             // Check if this row is selected
-            textColor = rowIsSelected ?
-                isGroup ? Colors.Playlist.groupNameSelectedTextColor : Colors.Playlist.trackNameSelectedTextColor :
-                isGroup ? Colors.Playlist.groupNameTextColor : Colors.Playlist.trackNameTextColor
+//            textColor = rowIsSelected ?
+//                isGroup ? Colors.Playlist.groupNameSelectedTextColor : Colors.Playlist.trackNameSelectedTextColor :
+//                isGroup ? Colors.Playlist.groupNameTextColor : Colors.Playlist.trackNameTextColor
 
             textFont = isGroup ? Fonts.Playlist.groupTextFont : Fonts.Playlist.trackTextFont
         }
@@ -146,7 +146,7 @@ class GroupedItemDurationCellView: GroupedItemCellView {
             
             let isSelectedRow = rowIsSelected
             
-            textColor = isSelectedRow ? Colors.Playlist.indexDurationSelectedTextColor : Colors.Playlist.indexDurationTextColor
+//            textColor = isSelectedRow ? Colors.Playlist.indexDurationSelectedTextColor : Colors.Playlist.indexDurationTextColor
             textFont = isGroup ? Fonts.Playlist.groupTextFont : Fonts.Playlist.trackTextFont
         }
     }

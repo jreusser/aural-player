@@ -18,10 +18,10 @@ class FilterBandsTabButtonCell: TabGroupButtonCell {
     
     override var borderRadius: CGFloat {1}
     
-    override var selectionBoxColor: NSColor {Colors.selectedTabButtonColor}
+//    override var selectionBoxColor: NSColor {Colors.selectedTabButtonColor}
     
-    override var unselectedTextColor: NSColor {Colors.tabButtonTextColor}
-    override var selectedTextColor: NSColor {Colors.selectedTabButtonTextColor}
+//    override var unselectedTextColor: NSColor {Colors.tabButtonTextColor}
+//    override var selectedTextColor: NSColor {Colors.selectedTabButtonTextColor}
     
     private static let underlineHeight: CGFloat = 1
     

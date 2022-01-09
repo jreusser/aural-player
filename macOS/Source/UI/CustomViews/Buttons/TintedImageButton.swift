@@ -37,15 +37,6 @@ class TintedImageButton: NSButton, Tintable {
         image?.isTemplate = true
     }
  
-    // A function that produces a color used to tint the base image.
-    var tintFunction: () -> NSColor = {Colors.functionButtonColor} {
-        
-        // Re-tint the image whenever the function is updated.
-        didSet {
-            reTint()
-        }
-    }
-    
     // Reapplies the tint (eg. when the tint color has changed or the base image has changed).
     func reTint() {
         
@@ -53,7 +44,7 @@ class TintedImageButton: NSButton, Tintable {
             print("\n\(self): NOT TEMPLATE !!!")
         }
         
-        contentTintColor = tintFunction()
+//        contentTintColor = tintFunction()
     }
     
     deinit {
@@ -67,8 +58,6 @@ class TintedImageButton: NSButton, Tintable {
 protocol Tintable {
     
     func observeColorProperty<Object, Value>(_ keyPath: KeyPath<Object, Value>, of object: Object) where Object: NSObject
-    
-    func reTint()
 }
 
 extension Tintable {

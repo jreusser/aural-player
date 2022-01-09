@@ -22,12 +22,12 @@ class EffectsUnitTriStateLabel: CenterTextLabel, FunctionLabel {
     }
     
     // The image displayed when the button is in an "Off" state
-    var offStateColor: NSColor {Colors.Effects.bypassedUnitStateColor}
-    
-    // The image displayed when the button is in an "On" state
-    var onStateColor: NSColor {Colors.Effects.activeUnitStateColor}
-    
-    var mixedStateColor: NSColor {Colors.Effects.suppressedUnitStateColor}
+//    var offStateColor: NSColor {Colors.Effects.bypassedUnitStateColor}
+//
+//    // The image displayed when the button is in an "On" state
+//    var onStateColor: NSColor {Colors.Effects.activeUnitStateColor}
+//
+//    var mixedStateColor: NSColor {Colors.Effects.suppressedUnitStateColor}
     
     private var _isOn: Bool = false
     
@@ -60,19 +60,19 @@ class EffectsUnitTriStateLabel: CenterTextLabel, FunctionLabel {
     // Sets the button state to be "Off"
     func off() {
         
-        self.textColor = offStateColor
+//        self.textColor = offStateColor
         _isOn = false
     }
     
     // Sets the button state to be "On"
     func on() {
         
-        self.textColor = onStateColor
+//        self.textColor = onStateColor
         _isOn = true
     }
     
     func mixed() {
-        self.textColor = mixedStateColor
+//        self.textColor = mixedStateColor
     }
     
     // Convenience function to set the button to "On" if the specified condition is true, and "Off" if not.
@@ -95,9 +95,9 @@ class EffectsUnitTriStateLabel: CenterTextLabel, FunctionLabel {
 
 class EffectsUnitTriStatePreviewLabel: EffectsUnitTriStateLabel {
     
-    override var offStateColor: NSColor {Colors.Effects.defaultBypassedUnitColor}
-    
-    override var onStateColor: NSColor {Colors.Effects.defaultActiveUnitColor}
-    
-    override var mixedStateColor: NSColor {Colors.Effects.defaultSuppressedUnitColor}
+//    override var offStateColor: NSColor {Colors.Effects.defaultBypassedUnitColor}
+//
+//    override var onStateColor: NSColor {Colors.Effects.defaultActiveUnitColor}
+//
+//    override var mixedStateColor: NSColor {Colors.Effects.defaultSuppressedUnitColor}
 }

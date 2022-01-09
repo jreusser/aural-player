@@ -82,7 +82,7 @@ class EffectsWindowController: NSWindowController, Destroyable {
         // Initialize all sub-views
         initTabGroup()
 
-        btnClose.tintFunction = {Colors.functionButtonColor}
+//        btnClose.tintFunction = {Colors.functionButtonColor}
         
         applyTheme()
         
@@ -231,9 +231,9 @@ class EffectsWindowController: NSWindowController, Destroyable {
     
     private func applyColorScheme(_ scheme: ColorScheme) {
         
-        changeBackgroundColor(scheme.general.backgroundColor)
-        changeMainCaptionTextColor(scheme.general.mainCaptionTextColor)
-        changeFunctionButtonColor(scheme.general.functionButtonColor)
+        changeBackgroundColor(scheme.backgroundColor)
+        changeMainCaptionTextColor(scheme.captionTextColor)
+        changeFunctionButtonColor(scheme.buttonColor)
         
         tabViewButtons.forEach {$0.reTint()}
     }

@@ -24,43 +24,43 @@ class CutoffFrequencySliderCell: EffectsUnitSliderCell {
     
     var filterType: FilterBandType = .lowPass
     
-    override var backgroundGradient: NSGradient {
-        
-        if filterType == .lowPass {
-            return Colors.Effects.sliderBackgroundGradient
-        }
-        
-        switch (unitState, filterType) {
-        
-        case (.active, .highPass):  return Colors.Effects.activeSliderGradient.reversed()
-            
-        case (.bypassed, .highPass):  return Colors.Effects.bypassedSliderGradient.reversed()
-            
-        case (.suppressed, .highPass):  return Colors.Effects.suppressedSliderGradient.reversed()
-            
-        default:    return Colors.Effects.sliderBackgroundGradient
-            
-        }
-    }
-    
-    override var foregroundGradient: NSGradient {
-        
-        if filterType == .highPass {
-            return Colors.Effects.sliderBackgroundGradient.reversed()
-        }
-        
-        switch (unitState, filterType) {
-        
-        case (.active, .lowPass):  return Colors.Effects.activeSliderGradient
-            
-        case (.bypassed, .lowPass):  return Colors.Effects.bypassedSliderGradient
-            
-        case (.suppressed, .lowPass):  return Colors.Effects.suppressedSliderGradient
-            
-        default:    return Colors.Effects.sliderBackgroundGradient.reversed()
-            
-        }
-    }
+//    override var backgroundGradient: NSGradient {
+//        
+//        if filterType == .lowPass {
+//            return Colors.Effects.sliderBackgroundGradient
+//        }
+//        
+//        switch (unitState, filterType) {
+//        
+//        case (.active, .highPass):  return Colors.Effects.activeSliderGradient.reversed()
+//            
+//        case (.bypassed, .highPass):  return Colors.Effects.bypassedSliderGradient.reversed()
+//            
+//        case (.suppressed, .highPass):  return Colors.Effects.suppressedSliderGradient.reversed()
+//            
+//        default:    return Colors.Effects.sliderBackgroundGradient
+//            
+//        }
+//    }
+//    
+//    override var foregroundGradient: NSGradient {
+//        
+//        if filterType == .highPass {
+//            return Colors.Effects.sliderBackgroundGradient.reversed()
+//        }
+//        
+//        switch (unitState, filterType) {
+//        
+//        case (.active, .lowPass):  return Colors.Effects.activeSliderGradient
+//            
+//        case (.bypassed, .lowPass):  return Colors.Effects.bypassedSliderGradient
+//            
+//        case (.suppressed, .lowPass):  return Colors.Effects.suppressedSliderGradient
+//            
+//        default:    return Colors.Effects.sliderBackgroundGradient.reversed()
+//            
+//        }
+//    }
 }
 
 class FilterCutoffFrequencySliderCell: CutoffFrequencySliderCell {

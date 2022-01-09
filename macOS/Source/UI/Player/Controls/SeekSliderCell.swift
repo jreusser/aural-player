@@ -27,7 +27,7 @@ class SeekSliderCell: HorizontalSliderCell {
     override var knobWidth: CGFloat {10}
     override var knobHeightOutsideBar: CGFloat {2}
     
-    var loopColor: NSColor {Colors.Player.seekBarLoopColor}
+//    var loopColor: NSColor {Colors.Player.seekBarLoopColor}
     
     var loop: PlaybackLoopRange?
     
@@ -56,7 +56,7 @@ class SeekSliderCell: HorizontalSliderCell {
         let halfKnobWidth = knobFrame.width / 2
         let leftRect = NSRect(x: rect.minX, y: rect.minY, width: max(halfKnobWidth, knobFrame.minX + halfKnobWidth), height: rect.height)
         
-        NSBezierPath.fillRoundedRect(leftRect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
+//        NSBezierPath.fillRoundedRect(leftRect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
     }
     
     func drawRightRect(inRect rect: NSRect, knobFrame: NSRect) {
@@ -65,7 +65,7 @@ class SeekSliderCell: HorizontalSliderCell {
         let rightRect = NSRect(x: knobFrame.maxX - halfKnobWidth, y: rect.minY,
                                width: rect.width - (knobFrame.maxX - halfKnobWidth), height: rect.height)
         
-        NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withGradient: backgroundGradient, angle: gradientDegrees)
+//        NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withGradient: backgroundGradient, angle: gradientDegrees)
     }
     
     override func drawBar(inside aRect: NSRect, flipped: Bool) {
@@ -86,25 +86,25 @@ class SeekSliderCell: HorizontalSliderCell {
             
             // Loop bar
             
-            NSBezierPath.fillRoundedRect(NSRect(x: startX, y: aRect.minY, width: (endX - startX + 1), height: aRect.height),
-                                         radius: barRadius,
-                                         withColor: loopColor)
+//            NSBezierPath.fillRoundedRect(NSRect(x: startX, y: aRect.minY, width: (endX - startX + 1), height: aRect.height),
+//                                         radius: barRadius,
+//                                         withColor: loopColor)
             
             let markerMinY = knobFrame.minY + knobHeightOutsideBar / 2
             let markerHeight: CGFloat = aRect.height + knobHeightOutsideBar
             
             // Loop start marker
             
-            NSBezierPath.fillRoundedRect(NSRect(x: startX - (knobWidth / 2), y: markerMinY, width: knobWidth, height: markerHeight),
-                                         radius: knobRadius,
-                                         withColor: loopColor)
+//            NSBezierPath.fillRoundedRect(NSRect(x: startX - (knobWidth / 2), y: markerMinY, width: knobWidth, height: markerHeight),
+//                                         radius: knobRadius,
+//                                         withColor: loopColor)
             
             // Loop end marker
             if loop.end != nil {
                 
-                NSBezierPath.fillRoundedRect(NSRect(x: endX - (knobWidth / 2), y: markerMinY, width: knobWidth, height: markerHeight),
-                                             radius: knobRadius,
-                                             withColor: loopColor)
+//                NSBezierPath.fillRoundedRect(NSRect(x: endX - (knobWidth / 2), y: markerMinY, width: knobWidth, height: markerHeight),
+//                                             radius: knobRadius,
+//                                             withColor: loopColor)
             }
         }
     }
@@ -129,8 +129,8 @@ class SeekSliderCell: HorizontalSliderCell {
         let knobHeight: CGFloat = bar.height + knobHeightOutsideBar
         let knobMinX = knobRect.minX
         
-        NSBezierPath.fillRoundedRect(NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobWidth, height: knobHeight),
-                                     radius: knobRadius,
-                                     withColor: knobColor)
+//        NSBezierPath.fillRoundedRect(NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobWidth, height: knobHeight),
+//                                     radius: knobRadius,
+//                                     withColor: knobColor)
     }
 }

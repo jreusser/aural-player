@@ -209,7 +209,7 @@ class MasterUnitViewController: EffectsUnitViewController {
         
         super.applyColorScheme(scheme)
         
-        changeBackgroundColor(scheme.general.backgroundColor)
+        changeBackgroundColor(scheme.backgroundColor)
         audioUnitsTable.reloadData()
     }
     

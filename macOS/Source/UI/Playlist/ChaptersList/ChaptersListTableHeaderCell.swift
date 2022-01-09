@@ -13,7 +13,7 @@ class ChaptersListTableHeaderCell: NSTableHeaderCell {
     
     override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
         
-        cellFrame.fill(withColor: Colors.windowBackgroundColor)
+//        cellFrame.fill(withColor: Colors.windowBackgroundColor)
         
         let size: CGSize = stringValue.size(withFont: Fonts.Playlist.chaptersListHeaderFont)
         
@@ -43,7 +43,7 @@ class ChaptersListTableHeaderCell: NSTableHeaderCell {
         }
     
         let rect = NSRect(x: x, y: cellFrame.minY, width: size.width, height: cellFrame.height)
-        stringValue.draw(in: rect, withFont: Fonts.Playlist.chaptersListHeaderFont,
-                         andColor: Colors.Playlist.summaryInfoColor)
+//        stringValue.draw(in: rect, withFont: Fonts.Playlist.chaptersListHeaderFont,
+//                         andColor: Colors.Playlist.summaryInfoColor)
     }
 }

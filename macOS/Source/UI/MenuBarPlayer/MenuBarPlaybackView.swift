@@ -21,7 +21,7 @@ class MenuBarPlaybackView: PlaybackView {
         
         super.awakeFromNib()
         
-        btnPlayPause.onStateTintFunction = {.white70Percent}
-        [btnPreviousTrack, btnNextTrack, btnSeekBackward, btnSeekForward].forEach {$0?.tintFunction = {.white70Percent}}
+//        btnPlayPause.onStateTintFunction = {.white70Percent}
+//        [btnPreviousTrack, btnNextTrack, btnSeekBackward, btnSeekForward].forEach {$0?.tintFunction = {.white70Percent}}
     }
 }

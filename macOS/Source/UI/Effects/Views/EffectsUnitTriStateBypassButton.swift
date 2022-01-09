@@ -30,15 +30,15 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton {
     var mixedStateTooltip: String?
     
     // Tint to be applied when the button is in a "mixed" state (eg. when an effects unit is suppressed).
-    var mixedStateTintFunction: () -> NSColor = {Colors.Effects.suppressedUnitStateColor} {
-        
-        didSet {
-            
-            if unitState == .suppressed {
-                reTint()
-            }
-        }
-    }
+//    var mixedStateTintFunction: () -> NSColor = {Colors.Effects.suppressedUnitStateColor} {
+//
+//        didSet {
+//
+//            if unitState == .suppressed {
+//                reTint()
+//            }
+//        }
+//    }
     
     override func awakeFromNib() {
         
@@ -48,8 +48,8 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton {
         image?.isTemplate = true
         
         // Override the tint functions from OnOffImageButton
-        offStateTintFunction = {Colors.Effects.bypassedUnitStateColor}
-        onStateTintFunction = {Colors.Effects.activeUnitStateColor}
+//        offStateTintFunction = {Colors.Effects.bypassedUnitStateColor}
+//        onStateTintFunction = {Colors.Effects.activeUnitStateColor}
         
         offStateTooltip = offStateTooltip ?? "Activate this effects unit"
         onStateTooltip = onStateTooltip ?? "Deactivate this effects unit"
@@ -90,7 +90,7 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton {
     // Sets the button state to be "Off"
     override func off() {
         
-        contentTintColor = offStateTintFunction()
+//        contentTintColor = offStateTintFunction()
         toolTip = offStateTooltip
         _isOn = false
     }
@@ -98,14 +98,14 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton {
     // Sets the button state to be "On"
     override func on() {
         
-        contentTintColor = onStateTintFunction()
+//        contentTintColor = onStateTintFunction()
         toolTip = onStateTooltip
         _isOn = true
     }
     
     func mixed() {
         
-        contentTintColor = mixedStateTintFunction()
+//        contentTintColor = mixedStateTintFunction()
         toolTip = mixedStateTooltip
     }
     

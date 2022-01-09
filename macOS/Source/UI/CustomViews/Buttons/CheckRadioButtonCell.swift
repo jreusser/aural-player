@@ -59,7 +59,7 @@ class CheckRadioButtonCell: NSButtonCell {
 
 class EffectsFunctionCheckRadioButtonCell: CheckRadioButtonCell {
     
-    override var textColor: NSColor {Colors.Effects.functionCaptionTextColor}
+//    override var textColor: NSColor {Colors.Effects.functionCaptionTextColor}
     override var textFont: NSFont {Fonts.Effects.unitFunctionFont}
     
     override var xOffset: CGFloat {8}

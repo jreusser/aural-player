@@ -29,19 +29,19 @@ struct ColorSchemePersistentState: Codable {
     
     let name: String
     
-    let general: GeneralColorSchemePersistentState?
-    let player: PlayerColorSchemePersistentState?
-    let playlist: PlaylistColorSchemePersistentState?
-    let effects: EffectsColorSchemePersistentState?
+//    let general: GeneralColorSchemePersistentState?
+//    let player: PlayerColorSchemePersistentState?
+//    let playlist: PlaylistColorSchemePersistentState?
+//    let effects: EffectsColorSchemePersistentState?
     
     // When saving app state to disk
     init(_ scheme: ColorScheme) {
         
         self.name = scheme.name
         
-        self.general = GeneralColorSchemePersistentState(scheme.general)
-        self.player = PlayerColorSchemePersistentState(scheme.player)
-        self.playlist = PlaylistColorSchemePersistentState(scheme.playlist)
-        self.effects = EffectsColorSchemePersistentState(scheme.effects)
+//        self.general = GeneralColorSchemePersistentState(scheme.general)
+//        self.player = PlayerColorSchemePersistentState(scheme.player)
+//        self.playlist = PlaylistColorSchemePersistentState(scheme.playlist)
+//        self.effects = EffectsColorSchemePersistentState(scheme.effects)
     }
 }

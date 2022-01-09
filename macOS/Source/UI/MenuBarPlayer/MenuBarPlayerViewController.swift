@@ -42,9 +42,9 @@ class MenuBarPlayerViewController: NSViewController, Destroyable {
     
     override func awakeFromNib() {
         
-        [btnQuit, btnWindowedMode, btnControlBarMode, btnSettings].forEach {$0?.tintFunction = {.white70Percent}}
+//        [btnQuit, btnWindowedMode, btnControlBarMode, btnSettings].forEach {$0?.tintFunction = {.white70Percent}}
         
-        appLogo.tintFunction = {.white70Percent}
+//        appLogo.tintFunction = {.white70Percent}
 
         // MARK: Notification subscriptions
         

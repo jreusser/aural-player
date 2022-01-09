@@ -19,30 +19,30 @@ class EffectsUnitSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
     override var knobRadius: CGFloat {1}
     override var knobHeightOutsideBar: CGFloat {2}
     
-    override var knobColor: NSColor {
-        Colors.Effects.sliderKnobColorForState(self.unitState)
-    }
-    
-    override var tickColor: NSColor {Colors.Effects.sliderTickColor}
+//    override var knobColor: NSColor {
+//        Colors.Effects.sliderKnobColorForState(self.unitState)
+//    }
+//
+//    override var tickColor: NSColor {Colors.Effects.sliderTickColor}
     
     override var tickVerticalSpacing: CGFloat {1}
     
-    override var backgroundGradient: NSGradient {
-        Colors.Effects.sliderBackgroundGradient
-    }
-    
-    override var foregroundGradient: NSGradient {
-     
-        switch self.unitState {
-            
-        case .active:   return Colors.Effects.activeSliderGradient
-            
-        case .bypassed: return Colors.Effects.bypassedSliderGradient
-            
-        case .suppressed:   return Colors.Effects.suppressedSliderGradient
-            
-        }
-    }
+//    override var backgroundGradient: NSGradient {
+//        Colors.Effects.sliderBackgroundGradient
+//    }
+//
+//    override var foregroundGradient: NSGradient {
+//
+//        switch self.unitState {
+//
+//        case .active:   return Colors.Effects.activeSliderGradient
+//
+//        case .bypassed: return Colors.Effects.bypassedSliderGradient
+//
+//        case .suppressed:   return Colors.Effects.suppressedSliderGradient
+//
+//        }
+//    }
     
     var unitState: EffectsUnitState = .bypassed
     

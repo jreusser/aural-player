@@ -81,7 +81,7 @@ extension MasterUnitViewController: NSTableViewDelegate {
     }
     
     private var systemFontScheme: EffectsFontScheme {fontSchemesManager.systemScheme.effects}
-    private var systemColorScheme: EffectsColorScheme {colorSchemesManager.systemScheme.effects}
+    private var systemColorScheme: ColorScheme {colorSchemesManager.systemScheme}
     
     private func createNameCell(_ tableView: NSTableView, _ id: NSUserInterfaceItemIdentifier, _ row: Int) -> MasterUnitAUTableNameCellView? {
         
@@ -97,15 +97,15 @@ extension MasterUnitViewController: NSTableViewDelegate {
         
         case .active:
             
-            cell.textColor = systemColorScheme.activeUnitStateColor
+            cell.textColor = systemColorScheme.activeControlColor
             
         case .bypassed:
             
-            cell.textColor = systemColorScheme.bypassedUnitStateColor
+            cell.textColor = systemColorScheme.bypassedControlColor
             
         case .suppressed:
             
-            cell.textColor = systemColorScheme.suppressedUnitStateColor
+            cell.textColor = systemColorScheme.suppressedControlColor
         }
         
         return cell

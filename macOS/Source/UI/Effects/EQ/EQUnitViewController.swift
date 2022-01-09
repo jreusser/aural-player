@@ -162,9 +162,9 @@ class EQUnitViewController: EffectsUnitViewController {
         
         super.applyColorScheme(scheme)
         
-        changeSelectedTabButtonColor(scheme.general.selectedTabButtonColor)
-        changeTabButtonTextColor(scheme.general.tabButtonTextColor)
-        changeSelectedTabButtonTextColor(scheme.general.selectedTabButtonTextColor)
+//        changeSelectedTabButtonColor(scheme.general.selectedTabButtonColor)
+//        changeTabButtonTextColor(scheme.general.tabButtonTextColor)
+//        changeSelectedTabButtonTextColor(scheme.general.selectedTabButtonTextColor)
         changeSliderColors()
     }
     

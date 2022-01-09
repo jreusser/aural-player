@@ -29,10 +29,10 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
     @IBOutlet weak var clipboardColorViewer: NSColorWell!
 
     // Subviews that handle color scheme editing for different UI components
-    private lazy var generalSchemeView: ColorSchemesViewProtocol = GeneralColorSchemeViewController()
-    private lazy var playerSchemeView: ColorSchemesViewProtocol = PlayerColorSchemeViewController()
-    private lazy var playlistSchemeView: ColorSchemesViewProtocol = PlaylistColorSchemeViewController()
-    private lazy var effectsSchemeView: ColorSchemesViewProtocol = EffectsColorSchemeViewController()
+//    private lazy var generalSchemeView: ColorSchemesViewProtocol = GeneralColorSchemeViewController()
+//    private lazy var playerSchemeView: ColorSchemesViewProtocol = PlayerColorSchemeViewController()
+//    private lazy var playlistSchemeView: ColorSchemesViewProtocol = PlaylistColorSchemeViewController()
+//    private lazy var effectsSchemeView: ColorSchemesViewProtocol = EffectsColorSchemeViewController()
     
     private var subViews: [ColorSchemesViewProtocol] = []
     
@@ -58,7 +58,7 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
         self.window?.isMovableByWindowBackground = true
         
         // Add the subviews to the tab group
-        subViews = [generalSchemeView, playerSchemeView, playlistSchemeView, effectsSchemeView]
+//        subViews = [generalSchemeView, playerSchemeView, playlistSchemeView, effectsSchemeView]
         tabView.addViewsForTabs(subViews.map {$0.view})
         
         // Disable color transparency in the color chooser panel (for now)

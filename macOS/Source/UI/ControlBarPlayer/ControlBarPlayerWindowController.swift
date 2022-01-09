@@ -50,8 +50,8 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
             dockTopLeftAction(self)
         }
         
-        btnQuit.tintFunction = {Colors.functionButtonColor}
-        optionsMenuItem.tintFunction = {Colors.functionButtonColor}
+//        btnQuit.tintFunction = {Colors.functionButtonColor}
+//        optionsMenuItem.tintFunction = {Colors.functionButtonColor}
 
         rootContainerBox.cornerRadius = uiState.cornerRadius
         cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
@@ -71,8 +71,8 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
     
     func applyColorScheme(_ colorScheme: ColorScheme) {
         
-        rootContainerBox.fillColor = colorScheme.general.backgroundColor
-        [btnQuit, optionsMenuItem].forEach {($0 as? Tintable)?.reTint()}
+        rootContainerBox.fillColor = colorScheme.backgroundColor
+//        [btnQuit, optionsMenuItem].forEach {($0 as? Tintable)?.reTint()}
     }
     
     @IBAction func cornerRadiusStepperAction(_ sender: NSStepper) {

@@ -59,7 +59,7 @@ class ControlBarSeekSliderCell: SeekSliderCell {
             leftRect = NSRect(x: aRect.minX, y: aRect.minY,
                                   width: max(1, scaledValue * aRect.width), height: aRect.height)
             
-            NSBezierPath.fillRoundedRect(leftRect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
+//            NSBezierPath.fillRoundedRect(leftRect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
         }
         
         if scaledValue < 100 {
@@ -67,7 +67,7 @@ class ControlBarSeekSliderCell: SeekSliderCell {
             let rightRect = NSRect(x: leftRect.maxX, y: aRect.minY,
                                    width: max(1, aRect.width - leftRect.width), height: aRect.height)
             
-            NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withGradient: backgroundGradient, angle: gradientDegrees)
+//            NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withGradient: backgroundGradient, angle: gradientDegrees)
         }
         
         // Render segment playback loop, if one is defined
@@ -88,12 +88,12 @@ class ControlBarSeekSliderCell: SeekSliderCell {
             
             // Loop bar
             let loopRect = NSRect(x: startX, y: aRect.minY, width: max(1, endX - startX), height: aRect.height)
-            NSBezierPath.fillRoundedRect(loopRect, radius: barRadius, withColor: loopColor)
+//            NSBezierPath.fillRoundedRect(loopRect, radius: barRadius, withColor: loopColor)
             
             // Current position marker
             let markerStartX = max(aRect.minX, curSeekPos - halfLoopMarkerWidth)
             let markerRect = NSMakeRect(markerStartX, aRect.minY, loopMarkerWidth, aRect.height)
-            NSBezierPath.fillRoundedRect(markerRect, radius: knobRadius, withGradient: foregroundGradient, angle: gradientDegrees)
+//            NSBezierPath.fillRoundedRect(markerRect, radius: knobRadius, withGradient: foregroundGradient, angle: gradientDegrees)
         }
     }
 }

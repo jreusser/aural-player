@@ -34,9 +34,9 @@ class PlaylistRowView: NSTableRowView {
         
         if self.selectionHighlightStyle != .none {
             
-            NSBezierPath.fillRoundedRect(self.bounds.insetBy(dx: 1, dy: 0),
-                                         radius: 2,
-                                         withColor: Colors.Playlist.selectionBoxColor)
+//            NSBezierPath.fillRoundedRect(self.bounds.insetBy(dx: 1, dy: 0),
+//                                         radius: 2,
+//                                         withColor: Colors.Playlist.selectionBoxColor)
         }
     }
 }
@@ -83,7 +83,7 @@ class BasicFlatPlaylistCellView: NSTableCellView {
     // Check if this row is selected, change font and color accordingly
     func backgroundStyleChanged() {
         
-        textColor = rowIsSelected ? Colors.Playlist.trackNameSelectedTextColor : Colors.Playlist.trackNameTextColor
+//        textColor = rowIsSelected ? Colors.Playlist.trackNameSelectedTextColor : Colors.Playlist.trackNameTextColor
         textFont = Fonts.Playlist.trackTextFont
     }
 }
@@ -105,7 +105,7 @@ class DurationCellView: BasicFlatPlaylistCellView {
         let isSelectedRow = rowIsSelected
         
         // Check if this row is selected, change font and color accordingly
-        textField?.textColor = isSelectedRow ? Colors.Playlist.indexDurationSelectedTextColor : Colors.Playlist.indexDurationTextColor
+//        textField?.textColor = isSelectedRow ? Colors.Playlist.indexDurationSelectedTextColor : Colors.Playlist.indexDurationTextColor
         textField?.font = Fonts.Playlist.trackTextFont
     }
 }
@@ -118,7 +118,7 @@ class IndexCellView: BasicFlatPlaylistCellView {
     override func backgroundStyleChanged() {
         
         // Check if this row is selected, change font and color accordingly
-        textField?.textColor = rowIsSelected ? Colors.Playlist.indexDurationSelectedTextColor : Colors.Playlist.indexDurationTextColor
+//        textField?.textColor = rowIsSelected ? Colors.Playlist.indexDurationSelectedTextColor : Colors.Playlist.indexDurationTextColor
         textField?.font = Fonts.Playlist.trackTextFont
     }
 }

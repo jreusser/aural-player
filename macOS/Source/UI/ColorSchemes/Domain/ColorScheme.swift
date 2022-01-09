@@ -30,22 +30,65 @@ class ColorScheme: UserManagedObject {
 
     // False if defined by the user
     let systemDefined: Bool
+    
+    /*
+     
+     background
+     caption
+     
+     primaryText
+     secondaryText
+     tertiaryText
+     
+     button
+     buttonOffState
+     
+     activeControl
+     bypassedControl
+     suppressedControl
+     
+     sliderBackground
+     sliderKnob
+     sliderTick
+     
+     tableSelectionText
+     tableSelectionBox
+     
+     */
 
-    var general: GeneralColorScheme
-    var player: PlayerColorScheme
-    var playlist: PlaylistColorScheme
-    var effects: EffectsColorScheme
+    private var defaultPreset: ColorSchemePreset {
+        .defaultScheme
+    }
+    
+    @objc dynamic lazy var backgroundColor: NSColor = defaultPreset.backgroundColor
+    
+    @objc dynamic lazy var captionTextColor: NSColor = defaultPreset.mainCaptionTextColor
+    
+    @objc dynamic lazy var primaryTextColor: NSColor = defaultPreset.playerTrackInfoPrimaryTextColor
+    @objc dynamic lazy var secondaryTextColor: NSColor = defaultPreset.playerTrackInfoSecondaryTextColor
+    @objc dynamic lazy var tertiaryTextColor: NSColor = defaultPreset.playerTrackInfoTertiaryTextColor
+    
+    @objc dynamic lazy var primarySelectedTextColor: NSColor = .white
+    @objc dynamic lazy var secondarySelectedTextColor: NSColor = .gray
+    
+    @objc dynamic lazy var buttonColor: NSColor = defaultPreset.functionButtonColor
+    @objc dynamic lazy var buttonOffColor: NSColor = defaultPreset.toggleButtonOffStateColor
+    
+    @objc dynamic lazy var activeControlColor: NSColor = defaultPreset.effectsActiveUnitStateColor
+    @objc dynamic lazy var bypassedControlColor: NSColor = defaultPreset.effectsBypassedUnitStateColor
+    @objc dynamic lazy var suppressedControlColor: NSColor = defaultPreset.effectsSuppressedUnitStateColor
+    
+    @objc dynamic lazy var sliderBackgroundColor: NSColor = defaultPreset.playerSliderBackgroundColor
+    @objc dynamic lazy var sliderKnobColor: NSColor = defaultPreset.playerSliderKnobColor
+    @objc dynamic lazy var sliderTickColor: NSColor = defaultPreset.effectsSliderTickColor
+    
+    @objc dynamic lazy var tableSelectionBoxColor: NSColor = defaultPreset.playlistSelectionBoxColor
     
     // Copy constructor ... creates a copy of the given scheme (used when creating a user-defined preset)
     init(_ name: String, _ systemDefined: Bool, _ scheme: ColorScheme) {
     
         self.name = name
         self.systemDefined = systemDefined
-        
-        self.general = scheme.general.clone()
-        self.player = scheme.player.clone()
-        self.playlist = scheme.playlist.clone()
-        self.effects = scheme.effects.clone()
     }
     
     // Used when loading app state on startup
@@ -54,10 +97,10 @@ class ColorScheme: UserManagedObject {
         self.name = persistentState?.name ?? ""
         self.systemDefined = systemDefined
         
-        self.general = GeneralColorScheme(persistentState?.general)
-        self.player = PlayerColorScheme(persistentState?.player)
-        self.playlist = PlaylistColorScheme(persistentState?.playlist)
-        self.effects = EffectsColorScheme(persistentState?.effects)
+//        self.general = GeneralColorScheme(persistentState?.general)
+//        self.player = PlayerColorScheme(persistentState?.player)
+//        self.playlist = PlaylistColorScheme(persistentState?.playlist)
+//        self.effects = EffectsColorScheme(persistentState?.effects)
     }
     
     // Creates a scheme from a preset (eg. default scheme)
@@ -66,28 +109,42 @@ class ColorScheme: UserManagedObject {
         self.name = name
         self.systemDefined = true
         
-        self.general = GeneralColorScheme(preset)
-        self.player = PlayerColorScheme(preset)
-        self.playlist = PlaylistColorScheme(preset)
-        self.effects = EffectsColorScheme(preset)
+        backgroundColor = preset.backgroundColor
+        
+        captionTextColor = preset.mainCaptionTextColor
+        
+        primaryTextColor = preset.playerTrackInfoPrimaryTextColor
+        secondaryTextColor = preset.playerTrackInfoSecondaryTextColor
+        tertiaryTextColor = preset.playerTrackInfoTertiaryTextColor
+        
+        activeControlColor = preset.effectsActiveUnitStateColor
+        bypassedControlColor = preset.effectsBypassedUnitStateColor
+        suppressedControlColor = preset.effectsSuppressedUnitStateColor
+        
+//        primarySelectedTextColor = preset.
+        
+//        self.general = GeneralColorScheme(preset)
+//        self.player = PlayerColorScheme(preset)
+//        self.playlist = PlaylistColorScheme(preset)
+//        self.effects = EffectsColorScheme(preset)
     }
     
     // Applies a system-defined preset to this scheme.
     func applyPreset(_ preset: ColorSchemePreset) {
         
-        self.general.applyPreset(preset)
-        self.player.applyPreset(preset)
-        self.playlist.applyPreset(preset)
-        self.effects.applyPreset(preset)
+//        self.general.applyPreset(preset)
+//        self.player.applyPreset(preset)
+//        self.playlist.applyPreset(preset)
+//        self.effects.applyPreset(preset)
     }
     
     // Applies another color scheme to this scheme.
     func applyScheme(_ scheme: ColorScheme) {
         
-        self.general.applyScheme(scheme.general)
-        self.player.applyScheme(scheme.player)
-        self.playlist.applyScheme(scheme.playlist)
-        self.effects.applyScheme(scheme.effects)
+//        self.general.applyScheme(scheme.general)
+//        self.player.applyScheme(scheme.player)
+//        self.playlist.applyScheme(scheme.playlist)
+//        self.effects.applyScheme(scheme.effects)
     }
     
     // Creates an identical copy of this color scheme

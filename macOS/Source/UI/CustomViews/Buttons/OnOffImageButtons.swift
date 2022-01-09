@@ -28,27 +28,27 @@ class OnOffImageButton: NSButton, Tintable {
     // The button's tooltip when the button is in an "On" state
     @IBInspectable var onStateTooltip: String?
     
-    // Tint to be applied when the button is in an "Off" state.
-    var offStateTintFunction: () -> NSColor = {Colors.toggleButtonOffStateColor} {
-        
-        didSet {
-            
-            if !_isOn {
-                reTint()
-            }
-        }
-    }
-    
-    // Tint to be applied when the button is in an "On" state.
-    var onStateTintFunction: () -> NSColor = {Colors.functionButtonColor} {
-        
-        didSet {
-            
-            if _isOn {
-                reTint()
-            }
-        }
-    }
+//    // Tint to be applied when the button is in an "Off" state.
+//    var offStateTintFunction: () -> NSColor = {Colors.toggleButtonOffStateColor} {
+//
+//        didSet {
+//
+//            if !_isOn {
+//                reTint()
+//            }
+//        }
+//    }
+//
+//    // Tint to be applied when the button is in an "On" state.
+//    var onStateTintFunction: () -> NSColor = {Colors.functionButtonColor} {
+//
+//        didSet {
+//
+//            if _isOn {
+//                reTint()
+//            }
+//        }
+//    }
     
     var _isOn: Bool = false
     
@@ -61,7 +61,7 @@ class OnOffImageButton: NSButton, Tintable {
     // Sets the button state to be "Off"
     override func off() {
         
-        contentTintColor = offStateTintFunction()
+//        contentTintColor = offStateTintFunction()
         toolTip = offStateTooltip
         
         _isOn = false
@@ -70,7 +70,7 @@ class OnOffImageButton: NSButton, Tintable {
     // Sets the button state to be "On"
     override func on() {
 
-        contentTintColor = onStateTintFunction()
+//        contentTintColor = onStateTintFunction()
         toolTip = onStateTooltip
         
         _isOn = true
@@ -91,7 +91,7 @@ class OnOffImageButton: NSButton, Tintable {
     
     // Re-apply the tint depending on state.
     func reTint() {
-        contentTintColor = _isOn ? onStateTintFunction() : offStateTintFunction()
+//        contentTintColor = _isOn ? onStateTintFunction() : offStateTintFunction()
     }
 }
 
@@ -100,8 +100,8 @@ class EffectsUnitTriStateBypassPreviewButton: EffectsUnitTriStateBypassButton {
     
     override func awakeFromNib() {
         
-        offStateTintFunction = {Colors.Effects.defaultBypassedUnitColor}
-        onStateTintFunction = {Colors.Effects.defaultActiveUnitColor}
-        mixedStateTintFunction = {Colors.Effects.defaultSuppressedUnitColor}
+//        offStateTintFunction = {Colors.Effects.defaultBypassedUnitColor}
+//        onStateTintFunction = {Colors.Effects.defaultActiveUnitColor}
+//        mixedStateTintFunction = {Colors.Effects.defaultSuppressedUnitColor}
     }
 }

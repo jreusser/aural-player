@@ -515,7 +515,7 @@ class GroupingPlaylistViewController: NSViewController, Destroyable {
     
     private func doApplyColorScheme(_ scheme: ColorScheme, _ mustReloadRows: Bool = true) {
         
-        changeBackgroundColor(scheme.general.backgroundColor)
+        changeBackgroundColor(scheme.backgroundColor)
         
         if mustReloadRows {
             playlistView.reloadDataMaintainingSelection()

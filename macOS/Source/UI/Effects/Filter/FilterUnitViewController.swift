@@ -138,15 +138,15 @@ class FilterUnitViewController: EffectsUnitViewController {
         
         // Need to do this to avoid multiple redundant redraw() calls
         
-        changeMainCaptionTextColor(scheme.general.mainCaptionTextColor)
+        changeMainCaptionTextColor(scheme.captionTextColor)
         
-        super.changeFunctionButtonColor(scheme.general.functionButtonColor)
-        super.changeFunctionCaptionTextColor(scheme.effects.functionCaptionTextColor)
-        super.changeFunctionValueTextColor(scheme.effects.functionValueTextColor)
+        super.changeFunctionButtonColor(scheme.buttonColor)
+        super.changeFunctionCaptionTextColor(scheme.secondaryTextColor)
+        super.changeFunctionValueTextColor(scheme.primaryTextColor)
         
-        super.changeActiveUnitStateColor(scheme.effects.activeUnitStateColor)
-        super.changeBypassedUnitStateColor(scheme.effects.bypassedUnitStateColor)
-        super.changeSuppressedUnitStateColor(scheme.effects.suppressedUnitStateColor)
+        super.changeActiveUnitStateColor(scheme.activeControlColor)
+        super.changeBypassedUnitStateColor(scheme.bypassedControlColor)
+        super.changeSuppressedUnitStateColor(scheme.suppressedControlColor)
         
         filterUnitView.applyColorScheme(scheme)
     }

@@ -308,7 +308,7 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     }
     
     private func redrawButtons() {
-        allButtons.forEach {$0.reTint()}
+//        allButtons.forEach {$0.reTint()}
     }
     
     private func changeToggleButtonOffStateColor(_ color: NSColor) {

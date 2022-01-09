@@ -35,7 +35,7 @@ class ChaptersListWindowController: NSWindowController, ModalComponentProtocol, 
     
     override func windowDidLoad() {
         
-        changeBackgroundColor(colorSchemesManager.systemScheme.general.backgroundColor)
+        changeBackgroundColor(colorSchemesManager.systemScheme.backgroundColor)
         rootContainerBox.cornerRadius = uiState.cornerRadius
         
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
@@ -53,7 +53,7 @@ class ChaptersListWindowController: NSWindowController, ModalComponentProtocol, 
     }
     
     private func applyColorScheme(_ scheme: ColorScheme) {
-        changeBackgroundColor(scheme.general.backgroundColor)
+        changeBackgroundColor(scheme.backgroundColor)
     }
     
     private func changeBackgroundColor(_ color: NSColor) {

@@ -222,9 +222,9 @@ class PlayerAudioViewController: NSViewController, Destroyable {
     
     func applyColorScheme(_ scheme: ColorScheme) {
         
-        changeFunctionButtonColor(scheme.general.functionButtonColor)   // This call will also take care of toggle buttons.
+        changeFunctionButtonColor(scheme.buttonColor)   // This call will also take care of toggle buttons.
         changeSliderColors()
-        changeSliderValueTextColor(scheme.player.sliderValueTextColor)
+        changeSliderValueTextColor(scheme.secondaryTextColor)
     }
     
     func changeFunctionButtonColor(_ color: NSColor) {

@@ -54,8 +54,8 @@ class AudioUnitsViewController: NSViewController, Destroyable {
     
     override func viewDidLoad() {
         
-        audioUnitsMenuIconItem.tintFunction = {Colors.functionButtonColor}
-        btnRemove.tintFunction = {Colors.functionButtonColor}
+//        audioUnitsMenuIconItem.tintFunction = {Colors.functionButtonColor}
+//        btnRemove.tintFunction = {Colors.functionButtonColor}
         
         applyFontScheme(fontSchemesManager.systemScheme)
         applyColorScheme(colorSchemesManager.systemScheme)
@@ -169,10 +169,10 @@ class AudioUnitsViewController: NSViewController, Destroyable {
     
     func applyColorScheme(_ scheme: ColorScheme) {
         
-        changeBackgroundColor(scheme.general.backgroundColor)
-        changeMainCaptionTextColor(scheme.general.mainCaptionTextColor)
+        changeBackgroundColor(scheme.backgroundColor)
+        changeMainCaptionTextColor(scheme.captionTextColor)
         
-        audioUnitsMenuIconItem.reTint()
+//        audioUnitsMenuIconItem.reTint()
         btnRemove.reTint()
         
         tableView.reloadDataMaintainingSelection()
@@ -221,7 +221,7 @@ class AudioUnitsViewController: NSViewController, Destroyable {
     
     func changeFunctionButtonColor(_ color: NSColor) {
         
-        audioUnitsMenuIconItem.reTint()
+//        audioUnitsMenuIconItem.reTint()
         btnRemove.reTint()
         
         tableView.reloadAllRows(columns: [2])
