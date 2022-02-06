@@ -24,6 +24,40 @@ class PlayingTrackTextView: NSView, ColorSchemeable {
     
     private lazy var uiState: PlayerUIState = objectGraph.playerUIState
     
+    private var primaryColorKVO: NSKeyValueObservation? = nil
+    private var secondaryColorKVO: NSKeyValueObservation? = nil
+    private var tertiaryColorKVO: NSKeyValueObservation? = nil
+    
+    override func viewDidMoveToWindow() {
+        
+        super.viewDidMoveToWindow()
+        
+        guard window != nil else {return}
+        
+        primaryColorKVO = systemColorScheme.observe(\.primaryTextColor, options: [.initial, .new]) {[weak self] _, _ in
+            self?.update()
+        }
+        
+        secondaryColorKVO = systemColorScheme.observe(\.secondaryTextColor, options: [.initial, .new]) {[weak self] _, _ in
+            self?.update()
+        }
+        
+        tertiaryColorKVO = systemColorScheme.observe(\.tertiaryTextColor, options: [.initial, .new]) {[weak self] _, _ in
+            self?.update()
+        }
+    }
+    
+    deinit {
+        
+        [primaryColorKVO, secondaryColorKVO, tertiaryColorKVO].forEach {
+            $0?.invalidate()
+        }
+        
+        primaryColorKVO = nil
+        secondaryColorKVO = nil
+        tertiaryColorKVO = nil
+    }
+    
     var trackInfo: PlayingTrackInfo? {
         
         didSet {
@@ -35,25 +69,25 @@ class PlayingTrackTextView: NSView, ColorSchemeable {
         Fonts.Player.infoBoxTitleFont
     }
     
-//    var titleColor: NSColor {
-//        Colors.Player.trackInfoTitleTextColor
-//    }
+    var titleColor: NSColor {
+        systemColorScheme.primaryTextColor
+    }
     
     var artistAlbumFont: NSFont {
         Fonts.Player.infoBoxArtistAlbumFont
     }
     
-//    var artistAlbumColor: NSColor {
-//        Colors.Player.trackInfoArtistAlbumTextColor
-//    }
+    var artistAlbumColor: NSColor {
+        systemColorScheme.secondaryTextColor
+    }
     
     var chapterTitleFont: NSFont {
         Fonts.Player.infoBoxChapterTitleFont
     }
     
-//    var chapterTitleColor: NSColor {
-//        Colors.Player.trackInfoChapterTextColor
-//    }
+    var chapterTitleColor: NSColor {
+        systemColorScheme.tertiaryTextColor
+    }
     
     var shouldShowArtist: Bool {
         uiState.showArtist
@@ -155,18 +189,18 @@ class PlayingTrackTextView: NSView, ColorSchemeable {
         // Title (truncate only if artist, album, or chapter are displayed)
         let truncatedTitle: String = hasArtistAlbum || hasChapter ? title.truncate(font: titleFont, maxWidth: lineWidth) : title
         
-//        textView.textStorage?.append(attributedString(truncatedTitle, titleFont, titleColor, hasArtistAlbum ? 3 : (hasChapter ? 5 : nil)))
+        textView.textStorage?.append(attributedString(truncatedTitle, titleFont, titleColor, hasArtistAlbum ? 3 : (hasChapter ? 5 : nil)))
         
         // Artist / Album
         if let _truncatedArtistAlbumStr = truncatedArtistAlbumStr {
-//            textView.textStorage?.append(attributedString(_truncatedArtistAlbumStr, artistAlbumFont, artistAlbumColor, hasChapter ? lineSpacingBetweenArtistAlbumAndChapterTitle : nil))
+            textView.textStorage?.append(attributedString(_truncatedArtistAlbumStr, artistAlbumFont, artistAlbumColor, hasChapter ? lineSpacingBetweenArtistAlbumAndChapterTitle : nil))
         }
         
         // Chapter
         if let _chapterStr = chapterStr {
             
             let truncatedChapter: String = _chapterStr.truncate(font: chapterTitleFont, maxWidth: lineWidth)
-//            textView.textStorage?.append(attributedString(truncatedChapter, chapterTitleFont, chapterTitleColor))
+            textView.textStorage?.append(attributedString(truncatedChapter, chapterTitleFont, chapterTitleColor))
         }
         
         // Construct a tool tip with full length text (helpful when displayed fields are truncated because of length)
@@ -247,17 +281,17 @@ class MenuBarPlayingTrackTextView: PlayingTrackTextView {
         standardFontSet.mainFont(size: 10)
     }
     
-//    override var titleColor: NSColor {
-//        .white
-//    }
-//
-//    override var artistAlbumColor: NSColor {
-//        .white90Percent
-//    }
-//
-//    override var chapterTitleColor: NSColor {
-//        .white80Percent
-//    }
+    override var titleColor: NSColor {
+        .white
+    }
+
+    override var artistAlbumColor: NSColor {
+        .white90Percent
+    }
+
+    override var chapterTitleColor: NSColor {
+        .white80Percent
+    }
     
     override var shouldShowArtist: Bool {
         uiState.showArtist

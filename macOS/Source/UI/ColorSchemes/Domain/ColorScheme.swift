@@ -154,6 +154,10 @@ class ColorScheme: NSObject, UserManagedObject {
         buttonColor = scheme.buttonColor
         buttonOffColor = scheme.buttonOffColor
         
+        primaryTextColor = scheme.primaryTextColor
+        secondaryTextColor = scheme.secondaryTextColor
+        tertiaryTextColor = scheme.tertiaryTextColor
+        
         activeControlColor = scheme.activeControlColor
         sliderBackgroundColor = scheme.sliderBackgroundColor
         
