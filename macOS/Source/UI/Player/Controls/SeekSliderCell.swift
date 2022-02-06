@@ -21,13 +21,63 @@ struct PlaybackLoopRange {
 // Cell for seek position slider
 class SeekSliderCell: HorizontalSliderCell {
     
-    override var barInsetY: CGFloat {SystemUtils.isBigSur ? 0 : 0.5}
+    override var barInsetY: CGFloat {SystemUtils.isBigSur ? -1 : 0.5}
+    
+    override var barRadius: CGFloat {3}
     
     override var knobRadius: CGFloat {1}
     override var knobWidth: CGFloat {10}
     override var knobHeightOutsideBar: CGFloat {2}
     
+    private var foregroundColorKVO: NSKeyValueObservation?
+    private var backgroundColorKVO: NSKeyValueObservation?
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        
+        foregroundColorKVO = systemColorScheme.observe(\.activeControlColor, options: [.initial, .new]) {[weak self] _, _ in
+            
+            guard let strongSelf = self else {return}
+            strongSelf.foregroundGradient = strongSelf.recomputeForegroundGradient()
+        }
+        
+        backgroundColorKVO = systemColorScheme.observe(\.sliderBackgroundColor, options: [.initial, .new]) {[weak self] _, _ in
+            
+            guard let strongSelf = self else {return}
+            strongSelf.backgroundGradient = strongSelf.recomputeBackgroundGradient()
+        }
+    }
+    
+    deinit {
+        
+        backgroundColorKVO?.invalidate()
+        backgroundColorKVO = nil
+        
+        foregroundColorKVO?.invalidate()
+        foregroundColorKVO = nil
+    }
+    
 //    var loopColor: NSColor {Colors.Player.seekBarLoopColor}
+    lazy var foregroundGradient: NSGradient = recomputeForegroundGradient()
+    
+    private func recomputeForegroundGradient() -> NSGradient {
+        
+        let start = systemColorScheme.activeControlColor
+        let end = start.darkened(25)
+        
+        return .init(starting: start, ending: end)!
+    }
+    
+    lazy var backgroundGradient: NSGradient = recomputeBackgroundGradient()
+    
+    private func recomputeBackgroundGradient() -> NSGradient {
+        
+        let start = systemColorScheme.sliderBackgroundColor
+        let end = start.brightened(25)
+        
+        return .init(starting: start, ending: end)!
+    }
     
     var loop: PlaybackLoopRange?
     
@@ -56,7 +106,7 @@ class SeekSliderCell: HorizontalSliderCell {
         let halfKnobWidth = knobFrame.width / 2
         let leftRect = NSRect(x: rect.minX, y: rect.minY, width: max(halfKnobWidth, knobFrame.minX + halfKnobWidth), height: rect.height)
         
-//        NSBezierPath.fillRoundedRect(leftRect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
+        NSBezierPath.fillRoundedRect(leftRect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
     }
     
     func drawRightRect(inRect rect: NSRect, knobFrame: NSRect) {
@@ -65,7 +115,7 @@ class SeekSliderCell: HorizontalSliderCell {
         let rightRect = NSRect(x: knobFrame.maxX - halfKnobWidth, y: rect.minY,
                                width: rect.width - (knobFrame.maxX - halfKnobWidth), height: rect.height)
         
-//        NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withGradient: backgroundGradient, angle: gradientDegrees)
+        NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withGradient: backgroundGradient, angle: gradientDegrees)
     }
     
     override func drawBar(inside aRect: NSRect, flipped: Bool) {
@@ -125,9 +175,9 @@ class SeekSliderCell: HorizontalSliderCell {
     
     override func drawKnob(_ knobRect: NSRect) {
         
-        let bar = barRect(flipped: true)
-        let knobHeight: CGFloat = bar.height + knobHeightOutsideBar
-        let knobMinX = knobRect.minX
+//        let bar = barRect(flipped: true)
+//        let knobHeight: CGFloat = bar.height + knobHeightOutsideBar
+//        let knobMinX = knobRect.minX
         
 //        NSBezierPath.fillRoundedRect(NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobWidth, height: knobHeight),
 //                                     radius: knobRadius,

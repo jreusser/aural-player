@@ -19,6 +19,8 @@ class TintedImageButton: NSButton, ColorSchemeable {
     
     func observeColorSchemeProperty(_ keyPath: KeyPath<ColorScheme, NSColor>) {
         
+        kvoToken?.invalidate()
+        
         kvoToken = systemColorScheme.observe(keyPath, options: [.initial, .new]) {[weak self] _, changedValue in
             self?.contentTintColor = changedValue.newValue
         }
@@ -35,8 +37,7 @@ class TintedImageButton: NSButton, ColorSchemeable {
         
         super.awakeFromNib()
         image?.isTemplate = true
-        contentTintColor = systemColorScheme.buttonColor
-//        image = image?.withSymbolConfiguration(.init(pointSize: 24, weight: .black))
+        observeColorSchemeProperty(\.buttonColor)
     }
  
     deinit {

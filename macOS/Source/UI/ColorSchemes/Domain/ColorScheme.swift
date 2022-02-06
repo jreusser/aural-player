@@ -154,6 +154,9 @@ class ColorScheme: NSObject, UserManagedObject {
         buttonColor = scheme.buttonColor
         buttonOffColor = scheme.buttonOffColor
         
+        activeControlColor = scheme.activeControlColor
+        sliderBackgroundColor = scheme.sliderBackgroundColor
+        
 //        self.general.applyScheme(scheme.general)
 //        self.player.applyScheme(scheme.player)
 //        self.playlist.applyScheme(scheme.playlist)

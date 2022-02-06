@@ -22,7 +22,7 @@ class HorizontalSliderCell: NSSliderCell {
     
 //    var backgroundGradient: NSGradient {Colors.Player.sliderBackgroundGradient}
 //    var foregroundGradient: NSGradient {Colors.Player.sliderForegroundGradient}
-    var gradientDegrees: CGFloat {.horizontalGradientDegrees}
+    var gradientDegrees: CGFloat {.verticalGradientDegrees}
     
     var barInsetX: CGFloat {0}
     var barInsetY: CGFloat {0}
