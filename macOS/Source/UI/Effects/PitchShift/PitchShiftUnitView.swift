@@ -109,6 +109,6 @@ class PitchShiftUnitView: NSView {
     }
     
     func changeFunctionButtonColor(_ color: NSColor) {
-        functionButtons.forEach {$0.reTint()}
+//        functionButtons.forEach {$0.reTint()}
     }
 }

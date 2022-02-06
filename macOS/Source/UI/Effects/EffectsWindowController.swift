@@ -235,7 +235,7 @@ class EffectsWindowController: NSWindowController, Destroyable {
         changeMainCaptionTextColor(scheme.captionTextColor)
         changeFunctionButtonColor(scheme.buttonColor)
         
-        tabViewButtons.forEach {$0.reTint()}
+//        tabViewButtons.forEach {$0.reTint()}
     }
     
     private func changeBackgroundColor(_ color: NSColor) {
@@ -249,28 +249,28 @@ class EffectsWindowController: NSWindowController, Destroyable {
     }
     
     private func changeFunctionButtonColor(_ color: NSColor) {
-        btnClose.reTint()
+//        btnClose.reTint()
     }
     
     private func changeActiveUnitStateColor(_ color: NSColor) {
         
-        tabViewButtons.filter {$0.unitState == .active}.forEach {
-            $0.reTint()
-        }
+//        tabViewButtons.filter {$0.unitState == .active}.forEach {
+//            $0.reTint()
+//        }
     }
     
     private func changeBypassedUnitStateColor(_ color: NSColor) {
         
-        tabViewButtons.filter {$0.unitState == .bypassed}.forEach {
-            $0.reTint()
-        }
+//        tabViewButtons.filter {$0.unitState == .bypassed}.forEach {
+//            $0.reTint()
+//        }
     }
     
     private func changeSuppressedUnitStateColor(_ color: NSColor) {
         
-        tabViewButtons.filter {$0.unitState == .suppressed}.forEach {
-            $0.reTint()
-        }
+//        tabViewButtons.filter {$0.unitState == .suppressed}.forEach {
+//            $0.reTint()
+//        }
     }
     
     private func changeSelectedTabButtonColor(_ color: NSColor) {

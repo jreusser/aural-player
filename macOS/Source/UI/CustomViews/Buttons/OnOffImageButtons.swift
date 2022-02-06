@@ -13,7 +13,16 @@ import Cocoa
     An image button that can be toggled On/Off and displays different images depending on its state. It conforms to the current system color scheme by conforming to Tintable.
  */
 @IBDesignable
-class OnOffImageButton: NSButton, Tintable {
+class OnOffImageButton: NSButton, Tintable, ColorSchemeable {
+    
+    var weight: NSFont.Weight = .heavy {
+        
+        didSet {
+            image = image?.withSymbolConfiguration(.init(pointSize: 12, weight: weight))
+        }
+    }
+    
+    private var kvoTokens: [NSKeyValueObservation] = []
     
     override var image: NSImage? {
         
@@ -22,33 +31,55 @@ class OnOffImageButton: NSButton, Tintable {
         }
     }
     
+    func observeColorSchemeProperty(_ keyPath: KeyPath<ColorScheme, NSColor>, forState state: NSControl.StateValue) {
+        
+        if state == .off {
+            
+            kvoTokens.append(systemColorScheme.observe(keyPath, options: [.initial, .new]) {[weak self] _, changedValue in
+                
+                if let newColor = changedValue.newValue {
+                    self?.offStateTintColor = newColor
+                }
+            })
+            
+        } else {
+            
+            kvoTokens.append(systemColorScheme.observe(keyPath, options: [.initial, .new]) {[weak self] _, changedValue in
+                
+                if let newColor = changedValue.newValue {
+                    self?.onStateTintColor = newColor
+                }
+            })
+        }
+    }
+    
+    // Tint to be applied when the button is in an "Off" state.
+    var offStateTintColor: NSColor = systemColorScheme.buttonOffColor {
+        
+        didSet {
+            
+            if !_isOn {
+                contentTintColor = offStateTintColor
+            }
+        }
+    }
+    
+    // Tint to be applied when the button is in an "On" state.
+    var onStateTintColor: NSColor = systemColorScheme.buttonColor {
+        
+        didSet {
+            
+            if _isOn {
+                contentTintColor = onStateTintColor
+            }
+        }
+    }
+    
     // The button's tooltip when the button is in an "Off" state
     @IBInspectable var offStateTooltip: String?
     
     // The button's tooltip when the button is in an "On" state
     @IBInspectable var onStateTooltip: String?
-    
-//    // Tint to be applied when the button is in an "Off" state.
-//    var offStateTintFunction: () -> NSColor = {Colors.toggleButtonOffStateColor} {
-//
-//        didSet {
-//
-//            if !_isOn {
-//                reTint()
-//            }
-//        }
-//    }
-//
-//    // Tint to be applied when the button is in an "On" state.
-//    var onStateTintFunction: () -> NSColor = {Colors.functionButtonColor} {
-//
-//        didSet {
-//
-//            if _isOn {
-//                reTint()
-//            }
-//        }
-//    }
     
     var _isOn: Bool = false
     
@@ -61,7 +92,7 @@ class OnOffImageButton: NSButton, Tintable {
     // Sets the button state to be "Off"
     override func off() {
         
-//        contentTintColor = offStateTintFunction()
+        contentTintColor = offStateTintColor
         toolTip = offStateTooltip
         
         _isOn = false
@@ -70,7 +101,7 @@ class OnOffImageButton: NSButton, Tintable {
     // Sets the button state to be "On"
     override func on() {
 
-//        contentTintColor = onStateTintFunction()
+        contentTintColor = onStateTintColor
         toolTip = onStateTooltip
         
         _isOn = true
@@ -89,9 +120,13 @@ class OnOffImageButton: NSButton, Tintable {
     // Returns true if the button is in the On state, false otherwise.
     override var isOn: Bool {_isOn}
     
-    // Re-apply the tint depending on state.
-    func reTint() {
-//        contentTintColor = _isOn ? onStateTintFunction() : offStateTintFunction()
+    deinit {
+        
+        kvoTokens.forEach {
+            $0.invalidate()
+        }
+        
+        kvoTokens.removeAll()
     }
 }
 

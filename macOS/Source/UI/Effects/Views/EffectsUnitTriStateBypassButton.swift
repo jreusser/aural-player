@@ -108,8 +108,4 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton {
 //        contentTintColor = mixedStateTintFunction()
         toolTip = mixedStateTooltip
     }
-    
-    override func reTint() {
-        updateState()
-    }
 }

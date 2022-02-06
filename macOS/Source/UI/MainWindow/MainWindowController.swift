@@ -17,7 +17,7 @@ class MainWindowController: NSWindowController, Destroyable {
     @IBOutlet weak var logoImage: TintedImageView!
     
     // The box that encloses the Now Playing info section
-    @IBOutlet weak var rootContainerBox: NSBox!
+    @IBOutlet weak var rootContainerBox: ColorSchemeableBox!
     @IBOutlet weak var containerBox: NSBox!
     
     private let playerViewController: PlayerViewController = PlayerViewController()
@@ -80,21 +80,26 @@ class MainWindowController: NSWindowController, Destroyable {
         theWindow.makeKeyAndOrderFront(self)
         
         containerBox.addSubview(playerViewController.view)
-        
-//        [btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode].forEach {$0?.tintFunction = {Colors.functionButtonColor}}
-        
-//        [btnToggleEffects, btnTogglePlaylist].forEach {
-//
-////            $0?.onStateTintFunction = {Colors.functionButtonColor}
-////            $0?.offStateTintFunction = {Colors.toggleButtonOffStateColor}
-//        }
-        
-//        logoImage.tintFunction = {Colors.appLogoColor}
 
         btnTogglePlaylist.onIf(windowLayoutsManager.isShowingPlaylist)
         btnToggleEffects.onIf(windowLayoutsManager.isShowingEffects)
         
-        applyColorScheme(colorSchemesManager.systemScheme)
+        btnToggleEffects.weight = .black
+        btnTogglePlaylist.weight = .black
+        
+        rootContainerBox.observeColorSchemeProperty(\.backgroundColor)
+        logoImage.observeColorSchemeProperty(\.captionTextColor)
+        
+        [btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode].forEach {
+            $0.observeColorSchemeProperty(\.buttonColor)
+        }
+        
+        [btnTogglePlaylist, btnToggleEffects].forEach {
+            
+            $0?.observeColorSchemeProperty(\.buttonColor, forState: .on)
+            $0?.observeColorSchemeProperty(\.buttonOffColor, forState: .off)
+        }
+        
         rootContainerBox.cornerRadius = uiState.cornerRadius
         
         // Hackish fix to properly position settings menu button (hamburger icon) on older systems.
@@ -115,14 +120,7 @@ class MainWindowController: NSWindowController, Destroyable {
     
     private func initSubscriptions() {
         
-//        btnQuit.observeColorProperty(\.buttonColor, of: colorSchemesManager.systemScheme)
-        
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
-        messenger.subscribe(to: .changeAppLogoColor, handler: changeAppLogoColor(_:))
-//        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
-//        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
-        messenger.subscribe(to: .changeToggleButtonOffStateColor, handler: changeToggleButtonOffStateColor(_:))
 
         messenger.subscribe(to: .windowManager_layoutChanged, handler: windowLayoutChanged)
         
@@ -203,42 +201,7 @@ class MainWindowController: NSWindowController, Destroyable {
     }
     
     private func applyTheme() {
-        
-        applyColorScheme(colorSchemesManager.systemScheme)
         changeWindowCornerRadius(uiState.cornerRadius)
-    }
-    
-    private func applyColorScheme(_ scheme: ColorScheme) {
-        
-        changeBackgroundColor(scheme.backgroundColor)
-        changeFunctionButtonColor(scheme.buttonColor)
-        changeToggleButtonOffStateColor(scheme.buttonOffColor)
-        changeAppLogoColor(scheme.captionTextColor)
-    }
-    
-    private func changeBackgroundColor(_ color: NSColor) {
-        rootContainerBox.fillColor = color
-    }
-    
-    private func changeFunctionButtonColor(_ color: NSColor) {
-        
-//        [btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode,
-//         btnTogglePlaylist, btnToggleEffects, settingsMenuIconItem].forEach {
-//
-////            ($0 as? Tintable)?.reTint()
-//        }
-    }
-    
-    private func changeToggleButtonOffStateColor(_ color: NSColor) {
-        
-        // These are the only 2 buttons that have off states
-        [btnTogglePlaylist, btnToggleEffects].forEach {
-            $0.reTint()
-        }
-    }
-    
-    private func changeAppLogoColor(_ color: NSColor) {
-//        logoImage.reTint()
     }
     
     // MARK: Message handling -----------------------------------------------------------

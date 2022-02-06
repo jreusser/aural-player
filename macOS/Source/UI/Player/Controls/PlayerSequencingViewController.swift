@@ -33,9 +33,9 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
     
     override func viewDidLoad() {
         
-        btnRepeat.stateImageMappings = [(RepeatMode.off, (Images.imgRepeat, offStateTintFunction)), (RepeatMode.one, (Images.imgRepeatOne, onStateTintFunction)), (RepeatMode.all, (Images.imgRepeat, onStateTintFunction))]
+        btnRepeat.stateImageMappings = [(RepeatMode.off, (Images.imgRepeat, \.buttonOffColor)), (RepeatMode.one, (Images.imgRepeatOne, \.buttonColor)), (RepeatMode.all, (Images.imgRepeat, \.buttonColor))]
 
-        btnShuffle.stateImageMappings = [(ShuffleMode.off, (Images.imgShuffle, offStateTintFunction)), (ShuffleMode.on, (Images.imgShuffle, onStateTintFunction))]
+        btnShuffle.stateImageMappings = [(ShuffleMode.off, (Images.imgShuffle, \.buttonOffColor)), (ShuffleMode.on, (Images.imgShuffle, \.buttonColor))]
         
         updateRepeatAndShuffleControls(sequencer.repeatAndShuffleModes)
         
@@ -78,25 +78,5 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
 
         btnShuffle.switchState(modes.shuffleMode)
         btnRepeat.switchState(modes.repeatMode)
-    }
-    
-    func applyTheme() {
-        applyColorScheme(colorSchemesManager.systemScheme)
-    }
-    
-    func applyColorScheme(_ scheme: ColorScheme) {
-        redrawButtons()
-    }
-    
-    func changeFunctionButtonColor(_ color: NSColor) {
-        redrawButtons()
-    }
-    
-    func changeToggleButtonOffStateColor(_ color: NSColor) {
-        redrawButtons()
-    }
-    
-    func redrawButtons() {
-        [btnRepeat, btnShuffle].forEach {$0.reTint()}
     }
 }

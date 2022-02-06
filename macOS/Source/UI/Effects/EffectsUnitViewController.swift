@@ -220,28 +220,28 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     
     func changeActiveUnitStateColor(_ color: NSColor) {
         
-        if effectsUnit.state == .active {
-            btnBypass.reTint()
-        }
+//        if effectsUnit.state == .active {
+//            btnBypass.reTint()
+//        }
     }
     
     func changeBypassedUnitStateColor(_ color: NSColor) {
         
-        if effectsUnit.state == .bypassed {
-            btnBypass.reTint()
-        }
+//        if effectsUnit.state == .bypassed {
+//            btnBypass.reTint()
+//        }
     }
     
     func changeSuppressedUnitStateColor(_ color: NSColor) {
         
-        if effectsUnit.state == .suppressed {
-            btnBypass.reTint()
-        }
+//        if effectsUnit.state == .suppressed {
+//            btnBypass.reTint()
+//        }
     }
     
     func changeFunctionButtonColor(_ color: NSColor) {
         
-        btnSavePreset.reTint()
+//        btnSavePreset.reTint()
 //        presetsMenuIconItem.reTint()
     }
     

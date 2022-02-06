@@ -249,7 +249,7 @@ class FilterUnitView: NSView {
         redrawChart()
 
         [btnAdd, btnRemove].forEach {$0?.redraw()}
-        [btnScrollLeft, btnScrollRight].forEach {$0?.reTint()}
+//        [btnScrollLeft, btnScrollRight].forEach {$0?.reTint()}
 
         bandViews.forEach {$0.applyColorScheme(scheme)}
     }
@@ -292,7 +292,7 @@ class FilterUnitView: NSView {
     
     func changeFunctionButtonColor(_ color: NSColor) {
         
-        [btnScrollLeft, btnScrollRight].forEach {$0?.reTint()}
+//        [btnScrollLeft, btnScrollRight].forEach {$0?.reTint()}
         bandViews.forEach {$0.changeFunctionButtonColor()}
     }
     

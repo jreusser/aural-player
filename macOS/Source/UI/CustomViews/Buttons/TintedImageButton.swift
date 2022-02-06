@@ -13,13 +13,13 @@ import Cocoa
     A special image button to which a tint can be applied, to conform to the current system color scheme.
  */
 @IBDesignable
-class TintedImageButton: NSButton, Tintable {
+class TintedImageButton: NSButton, ColorSchemeable {
     
     private var kvoToken: NSKeyValueObservation?
     
-    func observeColorProperty<Object>(_ keyPath: KeyPath<Object, NSColor>, of object: Object) where Object : NSObject {
+    func observeColorSchemeProperty(_ keyPath: KeyPath<ColorScheme, NSColor>) {
         
-        kvoToken = object.observe(keyPath, options: [.initial, .new]) {[weak self] changedObject, changedValue in
+        kvoToken = systemColorScheme.observe(keyPath, options: [.initial, .new]) {[weak self] _, changedValue in
             self?.contentTintColor = changedValue.newValue
         }
     }
@@ -35,18 +35,10 @@ class TintedImageButton: NSButton, Tintable {
         
         super.awakeFromNib()
         image?.isTemplate = true
+        contentTintColor = systemColorScheme.buttonColor
+//        image = image?.withSymbolConfiguration(.init(pointSize: 24, weight: .black))
     }
  
-    // Reapplies the tint (eg. when the tint color has changed or the base image has changed).
-    func reTint() {
-        
-        if !(image?.isTemplate ?? true) {
-            print("\n\(self): NOT TEMPLATE !!!")
-        }
-        
-//        contentTintColor = tintFunction()
-    }
-    
     deinit {
         
         kvoToken?.invalidate()
@@ -57,12 +49,12 @@ class TintedImageButton: NSButton, Tintable {
 // A contract for any object to which a tint can be applied (and re-applied). This is used by various UI elements to conform to the system color scheme.
 protocol Tintable {
     
-    func observeColorProperty<Object, Value>(_ keyPath: KeyPath<Object, Value>, of object: Object) where Object: NSObject
+    func observeColorProperty<Object>(_ keyPath: KeyPath<Object, NSColor>, of object: Object) where Object: NSObject
 }
 
 extension Tintable {
     
-    func observeColorProperty<Object, Value>(_ keyPath: KeyPath<Object, Value>, of object: Object) where Object: NSObject {}
+    func observeColorProperty<Object>(_ keyPath: KeyPath<Object, NSColor>, of object: Object) where Object: NSObject {}
 }
 
 typealias TintFunction = () -> NSColor

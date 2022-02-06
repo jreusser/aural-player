@@ -18,7 +18,7 @@ class PlaybackView: NSView {
     @IBOutlet weak var sliderView: SeekSliderView!
    
     // Toggle buttons (their images change)
-    @IBOutlet weak var btnPlayPause: OnOffImageButton!
+    @IBOutlet weak var btnPlayPause: MultiStateImageButton!
     @IBOutlet weak var btnLoop: MultiStateImageButton!
     
     // Buttons whose tool tips may change
@@ -43,7 +43,13 @@ class PlaybackView: NSView {
     
     override func awakeFromNib() {
         
-        btnLoop.stateImageMappings = [(PlaybackLoopState.none, (Images.imgLoop, offStateTintFunction)), (PlaybackLoopState.started, (Images.imgLoopStarted, onStateTintFunction)), (PlaybackLoopState.complete, (Images.imgLoop, onStateTintFunction))]
+        btnPlayPause.stateImageMappings = [(PlaybackState.noTrack, (Images.imgPlay, \.buttonColor)), (PlaybackState.playing, (Images.imgPause, \.buttonColor)),
+                                           (PlaybackState.paused, (Images.imgPlay, \.buttonColor))]
+        
+        btnPlayPause.stateToolTipMappings = [(PlaybackState.noTrack, "Play"), (PlaybackState.playing, "Pause"), (PlaybackState.paused, "Play")]
+        
+        btnLoop.stateImageMappings = [(PlaybackLoopState.none, (Images.imgLoop, \.buttonOffColor)), (PlaybackLoopState.started, (Images.imgLoopStarted, \.buttonColor)),
+                                      (PlaybackLoopState.complete, (Images.imgLoop, \.buttonColor))]
 
         // Play/pause button does not really have an "off" state
 //        btnPlayPause.offStateTintFunction = onStateTintFunction
@@ -75,7 +81,7 @@ class PlaybackView: NSView {
         
         let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
         
-        btnPlayPause.onIf(player.state == .playing)
+        btnPlayPause.switchState(player.state)
         
         if let loop = player.playbackLoop {
             btnLoop.switchState(loop.isComplete ? PlaybackLoopState.complete : PlaybackLoopState.started)
@@ -83,13 +89,13 @@ class PlaybackView: NSView {
             btnLoop.switchState(PlaybackLoopState.none)
         }
         
-        functionButtons = [btnLoop, btnPlayPause, btnPreviousTrack, btnNextTrack, btnSeekBackward, btnSeekForward]
+//        functionButtons = [btnLoop, btnPlayPause, btnPreviousTrack, btnNextTrack, btnSeekBackward, btnSeekForward]
     }
     
     // When the playback state changes (e.g. playing -> paused), fields may need to be updated
     func playbackStateChanged(_ newState: PlaybackState) {
         
-        btnPlayPause.onIf(newState == .playing)
+        btnPlayPause.switchState(newState)
         sliderView.playbackStateChanged(newState)
     }
 
@@ -141,9 +147,6 @@ class PlaybackView: NSView {
     }
     
     func applyColorScheme(_ scheme: ColorScheme) {
-        
-        // This call will also take care of toggle buttons
-        changeFunctionButtonColor(scheme.buttonColor)
         sliderView.applyColorScheme(scheme)
     }
     
@@ -153,15 +156,5 @@ class PlaybackView: NSView {
     
     func changeSliderValueTextColor(_ color: NSColor) {
         sliderView.changeSliderValueTextColor(color)
-    }
-    
-    func changeFunctionButtonColor(_ color: NSColor) {
-//        functionButtons.forEach {$0.reTint()}
-    }
-    
-    func changeToggleButtonOffStateColor(_ color: NSColor) {
-        
-        // Only these buttons have off states that look different from their on states
-        btnLoop.reTint()
     }
 }

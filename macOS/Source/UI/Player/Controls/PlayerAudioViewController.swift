@@ -229,7 +229,7 @@ class PlayerAudioViewController: NSViewController, Destroyable {
     
     func changeFunctionButtonColor(_ color: NSColor) {
         
-        btnVolume.reTint()
+//        btnVolume.reTint()
         
         if showsPanControl {
             

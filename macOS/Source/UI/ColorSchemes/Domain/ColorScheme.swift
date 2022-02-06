@@ -12,7 +12,7 @@ import Cocoa
 /*
     Encapsulates all colors that determine a color scheme that can be appplied to the entire application.
  */
-class ColorScheme: UserManagedObject {
+class ColorScheme: NSObject, UserManagedObject {
     
     // Default color scheme (uses colors from the default system-defined preset)
     static let defaultScheme: ColorScheme = ColorScheme("_default_", ColorSchemePreset.defaultScheme)
@@ -109,7 +109,12 @@ class ColorScheme: UserManagedObject {
         self.name = name
         self.systemDefined = true
         
+        super.init()
+        
         backgroundColor = preset.backgroundColor
+        
+        buttonColor = preset.functionButtonColor
+        buttonOffColor = preset.toggleButtonOffStateColor
         
         captionTextColor = preset.mainCaptionTextColor
         
@@ -132,6 +137,10 @@ class ColorScheme: UserManagedObject {
     // Applies a system-defined preset to this scheme.
     func applyPreset(_ preset: ColorSchemePreset) {
         
+        backgroundColor = preset.backgroundColor
+        buttonColor = preset.functionButtonColor
+        buttonOffColor = preset.toggleButtonOffStateColor
+        
 //        self.general.applyPreset(preset)
 //        self.player.applyPreset(preset)
 //        self.playlist.applyPreset(preset)
@@ -140,6 +149,10 @@ class ColorScheme: UserManagedObject {
     
     // Applies another color scheme to this scheme.
     func applyScheme(_ scheme: ColorScheme) {
+        
+        backgroundColor = scheme.backgroundColor
+        buttonColor = scheme.buttonColor
+        buttonOffColor = scheme.buttonOffColor
         
 //        self.general.applyScheme(scheme.general)
 //        self.player.applyScheme(scheme.player)
@@ -173,4 +186,13 @@ protocol ColorSchemeable {
     
     // Apply the given color scheme to this component.
     func applyColorScheme(_ scheme: ColorScheme)
+    
+    func observeColorSchemeProperty(_ keyPath: KeyPath<ColorScheme, NSColor>)
+}
+
+extension ColorSchemeable {
+    
+    func observeColorSchemeProperty(_ keyPath: KeyPath<ColorScheme, NSColor>) {}
+    
+    func applyColorScheme(_ scheme: ColorScheme) {}
 }

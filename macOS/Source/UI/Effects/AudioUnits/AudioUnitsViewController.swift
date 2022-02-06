@@ -173,7 +173,7 @@ class AudioUnitsViewController: NSViewController, Destroyable {
         changeMainCaptionTextColor(scheme.captionTextColor)
         
 //        audioUnitsMenuIconItem.reTint()
-        btnRemove.reTint()
+//        btnRemove.reTint()
         
         tableView.reloadDataMaintainingSelection()
     }
@@ -222,7 +222,7 @@ class AudioUnitsViewController: NSViewController, Destroyable {
     func changeFunctionButtonColor(_ color: NSColor) {
         
 //        audioUnitsMenuIconItem.reTint()
-        btnRemove.reTint()
+//        btnRemove.reTint()
         
         tableView.reloadAllRows(columns: [2])
     }

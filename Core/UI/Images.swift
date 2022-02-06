@@ -12,6 +12,9 @@
 */
 struct Images {
     
+    static let imgPlay: PlatformImage = PlatformImage(systemSymbolName: "play", accessibilityDescription: nil)!
+    static let imgPause: PlatformImage = PlatformImage(systemSymbolName: "pause", accessibilityDescription: nil)!
+    
     static let imgPlayingArt: PlatformImage = PlatformImage(named: "PlayingArt")!
     
     static let imgPlayingTrack: PlatformImage = PlatformImage(named: "PlayingTrack")!

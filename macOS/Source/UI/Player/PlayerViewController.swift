@@ -23,6 +23,8 @@ import Cocoa
         - Functions toolbar (detailed track info / favorite / bookmark, etc)
  */
 class PlayerViewController: NSViewController, Destroyable {
+    
+    override var nibName: String? {"Player"}
 
     @IBOutlet weak var playbackViewController: PlaybackViewController!
     @IBOutlet weak var playerSequencingViewController: PlayerSequencingViewController!
@@ -38,8 +40,6 @@ class PlayerViewController: NSViewController, Destroyable {
     private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
     
     private let playlistPreferences: PlaylistPreferences = objectGraph.preferences.playlistPreferences
-    
-    override var nibName: String? {"Player"}
     
     private lazy var messenger = Messenger(for: self)
     

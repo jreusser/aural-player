@@ -13,6 +13,8 @@
 
 import Cocoa
 
+let systemColorScheme: ColorScheme = objectGraph.colorSchemesManager.systemScheme
+
 struct Colors {
     
     private static let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager

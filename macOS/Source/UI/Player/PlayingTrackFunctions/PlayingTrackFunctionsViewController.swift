@@ -67,7 +67,7 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     
     override func viewDidLoad() {
         
-        allButtons = [btnMoreInfo, btnShowPlayingTrackInPlaylist, btnFavorite, btnBookmark]
+//        allButtons = [btnMoreInfo, btnShowPlayingTrackInPlaylist, btnFavorite, btnBookmark]
         redrawButtons()
         
         if let playingTrack = player.playingTrack {
@@ -312,7 +312,7 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     }
     
     private func changeToggleButtonOffStateColor(_ color: NSColor) {
-        btnFavorite.reTint()
+//        btnFavorite.reTint()
     }
     
     // MARK: Message handling

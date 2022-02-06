@@ -37,7 +37,7 @@ class ChaptersListViewController: NSViewController, Destroyable {
     @IBOutlet weak var btnPreviousMatch: TintedImageButton!
     @IBOutlet weak var btnNextMatch: TintedImageButton!
     
-    private var functionButtons: [Tintable] = []
+    private var functionButtons: [ColorSchemeable] = []
     
     // Holds all search results from the latest performed search
     private var searchResults: [Int] = []
@@ -406,7 +406,7 @@ class ChaptersListViewController: NSViewController, Destroyable {
     }
     
     private func changeToggleButtonOffStateColor(_ color: NSColor) {
-        [btnLoopChapter, btnCaseSensitive].forEach {$0.reTint()}
+//        [btnLoopChapter, btnCaseSensitive].forEach {$0.reTint()}
     }
     
     private func changeSummaryInfoColor(_ color: NSColor) {

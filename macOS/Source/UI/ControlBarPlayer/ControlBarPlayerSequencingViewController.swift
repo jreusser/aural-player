@@ -21,8 +21,5 @@ class ControlBarPlayerSequencingViewController: PlayerSequencingViewController {
         
         messenger.subscribe(to: .player_setRepeatMode, handler: setRepeatMode(_:))
         messenger.subscribe(to: .player_setShuffleMode, handler: setShuffleMode(_:))
-        
-        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
     }
 }

@@ -84,17 +84,17 @@ class MasterUnitView: NSView {
     
     private func changeUnitStateColor(forState unitState: EffectsUnitState) {
         
-        buttons.filter {$0.unitState == unitState}.forEach {
-            $0.reTint()
-        }
-        
-        images.filter {$0.unitState == unitState}.forEach {
-            $0.reTint()
-        }
-        
-        labels.filter {$0.unitState == unitState}.forEach {
-            $0.reTint()
-        }
+//        buttons.filter {$0.unitState == unitState}.forEach {
+//            $0.reTint()
+//        }
+//        
+//        images.filter {$0.unitState == unitState}.forEach {
+//            $0.reTint()
+//        }
+//        
+//        labels.filter {$0.unitState == unitState}.forEach {
+//            $0.reTint()
+//        }
     }
     
     func changeActiveUnitStateColor(_ color: NSColor) {

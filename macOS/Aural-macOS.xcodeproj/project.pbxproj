@@ -583,6 +583,7 @@
 		3EE7CB9C25E22D5D0075F1DD /* EffectsFontScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EE7CB9B25E22D5D0075F1DD /* EffectsFontScheme.xib */; };
 		3EE7CB9F25E22D6C0075F1DD /* EffectsFontSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE7CB9E25E22D6B0075F1DD /* EffectsFontSchemeViewController.swift */; };
 		3EE9BBE9268F90BE0073321A /* TimeStretchUnitPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE9BBE8268F90BE0073321A /* TimeStretchUnitPersistenceTests.swift */; };
+		3EE9BCB7278A896800DFFDD7 /* ColorSchemeableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE9BCB6278A896800DFFDD7 /* ColorSchemeableBox.swift */; };
 		3EEC04132687A8E1004478CE /* MenuBarPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC04122687A8E1004478CE /* MenuBarPlaybackViewController.swift */; };
 		3EEC04152687A940004478CE /* WindowedModePlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC04142687A940004478CE /* WindowedModePlaybackViewController.swift */; };
 		3EEC04172687A982004478CE /* MenuBarPlayerSequencingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC04162687A982004478CE /* MenuBarPlayerSequencingViewController.swift */; };
@@ -1992,6 +1993,7 @@
 		3EE7CB9E25E22D6B0075F1DD /* EffectsFontSchemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsFontSchemeViewController.swift; sourceTree = "<group>"; };
 		3EE9BBE8268F90BE0073321A /* TimeStretchUnitPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStretchUnitPersistenceTests.swift; sourceTree = "<group>"; };
 		3EE9BCB5278A715A00DFFDD7 /* Aural-4.0.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "Aural-4.0.rtf"; path = "../Aural-4.0.rtf"; sourceTree = "<group>"; };
+		3EE9BCB6278A896800DFFDD7 /* ColorSchemeableBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeableBox.swift; sourceTree = "<group>"; };
 		3EEC04122687A8E1004478CE /* MenuBarPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlaybackViewController.swift; sourceTree = "<group>"; };
 		3EEC04142687A940004478CE /* WindowedModePlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowedModePlaybackViewController.swift; sourceTree = "<group>"; };
 		3EEC04162687A982004478CE /* MenuBarPlayerSequencingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayerSequencingViewController.swift; sourceTree = "<group>"; };
@@ -3158,6 +3160,7 @@
 				3E6C0FB325CEB98600BF0D07 /* PrettyScroller.swift */,
 				3E6C0FB425CEB98600BF0D07 /* IntervalPicker.swift */,
 				3E6C0FD125CEB98600BF0D07 /* AuralTabView.swift */,
+				3EE9BCB6278A896800DFFDD7 /* ColorSchemeableBox.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -5565,6 +5568,7 @@
 				3EFE38C727864896006F8B8C /* EffectsUnitDelegateProtocol.swift in Sources */,
 				3E6C12B125CEBE5800BF0D07 /* HistoryMenuControllers.swift in Sources */,
 				3EFE396127864897006F8B8C /* PlayerSeekResult.swift in Sources */,
+				3EE9BCB7278A896800DFFDD7 /* ColorSchemeableBox.swift in Sources */,
 				3E6C121725CEBDE500BF0D07 /* HistoryPreferencesViewController.swift in Sources */,
 				3E6C129D25CEBE2700BF0D07 /* HorizontalSliderCell.swift in Sources */,
 				3E7C360126AADFA000B3552D /* FilterBandView.swift in Sources */,

@@ -472,7 +472,7 @@ class PlaylistWindowController: NSWindowController, NSTabViewDelegate, Destroyab
     }
     
     private func changeFunctionButtonColor(_ color: NSColor) {
-        functionButtons.forEach {$0.reTint()}
+//        functionButtons.forEach {$0.reTint()}
     }
     
     private func changeSummaryInfoColor(_ color: NSColor) {
