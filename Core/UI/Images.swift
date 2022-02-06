@@ -19,16 +19,16 @@ struct Images {
     
     static let imgPlayingTrack: PlatformImage = PlatformImage(named: "PlayingTrack")!
     
-    static let imgVolumeZero: PlatformImage = PlatformImage(named: "VolumeZero")!
-    static let imgVolumeLow: PlatformImage = PlatformImage(named: "VolumeLow")!
-    static let imgVolumeMedium: PlatformImage = PlatformImage(named: "VolumeMedium")!
-    static let imgVolumeHigh: PlatformImage = PlatformImage(named: "VolumeHigh")!
-    static let imgMute: PlatformImage = PlatformImage(named: "Mute")!
+    static let imgVolumeZero: PlatformImage = PlatformImage(systemSymbolName: "volume", accessibilityDescription: nil)!
+    static let imgVolumeLow: PlatformImage = PlatformImage(systemSymbolName: "volume.1", accessibilityDescription: nil)!
+    static let imgVolumeMedium: PlatformImage = PlatformImage(systemSymbolName: "volume.2", accessibilityDescription: nil)!
+    static let imgVolumeHigh: PlatformImage = PlatformImage(systemSymbolName: "volume.3", accessibilityDescription: nil)!
+    static let imgMute: PlatformImage = PlatformImage(systemSymbolName: "volume.slash", accessibilityDescription: nil)!
     
-    static let imgRepeatOne: PlatformImage = PlatformImage(named: "RepeatOne")!
-    static let imgRepeat: PlatformImage = PlatformImage(named: "Repeat")!
+    static let imgRepeatOne: PlatformImage = PlatformImage(systemSymbolName: "repeat.1", accessibilityDescription: nil)!
+    static let imgRepeat: PlatformImage = PlatformImage(systemSymbolName: "repeat", accessibilityDescription: nil)!
     
-    static let imgShuffle: PlatformImage = PlatformImage(named: "Shuffle")!
+    static let imgShuffle: PlatformImage = PlatformImage(systemSymbolName: "shuffle", accessibilityDescription: nil)!
     
     static let imgLoop: PlatformImage = PlatformImage(named: "Loop")!
     static let imgLoopStarted: PlatformImage = PlatformImage(named: "LoopStarted")!
