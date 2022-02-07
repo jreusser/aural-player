@@ -53,7 +53,7 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
         
         textView.trackInfo = self.trackInfo
         artView.image = trackInfo?.art ?? Images.imgPlayingArt
-//        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
+        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
     }
 
     fileprivate func moveInfoBoxTo(_ point: NSPoint) {
@@ -85,7 +85,7 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
     }
     
     func showOrHidePlayingTrackFunctions() {
-//        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
+        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
     }
     
     func showOrHideMainControls() {
@@ -158,7 +158,7 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
         super.showView()
         
         artView.showIf(uiState.showAlbumArt)
-//        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
+        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
         moveInfoBoxTo(uiState.showControls ? infoBoxDefaultPosition : infoBoxCenteredPosition)
 
         controlsBox.showIf(uiState.showControls)

@@ -456,7 +456,7 @@ G1BhbiBTbGlkZXI
                                 </connections>
                             </button>
                             <button toolTip="Show playing track within the playlist" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TsZ-Xa-I8o" userLabel="Ellipsis" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="65" y="0.5" width="15" height="15"/>
+                                <rect key="frame" x="90" y="0.5" width="15" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ellipsis" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Vdy-y6-2Yi">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
