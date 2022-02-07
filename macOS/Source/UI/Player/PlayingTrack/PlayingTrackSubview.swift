@@ -146,8 +146,8 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
 @IBDesignable
 class DefaultPlayingTrackSubview: PlayingTrackSubview {
     
-    private let infoBoxDefaultPosition: NSPoint = NSPoint(x: 90, y: 100)
-    private let infoBoxCenteredPosition: NSPoint = NSPoint(x: 90, y: 70)
+    private let infoBoxDefaultPosition: NSPoint = NSPoint(x: 95, y: 105)
+    private let infoBoxCenteredPosition: NSPoint = NSPoint(x: 95, y: 70)
     
     override var needsMouseTracking: Bool {
         return !uiState.showControls
@@ -168,7 +168,7 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
     override fileprivate func moveInfoBoxTo(_ point: NSPoint) {
         
         super.moveInfoBoxTo(point)
-        artView.frame.origin.y = infoBox.frame.origin.y // 5 is half the difference in height between infoBox and artView
+        artView.frame.origin.y = infoBox.frame.origin.y - 5 // 5 is half the difference in height between infoBox and artView
     }
     
     override func showOrHideMainControls() {
@@ -212,111 +212,5 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
         // Hide controls
         controlsBox.hide()
         moveInfoBoxTo(infoBoxCenteredPosition)
-    }
-}
-
-/*
-   The "Expanded Art" player view.
-*/
-@IBDesignable
-class ExpandedArtPlayingTrackSubview: PlayingTrackSubview {
-    
-    private let infoBoxDefaultPosition: NSPoint = NSPoint(x: 30, y: 65)
-    private let infoBoxTopPosition: NSPoint = NSPoint(x: 30, y: 95)
-    
-    // Overlay boxes that provide a background so that text and controls are legible when displayed over the album art.
-    @IBOutlet weak var overlayBox: NSBox!
-    @IBOutlet weak var centerOverlayBox: NSBox!
-    
-    override var needsMouseTracking: Bool {
-        return true
-    }
-    
-    override func showView() {
-
-        super.showView()
-        
-        moveInfoBoxTo(infoBoxDefaultPosition)
-
-        NSView.hideViews(controlsBox, overlayBox)
-        
-        infoBox.showIf(trackInfo != nil && uiState.showTrackInfo)
-        centerOverlayBox.showIf(infoBox.isShown)
-        
-        infoBox.bringToFront()
-        controlsBox.bringToFront()
-
-        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
-        moveInfoBoxTo(infoBoxDefaultPosition)
-    }
-    
-    override func trackInfoSet() {
-
-        super.trackInfoSet()
-        showOrHidePlayingTrackInfo()
-    }
-    
-    // Do nothing (this function is not allowed on the expanded art player view)
-    override func showOrHideMainControls() {}
-
-    // Do nothing (this function is not allowed on the expanded art player view)
-    override func showOrHideAlbumArt() {}
-    
-    override func showOrHidePlayingTrackInfo() {
-        
-        infoBox.showIf(trackInfo != nil && (uiState.showTrackInfo || autoHideFields_showing))
-        centerOverlayBox.showIf(infoBox.isShown && !overlayBox.isShown)
-        
-        infoBox.bringToFront()
-        controlsBox.bringToFront()
-    }
-    
-    override func mouseEntered() {
-        
-        super.mouseEntered()
-        autoHideControls_show()
-    }
-    
-    override func mouseExited() {
-        
-        super.mouseExited()
-        autoHideControls_hide()
-    }
-    
-    private func autoHideControls_show() {
-        
-        // Show controls
-        NSView.showViews(controlsBox, overlayBox)
-        centerOverlayBox.hide()
-        
-        // Re-position the info box and functions box
-        moveInfoBoxTo(infoBoxTopPosition)
-        infoBox.showIf(trackInfo != nil)
-        
-        infoBox.bringToFront()
-        controlsBox.bringToFront()
-    }
-    
-    private func autoHideControls_hide() {
-        
-        // Hide controls
-        NSView.hideViews(overlayBox, controlsBox)
-        
-        // Show info box only if the setting allows it.
-        infoBox.showIf(trackInfo != nil && uiState.showTrackInfo)
-        centerOverlayBox.showIf(infoBox.isShown)
-        
-        infoBox.bringToFront()
-        controlsBox.bringToFront()
-        
-        moveInfoBoxTo(infoBoxDefaultPosition)
-    }
-    
-    override func changeBackgroundColor(_ color: NSColor) {
-        
-        let windowColorWithTransparency = color.clonedWithTransparency(overlayBox.fillColor.alphaComponent)
-        [centerOverlayBox, overlayBox].forEach {$0?.fillColor = windowColorWithTransparency}
-        
-        artView.layer?.shadowColor = color.visibleShadowColor.cgColor
     }
 }

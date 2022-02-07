@@ -15,43 +15,26 @@ import Cocoa
  */
 class PlayingTrackView: MouseTrackingView, ColorSchemeable {
     
-    @IBOutlet weak var tabView: NSTabView!
-    
     @IBOutlet weak var defaultView: PlayingTrackSubview!
-    @IBOutlet weak var expandedArtView: PlayingTrackSubview!
     
     private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
     private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
     
     private lazy var uiState: PlayerUIState = objectGraph.playerUIState
-    
-    // The player view that is currently displayed
-    private var activeView: PlayingTrackSubview {
-        return uiState.viewType == .defaultView ? defaultView : expandedArtView
-    }
-    
-    // The player view that is NOT currently displayed
-    private var inactiveView: PlayingTrackSubview {
-        return uiState.viewType == .defaultView ? expandedArtView : defaultView
-    }
- 
+
     // Info about the currently playing track
     var trackInfo: PlayingTrackInfo? {
         
         didSet {
-            
             defaultView.trackInfo = trackInfo
-            expandedArtView.trackInfo = trackInfo
         }
     }
     
     // Sets up the view for display.
     func showView() {
         
-        switchView(uiState.viewType)
-        
         setUpMouseTracking()
-        activeView.showView()
+        defaultView.showView()
         
         self.show()
     }
@@ -67,68 +50,43 @@ class PlayingTrackView: MouseTrackingView, ColorSchemeable {
     }
     
     func update() {
-        
         defaultView.update()
-        expandedArtView.update()
-    }
-    
-    // Switches between the 2 sub-views (Default and Expanded Art)
-    func switchView(_ viewType: PlayerViewType) {
-        
-        tabView.selectTabViewItem(at: uiState.viewType == .defaultView ? 0 : 1)
-        
-        inactiveView.hideView()
-        activeView.showView()
-        
-        setUpMouseTracking()
     }
     
     func showOrHidePlayingTrackInfo() {
-        
         defaultView.showOrHidePlayingTrackInfo()
-        expandedArtView.showOrHidePlayingTrackInfo()
     }
     
     func showOrHidePlayingTrackFunctions() {
         
         defaultView.showOrHidePlayingTrackFunctions()
-        expandedArtView.showOrHidePlayingTrackFunctions()
     }
     
     func showOrHideAlbumArt() {
         
         defaultView.showOrHideAlbumArt()
-        expandedArtView.showOrHideAlbumArt()
     }
     
     func showOrHideArtist() {
-        
         defaultView.showOrHideArtist()
-        expandedArtView.showOrHideArtist()
     }
     
     func showOrHideAlbum() {
-        
         defaultView.showOrHideAlbum()
-        expandedArtView.showOrHideAlbum()
     }
     
     func showOrHideCurrentChapter() {
-        
         defaultView.showOrHideCurrentChapter()
-        expandedArtView.showOrHideCurrentChapter()
     }
     
     func showOrHideMainControls() {
         
         defaultView.showOrHideMainControls()
-        expandedArtView.showOrHideMainControls()
-        
         setUpMouseTracking()
     }
     
     override func mouseEntered(with event: NSEvent) {
-        activeView.mouseEntered()
+        defaultView.mouseEntered()
     }
     
     override func mouseExited(with event: NSEvent) {
@@ -136,14 +94,14 @@ class PlayingTrackView: MouseTrackingView, ColorSchemeable {
         // If this check is not performed, the track-peeking buttons (previous/next track)
         // will cause a false positive mouse exit event.
         if !self.frame.contains(event.locationInWindow) {
-            activeView.mouseExited()
+            defaultView.mouseExited()
         }
     }
 
     // Set up mouse tracking if necessary (for auto-hide).
     private func setUpMouseTracking() {
         
-        if activeView.needsMouseTracking {
+        if defaultView.needsMouseTracking {
             
             if !isTracking {
                 startTracking()
@@ -162,38 +120,26 @@ class PlayingTrackView: MouseTrackingView, ColorSchemeable {
     }
     
     func applyFontScheme(_ fontScheme: FontScheme) {
-        
         defaultView.applyFontScheme(fontScheme)
-        expandedArtView.applyFontScheme(fontScheme)
     }
     
     func applyColorScheme(_ scheme: ColorScheme) {
-        
         defaultView.applyColorScheme(scheme)
-        expandedArtView.applyColorScheme(scheme)
     }
     
     func changeBackgroundColor(_ color: NSColor) {
-        
         defaultView.changeBackgroundColor(color)
-        expandedArtView.changeBackgroundColor(color)
     }
     
     func changePrimaryTextColor(_ color: NSColor) {
-        
         defaultView.changePrimaryTextColor(color)
-        expandedArtView.changePrimaryTextColor(color)
     }
     
     func changeSecondaryTextColor(_ color: NSColor) {
-        
         defaultView.changeSecondaryTextColor(color)
-        expandedArtView.changeSecondaryTextColor(color)
     }
     
     func changeTertiaryTextColor(_ color: NSColor) {
-        
         defaultView.changeTertiaryTextColor(color)
-        expandedArtView.changeTertiaryTextColor(color)
     }
 }

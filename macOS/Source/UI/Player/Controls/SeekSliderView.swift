@@ -99,7 +99,8 @@ class SeekSliderView: NSView {
     
     func showSeekPositionLabels() {
         
-        [lblTimeElapsed, lblTimeRemaining].forEach {$0?.showIf(uiState.showTimeElapsedRemaining)}
+        [lblTimeElapsed].forEach {$0?.showIf(uiState.showTimeElapsedRemaining)}
+//        [lblTimeElapsed, lblTimeRemaining].forEach {$0?.showIf(uiState.showTimeElapsedRemaining)}
         setSeekTimerState(true)
     }
     

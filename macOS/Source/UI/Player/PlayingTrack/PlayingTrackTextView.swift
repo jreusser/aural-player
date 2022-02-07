@@ -214,7 +214,7 @@ class PlayingTrackTextView: NSView, ColorSchemeable {
     private func centerAlign() {
         
         // Horizontal alignment
-        textView.setAlignment(.center, range: .init(location: 0, length: textView.string.count))
+//        textView.setAlignment(.center, range: .init(location: 0, length: textView.string.count))
         
         // Vertical alignment
         textView.layoutManager?.ensureLayout(for: textView.textContainer!)

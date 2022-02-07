@@ -17,7 +17,7 @@ class HorizontalSlider: NSSlider {
     // Change these values to customize the appearance of the slider.
     
     /// Total width of the slider bar.
-    private var barHeight: CGFloat {4}
+    private var barHeight: CGFloat {5}
     
     /// Spacing distance between the bar and the ticks.
     private static let tickSpacingFromBar: CGFloat = 5
