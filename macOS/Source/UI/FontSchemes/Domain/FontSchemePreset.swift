@@ -91,7 +91,7 @@ enum FontSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .standard:  return standardFontSet.mainFont(size: 13)
+        case .standard:  return standardFontSet.mainFont(size: 14)
             
         case .rounded:  return roundedFontSet.mainFont(size: 16)
             
@@ -116,7 +116,7 @@ enum FontSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .standard:  return standardFontSet.mainFont(size: 11.5)
+        case .standard:  return standardFontSet.mainFont(size: 12)
             
         case .rounded:  return roundedFontSet.mainFont(size: 14)
             
@@ -166,7 +166,7 @@ enum FontSchemePreset: String, CaseIterable {
         
         switch self {
                 
-            case .standard:  return standardFontSet.mainFont(size: 13)
+            case .standard:  return standardFontSet.mainFont(size: 12)
                 
             case .rounded:  return roundedFontSet.mainFont(size: 12)
                 
@@ -190,7 +190,7 @@ enum FontSchemePreset: String, CaseIterable {
         
         switch self {
                 
-            case .standard:  return standardFontSet.mainFont(size: 9)
+            case .standard:  return standardFontSet.mainFont(size: 10)
                 
             case .rounded:  return roundedFontSet.mainFont(size: 10.5)
                 

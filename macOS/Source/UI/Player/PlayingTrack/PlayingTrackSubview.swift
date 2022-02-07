@@ -53,7 +53,7 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
         
         textView.trackInfo = self.trackInfo
         artView.image = trackInfo?.art ?? Images.imgPlayingArt
-        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
+//        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
     }
 
     fileprivate func moveInfoBoxTo(_ point: NSPoint) {
@@ -61,7 +61,7 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
         infoBox.setFrameOrigin(point)
         
         // Vertically center functions box w.r.t. info box
-        functionsBox.frame.origin.y = infoBox.frame.minY
+        functionsBox.frame.origin.y = infoBox.frame.maxY - functionsBox.frame.height - 5
     }
     
     func showOrHidePlayingTrackInfo() {
@@ -85,7 +85,7 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
     }
     
     func showOrHidePlayingTrackFunctions() {
-        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
+//        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
     }
     
     func showOrHideMainControls() {
@@ -147,7 +147,7 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
 class DefaultPlayingTrackSubview: PlayingTrackSubview {
     
     private let infoBoxDefaultPosition: NSPoint = NSPoint(x: 95, y: 105)
-    private let infoBoxCenteredPosition: NSPoint = NSPoint(x: 95, y: 70)
+    private let infoBoxCenteredPosition: NSPoint = NSPoint(x: 95, y: 90)
     
     override var needsMouseTracking: Bool {
         return !uiState.showControls
@@ -158,7 +158,7 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
         super.showView()
         
         artView.showIf(uiState.showAlbumArt)
-        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
+//        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
         moveInfoBoxTo(uiState.showControls ? infoBoxDefaultPosition : infoBoxCenteredPosition)
 
         controlsBox.showIf(uiState.showControls)
@@ -168,7 +168,7 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
     override fileprivate func moveInfoBoxTo(_ point: NSPoint) {
         
         super.moveInfoBoxTo(point)
-        artView.frame.origin.y = infoBox.frame.origin.y - 5 // 5 is half the difference in height between infoBox and artView
+        artView.frame.origin.y = infoBox.frame.origin.y - 7 // 5 is half the difference in height between infoBox and artView
     }
     
     override func showOrHideMainControls() {

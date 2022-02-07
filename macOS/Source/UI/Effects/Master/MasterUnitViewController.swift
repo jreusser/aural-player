@@ -197,7 +197,7 @@ class MasterUnitViewController: EffectsUnitViewController {
         functionLabels.forEach {
             
             $0.font = $0 is EffectsUnitTriStateLabel ? fontSchemesManager.systemScheme.effects.masterUnitFunctionFont :
-                fontSchemesManager.systemScheme.effects.unitCaptionFont
+            fontSchemesManager.systemScheme.effects.unitFunctionFont
         }
         
         presetsMenuButton.font = .menuFont

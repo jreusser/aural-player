@@ -189,7 +189,7 @@ class PlayingTrackTextView: NSView, ColorSchemeable {
         // Title (truncate only if artist, album, or chapter are displayed)
         let truncatedTitle: String = hasArtistAlbum || hasChapter ? title.truncate(font: titleFont, maxWidth: lineWidth) : title
         
-        textView.textStorage?.append(attributedString(truncatedTitle, titleFont, titleColor, hasArtistAlbum ? 3 : (hasChapter ? 5 : nil)))
+        textView.textStorage?.append(attributedString(truncatedTitle, titleFont, titleColor, hasArtistAlbum ? 6 : (hasChapter ? 5 : nil)))
         
         // Artist / Album
         if let _truncatedArtistAlbumStr = truncatedArtistAlbumStr {
