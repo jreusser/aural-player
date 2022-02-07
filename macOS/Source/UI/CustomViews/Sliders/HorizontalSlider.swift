@@ -17,7 +17,7 @@ class HorizontalSlider: NSSlider {
     // Change these values to customize the appearance of the slider.
     
     /// Total width of the slider bar.
-    private static let barHeight: CGFloat = 4
+    private var barHeight: CGFloat {4}
     
     /// Spacing distance between the bar and the ticks.
     private static let tickSpacingFromBar: CGFloat = 5
@@ -73,9 +73,9 @@ class HorizontalSlider: NSSlider {
     ///
     /// Draws the background portion of the slider bar / track.
     ///
-    private func drawBackground() {
+    func drawBackground() {
         
-        let backgroundRect = bounds.insetBy(dx: 0, dy: (bounds.height - Self.barHeight) / 2)
+        let backgroundRect = bounds.insetBy(dx: 0, dy: (bounds.height - barHeight) / 2)
         layer?.addSublayer(CAShapeLayer(fillingRoundedRect: backgroundRect, radius: 1, withColor: systemColorScheme.sliderBackgroundColor))
     }
     
@@ -86,7 +86,7 @@ class HorizontalSlider: NSSlider {
     /// Example:   If the slider has a minValue of 0, and a maxValue of 360, a floatValue of 90 would indicate
     ///         25% progress, i.e. 0.25.
     ///
-    private var progress: CGFloat {
+    var progress: CGFloat {
         
         let range = maxValue - minValue
         return CGFloat((doubleValue - minValue) / range)
@@ -97,9 +97,9 @@ class HorizontalSlider: NSSlider {
     /// between the minValue and floatValue (i.e. current value) of the
     /// slider.
     ///
-    private func drawProgress() {
+    func drawProgress() {
         
-        let insetRect = bounds.insetBy(dx: 0, dy: (bounds.height - Self.barHeight) / 2)
+        let insetRect = bounds.insetBy(dx: 0, dy: (bounds.height - barHeight) / 2)
         
         let highlightPosition = insetRect.minX + (progress * insetRect.width)
         let progressRect = CGRect(x: 0, y: insetRect.minY,

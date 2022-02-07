@@ -82,6 +82,16 @@ class ColorScheme: NSObject, UserManagedObject {
     @objc dynamic lazy var sliderKnobColor: NSColor = defaultPreset.playerSliderKnobColor
     @objc dynamic lazy var sliderTickColor: NSColor = defaultPreset.effectsSliderTickColor
     
+    lazy var sliderForegroundGradientType: ColorSchemeGradientType = defaultPreset.effectsSliderForegroundGradientType {
+        
+        didSet {
+            sliderForegroundGradientTypeString = sliderForegroundGradientType.rawValue
+        }
+    }
+    
+    @objc dynamic lazy var sliderForegroundGradientTypeString: String = defaultPreset.effectsSliderForegroundGradientType.rawValue
+    @objc dynamic lazy var sliderForegroundGradientAmount: Int = defaultPreset.effectsSliderForegroundGradientAmount
+    
     @objc dynamic lazy var tableSelectionBoxColor: NSColor = defaultPreset.playlistSelectionBoxColor
     
     // Copy constructor ... creates a copy of the given scheme (used when creating a user-defined preset)
