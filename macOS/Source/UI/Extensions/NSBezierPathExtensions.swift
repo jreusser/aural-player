@@ -18,7 +18,7 @@ public extension NSBezierPath {
         line(to: pt2)
     }
 
-    var CGPath: CGPath {
+    var cgPath: CGPath {
 
         let path = CGMutablePath()
         var points = [CGPoint](repeating: .zero, count: 3)
@@ -69,5 +69,17 @@ public extension NSBezierPath {
         
         let path = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
         gradient.draw(in: path, angle: angle)
+    }
+    
+    // ------------------------------------------------------------------------------
+
+    // MARK: Initializers / functions
+    
+    ///
+    /// Convenience initializer to create an ``NSBezierPath`` with the given
+    /// rounded rectangle and corner radius.
+    ///
+    convenience init(roundedRect: NSRect, cornerRadius: CGFloat) {
+        self.init(roundedRect: roundedRect, xRadius: cornerRadius, yRadius: cornerRadius)
     }
 }

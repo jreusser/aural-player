@@ -14,3 +14,4 @@ typealias PlatformImage = NSImage
 typealias PlatformView = NSView
 typealias PlatformViewController = NSViewController
 typealias PlatformColor = NSColor
+typealias PlatformBezierPath = NSBezierPath

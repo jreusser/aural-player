@@ -1,10 +1,8 @@
 {\rtf1\ansi\ansicpg1252\cocoartf2580
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
-{\colortbl;\red255\green255\blue255;\red108\green121\blue134;\red31\green31\blue36;\red255\green255\blue255;
-}
-{\*\expandedcolortbl;;\csgenericrgb\c42394\c47462\c52518;\csgenericrgb\c12054\c12284\c14131;\csgenericrgb\c100000\c100000\c100000\c85000;
-}
-\margl1440\margr1440\vieww24620\viewh26880\viewkind0
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww17400\viewh27380\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs52 \cf0 V4.0.0 Proposal\
@@ -20,48 +18,25 @@
 - Unified interface mode\
 - More functions for now playing track ! Show in finder\
 \
+- Use Storyboards ?\
+\
 - Use more SFSymbols\
 \
 - Simplified color / font scheming \'85 reduce number of properties (eg. Accent color, secondary accent color, caption color, etc)\
-\pard\tx692\pardeftab692\pardirnatural\partightenfactor0
-
-\f1\fs28 \cf2 \cb3 /*\cf4 \
-\cf2      \cf4 \
-\cf2      background\cf4 \
-\cf2      caption\cf4 \
-\cf2      \cf4 \
-\cf2      primaryText\cf4 \
-\cf2      secondaryText\cf4 \
-\cf2      tertiaryText\cf4 \
-\cf2      \cf4 \
-\cf2      button\cf4 \
-\cf2      buttonOffState\cf4 \
-\cf2      \cf4 \
-\cf2      activeControl\cf4 \
-\cf2      bypassedControl\cf4 \
-\cf2      suppressedControl\cf4 \
-\cf2      \cf4 \
-\cf2      sliderBackground\cf4 \
-\cf2      sliderKnob\cf4 \
-\cf2      sliderTick\cf4 \
-\cf2      \cf4 \
-\cf2      tableSelectionText\cf4 \
-\cf2      tableSelectionBox\cf4 \
-\cf2      \cf4 \
-\cf2      */
-\f0\fs52 \cf0 \cb1 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf0 \
+\
 - Simplified preferences\
+- Native look n feel for dialogs\
+- Non-modal dialogs\
 - Modal sheet for \'93Loading playlist \'85\'94\
 - Button in FX panel for \'93settings for this track\'94 ?\
-- Toolbar in FX panel for presets ?\
+- Toolbar in FX panel for presets ? Or reduce to 1 common button for Load / Save.\
 - Re-think main menu bar\
 - Improved appState field naming / structure\
 - CALayer drawing (sliders)\
 - Use contentTintColor to simplify tinting of image buttons / image views\
-- Use KVO to respond to changes (eg. Buttons respond to themes)\
+- Use KVO to respond to changes (eg. Buttons respond to color changes, labels respond to font changes)\
 - Use NSSwitch in Preferences panes\
+\
 - History up to 100 items\
 - Use new APIs\
 - Somehow show playback sequence 3/15 and which scope is playing\

@@ -21,9 +21,9 @@ struct PlaybackLoopRange {
 // Cell for seek position slider
 class SeekSliderCell: HorizontalSliderCell {
     
-    override var barInsetY: CGFloat {SystemUtils.isBigSur ? -1 : 0.5}
+    override var barInsetY: CGFloat {SystemUtils.isBigSur ? 0 : 0.5}
     
-    override var barRadius: CGFloat {3}
+    override var barRadius: CGFloat {1}
     
     override var knobRadius: CGFloat {1}
     override var knobWidth: CGFloat {10}
@@ -64,7 +64,7 @@ class SeekSliderCell: HorizontalSliderCell {
     private func recomputeForegroundGradient() -> NSGradient {
         
         let start = systemColorScheme.activeControlColor
-        let end = start.darkened(25)
+        let end = start.darkened(50)
         
         return .init(starting: start, ending: end)!
     }
@@ -74,7 +74,7 @@ class SeekSliderCell: HorizontalSliderCell {
     private func recomputeBackgroundGradient() -> NSGradient {
         
         let start = systemColorScheme.sliderBackgroundColor
-        let end = start.brightened(25)
+        let end = start.darkened(25)
         
         return .init(starting: start, ending: end)!
     }

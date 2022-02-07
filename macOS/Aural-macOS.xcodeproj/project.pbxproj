@@ -70,6 +70,8 @@
 		3E39754E26892C890055887E /* ControlBarPlayerUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */; };
 		3E3DFFCE260D9BBA0092F0BF /* MetadataPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3DFFCD260D9BBA0092F0BF /* MetadataPreferences.xib */; };
 		3E3DFFD2260DA0560092F0BF /* MetadataPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DFFD1260DA0560092F0BF /* MetadataPreferencesViewController.swift */; };
+		3E419B5D27B18C0600C2B965 /* HorizontalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E419B5C27B18C0600C2B965 /* HorizontalSlider.swift */; };
+		3E419B5F27B18C6500C2B965 /* CALayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E419B5E27B18C6500C2B965 /* CALayerExtensions.swift */; };
 		3E4322752687C96E009E8ADB /* ControlBarAppModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4322742687C96E009E8ADB /* ControlBarAppModeController.swift */; };
 		3E43227B2687D531009E8ADB /* ScrollingTrackInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43227A2687D531009E8ADB /* ScrollingTrackInfoView.swift */; };
 		3E43227D2687D65F009E8ADB /* ControlBarPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E43227C2687D65F009E8ADB /* ControlBarPlayer.xib */; };
@@ -1457,6 +1459,8 @@
 		3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlayerUIState.swift; sourceTree = "<group>"; };
 		3E3DFFCD260D9BBA0092F0BF /* MetadataPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MetadataPreferences.xib; sourceTree = "<group>"; };
 		3E3DFFD1260DA0560092F0BF /* MetadataPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataPreferencesViewController.swift; sourceTree = "<group>"; };
+		3E419B5C27B18C0600C2B965 /* HorizontalSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSlider.swift; sourceTree = "<group>"; };
+		3E419B5E27B18C6500C2B965 /* CALayerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtensions.swift; sourceTree = "<group>"; };
 		3E4322742687C96E009E8ADB /* ControlBarAppModeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarAppModeController.swift; sourceTree = "<group>"; };
 		3E43227A2687D531009E8ADB /* ScrollingTrackInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTrackInfoView.swift; sourceTree = "<group>"; };
 		3E43227C2687D65F009E8ADB /* ControlBarPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ControlBarPlayer.xib; sourceTree = "<group>"; };
@@ -3215,6 +3219,7 @@
 				3E6C0FD625CEB98600BF0D07 /* HorizontalSliderCell.swift */,
 				3E6C0FD325CEB98600BF0D07 /* TickedSliderCell.swift */,
 				3E6C0FD425CEB98600BF0D07 /* RangeSlider.swift */,
+				3E419B5C27B18C0600C2B965 /* HorizontalSlider.swift */,
 			);
 			path = Sliders;
 			sourceTree = "<group>";
@@ -3860,6 +3865,7 @@
 				3EB3A60326A726EF0060487C /* NSTableCellViewExtensions.swift */,
 				3EB3A60626A73E720060487C /* NSPopoverExtensions.swift */,
 				3EB3A61D26A76F450060487C /* NSScrollViewExtensions.swift */,
+				3E419B5E27B18C6500C2B965 /* CALayerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5527,9 +5533,11 @@
 				3EFE37F527864896006F8B8C /* ControlsPreferences.swift in Sources */,
 				3E2ED4A925DBC50500732E79 /* FontSchemesManager.swift in Sources */,
 				3EA3CE6A25E3FDE000BC7D07 /* FontSchemesManagerViewController.swift in Sources */,
+				3E419B5D27B18C0600C2B965 /* HorizontalSlider.swift in Sources */,
 				3EFE39FF27864898006F8B8C /* NowPlayingInfoManager.swift in Sources */,
 				3EB3A61626A762750060487C /* FontSchemesViewProtocol.swift in Sources */,
 				3EC29A5F27865CB500B29551 /* Images.swift in Sources */,
+				3E419B5F27B18C6500C2B965 /* CALayerExtensions.swift in Sources */,
 				3E91932F25E0DA9C00F30F81 /* FontSchemesWindowController.swift in Sources */,
 				3ECF275C26A5567000974120 /* FontSet.swift in Sources */,
 				3EFE389527864896006F8B8C /* PitchShiftPresets.swift in Sources */,
