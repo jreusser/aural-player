@@ -43,37 +43,37 @@ class PitchShiftUnitDelegate: EffectsUnitDelegate<PitchShiftUnit>, PitchShiftUni
     func increasePitch() -> PitchShift {
         
         ensureActiveAndResetPitch()
-        return setUnitPitch((unit.pitch + Float(preferences.pitchDelta)).clamp(to: pitchRange))
+        return setUnitPitch((unit.pitch + Float(preferences.pitchDelta)).clamped(to: pitchRange))
     }
     
     func increasePitchOneOctave() -> PitchShift {
-        setUnitPitch((unit.pitch + Float(ValueConversions.pitch_octaveToCents)).clamp(to: pitchRange))
+        setUnitPitch((unit.pitch + Float(ValueConversions.pitch_octaveToCents)).clamped(to: pitchRange))
     }
     
     func increasePitchOneSemitone() -> PitchShift {
-        setUnitPitch((unit.pitch + Float(ValueConversions.pitch_semitoneToCents)).clamp(to: pitchRange))
+        setUnitPitch((unit.pitch + Float(ValueConversions.pitch_semitoneToCents)).clamped(to: pitchRange))
     }
     
     func increasePitchOneCent() -> PitchShift {
-        setUnitPitch((unit.pitch + Float(1)).clamp(to: pitchRange))
+        setUnitPitch((unit.pitch + Float(1)).clamped(to: pitchRange))
     }
     
     func decreasePitch() -> PitchShift {
         
         ensureActiveAndResetPitch()
-        return setUnitPitch((unit.pitch - Float(preferences.pitchDelta)).clamp(to: pitchRange))
+        return setUnitPitch((unit.pitch - Float(preferences.pitchDelta)).clamped(to: pitchRange))
     }
     
     func decreasePitchOneOctave() -> PitchShift {
-        setUnitPitch((unit.pitch - Float(ValueConversions.pitch_octaveToCents)).clamp(to: pitchRange))
+        setUnitPitch((unit.pitch - Float(ValueConversions.pitch_octaveToCents)).clamped(to: pitchRange))
     }
     
     func decreasePitchOneSemitone() -> PitchShift {
-        setUnitPitch((unit.pitch - Float(ValueConversions.pitch_semitoneToCents)).clamp(to: pitchRange))
+        setUnitPitch((unit.pitch - Float(ValueConversions.pitch_semitoneToCents)).clamped(to: pitchRange))
     }
     
     func decreasePitchOneCent() -> PitchShift {
-        setUnitPitch((unit.pitch - Float(1)).clamp(to: pitchRange))
+        setUnitPitch((unit.pitch - Float(1)).clamped(to: pitchRange))
     }
     
     private func setUnitPitch(_ value: Float) -> PitchShift {

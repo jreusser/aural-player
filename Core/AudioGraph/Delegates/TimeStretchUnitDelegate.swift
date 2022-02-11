@@ -67,7 +67,7 @@ class TimeStretchUnitDelegate: EffectsUnitDelegate<TimeStretchUnit>, TimeStretch
         ensureActiveAndResetRate()
         
         // Rate is increased by an amount set in the user preferences
-        rate = (rate + preferences.timeDelta).clamp(to: rateRange)
+        rate = (rate + preferences.timeDelta).clamped(to: rateRange)
         
         return (rate, formattedRate)
     }
@@ -75,7 +75,7 @@ class TimeStretchUnitDelegate: EffectsUnitDelegate<TimeStretchUnit>, TimeStretch
     func increaseRate(by increment: Float) -> (rate: Float, rateString: String) {
 
         // Rate is increased by an amount set in the user preferences
-        rate = (rate + increment).clamp(to: rateRange)
+        rate = (rate + increment).clamped(to: rateRange)
         
         return (rate, formattedRate)
     }
@@ -85,7 +85,7 @@ class TimeStretchUnitDelegate: EffectsUnitDelegate<TimeStretchUnit>, TimeStretch
         ensureActiveAndResetRate()
         
         // Rate is decreased by an amount set in the user preferences
-        rate = (rate - preferences.timeDelta).clamp(to: rateRange)
+        rate = (rate - preferences.timeDelta).clamped(to: rateRange)
         
         return (rate, formattedRate)
     }
@@ -93,7 +93,7 @@ class TimeStretchUnitDelegate: EffectsUnitDelegate<TimeStretchUnit>, TimeStretch
     func decreaseRate(by decrement: Float) -> (rate: Float, rateString: String) {
         
         // Rate is decreased by an amount set in the user preferences
-        rate = (rate - decrement).clamp(to: rateRange)
+        rate = (rate - decrement).clamped(to: rateRange)
         
         return (rate, formattedRate)
     }

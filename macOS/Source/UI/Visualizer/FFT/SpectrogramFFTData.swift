@@ -30,7 +30,7 @@ class SpectrogramFFTData {
         for band in bands {
             
             vDSP_maxv(fft.normalizedMagnitudes.advanced(by: band.minIndex), 1, &maxVal, band.indexCount)
-            band.maxVal = maxVal.clamp(to: fft.magnitudeRange)
+            band.maxVal = maxVal.clamped(to: fft.magnitudeRange)
         }
     }
     

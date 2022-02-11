@@ -11,7 +11,7 @@ import CoreGraphics
 
 extension FloatingPoint {
     
-    func clamp(to range: ClosedRange<Self>) -> Self {
+    func clamped(to range: ClosedRange<Self>) -> Self {
         
         if range.contains(self) {return self}
         

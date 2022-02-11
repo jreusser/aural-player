@@ -63,7 +63,7 @@ class ParametricEQNode: AVAudioUnitEQ {
         set(newGains) {
             
             for index in 0..<newGains.count {
-                bands[index].gain = newGains[index]
+                bands[index].gain = newGains[index].clamped(to: Self.validGainRange)
             }
         }
     }
@@ -115,7 +115,7 @@ class ParametricEQNode: AVAudioUnitEQ {
         bandIndexes.forEach {
             
             let band = bands[$0]
-            band.gain = (band.gain + increment).clamp(to: Self.validGainRange)
+            band.gain = (band.gain + increment).clamped(to: Self.validGainRange)
         }
     }
     
@@ -124,7 +124,7 @@ class ParametricEQNode: AVAudioUnitEQ {
         bandIndexes.forEach {
             
             let band = bands[$0]
-            band.gain = (band.gain - decrement).clamp(to: Self.validGainRange)
+            band.gain = (band.gain - decrement).clamped(to: Self.validGainRange)
         }
     }
 }

@@ -550,7 +550,7 @@ class EQUnitTests: AudioGraphTestCase {
             let expectedBands = bandsBeforeIncrease.enumerated().map {(index, gain) -> Float in
                 
                 if index < 3 {
-                    return (gain + increment).clamp(to: ParametricEQNode.validGainRange)
+                    return (gain + increment).clamped(to: ParametricEQNode.validGainRange)
                 }
                 
                 return gain
@@ -614,7 +614,7 @@ class EQUnitTests: AudioGraphTestCase {
             let expectedBands = bandsBeforeIncrease.enumerated().map {(index, gain) -> Float in
                 
                 if index < 5 {
-                    return (gain + increment).clamp(to: ParametricEQNode.validGainRange)
+                    return (gain + increment).clamped(to: ParametricEQNode.validGainRange)
                 }
                 
                 return gain
@@ -677,7 +677,7 @@ class EQUnitTests: AudioGraphTestCase {
             let expectedBands = bandsBeforeIncrease.enumerated().map {(index, gain) -> Float in
                 
                 if (3...6).contains(index) {
-                    return (gain + increment).clamp(to: ParametricEQNode.validGainRange)
+                    return (gain + increment).clamped(to: ParametricEQNode.validGainRange)
                 }
                 
                 return gain
@@ -741,7 +741,7 @@ class EQUnitTests: AudioGraphTestCase {
             let expectedBands = bandsBeforeIncrease.enumerated().map {(index, gain) -> Float in
                 
                 if (5...10).contains(index) {
-                    return (gain + increment).clamp(to: ParametricEQNode.validGainRange)
+                    return (gain + increment).clamped(to: ParametricEQNode.validGainRange)
                 }
                 
                 return gain
@@ -804,7 +804,7 @@ class EQUnitTests: AudioGraphTestCase {
             let expectedBands = bandsBeforeIncrease.enumerated().map {(index, gain) -> Float in
                 
                 if (7...9).contains(index) {
-                    return (gain + increment).clamp(to: ParametricEQNode.validGainRange)
+                    return (gain + increment).clamped(to: ParametricEQNode.validGainRange)
                 }
                 
                 return gain
@@ -868,7 +868,7 @@ class EQUnitTests: AudioGraphTestCase {
             let expectedBands = bandsBeforeIncrease.enumerated().map {(index, gain) -> Float in
                 
                 if (11...14).contains(index) {
-                    return (gain + increment).clamp(to: ParametricEQNode.validGainRange)
+                    return (gain + increment).clamped(to: ParametricEQNode.validGainRange)
                 }
                 
                 return gain
@@ -931,7 +931,7 @@ class EQUnitTests: AudioGraphTestCase {
             let expectedBands = bandsBeforeDecrease.enumerated().map {(index, gain) -> Float in
                 
                 if index < 3 {
-                    return (gain - decrement).clamp(to: ParametricEQNode.validGainRange)
+                    return (gain - decrement).clamped(to: ParametricEQNode.validGainRange)
                 }
                 
                 return gain
@@ -995,7 +995,7 @@ class EQUnitTests: AudioGraphTestCase {
             let expectedBands = bandsBeforeDecrease.enumerated().map {(index, gain) -> Float in
                 
                 if index < 5 {
-                    return (gain - decrement).clamp(to: ParametricEQNode.validGainRange)
+                    return (gain - decrement).clamped(to: ParametricEQNode.validGainRange)
                 }
                 
                 return gain
@@ -1058,7 +1058,7 @@ class EQUnitTests: AudioGraphTestCase {
             let expectedBands = bandsBeforeDecrease.enumerated().map {(index, gain) -> Float in
                 
                 if (3...6).contains(index) {
-                    return (gain - decrement).clamp(to: ParametricEQNode.validGainRange)
+                    return (gain - decrement).clamped(to: ParametricEQNode.validGainRange)
                 }
                 
                 return gain
@@ -1122,7 +1122,7 @@ class EQUnitTests: AudioGraphTestCase {
             let expectedBands = bandsBeforeDecrease.enumerated().map {(index, gain) -> Float in
                 
                 if (5...10).contains(index) {
-                    return (gain - decrement).clamp(to: ParametricEQNode.validGainRange)
+                    return (gain - decrement).clamped(to: ParametricEQNode.validGainRange)
                 }
                 
                 return gain
@@ -1185,7 +1185,7 @@ class EQUnitTests: AudioGraphTestCase {
             let expectedBands = bandsBeforeDecrease.enumerated().map {(index, gain) -> Float in
                 
                 if (7...9).contains(index) {
-                    return (gain - decrement).clamp(to: ParametricEQNode.validGainRange)
+                    return (gain - decrement).clamped(to: ParametricEQNode.validGainRange)
                 }
                 
                 return gain
@@ -1249,7 +1249,7 @@ class EQUnitTests: AudioGraphTestCase {
             let expectedBands = bandsBeforeDecrease.enumerated().map {(index, gain) -> Float in
                 
                 if (11...14).contains(index) {
-                    return (gain - decrement).clamp(to: ParametricEQNode.validGainRange)
+                    return (gain - decrement).clamped(to: ParametricEQNode.validGainRange)
                 }
                 
                 return gain
@@ -1286,7 +1286,7 @@ class EQUnitTests: AudioGraphTestCase {
             // Verify that the bands that should have changed did change.
             for index in changedBands {
                 
-                let expectedGain = (bands[index] + (delta * deltaMultiplier)).clamp(to: ParametricEQNode.validGainRange)
+                let expectedGain = (bands[index] + (delta * deltaMultiplier)).clamped(to: ParametricEQNode.validGainRange)
                 
                 XCTAssertEqual(eqUnit[index], expectedGain, accuracy: 0.001)
                 XCTAssertEqual(eqUnit.bands[index], expectedGain, accuracy: 0.001)

@@ -128,7 +128,7 @@
 ////        SCNTransaction.animationDuration = 0
 ////
 ////        for i in 0..<numberOfBands {
-////            bars[i].magnitude = CGFloat(FrequencyData.bands[i].maxVal).clamp(to: magnitudeRange)
+////            bars[i].magnitude = CGFloat(FrequencyData.bands[i].maxVal).clamped(to: magnitudeRange)
 ////        }
 ////
 ////        SCNTransaction.commit()

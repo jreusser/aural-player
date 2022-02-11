@@ -18,12 +18,12 @@ import AVFoundation
 ///
 class EQUnit: EffectsUnit, EQUnitProtocol {
     
-    let node: ParametricEQ
+    let node: FifteenBandEQNode
     let presets: EQPresets
     
     init(persistentState: EQUnitPersistentState?) {
         
-        node = ParametricEQ(type: persistentState?.type ?? AudioGraphDefaults.eqType)
+        node = FifteenBandEQNode()
         presets = EQPresets(persistentState: persistentState)
         super.init(unitType: .eq, unitState: persistentState?.state ?? AudioGraphDefaults.eqState)
 
@@ -38,18 +38,6 @@ class EQUnit: EffectsUnit, EQUnitProtocol {
         node.bypass = !isActive
     }
     
-    var type: EQType {
-        
-        get {node.type}
-        
-        set(newType) {
-            
-            if newType != node.type {
-                node.type = newType
-            }
-        }
-    }
-    
     var globalGain: Float {
         
         get {node.globalGain}
@@ -58,11 +46,11 @@ class EQUnit: EffectsUnit, EQUnitProtocol {
     
     var bands: [Float] {
         
-        get {node.bands}
-        set(newBands) {node.bands = newBands}
+        get {node.bandGains}
+        set(newBands) {node.bandGains = newBands}
     }
     
-    override var avNodes: [AVAudioNode] {node.allNodes}
+    override var avNodes: [AVAudioNode] {[node]}
     
     subscript(_ index: Int) -> Float {
         
@@ -119,7 +107,6 @@ class EQUnit: EffectsUnit, EQUnitProtocol {
 
         EQUnitPersistentState(state: state,
                               userPresets: presets.userDefinedObjects.map {EQPresetPersistentState(preset: $0)},
-                              type: type,
                               globalGain: globalGain,
                               bands: bands)
     }

@@ -17,7 +17,7 @@ struct FilesAndPaths {
     
     // Default user's music directory (default place to look in, when opening/saving files)
     static let musicDir: URL = URL(fileURLWithPath: NSHomeDirectory() + "/Music").resolvedURL
-    static let baseDir: URL = musicDir.appendingPathComponent("aural", isDirectory: true)
+    static let baseDir: URL = musicDir.appendingPathComponent("aural4", isDirectory: true)
     
     // App state/log files
     static let persistentStateFileName = "state.json"
