@@ -7,10 +7,15 @@
 ////  This software is licensed under the MIT software license.
 ////  See the file "LICENSE" in the project root directory for license terms.
 ////
-//
-//import Cocoa
-//
-//class EQSlider: EffectsUnitSlider {
+
+import Cocoa
+
+class EQSlider: EffectsUnitSlider {
+    
+    override func setNeedsDisplay(_ invalidRect: NSRect) {
+        super.setNeedsDisplay(bounds)
+    }
+}
 //
 //    // ------------------------------------------------------------------------
 //

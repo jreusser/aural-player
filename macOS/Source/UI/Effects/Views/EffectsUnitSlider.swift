@@ -30,21 +30,21 @@ class EffectsUnitSlider: NSSlider, EffectsUnitSliderProtocol {
         didSet {updateState()}
     }
     
-    lazy var effectsCell: EffectsUnitSliderCellProtocol = (self.cell as! EffectsUnitSliderCellProtocol)
+    lazy var effectsCell: EffectsUnitSliderCellProtocol? = (self.cell as? EffectsUnitSliderCellProtocol)
     
     func updateState() {
         
         guard let stateFunction = self.stateFunction else {return}
         
         unitState = stateFunction()
-        effectsCell.unitState = unitState
+        effectsCell?.unitState = unitState
         redraw()
     }
     
     func setUnitState(_ state: EffectsUnitState) {
         
         self.unitState = state
-        effectsCell.unitState = unitState
+        effectsCell?.unitState = unitState
         redraw()
     }
 }

@@ -36,11 +36,11 @@ class SeekSliderCell: HorizontalSliderCell {
         
         super.awakeFromNib()
         
-        foregroundColorKVO = systemColorScheme.observe(\.activeControlColor, options: [.initial, .new]) {[weak self] _, _ in
-            
-            guard let strongSelf = self else {return}
-            strongSelf.foregroundGradient = strongSelf.recomputeForegroundGradient()
-        }
+//        foregroundColorKVO = systemColorScheme.observe(\.activeControlColor, options: [.initial, .new]) {[weak self] _, _ in
+//            
+//            guard let strongSelf = self else {return}
+//            strongSelf.foregroundGradient = strongSelf.recomputeForegroundGradient()
+//        }
         
         backgroundColorKVO = systemColorScheme.observe(\.sliderBackgroundColor, options: [.initial, .new]) {[weak self] _, _ in
             
@@ -59,9 +59,7 @@ class SeekSliderCell: HorizontalSliderCell {
     }
     
 //    var loopColor: NSColor {Colors.Player.seekBarLoopColor}
-    lazy var foregroundGradient: NSGradient = recomputeForegroundGradient()
-    
-    private func recomputeForegroundGradient() -> NSGradient {
+    override var foregroundGradient: NSGradient {
         
         let start = systemColorScheme.activeControlColor
         let end = start.darkened(50)

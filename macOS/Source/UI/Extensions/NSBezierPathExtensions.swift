@@ -60,9 +60,11 @@ public extension NSBezierPath {
     }
     
     static func fillRoundedRect(_ rect: NSRect, radius: CGFloat, withColor color: NSColor) {
-        
-        let path = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
-        path.fill(withColor: color)
+        NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius).fill(withColor: color)
+    }
+    
+    static func fillOval(in rect: NSRect, withColor color: NSColor) {
+        NSBezierPath(ovalIn: rect).fill(withColor: color)
     }
     
     static func fillRoundedRect(_ rect: NSRect, radius: CGFloat, withGradient gradient: NSGradient, angle: CGFloat) {

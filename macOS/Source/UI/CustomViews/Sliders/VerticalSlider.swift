@@ -40,7 +40,7 @@ class VerticalSlider: EffectsUnitSlider {
         }
     }
     
-    var range: Float = 0
+    var range: Double = 0
     
     // --------------------------------------------------------------------------------
     
@@ -54,7 +54,7 @@ class VerticalSlider: EffectsUnitSlider {
         
         super.init(coder: coder)
         wantsLayer = true
-        self.range = Float(maxValue - minValue)
+        self.range = maxValue - minValue
     }
     
     // --------------------------------------------------------------------------------
@@ -65,6 +65,8 @@ class VerticalSlider: EffectsUnitSlider {
     /// Custom drawing for the slider.
     ///
     public override func draw(_ dirtyRect: NSRect) {
+        
+        print("DBL= \(doubleValue)")
         
         // Remove previously drawn layers.
         layer?.sublayers?.removeAll()
@@ -91,11 +93,9 @@ class VerticalSlider: EffectsUnitSlider {
     ///
     var progress: CGFloat {
         
-        let dbl = self.floatValue
-        let minus = dbl - Float(minValue)
-        let prog = CGFloat((floatValue - Float(minValue)) / range)
+        let prog = CGFloat((doubleValue - minValue) / range)
         
-        print("\nDrawing ... dbl=\(dbl), minus=\(minus), prog=\(prog)")
+//        print("\nDrawing ... dbl=\(doubleValue), minus=\(doubleValue - minValue), prog=\(prog)")
         return prog
     }
     
@@ -109,7 +109,7 @@ class VerticalSlider: EffectsUnitSlider {
         let insetRect = bounds.insetBy(dx: (bounds.width - barWidth) / 2, dy: 0)
         
         let highlightPosition = insetRect.minY + (progress * insetRect.height)
-        let progressRect = CGRect(x: insetRect.minX, y: 0,
+        let progressRect = CGRect(x: insetRect.minX, y: insetRect.minY,
                                   width: insetRect.width,
                                   height: highlightPosition - insetRect.minY)
         

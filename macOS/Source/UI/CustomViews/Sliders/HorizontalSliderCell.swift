@@ -22,7 +22,7 @@ class HorizontalSliderCell: NSSliderCell {
     
 //    var backgroundGradient: NSGradient {Colors.Player.sliderBackgroundGradient}
 //    var foregroundGradient: NSGradient {Colors.Player.sliderForegroundGradient}
-    var gradientDegrees: CGFloat {.verticalGradientDegrees}
+    var gradientDegrees: CGFloat {.horizontalGradientDegrees}
     
     var barInsetX: CGFloat {0}
     var barInsetY: CGFloat {0}
@@ -32,16 +32,33 @@ class HorizontalSliderCell: NSSliderCell {
     var knobRadius: CGFloat {1}
 //    var knobColor: NSColor {Colors.Player.sliderKnobColor}
     
+    var foregroundGradient: NSGradient {
+        
+        let startColor: NSColor = systemColorScheme.activeControlColor
+        let endColor = startColor.darkened(50)
+        
+        return NSGradient(starting: startColor, ending: endColor)!
+    }
+
+    var backgroundColor: NSColor {
+        systemColorScheme.sliderBackgroundColor
+    }
+
+    var knobColor: NSColor {
+        systemColorScheme.activeControlColor
+    }
+    
     override internal func drawBar(inside aRect: NSRect, flipped: Bool) {
         
         let knobFrame = knobRect(flipped: false)
         let halfKnobWidth = knobFrame.width / 2
         
         let leftRect = NSRect(x: aRect.minX, y: aRect.minY, width: max(halfKnobWidth, knobFrame.minX + halfKnobWidth), height: aRect.height)
-//        NSBezierPath.fillRoundedRect(leftRect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
+        NSBezierPath.fillRoundedRect(leftRect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
         
         let rightRect = NSRect(x: knobFrame.maxX - halfKnobWidth, y: aRect.minY, width: aRect.width - (knobFrame.maxX - halfKnobWidth), height: aRect.height)
 //        NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withGradient: backgroundGradient, angle: gradientDegrees)
+        NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withColor: backgroundColor)
     }
     
     override internal func drawKnob(_ knobRect: NSRect) {
@@ -52,9 +69,10 @@ class HorizontalSliderCell: NSSliderCell {
         
         let knobHeight: CGFloat = bar.height + knobHeightOutsideBar
         let knobMinX = xCenter - (knobWidth / 2)
-        let rect = NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobWidth, height: knobHeight)
+        let rect = NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobHeight, height: knobHeight)
         
 //        NSBezierPath.fillRoundedRect(rect, radius: knobRadius, withColor: knobColor)
+        NSBezierPath.fillOval(in: rect, withColor: knobColor)
     }
     
     override func barRect(flipped: Bool) -> NSRect {

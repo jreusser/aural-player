@@ -16,7 +16,7 @@ class VolumeSliderCell: HorizontalSliderCell {
     
     override var knobWidth: CGFloat {6}
     override var knobRadius: CGFloat {0.5}
-    override var knobHeightOutsideBar: CGFloat {1.5}
+    override var knobHeightOutsideBar: CGFloat {4.5}
     
     override func knobRect(flipped: Bool) -> NSRect {
         
