@@ -30,19 +30,21 @@ class VerticalSlider: EffectsUnitSlider {
     ///
     override var isFlipped: Bool {false}
     
+    override var doubleValue: Double {
+        
+        get {super.doubleValue}
+        
+        set {
+            super.doubleValue = newValue
+            print("Set doubleValue to: \(newValue)")
+        }
+    }
+    
+    var range: Float = 0
+    
     // --------------------------------------------------------------------------------
     
     // MARK: Initializers
-    
-    ///
-    /// This slider will do all its drawing on CALayers, so
-    /// make sure it has a base layer when initialized.
-    ///
-    override init(frame frameRect: NSRect) {
-        
-        super.init(frame: frameRect)
-        wantsLayer = true
-    }
     
     ///
     /// This slider will do all its drawing on CALayers, so
@@ -52,6 +54,7 @@ class VerticalSlider: EffectsUnitSlider {
         
         super.init(coder: coder)
         wantsLayer = true
+        self.range = Float(maxValue - minValue)
     }
     
     // --------------------------------------------------------------------------------
@@ -88,8 +91,12 @@ class VerticalSlider: EffectsUnitSlider {
     ///
     var progress: CGFloat {
         
-        let range = maxValue - minValue
-        return CGFloat((doubleValue - minValue) / range)
+        let dbl = self.floatValue
+        let minus = dbl - Float(minValue)
+        let prog = CGFloat((floatValue - Float(minValue)) / range)
+        
+        print("\nDrawing ... dbl=\(dbl), minus=\(minus), prog=\(prog)")
+        return prog
     }
     
     ///
