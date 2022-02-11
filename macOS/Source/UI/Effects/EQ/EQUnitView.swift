@@ -20,6 +20,10 @@ class EQUnitView: NSView {
     var bandSliders: [EffectsUnitSlider] = []
     var allSliders: [EffectsUnitSlider] = []
     
+    var stateFunction: EffectsUnitStateFunction!
+    var sliderAction: Selector?
+    var sliderActionTarget: AnyObject?
+    
     // ------------------------------------------------------------------------
     
     // MARK: Properties
@@ -36,8 +40,30 @@ class EQUnitView: NSView {
     
     // MARK: View initialization
     
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        
+        allSliders = subviews.compactMap({$0 as? EffectsUnitSlider})
+        bandSliders = allSliders.filter {$0.tag >= 0}
+        
+        allSliders.forEach {
+            $0.stateFunction = stateFunction
+        }
+        
+        bandSliders.forEach {
+            
+            $0.action = sliderAction
+            $0.target = sliderActionTarget
+        }
+    }
+    
     func initialize(eqStateFunction: @escaping EffectsUnitStateFunction,
                     sliderAction: Selector?, sliderActionTarget: AnyObject?) {
+
+        self.stateFunction = eqStateFunction
+        self.sliderAction = sliderAction
+        self.sliderActionTarget = sliderActionTarget
         
         allSliders.forEach {
             $0.stateFunction = eqStateFunction
