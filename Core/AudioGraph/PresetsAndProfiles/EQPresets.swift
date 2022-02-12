@@ -117,33 +117,33 @@ fileprivate enum SystemDefinedEQPresetParams: String, CaseIterable {
 ///
 fileprivate struct EQPresetsBands {
     
-    static let flat: [Float] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    static let flat: [Float] = [Float](repeating: 0, count: 15)
 
-    static let highBassAndTreble: [Float] = [15, 12.5, 10, 0, 0, 0, 0, 10, 12.5, 15]
+    static let highBassAndTreble: [Float] = [15.0, 15.0, 12.5, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 10.0, 12.5, 12.5, 15.0]
     
-    static let dance: [Float] = [0, 7, 4, 0, -1, -2, -4, 0, 4, 5]
+    static let dance: [Float] = [0.0, 0.0, 7.0, 4.0, 4.0, 0.0, -1.0, -1.0, -2.0, -4.0, -4.0, 0.0, 4.0, 4.0, 5.0]
     
-    static let electronic: [Float] = [7, 6.5, 0, -2, -5, 0, 0, 0, 6.5, 7]
+    static let electronic: [Float] = [7.0, 7.0, 6.5, 0.0, 0.0, -2.0, -5.0, -5.0, 0.0, 0.0, 0.0, 0.0, 6.5, 6.5, 7.0]
     
-    static let hipHop: [Float] = [7, 7, 0, 0, -3, -3, -2, 1, 1, 7]
+    static let hipHop: [Float] = [7.0, 7.0, 7.0, 0.0, 0.0, 0.0, -3.0, -3.0, -3.0, -2.0, -2.0, 1.0, 1.0, 1.0, 7.0]
     
-    static let jazz: [Float] = [0, 3, 0, 0, -3, -3, 0, 0, 3, 5]
+    static let jazz: [Float] = [0.0, 0.0, 3.0, 0.0, 0.0, 0.0, -3.0, -3.0, -3.0, 0.0, 0.0, 0.0, 3.0, 3.0, 5.0]
     
-    static let latin: [Float] = [8, 5, 0, 0, -4, -4, -4, 0, 6, 8]
+    static let latin: [Float] = [8.0, 8.0, 5.0, 0.0, 0.0, 0.0, -4.0, -4.0, -4.0, -4.0, -4.0, 0.0, 6.0, 6.0, 8.0]
     
-    static let lounge: [Float] = [-5, -2, 0, 2, 4, 3, 0, 0, 3, 0]
+    static let lounge: [Float] = [-5.0, -5.0, -2.0, 0.0, 0.0, 2.0, 4.0, 4.0, 3.0, 0.0, 0.0, 0.0, 3.0, 3.0, 0.0]
     
-    static let piano: [Float] = [1, -1, -3, 0, 1, -1, 2, 3, 1, 2]
+    static let piano: [Float] = [1.0, 1.0, -1.0, -3.0, -3.0, 0.0, 1.0, 1.0, -1.0, 2.0, 2.0, 3.0, 1.0, 1.0, 2.0]
     
-    static let pop: [Float] = [-2, -1.5, 0, 3, 7, 7, 3.5, 0, -2, -3]
+    static let pop: [Float] = [-2.0, -2.0, -1.5, 0.0, 0.0, 3.0, 7.0, 7.0, 7.0, 3.5, 3.5, 0.0, -2.0, -2.0, -3.0]
     
-    static let rAndB: [Float] = [0, 7, 4, -3, -5, -4.5, -2, -1.5, 0, 1.5]
+    static let rAndB: [Float] = [0.0, 0.0, 7.0, 4.0, 4.0, -3.0, -5.0, -5.0, -4.5, -2.0, -2.0, -1.5, 0.0, 0.0, 1.5]
     
-    static let rock: [Float] = [5, 3, 1.5, 0, -5, -6, -2.5, 0, 2.5, 4]
+    static let rock: [Float] = [5.0, 5.0, 3.0, 1.5, 1.5, 0.0, -5.0, -5.0, -6.0, -2.5, -2.5, 0.0, 2.5, 2.5, 4.0]
     
-    static let soft: [Float] = [0, 1, 2, 6, 8, 10, 12, 12, 13, 14]
+    static let soft: [Float] = [0.0, 0.0, 1.0, 2.0, 2.0, 6.0, 8.0, 8.0, 10.0, 12.0, 12.0, 12.0, 13.0, 13.0, 14.0]
     
-    static let karaoke: [Float] = [8, 6, 4, -20, -20, -20, -20, 4, 6, 8]
+    static let karaoke: [Float] = [8.0, 8.0, 6.0, 4.0, 4.0, -20.0, -20.0, -20.0, -20.0, -20.0, -20.0, 4.0, 6.0, 6.0, 8.0]
     
-    static let vocal: [Float] = [-20, -20, -20, 12, 14, 14, 12, -20, -20, -20]
+    static let vocal: [Float] = [-20.0, -20.0, -20.0, -20.0, -20.0, 12.0, 14.0, 14.0, 14.0, 12.0, 12.0, -20.0, -20.0, -20.0, -20.0]
 }
