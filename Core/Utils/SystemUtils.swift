@@ -28,10 +28,4 @@ class SystemUtils {
     static var osVersion: OperatingSystemVersion {
         ProcessInfo.processInfo.operatingSystemVersion
     }
-    
-    static var isBigSur: Bool {
-        
-        let os = osVersion
-        return os.majorVersion > 10 || os.minorVersion > 15
-    }
 }

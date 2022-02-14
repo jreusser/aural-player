@@ -52,11 +52,6 @@ class PlayerAudioViewController: NSViewController, Destroyable {
     
     override func viewDidLoad() {
         
-        // Ugly hack to properly align pan slider on Big Sur.
-        if SystemUtils.isBigSur, showsPanControl {
-            panSlider.moveUp(distance: 3)
-        }
-        
         autoHidingVolumeLabel = AutoHidingView(lblVolume, Self.feedbackLabelAutoHideIntervalSeconds)
         volumeSlider.floatValue = audioGraph.volume
         volumeChanged(audioGraph.volume, audioGraph.muted, true, false)

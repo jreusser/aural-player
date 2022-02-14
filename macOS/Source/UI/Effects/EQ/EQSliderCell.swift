@@ -27,7 +27,7 @@ class EQSliderCell: NSSliderCell, EffectsUnitSliderCellProtocol {
     
     private let knobHeight: CGFloat = 10
     private let knobRadius: CGFloat = 1
-    private let knobWidthOutsideBar: CGFloat = 2.5
+    private let knobWidthOutsideBar: CGFloat = 1
     
     // ------------------------------------------------------------------------
     
@@ -78,16 +78,11 @@ class EQSliderCell: NSSliderCell, EffectsUnitSliderCellProtocol {
     // Force knobRect and barRect to NOT be flipped
     
     override func knobRect(flipped: Bool) -> NSRect {
-        super.knobRect(flipped: SystemUtils.isBigSur)
+        super.knobRect(flipped: true)
     }
     
     override func barRect(flipped: Bool) -> NSRect {
-        
-        if SystemUtils.isBigSur {
-            return NSRect(x: 10, y: 2, width: 4, height: super.barRect(flipped: false).height)
-        } else {
-            return super.barRect(flipped: false)
-        }
+        return NSRect(x: 10, y: 2, width: 4, height: super.barRect(flipped: false).height)
     }
     
     override internal func drawKnob(_ knobRect: NSRect) {
@@ -98,11 +93,11 @@ class EQSliderCell: NSSliderCell, EffectsUnitSliderCellProtocol {
 
         let knobWidth: CGFloat = bar.width + knobWidthOutsideBar * 2
         let knobMinY = yCenter - (knobHeight / 2)
-        let rect = NSRect(x: bar.minX - ((knobWidth - bar.width) / 2), y: knobMinY, width: knobWidth, height: knobWidth)
+        let rect = NSRect(x: bar.minX - ((knobWidth - bar.width) / 2), y: knobMinY, width: knobWidth, height: knobHeight)
 //        let rect = NSRect(x: knobRect.minX, y: knobMinY, width: knobWidth, height: knobWidth)
 
-//        NSBezierPath.fillRoundedRect(rect, radius: knobRadius, withColor: knobColor)
-        NSBezierPath.fillOval(in: rect, withColor: knobColor)
+        NSBezierPath.fillRoundedRect(rect, radius: knobRadius, withColor: knobColor)
+//        NSBezierPath.fillOval(in: rect, withColor: knobColor)
     }
     
     override internal func drawBar(inside drawRect: NSRect, flipped: Bool) {
@@ -110,8 +105,7 @@ class EQSliderCell: NSSliderCell, EffectsUnitSliderCellProtocol {
         let knobFrame = knobRect(flipped: false)
         let halfKnobWidth = knobFrame.width / 2
         
-        let backgroundRect = NSRect(x: drawRect.minX, y: drawRect.minY,
-                                    width: drawRect.width, height: drawRect.height).insetBy(dx: barInsetX, dy: barInsetY)
+        let backgroundRect = drawRect.insetBy(dx: barInsetX, dy: barInsetY)
         
         let bottomRect = NSRect(x: drawRect.minX, y: knobFrame.maxY - halfKnobWidth,
                                 width: drawRect.width, height: drawRect.height - knobFrame.maxY + halfKnobWidth).insetBy(dx: barInsetX, dy: barInsetY)

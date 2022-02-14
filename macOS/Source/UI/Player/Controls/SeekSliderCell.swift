@@ -21,13 +21,8 @@ struct PlaybackLoopRange {
 // Cell for seek position slider
 class SeekSliderCell: HorizontalSliderCell {
     
-    override var barInsetY: CGFloat {SystemUtils.isBigSur ? 0 : 0.5}
-    
+    override var barInsetY: CGFloat {0}
     override var barRadius: CGFloat {1}
-    
-    override var knobRadius: CGFloat {1}
-    override var knobWidth: CGFloat {10}
-    override var knobHeightOutsideBar: CGFloat {2}
     
     private var foregroundColorKVO: NSKeyValueObservation?
     private var backgroundColorKVO: NSKeyValueObservation?
@@ -36,11 +31,14 @@ class SeekSliderCell: HorizontalSliderCell {
         
         super.awakeFromNib()
         
-//        foregroundColorKVO = systemColorScheme.observe(\.activeControlColor, options: [.initial, .new]) {[weak self] _, _ in
-//            
-//            guard let strongSelf = self else {return}
-//            strongSelf.foregroundGradient = strongSelf.recomputeForegroundGradient()
-//        }
+        foregroundColorKVO = systemColorScheme.observe(\.activeControlColor, options: [.initial, .new]) {[weak self] _, _ in
+            
+            guard let strongSelf = self else {return}
+            
+            let start = systemColorScheme.activeControlColor
+            let end = start.darkened(50)
+            strongSelf._foregroundGradient = .init(starting: start, ending: end)!
+        }
         
         backgroundColorKVO = systemColorScheme.observe(\.sliderBackgroundColor, options: [.initial, .new]) {[weak self] _, _ in
             
@@ -58,13 +56,12 @@ class SeekSliderCell: HorizontalSliderCell {
         foregroundColorKVO = nil
     }
     
+    private var _foregroundGradient: NSGradient!
+    
 //    var loopColor: NSColor {Colors.Player.seekBarLoopColor}
+    
     override var foregroundGradient: NSGradient {
-        
-        let start = systemColorScheme.activeControlColor
-        let end = start.darkened(50)
-        
-        return .init(starting: start, ending: end)!
+        _foregroundGradient
     }
     
     lazy var backgroundGradient: NSGradient = recomputeBackgroundGradient()
@@ -99,86 +96,44 @@ class SeekSliderCell: HorizontalSliderCell {
         self.loop = nil
     }
     
-    func drawLeftRect(inRect rect: NSRect, knobFrame: NSRect) {
-        
-        let halfKnobWidth = knobFrame.width / 2
-        let leftRect = NSRect(x: rect.minX, y: rect.minY, width: max(halfKnobWidth, knobFrame.minX + halfKnobWidth), height: rect.height)
-        
-        NSBezierPath.fillRoundedRect(leftRect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
-    }
-    
-    func drawRightRect(inRect rect: NSRect, knobFrame: NSRect) {
-        
-        let halfKnobWidth = knobFrame.width / 2
-        let rightRect = NSRect(x: knobFrame.maxX - halfKnobWidth, y: rect.minY,
-                               width: rect.width - (knobFrame.maxX - halfKnobWidth), height: rect.height)
-        
-        NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withGradient: backgroundGradient, angle: gradientDegrees)
-    }
-    
     override func drawBar(inside aRect: NSRect, flipped: Bool) {
         
-        let knobFrame = knobRect(flipped: false)
+        super.drawBar(inside: aRect, flipped: flipped)
         
-        drawLeftRect(inRect: aRect, knobFrame: knobFrame)
-        drawRightRect(inRect: aRect, knobFrame: knobFrame)
+//        drawLeftRect(inRect: aRect)
+//        drawRightRect(inRect: aRect)
         
         // Render segment playback loop, if one is defined
-        if let loop = self.loop {
-            
-            let halfKnobWidth = knobFrame.width / 2
-
-            // Start and end points for the loop
-            let startX = loop.start
-            let endX = loop.end ?? max(startX + 1, knobFrame.minX + halfKnobWidth)
-            
-            // Loop bar
-            
-//            NSBezierPath.fillRoundedRect(NSRect(x: startX, y: aRect.minY, width: (endX - startX + 1), height: aRect.height),
-//                                         radius: barRadius,
-//                                         withColor: loopColor)
-            
-            let markerMinY = knobFrame.minY + knobHeightOutsideBar / 2
-            let markerHeight: CGFloat = aRect.height + knobHeightOutsideBar
-            
-            // Loop start marker
-            
-//            NSBezierPath.fillRoundedRect(NSRect(x: startX - (knobWidth / 2), y: markerMinY, width: knobWidth, height: markerHeight),
-//                                         radius: knobRadius,
-//                                         withColor: loopColor)
-            
-            // Loop end marker
-            if loop.end != nil {
-                
-//                NSBezierPath.fillRoundedRect(NSRect(x: endX - (knobWidth / 2), y: markerMinY, width: knobWidth, height: markerHeight),
-//                                             radius: knobRadius,
-//                                             withColor: loopColor)
-            }
-        }
-    }
-    
-    override func knobRect(flipped: Bool) -> NSRect {
-        
-        let bar = barRect(flipped: flipped)
-        let val = CGFloat(self.doubleValue)
-        
-        let startX = bar.minX + (val * bar.width / 100)
-        let xOffset = -(val * knobWidth / 100)
-        
-        let newX = startX + xOffset
-        let newY = bar.minY - knobHeightOutsideBar
-        
-        return NSRect(x: newX, y: newY, width: knobWidth, height: knobHeightOutsideBar * 2 + bar.height)
-    }
-    
-    override func drawKnob(_ knobRect: NSRect) {
-        
-//        let bar = barRect(flipped: true)
-//        let knobHeight: CGFloat = bar.height + knobHeightOutsideBar
-//        let knobMinX = knobRect.minX
-        
-//        NSBezierPath.fillRoundedRect(NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobWidth, height: knobHeight),
-//                                     radius: knobRadius,
-//                                     withColor: knobColor)
+//        if let loop = self.loop {
+//
+//            let halfKnobWidth = knobFrame.width / 2
+//
+//            // Start and end points for the loop
+//            let startX = loop.start
+//            let endX = loop.end ?? max(startX + 1, knobFrame.minX + halfKnobWidth)
+//
+//            // Loop bar
+//
+////            NSBezierPath.fillRoundedRect(NSRect(x: startX, y: aRect.minY, width: (endX - startX + 1), height: aRect.height),
+////                                         radius: barRadius,
+////                                         withColor: loopColor)
+//
+//            let markerMinY = knobFrame.minY + knobHeightOutsideBar / 2
+//            let markerHeight: CGFloat = aRect.height + knobHeightOutsideBar
+//
+//            // Loop start marker
+//
+////            NSBezierPath.fillRoundedRect(NSRect(x: startX - (knobWidth / 2), y: markerMinY, width: knobWidth, height: markerHeight),
+////                                         radius: knobRadius,
+////                                         withColor: loopColor)
+//
+//            // Loop end marker
+//            if loop.end != nil {
+//
+////                NSBezierPath.fillRoundedRect(NSRect(x: endX - (knobWidth / 2), y: markerMinY, width: knobWidth, height: markerHeight),
+////                                             radius: knobRadius,
+////                                             withColor: loopColor)
+//            }
+//        }
     }
 }

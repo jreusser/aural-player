@@ -356,7 +356,7 @@ G1BhbiBTbGlkZXI
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <slider hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="byN-wX-zim" userLabel="Seek Slider" customClass="HorizontalSlider" customModule="Aural" customModuleProvider="target">
+                                            <slider hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="byN-wX-zim" userLabel="Seek Slider" customClass="AuralSlider" customModule="Aural" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="7" width="495" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="tx9-Ld-QmK" customClass="SeekSliderCell" customModule="Aural" customModuleProvider="target"/>

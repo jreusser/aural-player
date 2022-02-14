@@ -27,10 +27,9 @@ class HorizontalSliderCell: NSSliderCell {
     var barInsetX: CGFloat {0}
     var barInsetY: CGFloat {0}
     
-    var knobWidth: CGFloat {10}
-    var knobHeightOutsideBar: CGFloat {2}
+    var knobWidth: CGFloat {12}
+    var knobHeightOutsideBar: CGFloat {3}
     var knobRadius: CGFloat {1}
-//    var knobColor: NSColor {Colors.Player.sliderKnobColor}
     
     var foregroundGradient: NSGradient {
         
@@ -48,31 +47,60 @@ class HorizontalSliderCell: NSSliderCell {
         systemColorScheme.activeControlColor
     }
     
-    override internal func drawBar(inside aRect: NSRect, flipped: Bool) {
+    lazy var range: Double = maxValue - minValue
+    
+    func drawLeftRect(inRect rect: NSRect, knobFrame: NSRect) {
         
-        let knobFrame = knobRect(flipped: false)
         let halfKnobWidth = knobFrame.width / 2
+        let leftRect = NSRect(x: rect.minX, y: rect.minY, width: max(halfKnobWidth, knobFrame.minX + halfKnobWidth), height: rect.height)
         
-        let leftRect = NSRect(x: aRect.minX, y: aRect.minY, width: max(halfKnobWidth, knobFrame.minX + halfKnobWidth), height: aRect.height)
         NSBezierPath.fillRoundedRect(leftRect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
+    }
+    
+    func drawRightRect(inRect rect: NSRect, knobFrame: NSRect) {
         
-        let rightRect = NSRect(x: knobFrame.maxX - halfKnobWidth, y: aRect.minY, width: aRect.width - (knobFrame.maxX - halfKnobWidth), height: aRect.height)
-//        NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withGradient: backgroundGradient, angle: gradientDegrees)
+        let halfKnobWidth = knobFrame.width / 2
+        let rightRect = NSRect(x: knobFrame.maxX - halfKnobWidth, y: rect.minY,
+                               width: rect.width - (knobFrame.maxX - halfKnobWidth), height: rect.height)
+        
         NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withColor: backgroundColor)
     }
     
-    override internal func drawKnob(_ knobRect: NSRect) {
+    override func drawBar(inside aRect: NSRect, flipped: Bool) {
         
-        let rectWidth = knobRect.width
+        let knobFrame = knobRect(flipped: false)
+        
+        drawLeftRect(inRect: aRect, knobFrame: knobFrame)
+        drawRightRect(inRect: aRect, knobFrame: knobFrame)
+    }
+
+    override func knobRect(flipped: Bool) -> NSRect {
+        
+        let bar = barRect(flipped: flipped)
+        let val = CGFloat(self.doubleValue)
+        
+        let startX = bar.minX + (val * bar.width / range)
+        let xOffset = -(val * knobWidth / range)
+        
+        let newX = startX + xOffset
+        let newY = bar.minY - knobHeightOutsideBar
+        
+        return NSRect(x: newX, y: newY, width: knobWidth, height: knobHeightOutsideBar * 2 + bar.height)
+    }
+    
+    override func drawKnob(_ knobRect: NSRect) {
+        
         let bar = barRect(flipped: true)
-        let xCenter = knobRect.minX + (rectWidth / 2)
-        
         let knobHeight: CGFloat = bar.height + knobHeightOutsideBar
-        let knobMinX = xCenter - (knobWidth / 2)
-        let rect = NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobHeight, height: knobHeight)
+        let knobMinX = knobRect.minX
         
-//        NSBezierPath.fillRoundedRect(rect, radius: knobRadius, withColor: knobColor)
-        NSBezierPath.fillOval(in: rect, withColor: knobColor)
+        NSBezierPath.fillRoundedRect(NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobWidth, height: knobHeight),
+                                     radius: knobRadius,
+                                     withColor: knobColor)
+        
+        NSBezierPath.strokeRoundedRect(NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobWidth, height: knobHeight),
+                                     radius: knobRadius,
+                                       withColor: systemColorScheme.sliderBackgroundColor)
     }
     
     override func barRect(flipped: Bool) -> NSRect {

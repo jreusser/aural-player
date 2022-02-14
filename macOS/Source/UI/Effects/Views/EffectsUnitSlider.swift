@@ -22,7 +22,14 @@ protocol EffectsUnitSliderCellProtocol {
     var unitState: EffectsUnitState {get set}
 }
 
-class EffectsUnitSlider: NSSlider, EffectsUnitSliderProtocol {
+class AuralSlider: NSSlider {
+    
+    override func setNeedsDisplay(_ invalidRect: NSRect) {
+        super.setNeedsDisplay(bounds)
+    }
+}
+
+class EffectsUnitSlider: AuralSlider, EffectsUnitSliderProtocol {
     
     private(set) var unitState: EffectsUnitState = .bypassed
     

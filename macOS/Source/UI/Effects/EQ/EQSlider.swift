@@ -10,13 +10,6 @@
 
 import Cocoa
 
-class EQSlider: EffectsUnitSlider {
-    
-    override func setNeedsDisplay(_ invalidRect: NSRect) {
-        super.setNeedsDisplay(bounds)
-    }
-}
-//
 //    // ------------------------------------------------------------------------
 //
 //    // MARK: Constants

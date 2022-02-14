@@ -101,11 +101,6 @@ class MainWindowController: NSWindowController, Destroyable {
         }
         
         rootContainerBox.cornerRadius = uiState.cornerRadius
-        
-        // Hackish fix to properly position settings menu button (hamburger icon) on older systems.
-        if !SystemUtils.isBigSur {
-            btnSettingsMenu.moveUp(distance: 1)
-        }
     }
     
     // Registers handlers for keyboard events and trackpad/mouse gestures (NSEvent).

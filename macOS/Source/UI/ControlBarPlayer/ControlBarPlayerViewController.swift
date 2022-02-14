@@ -61,11 +61,6 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate, Destroya
     
     override func awakeFromNib() {
         
-        // Hack to properly align the view settings menu button.
-        if !SystemUtils.isBigSur {
-            viewSettingsMenuButton.moveLeft(distance: 2)
-        }
-        
         // Constraint managers
         lblSeekPositionConstraints = LayoutConstraintsManager(for: lblSeekPosition)
         seekSliderConstraints = LayoutConstraintsManager(for: seekSlider)

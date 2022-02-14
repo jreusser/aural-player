@@ -13,7 +13,7 @@ import Cocoa
 class EffectsUnitSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
     
     override var barRadius: CGFloat {1.5}
-    override var barInsetY: CGFloat {SystemUtils.isBigSur ? 0 : 0.5}
+    override var barInsetY: CGFloat {0}
     
     override var knobWidth: CGFloat {10}
     override var knobRadius: CGFloat {1}
@@ -47,11 +47,6 @@ class EffectsUnitSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
     var unitState: EffectsUnitState = .bypassed
     
     override func barRect(flipped: Bool) -> NSRect {
-        
-        if SystemUtils.isBigSur {
-            return NSRect(x: 2, y: 4, width: super.barRect(flipped: flipped).width, height: 4)
-        } else {
-            return super.barRect(flipped: flipped)
-        }
+        return NSRect(x: 2, y: 4, width: super.barRect(flipped: flipped).width, height: 4)
     }
 }
