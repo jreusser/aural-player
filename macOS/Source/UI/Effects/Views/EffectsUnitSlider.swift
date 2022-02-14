@@ -23,7 +23,7 @@ protocol EffectsUnitSliderCellProtocol {
 }
 
 extension NSSlider {
-    
+
     public override func setNeedsDisplay(_ invalidRect: NSRect) {
         super.setNeedsDisplay(bounds)
     }

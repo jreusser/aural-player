@@ -1,22 +1,16 @@
 //
-//  HorizontalSliderCell.swift
+//  AuralSliderCell.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
-//
-/*
-    Customizes the look and feel of all non-ticked horizontal sliders
-*/
+//  
 
 import Cocoa
 
-// Base class for all horizontal slider cells
-class HorizontalSliderCell: NSSliderCell {
-    
-    // TODO: Apply logic from SeekSliderCell.drawKnob and knobRect here in this class (so that all sliders can benefit from it)
+class AuralSliderCell: NSSliderCell {
     
     lazy var valueRange: Double = maxValue - minValue
     
@@ -30,15 +24,15 @@ class HorizontalSliderCell: NSSliderCell {
 
     var barInsetX: CGFloat {0}
     var barInsetY: CGFloat {0}
-    var barRadius: CGFloat {1}
+    var barRadius: CGFloat {2}
     
     // ----------------------------------------------------
     
     // MARK: Knob
     
     var knobWidth: CGFloat {12}
-    var knobHeightOutsideBar: CGFloat {2.5}
-    var knobRadius: CGFloat {1.5}
+    var knobHeightOutsideBar: CGFloat {3}
+    var knobRadius: CGFloat {1}
     
     // ----------------------------------------------------
     
@@ -85,10 +79,6 @@ class HorizontalSliderCell: NSSliderCell {
     func setUpKVO() {
         
         kvoTokens.append(systemColorScheme.observe(\.activeControlGradientColor, options: [.initial, .new]) {[weak self] _, _ in
-            self?.controlView?.redraw()
-        })
-        
-        kvoTokens.append(systemColorScheme.observe(\.sliderBackgroundColor, options: [.initial, .new]) {[weak self] _, _ in
             self?.controlView?.redraw()
         })
     }
@@ -142,15 +132,15 @@ class HorizontalSliderCell: NSSliderCell {
     }
     
     override func drawKnob(_ knobRect: NSRect) {
-
+        
         let bar = barRect(flipped: true)
         let knobHeight: CGFloat = bar.height + knobHeightOutsideBar
         let knobMinX = knobRect.minX
-
+        
         NSBezierPath.fillRoundedRect(NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobWidth, height: knobHeight),
                                      radius: knobRadius,
                                      withColor: knobColor)
-
+        
         NSBezierPath.strokeRoundedRect(NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobWidth, height: knobHeight),
                                      radius: knobRadius,
                                     withColor: systemColorScheme.sliderBackgroundColor)
@@ -160,3 +150,4 @@ class HorizontalSliderCell: NSSliderCell {
         super.barRect(flipped: flipped).insetBy(dx: barInsetX, dy: barInsetY)
     }
 }
+

@@ -89,6 +89,7 @@
 		3E475BCA2696527A0065FD53 /* FlatPlaylistTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E475BC92696527A0065FD53 /* FlatPlaylistTestCase.swift */; };
 		3E4CC362261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */; };
 		3E50D23227BADAAF0056F63A /* AuralSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50D23127BADAAF0056F63A /* AuralSlider.swift */; };
+		3E50D23427BAFF4B0056F63A /* AuralSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50D23327BAFF4B0056F63A /* AuralSliderCell.swift */; };
 		3E51F346262AFDCA0048452F /* ThemesManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E51F345262AFDCA0048452F /* ThemesManager.xib */; };
 		3E51F348262AFDF80048452F /* ThemePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51F347262AFDF80048452F /* ThemePreviewView.swift */; };
 		3E51F34A262AFF310048452F /* ThemesManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51F349262AFF300048452F /* ThemesManagerViewController.swift */; };
@@ -1475,6 +1476,7 @@
 		3E475BC92696527A0065FD53 /* FlatPlaylistTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatPlaylistTestCase.swift; sourceTree = "<group>"; };
 		3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterUnitViewController+AUTableViewDelegate.swift"; sourceTree = "<group>"; };
 		3E50D23127BADAAF0056F63A /* AuralSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuralSlider.swift; sourceTree = "<group>"; };
+		3E50D23327BAFF4B0056F63A /* AuralSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuralSliderCell.swift; sourceTree = "<group>"; };
 		3E51F345262AFDCA0048452F /* ThemesManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemesManager.xib; sourceTree = "<group>"; };
 		3E51F347262AFDF80048452F /* ThemePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreviewView.swift; sourceTree = "<group>"; };
 		3E51F349262AFF300048452F /* ThemesManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesManagerViewController.swift; sourceTree = "<group>"; };
@@ -3213,6 +3215,7 @@
 				3E6C0FD625CEB98600BF0D07 /* HorizontalSliderCell.swift */,
 				3E6C0FD325CEB98600BF0D07 /* TickedSliderCell.swift */,
 				3E6C0FD425CEB98600BF0D07 /* RangeSlider.swift */,
+				3E50D23327BAFF4B0056F63A /* AuralSliderCell.swift */,
 			);
 			path = Sliders;
 			sourceTree = "<group>";
@@ -5305,6 +5308,7 @@
 				3EFE381927864896006F8B8C /* SearchFields.swift in Sources */,
 				3EFE39E927864898006F8B8C /* BookmarkPersistentState.swift in Sources */,
 				3EFE38CD27864896006F8B8C /* AudioGraphDelegate.swift in Sources */,
+				3E50D23427BAFF4B0056F63A /* AuralSliderCell.swift in Sources */,
 				3E6C12B925CEBE5800BF0D07 /* AuralMenuController.swift in Sources */,
 				3EFE399F27864897006F8B8C /* VisualizerUIPersistentState.swift in Sources */,
 				3E6C123725CEBDF400BF0D07 /* AuralPlaylistViews.swift in Sources */,

@@ -169,10 +169,10 @@
                                             <action selector="muteOrUnmuteAction:" target="bbe-2a-cSz" id="HQY-3Q-bnS"/>
                                         </connections>
                                     </button>
-                                    <slider toolTip="Volume" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cwg-dx-g0W" userLabel="Volume Slider" customClass="VolumeSlider" customModule="Aural" customModuleProvider="target">
+                                    <slider toolTip="Volume" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cwg-dx-g0W" userLabel="Volume Slider">
                                         <rect key="frame" x="437" y="8" width="74" height="15"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="btx-cJ-rO8"/>
+                                        <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="btx-cJ-rO8" customClass="VolumeSliderCell" customModule="Aural" customModuleProvider="target"/>
                                         <connections>
                                             <action selector="volumeAction:" target="bbe-2a-cSz" id="gc4-34-eVp"/>
                                         </connections>
@@ -356,10 +356,10 @@ G1BhbiBTbGlkZXI
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <slider hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="byN-wX-zim" userLabel="Seek Slider" customClass="SeekSlider" customModule="Aural" customModuleProvider="target">
+                                            <slider hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="byN-wX-zim" userLabel="Seek Slider">
                                                 <rect key="frame" x="16" y="7" width="495" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="tx9-Ld-QmK"/>
+                                                <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="tx9-Ld-QmK" customClass="SeekSliderCell" customModule="Aural" customModuleProvider="target"/>
                                                 <connections>
                                                     <action selector="seekSliderAction:" target="W5O-7l-xTa" id="TyF-gB-4J0"/>
                                                 </connections>

@@ -18,7 +18,7 @@ class AuralSlider: NSSlider {
     ///
     /// We don't want a flipped co-ordinate system (Y axis).
     ///
-    override var isFlipped: Bool {false}
+//    override var isFlipped: Bool {false}
     
     lazy var valueRange: Double = maxValue - minValue
     
@@ -116,21 +116,21 @@ class AuralSlider: NSSlider {
     // MARK: Mouse
     
 //    override func mouseDown(with event: NSEvent) {
-//        
+//
 //        let con = convert(event.locationInWindow, from: nil)
-//        
+//
 //        if self.isVertical {
-//            
+//
 //            let deltaY = con.y - barRect.minY
 //            doubleValue = minValue + (deltaY * valueRange / barRect.height)
-//            
+//
 //        } else {
 //            
 //            let deltaX = max(0, con.x - barRect.minX - knobRect.width)
 //            doubleValue = minValue + (deltaX * valueRange / knobPhysicalTravelRange)
 //            print("\nDBL-1 = \(doubleValue)")
 //        }
-//        
+//
 ////        perform(self.action, with: self.target)
 ////        super.mouseDown(with: event)
 //        print("DBL-2 = \(doubleValue)")
@@ -144,16 +144,16 @@ class AuralSlider: NSSlider {
     ///
     /// Custom drawing for the slider.
     ///
-    public override func draw(_ dirtyRect: NSRect) {
-        
-        // Remove previously drawn layers.
-        layer?.sublayers?.removeAll()
-        
-        drawBackground()
-        drawProgress()
-        drawKnob()
-        drawTick()
-    }
+//    public override func draw(_ dirtyRect: NSRect) {
+//
+//        // Remove previously drawn layers.
+//        layer?.sublayers?.removeAll()
+//
+//        drawBackground()
+//        drawProgress()
+//        drawKnob()
+//        drawTick()
+//    }
     
     ///
     /// Draws the background portion of the slider bar / track.

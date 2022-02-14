@@ -21,58 +21,7 @@ struct PlaybackLoopRange {
 // Cell for seek position slider
 class SeekSliderCell: HorizontalSliderCell {
     
-    override var barInsetY: CGFloat {0}
-    override var barRadius: CGFloat {1}
-    
-    private var foregroundColorKVO: NSKeyValueObservation?
-    private var backgroundColorKVO: NSKeyValueObservation?
-    
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        
-        foregroundColorKVO = systemColorScheme.observe(\.activeControlColor, options: [.initial, .new]) {[weak self] _, _ in
-            
-            guard let strongSelf = self else {return}
-            
-            let start = systemColorScheme.activeControlColor
-            let end = start.darkened(50)
-            strongSelf._foregroundGradient = .init(starting: start, ending: end)!
-        }
-        
-        backgroundColorKVO = systemColorScheme.observe(\.sliderBackgroundColor, options: [.initial, .new]) {[weak self] _, _ in
-            
-            guard let strongSelf = self else {return}
-            strongSelf.backgroundGradient = strongSelf.recomputeBackgroundGradient()
-        }
-    }
-    
-    deinit {
-        
-        backgroundColorKVO?.invalidate()
-        backgroundColorKVO = nil
-        
-        foregroundColorKVO?.invalidate()
-        foregroundColorKVO = nil
-    }
-    
-    private var _foregroundGradient: NSGradient!
-    
 //    var loopColor: NSColor {Colors.Player.seekBarLoopColor}
-    
-    override var foregroundGradient: NSGradient {
-        _foregroundGradient
-    }
-    
-    lazy var backgroundGradient: NSGradient = recomputeBackgroundGradient()
-    
-    private func recomputeBackgroundGradient() -> NSGradient {
-        
-        let start = systemColorScheme.sliderBackgroundColor
-        let end = start.darkened(25)
-        
-        return .init(starting: start, ending: end)!
-    }
     
     var loop: PlaybackLoopRange?
     

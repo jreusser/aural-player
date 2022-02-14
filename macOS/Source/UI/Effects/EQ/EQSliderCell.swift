@@ -110,7 +110,7 @@ class EQSliderCell: NSSliderCell, EffectsUnitSliderCellProtocol {
         let bottomRect = NSRect(x: drawRect.minX, y: knobFrame.maxY - halfKnobWidth,
                                 width: drawRect.width, height: drawRect.height - knobFrame.maxY + halfKnobWidth).insetBy(dx: barInsetX, dy: barInsetY)
         
-        print("\nTop: \(backgroundRect), BottomRect: \(bottomRect)")
+//        print("\nTop: \(backgroundRect), BottomRect: \(bottomRect)")
         
         // Top rect
         NSBezierPath.fillRoundedRect(backgroundRect, radius: barRadius, withColor: backgroundColor)
