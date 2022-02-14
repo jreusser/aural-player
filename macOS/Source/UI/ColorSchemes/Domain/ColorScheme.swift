@@ -75,6 +75,16 @@ class ColorScheme: NSObject, UserManagedObject {
     @objc dynamic lazy var buttonOffColor: NSColor = defaultPreset.toggleButtonOffStateColor
     
     @objc dynamic lazy var activeControlColor: NSColor = defaultPreset.effectsActiveUnitStateColor
+    @objc dynamic lazy var activeControlGradient: NSGradient = computeActiveControlGradient()
+    
+    private func computeActiveControlGradient() -> NSGradient {
+        
+        let start = defaultPreset.effectsActiveUnitStateColor
+        let end = start.darkened(50)
+        
+        return NSGradient(starting: start, ending: end)!
+    }
+    
     @objc dynamic lazy var bypassedControlColor: NSColor = defaultPreset.effectsBypassedUnitStateColor
     @objc dynamic lazy var suppressedControlColor: NSColor = defaultPreset.effectsSuppressedUnitStateColor
     
@@ -99,6 +109,10 @@ class ColorScheme: NSObject, UserManagedObject {
     
         self.name = name
         self.systemDefined = systemDefined
+        
+        super.init()
+        
+        setUpKVO()
     }
     
     // Used when loading app state on startup
@@ -111,6 +125,10 @@ class ColorScheme: NSObject, UserManagedObject {
 //        self.player = PlayerColorScheme(persistentState?.player)
 //        self.playlist = PlaylistColorScheme(persistentState?.playlist)
 //        self.effects = EffectsColorScheme(persistentState?.effects)
+        
+        super.init()
+        
+        setUpKVO()
     }
     
     // Creates a scheme from a preset (eg. default scheme)
@@ -142,6 +160,26 @@ class ColorScheme: NSObject, UserManagedObject {
 //        self.player = PlayerColorScheme(preset)
 //        self.playlist = PlaylistColorScheme(preset)
 //        self.effects = EffectsColorScheme(preset)
+        
+        setUpKVO()
+    }
+    
+    deinit {
+        
+        kvoTokens.forEach {
+            $0.invalidate()
+        }
+        
+        kvoTokens.removeAll()
+    }
+    
+    private var kvoTokens: [NSKeyValueObservation] = []
+    
+    private func setUpKVO() {
+        
+        kvoTokens.append(self.observe(\.activeControlColor, options: [.initial, .new]) {strongSelf, _ in
+            strongSelf.activeControlGradient = strongSelf.computeActiveControlGradient()
+        })
     }
     
     // Applies a system-defined preset to this scheme.

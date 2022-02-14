@@ -25,7 +25,7 @@ class EQPresets: EffectsUnitPresets<EQPreset> {
         EQPreset(name: "High bass and treble", state: .active, bands: [15.0, 15.0, 12.5, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 10.0, 12.5, 12.5, 15.0],
                  globalGain: 0, systemDefined: true),
         
-        EQPreset(name: "Dance", state: .active, bands: [0.0, 0.0, 7.0, 4.0, 4.0, 0.0, -1.0, -1.0, -2.0, -4.0, -4.0, 0.0, 4.0, 4.0, 5.0],
+        EQPreset(name: "Dance", state: .active, bands: [0.0, 3.5, 7.0, 4.0, 4.0, 0.0, -1.0, -1.0, -2.0, -4.0, -4.0, 0.0, 4.0, 4.0, 5.0],
                  globalGain: 0, systemDefined: true),
         
         EQPreset(name: "Electronic", state: .active, bands: [7.0, 7.0, 6.5, 0.0, 0.0, -2.0, -5.0, -5.0, 0.0, 0.0, 0.0, 0.0, 6.5, 6.5, 7.0],

@@ -10,207 +10,177 @@
 
 import Cocoa
 
-//    // ------------------------------------------------------------------------
+///
+/// A custom vertical slider for the Equalizer view.
+///
+class EQSlider: EffectsUnitSlider {
+    
+    // MARK: State / constants
+    
+    // Change these values to customize the appearance of the slider.
+    
+    var knobHeight: CGFloat {12}
+    var knobWidth: CGFloat {6}
+    
+    var barWidth: CGFloat {4}
+    
+    var tickSpacingFromBar: CGFloat {5}
+    var tickHeight: CGFloat {1}
+    
+    ///
+    /// We don't want a flipped co-ordinate system (Y axis).
+    ///
+    public override var isFlipped: Bool {false}
+    
+    lazy var range = maxValue - minValue
+    
+    // --------------------------------------------------------------------------------
+    
+    // MARK: Initializers
+    
+    ///
+    /// This slider will do all its drawing on CALayers, so
+    /// make sure it has a base layer when initialized.
+    ///
+    override init(frame frameRect: NSRect) {
+        
+        super.init(frame: frameRect)
+        wantsLayer = true
+        setUpKVO()
+    }
+    
+    ///
+    /// This slider will do all its drawing on CALayers, so
+    /// make sure it has a base layer when initialized.
+    ///
+    required init?(coder: NSCoder) {
+        
+        super.init(coder: coder)
+        wantsLayer = true
+        setUpKVO()
+    }
+    
+    private var kvoToken: NSKeyValueObservation? = nil
+    
+    private func setUpKVO() {
+        
+        kvoToken = systemColorScheme.observe(\.activeControlGradient, options: [.initial, .new]) {[weak self] _, _ in
+            self?.needsDisplay = true
+        }
+    }
+    
+    deinit {
+        
+        kvoToken?.invalidate()
+        kvoToken = nil
+    }
+    
+    // --------------------------------------------------------------------------------
+    
+    // MARK: View rendering
+    
+    ///
+    /// Custom drawing for the slider.
+    ///
+    public override func draw(_ dirtyRect: NSRect) {
+        
+        // Remove previously drawn layers.
+        layer?.sublayers?.removeAll()
+        
+        drawTick()
+        drawBackground()
+        drawProgress()
+        drawKnob()
+    }
+    
+    ///
+    /// Draws the background portion of the slider bar / track.
+    ///
+    private func drawBackground() {
+        
+        let backgroundRect = bounds.insetBy(dx: (bounds.width - barWidth) / 2, dy: 0)
+        layer?.addSublayer(CAShapeLayer(fillingRoundedRect: backgroundRect, radius: 2, withColor: systemColorScheme.sliderBackgroundColor))
+    }
+    
+    ///
+    /// A fractional number between 0 and 1 indicating the current travel of the slider's knob between
+    /// its minValue and maxValue, based on its floatValue.
+    ///
+    /// Example:   If the slider has a minValue of -20, and a maxValue of 20, a floatValue of 10 would indicate
+    ///         75% progress, i.e. 0.75.
+    ///
+    private var progress: CGFloat {
+        CGFloat((doubleValue - minValue) / range)
+    }
+    
+    ///
+    /// Draws the progress portion of the slider bar / track, i.e. the portion
+    /// between the minValue and floatValue (i.e. current value) of the
+    /// slider.
+    ///
+    private func drawProgress() {
+        
+        let insetRect = bounds.insetBy(dx: (bounds.width - barWidth) / 2, dy: 0)
+        
+        let halfKnobHeight = knobHeight / 2
+        let knobTravelRange = bounds.height - knobHeight
+        
+        let progressRectHeight = halfKnobHeight + (progress * knobTravelRange)
+        let progressRect = NSRect(x: insetRect.minX, y: insetRect.minY, width: insetRect.width, height: progressRectHeight)
+        
+//        layer?.addSublayer(CAShapeLayer(fillingRoundedRect: progressRect, radius: 2, withColor: systemColorScheme.activeControlColor))
+        
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = NSBezierPath(roundedRect: CGRect(x: 0, y: 0, width: progressRect.width, height: progressRect.height), cornerRadius: 1).cgPath
+        maskLayer.anchorPoint = .zero
+        maskLayer.masksToBounds = true
+        maskLayer.bounds = CGRect(x: 0, y: 0, width: progressRect.width, height: progressRect.height)
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [systemColorScheme.activeControlColor, systemColorScheme.activeControlColor.darkened(50)].map {$0.cgColor}
+        gradientLayer.type = .axial
+        gradientLayer.startPoint = CGPoint(x: 0, y: 1)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.frame = progressRect
+        gradientLayer.mask = maskLayer
+        
+        layer?.addSublayer(gradientLayer)
+    }
+    
+    ///
+    /// Draws the knob / thumb of the slider.
+    ///
+    private func drawKnob() {
+        
+        let centerX = bounds.minX + (bounds.width / 2)
+        
+        let knobTravelRange = bounds.height - knobHeight
+        let knobY = bounds.minY + (progress * knobTravelRange)
+        
+        let knobRect = NSRect(x: centerX - (knobWidth / 2), y: knobY, width: knobWidth, height: knobHeight)
+        
+        let shape = CAShapeLayer(fillingRoundedRect: knobRect, radius: 1.5, withColor: systemColorScheme.activeControlColor)
+        shape.strokeColor = systemColorScheme.sliderBackgroundColor.cgColor
+        shape.lineWidth = 1
+        
+        layer?.addSublayer(shape)
+    }
+    
+    ///
+    /// Draws tick marks at the halfway travel point of the knob's travel range, i.e.
+    /// the 0db marker.
+    ///
+    private func drawTick() {
+        
+//        let bounds = bounds.insetBy(dx: (bounds.width - barWidth) / 2, dy: 0)
 //
-//    // MARK: Constants
+//        let centerY = bounds.minY + (bounds.height / 2)
+//        let tickWidth = ((bounds.width - bounds.width) / 2) - tickSpacingFromBar
 //
-//    private let barRadius: CGFloat = 0.75
-//    private let barWidth: CGFloat = 7
-//    private let barInsetY: CGFloat = 0
+//        let tickRect = NSRect(x: bounds.minX, y: centerY - 0.5, width: tickWidth, height: tickHeight)
+//        let tickRect2 = NSRect(x: bounds.maxX - tickWidth, y: centerY - (tickHeight / 2), width: tickWidth, height: tickHeight)
 //
-//    private let tickInset: CGFloat = 1.5
-//    private let tickWidth: CGFloat = 2
-//
-//    private let knobHeight: CGFloat = 30
-//    private let knobRadius: CGFloat = 1
-//    private let knobWidthOutsideBar: CGFloat = 7
-//
-//    // ------------------------------------------------------------------------
-//
-//    // MARK: Properties
-//    
-//    override var isFlipped: Bool {false}
-//
-//    var foregroundGradient: NSGradient {
-//
-//        switch unitState {
-//
-//        case .active:   return Colors.Effects.activeSliderGradient
-//
-//        case .bypassed: return Colors.Effects.bypassedSliderGradient
-//
-//        case .suppressed:   return Colors.Effects.suppressedSliderGradient
-//
-//        }
-//    }
-//
-//    var backgroundGradient: NSGradient {
-//        Colors.Effects.sliderBackgroundGradient
-//    }
-//
-//    var knobColor: NSColor {
-//        Colors.Effects.sliderKnobColorForState(unitState)
-//    }
-//
-//    override init(frame: NSRect) {
-//
-//        super.init(frame: frame)
-//        postInit()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//
-//        super.init(coder: coder)
-//        postInit()
-//    }
-//
-//    private var theLayer: CALayer {layer!}
-//
-//    private func postInit() {
-//        wantsLayer = true
-//    }
-//
-//    var progress: CGFloat {
-//        CGFloat((doubleValue - minValue) / (maxValue - minValue))
-//    }
-//
-//    var knobTravelRange: CGFloat {
-//        bounds.height - knobHeight
-//    }
-//
-//    var knobRect: CGRect {
-//
-//        let knobInset = bounds.width / 2 - barWidth / 2 - knobWidthOutsideBar
-//        let knobWidth = barWidth + 2 * knobWidthOutsideBar
-//        let knobCenterY = bounds.minY + knobHeight / 2 + progress * knobTravelRange
-//
-//        return CGRect(x: knobInset, y: knobCenterY - knobHeight / 2, width: knobWidth, height: knobHeight)
-//    }
-//
-//    var barRect: CGRect {
-//        bounds.insetBy(dx: bounds.width / 2 - barWidth / 2, dy: 0)
-//    }
-//
-//    func drawKnob(_ knobRect: CGRect) {
-//
-//        let rectHeight = knobRect.height
-//        let bar = barRect
-//        let yCenter = knobRect.minY + (rectHeight / 2)
-//
-//        let knobWidth: CGFloat = bar.width + knobWidthOutsideBar
-//        let knobMinY = yCenter - (knobHeight / 2)
-//        let rect = NSRect(x: bar.minX - ((knobWidth - bar.width) / 2), y: knobMinY, width: knobWidth, height: knobHeight)
-//
-//        let shape = CAShapeLayer(fillingRoundedRect: rect, radius: knobWidth / 2, withColor: .black)
-//        theLayer.addSublayer(shape)
-//
-//        let shape2 = CAShapeLayer(fillingRoundedRect: rect.insetBy(dx: 2, dy: 2), radius: knobWidth / 2 - 1, withColor: .blue)
-//        theLayer.addSublayer(shape2)
-////        NSBezierPath.fillRoundedRect(rect, radius: knobRadius, withColor: knobColor)
-//    }
-//
-//    func drawBar(inside drawRect: NSRect, flipped: Bool) {
-//
-//        let knobFrame = knobRect
-//        let halfKnobWidth = knobFrame.width / 2
-//
-//        let bottomRect = NSRect(x: drawRect.minX, y: drawRect.minY,
-//                             width: drawRect.width, height: knobFrame.minY + halfKnobWidth)
-//
-//        let topRect = NSRect(x: drawRect.minX, y: knobFrame.maxY - halfKnobWidth,
-//                                width: drawRect.width, height: drawRect.height - knobFrame.maxY + halfKnobWidth)
-//
-//        let bottomShape = CAShapeLayer(fillingRoundedRect: bottomRect, radius: barWidth / 2, withColor: .blue)
-//        theLayer.addSublayer(bottomShape)
-//
-//        // Bottom rect
-////        NSBezierPath.fillRoundedRect(bottomRect, radius: barRadius, withGradient: foregroundGradient, angle: -.verticalGradientDegrees)
-//
-//        let topShape = CAShapeLayer(fillingRoundedRect: topRect, radius: barWidth / 2, withColor: .darkGray)
-//        theLayer.addSublayer(topShape)
-//
-//        // Top rect
-////        NSBezierPath.fillRoundedRect(topRect, radius: barRadius, withGradient: backgroundGradient, angle: -.verticalGradientDegrees)
-//
-//        // Draw one tick across the center of the bar (marking 0dB)
-//        let tickMinX = drawRect.minX + tickInset
-//        let tickMaxX = drawRect.maxX - tickInset
-//
-//        let tickRect = rectOfTickMark(at: 0)
-//        let tickY = tickRect.centerY
-//
-//        // Tick
-////        GraphicsUtils.drawLine(Colors.Effects.sliderTickColor, pt1: NSMakePoint(tickMinX, tickY), pt2: NSMakePoint(tickMaxX, tickY),
-////                               width: tickWidth)
-//    }
-//
-//    override func draw(_ dirtyRect: NSRect) {
-//
-//        theLayer.sublayers?.removeAll()
-//
-//        drawBar(inside: barRect, flipped: false)
-//        drawKnob(knobRect)
-//    }
-//}
-//
-//extension CAShapeLayer {
-//
-//    ///
-//    /// Convenience initializer to create a ``CAShapeLayer`` with a rectangle path and fill it with a solid color.
-//    ///
-//    convenience init(fillingRect rect: CGRect, withColor color: PlatformColor) {
-//
-//        self.init()
-//
-//        self.path = NSBezierPath(rect: rect).cgPath
-//        self.fillColor = color.cgColor
-//    }
-//
-//    ///
-//    /// Convenience initializer to create a ``CAShapeLayer`` with a rounded rectangle path and fill it with a solid color.
-//    ///
-//    /// - Parameter radius:     Rounding radius for the rectangle.
-//    ///
-//    convenience init(fillingRoundedRect rect: CGRect, radius: CGFloat, withColor color: PlatformColor) {
-//
-//        self.init()
-//
-//        self.path = NSBezierPath(roundedRect: rect, cornerRadius: radius).cgPath
-//        self.fillColor = color.cgColor
-//    }
-//}
-//
-//extension NSBezierPath {
-//
-//    ///
-//    /// Convenience initializer to create an ``NSBezierPath`` with the given
-//    /// rounded rectangle and corner radius.
-//    ///
-//    convenience init(roundedRect: NSRect, cornerRadius: CGFloat) {
-//        self.init(roundedRect: roundedRect, xRadius: cornerRadius, yRadius: cornerRadius)
-//    }
-//
-//    /// Converts this ``NSBezierPath`` to a ``CGPath`` (required by ``CALayer``).
-//    var cgPath: CGPath {
-//
-//        let path = CGMutablePath()
-//        var points = [CGPoint](repeating: .zero, count: 3)
-//
-//        for i in 0 ..< self.elementCount {
-//            let type = self.element(at: i, associatedPoints: &points)
-//
-//            switch type {
-//            case .moveTo: path.move(to: CGPoint(x: points[0].x, y: points[0].y) )
-//            case .lineTo: path.addLine(to: CGPoint(x: points[0].x, y: points[0].y) )
-//            case .curveTo: path.addCurve(      to: CGPoint(x: points[2].x, y: points[2].y),
-//                                               control1: CGPoint(x: points[0].x, y: points[0].y),
-//                                               control2: CGPoint(x: points[1].x, y: points[1].y) )
-//            case .closePath: path.closeSubpath()
-//
-//            @unknown default:
-//                NSLog("Encountered unknown CGPath element type:" + String(describing: type))
-//            }
-//        }
-//        return path
-//    }
-//}
+//        layer?.addSublayer(CAShapeLayer(fillingRect: tickRect, withColor: .sliderTicksColor))
+//        layer?.addSublayer(CAShapeLayer(fillingRect: tickRect2, withColor: .sliderTicksColor))
+    }
+}
