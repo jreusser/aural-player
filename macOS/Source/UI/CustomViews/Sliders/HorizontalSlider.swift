@@ -25,6 +25,7 @@ class HorizontalSlider: AuralSlider {
     
     var knobHeight: CGFloat {6}
     var knobWidth: CGFloat {12}
+    lazy var halfKnobWidth = knobWidth / 2
     
     lazy var knobY = centerY - (knobHeight / 2)
     lazy var knobTravelRange = bounds.width - knobWidth
@@ -33,7 +34,7 @@ class HorizontalSlider: AuralSlider {
     
     override var knobRect: NSRect {
         
-//        print("\nValue: \(doubleValue), Prog= \(progress)")
+        print("\nValue: \(doubleValue), Prog= \(progress)")
         
         let knobX = barRect.minX + (progress * knobTravelRange)
         return NSRect(x: knobX, y: knobY, width: knobWidth, height: knobHeight)
@@ -41,9 +42,15 @@ class HorizontalSlider: AuralSlider {
     
     override var progressRect: NSRect {
         
-        let highlightPosition = barRect.minX + (progress * barRect.width)
-        return CGRect(x: 0, y: barRect.minY,
-                      width: highlightPosition - barRect.minX,
-                      height: barRect.height)
+        let progressRectWidth = halfKnobWidth + (progress * knobTravelRange)
+        return CGRect(x: barRect.minX, y: barRect.minY, width: progressRectWidth, height: barRect.height)
     }
+}
+
+class SeekSlider: HorizontalSlider {
+    override var knobWidth: CGFloat {18}
+}
+
+class VolumeSlider: HorizontalSlider {
+    override var knobWidth: CGFloat {15}
 }

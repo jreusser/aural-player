@@ -13,7 +13,7 @@ import Cocoa
 ///
 /// A custom vertical slider for the Equalizer view.
 ///
-class EQSlider: EffectsUnitSlider {
+class EQSlider: AuralSlider {
     
     // MARK: State / constants
     
@@ -45,7 +45,7 @@ class EQSlider: EffectsUnitSlider {
     
     override var knobRect: NSRect {
         
-//        print("\nEQ Value: \(doubleValue), Prog= \(progress)")
+        print("\nEQ Value: \(doubleValue), Prog= \(progress)")
         
         let knobY = barRect.minY + (progress * knobTravelRange)
         return NSRect(x: knobX, y: knobY, width: knobWidth, height: knobHeight)

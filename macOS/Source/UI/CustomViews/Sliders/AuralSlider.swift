@@ -115,26 +115,27 @@ class AuralSlider: NSSlider {
     
     // MARK: Mouse
     
-    override func mouseDown(with event: NSEvent) {
-        
-        let con = convert(event.locationInWindow, from: nil)
-        
-        if self.isVertical {
-            
-            let deltaY = con.y - barRect.minY
-            doubleValue = minValue + (deltaY * valueRange / barRect.height)
-            
-        } else {
-            
-            let deltaX = max(0, con.x - barRect.minX - knobRect.width)
-            doubleValue = minValue + (deltaX * valueRange / knobPhysicalTravelRange)
-            print("\nDBL-1 = \(doubleValue)")
-        }
-        
-//        perform(self.action, with: self.target)
-        super.mouseDown(with: event)
-        print("DBL-2 = \(doubleValue)")
-    }
+//    override func mouseDown(with event: NSEvent) {
+//        
+//        let con = convert(event.locationInWindow, from: nil)
+//        
+//        if self.isVertical {
+//            
+//            let deltaY = con.y - barRect.minY
+//            doubleValue = minValue + (deltaY * valueRange / barRect.height)
+//            
+//        } else {
+//            
+//            let deltaX = max(0, con.x - barRect.minX - knobRect.width)
+//            doubleValue = minValue + (deltaX * valueRange / knobPhysicalTravelRange)
+//            print("\nDBL-1 = \(doubleValue)")
+//        }
+//        
+////        perform(self.action, with: self.target)
+////        super.mouseDown(with: event)
+//        print("DBL-2 = \(doubleValue)")
+//        target?.perform(self.action, with: target)
+//    }
     
     // ----------------------------------------------------
     
