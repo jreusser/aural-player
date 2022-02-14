@@ -36,4 +36,6 @@ protocol EffectsUnitDelegateProtocol {
     func savePreset(named presetName: String)
     
     func applyPreset(named presetName: String)
+    
+    func observeState(handler: @escaping EffectsUnitStateChangeHandler)
 }

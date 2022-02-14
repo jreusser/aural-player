@@ -20,7 +20,7 @@ class SeekSliderView: NSView {
     
     // Shows the time elapsed for the currently playing track, and allows arbitrary seeking within the track
     @IBOutlet weak var seekSlider: NSSlider!
-    @IBOutlet weak var seekSliderCell: SeekSliderCell!
+//    @IBOutlet weak var seekSliderCell: SeekSliderCell!
     
     // A clone of the seek slider, used to render the segment playback loop
     @IBOutlet weak var seekSliderClone: NSSlider!
@@ -115,7 +115,7 @@ class SeekSliderView: NSView {
         hideSeekPositionLabels()
 
         seekSlider.hide()
-        seekSliderCell.removeLoop()
+//        seekSliderCell.removeLoop()
         seekSlider.doubleValue = 0
         seekSlider.disable()
     }
@@ -157,17 +157,17 @@ class SeekSliderView: NSView {
             // If loop start has not yet been marked, mark it (e.g. when marking chapter loops)
             
             seekSliderClone.doubleValue = loop.startTime * 100 / trackDuration
-            seekSliderCell.markLoopStart(seekSliderCloneCell.knobCenter)
+//            seekSliderCell.markLoopStart(seekSliderCloneCell.knobCenter)
             
             // Use the seek slider clone to mark the exact position of the center of the slider knob, at both the start and end points of the playback loop (for rendering)
             if let loopEndTime = loop.endTime {
                 
                 seekSliderClone.doubleValue = loopEndTime * 100 / trackDuration
-                seekSliderCell.markLoopEnd(seekSliderCloneCell.knobCenter)
+//                seekSliderCell.markLoopEnd(seekSliderCloneCell.knobCenter)
             }
             
         } else {
-            seekSliderCell.removeLoop()
+//            seekSliderCell.removeLoop()
         }
 
         seekSlider.redraw()

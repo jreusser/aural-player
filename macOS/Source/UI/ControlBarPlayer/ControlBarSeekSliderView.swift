@@ -131,17 +131,17 @@ class ControlBarSeekSliderView: SeekSliderView {
             let startPerc = startTime * 100 / trackDuration
             
             // If loop start has not yet been marked, mark it (e.g. when marking chapter loops)
-            seekSliderCell.markLoopStart(CGFloat(startPerc))
+//            seekSliderCell.markLoopStart(CGFloat(startPerc))
             
             // Use the seek slider clone to mark the exact position of the center of the slider knob, at both the start and end points of the playback loop (for rendering)
             if let loopEndTime = loop.endTime {
 
                 let endPerc = loopEndTime * 100 / trackDuration
-                seekSliderCell.markLoopEnd(CGFloat(endPerc))
+//                seekSliderCell.markLoopEnd(CGFloat(endPerc))
             }
             
         } else {
-            seekSliderCell.removeLoop()
+//            seekSliderCell.removeLoop()
         }
 
         seekSlider.redraw()

@@ -22,9 +22,9 @@ protocol EffectsUnitSliderCellProtocol {
     var unitState: EffectsUnitState {get set}
 }
 
-class AuralSlider: NSSlider {
+extension NSSlider {
     
-    override func setNeedsDisplay(_ invalidRect: NSRect) {
+    public override func setNeedsDisplay(_ invalidRect: NSRect) {
         super.setNeedsDisplay(bounds)
     }
 }

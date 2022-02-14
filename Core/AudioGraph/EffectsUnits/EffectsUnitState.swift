@@ -12,7 +12,7 @@ import Foundation
 ///
 /// An enumeration of all possible states an effects unit can be in.
 ///
-enum EffectsUnitState: String, CaseIterable, Codable {
+@objc enum EffectsUnitState: Int, CaseIterable, Codable {
     
     // Master unit on, and effects unit on
     case active
@@ -25,3 +25,5 @@ enum EffectsUnitState: String, CaseIterable, Codable {
 }
 
 typealias EffectsUnitStateFunction = () -> EffectsUnitState
+
+typealias EffectsUnitStateChangeHandler = (EffectsUnitState) -> Void

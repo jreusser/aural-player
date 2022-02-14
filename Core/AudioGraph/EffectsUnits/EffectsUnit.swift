@@ -16,11 +16,11 @@ import AVFoundation
 /// No instances of this type are to be used directly, as this class is only intended to be used as a base
 /// class for concrete effects unit classes.
 ///
-class EffectsUnit {
+class EffectsUnit: NSObject {
     
     var unitType: EffectsUnitType
     
-    var state: EffectsUnitState {
+    @objc dynamic var state: EffectsUnitState {
         didSet {stateChanged()}
     }
     
@@ -41,6 +41,8 @@ class EffectsUnit {
         
         self.unitType = unitType
         self.state = unitState
+        
+        super.init()
         stateChanged()
     }
     

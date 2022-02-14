@@ -72,7 +72,6 @@
 		3E3DFFD2260DA0560092F0BF /* MetadataPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DFFD1260DA0560092F0BF /* MetadataPreferencesViewController.swift */; };
 		3E419B5D27B18C0600C2B965 /* HorizontalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E419B5C27B18C0600C2B965 /* HorizontalSlider.swift */; };
 		3E419B5F27B18C6500C2B965 /* CALayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E419B5E27B18C6500C2B965 /* CALayerExtensions.swift */; };
-		3E42BEE027B6E7F200DC2FE3 /* VerticalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42BEDF27B6E7F200DC2FE3 /* VerticalSlider.swift */; };
 		3E4322752687C96E009E8ADB /* ControlBarAppModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4322742687C96E009E8ADB /* ControlBarAppModeController.swift */; };
 		3E43227B2687D531009E8ADB /* ScrollingTrackInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43227A2687D531009E8ADB /* ScrollingTrackInfoView.swift */; };
 		3E43227D2687D65F009E8ADB /* ControlBarPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E43227C2687D65F009E8ADB /* ControlBarPlayer.xib */; };
@@ -89,6 +88,7 @@
 		3E475BC6269652320065FD53 /* FlatPlaylistTests+RemoveTracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E475BC5269652320065FD53 /* FlatPlaylistTests+RemoveTracks.swift */; };
 		3E475BCA2696527A0065FD53 /* FlatPlaylistTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E475BC92696527A0065FD53 /* FlatPlaylistTestCase.swift */; };
 		3E4CC362261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */; };
+		3E50D23227BADAAF0056F63A /* AuralSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50D23127BADAAF0056F63A /* AuralSlider.swift */; };
 		3E51F346262AFDCA0048452F /* ThemesManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E51F345262AFDCA0048452F /* ThemesManager.xib */; };
 		3E51F348262AFDF80048452F /* ThemePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51F347262AFDF80048452F /* ThemePreviewView.swift */; };
 		3E51F34A262AFF310048452F /* ThemesManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51F349262AFF300048452F /* ThemesManagerViewController.swift */; };
@@ -1456,7 +1456,6 @@
 		3E3DFFD1260DA0560092F0BF /* MetadataPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataPreferencesViewController.swift; sourceTree = "<group>"; };
 		3E419B5C27B18C0600C2B965 /* HorizontalSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSlider.swift; sourceTree = "<group>"; };
 		3E419B5E27B18C6500C2B965 /* CALayerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtensions.swift; sourceTree = "<group>"; };
-		3E42BEDF27B6E7F200DC2FE3 /* VerticalSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSlider.swift; sourceTree = "<group>"; };
 		3E4322742687C96E009E8ADB /* ControlBarAppModeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarAppModeController.swift; sourceTree = "<group>"; };
 		3E43227A2687D531009E8ADB /* ScrollingTrackInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTrackInfoView.swift; sourceTree = "<group>"; };
 		3E43227C2687D65F009E8ADB /* ControlBarPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ControlBarPlayer.xib; sourceTree = "<group>"; };
@@ -1475,6 +1474,7 @@
 		3E475BC5269652320065FD53 /* FlatPlaylistTests+RemoveTracks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlatPlaylistTests+RemoveTracks.swift"; sourceTree = "<group>"; };
 		3E475BC92696527A0065FD53 /* FlatPlaylistTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatPlaylistTestCase.swift; sourceTree = "<group>"; };
 		3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterUnitViewController+AUTableViewDelegate.swift"; sourceTree = "<group>"; };
+		3E50D23127BADAAF0056F63A /* AuralSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuralSlider.swift; sourceTree = "<group>"; };
 		3E51F345262AFDCA0048452F /* ThemesManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemesManager.xib; sourceTree = "<group>"; };
 		3E51F347262AFDF80048452F /* ThemePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreviewView.swift; sourceTree = "<group>"; };
 		3E51F349262AFF300048452F /* ThemesManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesManagerViewController.swift; sourceTree = "<group>"; };
@@ -3208,11 +3208,11 @@
 		3E6C0FD225CEB98600BF0D07 /* Sliders */ = {
 			isa = PBXGroup;
 			children = (
+				3E50D23127BADAAF0056F63A /* AuralSlider.swift */,
+				3E419B5C27B18C0600C2B965 /* HorizontalSlider.swift */,
 				3E6C0FD625CEB98600BF0D07 /* HorizontalSliderCell.swift */,
 				3E6C0FD325CEB98600BF0D07 /* TickedSliderCell.swift */,
 				3E6C0FD425CEB98600BF0D07 /* RangeSlider.swift */,
-				3E419B5C27B18C0600C2B965 /* HorizontalSlider.swift */,
-				3E42BEDF27B6E7F200DC2FE3 /* VerticalSlider.swift */,
 			);
 			path = Sliders;
 			sourceTree = "<group>";
@@ -5283,6 +5283,7 @@
 				3EFE396927864897006F8B8C /* PlayerProtocol.swift in Sources */,
 				3EFE3A7F27864898006F8B8C /* FileMetadata.swift in Sources */,
 				3E9E590F25DB6B150064EB5F /* AppModeManager.swift in Sources */,
+				3E50D23227BADAAF0056F63A /* AuralSlider.swift in Sources */,
 				3EFE3B0A27864958006F8B8C /* TypeAliases.swift in Sources */,
 				3EFE3A3927864898006F8B8C /* ID3FFmpegParser.swift in Sources */,
 				3EFE3A7727864898006F8B8C /* AVFFileReader.swift in Sources */,
@@ -5626,7 +5627,6 @@
 				3EFE391727864897006F8B8C /* IntExtensions.swift in Sources */,
 				3EFE37EB27864896006F8B8C /* PersistentPreferencesProtocol.swift in Sources */,
 				3E987ECC2630088600E6836D /* MenuBarPlayerUIState.swift in Sources */,
-				3E42BEE027B6E7F200DC2FE3 /* VerticalSlider.swift in Sources */,
 				3EFE3A5527864898006F8B8C /* MusicBrainzRESTClient.swift in Sources */,
 				3EFE3A9727864898006F8B8C /* TrackReader.swift in Sources */,
 				3E824A4425DB74850089F217 /* MenuBarPlayerViewController.swift in Sources */,

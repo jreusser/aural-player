@@ -25,8 +25,16 @@ class EffectsUnitDelegate<T: EffectsUnit>: EffectsUnitDelegateProtocol {
     
     var unit: T
     
+    private var kvoToken: NSKeyValueObservation? = nil
+    
     init(for unit: T) {
         self.unit = unit
+    }
+    
+    deinit {
+        
+        kvoToken?.invalidate()
+        kvoToken = nil
     }
     
     var unitType: EffectsUnitType {unit.unitType}
@@ -54,5 +62,12 @@ class EffectsUnitDelegate<T: EffectsUnit>: EffectsUnitDelegateProtocol {
         
         unit.applyPreset(named: presetName)
 //        unit.ensureActive()
+    }
+    
+    func observeState(handler: @escaping EffectsUnitStateChangeHandler) {
+        
+        kvoToken = unit.observe(\.state, options: [.initial, .new]) {unit,_ in
+            handler(unit.state)
+        }
     }
 }

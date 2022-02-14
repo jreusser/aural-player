@@ -32,13 +32,13 @@ enum RepeatMode: String, CaseIterable, Codable {
             
         case .off:
             
-            return .one
-            
-        case .one:
-            
             return .all
             
         case .all:
+            
+            return .one
+            
+        case .one:
             
             return .off
         }

@@ -75,14 +75,10 @@ class ColorScheme: NSObject, UserManagedObject {
     @objc dynamic lazy var buttonOffColor: NSColor = defaultPreset.toggleButtonOffStateColor
     
     @objc dynamic lazy var activeControlColor: NSColor = defaultPreset.effectsActiveUnitStateColor
-    @objc dynamic lazy var activeControlGradient: NSGradient = computeActiveControlGradient()
+    @objc dynamic lazy var activeControlGradientColor: NSColor = computeActiveControlGradient()
     
-    private func computeActiveControlGradient() -> NSGradient {
-        
-        let start = defaultPreset.effectsActiveUnitStateColor
-        let end = start.darkened(50)
-        
-        return NSGradient(starting: start, ending: end)!
+    private func computeActiveControlGradient() -> NSColor {
+        activeControlColor.darkened(50)
     }
     
     @objc dynamic lazy var bypassedControlColor: NSColor = defaultPreset.effectsBypassedUnitStateColor
@@ -178,7 +174,7 @@ class ColorScheme: NSObject, UserManagedObject {
     private func setUpKVO() {
         
         kvoTokens.append(self.observe(\.activeControlColor, options: [.initial, .new]) {strongSelf, _ in
-            strongSelf.activeControlGradient = strongSelf.computeActiveControlGradient()
+            strongSelf.activeControlGradientColor = strongSelf.computeActiveControlGradient()
         })
     }
     
