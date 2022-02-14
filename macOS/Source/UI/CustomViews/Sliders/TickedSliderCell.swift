@@ -18,7 +18,7 @@ class TickedSliderCell: HorizontalSliderCell {
     
     var tickVerticalSpacing: CGFloat {1}
     var tickWidth: CGFloat {2}
-    var tickColor: NSColor {.sliderNotchColor}
+    var tickColor: NSColor {systemColorScheme.sliderBackgroundColor}
     
     override internal func drawBar(inside aRect: NSRect, flipped: Bool) {
         

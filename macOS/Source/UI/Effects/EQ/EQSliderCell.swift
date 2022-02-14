@@ -25,7 +25,7 @@ class EQSliderCell: NSSliderCell, EffectsUnitSliderCellProtocol {
     private let tickInset: CGFloat = 1.5
     private let tickWidth: CGFloat = 2
     
-    private let knobHeight: CGFloat = 10
+    private let knobHeight: CGFloat = 12
     private let knobRadius: CGFloat = 1
     private let knobWidthOutsideBar: CGFloat = 1
     
@@ -37,21 +37,15 @@ class EQSliderCell: NSSliderCell, EffectsUnitSliderCellProtocol {
     
     var foregroundGradient: NSGradient {
         
-        let startColor: NSColor
-
         switch unitState {
 
-        case .active:   startColor = systemColorScheme.activeControlColor
+        case .active:   return systemColorScheme.activeControlGradient
 
-        case .bypassed: startColor = systemColorScheme.bypassedControlColor
+        case .bypassed: return systemColorScheme.bypassedControlGradient
 
-        case .suppressed:   startColor = systemColorScheme.suppressedControlColor
+        case .suppressed:   return systemColorScheme.suppressedControlGradient
 
         }
-        
-        let endColor = startColor.darkened(50)
-        
-        return NSGradient(starting: startColor, ending: endColor)!
     }
 
     var backgroundColor: NSColor {
@@ -94,10 +88,9 @@ class EQSliderCell: NSSliderCell, EffectsUnitSliderCellProtocol {
         let knobWidth: CGFloat = bar.width + knobWidthOutsideBar * 2
         let knobMinY = yCenter - (knobHeight / 2)
         let rect = NSRect(x: bar.minX - ((knobWidth - bar.width) / 2), y: knobMinY, width: knobWidth, height: knobHeight)
-//        let rect = NSRect(x: knobRect.minX, y: knobMinY, width: knobWidth, height: knobWidth)
 
         NSBezierPath.fillRoundedRect(rect, radius: knobRadius, withColor: knobColor)
-//        NSBezierPath.fillOval(in: rect, withColor: knobColor)
+        NSBezierPath.strokeRoundedRect(rect, radius: knobRadius, withColor: backgroundColor)
     }
     
     override internal func drawBar(inside drawRect: NSRect, flipped: Bool) {

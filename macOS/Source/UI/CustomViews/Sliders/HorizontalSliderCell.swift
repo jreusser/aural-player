@@ -146,14 +146,11 @@ class HorizontalSliderCell: NSSliderCell {
         let bar = barRect(flipped: true)
         let knobHeight: CGFloat = bar.height + knobHeightOutsideBar
         let knobMinX = knobRect.minX
+        
+        let knobRect = NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobWidth, height: knobHeight)
 
-        NSBezierPath.fillRoundedRect(NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobWidth, height: knobHeight),
-                                     radius: knobRadius,
-                                     withColor: knobColor)
-
-        NSBezierPath.strokeRoundedRect(NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobWidth, height: knobHeight),
-                                     radius: knobRadius,
-                                    withColor: systemColorScheme.sliderBackgroundColor)
+        NSBezierPath.fillRoundedRect(knobRect,radius: knobRadius, withColor: knobColor)
+        NSBezierPath.strokeRoundedRect(knobRect, radius: knobRadius, withColor: backgroundColor)
     }
     
     override func barRect(flipped: Bool) -> NSRect {

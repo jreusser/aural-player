@@ -87,7 +87,28 @@ class ColorScheme: NSObject, UserManagedObject {
     }
     
     @objc dynamic lazy var bypassedControlColor: NSColor = defaultPreset.effectsBypassedUnitStateColor
+    @objc dynamic lazy var bypassedControlGradientColor: NSColor = computeBypassedControlGradientColor()
+    @objc dynamic lazy var bypassedControlGradient: NSGradient = computeBypassedControlGradient()
+    
+    private func computeBypassedControlGradientColor() -> NSColor {
+        bypassedControlColor.darkened(50)
+    }
+    
+    private func computeBypassedControlGradient() -> NSGradient {
+        NSGradient(starting: bypassedControlColor, ending: bypassedControlGradientColor)!
+    }
+    
     @objc dynamic lazy var suppressedControlColor: NSColor = defaultPreset.effectsSuppressedUnitStateColor
+    @objc dynamic lazy var suppressedControlGradientColor: NSColor = computeSuppressedControlGradientColor()
+    @objc dynamic lazy var suppressedControlGradient: NSGradient = computeSuppressedControlGradient()
+    
+    private func computeSuppressedControlGradientColor() -> NSColor {
+        suppressedControlColor.darkened(50)
+    }
+    
+    private func computeSuppressedControlGradient() -> NSGradient {
+        NSGradient(starting: suppressedControlColor, ending: suppressedControlGradientColor)!
+    }
     
     @objc dynamic lazy var sliderBackgroundColor: NSColor = defaultPreset.playerSliderBackgroundColor
     @objc dynamic lazy var sliderKnobColor: NSColor = defaultPreset.playerSliderKnobColor
@@ -179,8 +200,21 @@ class ColorScheme: NSObject, UserManagedObject {
     private func setUpKVO() {
         
         kvoTokens.append(self.observe(\.activeControlColor, options: [.initial, .new]) {strongSelf, _ in
+            
             strongSelf.activeControlGradientColor = strongSelf.computeActiveControlGradientColor()
             strongSelf.activeControlGradient = strongSelf.computeActiveControlGradient()
+        })
+        
+        kvoTokens.append(self.observe(\.bypassedControlColor, options: [.initial, .new]) {strongSelf, _ in
+            
+            strongSelf.bypassedControlGradientColor = strongSelf.computeBypassedControlGradientColor()
+            strongSelf.bypassedControlGradient = strongSelf.computeBypassedControlGradient()
+        })
+        
+        kvoTokens.append(self.observe(\.suppressedControlColor, options: [.initial, .new]) {strongSelf, _ in
+            
+            strongSelf.suppressedControlGradientColor = strongSelf.computeSuppressedControlGradientColor()
+            strongSelf.suppressedControlGradient = strongSelf.computeSuppressedControlGradient()
         })
     }
     
