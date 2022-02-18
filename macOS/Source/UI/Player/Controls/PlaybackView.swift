@@ -115,7 +115,7 @@ class PlaybackView: NSView {
 
     func trackChanged(_ playbackState: PlaybackState, _ loop: PlaybackLoop?, _ newTrack: Track?) {
         
-        btnPlayPause.onIf(playbackState == .playing)
+        btnPlayPause.switchState(playbackState)
         btnLoop.switchState(loop != nil ? PlaybackLoopState.complete : PlaybackLoopState.none)
         [btnPreviousTrack, btnNextTrack].forEach {$0?.updateTooltip()}
         

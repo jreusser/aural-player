@@ -23,6 +23,19 @@ class EffectsUnitTabButtonCell: NSButtonCell {
         drawInterior(withFrame: cellFrame, in: controlView)
     }
     
+    var imageColor: NSColor {
+        
+        switch unitState {
+            
+        case .active:   return systemColorScheme.activeControlColor
+            
+        case .bypassed: return systemColorScheme.bypassedControlColor
+            
+        case .suppressed:   return systemColorScheme.suppressedControlColor
+            
+        }
+    }
+    
     override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
         
         // Draw image (left aligned)
@@ -32,6 +45,9 @@ class EffectsUnitTabButtonCell: NSButtonCell {
         
         // Raise the selected tab image by a few pixels so it is prominent
         let imgRect = cellFrame.insetBy(dx: xInset, dy: yInset).offsetBy(dx: 0, dy: isOn ? -2 : 0)
+        
+        self.image? = self.image!.tintedWithColor(imageColor)
+        
         self.image?.draw(in: imgRect)
         
         // Selection underline
@@ -40,7 +56,7 @@ class EffectsUnitTabButtonCell: NSButtonCell {
             let drawRect = NSRect(x: cellFrame.centerX - (imgRect.width / 2), y: cellFrame.maxY - 2,
                                   width: imgRect.width, height: 2)
             
-//            drawRect.fill(withColor: selectionBoxColor)
+            drawRect.fill(withColor: systemColorScheme.buttonColor)
         }
     }
 }
