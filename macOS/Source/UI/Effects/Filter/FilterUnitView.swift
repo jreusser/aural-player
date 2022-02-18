@@ -148,9 +148,7 @@ class FilterUnitView: NSView {
     }
     
     func stateChanged() {
-        
         redrawChart()
-        bandViews.forEach {$0.stateChanged()}
     }
     
     // ------------------------------------------------------------------------

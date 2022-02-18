@@ -98,12 +98,6 @@ class PitchShiftUnitViewController: EffectsUnitViewController {
         messenger.subscribe(to: .pitchEffectsUnit_setPitch, handler: setPitch(_:))
     }
     
-    override func stateChanged() {
-        
-        super.stateChanged()
-        pitchShiftUnitView.stateChanged()
-    }
-    
     // Sets the pitch to a specific value
     private func setPitch(_ pitch: Float) {
         
@@ -113,9 +107,6 @@ class PitchShiftUnitViewController: EffectsUnitViewController {
         pitchShiftUnit.ensureActive()
         
         pitchShiftUnitView.pitch = newPitch
-        
-        btnBypass.updateState()
-        pitchShiftUnitView.stateChanged()
         
         messenger.publish(.effects_unitStateChanged)
         
@@ -139,7 +130,6 @@ class PitchShiftUnitViewController: EffectsUnitViewController {
         messenger.publish(.effects_unitStateChanged)
         
         pitchShiftUnitView.pitch = pitch
-        pitchShiftUnitView.stateChanged()
         
         // Show the Pitch tab if the Effects panel is shown
         showThisTab()

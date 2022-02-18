@@ -93,12 +93,6 @@ class EQUnitViewController: EffectsUnitViewController {
         messenger.subscribe(to: .eqEffectsUnit_increaseTreble, handler: increaseTreble)
     }
     
-    override func stateChanged() {
-        
-        super.stateChanged()
-        eqUnitView.stateChanged()
-    }
-    
     // Provides a "bass boost". Increases each of the EQ bass bands by a certain preset increment.
     private func increaseBass() {
         bandsUpdated(eqUnit.increaseBass())

@@ -61,12 +61,10 @@ extension AudioUnitsViewController: NSTableViewDelegate {
         
         let audioUnit = audioGraph.audioUnits[row]
         
-        cell.btnSwitch.stateFunction = audioUnit.stateFunction
+//        cell.btnSwitch.stateFunction = audioUnit.stateFunction
         
         cell.btnSwitch.offStateTooltip = "Activate this Audio Unit"
         cell.btnSwitch.onStateTooltip = "Deactivate this Audio Unit"
-        
-        cell.btnSwitch.updateState()
         
         cell.action = {[weak self] in
             

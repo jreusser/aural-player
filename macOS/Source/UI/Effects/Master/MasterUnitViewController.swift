@@ -55,15 +55,7 @@ class MasterUnitViewController: EffectsUnitViewController {
     override func initControls() {
         
         super.initControls()
-        
-        updateButtons()
         broadcastStateChangeNotification()
-    }
-    
-    private func updateButtons() {
-        
-        btnBypass.updateState()
-        masterUnitView.stateChanged()
     }
     
     // ------------------------------------------------------------------------
@@ -73,7 +65,6 @@ class MasterUnitViewController: EffectsUnitViewController {
     @IBAction override func bypassAction(_ sender: AnyObject) {
         
         super.bypassAction(sender)
-        updateButtons()
         broadcastStateChangeNotification()
         
         messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.effectiveRate)
@@ -90,7 +81,6 @@ class MasterUnitViewController: EffectsUnitViewController {
     @IBAction func eqBypassAction(_ sender: AnyObject) {
         
         _ = eqUnit.toggleState()
-        updateButtons()
         broadcastStateChangeNotification()
     }
     
@@ -98,7 +88,6 @@ class MasterUnitViewController: EffectsUnitViewController {
     @IBAction func pitchBypassAction(_ sender: AnyObject) {
         
         _ = pitchShiftUnit.toggleState()
-        updateButtons()
         broadcastStateChangeNotification()
     }
     
@@ -109,7 +98,6 @@ class MasterUnitViewController: EffectsUnitViewController {
         
         messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.effectiveRate)
         
-        updateButtons()
         broadcastStateChangeNotification()
     }
     
@@ -117,7 +105,6 @@ class MasterUnitViewController: EffectsUnitViewController {
     @IBAction func reverbBypassAction(_ sender: AnyObject) {
         
         _ = reverbUnit.toggleState()
-        updateButtons()
         broadcastStateChangeNotification()
     }
     
@@ -125,7 +112,6 @@ class MasterUnitViewController: EffectsUnitViewController {
     @IBAction func delayBypassAction(_ sender: AnyObject) {
         
         _ = delayUnit.toggleState()
-        updateButtons()
         broadcastStateChangeNotification()
     }
     
@@ -133,7 +119,6 @@ class MasterUnitViewController: EffectsUnitViewController {
     @IBAction func filterBypassAction(_ sender: AnyObject) {
         
         _ = filterUnit.toggleState()
-        updateButtons()
         broadcastStateChangeNotification()
     }
     
@@ -155,8 +140,6 @@ class MasterUnitViewController: EffectsUnitViewController {
     }
     
     override func stateChanged() {
-        
-        updateButtons()
         messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.effectiveRate)
         
         audioUnitsTable.reloadData()
@@ -170,8 +153,6 @@ class MasterUnitViewController: EffectsUnitViewController {
         
         // Apply sound profile if there is one for the new track and if the preferences allow it
         if let newTrack = notification.endTrack, soundProfiles.hasFor(newTrack) {
-            
-            updateButtons()
             messenger.publish(.effects_updateEffectsUnitView, payload: EffectsUnitType.master)
         }
     }
@@ -226,7 +207,6 @@ class MasterUnitViewController: EffectsUnitViewController {
     override func changeActiveUnitStateColor(_ color: NSColor) {
         
         super.changeActiveUnitStateColor(color)
-        masterUnitView.changeActiveUnitStateColor(color)
         
         let rowsForActiveUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .active}
         audioUnitsTable.reloadRows(rowsForActiveUnits, columns: [0, 1])
@@ -235,7 +215,6 @@ class MasterUnitViewController: EffectsUnitViewController {
     override func changeBypassedUnitStateColor(_ color: NSColor) {
         
         super.changeBypassedUnitStateColor(color)
-        masterUnitView.changeBypassedUnitStateColor(color)
         
         let rowsForBypassedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .bypassed}
         audioUnitsTable.reloadRows(rowsForBypassedUnits, columns: [0, 1])
@@ -244,7 +223,6 @@ class MasterUnitViewController: EffectsUnitViewController {
     override func changeSuppressedUnitStateColor(_ color: NSColor) {
         
         // Master unit can never be suppressed, but update other unit state buttons
-        masterUnitView.changeSuppressedUnitStateColor(color)
         
         let rowsForSuppressedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .suppressed}
         audioUnitsTable.reloadRows(rowsForSuppressedUnits, columns: [0, 1])

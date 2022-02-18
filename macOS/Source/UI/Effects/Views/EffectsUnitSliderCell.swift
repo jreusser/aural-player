@@ -12,6 +12,8 @@ import Cocoa
 // Cell for all ticked effects sliders
 class EffectsUnitSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
     
+    var effectsUnit: EffectsUnitDelegateProtocol!
+    
     override var barRadius: CGFloat {1.5}
     override var barInsetY: CGFloat {0}
     
@@ -19,34 +21,11 @@ class EffectsUnitSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
     override var knobRadius: CGFloat {1}
     override var knobHeightOutsideBar: CGFloat {2}
     
-//    override var knobColor: NSColor {
-//        Colors.Effects.sliderKnobColorForState(self.unitState)
-//    }
-//
-//    override var tickColor: NSColor {Colors.Effects.sliderTickColor}
-    
     override var tickVerticalSpacing: CGFloat {1}
-    
-//    override var backgroundGradient: NSGradient {
-//        Colors.Effects.sliderBackgroundGradient
-//    }
-//
-//    override var foregroundGradient: NSGradient {
-//
-//        switch self.unitState {
-//
-//        case .active:   return Colors.Effects.activeSliderGradient
-//
-//        case .bypassed: return Colors.Effects.bypassedSliderGradient
-//
-//        case .suppressed:   return Colors.Effects.suppressedSliderGradient
-//
-//        }
-//    }
     
     override var foregroundGradient: NSGradient {
         
-        switch unitState {
+        switch effectsUnit.state {
             
         case .active:       return systemColorScheme.activeControlGradient
             
@@ -59,7 +38,7 @@ class EffectsUnitSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
     
     override var knobColor: NSColor {
         
-        switch unitState {
+        switch effectsUnit.state {
             
         case .active:       return systemColorScheme.activeControlColor
             
@@ -69,8 +48,6 @@ class EffectsUnitSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
             
         }
     }
-    
-    var unitState: EffectsUnitState = .bypassed
     
     override func barRect(flipped: Bool) -> NSRect {
         return NSRect(x: 2, y: 4, width: super.barRect(flipped: flipped).width, height: 4)

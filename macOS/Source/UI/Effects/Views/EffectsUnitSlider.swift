@@ -11,15 +11,12 @@ import Cocoa
 
 protocol EffectsUnitSliderProtocol {
     
-    var unitState: EffectsUnitState {get}
-    var stateFunction: EffectsUnitStateFunction? {get set}
-    
-    func updateState()
+    var effectsUnit: EffectsUnitDelegateProtocol! {get set}
 }
 
 protocol EffectsUnitSliderCellProtocol {
     
-    var unitState: EffectsUnitState {get set}
+    var effectsUnit: EffectsUnitDelegateProtocol! {get set}
 }
 
 extension NSSlider {
@@ -29,29 +26,15 @@ extension NSSlider {
     }
 }
 
-class EffectsUnitSlider: AuralSlider, EffectsUnitSliderProtocol {
+class EffectsUnitSlider: AuralSlider, EffectsUnitSliderProtocol, FXUnitStateObserver {
     
-    private(set) var unitState: EffectsUnitState = .bypassed
-    
-    var stateFunction: EffectsUnitStateFunction? {
-        didSet {updateState()}
+    var effectsUnit: EffectsUnitDelegateProtocol! {
+        
+        didSet {
+            effectsCell?.effectsUnit = effectsUnit
+            redrawOnChangeInState(of: effectsUnit)
+        }
     }
     
     lazy var effectsCell: EffectsUnitSliderCellProtocol? = (self.cell as? EffectsUnitSliderCellProtocol)
-    
-    func updateState() {
-        
-        guard let stateFunction = self.stateFunction else {return}
-        
-        unitState = stateFunction()
-        effectsCell?.unitState = unitState
-        redraw()
-    }
-    
-    func setUnitState(_ state: EffectsUnitState) {
-        
-        self.unitState = state
-        effectsCell?.unitState = unitState
-        redraw()
-    }
 }

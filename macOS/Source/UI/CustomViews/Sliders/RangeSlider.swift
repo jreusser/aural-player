@@ -46,6 +46,16 @@ fileprivate let suppressedColor: NSColor = NSColor(red: 0.53, green: 0.4, blue: 
 @IBDesignable
 class RangeSlider: NSControl, EffectsUnitSliderProtocol {
     
+    var effectsUnit: EffectsUnitDelegateProtocol! {
+        
+        didSet {
+            
+            effectsUnit.observeState {[weak self] _ in
+                self?.redraw()
+            }
+        }
+    }
+    
     //****************************************************************************//
     //****************************************************************************//
     /*
@@ -59,21 +69,6 @@ class RangeSlider: NSControl, EffectsUnitSliderProtocol {
     //MARK: - Public API -
     
     @IBInspectable var index: Int = 0
-    
-    private(set) var unitState: EffectsUnitState = .bypassed {
-        didSet {redraw()}
-    }
-    
-    var stateFunction: EffectsUnitStateFunction?
-    
-    func updateState() {
-        
-        if let function = stateFunction {
-            
-            unitState = function()
-            redraw()
-        }
-    }
     
     private let barTrailingMargin: CGFloat = 1.0
     
@@ -205,7 +200,7 @@ class RangeSlider: NSControl, EffectsUnitSliderProtocol {
     
     var barFillColor: NSColor {
         
-        switch unitState {
+        switch effectsUnit.state {
             
         case .active:   return bandPassColor
             

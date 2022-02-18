@@ -9,11 +9,60 @@
 //
 import Cocoa
 
+protocol FXUnitStateObserver {
+    
+    func reTintOnChangeInState(of effectsUnit: EffectsUnitDelegateProtocol)
+    
+    func off()
+    
+    func on()
+    
+    func mixed()
+    
+    func redrawOnChangeInState(of effectsUnit: EffectsUnitDelegateProtocol)
+    
+    func redraw()
+}
+
+extension FXUnitStateObserver {
+    
+    func reTintOnChangeInState(of effectsUnit: EffectsUnitDelegateProtocol) {
+        
+        effectsUnit.observeState {newState in
+            
+            switch newState {
+                
+            case .bypassed: off()
+                
+            case .active: on()
+                
+            case .suppressed: mixed()
+                
+            }
+        }
+    }
+    
+    func off() {}
+    
+    func on() {}
+    
+    func mixed() {}
+    
+    func redrawOnChangeInState(of effectsUnit: EffectsUnitDelegateProtocol) {
+        
+        effectsUnit.observeState {_ in
+            redraw()
+        }
+    }
+    
+    func redraw() {}
+}
+
 /*
     A special case On/Off image button used as a bypass switch for effects units, with preset images
  */
 @IBDesignable
-class EffectsUnitTriStateBypassImage: NSImageView, Tintable {
+class EffectsUnitTriStateBypassImage: NSImageView, FXUnitStateObserver {
     
     override var image: NSImage? {
         
@@ -28,70 +77,8 @@ class EffectsUnitTriStateBypassImage: NSImageView, Tintable {
         image?.isTemplate = true
     }
     
-    var stateFunction: EffectsUnitStateFunction?
-    
-    var unitState: EffectsUnitState {
-        stateFunction?() ?? .bypassed
-    }
-    
-//    var offStateTintFunction: () -> NSColor = {Colors.Effects.bypassedUnitStateColor} {
-//
-//        didSet {
-//
-//            if !_isOn {
-//                reTint()
-//            }
-//        }
-//    }
-//
-//    var onStateTintFunction: () -> NSColor = {Colors.Effects.activeUnitStateColor} {
-//
-//        didSet {
-//
-//            if _isOn {
-//                reTint()
-//            }
-//        }
-//    }
-//
-//    var mixedStateTintFunction: () -> NSColor = {Colors.Effects.suppressedUnitStateColor} {
-//
-//        didSet {
-//
-//            if unitState == .suppressed {
-//                reTint()
-//            }
-//        }
-//    }
-    
-    func updateState() {
-        
-        switch unitState {
-            
-        case .bypassed: off()
-            
-        case .active: on()
-            
-        case .suppressed: mixed()
-            
-        }
-    }
-    
-    func setUnitState(_ state: EffectsUnitState) {
-        
-        switch state {
-            
-        case .bypassed: off()
-            
-        case .active: on()
-            
-        case .suppressed: mixed()
-            
-        }
-    }
-    
     func mixed() {
-//        contentTintColor = mixedStateTintFunction()
+        contentTintColor = systemColorScheme.suppressedControlColor
     }
     
     private var _isOn: Bool = false
@@ -99,14 +86,14 @@ class EffectsUnitTriStateBypassImage: NSImageView, Tintable {
     // Sets the button state to be "Off"
     func off() {
         
-//        contentTintColor = offStateTintFunction()
+        contentTintColor = systemColorScheme.bypassedControlColor
         _isOn = false
     }
     
     // Sets the button state to be "On"
     func on() {
         
-//        contentTintColor = onStateTintFunction()
+        contentTintColor = systemColorScheme.activeControlColor
         _isOn = true
     }
     
@@ -121,18 +108,7 @@ class EffectsUnitTriStateBypassImage: NSImageView, Tintable {
     }
     
     // Returns true if the button is in the On state, false otherwise.
-    var isOn: Bool {
-        return _isOn
-    }
-    
-    // Bypass is the inverse of "On". If bypass is true, state is "Off".
-    func setBypassState(_ bypass: Bool) {
-        bypass ? off() : on()
-    }
-    
-    func reTint() {
-        updateState()
-    }
+    var isOn: Bool {_isOn}
 }
 
 class EffectsUnitTriStateBypassPreviewImage: EffectsUnitTriStateBypassImage {

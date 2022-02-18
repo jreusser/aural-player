@@ -431,7 +431,7 @@ enum FontSchemePreset: String, CaseIterable {
         
         switch self {
                 
-            case .standard:  return standardFontSet.captionFont(size: 18)
+            case .standard:  return standardFontSet.captionFont(size: 16)
                 
             case .rounded:  return roundedFontSet.captionFont(size: 16)
                 

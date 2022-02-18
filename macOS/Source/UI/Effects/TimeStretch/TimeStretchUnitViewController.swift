@@ -150,12 +150,6 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
         messenger.subscribe(to: .timeEffectsUnit_increaseRate, handler: increaseRate)
         messenger.subscribe(to: .timeEffectsUnit_setRate, handler: setRate(_:))
     }
-    
-    override func stateChanged() {
-        
-        super.stateChanged()
-        timeStretchUnitView.stateChanged()
-    }
 
     // Sets the playback rate to a specific value
     private func setRate(_ rate: Float) {
@@ -201,32 +195,5 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
     
     override func changeSliderColors() {
         timeStretchUnitView.redrawSliders()
-    }
-    
-    override func changeActiveUnitStateColor(_ color: NSColor) {
-        
-        super.changeActiveUnitStateColor(color)
-        
-        if timeStretchUnit.isActive {
-            timeStretchUnitView.changeActiveUnitStateColor(color)
-        }
-    }
-    
-    override func changeBypassedUnitStateColor(_ color: NSColor) {
-        
-        super.changeBypassedUnitStateColor(color)
-        
-        if timeStretchUnit.state == .bypassed {
-            timeStretchUnitView.changeBypassedUnitStateColor(color)
-        }
-    }
-    
-    override func changeSuppressedUnitStateColor(_ color: NSColor) {
-        
-        super.changeSuppressedUnitStateColor(color)
-        
-        if timeStretchUnit.state == .suppressed {
-            timeStretchUnitView.changeSuppressedUnitStateColor(color    )
-        }
     }
 }

@@ -81,12 +81,6 @@ class ReverbUnitViewController: EffectsUnitViewController {
         messenger.subscribe(to: .changeButtonMenuTextColor, handler: changeButtonMenuTextColor(_:))
     }
     
-    override func stateChanged() {
-        
-        super.stateChanged()
-        reverbUnitView.stateChanged()
-    }
-    
     // ------------------------------------------------------------------------
     
     // MARK: Theming

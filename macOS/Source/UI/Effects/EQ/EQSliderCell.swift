@@ -12,58 +12,22 @@ import Cocoa
 /*
     Customizes the look and feel of the parametric EQ sliders
  */
-class EQSliderCell: NSSliderCell, EffectsUnitSliderCellProtocol {
+class EQSliderCell: EffectsUnitSliderCell {
     
     // ------------------------------------------------------------------------
     
     // MARK: Constants
     
-    private let barRadius: CGFloat = 1
-    private let barInsetX: CGFloat = 0
-    private let barInsetY: CGFloat = 0
+    override var barRadius: CGFloat {1}
+    
+    override var knobWidth: CGFloat {10}
+    override var knobRadius: CGFloat {1}
     
     private let tickInset: CGFloat = 1.5
-    private let tickWidth: CGFloat = 2
+    override var tickWidth: CGFloat {2}
     
     private let knobHeight: CGFloat = 12
-    private let knobRadius: CGFloat = 1
     private let knobWidthOutsideBar: CGFloat = 1
-    
-    // ------------------------------------------------------------------------
-    
-    // MARK: Properties
-    
-    var unitState: EffectsUnitState = .bypassed
-    
-    var foregroundGradient: NSGradient {
-        
-        switch unitState {
-
-        case .active:   return systemColorScheme.activeControlGradient
-
-        case .bypassed: return systemColorScheme.bypassedControlGradient
-
-        case .suppressed:   return systemColorScheme.suppressedControlGradient
-
-        }
-    }
-
-    var backgroundColor: NSColor {
-        systemColorScheme.sliderBackgroundColor
-    }
-
-    var knobColor: NSColor {
-        
-        switch unitState {
-            
-        case .active:   return systemColorScheme.activeControlColor
-            
-        case .bypassed: return systemColorScheme.bypassedControlColor
-            
-        case .suppressed:   return systemColorScheme.suppressedControlColor
-            
-        }
-    }
     
     // ------------------------------------------------------------------------
     
@@ -82,7 +46,7 @@ class EQSliderCell: NSSliderCell, EffectsUnitSliderCellProtocol {
     override internal func drawKnob(_ knobRect: NSRect) {
         
         let rectHeight = knobRect.height
-        let bar = barRect(flipped: false).insetBy(dx: barInsetX, dy: barInsetY)
+        let bar = barRect(flipped: false)
         let yCenter = knobRect.minY + (rectHeight / 2)
 
         let knobWidth: CGFloat = bar.width + knobWidthOutsideBar * 2
@@ -98,15 +62,11 @@ class EQSliderCell: NSSliderCell, EffectsUnitSliderCellProtocol {
         let knobFrame = knobRect(flipped: false)
         let halfKnobWidth = knobFrame.width / 2
         
-        let backgroundRect = drawRect.insetBy(dx: barInsetX, dy: barInsetY)
-        
         let bottomRect = NSRect(x: drawRect.minX, y: knobFrame.maxY - halfKnobWidth,
-                                width: drawRect.width, height: drawRect.height - knobFrame.maxY + halfKnobWidth).insetBy(dx: barInsetX, dy: barInsetY)
-        
-//        print("\nTop: \(backgroundRect), BottomRect: \(bottomRect)")
+                                width: drawRect.width, height: drawRect.height - knobFrame.maxY + halfKnobWidth)
         
         // Top rect
-        NSBezierPath.fillRoundedRect(backgroundRect, radius: barRadius, withColor: backgroundColor)
+        NSBezierPath.fillRoundedRect(drawRect, radius: barRadius, withColor: backgroundColor)
         
         // Bottom rect
         NSBezierPath.fillRoundedRect(bottomRect, radius: barRadius, withGradient: foregroundGradient, angle: .verticalGradientDegrees)

@@ -46,7 +46,7 @@ class TimeStretchSliderCell: EffectsUnitSliderCell {
         if panRectWidth > 0 {
             
             let panRect = NSRect(x: panRectX, y: aRect.minY, width: panRectWidth, height: aRect.height)
-            let gradient = integerValue > 0 ? foregroundGradient : foregroundGradient.reversed()
+            let gradient = floatValue > 2 ? foregroundGradient : foregroundGradient.reversed()
             NSBezierPath.fillRoundedRect(panRect, radius: barRadius, withGradient: gradient, angle: -.horizontalGradientDegrees)
         }
     }

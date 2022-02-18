@@ -36,9 +36,7 @@ class ReverbUnitView: NSView {
     // MARK: View initialization
     
     func initialize(stateFunction: @escaping EffectsUnitStateFunction) {
-        
-        reverbAmountSlider.stateFunction = stateFunction
-        reverbAmountSlider.updateState()
+        reverbAmountSlider.effectsUnit = objectGraph.audioGraphDelegate.reverbUnit
     }
     
     // ------------------------------------------------------------------------
@@ -51,10 +49,6 @@ class ReverbUnitView: NSView {
         setAmount(amount, amountString: amountString)
     }
     
-    func setUnitState(_ state: EffectsUnitState) {
-        reverbAmountSlider.setUnitState(state)
-    }
-    
     func setSpace(_ space: String) {
         reverbSpaceMenu.selectItem(withTitle: space)
     }
@@ -65,13 +59,8 @@ class ReverbUnitView: NSView {
         lblReverbAmountValue.stringValue = amountString
     }
     
-    func stateChanged() {
-        reverbAmountSlider.updateState()
-    }
-    
     func applyPreset(_ preset: ReverbPreset) {
         
-        setUnitState(preset.state)
         setSpace(preset.space.description)
         setAmount(preset.amount, amountString: ValueFormatter.formatReverbAmount(preset.amount))
     }

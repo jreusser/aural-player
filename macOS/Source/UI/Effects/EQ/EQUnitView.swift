@@ -47,8 +47,10 @@ class EQUnitView: NSView {
         allSliders = subviews.compactMap({$0 as? EffectsUnitSlider})
         bandSliders = allSliders.filter {$0.tag >= 0}
         
+        let eqUnit = objectGraph.audioGraphDelegate.eqUnit
+        
         allSliders.forEach {
-            $0.stateFunction = stateFunction
+            $0.effectsUnit = eqUnit
         }
         
         bandSliders.forEach {
@@ -65,10 +67,6 @@ class EQUnitView: NSView {
         self.sliderAction = sliderAction
         self.sliderActionTarget = sliderActionTarget
         
-        allSliders.forEach {
-            $0.stateFunction = eqStateFunction
-        }
-        
         bandSliders.forEach {
             
             $0.action = sliderAction
@@ -83,10 +81,6 @@ class EQUnitView: NSView {
     func setState(bands: [Float], globalGain: Float) {
         bandsUpdated(bands, globalGain: globalGain)
     }
-    
-    func setUnitState(_ state: EffectsUnitState) {
-        allSliders.forEach {$0.setUnitState(state)}
-    }
 
     func bandsUpdated(_ bands: [Float], globalGain: Float) {
         
@@ -98,13 +92,7 @@ class EQUnitView: NSView {
         globalGainSlider.floatValue = globalGain
     }
     
-    func stateChanged() {
-        allSliders.forEach {$0.updateState()}
-    }
-    
     func applyPreset(_ preset: EQPreset) {
-    
-        setUnitState(preset.state)
         bandsUpdated(preset.bands, globalGain: preset.globalGain)
     }
 }

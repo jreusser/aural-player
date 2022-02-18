@@ -40,25 +40,13 @@ class TimeStretchUnitView: NSView {
     
     func initialize(stateFunction: @escaping EffectsUnitStateFunction) {
         
-        timeSlider.stateFunction = stateFunction
+        timeSlider.effectsUnit = objectGraph.audioGraphDelegate.timeStretchUnit
 //        btnShiftPitch.stateFunction = stateFunction
     }
     
     // ------------------------------------------------------------------------
     
     // MARK: View update
-    
-    func setUnitState(_ state: EffectsUnitState) {
-        
-        timeSlider.setUnitState(state)
-//        btnShiftPitch.reTint()
-    }
-    
-    func stateChanged() {
-        
-        timeSlider.updateState()
-        btnShiftPitch.stateChanged()
-    }
     
     func setState(rate: Float, rateString: String,
                   shiftPitch: Bool, shiftPitchString: String) {
@@ -85,7 +73,6 @@ class TimeStretchUnitView: NSView {
     
     func applyPreset(_ preset: TimeStretchPreset) {
         
-        setUnitState(preset.state)
         btnShiftPitch.onIf(preset.shiftPitch)
         btnShiftPitch.stateChanged()
         
@@ -111,36 +98,5 @@ class TimeStretchUnitView: NSView {
     
     func redrawSliders() {
         timeSlider.redraw()
-    }
-    
-    func changeActiveUnitStateColor(_ color: NSColor) {
-        
-        redrawSliders()
-        
-//        if btnShiftPitch.isOn {
-//            btnShiftPitch.reTint()
-//        }
-    }
-    
-    func changeBypassedUnitStateColor(_ color: NSColor) {
-        
-        let isBypassed: Bool = timeSlider.unitState == .bypassed
-        
-        if isBypassed {
-            redrawSliders()
-        }
-        
-//        if btnShiftPitch.isOff || isBypassed {
-//            btnShiftPitch.reTint()
-//        }
-    }
-    
-    func changeSuppressedUnitStateColor(_ color: NSColor) {
-        
-        redrawSliders()
-        
-//        if btnShiftPitch.isOn {
-//            btnShiftPitch.reTint()
-//        }
     }
 }

@@ -57,8 +57,10 @@ class DelayUnitView: NSView {
     
     func initialize(stateFunction: @escaping EffectsUnitStateFunction) {
         
+        let delayUnit = objectGraph.audioGraphDelegate.delayUnit
+        
         sliders.forEach {
-            $0.stateFunction = stateFunction
+            $0.effectsUnit = delayUnit
         }
         
         (cutoffSlider.cell as? CutoffFrequencySliderCell)?.filterType = .lowPass
@@ -77,10 +79,6 @@ class DelayUnitView: NSView {
         setAmount(amount, amountString: amountString)
         setFeedback(feedback, feedbackString: feedbackString)
         setCutoff(cutoff, cutoffString: cutoffString)
-    }
-    
-    func setUnitState(_ state: EffectsUnitState) {
-        sliders.forEach {$0.setUnitState(state)}
     }
     
     func setTime(_ time: Double, timeString: String) {
@@ -107,10 +105,6 @@ class DelayUnitView: NSView {
         lblCutoff.stringValue = cutoffString
     }
     
-    func stateChanged() {
-        sliders.forEach {$0.updateState()}
-    }
-    
     func applyPreset(_ preset: DelayPreset) {
         
         amountSlider.floatValue = preset.amount
@@ -124,8 +118,6 @@ class DelayUnitView: NSView {
         
         cutoffSlider.setFrequency(preset.lowPassCutoff)
         lblCutoff.stringValue = ValueFormatter.formatDelayLowPassCutoff(preset.lowPassCutoff)
-        
-        sliders.forEach {$0.setUnitState(preset.state)}
     }
     
     // ------------------------------------------------------------------------

@@ -25,7 +25,7 @@ class EffectsUnitDelegate<T: EffectsUnit>: EffectsUnitDelegateProtocol {
     
     var unit: T
     
-    private var kvoToken: NSKeyValueObservation? = nil
+    private var kvoTokens: [NSKeyValueObservation] = []
     
     init(for unit: T) {
         self.unit = unit
@@ -33,8 +33,8 @@ class EffectsUnitDelegate<T: EffectsUnit>: EffectsUnitDelegateProtocol {
     
     deinit {
         
-        kvoToken?.invalidate()
-        kvoToken = nil
+        kvoTokens.forEach {$0.invalidate()}
+        kvoTokens.removeAll()
     }
     
     var unitType: EffectsUnitType {unit.unitType}
@@ -66,8 +66,8 @@ class EffectsUnitDelegate<T: EffectsUnit>: EffectsUnitDelegateProtocol {
     
     func observeState(handler: @escaping EffectsUnitStateChangeHandler) {
         
-        kvoToken = unit.observe(\.state, options: [.initial, .new]) {unit,_ in
+        kvoTokens.append(unit.observe(\.state, options: [.initial, .new]) {unit,_ in
             handler(unit.state)
-        }
+        })
     }
 }

@@ -92,12 +92,6 @@ class DelayUnitViewController: EffectsUnitViewController {
     
     // MARK: Message handling
     
-    override func stateChanged() {
-        
-        super.stateChanged()
-        delayUnitView.stateChanged()
-    }
-    
     // ------------------------------------------------------------------------
     
     // MARK: Theming

@@ -66,16 +66,12 @@ class PitchShiftUnitView: NSView {
     }
     
     func initialize(stateFunction: @escaping EffectsUnitStateFunction) {
-        pitchSlider.stateFunction = stateFunction
+        pitchSlider.effectsUnit = objectGraph.audioGraphDelegate.pitchShiftUnit
     }
     
     // ------------------------------------------------------------------------
     
     // MARK: View update
-    
-    func setUnitState(_ state: EffectsUnitState) {
-        pitchSlider.setUnitState(state)
-    }
     
     func pitchUpdated() -> PitchShift {
         
@@ -84,14 +80,8 @@ class PitchShiftUnitView: NSView {
         return newPitch
     }
     
-    func stateChanged() {
-        pitchSlider.updateState()
-    }
-    
     func applyPreset(_ preset: PitchShiftPreset) {
-        
         pitch = PitchShift(fromCents: preset.pitch)
-        setUnitState(preset.state)
     }
     
     // ------------------------------------------------------------------------

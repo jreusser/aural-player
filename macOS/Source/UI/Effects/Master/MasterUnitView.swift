@@ -41,72 +41,35 @@ class MasterUnitView: NSView {
     
     override func awakeFromNib() {
         
-        let graph: AudioGraphDelegateProtocol = objectGraph.audioGraphDelegate
-        
         buttons = [btnEQBypass, btnPitchBypass, btnTimeBypass, btnReverbBypass, btnDelayBypass, btnFilterBypass]
         images = [imgEQBypass, imgPitchBypass, imgTimeBypass, imgReverbBypass, imgDelayBypass, imgFilterBypass, imgAUBypass]
         labels = [lblEQ, lblPitch, lblTime, lblReverb, lblDelay, lblFilter, lblAudioUnits]
         
-        btnEQBypass.stateFunction = graph.eqUnit.stateFunction
-        btnPitchBypass.stateFunction = graph.pitchShiftUnit.stateFunction
-        btnTimeBypass.stateFunction = graph.timeStretchUnit.stateFunction
-        btnReverbBypass.stateFunction = graph.reverbUnit.stateFunction
-        btnDelayBypass.stateFunction = graph.delayUnit.stateFunction
-        btnFilterBypass.stateFunction = graph.filterUnit.stateFunction
+        let audioGraph = objectGraph.audioGraphDelegate
         
-        imgEQBypass.stateFunction = graph.eqUnit.stateFunction
-        imgPitchBypass.stateFunction = graph.pitchShiftUnit.stateFunction
-        imgTimeBypass.stateFunction = graph.timeStretchUnit.stateFunction
-        imgReverbBypass.stateFunction = graph.reverbUnit.stateFunction
-        imgDelayBypass.stateFunction = graph.delayUnit.stateFunction
-        imgFilterBypass.stateFunction = graph.filterUnit.stateFunction
-        imgAUBypass.stateFunction = graph.audioUnitsStateFunction
+        ([btnEQBypass, imgEQBypass, lblEQ] as! [FXUnitStateObserver]).forEach {
+            $0.reTintOnChangeInState(of: audioGraph.eqUnit)
+        }
         
-        lblEQ.stateFunction = graph.eqUnit.stateFunction
-        lblPitch.stateFunction = graph.pitchShiftUnit.stateFunction
-        lblTime.stateFunction = graph.timeStretchUnit.stateFunction
-        lblReverb.stateFunction = graph.reverbUnit.stateFunction
-        lblDelay.stateFunction = graph.delayUnit.stateFunction
-        lblFilter.stateFunction = graph.filterUnit.stateFunction
-        lblAudioUnits.stateFunction = graph.audioUnitsStateFunction
+        ([btnPitchBypass, imgPitchBypass, lblPitch] as! [FXUnitStateObserver]).forEach {
+            $0.reTintOnChangeInState(of: audioGraph.pitchShiftUnit)
+        }
         
-        buttons.forEach {$0.updateState()}
-        images.forEach {$0.updateState()}
-        labels.forEach {$0.updateState()}
-    }
-    
-    func stateChanged() {
+        ([btnTimeBypass, imgTimeBypass, lblTime] as! [FXUnitStateObserver]).forEach {
+            $0.reTintOnChangeInState(of: audioGraph.timeStretchUnit)
+        }
         
-        buttons.forEach {$0.updateState()}
-        images.forEach {$0.updateState()}
-        labels.forEach {$0.updateState()}
-    }
-    
-    private func changeUnitStateColor(forState unitState: EffectsUnitState) {
+        ([btnReverbBypass, imgReverbBypass, lblReverb] as! [FXUnitStateObserver]).forEach {
+            $0.reTintOnChangeInState(of: audioGraph.reverbUnit)
+        }
         
-//        buttons.filter {$0.unitState == unitState}.forEach {
-//            $0.reTint()
-//        }
-//        
-//        images.filter {$0.unitState == unitState}.forEach {
-//            $0.reTint()
-//        }
-//        
-//        labels.filter {$0.unitState == unitState}.forEach {
-//            $0.reTint()
-//        }
-    }
-    
-    func changeActiveUnitStateColor(_ color: NSColor) {
-        changeUnitStateColor(forState: .active)
-    }
-    
-    func changeBypassedUnitStateColor(_ color: NSColor) {
-        changeUnitStateColor(forState: .bypassed)
-    }
-    
-    func changeSuppressedUnitStateColor(_ color: NSColor) {
-        changeUnitStateColor(forState: .suppressed)
+        ([btnDelayBypass, imgDelayBypass, lblDelay] as! [FXUnitStateObserver]).forEach {
+            $0.reTintOnChangeInState(of: audioGraph.delayUnit)
+        }
+        
+        ([btnFilterBypass, imgFilterBypass, lblFilter] as! [FXUnitStateObserver]).forEach {
+            $0.reTintOnChangeInState(of: audioGraph.filterUnit)
+        }
     }
     
     func applyPreset(_ preset: MasterPreset) {

@@ -89,8 +89,8 @@ class FilterBandView: NSView {
     private func oneTimeSetup() {
         
         freqRangeSlider.onControlChanged = {[weak self] slider in self?.freqRangeChanged()}
-        freqRangeSlider.stateFunction = filterUnit.stateFunction
-        cutoffSlider.stateFunction = filterUnit.stateFunction
+        freqRangeSlider.effectsUnit = filterUnit
+        cutoffSlider.effectsUnit = filterUnit
         
         functionCaptionLabels = findFunctionCaptionLabels(under: self)
         
@@ -136,9 +136,6 @@ class FilterBandView: NSView {
             
             freqRangeSlider.setFrequencyRange(SoundConstants.audibleRangeMin, SoundConstants.subBass_max)
         }
-        
-        freqRangeSlider.updateState()
-        cutoffSlider.updateState()
         
         presetCutoffsMenu.deselect()
         presetRangesMenu.deselect()
@@ -235,12 +232,6 @@ class FilterBandView: NSView {
         } else {
             return String(format: "%d Hz", rounded)
         }
-    }
-    
-    func stateChanged() {
-        
-        freqRangeSlider.updateState()
-        cutoffSlider.updateState()
     }
     
     private func findFunctionCaptionLabels(under view: NSView) -> [NSTextField] {
