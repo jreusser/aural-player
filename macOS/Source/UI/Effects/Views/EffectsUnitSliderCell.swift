@@ -44,6 +44,32 @@ class EffectsUnitSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
 //        }
 //    }
     
+    override var foregroundGradient: NSGradient {
+        
+        switch unitState {
+            
+        case .active:       return systemColorScheme.activeControlGradient
+            
+        case .bypassed:     return systemColorScheme.bypassedControlGradient
+            
+        case .suppressed:   return systemColorScheme.suppressedControlGradient
+            
+        }
+    }
+    
+    override var knobColor: NSColor {
+        
+        switch unitState {
+            
+        case .active:       return systemColorScheme.activeControlColor
+            
+        case .bypassed:     return systemColorScheme.bypassedControlColor
+            
+        case .suppressed:   return systemColorScheme.suppressedControlColor
+            
+        }
+    }
+    
     var unitState: EffectsUnitState = .bypassed
     
     override func barRect(flipped: Bool) -> NSRect {

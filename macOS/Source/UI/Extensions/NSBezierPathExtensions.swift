@@ -67,6 +67,8 @@ public extension NSBezierPath {
         
         let path = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
         color.setStroke()
+        
+        path.lineWidth = 1
         path.stroke()
     }
     

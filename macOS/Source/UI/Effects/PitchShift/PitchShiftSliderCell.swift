@@ -10,22 +10,13 @@
 
 import Cocoa
 
-class PitchShiftSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
-    
-    var unitState: EffectsUnitState = .bypassed
-    
-    override var barRadius: CGFloat {1}
-    override var barInsetY: CGFloat {0}
-    
-    override var knobWidth: CGFloat {10}
-    override var knobRadius: CGFloat {0.5}
-    override var knobHeightOutsideBar: CGFloat {2}
+class PitchShiftSliderCell: EffectsUnitSliderCell {
     
     // Draw entire bar with single gradient
     override internal func drawBar(inside aRect: NSRect, flipped: Bool) {
-        
-//        NSBezierPath.fillRoundedRect(aRect.leftHalf, radius: barRadius, withGradient: backgroundGradient.reversed(), angle: .horizontalGradientDegrees)
-//        NSBezierPath.fillRoundedRect(aRect.rightHalf, radius: barRadius, withGradient: backgroundGradient, angle: .horizontalGradientDegrees)
+
+        // Background
+        NSBezierPath.fillRoundedRect(aRect, radius: barRadius, withColor: backgroundColor)
         
         drawTicks(aRect)
         
@@ -38,28 +29,10 @@ class PitchShiftSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
         if panRectWidth > 0 {
             
             let panRect = NSRect(x: panRectX, y: aRect.minY, width: panRectWidth, height: aRect.height)
-//            let gradient = integerValue > 0 ? foregroundGradient : foregroundGradient.reversed()
-//
-//            NSBezierPath.fillRoundedRect(panRect, radius: barRadius, withGradient: gradient, angle: -.horizontalGradientDegrees)
+            let gradient = integerValue > 0 ? foregroundGradient : foregroundGradient.reversed()
+            NSBezierPath.fillRoundedRect(panRect, radius: barRadius, withGradient: gradient, angle: -.horizontalGradientDegrees)
         }
     }
-    
-//    override var foregroundGradient: NSGradient {
-//
-//        switch unitState {
-//
-//        case .active:   return Colors.Effects.activeSliderGradient
-//
-//        case .bypassed: return Colors.Effects.bypassedSliderGradient
-//
-//        case .suppressed:   return Colors.Effects.suppressedSliderGradient
-//
-//        }
-//    }
-//
-//    override var knobColor: NSColor {
-//        Colors.Effects.sliderKnobColorForState(unitState)
-//    }
     
     override func knobRect(flipped: Bool) -> NSRect {
         

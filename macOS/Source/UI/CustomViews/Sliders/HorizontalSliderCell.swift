@@ -16,19 +16,19 @@ import Cocoa
 // Base class for all horizontal slider cells
 class HorizontalSliderCell: NSSliderCell {
     
-    // TODO: Apply logic from SeekSliderCell.drawKnob and knobRect here in this class (so that all sliders can benefit from it)
-    
     lazy var valueRange: Double = maxValue - minValue
+    
+    lazy var halfKnobWidth = knobWidth / 2
     
     var knobPhysicalTravelRange: CGFloat {0}
     
     var gradientDegrees: CGFloat {.horizontalGradientDegrees}
+//    var gradientDegrees: CGFloat {.verticalGradientDegrees}
     
     // ----------------------------------------------------
     
     // MARK: Bar
 
-    var barInsetX: CGFloat {0}
     var barInsetY: CGFloat {0}
     var barRadius: CGFloat {1}
     
@@ -62,8 +62,6 @@ class HorizontalSliderCell: NSSliderCell {
     // MARK: Colors
     
     var backgroundColor: NSColor {systemColorScheme.sliderBackgroundColor}
-    
-    var foregroundColor: NSColor {systemColorScheme.activeControlColor}
     var foregroundGradient: NSGradient {systemColorScheme.activeControlGradient}
     
     var knobColor: NSColor {
@@ -119,12 +117,7 @@ class HorizontalSliderCell: NSSliderCell {
     }
     
     func drawBackground(inRect rect: NSRect, knobFrame: NSRect) {
-        
-        let halfKnobWidth = knobFrame.width / 2
-        let rightRect = NSRect(x: knobFrame.maxX - halfKnobWidth, y: rect.minY,
-                               width: rect.width - (knobFrame.maxX - halfKnobWidth), height: rect.height)
-        
-        NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withColor: backgroundColor)
+        NSBezierPath.fillRoundedRect(rect, radius: barRadius, withColor: backgroundColor)
     }
     
     override func knobRect(flipped: Bool) -> NSRect {
@@ -154,6 +147,10 @@ class HorizontalSliderCell: NSSliderCell {
     }
     
     override func barRect(flipped: Bool) -> NSRect {
-        super.barRect(flipped: flipped).insetBy(dx: barInsetX, dy: barInsetY)
+        
+        let superRect = super.barRect(flipped: flipped).insetBy(dx: 0, dy: barInsetY)
+        
+        let viewWidth = controlView?.width ?? superRect.width
+        return NSRect(x: 0, y: superRect.minY, width: viewWidth, height: superRect.height)
     }
 }
