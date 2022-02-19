@@ -12,13 +12,42 @@ import Cocoa
 /*
     Customizes the look and feel of the parametric EQ sliders
  */
-class EQSliderCell: EffectsUnitSliderCell {
+class EQSliderCell: AuralSliderCell, EffectsUnitSliderCellProtocol {
+    
+    var effectsUnit: EffectsUnitDelegateProtocol!
+    
+    override var foregroundGradient: NSGradient {
+        
+        switch effectsUnit.state {
+            
+        case .active:       return systemColorScheme.activeControlGradient
+            
+        case .bypassed:     return systemColorScheme.bypassedControlGradient
+            
+        case .suppressed:   return systemColorScheme.suppressedControlGradient
+            
+        }
+    }
+    
+    override var knobColor: NSColor {
+        
+        switch effectsUnit.state {
+            
+        case .active:       return systemColorScheme.activeControlColor
+            
+        case .bypassed:     return systemColorScheme.bypassedControlColor
+            
+        case .suppressed:   return systemColorScheme.suppressedControlColor
+            
+        }
+    }
     
     // ------------------------------------------------------------------------
     
     // MARK: Constants
     
     override var barRadius: CGFloat {1}
+    var barWidth: CGFloat {3}
     
     override var knobWidth: CGFloat {10}
     override var knobRadius: CGFloat {1}
@@ -36,7 +65,11 @@ class EQSliderCell: EffectsUnitSliderCell {
     // Force knobRect and barRect to NOT be flipped
     
     override func barRect(flipped: Bool) -> NSRect {
-        super.barRect(flipped: false)
+        
+        let superRect = originalBarRect
+        let diff = superRect.width - barWidth
+        
+        return superRect.insetBy(dx: diff / 2, dy: 0)
     }
     
     override internal func drawKnob(_ knobRect: NSRect) {
@@ -55,13 +88,9 @@ class EQSliderCell: EffectsUnitSliderCell {
     
     override internal func drawBar(inside drawRect: NSRect, flipped: Bool) {
         
-        let knobFrame = unFlippedKnobRect
-        let halfKnobWidth = knobFrame.width / 2
-        
+        let knobFrame = knobRect(flipped: false)
         let bottomRect = NSRect(x: drawRect.minX, y: drawRect.minY,
                                 width: drawRect.width, height: knobFrame.centerY - drawRect.minY)
-        
-        print("Draw: \(drawRect), BottomRect: \(bottomRect)")
         
         // Top rect
         NSBezierPath.fillRoundedRect(drawRect, radius: barRadius, withColor: backgroundColor)
@@ -82,7 +111,7 @@ class EQSliderCell: EffectsUnitSliderCell {
     }
     
     override func knobRect(flipped: Bool) -> NSRect {
-        unFlippedKnobRect
+        originalKnobRect
     }
     
     override func drawTickMarks() {

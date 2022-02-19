@@ -11,7 +11,6 @@ import Cocoa
 
 class ControlBarSeekSliderCell: SeekSliderCell {
     
-    override var barInsetY: CGFloat {-0.5}
     override var barRadius: CGFloat {1}
     
     private let loopMarkerWidth: CGFloat = 8

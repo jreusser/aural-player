@@ -10,10 +10,9 @@
 import Cocoa
 
 // Cell for pan slider
-class PanSliderCell: TickedSliderCell {
+class PanSliderCell: HorizontalSliderCell {
     
     override var barRadius: CGFloat {1}
-    override var barInsetY: CGFloat {0}
     
     override var knobWidth: CGFloat {6}
     override var knobRadius: CGFloat {0.5}

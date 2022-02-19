@@ -11,5 +11,6 @@ import Cocoa
 
 // Cell for volume slider
 class VolumeSliderCell: HorizontalSliderCell {
+    
     override var knobWidth: CGFloat {10}
 }

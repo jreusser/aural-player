@@ -10,18 +10,15 @@
 import Cocoa
 
 // Cell for all ticked effects sliders
-class EffectsUnitSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
+class EffectsUnitSliderCell: HorizontalSliderCell, EffectsUnitSliderCellProtocol {
     
     var effectsUnit: EffectsUnitDelegateProtocol!
     
     override var barRadius: CGFloat {1.5}
-    override var barInsetY: CGFloat {0}
     
     override var knobWidth: CGFloat {10}
     override var knobRadius: CGFloat {1}
     override var knobHeightOutsideBar: CGFloat {2}
-    
-    override var tickVerticalSpacing: CGFloat {1}
     
     override var foregroundGradient: NSGradient {
         

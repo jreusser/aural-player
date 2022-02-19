@@ -53,11 +53,11 @@ class SeekSliderCell: HorizontalSliderCell {
             return
         }
         
-        let knobFrame = knobRect(flipped: false)
-        
-        drawBackground(inRect: aRect, knobFrame: knobFrame)
+        drawBackground(inRect: aRect)
         
         // Render segment playback loop, if one is defined
+        
+        let knobFrame = knobRect(flipped: false)
         
         // Start and end points for the loop
         let startX = loop.start
