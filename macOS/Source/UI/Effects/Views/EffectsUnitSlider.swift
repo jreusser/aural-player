@@ -26,17 +26,7 @@ extension NSSlider {
     }
 }
 
-class EffectsUnitSlider: AuralSlider, EffectsUnitSliderProtocol, FXUnitStateObserver {
+class EffectsUnitSlider: AuralSlider, FXUnitStateObserver {
     
     override var isFlipped: Bool {false}
-    
-    var effectsUnit: EffectsUnitDelegateProtocol! {
-        
-        didSet {
-            effectsCell?.effectsUnit = effectsUnit
-            redrawOnChangeInState(of: effectsUnit)
-        }
-    }
-    
-    lazy var effectsCell: EffectsUnitSliderCellProtocol? = (self.cell as? EffectsUnitSliderCellProtocol)
 }

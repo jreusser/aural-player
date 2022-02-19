@@ -12,13 +12,13 @@ import Cocoa
 /*
     Customizes the look and feel of the parametric EQ sliders
  */
-class EQSliderCell: AuralSliderCell, EffectsUnitSliderCellProtocol {
+class EQSliderCell: AuralSliderCell {
     
-    var effectsUnit: EffectsUnitDelegateProtocol!
+    lazy var observingSlider: EffectsUnitSlider = controlView as! EffectsUnitSlider
     
     override var foregroundGradient: NSGradient {
         
-        switch effectsUnit.state {
+        switch fxUnitStateObserverRegistry.currentState(forObserver: observingSlider) {
             
         case .active:       return systemColorScheme.activeControlGradient
             
@@ -31,7 +31,7 @@ class EQSliderCell: AuralSliderCell, EffectsUnitSliderCellProtocol {
     
     override var knobColor: NSColor {
         
-        switch effectsUnit.state {
+        switch fxUnitStateObserverRegistry.currentState(forObserver: observingSlider) {
             
         case .active:       return systemColorScheme.activeControlColor
             

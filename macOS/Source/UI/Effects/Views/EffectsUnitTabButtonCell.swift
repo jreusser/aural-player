@@ -23,6 +23,12 @@ class EffectsUnitTabButtonCell: NSButtonCell {
         drawInterior(withFrame: cellFrame, in: controlView)
     }
     
+    lazy var tabButton: EffectsUnitTabButton = controlView as! EffectsUnitTabButton
+    
+    var isSelected: Bool {
+        tabButton.isSelected
+    }
+    
     var imageColor: NSColor {
         
         switch unitState {
@@ -44,14 +50,14 @@ class EffectsUnitTabButtonCell: NSButtonCell {
         let yInset = (rectHeight - CGFloat(imgHeight)) / 2
         
         // Raise the selected tab image by a few pixels so it is prominent
-        let imgRect = cellFrame.insetBy(dx: xInset, dy: yInset).offsetBy(dx: 0, dy: isOn ? -2 : 0)
+        let imgRect = cellFrame.insetBy(dx: xInset, dy: yInset).offsetBy(dx: 0, dy: isSelected ? -2 : 0)
         
         self.image? = self.image!.tintedWithColor(imageColor)
         
         self.image?.draw(in: imgRect)
         
         // Selection underline
-        if isOn {
+        if isSelected {
             
             let drawRect = NSRect(x: cellFrame.centerX - (imgRect.width / 2), y: cellFrame.maxY - 2,
                                   width: imgRect.width, height: 2)

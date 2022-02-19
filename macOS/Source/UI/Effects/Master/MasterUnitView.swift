@@ -48,27 +48,27 @@ class MasterUnitView: NSView {
         let audioGraph = objectGraph.audioGraphDelegate
         
         ([btnEQBypass, imgEQBypass, lblEQ] as! [FXUnitStateObserver]).forEach {
-            $0.reTintOnChangeInState(of: audioGraph.eqUnit)
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.eqUnit)
         }
         
         ([btnPitchBypass, imgPitchBypass, lblPitch] as! [FXUnitStateObserver]).forEach {
-            $0.reTintOnChangeInState(of: audioGraph.pitchShiftUnit)
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.pitchShiftUnit)
         }
         
         ([btnTimeBypass, imgTimeBypass, lblTime] as! [FXUnitStateObserver]).forEach {
-            $0.reTintOnChangeInState(of: audioGraph.timeStretchUnit)
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.timeStretchUnit)
         }
         
         ([btnReverbBypass, imgReverbBypass, lblReverb] as! [FXUnitStateObserver]).forEach {
-            $0.reTintOnChangeInState(of: audioGraph.reverbUnit)
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.reverbUnit)
         }
         
         ([btnDelayBypass, imgDelayBypass, lblDelay] as! [FXUnitStateObserver]).forEach {
-            $0.reTintOnChangeInState(of: audioGraph.delayUnit)
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.delayUnit)
         }
         
         ([btnFilterBypass, imgFilterBypass, lblFilter] as! [FXUnitStateObserver]).forEach {
-            $0.reTintOnChangeInState(of: audioGraph.filterUnit)
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.filterUnit)
         }
     }
     

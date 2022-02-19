@@ -10,9 +10,7 @@
 import Cocoa
 
 // Cell for all ticked effects sliders
-class EffectsUnitSliderCell: HorizontalSliderCell, EffectsUnitSliderCellProtocol {
-    
-    var effectsUnit: EffectsUnitDelegateProtocol!
+class EffectsUnitSliderCell: HorizontalSliderCell {
     
     override var barRadius: CGFloat {1.5}
     
@@ -20,9 +18,11 @@ class EffectsUnitSliderCell: HorizontalSliderCell, EffectsUnitSliderCellProtocol
     override var knobRadius: CGFloat {1}
     override var knobHeightOutsideBar: CGFloat {2}
     
+    lazy var observingSlider: EffectsUnitSlider = controlView as! EffectsUnitSlider
+    
     override var foregroundGradient: NSGradient {
         
-        switch effectsUnit.state {
+        switch fxUnitStateObserverRegistry.currentState(forObserver: observingSlider) {
             
         case .active:       return systemColorScheme.activeControlGradient
             
@@ -35,7 +35,7 @@ class EffectsUnitSliderCell: HorizontalSliderCell, EffectsUnitSliderCellProtocol
     
     override var knobColor: NSColor {
         
-        switch effectsUnit.state {
+        switch fxUnitStateObserverRegistry.currentState(forObserver: observingSlider) {
             
         case .active:       return systemColorScheme.activeControlColor
             
@@ -45,8 +45,4 @@ class EffectsUnitSliderCell: HorizontalSliderCell, EffectsUnitSliderCellProtocol
             
         }
     }
-    
-//    override func barRect(flipped: Bool) -> NSRect {
-//        return NSRect(x: 0, y: 4, width: super.barRect(flipped: flipped).width, height: 4)
-//    }
 }

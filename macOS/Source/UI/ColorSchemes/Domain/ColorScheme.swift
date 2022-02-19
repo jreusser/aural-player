@@ -219,17 +219,17 @@ class ColorScheme: NSObject, UserManagedObject {
     }
     
     // Applies a system-defined preset to this scheme.
-    func applyPreset(_ preset: ColorSchemePreset) {
-        
-        backgroundColor = preset.backgroundColor
-        buttonColor = preset.functionButtonColor
-        buttonOffColor = preset.toggleButtonOffStateColor
-        
-//        self.general.applyPreset(preset)
-//        self.player.applyPreset(preset)
-//        self.playlist.applyPreset(preset)
-//        self.effects.applyPreset(preset)
-    }
+//    func applyPreset(_ preset: ColorSchemePreset) {
+//        
+//        backgroundColor = preset.backgroundColor
+//        buttonColor = preset.functionButtonColor
+//        buttonOffColor = preset.toggleButtonOffStateColor
+//        
+////        self.general.applyPreset(preset)
+////        self.player.applyPreset(preset)
+////        self.playlist.applyPreset(preset)
+////        self.effects.applyPreset(preset)
+//    }
     
     // Applies another color scheme to this scheme.
     func applyScheme(_ scheme: ColorScheme) {
@@ -243,6 +243,8 @@ class ColorScheme: NSObject, UserManagedObject {
         tertiaryTextColor = scheme.tertiaryTextColor
         
         activeControlColor = scheme.activeControlColor
+        bypassedControlColor = scheme.bypassedControlColor
+        suppressedControlColor = scheme.suppressedControlColor
         sliderBackgroundColor = scheme.sliderBackgroundColor
         
 //        self.general.applyScheme(scheme.general)

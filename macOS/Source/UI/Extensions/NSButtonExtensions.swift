@@ -12,11 +12,11 @@ import Cocoa
 extension NSButton {
     
     @objc func off() {
-        self.state = .off
+        state = .off
     }
     
     @objc func on() {
-        self.state = .on
+        state = .on
     }
     
     @objc func onIf(_ condition: Bool) {
@@ -24,11 +24,15 @@ extension NSButton {
     }
     
     @objc var isOn: Bool {
-        return self.state == .on
+        state == .on
     }
     
     @objc var isOff: Bool {
-        return self.state == .off
+        state == .off
+    }
+    
+    @objc var isMixed: Bool {
+        state == .mixed
     }
     
     @objc func toggle() {

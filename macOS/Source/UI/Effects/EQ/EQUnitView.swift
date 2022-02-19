@@ -50,7 +50,7 @@ class EQUnitView: NSView {
         let eqUnit = objectGraph.audioGraphDelegate.eqUnit
         
         allSliders.forEach {
-            $0.effectsUnit = eqUnit
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: eqUnit)
         }
         
         bandSliders.forEach {

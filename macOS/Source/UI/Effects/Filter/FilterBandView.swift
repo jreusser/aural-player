@@ -89,8 +89,9 @@ class FilterBandView: NSView {
     private func oneTimeSetup() {
         
         freqRangeSlider.onControlChanged = {[weak self] slider in self?.freqRangeChanged()}
-        freqRangeSlider.effectsUnit = filterUnit
-        cutoffSlider.effectsUnit = filterUnit
+        
+        fxUnitStateObserverRegistry.registerObserver(freqRangeSlider, forFXUnit: filterUnit)
+        fxUnitStateObserverRegistry.registerObserver(cutoffSlider, forFXUnit: filterUnit)
         
         functionCaptionLabels = findFunctionCaptionLabels(under: self)
         

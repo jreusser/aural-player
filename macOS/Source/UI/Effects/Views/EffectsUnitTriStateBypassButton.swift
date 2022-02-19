@@ -12,7 +12,7 @@ import Cocoa
 /*
     A special case On/Off image button used as a bypass switch for effects units, with preset images
  */
-class EffectsUnitTriStateBypassButton: OnOffImageButton, FXUnitStateObserver {
+class EffectsUnitTriStateBypassButton: OnOffImageButton, TintableFXUnitStateObserver {
     
     override var image: NSImage? {
         
@@ -30,10 +30,6 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton, FXUnitStateObserver {
         image = Images.imgSwitch
         image?.isTemplate = true
         
-        // Override the tint functions from OnOffImageButton
-//        offStateTintFunction = {Colors.Effects.bypassedUnitStateColor}
-//        onStateTintFunction = {Colors.Effects.activeUnitStateColor}
-        
         offStateTooltip = offStateTooltip ?? "Activate this effects unit"
         onStateTooltip = onStateTooltip ?? "Deactivate this effects unit"
         mixedStateTooltip = offStateTooltip
@@ -42,22 +38,20 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton, FXUnitStateObserver {
     // Sets the button state to be "Off"
     override func off() {
         
-        contentTintColor = systemColorScheme.bypassedControlColor
         toolTip = offStateTooltip
-        _isOn = false
+        state = .off
     }
     
     // Sets the button state to be "On"
     override func on() {
         
-        contentTintColor = systemColorScheme.activeControlColor
         toolTip = onStateTooltip
-        _isOn = true
+        state = .on
     }
     
     func mixed() {
         
-        contentTintColor = systemColorScheme.suppressedControlColor
         toolTip = mixedStateTooltip
+        state = .mixed
     }
 }

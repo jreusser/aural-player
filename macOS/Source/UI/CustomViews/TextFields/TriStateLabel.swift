@@ -13,40 +13,22 @@ import Cocoa
  An image button that can be toggled On/Off and displays different images depending on its state
  */
 @IBDesignable
-class EffectsUnitTriStateLabel: CenterTextLabel, FunctionLabel, FXUnitStateObserver {
+class EffectsUnitTriStateLabel: CenterTextLabel, FunctionLabel, TextualFXUnitStateObserver {
     
-    var stateFunction: EffectsUnitStateFunction?
-    
-    var unitState: EffectsUnitState {
-        stateFunction?() ?? .bypassed
-    }
-    
-    // The image displayed when the button is in an "Off" state
-    var offStateColor: NSColor {systemColorScheme.bypassedControlColor}
-
-    // The image displayed when the button is in an "On" state
-    var onStateColor: NSColor {systemColorScheme.activeControlColor}
-
-    var mixedStateColor: NSColor {systemColorScheme.suppressedControlColor}
-    
-    private var _isOn: Bool = false
+    private var state: NSControl.StateValue = .off
     
     // Sets the button state to be "Off"
     func off() {
-        
-        self.textColor = offStateColor
-        _isOn = false
+        state = .off
     }
     
     // Sets the button state to be "On"
     func on() {
-        
-        self.textColor = onStateColor
-        _isOn = true
+        state = .on
     }
     
     func mixed() {
-        self.textColor = mixedStateColor
+        state = .off
     }
     
     // Convenience function to set the button to "On" if the specified condition is true, and "Off" if not.
@@ -56,11 +38,11 @@ class EffectsUnitTriStateLabel: CenterTextLabel, FunctionLabel, FXUnitStateObser
     
     // Toggles the On/Off state
     func toggle() {
-        _isOn ? off() : on()
+        isOn ? off() : on()
     }
     
     // Returns true if the button is in the On state, false otherwise.
-    var isOn: Bool {_isOn}
+    var isOn: Bool {state == .on}
 }
 
 class EffectsUnitTriStatePreviewLabel: EffectsUnitTriStateLabel {

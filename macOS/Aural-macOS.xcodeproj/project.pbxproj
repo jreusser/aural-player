@@ -585,6 +585,7 @@
 		3EE9BBE9268F90BE0073321A /* TimeStretchUnitPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE9BBE8268F90BE0073321A /* TimeStretchUnitPersistenceTests.swift */; };
 		3EE9BCB7278A896800DFFDD7 /* ColorSchemeableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE9BCB6278A896800DFFDD7 /* ColorSchemeableBox.swift */; };
 		3EEBC6EC27C14A4B00880DFD /* HorizontalSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEBC6EB27C14A4B00880DFD /* HorizontalSliderCell.swift */; };
+		3EEBC6EE27C16CF700880DFD /* EffectsUnitStateObserverRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEBC6ED27C16CF700880DFD /* EffectsUnitStateObserverRegistry.swift */; };
 		3EEC04132687A8E1004478CE /* MenuBarPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC04122687A8E1004478CE /* MenuBarPlaybackViewController.swift */; };
 		3EEC04152687A940004478CE /* WindowedModePlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC04142687A940004478CE /* WindowedModePlaybackViewController.swift */; };
 		3EEC04172687A982004478CE /* MenuBarPlayerSequencingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC04162687A982004478CE /* MenuBarPlayerSequencingViewController.swift */; };
@@ -1992,6 +1993,7 @@
 		3EE9BCB5278A715A00DFFDD7 /* Aural-4.0.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "Aural-4.0.rtf"; path = "../Aural-4.0.rtf"; sourceTree = "<group>"; };
 		3EE9BCB6278A896800DFFDD7 /* ColorSchemeableBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeableBox.swift; sourceTree = "<group>"; };
 		3EEBC6EB27C14A4B00880DFD /* HorizontalSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSliderCell.swift; sourceTree = "<group>"; };
+		3EEBC6ED27C16CF700880DFD /* EffectsUnitStateObserverRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsUnitStateObserverRegistry.swift; sourceTree = "<group>"; };
 		3EEC04122687A8E1004478CE /* MenuBarPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlaybackViewController.swift; sourceTree = "<group>"; };
 		3EEC04142687A940004478CE /* WindowedModePlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowedModePlaybackViewController.swift; sourceTree = "<group>"; };
 		3EEC04162687A982004478CE /* MenuBarPlayerSequencingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayerSequencingViewController.swift; sourceTree = "<group>"; };
@@ -2758,6 +2760,7 @@
 				3EFE3A9B27864942006F8B8C /* FFmpeg */,
 				3E6C112C25CEB98700BF0D07 /* MediaKeyHandling */,
 				3E6C0F1A25CEB98500BF0D07 /* UI */,
+				3EEBC6ED27C16CF700880DFD /* EffectsUnitStateObserverRegistry.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -5798,6 +5801,7 @@
 				3EB3A60E26A744C80060487C /* SingletonPopoverViewController.swift in Sources */,
 				3EFE385B27864896006F8B8C /* TimeStretchUnitProtocol.swift in Sources */,
 				3EB3A60B26A7425C0060487C /* SingletonWindowController.swift in Sources */,
+				3EEBC6EE27C16CF700880DFD /* EffectsUnitStateObserverRegistry.swift in Sources */,
 				3E6C12A225CEBE2700BF0D07 /* SnappingWindow.swift in Sources */,
 				3EFE387127864896006F8B8C /* HostedAudioUnitProtocol.swift in Sources */,
 				3E62979426A3C0F100C96AB8 /* SnappingWindowDelegate.swift in Sources */,

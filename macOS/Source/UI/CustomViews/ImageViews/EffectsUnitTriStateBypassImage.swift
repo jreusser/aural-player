@@ -9,60 +9,71 @@
 //
 import Cocoa
 
-protocol FXUnitStateObserver {
+protocol FXUnitStateObserver: AnyObject {
     
-    func reTintOnChangeInState(of effectsUnit: EffectsUnitDelegateProtocol)
-    
-    func off()
-    
-    func on()
-    
-    func mixed()
-    
-    func redrawOnChangeInState(of effectsUnit: EffectsUnitDelegateProtocol)
+    func unitStateChanged(to newState: EffectsUnitState)
     
     func redraw()
 }
 
 extension FXUnitStateObserver {
     
-    func reTintOnChangeInState(of effectsUnit: EffectsUnitDelegateProtocol) {
+    func unitStateChanged(to newState: EffectsUnitState) {
+        redraw()
+    }
+}
+
+protocol TintableFXUnitStateObserver: FXUnitStateObserver {
+    
+    var contentTintColor: NSColor? {get set}
+}
+
+extension TintableFXUnitStateObserver {
+    
+    func unitStateChanged(to newState: EffectsUnitState) {
         
-        effectsUnit.observeState {newState in
+        switch newState {
             
-            switch newState {
-                
-            case .bypassed: off()
-                
-            case .active: on()
-                
-            case .suppressed: mixed()
-                
-            }
+        case .active:
+            contentTintColor = systemColorScheme.activeControlColor
+            
+        case .bypassed:
+            contentTintColor = systemColorScheme.bypassedControlColor
+            
+        case .suppressed:
+            contentTintColor = systemColorScheme.suppressedControlColor
         }
     }
+}
+
+protocol TextualFXUnitStateObserver: FXUnitStateObserver {
     
-    func off() {}
+    var textColor: NSColor? {get set}
+}
+
+extension TextualFXUnitStateObserver {
     
-    func on() {}
-    
-    func mixed() {}
-    
-    func redrawOnChangeInState(of effectsUnit: EffectsUnitDelegateProtocol) {
+    func unitStateChanged(to newState: EffectsUnitState) {
         
-        effectsUnit.observeState {_ in
-            redraw()
+        switch newState {
+            
+        case .active:
+            textColor = systemColorScheme.activeControlColor
+            
+        case .bypassed:
+            textColor = systemColorScheme.bypassedControlColor
+            
+        case .suppressed:
+            textColor = systemColorScheme.suppressedControlColor
         }
     }
-    
-    func redraw() {}
 }
 
 /*
     A special case On/Off image button used as a bypass switch for effects units, with preset images
  */
 @IBDesignable
-class EffectsUnitTriStateBypassImage: NSImageView, FXUnitStateObserver {
+class EffectsUnitTriStateBypassImage: NSImageView, TintableFXUnitStateObserver {
     
     override var image: NSImage? {
         
@@ -78,23 +89,19 @@ class EffectsUnitTriStateBypassImage: NSImageView, FXUnitStateObserver {
     }
     
     func mixed() {
-        contentTintColor = systemColorScheme.suppressedControlColor
+        state = .off
     }
     
-    private var _isOn: Bool = false
+    private var state: NSControl.StateValue = .off
     
     // Sets the button state to be "Off"
     func off() {
-        
-        contentTintColor = systemColorScheme.bypassedControlColor
-        _isOn = false
+        state = .off
     }
     
     // Sets the button state to be "On"
     func on() {
-        
-        contentTintColor = systemColorScheme.activeControlColor
-        _isOn = true
+        state = .on
     }
     
     // Convenience function to set the button to "On" if the specified condition is true, and "Off" if not.
@@ -104,11 +111,11 @@ class EffectsUnitTriStateBypassImage: NSImageView, FXUnitStateObserver {
     
     // Toggles the On/Off state
     func toggle() {
-        _isOn ? off() : on()
+        isOn ? off() : on()
     }
     
     // Returns true if the button is in the On state, false otherwise.
-    var isOn: Bool {_isOn}
+    var isOn: Bool {state == .on}
 }
 
 class EffectsUnitTriStateBypassPreviewImage: EffectsUnitTriStateBypassImage {

@@ -61,7 +61,8 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     
     func oneTimeSetup() {
         
-        btnBypass.reTintOnChangeInState(of: effectsUnit)
+        fxUnitStateObserverRegistry.registerObserver(btnBypass, forFXUnit: effectsUnit)
+        
 //        btnSavePreset.tintFunction = {Colors.functionButtonColor}
 //        presetsMenuIconItem.tintFunction = {Colors.functionButtonColor}
         

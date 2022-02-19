@@ -29,9 +29,8 @@ class EffectsUnitTabButton: OnOffImageButton {
     
     override func off() {
         
-//        self.image = self.image?.filledWithColor(offStateTintFunction())
-        self.toolTip = offStateTooltip
-        _isOn = false
+        toolTip = offStateTooltip
+        state = .off
         
         if let cell = self.cell as? EffectsUnitTabButtonCell {
             
@@ -42,9 +41,8 @@ class EffectsUnitTabButton: OnOffImageButton {
     
     override func on() {
         
-//        self.image = self.image?.filledWithColor(onStateTintFunction())
-        self.toolTip = onStateTooltip
-        _isOn = true
+        toolTip = onStateTooltip
+        state = .on
         
         if let cell = self.cell as? EffectsUnitTabButtonCell {
             
@@ -55,8 +53,7 @@ class EffectsUnitTabButton: OnOffImageButton {
     
     func mixed() {
         
-//        self.image = self.image?.filledWithColor(mixedStateTintFunction())
-        self.toolTip = mixedStateTooltip
+        toolTip = mixedStateTooltip
         
         if let cell = self.cell as? EffectsUnitTabButtonCell {
             
@@ -64,26 +61,6 @@ class EffectsUnitTabButton: OnOffImageButton {
             redraw()
         }
     }
-    
-//    override func reTint() {
-//
-//        let tintColor: NSColor
-//
-//        switch unitState {
-//
-//        case .bypassed: tintColor = offStateTintFunction()
-//
-//        case .active: tintColor = onStateTintFunction()
-//
-//        case .suppressed: tintColor = mixedStateTintFunction()
-//
-//        }
-//
-//        self.image = self.image?.filledWithColor(tintColor)
-//
-//        // Need to redraw because we are using a custom button cell which needs to render the updated image itself
-//        redraw()
-//    }
     
     func updateState() {
         
@@ -104,11 +81,18 @@ class EffectsUnitTabButton: OnOffImageButton {
         stateFunction?() ?? .bypassed
     }
     
+    var isSelected: Bool = false {
+        
+        didSet {
+            redraw()
+        }
+    }
+    
     func select() {
-        self.state = .on
+        isSelected = true
     }
     
     func unSelect() {
-        self.state = .off
+        isSelected = false
     }
 }

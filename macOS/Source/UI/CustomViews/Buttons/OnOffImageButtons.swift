@@ -33,46 +33,21 @@ class OnOffImageButton: NSButton, Tintable, ColorSchemeable {
     
     func observeColorSchemeProperty(_ keyPath: KeyPath<ColorScheme, NSColor>, forState state: NSControl.StateValue) {
         
-        if state == .off {
+        kvoTokens.append(systemColorScheme.observe(keyPath, options: [.initial, .new]) {[weak self] _, changedValue in
             
-            kvoTokens.append(systemColorScheme.observe(keyPath, options: [.initial, .new]) {[weak self] _, changedValue in
+            if let strongSelf = self, strongSelf is EffectsUnitTriStateBypassButton {
                 
-                if let newColor = changedValue.newValue {
-                    self?.offStateTintColor = newColor
-                }
-            })
-            
-        } else {
-            
-            kvoTokens.append(systemColorScheme.observe(keyPath, options: [.initial, .new]) {[weak self] _, changedValue in
+                print("State HERE is: \(strongSelf.state.rawValue)")
                 
-                if let newColor = changedValue.newValue {
-                    self?.onStateTintColor = newColor
+                if strongSelf.state == state, let newColor = changedValue.newValue {
+                    
+                    if state == .mixed {
+                        print("RESPONDED TO MIXED STATE COLOR CHANGE !")
+                    }
+                    strongSelf.contentTintColor = newColor
                 }
-            })
-        }
-    }
-    
-    // Tint to be applied when the button is in an "Off" state.
-    var offStateTintColor: NSColor = systemColorScheme.buttonOffColor {
-        
-        didSet {
-            
-            if !_isOn {
-                contentTintColor = offStateTintColor
             }
-        }
-    }
-    
-    // Tint to be applied when the button is in an "On" state.
-    var onStateTintColor: NSColor = systemColorScheme.buttonColor {
-        
-        didSet {
-            
-            if _isOn {
-                contentTintColor = onStateTintColor
-            }
-        }
+        })
     }
     
     // The button's tooltip when the button is in an "Off" state
@@ -80,8 +55,6 @@ class OnOffImageButton: NSButton, Tintable, ColorSchemeable {
     
     // The button's tooltip when the button is in an "On" state
     @IBInspectable var onStateTooltip: String?
-    
-    var _isOn: Bool = false
     
     override func awakeFromNib() {
         
@@ -92,19 +65,19 @@ class OnOffImageButton: NSButton, Tintable, ColorSchemeable {
     // Sets the button state to be "Off"
     override func off() {
         
-        contentTintColor = offStateTintColor
+        contentTintColor = systemColorScheme.buttonOffColor
         toolTip = offStateTooltip
         
-        _isOn = false
+        super.off()
     }
     
     // Sets the button state to be "On"
     override func on() {
 
-        contentTintColor = onStateTintColor
+        contentTintColor = systemColorScheme.buttonColor
         toolTip = onStateTooltip
         
-        _isOn = true
+        super.on()
     }
     
     // Convenience function to set the button to "On" if the specified condition is true, and "Off" if not.
@@ -114,11 +87,8 @@ class OnOffImageButton: NSButton, Tintable, ColorSchemeable {
     
     // Toggles the On/Off state
     override func toggle() {
-        _isOn ? off() : on()
+        isOn ? off() : on()
     }
-    
-    // Returns true if the button is in the On state, false otherwise.
-    override var isOn: Bool {_isOn}
     
     deinit {
         

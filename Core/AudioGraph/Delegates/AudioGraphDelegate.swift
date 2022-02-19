@@ -55,6 +55,10 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
     var filterUnit: FilterUnitDelegateProtocol
     var audioUnits: [HostedAudioUnitDelegateProtocol]
     
+    var allUnits: [EffectsUnitDelegateProtocol] {
+        [masterUnit, eqUnit, pitchShiftUnit, timeStretchUnit, reverbUnit, delayUnit, filterUnit] + audioUnits
+    }
+    
     private(set) lazy var audioUnitsStateFunction: EffectsUnitStateFunction = {[weak self] in
         
         for unit in self?.audioUnits ?? [] {

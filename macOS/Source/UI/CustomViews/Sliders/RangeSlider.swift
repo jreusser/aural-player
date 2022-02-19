@@ -44,17 +44,7 @@ fileprivate let bypassedColor: NSColor = .white35Percent
 fileprivate let suppressedColor: NSColor = NSColor(red: 0.53, green: 0.4, blue: 0)
 
 @IBDesignable
-class RangeSlider: NSControl, EffectsUnitSliderProtocol {
-    
-    var effectsUnit: EffectsUnitDelegateProtocol! {
-        
-        didSet {
-            
-            effectsUnit.observeState {[weak self] _ in
-                self?.redraw()
-            }
-        }
-    }
+class RangeSlider: NSControl, FXUnitStateObserver {
     
     //****************************************************************************//
     //****************************************************************************//
@@ -200,7 +190,7 @@ class RangeSlider: NSControl, EffectsUnitSliderProtocol {
     
     var barFillColor: NSColor {
         
-        switch effectsUnit.state {
+        switch fxUnitStateObserverRegistry.currentState(forObserver: self) {
             
         case .active:   return bandPassColor
             
