@@ -120,6 +120,10 @@ class HorizontalSliderCell: NSSliderCell {
         NSBezierPath.fillRoundedRect(rect, radius: barRadius, withColor: backgroundColor)
     }
     
+    var unFlippedKnobRect: NSRect {
+        super.knobRect(flipped: false)
+    }
+    
     override func knobRect(flipped: Bool) -> NSRect {
         
         let bar = barRect(flipped: flipped)
@@ -144,13 +148,5 @@ class HorizontalSliderCell: NSSliderCell {
 
         NSBezierPath.fillRoundedRect(knobRect,radius: knobRadius, withColor: knobColor)
         NSBezierPath.strokeRoundedRect(knobRect, radius: knobRadius, withColor: backgroundColor)
-    }
-    
-    override func barRect(flipped: Bool) -> NSRect {
-        
-        let superRect = super.barRect(flipped: flipped).insetBy(dx: 0, dy: barInsetY)
-        
-        let viewWidth = controlView?.width ?? superRect.width
-        return NSRect(x: 0, y: superRect.minY, width: viewWidth, height: superRect.height)
     }
 }

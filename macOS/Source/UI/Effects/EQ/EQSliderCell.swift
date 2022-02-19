@@ -35,12 +35,8 @@ class EQSliderCell: EffectsUnitSliderCell {
     
     // Force knobRect and barRect to NOT be flipped
     
-    override func knobRect(flipped: Bool) -> NSRect {
-        super.knobRect(flipped: true)
-    }
-    
     override func barRect(flipped: Bool) -> NSRect {
-        return NSRect(x: 10, y: 2, width: 4, height: super.barRect(flipped: false).height)
+        super.barRect(flipped: false)
     }
     
     override internal func drawKnob(_ knobRect: NSRect) {
@@ -59,11 +55,13 @@ class EQSliderCell: EffectsUnitSliderCell {
     
     override internal func drawBar(inside drawRect: NSRect, flipped: Bool) {
         
-        let knobFrame = knobRect(flipped: false)
+        let knobFrame = unFlippedKnobRect
         let halfKnobWidth = knobFrame.width / 2
         
-        let bottomRect = NSRect(x: drawRect.minX, y: knobFrame.maxY - halfKnobWidth,
-                                width: drawRect.width, height: drawRect.height - knobFrame.maxY + halfKnobWidth)
+        let bottomRect = NSRect(x: drawRect.minX, y: drawRect.minY,
+                                width: drawRect.width, height: knobFrame.centerY - drawRect.minY)
+        
+        print("Draw: \(drawRect), BottomRect: \(bottomRect)")
         
         // Top rect
         NSBezierPath.fillRoundedRect(drawRect, radius: barRadius, withColor: backgroundColor)
@@ -83,7 +81,15 @@ class EQSliderCell: EffectsUnitSliderCell {
                                width: tickWidth)
     }
     
+    override func knobRect(flipped: Bool) -> NSRect {
+        unFlippedKnobRect
+    }
+    
     override func drawTickMarks() {
         // Do nothing (ticks are drawn in drawBar)
     }
+    
+//    override func barRect(flipped: Bool) -> NSRect {
+//        return NSRect(x: 2, y: 4, width: super.barRect(flipped: flipped).width, height: 4)
+//    }
 }

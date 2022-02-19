@@ -581,7 +581,7 @@
                     <integer key="value" value="9"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="155" y="-58"/>
+            <point key="canvasLocation" x="80" y="-124"/>
         </window>
         <customObject id="dFu-9T-Cey" customClass="AuralMenuController" customModule="Aural" customModuleProvider="target"/>
         <customObject id="pHc-NF-AW0" customClass="HistoryMenuController" customModule="Aural" customModuleProvider="target"/>

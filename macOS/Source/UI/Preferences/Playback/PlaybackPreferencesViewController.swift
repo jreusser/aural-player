@@ -223,3 +223,23 @@ class PlaybackPreferencesViewController: NSViewController, PreferencesViewProtoc
         }
     }
 }
+
+@IBDesignable
+class FormattedIntervalLabel: NSTextField {
+    
+    @IBInspectable var interval: Double = 0 {
+        
+        didSet {
+            self.stringValue = interval != 0 ? ValueFormatter.formatSecondsToHMS_hrMinSec(interval.roundedInt) : "0 sec"
+        }
+    }
+    
+    override func awakeFromNib() {
+        
+        self.alignment = .left
+        self.font = standardFontSet.mainFont(size: 11)
+        self.isBordered = false
+        self.drawsBackground = false
+        self.textColor = .defaultLightTextColor
+    }
+}

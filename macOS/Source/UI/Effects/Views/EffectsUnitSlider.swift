@@ -28,6 +28,8 @@ extension NSSlider {
 
 class EffectsUnitSlider: AuralSlider, EffectsUnitSliderProtocol, FXUnitStateObserver {
     
+    override var isFlipped: Bool {false}
+    
     var effectsUnit: EffectsUnitDelegateProtocol! {
         
         didSet {

@@ -49,7 +49,7 @@ class EffectsUnitSliderCell: TickedSliderCell, EffectsUnitSliderCellProtocol {
         }
     }
     
-    override func barRect(flipped: Bool) -> NSRect {
-        return NSRect(x: 2, y: 4, width: super.barRect(flipped: flipped).width, height: 4)
-    }
+//    override func barRect(flipped: Bool) -> NSRect {
+//        return NSRect(x: 0, y: 4, width: super.barRect(flipped: flipped).width, height: 4)
+//    }
 }

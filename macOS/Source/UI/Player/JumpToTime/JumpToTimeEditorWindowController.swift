@@ -16,9 +16,9 @@ class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate,
     @IBOutlet weak var lblTrackName: NSTextField!
     @IBOutlet weak var lblTrackDuration: NSTextField!
     
-    @IBOutlet weak var btnHMS: DialogCheckRadioButton!
-    @IBOutlet weak var btnSeconds: DialogCheckRadioButton!
-    @IBOutlet weak var btnPercentage: DialogCheckRadioButton!
+    @IBOutlet weak var btnHMS: NSButton!
+    @IBOutlet weak var btnSeconds: NSButton!
+    @IBOutlet weak var btnPercentage: NSButton!
     
     @IBOutlet weak var timePicker: IntervalPicker!
     
@@ -40,34 +40,26 @@ class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate,
     
     override func windowDidLoad() {
         
-        secondsFormatter.valueFunction = {[weak self]
-            () -> String in
-            
-            return String(describing: self?.secondsStepper.doubleValue ?? 0)
+        secondsFormatter.valueFunction = {[weak self] () -> String in
+            String(describing: self?.secondsStepper.doubleValue ?? 0)
         }
         
-        secondsFormatter.updateFunction = {[weak self]
-            (_ value: Double) in
-            
+        secondsFormatter.updateFunction = {[weak self] (_ value: Double) in
             self?.secondsStepper.doubleValue = value
         }
         
-        percentageFormatter.valueFunction = {[weak self]
-            () -> String in
-            
-            return String(describing: self?.percentageStepper.doubleValue ?? 0)
+        percentageFormatter.valueFunction = {[weak self] () -> String in
+            String(describing: self?.percentageStepper.doubleValue ?? 0)
         }
         
-        percentageFormatter.updateFunction = {[weak self]
-            (_ value: Double) in
-            
+        percentageFormatter.updateFunction = {[weak self] (_ value: Double) in
             self?.percentageStepper.doubleValue = value
         }
         
         percentageFormatter.maxValue = 100
         
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:),
-                                 filter: {[weak self] msg in self?.window?.isVisible ?? false})
+                                 filter: {[weak self] msg in self?.isModal ?? false})
     }
     
     func destroy() {
@@ -75,7 +67,7 @@ class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate,
     }
     
     var isModal: Bool {
-        return self.window?.isVisible ?? false
+        self.window?.isVisible ?? false
     }
     
     func showDialog() -> ModalDialogResponse {
@@ -109,10 +101,8 @@ class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate,
         radioButtonAction(self)
         
         btnHMS.title = String(format: "Specify as hh : mm : ss (00:00:00 to %@)", formattedDuration)
-        btnHMS.titleUpdated()
         
         btnSeconds.title = String(format: "Specify as seconds (0 to %d)", durationInt)
-        btnSeconds.titleUpdated()
         
         // Reset to 00:00:00
         timePicker.maxInterval = roundedDuration

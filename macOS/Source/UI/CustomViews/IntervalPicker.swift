@@ -17,7 +17,7 @@ class IntervalPicker: NSDatePicker {
         didSet {
             
             if let minDate = self.minDate {
-                self.maxDate = minDate.addingTimeInterval(maxInterval)
+                maxDate = minDate.addingTimeInterval(maxInterval)
             }
         }
     }
@@ -25,18 +25,24 @@ class IntervalPicker: NSDatePicker {
     var interval: Double {
         
         if let minDate = self.minDate {
-            return self.dateValue.timeIntervalSince(minDate)
+            return dateValue.timeIntervalSince(minDate)
         } else {
             return 0
         }
     }
     
     func setInterval(_ interval: Double) {
-        self.dateValue = self.minDate!.addingTimeInterval(interval)
+        
+        if let minDate = self.minDate {
+            dateValue = minDate.addingTimeInterval(interval)
+        }
     }
     
     func reset() {
-        self.dateValue = self.minDate!
+        
+        if let minDate = self.minDate {
+            dateValue = minDate
+        }
     }
 
     override func awakeFromNib() {
@@ -53,25 +59,5 @@ class IntervalPicker: NSDatePicker {
         self.minDate = startOfDay
         self.maxDate = startOfDay.addingTimeInterval(maxInterval)
         self.dateValue = startOfDay
-    }
-}
-
-@IBDesignable
-class FormattedIntervalLabel: NSTextField {
-    
-    @IBInspectable var interval: Double = 0 {
-        
-        didSet {
-            self.stringValue = interval != 0 ? ValueFormatter.formatSecondsToHMS_hrMinSec(interval.roundedInt) : "0 sec"
-        }
-    }
-    
-    override func awakeFromNib() {
-        
-        self.alignment = .left
-        self.font = standardFontSet.mainFont(size: 11)
-        self.isBordered = false
-        self.drawsBackground = false
-        self.textColor = .defaultLightTextColor
     }
 }

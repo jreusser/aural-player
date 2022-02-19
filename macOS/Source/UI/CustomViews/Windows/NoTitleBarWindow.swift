@@ -20,7 +20,7 @@ class NoTitleBarWindow: NSWindow {
 
 class NoTitleBarPanel: NSPanel {
     
-    override func awakeFromNib() {
-        self.titlebarAppearsTransparent = true
-    }
+//    override func awakeFromNib() {
+//        self.titlebarAppearsTransparent = true
+//    }
 }
