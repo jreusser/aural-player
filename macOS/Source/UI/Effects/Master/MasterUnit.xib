@@ -134,14 +134,14 @@
                     </connections>
                 </button>
                 <popUpButton toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uqP-oj-xNY" userLabel="Presets Menu">
-                    <rect key="frame" x="464" y="3" width="27" height="15"/>
+                    <rect key="frame" x="464" y="3" width="22" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="Tg0-YE-4cH">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" showsStateColumn="NO" id="wAk-l0-VwJ">
                             <items>
-                                <menuItem image="Presets" hidden="YES" id="bE8-u7-FFo" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                <menuItem image="gearshape.fill" catalog="system" hidden="YES" id="bE8-u7-FFo" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="menuItem:bE8-u7-FFo:value"/>
@@ -304,8 +304,8 @@
         <image name="DelayTab" width="23" height="22"/>
         <image name="FilterTab" width="26" height="26"/>
         <image name="PitchTab" width="32" height="26"/>
-        <image name="Presets" width="26" height="26"/>
         <image name="ReverbTab" width="25" height="25"/>
+        <image name="gearshape.fill" catalog="system" width="16" height="16"/>
         <image name="menuItem:bE8-u7-FFo:value" width="15" height="15">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05T

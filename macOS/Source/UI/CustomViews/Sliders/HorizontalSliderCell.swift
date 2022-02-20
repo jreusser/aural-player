@@ -27,9 +27,11 @@ class HorizontalSliderCell: AuralSliderCell {
     override func barRect(flipped: Bool) -> NSRect {
         
         let superRect = originalBarRect
-        let diff = superRect.height - barHeight
         
-        return superRect.insetBy(dx: 0, dy: diff / 2)
+        let xDiff = -superRect.minX
+        let yDiff = (superRect.height - barHeight) / 2
+        
+        return superRect.insetBy(dx: xDiff, dy: yDiff)
     }
     
     override func knobRect(flipped: Bool) -> NSRect {

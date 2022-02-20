@@ -105,8 +105,8 @@
                                         <imageReference key="image" image="list.dash" catalog="system" symbolScale="large"/>
                                     </buttonCell>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="offStateTooltip" value="Show the Playlist"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="onStateTooltip" value="Hide the Playlist"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="offStateTooltip" value="Show playlist"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="onStateTooltip" value="Hide playlist"/>
                                         <userDefinedRuntimeAttribute type="number" keyPath="weight">
                                             <real key="value" value="8"/>
                                         </userDefinedRuntimeAttribute>
@@ -538,8 +538,8 @@
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="offStateTooltip" value="Show the effects panel"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="onStateTooltip" value="Hide the effects panel"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="offStateTooltip" value="Show effects"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="onStateTooltip" value="Hide effects"/>
                                         <userDefinedRuntimeAttribute type="image" keyPath="offStateImage" value="EffectsView-Off"/>
                                         <userDefinedRuntimeAttribute type="image" keyPath="onStateImage" value="EffectsView-On"/>
                                         <userDefinedRuntimeAttribute type="number" keyPath="weight">

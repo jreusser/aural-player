@@ -10,7 +10,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="EffectsWindowController">
             <connections>
                 <outlet property="auTabViewButton" destination="W1v-Bf-51k" id="jz6-xO-9mc"/>
-                <outlet property="btnClose" destination="NDE-AU-hEg" id="dJA-C6-iMl"/>
+                <outlet property="btnClose" destination="fPS-1x-TS4" id="wUc-tI-XC7"/>
                 <outlet property="delayTabViewButton" destination="mw3-FF-9td" id="O9j-H8-Whx"/>
                 <outlet property="eqTabViewButton" destination="O5c-8Q-17s" id="FX2-zC-8e8"/>
                 <outlet property="filterTabViewButton" destination="gOm-fK-Gv0" id="2eo-rZ-CKA"/>
@@ -267,18 +267,15 @@
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </box>
-                    <button toolTip="Hide the effects panel" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NDE-AU-hEg" userLabel="Close Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="15" y="204" width="10" height="10"/>
+                    <button toolTip="Hide effects" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPS-1x-TS4" userLabel="Quit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                        <rect key="frame" x="10" y="205.5" width="11.5" height="10"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Close" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="LZT-fd-SBv">
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="PhR-oy-ic8">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Close"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="closeWindowAction:" target="-2" id="rq6-ub-Uwh"/>
+                            <action selector="closeWindowAction:" target="-2" id="giF-Qf-cuW"/>
                         </connections>
                     </button>
                 </subviews>
@@ -293,7 +290,6 @@
     </objects>
     <resources>
         <image name="AUTab" width="32" height="19"/>
-        <image name="Close" width="18" height="18"/>
         <image name="DelayTab" width="23" height="22"/>
         <image name="FilterTab" width="26" height="26"/>
         <image name="MasterTab" width="25" height="25"/>
@@ -301,5 +297,6 @@
         <image name="ReverbTab" width="25" height="25"/>
         <image name="slider.vertical.3" catalog="system" width="18" height="17"/>
         <image name="timer" catalog="system" width="19" height="19"/>
+        <image name="xmark" catalog="system" width="14" height="13"/>
     </resources>
 </document>
