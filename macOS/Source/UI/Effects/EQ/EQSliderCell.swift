@@ -49,7 +49,6 @@ class EQSliderCell: AuralSliderCell {
     override var barRadius: CGFloat {1}
     var barWidth: CGFloat {3}
     
-    override var knobWidth: CGFloat {10}
     override var knobRadius: CGFloat {1}
     
     private let tickInset: CGFloat = 1.5
@@ -117,8 +116,4 @@ class EQSliderCell: AuralSliderCell {
     override func drawTickMarks() {
         // Do nothing (ticks are drawn in drawBar)
     }
-    
-//    override func barRect(flipped: Bool) -> NSRect {
-//        return NSRect(x: 2, y: 4, width: super.barRect(flipped: flipped).width, height: 4)
-//    }
 }

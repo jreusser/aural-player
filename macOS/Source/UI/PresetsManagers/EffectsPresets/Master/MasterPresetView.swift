@@ -15,6 +15,6 @@ class MasterPresetView: MasterUnitView {
         
         buttons = [btnEQBypass, btnPitchBypass, btnTimeBypass, btnReverbBypass, btnDelayBypass, btnFilterBypass]
         images = [imgEQBypass, imgPitchBypass, imgTimeBypass, imgReverbBypass, imgDelayBypass, imgFilterBypass]
-        labels = [lblEQ, lblPitch, lblTime, lblReverb, lblDelay, lblFilter]
+//        labels = [lblEQ, lblPitch, lblTime, lblReverb, lblDelay, lblFilter]
     }
 }
