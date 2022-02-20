@@ -22,6 +22,7 @@ enum EffectsUnitType: Int {
     case delay
     case filter
     case au
+    case devices
     
     var caption: String {
         
@@ -42,6 +43,8 @@ enum EffectsUnitType: Int {
         case .filter:   return "Filter"
             
         case .au:       return "Audio  Units"
+            
+        case .devices:  return "Devices"
             
         }
     }

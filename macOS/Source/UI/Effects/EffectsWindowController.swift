@@ -33,6 +33,7 @@ class EffectsWindowController: NSWindowController, Destroyable {
     private let delayViewController: DelayUnitViewController = DelayUnitViewController()
     private let filterViewController: FilterUnitViewController = FilterUnitViewController()
     private let auViewController: AudioUnitsViewController = AudioUnitsViewController()
+    private let devicesViewController: DevicesViewController = DevicesViewController()
 
     // Tab view and its buttons
 
@@ -47,6 +48,7 @@ class EffectsWindowController: NSWindowController, Destroyable {
     @IBOutlet weak var delayTabViewButton: EffectsUnitTabButton!
     @IBOutlet weak var filterTabViewButton: EffectsUnitTabButton!
     @IBOutlet weak var auTabViewButton: EffectsUnitTabButton!
+    @IBOutlet weak var devicesTabViewButton: EffectsUnitTabButton!
 
     private var tabViewButtons: [EffectsUnitTabButton] = []
     
@@ -82,7 +84,7 @@ class EffectsWindowController: NSWindowController, Destroyable {
         // Initialize all sub-views
         initTabGroup()
 
-//        btnClose.tintFunction = {Colors.functionButtonColor}
+        btnClose.observeColorSchemeProperty(\.buttonColor)
         
         applyTheme()
         
@@ -92,12 +94,12 @@ class EffectsWindowController: NSWindowController, Destroyable {
 
     private func initTabGroup() {
         
-        for (index, viewController) in [masterViewController, eqViewController, pitchViewController, timeViewController, reverbViewController, delayViewController, filterViewController, auViewController].enumerated() {
+        for (index, viewController) in [masterViewController, eqViewController, pitchViewController, timeViewController, reverbViewController, delayViewController, filterViewController, auViewController, devicesViewController].enumerated() {
             
             tabView.tabViewItem(at: index).view?.addSubview(viewController.view)
         }
 
-        tabViewButtons = [masterTabViewButton, eqTabViewButton, pitchTabViewButton, timeTabViewButton, reverbTabViewButton, delayTabViewButton, filterTabViewButton, auTabViewButton]
+        tabViewButtons = [masterTabViewButton, eqTabViewButton, pitchTabViewButton, timeTabViewButton, reverbTabViewButton, delayTabViewButton, filterTabViewButton, auTabViewButton, devicesTabViewButton]
         
         masterTabViewButton.stateFunction = graph.masterUnit.stateFunction
         eqTabViewButton.stateFunction = graph.eqUnit.stateFunction
@@ -108,20 +110,10 @@ class EffectsWindowController: NSWindowController, Destroyable {
         filterTabViewButton.stateFunction = graph.filterUnit.stateFunction
 
         auTabViewButton.stateFunction = {[weak self] in
-
-            for unit in self?.graph.audioUnits ?? [] {
-
-                if unit.state == .active {
-                    return .active
-                }
-                
-                if unit.state == .suppressed {
-                    return .suppressed
-                }
-            }
-            
-            return .bypassed
+            self?.graph.audioUnits.first(where: {$0.state == .active || $0.state == .suppressed})?.state ?? .bypassed
         }
+        
+        devicesTabViewButton.stateFunction = {.bypassed}
         
         // Select Master tab view by default
         tabViewAction(masterTabViewButton)
@@ -134,7 +126,7 @@ class EffectsWindowController: NSWindowController, Destroyable {
     func destroy() {
         
         ([masterViewController, eqViewController, pitchViewController, timeViewController, reverbViewController,
-          delayViewController, filterViewController, auViewController] as? [Destroyable])?.forEach {$0.destroy()}
+          delayViewController, filterViewController, auViewController, devicesViewController] as? [Destroyable])?.forEach {$0.destroy()}
         
         close()
         messenger.unsubscribeFromAll()
@@ -210,6 +202,8 @@ class EffectsWindowController: NSWindowController, Destroyable {
         case .filter: tabViewAction(filterTabViewButton)
             
         case .au: tabViewAction(auTabViewButton)
+            
+        case .devices:  tabViewAction(devicesTabViewButton)
 
         }
     }

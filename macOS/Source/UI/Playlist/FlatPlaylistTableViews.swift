@@ -9,13 +9,50 @@
 //
 import Cocoa
 
+class AuralTableView: NSTableView {
+    
+    private var kvoTokens: [NSKeyValueObservation] = []
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        
+        kvoTokens.append(systemColorScheme.observe(\.backgroundColor, options: [.initial, .new]) {[weak self] _, _ in
+            self?.setBackgroundColor()
+        })
+    }
+    
+    deinit {
+        
+        kvoTokens.forEach {
+            $0.invalidate()
+        }
+        
+        kvoTokens.removeAll()
+    }
+    
+    private func setBackgroundColor() {
+        
+        let backgroundColor = systemColorScheme.backgroundColor
+        
+        self.backgroundColor = backgroundColor
+        enclosingScrollView?.backgroundColor = backgroundColor
+        
+        if let clipView = enclosingScrollView?.documentView as? NSClipView {
+            clipView.backgroundColor = backgroundColor
+        }
+    }
+}
+
 /*
     A customized NSTableView that overrides contextual menu behavior
  */
-class AuralPlaylistTableView: NSTableView {
+class AuralPlaylistTableView: AuralTableView {
     
     // Enable drag/drop.
     override func awakeFromNib() {
+        
+        super.awakeFromNib()
         self.registerForDraggedTypes([.data, .file_URL])
     }
     

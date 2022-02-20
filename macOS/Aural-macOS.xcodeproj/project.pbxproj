@@ -420,6 +420,8 @@
 		3E9CA7F2261A21E8006133B6 /* AudioUnitEditorDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E9CA7F1261A21E8006133B6 /* AudioUnitEditorDialog.xib */; };
 		3E9CA7F4261A2209006133B6 /* AudioUnitEditorDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CA7F3261A2209006133B6 /* AudioUnitEditorDialogController.swift */; };
 		3E9CF7F526A7D36D0068A21B /* ChangeHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CF7F426A7D36D0068A21B /* ChangeHistory.swift */; };
+		3E9D706F27C1DE2F00CAC4F1 /* Devices.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E9D706E27C1DE2F00CAC4F1 /* Devices.xib */; };
+		3E9D707127C1E30100CAC4F1 /* DevicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D707027C1E30100CAC4F1 /* DevicesViewController.swift */; };
 		3E9E590E25DB6B150064EB5F /* MenuBarAppModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E58FF25DB6B150064EB5F /* MenuBarAppModeController.swift */; };
 		3E9E590F25DB6B150064EB5F /* AppModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E590025DB6B150064EB5F /* AppModeManager.swift */; };
 		3E9E591025DB6B150064EB5F /* WindowedAppModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E590125DB6B150064EB5F /* WindowedAppModeController.swift */; };
@@ -1857,6 +1859,8 @@
 		3E9CA7F1261A21E8006133B6 /* AudioUnitEditorDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioUnitEditorDialog.xib; sourceTree = "<group>"; };
 		3E9CA7F3261A2209006133B6 /* AudioUnitEditorDialogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitEditorDialogController.swift; sourceTree = "<group>"; };
 		3E9CF7F426A7D36D0068A21B /* ChangeHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeHistory.swift; sourceTree = "<group>"; };
+		3E9D706E27C1DE2F00CAC4F1 /* Devices.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Devices.xib; sourceTree = "<group>"; };
+		3E9D707027C1E30100CAC4F1 /* DevicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesViewController.swift; sourceTree = "<group>"; };
 		3E9E58FF25DB6B150064EB5F /* MenuBarAppModeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarAppModeController.swift; sourceTree = "<group>"; };
 		3E9E590025DB6B150064EB5F /* AppModeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppModeManager.swift; sourceTree = "<group>"; };
 		3E9E590125DB6B150064EB5F /* WindowedAppModeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowedAppModeController.swift; sourceTree = "<group>"; };
@@ -3266,6 +3270,7 @@
 				3E6C101525CEB98600BF0D07 /* Delay */,
 				3E6C100D25CEB98600BF0D07 /* Filter */,
 				3ECBF3042619D55F00AD5C30 /* AudioUnits */,
+				3E9D706D27C1DDFB00CAC4F1 /* Devices */,
 				3E68727226A9CC5900BD1057 /* Views */,
 				3E68727326A9CC6900BD1057 /* Utils */,
 			);
@@ -3741,6 +3746,15 @@
 				3E9CA7F3261A2209006133B6 /* AudioUnitEditorDialogController.swift */,
 			);
 			path = EditorDialog;
+			sourceTree = "<group>";
+		};
+		3E9D706D27C1DDFB00CAC4F1 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				3E9D706E27C1DE2F00CAC4F1 /* Devices.xib */,
+				3E9D707027C1E30100CAC4F1 /* DevicesViewController.swift */,
+			);
+			path = Devices;
 			sourceTree = "<group>";
 		};
 		3E9E58FC25DB6B150064EB5F /* AppModeManagement */ = {
@@ -5178,6 +5192,7 @@
 				3E6C12D925CEBE8100BF0D07 /* FilterUnit.xib in Resources */,
 				3E36BD4426A6908200B6E28B /* CoverArtTrackInfo.xib in Resources */,
 				3E6C127A25CEBE1800BF0D07 /* ColorSchemes.xib in Resources */,
+				3E9D706F27C1DE2F00CAC4F1 /* Devices.xib in Resources */,
 				3E6C121625CEBDE500BF0D07 /* Tracks.xib in Resources */,
 				3ECBF3082619D58E00AD5C30 /* AudioUnits.xib in Resources */,
 				3E6C126625CEBE0600BF0D07 /* DelayPresetsManager.xib in Resources */,
@@ -5794,6 +5809,7 @@
 				3EFE391327864897006F8B8C /* URLExtensions.swift in Sources */,
 				3E6C130925CEBE8F00BF0D07 /* SeekTimeFormats.swift in Sources */,
 				3EFE398F27864897006F8B8C /* PlaybackProfiles.swift in Sources */,
+				3E9D707127C1E30100CAC4F1 /* DevicesViewController.swift in Sources */,
 				3E6C12D825CEBE8100BF0D07 /* SeekTimerTaskQueue.swift in Sources */,
 				3EFE394327864897006F8B8C /* Sequencer.swift in Sources */,
 				3E6C122325CEBDE600BF0D07 /* SettingsPopupMenuController.swift in Sources */,
