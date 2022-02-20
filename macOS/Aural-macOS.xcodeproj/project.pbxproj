@@ -570,6 +570,7 @@
 		3EDB340C25E8AEBC004DF7DE /* libavcodec.58.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EDB334F25E8AD89004DF7DE /* libavcodec.58.dylib */; };
 		3EDB340D25E8AEBC004DF7DE /* libavcodec.58.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EDB334F25E8AD89004DF7DE /* libavcodec.58.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3EDBF391276E0ED50001C4DD /* EffectsUnitPresets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDBF390276E0ED50001C4DD /* EffectsUnitPresets+Extensions.swift */; };
+		3EDC157C27C2ACB100B91157 /* HorizontalSymmetricSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC157B27C2ACB100B91157 /* HorizontalSymmetricSliderCell.swift */; };
 		3EDDEFC5269156B200219BDA /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025D7268E830800C5A1C5 /* PlayerTests.swift */; };
 		3EDDEFC926916AF300219BDA /* AudioUnitPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDEFC826916AF300219BDA /* AudioUnitPersistenceTests.swift */; };
 		3EDE74E425DE9190007F16A5 /* Play-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EDE74E325DE9168007F16A5 /* Play-Regular.ttf */; };
@@ -1976,6 +1977,7 @@
 		3EDB334F25E8AD89004DF7DE /* libavcodec.58.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libavcodec.58.dylib; sourceTree = "<group>"; };
 		3EDB335125E8ADBA004DF7DE /* Aural-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Aural-Bridging-Header.h"; sourceTree = "<group>"; };
 		3EDBF390276E0ED50001C4DD /* EffectsUnitPresets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EffectsUnitPresets+Extensions.swift"; sourceTree = "<group>"; };
+		3EDC157B27C2ACB100B91157 /* HorizontalSymmetricSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSymmetricSliderCell.swift; sourceTree = "<group>"; };
 		3EDC529326B4764C001CCCE8 /* Preferences.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Preferences.xctestplan; sourceTree = "<group>"; };
 		3EDC529426B4769A001CCCE8 /* Sequencer.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Sequencer.xctestplan; sourceTree = "<group>"; };
 		3EDC529526B478FF001CCCE8 /* Playback.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Playback.xctestplan; sourceTree = "<group>"; };
@@ -3219,6 +3221,7 @@
 				3E419B5C27B18C0600C2B965 /* HorizontalSlider.swift */,
 				3E6C0FD625CEB98600BF0D07 /* AuralSliderCell.swift */,
 				3EEBC6EB27C14A4B00880DFD /* HorizontalSliderCell.swift */,
+				3EDC157B27C2ACB100B91157 /* HorizontalSymmetricSliderCell.swift */,
 				3E6C0FD425CEB98600BF0D07 /* RangeSlider.swift */,
 			);
 			path = Sliders;
@@ -5389,6 +5392,7 @@
 				3E4322872687E24A009E8ADB /* ControlBarPlayerAudioViewController.swift in Sources */,
 				3EFE38D527864896006F8B8C /* FilterUnitDelegateProtocol.swift in Sources */,
 				3E4322852687E1C2009E8ADB /* ControlBarPlayerSequencingViewController.swift in Sources */,
+				3EDC157C27C2ACB100B91157 /* HorizontalSymmetricSliderCell.swift in Sources */,
 				3EFE390327864897006F8B8C /* ArrayExtensions.swift in Sources */,
 				3E39754E26892C890055887E /* ControlBarPlayerUIState.swift in Sources */,
 				3EFE3B0527864943006F8B8C /* FFmpegMetadataReader.swift in Sources */,

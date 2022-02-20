@@ -27,7 +27,7 @@ class DevicesViewController: NSViewController, Destroyable {
         super.viewDidLoad()
         
 //        let backgroundColor = systemColorScheme.backgroundColor
-//        
+//
 //        tableScrollView.backgroundColor = backgroundColor
 //        tableClipView.backgroundColor = backgroundColor
 //        tableView.backgroundColor = backgroundColor

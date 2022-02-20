@@ -48,7 +48,12 @@ class AuralSliderCell: NSSliderCell {
     // MARK: Colors
     
     var backgroundColor: NSColor {systemColorScheme.sliderBackgroundColor}
-    var foregroundGradient: NSGradient {systemColorScheme.activeControlGradient}
+    
+    var foregroundGradient: NSGradient {
+        
+        print("\nCalled foregroundGradient in base class. \(self.className)")
+        return systemColorScheme.activeControlGradient
+    }
     
     var knobColor: NSColor {
         systemColorScheme.activeControlColor
@@ -93,6 +98,8 @@ class AuralSliderCell: NSSliderCell {
     var originalBarRect: NSRect {
         super.barRect(flipped: false)
     }
+    
+    var progress: CGFloat {CGFloat((doubleValue - minValue) / valueRange)}
     
     override func drawBar(inside aRect: NSRect, flipped: Bool) {
         
