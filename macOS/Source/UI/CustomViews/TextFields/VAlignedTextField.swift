@@ -9,9 +9,20 @@
 //
 import Cocoa
 
-class VALabel: NSTextField {
+class VALabel: NSTextField, Tintable {
     
     var debug: Bool = false
+    
+    private var kvoToken: NSKeyValueObservation?
+    
+    func observeColorSchemeProperty(_ keyPath: KeyPath<ColorScheme, NSColor>) {
+        
+        kvoToken?.invalidate()
+        
+        kvoToken = systemColorScheme.observe(keyPath, options: [.initial, .new]) {[weak self] _, changedValue in
+            self?.textColor = changedValue.newValue
+        }
+    }
     
     var vAlign: VAlignment = .center {
         
@@ -23,6 +34,8 @@ class VALabel: NSTextField {
     }
     
     override func awakeFromNib() {
+        
+        super.awakeFromNib()
         
         // Hand off cell properties to the new cell
         

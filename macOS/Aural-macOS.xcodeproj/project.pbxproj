@@ -532,6 +532,7 @@
 		3EBF29332686979700D87021 /* EffectsTextButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF29322686979700D87021 /* EffectsTextButtonCell.swift */; };
 		3EBF293526869A1200D87021 /* PreferencesPopupMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF293426869A1200D87021 /* PreferencesPopupMenuCell.swift */; };
 		3EBF293726869A9300D87021 /* EffectsUnitPopupMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF293626869A9300D87021 /* EffectsUnitPopupMenuCell.swift */; };
+		3EBF3B0127C943650062B4AE /* TintableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF3B0027C943650062B4AE /* TintableLabel.swift */; };
 		3EC2975A27864CD400B29551 /* Aural.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC2975927864CD400B29551 /* Aural.xcassets */; };
 		3EC29A5927865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
 		3EC29A5A27865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
@@ -1945,6 +1946,7 @@
 		3EBF29322686979700D87021 /* EffectsTextButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsTextButtonCell.swift; sourceTree = "<group>"; };
 		3EBF293426869A1200D87021 /* PreferencesPopupMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPopupMenuCell.swift; sourceTree = "<group>"; };
 		3EBF293626869A9300D87021 /* EffectsUnitPopupMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsUnitPopupMenuCell.swift; sourceTree = "<group>"; };
+		3EBF3B0027C943650062B4AE /* TintableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintableLabel.swift; sourceTree = "<group>"; };
 		3EC2975927864CD400B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EC29A5827865BC900B29551 /* MenuItemMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemMappable.swift; sourceTree = "<group>"; };
 		3EC29A5E27865CB500B29551 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -3898,6 +3900,7 @@
 				3E6C0FC525CEB98600BF0D07 /* ColoredCursorTextField.swift */,
 				3E6C0FD025CEB98600BF0D07 /* TriStateLabel.swift */,
 				3E6C0FD925CEB98600BF0D07 /* ValidatedLabelCell.swift */,
+				3EBF3B0027C943650062B4AE /* TintableLabel.swift */,
 			);
 			path = TextFields;
 			sourceTree = "<group>";
@@ -5859,6 +5862,7 @@
 				3EB88E772629DA9500C8D230 /* ThemePopupMenuController.swift in Sources */,
 				3E9C12152622259500D90EA4 /* ThemePreset.swift in Sources */,
 				3EFE39F527864898006F8B8C /* HistoryItem.swift in Sources */,
+				3EBF3B0127C943650062B4AE /* TintableLabel.swift in Sources */,
 				3EFE3A7927864898006F8B8C /* AVFMappedMetadata.swift in Sources */,
 				3EFE3A3727864898006F8B8C /* ChapterChangedNotification.swift in Sources */,
 				3EFE3A0D27864898006F8B8C /* SequencerNotifications.swift in Sources */,

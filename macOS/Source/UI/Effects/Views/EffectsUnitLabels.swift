@@ -18,10 +18,38 @@ protocol FunctionCaptionLabel: FunctionLabel {}
 
 protocol FunctionValueLabel: FunctionLabel {}
 
-class CenterTextFunctionCaptionLabel: CenterTextLabel, FunctionCaptionLabel {}
+class CenterTextFunctionCaptionLabel: CenterTextLabel, FunctionCaptionLabel {
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        observeColorSchemeProperty(\.secondaryTextColor)
+    }
+}
 
-class TopTextFunctionCaptionLabel: TopTextLabel, FunctionCaptionLabel {}
+class TopTextFunctionCaptionLabel: TopTextLabel, FunctionCaptionLabel {
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        observeColorSchemeProperty(\.secondaryTextColor)
+    }
+}
 
-class BottomTextFunctionCaptionLabel: BottomTextLabel, FunctionCaptionLabel {}
+class BottomTextFunctionCaptionLabel: BottomTextLabel, FunctionCaptionLabel {
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        observeColorSchemeProperty(\.secondaryTextColor)
+    }
+}
 
-class CenterTextFunctionValueLabel: CenterTextLabel, FunctionValueLabel {}
+class CenterTextFunctionValueLabel: CenterTextLabel, FunctionValueLabel {
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        observeColorSchemeProperty(\.primaryTextColor)
+    }
+}

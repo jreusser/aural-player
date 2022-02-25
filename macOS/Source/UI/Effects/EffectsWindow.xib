@@ -285,9 +285,9 @@
                                         </userDefinedRuntimeAttributes>
                                     </buttonCell>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="mixedStateTooltip" value="Audio Units"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="offStateTooltip" value="Audio Units"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="onStateTooltip" value="Audio Units"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="mixedStateTooltip" value="Output Devices"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="offStateTooltip" value="Output Devices"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="onStateTooltip" value="Output Devices"/>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="tabViewAction:" target="-2" id="PR7-AB-YYH"/>
