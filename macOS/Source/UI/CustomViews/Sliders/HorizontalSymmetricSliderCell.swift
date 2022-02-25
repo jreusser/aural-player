@@ -13,9 +13,7 @@ import Cocoa
 class HorizontalSymmetricSliderCell: HorizontalSliderCell {
     
     override var foregroundGradient: NSGradient {
-        
-        print("CALLED !!! Prog: \(minValue) \(maxValue) \(progress)")
-        return progress > 0.5 ? super.foregroundGradient : super.foregroundGradient.reversed()
+        progress > 0.5 ? super.foregroundGradient : super.foregroundGradient.reversed()
     }
     
     override func progressRect(forBarRect barRect: NSRect, andKnobRect knobRect: NSRect) -> NSRect {

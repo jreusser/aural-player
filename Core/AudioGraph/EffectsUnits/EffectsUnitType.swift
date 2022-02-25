@@ -27,7 +27,7 @@ enum EffectsUnitType: Int {
     var caption: String {
         
         switch self {
-            
+        
         case .master:   return "Master"
             
         case .eq:       return "Equalizer"
@@ -44,8 +44,8 @@ enum EffectsUnitType: Int {
             
         case .au:       return "Audio  Units"
             
-        case .devices:  return "Devices"
-            
+        case .devices:  return "Output  Devices"
+
         }
     }
 }

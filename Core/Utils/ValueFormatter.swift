@@ -145,25 +145,22 @@ class ValueFormatter {
     static func formatPan(_ value: Float) -> String {
         
         let panVal = value.roundedInt
+        let absVal = abs(panVal)
         
         if panVal < 0 {
             
             // Left of center
-            
-            let absVal = abs(panVal)
-            return absVal < 100 ? String(format: "L %d%%", absVal) : "L"
+            return absVal < 100 ? "\(absVal)%  Left" : "Left"
             
         } else if panVal > 0 {
             
             // Right of center
-            
-            let absVal = abs(panVal)
-            return absVal < 100 ? String(format: "R %d%%", absVal) : "R"
+            return absVal < 100 ? "\(absVal)%  Right" : "Right"
             
         } else {
             
             // Center
-            return "C"
+            return "Center"
         }
     }
     

@@ -50,9 +50,7 @@ class AuralSliderCell: NSSliderCell {
     var backgroundColor: NSColor {systemColorScheme.sliderBackgroundColor}
     
     var foregroundGradient: NSGradient {
-        
-        print("\nCalled foregroundGradient in base class. \(self.className)")
-        return systemColorScheme.activeControlGradient
+        systemColorScheme.activeControlGradient
     }
     
     var knobColor: NSColor {

@@ -22,6 +22,11 @@ class DevicesViewController: NSViewController, Destroyable {
     @IBOutlet weak var tableScrollView: NSScrollView!
     @IBOutlet weak var tableClipView: NSClipView!
     
+    @IBOutlet weak var panSlider: NSSlider!
+    @IBOutlet weak var lblPan: NSTextField!
+    
+    private lazy var audioGraph: AudioGraphDelegateProtocol = objectGraph.audioGraphDelegate
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -31,5 +36,13 @@ class DevicesViewController: NSViewController, Destroyable {
 //        tableScrollView.backgroundColor = backgroundColor
 //        tableClipView.backgroundColor = backgroundColor
 //        tableView.backgroundColor = backgroundColor
+        panSlider.floatValue = audioGraph.pan
+        lblPan.stringValue = audioGraph.formattedPan
+    }
+    
+    @IBAction func panAction(_ sender: Any) {
+        
+        audioGraph.pan = panSlider.floatValue
+        lblPan.stringValue = audioGraph.formattedPan
     }
 }
