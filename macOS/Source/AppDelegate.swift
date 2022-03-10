@@ -52,6 +52,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         objectGraph.appModeManager.presentApp()
         
+        // TODO: Put 'startObserving()' in some kind of protocol ???
+        objectGraph.colorSchemesManager.startObserving()
+        
         // Update the appLaunched flag
         appLaunched = true
         

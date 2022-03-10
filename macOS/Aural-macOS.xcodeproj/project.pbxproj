@@ -532,7 +532,6 @@
 		3EBF29332686979700D87021 /* EffectsTextButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF29322686979700D87021 /* EffectsTextButtonCell.swift */; };
 		3EBF293526869A1200D87021 /* PreferencesPopupMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF293426869A1200D87021 /* PreferencesPopupMenuCell.swift */; };
 		3EBF293726869A9300D87021 /* EffectsUnitPopupMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF293626869A9300D87021 /* EffectsUnitPopupMenuCell.swift */; };
-		3EBF3B0127C943650062B4AE /* TintableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF3B0027C943650062B4AE /* TintableLabel.swift */; };
 		3EC2975A27864CD400B29551 /* Aural.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC2975927864CD400B29551 /* Aural.xcassets */; };
 		3EC29A5927865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
 		3EC29A5A27865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
@@ -1373,6 +1372,10 @@
 		3EFE3B0827864943006F8B8C /* ffmpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE3ADC27864942006F8B8C /* ffmpeg.c */; };
 		3EFE3B0A27864958006F8B8C /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE3B0927864958006F8B8C /* TypeAliases.swift */; };
 		3EFE3B0B27864958006F8B8C /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE3B0927864958006F8B8C /* TypeAliases.swift */; };
+		3EFFEB8027D9CB25006A333B /* ColorSchemesManager+Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFFEB7F27D9CB25006A333B /* ColorSchemesManager+Observer.swift */; };
+		3EFFEB8127D9CB25006A333B /* ColorSchemesManager+Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFFEB7F27D9CB25006A333B /* ColorSchemesManager+Observer.swift */; };
+		3EFFEB8327D9CEF8006A333B /* KVOTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFFEB8227D9CEF8006A333B /* KVOTokens.swift */; };
+		3EFFEB8427D9CEF8006A333B /* KVOTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFFEB8227D9CEF8006A333B /* KVOTokens.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1946,7 +1949,6 @@
 		3EBF29322686979700D87021 /* EffectsTextButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsTextButtonCell.swift; sourceTree = "<group>"; };
 		3EBF293426869A1200D87021 /* PreferencesPopupMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPopupMenuCell.swift; sourceTree = "<group>"; };
 		3EBF293626869A9300D87021 /* EffectsUnitPopupMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsUnitPopupMenuCell.swift; sourceTree = "<group>"; };
-		3EBF3B0027C943650062B4AE /* TintableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintableLabel.swift; sourceTree = "<group>"; };
 		3EC2975927864CD400B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EC29A5827865BC900B29551 /* MenuItemMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemMappable.swift; sourceTree = "<group>"; };
 		3EC29A5E27865CB500B29551 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -2435,6 +2437,8 @@
 		3EFE3ADB27864942006F8B8C /* swresample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swresample.h; sourceTree = "<group>"; };
 		3EFE3ADC27864942006F8B8C /* ffmpeg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffmpeg.c; sourceTree = "<group>"; };
 		3EFE3B0927864958006F8B8C /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		3EFFEB7F27D9CB25006A333B /* ColorSchemesManager+Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorSchemesManager+Observer.swift"; sourceTree = "<group>"; };
+		3EFFEB8227D9CEF8006A333B /* KVOTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVOTokens.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3130,6 +3134,7 @@
 		3E6C0F9925CEB98600BF0D07 /* ColorSchemes */ = {
 			isa = PBXGroup;
 			children = (
+				3EFFEB7E27D9CB12006A333B /* Manager */,
 				3E6C0F9B25CEB98600BF0D07 /* ColorSchemes.xib */,
 				3E6C0FA325CEB98600BF0D07 /* ColorSchemesWindowController.swift */,
 				3EB3A61826A763870060487C /* ColorSchemesViewProtocol.swift */,
@@ -3146,7 +3151,6 @@
 			isa = PBXGroup;
 			children = (
 				3E6C0FA825CEB98600BF0D07 /* ColorScheme.swift */,
-				3E6C0FAC25CEB98600BF0D07 /* ColorSchemesManager.swift */,
 				3E6C0FA925CEB98600BF0D07 /* ColorSchemePreset.swift */,
 			);
 			path = Domain;
@@ -3900,7 +3904,6 @@
 				3E6C0FC525CEB98600BF0D07 /* ColoredCursorTextField.swift */,
 				3E6C0FD025CEB98600BF0D07 /* TriStateLabel.swift */,
 				3E6C0FD925CEB98600BF0D07 /* ValidatedLabelCell.swift */,
-				3EBF3B0027C943650062B4AE /* TintableLabel.swift */,
 			);
 			path = TextFields;
 			sourceTree = "<group>";
@@ -4434,6 +4437,7 @@
 				3EFE36DC27864895006F8B8C /* SystemUtils.swift */,
 				3EFE36DD27864895006F8B8C /* GraphicsUtils.swift */,
 				3EC29A5827865BC900B29551 /* MenuItemMappable.swift */,
+				3EFFEB8227D9CEF8006A333B /* KVOTokens.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -5064,6 +5068,15 @@
 			path = libswresample;
 			sourceTree = "<group>";
 		};
+		3EFFEB7E27D9CB12006A333B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				3E6C0FAC25CEB98600BF0D07 /* ColorSchemesManager.swift */,
+				3EFFEB7F27D9CB25006A333B /* ColorSchemesManager+Observer.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5376,6 +5389,7 @@
 				3EFE381B27864896006F8B8C /* SearchResultLocation.swift in Sources */,
 				3E6C125525CEBE0600BF0D07 /* ColorSchemePreviewView.swift in Sources */,
 				3E6C127725CEBE1800BF0D07 /* ColorSchemesManager.swift in Sources */,
+				3EFFEB8027D9CB25006A333B /* ColorSchemesManager+Observer.swift in Sources */,
 				3E6C126A25CEBE0600BF0D07 /* ColorSchemesManagerViewController.swift in Sources */,
 				3EB3A61926A763870060487C /* ColorSchemesViewProtocol.swift in Sources */,
 				3EFE394127864897006F8B8C /* ShuffleSequence.swift in Sources */,
@@ -5419,6 +5433,7 @@
 				3EFE37F727864896006F8B8C /* SoundPreferences.swift in Sources */,
 				3E397548268900C60055887E /* ControlBarVolumeSliderCell.swift in Sources */,
 				3EFE386927864896006F8B8C /* TimeStretchUnit.swift in Sources */,
+				3EFFEB8327D9CEF8006A333B /* KVOTokens.swift in Sources */,
 				3EFE3A1327864898006F8B8C /* BookmarksNotifications.swift in Sources */,
 				3EFE3A7327864898006F8B8C /* CommonAVAssetParser.swift in Sources */,
 				3EFE3A0F27864898006F8B8C /* FavoritesListNotifications.swift in Sources */,
@@ -5862,7 +5877,6 @@
 				3EB88E772629DA9500C8D230 /* ThemePopupMenuController.swift in Sources */,
 				3E9C12152622259500D90EA4 /* ThemePreset.swift in Sources */,
 				3EFE39F527864898006F8B8C /* HistoryItem.swift in Sources */,
-				3EBF3B0127C943650062B4AE /* TintableLabel.swift in Sources */,
 				3EFE3A7927864898006F8B8C /* AVFMappedMetadata.swift in Sources */,
 				3EFE3A3727864898006F8B8C /* ChapterChangedNotification.swift in Sources */,
 				3EFE3A0D27864898006F8B8C /* SequencerNotifications.swift in Sources */,
@@ -6091,6 +6105,7 @@
 				3EFE3AEA27864942006F8B8C /* FFmpegAudioCodec.swift in Sources */,
 				3E21ECAA268F484E00731E4C /* AuralTestCase.swift in Sources */,
 				3EFE3A8027864898006F8B8C /* FileMetadata.swift in Sources */,
+				3EFFEB8427D9CEF8006A333B /* KVOTokens.swift in Sources */,
 				3EFE387E27864896006F8B8C /* MasterUnit.swift in Sources */,
 				3EFE3A4027864898006F8B8C /* CommonFFMpegMetadataParser.swift in Sources */,
 				3EFE38A627864896006F8B8C /* AudioDeviceList.swift in Sources */,
@@ -6380,6 +6395,7 @@
 				3EFE3A2827864898006F8B8C /* PreTrackPlaybackNotification.swift in Sources */,
 				3EFE38C827864896006F8B8C /* EffectsUnitDelegateProtocol.swift in Sources */,
 				3EA62F492693CB56004A780A /* PlaylistPersistenceTests.swift in Sources */,
+				3EFFEB8127D9CB25006A333B /* ColorSchemesManager+Observer.swift in Sources */,
 				3EFE39C027864897006F8B8C /* FontSchemesPersistentState.swift in Sources */,
 				3EEF3737268F6B3C002EA77F /* SequencerBeginAndEndTests.swift in Sources */,
 				3EFE38E027864897006F8B8C /* EQUnitDelegateProtocol.swift in Sources */,

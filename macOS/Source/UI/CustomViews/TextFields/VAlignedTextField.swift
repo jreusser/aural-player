@@ -9,27 +9,16 @@
 //
 import Cocoa
 
-class VALabel: NSTextField, Tintable {
+class VALabel: NSTextField, Tintable, ColorSchemeObserver {
     
     var debug: Bool = false
-    
-    private var kvoToken: NSKeyValueObservation?
-    
-    func observeColorSchemeProperty(_ keyPath: KeyPath<ColorScheme, NSColor>) {
-        
-        kvoToken?.invalidate()
-        
-        kvoToken = systemColorScheme.observe(keyPath, options: [.initial, .new]) {[weak self] _, changedValue in
-            self?.textColor = changedValue.newValue
-        }
-    }
     
     var vAlign: VAlignment = .center {
         
         didSet {
             
             (self.cell as! VALabelCell).vAlign = self.vAlign
-            setNeedsDisplay(bounds)
+            redraw()
         }
     }
     
@@ -61,6 +50,10 @@ class VALabel: NSTextField, Tintable {
             
             self.cell = newCell
         }
+    }
+    
+    func colorChanged(to newColor: PlatformColor) {
+        textColor = newColor
     }
 }
 
@@ -146,9 +139,7 @@ class TopTextLabel: VALabel {
     
     override var vAlign: VAlignment {
         
-        get {
-            return .top
-        }
+        get {.top}
         
         // Alignment should never change, so don't allow a setter
         set {}
@@ -159,9 +150,7 @@ class BottomTextLabel: VALabel {
     
     override var vAlign: VAlignment {
         
-        get {
-            return .bottom
-        }
+        get {.bottom}
         
         // Alignment should never change, so don't allow a setter
         set {}
@@ -172,9 +161,7 @@ class CenterTextLabel: VALabel {
     
     override var vAlign: VAlignment {
         
-        get {
-            return .center
-        }
+        get {.center}
         
         // Alignment should never change, so don't allow a setter
         set {}

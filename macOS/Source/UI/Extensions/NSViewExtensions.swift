@@ -54,11 +54,11 @@ extension NSView {
     }
     
     func redraw() {
-        self.setNeedsDisplay(self.bounds)
+        setNeedsDisplay(bounds)
     }
     
     func addSubviews(_ subViews: NSView...) {
-        subViews.forEach {self.addSubview($0)}
+        subViews.forEach {addSubview($0)}
     }
     
     func positionAtZeroPoint() {

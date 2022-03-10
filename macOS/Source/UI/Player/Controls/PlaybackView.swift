@@ -153,8 +153,4 @@ class PlaybackView: NSView {
     func changeSliderColors() {
         sliderView.changeSliderColors()
     }
-    
-    func changeSliderValueTextColor(_ color: NSColor) {
-        sliderView.changeSliderValueTextColor(color)
-    }
 }

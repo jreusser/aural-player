@@ -39,7 +39,7 @@ class DevicesViewController: NSViewController, Destroyable {
         panSlider.floatValue = audioGraph.pan
         lblPan.stringValue = audioGraph.formattedPan
         
-        lblPan.observeColorSchemeProperty(\.primaryTextColor)
+        objectGraph.colorSchemesManager.registerObserver(lblPan, forProperty: \.primaryTextColor)
     }
     
     @IBAction func panAction(_ sender: Any) {
