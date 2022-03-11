@@ -32,14 +32,14 @@ class PlaybackView: NSView {
     private let sequencer: SequencerInfoDelegateProtocol = objectGraph.sequencerInfoDelegate
     
     // When the buttons are in an "Off" state, they should be tinted according to the system color scheme's off state button color.
-    var offStateTintFunction: TintFunction {{.gray}}
-    
-    // When the buttons are in an "On" state, they should be tinted according to the system color scheme's function button color.
-    var onStateTintFunction: TintFunction {{.white}}
+//    var offStateTintFunction: TintFunction {{.gray}}
+//
+//    // When the buttons are in an "On" state, they should be tinted according to the system color scheme's function button color.
+//    var onStateTintFunction: TintFunction {{.white}}
     
     var seekSliderValue: Double {sliderView.seekSliderValue}
     
-    var functionButtons: [Tintable] = []
+//    var functionButtons: [Tintable] = []
     
     override func awakeFromNib() {
         
@@ -55,8 +55,7 @@ class PlaybackView: NSView {
 //        btnPlayPause.offStateTintFunction = onStateTintFunction
         
         // Button tool tips
-        btnPreviousTrack.toolTipFunction = {[weak self]
-            () -> String? in
+        btnPreviousTrack.toolTipFunction = {[weak self] in
 
             if let prevTrack = self?.sequencer.peekPrevious() {
                 return String(format: "Previous track: '%@'", prevTrack.displayName)
@@ -65,8 +64,7 @@ class PlaybackView: NSView {
             return nil
         }
 
-        btnNextTrack.toolTipFunction = {[weak self]
-            () -> String? in
+        btnNextTrack.toolTipFunction = {[weak self] in
 
             if let nextTrack = self?.sequencer.peekNext() {
                 return String(format: "Next track: '%@'", nextTrack.displayName)
@@ -88,6 +86,8 @@ class PlaybackView: NSView {
         } else {
             btnLoop.switchState(PlaybackLoopState.none)
         }
+        
+        objectGraph.colorSchemesManager.registerObservers([btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack], forProperty: \.buttonColor)
         
 //        functionButtons = [btnLoop, btnPlayPause, btnPreviousTrack, btnNextTrack, btnSeekBackward, btnSeekForward]
     }

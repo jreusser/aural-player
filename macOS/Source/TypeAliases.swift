@@ -13,5 +13,6 @@ import AppKit
 typealias PlatformImage = NSImage
 typealias PlatformView = NSView
 typealias PlatformViewController = NSViewController
+typealias PlatformFont = NSFont
 typealias PlatformColor = NSColor
 typealias PlatformBezierPath = NSBezierPath

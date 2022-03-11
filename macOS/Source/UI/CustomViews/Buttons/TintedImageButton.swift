@@ -13,18 +13,7 @@ import Cocoa
     A special image button to which a tint can be applied, to conform to the current system color scheme.
  */
 @IBDesignable
-class TintedImageButton: NSButton, ColorSchemeable {
-    
-    private var kvoToken: NSKeyValueObservation?
-    
-    func observeColorSchemeProperty(_ keyPath: KeyPath<ColorScheme, NSColor>) {
-        
-        kvoToken?.invalidate()
-        
-        kvoToken = systemColorScheme.observe(keyPath, options: [.initial, .new]) {[weak self] _, changedValue in
-            self?.contentTintColor = changedValue.newValue
-        }
-    }
+class TintedImageButton: NSButton, ColorSchemeable, ColorSchemeObserver {
     
     override var image: NSImage? {
         
@@ -37,25 +26,9 @@ class TintedImageButton: NSButton, ColorSchemeable {
         
         super.awakeFromNib()
         image?.isTemplate = true
-        observeColorSchemeProperty(\.buttonColor)
     }
  
-    deinit {
-        
-        kvoToken?.invalidate()
-        kvoToken = nil
+    func colorChanged(to newColor: PlatformColor) {
+        contentTintColor = newColor
     }
 }
-
-// A contract for any object to which a tint can be applied (and re-applied). This is used by various UI elements to conform to the system color scheme.
-protocol Tintable {
-    
-    func observeColorProperty<Object>(_ keyPath: KeyPath<Object, NSColor>, of object: Object) where Object: NSObject
-}
-
-extension Tintable {
-    
-    func observeColorProperty<Object>(_ keyPath: KeyPath<Object, NSColor>, of object: Object) where Object: NSObject {}
-}
-
-typealias TintFunction = () -> NSColor

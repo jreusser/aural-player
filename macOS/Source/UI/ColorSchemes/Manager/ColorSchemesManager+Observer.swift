@@ -24,6 +24,7 @@ extension ColorSchemesManager {
         }
     }
     
+    // TODO: Call this from AppModeManager.dismissMode()
     func stopObserving() {
         
         registry.removeAll()
@@ -49,5 +50,26 @@ extension ColorSchemesManager {
         }
         
         registry[property]!.append(observer)
+    }
+    
+    func registerObservers(_ observers: [ColorSchemeObserver], forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        if registry[property] == nil {
+            registry[property] = []
+        }
+        
+        registry[property]!.append(contentsOf: observers)
+    }
+    
+    func registerObserver(_ observer: ColorSchemeObserver, forProperties properties: KeyPath<ColorScheme, PlatformColor>...) {
+        
+        for property in properties {
+            
+            if registry[property] == nil {
+                registry[property] = []
+            }
+            
+            registry[property]!.append(observer)
+        }
     }
 }

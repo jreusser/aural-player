@@ -24,10 +24,10 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
     let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
     
     // When the buttons are in an "Off" state, they should be tinted according to the system color scheme's off state button color.
-    var offStateTintFunction: TintFunction {{.gray}}
-    
-    // When the buttons are in an "On" state, they should be tinted according to the system color scheme's function button color.
-    var onStateTintFunction: TintFunction {{.white}}
+//    var offStateTintFunction: TintFunction {{.gray}}
+//    
+//    // When the buttons are in an "On" state, they should be tinted according to the system color scheme's function button color.
+//    var onStateTintFunction: TintFunction {{.white}}
     
     lazy var messenger = Messenger(for: self)
     

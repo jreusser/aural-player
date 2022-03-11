@@ -12,7 +12,7 @@ import Cocoa
 /*
     An image button that is capable of switching between any finite number of states, and displays a preset image corresponding to each state (example - repeat/shuffle mode buttons)
  */
-class MultiStateImageButton: NSButton, Tintable {
+class MultiStateImageButton: NSButton {
     
     private var kvoToken: NSKeyValueObservation?
     

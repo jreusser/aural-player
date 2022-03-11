@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class VALabel: NSTextField, Tintable, ColorSchemeObserver {
+class VALabel: NSTextField, ColorSchemeObserver {
     
     var debug: Bool = false
     

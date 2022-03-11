@@ -14,7 +14,7 @@ import Cocoa
     Dynamically updates itself based on view settings to show either a single line or multiple
     lines of information.
  */
-class PlayingTrackTextView: NSView, ColorSchemeable {
+class PlayingTrackTextView: NSView, ColorSchemeable, ColorSchemeObserver {
     
     // The text view that displays all the track info
     @IBOutlet weak var textView: NSTextView!
@@ -24,38 +24,13 @@ class PlayingTrackTextView: NSView, ColorSchemeable {
     
     private lazy var uiState: PlayerUIState = objectGraph.playerUIState
     
-    private var primaryColorKVO: NSKeyValueObservation? = nil
-    private var secondaryColorKVO: NSKeyValueObservation? = nil
-    private var tertiaryColorKVO: NSKeyValueObservation? = nil
-    
     override func viewDidMoveToWindow() {
         
         super.viewDidMoveToWindow()
         
         guard window != nil else {return}
         
-        primaryColorKVO = systemColorScheme.observe(\.primaryTextColor, options: [.initial, .new]) {[weak self] _, _ in
-            self?.update()
-        }
-        
-        secondaryColorKVO = systemColorScheme.observe(\.secondaryTextColor, options: [.initial, .new]) {[weak self] _, _ in
-            self?.update()
-        }
-        
-        tertiaryColorKVO = systemColorScheme.observe(\.tertiaryTextColor, options: [.initial, .new]) {[weak self] _, _ in
-            self?.update()
-        }
-    }
-    
-    deinit {
-        
-        [primaryColorKVO, secondaryColorKVO, tertiaryColorKVO].forEach {
-            $0?.invalidate()
-        }
-        
-        primaryColorKVO = nil
-        secondaryColorKVO = nil
-        tertiaryColorKVO = nil
+        objectGraph.colorSchemesManager.registerObserver(self, forProperties: \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor)
     }
     
     var trackInfo: PlayingTrackInfo? {
@@ -262,6 +237,14 @@ class PlayingTrackTextView: NSView, ColorSchemeable {
         }
         
         return NSAttributedString(string: str, attributes: attributes)
+    }
+    
+    // ------------------------------------------------------------------------------------------------------
+    
+    // MARK: ColorSchemeObserver functions
+    
+    func colorChanged(to newColor: PlatformColor) {
+        update()
     }
 }
 

@@ -10,7 +10,7 @@
 import Cocoa
 
 @IBDesignable
-class TintedImageView: NSImageView, Tintable, ColorSchemeable {
+class TintedImageView: NSImageView, ColorSchemeable {
     
     private var kvoToken: NSKeyValueObservation?
     

@@ -56,7 +56,7 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     
     private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
     
-    private var allButtons: [Tintable] = []
+//    private var allButtons: [Tintable] = []
     
     private lazy var messenger = Messenger(for: self)
     
@@ -68,7 +68,6 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     override func viewDidLoad() {
         
 //        allButtons = [btnMoreInfo, btnShowPlayingTrackInPlaylist, btnFavorite, btnBookmark]
-        redrawButtons()
         
         if let playingTrack = player.playingTrack {
             newTrackStarted(playingTrack)
@@ -88,10 +87,7 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
         messenger.subscribe(to: .player_bookmarkPosition, handler: bookmarkPosition)
         messenger.subscribe(to: .player_bookmarkLoop, handler: bookmarkLoop)
         
-        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
-        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
-        messenger.subscribe(to: .changeToggleButtonOffStateColor, handler: changeToggleButtonOffStateColor(_:))
+        colorSchemesManager.registerObservers([btnMoreInfo, btnBookmark, btnShowPlayingTrackInPlaylist], forProperty: \.buttonColor)
     }
     
     func destroy() {
@@ -293,26 +289,6 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
             // No track playing, clear the info fields
             noTrackPlaying()
         }
-    }
-    
-    private func applyTheme() {
-        applyColorScheme(colorSchemesManager.systemScheme)
-    }
-    
-    private func applyColorScheme(_ scheme: ColorScheme) {
-        redrawButtons()
-    }
-    
-    private func changeFunctionButtonColor(_ color: NSColor) {
-        redrawButtons()
-    }
-    
-    private func redrawButtons() {
-//        allButtons.forEach {$0.reTint()}
-    }
-    
-    private func changeToggleButtonOffStateColor(_ color: NSColor) {
-//        btnFavorite.reTint()
     }
     
     // MARK: Message handling

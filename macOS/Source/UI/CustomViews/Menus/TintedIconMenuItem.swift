@@ -13,12 +13,12 @@ import Cocoa
     A special menu item (with an image) to which a tint can be applied, to conform to the current system color scheme.
  */
 @IBDesignable
-class TintedIconMenuItem: NSMenuItem, Tintable {
+class TintedIconMenuItem: NSMenuItem, ColorSchemeObserver {
     
     // A base image that is used as an image template.
     @IBInspectable var baseImage: NSImage? {
         didSet {
-//            reTint()
+//            self.image = self.baseImage?.filledWithColor(tintFunction())
         }
     }
     
@@ -31,4 +31,14 @@ class TintedIconMenuItem: NSMenuItem, Tintable {
 //    func reTint() {
 //        self.image = self.baseImage?.filledWithColor(tintFunction())
 //    }
+    
+    func colorChanged(to newColor: PlatformColor) {
+        
+        let oldImage = self.image
+        let newImage = self.baseImage!.tintedWithColor(newColor)
+        
+        print("\nOldSize: \(oldImage!.size), NewSize: \(newImage.size)")
+        
+        self.image = self.baseImage?.tintedWithColor(newColor)
+    }
 }

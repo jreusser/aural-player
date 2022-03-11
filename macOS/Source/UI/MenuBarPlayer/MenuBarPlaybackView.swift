@@ -12,10 +12,10 @@ import Foundation
 class MenuBarPlaybackView: PlaybackView {
     
     // When the buttons are in an "Off" state, they should be tinted according to the system color scheme's off state button color.
-    override var offStateTintFunction: TintFunction {{.white40Percent}}
-
-    // When the buttons are in an "On" state, they should be tinted according to the system color scheme's function button color.
-    override var onStateTintFunction: TintFunction {{.white70Percent}}
+//    override var offStateTintFunction: TintFunction {{.white40Percent}}
+//
+//    // When the buttons are in an "On" state, they should be tinted according to the system color scheme's function button color.
+//    override var onStateTintFunction: TintFunction {{.white70Percent}}
     
     override func awakeFromNib() {
         

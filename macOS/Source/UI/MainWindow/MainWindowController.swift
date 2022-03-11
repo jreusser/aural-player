@@ -90,9 +90,8 @@ class MainWindowController: NSWindowController, Destroyable {
         rootContainerBox.observeColorSchemeProperty(\.backgroundColor)
         logoImage.observeColorSchemeProperty(\.captionTextColor)
         
-        [btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode].forEach {
-            $0.observeColorSchemeProperty(\.buttonColor)
-        }
+        colorSchemesManager.registerObservers([btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode, settingsMenuIconItem],
+                                              forProperty: \.buttonColor)
         
         [btnTogglePlaylist, btnToggleEffects].forEach {
             
