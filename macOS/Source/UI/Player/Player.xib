@@ -252,7 +252,7 @@ G1BhbiBTbGlkZXI
                                             <action selector="nextTrackAction:" target="W5O-7l-xTa" id="Mjp-IS-zul"/>
                                         </connections>
                                     </button>
-                                    <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EYM-Js-juo" customClass="MultiStateImageButton" customModule="Aural" customModuleProvider="target">
+                                    <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EYM-Js-juo" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="255" y="6" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" controlSize="small" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="zZA-ND-66e">
@@ -298,7 +298,7 @@ G1BhbiBTbGlkZXI
                                             <action selector="seekBackwardAction:" target="W5O-7l-xTa" id="dDh-wJ-m6m"/>
                                         </connections>
                                     </button>
-                                    <button toolTip="A ⇋ B Segment loop" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hgz-4P-n2t" userLabel="Loop Button" customClass="MultiStateImageButton" customModule="Aural" customModuleProvider="target">
+                                    <button toolTip="A ⇋ B Segment loop" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hgz-4P-n2t" userLabel="Loop Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="66" y="10" width="38" height="12"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Loop" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="tHw-2c-h8N">
@@ -309,7 +309,7 @@ G1BhbiBTbGlkZXI
                                             <action selector="toggleLoopAction:" target="W5O-7l-xTa" id="r5J-RG-BFI"/>
                                         </connections>
                                     </button>
-                                    <button toolTip="Shuffle" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uj9-rY-xm0" userLabel="Shuffle Button" customClass="MultiStateImageButton" customModule="Aural" customModuleProvider="target">
+                                    <button toolTip="Shuffle" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uj9-rY-xm0" userLabel="Shuffle Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="40" y="6.5" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="shuffle" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ykS-tm-ycX">
@@ -320,7 +320,7 @@ G1BhbiBTbGlkZXI
                                             <action selector="shuffleAction:" target="BqW-FI-x6I" id="njM-eJ-hop"/>
                                         </connections>
                                     </button>
-                                    <button toolTip="Repeat" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ej8-94-UBa" userLabel="Repeat Button" customClass="MultiStateImageButton" customModule="Aural" customModuleProvider="target">
+                                    <button toolTip="Repeat" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ej8-94-UBa" userLabel="Repeat Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="15" y="6.5" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="repeat" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="S9Y-2f-Bsq">

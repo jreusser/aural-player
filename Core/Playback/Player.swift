@@ -32,7 +32,7 @@ class Player: PlayerProtocol {
     
     private(set) lazy var messenger = Messenger(for: self)
     
-    private(set) var state: PlaybackState = .noTrack {
+    private(set) var state: PlaybackState = .stopped {
         didSet {messenger.publish(.player_playbackStateChanged)}
     }
     
@@ -197,7 +197,7 @@ class Player: PlayerProtocol {
         playerNode.reset()
         graph.clearSoundTails()
         
-        state = .noTrack
+        state = .stopped
     }
     
     // MARK: Looping functions and state

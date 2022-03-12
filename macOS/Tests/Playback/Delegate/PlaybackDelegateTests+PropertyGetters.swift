@@ -16,7 +16,7 @@ class PlaybackDelegateTests_PropertyGetters: PlaybackDelegateTestCase {
     func testPlaybackState_noTrack() {
 
         delegate.stop()
-        XCTAssertEqual(delegate.state, PlaybackState.noTrack)
+        XCTAssertEqual(delegate.state, PlaybackState.stopped)
     }
 
     func testPlaybackState_playing() {

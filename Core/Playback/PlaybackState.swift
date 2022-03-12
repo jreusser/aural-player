@@ -12,11 +12,11 @@ import Foundation
 ///
 /// An enumeration of all possible playback states of the Player.
 ///
-enum PlaybackState {
+enum PlaybackState: String, CaseIterable {
     
     case playing
     case paused
-    case noTrack
+    case stopped
     
     var isPlayingOrPaused: Bool {
         self.equalsOneOf(.playing, .paused)

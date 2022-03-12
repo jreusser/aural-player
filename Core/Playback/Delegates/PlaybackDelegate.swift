@@ -75,7 +75,7 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
     
     func autoplay(_ command: AutoplayCommandNotification) {
         
-        if command.type == .beginPlayback && state == .noTrack {
+        if command.type == .beginPlayback && state == .stopped {
             beginPlayback()
             
         } else if command.type == .playSpecificTrack, let track = command.candidateTrack {
@@ -88,7 +88,7 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
         // Determine current state of player, to then toggle it
         switch state {
             
-        case .noTrack:
+        case .stopped:
             
             beginPlayback()
             
@@ -108,14 +108,14 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
     
     func previousTrack() {
         
-        if state != .noTrack {
+        if state != .stopped {
             doPlay({sequencer.previous()})
         }
     }
     
     func nextTrack() {
         
-        if state != .noTrack {
+        if state != .stopped {
             doPlay({sequencer.next()})
         }
     }
@@ -162,7 +162,7 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
         
         let stateBeforeChange = state
         
-        if stateBeforeChange != .noTrack {
+        if stateBeforeChange != .stopped {
             
             let trackBeforeChange = theCurrentTrack ?? playingTrack
             let seekPositionBeforeChange = seekPosition.timeElapsed
@@ -346,6 +346,15 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
     
     var playbackLoop: PlaybackLoop? {
         return player.playbackLoop
+    }
+    
+    var playbackLoopState: PlaybackLoopState {
+        
+        if let loop = player.playbackLoop {
+            return loop.isComplete ? .complete : .started
+        }
+        
+        return .none
     }
     
     private func savePlaybackProfile() {

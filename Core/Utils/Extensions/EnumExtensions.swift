@@ -20,19 +20,14 @@ extension CaseIterable where Self: RawRepresentable, AllCases == [Self], RawValu
     func toggle() -> Self {
         
         let cases = Self.allCases
+        guard let myIndex = cases.firstIndex(where: {$0 == self}) else {return self}
         
-        if let myIndex = cases.firstIndex(where: {$0 == self}) {
-            
-            var nextIndex = myIndex + 1
-            
-            if nextIndex > cases.lastIndex {
-                nextIndex = 0
-            }
-            
-            return cases[nextIndex]
+        var nextIndex = myIndex + 1
+        
+        if nextIndex > cases.lastIndex {
+            nextIndex = 0
         }
         
-        // Impossible
-        return self
+        return cases[nextIndex]
     }
 }

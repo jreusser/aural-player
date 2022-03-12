@@ -47,7 +47,7 @@ class PlayerTests: AuralTestCase {
 
         initTrack(300, 44100)
 
-        XCTAssertEqual(player.state, PlaybackState.noTrack)
+        XCTAssertEqual(player.state, PlaybackState.stopped)
         XCTAssertNil(PlaybackSession.currentSession)
         XCTAssertFalse(mockScheduler.playTrackInvoked || mockScheduler.playLoopInvoked || mockScheduler.endLoopInvoked || mockScheduler.seekToTimeInvoked)
     }
@@ -942,7 +942,7 @@ class PlayerTests: AuralTestCase {
 
         XCTAssertNil(PlaybackSession.currentSession)
         XCTAssertTrue(mockScheduler.stopped)
-        XCTAssertEqual(player.state, PlaybackState.noTrack)
+        XCTAssertEqual(player.state, PlaybackState.stopped)
     }
 
     // MARK: defineLoop() tests ------------------------------------------------------------------------------------
@@ -1214,7 +1214,7 @@ class PlayerTests: AuralTestCase {
 
     func testPlaybackLoop_noTrack() {
 
-        XCTAssertEqual(player.state, PlaybackState.noTrack)
+        XCTAssertEqual(player.state, PlaybackState.stopped)
         XCTAssertNil(player.playbackLoop)
     }
 
@@ -1267,14 +1267,14 @@ class PlayerTests: AuralTestCase {
     func testAudioOutputDeviceChanged_noPlayingTrack() {
         
         XCTAssertNil(PlaybackSession.currentSession)
-        XCTAssertEqual(player.state, PlaybackState.noTrack)
+        XCTAssertEqual(player.state, PlaybackState.stopped)
 
         messenger.publish(.audioGraph_outputDeviceChanged)
         justWait(0.25)
 
         XCTAssertFalse(mockScheduler.seekToTimeInvoked)
 
-        XCTAssertEqual(player.state, PlaybackState.noTrack)
+        XCTAssertEqual(player.state, PlaybackState.stopped)
     }
 
     func testAudioOutputDeviceChanged_trackPlaying() {

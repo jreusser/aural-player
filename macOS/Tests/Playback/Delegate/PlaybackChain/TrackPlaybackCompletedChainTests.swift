@@ -190,7 +190,7 @@ class TrackPlaybackCompletedChainTests: AuralTestCase {
    
     private func assertTrackNotPlayed(_ oldTrack: Track, _ newTrack: Track, error: DisplayableError) {
 
-        XCTAssertEqual(player.state, .noTrack)
+        XCTAssertEqual(player.state, .stopped)
         XCTAssertEqual(preTrackPlaybackMsgCount, 0)
         
         XCTAssertEqual(trackTransitionMsgCount, 0)
@@ -213,7 +213,7 @@ class TrackPlaybackCompletedChainTests: AuralTestCase {
             XCTAssertEqual(preTrackPlaybackMsg_newTrack, newTrack)
         }
         
-        XCTAssertEqual(player.state, newTrack == nil ? .noTrack : .playing)
+        XCTAssertEqual(player.state, newTrack == nil ? .stopped : .playing)
         
         XCTAssertEqual(startPlaybackChain.executionCount, newTrack == nil ? 0 : 1)
         XCTAssertEqual(stopPlaybackChain.executionCount, newTrack == nil ? 1 : 0)

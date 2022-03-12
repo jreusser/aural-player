@@ -22,7 +22,7 @@ class HaltPlaybackAction: PlaybackChainAction {
     
     func execute(_ context: PlaybackRequestContext, _ chain: PlaybackChain) {
         
-        if context.currentState != .noTrack, let playingTrack = context.currentTrack {
+        if context.currentState != .stopped, let playingTrack = context.currentTrack {
             
             player.stop()
             

@@ -50,6 +50,25 @@ extension ColorSchemesManager {
         }
         
         registry[property]!.append(observer)
+        
+        if let observerObject = observer as? NSObject {
+            reverseRegistry[observerObject] = property
+        }
+    }
+    
+    func removeObserver(_ observer: ColorSchemeObserver) {
+        
+        if let observerObject = observer as? NSObject, let property = reverseRegistry[observerObject] {
+            
+            // TODO: Observers for a property should be a Set, not an array. Make ColorSchemeObserver extend from Hashable.
+            if var observers = registry[property] {
+                
+                observers.removeAll(where: {($0 as? NSObject) === (observer as? NSObject)})
+                registry[property] = observers
+            }
+            
+            reverseRegistry.removeValue(forKey: observerObject)
+        }
     }
     
     func registerObservers(_ observers: [ColorSchemeObserver], forProperty property: KeyPath<ColorScheme, PlatformColor>) {

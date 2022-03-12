@@ -27,7 +27,7 @@ class AudioFilePreparationActionTests: AuralTestCase {
 
     func testAudioFilePreparationAction_noRequestedTrack() {
 
-        let context = PlaybackRequestContext(.noTrack, nil, 0, nil, PlaybackParams())
+        let context = PlaybackRequestContext(.stopped, nil, 0, nil, PlaybackParams())
 
         action.execute(context, chain)
 

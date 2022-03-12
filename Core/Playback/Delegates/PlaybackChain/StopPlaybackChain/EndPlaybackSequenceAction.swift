@@ -30,7 +30,7 @@ class EndPlaybackSequenceAction: PlaybackChainAction {
         sequencer.end()
         
         messenger.publish(TrackTransitionNotification(beginTrack: context.currentTrack, beginState: context.currentState,
-                                                      endTrack: nil, endState: .noTrack))
+                                                      endTrack: nil, endState: .stopped))
         
         chain.proceed(context)
     }

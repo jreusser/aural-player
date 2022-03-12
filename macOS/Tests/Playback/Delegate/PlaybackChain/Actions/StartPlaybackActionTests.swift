@@ -72,7 +72,7 @@ class StartPlaybackActionTests: AuralTestCase {
     
     func testStartPlaybackAction_noRequestedTrack() {
      
-        let context = PlaybackRequestContext(.noTrack, nil, 0, nil, PlaybackParams.defaultParams())
+        let context = PlaybackRequestContext(.stopped, nil, 0, nil, PlaybackParams.defaultParams())
         
         action.execute(context, chain)
         
@@ -86,7 +86,7 @@ class StartPlaybackActionTests: AuralTestCase {
     func testStartPlaybackAction_noStartOrEndPosition() {
 
         let requestedTrack = createTrack(title: "Hydropoetry Cathedra", duration: 597)
-        let context = PlaybackRequestContext(.noTrack, nil, 0, requestedTrack, PlaybackParams.defaultParams())
+        let context = PlaybackRequestContext(.stopped, nil, 0, requestedTrack, PlaybackParams.defaultParams())
 
         action.execute(context, chain)
 
@@ -104,7 +104,7 @@ class StartPlaybackActionTests: AuralTestCase {
         let requestedTrack = createTrack(title: "Hydropoetry Cathedra", duration: 597)
         let requestParams = PlaybackParams.defaultParams().withStartAndEndPosition(105.234234244)
         
-        let context = PlaybackRequestContext(.noTrack, nil, 0, requestedTrack, requestParams)
+        let context = PlaybackRequestContext(.stopped, nil, 0, requestedTrack, requestParams)
 
         action.execute(context, chain)
 
@@ -122,7 +122,7 @@ class StartPlaybackActionTests: AuralTestCase {
         let requestedTrack = createTrack(title: "Hydropoetry Cathedra", duration: 597)
         let requestParams = PlaybackParams.defaultParams().withStartAndEndPosition(105.234234244, 236.33535366775)
         
-        let context = PlaybackRequestContext(.noTrack, nil, 0, requestedTrack, requestParams)
+        let context = PlaybackRequestContext(.stopped, nil, 0, requestedTrack, requestParams)
 
         action.execute(context, chain)
 

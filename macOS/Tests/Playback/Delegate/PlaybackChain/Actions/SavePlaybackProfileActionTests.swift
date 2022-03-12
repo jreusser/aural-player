@@ -29,7 +29,7 @@ class SavePlaybackProfileActionTests: AuralTestCase {
     func testSavePlaybackProfileAction_noTrackPlaying() {
 
         let requestedTrack = createTrack(title: "Brothers in Arms", duration: 302.34534535)
-        let context = PlaybackRequestContext(.noTrack, nil, 0, requestedTrack, PlaybackParams.defaultParams())
+        let context = PlaybackRequestContext(.stopped, nil, 0, requestedTrack, PlaybackParams.defaultParams())
 
         XCTAssertEqual(profiles.size, 0)
 

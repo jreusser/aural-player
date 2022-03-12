@@ -21,9 +21,4 @@ enum ShuffleMode: String, CaseIterable, Codable {
     
     // Don't shuffle
     case off
-    
-    // Returns a ShuffleMode that is the result of toggling this ShuffleMode.
-    func toggled() -> ShuffleMode {
-        return self == .on ? .off : .on
-    }
 }

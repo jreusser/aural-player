@@ -97,14 +97,14 @@ class StopPlaybackChainTests: AuralTestCase {
 
     func testStop_noPlayingTrack() {
 
-        let context = PlaybackRequestContext(.noTrack, nil, 0, nil, PlaybackParams.defaultParams())
+        let context = PlaybackRequestContext(.stopped, nil, 0, nil, PlaybackParams.defaultParams())
         chain.execute(context)
 
-        XCTAssertEqual(player.state, PlaybackState.noTrack)
+        XCTAssertEqual(player.state, PlaybackState.stopped)
         XCTAssertEqual(sequencer.endCallCount, 1)
         XCTAssertEqual(player.stopCallCount, 0)
 
-        assertTrackPlayback(nil, .noTrack)
+        assertTrackPlayback(nil, .stopped)
     }
 
     func testStop_trackPlaying() {
@@ -124,7 +124,7 @@ class StopPlaybackChainTests: AuralTestCase {
         let context = PlaybackRequestContext(.playing, playingTrack, 203.34242434, nil, PlaybackParams.defaultParams())
         chain.execute(context)
 
-        XCTAssertEqual(player.state, PlaybackState.noTrack)
+        XCTAssertEqual(player.state, PlaybackState.stopped)
         XCTAssertEqual(sequencer.endCallCount, 1)
         XCTAssertEqual(player.stopCallCount, 1)
         assertTrackPlayback(playingTrack, .playing)
@@ -150,7 +150,7 @@ class StopPlaybackChainTests: AuralTestCase {
         let context = PlaybackRequestContext(.paused, playingTrack, 203.34242434, nil, PlaybackParams.defaultParams())
         chain.execute(context)
 
-        XCTAssertEqual(player.state, PlaybackState.noTrack)
+        XCTAssertEqual(player.state, PlaybackState.stopped)
         XCTAssertEqual(sequencer.endCallCount, 1)
         XCTAssertEqual(player.stopCallCount, 1)
         assertTrackPlayback(playingTrack, .paused)

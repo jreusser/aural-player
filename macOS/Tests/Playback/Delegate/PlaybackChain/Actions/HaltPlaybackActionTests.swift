@@ -38,7 +38,7 @@ class HaltPlaybackActionTests: AuralTestCase {
     func testHaltPlaybackAction_noTrack() {
         
         let newTrack = createTrack(title: "Hydropoetry Cathedra", duration: 597)
-        let context = PlaybackRequestContext(.noTrack, nil, 0, newTrack, PlaybackParams.defaultParams())
+        let context = PlaybackRequestContext(.stopped, nil, 0, newTrack, PlaybackParams.defaultParams())
         
         doTestHaltPlaybackAction(context, 0)
     }
@@ -68,7 +68,7 @@ class HaltPlaybackActionTests: AuralTestCase {
         action.execute(context, chain)
         
         XCTAssertEqual(player.stopCallCount,expectedPlayerStopCallCount)
-        XCTAssertEqual(player.state, PlaybackState.noTrack)
+        XCTAssertEqual(player.state, PlaybackState.stopped)
         
         // Ensure the chain proceeded
         XCTAssertEqual(chain.proceedCount, 1)

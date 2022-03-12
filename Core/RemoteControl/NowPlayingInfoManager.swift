@@ -215,7 +215,7 @@ extension MPNowPlayingPlaybackState {
         
         switch state {
         
-        case .noTrack:  return .stopped
+        case .stopped:  return .stopped
             
         case .playing:  return .playing
             

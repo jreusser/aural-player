@@ -14,7 +14,7 @@ class PlaybackRequestContextTests: PlaybackDelegateTestCase {
     func testBegun() {
         
         let track1 = createTrack(title: "Hydropoetry Cathedra", duration: 597)
-        let context1 = PlaybackRequestContext(.noTrack, nil, 0, track1, PlaybackParams.defaultParams())
+        let context1 = PlaybackRequestContext(.stopped, nil, 0, track1, PlaybackParams.defaultParams())
         
         let track2 = createTrack(title: "Sub-Sea Engineering", duration: 360)
         let context2 = PlaybackRequestContext(.playing, track1, 283.34686234, track2, PlaybackParams.defaultParams())
@@ -62,7 +62,7 @@ class PlaybackRequestContextTests: PlaybackDelegateTestCase {
     func testCompleted() {
         
         let track1 = createTrack(title: "Hydropoetry Cathedra", duration: 597)
-        let context1 = PlaybackRequestContext(.noTrack, nil, 0, track1, PlaybackParams.defaultParams())
+        let context1 = PlaybackRequestContext(.stopped, nil, 0, track1, PlaybackParams.defaultParams())
         
         let track2 = createTrack(title: "Sub-Sea Engineering", duration: 360)
         let context2 = PlaybackRequestContext(.playing, track1, 283.34686234, track2, PlaybackParams.defaultParams())
@@ -101,7 +101,7 @@ class PlaybackRequestContextTests: PlaybackDelegateTestCase {
     func testCompleted_nonCurrentContextCompleted() {
         
         let track1 = createTrack(title: "Hydropoetry Cathedra", duration: 597)
-        let context1 = PlaybackRequestContext(.noTrack, nil, 0, track1, PlaybackParams.defaultParams())
+        let context1 = PlaybackRequestContext(.stopped, nil, 0, track1, PlaybackParams.defaultParams())
         
         let track2 = createTrack(title: "Sub-Sea Engineering", duration: 360)
         let context2 = PlaybackRequestContext(.playing, track1, 283.34686234, track2, PlaybackParams.defaultParams())
@@ -172,7 +172,7 @@ class PlaybackRequestContextTests: PlaybackDelegateTestCase {
     func testClearContext_hasCurrentContext() {
         
         let track = createTrack(title: "Hydropoetry Cathedra", duration: 597)
-        let context = PlaybackRequestContext(.noTrack, nil, 0, track, PlaybackParams.defaultParams())
+        let context = PlaybackRequestContext(.stopped, nil, 0, track, PlaybackParams.defaultParams())
         
         PlaybackRequestContext.begun(context)
         assertCurrentContext(context)

@@ -18,8 +18,8 @@ class PlaybackView: NSView {
     @IBOutlet weak var sliderView: SeekSliderView!
    
     // Toggle buttons (their images change)
-    @IBOutlet weak var btnPlayPause: MultiStateImageButton!
-    @IBOutlet weak var btnLoop: MultiStateImageButton!
+    @IBOutlet weak var btnPlayPause: TintedImageButton!
+    @IBOutlet weak var btnLoop: TintedImageButton!
     
     // Buttons whose tool tips may change
     @IBOutlet weak var btnPreviousTrack: TrackPeekingButton!
@@ -27,6 +27,24 @@ class PlaybackView: NSView {
     
     @IBOutlet weak var btnSeekBackward: TintedImageButton!
     @IBOutlet weak var btnSeekForward: TintedImageButton!
+    
+    private let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
+    
+    private lazy var btnPlayPauseStateMachine: ButtonStateMachine<PlaybackState> = ButtonStateMachine(initialState: player.state,
+                                                                                                      mappings: [
+                                                                                                        ButtonStateMachine.StateMapping(state: .stopped, image: Images.imgPlay, colorProperty: \.buttonColor, toolTip: "Play"),
+                                                                                                        ButtonStateMachine.StateMapping(state: .playing, image: Images.imgPause, colorProperty: \.buttonColor, toolTip: "Pause"),
+                                                                                                        ButtonStateMachine.StateMapping(state: .paused, image: Images.imgPlay, colorProperty: \.buttonColor, toolTip: "Play")
+                                                                                                      ],
+                                                                                                      button: btnPlayPause)
+    
+    private lazy var btnLoopStateMachine: ButtonStateMachine<PlaybackLoopState> = ButtonStateMachine(initialState: player.playbackLoopState,
+                                                                                                     mappings: [
+                                                                                                        ButtonStateMachine.StateMapping(state: .none, image: Images.imgLoop, colorProperty: \.buttonOffColor, toolTip: "Initiate a segment loop"),
+                                                                                                        ButtonStateMachine.StateMapping(state: .started, image: Images.imgLoopStarted, colorProperty: \.buttonColor, toolTip: "Complete the segment loop"),
+                                                                                                        ButtonStateMachine.StateMapping(state: .complete, image: Images.imgLoop, colorProperty: \.buttonColor, toolTip: "Remove the segment loop")
+                                                                                                     ],
+                                                                                                     button: btnLoop)
     
     // Delegate that retrieves playback sequencing info (previous/next track)
     private let sequencer: SequencerInfoDelegateProtocol = objectGraph.sequencerInfoDelegate
@@ -39,20 +57,7 @@ class PlaybackView: NSView {
     
     var seekSliderValue: Double {sliderView.seekSliderValue}
     
-//    var functionButtons: [Tintable] = []
-    
     override func awakeFromNib() {
-        
-        btnPlayPause.stateImageMappings = [(PlaybackState.noTrack, (Images.imgPlay, \.buttonColor)), (PlaybackState.playing, (Images.imgPause, \.buttonColor)),
-                                           (PlaybackState.paused, (Images.imgPlay, \.buttonColor))]
-        
-        btnPlayPause.stateToolTipMappings = [(PlaybackState.noTrack, "Play"), (PlaybackState.playing, "Pause"), (PlaybackState.paused, "Play")]
-        
-        btnLoop.stateImageMappings = [(PlaybackLoopState.none, (Images.imgLoop, \.buttonOffColor)), (PlaybackLoopState.started, (Images.imgLoopStarted, \.buttonColor)),
-                                      (PlaybackLoopState.complete, (Images.imgLoop, \.buttonColor))]
-
-        // Play/pause button does not really have an "off" state
-//        btnPlayPause.offStateTintFunction = onStateTintFunction
         
         // Button tool tips
         btnPreviousTrack.toolTipFunction = {[weak self] in
@@ -77,46 +82,31 @@ class PlaybackView: NSView {
         
         // MARK: Update controls based on current player state
         
-        let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
+        btnPlayPauseStateMachine.setState(player.state)
+        btnLoopStateMachine.setState(player.playbackLoopState)
         
-        btnPlayPause.switchState(player.state)
-        
-        if let loop = player.playbackLoop {
-            btnLoop.switchState(loop.isComplete ? PlaybackLoopState.complete : PlaybackLoopState.started)
-        } else {
-            btnLoop.switchState(PlaybackLoopState.none)
-        }
-        
-        objectGraph.colorSchemesManager.registerObservers([btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack], forProperty: \.buttonColor)
-        
-//        functionButtons = [btnLoop, btnPlayPause, btnPreviousTrack, btnNextTrack, btnSeekBackward, btnSeekForward]
+        objectGraph.colorSchemesManager.registerObservers([btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack],
+                                                          forProperty: \.buttonColor)
     }
     
     // When the playback state changes (e.g. playing -> paused), fields may need to be updated
     func playbackStateChanged(_ newState: PlaybackState) {
         
-        btnPlayPause.switchState(newState)
+        btnPlayPauseStateMachine.setState(newState)
         sliderView.playbackStateChanged(newState)
     }
 
     // When the playback loop for the current playing track is changed, the seek slider needs to be updated (redrawn) to show the current loop state
     func playbackLoopChanged(_ playbackLoop: PlaybackLoop?, _ trackDuration: Double) {
 
-        // Update loop button image
-        if let loop = playbackLoop {
-            btnLoop.switchState(loop.isComplete ? PlaybackLoopState.complete: PlaybackLoopState.started)
-
-        } else {
-            btnLoop.switchState(PlaybackLoopState.none)
-        }
-        
+        btnLoopStateMachine.setState(player.playbackLoopState)
         sliderView.playbackLoopChanged(playbackLoop, trackDuration)
     }
 
     func trackChanged(_ playbackState: PlaybackState, _ loop: PlaybackLoop?, _ newTrack: Track?) {
         
-        btnPlayPause.switchState(playbackState)
-        btnLoop.switchState(loop != nil ? PlaybackLoopState.complete : PlaybackLoopState.none)
+        btnPlayPauseStateMachine.setState(playbackState)
+        btnLoopStateMachine.setState(player.playbackLoopState)
         [btnPreviousTrack, btnNextTrack].forEach {$0?.updateTooltip()}
         
         sliderView.trackChanged(loop, newTrack)

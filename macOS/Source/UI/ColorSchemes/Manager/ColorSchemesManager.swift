@@ -20,6 +20,7 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
     private lazy var messenger = Messenger(for: self)
     
     var registry: [KeyPath<ColorScheme, PlatformColor>: [ColorSchemeObserver]] = [:]
+    var reverseRegistry: [NSObject: KeyPath<ColorScheme, PlatformColor>] = [:]
     
     var kvo: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
     

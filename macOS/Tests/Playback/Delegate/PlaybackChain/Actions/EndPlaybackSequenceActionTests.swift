@@ -63,14 +63,14 @@ class EndPlaybackSequenceActionTests: AuralTestCase {
     
     func testEndPlaybackSequenceAction_noCurrentTrack() {
      
-        let context = PlaybackRequestContext(.noTrack, nil, 0, nil, PlaybackParams.defaultParams())
+        let context = PlaybackRequestContext(.stopped, nil, 0, nil, PlaybackParams.defaultParams())
         
         action.execute(context, chain)
         
         XCTAssertEqual(sequencer.endCallCount, 1)
         
-        assertPreTrackPlayback(nil, .noTrack)
-        assertTrackPlayback(nil, .noTrack)
+        assertPreTrackPlayback(nil, .stopped)
+        assertTrackPlayback(nil, .stopped)
         
         assertChainProceeded(context)
     }

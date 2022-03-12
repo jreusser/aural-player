@@ -83,7 +83,7 @@ class PlaybackDelegateTests_TrackIteration: PlaybackDelegateTestCase {
 
             switch stateBeforeChange {
 
-            case .noTrack:
+            case .stopped:
 
                 assertNoTrack()
 
@@ -178,7 +178,7 @@ class PlaybackDelegateTests_TrackIteration: PlaybackDelegateTestCase {
 
             switch stateBeforeChange {
 
-            case .noTrack:
+            case .stopped:
 
                 assertNoTrack()
                 

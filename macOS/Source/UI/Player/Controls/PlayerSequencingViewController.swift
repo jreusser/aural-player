@@ -33,9 +33,9 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
     
     override func viewDidLoad() {
         
-        btnRepeat.stateImageMappings = [(RepeatMode.off, (Images.imgRepeat, \.buttonOffColor)), (RepeatMode.one, (Images.imgRepeatOne, \.buttonColor)), (RepeatMode.all, (Images.imgRepeat, \.buttonColor))]
-
-        btnShuffle.stateImageMappings = [(ShuffleMode.off, (Images.imgShuffle, \.buttonOffColor)), (ShuffleMode.on, (Images.imgShuffle, \.buttonColor))]
+//        btnRepeat.stateImageMappings = [(RepeatMode.off, (Images.imgRepeat, \.buttonOffColor)), (RepeatMode.one, (Images.imgRepeatOne, \.buttonColor)), (RepeatMode.all, (Images.imgRepeat, \.buttonColor))]
+//
+//        btnShuffle.stateImageMappings = [(ShuffleMode.off, (Images.imgShuffle, \.buttonOffColor)), (ShuffleMode.on, (Images.imgShuffle, \.buttonColor))]
         
         updateRepeatAndShuffleControls(sequencer.repeatAndShuffleModes)
         
@@ -76,7 +76,7 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
     
     func updateRepeatAndShuffleControls(_ modes: (repeatMode: RepeatMode, shuffleMode: ShuffleMode)) {
 
-        btnShuffle.switchState(modes.shuffleMode)
-        btnRepeat.switchState(modes.repeatMode)
+//        btnShuffle.switchState(modes.shuffleMode)
+//        btnRepeat.switchState(modes.repeatMode)
     }
 }

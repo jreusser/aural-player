@@ -77,7 +77,7 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
         
         let playbackState = playbackInfo.state
         let isPlayingOrPaused = playbackState.isPlayingOrPaused
-        let noTrack = playbackState == .noTrack
+        let noTrack = playbackState == .stopped
         
         // Play/pause enabled if at least one track available
         playOrPauseMenuItem.enableIf(playlist.size > 0)

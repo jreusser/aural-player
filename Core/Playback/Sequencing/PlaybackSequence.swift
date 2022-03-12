@@ -90,7 +90,7 @@ class PlaybackSequence {
     
     // Toggles between repeat modes. See RepeatMode for more details. Returns the new repeat and shuffle mode after performing the toggle operation.
     func toggleRepeatMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
-        return setRepeatMode(self.repeatMode.toggled())
+        return setRepeatMode(repeatMode.toggle())
     }
     
     // Sets the repeat mode to a specific value. Returns the new repeat and shuffle mode after performing the toggle operation.
@@ -110,7 +110,7 @@ class PlaybackSequence {
     
     // Toggles between shuffle modes. See ShuffleMode for more details. Returns the new repeat and shuffle mode after performing the toggle operation.
     func toggleShuffleMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
-        return setShuffleMode(self.shuffleMode.toggled())
+        return setShuffleMode(shuffleMode.toggle())
     }
     
     // Sets the shuffle mode to a specific value. Returns the new repeat and shuffle mode after performing the toggle operation.

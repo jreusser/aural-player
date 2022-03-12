@@ -37,8 +37,6 @@ class TintedIconMenuItem: NSMenuItem, ColorSchemeObserver {
         let oldImage = self.image
         let newImage = self.baseImage!.tintedWithColor(newColor)
         
-        print("\nOldSize: \(oldImage!.size), NewSize: \(newImage.size)")
-        
         self.image = self.baseImage?.tintedWithColor(newColor)
     }
 }

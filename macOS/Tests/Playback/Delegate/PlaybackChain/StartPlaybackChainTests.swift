@@ -119,7 +119,7 @@ class StartPlaybackChainTests: AuralTestCase {
         
         chain.execute(context)
         
-        XCTAssertEqual(player.state, .noTrack)
+        XCTAssertEqual(player.state, .stopped)
         XCTAssertEqual(preTrackPlaybackMsgCount, 0)
         XCTAssertEqual(trackChangeMsgCount, 0)
         
@@ -201,7 +201,7 @@ class StartPlaybackChainTests: AuralTestCase {
 
     private func assertTrackNotPlayed(_ oldTrack: Track, error: DisplayableError) {
 
-        XCTAssertEqual(player.state, .noTrack)
+        XCTAssertEqual(player.state, .stopped)
         XCTAssertEqual(preTrackPlaybackMsgCount, 0)
         
         XCTAssertEqual(trackChangeMsgCount, 0)

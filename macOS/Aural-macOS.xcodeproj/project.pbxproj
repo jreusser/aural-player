@@ -553,6 +553,8 @@
 		3ECE4BF526961ECB0017DD25 /* MetadataPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECE4BF426961ECB0017DD25 /* MetadataPreferencesTests.swift */; };
 		3ECE4BF8269620F70017DD25 /* ControlsPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECE4BF7269620F70017DD25 /* ControlsPreferencesTests.swift */; };
 		3ECF275C26A5567000974120 /* FontSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF275B26A5567000974120 /* FontSet.swift */; };
+		3ED0A4F027DD016200C7A438 /* ButtonStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A4EF27DD016200C7A438 /* ButtonStateMachine.swift */; };
+		3ED0A4F127DD016200C7A438 /* ButtonStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A4EF27DD016200C7A438 /* ButtonStateMachine.swift */; };
 		3ED5A13F269973A1007E5343 /* AudioGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED5A13E269973A1007E5343 /* AudioGraphTests.swift */; };
 		3ED6D8EF26924FDC007DA433 /* HistoryPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6D8EE26924FDC007DA433 /* HistoryPreferencesTests.swift */; };
 		3ED6D8F2269253BB007DA433 /* MediaKeysControlsPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6D8F1269253BB007DA433 /* MediaKeysControlsPreferencesTests.swift */; };
@@ -1970,6 +1972,7 @@
 		3ECE4BF426961ECB0017DD25 /* MetadataPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataPreferencesTests.swift; sourceTree = "<group>"; };
 		3ECE4BF7269620F70017DD25 /* ControlsPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsPreferencesTests.swift; sourceTree = "<group>"; };
 		3ECF275B26A5567000974120 /* FontSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSet.swift; sourceTree = "<group>"; };
+		3ED0A4EF27DD016200C7A438 /* ButtonStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStateMachine.swift; sourceTree = "<group>"; };
 		3ED5A13E269973A1007E5343 /* AudioGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioGraphTests.swift; sourceTree = "<group>"; };
 		3ED6D8EE26924FDC007DA433 /* HistoryPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPreferencesTests.swift; sourceTree = "<group>"; };
 		3ED6D8F1269253BB007DA433 /* MediaKeysControlsPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKeysControlsPreferencesTests.swift; sourceTree = "<group>"; };
@@ -3928,6 +3931,7 @@
 				3E8C791D269C4196005E78D1 /* PlaylistViewSelector.swift */,
 				3EC29A5E27865CB500B29551 /* Images.swift */,
 				3EAFB5F9267FEEEA00F0DC96 /* NSImageExtensions.swift */,
+				3ED0A4EF27DD016200C7A438 /* ButtonStateMachine.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -5919,6 +5923,7 @@
 				3EFE39EF27864898006F8B8C /* FixedSizeLRUArray.swift in Sources */,
 				3E6C12A025CEBE2700BF0D07 /* TintedImageView.swift in Sources */,
 				3E6C12A625CEBE2700BF0D07 /* ToggleMenuItem.swift in Sources */,
+				3ED0A4F027DD016200C7A438 /* ButtonStateMachine.swift in Sources */,
 				3EFE388527864896006F8B8C /* AudioUnitPresets.swift in Sources */,
 				3EFE3A1D27864898006F8B8C /* WindowManagerNotifications.swift in Sources */,
 				3EFE37DF27864896006F8B8C /* PlaybackPreferences.swift in Sources */,
@@ -6095,6 +6100,7 @@
 				3EABDDF12694C17D008066E8 /* MenuBarPlayerUIPersistenceTests.swift in Sources */,
 				3EA62F502693D86A004A780A /* PlaybackProfilesPersistenceTests.swift in Sources */,
 				3E1C2A5F26972D47005E7E12 /* FlatPlaylistTests+MoveTracksUp.swift in Sources */,
+				3ED0A4F127DD016200C7A438 /* ButtonStateMachine.swift in Sources */,
 				3EFE382627864896006F8B8C /* SearchQuery.swift in Sources */,
 				3EFE3A0A27864898006F8B8C /* TuneBrowserNotifications.swift in Sources */,
 				3EF28DB92694E42C005D5B43 /* AppMode.swift in Sources */,

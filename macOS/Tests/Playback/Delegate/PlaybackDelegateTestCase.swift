@@ -68,7 +68,7 @@ class PlaybackDelegateTestCase: AuralTestCase {
         stopPlaybackChain.executionCount = 0
 
         XCTAssertNil(delegate.playingTrack)
-        XCTAssertEqual(delegate.state, PlaybackState.noTrack)
+        XCTAssertEqual(delegate.state, PlaybackState.stopped)
 
         XCTAssertEqual(startPlaybackChain.executionCount, 0)
         XCTAssertEqual(stopPlaybackChain.executionCount, 0)
@@ -130,7 +130,7 @@ class PlaybackDelegateTestCase: AuralTestCase {
 
     func assertNoTrack() {
 
-        XCTAssertEqual(delegate.state, PlaybackState.noTrack)
+        XCTAssertEqual(delegate.state, PlaybackState.stopped)
         XCTAssertNil(delegate.playingTrack)
     }
 
@@ -170,9 +170,9 @@ class PlaybackDelegateTestCase: AuralTestCase {
             assertPlayingTrack(theTrack)
 
             XCTAssertEqual(startPlaybackChain.executionCount, 1)
-            verifyRequestContext_startPlaybackChain(.noTrack, nil, 0, theTrack, PlaybackParams.defaultParams(), false)
+            verifyRequestContext_startPlaybackChain(.stopped, nil, 0, theTrack, PlaybackParams.defaultParams(), false)
 
-            self.assertTrackChange(nil, .noTrack, theTrack)
+            self.assertTrackChange(nil, .stopped, theTrack)
 
         } else {
 
@@ -269,7 +269,7 @@ class PlaybackDelegateTestCase: AuralTestCase {
 
         playlist.clear()
 
-        XCTAssertEqual(delegate.state, PlaybackState.noTrack)
+        XCTAssertEqual(delegate.state, PlaybackState.stopped)
         XCTAssertNil(delegate.playingTrack)
     }
 }

@@ -19,28 +19,9 @@ enum RepeatMode: String, CaseIterable, Codable {
     // Play all tracks once, in sequence order
     case off
     
-    // Repeat one track forever
-    case one
-    
     // Repeat all tracks forever, in sequence order
     case all
     
-    // Returns a RepeatMode that is the result of toggling this RepeatMode.
-    func toggled() -> RepeatMode {
-        
-        switch self {
-            
-        case .off:
-            
-            return .all
-            
-        case .all:
-            
-            return .one
-            
-        case .one:
-            
-            return .off
-        }
-    }
+    // Repeat one track forever
+    case one
 }
