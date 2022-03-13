@@ -299,7 +299,7 @@ G1BhbiBTbGlkZXI
                                         </connections>
                                     </button>
                                     <button toolTip="A ⇋ B Segment loop" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hgz-4P-n2t" userLabel="Loop Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                        <rect key="frame" x="66" y="10" width="38" height="12"/>
+                                        <rect key="frame" x="64" y="8" width="30" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Loop" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="tHw-2c-h8N">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -484,7 +484,7 @@ G1BhbiBTbGlkZXI
     </objects>
     <resources>
         <image name="Bookmark" width="27" height="27"/>
-        <image name="Loop" width="42" height="15"/>
+        <image name="Loop" width="270" height="210"/>
         <image name="MoreInfo" width="25" height="25"/>
         <image name="Pause" width="38" height="36"/>
         <image name="Play" width="31" height="35"/>
