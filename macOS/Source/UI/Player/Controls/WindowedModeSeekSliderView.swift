@@ -29,7 +29,7 @@ class WindowedModeSeekSliderView: SeekSliderView, ColorSchemeable {
     func positionSeekPositionMarkerView() {
         
         // Slider knob position
-//        let knobRect = seekSliderCell.knobRect(flipped: false)
-//        seekPositionMarker.setFrameOrigin(NSPoint(x: seekSlider.frame.minX + knobRect.minX, y: seekSlider.frame.minY + knobRect.minY))
+        let knobRect = seekSliderCell.knobRect(flipped: false)
+        seekPositionMarker.setFrameOrigin(NSPoint(x: seekSlider.frame.minX + knobRect.minX, y: seekSlider.frame.minY + knobRect.minY))
     }
 }
