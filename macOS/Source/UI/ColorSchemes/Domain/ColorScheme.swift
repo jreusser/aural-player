@@ -15,7 +15,7 @@ import Cocoa
 class ColorScheme: NSObject, UserManagedObject {
     
     // Default color scheme (uses colors from the default system-defined preset)
-    static let defaultScheme: ColorScheme = ColorScheme("_default_", ColorSchemePreset.defaultScheme)
+    static let defaultScheme: ColorScheme = ColorScheme("_default_", true, .blackAttack)
     
     // Displayed name
     var name: String
@@ -40,6 +40,9 @@ class ColorScheme: NSObject, UserManagedObject {
      secondaryText
      tertiaryText
      
+     primarySelectedText
+     secondarySelectedText
+     
      button
      buttonOffState
      
@@ -48,11 +51,9 @@ class ColorScheme: NSObject, UserManagedObject {
      suppressedControl
      
      sliderBackground
-     sliderKnob
      sliderTick
      
-     tableSelectionText
-     tableSelectionBox
+     textSelectionColor (table selection box, dropdown menu color)
      
      */
 
@@ -60,23 +61,22 @@ class ColorScheme: NSObject, UserManagedObject {
         .defaultScheme
     }
     
-    @objc dynamic lazy var backgroundColor: NSColor = defaultPreset.backgroundColor
+    @objc dynamic var backgroundColor: NSColor
+    @objc dynamic var captionTextColor: NSColor
     
-    @objc dynamic lazy var captionTextColor: NSColor = defaultPreset.mainCaptionTextColor
+    @objc dynamic var primaryTextColor: NSColor
+    @objc dynamic var secondaryTextColor: NSColor
+    @objc dynamic var tertiaryTextColor: NSColor
     
-    @objc dynamic lazy var primaryTextColor: NSColor = defaultPreset.playerTrackInfoPrimaryTextColor
-    @objc dynamic lazy var secondaryTextColor: NSColor = defaultPreset.playerTrackInfoSecondaryTextColor
-    @objc dynamic lazy var tertiaryTextColor: NSColor = defaultPreset.playerTrackInfoTertiaryTextColor
+    @objc dynamic var primarySelectedTextColor: NSColor
+    @objc dynamic var secondarySelectedTextColor: NSColor
     
-    @objc dynamic lazy var primarySelectedTextColor: NSColor = .white
-    @objc dynamic lazy var secondarySelectedTextColor: NSColor = .gray
+    @objc dynamic var buttonColor: NSColor
+    @objc dynamic var buttonOffColor: NSColor
     
-    @objc dynamic lazy var buttonColor: NSColor = defaultPreset.functionButtonColor
-    @objc dynamic lazy var buttonOffColor: NSColor = defaultPreset.toggleButtonOffStateColor
-    
-    @objc dynamic lazy var activeControlColor: NSColor = defaultPreset.effectsActiveUnitStateColor
-    @objc dynamic lazy var activeControlGradientColor: NSColor = computeActiveControlGradientColor()
-    @objc dynamic lazy var activeControlGradient: NSGradient = computeActiveControlGradient()
+    @objc dynamic var activeControlColor: NSColor
+    @objc dynamic var activeControlGradientColor: NSColor!
+    @objc dynamic var activeControlGradient: NSGradient!
     
     private func computeActiveControlGradientColor() -> NSColor {
         activeControlColor.darkened(50)
@@ -86,9 +86,9 @@ class ColorScheme: NSObject, UserManagedObject {
         NSGradient(starting: activeControlColor, ending: activeControlGradientColor)!
     }
     
-    @objc dynamic lazy var bypassedControlColor: NSColor = defaultPreset.effectsBypassedUnitStateColor
-    @objc dynamic lazy var bypassedControlGradientColor: NSColor = computeBypassedControlGradientColor()
-    @objc dynamic lazy var bypassedControlGradient: NSGradient = computeBypassedControlGradient()
+    @objc dynamic var bypassedControlColor: NSColor
+    @objc dynamic var bypassedControlGradientColor: NSColor!
+    @objc dynamic var bypassedControlGradient: NSGradient!
     
     private func computeBypassedControlGradientColor() -> NSColor {
         bypassedControlColor.darkened(50)
@@ -98,9 +98,9 @@ class ColorScheme: NSObject, UserManagedObject {
         NSGradient(starting: bypassedControlColor, ending: bypassedControlGradientColor)!
     }
     
-    @objc dynamic lazy var suppressedControlColor: NSColor = defaultPreset.effectsSuppressedUnitStateColor
-    @objc dynamic lazy var suppressedControlGradientColor: NSColor = computeSuppressedControlGradientColor()
-    @objc dynamic lazy var suppressedControlGradient: NSGradient = computeSuppressedControlGradient()
+    @objc dynamic var suppressedControlColor: NSColor
+    @objc dynamic var suppressedControlGradientColor: NSColor!
+    @objc dynamic var suppressedControlGradient: NSGradient!
     
     private func computeSuppressedControlGradientColor() -> NSColor {
         suppressedControlColor.darkened(50)
@@ -110,21 +110,56 @@ class ColorScheme: NSObject, UserManagedObject {
         NSGradient(starting: suppressedControlColor, ending: suppressedControlGradientColor)!
     }
     
-    @objc dynamic lazy var sliderBackgroundColor: NSColor = defaultPreset.playerSliderBackgroundColor
-    @objc dynamic lazy var sliderKnobColor: NSColor = defaultPreset.playerSliderKnobColor
-    @objc dynamic lazy var sliderTickColor: NSColor = defaultPreset.effectsSliderTickColor
+    @objc dynamic var sliderBackgroundColor: NSColor
+    @objc dynamic var sliderTickColor: NSColor
     
-    lazy var sliderForegroundGradientType: ColorSchemeGradientType = defaultPreset.effectsSliderForegroundGradientType {
+    @objc dynamic var textSelectionColor: NSColor
+    
+    init(name: String, systemDefined: Bool,
+         backgroundColor: NSColor, captionTextColor: NSColor,
+         primaryTextColor: NSColor, secondaryTextColor: NSColor, tertiaryTextColor: NSColor,
+         primarySelectedTextColor: NSColor, secondarySelectedTextColor: NSColor,
+         buttonColor: NSColor, buttonOffColor: NSColor,
+         activeControlColor: NSColor, bypassedControlColor: NSColor, suppressedControlColor: NSColor,
+         sliderBackgroundColor: NSColor, sliderTickColor: NSColor,
+         textSelectionColor: NSColor) {
         
-        didSet {
-            sliderForegroundGradientTypeString = sliderForegroundGradientType.rawValue
-        }
+        self.name = name
+        self.systemDefined = systemDefined
+        
+        self.backgroundColor = backgroundColor
+        self.captionTextColor = captionTextColor
+        
+        self.primaryTextColor = primaryTextColor
+        self.secondaryTextColor = secondaryTextColor
+        self.tertiaryTextColor = tertiaryTextColor
+        
+        self.primarySelectedTextColor = primarySelectedTextColor
+        self.secondarySelectedTextColor = secondarySelectedTextColor
+        
+        self.buttonColor = buttonColor
+        self.buttonOffColor = buttonOffColor
+        
+        self.activeControlColor = activeControlColor
+        self.bypassedControlColor = bypassedControlColor
+        self.suppressedControlColor = suppressedControlColor
+        
+        self.sliderBackgroundColor = sliderBackgroundColor
+        self.sliderTickColor = sliderTickColor
+        
+        self.textSelectionColor = textSelectionColor
+        
+        super.init()
+        
+        self.activeControlGradientColor = computeActiveControlGradientColor()
+        self.activeControlGradient = computeActiveControlGradient()
+        
+        self.bypassedControlGradientColor = computeBypassedControlGradientColor()
+        self.bypassedControlGradient = computeBypassedControlGradient()
+        
+        self.suppressedControlGradientColor = computeSuppressedControlGradientColor()
+        self.suppressedControlGradient = computeSuppressedControlGradient()
     }
-    
-    @objc dynamic lazy var sliderForegroundGradientTypeString: String = defaultPreset.effectsSliderForegroundGradientType.rawValue
-    @objc dynamic lazy var sliderForegroundGradientAmount: Int = defaultPreset.effectsSliderForegroundGradientAmount
-    
-    @objc dynamic lazy var tableSelectionBoxColor: NSColor = defaultPreset.playlistSelectionBoxColor
     
     // Copy constructor ... creates a copy of the given scheme (used when creating a user-defined preset)
     init(_ name: String, _ systemDefined: Bool, _ scheme: ColorScheme) {
@@ -132,7 +167,38 @@ class ColorScheme: NSObject, UserManagedObject {
         self.name = name
         self.systemDefined = systemDefined
         
+        backgroundColor = scheme.backgroundColor
+        captionTextColor = scheme.captionTextColor
+        
+        primaryTextColor = scheme.primaryTextColor
+        secondaryTextColor = scheme.secondaryTextColor
+        tertiaryTextColor = scheme.tertiaryTextColor
+        
+        primarySelectedTextColor = scheme.primarySelectedTextColor
+        secondarySelectedTextColor = scheme.secondarySelectedTextColor
+        
+        buttonColor = scheme.buttonColor
+        buttonOffColor = scheme.buttonOffColor
+        
+        activeControlColor = scheme.activeControlColor
+        bypassedControlColor = scheme.bypassedControlColor
+        suppressedControlColor = scheme.suppressedControlColor
+        
+        sliderBackgroundColor = scheme.sliderBackgroundColor
+        sliderTickColor = scheme.sliderTickColor
+        
+        textSelectionColor = scheme.textSelectionColor
+        
         super.init()
+        
+        self.activeControlGradientColor = computeActiveControlGradientColor()
+        self.activeControlGradient = computeActiveControlGradient()
+        
+        self.bypassedControlGradientColor = computeBypassedControlGradientColor()
+        self.bypassedControlGradient = computeBypassedControlGradient()
+        
+        self.suppressedControlGradientColor = computeSuppressedControlGradientColor()
+        self.suppressedControlGradient = computeSuppressedControlGradient()
         
         setUpKVO()
     }
@@ -143,109 +209,93 @@ class ColorScheme: NSObject, UserManagedObject {
         self.name = persistentState?.name ?? ""
         self.systemDefined = systemDefined
         
-//        self.general = GeneralColorScheme(persistentState?.general)
-//        self.player = PlayerColorScheme(persistentState?.player)
-//        self.playlist = PlaylistColorScheme(persistentState?.playlist)
-//        self.effects = EffectsColorScheme(persistentState?.effects)
+        backgroundColor = persistentState?.backgroundColor?.toColor() ?? Self.defaultScheme.backgroundColor
+        captionTextColor = persistentState?.captionTextColor?.toColor() ?? Self.defaultScheme.captionTextColor
+        
+        primaryTextColor = persistentState?.primaryTextColor?.toColor() ?? Self.defaultScheme.primaryTextColor
+        secondaryTextColor = persistentState?.secondaryTextColor?.toColor() ?? Self.defaultScheme.secondaryTextColor
+        tertiaryTextColor = persistentState?.tertiaryTextColor?.toColor() ?? Self.defaultScheme.tertiaryTextColor
+        
+        primarySelectedTextColor = persistentState?.primarySelectedTextColor?.toColor() ?? Self.defaultScheme.primarySelectedTextColor
+        secondarySelectedTextColor = persistentState?.secondarySelectedTextColor?.toColor() ?? Self.defaultScheme.secondarySelectedTextColor
+        
+        buttonColor = persistentState?.buttonColor?.toColor() ?? Self.defaultScheme.buttonColor
+        buttonOffColor = persistentState?.buttonOffColor?.toColor() ?? Self.defaultScheme.buttonOffColor
+        
+        activeControlColor = persistentState?.activeControlColor?.toColor() ?? Self.defaultScheme.activeControlColor
+        bypassedControlColor = persistentState?.bypassedControlColor?.toColor() ?? Self.defaultScheme.bypassedControlColor
+        suppressedControlColor = persistentState?.suppressedControlColor?.toColor() ?? Self.defaultScheme.suppressedControlColor
+        
+        sliderBackgroundColor = persistentState?.sliderBackgroundColor?.toColor() ?? Self.defaultScheme.sliderBackgroundColor
+        sliderTickColor = persistentState?.sliderTickColor?.toColor() ?? Self.defaultScheme.sliderTickColor
+        
+        textSelectionColor = persistentState?.textSelectionColor?.toColor() ?? Self.defaultScheme.textSelectionColor
         
         super.init()
         
-        setUpKVO()
-    }
-    
-    // Creates a scheme from a preset (eg. default scheme)
-    init(_ name: String, _ preset: ColorSchemePreset) {
+        self.activeControlGradientColor = computeActiveControlGradientColor()
+        self.activeControlGradient = computeActiveControlGradient()
         
-        self.name = name
-        self.systemDefined = true
+        self.bypassedControlGradientColor = computeBypassedControlGradientColor()
+        self.bypassedControlGradient = computeBypassedControlGradient()
         
-        super.init()
-        
-        backgroundColor = preset.backgroundColor
-        
-        buttonColor = preset.functionButtonColor
-        buttonOffColor = preset.toggleButtonOffStateColor
-        
-        captionTextColor = preset.mainCaptionTextColor
-        
-        primaryTextColor = preset.playerTrackInfoPrimaryTextColor
-        secondaryTextColor = preset.playerTrackInfoSecondaryTextColor
-        tertiaryTextColor = preset.playerTrackInfoTertiaryTextColor
-        
-        activeControlColor = preset.effectsActiveUnitStateColor
-        bypassedControlColor = preset.effectsBypassedUnitStateColor
-        suppressedControlColor = preset.effectsSuppressedUnitStateColor
-        
-//        primarySelectedTextColor = preset.
-        
-//        self.general = GeneralColorScheme(preset)
-//        self.player = PlayerColorScheme(preset)
-//        self.playlist = PlaylistColorScheme(preset)
-//        self.effects = EffectsColorScheme(preset)
+        self.suppressedControlGradientColor = computeSuppressedControlGradientColor()
+        self.suppressedControlGradient = computeSuppressedControlGradient()
         
         setUpKVO()
     }
     
     deinit {
-        
-        kvoTokens.forEach {
-            $0.invalidate()
-        }
-        
-        kvoTokens.removeAll()
+        kvoTokens.invalidate()
     }
     
-    private var kvoTokens: [NSKeyValueObservation] = []
+    private var kvoTokens: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
     
     private func setUpKVO() {
         
-        kvoTokens.append(self.observe(\.activeControlColor, options: [.initial, .new]) {strongSelf, _ in
+        kvoTokens.addObserver(forObject: self, keyPath: \.activeControlColor) {strongSelf, _ in
             
             strongSelf.activeControlGradientColor = strongSelf.computeActiveControlGradientColor()
             strongSelf.activeControlGradient = strongSelf.computeActiveControlGradient()
-        })
+        }
         
-        kvoTokens.append(self.observe(\.bypassedControlColor, options: [.initial, .new]) {strongSelf, _ in
+        kvoTokens.addObserver(forObject: self, keyPath: \.bypassedControlColor) {strongSelf, _ in
             
             strongSelf.bypassedControlGradientColor = strongSelf.computeBypassedControlGradientColor()
             strongSelf.bypassedControlGradient = strongSelf.computeBypassedControlGradient()
-        })
+        }
         
-        kvoTokens.append(self.observe(\.suppressedControlColor, options: [.initial, .new]) {strongSelf, _ in
+        kvoTokens.addObserver(forObject: self, keyPath: \.suppressedControlColor) {strongSelf, _ in
             
             strongSelf.suppressedControlGradientColor = strongSelf.computeSuppressedControlGradientColor()
             strongSelf.suppressedControlGradient = strongSelf.computeSuppressedControlGradient()
-        })
+        }
     }
-    
-    // Applies a system-defined preset to this scheme.
-//    func applyPreset(_ preset: ColorSchemePreset) {
-//        
-//        backgroundColor = preset.backgroundColor
-//        buttonColor = preset.functionButtonColor
-//        buttonOffColor = preset.toggleButtonOffStateColor
-//        
-////        self.general.applyPreset(preset)
-////        self.player.applyPreset(preset)
-////        self.playlist.applyPreset(preset)
-////        self.effects.applyPreset(preset)
-//    }
     
     // Applies another color scheme to this scheme.
     func applyScheme(_ scheme: ColorScheme) {
         
         backgroundColor = scheme.backgroundColor
-        buttonColor = scheme.buttonColor
-        buttonOffColor = scheme.buttonOffColor
+        captionTextColor = scheme.captionTextColor
         
         primaryTextColor = scheme.primaryTextColor
         secondaryTextColor = scheme.secondaryTextColor
         tertiaryTextColor = scheme.tertiaryTextColor
         
+        primarySelectedTextColor = scheme.primarySelectedTextColor
+        secondarySelectedTextColor = scheme.secondarySelectedTextColor
+        
+        buttonColor = scheme.buttonColor
+        buttonOffColor = scheme.buttonOffColor
+        
         activeControlColor = scheme.activeControlColor
         bypassedControlColor = scheme.bypassedControlColor
         suppressedControlColor = scheme.suppressedControlColor
+        
         sliderBackgroundColor = scheme.sliderBackgroundColor
+        sliderTickColor = scheme.sliderTickColor
+        
+        textSelectionColor = scheme.textSelectionColor
         
 //        self.general.applyScheme(scheme.general)
 //        self.player.applyScheme(scheme.player)

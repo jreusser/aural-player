@@ -521,6 +521,8 @@
 		3EB3A61926A763870060487C /* ColorSchemesViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A61826A763870060487C /* ColorSchemesViewProtocol.swift */; };
 		3EB3A61E26A76F450060487C /* NSScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A61D26A76F450060487C /* NSScrollViewExtensions.swift */; };
 		3EB3A62126A773350060487C /* FontSizeStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A62026A773350060487C /* FontSizeStepper.swift */; };
+		3EB3FFDC27DE3839009F7E2C /* ColorScheme+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3FFDB27DE3839009F7E2C /* ColorScheme+Presets.swift */; };
+		3EB3FFDD27DE3839009F7E2C /* ColorScheme+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3FFDB27DE3839009F7E2C /* ColorScheme+Presets.swift */; };
 		3EB5108C25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */; };
 		3EB88E772629DA9500C8D230 /* ThemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */; };
 		3EBABCBE262C1A350015A73A /* MenuBarPlayerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBABCBD262C1A350015A73A /* MenuBarPlayerSettingsViewController.swift */; };
@@ -1942,6 +1944,7 @@
 		3EB3A61826A763870060487C /* ColorSchemesViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemesViewProtocol.swift; sourceTree = "<group>"; };
 		3EB3A61D26A76F450060487C /* NSScrollViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSScrollViewExtensions.swift; sourceTree = "<group>"; };
 		3EB3A62026A773350060487C /* FontSizeStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeStepper.swift; sourceTree = "<group>"; };
+		3EB3FFDB27DE3839009F7E2C /* ColorScheme+Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorScheme+Presets.swift"; sourceTree = "<group>"; };
 		3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemePopupMenuController.swift; sourceTree = "<group>"; };
 		3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePopupMenuController.swift; sourceTree = "<group>"; };
 		3EBABCBD262C1A350015A73A /* MenuBarPlayerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayerSettingsViewController.swift; sourceTree = "<group>"; };
@@ -3157,6 +3160,7 @@
 			isa = PBXGroup;
 			children = (
 				3E6C0FA825CEB98600BF0D07 /* ColorScheme.swift */,
+				3EB3FFDB27DE3839009F7E2C /* ColorScheme+Presets.swift */,
 				3E6C0FA925CEB98600BF0D07 /* ColorSchemePreset.swift */,
 			);
 			path = Domain;
@@ -5796,6 +5800,7 @@
 				3EFE396F27864897006F8B8C /* ChapterPlayback.swift in Sources */,
 				3E6C124D25CEBDF400BF0D07 /* PlaylistSearchWindowController.swift in Sources */,
 				3E6C122025CEBDE600BF0D07 /* PlaylistSortWindowController.swift in Sources */,
+				3EB3FFDC27DE3839009F7E2C /* ColorScheme+Presets.swift in Sources */,
 				3E6C125125CEBDF400BF0D07 /* PlaylistUIState.swift in Sources */,
 				3EFE38B327864896006F8B8C /* FlexibleFilterNode.swift in Sources */,
 				3EFE382327864896006F8B8C /* SearchType.swift in Sources */,
@@ -6354,6 +6359,7 @@
 				3EFE38FA27864897006F8B8C /* RepeatingTaskExecutor.swift in Sources */,
 				3E84AFF626B5CA5F00B5F0B7 /* GroupingPlaylistTests+GroupCountAndAccess.swift in Sources */,
 				3EFE3A9427864898006F8B8C /* Chapter.swift in Sources */,
+				3EB3FFDD27DE3839009F7E2C /* ColorScheme+Presets.swift in Sources */,
 				3E60CA1926B0873B00D9404C /* MockCoverArtReader.swift in Sources */,
 				3EFE38C427864896006F8B8C /* MasterUnitDelegateProtocol.swift in Sources */,
 				3EE9BBE9268F90BE0073321A /* TimeStretchUnitPersistenceTests.swift in Sources */,

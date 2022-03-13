@@ -26,7 +26,7 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
     
     init(persistentState: ColorSchemesPersistentState?) {
         
-        let systemDefinedSchemes = ColorSchemePreset.allCases.map {ColorScheme($0.name, $0)}
+        let systemDefinedSchemes: [ColorScheme] = ColorScheme.allPresets
         let userDefinedSchemes = (persistentState?.userSchemes ?? []).map {ColorScheme($0, false)}
         
         if let persistentSystemScheme = persistentState?.systemScheme {
@@ -35,8 +35,8 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
             
         } else {
             
-            self.systemScheme = systemDefinedSchemes.first(where: {$0.name == ColorSchemePreset.defaultScheme.name}) ??
-                ColorScheme("_system_", ColorSchemePreset.defaultScheme)
+            self.systemScheme = systemDefinedSchemes.first(where: {$0.name == ColorScheme.defaultScheme.name}) ??
+            ColorScheme("_system_", true, .blackAttack)
         }
         
         super.init(systemDefinedObjects: systemDefinedSchemes, userDefinedObjects: userDefinedSchemes)

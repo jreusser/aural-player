@@ -17,6 +17,8 @@ protocol ColorSchemeObserver {
 
 extension ColorSchemesManager {
     
+    static let muthu: Int = 5
+    
     func startObserving() {
         
         for property in registry.keys {
@@ -33,7 +35,7 @@ extension ColorSchemesManager {
     
     private func beginKVO(forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
-        kvo.addObserver(forObject: systemColorScheme, keyPath: property) {[weak self] newColor in
+        kvo.addObserver(forObject: systemColorScheme, keyPath: property) {[weak self] _, newColor in
             
             guard let observers = self?.registry[property] else {return}
             

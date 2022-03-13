@@ -16,12 +16,12 @@ class KVOTokens<Object: NSObject, Property> {
     
     func addObserver(forObject object: Object, keyPath: KeyPath<Object, Property>,
                             options: NSKeyValueObservingOptions = [.initial, .new],
-                            changeHandler: @escaping (Property) -> Void) {
+                            changeHandler: @escaping (Object, Property) -> Void) {
         
         tokens.append(object.observe(keyPath, options: options) {_, changedValue in
             
             if let newValue = changedValue.newValue {
-                changeHandler(newValue)
+                changeHandler(object, newValue)
             }
         })
     }
