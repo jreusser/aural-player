@@ -96,7 +96,7 @@
                                         <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="AppTitle"/>
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
-                                <button toolTip="Show/hide playlist" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Br1-bp-Vzd" userLabel="Toggle Playlist Button" customClass="OnOffImageButton" customModule="Aural" customModuleProvider="target">
+                                <button toolTip="Show/hide playlist" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Br1-bp-Vzd" userLabel="Toggle Playlist Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="459" y="202" width="17.5" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="yEP-qA-m8Z">
@@ -105,8 +105,6 @@
                                         <imageReference key="image" image="list.dash" catalog="system" symbolScale="large"/>
                                     </buttonCell>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="offStateTooltip" value="Show playlist"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="onStateTooltip" value="Hide playlist"/>
                                         <userDefinedRuntimeAttribute type="number" keyPath="weight">
                                             <real key="value" value="8"/>
                                         </userDefinedRuntimeAttribute>
@@ -530,18 +528,14 @@
                                         </menu>
                                     </popUpButtonCell>
                                 </popUpButton>
-                                <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1Y-N5-RBQ" userLabel="Toggle Effects Button" customClass="OnOffImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="481" y="203.5" width="17" height="17"/>
+                                <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1Y-N5-RBQ" userLabel="Toggle Effects Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="481" y="203.5" width="17" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="slider.vertical.3" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ayS-P6-02f">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="offStateTooltip" value="Show effects"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="onStateTooltip" value="Hide effects"/>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="offStateImage" value="EffectsView-Off"/>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="onStateImage" value="EffectsView-On"/>
                                         <userDefinedRuntimeAttribute type="number" keyPath="weight">
                                             <real key="value" value="2"/>
                                         </userDefinedRuntimeAttribute>
@@ -2138,8 +2132,6 @@ CA
         <image name="Down-Small" width="10" height="14"/>
         <image name="EQ" width="14" height="14"/>
         <image name="EffectsPresets-Editor" width="14" height="14"/>
-        <image name="EffectsView-Off" width="25" height="25"/>
-        <image name="EffectsView-On" width="25" height="25"/>
         <image name="ExpandGroups" width="15" height="15"/>
         <image name="Favorites" width="15" height="15"/>
         <image name="Favorites-Editor" width="15" height="15"/>

@@ -15,6 +15,13 @@ import Cocoa
 @IBDesignable
 class TintedImageButton: NSButton, ColorSchemeable, ColorSchemeObserver {
     
+    var weight: NSFont.Weight = .heavy {
+        
+        didSet {
+            image = image?.withSymbolConfiguration(.init(pointSize: 12, weight: weight))
+        }
+    }
+    
     override var image: NSImage? {
         
         didSet {

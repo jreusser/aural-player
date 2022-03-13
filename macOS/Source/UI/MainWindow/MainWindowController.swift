@@ -28,8 +28,25 @@ class MainWindowController: NSWindowController, Destroyable {
     @IBOutlet weak var btnControlBarMode: TintedImageButton!
     
     // Buttons to toggle the playlist/effects views
-    @IBOutlet weak var btnToggleEffects: OnOffImageButton!
-    @IBOutlet weak var btnTogglePlaylist: OnOffImageButton!
+    @IBOutlet weak var btnTogglePlaylist: TintedImageButton!
+    @IBOutlet weak var btnToggleEffects: TintedImageButton!
+    
+    private lazy var btnTogglePlaylistStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingPlaylist,
+                                                                                    mappings: [
+                                                                                        
+                                                                                        ButtonStateMachine.StateMapping(state: true, image: Images.imgPlaylist, colorProperty: \.buttonColor, toolTip: "Hide the Playlist"),
+                                                                                        ButtonStateMachine.StateMapping(state: false, image: Images.imgPlaylist, colorProperty: \.buttonOffColor, toolTip: "Show the Playlist")
+                                                                                    ],
+                                                                                    button: btnTogglePlaylist)
+    
+    private lazy var btnToggleEffectsStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingEffects,
+                                                                                    mappings: [
+                                                                                        
+                                                                                        ButtonStateMachine.StateMapping(state: true, image: Images.imgEffects, colorProperty: \.buttonColor, toolTip: "Hide the Effects panel"),
+                                                                                        ButtonStateMachine.StateMapping(state: false, image: Images.imgEffects, colorProperty: \.buttonOffColor, toolTip: "Show the Effects panel")
+                                                                                    ],
+                                                                                    button: btnToggleEffects)
+    
     @IBOutlet weak var btnSettingsMenu: NSPopUpButton!
     
     @IBOutlet weak var settingsMenuIconItem: TintedIconMenuItem!
@@ -81,8 +98,8 @@ class MainWindowController: NSWindowController, Destroyable {
         
         containerBox.addSubview(playerViewController.view)
 
-        btnTogglePlaylist.onIf(windowLayoutsManager.isShowingPlaylist)
-        btnToggleEffects.onIf(windowLayoutsManager.isShowingEffects)
+        btnTogglePlaylistStateMachine.setState(windowLayoutsManager.isShowingPlaylist)
+        btnToggleEffectsStateMachine.setState(windowLayoutsManager.isShowingEffects)
         
         btnToggleEffects.weight = .black
         btnTogglePlaylist.weight = .black
@@ -92,12 +109,6 @@ class MainWindowController: NSWindowController, Destroyable {
         
         colorSchemesManager.registerObservers([btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode, settingsMenuIconItem],
                                               forProperty: \.buttonColor)
-        
-        [btnTogglePlaylist, btnToggleEffects].forEach {
-            
-            $0?.observeColorSchemeProperty(\.buttonColor, forState: .on)
-            $0?.observeColorSchemeProperty(\.buttonOffColor, forState: .off)
-        }
         
         rootContainerBox.cornerRadius = uiState.cornerRadius
     }
@@ -202,8 +213,8 @@ class MainWindowController: NSWindowController, Destroyable {
     
     func windowLayoutChanged() {
 
-        btnTogglePlaylist.onIf(windowLayoutsManager.isShowingPlaylist)
-        btnToggleEffects.onIf(windowLayoutsManager.isShowingEffects)
+        btnTogglePlaylistStateMachine.setState(windowLayoutsManager.isShowingPlaylist)
+        btnToggleEffectsStateMachine.setState(windowLayoutsManager.isShowingEffects)
     }
     
     func changeWindowCornerRadius(_ radius: CGFloat) {
