@@ -51,6 +51,8 @@ extension ColorSchemesManager {
         
         registry[property]!.append(observer)
         
+        observer.colorChanged(to: systemColorScheme[keyPath: property])
+        
         if let observerObject = observer as? NSObject {
             reverseRegistry[observerObject] = property
         }
@@ -78,17 +80,23 @@ extension ColorSchemesManager {
         }
         
         registry[property]!.append(contentsOf: observers)
+        
+        for observer in observers {
+            observer.colorChanged(to: systemColorScheme[keyPath: property])
+        }
     }
     
     func registerObserver(_ observer: ColorSchemeObserver, forProperties properties: KeyPath<ColorScheme, PlatformColor>...) {
-        
+
         for property in properties {
-            
+
             if registry[property] == nil {
                 registry[property] = []
             }
-            
+
             registry[property]!.append(observer)
+
+            observer.colorChanged(to: systemColorScheme[keyPath: property])
         }
     }
 }

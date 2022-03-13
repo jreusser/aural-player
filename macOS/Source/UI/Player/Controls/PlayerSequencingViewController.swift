@@ -14,9 +14,24 @@ import Cocoa
     Also handles sequencing requests from app menus.
  */
 class PlayerSequencingViewController: NSViewController, Destroyable {
+
+    @IBOutlet weak var btnRepeat: TintedImageButton!
+    @IBOutlet weak var btnShuffle: TintedImageButton!
     
-    @IBOutlet weak var btnShuffle: MultiStateImageButton!
-    @IBOutlet weak var btnRepeat: MultiStateImageButton!
+    private lazy var btnRepeatStateMachine: ButtonStateMachine<RepeatMode> = ButtonStateMachine(initialState: sequencer.repeatAndShuffleModes.repeatMode,
+                                                                                                mappings: [
+                                                                                                    ButtonStateMachine.StateMapping(state: .off, image: Images.imgRepeat, colorProperty: \.buttonOffColor, toolTip: "Repeat"),
+                                                                                                    ButtonStateMachine.StateMapping(state: .all, image: Images.imgRepeat, colorProperty: \.buttonColor, toolTip: "Repeat"),
+                                                                                                    ButtonStateMachine.StateMapping(state: .one, image: Images.imgRepeatOne, colorProperty: \.buttonColor, toolTip: "Repeat")
+                                                                                                ],
+                                                                                                button: btnRepeat)
+    
+    private lazy var btnShuffleStateMachine: ButtonStateMachine<ShuffleMode> = ButtonStateMachine(initialState: sequencer.repeatAndShuffleModes.shuffleMode,
+                                                                                                  mappings: [
+                                                                                                    ButtonStateMachine.StateMapping(state: .off, image: Images.imgShuffle, colorProperty: \.buttonOffColor, toolTip: "Shuffle"),
+                                                                                                    ButtonStateMachine.StateMapping(state: .on, image: Images.imgShuffle, colorProperty: \.buttonColor, toolTip: "Shuffle")
+                                                                                                  ],
+                                                                                                  button: btnShuffle)
     
     // Delegate that conveys all repeat/shuffle requests to the sequencer
     let sequencer: SequencerDelegateProtocol = objectGraph.sequencerDelegate
@@ -32,10 +47,6 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
     lazy var messenger = Messenger(for: self)
     
     override func viewDidLoad() {
-        
-//        btnRepeat.stateImageMappings = [(RepeatMode.off, (Images.imgRepeat, \.buttonOffColor)), (RepeatMode.one, (Images.imgRepeatOne, \.buttonColor)), (RepeatMode.all, (Images.imgRepeat, \.buttonColor))]
-//
-//        btnShuffle.stateImageMappings = [(ShuffleMode.off, (Images.imgShuffle, \.buttonOffColor)), (ShuffleMode.on, (Images.imgShuffle, \.buttonColor))]
         
         updateRepeatAndShuffleControls(sequencer.repeatAndShuffleModes)
         
@@ -76,7 +87,7 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
     
     func updateRepeatAndShuffleControls(_ modes: (repeatMode: RepeatMode, shuffleMode: ShuffleMode)) {
 
-//        btnShuffle.switchState(modes.shuffleMode)
-//        btnRepeat.switchState(modes.repeatMode)
+        btnRepeatStateMachine.setState(modes.repeatMode)
+        btnShuffleStateMachine.setState(modes.shuffleMode)
     }
 }
