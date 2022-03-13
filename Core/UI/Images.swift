@@ -19,6 +19,8 @@ struct Images {
     
     static let imgPlayingTrack: PlatformImage = PlatformImage(named: "PlayingTrack")!
     
+    static let imgFavorite: PlatformImage = PlatformImage(systemSymbolName: "heart", accessibilityDescription: nil)!
+    
     static let imgVolumeZero: PlatformImage = PlatformImage(systemSymbolName: "volume", accessibilityDescription: nil)!
     static let imgVolumeLow: PlatformImage = PlatformImage(systemSymbolName: "volume.1", accessibilityDescription: nil)!
     static let imgVolumeMedium: PlatformImage = PlatformImage(systemSymbolName: "volume.2", accessibilityDescription: nil)!

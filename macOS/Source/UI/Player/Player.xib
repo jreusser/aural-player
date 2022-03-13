@@ -412,17 +412,13 @@ G1BhbiBTbGlkZXI
                                     <action selector="moreInfoAction:" target="DlG-hJ-3cs" id="oz8-KM-pj7"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e20-X0-3Aa" userLabel="Favorites Button" customClass="OnOffImageButton" customModule="Aural" customModuleProvider="target">
+                            <button hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e20-X0-3Aa" userLabel="Favorites Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="15" y="1.5" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="heart" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="HyT-su-Ztz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="onStateTooltip" value="Remove playing track from Favorites"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="offStateTooltip" value="Add playing track to Favorites"/>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="favoriteAction:" target="DlG-hJ-3cs" id="caN-Sl-nND"/>
                                 </connections>

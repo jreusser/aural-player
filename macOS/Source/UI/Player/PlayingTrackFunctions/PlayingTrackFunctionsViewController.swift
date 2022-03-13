@@ -21,7 +21,15 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     @IBOutlet weak var btnMoreInfo: TintedImageButton!
     
     // Button to add/remove the currently playing track to/from the Favorites list
-    @IBOutlet weak var btnFavorite: OnOffImageButton!
+    @IBOutlet weak var btnFavorite: TintedImageButton!
+    
+    private lazy var btnFavoriteStateMachine: ButtonStateMachine<Bool> = .init(initialState: true,
+                                                                               mappings: [
+                                                                                
+                                                                                ButtonStateMachine.StateMapping(state: true, image: Images.imgFavorite, colorProperty: \.buttonColor, toolTip: "Remove playing track from Favorites"),
+                                                                                ButtonStateMachine.StateMapping(state: false, image: Images.imgFavorite, colorProperty: \.buttonOffColor, toolTip: "Add playing track to Favorites")
+                                                                               ],
+                                                                               button: btnFavorite)
     
     // Button to bookmark current track and position
     @IBOutlet weak var btnBookmark: TintedImageButton!
@@ -67,7 +75,8 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     
     override func viewDidLoad() {
         
-//        allButtons = [btnMoreInfo, btnShowPlayingTrackInPlaylist, btnFavorite, btnBookmark]
+        updateFavoriteButtonState()
+        colorSchemesManager.registerObservers([btnMoreInfo, btnBookmark, btnShowPlayingTrackInPlaylist], forProperty: \.buttonColor)
         
         if let playingTrack = player.playingTrack {
             newTrackStarted(playingTrack)
@@ -86,8 +95,17 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
         messenger.subscribe(to: .favoritesList_addOrRemove, handler: addOrRemoveFavorite)
         messenger.subscribe(to: .player_bookmarkPosition, handler: bookmarkPosition)
         messenger.subscribe(to: .player_bookmarkLoop, handler: bookmarkLoop)
+    }
+    
+    private func updateFavoriteButtonState() {
         
-        colorSchemesManager.registerObservers([btnMoreInfo, btnBookmark, btnShowPlayingTrackInPlaylist], forProperty: \.buttonColor)
+        var isFavorite: Bool = false
+        
+        if let playingTrack = player.playingTrack {
+            isFavorite = favorites.favoriteWithFileExists(playingTrack.file)
+        }
+        
+        btnFavoriteStateMachine.setState(isFavorite)
     }
     
     func destroy() {
@@ -139,18 +157,24 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     
     // Adds/removes the currently playing track to/from the "Favorites" list
     @IBAction func favoriteAction(_ sender: Any) {
-        
-        if let playingTrack = player.playingTrack {
-            
-            // Toggle the button state
-            btnFavorite.toggle()
-            
-            btnFavorite.isOn ? _ = favorites.addFavorite(playingTrack) : favorites.deleteFavoriteWithFile(playingTrack.file)
-        }
+        addOrRemoveFavorite()
     }
     
     private func addOrRemoveFavorite() {
-        favoriteAction(self)
+        
+        guard let playingTrack = player.playingTrack else {return}
+
+        // Toggle the button state
+        if favorites.favoriteWithFileExists(playingTrack.file) {
+            
+            favorites.deleteFavoriteWithFile(playingTrack.file)
+            btnFavoriteStateMachine.setState(false)
+            
+        } else {
+            
+            _ = favorites.addFavorite(playingTrack)
+            btnFavoriteStateMachine.setState(true)
+        }
     }
     
     // Adds the currently playing track position to/from the "Bookmarks" list
@@ -239,30 +263,29 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     private func favoritesUpdated(_ updatedFavoritesFiles: Set<URL>, _ added: Bool) {
         
         // Do this only if the track in the message is the playing track
-        if let playingTrack = player.playingTrack, updatedFavoritesFiles.contains(playingTrack.file) {
+        guard let playingTrack = player.playingTrack, updatedFavoritesFiles.contains(playingTrack.file) else {return}
+        
+        // TODO: Is this really required ???
+        windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)
+        
+        updateFavoriteButtonState()
+        
+        let autoHideIsOn: Bool = playerUIState.viewType == .expandedArt || !playerUIState.showControls
+        
+        if btnFavorite.isVisible && !autoHideIsOn {
             
-            // TODO: Is this really required ???
-            windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)
+            infoPopup.showMessage(added ? "Track added to Favorites !" : "Track removed from Favorites !",
+                                  btnFavorite, .maxX)
             
-            btnFavorite.onIf(added)
+        } else if let windowRootView = self.view.window?.contentView {
             
-            let autoHideIsOn: Bool = playerUIState.viewType == .expandedArt || !playerUIState.showControls
-            
-            if btnFavorite.isVisible && !autoHideIsOn {
-                
-                infoPopup.showMessage(added ? "Track added to Favorites !" : "Track removed from Favorites !",
-                                      btnFavorite, .maxX)
-                
-            } else if let windowRootView = self.view.window?.contentView {
-                
-                infoPopup.showMessage(added ? "Track added to Favorites !" : "Track removed from Favorites !",
-                                      windowRootView, .maxX)
-            }
+            infoPopup.showMessage(added ? "Track added to Favorites !" : "Track removed from Favorites !",
+                                  windowRootView, .maxX)
         }
     }
     
     private func newTrackStarted(_ track: Track) {
-        btnFavorite.onIf(favorites.favoriteWithFileExists(track.file))
+        updateFavoriteButtonState()
     }
     
     private func noTrackPlaying() {

@@ -10,7 +10,7 @@
 
 import Foundation
 
-class ButtonStateMachine<E> where E: RawRepresentable, E: Hashable {
+class ButtonStateMachine<E> where E: Hashable {
     
     private var state: E
     private let button: TintedImageButton
