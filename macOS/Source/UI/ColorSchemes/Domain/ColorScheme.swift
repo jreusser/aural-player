@@ -151,14 +151,8 @@ class ColorScheme: NSObject, UserManagedObject {
         
         super.init()
         
-        self.activeControlGradientColor = computeActiveControlGradientColor()
-        self.activeControlGradient = computeActiveControlGradient()
-        
-        self.bypassedControlGradientColor = computeBypassedControlGradientColor()
-        self.bypassedControlGradient = computeBypassedControlGradient()
-        
-        self.suppressedControlGradientColor = computeSuppressedControlGradientColor()
-        self.suppressedControlGradient = computeSuppressedControlGradient()
+        computeGradients()
+        setUpKVO()
     }
     
     // Copy constructor ... creates a copy of the given scheme (used when creating a user-defined preset)
@@ -191,15 +185,7 @@ class ColorScheme: NSObject, UserManagedObject {
         
         super.init()
         
-        self.activeControlGradientColor = computeActiveControlGradientColor()
-        self.activeControlGradient = computeActiveControlGradient()
-        
-        self.bypassedControlGradientColor = computeBypassedControlGradientColor()
-        self.bypassedControlGradient = computeBypassedControlGradient()
-        
-        self.suppressedControlGradientColor = computeSuppressedControlGradientColor()
-        self.suppressedControlGradient = computeSuppressedControlGradient()
-        
+        computeGradients()
         setUpKVO()
     }
     
@@ -233,6 +219,12 @@ class ColorScheme: NSObject, UserManagedObject {
         
         super.init()
         
+        computeGradients()
+        setUpKVO()
+    }
+    
+    private func computeGradients() {
+        
         self.activeControlGradientColor = computeActiveControlGradientColor()
         self.activeControlGradient = computeActiveControlGradient()
         
@@ -241,8 +233,6 @@ class ColorScheme: NSObject, UserManagedObject {
         
         self.suppressedControlGradientColor = computeSuppressedControlGradientColor()
         self.suppressedControlGradient = computeSuppressedControlGradient()
-        
-        setUpKVO()
     }
     
     deinit {
@@ -305,12 +295,12 @@ class ColorScheme: NSObject, UserManagedObject {
     
     // Creates an identical copy of this color scheme
     func clone() -> ColorScheme {
-        return ColorScheme(self.name + "_clone", self.systemDefined, self)
+        ColorScheme(self.name + "_clone", self.systemDefined, self)
     }
     
     // State that can be persisted to disk
     var persistentState: ColorSchemePersistentState {
-        return ColorSchemePersistentState(self)
+        ColorSchemePersistentState(self)
     }
 }
 

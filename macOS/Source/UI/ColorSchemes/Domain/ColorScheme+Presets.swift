@@ -10,7 +10,7 @@
 
 extension ColorScheme {
     
-    static let blackAttack: ColorScheme = .init(name: "Black Attack", systemDefined: true,
+    static let blackAttack: ColorScheme = .init(name: "Black attack (default)", systemDefined: true,
                                                 backgroundColor: .white8Percent, captionTextColor: .white40Percent,
                                                 primaryTextColor: .white90Percent, secondaryTextColor: .white65Percent, tertiaryTextColor: .white55Percent,
                                                 primarySelectedTextColor: .white80Percent, secondarySelectedTextColor: .white55Percent,
@@ -19,5 +19,14 @@ extension ColorScheme {
                                                 sliderBackgroundColor: .white15Percent, sliderTickColor: .black,
                                                 textSelectionColor: .white15Percent)
     
-    static let allPresets: [ColorScheme] = [.blackAttack]
+    static let lava: ColorScheme = .init(name: "Lava", systemDefined: true,
+                                         backgroundColor: PlatformColor(red: 0.144, green: 0.144, blue: 0.144), captionTextColor: .white40Percent,
+                                         primaryTextColor: .white90Percent, secondaryTextColor: .white65Percent, tertiaryTextColor: .white55Percent,
+                                         primarySelectedTextColor: .white80Percent, secondarySelectedTextColor: .white55Percent,
+                                         buttonColor: .white80Percent, buttonOffColor: .white35Percent,
+                                         activeControlColor: .lava, bypassedControlColor: .white60Percent, suppressedControlColor: PlatformColor(red: 0.5, green: 0.204, blue: 0.107),
+                                         sliderBackgroundColor: PlatformColor(red: 0.326, green: 0.326, blue: 0.326), sliderTickColor: .black,
+                                         textSelectionColor: .black)
+    
+    static let allPresets: [ColorScheme] = [.blackAttack, .lava]
 }
