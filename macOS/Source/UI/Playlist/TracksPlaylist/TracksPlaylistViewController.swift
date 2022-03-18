@@ -167,9 +167,9 @@ class TracksPlaylistViewController: NSViewController, Destroyable {
 
         guard rowCount > 1 && (1..<rowCount).contains(selectedRowCount) else {return}
         
-        if let results = playlist.moveTracksUp(selectedRows).results as? [TrackMoveResult] {
+        if let results = playlist.moveTracksUp(selectedRows).results as? [GroupedTrackMoveResult] {
             
-            moveAndReloadItems(results.sorted(by: TrackMoveResult.compareAscending))
+            moveAndReloadItems(results.sorted(by: GroupedTrackMoveResult.compareAscending))
             
             if let minRow = selectedRows.min() {
                 playlistView.scrollRowToVisible(minRow)
@@ -182,9 +182,9 @@ class TracksPlaylistViewController: NSViewController, Destroyable {
         
         guard rowCount > 1 && (1..<rowCount).contains(selectedRowCount) else {return}
         
-        if let results = playlist.moveTracksDown(selectedRows).results as? [TrackMoveResult] {
+        if let results = playlist.moveTracksDown(selectedRows).results as? [GroupedTrackMoveResult] {
             
-            moveAndReloadItems(results.sorted(by: TrackMoveResult.compareDescending))
+            moveAndReloadItems(results.sorted(by: GroupedTrackMoveResult.compareDescending))
             
             if let minRow = selectedRows.min() {
                 playlistView.scrollRowToVisible(minRow)
@@ -193,7 +193,7 @@ class TracksPlaylistViewController: NSViewController, Destroyable {
     }
     
     // Rearranges tracks within the view that have been reordered
-    private func moveAndReloadItems(_ results: [TrackMoveResult]) {
+    private func moveAndReloadItems(_ results: [GroupedTrackMoveResult]) {
         
         for result in results {
             
@@ -210,10 +210,10 @@ class TracksPlaylistViewController: NSViewController, Destroyable {
         
         guard rowCount > 1 && (1..<rowCount).contains(selectedRowCount) else {return}
         
-        if let results = playlist.moveTracksToTop(selectedRows).results as? [TrackMoveResult] {
+        if let results = playlist.moveTracksToTop(selectedRows).results as? [GroupedTrackMoveResult] {
             
             // Move the rows
-            removeAndInsertItems(results.sorted(by: TrackMoveResult.compareAscending))
+            removeAndInsertItems(results.sorted(by: GroupedTrackMoveResult.compareAscending))
             
             // Refresh the relevant rows
             guard let maxSelectedRow = selectedRows.max() else {return}
@@ -234,10 +234,10 @@ class TracksPlaylistViewController: NSViewController, Destroyable {
         
         guard rowCount > 1 && (1..<rowCount).contains(selectedRowCount) else {return}
         
-        if let results = playlist.moveTracksToBottom(selectedRows).results as? [TrackMoveResult] {
+        if let results = playlist.moveTracksToBottom(selectedRows).results as? [GroupedTrackMoveResult] {
 
             // Move the rows
-            removeAndInsertItems(results.sorted(by: TrackMoveResult.compareDescending))
+            removeAndInsertItems(results.sorted(by: GroupedTrackMoveResult.compareDescending))
             
             guard let minSelectedRow = selectedRows.min() else {return}
             
@@ -254,7 +254,7 @@ class TracksPlaylistViewController: NSViewController, Destroyable {
     }
     
     // Refreshes the playlist view by rearranging the items that were moved
-    private func removeAndInsertItems(_ results: [TrackMoveResult]) {
+    private func removeAndInsertItems(_ results: [GroupedTrackMoveResult]) {
         
         for result in results {
             

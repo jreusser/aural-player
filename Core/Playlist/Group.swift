@@ -58,7 +58,7 @@ class Group: Hashable, PlaylistItem {
     }
     
     func trackAtIndex(_ index: Int) -> Track? {
-        return tracks.itemAtIndex(index)
+        return tracks.item(at: index)
     }
     
     // Adds a track and returns the index of the new track
@@ -76,12 +76,12 @@ class Group: Hashable, PlaylistItem {
     
     // Moves tracks within this group, at the given indexes, up one index, if possible. Returns a mapping of source indexes to destination indexes.
     func moveTracksUp(_ indices: IndexSet) -> [Int: Int] {
-        return tracks.moveItemsUp(indices)
+        return tracks.moveItemsUp(from: indices)
     }
     
     // Assume tracks can be moved
     func moveTracksToTop(_ indices: IndexSet) -> [Int: Int] {
-        return tracks.moveItemsToTop(indices)
+        return tracks.moveItemsToTop(from: indices)
     }
     
     func moveTracksToTop(_ tracksToMove: [Track]) -> [Int: Int] {
@@ -94,7 +94,7 @@ class Group: Hashable, PlaylistItem {
     
     // Moves tracks within this group, at the given indexes, down one index, if possible. Returns a mapping of source indexes to destination indexes.
     func moveTracksDown(_ indices: IndexSet) -> [Int: Int] {
-        return tracks.moveItemsDown(indices)
+        return tracks.moveItemsDown(from: indices)
     }
     
     func moveTracksToBottom(_ tracksToMove: [Track]) -> [Int: Int] {
@@ -102,7 +102,7 @@ class Group: Hashable, PlaylistItem {
     }
     
     func moveTracksToBottom(_ indices: IndexSet) -> [Int: Int] {
-        return tracks.moveItemsToBottom(indices)
+        return tracks.moveItemsToBottom(from: indices)
     }
     
     func dragAndDropItems(_ sourceIndices: IndexSet, _ dropIndex: Int) -> [Int: Int] {

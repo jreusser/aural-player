@@ -34,7 +34,7 @@ class FlatPlaylist: FlatPlaylistProtocol {
     }
     
     func trackAtIndex(_ index: Int) -> Track? {
-        return tracks.itemAtIndex(index)
+        return tracks.item(at: index)
     }
     
     func indexOfTrack(_ track: Track) -> Int?  {
@@ -91,27 +91,23 @@ class FlatPlaylist: FlatPlaylistProtocol {
     }
     
     func removeTracks(_ indices: IndexSet) -> [Track] {
-        return tracks.removeItems(indices)
+        return tracks.removeItems(at: indices)
     }
     
     func moveTracksToTop(_ indices: IndexSet) -> ItemMoveResults {
-        
-        return ItemMoveResults(results: tracks.moveItemsToTop(indices).map {TrackMoveResult($0.key, $0.value)}, playlistType: .tracks)
+        return ItemMoveResults(results: tracks.moveItemsToTop(from: indices).map {GroupedTrackMoveResult($0.key, $0.value)}, playlistType: .tracks)
     }
     
     func moveTracksToBottom(_ indices: IndexSet) -> ItemMoveResults {
-        
-        return ItemMoveResults(results: tracks.moveItemsToBottom(indices).map {TrackMoveResult($0.key, $0.value)}, playlistType: .tracks)
+        return ItemMoveResults(results: tracks.moveItemsToBottom(from: indices).map {GroupedTrackMoveResult($0.key, $0.value)}, playlistType: .tracks)
     }
     
     func moveTracksUp(_ indices: IndexSet) -> ItemMoveResults {
-        
-        return ItemMoveResults(results: tracks.moveItemsUp(indices).map {TrackMoveResult($0.key, $0.value)}, playlistType: .tracks)
+        return ItemMoveResults(results: tracks.moveItemsUp(from: indices).map {GroupedTrackMoveResult($0.key, $0.value)}, playlistType: .tracks)
     }
     
     func moveTracksDown(_ indices: IndexSet) -> ItemMoveResults {
-        
-        return ItemMoveResults(results: tracks.moveItemsDown(indices).map {TrackMoveResult($0.key, $0.value)}, playlistType: .tracks)
+        return ItemMoveResults(results: tracks.moveItemsDown(from: indices).map {GroupedTrackMoveResult($0.key, $0.value)}, playlistType: .tracks)
     }
     
     func sort(_ sort: Sort) {
@@ -119,7 +115,6 @@ class FlatPlaylist: FlatPlaylistProtocol {
     }
     
     func dropTracks(_ sourceIndexes: IndexSet, _ dropIndex: Int) -> ItemMoveResults {
-        
-        return ItemMoveResults(results: tracks.dragAndDropItems(sourceIndexes, dropIndex).map {TrackMoveResult($0.key, $0.value)}, playlistType: .tracks)
+        return ItemMoveResults(results: tracks.dragAndDropItems(sourceIndexes, dropIndex).map {GroupedTrackMoveResult($0.key, $0.value)}, playlistType: .tracks)
     }
 }

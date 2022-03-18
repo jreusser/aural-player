@@ -401,7 +401,7 @@ class Sequencer: SequencerProtocol {
 
         // If the scope is a group, it will only have been affected if any tracks within it were moved.
         // NOTE - A group being moved doesn't affect the playback scope if the scope is limited to that group.
-        if let group = scope.group, !moveResults.results.contains(where: {group == ($0 as? TrackMoveResult)?.parentGroup}) {
+        if let group = scope.group, !moveResults.results.contains(where: {group == ($0 as? GroupedTrackMoveResult)?.parentGroup}) {
             return
         }
         

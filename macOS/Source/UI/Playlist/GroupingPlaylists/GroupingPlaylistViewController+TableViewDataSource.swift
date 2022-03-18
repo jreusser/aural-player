@@ -208,13 +208,13 @@ extension GroupingPlaylistViewController: NSOutlineViewDataSource {
     private func refreshView(_ outlineView: NSOutlineView, _ results: ItemMoveResults) {
         
         // First, sort all the move operations, so that they do not interfere with each other (all downward moves in descending order, followed by all upward moves in ascending order)
-        let sortedMoves = results.results.filter({$0.movedDown}).sorted(by: ItemMoveResult.compareDescending) +
-            results.results.filter({$0.movedUp}).sorted(by: ItemMoveResult.compareAscending)
+        let sortedMoves = results.results.filter({$0.movedDown}).sorted(by: TrackMoveResult.compareDescending) +
+            results.results.filter({$0.movedUp}).sorted(by: TrackMoveResult.compareAscending)
         
         // Then, move the relevant items within the playlist view
         for move in sortedMoves {
             
-            if let trackMoveResult = move as? TrackMoveResult, let parentGroup = trackMoveResult.parentGroup {
+            if let trackMoveResult = move as? GroupedTrackMoveResult, let parentGroup = trackMoveResult.parentGroup {
                 
                 // Move track from the old source index within its parent group to its new destination index
                 outlineView.moveItem(at: trackMoveResult.sourceIndex, inParent: parentGroup, to: trackMoveResult.destinationIndex, inParent: parentGroup)

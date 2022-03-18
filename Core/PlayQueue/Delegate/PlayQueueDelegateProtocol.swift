@@ -32,15 +32,15 @@ protocol PlayQueueDelegateProtocol {
     
     func removeTracks(_ indices: IndexSet) -> [Track]
 
-    func moveTracksUp(_ indices: IndexSet) -> [TrackMoveResult]
+    func moveTracksUp(_ indices: IndexSet) -> [GroupedTrackMoveResult]
     
-    func moveTracksToTop(_ indices: IndexSet) -> [TrackMoveResult]
+    func moveTracksToTop(_ indices: IndexSet) -> [GroupedTrackMoveResult]
     
-    func moveTracksDown(_ indices: IndexSet) -> [TrackMoveResult]
+    func moveTracksDown(_ indices: IndexSet) -> [GroupedTrackMoveResult]
     
-    func moveTracksToBottom(_ indices: IndexSet) -> [TrackMoveResult]
+    func moveTracksToBottom(_ indices: IndexSet) -> [GroupedTrackMoveResult]
     
-    func dropTracks(_ sourceIndices: IndexSet, _ dropIndex: Int) -> [TrackMoveResult]
+    func dropTracks(_ sourceIndices: IndexSet, _ dropIndex: Int) -> [GroupedTrackMoveResult]
     
     func export(to file: URL)
     

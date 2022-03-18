@@ -198,11 +198,11 @@ class GroupingPlaylistViewController: NSViewController, Destroyable {
     }
     
     // Refreshes the playlist view by rearranging the items that were moved
-    private func removeAndInsertItems(_ results: ItemMoveResults, _ sortComparator:  @escaping (ItemMoveResult, ItemMoveResult) -> Bool) {
+    private func removeAndInsertItems(_ results: ItemMoveResults, _ sortComparator:  @escaping (TrackMoveResult, TrackMoveResult) -> Bool) {
  
         for result in results.results.sorted(by: sortComparator) {
             
-            if let trackMovedResult = result as? TrackMoveResult {
+            if let trackMovedResult = result as? GroupedTrackMoveResult {
                 
                 playlistView.removeItems(at: IndexSet(integer: trackMovedResult.sourceIndex), inParent: trackMovedResult.parentGroup,
                                          withAnimation: trackMovedResult.movedUp ? .slideUp : .slideDown)
@@ -222,11 +222,11 @@ class GroupingPlaylistViewController: NSViewController, Destroyable {
     }
     
     // Refreshes the playlist view by rearranging the items that were moved
-    private func moveItems(_ results: ItemMoveResults, _ sortComparator:  @escaping (ItemMoveResult, ItemMoveResult) -> Bool) {
+    private func moveItems(_ results: ItemMoveResults, _ sortComparator:  @escaping (TrackMoveResult, TrackMoveResult) -> Bool) {
         
         for result in results.results.sorted(by: sortComparator) {
             
-            if let trackMovedResult = result as? TrackMoveResult {
+            if let trackMovedResult = result as? GroupedTrackMoveResult {
                 
                 playlistView.moveItem(at: trackMovedResult.sourceIndex, inParent: trackMovedResult.parentGroup,
                                       to: trackMovedResult.destinationIndex, inParent: trackMovedResult.parentGroup)
@@ -250,24 +250,24 @@ class GroupingPlaylistViewController: NSViewController, Destroyable {
     }
     
     private func moveTracksUp() {
-        doMoveItems(playlist.moveTracksAndGroupsUp, ItemMoveResult.compareAscending, self.moveItems)
+        doMoveItems(playlist.moveTracksAndGroupsUp, TrackMoveResult.compareAscending, self.moveItems)
     }
     
     private func moveTracksDown() {
-        doMoveItems(playlist.moveTracksAndGroupsDown, ItemMoveResult.compareDescending, self.moveItems)
+        doMoveItems(playlist.moveTracksAndGroupsDown, TrackMoveResult.compareDescending, self.moveItems)
     }
     
     private func moveTracksToTop() {
-        doMoveItems(playlist.moveTracksAndGroupsToTop, ItemMoveResult.compareAscending, self.removeAndInsertItems)
+        doMoveItems(playlist.moveTracksAndGroupsToTop, TrackMoveResult.compareAscending, self.removeAndInsertItems)
     }
     
     private func moveTracksToBottom() {
-        doMoveItems(playlist.moveTracksAndGroupsToBottom, ItemMoveResult.compareDescending, self.removeAndInsertItems)
+        doMoveItems(playlist.moveTracksAndGroupsToBottom, TrackMoveResult.compareDescending, self.removeAndInsertItems)
     }
     
     private func doMoveItems(_ moveAction: @escaping ([Track], [Group], GroupType) -> ItemMoveResults,
-                             _ sortComparator:  @escaping (ItemMoveResult, ItemMoveResult) -> Bool,
-                             _ refreshAction: @escaping (ItemMoveResults, @escaping (ItemMoveResult, ItemMoveResult) -> Bool) -> Void) {
+                             _ sortComparator:  @escaping (TrackMoveResult, TrackMoveResult) -> Bool,
+                             _ refreshAction: @escaping (ItemMoveResults, @escaping (TrackMoveResult, TrackMoveResult) -> Bool) -> Void) {
         
         let tracksAndGroups = collectSelectedTracksAndGroups()
         let tracks = tracksAndGroups.tracks

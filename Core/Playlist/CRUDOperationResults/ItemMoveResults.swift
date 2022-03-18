@@ -15,7 +15,7 @@ import Foundation
 struct ItemMoveResults {
     
     // The individual results
-    let results: [ItemMoveResult]
+    let results: [TrackMoveResult]
     
     // The type of the playlist in which the tracks/groups were moved
     let playlistType: PlaylistType
@@ -24,7 +24,7 @@ struct ItemMoveResults {
 ///
 /// Base class (not meant to be instantiated) for the result of a single track / group being moved within a single playlist type.
 ///
-class ItemMoveResult {
+class TrackMoveResult {
     
     // Index by which these results will be sorted
     var sortIndex: Int {sourceIndex}
@@ -50,11 +50,11 @@ class ItemMoveResult {
         self.movedDown = !self.movedUp
     }
     
-    static func compareAscending(_ result1: ItemMoveResult, _ result2: ItemMoveResult) -> Bool {
+    static func compareAscending(_ result1: TrackMoveResult, _ result2: TrackMoveResult) -> Bool {
         result1.sortIndex < result2.sortIndex
     }
     
-    static func compareDescending(_ result1: ItemMoveResult, _ result2: ItemMoveResult) -> Bool {
+    static func compareDescending(_ result1: TrackMoveResult, _ result2: TrackMoveResult) -> Bool {
         result1.sortIndex > result2.sortIndex
     }
 }

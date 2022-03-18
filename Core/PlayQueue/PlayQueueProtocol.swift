@@ -8,7 +8,7 @@ protocol PlayQueueProtocol: SequencingProtocol {
     
     func indexOfTrack(_ track: Track) -> Int?
     
-    func trackAtIndex(_ index: Int) -> Track?
+    subscript(_ index: Int) -> Track? {get}
     
     var summary: (size: Int, totalDuration: Double) {get}
     
@@ -17,27 +17,27 @@ protocol PlayQueueProtocol: SequencingProtocol {
     // MARK: Mutating functions ---------------------------------------------------------------
     
     // Adds tracks to the end of the queue, i.e. "Play Later"
-    func enqueue(_ tracks: [Track]) -> ClosedRange<Int>
+    func enqueueTracks(_ tracks: [Track]) -> ClosedRange<Int>
     
     // Adds tracks to the beginning of the queue, i.e. "Play Now"
-    func enqueueAtHead(_ tracks: [Track]) -> ClosedRange<Int>
+    func enqueueTracksAtHead(_ tracks: [Track]) -> ClosedRange<Int>
 
     // Inserts tracks immediately after the current track, i.e. "Play Next"
-    func enqueueAfterCurrentTrack(_ tracks: [Track]) -> ClosedRange<Int>
+    func enqueueTracksAfterCurrentTrack(_ tracks: [Track]) -> ClosedRange<Int>
     
-    func removeTracks(_ indices: IndexSet) -> [Track]
+    func removeTracks(at indices: IndexSet) -> [Track]
 
-    func moveTracksUp(_ indices: IndexSet) -> [TrackMoveResult]
+    func moveTracksUp(from indices: IndexSet) -> [GroupedTrackMoveResult]
     
-    func moveTracksToTop(_ indices: IndexSet) -> [TrackMoveResult]
+    func moveTracksToTop(from indices: IndexSet) -> [GroupedTrackMoveResult]
     
-    func moveTracksDown(_ indices: IndexSet) -> [TrackMoveResult]
+    func moveTracksDown(from indices: IndexSet) -> [GroupedTrackMoveResult]
     
-    func moveTracksToBottom(_ indices: IndexSet) -> [TrackMoveResult]
+    func moveTracksToBottom(from indices: IndexSet) -> [GroupedTrackMoveResult]
     
-    func dropTracks(_ sourceIndices: IndexSet, _ dropIndex: Int) -> [TrackMoveResult]
+    func dropTracks(at sourceIndices: IndexSet, to dropIndex: Int) -> [GroupedTrackMoveResult]
     
-    func clear()
+    func removeAllTracks()
     
     func sort(_ sort: Sort) -> SortResults
     

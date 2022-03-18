@@ -12,7 +12,7 @@ import Foundation
 ///
 /// Contains the result of moving a single group within a single playlist type.
 ///
-class GroupMoveResult: ItemMoveResult {
+class GroupMoveResult: TrackMoveResult {
     
     static func compareAscending(_ result1: GroupMoveResult, _ result2: GroupMoveResult) -> Bool {
         result1.sortIndex < result2.sortIndex

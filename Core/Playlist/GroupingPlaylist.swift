@@ -69,7 +69,7 @@ class GroupingPlaylist: GroupingPlaylistProtocol {
     var numberOfGroups: Int {groups.count}
     
     func groupAtIndex(_ index: Int) -> Group? {
-        return groups.itemAtIndex(index)
+        return groups.item(at: index)
     }
     
     // Assumes group exists in groups array
@@ -264,7 +264,7 @@ class GroupingPlaylist: GroupingPlaylistProtocol {
             return ItemMoveResults(results: [], playlistType: playlistType)
         }
         
-        return ItemMoveResults(results: moveOperation(group, tracks).map {TrackMoveResult($0.key, $0.value, group)}, playlistType: playlistType)
+        return ItemMoveResults(results: moveOperation(group, tracks).map {GroupedTrackMoveResult($0.key, $0.value, group)}, playlistType: playlistType)
     }
     
     // MARK: Drag 'n drop ---------------------------------------------------------------------------------------------------
@@ -274,14 +274,14 @@ class GroupingPlaylist: GroupingPlaylistProtocol {
         if groups.isNonEmpty {
             
             let sourceIndices = IndexSet(groups.compactMap {indexOfGroup($0)})
-            let results: [ItemMoveResult] = self.groups.dragAndDropItems(sourceIndices, dropIndex).map {GroupMoveResult($0.key, $0.value)}
+            let results: [TrackMoveResult] = self.groups.dragAndDropItems(sourceIndices, dropIndex).map {GroupMoveResult($0.key, $0.value)}
             
             return ItemMoveResults(results: results, playlistType: playlistType)
             
         } else if let theDropParent = dropParent {
             
             let sourceIndices = IndexSet(tracks.compactMap {theDropParent.indexOfTrack($0)})
-            let results: [ItemMoveResult] = theDropParent.dragAndDropItems(sourceIndices, dropIndex).map {TrackMoveResult($0.key, $0.value, theDropParent)}
+            let results: [TrackMoveResult] = theDropParent.dragAndDropItems(sourceIndices, dropIndex).map {GroupedTrackMoveResult($0.key, $0.value, theDropParent)}
             
             return ItemMoveResults(results: results, playlistType: playlistType)
         }

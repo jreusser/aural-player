@@ -41,7 +41,7 @@ extension Array {
 
 extension Array where Element: Equatable {
     
-    func itemAtIndex(_ index: Int) -> Element? {
+    func item(at index: Int) -> Element? {
         return indices.contains(index) ? self[index] : nil
     }
 
@@ -49,6 +49,14 @@ extension Array where Element: Equatable {
         
         self.append(item)
         return lastIndex
+    }
+    
+    mutating func addItems(_ items: [Element]) -> ClosedRange<Int> {
+        
+        let firstIndex: Int = self.count
+        self.append(contentsOf: items)
+        
+        return firstIndex...self.lastIndex
     }
     
     mutating func removeItem(_ index: Int) -> Element? {
@@ -66,7 +74,7 @@ extension Array where Element: Equatable {
         return nil
     }
     
-    mutating func removeItems(_ indices: IndexSet) -> [Element] {
+    mutating func removeItems(at indices: IndexSet) -> [Element] {
         
         return indices.sortedDescending()
             .compactMap {self.indices.contains($0) ? self.remove(at: $0) : nil}
@@ -87,23 +95,23 @@ extension Array where Element: Equatable {
         self.insert(self.remove(at: sourceIndex), at: destinationIndex)
     }
     
-    mutating func moveItemUp(_ index: Int) -> Int {
+    mutating func moveItemUp(from index: Int) -> Int {
 
         swapAt(index, index - 1)
         return index - 1
     }
     
-    mutating func moveItemDown(_ index: Int) -> Int {
+    mutating func moveItemDown(from index: Int) -> Int {
 
         swapAt(index, index + 1)
         return index + 1
     }
     
     mutating func moveItemsUp(_ items: [Element]) -> [Int: Int] {
-        return moveItemsUp(IndexSet(items.compactMap {self.firstIndex(of: $0)}))
+        return moveItemsUp(from: IndexSet(items.compactMap {self.firstIndex(of: $0)}))
     }
 
-    mutating func moveItemsUp(_ indices: IndexSet) -> [Int: Int] {
+    mutating func moveItemsUp(from indices: IndexSet) -> [Int: Int] {
         
         // Indices need to be in ascending order, because items need to be moved up, one by one, from top to bottom of the array
         // Determine if there is a contiguous block of items at the top of the array, that cannot be moved. If there is, determine its size.
@@ -113,14 +121,14 @@ extension Array where Element: Equatable {
         guard areAscendingIndicesValid(ascendingOldIndices) && unmovableBlockSize < ascendingOldIndices.count else {return [:]}
         
         let oldIndices = (unmovableBlockSize..<ascendingOldIndices.count).map({ascendingOldIndices[$0]})
-        return Dictionary(uniqueKeysWithValues: zip(oldIndices, oldIndices.map {moveItemUp($0)}))
+        return Dictionary(uniqueKeysWithValues: zip(oldIndices, oldIndices.map {moveItemUp(from: $0)}))
     }
     
     mutating func moveItemsDown(_ items: [Element]) -> [Int: Int] {
-        return moveItemsDown(IndexSet(items.compactMap {self.firstIndex(of: $0)}))
+        return moveItemsDown(from: IndexSet(items.compactMap {self.firstIndex(of: $0)}))
     }
     
-    mutating func moveItemsDown(_ indices: IndexSet) -> [Int: Int] {
+    mutating func moveItemsDown(from indices: IndexSet) -> [Int: Int] {
         
         // Indices need to be in descending order, because items need to be moved down, one by one, from bottom to top of the array
         let descendingOldIndices = indices.sortedDescending()
@@ -132,7 +140,7 @@ extension Array where Element: Equatable {
         guard areDescendingIndicesValid(descendingOldIndices) && unmovableBlockSize < descendingOldIndices.count else {return [:]}
         
         let oldIndices = (unmovableBlockSize..<descendingOldIndices.count).map({descendingOldIndices[$0]})
-        return Dictionary(uniqueKeysWithValues: zip(oldIndices, oldIndices.map {moveItemDown($0)}))
+        return Dictionary(uniqueKeysWithValues: zip(oldIndices, oldIndices.map {moveItemDown(from: $0)}))
     }
     
     private func areAscendingIndicesValid(_ indices: [Int]) -> Bool {
@@ -144,10 +152,10 @@ extension Array where Element: Equatable {
     }
     
     mutating func moveItemsToTop(_ items: [Element]) -> [Int: Int] {
-        return moveItemsToTop(IndexSet(items.compactMap {self.firstIndex(of: $0)}))
+        return moveItemsToTop(from: IndexSet(items.compactMap {self.firstIndex(of: $0)}))
     }
     
-    mutating func moveItemsToTop(_ indices: IndexSet) -> [Int: Int] {
+    mutating func moveItemsToTop(from indices: IndexSet) -> [Int: Int] {
         
         let sortedIndices = indices.sortedAscending()
         guard areAscendingIndicesValid(sortedIndices) else {return [:]}
@@ -166,10 +174,10 @@ extension Array where Element: Equatable {
     }
     
     mutating func moveItemsToBottom(_ items: [Element]) -> [Int: Int] {
-        return moveItemsToBottom(IndexSet(items.compactMap {self.firstIndex(of: $0)}))
+        return moveItemsToBottom(from: IndexSet(items.compactMap {self.firstIndex(of: $0)}))
     }
     
-    mutating func moveItemsToBottom(_ indices: IndexSet) -> [Int: Int] {
+    mutating func moveItemsToBottom(from indices: IndexSet) -> [Int: Int] {
         
         let sortedIndices = indices.sortedDescending()
         guard areDescendingIndicesValid(sortedIndices) else {return [:]}

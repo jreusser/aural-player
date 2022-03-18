@@ -70,10 +70,10 @@ extension TracksPlaylistViewController: NSTableViewDataSource {
         if info.draggingSource is NSTableView {
             
             if let sourceIndices = info.sourceIndexes,
-                let results = playlist.dropTracks(sourceIndices, row).results as? [TrackMoveResult] {
+                let results = playlist.dropTracks(sourceIndices, row).results as? [GroupedTrackMoveResult] {
                 
-                let sortedMoves = results.filter({$0.movedDown}).sorted(by: ItemMoveResult.compareDescending) +
-                    results.filter({$0.movedUp}).sorted(by: ItemMoveResult.compareAscending)
+                let sortedMoves = results.filter({$0.movedDown}).sorted(by: TrackMoveResult.compareDescending) +
+                    results.filter({$0.movedUp}).sorted(by: TrackMoveResult.compareAscending)
                 
                 var allIndices: [Int] = []
                 var destinationIndices: [Int] = []
