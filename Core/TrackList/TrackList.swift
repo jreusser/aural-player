@@ -86,4 +86,8 @@ class TrackList: Sequence {
     func remove(at indices: IndexSet) -> [Track] {
         tracks.removeItems(at: indices)
     }
+    
+    func dragAndDropItems(_ sourceIndices: IndexSet, _ dropIndex: Int) -> [TrackMoveResult] {
+        tracks.dragAndDropItems(sourceIndices, dropIndex).map {TrackMoveResult($0.key, $0.value)}
+    }
 }

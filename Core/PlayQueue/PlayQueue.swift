@@ -103,38 +103,39 @@ class PlayQueue: PlayQueueProtocol {
         trackList.removeAll()
     }
 
-    func moveTracksUp(from indices: IndexSet) -> [GroupedTrackMoveResult] {
+    func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
         return doMoveTracks {trackList.moveUp(from: indices)}
     }
 
-    func moveTracksDown(from indices: IndexSet) -> [GroupedTrackMoveResult] {
+    func moveTracksDown(from indices: IndexSet) -> [TrackMoveResult] {
         return doMoveTracks {trackList.moveDown(from: indices)}
     }
 
-    func moveTracksToTop(from indices: IndexSet) -> [GroupedTrackMoveResult] {
+    func moveTracksToTop(from indices: IndexSet) -> [TrackMoveResult] {
         return doMoveTracks {trackList.moveToTop(from: indices)}
     }
 
-    func moveTracksToBottom(from indices: IndexSet) -> [GroupedTrackMoveResult] {
+    func moveTracksToBottom(from indices: IndexSet) -> [TrackMoveResult] {
         return doMoveTracks {trackList.moveToBottom(from: indices)}
     }
 
-    func dropTracks(at sourceIndexes: IndexSet, to dropIndex: Int) -> [GroupedTrackMoveResult] {
-//        return doMoveTracks {tracks.dragAndDropItems(sourceIndexes, dropIndex)}
-        []
+    func dropTracks(at sourceIndexes: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
+        return doMoveTracks {trackList.dragAndDropItems(sourceIndexes, dropIndex)}
     }
 
-    private func doMoveTracks(_ moveOperation: () -> [TrackMoveResult]) -> [GroupedTrackMoveResult] {
+    private func doMoveTracks(_ moveOperation: () -> [TrackMoveResult]) -> [TrackMoveResult] {
 
-//        let moveResults = moveOperation()
-//
-//        // If the playing track was moved, update the index of the playing track within the sequence
-//        if let playingTrackIndex = sequence.curTrackIndex, let newPlayingTrackIndex = moveIndicesMap[playingTrackIndex] {
-//            sequence.start(withTrackIndex: newPlayingTrackIndex)
-//        }
-//
-//        return moveIndicesMap.map {GroupedTrackMoveResult($0.key, $0.value)}
-        []
+        let moveResults = moveOperation()
+
+        // If the playing track was moved, update the index of the playing track within the sequence
+        
+        if let playingTrackIndex = sequence.curTrackIndex,
+           let newPlayingTrackIndex = moveResults.first(where: {$0.sourceIndex == playingTrackIndex})?.destinationIndex {
+            
+            sequence.start(withTrackIndex: newPlayingTrackIndex)
+        }
+
+        return moveResults
     }
 
     // MARK: Search and sort ------------------------------------------------------------------------------------------------------
