@@ -161,23 +161,23 @@ class MockSequencer: SequencerProtocol {
         return currentTrack
     }
     
-    func toggleRepeatMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
+    func toggleRepeatMode() -> RepeatAndShuffleModes {
         return repeatAndShuffleModes
     }
     
-    func toggleShuffleMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
+    func toggleShuffleMode() -> RepeatAndShuffleModes {
         return repeatAndShuffleModes
     }
     
-    func setRepeatMode(_ repeatMode: RepeatMode) -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
+    func setRepeatMode(_ repeatMode: RepeatMode) -> RepeatAndShuffleModes {
         return repeatAndShuffleModes
     }
     
-    func setShuffleMode(_ shuffleMode: ShuffleMode) -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
+    func setShuffleMode(_ shuffleMode: ShuffleMode) -> RepeatAndShuffleModes {
         return repeatAndShuffleModes
     }
     
-    var repeatAndShuffleModes: (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
+    var repeatAndShuffleModes: RepeatAndShuffleModes {
         return (.off, .off)
     }
     

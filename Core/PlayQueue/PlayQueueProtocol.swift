@@ -1,5 +1,7 @@
 import Foundation
 
+typealias RepeatAndShuffleModes = (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
+
 protocol PlayQueueProtocol: SequencingProtocol {
     
     var tracks: [Track] {get}
@@ -60,10 +62,10 @@ protocol SequencingProtocol {
     
     // Begins a new playback sequence, and selects, for playback, the first track in that sequence. This function will be called only when no track is currently playing and no specific track/group is selected by the user for playback. For ex, when the user just hits the play button and no track is currently playing.
     // NOTE - This function will always create a sequence that contains all playlist tracks - e.g. All tracks, All artists, etc.
-    func begin() -> Track?
+    func start() -> Track?
     
     // Ends the current playback sequence (when playback is stopped or the last track in the sequence has finished playing)
-    func end()
+    func stop()
     
     // Selects, for playback, the subsequent track in the sequence
     func subsequent() -> Track?
@@ -88,17 +90,7 @@ protocol SequencingProtocol {
      
         NOTE - When a single index is specified, it is implied that the playlist from which this request originated was the flat "Tracks" playlist, because this playlist locates tracks by a single absolute index. Hence, this function is intended to be called only when playback originates from the "Tracks" playlist.
     */
-    func select(_ index: Int) -> Track?
-    
-    /*
-        Selects, for playback, the specified track. When this function is called, a new sequence will be created, consisting of:
-     
-        - either all tracks in the group (artist/album/genre) that this track is a child of,
-        - OR all tracks in the flat "Tracks" playlist,
-     
-        depending on where the request originated from.
-     */
-    func select(_ track: Track) -> Track?
+    func select(trackAt index: Int) -> Track?
     
     /*
         Selects, for playback, the specified group, which implies playback of all tracks within this group. The first track determined by the playback sequence (dependent upon the repeat/shuffle modes) will be selected for playback and returned.
@@ -111,17 +103,17 @@ protocol SequencingProtocol {
     var currentTrack: Track? {get}
     
     // Toggles between repeat modes. Returns the new repeat and shuffle mode after performing the toggle operation.
-    func toggleRepeatMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
+    func toggleRepeatMode() -> RepeatAndShuffleModes
     
     // Toggles between shuffle modes. Returns the new repeat and shuffle mode after performing the toggle operation.
-    func toggleShuffleMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
+    func toggleShuffleMode() -> RepeatAndShuffleModes
     
     // Sets the repeat mode to a specific value. Returns the new repeat and shuffle mode after performing the toggle operation.
-    func setRepeatMode(_ repeatMode: RepeatMode) -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
+    func setRepeatMode(_ repeatMode: RepeatMode) -> RepeatAndShuffleModes
     
     // Sets the shuffle mode to a specific value. Returns the new repeat and shuffle mode after performing the toggle operation.
-    func setShuffleMode(_ shuffleMode: ShuffleMode) -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
+    func setShuffleMode(_ shuffleMode: ShuffleMode) -> RepeatAndShuffleModes
     
     // Returns the current repeat and shuffle modes
-    var repeatAndShuffleModes: (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {get}
+    var repeatAndShuffleModes: RepeatAndShuffleModes {get}
 }

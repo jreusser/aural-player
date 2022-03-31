@@ -16,9 +16,9 @@ enum ShuffleMode: String, CaseIterable, Codable {
     
     static let defaultMode: ShuffleMode = .off
     
-    // Play tracks in random order
-    case on
-    
     // Don't shuffle
     case off
+    
+    // Play tracks in random order
+    case on
 }

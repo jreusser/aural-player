@@ -85,7 +85,7 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
         updateRepeatAndShuffleControls(sequencer.setShuffleMode(shuffleMode))
     }
     
-    func updateRepeatAndShuffleControls(_ modes: (repeatMode: RepeatMode, shuffleMode: ShuffleMode)) {
+    func updateRepeatAndShuffleControls(_ modes: RepeatAndShuffleModes) {
 
         btnRepeatStateMachine.setState(modes.repeatMode)
         btnShuffleStateMachine.setState(modes.shuffleMode)

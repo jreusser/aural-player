@@ -45,9 +45,9 @@ class PlaybackSequenceTests: AuralTestCase {
         sequence.clear()
     }
     
-    let repeatShufflePermutations: [(repeatMode: RepeatMode, shuffleMode: ShuffleMode)] = {
+    let repeatShufflePermutations: [RepeatAndShuffleModes] = {
         
-        var array: [(repeatMode: RepeatMode, shuffleMode: ShuffleMode)] = []
+        var array: [RepeatAndShuffleModes] = []
         
         for repeatMode in RepeatMode.allCases {
         

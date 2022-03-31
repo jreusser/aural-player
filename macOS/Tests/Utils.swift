@@ -59,7 +59,7 @@ func randomNillableBool() -> Bool? {
     randomNillableValue {.random()}
 }
 
-let repeatShufflePermutations: [(repeatMode: RepeatMode, shuffleMode: ShuffleMode)] = permute(RepeatMode.allCases, ShuffleMode.allCases).filter {
+let repeatShufflePermutations: [RepeatAndShuffleModes] = permute(RepeatMode.allCases, ShuffleMode.allCases).filter {
     $0 != (.one, .on)
 }
 
