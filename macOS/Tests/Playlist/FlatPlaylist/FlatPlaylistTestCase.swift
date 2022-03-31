@@ -33,7 +33,7 @@ class FlatPlaylistTestCase: PlaylistTestCase {
         let track = MockTrack(URL(fileURLWithPath: String(format: "/Users/MyUsername/Music/%@.%@", name, fileExt)))
         
         let metadata = fileMetadata(nil, nil, nil, nil, randomDuration())
-        track.setPlaylistMetadata(from: metadata)
+        track.setPrimaryMetadata(from: metadata)
         
         _ = playlist.addTrack(track)
         
@@ -49,7 +49,7 @@ class FlatPlaylistTestCase: PlaylistTestCase {
         let track = MockTrack(URL(fileURLWithPath: String(format: "/Users/MyUsername/Music/%@.%@", title, fileExt)))
         
         let metadata = fileMetadata(title, nil, nil, nil, randomDuration())
-        track.setPlaylistMetadata(from: metadata)
+        track.setPrimaryMetadata(from: metadata)
         
         _ = playlist.addTrack(track)
         
@@ -64,7 +64,7 @@ class FlatPlaylistTestCase: PlaylistTestCase {
         let track = MockTrack(URL(fileURLWithPath: String(format: "/Users/MyUsername/Music/%@.%@", fileName, fileExt)))
         
         let metadata = fileMetadata(title, artist, album, nil, discNum: discNum, trackNum: trackNum, duration ?? randomDuration())
-        track.setPlaylistMetadata(from: metadata)
+        track.setPrimaryMetadata(from: metadata)
         
         return track
     }
@@ -91,7 +91,7 @@ class FlatPlaylistTestCase: PlaylistTestCase {
         let track = MockTrack(URL(fileURLWithPath: String(format: "/Users/MyUsername/Music/%@.%@", fileName, fileExt)))
         
         let metadata = fileMetadata(title, artist, album, nil, randomDuration())
-        track.setPlaylistMetadata(from: metadata)
+        track.setPrimaryMetadata(from: metadata)
         
         _ = playlist.addTrack(track)
         

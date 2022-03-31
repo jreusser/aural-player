@@ -70,7 +70,7 @@ class FFmpegFileReader: FileReaderProtocol {
         return nil
     }
     
-    func getPlaylistMetadata(for file: URL) throws -> PlaylistMetadata {
+    func getPrimaryMetadata(for file: URL) throws -> PrimaryMetadata {
         
         // Construct an ffmpeg file context for this track.
         // This will be the source of all track metadata.
@@ -87,12 +87,12 @@ class FFmpegFileReader: FileReaderProtocol {
         allParsers.forEach {$0.mapMetadata(metadataMap)}
         let relevantParsers = allParsers.filter {$0.hasEssentialMetadataForTrack(metadataMap)}
         
-        return try doGetPlaylistMetadata(for: file, fromCtx: fctx, andMap: metadataMap, usingParsers: relevantParsers)
+        return try doGetPrimaryMetadata(for: file, fromCtx: fctx, andMap: metadataMap, usingParsers: relevantParsers)
     }
     
-    private func doGetPlaylistMetadata(for file: URL, fromCtx fctx: FFmpegFileContext, andMap metadataMap: FFmpegMappedMetadata, usingParsers relevantParsers: [FFmpegMetadataParser]) throws -> PlaylistMetadata {
+    private func doGetPrimaryMetadata(for file: URL, fromCtx fctx: FFmpegFileContext, andMap metadataMap: FFmpegMappedMetadata, usingParsers relevantParsers: [FFmpegMetadataParser]) throws -> PrimaryMetadata {
         
-        var metadata = PlaylistMetadata()
+        var metadata = PrimaryMetadata()
 
         // Read all essential metadata fields.
         
@@ -128,7 +128,7 @@ class FFmpegFileReader: FileReaderProtocol {
         metadata.duration = metadataMap.fileCtx.duration
         metadata.durationIsAccurate = metadata.duration > 0 && metadataMap.fileCtx.estimatedDurationIsAccurate
         
-        metadata.chapters = fctx.chapters.map {Chapter($0)}
+//        metadata.chapters = fctx.chapters.map {Chapter($0)}
         
         return metadata
     }
@@ -236,7 +236,7 @@ class FFmpegFileReader: FileReaderProtocol {
             allParsers.forEach {$0.mapMetadata(metadataMap)}
             let relevantParsers = allParsers.filter {$0.hasEssentialMetadataForTrack(metadataMap)}
             
-            metadata.playlist = try doGetPlaylistMetadata(for: file, fromCtx: fctx, andMap: metadataMap, usingParsers: relevantParsers)
+            metadata.primary = try doGetPrimaryMetadata(for: file, fromCtx: fctx, andMap: metadataMap, usingParsers: relevantParsers)
             metadata.auxiliary = doGetAuxiliaryMetadata(for: file, fromCtx: fctx, andMap: metadataMap, loadingAudioInfoFrom: nil, usingParsers: relevantParsers)
             
             if let imageData = fctx.bestImageStream?.attachedPic.data {

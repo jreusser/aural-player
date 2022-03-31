@@ -71,7 +71,7 @@ class SequencerTests: AuralTestCase {
     func createAndAddTrack(_ title: String, _ duration: Double, _ artist: String? = nil, _ album: String? = nil, _ genre: String? = nil) -> Track {
         
         let track = Track(URL(fileURLWithPath: String(format: "/Dummy/%@.mp3", title)))
-        track.setPlaylistMetadata(from: fileMetadata(title, artist, album, genre, duration))
+        track.setPrimaryMetadata(from: fileMetadata(title, artist, album, genre, duration))
         
         _ = playlist.addTrack(track)
         
@@ -93,7 +93,7 @@ class SequencerTests: AuralTestCase {
             let metadata = fileMetadata(title, theArtist, theAlbum, theGenre, Double.random(in: 60...600))
         
             let track = Track(URL(fileURLWithPath: String(format: "/Dummy/%@.mp3", title)))
-            track.setPlaylistMetadata(from: metadata)
+            track.setPrimaryMetadata(from: metadata)
             
             tracks.append(playlist.addTrack(track)!)
         }

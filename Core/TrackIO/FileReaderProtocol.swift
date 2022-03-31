@@ -20,7 +20,7 @@ protocol FileReaderProtocol {
     ///
     /// Loads the essential metadata fields that are required for a track to be loaded into the playlist upon app startup.
     ///
-    func getPlaylistMetadata(for file: URL) throws -> PlaylistMetadata
+    func getPrimaryMetadata(for file: URL) throws -> PrimaryMetadata
     
     func computeAccurateDuration(for file: URL) -> Double?
     

@@ -31,17 +31,17 @@ class FileReader: FileReaderProtocol {
     
 #endif
     
-    func getPlaylistMetadata(for file: URL) throws -> PlaylistMetadata {
+    func getPrimaryMetadata(for file: URL) throws -> PrimaryMetadata {
         
 #if os(macOS)
         
         return file.isNativelySupported ?
-            try avfReader.getPlaylistMetadata(for: file) :
-            try ffmpegReader.getPlaylistMetadata(for: file)
+            try avfReader.getPrimaryMetadata(for: file) :
+            try ffmpegReader.getPrimaryMetadata(for: file)
         
         #elseif os(iOS)
         
-        try avfReader.getPlaylistMetadata(for: file)
+        try avfReader.getPrimaryMetadata(for: file)
         
         #endif
     }

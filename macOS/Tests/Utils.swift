@@ -504,7 +504,7 @@ func fileMetadata(_ title: String?, _ artist: String?, _ album: String?, _ genre
                   _ duration: Double) -> FileMetadata {
     
     var fileMetadata: FileMetadata = FileMetadata()
-    var playlistMetadata: PlaylistMetadata = PlaylistMetadata()
+    var playlistMetadata: PrimaryMetadata = PrimaryMetadata()
     
     playlistMetadata.title = title
     playlistMetadata.artist = artist

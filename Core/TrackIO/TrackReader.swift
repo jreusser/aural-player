@@ -30,24 +30,24 @@ class TrackReader {
     ///
     /// Loads the essential metadata fields that are required for a track to be loaded into the playlist.
     ///
-    func loadPlaylistMetadata(for track: Track) {
+    func loadPrimaryMetadata(for track: Track) {
         
         var fileMetadata = FileMetadata()
         var durationIsAccurate: Bool = true
         
         do {
             
-            let playlistMetadata = try fileReader.getPlaylistMetadata(for: track.file)
-            fileMetadata.playlist = playlistMetadata
+            let primaryMetadata = try fileReader.getPrimaryMetadata(for: track.file)
+            fileMetadata.primary = primaryMetadata
             
-            durationIsAccurate = playlistMetadata.durationIsAccurate
+            durationIsAccurate = primaryMetadata.durationIsAccurate
             
         } catch {
             
             fileMetadata.validationError = (error as? DisplayableError) ?? InvalidTrackError(track.file, "Track is not playable.")
         }
         
-        track.setPlaylistMetadata(from: fileMetadata)
+        track.setPrimaryMetadata(from: fileMetadata)
         
         // For non-native tracks that don't have accurate duration, compute duration async.
         

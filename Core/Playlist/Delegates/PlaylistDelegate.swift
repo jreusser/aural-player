@@ -285,7 +285,7 @@ class PlaylistDelegate: PlaylistDelegateProtocol {
         // Process all tracks in batch concurrently and wait until the entire batch finishes.
         trackAddQueue.addOperations(batch.map {index in BlockOperation {
 
-            self.trackReader.loadPlaylistMetadata(for: self.addSession.tracks[index])
+            self.trackReader.loadPrimaryMetadata(for: self.addSession.tracks[index])
             
         }}, waitUntilFinished: true)
         
@@ -329,7 +329,7 @@ class PlaylistDelegate: PlaylistDelegateProtocol {
         
         // Load display info
         let track = Track(resolvedFile)
-        trackReader.loadPlaylistMetadata(for: track)
+        trackReader.loadPrimaryMetadata(for: track)
         
         // Non-nil result indicates success
         guard let result = self.playlist.addTrack(track) else {return nil}

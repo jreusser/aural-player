@@ -93,22 +93,22 @@ class Track: Hashable, PlaylistItem {
         self.isNativelySupported = file.isNativelySupported
         
         if let theFileMetadata = fileMetadata {
-            setPlaylistMetadata(from: theFileMetadata)
+            setPrimaryMetadata(from: theFileMetadata)
         }
     }
     
-    func setPlaylistMetadata(from allMetadata: FileMetadata) {
+    func setPrimaryMetadata(from allMetadata: FileMetadata) {
         
         self.isPlayable = allMetadata.isPlayable
         self.validationError = allMetadata.validationError
         
-        guard let metadata: PlaylistMetadata = allMetadata.playlist else {return}
+        guard let metadata: PrimaryMetadata = allMetadata.primary else {return}
         
         self.title = metadata.title
         
         self.theArtist = metadata.artist
         self.albumArtist = metadata.albumArtist
-        self.performer = metadata.performer
+//        self.performer = metadata.performer
         
         self.album = metadata.album
         self.genre = metadata.genre
@@ -122,7 +122,7 @@ class Track: Hashable, PlaylistItem {
         self.duration = metadata.duration
         self.durationIsAccurate = metadata.durationIsAccurate
         
-        self.chapters = metadata.chapters
+//        self.chapters = metadata.chapters
     }
     
     func setAuxiliaryMetadata(_ metadata: AuxiliaryMetadata) {

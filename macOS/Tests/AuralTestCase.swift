@@ -61,7 +61,7 @@ class AuralTestCase: XCTestCase {
 
         let track = MockTrack(URL(fileURLWithPath: String(format: "%@/%@.%@", parentFolder, fileName, randomAudioFileExtension())))
         let metadata = fileMetadata(nil, nil, nil, nil, duration ?? .random(in: 60...600))
-        track.setPlaylistMetadata(from: metadata)
+        track.setPrimaryMetadata(from: metadata)
         
         return track
     }
@@ -82,7 +82,7 @@ class AuralTestCase: XCTestCase {
 
         let track = MockTrack(URL(fileURLWithPath: String(format: "%@/%@.%@", parentFolder, title, fileExtension)))
         let metadata = fileMetadata(title, artist, album, genre, discNum: discNum, trackNum: trackNum, duration)
-        track.setPlaylistMetadata(from: metadata)
+        track.setPrimaryMetadata(from: metadata)
         
         return track
     }

@@ -13,14 +13,13 @@ import Foundation
 /// A container for all possible metadata for a file / track.
 ///
 struct FileMetadata {
-    
-    var playlist: PlaylistMetadata?
+   
+    var primary: PrimaryMetadata?
     var playback: PlaybackContextProtocol?
     
     var isPlayable: Bool {validationError == nil}
     var validationError: DisplayableError?
     
-    var auxiliary: AuxiliaryMetadata?
-    
     var coverArt: PlatformImage?
+    var auxiliary: AuxiliaryMetadata?
 }

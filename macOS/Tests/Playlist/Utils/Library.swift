@@ -59,7 +59,7 @@ class Library {
             let duration = Double(durationStr) ?? Double.random(in: 60...600)
             
             let metadata = fileMetadata(title, artist, album, genre, duration)
-            track.setPlaylistMetadata(from: metadata)
+            track.setPrimaryMetadata(from: metadata)
             
             tracks.append(track)
         }

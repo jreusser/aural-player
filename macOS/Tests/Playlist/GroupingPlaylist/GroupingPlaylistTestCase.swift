@@ -25,7 +25,7 @@ class GroupingPlaylistTestCase: AuralTestCase {
         let track = Track(URL(fileURLWithPath: String(format: "/Dummy/%@.mp3", fileName)))
         
         var fileMetadata: FileMetadata = FileMetadata()
-        var playlistMetadata: PlaylistMetadata = PlaylistMetadata()
+        var playlistMetadata: PrimaryMetadata = PrimaryMetadata()
         
         playlistMetadata.artist = artist
         playlistMetadata.album = album
@@ -33,7 +33,7 @@ class GroupingPlaylistTestCase: AuralTestCase {
         playlistMetadata.duration = .random(in: 60...600)
         
         fileMetadata.playlist = playlistMetadata
-        track.setPlaylistMetadata(from: fileMetadata)
+        track.setPrimaryMetadata(from: fileMetadata)
         
         return track
     }

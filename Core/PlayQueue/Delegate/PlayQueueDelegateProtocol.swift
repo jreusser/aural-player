@@ -9,9 +9,9 @@ protocol PlayQueueDelegateProtocol {
     // Whether or not tracks are being added to the play queue (which could be time consuming)
     var isBeingModified: Bool {get}
     
-    func indexOfTrack(_ track: Track) -> Int?
+    subscript(_ index: Int) -> Track? {get}
     
-    func trackAtIndex(_ index: Int) -> Track?
+    func indexOfTrack(_ track: Track) -> Int?
     
     var summary: (size: Int, totalDuration: Double) {get}
     
@@ -19,7 +19,7 @@ protocol PlayQueueDelegateProtocol {
     
     // MARK: Mutating functions ---------------------------------------------------------------
     
-    func addTracks(from files: [URL])
+    func addTracks(from files: [URL], atPosition position: Int?)
     
     // Adds tracks to the end of the queue, i.e. "Play Later"
     func enqueueToPlayLater(_ tracks: [Track]) -> ClosedRange<Int>
@@ -32,15 +32,15 @@ protocol PlayQueueDelegateProtocol {
     
     func removeTracks(_ indices: IndexSet) -> [Track]
 
-    func moveTracksUp(_ indices: IndexSet) -> [GroupedTrackMoveResult]
+    func moveTracksUp(_ indices: IndexSet) -> [TrackMoveResult]
     
-    func moveTracksToTop(_ indices: IndexSet) -> [GroupedTrackMoveResult]
+    func moveTracksToTop(_ indices: IndexSet) -> [TrackMoveResult]
     
-    func moveTracksDown(_ indices: IndexSet) -> [GroupedTrackMoveResult]
+    func moveTracksDown(_ indices: IndexSet) -> [TrackMoveResult]
     
-    func moveTracksToBottom(_ indices: IndexSet) -> [GroupedTrackMoveResult]
+    func moveTracksToBottom(_ indices: IndexSet) -> [TrackMoveResult]
     
-    func dropTracks(_ sourceIndices: IndexSet, _ dropIndex: Int) -> [GroupedTrackMoveResult]
+    func dropTracks(_ sourceIndices: IndexSet, _ dropIndex: Int) -> [TrackMoveResult]
     
     func export(to file: URL)
     

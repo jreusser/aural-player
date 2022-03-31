@@ -336,7 +336,7 @@ class AppStatePersistenceTests: AudioGraphTestCase {
             genreGroups[genre]!.append(track)
             
             var fileMetadata: FileMetadata = FileMetadata()
-            var playlistMetadata: PlaylistMetadata = PlaylistMetadata()
+            var playlistMetadata: PrimaryMetadata = PrimaryMetadata()
             
             playlistMetadata.artist = artist
             playlistMetadata.album = album
@@ -344,7 +344,7 @@ class AppStatePersistenceTests: AudioGraphTestCase {
             playlistMetadata.duration = 300
             
             fileMetadata.playlist = playlistMetadata
-            track.setPlaylistMetadata(from: fileMetadata)
+            track.setPrimaryMetadata(from: fileMetadata)
 
             tracks.append(track)
         }

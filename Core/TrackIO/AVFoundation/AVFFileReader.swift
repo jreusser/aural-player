@@ -44,14 +44,14 @@ class AVFFileReader: FileReaderProtocol {
         return nil
     }
     
-    func getPlaylistMetadata(for file: URL) throws -> PlaylistMetadata {
+    func getPrimaryMetadata(for file: URL) throws -> PrimaryMetadata {
         
         // Construct a metadata map for this file.
         let metadataMap = AVFMappedMetadata(file: file)
-        return try doGetPlaylistMetadata(for: file, fromMap: metadataMap)
+        return try doGetPrimaryMetadata(for: file, fromMap: metadataMap)
     }
     
-    private func doGetPlaylistMetadata(for file: URL, fromMap metadataMap: AVFMappedMetadata) throws -> PlaylistMetadata {
+    private func doGetPrimaryMetadata(for file: URL, fromMap metadataMap: AVFMappedMetadata) throws -> PrimaryMetadata {
         
         // Make sure the file has at least one audio track.
         guard metadataMap.hasAudioTracks else {throw NoAudioTracksError(file)}
@@ -63,7 +63,7 @@ class AVFFileReader: FileReaderProtocol {
         // TODO: What does isPlayable actually mean ?
 //        guard metadataMap.audioTrack.isPlayable else {throw TrackNotPlayableError(file)}
         
-        var metadata = PlaylistMetadata()
+        var metadata = PrimaryMetadata()
         
         // Obtain the parsers relevant to this track, based on the metadata present.
         let parsers = metadataMap.keySpaces.compactMap {parsersMap[$0]}
@@ -86,7 +86,7 @@ class AVFFileReader: FileReaderProtocol {
         metadata.duration = metadataMap.avAsset.duration.seconds
         metadata.durationIsAccurate = false
         
-        metadata.chapters = getChapters(for: file, from: metadataMap.avAsset)
+//        metadata.chapters = getChapters(for: file, from: metadataMap.avAsset)
         
         return metadata
     }
@@ -206,7 +206,7 @@ class AVFFileReader: FileReaderProtocol {
         var metadata = FileMetadata()
         
         do {
-            metadata.playlist = try doGetPlaylistMetadata(for: file, fromMap: metadataMap)
+            metadata.primary = try doGetPrimaryMetadata(for: file, fromMap: metadataMap)
         } catch {
             NSLog("Error retrieving playlist metadata for file: '\(file.path)'. Error: \(error)")
         }
