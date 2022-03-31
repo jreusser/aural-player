@@ -66,7 +66,7 @@ class TrackReader {
         }
     }
     
-    private func computePlaybackContext(for track: Track) throws {
+    func computePlaybackContext(for track: Track) throws {
         
         track.playbackContext = try fileReader.getPlaybackMetadata(for: track.file)
         

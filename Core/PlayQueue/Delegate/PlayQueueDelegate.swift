@@ -1,8 +1,16 @@
 import Foundation
 
+struct PlayQueueTrackAddResult {
+    
+    let track: Track
+    
+    // Index of the added track, within the play queue
+    let index: Int
+}
+
 class PlayQueueDelegate: PlayQueueDelegateProtocol {
 
-    private let playQueue: PlayQueueProtocol
+    let playQueue: PlayQueueProtocol
 
     var tracks: [Track] {playQueue.tracks}
 
@@ -15,16 +23,18 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     private let trackAddQueue: OperationQueue = OperationQueue()
     private let trackUpdateQueue: OperationQueue = OperationQueue()
 
-    private let trackReader: TrackReader
+    let trackReader: TrackReader
 
-//    private var addSession: TrackAddSession<PlayQueueTrackAddResult>!
+    private var addSession: TrackAddSession<PlayQueueTrackAddResult>!
 //
-//    private let concurrentAddOpCount = roundedInt(Double(SystemUtils.numberOfActiveCores) * 1.5)
+    private let concurrentAddOpCount = (Double(SystemUtils.numberOfActiveCores) * 1.5).roundedInt
 
-//    let trackLoader: TrackLoader = TrackLoader()
+    let trackLoader: TrackLoader = TrackLoader()
 
 //    var isBeingModified: Bool {addSession != nil}
     var isBeingModified: Bool {false}
+    
+    lazy var messenger: Messenger = .init(for: self)
 
 //    init(playQueue: PlayQueueProtocol, trackReader: TrackReader, persistentStateOnStartup: PlayQueueState) {
     init(playQueue: PlayQueueProtocol, trackReader: TrackReader) {
@@ -48,21 +58,21 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     func enqueueToPlayLater(_ tracks: [Track]) -> ClosedRange<Int> {
 
         let indices = playQueue.enqueueTracks(tracks)
-//        Messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
+        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
 
     func enqueueToPlayNow(_ tracks: [Track]) -> ClosedRange<Int> {
 
         let indices = playQueue.enqueueTracksAtHead(tracks)
-//        Messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
+        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
 
     func enqueueToPlayNext(_ tracks: [Track]) -> ClosedRange<Int> {
 
         let indices = playQueue.enqueueTracksAfterCurrentTrack(tracks)
-//        Messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
+        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
 
@@ -70,7 +80,7 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
 
         let removedTracks = playQueue.removeTracks(at: indices)
 
-//        Messenger.publish(.playQueue_tracksRemoved,
+//        messenger.publish(.playQueue_tracksRemoved,
 //                          payload: TrackRemovalResults(flatPlaylistResults: indices, tracks: removedTracks))
 
         return removedTracks

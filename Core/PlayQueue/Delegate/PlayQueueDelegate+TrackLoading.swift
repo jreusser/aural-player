@@ -21,6 +21,9 @@ extension PlayQueueDelegate {
     }
 
     func shouldLoad(file: URL) -> Bool {
+        
+        // TODO: Should check if we already have a track for this file,
+        // then simply duplicate it instead of re-reading the file.
 
 //        if let trackInLibrary = self.library.findTrackByFile(file) {
 //
@@ -29,25 +32,23 @@ extension PlayQueueDelegate {
 //        }
 
         return true
-        // TODO: Should check if we already have a track for this file,
-        // then simply duplicate it instead of re-reading the file.
     }
 
-//    func acceptBatch(_ batch: FileMetadataBatch) {
-//
-////        let tracks = batch.orderedMetadata.map {(file, metadata) in Track(file, fileMetadata: metadata)}
-//        let tracks = batch.orderedMetadata.map {(file, metadata) -> Track in
-//            let track = Track(file, fileMetadata: metadata)
-//
-//            do {
-//                try self.trackReader.computePlaybackContext(for: track)
-//            } catch {}
-//
-//            return track
-//        }
-//
-//
-//        let indices = playQueue.enqueue(tracks)
-//        Messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
-//    }
+    func acceptBatch(_ batch: FileMetadataBatch) {
+
+//        let tracks = batch.orderedMetadata.map {(file, metadata) in Track(file, fileMetadata: metadata)}
+        let tracks = batch.orderedMetadata.map {(file, metadata) -> Track in
+            
+            let track = Track(file, fileMetadata: metadata)
+
+            do {
+                try self.trackReader.computePlaybackContext(for: track)
+            } catch {}
+
+            return track
+        }
+
+        let indices = playQueue.enqueueTracks(tracks)
+        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
+    }
 }

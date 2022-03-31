@@ -23,7 +23,6 @@ import Foundation
 class PlaylistDelegate: PlaylistDelegateProtocol {
     
     // The actual playlist
-//    private var playlist: PlaylistProtocol {playlistsManager.currentPlaylist}
     private let playlist: PlaylistProtocol
     
 //    private let playlistsManager: PlaylistsManager
@@ -42,7 +41,7 @@ class PlaylistDelegate: PlaylistDelegateProtocol {
     private let trackAddQueue: OperationQueue
     private let trackUpdateQueue: OperationQueue
     
-    private var addSession: TrackAddSession!
+    private var addSession: TrackAddSession<TrackAddResult>!
     
     private let concurrentAddOpCount = (Double(SystemUtils.numberOfActiveCores) * 1.5).roundedInt
     
@@ -472,7 +471,7 @@ class PlaylistDelegate: PlaylistDelegateProtocol {
 ///
 /// Encapsulates all autoplay options.
 ///
-fileprivate class AutoplayOptions {
+class AutoplayOptions {
     
     // Whether or not autoplay is requested
     var autoplay: Bool
@@ -498,7 +497,7 @@ fileprivate class AutoplayOptions {
 /// Keeps track of the incremental progress of a single operation of adding
 /// tracks to the playlist.
 ///
-fileprivate class TrackAddSession {
+class TrackAddSession<T> where T: Any {
     
     var tracks: [Track] = []
     
@@ -511,7 +510,7 @@ fileprivate class TrackAddSession {
     var tracksProcessed: Int = 0
     var tracksAdded: Int = 0
     var totalTracks: Int = 0
-    var results: [TrackAddResult] = []
+    var results: [T] = []
     var errors: [DisplayableError] = []
     
     init(_ numTracks: Int, _ autoplayOptions: AutoplayOptions) {
