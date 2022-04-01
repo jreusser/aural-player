@@ -35,7 +35,7 @@ class TintedImageButton: NSButton, ColorSchemeable, ColorSchemeObserver {
         image?.isTemplate = true
     }
  
-    func colorChanged(to newColor: PlatformColor) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         contentTintColor = newColor
     }
 }

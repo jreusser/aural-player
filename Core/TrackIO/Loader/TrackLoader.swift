@@ -23,33 +23,6 @@ class TrackLoader {
     private var batch: FileMetadataBatch!
     var blockOpFunction: ((URL) -> BlockOperation)!
     
-    func blockOp(metadataType: MetadataType) -> ((URL) -> BlockOperation) {
-        
-        return {file in BlockOperation {
-            
-//            let fileMetadata = FileMetadata()
-//
-//            do {
-//
-//                switch metadataType {
-//
-//                case .primary:
-//
-//                    fileMetadata.primary = try self.fileReader.getPrimaryMetadata(for: file)
-//
-//                case .playback:
-//
-//                    fileMetadata.playback = try self.fileReader.getPlaybackMetadata(file: file)
-//                }
-//
-//            } catch {
-//                fileMetadata.validationError = error as? DisplayableError
-//            }
-//
-//            self.batch.setMetadata(fileMetadata, for: file)
-        }}
-    }
-    
     private let queue: OperationQueue = OperationQueue()
     private let concurrentAddOpCount = (Double(SystemUtils.numberOfActiveCores) * 1.5).roundedInt
     
@@ -60,8 +33,40 @@ class TrackLoader {
         queue.qualityOfService = .userInteractive
     }
     
+    func blockOp(metadataType: MetadataType) -> ((URL) -> BlockOperation) {
+        
+        return {file in BlockOperation {
+            
+            var fileMetadata = FileMetadata()
+
+            do {
+
+                switch metadataType {
+
+                case .primary:
+
+                    fileMetadata.primary = try self.fileReader.getPrimaryMetadata(for: file)
+
+                case .playback:
+
+                    fileMetadata.playback = try self.fileReader.getPlaybackMetadata(for: file)
+                    
+                default:
+                    
+                    return
+                }
+
+            } catch {
+                fileMetadata.validationError = error as? DisplayableError
+            }
+
+            self.batch.setMetadata(fileMetadata, for: file)
+        }}
+    }
+    
     // TODO: Allow the caller to specify a "sort order" for the files, eg. by file path ???
-    func loadMetadata(ofType type: MetadataType, from files: [URL], into trackList: TrackListProtocol, completionHandler: FileReadSessionCompletionHandler? = nil) {
+    func loadMetadata(ofType type: MetadataType, from files: [URL], into trackList: TrackLoaderReceiver,
+                      completionHandler: FileReadSessionCompletionHandler? = nil) {
         
         session = FileReadSession(metadataType: type, trackList: trackList)
         batch = FileMetadataBatch(ofSize: concurrentAddOpCount)
@@ -100,7 +105,7 @@ class TrackLoader {
      
      The progress argument indicates current progress.
      */
-    private func readFiles(_ files: [URL], _ isRecursiveCall: Bool = false) {
+    private func readFiles(_ files: [URL], isRecursiveCall: Bool = false) {
         
         for file in files {
             
@@ -120,7 +125,7 @@ class TrackLoader {
                 if !isRecursiveCall {session.addHistoryItem(resolvedFile)}
                 
                 if let dirContents = file.children {
-                    readFiles(dirContents.sorted(by: {$0.lastPathComponent < $1.lastPathComponent}), true)
+                    readFiles(dirContents.sorted(by: {$0.lastPathComponent < $1.lastPathComponent}), isRecursiveCall: true)
                 }
 
             } else {
@@ -134,7 +139,7 @@ class TrackLoader {
                     if !isRecursiveCall {session.addHistoryItem(resolvedFile)}
                     
                     if let loadedPlaylist = PlaylistIO.loadPlaylist(fromFile: resolvedFile) {
-                        readFiles(loadedPlaylist.tracks, true)
+                        readFiles(loadedPlaylist.tracks, isRecursiveCall: true)
                     }
                     
                 } else if SupportedTypes.allAudioExtensions.contains(fileExtension),

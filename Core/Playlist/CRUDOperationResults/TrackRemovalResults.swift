@@ -21,5 +21,5 @@ struct TrackRemovalResults {
     let flatPlaylistResults: IndexSet
     
     /// Results from each of the grouping playlists (grouping info)
-    let groupingPlaylistResults: [GroupType: [GroupedItemRemovalResult]]
+//    let groupingPlaylistResults: [GroupType: [GroupedItemRemovalResult]]
 }

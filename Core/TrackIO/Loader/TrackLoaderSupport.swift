@@ -12,20 +12,20 @@ import Foundation
 
 typealias FileReadSessionCompletionHandler = ([URL]) -> Void
 
-protocol TrackListProtocol {
+protocol TrackLoaderReceiver {
     
     func shouldLoad(file: URL) -> Bool
     
     func acceptBatch(_ batch: FileMetadataBatch)
     
-//    func allFileReadsCompleted(files: [URL])
+    func allFileReadsCompleted(files: [URL])
 }
 
 class FileReadSession {
 
     let metadataType: MetadataType
     var files: [URL] = []
-    let trackList: TrackListProtocol
+    let trackList: TrackLoaderReceiver
     
     // For history
     var historyItems: [URL] = []
@@ -34,7 +34,7 @@ class FileReadSession {
     var filesProcessed: Int = 0
     var errors: [DisplayableError] = []
     
-    init(metadataType: MetadataType, trackList: TrackListProtocol) {
+    init(metadataType: MetadataType, trackList: TrackLoaderReceiver) {
         
         self.metadataType = metadataType
         self.trackList = trackList
@@ -57,7 +57,7 @@ class FileMetadataBatch {
     
     let size: Int
     var files: [URL] = []
-    var metadata: [URL: FileMetadata] = [:]
+    var metadata: ConcurrentMap<URL, FileMetadata> = ConcurrentMap()
     
     var orderedMetadata: [(file: URL, metadata: FileMetadata)] {files.map {(file: $0, metadata: self.metadata[$0]!)}}
     
@@ -76,10 +76,7 @@ class FileMetadataBatch {
     }
     
     func setMetadata(_ metadata: FileMetadata, for file: URL) {
-        
-        semaphore.wait()
         self.metadata[file] = metadata
-        semaphore.signal()
     }
     
     func clear() {

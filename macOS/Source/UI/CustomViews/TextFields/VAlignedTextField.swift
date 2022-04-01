@@ -52,7 +52,7 @@ class VALabel: NSTextField, ColorSchemeObserver {
         }
     }
     
-    func colorChanged(to newColor: PlatformColor) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         textColor = newColor
     }
 }

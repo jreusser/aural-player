@@ -26,13 +26,12 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     let trackReader: TrackReader
 
     private var addSession: TrackAddSession<PlayQueueTrackAddResult>!
-//
+
     private let concurrentAddOpCount = (Double(SystemUtils.numberOfActiveCores) * 1.5).roundedInt
 
     let trackLoader: TrackLoader = TrackLoader()
 
-//    var isBeingModified: Bool {addSession != nil}
-    var isBeingModified: Bool {false}
+    var isBeingModified: Bool {addSession != nil}
     
     lazy var messenger: Messenger = .init(for: self)
 
@@ -80,8 +79,8 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
 
         let removedTracks = playQueue.removeTracks(at: indices)
 
-//        messenger.publish(.playQueue_tracksRemoved,
-//                          payload: TrackRemovalResults(flatPlaylistResults: indices, tracks: removedTracks))
+        messenger.publish(.playQueue_tracksRemoved,
+                          payload: TrackRemovalResults(tracks: removedTracks, flatPlaylistResults: indices))
 
         return removedTracks
     }

@@ -23,6 +23,11 @@
 		3E25558725DE49EF00CD7938 /* Exo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E25557D25DE48AB00CD7938 /* Exo-Medium.ttf */; };
 		3E25558B25DE49F300CD7938 /* Metamorphous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E25558225DE48AC00CD7938 /* Metamorphous-Regular.ttf */; };
 		3E25559125DE49FA00CD7938 /* monaco.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E836B5225DD3ABC00B9E303 /* monaco.ttf */; };
+		3E25B65027F7818900D10A5F /* PlayQueueWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E25B64F27F7818900D10A5F /* PlayQueueWindow.xib */; };
+		3E25B65427F7865900D10A5F /* PlayQueueWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25B65327F7865900D10A5F /* PlayQueueWindowController.swift */; };
+		3E25B65627F7875700D10A5F /* CompactPlayQueue.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E25B65527F7875700D10A5F /* CompactPlayQueue.xib */; };
+		3E25B65927F78C0B00D10A5F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25B65827F78C0B00D10A5F /* TableViewController.swift */; };
+		3E25B65B27F78EE100D10A5F /* CompactPlayQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25B65A27F78EE100D10A5F /* CompactPlayQueueViewController.swift */; };
 		3E2779E226AEF21D00291244 /* HostedAudioUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2779E126AEF21D00291244 /* HostedAudioUnitTests.swift */; };
 		3E2779E526AF305C00291244 /* MockPlayerGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025BC268E830800C5A1C5 /* MockPlayerGraph.swift */; };
 		3E2779E726AF306200291244 /* MockPlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025BB268E830800C5A1C5 /* MockPlayerNode.swift */; };
@@ -1457,6 +1462,11 @@
 		3E25557D25DE48AB00CD7938 /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
 		3E25557F25DE48AB00CD7938 /* CarroisGothicSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CarroisGothicSC-Regular.ttf"; sourceTree = "<group>"; };
 		3E25558225DE48AC00CD7938 /* Metamorphous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metamorphous-Regular.ttf"; sourceTree = "<group>"; };
+		3E25B64F27F7818900D10A5F /* PlayQueueWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayQueueWindow.xib; sourceTree = "<group>"; };
+		3E25B65327F7865900D10A5F /* PlayQueueWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueWindowController.swift; sourceTree = "<group>"; };
+		3E25B65527F7875700D10A5F /* CompactPlayQueue.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompactPlayQueue.xib; sourceTree = "<group>"; };
+		3E25B65827F78C0B00D10A5F /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		3E25B65A27F78EE100D10A5F /* CompactPlayQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayQueueViewController.swift; sourceTree = "<group>"; };
 		3E2779E126AEF21D00291244 /* HostedAudioUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostedAudioUnitTests.swift; sourceTree = "<group>"; };
 		3E2779F326AF33B100291244 /* MockAVFPlaybackContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAVFPlaybackContext.swift; sourceTree = "<group>"; };
 		3E2976122629473500459272 /* WindowCornerRadiusMenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowCornerRadiusMenuItemView.swift; sourceTree = "<group>"; };
@@ -2539,6 +2549,41 @@
 			path = RemoteControl;
 			sourceTree = "<group>";
 		};
+		3E25B64C27F7812500D10A5F /* PlayQueue */ = {
+			isa = PBXGroup;
+			children = (
+				3E25B64F27F7818900D10A5F /* PlayQueueWindow.xib */,
+				3E25B65127F7859800D10A5F /* Compact */,
+				3E25B65227F785D800D10A5F /* Pretty */,
+				3E25B65327F7865900D10A5F /* PlayQueueWindowController.swift */,
+			);
+			path = PlayQueue;
+			sourceTree = "<group>";
+		};
+		3E25B65127F7859800D10A5F /* Compact */ = {
+			isa = PBXGroup;
+			children = (
+				3E25B65527F7875700D10A5F /* CompactPlayQueue.xib */,
+				3E25B65A27F78EE100D10A5F /* CompactPlayQueueViewController.swift */,
+			);
+			path = Compact;
+			sourceTree = "<group>";
+		};
+		3E25B65227F785D800D10A5F /* Pretty */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pretty;
+			sourceTree = "<group>";
+		};
+		3E25B65727F78BED00D10A5F /* TableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3E25B65827F78C0B00D10A5F /* TableViewController.swift */,
+			);
+			path = TableViewController;
+			sourceTree = "<group>";
+		};
 		3E2ED4A325DBAD6200732E79 /* FontSchemes */ = {
 			isa = PBXGroup;
 			children = (
@@ -2830,6 +2875,7 @@
 				3E6C104F25CEB98600BF0D07 /* WindowManagement */,
 				3E6C0F1D25CEB98500BF0D07 /* MainWindow */,
 				3E6C101A25CEB98600BF0D07 /* Player */,
+				3E25B64C27F7812500D10A5F /* PlayQueue */,
 				3E6C0F3B25CEB98600BF0D07 /* Playlist */,
 				3E6C0FED25CEB98600BF0D07 /* Effects */,
 				3E6C0F6925CEB98600BF0D07 /* PresetsManagers */,
@@ -3886,6 +3932,7 @@
 		3EA89D952699F00C0021CDB9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3E25B65727F78BED00D10A5F /* TableViewController */,
 				3EA89D962699F0240021CDB9 /* EventMonitor.swift */,
 				3EA89D9A2699F50C0021CDB9 /* ScrollSession.swift */,
 				3EA89D9D2699F5270021CDB9 /* GestureDirection.swift */,
@@ -5334,6 +5381,7 @@
 				3EE7CB9C25E22D5D0075F1DD /* EffectsFontScheme.xib in Resources */,
 				3E6C123425CEBDF400BF0D07 /* GenresPlaylistSort.xib in Resources */,
 				3E6C123B25CEBDF400BF0D07 /* Genres.xib in Resources */,
+				3E25B65627F7875700D10A5F /* CompactPlayQueue.xib in Resources */,
 				3E6C12ED25CEBE8100BF0D07 /* DelayUnit.xib in Resources */,
 				3E51F346262AFDCA0048452F /* ThemesManager.xib in Resources */,
 				3E6C124225CEBDF400BF0D07 /* ArtistsPlaylistSort.xib in Resources */,
@@ -5354,6 +5402,7 @@
 				3E45C03325E1264C00C1519C /* PlayerFontScheme.xib in Resources */,
 				3E6C12A725CEBE2700BF0D07 /* Alerts.xib in Resources */,
 				3E6C124A25CEBDF400BF0D07 /* AlbumsPlaylistSort.xib in Resources */,
+				3E25B65027F7818900D10A5F /* PlayQueueWindow.xib in Resources */,
 				3E91932925E0CF5D00F30F81 /* GeneralFontScheme.xib in Resources */,
 				3E2000BF267CDFFF008BAB70 /* MediaKeysPreferences.xib in Resources */,
 				3E36BD4A26A690A800B6E28B /* FileSystemTrackInfo.xib in Resources */,
@@ -5638,6 +5687,7 @@
 				3EFE386127864896006F8B8C /* HostedAudioUnit.swift in Sources */,
 				3EFE380527864896006F8B8C /* Sort.swift in Sources */,
 				3EFE384127864896006F8B8C /* GroupingPlaylist.swift in Sources */,
+				3E25B65B27F78EE100D10A5F /* CompactPlayQueueViewController.swift in Sources */,
 				3E6C12B325CEBE5800BF0D07 /* FavoritesMenuController.swift in Sources */,
 				3E5F942E25E57190002DEF80 /* FFT.swift in Sources */,
 				3EFE397527864897006F8B8C /* EndPlaybackSequenceAction.swift in Sources */,
@@ -5875,6 +5925,7 @@
 				3E7C35FE26AADD2A00B3552D /* FilterPresetView.swift in Sources */,
 				3E6C12FA25CEBE8F00BF0D07 /* PlayerViewController.swift in Sources */,
 				3E6C12FF25CEBE8F00BF0D07 /* PlayerViewPopupMenuController.swift in Sources */,
+				3E25B65927F78C0B00D10A5F /* TableViewController.swift in Sources */,
 				3E6C12E925CEBE8100BF0D07 /* PlayingTrackFunctionsViewController.swift in Sources */,
 				3E98E5F8262D51AF00A65BCE /* PlayingTrackInfo.swift in Sources */,
 				3E6C12E225CEBE8100BF0D07 /* PlayingTrackSubview.swift in Sources */,
@@ -6039,6 +6090,7 @@
 				3EFE39A127864897006F8B8C /* PlaylistUIPersistentState.swift in Sources */,
 				3EFB9ED326A68A2400EA8440 /* TrackInfoViewDelegate.swift in Sources */,
 				3EFE3A5B27864898006F8B8C /* MusicBrainzRecording.swift in Sources */,
+				3E25B65427F7865900D10A5F /* PlayQueueWindowController.swift in Sources */,
 				3E6C128625CEBE1800BF0D07 /* TrackPeekingButton.swift in Sources */,
 				3EFE3A9927864898006F8B8C /* FileReader.swift in Sources */,
 				3EFE381127864896006F8B8C /* PlaylistIO.swift in Sources */,

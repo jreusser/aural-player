@@ -12,7 +12,7 @@ import Foundation
 
 protocol ColorSchemeObserver {
     
-    func colorChanged(to newColor: PlatformColor)
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>)
 }
 
 extension ColorSchemesManager {
@@ -40,7 +40,7 @@ extension ColorSchemesManager {
             guard let observers = self?.registry[property] else {return}
             
             observers.forEach {
-                $0.colorChanged(to: newColor)
+                $0.colorChanged(to: newColor, forProperty: property)
             }
         }
     }
@@ -53,7 +53,7 @@ extension ColorSchemesManager {
         
         registry[property]!.append(observer)
         
-        observer.colorChanged(to: systemColorScheme[keyPath: property])
+        observer.colorChanged(to: systemColorScheme[keyPath: property], forProperty: property)
         
         if let observerObject = observer as? NSObject {
             reverseRegistry[observerObject] = property
@@ -84,7 +84,7 @@ extension ColorSchemesManager {
         registry[property]!.append(contentsOf: observers)
         
         for observer in observers {
-            observer.colorChanged(to: systemColorScheme[keyPath: property])
+            observer.colorChanged(to: systemColorScheme[keyPath: property], forProperty: property)
         }
     }
     
@@ -98,7 +98,7 @@ extension ColorSchemesManager {
 
             registry[property]!.append(observer)
 
-            observer.colorChanged(to: systemColorScheme[keyPath: property])
+            observer.colorChanged(to: systemColorScheme[keyPath: property], forProperty: property)
         }
     }
 }

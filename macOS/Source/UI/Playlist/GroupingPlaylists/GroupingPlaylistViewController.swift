@@ -420,30 +420,30 @@ class GroupingPlaylistViewController: NSViewController, Destroyable {
             return
         }
         
-        if let removals = results.groupingPlaylistResults[self.groupType] {
-            
-            var groupsToReload = [Group]()
-            
-            for removal in removals.sorted(by: GroupedItemRemovalResult.compareDescending) {
-                
-                if let tracksRemoval = removal as? GroupedTracksRemovalResult {
-                    
-                    // Remove tracks from their parent group
-                    playlistView.removeItems(at: tracksRemoval.trackIndexesInGroup, inParent: tracksRemoval.group, withAnimation: .effectFade)
-                    
-                    // Make note of the parent group for later
-                    groupsToReload.append(tracksRemoval.group)
-                    
-                } else if let groupRemoval = removal as? GroupRemovalResult {
-                    
-                    // Remove group from the root
-                    playlistView.removeItems(at: IndexSet(integer: groupRemoval.groupIndex), inParent: nil, withAnimation: .effectFade)
-                }
-            }
-            
-            // For all groups from which tracks were removed, reload them
-            groupsToReload.forEach {playlistView.reloadItem($0)}
-        }
+//        if let removals = results.groupingPlaylistResults[self.groupType] {
+//
+//            var groupsToReload = [Group]()
+//
+//            for removal in removals.sorted(by: GroupedItemRemovalResult.compareDescending) {
+//
+//                if let tracksRemoval = removal as? GroupedTracksRemovalResult {
+//
+//                    // Remove tracks from their parent group
+//                    playlistView.removeItems(at: tracksRemoval.trackIndexesInGroup, inParent: tracksRemoval.group, withAnimation: .effectFade)
+//
+//                    // Make note of the parent group for later
+//                    groupsToReload.append(tracksRemoval.group)
+//
+//                } else if let groupRemoval = removal as? GroupRemovalResult {
+//
+//                    // Remove group from the root
+//                    playlistView.removeItems(at: IndexSet(integer: groupRemoval.groupIndex), inParent: nil, withAnimation: .effectFade)
+//                }
+//            }
+//
+//            // For all groups from which tracks were removed, reload them
+//            groupsToReload.forEach {playlistView.reloadItem($0)}
+//        }
     }
     
     func trackTransitioned(_ notification: TrackTransitionNotification) {

@@ -243,7 +243,7 @@ class PlayingTrackTextView: NSView, ColorSchemeable, ColorSchemeObserver {
     
     // MARK: ColorSchemeObserver functions
     
-    func colorChanged(to newColor: PlatformColor) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         update()
     }
 }

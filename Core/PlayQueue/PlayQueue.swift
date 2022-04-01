@@ -74,12 +74,12 @@ class PlayQueue: PlayQueueProtocol {
 
             // Playing track removed
             if indexes.contains(playingTrackIndex) {
-                curTrackIndex = nil
+                stop()
 
             } else {
 
                 // Compute how many tracks above (i.e. <) playingTrackIndex were removed ... this will determine the adjustment to the playing track index.
-                curTrackIndex = playingTrackIndex - indexes.filter {$0 < playingTrackIndex}.count
+                curTrackIndex = playingTrackIndex - (indexes.filter {$0 < playingTrackIndex}.count)
             }
         }
 
@@ -87,7 +87,9 @@ class PlayQueue: PlayQueueProtocol {
     }
 
     func removeAllTracks() {
+        
         trackList.removeAll()
+        stop()
     }
 
     func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
