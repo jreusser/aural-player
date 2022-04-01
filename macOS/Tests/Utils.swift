@@ -365,14 +365,14 @@ func randomThemes(count: Int? = nil) -> [ThemePersistentState] {
     }
 }
 
-func randomUserLayouts(count: Int? = nil) -> [UserWindowLayoutPersistentState] {
+func randomUserLayouts(count: Int? = nil) -> [WindowLayoutPersistentState] {
     
     let numLayouts = count ?? Int.random(in: 0...10)
     
     return numLayouts == 0 ? [] : (1...numLayouts).map {index in
         
         let layout = randomLayout(name: "Layout-\(index)", systemDefined: false)
-        return UserWindowLayoutPersistentState(layout: layout)
+        return WindowLayoutPersistentState(layout: layout)
     }
 }
 

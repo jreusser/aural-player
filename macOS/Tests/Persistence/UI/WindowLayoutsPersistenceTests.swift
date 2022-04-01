@@ -56,7 +56,7 @@ class WindowLayoutsPersistenceTests: PersistenceTestCase {
 
 extension WindowLayoutsPersistentState: Equatable {
     
-    init(layout: WindowLayout, userLayouts: [UserWindowLayoutPersistentState]?) {
+    init(layout: WindowLayout, userLayouts: [WindowLayoutPersistentState]?) {
         
         self.showEffects = layout.showEffects
         self.showPlaylist = layout.showPlaylist
@@ -88,7 +88,7 @@ extension WindowLayoutsPersistentState: Equatable {
     }
 }
 
-extension UserWindowLayoutPersistentState: Equatable {
+extension WindowLayoutPersistentState: Equatable {
     
     init(name: String?, showEffects: Bool?, showPlaylist: Bool?,
          mainWindowOrigin: NSPointPersistentState?,
@@ -103,7 +103,7 @@ extension UserWindowLayoutPersistentState: Equatable {
         self.playlistWindowFrame = playlistWindowFrame
     }
     
-    static func == (lhs: UserWindowLayoutPersistentState, rhs: UserWindowLayoutPersistentState) -> Bool {
+    static func == (lhs: WindowLayoutPersistentState, rhs: WindowLayoutPersistentState) -> Bool {
         
         lhs.name == rhs.name &&
             lhs.mainWindowOrigin == rhs.mainWindowOrigin &&

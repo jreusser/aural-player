@@ -16,48 +16,39 @@ import Foundation
 ///
 struct WindowLayoutsPersistentState: Codable {
     
-    let showEffects: Bool?
-    let showPlaylist: Bool?
-    
-    let mainWindowOrigin: NSPointPersistentState?
-    let effectsWindowOrigin: NSPointPersistentState?
-    let playlistWindowFrame: NSRectPersistentState?
-    
-    let userLayouts: [UserWindowLayoutPersistentState]?
+    let systemLayout: WindowLayoutPersistentState?
+    let userLayouts: [WindowLayoutPersistentState]?
 }
 
 ///
-/// Persistent state for a single user-defined window layout.
+/// Persistent state for a single window layout.
 ///
 /// - SeeAlso: `WindowLayout`
 ///
-struct UserWindowLayoutPersistentState: Codable {
+struct WindowLayoutPersistentState: Codable {
     
     let name: String?
-    let showEffects: Bool?
-    let showPlaylist: Bool?
     
-    let mainWindowOrigin: NSPointPersistentState?
-    let effectsWindowOrigin: NSPointPersistentState?
-    let playlistWindowFrame: NSRectPersistentState?
+    let mainWindowFrame: NSRectPersistentState?
+    let displayedWindows: [LayoutWindowPersistentState]?
     
     init(layout: WindowLayout) {
         
         self.name = layout.name
-        self.showEffects = layout.showEffects
-        self.showPlaylist = layout.showPlaylist
-        self.mainWindowOrigin = NSPointPersistentState(point: layout.mainWindowOrigin)
         
-        if let effectsWindowOrigin = layout.effectsWindowOrigin {
-            self.effectsWindowOrigin = NSPointPersistentState(point: effectsWindowOrigin)
-        } else {
-            self.effectsWindowOrigin = nil
-        }
+        self.mainWindowFrame = NSRectPersistentState(rect: layout.mainWindowFrame)
+        self.displayedWindows = layout.displayedWindows.map {LayoutWindowPersistentState(window: $0)}
+    }
+}
+
+struct LayoutWindowPersistentState: Codable {
+    
+    let id: WindowID?
+    let frame: NSRectPersistentState?
+    
+    init(window: LayoutWindow) {
         
-        if let playlistWindowFrame = layout.playlistWindowFrame {
-            self.playlistWindowFrame = NSRectPersistentState(rect: playlistWindowFrame)
-        } else {
-            self.playlistWindowFrame = nil
-        }
+        self.id = window.id
+        self.frame = NSRectPersistentState(rect: window.frame)
     }
 }

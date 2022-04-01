@@ -20,7 +20,7 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
         return loader
     }
     
-    // TODO: Don't expose the windows, expose them and their properties through functions / vars.
+    // TODO: Don't expose the windows, expose them and their properties through ofunctions / vars.
     
     // MARK: Main window -------------------------------------------
     
@@ -313,7 +313,7 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
         var effectsWindowOrigin: NSPointPersistentState? = nil
         var playlistWindowFrame: NSRectPersistentState? = nil
         
-        let userLayouts = userDefinedObjects.map {UserWindowLayoutPersistentState(layout: $0)}
+        let userLayouts = userDefinedObjects.map {WindowLayoutPersistentState(layout: $0)}
         
         let currentAppMode = objectGraph.appModeManager.currentMode
         
