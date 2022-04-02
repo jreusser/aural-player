@@ -8,9 +8,9 @@
 //  See the file "LICENSE" in the project root directory for license terms.
 //  
 
-import Foundation
+import Cocoa
 
-enum WindowID: String, Codable {
+enum WindowID: String, CaseIterable, Codable {
     
     case main, playQueue, effects, chaptersList, playlists, visualizer, fileBrowser, trackInfo
 }

@@ -12,7 +12,7 @@ import Cocoa
 /*
     Window controller for the playlist search dialog
  */
-class PlaylistSearchWindowController: NSWindowController, ModalDialogDelegate, Destroyable {
+class PlaylistSearchWindowController: NSWindowController, ModalDialogDelegate {
     
     @IBOutlet weak var searchField: NSSearchField!
     

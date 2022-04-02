@@ -13,7 +13,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titleVisibility="hidden" id="QvC-M9-y7g">
+        <window identifier="playQueue" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingIdentifier="playQueue" titleVisibility="hidden" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" resizable="YES" texturedBackground="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="530" height="277"/>
@@ -22,7 +22,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="530" height="277"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="vPq-HC-h3c" userLabel="Root Container" customClass="PlaylistContainer" customModule="Aural" customModuleProvider="target">
+                    <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="vPq-HC-h3c" userLabel="Root Container">
                         <rect key="frame" x="0.0" y="0.0" width="530" height="277"/>
                         <view key="contentView" id="hQa-hU-QPy">
                             <rect key="frame" x="0.0" y="0.0" width="530" height="277"/>
@@ -59,7 +59,7 @@
                         <tabViewItems>
                             <tabViewItem label="DefaultView" identifier="" id="dGb-9y-jTT" userLabel="Default View">
                                 <view key="view" id="luF-b9-Q1I">
-                                    <rect key="frame" x="0.0" y="0.0" width="500" height="176"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="500" height="177"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
@@ -137,6 +137,7 @@
                     </userDefinedRuntimeAttribute>
                 </userDefinedRuntimeAttributes>
             </view>
+            <accessibility identifier="playQueue"/>
             <point key="canvasLocation" x="217" y="230.5"/>
         </window>
     </objects>

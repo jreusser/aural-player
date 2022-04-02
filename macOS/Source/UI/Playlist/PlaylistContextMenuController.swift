@@ -118,8 +118,8 @@ class PlaylistContextMenuController: NSObject, NSMenuDelegate {
             // Update the state of the favorites menu item (based on if the clicked track is already in the favorites list or not)
             favoritesMenuItem.onIf(favorites.favoriteWithFileExists(theClickedTrack.file))
             
-            let isPlayingTrack: Bool = playbackInfo.playingTrack == theClickedTrack
-            viewChaptersMenuItem.showIf(isPlayingTrack && theClickedTrack.hasChapters && !windowLayoutsManager.isShowingChaptersList)
+//            let isPlayingTrack: Bool = playbackInfo.playingTrack == theClickedTrack
+//            viewChaptersMenuItem.showIf(isPlayingTrack && theClickedTrack.hasChapters && !windowLayoutsManager.isShowingChaptersList)
             
         case .group:
             
@@ -139,7 +139,7 @@ class PlaylistContextMenuController: NSObject, NSMenuDelegate {
         
         guard let theClickedTrack = clickedTrack else {return}
         
-        windowLayoutsManager.playlistWindow?.makeKeyAndOrderFront(self)
+//        windowLayoutsManager.playlistWindow?.makeKeyAndOrderFront(self)
         
         if favoritesMenuItem.isOn {
         
@@ -173,7 +173,7 @@ class PlaylistContextMenuController: NSObject, NSMenuDelegate {
         
         trackReader.loadAuxiliaryMetadata(for: theClickedTrack)
         
-        windowLayoutsManager.playlistWindow?.makeKeyAndOrderFront(self)
+//        windowLayoutsManager.playlistWindow?.makeKeyAndOrderFront(self)
         
         if let rowView = playlistSelectedRowView {
             detailedInfoPopover.show(theClickedTrack, rowView, .maxY)   // Display the popover below the selected row
@@ -184,7 +184,8 @@ class PlaylistContextMenuController: NSObject, NSMenuDelegate {
     
     // Helper to obtain the view for the selected playlist row (used to position popovers)
     // Defaults to the content view of the playlist window
-    private var playlistSelectedRowView: NSView? {uiState.selectedRowView ?? windowLayoutsManager.playlistWindow?.contentView}
+//    private var playlistSelectedRowView: NSView? {uiState.selectedRowView ?? windowLayoutsManager.playlistWindow?.contentView}
+    private var playlistSelectedRowView: NSView? {nil}
  
     // Removes the selected playlist item from the playlist
     @IBAction func removeSelectedItemAction(_ sender: Any) {

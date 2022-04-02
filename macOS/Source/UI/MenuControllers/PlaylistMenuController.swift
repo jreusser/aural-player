@@ -63,27 +63,27 @@ class PlaylistMenuController: NSObject, NSMenuDelegate {
         
         let showingModalComponent: Bool = windowLayoutsManager.isShowingModalComponent
 
-        if windowLayoutsManager.isChaptersListWindowKey {
+//        if windowLayoutsManager.isChaptersListWindowKey {
+//
+//            // If the chapters list window is key, most playlist menu items need to be disabled
+//            menu.items.forEach {$0.disable()}
+//
+//            // Allow playing of selected item (chapter) if the chapters list is not modal (i.e. performing a search) and an item is selected
+//            let hasPlayableChapter: Bool = !showingModalComponent && uiState.hasSelectedChapter
+//
+//            playSelectedItemMenuItem.enableIf(hasPlayableChapter)
+//            theMenu.enableIf(hasPlayableChapter)
+//
+//            // Since all items but one have been disabled, nothing further to do
+//            return
+//
+//        } else {
+//
+//            // Re-enabled items that may have been disabled before
+//            menu.items.forEach {$0.enable()}
+//        }
 
-            // If the chapters list window is key, most playlist menu items need to be disabled
-            menu.items.forEach {$0.disable()}
-
-            // Allow playing of selected item (chapter) if the chapters list is not modal (i.e. performing a search) and an item is selected
-            let hasPlayableChapter: Bool = !showingModalComponent && uiState.hasSelectedChapter
-
-            playSelectedItemMenuItem.enableIf(hasPlayableChapter)
-            theMenu.enableIf(hasPlayableChapter)
-
-            // Since all items but one have been disabled, nothing further to do
-            return
-
-        } else {
-
-            // Re-enabled items that may have been disabled before
-            menu.items.forEach {$0.enable()}
-        }
-
-        theMenu.enableIf(windowLayoutsManager.isShowingPlaylist)
+//        theMenu.enableIf(windowLayoutsManager.isShowingPlaylist)
         if theMenu.isDisabled {return}
 
         // TODO: Revisit the below item enabling code (esp. the ones relying on no modal window). How to display modal windows so as to avoid
@@ -208,12 +208,12 @@ class PlaylistMenuController: NSObject, NSMenuDelegate {
     // Plays the selected playlist item (track or group)
     @IBAction func playSelectedItemAction(_ sender: Any) {
         
-        if windowLayoutsManager.isChaptersListWindowKey {
-            messenger.publish(.chaptersList_playSelectedChapter)
-
-        } else {
-            messenger.publish(.playlist_playSelectedItem, payload: uiState.currentViewSelector)
-        }
+//        if windowLayoutsManager.isChaptersListWindowKey {
+//            messenger.publish(.chaptersList_playSelectedChapter)
+//
+//        } else {
+//            messenger.publish(.playlist_playSelectedItem, payload: uiState.currentViewSelector)
+//        }
     }
     
     @IBAction func clearSelectionAction(_ sender: Any) {

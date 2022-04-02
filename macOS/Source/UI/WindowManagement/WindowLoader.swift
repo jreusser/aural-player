@@ -9,44 +9,55 @@
 //
 import Cocoa
 
-class WindowLoader<T>: DestroyableAndRestorable where T: NSWindowController, T: Destroyable {
+class WindowLoader: DestroyableAndRestorable {
     
-    private var lazyLoader: LazyWindowLoader<T>? = LazyWindowLoader()
+    let windowID: WindowID
     
-    var isWindowLoaded: Bool {lazyLoader?.isWindowLoaded ?? false}
+    private let controllerFactory: () -> NSWindowController
     
-    var window: NSWindow {
+    private lazy var controller: NSWindowController! = createController()
+    
+    lazy var window: NSWindow = controller.window!
+    
+    var isWindowLoaded: Bool = false
+    
+    init<T>(windowID: WindowID, windowControllerType: T.Type) where T: NSWindowController {
         
-        ensureLazyLoaderCreated()
-        return lazyLoader!.controller.window!
+        self.windowID = windowID
+        self.controllerFactory = {
+            T.init()
+        }
     }
     
     func showWindow() {
-        lazyLoader?.controller.showWindow(self)
+        controller.showWindow(self)
     }
     
     func close() {
-        lazyLoader?.controller.close()
+        controller.close()
     }
     
     func destroy() {
         
-        lazyLoader?.destroy()
-        lazyLoader = nil
+        if isWindowLoaded {
+            
+            controller.destroy()
+            controller = nil
+        }
+    }
+    
+    private func createController() -> NSWindowController {
+        
+        isWindowLoaded = true
+        return controllerFactory()
     }
     
     func restore() {
-        ensureLazyLoaderCreated()
-    }
-    
-    private func ensureLazyLoaderCreated() {
-        
-        if lazyLoader == nil {
-            lazyLoader = LazyWindowLoader()
-        }
+        controller = createController()
     }
 }
 
+// Used for Playlist search / sort dialogs ... see if this class can be eliminated.
 class LazyWindowLoader<T>: Destroyable where T: NSWindowController, T: Destroyable {
     
     lazy var controller: T = {

@@ -11,6 +11,15 @@ import Cocoa
 
 extension NSWindow {
     
+    var windowID: WindowID? {
+        
+        if let idStr = identifier?.rawValue {
+            return WindowID(rawValue: idStr)
+        }
+        
+        return nil
+    }
+    
     var origin: NSPoint {frame.origin}
     
     var width: CGFloat {frame.width}
@@ -75,7 +84,7 @@ extension NSWindow {
     }
 }
 
-extension NSWindowController {
+extension NSWindowController: Destroyable {
     
     var theWindow: NSWindow {self.window!}
     
@@ -85,4 +94,6 @@ extension NSWindowController {
             _ = self.window
         }
     }
+    
+    @objc func destroy() {}
 }

@@ -13,56 +13,13 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     
     private let preferences: ViewPreferences
     
-    private func initializeLoader<T>(type: T.Type) -> WindowLoader<T> where T: NSWindowController, T: Destroyable {
-        
-        let loader = WindowLoader<T>()
-        initializedLoaders.append(loader)
-        return loader
-    }
-    
-    // TODO: Don't expose the windows, expose them and their properties through ofunctions / vars.
-    
-    // MARK: Main window -------------------------------------------
-    
-    private lazy var mainWindowLoader: WindowLoader<MainWindowController> = initializeLoader(type: MainWindowController.self)
-    var mainWindow: NSWindow {mainWindowLoader.window}
-    
-    // MARK: Effects window -------------------------------------------
-    
-    private lazy var effectsWindowLoader: WindowLoader<EffectsWindowController> = initializeLoader(type: EffectsWindowController.self)
-    private var _effectsWindow: NSWindow {effectsWindowLoader.window}
-    
-    var effectsWindow: NSWindow? {effectsWindowLoader.isWindowLoaded ? _effectsWindow : nil}
-    var effectsWindowFrame: NSRect? {effectsWindowLoaded ? _effectsWindow.frame : nil}
-    var effectsWindowLoaded: Bool {effectsWindowLoader.isWindowLoaded}
-    
-    // MARK: Playlist window -------------------------------------------
-    
-    private lazy var playlistWindowLoader: WindowLoader<PlaylistWindowController> = initializeLoader(type: PlaylistWindowController.self)
-    private var _playlistWindow: NSWindow {playlistWindowLoader.window}
-    
-    var playlistWindow: NSWindow? {playlistWindowLoader.isWindowLoaded ? _playlistWindow : nil}
-    var playlistWindowFrame: NSRect? {playlistWindowLoaded ? _playlistWindow.frame : nil}
-    var playlistWindowLoaded: Bool {playlistWindowLoader.isWindowLoaded}
-    
-    // MARK: Chapters list window -------------------------------------------
-
-    private lazy var chaptersListWindowLoader: WindowLoader<ChaptersListWindowController> = initializeLoader(type: ChaptersListWindowController.self)
-    
-    private var _chaptersListWindow: NSWindow {chaptersListWindowLoader.window}
-    var chaptersListWindowLoaded: Bool {chaptersListWindowLoader.isWindowLoaded}
-    
-    // MARK: Visualizer window -------------------------------------------
-    
-    private lazy var visualizerWindowLoader: WindowLoader<VisualizerWindowController> = initializeLoader(type: VisualizerWindowController.self)
-    
-    private var _visualizerWindow: NSWindow {visualizerWindowLoader.window}
-    
-    private var initializedLoaders: [DestroyableAndRestorable] = []
+    private var windowLoaders: [WindowLoader] = []
     
     private lazy var messenger = Messenger(for: self)
     
     private var savedLayout: WindowLayout? = nil
+    
+    lazy var mainWindow: NSWindow = windowLoaders.first(where: {$0.windowID == .main})!.window
 
     init(persistentState: WindowLayoutsPersistentState?, viewPreferences: ViewPreferences) {
         
@@ -71,6 +28,28 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
         let systemDefinedLayouts = WindowLayoutPresets.allCases.map {$0.layout(gap: CGFloat(viewPreferences.windowGap))}
         let userDefinedLayouts: [WindowLayout] = persistentState?.userLayouts?.compactMap
         {WindowLayout(persistentState: $0)} ?? []
+        
+        let mainWindowLoader = WindowLoader(windowID: .main, windowControllerType: MainWindowController.self)
+        windowLoaders.append(mainWindowLoader)
+//        self.mainWindow = mainWindowLoader.window
+        
+        for windowID in WindowID.allCases {
+            
+            switch windowID {
+                
+            case .playQueue:
+                
+                windowLoaders.append(WindowLoader(windowID: .playQueue, windowControllerType: PlayQueueWindowController.self))
+                
+            case .effects:
+                
+                windowLoaders.append(WindowLoader(windowID: .effects, windowControllerType: EffectsWindowController.self))
+                
+            default:
+                
+                continue
+            }
+        }
         
         super.init(systemDefinedObjects: systemDefinedLayouts, userDefinedObjects: userDefinedLayouts)
         
@@ -101,7 +80,7 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     
     func restore() {
         
-        initializedLoaders.forEach {$0.restore()}
+        windowLoaders.forEach {$0.restore()}
         performInitialLayout()
     }
     
@@ -112,7 +91,7 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
         
         // Hide and release all windows.
         mainWindow.childWindows?.forEach {mainWindow.removeChildWindow($0)}
-        initializedLoaders.forEach {$0.destroy()}
+        windowLoaders.forEach {$0.destroy()}
     }
     
     private func performInitialLayout() {
@@ -135,6 +114,10 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
         applyLayout(defaultLayout)
     }
     
+    private func getWindow(forId id: WindowID) -> NSWindow {
+        (windowLoaders.first(where: {$0.windowID == id}))!.window
+    }
+    
     func applyLayout(named name: String) {
         
         if let layout = object(named: name) {
@@ -144,32 +127,19 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     
     func applyLayout(_ layout: WindowLayout) {
         
-        mainWindow.setFrameOrigin(layout.mainWindowOrigin)
+        mainWindow.setFrameOrigin(layout.mainWindowFrame.origin)
         
-        if layout.showEffects {
-            
-            // TODO: Replace .zero with proper computation of a default origin.
-            let origin = layout.effectsWindowOrigin ?? .zero
-            
-            mainWindow.addChildWindow(_effectsWindow, ordered: .below)
-            _effectsWindow.setFrameOrigin(origin)
-            _effectsWindow.show()
-            
-        } else {
-            hideEffectsWindow()
+        mainWindow.childWindows?.forEach {
+            $0.hide()
         }
         
-        if layout.showPlaylist {
+        for window in layout.displayedWindows {
             
-            // TODO: Replace .zero with proper computation of a default frame.
-            let frame = layout.playlistWindowFrame ?? .zero
+            let actualWindow = getWindow(forId: window.id)
             
-            mainWindow.addChildWindow(_playlistWindow, ordered: .below)
-            _playlistWindow.setFrame(frame, display: true)
-            _playlistWindow.show()
-            
-        } else {
-            hidePlaylistWindow()
+            mainWindow.addChildWindow(actualWindow, ordered: .below)
+            actualWindow.setFrameOrigin(window.frame.origin)
+            actualWindow.show()
         }
         
         layoutChanged()
@@ -181,125 +151,106 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     
     var currentWindowLayout: WindowLayout {
         
-        WindowLayout("_system_", isShowingEffects, isShowingPlaylist, mainWindow.origin,
-                     effectsWindow?.origin, playlistWindow?.frame, true)
+        var windows: [LayoutWindow] = []
+        
+        for child in mainWindow.childWindows ?? [] {
+            
+            if let windowID = child.windowID {
+                windows.append(LayoutWindow(id: windowID, frame: child.frame))
+            }
+        }
+        
+        return WindowLayout(name: "_system_", systemDefined: true, mainWindowFrame: self.mainWindowFrame, displayedWindows: windows)
     }
     
-    var isShowingEffects: Bool {
-        return effectsWindowLoaded && _effectsWindow.isVisible
-    }
-    
-    var isShowingPlaylist: Bool {
-        return playlistWindowLoaded && _playlistWindow.isVisible
-    }
-    
-    // NOTE - Boolean short-circuiting is important here. Otherwise, the chapters list window will be unnecessarily loaded.
-    var isShowingChaptersList: Bool {
-        return chaptersListWindowLoader.isWindowLoaded && _chaptersListWindow.isVisible
-    }
-    
-    // NOTE - Boolean short-circuiting is important here. Otherwise, the chapters list window will be unnecessarily loaded.
-    var isChaptersListWindowKey: Bool {
-        return isShowingChaptersList && _chaptersListWindow == NSApp.keyWindow
-    }
-    
-    var isShowingVisualizer: Bool {
-        return visualizerWindowLoader.isWindowLoaded && _visualizerWindow.isVisible
-    }
+//    var isShowingEffects: Bool {
+//        return effectsWindowLoaded && _effectsWindow.isVisible
+//    }
+//
+//    var isShowingPlaylist: Bool {
+//        return playlistWindowLoaded && _playlistWindow.isVisible
+//    }
+//
+//    // NOTE - Boolean short-circuiting is important here. Otherwise, the chapters list window will be unnecessarily loaded.
+//    var isShowingChaptersList: Bool {
+//        return chaptersListWindowLoader.isWindowLoaded && _chaptersListWindow.isVisible
+//    }
+//
+//    // NOTE - Boolean short-circuiting is important here. Otherwise, the chapters list window will be unnecessarily loaded.
+//    var isChaptersListWindowKey: Bool {
+//        return isShowingChaptersList && _chaptersListWindow == NSApp.keyWindow
+//    }
+//
+//    var isShowingVisualizer: Bool {
+//        return visualizerWindowLoader.isWindowLoaded && _visualizerWindow.isVisible
+//    }
     
     var mainWindowFrame: NSRect {
-        return mainWindow.frame
+        mainWindow.frame
     }
     
     // MARK: View toggling code ----------------------------------------------------
     
-    // Shows/hides the effects window
-    func toggleEffectsWindow() {
-        isShowingEffects ? hideEffectsWindow() : showEffectsWindow()
-    }
-    
-    // Shows the effects window
-    func showEffectsWindow() {
+//    // Shows/hides the effects window
+    func toggleWindow(withId id: WindowID) {
         
-        mainWindow.addChildWindow(_effectsWindow, ordered: .above)
-        _effectsWindow.show()
-        _effectsWindow.orderFront(self)
+        let window = getWindow(forId: id)
+        
+        if window.isVisible {
+            window.hide()
+            
+        } else {
+            
+            mainWindow.addChildWindow(window, ordered: .above)
+            window.show()
+            window.orderFront(self)
+        }
         
         layoutChanged()
     }
     
-    // Hides the effects window
-    func hideEffectsWindow() {
+    func hideWindow(withId id: WindowID) {
         
-        if effectsWindowLoaded {
-            
-            _effectsWindow.hide()
-            layoutChanged()
-        }
-    }
-    
-    // Shows/hides the playlist window
-    func togglePlaylistWindow() {
-        isShowingPlaylist ? hidePlaylistWindow() : showPlaylistWindow()
-    }
-    
-    // Shows the playlist window
-    func showPlaylistWindow() {
-        
-        mainWindow.addChildWindow(_playlistWindow, ordered: .above)
-        _playlistWindow.show()
-        _playlistWindow.orderFront(self)
-        
+        getWindow(forId: id).hide()
         layoutChanged()
     }
     
-    // Hides the playlist window
-    func hidePlaylistWindow() {
+    func isShowingWindow(withId id: WindowID) -> Bool {
         
-        if playlistWindowLoaded {
+        for loader in windowLoaders {
             
-            _playlistWindow.hide()
-            layoutChanged()
+            if loader.windowID == id {
+                return loader.isWindowLoaded && loader.window.isVisible
+            }
         }
+        
+        return false
     }
     
-    func toggleChaptersListWindow() {
-        isShowingChaptersList ? hideChaptersListWindow() : showChaptersListWindow()
+    func isWindowLoaded(withId id: WindowID) -> Bool {
+        (windowLoaders.first(where: {$0.windowID == id}))!.isWindowLoaded
     }
     
     func showChaptersListWindow() {
         
-        let shouldCenterChaptersListWindow = !chaptersListWindowLoader.isWindowLoaded
-        
-        mainWindow.addChildWindow(_chaptersListWindow, ordered: .above)
-        _chaptersListWindow.makeKeyAndOrderFront(self)
-        
-        // This will happen only once after each app launch - the very first time the window is shown.
-        // After that, the window will be restored to its previous on-screen location
-        if shouldCenterChaptersListWindow && playlistWindowLoaded {
-            _chaptersListWindow.showCentered(relativeTo: _playlistWindow)
-        }
+//        let shouldCenterChaptersListWindow = !chaptersListWindowLoader.isWindowLoaded
+//
+//        mainWindow.addChildWindow(_chaptersListWindow, ordered: .above)
+//        _chaptersListWindow.makeKeyAndOrderFront(self)
+//
+//        // This will happen only once after each app launch - the very first time the window is shown.
+//        // After that, the window will be restored to its previous on-screen location
+//        if shouldCenterChaptersListWindow && playlistWindowLoaded {
+//            _chaptersListWindow.showCentered(relativeTo: _playlistWindow)
+//        }
     }
     
-    func hideChaptersListWindow() {
-        
-        if chaptersListWindowLoaded {
-            _chaptersListWindow.hide()
-        }
+    var isShowingPlayQueue: Bool {
+        isShowingWindow(withId: .playQueue)
     }
     
-    func toggleVisualizerWindow() {
-        isShowingVisualizer ? hideVisualizerWindow() : showVisualizerWindow()
-    }
-    
-    private func showVisualizerWindow() {
-        
-        mainWindow.addChildWindow(_visualizerWindow, ordered: .above)
-        visualizerWindowLoader.showWindow()
-    }
-    
-    private func hideVisualizerWindow() {
-        visualizerWindowLoader.close()
+    var isShowingEffects: Bool {
+        isShowingWindow(withId: .effects)
     }
     
     // MARK: Miscellaneous functions ------------------------------------
@@ -310,45 +261,18 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     
     var persistentState: WindowLayoutsPersistentState {
         
-        var effectsWindowOrigin: NSPointPersistentState? = nil
-        var playlistWindowFrame: NSRectPersistentState? = nil
-        
         let userLayouts = userDefinedObjects.map {WindowLayoutPersistentState(layout: $0)}
-        
         let currentAppMode = objectGraph.appModeManager.currentMode
         
         if currentAppMode == .windowed {
             
-            if let origin = self.effectsWindow?.origin {
-                effectsWindowOrigin = NSPointPersistentState(point: origin)
-            }
+            let systemLayout = WindowLayoutPersistentState(layout: currentWindowLayout)
+            return WindowLayoutsPersistentState(systemLayout: systemLayout, userLayouts: userLayouts)
             
-            if let frame = self.playlistWindowFrame {
-                playlistWindowFrame = NSRectPersistentState(rect: frame)
-            }
-            
-            return WindowLayoutsPersistentState(showEffects: isShowingEffects,
-                                                showPlaylist: isShowingPlaylist,
-                                                mainWindowOrigin: NSPointPersistentState(point: mainWindow.origin),
-                                                effectsWindowOrigin: effectsWindowOrigin,
-                                                playlistWindowFrame: playlistWindowFrame,
-                                                userLayouts: userLayouts)
         } else {
             
-            if let origin = savedLayout?.effectsWindowOrigin ?? defaultLayout.effectsWindowOrigin {
-                effectsWindowOrigin = NSPointPersistentState(point: origin)
-            }
-            
-            if let frame = savedLayout?.playlistWindowFrame ?? defaultLayout.playlistWindowFrame {
-                playlistWindowFrame = NSRectPersistentState(rect: frame)
-            }
-            
-            return WindowLayoutsPersistentState(showEffects: savedLayout?.showEffects ?? defaultLayout.showEffects,
-                                                showPlaylist: savedLayout?.showPlaylist ?? defaultLayout.showPlaylist,
-                                                mainWindowOrigin: NSPointPersistentState(point: savedLayout?.mainWindowOrigin ?? defaultLayout.mainWindowOrigin),
-                                                effectsWindowOrigin: effectsWindowOrigin,
-                                                playlistWindowFrame: playlistWindowFrame,
-                                                userLayouts: userLayouts)
+            let systemLayout = WindowLayoutPersistentState(layout: savedLayout ?? defaultLayout)
+            return WindowLayoutsPersistentState(systemLayout: systemLayout, userLayouts: userLayouts)
         }
     }
 }

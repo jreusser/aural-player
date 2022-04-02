@@ -12,7 +12,7 @@ import Cocoa
 /*
     Window controller for the playlist sort dialog
  */
-class PlaylistSortWindowController: NSWindowController, ModalDialogDelegate, Destroyable {
+class PlaylistSortWindowController: NSWindowController, ModalDialogDelegate {
     
     @IBOutlet weak var container: NSBox!
     

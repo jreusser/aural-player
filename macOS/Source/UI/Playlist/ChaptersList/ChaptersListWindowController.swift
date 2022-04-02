@@ -13,7 +13,7 @@ import Cocoa
     Window controller for the Chapters list window.
     Contains the Chapters list view and performs window snapping.
  */
-class ChaptersListWindowController: NSWindowController, ModalComponentProtocol, Destroyable {
+class ChaptersListWindowController: NSWindowController, ModalComponentProtocol {
     
     @IBOutlet weak var rootContainerBox: NSBox!
     @IBOutlet weak var viewController: ChaptersListViewController!
@@ -45,7 +45,7 @@ class ChaptersListWindowController: NSWindowController, ModalComponentProtocol, 
     }
     
     @IBAction func closeWindowAction(_ sender: AnyObject) {
-        windowLayoutsManager.hideChaptersListWindow()
+//        windowLayoutsManager.hideChaptersListWindow()
     }
     
     private func applyTheme() {
@@ -64,7 +64,7 @@ class ChaptersListWindowController: NSWindowController, ModalComponentProtocol, 
         rootContainerBox.cornerRadius = radius
     }
     
-    func destroy() {
+    override func destroy() {
         
         viewController.destroy()
         

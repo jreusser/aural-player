@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate, Destroyable {
+class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate {
     
     override var windowNibName: String? {"JumpToTimeEditorDialog"}
     
@@ -62,7 +62,7 @@ class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate,
                                  filter: {[weak self] msg in self?.isModal ?? false})
     }
     
-    func destroy() {
+    override func destroy() {
         messenger.unsubscribeFromAll()
     }
     

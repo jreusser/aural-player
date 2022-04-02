@@ -178,7 +178,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     }
     
     // Whether or not the Effects window is loaded (and is able to receive commands).
-    var effectsWindowLoaded: Bool {windowLayoutsManager.effectsWindowLoaded}
+    var effectsWindowLoaded: Bool {windowLayoutsManager.isWindowLoaded(withId: .effects)}
     
     // Toggles the master bypass switch
     @IBAction func masterBypassAction(_ sender: Any) {

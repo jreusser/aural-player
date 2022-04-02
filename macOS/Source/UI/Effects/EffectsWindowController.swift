@@ -13,7 +13,7 @@
 
 import Cocoa
 
-class EffectsWindowController: NSWindowController, Destroyable {
+class EffectsWindowController: NSWindowController {
     
     override var windowNibName: String? {"EffectsWindow"}
     
@@ -123,7 +123,7 @@ class EffectsWindowController: NSWindowController, Destroyable {
         tabViewButtons.forEach {$0.updateState()}
     }
 
-    func destroy() {
+    override func destroy() {
         
         ([masterViewController, eqViewController, pitchViewController, timeViewController, reverbViewController,
           delayViewController, filterViewController, auViewController, devicesViewController] as? [Destroyable])?.forEach {$0.destroy()}
@@ -149,7 +149,7 @@ class EffectsWindowController: NSWindowController, Destroyable {
     }
     
     @IBAction func closeWindowAction(_ sender: AnyObject) {
-        windowLayoutsManager.hideEffectsWindow()
+        windowLayoutsManager.hideWindow(withId: .effects)
     }
     
     // ------------------------------------------------------------------------

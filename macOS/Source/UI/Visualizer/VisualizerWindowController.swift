@@ -10,7 +10,7 @@
 import Cocoa
 import AVFoundation
 
-class VisualizerWindowController: NSWindowController, NSWindowDelegate, Destroyable {
+class VisualizerWindowController: NSWindowController, NSWindowDelegate {
     
     override var windowNibName: String? {"Visualizer"}
     
@@ -54,7 +54,7 @@ class VisualizerWindowController: NSWindowController, NSWindowDelegate, Destroya
         allViews = [spectrogram, supernova, discoBall]
     }
     
-    func destroy() {
+    override func destroy() {
         
         close()
         visualizer.destroy()

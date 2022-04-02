@@ -129,15 +129,15 @@ class PlayerViewController: NSViewController, Destroyable {
         trackChanged(notification.endTrack)
         
         // If the playlist window has not yet been loaded, we need to handle this notification on behalf of the playlist window.
-        guard !windowLayoutsManager.playlistWindowLoaded else {return}
-        
-        // New track has no chapters, or there is no new track
-        if player.chapterCount == 0 {
-            windowLayoutsManager.hideChaptersListWindow()
-            
-        } // Only show chapters list if preferred by user
-        else if playlistPreferences.showChaptersList {
-            windowLayoutsManager.showChaptersListWindow()
-        }
+//        guard !windowLayoutsManager.playlistWindowLoaded else {return}
+//        
+//        // New track has no chapters, or there is no new track
+//        if player.chapterCount == 0 {
+//            windowLayoutsManager.hideChaptersListWindow()
+//            
+//        } // Only show chapters list if preferred by user
+//        else if playlistPreferences.showChaptersList {
+//            windowLayoutsManager.showChaptersListWindow()
+//        }
     }
 }

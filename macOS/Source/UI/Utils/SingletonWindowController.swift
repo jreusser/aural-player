@@ -16,7 +16,7 @@ import Cocoa
 /// For an example of how this class is used:
 /// - SeeAlso: `PresetsManagerWindowController`
 ///
-class SingletonWindowController: NSWindowController, Destroyable {
+class SingletonWindowController: NSWindowController {
     
     private static var instances: [String: SingletonWindowController] = [:]
     

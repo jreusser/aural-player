@@ -40,7 +40,7 @@ class PresetsManagerWindowController: SingletonWindowController, ModalComponentP
         theWindow.isMovableByWindowBackground = true
     }
     
-    func destroy() {
+    override func destroy() {
         
         addedViews.removeAll()
         effectsPresetsManagerViewLoader.destroy()

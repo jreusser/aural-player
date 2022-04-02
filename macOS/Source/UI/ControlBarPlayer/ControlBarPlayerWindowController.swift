@@ -9,7 +9,7 @@
 //  
 import Cocoa
 
-class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NSMenuDelegate, Destroyable {
+class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NSMenuDelegate {
     
     @IBOutlet weak var rootContainerBox: NSBox!
     @IBOutlet weak var viewController: ControlBarPlayerViewController!
@@ -155,7 +155,7 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
         appMovingWindow = false
     }
     
-    func destroy() {
+    override func destroy() {
         
         close()
         viewController.destroy()

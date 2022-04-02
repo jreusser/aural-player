@@ -13,4 +13,8 @@ import Cocoa
 class PlayQueueWindowController: NSWindowController {
     
     override var windowNibName: String? {"PlayQueueWindow"}
+    
+    override func destroy() {
+        // TODO: 
+    }
 }

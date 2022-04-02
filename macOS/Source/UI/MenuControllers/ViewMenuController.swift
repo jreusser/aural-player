@@ -74,10 +74,10 @@ class ViewMenuController: NSObject, NSMenuDelegate {
         
         [togglePlaylistMenuItem, toggleEffectsMenuItem].forEach {$0?.show()}
         
-        togglePlaylistMenuItem.onIf(windowLayoutsManager.isShowingPlaylist)
-        toggleEffectsMenuItem.onIf(windowLayoutsManager.isShowingEffects)
-        toggleChaptersListMenuItem.onIf(windowLayoutsManager.isShowingChaptersList)
-        toggleVisualizerMenuItem.onIf(windowLayoutsManager.isShowingVisualizer)
+//        togglePlaylistMenuItem.onIf(windowLayoutsManager.isShowingPlaylist)
+//        toggleEffectsMenuItem.onIf(windowLayoutsManager.isShowingEffects)
+//        toggleChaptersListMenuItem.onIf(windowLayoutsManager.isShowingChaptersList)
+//        toggleVisualizerMenuItem.onIf(windowLayoutsManager.isShowingVisualizer)
         
         playerViewMenuItem.off()
         
@@ -87,20 +87,20 @@ class ViewMenuController: NSObject, NSMenuDelegate {
  
     // Shows/hides the playlist window
     @IBAction func togglePlaylistAction(_ sender: AnyObject) {
-        windowLayoutsManager.togglePlaylistWindow()
+//        windowLayoutsManager.togglePlaylistWindow()
     }
     
     // Shows/hides the effects window
     @IBAction func toggleEffectsAction(_ sender: AnyObject) {
-        windowLayoutsManager.toggleEffectsWindow()
+//        windowLayoutsManager.toggleEffectsWindow()
     }
     
     // Shows/hides the chapters list window
     @IBAction func toggleChaptersListAction(_ sender: AnyObject) {
-        windowLayoutsManager.toggleChaptersListWindow()
+//        windowLayoutsManager.toggleChaptersListWindow()
     }
     
     @IBAction func toggleVisualizerAction(_ sender: AnyObject) {
-        windowLayoutsManager.toggleVisualizerWindow()
+//        windowLayoutsManager.toggleVisualizerWindow()
     }
 }

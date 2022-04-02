@@ -36,6 +36,7 @@ class UpdatesDialogController: NSWindowController, ModalComponentProtocol {
         
         [lblNoUpdates, lblUpdateAvailable, lblError].forEach {$0?.hide()}
         
+        // TODO: Move the centering logic to layouts manager so that 'mainWindow' doesn't have to be exposed.
         theWindow.showCentered(relativeTo: windowLayoutsManager.mainWindow)
     }
     

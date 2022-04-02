@@ -12,7 +12,7 @@ import Cocoa
 /*
     Window controller for the main application window.
  */
-class MainWindowController: NSWindowController, Destroyable {
+class MainWindowController: NSWindowController {
     
     @IBOutlet weak var logoImage: TintedImageView!
     
@@ -31,7 +31,7 @@ class MainWindowController: NSWindowController, Destroyable {
     @IBOutlet weak var btnTogglePlaylist: TintedImageButton!
     @IBOutlet weak var btnToggleEffects: TintedImageButton!
     
-    private lazy var btnTogglePlaylistStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingPlaylist,
+    private lazy var btnTogglePlayQueueStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingPlayQueue,
                                                                                     mappings: [
                                                                                         
                                                                                         ButtonStateMachine.StateMapping(state: true, image: Images.imgPlaylist, colorProperty: \.buttonColor, toolTip: "Hide the Playlist"),
@@ -98,7 +98,7 @@ class MainWindowController: NSWindowController, Destroyable {
         
         containerBox.addSubview(playerViewController.view)
 
-        btnTogglePlaylistStateMachine.setState(windowLayoutsManager.isShowingPlaylist)
+        btnTogglePlayQueueStateMachine.setState(windowLayoutsManager.isShowingPlayQueue)
         btnToggleEffectsStateMachine.setState(windowLayoutsManager.isShowingEffects)
         
         btnToggleEffects.weight = .black
@@ -144,7 +144,7 @@ class MainWindowController: NSWindowController, Destroyable {
 //        })
     }
     
-    func destroy() {
+    override func destroy() {
         
         eventMonitor.stopMonitoring()
         eventMonitor = nil
@@ -175,7 +175,7 @@ class MainWindowController: NSWindowController, Destroyable {
     }
     
     private func togglePlaylistWindow() {
-        windowLayoutsManager.togglePlaylistWindow()
+        windowLayoutsManager.toggleWindow(withId: .playQueue)
     }
     
     // Shows/hides the effects panel on the main window
@@ -184,7 +184,7 @@ class MainWindowController: NSWindowController, Destroyable {
     }
     
     private func toggleEffectsWindow() {
-        windowLayoutsManager.toggleEffectsWindow()
+        windowLayoutsManager.toggleWindow(withId: .effects)
     }
     
     // Quits the app
@@ -213,7 +213,7 @@ class MainWindowController: NSWindowController, Destroyable {
     
     func windowLayoutChanged() {
 
-        btnTogglePlaylistStateMachine.setState(windowLayoutsManager.isShowingPlaylist)
+        btnTogglePlayQueueStateMachine.setState(windowLayoutsManager.isShowingPlayQueue)
         btnToggleEffectsStateMachine.setState(windowLayoutsManager.isShowingEffects)
     }
     

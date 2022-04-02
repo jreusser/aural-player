@@ -12,7 +12,7 @@ import Cocoa
 /*
     Window controller for the playlist window.
  */
-class PlaylistWindowController: NSWindowController, NSTabViewDelegate, Destroyable {
+class PlaylistWindowController: NSWindowController, NSTabViewDelegate {
     
     override var windowNibName: String? {"PlaylistWindow"}
     
@@ -202,7 +202,7 @@ class PlaylistWindowController: NSWindowController, NSTabViewDelegate, Destroyab
         messenger.subscribe(to: .playlist_changeSummaryInfoColor, handler: changeSummaryInfoColor(_:))
     }
     
-    func destroy() {
+    override func destroy() {
         
         eventMonitor.stopMonitoring()
         eventMonitor = nil
@@ -219,7 +219,7 @@ class PlaylistWindowController: NSWindowController, NSTabViewDelegate, Destroyab
     }
     
     @IBAction func closeWindowAction(_ sender: AnyObject) {
-        windowLayoutsManager.hidePlaylistWindow()
+//        windowLayoutsManager.hidePlaylistWindow()
     }
     
     private func checkIfPlaylistIsBeingModified() -> Bool {
@@ -509,7 +509,7 @@ class PlaylistWindowController: NSWindowController, NSTabViewDelegate, Destroyab
         
         // New track has no chapters, or there is no new track
         if playbackInfo.chapterCount == 0 {
-            windowLayoutsManager.hideChaptersListWindow()
+//            windowLayoutsManager.hideChaptersListWindow()
             
         } // Only show chapters list if preferred by user
         else if playlistPreferences.showChaptersList {
