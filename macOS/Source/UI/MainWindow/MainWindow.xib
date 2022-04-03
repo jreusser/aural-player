@@ -15,7 +15,7 @@
                 <outlet property="btnQuit" destination="zFi-Se-R21" id="qaB-7L-gbg"/>
                 <outlet property="btnSettingsMenu" destination="hiE-G6-T2s" id="4bk-VK-3Q3"/>
                 <outlet property="btnToggleEffects" destination="W1Y-N5-RBQ" id="U8N-rP-qpZ"/>
-                <outlet property="btnTogglePlaylist" destination="Br1-bp-Vzd" id="Cye-Wt-34K"/>
+                <outlet property="btnTogglePlayQueue" destination="Br1-bp-Vzd" id="Cye-Wt-34K"/>
                 <outlet property="containerBox" destination="hPg-iX-tXz" id="5Gt-cO-ZjA"/>
                 <outlet property="logoImage" destination="efk-uj-yYR" id="GYw-BM-8nr"/>
                 <outlet property="mainMenu" destination="tjv-P8-i0X" id="lVx-Xf-XfV"/>
@@ -96,13 +96,13 @@
                                         <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="AppTitle"/>
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
-                                <button toolTip="Show/hide playlist" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Br1-bp-Vzd" userLabel="Toggle Playlist Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="459" y="202" width="17.5" height="18"/>
+                                <button toolTip="Show/hide playlist" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Br1-bp-Vzd" userLabel="Toggle Play Queue Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="459" y="199" width="17.5" height="23"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="yEP-qA-m8Z">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
-                                        <imageReference key="image" image="list.dash" catalog="system" symbolScale="large"/>
+                                        <imageReference key="image" image="music.note.list" catalog="system" symbolScale="large"/>
                                     </buttonCell>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="weight">
@@ -110,7 +110,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="togglePlaylistAction:" target="-2" id="Oro-eR-EYP"/>
+                                        <action selector="togglePlayQueueAction:" target="-2" id="uMq-TF-p4H"/>
                                     </connections>
                                 </button>
                                 <popUpButton toolTip="Global and player view settings" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hiE-G6-T2s" userLabel="Settings Menu">
@@ -1635,7 +1635,7 @@ CA
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="View" autoenablesItems="NO" id="fqq-Gm-DsV">
                         <items>
-                            <menuItem title=" Playlist window" state="on" image="TogglePlaylistView-Small" keyEquivalent="1" id="IY9-9c-uYd" userLabel="Playlist">
+                            <menuItem title=" Play Queue window" state="on" image="music.note.list" catalog="system" keyEquivalent="1" id="IY9-9c-uYd" userLabel="Playlist">
                                 <connections>
                                     <action selector="togglePlaylistAction:" target="7y7-Z8-Sp0" id="htF-Ec-lZF"/>
                                 </connections>
@@ -2173,7 +2173,6 @@ CA
         <image name="Time" width="16" height="13"/>
         <image name="ToggleChaptersList-Small" width="14" height="11"/>
         <image name="ToggleEffectsView-Small" width="14" height="14"/>
-        <image name="TogglePlaylistView-Small" width="14" height="12"/>
         <image name="ToggleVisualizer-Small" width="14" height="14"/>
         <image name="Up-Small" width="10" height="14"/>
         <image name="Update" width="15" height="15"/>
@@ -2190,8 +2189,8 @@ CA
         <image name="WindowLayout-VerticalPlayerAndPlaylist" width="30" height="20"/>
         <image name="WindowLayout-VerticalStack" width="30" height="20"/>
         <image name="line.horizontal.3" catalog="system" width="16" height="9"/>
-        <image name="list.dash" catalog="system" width="20" height="14"/>
         <image name="minus" catalog="system" width="14" height="4"/>
+        <image name="music.note.list" catalog="system" width="20" height="19"/>
         <image name="slider.vertical.3" catalog="system" width="15" height="14"/>
         <image name="xmark" catalog="system" width="14" height="13"/>
     </resources>

@@ -9,55 +9,52 @@
 //
 import Cocoa
 
-class AuralTableView: NSTableView {
-    
-    private var kvoTokens: [NSKeyValueObservation] = []
-    
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        
-        kvoTokens.append(systemColorScheme.observe(\.backgroundColor, options: [.initial, .new]) {[weak self] _, _ in
-            self?.setBackgroundColor()
-        })
-    }
-    
-    deinit {
-        
-        kvoTokens.forEach {
-            $0.invalidate()
-        }
-        
-        kvoTokens.removeAll()
-    }
-    
-    private func setBackgroundColor() {
-        
-        let backgroundColor = systemColorScheme.backgroundColor
-        
-        self.backgroundColor = backgroundColor
-        enclosingScrollView?.backgroundColor = backgroundColor
-        
-        if let clipView = enclosingScrollView?.documentView as? NSClipView {
-            clipView.backgroundColor = backgroundColor
-        }
-    }
-}
-
 /*
     A customized NSTableView that overrides contextual menu behavior
  */
-class AuralPlaylistTableView: AuralTableView {
+class AuralTableView: NSTableView {
     
     // Enable drag/drop.
     override func awakeFromNib() {
         
         super.awakeFromNib()
-        self.registerForDraggedTypes([.data, .file_URL])
+        enableDragDrop()
     }
     
     override func menu(for event: NSEvent) -> NSMenu? {
-        return menuHandler(for: event)
+        menuHandler(for: event)
+    }
+    
+    private var uiState: PlaylistUIState {objectGraph.playlistUIState}
+    
+    // TODO: Rethink the right-click menu for playlists (should have different menus for single item / multi-item / empty selections)
+    /*
+        An event handler for customized contextual menu behavior.
+        This function needs to be overriden in order to:
+     
+        1 - Only display the contextual menu when at least one row is available, and the click occurred within a playlist row view (i.e. not in empty table view space)
+        2 - Capture the row for which the contextual menu was requested, and select it
+        3 - Disable the row highlight displayed when presenting the contextual menu
+     */
+    func menuHandler(for event: NSEvent) -> NSMenu? {
+        
+        // If tableView has no rows, don't show the menu
+        if self.numberOfRows == 0 {return nil}
+        
+        // Calculate the clicked row
+        let row = self.row(at: self.convert(event.locationInWindow, from: nil))
+        
+        // If the click occurred outside of any of the playlist rows (i.e. empty space), don't show the menu
+        if row == -1 {return nil}
+        
+        // Select the clicked row, implicitly clearing the previous selection
+        selectRow(row)
+        
+        // TODO: Shouldn't this be moved to AuralPlaylistTableView and AuralPlaylistOutlineView ?
+        // Note that this view was clicked (this is required by the contextual menu)
+        uiState.registerTableViewClick(self)
+        
+        return self.menu
     }
 }
 
@@ -139,9 +136,9 @@ class DurationCellView: BasicFlatPlaylistCellView {
     
     override func backgroundStyleChanged() {
         
-        let isSelectedRow = rowIsSelected
-        
-        // Check if this row is selected, change font and color accordingly
+//        let isSelectedRow = rowIsSelected
+//
+//        // Check if this row is selected, change font and color accordingly
 //        textField?.textColor = isSelectedRow ? Colors.Playlist.indexDurationSelectedTextColor : Colors.Playlist.indexDurationTextColor
         textField?.font = Fonts.Playlist.trackTextFont
     }

@@ -89,6 +89,7 @@
 		3E43228B2687E313009E8ADB /* ControlBarSeekSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43228A2687E313009E8ADB /* ControlBarSeekSliderView.swift */; };
 		3E45C03325E1264C00C1519C /* PlayerFontScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E45C03225E1264C00C1519C /* PlayerFontScheme.xib */; };
 		3E45C03625E1269500C1519C /* PlayerFontSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E45C03525E1269500C1519C /* PlayerFontSchemeViewController.swift */; };
+		3E466C8F27FA296C00342C30 /* MainWindowController+EventHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E466C8E27FA296C00342C30 /* MainWindowController+EventHandling.swift */; };
 		3E475BC2269649880065FD53 /* FlatPlaylistTests+TrackAccessByIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E475BC1269649880065FD53 /* FlatPlaylistTests+TrackAccessByIndex.swift */; };
 		3E475BC6269652320065FD53 /* FlatPlaylistTests+RemoveTracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E475BC5269652320065FD53 /* FlatPlaylistTests+RemoveTracks.swift */; };
 		3E475BCA2696527A0065FD53 /* FlatPlaylistTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E475BC92696527A0065FD53 /* FlatPlaylistTestCase.swift */; };
@@ -1514,6 +1515,7 @@
 		3E4590F4267946C000C5BFB7 /* exportOptions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = exportOptions.plist; sourceTree = "<group>"; };
 		3E45C03225E1264C00C1519C /* PlayerFontScheme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerFontScheme.xib; sourceTree = "<group>"; };
 		3E45C03525E1269500C1519C /* PlayerFontSchemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFontSchemeViewController.swift; sourceTree = "<group>"; };
+		3E466C8E27FA296C00342C30 /* MainWindowController+EventHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainWindowController+EventHandling.swift"; sourceTree = "<group>"; };
 		3E475BC1269649880065FD53 /* FlatPlaylistTests+TrackAccessByIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlatPlaylistTests+TrackAccessByIndex.swift"; sourceTree = "<group>"; };
 		3E475BC5269652320065FD53 /* FlatPlaylistTests+RemoveTracks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlatPlaylistTests+RemoveTracks.swift"; sourceTree = "<group>"; };
 		3E475BC92696527A0065FD53 /* FlatPlaylistTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatPlaylistTestCase.swift; sourceTree = "<group>"; };
@@ -2920,6 +2922,7 @@
 			children = (
 				3E6C0F2025CEB98500BF0D07 /* MainWindow.xib */,
 				3E6C0F1F25CEB98500BF0D07 /* MainWindowController.swift */,
+				3E466C8E27FA296C00342C30 /* MainWindowController+EventHandling.swift */,
 				3E2976122629473500459272 /* WindowCornerRadiusMenuItemView.swift */,
 			);
 			path = MainWindow;
@@ -5661,6 +5664,7 @@
 				3EAFB617267FF4C200F0DC96 /* EffectsSliderPreviewCell.swift in Sources */,
 				3EBF29332686979700D87021 /* EffectsTextButtonCell.swift in Sources */,
 				3EFE392F27864897006F8B8C /* TimeIntervalFormatter.swift in Sources */,
+				3E466C8F27FA296C00342C30 /* MainWindowController+EventHandling.swift in Sources */,
 				3EBF293726869A9300D87021 /* EffectsUnitPopupMenuCell.swift in Sources */,
 				3EFE37E127864896006F8B8C /* ViewPreferences.swift in Sources */,
 				3EFE3A3327864898006F8B8C /* TrackPlaybackCommandNotification.swift in Sources */,

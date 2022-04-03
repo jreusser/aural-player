@@ -15,6 +15,8 @@ protocol ColorSchemeObserver {
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>)
 }
 
+typealias ColorSchemeObserverFunction = (PlatformColor) -> Void
+
 extension ColorSchemesManager {
     
     static let muthu: Int = 5

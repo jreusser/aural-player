@@ -15,11 +15,15 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     
     private var windowLoaders: [WindowLoader] = []
     
+    private func loader(withID id: WindowID) -> WindowLoader {
+        windowLoaders.first(where: {$0.windowID == id})!
+    }
+    
     private lazy var messenger = Messenger(for: self)
     
     private var savedLayout: WindowLayout? = nil
     
-    lazy var mainWindow: NSWindow = windowLoaders.first(where: {$0.windowID == .main})!.window
+    lazy var mainWindow: NSWindow = loader(withID: .main).window
 
     init(persistentState: WindowLayoutsPersistentState?, viewPreferences: ViewPreferences) {
         
@@ -217,18 +221,12 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     
     func isShowingWindow(withId id: WindowID) -> Bool {
         
-        for loader in windowLoaders {
-            
-            if loader.windowID == id {
-                return loader.isWindowLoaded && loader.window.isVisible
-            }
-        }
-        
-        return false
+        let loader = loader(withID: id)
+        return loader.isWindowLoaded && loader.window.isVisible
     }
     
     func isWindowLoaded(withId id: WindowID) -> Bool {
-        (windowLoaders.first(where: {$0.windowID == id}))!.isWindowLoaded
+        loader(withID: id).isWindowLoaded
     }
     
     func showChaptersListWindow() {

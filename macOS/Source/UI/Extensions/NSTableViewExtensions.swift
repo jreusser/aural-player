@@ -11,20 +11,34 @@ import Cocoa
 
 extension NSTableView {
     
+    func enableDragDrop() {
+        registerForDraggedTypes([.data, .fileURL])
+    }
+    
+    func setBackgroundColor(_ color: PlatformColor) {
+        
+        backgroundColor = color
+        enclosingScrollView?.backgroundColor = color
+        
+        if let clipView = enclosingScrollView?.documentView as? NSClipView {
+            clipView.backgroundColor = color
+        }
+    }
+    
     func isRowSelected(_ row: Int) -> Bool {
-        self.selectedRowIndexes.contains(row)
+        selectedRowIndexes.contains(row)
     }
     
     func selectRow(_ row: Int) {
-        self.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
     }
     
     func selectRows(_ rows: [Int]) {
-        self.selectRowIndexes(IndexSet(rows), byExtendingSelection: false)
+        selectRowIndexes(IndexSet(rows), byExtendingSelection: false)
     }
     
     func selectRows(_ rows: IndexSet) {
-        self.selectRowIndexes(rows, byExtendingSelection: false)
+        selectRowIndexes(rows, byExtendingSelection: false)
     }
     
     func redoRowSelection() {
@@ -42,15 +56,15 @@ extension NSTableView {
     }
     
     func selectRows(_ rows: Range<Int>) {
-        self.selectRowIndexes(IndexSet(rows), byExtendingSelection: false)
+        selectRowIndexes(IndexSet(rows), byExtendingSelection: false)
     }
     
     func selectRows(_ rows: ClosedRange<Int>) {
-        self.selectRowIndexes(IndexSet(rows), byExtendingSelection: false)
+        selectRowIndexes(IndexSet(rows), byExtendingSelection: false)
     }
     
     func clearSelection() {
-        self.selectRowIndexes(IndexSet([]), byExtendingSelection: false)
+        selectRowIndexes(IndexSet([]), byExtendingSelection: false)
     }
     
     func invertSelection() {
@@ -103,10 +117,10 @@ extension NSTableView {
     func pageUp() {
         
         // Determine if the first row currently displayed has been truncated so it is not fully visible
-        let visibleRect = self.visibleRect
+        let visibleRect = visibleRect
         
-        let firstRowShown = self.rows(in: visibleRect).lowerBound
-        let firstRowShownRect = self.rect(ofRow: firstRowShown)
+        let firstRowShown = rows(in: visibleRect).lowerBound
+        let firstRowShownRect = rect(ofRow: firstRowShown)
         
         let truncationAmount =  visibleRect.minY - firstRowShownRect.minY
         let truncationRatio = truncationAmount / firstRowShownRect.height
@@ -114,7 +128,7 @@ extension NSTableView {
         // If the first row currently displayed has been truncated more than 10%, show it again in the next page
         
         let lastRowToShow = truncationRatio > 0.1 ? firstRowShown : firstRowShown - 1
-        let lastRowToShowRect = self.rect(ofRow: lastRowToShow)
+        let lastRowToShowRect = rect(ofRow: lastRowToShow)
         
         // Calculate the scroll amount, as a function of the last row to show next, using the visible rect origin (i.e. the top of the first row in the playlist) as the stopping point
         
@@ -123,20 +137,20 @@ extension NSTableView {
         if scrollAmount > 0 {
             
             let up = visibleRect.origin.applying(CGAffineTransform.init(translationX: 0, y: -scrollAmount))
-            self.enclosingScrollView?.contentView.scroll(to: up)
+            enclosingScrollView?.contentView.scroll(to: up)
         }
     }
     
     func pageDown() {
         
         // Determine if the last row currently displayed has been truncated so it is not fully visible
-        let visibleRect = self.visibleRect
-        let visibleRows = self.rows(in: visibleRect)
+        let visibleRect = visibleRect
+        let visibleRows = rows(in: visibleRect)
         
         let lastRowShown = visibleRows.lowerBound + visibleRows.length - 1
-        let lastRowShownRect = self.rect(ofRow: lastRowShown)
+        let lastRowShownRect = rect(ofRow: lastRowShown)
         
-        let lastRowInPlaylistRect = self.rect(ofRow: self.numberOfRows - 1)
+        let lastRowInPlaylistRect = rect(ofRow: numberOfRows - 1)
         
         // If the first row currently displayed has been truncated more than 10%, show it again in the next page
         
@@ -144,7 +158,7 @@ extension NSTableView {
         let truncationRatio = truncationAmount / lastRowShownRect.height
         
         let firstRowToShow = truncationRatio > 0.1 ? lastRowShown : lastRowShown + 1
-        let firstRowToShowRect = self.rect(ofRow: firstRowToShow)
+        let firstRowToShowRect = rect(ofRow: firstRowToShow)
         
         // Calculate the scroll amount, as a function of the first row to show next, using the visible rect maxY (i.e. the bottom of the last row in the playlist) as the stopping point
 
@@ -153,7 +167,7 @@ extension NSTableView {
         if scrollAmount > 0 {
             
             let down = visibleRect.origin.applying(CGAffineTransform.init(translationX: 0, y: scrollAmount))
-            self.enclosingScrollView?.contentView.scroll(to: down)
+            enclosingScrollView?.contentView.scroll(to: down)
         }
     }
     
@@ -175,7 +189,7 @@ extension NSTableView {
     
     func customizeHeader<C>(heightIncrease: CGFloat, customCellType: C.Type) where C: NSTableHeaderCell {
         
-        guard let header = self.headerView else {return}
+        guard let header = headerView else {return}
         
         header.resize(header.width, header.height + heightIncrease)
         
@@ -202,6 +216,6 @@ extension NSTableView {
 extension NSOutlineView {
     
     func isItemSelected(_ item: Any) -> Bool {
-        self.selectedRowIndexes.contains(row(forItem: item))
+        selectedRowIndexes.contains(row(forItem: item))
     }
 }
