@@ -89,7 +89,7 @@ class AuralPlaylistOutlineView: NSOutlineView, Destroyable {
     }
 }
 
-class GroupingPlaylistRowView: PlaylistRowView {
+class GroupingPlaylistRowView: AuralTableRowView {
     
     override func didAddSubview(_ subview: NSView) {
         

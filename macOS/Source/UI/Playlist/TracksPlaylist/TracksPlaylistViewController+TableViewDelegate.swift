@@ -20,7 +20,7 @@ extension TracksPlaylistViewController: NSTableViewDelegate {
     
     // Returns a view for a single row
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        PlaylistRowView()
+        AuralTableRowView()
     }
     
     // Enables type selection, allowing the user to conveniently and efficiently find a playlist track by typing its display name, which results in the track, if found, being selected within the playlist

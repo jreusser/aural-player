@@ -29,7 +29,7 @@ extension ChaptersListViewController: NSTableViewDelegate {
     
     // Returns a custom view for a single row
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        PlaylistRowView()
+        AuralTableRowView()
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {

@@ -13,10 +13,8 @@ import Cocoa
 class TableViewController: NSViewController, ColorSchemeObserver {
     
     @IBOutlet weak var tableView: NSTableView!
-    @IBOutlet weak var scrollView: NSScrollView!
-    @IBOutlet weak var clipView: NSClipView!
     
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
+    let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
     
     var selectedRows: IndexSet {tableView.selectedRowIndexes}
     
@@ -29,14 +27,10 @@ class TableViewController: NSViewController, ColorSchemeObserver {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
         colorSchemesManager.registerObserver(self, forProperty: \.backgroundColor)
     }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        
-        tableView.backgroundColor = newColor
-        scrollView.backgroundColor = newColor
-        clipView.backgroundColor = newColor
+        tableView.setBackgroundColor(newColor)
     }
 }

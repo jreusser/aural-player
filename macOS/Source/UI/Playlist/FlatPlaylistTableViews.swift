@@ -61,7 +61,7 @@ class AuralTableView: NSTableView {
 /*
     Custom view for a NSTableView row that displays a single playlist track or group. Customizes the selection look and feel.
  */
-class PlaylistRowView: NSTableRowView {
+class AuralTableRowView: NSTableRowView {
     
     // Draws a fancy rounded rectangle around the selected track in the playlist view
     override func drawSelection(in dirtyRect: NSRect) {
