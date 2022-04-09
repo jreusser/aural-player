@@ -14,13 +14,7 @@ extension NSTableCellView {
     var text: String? {
         
         get {textField?.stringValue}
-        
-        set {
-            
-            if let theText = newValue {
-                textField?.stringValue = theText
-            }
-        }
+        set {textField?.stringValue = newValue ?? ""}
     }
     
     var textFont: NSFont? {
@@ -39,5 +33,11 @@ extension NSTableCellView {
         
         get {imageView?.image}
         set {imageView?.image = newValue}
+    }
+    
+    var imageColor: NSColor? {
+        
+        get {imageView?.contentTintColor}
+        set {imageView?.contentTintColor = newValue}
     }
 }

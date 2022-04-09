@@ -10,30 +10,50 @@
 
 import Cocoa
 
-extension TableViewController: NSTableViewDelegate {
+extension TableViewController {
     
-    var rowHeight: CGFloat {25}
-    
-    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {rowHeight}
-    
-    // Returns a view for a single row
-    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        AuralTableRowView()
-    }
-    
-    func track(forRow row: Int) -> Track? {
-        nil
-    }
-    
-    // Returns a view for a single column
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
-        guard let track = track(forRow: row), let columnId = tableColumn?.identifier else {return nil}
-        return view(forColumn: columnId, track: track)
-    }
-    
-    // Returns a view for a single column
-    func view(forColumn: NSUserInterfaceItemIdentifier, track: Track) -> NSView? {
-        nil
-    }
+//    func buildCell<T: NSTableCellView>(forColumn column: NSUserInterfaceItemIdentifier, ofType type: T.Type = AuralTableCellView.self as! T.Type,
+//                                       withText text: String, inFont font: PlatformFont, andColor color: PlatformColor) -> T? {
+//
+//        doBuildCell(forColumn: column, ofType: type, text: text, font: font, textColor: color)
+//    }
+//
+//    func buildCell<T: NSTableCellView>(forColumn column: NSUserInterfaceItemIdentifier, ofType type: T.Type = AuralTableCellView.self as! T.Type,
+//                                       withImage image: PlatformImage, inColor color: PlatformColor) -> T? {
+//
+//        doBuildCell(forColumn: column, ofType: type, image: image, imageColor: color)
+//    }
+//
+//    func buildCell<T: NSTableCellView>(forColumn column: NSUserInterfaceItemIdentifier, ofType type: T.Type = AuralTableCellView.self as! T.Type,
+//                                       withText text: String, inFont font: PlatformFont, inColor textColor: PlatformColor,
+//                                       andImage image: PlatformImage, inColor imageColor: PlatformColor) -> T? {
+//
+//        doBuildCell(forColumn: column, ofType: type, text: text, font: font, textColor: textColor, image: image, imageColor: imageColor)
+//    }
+//
+//    private func doBuildCell<T: NSTableCellView>(forColumn column: NSUserInterfaceItemIdentifier, ofType type: T.Type,
+//                                                 text: String? = nil, font: PlatformFont? = nil, textColor: PlatformColor? = nil,
+//                                                 image: PlatformImage? = nil, imageColor: PlatformColor? = nil) -> T? {
+//
+//        guard let cell = tableView.makeView(withIdentifier: column, owner: nil) as? T else {return nil}
+//
+//        if let text = text {
+//
+//            cell.text = text
+//            cell.textFont = font
+//            cell.textColor = textColor
+//        }
+//
+//        cell.textField?.showIf(text != nil)
+//
+//        if let image = image {
+//
+//            cell.image = image
+//            cell.imageColor = imageColor
+//        }
+//
+//        cell.imageView?.showIf(image != nil)
+//
+//        return cell
+//    }
 }

@@ -17,7 +17,7 @@ extension PlayQueueDelegate: TrackLoaderReceiver {
     }
     
     func addTracks(from files: [URL], atPosition position: Int?) {
-//        trackLoader.loadMetadata(ofType: .primary, from: files, into: self)
+        trackLoader.loadMetadata(ofType: .primary, from: files, into: self)
     }
 
     func computeDuration(for files: [URL]) {
@@ -40,7 +40,6 @@ extension PlayQueueDelegate: TrackLoaderReceiver {
 
     func acceptBatch(_ batch: FileMetadataBatch) {
 
-//        let tracks = batch.orderedMetadata.map {(file, metadata) in Track(file, fileMetadata: metadata)}
         let tracks = batch.orderedMetadata.map {(file, metadata) -> Track in
             
             let track = Track(file, fileMetadata: metadata)

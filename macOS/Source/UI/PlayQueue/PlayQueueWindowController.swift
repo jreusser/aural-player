@@ -14,6 +14,20 @@ class PlayQueueWindowController: NSWindowController {
     
     override var windowNibName: String? {"PlayQueueWindow"}
     
+    // The tab group that switches between the 4 playlist views
+    @IBOutlet weak var tabGroup: AuralTabView!
+    
+    private var compactViewController: CompactPlayQueueViewController = .init()
+    
+    override func windowDidLoad() {
+        
+        super.windowDidLoad()
+        
+        let compactView = compactViewController.view
+        tabGroup.addViewsForTabs([compactView])
+        compactView.anchorToSuperview()
+    }
+    
     override func destroy() {
         // TODO: 
     }

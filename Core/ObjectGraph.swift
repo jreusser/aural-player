@@ -34,6 +34,8 @@ class ObjectGraph {
     private lazy var playlist: Playlist = Playlist(FlatPlaylist(),
                                                                  [GroupingPlaylist(.artists), GroupingPlaylist(.albums), GroupingPlaylist(.genres)])
     
+    private lazy var playQueue: PlayQueue = PlayQueue()
+    
 //    lazy var playlistsManager: PlaylistsManager = {
 //
 //        let userPlaylistNames = (persistentState.playlist?.userPlaylists ?? []).compactMap {$0.name}
@@ -48,6 +50,8 @@ class ObjectGraph {
     
     lazy var playlistDelegate: PlaylistDelegateProtocol = PlaylistDelegate(persistentState: persistentState.playlist, playlist,
                                                                            trackReader, preferences)
+    
+    lazy var playQueueDelegate: PlayQueueDelegateProtocol = PlayQueueDelegate(playQueue: playQueue, trackReader: trackReader)
     
     var playlistAccessorDelegate: PlaylistAccessorDelegateProtocol {playlistDelegate}
     

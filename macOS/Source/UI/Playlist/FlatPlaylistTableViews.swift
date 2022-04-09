@@ -75,7 +75,7 @@ class AuralTableRowView: NSTableRowView {
     }
 }
 
-class BasicFlatPlaylistCellView: NSTableCellView {
+class AuralTableCellView: NSTableCellView {
     
     // Used to determine whether or not this cell is selected.
     var rowSelectionStateFunction: () -> Bool = {false}
@@ -126,13 +126,13 @@ class BasicFlatPlaylistCellView: NSTableCellView {
     Custom view for a single NSTableView cell. Customizes the look and feel of cells (in selected rows) - font and text color.
  */
 @IBDesignable
-class TrackNameCellView: BasicFlatPlaylistCellView {}
+class TrackNameCellView: AuralTableCellView {}
 
 /*
     Custom view for a single NSTableView cell. Customizes the look and feel of cells (in selected rows) - font and text color.
  */
 @IBDesignable
-class DurationCellView: BasicFlatPlaylistCellView {
+class DurationCellView: AuralTableCellView {
     
     override func backgroundStyleChanged() {
         
@@ -147,7 +147,7 @@ class DurationCellView: BasicFlatPlaylistCellView {
 /*
     Custom view for a single NSTableView cell. Customizes the look and feel of cells (in selected rows) - font and text color.
  */
-class IndexCellView: BasicFlatPlaylistCellView {
+class IndexCellView: AuralTableCellView {
     
     override func backgroundStyleChanged() {
         
