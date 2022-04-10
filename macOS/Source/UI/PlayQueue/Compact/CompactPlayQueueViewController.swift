@@ -15,7 +15,7 @@ class CompactPlayQueueViewController: TableViewController {
     override var nibName: String? {"CompactPlayQueue"}
     
     // Delegate that retrieves current playback info
-    let playbackInfo: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
+    let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
     let playQueue: PlayQueueDelegateProtocol = objectGraph.playQueueDelegate
     
     private lazy var messenger: Messenger = Messenger(for: self)
@@ -44,7 +44,7 @@ class CompactPlayQueueViewController: TableViewController {
             
         case .cid_index:
             
-            if track == playbackInfo.playingTrack {
+            if track == player.playingTrack {
                 return TableCellBuilder().withImage(image: Images.imgPlayingTrack, inColor: .blue)
                 
             } else {
@@ -74,6 +74,12 @@ class CompactPlayQueueViewController: TableViewController {
     
     override func insertFiles(_ files: [URL], atRow destRow: Int) {
         playQueue.addTracks(from: files, atPosition: destRow)
+    }
+    
+    @IBAction func tableDoubleClickAction(_ sender: NSTableView) {
+        
+        guard let trackIndex = selectedRows.first else {return}
+        player.play(trackIndex, .defaultParams())
     }
     
     private func tracksAdded() {

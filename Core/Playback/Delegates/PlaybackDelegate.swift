@@ -31,8 +31,7 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
     // The actual player
     let player: PlayerProtocol
     
-    // The playback sequence
-    let sequencer: SequencerProtocol
+    let playQueue: PlayQueueProtocol
     
     // User preferences
     let preferences: PlaybackPreferences
@@ -47,11 +46,11 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
     
     private(set) lazy var messenger = Messenger(for: self)
     
-    init(_ player: PlayerProtocol, _ sequencer: SequencerProtocol, _ profiles: PlaybackProfiles, _ preferences: PlaybackPreferences,
+    init(_ player: PlayerProtocol, playQueue: PlayQueueProtocol, _ profiles: PlaybackProfiles, _ preferences: PlaybackPreferences,
          _ startPlaybackChain: StartPlaybackChain, _ stopPlaybackChain: StopPlaybackChain, _ trackPlaybackCompletedChain: TrackPlaybackCompletedChain) {
         
         self.player = player
-        self.sequencer = sequencer
+        self.playQueue = playQueue
         self.preferences = preferences
         self.profiles = profiles
         
@@ -62,7 +61,7 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
         // Subscribe to notifications
         messenger.subscribe(to: .application_willExit, handler: onAppExit)
         messenger.subscribeAsync(to: .player_trackPlaybackCompleted, handler: trackPlaybackCompleted(_:))
-        messenger.subscribe(to: .sequencer_playingTrackRemoved, handler: doStop(_:))
+//        messenger.subscribe(to: .playQueue_playingTrackRemoved, handler: doStop(_:))
 
         // Commands
         messenger.subscribeAsync(to: .player_autoplay, handler: autoplay(_:))
@@ -103,33 +102,33 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
     }
     
     private func beginPlayback() {
-        doPlay({sequencer.begin()}, PlaybackParams.defaultParams())
+        doPlay({playQueue.start()}, PlaybackParams.defaultParams())
     }
     
     func previousTrack() {
         
         if state != .stopped {
-            doPlay({sequencer.previous()})
+            doPlay({playQueue.previous()})
         }
     }
     
     func nextTrack() {
         
         if state != .stopped {
-            doPlay({sequencer.next()})
+            doPlay({playQueue.next()})
         }
     }
     
     func play(_ index: Int, _ params: PlaybackParams) {
-        doPlay({sequencer.select(index)}, params)
+        doPlay({playQueue.select(trackAt: index)}, params)
     }
     
     func play(_ track: Track, _ params: PlaybackParams) {
-        doPlay({sequencer.select(track)}, params)
+//        doPlay({playQueue.select(trackAt: track)}, params)
     }
     
     func play(_ group: Group, _ params: PlaybackParams) {
-        doPlay({sequencer.select(group)}, params)
+//        doPlay({playQueue.select(group)}, params)
     }
     
     // Captures the current player state and proceeds with playback according to the playback sequence
@@ -337,7 +336,7 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
     }
     
     var playingTrack: Track? {
-        return state.isPlayingOrPaused ? sequencer.currentTrack : nil
+        return state.isPlayingOrPaused ? playQueue.currentTrack : nil
     }
     
     var playingTrackStartTime: TimeInterval? {

@@ -19,7 +19,7 @@ import Foundation
 ///
 class PredictiveTrackPreparationAction: PlaybackChainAction {
     
-    private let sequencer: SequencerProtocol
+    private let playQueue: PlayQueueProtocol
     private let trackReader: TrackReader
     
     ///
@@ -28,9 +28,9 @@ class PredictiveTrackPreparationAction: PlaybackChainAction {
     ///
     private var preppedTracks: Set<Track> = Set()
     
-    init(sequencer: SequencerProtocol, trackReader: TrackReader) {
+    init(playQueue: PlayQueueProtocol, trackReader: TrackReader) {
         
-        self.sequencer = sequencer
+        self.playQueue = playQueue
         self.trackReader = trackReader
     }
     
@@ -44,7 +44,7 @@ class PredictiveTrackPreparationAction: PlaybackChainAction {
             //
             // 1 - The "subsequent" track in the playback sequence, i.e. the track that would play next automatically.
             // 2 - The "next" track which would play if the user triggered the "Next track" function.
-            let nillableTracksArray: [Track?] = [self.sequencer.peekSubsequent(), self.sequencer.peekNext()]
+            let nillableTracksArray: [Track?] = [self.playQueue.peekSubsequent(), self.playQueue.peekNext()]
             
             // Since some of the candidate tracks might be the same track (subsequent track might be the same as the next track), we need
             // to put them in a Set, and also eliminate nil values.

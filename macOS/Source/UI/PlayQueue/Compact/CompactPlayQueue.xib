@@ -141,6 +141,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <action trigger="doubleAction" selector="tableDoubleClickAction:" target="-2" id="43x-Aw-gke"/>
                                     <outlet property="dataSource" destination="-2" id="Mwz-mF-1kU"/>
                                     <outlet property="delegate" destination="-2" id="ued-SD-WDl"/>
                                 </connections>

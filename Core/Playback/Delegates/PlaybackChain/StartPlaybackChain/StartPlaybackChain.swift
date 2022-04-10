@@ -18,15 +18,15 @@ import Foundation
 class StartPlaybackChain: PlaybackChain {
 
     private let player: PlayerProtocol
-    private let sequencer: SequencerProtocol
+    private let playQueue: PlayQueueProtocol
     
     private(set) lazy var messenger = Messenger(for: self)
     
-    init(_ player: PlayerProtocol, _ sequencer: SequencerProtocol, _ playlist: PlaylistProtocol,
+    init(_ player: PlayerProtocol, playQueue: PlayQueueProtocol, _ playlist: PlaylistProtocol,
          trackReader: TrackReader, _ profiles: PlaybackProfiles, _ preferences: PlaybackPreferences) {
         
         self.player = player
-        self.sequencer = sequencer
+        self.playQueue = playQueue
         super.init()
         
         _ = self.withAction(SavePlaybackProfileAction(profiles, preferences))
@@ -34,7 +34,7 @@ class StartPlaybackChain: PlaybackChain {
         .withAction(AudioFilePreparationAction(trackReader: trackReader))
         .withAction(ApplyPlaybackProfileAction(profiles, preferences))
         .withAction(StartPlaybackAction(player))
-        .withAction(PredictiveTrackPreparationAction(sequencer: sequencer, trackReader: trackReader))
+        .withAction(PredictiveTrackPreparationAction(playQueue: playQueue, trackReader: trackReader))
     }
     
     override func execute(_ context: PlaybackRequestContext) {
@@ -50,7 +50,7 @@ class StartPlaybackChain: PlaybackChain {
     override func terminate(_ context: PlaybackRequestContext, _ error: DisplayableError) {
 
         player.stop()
-        sequencer.end()
+        playQueue.stop()
         
         if let errorTrack = context.requestedTrack {
             
