@@ -18,7 +18,7 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
     @IBOutlet weak var btnRepeat: TintedImageButton!
     @IBOutlet weak var btnShuffle: TintedImageButton!
     
-    private lazy var btnRepeatStateMachine: ButtonStateMachine<RepeatMode> = ButtonStateMachine(initialState: sequencer.repeatAndShuffleModes.repeatMode,
+    private lazy var btnRepeatStateMachine: ButtonStateMachine<RepeatMode> = ButtonStateMachine(initialState: playQueue.repeatAndShuffleModes.repeatMode,
                                                                                                 mappings: [
                                                                                                     ButtonStateMachine.StateMapping(state: .off, image: Images.imgRepeat, colorProperty: \.buttonOffColor, toolTip: "Repeat"),
                                                                                                     ButtonStateMachine.StateMapping(state: .all, image: Images.imgRepeat, colorProperty: \.buttonColor, toolTip: "Repeat"),
@@ -26,7 +26,7 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
                                                                                                 ],
                                                                                                 button: btnRepeat)
     
-    private lazy var btnShuffleStateMachine: ButtonStateMachine<ShuffleMode> = ButtonStateMachine(initialState: sequencer.repeatAndShuffleModes.shuffleMode,
+    private lazy var btnShuffleStateMachine: ButtonStateMachine<ShuffleMode> = ButtonStateMachine(initialState: playQueue.repeatAndShuffleModes.shuffleMode,
                                                                                                   mappings: [
                                                                                                     ButtonStateMachine.StateMapping(state: .off, image: Images.imgShuffle, colorProperty: \.buttonOffColor, toolTip: "Shuffle"),
                                                                                                     ButtonStateMachine.StateMapping(state: .on, image: Images.imgShuffle, colorProperty: \.buttonColor, toolTip: "Shuffle")
@@ -34,21 +34,15 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
                                                                                                   button: btnShuffle)
     
     // Delegate that conveys all repeat/shuffle requests to the sequencer
-    let sequencer: SequencerDelegateProtocol = objectGraph.sequencerDelegate
+    let playQueue: PlayQueueDelegateProtocol = objectGraph.playQueueDelegate
     
     let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
-    // When the buttons are in an "Off" state, they should be tinted according to the system color scheme's off state button color.
-//    var offStateTintFunction: TintFunction {{.gray}}
-//    
-//    // When the buttons are in an "On" state, they should be tinted according to the system color scheme's function button color.
-//    var onStateTintFunction: TintFunction {{.white}}
     
     lazy var messenger = Messenger(for: self)
     
     override func viewDidLoad() {
         
-        updateRepeatAndShuffleControls(sequencer.repeatAndShuffleModes)
+        updateRepeatAndShuffleControls(playQueue.repeatAndShuffleModes)
         
         initSubscriptions()
     }
@@ -65,7 +59,7 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
     }
     
     func toggleRepeatMode() {
-        updateRepeatAndShuffleControls(sequencer.toggleRepeatMode())
+        updateRepeatAndShuffleControls(playQueue.toggleRepeatMode())
     }
     
     // Toggles the shuffle mode
@@ -74,15 +68,15 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
     }
     
     func toggleShuffleMode() {
-        updateRepeatAndShuffleControls(sequencer.toggleShuffleMode())
+        updateRepeatAndShuffleControls(playQueue.toggleShuffleMode())
     }
     
     func setRepeatMode(_ repeatMode: RepeatMode) {
-        updateRepeatAndShuffleControls(sequencer.setRepeatMode(repeatMode))
+        updateRepeatAndShuffleControls(playQueue.setRepeatMode(repeatMode))
     }
     
     func setShuffleMode(_ shuffleMode: ShuffleMode) {
-        updateRepeatAndShuffleControls(sequencer.setShuffleMode(shuffleMode))
+        updateRepeatAndShuffleControls(playQueue.setShuffleMode(shuffleMode))
     }
     
     func updateRepeatAndShuffleControls(_ modes: RepeatAndShuffleModes) {

@@ -1,6 +1,6 @@
 import Foundation
 
-class PlayQueue: PlayQueueProtocol {
+class PlayQueue: PlayQueueProtocol, PersistentModelObject {
     
     var trackList: TrackList = TrackList()
     
@@ -125,5 +125,9 @@ class PlayQueue: PlayQueueProtocol {
         }
 
         return moveResults
+    }
+    
+    var persistentState: PlayQueuePersistentState {
+        .init(playQueue: self)
     }
 }

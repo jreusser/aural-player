@@ -51,7 +51,8 @@ class ObjectGraph {
     lazy var playlistDelegate: PlaylistDelegateProtocol = PlaylistDelegate(persistentState: persistentState.playlist, playlist,
                                                                            trackReader, preferences)
     
-    lazy var playQueueDelegate: PlayQueueDelegateProtocol = PlayQueueDelegate(playQueue: playQueue, trackReader: trackReader)
+    lazy var playQueueDelegate: PlayQueueDelegateProtocol = PlayQueueDelegate(playQueue: playQueue, trackReader: trackReader,
+                                                                              persistentState: persistentState.playQueue)
     
     var playlistAccessorDelegate: PlaylistAccessorDelegateProtocol {playlistDelegate}
     
@@ -201,6 +202,7 @@ class ObjectGraph {
         persistentState.appVersion = appVersion
         
         persistentState.audioGraph = audioGraph.persistentState
+        persistentState.playQueue = playQueue.persistentState
         persistentState.playlist = playlist.persistentState
         persistentState.playbackSequence = sequencer.persistentState
         persistentState.playbackProfiles = playbackDelegate.profiles.all().map {PlaybackProfilePersistentState(profile: $0)}

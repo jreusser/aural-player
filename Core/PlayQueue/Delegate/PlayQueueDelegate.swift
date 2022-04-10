@@ -35,11 +35,17 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     
     lazy var messenger: Messenger = .init(for: self)
 
-//    init(playQueue: PlayQueueProtocol, trackReader: TrackReader, persistentStateOnStartup: PlayQueueState) {
-    init(playQueue: PlayQueueProtocol, trackReader: TrackReader) {
+    init(playQueue: PlayQueueProtocol, trackReader: TrackReader, persistentState: PlayQueuePersistentState?) {
 
         self.playQueue = playQueue
         self.trackReader = trackReader
+        
+        if let tracks = persistentState?.tracks {
+            addTracks(from: tracks.map {URL(fileURLWithPath: $0)}, atPosition: nil)
+        }
+     
+        _ = setRepeatMode(persistentState?.repeatMode ?? .defaultMode)
+        _ = setShuffleMode(persistentState?.shuffleMode ?? .defaultMode)
     }
 
     func indexOfTrack(_ track: Track) -> Int? {
@@ -123,5 +129,27 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
 
     func sort(by comparator: (Track, Track) -> Bool) {
         playQueue.sort(by: comparator)
+    }
+    
+    // MARK: Sequencing functions ---------------------------------------------------------------
+    
+    var repeatAndShuffleModes: (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
+        playQueue.repeatAndShuffleModes
+    }
+    
+    func toggleRepeatMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
+        playQueue.toggleRepeatMode()
+    }
+    
+    func toggleShuffleMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
+        playQueue.toggleShuffleMode()
+    }
+    
+    func setRepeatMode(_ repeatMode: RepeatMode) -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
+        playQueue.setRepeatMode(repeatMode)
+    }
+    
+    func setShuffleMode(_ shuffleMode: ShuffleMode) -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
+        playQueue.setShuffleMode(shuffleMode)
     }
 }

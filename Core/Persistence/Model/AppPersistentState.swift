@@ -21,6 +21,7 @@ struct AppPersistentState: Codable {
     #endif
     
     var playlist: PlaylistPersistentState?
+    var playQueue: PlayQueuePersistentState?
     var audioGraph: AudioGraphPersistentState?
     
     var playbackSequence: PlaybackSequencePersistentState?

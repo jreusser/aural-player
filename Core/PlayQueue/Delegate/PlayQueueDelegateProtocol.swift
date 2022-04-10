@@ -49,4 +49,21 @@ protocol PlayQueueDelegateProtocol {
     func sort(_ sort: Sort)
     
     func sort(by comparator: (Track, Track) -> Bool)
+    
+    // MARK: Sequencing functions ---------------------------------------------------------------
+    
+    // Returns the current repeat and shuffle modes
+    var repeatAndShuffleModes: (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {get}
+    
+    // Toggles between repeat modes. See RepeatMode for more details. Returns the new repeat and shuffle mode after performing the toggle operation.
+    func toggleRepeatMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
+    
+    // Toggles between shuffle modes. See ShuffleMode for more details. Returns the new repeat and shuffle mode after performing the toggle operation.
+    func toggleShuffleMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
+    
+    // Sets the repeat mode to a specific value. Returns the new repeat and shuffle mode after performing the toggle operation.
+    func setRepeatMode(_ repeatMode: RepeatMode) -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
+    
+    // Sets the shuffle mode to a specific value. Returns the new repeat and shuffle mode after performing the toggle operation.
+    func setShuffleMode(_ shuffleMode: ShuffleMode) -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
 }

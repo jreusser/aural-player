@@ -554,6 +554,7 @@
 		3EBF29332686979700D87021 /* EffectsTextButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF29322686979700D87021 /* EffectsTextButtonCell.swift */; };
 		3EBF293526869A1200D87021 /* PreferencesPopupMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF293426869A1200D87021 /* PreferencesPopupMenuCell.swift */; };
 		3EBF293726869A9300D87021 /* EffectsUnitPopupMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF293626869A9300D87021 /* EffectsUnitPopupMenuCell.swift */; };
+		3EBF3F2A28037B1A00035D18 /* PlayQueuePersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF3F2928037B1A00035D18 /* PlayQueuePersistentState.swift */; };
 		3EC2975A27864CD400B29551 /* Aural.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC2975927864CD400B29551 /* Aural.xcassets */; };
 		3EC29A5927865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
 		3EC29A5A27865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
@@ -2004,6 +2005,7 @@
 		3EBF29322686979700D87021 /* EffectsTextButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsTextButtonCell.swift; sourceTree = "<group>"; };
 		3EBF293426869A1200D87021 /* PreferencesPopupMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPopupMenuCell.swift; sourceTree = "<group>"; };
 		3EBF293626869A9300D87021 /* EffectsUnitPopupMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsUnitPopupMenuCell.swift; sourceTree = "<group>"; };
+		3EBF3F2928037B1A00035D18 /* PlayQueuePersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueuePersistentState.swift; sourceTree = "<group>"; };
 		3EC2975927864CD400B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EC29A5827865BC900B29551 /* MenuItemMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemMappable.swift; sourceTree = "<group>"; };
 		3EC29A5E27865CB500B29551 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -4829,6 +4831,7 @@
 				3EFE374727864895006F8B8C /* BookmarkPersistentState.swift */,
 				3EFE374827864895006F8B8C /* FavoritePersistentState.swift */,
 				3EFE374927864895006F8B8C /* PlaylistsPersistentState.swift */,
+				3EBF3F2928037B1A00035D18 /* PlayQueuePersistentState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5593,6 +5596,7 @@
 				3EDC157C27C2ACB100B91157 /* HorizontalSymmetricSliderCell.swift in Sources */,
 				3EFE390327864897006F8B8C /* ArrayExtensions.swift in Sources */,
 				3E8FF9D227F61A34009CEDDD /* PlayQueue+Sequencing.swift in Sources */,
+				3EBF3F2A28037B1A00035D18 /* PlayQueuePersistentState.swift in Sources */,
 				3E39754E26892C890055887E /* ControlBarPlayerUIState.swift in Sources */,
 				3EFE3B0527864943006F8B8C /* FFmpegMetadataReader.swift in Sources */,
 				3EFE3A9127864898006F8B8C /* AuxiliaryMetadata.swift in Sources */,
