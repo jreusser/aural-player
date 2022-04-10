@@ -14,6 +14,9 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     
     override var windowNibName: String? {"PlayQueueWindow"}
     
+    @IBOutlet weak var btnClose: TintedImageButton!
+    @IBOutlet weak var lblCaption: NSTextField!
+    
     @IBOutlet weak var rootContainer: NSBox!
     @IBOutlet weak var tabButtonsContainer: NSBox!
     
@@ -23,6 +26,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     private var compactViewController: CompactPlayQueueViewController = .init()
     
     private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
+    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
     
     override func windowDidLoad() {
         
@@ -32,7 +36,10 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         tabGroup.addViewsForTabs([compactView])
         compactView.anchorToSuperview()
         
-        colorSchemesManager.registerObserver(self, forProperty: \.backgroundColor)
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
+        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
+        
+        lblCaption.font = fontSchemesManager.systemScheme.effects.unitCaptionFont
     }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
@@ -43,6 +50,10 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
             
             rootContainer.fillColor = newColor
             tabButtonsContainer.fillColor = newColor
+            
+        case \.captionTextColor:
+            
+            lblCaption.textColor = newColor
          
         default:
             

@@ -8,6 +8,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PlayQueueWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="btnClose" destination="rtm-3T-0kW" id="quf-CQ-FOk"/>
+                <outlet property="lblCaption" destination="HUl-8T-ZjG" id="1lX-ZB-j4z"/>
                 <outlet property="rootContainer" destination="vPq-HC-h3c" id="J8s-OX-NF1"/>
                 <outlet property="tabButtonsContainer" destination="xem-im-DfN" id="kuU-Au-6rg"/>
                 <outlet property="tabGroup" destination="zXc-hr-Pet" id="zPW-GQ-rVg"/>
@@ -24,7 +26,7 @@
             <value key="minSize" type="size" width="530" height="210"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="530" height="277"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="vPq-HC-h3c" userLabel="Root Container">
                         <rect key="frame" x="0.0" y="0.0" width="530" height="277"/>
@@ -32,6 +34,14 @@
                             <rect key="frame" x="0.0" y="0.0" width="530" height="277"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
+                                <button toolTip="Hide the Play Queue" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rtm-3T-0kW" userLabel="Close Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="10" y="253.5" width="11.5" height="10"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="W7B-tK-Tsg">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HUl-8T-ZjG" userLabel="Play Queue Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="40" y="248" width="214" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -41,17 +51,6 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <button toolTip="Hide the playlist" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ePe-lp-9f7" userLabel="Close Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="15" y="252" width="10" height="10"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Close" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="yJd-VL-78h">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Close"/>
-                                    </userDefinedRuntimeAttributes>
-                                </button>
                             </subviews>
                         </view>
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -154,8 +153,8 @@
     <resources>
         <image name="Albums" width="32" height="32"/>
         <image name="Artists" width="32" height="32"/>
-        <image name="Close" width="18" height="18"/>
         <image name="Genres" width="32" height="32"/>
         <image name="Tracks" width="32" height="32"/>
+        <image name="xmark" catalog="system" width="14" height="13"/>
     </resources>
 </document>

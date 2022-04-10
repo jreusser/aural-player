@@ -17,6 +17,7 @@ class FontSchemesManager: UserManagedObjects<FontScheme> {
     private lazy var messenger = Messenger(for: self)
     
     var registry: [KeyPath<FontScheme, PlatformFont>: [FontSchemeObserver]] = [:]
+    var reverseRegistry: [NSObject: KeyPath<FontScheme, PlatformFont>] = [:]
     
     var kvo: KVOTokens<FontScheme, PlatformFont> = KVOTokens()
     

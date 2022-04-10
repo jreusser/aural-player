@@ -35,7 +35,7 @@ extension ColorSchemesManager {
     
     private func beginKVO(forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
-        kvo.addObserver(forObject: systemColorScheme, keyPath: property) {[weak self] _, newColor in
+        kvo.addObserver(forObject: systemScheme, keyPath: property) {[weak self] _, newColor in
             
             guard let observers = self?.registry[property] else {return}
             
@@ -53,10 +53,28 @@ extension ColorSchemesManager {
         
         registry[property]!.append(observer)
         
-        observer.colorChanged(to: systemColorScheme[keyPath: property], forProperty: property)
+        observer.colorChanged(to: systemScheme[keyPath: property], forProperty: property)
         
         if let observerObject = observer as? NSObject {
             reverseRegistry[observerObject] = property
+        }
+    }
+    
+    func registerObserver(_ observer: ColorSchemeObserver, forProperties properties: [KeyPath<ColorScheme, PlatformColor>]) {
+        
+        for property in properties {
+            
+            if registry[property] == nil {
+                registry[property] = []
+            }
+            
+            registry[property]!.append(observer)
+            
+            observer.colorChanged(to: systemScheme[keyPath: property], forProperty: property)
+            
+            if let observerObject = observer as? NSObject {
+                reverseRegistry[observerObject] = property
+            }
         }
     }
     
@@ -84,7 +102,7 @@ extension ColorSchemesManager {
         registry[property]!.append(contentsOf: observers)
         
         for observer in observers {
-            observer.colorChanged(to: systemColorScheme[keyPath: property], forProperty: property)
+            observer.colorChanged(to: systemScheme[keyPath: property], forProperty: property)
         }
     }
     
@@ -98,7 +116,7 @@ extension ColorSchemesManager {
 
             registry[property]!.append(observer)
 
-            observer.colorChanged(to: systemColorScheme[keyPath: property], forProperty: property)
+            observer.colorChanged(to: systemScheme[keyPath: property], forProperty: property)
         }
     }
 }
