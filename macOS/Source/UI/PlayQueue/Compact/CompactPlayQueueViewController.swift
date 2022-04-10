@@ -40,8 +40,6 @@ class CompactPlayQueueViewController: TableViewController {
     
     override func view(forColumn column: NSUserInterfaceItemIdentifier, row: Int, track: Track) -> TableCellBuilder {
         
-        print("View for: \(row), track: \(track.displayName)")
-        
         switch column {
             
         case .cid_index:

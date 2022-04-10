@@ -66,11 +66,11 @@ class AuralTableRowView: NSTableRowView {
     // Draws a fancy rounded rectangle around the selected track in the playlist view
     override func drawSelection(in dirtyRect: NSRect) {
         
-        if self.selectionHighlightStyle != .none {
+        if selectionHighlightStyle != .none {
             
-//            NSBezierPath.fillRoundedRect(self.bounds.insetBy(dx: 1, dy: 0),
-//                                         radius: 2,
-//                                         withColor: Colors.Playlist.selectionBoxColor)
+            NSBezierPath.fillRoundedRect(bounds.insetBy(dx: 1, dy: 0),
+                                         radius: 2,
+                                         withColor: .black)
         }
     }
 }

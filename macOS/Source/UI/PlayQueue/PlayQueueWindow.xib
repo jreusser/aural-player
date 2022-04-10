@@ -8,6 +8,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PlayQueueWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="rootContainer" destination="vPq-HC-h3c" id="J8s-OX-NF1"/>
+                <outlet property="tabButtonsContainer" destination="xem-im-DfN" id="kuU-Au-6rg"/>
                 <outlet property="tabGroup" destination="zXc-hr-Pet" id="zPW-GQ-rVg"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="8nc-Zg-MsA"/>
             </connections>

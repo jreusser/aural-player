@@ -19,8 +19,6 @@ typealias ColorSchemeObserverFunction = (PlatformColor) -> Void
 
 extension ColorSchemesManager {
     
-    static let muthu: Int = 5
-    
     func startObserving() {
         
         for property in registry.keys {
