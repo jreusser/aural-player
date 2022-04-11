@@ -48,14 +48,22 @@ class PlayQueue: PlayQueueProtocol, PersistentModelObject {
     }
 
     func enqueueTracksAtHead(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int> {
+        
+        if clearQueue {
+            
+            trackList.removeAll()
+            return enqueueTracks(newTracks)
+            
+        } else {
+            
+            trackList.insert(newTracks, at: 0)
 
-        trackList.insert(newTracks, at: 0)
+            if let playingTrackIndex = curTrackIndex {
+                curTrackIndex = playingTrackIndex + newTracks.count
+            }
 
-        if let playingTrackIndex = curTrackIndex {
-            curTrackIndex = playingTrackIndex + newTracks.count
+            return 0...newTracks.lastIndex
         }
-
-        return 0...newTracks.lastIndex
     }
 
     func enqueueTracksAfterCurrentTrack(_ newTracks: [Track]) -> ClosedRange<Int> {

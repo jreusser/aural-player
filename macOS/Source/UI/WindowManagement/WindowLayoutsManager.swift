@@ -142,7 +142,7 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
             let actualWindow = getWindow(forId: window.id)
             
             mainWindow.addChildWindow(actualWindow, ordered: .below)
-            actualWindow.setFrameOrigin(window.frame.origin)
+            actualWindow.setFrame(window.frame, display: true)
             actualWindow.show()
         }
         

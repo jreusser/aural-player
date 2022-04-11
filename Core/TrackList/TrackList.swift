@@ -23,6 +23,10 @@ class TrackList: Sequence {
         tracks.count
     }
     
+    var indices: Range<Int> {
+        tracks.indices
+    }
+    
     var duration: Double {
         tracks.reduce(0.0, {(totalSoFar: Double, track: Track) -> Double in totalSoFar + track.duration})
     }
