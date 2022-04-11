@@ -10,6 +10,8 @@
             <connections>
                 <outlet property="btnClose" destination="rtm-3T-0kW" id="quf-CQ-FOk"/>
                 <outlet property="lblCaption" destination="HUl-8T-ZjG" id="1lX-ZB-j4z"/>
+                <outlet property="lblDurationSummary" destination="kiu-sG-iy1" id="LaF-Fa-T9v"/>
+                <outlet property="lblTracksSummary" destination="cBa-S3-IRH" id="y0q-MV-VYI"/>
                 <outlet property="rootContainer" destination="vPq-HC-h3c" id="J8s-OX-NF1"/>
                 <outlet property="tabButtonsContainer" destination="xem-im-DfN" id="kuU-Au-6rg"/>
                 <outlet property="tabGroup" destination="zXc-hr-Pet" id="zPW-GQ-rVg"/>
@@ -51,18 +53,48 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cBa-S3-IRH" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="21" y="14" width="214" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="Vge-dj-5cc"/>
+                                        <constraint firstAttribute="width" constant="210" id="sgy-Tl-5MS"/>
+                                    </constraints>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="0 tracks" id="LbZ-8U-Rya" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" white="0.70157877599999996" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kiu-sG-iy1" userLabel="Duration summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="307" y="14" width="204" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="200" id="P7g-XK-OwL"/>
+                                        <constraint firstAttribute="height" constant="25" id="pge-gd-sLy"/>
+                                    </constraints>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="0:00" id="4Xy-cP-PCb" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" white="0.70157877599999996" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </textFieldCell>
+                                </textField>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="kiu-sG-iy1" secondAttribute="trailing" constant="21" id="3oi-Co-6lS"/>
+                                <constraint firstAttribute="bottom" secondItem="cBa-S3-IRH" secondAttribute="bottom" constant="14" id="fjS-Bp-Dff"/>
+                                <constraint firstItem="kiu-sG-iy1" firstAttribute="top" secondItem="cBa-S3-IRH" secondAttribute="top" id="qD7-Yv-Y2J"/>
+                                <constraint firstItem="cBa-S3-IRH" firstAttribute="leading" secondItem="hQa-hU-QPy" secondAttribute="leading" constant="23" id="x8W-0R-l8n"/>
+                            </constraints>
                         </view>
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </box>
                     <tabView drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="zXc-hr-Pet" userLabel="Play Queue Tab Group" customClass="AuralTabView" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="15" y="50" width="500" height="177"/>
+                        <rect key="frame" x="15" y="45" width="500" height="182"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="DefaultView" identifier="" id="dGb-9y-jTT" userLabel="Default View" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
                                 <view key="view" id="luF-b9-Q1I">
-                                    <rect key="frame" x="0.0" y="0.0" width="500" height="177"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="500" height="182"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <connections>
@@ -129,7 +161,7 @@
                     </box>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="zXc-hr-Pet" secondAttribute="bottom" constant="50" id="9vG-h0-mwc"/>
+                    <constraint firstAttribute="bottom" secondItem="zXc-hr-Pet" secondAttribute="bottom" constant="45" id="9vG-h0-mwc"/>
                     <constraint firstAttribute="trailing" secondItem="vPq-HC-h3c" secondAttribute="trailing" id="JOh-c2-YfS"/>
                     <constraint firstAttribute="trailing" secondItem="zXc-hr-Pet" secondAttribute="trailing" constant="15" id="Q1v-qD-IZH"/>
                     <constraint firstItem="vPq-HC-h3c" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="TE7-vr-u5I"/>
