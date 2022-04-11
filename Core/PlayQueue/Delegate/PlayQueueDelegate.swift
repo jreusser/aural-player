@@ -60,28 +60,32 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         return playQueue.search(searchQuery)
     }
 
-    func enqueueToPlayLater(_ tracks: [Track]) -> ClosedRange<Int> {
+    func enqueueToPlayLater(_ newTracks: [Track]) -> ClosedRange<Int> {
 
-        let indices = playQueue.enqueueTracks(tracks)
+        let indices = playQueue.enqueueTracks(newTracks)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
 
-    func enqueueToPlayNow(_ tracks: [Track]) -> ClosedRange<Int> {
+    func enqueueToPlayNow(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int> {
 
-        let indices = playQueue.enqueueTracksAtHead(tracks)
+        let indices = playQueue.enqueueTracksAtHead(newTracks, clearQueue: clearQueue)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
 
-    func enqueueToPlayNext(_ tracks: [Track]) -> ClosedRange<Int> {
+    func enqueueToPlayNext(_ newTracks: [Track]) -> ClosedRange<Int> {
 
-        let indices = playQueue.enqueueTracksAfterCurrentTrack(tracks)
+        let indices = playQueue.enqueueTracksAfterCurrentTrack(newTracks)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
+    
+    func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
+        playQueue.insertTracks(newTracks, at: insertionIndex)
+    }
 
-    func removeTracks(_ indices: IndexSet) -> [Track] {
+    func removeTracks(at indices: IndexSet) -> [Track] {
 
         let removedTracks = playQueue.removeTracks(at: indices)
 
@@ -91,24 +95,24 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         return removedTracks
     }
 
-    func moveTracksUp(_ indices: IndexSet) -> [TrackMoveResult] {
+    func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
         return playQueue.moveTracksUp(from: indices)
     }
 
-    func moveTracksToTop(_ indices: IndexSet) -> [TrackMoveResult] {
+    func moveTracksToTop(from indices: IndexSet) -> [TrackMoveResult] {
         return playQueue.moveTracksToTop(from: indices)
     }
 
-    func moveTracksDown(_ indices: IndexSet) -> [TrackMoveResult] {
+    func moveTracksDown(from indices: IndexSet) -> [TrackMoveResult] {
         return playQueue.moveTracksDown(from: indices)
     }
 
-    func moveTracksToBottom(_ indices: IndexSet) -> [TrackMoveResult] {
+    func moveTracksToBottom(from indices: IndexSet) -> [TrackMoveResult] {
         return playQueue.moveTracksToBottom(from: indices)
     }
 
-    func dropTracks(_ sourceIndices: IndexSet, _ dropIndex: Int) -> [TrackMoveResult] {
-        return playQueue.dropTracks(at: sourceIndices, to: dropIndex)
+    func moveTracks(from sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
+        return playQueue.moveTracks(from: sourceIndices, to: dropIndex)
     }
 
     func export(to file: URL) {

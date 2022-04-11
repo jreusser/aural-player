@@ -31,7 +31,7 @@ class CompactPlayQueueViewController: TableViewController {
         super.viewDidLoad()
         tableView.enableDragDrop()
         
-        messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded)
+        messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
     }
     
     override func track(forRow row: Int) -> Track? {
@@ -69,7 +69,7 @@ class CompactPlayQueueViewController: TableViewController {
     }
     
     override func dropTracks(fromIndices sourceIndices: IndexSet, toRow destRow: Int) -> [TrackMoveResult] {
-        playQueue.dropTracks(sourceIndices, destRow)
+        playQueue.moveTracks(from: sourceIndices, to: destRow)
     }
     
     override func insertFiles(_ files: [URL], atRow destRow: Int) {
@@ -82,7 +82,9 @@ class CompactPlayQueueViewController: TableViewController {
         player.play(trackIndex, .defaultParams())
     }
     
-    private func tracksAdded() {
+    private func tracksAdded(_ notif: PlayQueueTracksAddedNotification) {
+        
         tableView.noteNumberOfRowsChanged()
+        tableView.reloadRows(notif.trackIndices.lowerBound..<rowCount)
     }
 }

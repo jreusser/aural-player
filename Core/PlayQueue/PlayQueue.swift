@@ -47,7 +47,7 @@ class PlayQueue: PlayQueueProtocol, PersistentModelObject {
         trackList.add(newTracks)
     }
 
-    func enqueueTracksAtHead(_ newTracks: [Track]) -> ClosedRange<Int> {
+    func enqueueTracksAtHead(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int> {
 
         trackList.insert(newTracks, at: 0)
 
@@ -64,6 +64,12 @@ class PlayQueue: PlayQueueProtocol, PersistentModelObject {
         trackList.insert(newTracks, at: insertionPoint)
 
         return insertionPoint...(insertionPoint + newTracks.lastIndex)
+    }
+    
+    func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
+        
+        trackList.insert(newTracks, at: insertionIndex)
+        return insertionIndex...(insertionIndex + newTracks.lastIndex)
     }
 
     func removeTracks(at indexes: IndexSet) -> [Track] {
@@ -108,7 +114,7 @@ class PlayQueue: PlayQueueProtocol, PersistentModelObject {
         return doMoveTracks {trackList.moveToBottom(from: indices)}
     }
 
-    func dropTracks(at sourceIndexes: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
+    func moveTracks(from sourceIndexes: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
         return doMoveTracks {trackList.dragAndDropItems(sourceIndexes, dropIndex)}
     }
 

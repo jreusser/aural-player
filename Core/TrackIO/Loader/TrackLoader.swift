@@ -33,7 +33,41 @@ class TrackLoader {
         queue.qualityOfService = .userInteractive
     }
     
-    func blockOp(metadataType: MetadataType) -> ((URL) -> BlockOperation) {
+    // TODO: Allow the caller to specify a "sort order" for the files, eg. by file path ???
+    func loadMetadata(ofType type: MetadataType, from files: [URL], into trackList: TrackLoaderReceiver, at insertionIndex: Int?,
+                      completionHandler: FileReadSessionCompletionHandler? = nil) {
+        
+        session = FileReadSession(metadataType: type, trackList: trackList, insertionIndex: insertionIndex)
+        batch = FileMetadataBatch(ofSize: concurrentAddOpCount, insertionIndex: insertionIndex)
+        blockOpFunction = blockOp(metadataType: type)
+        
+        // Move to a background thread to unblock the main thread
+        DispatchQueue.global(qos: .userInteractive).async {
+            
+            self.readFiles(files)
+            
+            if self.batch.fileCount > 0 {
+                self.flushBatch()
+            }
+            
+            let sessionFiles = self.session.files
+            
+            // Cleanup
+            self.session = nil
+            self.batch = nil
+            self.blockOpFunction = nil
+            
+            // Unblock this thread because the track list may perform a time consuming task in response to this callback.
+            if let theCompletionHandler = completionHandler {
+                
+                DispatchQueue.global(qos: .userInteractive).async {
+                    theCompletionHandler(sessionFiles)
+                }
+            }
+        }
+    }
+    
+    private func blockOp(metadataType: MetadataType) -> ((URL) -> BlockOperation) {
         
         return {file in BlockOperation {
             
@@ -62,40 +96,6 @@ class TrackLoader {
 
             self.batch.setMetadata(fileMetadata, for: file)
         }}
-    }
-    
-    // TODO: Allow the caller to specify a "sort order" for the files, eg. by file path ???
-    func loadMetadata(ofType type: MetadataType, from files: [URL], into trackList: TrackLoaderReceiver,
-                      completionHandler: FileReadSessionCompletionHandler? = nil) {
-        
-        session = FileReadSession(metadataType: type, trackList: trackList)
-        batch = FileMetadataBatch(ofSize: concurrentAddOpCount)
-        blockOpFunction = blockOp(metadataType: type)
-        
-        // Move to a background thread to unblock the main thread
-        DispatchQueue.global(qos: .userInteractive).async {
-            
-            self.readFiles(files)
-            
-            if self.batch.fileCount > 0 {
-                self.flushBatch()
-            }
-            
-            let sessionFiles = self.session.files
-            
-            // Cleanup
-            self.session = nil
-            self.batch = nil
-            self.blockOpFunction = nil
-            
-            // Unblock this thread because the track list may perform a time consuming task in response to this callback.
-            if let theCompletionHandler = completionHandler {
-                
-                DispatchQueue.global(qos: .userInteractive).async {
-                    theCompletionHandler(sessionFiles)
-                }
-            }
-        }
     }
     
     /*

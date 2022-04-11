@@ -22,25 +22,28 @@ protocol PlayQueueDelegateProtocol {
     func addTracks(from files: [URL], atPosition position: Int?)
     
     // Adds tracks to the end of the queue, i.e. "Play Later"
-    func enqueueToPlayLater(_ tracks: [Track]) -> ClosedRange<Int>
+    func enqueueToPlayLater(_ newTracks: [Track]) -> ClosedRange<Int>
     
     // Adds tracks to the beginning of the queue, i.e. "Play Now"
-    func enqueueToPlayNow(_ tracks: [Track]) -> ClosedRange<Int>
+    func enqueueToPlayNow(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int>
 
     // Inserts tracks immediately after the current track, i.e. "Play Next"
-    func enqueueToPlayNext(_ tracks: [Track]) -> ClosedRange<Int>
+    func enqueueToPlayNext(_ newTracks: [Track]) -> ClosedRange<Int>
     
-    func removeTracks(_ indices: IndexSet) -> [Track]
+    // Inserts tracks from an external source (eg. saved playlist) at a given insertion index.
+    func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int>
+    
+    func removeTracks(at indices: IndexSet) -> [Track]
 
-    func moveTracksUp(_ indices: IndexSet) -> [TrackMoveResult]
+    func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult]
     
-    func moveTracksToTop(_ indices: IndexSet) -> [TrackMoveResult]
+    func moveTracksToTop(from indices: IndexSet) -> [TrackMoveResult]
     
-    func moveTracksDown(_ indices: IndexSet) -> [TrackMoveResult]
+    func moveTracksDown(from indices: IndexSet) -> [TrackMoveResult]
     
-    func moveTracksToBottom(_ indices: IndexSet) -> [TrackMoveResult]
+    func moveTracksToBottom(from indices: IndexSet) -> [TrackMoveResult]
     
-    func dropTracks(_ sourceIndices: IndexSet, _ dropIndex: Int) -> [TrackMoveResult]
+    func moveTracks(from sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult]
     
     func export(to file: URL)
     

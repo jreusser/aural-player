@@ -56,7 +56,7 @@ class TrackList: Sequence {
     }
     
     func insert(_ newTracks: [Track], at index: Int) {
-        
+        tracks.insert(contentsOf: newTracks, at: index)
     }
     
     func moveUp(from indices: IndexSet) -> [TrackMoveResult] {

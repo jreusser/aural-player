@@ -26,6 +26,7 @@ class FileReadSession {
     let metadataType: MetadataType
     var files: [URL] = []
     let trackList: TrackLoaderReceiver
+    let insertionIndex: Int?
     
     // For history
     var historyItems: [URL] = []
@@ -34,10 +35,11 @@ class FileReadSession {
     var filesProcessed: Int = 0
     var errors: [DisplayableError] = []
     
-    init(metadataType: MetadataType, trackList: TrackLoaderReceiver) {
+    init(metadataType: MetadataType, trackList: TrackLoaderReceiver, insertionIndex: Int?) {
         
         self.metadataType = metadataType
         self.trackList = trackList
+        self.insertionIndex = insertionIndex
     }
     
     func addHistoryItem(_ item: URL) {
@@ -58,15 +60,16 @@ class FileMetadataBatch {
     let size: Int
     var files: [URL] = []
     var metadata: ConcurrentMap<URL, FileMetadata> = ConcurrentMap()
+    var insertionIndex: Int?
     
     var orderedMetadata: [(file: URL, metadata: FileMetadata)] {files.map {(file: $0, metadata: self.metadata[$0]!)}}
     
     var fileCount: Int {files.count}
     
-    private var semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
-    
-    init(ofSize size: Int) {
+    init(ofSize size: Int, insertionIndex: Int?) {
+        
         self.size = size
+        self.insertionIndex = insertionIndex
     }
     
     func append(file: URL) -> Bool {
@@ -83,5 +86,9 @@ class FileMetadataBatch {
         
         files.removeAll()
         metadata.removeAll()
+        
+        if let index = self.insertionIndex {
+            self.insertionIndex = index + files.count
+        }
     }
 }

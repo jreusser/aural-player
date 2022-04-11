@@ -17,7 +17,7 @@ extension PlayQueueDelegate: TrackLoaderReceiver {
     }
     
     func addTracks(from files: [URL], atPosition position: Int?) {
-        trackLoader.loadMetadata(ofType: .primary, from: files, into: self)
+        trackLoader.loadMetadata(ofType: .primary, from: files, into: self, at: position)
     }
 
     func computeDuration(for files: [URL]) {
@@ -50,8 +50,16 @@ extension PlayQueueDelegate: TrackLoaderReceiver {
 
             return track
         }
-
-        let indices = playQueue.enqueueTracks(tracks)
+        
+        let indices: ClosedRange<Int>
+        
+        if let insertionIndex = batch.insertionIndex {
+            indices = playQueue.insertTracks(tracks, at: insertionIndex)
+            
+        } else {
+            indices = playQueue.enqueueTracks(tracks)
+        }
+        
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
     }
 }

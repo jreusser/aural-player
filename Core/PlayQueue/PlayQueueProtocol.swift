@@ -22,10 +22,13 @@ protocol PlayQueueProtocol: SequencingProtocol {
     func enqueueTracks(_ tracks: [Track]) -> ClosedRange<Int>
     
     // Adds tracks to the beginning of the queue, i.e. "Play Now"
-    func enqueueTracksAtHead(_ tracks: [Track]) -> ClosedRange<Int>
+    func enqueueTracksAtHead(_ tracks: [Track], clearQueue: Bool) -> ClosedRange<Int>
 
     // Inserts tracks immediately after the current track, i.e. "Play Next"
     func enqueueTracksAfterCurrentTrack(_ tracks: [Track]) -> ClosedRange<Int>
+    
+    // Inserts tracks from an external source (eg. saved playlist) at a given insertion index.
+    func insertTracks(_ tracks: [Track], at insertionIndex: Int) -> ClosedRange<Int>
     
     func removeTracks(at indices: IndexSet) -> [Track]
 
@@ -37,7 +40,7 @@ protocol PlayQueueProtocol: SequencingProtocol {
     
     func moveTracksToBottom(from indices: IndexSet) -> [TrackMoveResult]
     
-    func dropTracks(at sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult]
+    func moveTracks(from sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult]
     
     func removeAllTracks()
     
