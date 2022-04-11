@@ -277,7 +277,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     // Sets the pitch to a value specified by the menu item clicked
     @IBAction func setPitchAction(_ sender: SoundParameterMenuItem) {
         
-        // Menu item's "paramValue" specifies the pitch shift value associated with the menu item (in octaves)
+        // Menu item's "paramValue" specifies the pitch shift value associated with the menu item (in cents)
         let pitch = sender.paramValue
         
         if effectsWindowLoaded {

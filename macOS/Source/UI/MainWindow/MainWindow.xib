@@ -897,11 +897,18 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Play Queue" autoenablesItems="NO" id="gk7-eC-qN4">
                         <items>
+                            <menuItem title=" Play selected track" image="play.fill" catalog="system" id="llH-Ct-ZJq" userLabel="Play selected track/group">
+                                <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="ve6-tb-ash"/>
                             <menuItem title=" Add files / folders" image="plus.rectangle.on.folder" catalog="system" keyEquivalent="o" id="PZW-mc-nbE"/>
                             <menuItem title=" Add and play files / folders" image="plus.rectangle.on.folder" catalog="system" keyEquivalent="o" id="xXN-bb-9g1" userLabel="Add and play files / folders">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                             </menuItem>
-                            <menuItem title="  Export as playlist file" image="arrow.right.doc.on.clipboard" catalog="system" keyEquivalent="s" id="Jbq-S6-ZJ6"/>
+                            <menuItem title=" Export as playlist file" image="arrow.right.doc.on.clipboard" catalog="system" keyEquivalent="s" id="Jbq-S6-ZJ6"/>
                             <menuItem isSeparatorItem="YES" id="vo3-6V-fS0"/>
                             <menuItem title=" Remove selected tracks" image="xmark.bin" catalog="system" id="sQQ-39-lro" userLabel="Remove selected tracks">
                                 <string key="keyEquivalent" base64-UTF8="YES">
@@ -909,17 +916,17 @@ CA
 </string>
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title="  Clear play queue" image="trash" catalog="system" id="rxE-Ae-E2L">
+                            <menuItem title=" Crop selected tracks" id="WRN-GZ-Cz0" userLabel="Crop selection">
+                                <imageReference key="image" image="scissors" catalog="system" symbolScale="small"/>
                                 <string key="keyEquivalent" base64-UTF8="YES">
 CA
 </string>
+                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="ve6-tb-ash"/>
-                            <menuItem title="  Play selected track" image="play.fill" catalog="system" id="llH-Ct-ZJq" userLabel="Play selected track/group">
+                            <menuItem title=" Remove all tracks" image="trash" catalog="system" id="rxE-Ae-E2L">
                                 <string key="keyEquivalent" base64-UTF8="YES">
-DQ
+CA
 </string>
-                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="Fv7-3m-8Q1"/>
                             <menuItem title=" Clear selection" image="square.slash" catalog="system" id="NMF-Bq-MjN" userLabel="Clear selection">
@@ -928,29 +935,22 @@ DQ
                             <menuItem title=" Invert selection" image="arrow.right.arrow.left" catalog="system" id="Rzy-jG-Ooe" userLabel="Invert selection">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title=" Crop selection" id="WRN-GZ-Cz0" userLabel="Crop selection">
-                                <imageReference key="image" image="scissors" catalog="system" symbolScale="small"/>
-                                <string key="keyEquivalent" base64-UTF8="YES">
-CA
-</string>
-                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
-                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="YRk-lY-xfi"/>
-                            <menuItem title="  Move selected tracks up" image="arrow.up" catalog="system" keyEquivalent="" id="ZwV-tq-yWO">
+                            <menuItem title=" Move selected tracks up" image="arrow.up" catalog="system" keyEquivalent="" id="ZwV-tq-yWO">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
                             </menuItem>
-                            <menuItem title="  Move selected tracks to top" image="arrow.up.to.line.alt" catalog="system" keyEquivalent="" id="ucz-M7-hlk" userLabel="Move selected items top">
+                            <menuItem title=" Move selected tracks to top" image="arrow.up.to.line.alt" catalog="system" keyEquivalent="" id="ucz-M7-hlk" userLabel="Move selected items top">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES" option="YES"/>
                             </menuItem>
-                            <menuItem title="  Move selected tracks down" image="arrow.down" catalog="system" keyEquivalent="" id="tfd-nB-5ph">
+                            <menuItem title=" Move selected tracks down" image="arrow.down" catalog="system" keyEquivalent="" id="tfd-nB-5ph">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
                             </menuItem>
-                            <menuItem title="  Move selected tracks to bottom" image="arrow.down.to.line.alt" catalog="system" keyEquivalent="" id="piM-q0-Fre" userLabel="Move selected items bottom">
+                            <menuItem title=" Move selected tracks to bottom" image="arrow.down.to.line.alt" catalog="system" keyEquivalent="" id="piM-q0-Fre" userLabel="Move selected items bottom">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES" option="YES"/>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="bU4-lV-awo"/>
                             <menuItem title=" Search play queue" image="magnifyingglass" catalog="system" keyEquivalent="f" id="2pX-xK-lve"/>
-                            <menuItem title="Sort play queue" image="arrow.up.arrow.down" catalog="system" keyEquivalent="s" id="I5M-kY-Va8" userLabel="Sort playlist">
+                            <menuItem title=" Sort play queue" image="arrow.up.arrow.down" catalog="system" keyEquivalent="s" id="I5M-kY-Va8" userLabel="Sort playlist">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="l58-Pq-Y3f"/>
