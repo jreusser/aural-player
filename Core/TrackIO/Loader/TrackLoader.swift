@@ -34,14 +34,13 @@ class TrackLoader {
     }
     
     // TODO: Allow the caller to specify a "sort order" for the files, eg. by file path ???
-    func loadMetadata(ofType type: MetadataType, from files: [URL], into trackList: TrackLoaderReceiver, at insertionIndex: Int?,
-                      completionHandler: FileReadSessionCompletionHandler? = nil) {
+    func loadMetadata(ofType type: MetadataType, from files: [URL], into trackList: TrackLoaderReceiver, at insertionIndex: Int?) {
         
         session = FileReadSession(metadataType: type, trackList: trackList, insertionIndex: insertionIndex)
         batch = FileMetadataBatch(ofSize: concurrentAddOpCount, insertionIndex: insertionIndex)
         blockOpFunction = blockOp(metadataType: type)
         
-        // Move to a background thread to unblock the main thread
+        // Move to a background thread to unblock the main thread.
         DispatchQueue.global(qos: .userInteractive).async {
             
             self.readFiles(files)
@@ -58,12 +57,7 @@ class TrackLoader {
             self.blockOpFunction = nil
             
             // Unblock this thread because the track list may perform a time consuming task in response to this callback.
-            if let theCompletionHandler = completionHandler {
-                
-                DispatchQueue.global(qos: .userInteractive).async {
-                    theCompletionHandler(sessionFiles)
-                }
-            }
+            trackList.allFileReadsCompleted(files: sessionFiles)
         }
     }
     

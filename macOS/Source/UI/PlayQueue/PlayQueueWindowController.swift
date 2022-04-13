@@ -20,6 +20,9 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     @IBOutlet weak var lblTracksSummary: NSTextField!
     @IBOutlet weak var lblDurationSummary: NSTextField!
     
+    // Spinner that shows progress when tracks are being added to the play queue.
+    @IBOutlet weak var progressSpinner: NSProgressIndicator!
+    
     @IBOutlet weak var rootContainer: NSBox!
     @IBOutlet weak var tabButtonsContainer: NSBox!
     
@@ -59,6 +62,9 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         
         messenger.subscribe(to: .playQueue_exportAsPlaylistFile, handler: exportAsPlaylistFile)
         messenger.subscribe(to: .playQueue_removeAllTracks, handler: removeAllTracks)
+        
+        messenger.subscribeAsync(to: .playQueue_startedAddingTracks, handler: startedAddingTracks)
+        messenger.subscribeAsync(to: .playQueue_doneAddingTracks, handler: doneAddingTracks)
         
         messenger.subscribeAsync(to: .playQueue_trackAdded, handler: updateSummary)
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
@@ -106,6 +112,8 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         return playQueueBeingModified
     }
     
+    // MARK: Notification handling ----------------------------------------------------------------------------------
+    
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
         switch property {
@@ -123,6 +131,18 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
             
             return
         }
+    }
+    
+    private func startedAddingTracks() {
+        
+        progressSpinner.startAnimation(nil)
+        progressSpinner.show()
+    }
+    
+    private func doneAddingTracks() {
+        
+        progressSpinner.hide()
+        progressSpinner.stopAnimation(nil)
     }
     
     private func updateSummary() {

@@ -13,10 +13,12 @@ import Foundation
 extension PlayQueueDelegate: TrackLoaderReceiver {
     
     func allFileReadsCompleted(files: [URL]) {
-        // TODO: Send out notif to UI (done adding)
+        messenger.publish(.playQueue_doneAddingTracks)
     }
     
     func addTracks(from files: [URL], atPosition position: Int? = nil) {
+
+        messenger.publish(.playQueue_startedAddingTracks)
         trackLoader.loadMetadata(ofType: .primary, from: files, into: self, at: position)
     }
 
