@@ -31,7 +31,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     
     private var compactViewController: CompactPlayQueueViewController = .init()
     
-//    private let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
+    private let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
     private let playQueue: PlayQueueDelegateProtocol = objectGraph.playQueueDelegate
     
     private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
@@ -69,6 +69,8 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         messenger.subscribeAsync(to: .playQueue_trackAdded, handler: updateSummary)
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
         messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: updateSummary)
+        
+        messenger.subscribeAsync(to: .player_trackTransitioned, handler: updateSummary)
         
         updateSummary()
     }
@@ -147,7 +149,13 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     
     private func updateSummary() {
         
-        lblTracksSummary.stringValue = "\(playQueue.size) tracks"
+        if let playingTrack = player.playingTrack, let index = playQueue.indexOfTrack(playingTrack) {
+            lblTracksSummary.stringValue = "▶  \(index + 1) / \(playQueue.size) tracks"
+            
+        } else {
+            lblTracksSummary.stringValue = "\(playQueue.size) tracks"
+        }
+        
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(playQueue.duration)
     }
     

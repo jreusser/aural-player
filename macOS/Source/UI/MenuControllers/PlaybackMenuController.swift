@@ -56,6 +56,7 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
     private lazy var playbackProfiles: PlaybackProfiles = objectGraph.playbackDelegate.profiles
     
     private lazy var playlist: PlaylistAccessorDelegateProtocol = objectGraph.playlistAccessorDelegate
+    private lazy var playQueue: PlayQueueDelegateProtocol = objectGraph.playQueueDelegate
     
     private let preferences: PlaybackPreferences = objectGraph.preferences.playbackPreferences
     
@@ -80,7 +81,7 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
         let noTrack = playbackState == .stopped
         
         // Play/pause enabled if at least one track available
-        playOrPauseMenuItem.enableIf(playlist.size > 0)
+        playOrPauseMenuItem.enableIf(playQueue.size > 0)
         
         stopMenuItem.enableIf(!noTrack)
         jumpToTimeMenuItem.enableIf(isPlayingOrPaused)
