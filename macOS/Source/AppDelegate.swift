@@ -33,10 +33,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     override init() {
         
         super.init()
-        
-        #if RELEASE
-            configureLogging()
-        #endif
+        SystemUtils.openFilesLimit = 10000
+//        configureLogging()
     }
     
     /// Make sure all logging is done to the app's log file

@@ -28,4 +28,24 @@ class SystemUtils {
     static var osVersion: OperatingSystemVersion {
         ProcessInfo.processInfo.operatingSystemVersion
     }
+    
+    static var openFilesLimit: UInt64 {
+        
+        get {
+            
+            var limit: rlimit = rlimit()
+            getrlimit(RLIMIT_NOFILE, &limit);
+            return limit.rlim_cur
+        }
+        
+        set(newLimit) {
+            
+            var limit: rlimit = rlimit()
+            
+            getrlimit(RLIMIT_NOFILE, &limit);
+            limit.rlim_cur = newLimit
+            
+            setrlimit(RLIMIT_NOFILE, &limit);
+        }
+    }
 }
