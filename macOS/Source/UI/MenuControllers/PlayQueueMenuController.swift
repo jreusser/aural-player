@@ -29,11 +29,11 @@ class PlayQueueMenuController: NSObject, NSMenuDelegate {
     }
     
     // Exports the play queue as an M3U playlist file.
-    @IBAction func exportAsPlaylistFileAction(_ sender: Any) {
+    @IBAction func exportAsPlayQueueFileAction(_ sender: Any) {
         messenger.publish(.playQueue_exportAsPlaylistFile)
     }
     
-    // Removes any selected playlist items from the playlist
+    // Removes any selected tracks from the play queue
     @IBAction func removeSelectedTracksAction(_ sender: Any) {
         
         if !checkIfPlayQueueIsBeingModified() {
@@ -55,6 +55,66 @@ class PlayQueueMenuController: NSObject, NSMenuDelegate {
         if !checkIfPlayQueueIsBeingModified() {
             messenger.publish(.playQueue_removeAllTracks)
         }
+    }
+    
+    // Clears the play queue table view selection.
+    @IBAction func clearSelection(_ sender: Any) {
+        messenger.publish(.playQueue_clearSelection)
+    }
+    
+    // Inverts the play queue table view selection.
+    @IBAction func invertSelection(_ sender: Any) {
+        messenger.publish(.playQueue_invertSelection)
+    }
+    
+    // Moves any selected tracks up one row in the play queue
+    @IBAction func moveTracksUpAction(_ sender: Any) {
+        
+        if !checkIfPlayQueueIsBeingModified() {
+            messenger.publish(.playQueue_moveTracksUp)
+        }
+    }
+    
+    // Moves the selected playlist item up one row in the play queue
+    @IBAction func moveTracksToTopAction(_ sender: Any) {
+        
+        if !checkIfPlayQueueIsBeingModified() {
+            messenger.publish(.playQueue_moveTracksToTop)
+        }
+    }
+    
+    // Moves any selected tracks down one row in the play queue
+    @IBAction func moveTracksDownAction(_ sender: Any) {
+        
+        if !checkIfPlayQueueIsBeingModified() {
+            messenger.publish(.playQueue_moveTracksDown)
+        }
+    }
+    
+    // Moves the selected playlist item up one row in the play queue
+    @IBAction func moveTracksToBottomAction(_ sender: Any) {
+        
+        if !checkIfPlayQueueIsBeingModified() {
+            messenger.publish(.playQueue_moveTracksToBottom)
+        }
+    }
+    
+    // Scrolls the current playlist view to the very top.
+    @IBAction func scrollToTopAction(_ sender: Any) {
+        messenger.publish(.playQueue_scrollToTop)
+    }
+    
+    // Scrolls the current playlist view to the very bottom.
+    @IBAction func scrollToBottomAction(_ sender: Any) {
+        messenger.publish(.playQueue_scrollToBottom)
+    }
+    
+    @IBAction func pageUpAction(_ sender: Any) {
+        messenger.publish(.playQueue_pageUp)
+    }
+    
+    @IBAction func pageDownAction(_ sender: Any) {
+        messenger.publish(.playQueue_pageDown)
     }
     
     private func checkIfPlayQueueIsBeingModified() -> Bool {

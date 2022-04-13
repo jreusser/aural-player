@@ -196,7 +196,7 @@ class TableViewController: NSViewController, NSTableViewDelegate, ColorSchemeObs
         
         guard atLeastTwoRowsAndNotAllSelected else {return}
         
-        let results = trackList.moveTracksToTop(from: selectedRows)
+        let results = trackList.moveTracksToBottom(from: selectedRows)
         
         // Move the rows
         removeAndInsertItems(results.sorted(by: TrackMoveResult.compareDescending))

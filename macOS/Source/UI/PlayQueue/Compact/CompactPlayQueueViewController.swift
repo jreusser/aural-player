@@ -38,10 +38,25 @@ class CompactPlayQueueViewController: TableViewController {
         messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: tracksRemoved(_:))
         
         messenger.subscribe(to: .playQueue_playSelectedTrack, handler: playSelectedTrack)
+        
         messenger.subscribe(to: .playQueue_addTracks, handler: addTracks)
         messenger.subscribe(to: .playQueue_removeTracks, handler: removeTracks)
         messenger.subscribe(to: .playQueue_cropSelection, handler: cropSelection)
+        
         messenger.subscribe(to: .playQueue_refresh, handler: tableView.reloadData)
+        
+        messenger.subscribe(to: .playQueue_clearSelection, handler: tableView.clearSelection)
+        messenger.subscribe(to: .playQueue_invertSelection, handler: tableView.invertSelection)
+        
+        messenger.subscribe(to: .playQueue_moveTracksUp, handler: moveTracksUp)
+        messenger.subscribe(to: .playQueue_moveTracksDown, handler: moveTracksDown)
+        messenger.subscribe(to: .playQueue_moveTracksToTop, handler: moveTracksToTop)
+        messenger.subscribe(to: .playQueue_moveTracksToBottom, handler: moveTracksToBottom)
+        
+        messenger.subscribe(to: .playQueue_pageUp, handler: tableView.pageUp)
+        messenger.subscribe(to: .playQueue_pageDown, handler: tableView.pageDown)
+        messenger.subscribe(to: .playQueue_scrollToTop, handler: tableView.scrollToTop)
+        messenger.subscribe(to: .playQueue_scrollToBottom, handler: tableView.scrollToBottom)
     }
     
     // MARK: Table view delegate / data source --------------------------------------------------------------------------------------------------------

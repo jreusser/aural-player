@@ -952,22 +952,40 @@ CA
                             <menuItem isSeparatorItem="YES" id="Fv7-3m-8Q1"/>
                             <menuItem title=" Clear selection" image="square.slash" catalog="system" id="NMF-Bq-MjN" userLabel="Clear selection">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="clearSelection:" target="qFA-s7-21q" id="kkh-j0-WIE"/>
+                                </connections>
                             </menuItem>
                             <menuItem title=" Invert selection" image="arrow.right.arrow.left" catalog="system" id="Rzy-jG-Ooe" userLabel="Invert selection">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="invertSelection:" target="qFA-s7-21q" id="57y-b3-N56"/>
+                                </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="YRk-lY-xfi"/>
                             <menuItem title=" Move selected tracks up" image="arrow.up" catalog="system" keyEquivalent="" id="ZwV-tq-yWO">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                <connections>
+                                    <action selector="moveTracksUpAction:" target="qFA-s7-21q" id="7a2-gk-xbk"/>
+                                </connections>
                             </menuItem>
-                            <menuItem title=" Move selected tracks to top" image="arrow.up.to.line.alt" catalog="system" keyEquivalent="" id="ucz-M7-hlk" userLabel="Move selected items top">
+                            <menuItem title=" Move selected tracks to top" image="arrow.up.to.line.alt" catalog="system" keyEquivalent="" id="ucz-M7-hlk" userLabel="Move selected tracks to top">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES" option="YES"/>
+                                <connections>
+                                    <action selector="moveTracksToTopAction:" target="qFA-s7-21q" id="grQ-pi-6gV"/>
+                                </connections>
                             </menuItem>
                             <menuItem title=" Move selected tracks down" image="arrow.down" catalog="system" keyEquivalent="" id="tfd-nB-5ph">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                <connections>
+                                    <action selector="moveTracksDownAction:" target="qFA-s7-21q" id="fZt-bE-dKZ"/>
+                                </connections>
                             </menuItem>
-                            <menuItem title=" Move selected tracks to bottom" image="arrow.down.to.line.alt" catalog="system" keyEquivalent="" id="piM-q0-Fre" userLabel="Move selected items bottom">
+                            <menuItem title=" Move selected tracks to bottom" image="arrow.down.to.line.alt" catalog="system" keyEquivalent="" id="piM-q0-Fre" userLabel="Move selected tracks to bottom">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES" option="YES"/>
+                                <connections>
+                                    <action selector="moveTracksToBottomAction:" target="qFA-s7-21q" id="548-JS-aSf"/>
+                                </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="bU4-lV-awo"/>
                             <menuItem title=" Search play queue" image="magnifyingglass" catalog="system" keyEquivalent="f" id="2pX-xK-lve"/>
@@ -977,15 +995,27 @@ CA
                             <menuItem isSeparatorItem="YES" id="l58-Pq-Y3f"/>
                             <menuItem title=" Page up" image="arrow.up" catalog="system" keyEquivalent="" id="6NF-Wg-EWL" userLabel="Page up">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="pageUpAction:" target="qFA-s7-21q" id="BDZ-3c-lMS"/>
+                                </connections>
                             </menuItem>
                             <menuItem title=" Page down" image="arrow.down" catalog="system" keyEquivalent="" id="j6V-Id-fIU" userLabel="Page down">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="pageDownAction:" target="qFA-s7-21q" id="vxY-xK-0Pc"/>
+                                </connections>
                             </menuItem>
                             <menuItem title=" Scroll to top" image="arrow.up.to.line.alt" catalog="system" keyEquivalent="" id="EtT-GU-7hC">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="scrollToTopAction:" target="qFA-s7-21q" id="ltI-dP-EDM"/>
+                                </connections>
                             </menuItem>
                             <menuItem title=" Scroll to bottom" image="arrow.down.to.line.alt" catalog="system" keyEquivalent="" id="cP3-M4-Tzw" userLabel="Scroll to bottom of playlist">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="scrollToBottomAction:" target="qFA-s7-21q" id="N6K-Cl-9dk"/>
+                                </connections>
                             </menuItem>
                         </items>
                         <connections>
