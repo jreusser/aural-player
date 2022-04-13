@@ -58,6 +58,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
         
         messenger.subscribe(to: .playQueue_exportAsPlaylistFile, handler: exportAsPlaylistFile)
+        messenger.subscribe(to: .playQueue_removeAllTracks, handler: removeAllTracks)
         
         messenger.subscribeAsync(to: .playQueue_trackAdded, handler: updateSummary)
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
@@ -66,6 +67,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         updateSummary()
     }
     
+    // TODO: REFACTORING - move this to a generic TableWindowController.
     private func exportAsPlaylistFile() {
         
         // Make sure there is at least one track to save.
@@ -78,6 +80,19 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
             
             playQueue.exportToFile(newFileURL)
         }
+    }
+    
+    // Removes all items from the playlist
+    func removeAllTracks() {
+        
+        guard playQueue.size > 0, !checkIfPlayQueueIsBeingModified() else {return}
+        
+        playQueue.removeAllTracks()
+        
+        // Tell the play queue UI to refresh its views.
+        messenger.publish(.playQueue_refresh)
+        
+        updateSummary()
     }
     
     private func checkIfPlayQueueIsBeingModified() -> Bool {

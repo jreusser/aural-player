@@ -46,7 +46,8 @@ extension Notification.Name {
     
     // Commands the play queue to remove any selected tracks.
     static let playQueue_removeTracks = Notification.Name("playQueue_removeTracks")
-    static let playQueue_clear = Notification.Name("playQueue_clear")
+    static let playQueue_removeAllTracks = Notification.Name("playQueue_removeAllTracks")
+    static let playQueue_refresh = Notification.Name("playQueue_refresh")
     
     // Commands the play queue to remove any selected tracks.
     static let playQueue_exportAsPlaylistFile = Notification.Name("playQueue_exportAsPlaylistFile")

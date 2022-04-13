@@ -104,6 +104,17 @@ class TableViewController: NSViewController, NSTableViewDelegate, ColorSchemeObs
         }
     }
     
+    func cropSelection() {
+        
+        let tracksToDelete: IndexSet = tableView.invertedSelection
+        
+        if tracksToDelete.count > 0 {
+            
+            _ = trackList.removeTracks(at: tracksToDelete)
+            tableView.reloadData()
+        }
+    }
+    
     // -------------------- Responding to notifications -------------------------------------------
     
     // Selects (and shows) a certain track within the playlist view

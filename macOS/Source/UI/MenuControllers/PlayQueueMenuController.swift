@@ -41,6 +41,22 @@ class PlayQueueMenuController: NSObject, NSMenuDelegate {
         }
     }
     
+    // Crops track selection.
+    @IBAction func cropSelectedTracksAction(_ sender: Any) {
+        
+        if !checkIfPlayQueueIsBeingModified() {
+            messenger.publish(.playQueue_cropSelection)
+        }
+    }
+    
+    // Removes all tracks from the play queue.
+    @IBAction func removeAllTracksAction(_ sender: Any) {
+        
+        if !checkIfPlayQueueIsBeingModified() {
+            messenger.publish(.playQueue_removeAllTracks)
+        }
+    }
+    
     private func checkIfPlayQueueIsBeingModified() -> Bool {
         
         let playQueueBeingModified = playQueue.isBeingModified

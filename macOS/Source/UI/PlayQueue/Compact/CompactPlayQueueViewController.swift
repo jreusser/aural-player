@@ -40,6 +40,8 @@ class CompactPlayQueueViewController: TableViewController {
         messenger.subscribe(to: .playQueue_playSelectedTrack, handler: playSelectedTrack)
         messenger.subscribe(to: .playQueue_addTracks, handler: addTracks)
         messenger.subscribe(to: .playQueue_removeTracks, handler: removeTracks)
+        messenger.subscribe(to: .playQueue_cropSelection, handler: cropSelection)
+        messenger.subscribe(to: .playQueue_refresh, handler: tableView.reloadData)
     }
     
     // MARK: Table view delegate / data source --------------------------------------------------------------------------------------------------------

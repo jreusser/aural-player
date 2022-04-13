@@ -937,11 +937,17 @@ CA
 CA
 </string>
                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="cropSelectedTracksAction:" target="qFA-s7-21q" id="srf-yh-Vju"/>
+                                </connections>
                             </menuItem>
                             <menuItem title=" Remove all tracks" image="trash" catalog="system" id="rxE-Ae-E2L">
                                 <string key="keyEquivalent" base64-UTF8="YES">
 CA
 </string>
+                                <connections>
+                                    <action selector="removeAllTracksAction:" target="qFA-s7-21q" id="ApB-Wd-n7E"/>
+                                </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="Fv7-3m-8Q1"/>
                             <menuItem title=" Clear selection" image="square.slash" catalog="system" id="NMF-Bq-MjN" userLabel="Clear selection">
