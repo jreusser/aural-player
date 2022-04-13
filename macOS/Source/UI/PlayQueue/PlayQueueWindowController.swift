@@ -36,6 +36,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     
     private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
     private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
+    private let windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
     
     private lazy var alertDialog: AlertWindowController = .instance
     
@@ -161,5 +162,11 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     
     override func destroy() {
         // TODO: 
+    }
+    
+    // MARK: Actions ----------------------------------------------------------------------------------
+    
+    @IBAction func closeAction(_ sender: NSButton) {
+        windowLayoutsManager.toggleWindow(withId: .playQueue)
     }
 }
