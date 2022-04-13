@@ -137,6 +137,10 @@ class PlayQueue: PlayQueueProtocol, PersistentModelObject {
         return moveResults
     }
     
+    func exportToFile(_ file: URL) {
+        trackList.exportToFile(file)
+    }
+    
     var persistentState: PlayQueuePersistentState {
         .init(playQueue: self)
     }

@@ -44,4 +44,6 @@ protocol TrackListProtocol {
     func sort(_ sort: Sort) -> SortResults
     
     func sort(by comparator: (Track, Track) -> Bool)
+    
+    func exportToFile(_ file: URL)
 }

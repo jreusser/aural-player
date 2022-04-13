@@ -114,4 +114,12 @@ class TrackList: TrackListProtocol, Sequence {
     func sort(by comparator: (Track, Track) -> Bool) {
         // TODO:
     }
+    
+    func exportToFile(_ file: URL) {
+        
+        // Perform asynchronously, to unblock the main thread
+        DispatchQueue.global(qos: .userInitiated).async {
+            PlaylistIO.savePlaylist(tracks: self.tracks, toFile: file)
+        }
+    }
 }

@@ -28,6 +28,11 @@ class PlayQueueMenuController: NSObject, NSMenuDelegate {
         messenger.publish(.playQueue_addTracks)
     }
     
+    // Exports the play queue as an M3U playlist file.
+    @IBAction func exportAsPlaylistFileAction(_ sender: Any) {
+        messenger.publish(.playQueue_exportAsPlaylistFile)
+    }
+    
     // Removes any selected playlist items from the playlist
     @IBAction func removeSelectedTracksAction(_ sender: Any) {
         

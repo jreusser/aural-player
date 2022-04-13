@@ -34,6 +34,8 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
     private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
     
+    private lazy var alertDialog: AlertWindowController = .instance
+    
     private lazy var messenger: Messenger = Messenger(for: self)
     
     override func windowDidLoad() {
@@ -55,11 +57,38 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         lblDurationSummary.font = Fonts.Player.infoBoxArtistAlbumFont
         lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
         
+        messenger.subscribe(to: .playQueue_exportAsPlaylistFile, handler: exportAsPlaylistFile)
+        
         messenger.subscribeAsync(to: .playQueue_trackAdded, handler: updateSummary)
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
         messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: updateSummary)
         
         updateSummary()
+    }
+    
+    private func exportAsPlaylistFile() {
+        
+        // Make sure there is at least one track to save.
+        guard playQueue.size > 0, !checkIfPlayQueueIsBeingModified() else {return}
+        
+        let saveDialog = DialogsAndAlerts.savePlaylistDialog
+        
+        if saveDialog.runModal() == .OK,
+           let newFileURL = saveDialog.url {
+            
+            playQueue.exportToFile(newFileURL)
+        }
+    }
+    
+    private func checkIfPlayQueueIsBeingModified() -> Bool {
+        
+        let playQueueBeingModified = playQueue.isBeingModified
+        
+        if playQueueBeingModified {
+            alertDialog.showAlert(.error, "Play Queue not modified", "The Play Queue cannot be modified while tracks are being added", "Please wait till the Play Queue is done adding tracks ...")
+        }
+        
+        return playQueueBeingModified
     }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {

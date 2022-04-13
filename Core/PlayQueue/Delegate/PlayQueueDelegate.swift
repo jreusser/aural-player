@@ -135,6 +135,10 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         playQueue.sort(by: comparator)
     }
     
+    func exportToFile(_ file: URL) {
+        playQueue.exportToFile(file)
+    }
+    
     // MARK: Sequencing functions ---------------------------------------------------------------
     
     var repeatAndShuffleModes: (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {

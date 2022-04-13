@@ -916,7 +916,11 @@ DQ
                             <menuItem title=" Add and play files / folders" image="plus.rectangle.on.folder" catalog="system" keyEquivalent="o" id="xXN-bb-9g1" userLabel="Add and play files / folders">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                             </menuItem>
-                            <menuItem title=" Export as playlist file" image="arrow.right.doc.on.clipboard" catalog="system" keyEquivalent="s" id="Jbq-S6-ZJ6"/>
+                            <menuItem title=" Export as playlist file" image="arrow.right.doc.on.clipboard" catalog="system" keyEquivalent="s" id="Jbq-S6-ZJ6">
+                                <connections>
+                                    <action selector="exportAsPlaylistFileAction:" target="qFA-s7-21q" id="fnf-Oa-kpm"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="vo3-6V-fS0"/>
                             <menuItem title=" Remove selected tracks" image="xmark.bin" catalog="system" id="sQQ-39-lro" userLabel="Remove selected tracks">
                                 <string key="keyEquivalent" base64-UTF8="YES">
