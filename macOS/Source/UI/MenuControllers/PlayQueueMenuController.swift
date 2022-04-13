@@ -18,6 +18,16 @@ class PlayQueueMenuController: NSObject, NSMenuDelegate {
     
     private lazy var messenger = Messenger(for: self)
     
+    // Plays the selected play queue track.
+    @IBAction func playSelectedTrackAction(_ sender: Any) {
+        messenger.publish(.playQueue_playSelectedTrack)
+    }
+    
+    // Shows the file open dialog to let the user select files / folders / playlists (M3U) to add to the play queue.
+    @IBAction func addTracksAction(_ sender: Any) {
+        messenger.publish(.playQueue_addTracks)
+    }
+    
     // Removes any selected playlist items from the playlist
     @IBAction func removeSelectedTracksAction(_ sender: Any) {
         

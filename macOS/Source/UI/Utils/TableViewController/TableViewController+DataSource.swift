@@ -69,7 +69,7 @@ extension TableViewController: NSTableViewDataSource {
             
             if let sourceIndices = info.sourceIndexes {
                 
-                let results = dropTracks(fromIndices: sourceIndices, toRow: row)
+                let results = trackList.moveTracks(from: sourceIndices, to: row)
                 
                 let sortedMoves = results.filter({$0.movedDown}).sorted(by: TrackMoveResult.compareDescending) +
                     results.filter({$0.movedUp}).sorted(by: TrackMoveResult.compareAscending)

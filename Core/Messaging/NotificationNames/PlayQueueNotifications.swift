@@ -49,7 +49,7 @@ extension Notification.Name {
     static let playQueue_exportAsPlaylistFile = Notification.Name("playQueue_exportAsPlaylistFile")
     
     // Commands the playlist to initiate playback of a selected item.
-    static let playQueue_playSelectedItem = Notification.Name("playQueue_playSelectedItem")
+    static let playQueue_playSelectedTrack = Notification.Name("playQueue_playSelectedTrack")
     
     static let playQueue_moveTracksUp = Notification.Name("playQueue_moveTracksUp")
     static let playQueue_moveTracksDown = Notification.Name("playQueue_moveTracksDown")

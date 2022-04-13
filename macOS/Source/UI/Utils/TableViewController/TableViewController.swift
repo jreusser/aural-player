@@ -79,13 +79,21 @@ class TableViewController: NSViewController, NSTableViewDelegate, ColorSchemeObs
     
     // ---------------- NSTableViewDataSource --------------------
     
-    func dropTracks(fromIndices sourceIndices: IndexSet, toRow destRow: Int) -> [TrackMoveResult] {
-        []
-    }
-    
-    func insertFiles(_ files: [URL], atRow destRow: Int) {}
+    func insertFiles(_ files: [URL], atRow destRow: Int? = nil) {}
     
     // --------------------- Responding to commands ------------------------------------------------
+    
+    // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
+    func addTracks() {
+        
+        guard !isTrackListBeingModified else {return}
+        
+        let fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
+        
+        if fileOpenDialog.runModal() == .OK {
+            insertFiles(fileOpenDialog.urls)
+        }
+    }
     
     func removeTracks() {
         

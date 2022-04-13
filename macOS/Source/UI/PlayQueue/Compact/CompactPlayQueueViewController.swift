@@ -37,8 +37,12 @@ class CompactPlayQueueViewController: TableViewController {
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
         messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: tracksRemoved(_:))
         
+        messenger.subscribe(to: .playQueue_playSelectedTrack, handler: playSelectedTrack)
+        messenger.subscribe(to: .playQueue_addTracks, handler: addTracks)
         messenger.subscribe(to: .playQueue_removeTracks, handler: removeTracks)
     }
+    
+    // MARK: Table view delegate / data source --------------------------------------------------------------------------------------------------------
     
     override func view(forColumn column: NSUserInterfaceItemIdentifier, row: Int, track: Track) -> TableCellBuilder {
         
@@ -70,11 +74,16 @@ class CompactPlayQueueViewController: TableViewController {
         }
     }
     
-    override func dropTracks(fromIndices sourceIndices: IndexSet, toRow destRow: Int) -> [TrackMoveResult] {
-        playQueue.moveTracks(from: sourceIndices, to: destRow)
+    // MARK: Commands --------------------------------------------------------------------------------------------------------
+    
+    private func playSelectedTrack() {
+        
+        if let firstSelectedRow = selectedRows.min() {
+            messenger.publish(TrackPlaybackCommandNotification(index: firstSelectedRow))
+        }
     }
     
-    override func insertFiles(_ files: [URL], atRow destRow: Int) {
+    override func insertFiles(_ files: [URL], atRow destRow: Int? = nil) {
         playQueue.addTracks(from: files, atPosition: destRow)
     }
     
