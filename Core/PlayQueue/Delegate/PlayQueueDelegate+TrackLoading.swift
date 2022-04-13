@@ -16,7 +16,7 @@ extension PlayQueueDelegate: TrackLoaderReceiver {
         // TODO: Send out notif to UI (done adding)
     }
     
-    func addTracks(from files: [URL], atPosition position: Int?) {
+    func addTracks(from files: [URL], atPosition position: Int? = nil) {
         trackLoader.loadMetadata(ofType: .primary, from: files, into: self, at: position)
     }
 
