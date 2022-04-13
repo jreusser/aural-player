@@ -30,7 +30,7 @@ class PlayQueue: PlayQueueProtocol, PersistentModelObject {
     }
 
     func indexOfTrack(_ track: Track) -> Int?  {
-        trackList.indexOf(track)
+        trackList.indexOfTrack(track)
     }
 
     var summary: (size: Int, totalDuration: Double) {(size, duration)}
@@ -44,45 +44,41 @@ class PlayQueue: PlayQueueProtocol, PersistentModelObject {
     // MARK: Mutator functions ------------------------------------------------------------------------
 
     func enqueueTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
-        trackList.add(newTracks)
+        trackList.addTracks(newTracks)
     }
 
     func enqueueTracksAtHead(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int> {
         
         if clearQueue {
             
-            trackList.removeAll()
+            trackList.removeAllTracks()
             return enqueueTracks(newTracks)
             
         } else {
             
-            trackList.insert(newTracks, at: 0)
-
             if let playingTrackIndex = curTrackIndex {
                 curTrackIndex = playingTrackIndex + newTracks.count
             }
 
-            return 0...newTracks.lastIndex
+            return trackList.insertTracks(newTracks, at: 0)
         }
     }
 
     func enqueueTracksAfterCurrentTrack(_ newTracks: [Track]) -> ClosedRange<Int> {
 
         let insertionPoint = (curTrackIndex ?? -1) + 1
-        trackList.insert(newTracks, at: insertionPoint)
-
-        return insertionPoint...(insertionPoint + newTracks.lastIndex)
+        return trackList.insertTracks(newTracks, at: insertionPoint)
     }
     
     func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
         
-        trackList.insert(newTracks, at: insertionIndex)
+        trackList.insertTracks(newTracks, at: insertionIndex)
         return insertionIndex...(insertionIndex + newTracks.lastIndex)
     }
 
     func removeTracks(at indexes: IndexSet) -> [Track] {
 
-        let removedTracks = trackList.remove(at: indexes)
+        let removedTracks = trackList.removeTracks(at: indexes)
 
         if let playingTrackIndex = curTrackIndex {
 
@@ -102,28 +98,28 @@ class PlayQueue: PlayQueueProtocol, PersistentModelObject {
 
     func removeAllTracks() {
         
-        trackList.removeAll()
+        trackList.removeAllTracks()
         stop()
     }
 
     func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
-        return doMoveTracks {trackList.moveUp(from: indices)}
+        doMoveTracks {trackList.moveTracksUp(from: indices)}
     }
 
     func moveTracksDown(from indices: IndexSet) -> [TrackMoveResult] {
-        return doMoveTracks {trackList.moveDown(from: indices)}
+        doMoveTracks {trackList.moveTracksDown(from: indices)}
     }
 
     func moveTracksToTop(from indices: IndexSet) -> [TrackMoveResult] {
-        return doMoveTracks {trackList.moveToTop(from: indices)}
+        doMoveTracks {trackList.moveTracksToTop(from: indices)}
     }
 
     func moveTracksToBottom(from indices: IndexSet) -> [TrackMoveResult] {
-        return doMoveTracks {trackList.moveToBottom(from: indices)}
+        doMoveTracks {trackList.moveTracksToBottom(from: indices)}
     }
 
     func moveTracks(from sourceIndexes: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
-        return doMoveTracks {trackList.dragAndDropItems(sourceIndexes, dropIndex)}
+        doMoveTracks {trackList.moveTracks(from: sourceIndexes, to: dropIndex)}
     }
 
     private func doMoveTracks(_ moveOperation: () -> [TrackMoveResult]) -> [TrackMoveResult] {

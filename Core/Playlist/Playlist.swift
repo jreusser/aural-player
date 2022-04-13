@@ -176,7 +176,7 @@ class Playlist: PlaylistProtocol {
 //        return TrackRemovalResults(tracks: removedTracks, flatPlaylistResults: indexes,
 //                                   groupingPlaylistResults: groupingPlaylistResults)
         
-        return TrackRemovalResults(tracks: removedTracks, flatPlaylistResults: indexes)
+        return TrackRemovalResults(tracks: removedTracks, indices: indexes)
     }
     
     func indexOfTrack(_ track: Track) -> Int? {
@@ -276,7 +276,7 @@ class Playlist: PlaylistProtocol {
 //        return TrackRemovalResults(tracks: removedTracks, flatPlaylistResults: flatPlaylistResults,
 //                                   groupingPlaylistResults: groupingPlaylistResults)
         
-        return TrackRemovalResults(tracks: removedTracks, flatPlaylistResults: flatPlaylistResults)
+        return TrackRemovalResults(tracks: removedTracks, indices: flatPlaylistResults)
     }
     
     func moveTracksAndGroupsUp(_ tracks: [Track], _ groups: [Group], _ groupType: GroupType) -> ItemMoveResults {

@@ -576,9 +576,10 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <accessibility identifier="main"/>
-            <point key="canvasLocation" x="80" y="-124"/>
+            <point key="canvasLocation" x="-56" y="-549"/>
         </window>
         <customObject id="dFu-9T-Cey" customClass="AuralMenuController" customModule="Aural" customModuleProvider="target"/>
+        <customObject id="qFA-s7-21q" customClass="PlayQueueMenuController" customModule="Aural" customModuleProvider="target"/>
         <customObject id="pHc-NF-AW0" customClass="HistoryMenuController" customModule="Aural" customModuleProvider="target"/>
         <customObject id="T4A-WO-uwg" userLabel="Played Items Menu Controller" customClass="RecentlyPlayedMenuController" customModule="Aural" customModuleProvider="target">
             <connections>
@@ -915,6 +916,9 @@ DQ
 CA
 </string>
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="removeSelectedTracksAction:" target="qFA-s7-21q" id="0iS-rJ-e5W"/>
+                                </connections>
                             </menuItem>
                             <menuItem title=" Crop selected tracks" id="WRN-GZ-Cz0" userLabel="Crop selection">
                                 <imageReference key="image" image="scissors" catalog="system" symbolScale="small"/>
@@ -967,6 +971,9 @@ CA
                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                             </menuItem>
                         </items>
+                        <connections>
+                            <outlet property="delegate" destination="qFA-s7-21q" id="m8M-2e-ix3"/>
+                        </connections>
                     </menu>
                 </menuItem>
                 <menuItem title="Playback" id="zET-qM-yMn" userLabel="Playback">

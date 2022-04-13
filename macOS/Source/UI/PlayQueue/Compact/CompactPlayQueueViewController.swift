@@ -26,16 +26,18 @@ class CompactPlayQueueViewController: TableViewController {
     
     override var numberOfTracks: Int {playQueue.size}
     
+    override var trackList: TrackListProtocol {playQueue}
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         tableView.enableDragDrop()
         
+        messenger.subscribeAsync(to: .playQueue_trackAdded, handler: trackAdded(_:))
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
-    }
-    
-    override func track(forRow row: Int) -> Track? {
-        playQueue[row]
+        messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: tracksRemoved(_:))
+        
+        messenger.subscribe(to: .playQueue_removeTracks, handler: removeTracks)
     }
     
     override func view(forColumn column: NSUserInterfaceItemIdentifier, row: Int, track: Track) -> TableCellBuilder {
@@ -83,8 +85,6 @@ class CompactPlayQueueViewController: TableViewController {
     }
     
     private func tracksAdded(_ notif: PlayQueueTracksAddedNotification) {
-        
-        tableView.noteNumberOfRowsChanged()
-        tableView.reloadRows(notif.trackIndices.lowerBound..<rowCount)
+        tracksAdded(at: notif.trackIndices)
     }
 }

@@ -28,7 +28,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     
     private var compactViewController: CompactPlayQueueViewController = .init()
     
-    private let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
+//    private let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
     private let playQueue: PlayQueueDelegateProtocol = objectGraph.playQueueDelegate
     
     private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
@@ -55,7 +55,9 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         lblDurationSummary.font = Fonts.Player.infoBoxArtistAlbumFont
         lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
         
-        messenger.subscribe(to: .playQueue_tracksAdded, handler: updateSummary)
+        messenger.subscribeAsync(to: .playQueue_trackAdded, handler: updateSummary)
+        messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
+        messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: updateSummary)
         
         updateSummary()
     }

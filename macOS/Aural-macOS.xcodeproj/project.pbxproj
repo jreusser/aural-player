@@ -388,6 +388,8 @@
 		3E6C39F826AA110200AF5009 /* CutoffFrequencySliderPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C39F726AA110200AF5009 /* CutoffFrequencySliderPreviewCell.swift */; };
 		3E6C39FC26AA169500AF5009 /* FilterPreviewChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C39FB26AA169500AF5009 /* FilterPreviewChart.swift */; };
 		3E752744267F32A60092BB89 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E752743267F32A60092BB89 /* RoundedImageView.swift */; };
+		3E7AF1032806451B006DC98F /* TrackListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AF1022806451B006DC98F /* TrackListProtocol.swift */; };
+		3E7AF10528065441006DC98F /* PlayQueueMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AF10428065441006DC98F /* PlayQueueMenuController.swift */; };
 		3E7C35FE26AADD2A00B3552D /* FilterPresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C35FD26AADD2A00B3552D /* FilterPresetView.swift */; };
 		3E7C360126AADFA000B3552D /* FilterBandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C360026AADFA000B3552D /* FilterBandView.swift */; };
 		3E7C978D268BB8BE00287158 /* NSLayoutConstraintExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C978C268BB8BE00287158 /* NSLayoutConstraintExtensions.swift */; };
@@ -1792,6 +1794,8 @@
 		3E6C39F726AA110200AF5009 /* CutoffFrequencySliderPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutoffFrequencySliderPreviewCell.swift; sourceTree = "<group>"; };
 		3E6C39FB26AA169500AF5009 /* FilterPreviewChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPreviewChart.swift; sourceTree = "<group>"; };
 		3E752743267F32A60092BB89 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
+		3E7AF1022806451B006DC98F /* TrackListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListProtocol.swift; sourceTree = "<group>"; };
+		3E7AF10428065441006DC98F /* PlayQueueMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueMenuController.swift; sourceTree = "<group>"; };
 		3E7C35FD26AADD2A00B3552D /* FilterPresetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresetView.swift; sourceTree = "<group>"; };
 		3E7C360026AADFA000B3552D /* FilterBandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBandView.swift; sourceTree = "<group>"; };
 		3E7C978C268BB8BE00287158 /* NSLayoutConstraintExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtensions.swift; sourceTree = "<group>"; };
@@ -3365,6 +3369,7 @@
 		3E6C0FDD25CEB98600BF0D07 /* MenuControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3E7AF10428065441006DC98F /* PlayQueueMenuController.swift */,
 				3E3579CF26835A6A009522A0 /* GenericPresetPopupMenuController.swift */,
 				3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */,
 				3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */,
@@ -4256,6 +4261,7 @@
 			children = (
 				3EF1A0BD27E4E08A00E64F37 /* TrackList.swift */,
 				3EF1A0BF27E4E18700E64F37 /* TrackListIterator.swift */,
+				3E7AF1022806451B006DC98F /* TrackListProtocol.swift */,
 			);
 			path = TrackList;
 			sourceTree = "<group>";
@@ -5778,6 +5784,7 @@
 				3EFE37EF27864896006F8B8C /* RemoteControlPreferences.swift in Sources */,
 				3E6C124825CEBDF400BF0D07 /* GenresPlaylistViewController.swift in Sources */,
 				3EFE38AD27864896006F8B8C /* VariableRateNode.swift in Sources */,
+				3E7AF1032806451B006DC98F /* TrackListProtocol.swift in Sources */,
 				3EFE3AFF27864943006F8B8C /* FFmpegErrors.swift in Sources */,
 				3EFE397927864897006F8B8C /* PlaybackRequestContext.swift in Sources */,
 				3EFE38B927864896006F8B8C /* DelayUnitDelegateProtocol.swift in Sources */,
@@ -5947,6 +5954,7 @@
 				3E63620026850AC5006F5A2A /* PlayerFontScheme.swift in Sources */,
 				3E45C03625E1269500C1519C /* PlayerFontSchemeViewController.swift in Sources */,
 				3EFE398327864897006F8B8C /* StartPlaybackAction.swift in Sources */,
+				3E7AF10528065441006DC98F /* PlayQueueMenuController.swift in Sources */,
 				3EEFF58927DE842C002CB0FE /* PlayQueueDelegateProtocol.swift in Sources */,
 				3EFE387927864896006F8B8C /* DelayUnit.swift in Sources */,
 				3E6C130D25CEBE8F00BF0D07 /* PlayerSequencingViewController.swift in Sources */,

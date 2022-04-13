@@ -1,21 +1,9 @@
 import Foundation
 
-protocol PlayQueueDelegateProtocol {
-    
-    var tracks: [Track] {get}
-    var size: Int {get}
-    var duration: Double {get}
+protocol PlayQueueDelegateProtocol: TrackListProtocol {
     
     // Whether or not tracks are being added to the play queue (which could be time consuming)
     var isBeingModified: Bool {get}
-    
-    subscript(_ index: Int) -> Track? {get}
-    
-    func indexOfTrack(_ track: Track) -> Int?
-    
-    var summary: (size: Int, totalDuration: Double) {get}
-    
-    func search(_ searchQuery: SearchQuery) -> SearchResults
     
     // MARK: Mutating functions ---------------------------------------------------------------
     
@@ -29,29 +17,6 @@ protocol PlayQueueDelegateProtocol {
 
     // Inserts tracks immediately after the current track, i.e. "Play Next"
     func enqueueToPlayNext(_ newTracks: [Track]) -> ClosedRange<Int>
-    
-    // Inserts tracks from an external source (eg. saved playlist) at a given insertion index.
-    func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int>
-    
-    func removeTracks(at indices: IndexSet) -> [Track]
-
-    func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult]
-    
-    func moveTracksToTop(from indices: IndexSet) -> [TrackMoveResult]
-    
-    func moveTracksDown(from indices: IndexSet) -> [TrackMoveResult]
-    
-    func moveTracksToBottom(from indices: IndexSet) -> [TrackMoveResult]
-    
-    func moveTracks(from sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult]
-    
-    func export(to file: URL)
-    
-    func clear()
-    
-    func sort(_ sort: Sort)
-    
-    func sort(by comparator: (Track, Track) -> Bool)
     
     // MARK: Sequencing functions ---------------------------------------------------------------
     

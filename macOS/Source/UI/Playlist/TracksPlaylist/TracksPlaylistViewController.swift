@@ -287,7 +287,7 @@ class TracksPlaylistViewController: NSViewController, Destroyable {
     
     private func tracksRemoved(_ results: TrackRemovalResults) {
         
-        let indexes = results.flatPlaylistResults
+        let indexes = results.indices
         guard !indexes.isEmpty else {return}
         
         // Tell the playlist view that the number of rows has changed (should result in removal of rows)

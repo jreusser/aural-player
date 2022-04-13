@@ -18,7 +18,7 @@ struct TrackRemovalResults {
     let tracks: [Track]
     
     /// Result from the flat playlist (indexes)
-    let flatPlaylistResults: IndexSet
+    let indices: IndexSet
     
     /// Results from each of the grouping playlists (grouping info)
 //    let groupingPlaylistResults: [GroupType: [GroupedItemRemovalResult]]

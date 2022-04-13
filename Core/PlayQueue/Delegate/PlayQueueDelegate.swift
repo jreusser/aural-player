@@ -90,7 +90,7 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         let removedTracks = playQueue.removeTracks(at: indices)
 
         messenger.publish(.playQueue_tracksRemoved,
-                          payload: TrackRemovalResults(tracks: removedTracks, flatPlaylistResults: indices))
+                          payload: TrackRemovalResults(tracks: removedTracks, indices: indices))
 
         return removedTracks
     }
@@ -123,12 +123,12 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         }
     }
 
-    func clear() {
+    func removeAllTracks() {
         playQueue.removeAllTracks()
     }
 
-    func sort(_ sort: Sort) {
-        _ = playQueue.sort(sort)
+    func sort(_ sort: Sort) -> SortResults {
+        playQueue.sort(sort)
     }
 
     func sort(by comparator: (Track, Track) -> Bool) {
