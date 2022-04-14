@@ -46,9 +46,6 @@ class PlaybackView: NSView {
                                                                                                      ],
                                                                                                      button: btnLoop)
     
-    // Delegate that retrieves playback sequencing info (previous/next track)
-    private let sequencer: SequencerInfoDelegateProtocol = objectGraph.sequencerInfoDelegate
-    
     // When the buttons are in an "Off" state, they should be tinted according to the system color scheme's off state button color.
 //    var offStateTintFunction: TintFunction {{.gray}}
 //
@@ -59,24 +56,24 @@ class PlaybackView: NSView {
     
     override func awakeFromNib() {
         
-        // Button tool tips
-        btnPreviousTrack.toolTipFunction = {[weak self] in
-
-            if let prevTrack = self?.sequencer.peekPrevious() {
-                return String(format: "Previous track: '%@'", prevTrack.displayName)
-            }
-
-            return nil
-        }
-
-        btnNextTrack.toolTipFunction = {[weak self] in
-
-            if let nextTrack = self?.sequencer.peekNext() {
-                return String(format: "Next track: '%@'", nextTrack.displayName)
-            }
-
-            return nil
-        }
+//        // Button tool tips
+//        btnPreviousTrack.toolTipFunction = {[weak self] in
+//
+//            if let prevTrack = self?.sequencer.peekPrevious() {
+//                return String(format: "Previous track: '%@'", prevTrack.displayName)
+//            }
+//
+//            return nil
+//        }
+//
+//        btnNextTrack.toolTipFunction = {[weak self] in
+//
+//            if let nextTrack = self?.sequencer.peekNext() {
+//                return String(format: "Next track: '%@'", nextTrack.displayName)
+//            }
+//
+//            return nil
+//        }
 
         [btnPreviousTrack, btnNextTrack].forEach {$0?.updateTooltip()}
         

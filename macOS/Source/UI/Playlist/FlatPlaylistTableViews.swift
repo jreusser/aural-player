@@ -25,8 +25,6 @@ class AuralTableView: NSTableView {
         menuHandler(for: event)
     }
     
-    private var uiState: PlaylistUIState {objectGraph.playlistUIState}
-    
     // TODO: Rethink the right-click menu for playlists (should have different menus for single item / multi-item / empty selections)
     /*
         An event handler for customized contextual menu behavior.
@@ -52,7 +50,7 @@ class AuralTableView: NSTableView {
         
         // TODO: Shouldn't this be moved to AuralPlaylistTableView and AuralPlaylistOutlineView ?
         // Note that this view was clicked (this is required by the contextual menu)
-        uiState.registerTableViewClick(self)
+//        uiState.registerTableViewClick(self)
         
         return self.menu
     }

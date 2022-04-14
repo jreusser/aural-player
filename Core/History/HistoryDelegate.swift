@@ -29,23 +29,22 @@ class HistoryDelegate: HistoryDelegateProtocol {
     // Recently played items
     var recentlyPlayedItems: FixedSizeLRUArray<PlayedItem>
     
-    // Delegate used to perform CRUD on the playlist
-    private let playlist: PlaylistDelegateProtocol
-    
     // Delegate used to perform playback
     private let player: PlaybackDelegateProtocol
+    
+    private let playQueue: PlayQueueDelegateProtocol
     
     let backgroundQueue: DispatchQueue = .global(qos: .background)
     
     private lazy var messenger = Messenger(for: self, asyncNotificationQueue: backgroundQueue)
     
     init(persistentState: HistoryPersistentState?, _ preferences: HistoryPreferences,
-         _ playlist: PlaylistDelegateProtocol, _ player: PlaybackDelegateProtocol) {
+         _ playQueue: PlayQueueDelegateProtocol, _ player: PlaybackDelegateProtocol) {
         
         recentlyAddedItems = FixedSizeLRUArray<AddedItem>(size: preferences.recentlyAddedListSize)
         recentlyPlayedItems = FixedSizeLRUArray<PlayedItem>(size: preferences.recentlyPlayedListSize)
         
-        self.playlist = playlist
+        self.playQueue = playQueue
         self.player = player
         
         // Restore the history model object from persistent state
@@ -94,30 +93,30 @@ class HistoryDelegate: HistoryDelegateProtocol {
             throw FileNotFoundError(item)
         }
         
-        playlist.addFiles([item])
+//        playlist.addFiles([item])
     }
     
-    func playItem(_ item: URL, _ playlistType: PlaylistType) throws {
-        
-        do {
-            
-            // First, find or add the given file
-            if let newTrack = try playlist.findOrAddFile(item) {
-            
-                // Play it
-                player.play(newTrack)
-            }
-            
-        } catch {
-            
-            if let fnfError = error as? FileNotFoundError {
-                
-                // Log and rethrow error
-                NSLog("Unable to play History item. Details: %@", fnfError.message)
-                throw fnfError
-            }
-        }
-    }
+//    func playItem(_ item: URL, _ playlistType: PlaylistType) throws {
+//        
+//        do {
+//
+//            // First, find or add the given file
+//            if let newTrack = try playlist.findOrAddFile(item) {
+//
+//                // Play it
+//                player.play(newTrack)
+//            }
+//
+//        } catch {
+//
+//            if let fnfError = error as? FileNotFoundError {
+//
+//                // Log and rethrow error
+//                NSLog("Unable to play History item. Details: %@", fnfError.message)
+//                throw fnfError
+//            }
+//        }
+//    }
     
     func deleteItem(_ item: AddedItem) {
         recentlyAddedItems.remove(item)
@@ -158,16 +157,16 @@ class HistoryDelegate: HistoryDelegateProtocol {
         
         for file in files {
             
-            if let track = playlist.findFile(file) {
-                
-                // Track
-                recentlyAddedItems.add(AddedItem(track, now))
-                
-            } else {
-                
-                // Folder or playlist
-                recentlyAddedItems.add(AddedItem(file, now))
-            }
+//            if let track = playlist.findFile(file) {
+//
+//                // Track
+//                recentlyAddedItems.add(AddedItem(track, now))
+//
+//            } else {
+//
+//                // Folder or playlist
+//                recentlyAddedItems.add(AddedItem(file, now))
+//            }
         }
         
         messenger.publish(.history_updated)

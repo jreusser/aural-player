@@ -51,6 +51,18 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         messenger.subscribe(to: .application_launched, handler: appLaunched(_:))
         messenger.subscribe(to: .application_reopened, handler: appReopened(_:))
     }
+    
+    func hasTrack(_ track: Track) -> Bool {
+        playQueue.hasTrack(track)
+    }
+    
+    func hasTrackForFile(_ file: URL) -> Bool {
+        playQueue.hasTrackForFile(file)
+    }
+    
+    func findTrackByFile(_ file: URL) -> Track? {
+        playQueue.findTrackByFile(file)
+    }
 
     func indexOfTrack(_ track: Track) -> Int? {
         return playQueue.indexOfTrack(track)
@@ -60,9 +72,9 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         playQueue[index]
     }
 
-    func search(_ searchQuery: SearchQuery) -> SearchResults {
-        return playQueue.search(searchQuery)
-    }
+//    func search(_ searchQuery: SearchQuery) -> SearchResults {
+//        return playQueue.search(searchQuery)
+//    }
 
     func enqueueToPlayLater(_ newTracks: [Track]) -> ClosedRange<Int> {
 
@@ -131,13 +143,13 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         playQueue.removeAllTracks()
     }
 
-    func sort(_ sort: Sort) -> SortResults {
-        playQueue.sort(sort)
-    }
-
-    func sort(by comparator: (Track, Track) -> Bool) {
-        playQueue.sort(by: comparator)
-    }
+//    func sort(_ sort: Sort) -> SortResults {
+//        playQueue.sort(sort)
+//    }
+//
+//    func sort(by comparator: (Track, Track) -> Bool) {
+//        playQueue.sort(by: comparator)
+//    }
     
     func exportToFile(_ file: URL) {
         playQueue.exportToFile(file)

@@ -12,16 +12,16 @@ import Foundation
 ///
 /// A base class for commands sent to the playlist.
 ///
-class PlaylistCommandNotification: NotificationPayload {
-
-    let notificationName: Notification.Name
-    
-    // Helps determine which playlist view(s) the command is intended for.
-    let viewSelector: PlaylistViewSelector
-    
-    init(notificationName: Notification.Name, viewSelector: PlaylistViewSelector) {
-        
-        self.notificationName = notificationName
-        self.viewSelector = viewSelector
-    }
-}
+//class PlaylistCommandNotification: NotificationPayload {
+//
+//    let notificationName: Notification.Name
+//    
+//    // Helps determine which playlist view(s) the command is intended for.
+//    let viewSelector: PlaylistViewSelector
+//    
+//    init(notificationName: Notification.Name, viewSelector: PlaylistViewSelector) {
+//        
+//        self.notificationName = notificationName
+//        self.viewSelector = viewSelector
+//    }
+//}

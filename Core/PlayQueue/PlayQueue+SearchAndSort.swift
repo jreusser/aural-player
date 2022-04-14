@@ -12,15 +12,15 @@ import Foundation
 
 extension PlayQueue {
     
-    func search(_ searchQuery: SearchQuery) -> SearchResults {
-
-//        return SearchResults(tracks.compactMap {executeQuery($0, searchQuery)}.map {
+//    func search(_ searchQuery: SearchQuery) -> SearchResults {
 //
-//            SearchResult(location: SearchResultLocation(trackIndex: -1, track: $0.track),
-//                         match: ($0.matchedField, $0.matchedFieldValue))
-//        })
-        SearchResults([])
-    }
+////        return SearchResults(tracks.compactMap {executeQuery($0, searchQuery)}.map {
+////
+////            SearchResult(location: SearchResultLocation(trackIndex: -1, track: $0.track),
+////                         match: ($0.matchedField, $0.matchedFieldValue))
+////        })
+//        SearchResults([])
+//    }
 
     private func executeQuery(_ track: Track, _ query: SearchQuery) -> [Track] {
 
@@ -47,13 +47,13 @@ extension PlayQueue {
         return []
     }
 
-    func sort(_ sort: Sort) -> SortResults {
-
-//        tracks.sort(by: SortComparator(sort, {track in track.defaultDisplayName}).compareTracks)
-        return SortResults(.tracks, sort)
-    }
-
-    func sort(by comparator: (Track, Track) -> Bool) {
-//        tracks.sort(by: comparator)
-    }
+//    func sort(_ sort: Sort) -> SortResults {
+//
+////        tracks.sort(by: SortComparator(sort, {track in track.defaultDisplayName}).compareTracks)
+//        return SortResults(.tracks, sort)
+//    }
+//
+//    func sort(by comparator: (Track, Track) -> Bool) {
+////        tracks.sort(by: comparator)
+//    }
 }

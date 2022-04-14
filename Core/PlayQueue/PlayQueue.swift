@@ -1,20 +1,8 @@
 import Foundation
 
-class PlayQueue: PlayQueueProtocol, PersistentModelObject {
-    
-    var trackList: TrackList = TrackList()
-    
-    var tracks: [Track] {
-        trackList.tracks
-    }
+class PlayQueue: TrackListWrapper, PlayQueueProtocol, PersistentModelObject {
     
     // MARK: Accessor functions
-
-    var size: Int {trackList.size}
-
-    var duration: Double {
-        trackList.reduce(0.0, {(totalSoFar: Double, track: Track) -> Double in totalSoFar + track.duration})
-    }
 
     // Stores the currently playing track, if there is one
     var currentTrack: Track? {
@@ -25,16 +13,6 @@ class PlayQueue: PlayQueueProtocol, PersistentModelObject {
     
     var curTrackIndex: Int? = nil
 
-    subscript(_ index: Int) -> Track? {
-        trackList[index]
-    }
-
-    func indexOfTrack(_ track: Track) -> Int?  {
-        trackList.indexOfTrack(track)
-    }
-
-    var summary: (size: Int, totalDuration: Double) {(size, duration)}
-    
     var repeatMode: RepeatMode = .defaultMode
     var shuffleMode: ShuffleMode = .defaultMode
     
@@ -70,13 +48,19 @@ class PlayQueue: PlayQueueProtocol, PersistentModelObject {
         return trackList.insertTracks(newTracks, at: insertionPoint)
     }
     
-    func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
+    override func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
         
-        trackList.insertTracks(newTracks, at: insertionIndex)
-        return insertionIndex...(insertionIndex + newTracks.lastIndex)
+        let indices = super.insertTracks(newTracks, at: insertionIndex)
+        
+        // Check if the new tracks were inserted above (<) or below (>) the playing track index.
+        if let playingTrackIndex = curTrackIndex, insertionIndex <= playingTrackIndex {
+            curTrackIndex = playingTrackIndex + newTracks.count
+        }
+        
+        return indices
     }
-
-    func removeTracks(at indexes: IndexSet) -> [Track] {
+    
+    override func removeTracks(at indexes: IndexSet) -> [Track] {
 
         let removedTracks = trackList.removeTracks(at: indexes)
 
@@ -96,30 +80,30 @@ class PlayQueue: PlayQueueProtocol, PersistentModelObject {
         return removedTracks
     }
 
-    func removeAllTracks() {
+    override func removeAllTracks() {
         
-        trackList.removeAllTracks()
+        super.removeAllTracks()
         stop()
     }
 
-    func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
-        doMoveTracks {trackList.moveTracksUp(from: indices)}
+    override func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
+        doMoveTracks {super.moveTracksUp(from: indices)}
     }
 
-    func moveTracksDown(from indices: IndexSet) -> [TrackMoveResult] {
-        doMoveTracks {trackList.moveTracksDown(from: indices)}
+    override func moveTracksDown(from indices: IndexSet) -> [TrackMoveResult] {
+        doMoveTracks {super.moveTracksDown(from: indices)}
     }
 
-    func moveTracksToTop(from indices: IndexSet) -> [TrackMoveResult] {
-        doMoveTracks {trackList.moveTracksToTop(from: indices)}
+    override func moveTracksToTop(from indices: IndexSet) -> [TrackMoveResult] {
+        doMoveTracks {super.moveTracksToTop(from: indices)}
     }
 
-    func moveTracksToBottom(from indices: IndexSet) -> [TrackMoveResult] {
-        doMoveTracks {trackList.moveTracksToBottom(from: indices)}
+    override func moveTracksToBottom(from indices: IndexSet) -> [TrackMoveResult] {
+        doMoveTracks {super.moveTracksToBottom(from: indices)}
     }
 
-    func moveTracks(from sourceIndexes: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
-        doMoveTracks {trackList.moveTracks(from: sourceIndexes, to: dropIndex)}
+    override func moveTracks(from sourceIndexes: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
+        doMoveTracks {super.moveTracks(from: sourceIndexes, to: dropIndex)}
     }
 
     private func doMoveTracks(_ moveOperation: () -> [TrackMoveResult]) -> [TrackMoveResult] {
@@ -135,10 +119,6 @@ class PlayQueue: PlayQueueProtocol, PersistentModelObject {
         }
 
         return moveResults
-    }
-    
-    func exportToFile(_ file: URL) {
-        trackList.exportToFile(file)
     }
     
     var persistentState: PlayQueuePersistentState {

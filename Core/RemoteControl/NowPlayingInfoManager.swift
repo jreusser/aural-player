@@ -26,7 +26,7 @@ class NowPlayingInfoManager: NSObject {
     private let audioGraph: AudioGraphDelegateProtocol
     
     /// Provides current playback sequence information (eg. repeat / shuffle modes, how many tracks are in the playback queue, etc).
-    private let sequencer: SequencerInfoDelegateProtocol
+    private let playQueue: PlayQueueDelegateProtocol
     
     /// 50x50 is the size of the image view in macOS Control Center.
     private static let optimalArtworkSize: CGSize = CGSize(width: 50, height: 50)
@@ -42,11 +42,11 @@ class NowPlayingInfoManager: NSObject {
     private lazy var messenger = Messenger(for: self)
     
     init(playbackInfo: PlaybackInfoDelegateProtocol, audioGraph: AudioGraphDelegateProtocol,
-         sequencer: SequencerInfoDelegateProtocol) {
+         playQueue: PlayQueueDelegateProtocol) {
         
         self.playbackInfo = playbackInfo
         self.audioGraph = audioGraph
-        self.sequencer = sequencer
+        self.playQueue = playQueue
         
         super.init()
     }
@@ -129,8 +129,8 @@ class NowPlayingInfoManager: NSObject {
         
         // Playback sequence scope
         
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackQueueIndex] = UInt(sequencer.sequenceInfo.trackIndex)
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackQueueCount] = UInt(sequencer.sequenceInfo.totalTracks)
+//        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackQueueIndex] = UInt(sequencer.sequenceInfo.trackIndex)
+//        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackQueueCount] = UInt(sequencer.sequenceInfo.totalTracks)
         
         // Update the nowPlayingInfo dictionary in the Now Playing Info Center.
         

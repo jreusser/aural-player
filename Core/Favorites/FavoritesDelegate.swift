@@ -23,18 +23,17 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     
     private let favorites: Favorites
     
-    // Delegate used to perform CRUD on the playlist
-    private let playlist: PlaylistDelegateProtocol
+    private let playQueue: PlayQueueDelegateProtocol
     
     // Delegate used to perform playback
     private let player: PlaybackDelegateProtocol
     
     private lazy var messenger = Messenger(for: self)
     
-    init(persistentState: [FavoritePersistentState]?, _ playlist: PlaylistDelegateProtocol, _ player: PlaybackDelegateProtocol) {
+    init(persistentState: [FavoritePersistentState]?, _ playQueue: PlayQueueDelegateProtocol, _ player: PlaybackDelegateProtocol) {
         
         self.player = player
-        self.playlist = playlist
+        self.playQueue = playQueue
         
         let allFavorites = persistentState?.compactMap {Favorite(persistentState: $0)} ?? []
         self.favorites = Favorites(systemDefinedObjects: [], userDefinedObjects: allFavorites)
@@ -89,23 +88,23 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     
     func playFavorite(_ favorite: Favorite) throws {
         
-        do {
-            // First, find or add the given file
-            if let newTrack = try playlist.findOrAddFile(favorite.file) {
-            
-                // Try playing it
-                player.play(newTrack)
-            }
-            
-        } catch {
-            
-            if let fnfError = error as? FileNotFoundError {
-                
-                // Log and rethrow error
-                NSLog("Unable to play Favorites item. Details: %@", fnfError.message)
-                throw fnfError
-            }
-        }
+//        do {
+//            // First, find or add the given file
+//            if let newTrack = try playQueue.findOrAddFile(favorite.file) {
+//            
+//                // Try playing it
+//                player.play(newTrack)
+//            }
+//            
+//        } catch {
+//            
+//            if let fnfError = error as? FileNotFoundError {
+//                
+//                // Log and rethrow error
+//                NSLog("Unable to play Favorites item. Details: %@", fnfError.message)
+//                throw fnfError
+//            }
+//        }
     }
     
     var persistentState: [FavoritePersistentState] {

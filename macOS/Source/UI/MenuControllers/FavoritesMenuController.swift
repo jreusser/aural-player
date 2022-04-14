@@ -22,7 +22,7 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
     
     private lazy var playbackInfo: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
     
-    private lazy var playlist: PlaylistDelegateProtocol = objectGraph.playlistDelegate
+//    private lazy var playlist: PlaylistDelegateProtocol = objectGraph.playlistDelegate
     
     private lazy var managerWindowController: PresetsManagerWindowController = PresetsManagerWindowController.instance
     
@@ -83,15 +83,15 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
         
         artLoadingQueue.addOperation {[weak self] in
             
-            if let theImage = self?.playlist.findFile(item.file)?.art?.image ?? self?.fileReader.getArt(for: item.file)?.image,
-               let imgCopy = theImage.copy() as? NSImage {
-                
-                imgCopy.size = menuItemCoverArtImageSize
-                
-                DispatchQueue.main.async {
-                    menuItem.image = imgCopy
-                }
-            }
+//            if let theImage = self?.playlist.findFile(item.file)?.art?.image ?? self?.fileReader.getArt(for: item.file)?.image,
+//               let imgCopy = theImage.copy() as? NSImage {
+//                
+//                imgCopy.size = menuItemCoverArtImageSize
+//                
+//                DispatchQueue.main.async {
+//                    menuItem.image = imgCopy
+//                }
+//            }
         }
         
         menuItem.favorite = item

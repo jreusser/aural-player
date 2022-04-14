@@ -35,13 +35,13 @@ class RemoteControlManager {
     var trackChangeOrSeekingOption: TrackChangeOrSeekingOptions {remoteControlPreferences.trackChangeOrSeekingOption}
     var seekInterval: Double {Double(playbackPreferences.primarySeekLengthConstant)}
     
-    init(playbackInfo: PlaybackInfoDelegateProtocol, audioGraph: AudioGraphDelegateProtocol, sequencer: SequencerInfoDelegateProtocol,
+    init(playbackInfo: PlaybackInfoDelegateProtocol, playQueue: PlayQueueDelegateProtocol, audioGraph: AudioGraphDelegateProtocol,
          preferences: Preferences) {
         
         self.remoteCommandManager = RemoteCommandManager()
         
-        self.nowPlayingInfoManager = NowPlayingInfoManager(playbackInfo: playbackInfo, audioGraph: audioGraph,
-                                                      sequencer: sequencer)
+        // TODO: Replace last arg with constructor arg
+        self.nowPlayingInfoManager = NowPlayingInfoManager(playbackInfo: playbackInfo, audioGraph: audioGraph, playQueue: playQueue)
         
         self.preferences = preferences
         

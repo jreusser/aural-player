@@ -19,6 +19,9 @@ class TrackList: TrackListProtocol, Sequence {
     
     private(set) var tracks: [Track] = []
     
+    // A map to quickly look up tracks by (absolute) file path (used when adding tracks, to prevent duplicates)
+    private var tracksByFile: [URL: Track] = [:]
+    
     var size: Int {
         tracks.count
     }
@@ -57,6 +60,18 @@ class TrackList: TrackListProtocol, Sequence {
     
     func indexOfTrack(_ track: Track) -> Int?  {
         tracks.firstIndex(of: track)
+    }
+    
+    func hasTrack(_ track: Track) -> Bool {
+        tracks.contains(track)
+    }
+    
+    func hasTrackForFile(_ file: URL) -> Bool {
+        tracksByFile[file] != nil
+    }
+    
+    func findTrackByFile(_ file: URL) -> Track? {
+        tracksByFile[file]
     }
     
     func addTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
@@ -101,19 +116,19 @@ class TrackList: TrackListProtocol, Sequence {
         tracks.dragAndDropItems(sourceIndices, dropIndex).map {TrackMoveResult($0.key, $0.value)}
     }
     
-    // TODO:
-    func search(_ searchQuery: SearchQuery) -> SearchResults {
-        SearchResults([])
-    }
-    
-    // TODO:
-    func sort(_ sort: Sort) -> SortResults {
-        return SortResults(.tracks, .init())
-    }
-    
-    func sort(by comparator: (Track, Track) -> Bool) {
-        // TODO:
-    }
+//    // TODO:
+//    func search(_ searchQuery: SearchQuery) -> SearchResults {
+//        SearchResults([])
+//    }
+//    
+//    // TODO:
+//    func sort(_ sort: Sort) -> SortResults {
+//        return SortResults(.tracks, .init())
+//    }
+//    
+//    func sort(by comparator: (Track, Track) -> Bool) {
+//        // TODO:
+//    }
     
     func exportToFile(_ file: URL) {
         

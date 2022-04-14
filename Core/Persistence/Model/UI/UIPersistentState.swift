@@ -23,7 +23,7 @@ struct UIPersistentState: Codable {
     let fontSchemes: FontSchemesPersistentState?
     let colorSchemes: ColorSchemesPersistentState?
     let player: PlayerUIPersistentState?
-    let playlist: PlaylistUIPersistentState?
+//    let playlist: PlaylistUIPersistentState?
     let visualizer: VisualizerUIPersistentState?
     let windowAppearance: WindowAppearancePersistentState?
     

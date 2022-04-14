@@ -21,7 +21,7 @@ struct TrackAddedNotification: NotificationPayload {
     let trackIndex: Int
     
     // Grouping info (parent groups) for the newly added track
-    let groupingInfo: [GroupType: GroupedTrackAddResult]
+//    let groupingInfo: [GroupType: GroupedTrackAddResult]
     
     // The current progress of the track add operation (See TrackAddOperationProgress)
     let addOperationProgress: TrackAddOperationProgress

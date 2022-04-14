@@ -71,7 +71,7 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
     
     private lazy var playerUIState: PlayerUIState = objectGraph.playerUIState
-    private lazy var playlistUIState: PlaylistUIState = objectGraph.playlistUIState
+//    private lazy var playlistUIState: PlaylistUIState = objectGraph.playlistUIState
     
     override func viewDidLoad() {
         
@@ -152,7 +152,7 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     
     // Shows (selects) the currently playing track, within the playlist, if there is one
     @IBAction func showPlayingTrackAction(_ sender: Any) {
-        messenger.publish(.playlist_showPlayingTrack, payload: playlistUIState.currentViewSelector)
+//        messenger.publish(.playlist_showPlayingTrack, payload: playlistUIState.currentViewSelector)
     }
     
     // Adds/removes the currently playing track to/from the "Favorites" list

@@ -22,7 +22,7 @@ class StartPlaybackChain: PlaybackChain {
     
     private(set) lazy var messenger = Messenger(for: self)
     
-    init(_ player: PlayerProtocol, playQueue: PlayQueueProtocol, _ playlist: PlaylistProtocol,
+    init(_ player: PlayerProtocol, playQueue: PlayQueueProtocol,
          trackReader: TrackReader, _ profiles: PlaybackProfiles, _ preferences: PlaybackPreferences) {
         
         self.player = player

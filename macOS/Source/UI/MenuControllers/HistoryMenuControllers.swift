@@ -35,7 +35,7 @@ class HistoryMenuItem: NSMenuItem {
     var historyItem: HistoryItem!
 }
 
-fileprivate let playlist: PlaylistDelegateProtocol = objectGraph.playlistDelegate
+//fileprivate let playlist: PlaylistDelegateProtocol = objectGraph.playlistDelegate
 fileprivate let fileReader: FileReader = objectGraph.fileReader
 
 fileprivate func artForFile(_ _file: URL) -> NSImage? {
@@ -63,7 +63,8 @@ fileprivate func artForFile(_ _file: URL) -> NSImage? {
             
         } else if SupportedTypes.allAudioExtensions.contains(fileExtension) {
             
-            return (playlist.findFile(file)?.art?.image ?? fileReader.getArt(for: file)?.image)?.imageCopy()
+//            return (playlist.findFile(file)?.art?.image ?? fileReader.getArt(for: file)?.image)?.imageCopy()
+            return nil
         }
     }
     
@@ -183,8 +184,6 @@ class RecentlyPlayedMenuController: NSObject, NSMenuDelegate {
     // Delegate that performs CRUD on the history model
     private let history: HistoryDelegateProtocol = objectGraph.historyDelegate
     
-    private lazy var playlistUIState: PlaylistUIState = objectGraph.playlistUIState
-    
     // Before the menu opens, re-create the menu items from the model
     func menuWillOpen(_ menu: NSMenu) {
         
@@ -201,25 +200,25 @@ class RecentlyPlayedMenuController: NSObject, NSMenuDelegate {
     // When a "Recently played" or "Favorites" menu item is clicked, the item is played
     @IBAction fileprivate func playSelectedItemAction(_ sender: HistoryMenuItem) {
         
-        if let item = sender.historyItem as? PlayedItem {
-            
-            do {
-                
-                try history.playItem(item.file, playlistUIState.currentView)
-                
-            } catch {
-                
-                if let fnfError = error as? FileNotFoundError {
-                    
-                    // This needs to be done async. Otherwise, other open dialogs could hang.
-                    DispatchQueue.main.async {
-                        
-                        // Position and display an alert with error info
-                        _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove item").showModal()
-                        self.history.deleteItem(item)
-                    }
-                }
-            }
-        }
+//        if let item = sender.historyItem as? PlayedItem {
+//            
+//            do {
+//                
+//                try history.playItem(item.file, playlistUIState.currentView)
+//                
+//            } catch {
+//                
+//                if let fnfError = error as? FileNotFoundError {
+//                    
+//                    // This needs to be done async. Otherwise, other open dialogs could hang.
+//                    DispatchQueue.main.async {
+//                        
+//                        // Position and display an alert with error info
+//                        _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove item").showModal()
+//                        self.history.deleteItem(item)
+//                    }
+//                }
+//            }
+//        }
     }
 }

@@ -33,7 +33,7 @@ protocol HistoryDelegateProtocol {
     func addItem(_ item: URL) throws
     
     // Plays a given item track. The "playlistType" parameter is used to initialize the new playback sequence, based on the current playlist view.
-    func playItem(_ item: URL, _ playlistType: PlaylistType) throws
+//    func playItem(_ item: URL, _ playlistType: PlaylistType) throws
     
     func resizeLists(_ recentlyAddedListSize: Int, _ recentlyPlayedListSize: Int)
     

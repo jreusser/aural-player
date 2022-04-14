@@ -25,7 +25,6 @@ class BookmarksMenuController: NSObject, NSMenuDelegate {
     
     private lazy var managerWindowController: PresetsManagerWindowController = PresetsManagerWindowController.instance
     
-    private lazy var playlist: PlaylistDelegateProtocol = objectGraph.playlistDelegate
     private lazy var fileReader: FileReader = objectGraph.fileReader
     
     private lazy var messenger = Messenger(for: self)
@@ -78,15 +77,15 @@ class BookmarksMenuController: NSObject, NSMenuDelegate {
         
         artLoadingQueue.addOperation {[weak self] in
             
-            if let theImage = self?.playlist.findFile(bookmark.file)?.art?.image ?? self?.fileReader.getArt(for: bookmark.file)?.image,
-               let imgCopy = theImage.copy() as? NSImage {
-                
-                imgCopy.size = menuItemCoverArtImageSize
-                
-                DispatchQueue.main.async {
-                    menuItem.image = imgCopy
-                }
-            }
+//            if let theImage = self?.playlist.findFile(bookmark.file)?.art?.image ?? self?.fileReader.getArt(for: bookmark.file)?.image,
+//               let imgCopy = theImage.copy() as? NSImage {
+//                
+//                imgCopy.size = menuItemCoverArtImageSize
+//                
+//                DispatchQueue.main.async {
+//                    menuItem.image = imgCopy
+//                }
+//            }
         }
         
         menuItem.bookmark = bookmark

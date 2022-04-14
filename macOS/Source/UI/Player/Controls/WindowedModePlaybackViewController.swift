@@ -71,11 +71,11 @@ class WindowedModePlaybackViewController: PlaybackViewController {
                 playTrack(track)
             }
             
-        case .group:
-            
-            if let group = command.group {
-                playGroup(group)
-            }
+//        case .group:
+//
+//            if let group = command.group {
+//                playGroup(group)
+//            }
         }
     }
     
@@ -87,9 +87,9 @@ class WindowedModePlaybackViewController: PlaybackViewController {
         player.play(track, PlaybackParams.defaultParams())
     }
     
-    func playGroup(_ group: Group) {
-        player.play(group, PlaybackParams.defaultParams())
-    }
+//    func playGroup(_ group: Group) {
+//        player.play(group, PlaybackParams.defaultParams())
+//    }
     
     func seekBackward_secondary() {
         

@@ -23,7 +23,7 @@ struct TrackPlaybackCommandNotification: NotificationPayload {
     // Only one of these 3 fields will be non-nil, depending on the command type
     var index: Int? = nil
     var track: Track? = nil
-    var group: Group? = nil
+//    var group: Group? = nil
     
     // Initialize the request with a track index. This will be done from the Tracks playlist.
     init(index: Int) {
@@ -40,11 +40,11 @@ struct TrackPlaybackCommandNotification: NotificationPayload {
     }
     
     // Initialize the request with a group. This will be done from a grouping/hierarchical playlist.
-    init(group: Group) {
-        
-        self.group = group
-        self.type = .group
-    }
+//    init(group: Group) {
+//
+//        self.group = group
+//        self.type = .group
+//    }
 }
 
 // Enumerates all the possible playback command types. See PlaybackCommandNotification.
@@ -57,5 +57,5 @@ enum PlaybackCommandType {
     case track
     
     // Play the given group
-    case group
+//    case group
 }

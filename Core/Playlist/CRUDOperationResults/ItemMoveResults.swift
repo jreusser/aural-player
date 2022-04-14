@@ -18,7 +18,7 @@ struct ItemMoveResults {
     let results: [TrackMoveResult]
     
     // The type of the playlist in which the tracks/groups were moved
-    let playlistType: PlaylistType
+//    let playlistType: PlaylistType
 }
 
 ///

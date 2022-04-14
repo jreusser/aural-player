@@ -52,10 +52,8 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var rememberLastPositionMenuItem: ToggleMenuItem!
     
     private lazy var playbackInfo: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
-    private lazy var sequenceInfo: SequencerInfoDelegateProtocol = objectGraph.sequencerInfoDelegate
     private lazy var playbackProfiles: PlaybackProfiles = objectGraph.playbackDelegate.profiles
     
-    private lazy var playlist: PlaylistAccessorDelegateProtocol = objectGraph.playlistAccessorDelegate
     private lazy var playQueue: PlayQueueDelegateProtocol = objectGraph.playQueueDelegate
     
     private let preferences: PlaybackPreferences = objectGraph.preferences.playbackPreferences
@@ -65,8 +63,6 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
     private lazy var messenger = Messenger(for: self)
     
     private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-    
-    private lazy var playlistUIState: PlaylistUIState = objectGraph.playlistUIState
     
     // One-time setup
     override func awakeFromNib() {
@@ -242,7 +238,7 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
     
     // Shows (selects) the currently playing track, within the playlist, if there is one
     @IBAction func showPlayingTrackAction(_ sender: Any) {
-        messenger.publish(.playlist_showPlayingTrack, payload: playlistUIState.currentViewSelector)
+//        messenger.publish(.playlist_showPlayingTrack, payload: playlistUIState.currentViewSelector)
     }
     
     @IBAction func rememberLastPositionAction(_ sender: ToggleMenuItem) {
@@ -252,28 +248,28 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
     // Updates the menu item states per the current playback modes
     private func updateRepeatAndShuffleMenuItemStates() {
         
-        let modes = sequenceInfo.repeatAndShuffleModes
-        
-        shuffleOffMenuItem.onIf(modes.shuffleMode == .off)
-        shuffleOnMenuItem.onIf(modes.shuffleMode == .on)
-        
-        switch modes.repeatMode {
-            
-        case .off:
-            
-            repeatOffMenuItem.on()
-            [repeatOneMenuItem, repeatAllMenuItem].forEach {$0?.off()}
-            
-        case .one:
-            
-            repeatOneMenuItem.on()
-            [repeatOffMenuItem, repeatAllMenuItem].forEach {$0?.off()}
-            
-        case .all:
-            
-            repeatAllMenuItem.on()
-            [repeatOffMenuItem, repeatOneMenuItem].forEach {$0?.off()}
-        }
+//        let modes = sequenceInfo.repeatAndShuffleModes
+//
+//        shuffleOffMenuItem.onIf(modes.shuffleMode == .off)
+//        shuffleOnMenuItem.onIf(modes.shuffleMode == .on)
+//
+//        switch modes.repeatMode {
+//
+//        case .off:
+//
+//            repeatOffMenuItem.on()
+//            [repeatOneMenuItem, repeatAllMenuItem].forEach {$0?.off()}
+//
+//        case .one:
+//
+//            repeatOneMenuItem.on()
+//            [repeatOffMenuItem, repeatAllMenuItem].forEach {$0?.off()}
+//
+//        case .all:
+//
+//            repeatAllMenuItem.on()
+//            [repeatOffMenuItem, repeatOneMenuItem].forEach {$0?.off()}
+//        }
     }
     
     deinit {

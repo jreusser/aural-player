@@ -18,11 +18,17 @@ protocol TrackListProtocol {
     
     func indexOfTrack(_ track: Track) -> Int?
     
+    func hasTrack(_ track: Track) -> Bool
+    
+    func hasTrackForFile(_ file: URL) -> Bool
+    
+    func findTrackByFile(_ file: URL) -> Track?
+    
     subscript(_ index: Int) -> Track? {get}
     
     var summary: (size: Int, totalDuration: Double) {get}
     
-    func search(_ searchQuery: SearchQuery) -> SearchResults
+//    func search(_ searchQuery: SearchQuery) -> SearchResults
     
     // Inserts tracks from an external source (eg. saved playlist) at a given insertion index.
     func insertTracks(_ tracks: [Track], at insertionIndex: Int) -> ClosedRange<Int>
@@ -41,9 +47,9 @@ protocol TrackListProtocol {
     
     func removeAllTracks()
     
-    func sort(_ sort: Sort) -> SortResults
-    
-    func sort(by comparator: (Track, Track) -> Bool)
+//    func sort(_ sort: Sort) -> SortResults
+//    
+//    func sort(by comparator: (Track, Track) -> Bool)
     
     func exportToFile(_ file: URL)
 }

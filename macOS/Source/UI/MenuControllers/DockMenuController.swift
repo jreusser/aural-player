@@ -46,17 +46,12 @@ class DockMenuController: NSObject, NSMenuDelegate {
     // Delegate that retrieves current playback info (e.g. currently playing track)
     private lazy var playbackInfo: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
     
-    // Delegate that retrieves current playback sequence info (e.g. repeat/shuffle modes)
-    private lazy var sequenceInfo: SequencerInfoDelegateProtocol = objectGraph.sequencerInfoDelegate
-    
     // Delegate that performs CRUD on the history model
     private lazy var history: HistoryDelegateProtocol = objectGraph.historyDelegate
     private lazy var favorites: FavoritesDelegateProtocol = objectGraph.favoritesDelegate
     private lazy var bookmarks: BookmarksDelegateProtocol = objectGraph.bookmarksDelegate
     
     private lazy var messenger = Messenger(for: self)
-    
-    private lazy var playlistUIState: PlaylistUIState = objectGraph.playlistUIState
     
     // One-time setup. When the menu is loaded for the first time, update the menu item states per the current playback modes
     override func awakeFromNib() {
@@ -156,26 +151,26 @@ class DockMenuController: NSObject, NSMenuDelegate {
     // When a "Recently played" or "Favorites" menu item is clicked, the item is played
     @IBAction func playSelectedHistoryItemAction(_ sender: HistoryMenuItem) {
         
-        if let item = sender.historyItem as? PlayedItem {
-            
-            do {
-                
-                try history.playItem(item.file, playlistUIState.currentView)
-                
-            } catch {
-                
-                if let fnfError = error as? FileNotFoundError {
-                    
-                    // This needs to be done async. Otherwise, other open dialogs could hang.
-                    DispatchQueue.main.async {
-                        
-                        // Position and display an alert with error info
-                        _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove item").showModal()
-                        self.history.deleteItem(item)
-                    }
-                }
-            }
-        }
+//        if let item = sender.historyItem as? PlayedItem {
+//
+//            do {
+//
+//                try history.playItem(item.file, playlistUIState.currentView)
+//
+//            } catch {
+//
+//                if let fnfError = error as? FileNotFoundError {
+//
+//                    // This needs to be done async. Otherwise, other open dialogs could hang.
+//                    DispatchQueue.main.async {
+//
+//                        // Position and display an alert with error info
+//                        _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove item").showModal()
+//                        self.history.deleteItem(item)
+//                    }
+//                }
+//            }
+//        }
     }
     
     @IBAction func playSelectedFavoriteAction(_ sender: FavoritesMenuItem) {
@@ -301,28 +296,28 @@ class DockMenuController: NSObject, NSMenuDelegate {
     // Updates the menu item states per the current playback modes
     private func updateRepeatAndShuffleMenuItemStates() {
         
-        let modes = sequenceInfo.repeatAndShuffleModes
-        
-        shuffleOffMenuItem.onIf(modes.shuffleMode == .off)
-        shuffleOnMenuItem.onIf(modes.shuffleMode == .on)
-        
-        switch modes.repeatMode {
-            
-        case .off:
-            
-            repeatOffMenuItem.on()
-            [repeatOneMenuItem, repeatAllMenuItem].forEach {$0?.off()}
-            
-        case .one:
-            
-            repeatOneMenuItem.on()
-            [repeatOffMenuItem, repeatAllMenuItem].forEach {$0?.off()}
-            
-        case .all:
-            
-            repeatAllMenuItem.on()
-            [repeatOffMenuItem, repeatOneMenuItem].forEach {$0?.off()}
-        }
+//        let modes = sequenceInfo.repeatAndShuffleModes
+//
+//        shuffleOffMenuItem.onIf(modes.shuffleMode == .off)
+//        shuffleOnMenuItem.onIf(modes.shuffleMode == .on)
+//
+//        switch modes.repeatMode {
+//
+//        case .off:
+//
+//            repeatOffMenuItem.on()
+//            [repeatOneMenuItem, repeatAllMenuItem].forEach {$0?.off()}
+//
+//        case .one:
+//
+//            repeatOneMenuItem.on()
+//            [repeatOffMenuItem, repeatAllMenuItem].forEach {$0?.off()}
+//
+//        case .all:
+//
+//            repeatAllMenuItem.on()
+//            [repeatOffMenuItem, repeatOneMenuItem].forEach {$0?.off()}
+//        }
     }
     
     // Re-creates the History menus from the model

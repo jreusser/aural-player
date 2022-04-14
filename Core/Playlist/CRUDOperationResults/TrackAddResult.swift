@@ -21,5 +21,5 @@ struct TrackAddResult {
     let flatPlaylistResult: Int
     
     // Grouping info for the added track, within each of the grouping playlists
-    let groupingPlaylistResults: [GroupType: GroupedTrackAddResult]
+//    let groupingPlaylistResults: [GroupType: GroupedTrackAddResult]
 }
