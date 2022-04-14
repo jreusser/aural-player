@@ -60,17 +60,16 @@ extension FontSchemesManager {
     
     func removeObserver(_ observer: FontSchemeObserver) {
         
-        if let observerObject = observer as? NSObject, let property = reverseRegistry[observerObject] {
+        guard let observerObject = observer as? NSObject, let property = reverseRegistry[observerObject] else {return}
+        
+        // TODO: Observers for a property should be a Set, not an array. Make FontSchemeObserver extend from Hashable.
+        if var observers = registry[property] {
             
-            // TODO: Observers for a property should be a Set, not an array. Make FontSchemeObserver extend from Hashable.
-            if var observers = registry[property] {
-                
-                observers.removeAll(where: {($0 as? NSObject) === (observer as? NSObject)})
-                registry[property] = observers
-            }
-            
-            reverseRegistry.removeValue(forKey: observerObject)
+            observers.removeAll(where: {($0 as? NSObject) === (observer as? NSObject)})
+            registry[property] = observers
         }
+        
+        reverseRegistry.removeValue(forKey: observerObject)
     }
     
     func registerObservers(_ observers: [FontSchemeObserver], forProperty property: KeyPath<FontScheme, PlatformFont>) {

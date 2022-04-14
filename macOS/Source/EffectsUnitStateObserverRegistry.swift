@@ -18,11 +18,9 @@ class EffectsUnitStateObserverRegistry {
     
     private init() {
         
-        let audioGraph = audioGraphDelegate
-        
         // TODO: Handle adding / removing of AUs.
         
-        for unit in audioGraph.allUnits {
+        for unit in audioGraphDelegate.allUnits {
             
             unit.observeState {[weak self] newState in
                 
@@ -32,61 +30,30 @@ class EffectsUnitStateObserverRegistry {
             }
         }
         
-        kvoTokens.append(systemColorScheme.observe(\.activeControlColor, options: [.initial, .new]) {[weak self] _,_ in
+        observeColor(property: \.activeControlColor, forUnitState: .active)
+        observeColor(property: \.bypassedControlColor, forUnitState: .bypassed)
+        observeColor(property: \.suppressedControlColor, forUnitState: .suppressed)
+    }
+    
+    private func observeColor(property: KeyPath<ColorScheme, PlatformColor>, forUnitState state: EffectsUnitState) {
+        
+        kvoTokens.append(systemColorScheme.observe(property, options: [.initial, .new]) {[weak self] _,_ in
             
             // Redraw all observers of active units.
             
-            for unit in audioGraph.allUnits.filter({$0.isActive}) {
+            let newColor: PlatformColor = systemColorScheme[keyPath: property]
+            
+            for unit in audioGraphDelegate.allUnits.filter({$0.state == state}) {
                 
-                for observer in self?.registry[unit.unitType] ?? [] {
+                guard let observers = self?.registry[unit.unitType] else {continue}
+                
+                for observer in observers {
                     
                     if let tintableObserver = observer as? TintableFXUnitStateObserver {
-                        tintableObserver.contentTintColor = systemColorScheme.activeControlColor
+                        tintableObserver.contentTintColor = newColor
                         
                     } else if let textualObserver = observer as? TextualFXUnitStateObserver {
-                        textualObserver.textColor = systemColorScheme.activeControlColor
-                        
-                    } else {
-                        observer.redraw()
-                    }
-                }
-            }
-        })
-        
-        kvoTokens.append(systemColorScheme.observe(\.bypassedControlColor, options: [.initial, .new]) {[weak self] _,_ in
-            
-            // Redraw all observers of bypassed units.
-            
-            for unit in audioGraph.allUnits.filter({$0.state == .bypassed}) {
-                
-                for observer in self?.registry[unit.unitType] ?? [] {
-                    
-                    if let tintableObserver = observer as? TintableFXUnitStateObserver {
-                        tintableObserver.contentTintColor = systemColorScheme.bypassedControlColor
-                        
-                    } else if let textualObserver = observer as? TextualFXUnitStateObserver {
-                        textualObserver.textColor = systemColorScheme.bypassedControlColor
-                        
-                    } else {
-                        observer.redraw()
-                    }
-                }
-            }
-        })
-        
-        kvoTokens.append(systemColorScheme.observe(\.suppressedControlColor, options: [.initial, .new]) {[weak self] _,_ in
-            
-            // Redraw all observers of suppressed units.
-            
-            for unit in audioGraph.allUnits.filter({$0.state == .suppressed}) {
-                
-                for observer in self?.registry[unit.unitType] ?? [] {
-                    
-                    if let tintableObserver = observer as? TintableFXUnitStateObserver {
-                        tintableObserver.contentTintColor = systemColorScheme.suppressedControlColor
-                        
-                    } else if let textualObserver = observer as? TextualFXUnitStateObserver {
-                        textualObserver.textColor = systemColorScheme.suppressedControlColor
+                        textualObserver.textColor = newColor
                         
                     } else {
                         observer.redraw()
