@@ -14,8 +14,6 @@ class LayoutPreviewView: NSView {
     private var layout: WindowLayout?
     private let idealImgSize: CGFloat = 15
     
-    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-    
     private var screen: NSRect {
         return NSScreen.main!.frame
     }

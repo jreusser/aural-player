@@ -26,7 +26,7 @@ class DelayUnitViewController: EffectsUnitViewController {
     
     // MARK: Services, utilities, helpers, and properties
     
-    var delayUnit: DelayUnitDelegateProtocol = objectGraph.audioGraphDelegate.delayUnit
+    var delayUnit: DelayUnitDelegateProtocol = audioGraphDelegate.delayUnit
     
     // ------------------------------------------------------------------------
     

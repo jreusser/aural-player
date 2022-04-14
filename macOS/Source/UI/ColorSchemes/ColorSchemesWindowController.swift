@@ -39,8 +39,6 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
     // Popover to collect user input (i.e. color scheme name) when saving new color schemes
     lazy var userSchemesPopover: StringInputPopoverViewController = .create(self)
     
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
     // Maintains a history of all changes made to the system color scheme since the dialog opened. Allows undo/redo.
     private var history: ColorSchemeHistory = ColorSchemeHistory()
     

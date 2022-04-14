@@ -40,12 +40,12 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     @IBOutlet weak var btnShowPlayingTrackInPlaylist: TintedImageButton!
     
     // Delegate that provides info about the playing track
-    private lazy var player: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
+    private lazy var player: PlaybackInfoDelegateProtocol = playbackInfoDelegate
     
     // Delegate that provides access to the Favorites track list.
-    private lazy var favorites: FavoritesDelegateProtocol = objectGraph.favoritesDelegate
+    private lazy var favorites: FavoritesDelegateProtocol = favoritesDelegate
     
-    private lazy var trackReader: TrackReader = objectGraph.trackReader
+    private lazy var trackReader: TrackReader = trackReader
     
     // Popover view that displays detailed info for the currently playing track
     private lazy var detailedInfoPopover: DetailedTrackInfoViewController = {
@@ -62,16 +62,12 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     private lazy var bookmarkInputReceiver: BookmarkNameInputReceiver = BookmarkNameInputReceiver()
     private lazy var bookmarkNamePopover: StringInputPopoverViewController = StringInputPopoverViewController.create(bookmarkInputReceiver)
     
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
 //    private var allButtons: [Tintable] = []
     
     private lazy var messenger = Messenger(for: self)
     
-    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-    
-    private lazy var playerUIState: PlayerUIState = objectGraph.playerUIState
-//    private lazy var playlistUIState: PlaylistUIState = objectGraph.playlistUIState
+    private lazy var playerUIState: PlayerUIState = playerUIState
+//    private lazy var playlistUIState: PlaylistUIState = playlistUIState
     
     override func viewDidLoad() {
         

@@ -17,10 +17,7 @@ class PlayingTrackView: MouseTrackingView, ColorSchemeable {
     
     @IBOutlet weak var defaultView: PlayingTrackSubview!
     
-    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
-    private lazy var uiState: PlayerUIState = objectGraph.playerUIState
+    private lazy var uiState: PlayerUIState = playerUIState
 
     // Info about the currently playing track
     var trackInfo: PlayingTrackInfo? {

@@ -12,7 +12,7 @@ import Cocoa
 class SnappingWindowDelegate: NSObject, NSWindowDelegate {
     
     private unowned var window: SnappingWindow!
-    private lazy var preferences: ViewPreferences = objectGraph.preferences.viewPreferences
+    private lazy var viewPreferences: ViewPreferences = preferences.viewPreferences
     
     init(window: SnappingWindow) {
         
@@ -37,7 +37,7 @@ class SnappingWindowDelegate: NSObject, NSWindowDelegate {
     
     private func checkForSnapToWindows() -> Bool {
         
-        guard preferences.snapToWindows else {return false}
+        guard viewPreferences.snapToWindows else {return false}
         
         // First check if window can be snapped to another app window
         for mate in getCandidateWindowsForSnap() {
@@ -52,7 +52,7 @@ class SnappingWindowDelegate: NSObject, NSWindowDelegate {
     
     private func checkForSnapToScreen() {
         
-        if preferences.snapToScreen {
+        if viewPreferences.snapToScreen {
             window.checkForSnapToVisibleFrame()
         }
     }

@@ -13,8 +13,6 @@ class AboutDialogController: NSWindowController, ModalComponentProtocol {
     
     override var windowNibName: String? {"AboutDialog"}
     
-    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-    
     @IBOutlet weak var versionLabel: NSTextField! {
         
         didSet {

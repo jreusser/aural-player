@@ -12,6 +12,8 @@ import Cocoa
 
 extension MainWindowController {
     
+    private var gesturesPreferences: GesturesControlsPreferences {preferences.controlsPreferences.gestures}
+    
     // Registers handlers for keyboard events and trackpad/mouse gestures (NSEvent).
     func setUpEventHandling() {
         
@@ -74,7 +76,7 @@ extension MainWindowController {
     
     func handleTrackChange(_ swipeDirection: GestureDirection) {
         
-        if preferences.allowTrackChange {
+        if gesturesPreferences.allowTrackChange {
             
             // Publish the command notification
             messenger.publish(swipeDirection == .left ? .player_previousTrack : .player_nextTrack)
@@ -83,7 +85,7 @@ extension MainWindowController {
     
     func handleVolumeControl(_ event: NSEvent, _ scrollDirection: GestureDirection) {
         
-        if preferences.allowVolumeControl && ScrollSession.validateEvent(timestamp: event.timestamp, eventDirection: scrollDirection) {
+        if gesturesPreferences.allowVolumeControl && ScrollSession.validateEvent(timestamp: event.timestamp, eventDirection: scrollDirection) {
         
             // Scroll up = increase volume, scroll down = decrease volume
             messenger.publish(scrollDirection == .up ?.player_increaseVolume : .player_decreaseVolume, payload: UserInputMode.continuous)
@@ -92,10 +94,10 @@ extension MainWindowController {
     
     func handleSeek(_ event: NSEvent, _ scrollDirection: GestureDirection) {
         
-        if preferences.allowSeeking {
+        if gesturesPreferences.allowSeeking {
             
             // If no track is playing, seeking cannot be performed
-            if playbackInfo.state.isNotPlayingOrPaused {
+            if playbackInfoDelegate.state.isNotPlayingOrPaused {
                 return
             }
             
@@ -125,7 +127,7 @@ extension MainWindowController {
     func isResidualScroll(_ event: NSEvent) -> Bool {
     
         // If the scroll session began before the currently playing track began playing, then it is now invalid and all its future events should be ignored.
-        if let playingTrackStartTime = playbackInfo.playingTrackStartTime,
+        if let playingTrackStartTime = playbackInfoDelegate.playingTrackStartTime,
            let scrollSessionStartTime = ScrollSession.sessionStartTime,
             scrollSessionStartTime < playingTrackStartTime {
         

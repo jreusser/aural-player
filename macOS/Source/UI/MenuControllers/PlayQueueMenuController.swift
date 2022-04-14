@@ -14,7 +14,7 @@ class PlayQueueMenuController: NSObject, NSMenuDelegate {
     
     private lazy var alertDialog: AlertWindowController = .instance
     
-    private let playQueue: PlayQueueDelegateProtocol = objectGraph.playQueueDelegate
+    private let playQueue: PlayQueueDelegateProtocol = playQueueDelegate
     
     private lazy var messenger = Messenger(for: self)
     

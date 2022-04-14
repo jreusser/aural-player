@@ -25,7 +25,7 @@ class DevicesViewController: NSViewController, Destroyable {
     @IBOutlet weak var panSlider: NSSlider!
     @IBOutlet weak var lblPan: VALabel!
     
-    private lazy var audioGraph: AudioGraphDelegateProtocol = objectGraph.audioGraphDelegate
+    private lazy var audioGraph: AudioGraphDelegateProtocol = audioGraphDelegate
     
     override func viewDidLoad() {
         
@@ -39,7 +39,7 @@ class DevicesViewController: NSViewController, Destroyable {
         panSlider.floatValue = audioGraph.pan
         lblPan.stringValue = audioGraph.formattedPan
         
-        objectGraph.colorSchemesManager.registerObserver(lblPan, forProperty: \.primaryTextColor)
+        colorSchemesManager.registerObserver(lblPan, forProperty: \.primaryTextColor)
     }
     
     @IBAction func panAction(_ sender: Any) {

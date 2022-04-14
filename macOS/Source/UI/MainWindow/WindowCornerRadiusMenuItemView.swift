@@ -18,7 +18,7 @@ class WindowCornerRadiusMenuItemView: NSView {
     
     private lazy var messenger = Messenger(for: self)
     
-    private lazy var uiState: WindowAppearanceState = objectGraph.windowAppearanceState
+    private lazy var uiState: WindowAppearanceState = windowAppearanceState
     
     override func awakeFromNib() {
         

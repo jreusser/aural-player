@@ -22,7 +22,7 @@ class PlayingTrackTextView: NSView, ColorSchemeable, ColorSchemeObserver {
     // The clip view that contains the text view (used to center-align the text view vertically)
     @IBOutlet weak var clipView: NSClipView!
     
-    private lazy var uiState: PlayerUIState = objectGraph.playerUIState
+    private lazy var uiState: PlayerUIState = playerUIState
     
     override func viewDidMoveToWindow() {
         
@@ -30,7 +30,7 @@ class PlayingTrackTextView: NSView, ColorSchemeable, ColorSchemeObserver {
         
         guard window != nil else {return}
         
-        objectGraph.colorSchemesManager.registerObserver(self, forProperties: \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor)
+        colorSchemesManager.registerObserver(self, forProperties: \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor)
     }
     
     var trackInfo: PlayingTrackInfo? {
@@ -250,7 +250,7 @@ class PlayingTrackTextView: NSView, ColorSchemeable, ColorSchemeObserver {
 
 class MenuBarPlayingTrackTextView: PlayingTrackTextView {
     
-    private lazy var uiState: MenuBarPlayerUIState = objectGraph.menuBarPlayerUIState
+    private lazy var uiState: MenuBarPlayerUIState = menuBarPlayerUIState
     
     override var titleFont: NSFont {
         standardFontSet.mainFont(size: 13)

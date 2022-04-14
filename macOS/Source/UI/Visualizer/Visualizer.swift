@@ -20,7 +20,7 @@ class Visualizer: AudioGraphRenderObserverProtocol, Destroyable {
     // Fast Fourier Transform
     let fft: FFT = FFT()
     
-    private var audioGraph: AudioGraphDelegateProtocol = objectGraph.audioGraphDelegate
+    private var audioGraph: AudioGraphDelegateProtocol = audioGraphDelegate
     private var normalDeviceBufferSize: Int = 0
     
     private let renderCallback: VisualizerRenderCallback

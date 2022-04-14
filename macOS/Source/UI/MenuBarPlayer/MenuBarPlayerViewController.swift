@@ -34,9 +34,9 @@ class MenuBarPlayerViewController: NSViewController, Destroyable {
     @IBOutlet weak var sequencingViewController: MenuBarPlayerSequencingViewController!
     
     // Delegate that conveys all playback requests to the player / playback sequencer
-    private let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
+    private let player: PlaybackDelegateProtocol = playbackDelegate
     
-    private lazy var uiState: MenuBarPlayerUIState = objectGraph.menuBarPlayerUIState
+    private lazy var uiState: MenuBarPlayerUIState = menuBarPlayerUIState
     
     private lazy var messenger = Messenger(for: self)
     

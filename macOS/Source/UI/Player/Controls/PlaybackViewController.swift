@@ -20,7 +20,7 @@ class PlaybackViewController: NSViewController, Destroyable {
     var displaysChapterIndicator: Bool {true}
     
     // Delegate that conveys all playback requests to the player / playback sequencer
-    let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
+    let player: PlaybackDelegateProtocol = playbackDelegate
     
     lazy var alertDialog: AlertWindowController = AlertWindowController.instance
     

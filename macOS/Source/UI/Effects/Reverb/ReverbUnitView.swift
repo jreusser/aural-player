@@ -36,7 +36,7 @@ class ReverbUnitView: NSView {
     // MARK: View initialization
     
     func initialize(stateFunction: @escaping EffectsUnitStateFunction) {
-        fxUnitStateObserverRegistry.registerObserver(reverbAmountSlider, forFXUnit: objectGraph.audioGraphDelegate.reverbUnit)
+        fxUnitStateObserverRegistry.registerObserver(reverbAmountSlider, forFXUnit: audioGraphDelegate.reverbUnit)
     }
     
     // ------------------------------------------------------------------------

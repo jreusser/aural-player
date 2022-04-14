@@ -44,12 +44,12 @@ class DockMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var bookmarksMenu: NSMenu!
     
     // Delegate that retrieves current playback info (e.g. currently playing track)
-    private lazy var playbackInfo: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
+    private lazy var playbackInfo: PlaybackInfoDelegateProtocol = playbackInfoDelegate
     
     // Delegate that performs CRUD on the history model
-    private lazy var history: HistoryDelegateProtocol = objectGraph.historyDelegate
-    private lazy var favorites: FavoritesDelegateProtocol = objectGraph.favoritesDelegate
-    private lazy var bookmarks: BookmarksDelegateProtocol = objectGraph.bookmarksDelegate
+    private lazy var history: HistoryDelegateProtocol = historyDelegate
+    private lazy var favorites: FavoritesDelegateProtocol = favoritesDelegate
+    private lazy var bookmarks: BookmarksDelegateProtocol = bookmarksDelegate
     
     private lazy var messenger = Messenger(for: self)
     

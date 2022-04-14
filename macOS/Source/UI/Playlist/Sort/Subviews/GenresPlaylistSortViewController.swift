@@ -41,7 +41,7 @@
 //    
 //    override var nibName: String? {"GenresPlaylistSort"}
 //    
-//    private lazy var uiState: PlaylistUIState = objectGraph.playlistUIState
+//    private lazy var uiState: PlaylistUIState = playlistUIState
 //    
 //    var sortView: NSView {
 //        return self.view

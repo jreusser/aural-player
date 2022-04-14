@@ -18,14 +18,11 @@ class ChaptersListWindowController: NSWindowController, ModalComponentProtocol {
     @IBOutlet weak var rootContainerBox: NSBox!
     @IBOutlet weak var viewController: ChaptersListViewController!
     
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
     override var windowNibName: String? {"ChaptersList"}
     
     private lazy var messenger = Messenger(for: self)
     
-    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-    private lazy var uiState: WindowAppearanceState = objectGraph.windowAppearanceState
+    private lazy var uiState: WindowAppearanceState = windowAppearanceState
     
     // The chapters list window is only considered modal when it is the key window AND
     // the search bar has focus (i.e. a search is being performed).

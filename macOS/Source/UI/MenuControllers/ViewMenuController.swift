@@ -42,22 +42,16 @@ class ViewMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var cornerRadiusStepper: NSStepper!
     @IBOutlet weak var lblCornerRadius: NSTextField!
     
-    private let player: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
+    private let player: PlaybackInfoDelegateProtocol = playbackInfoDelegate
     
-    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-    
-    private lazy var themesManager: ThemesManager = objectGraph.themesManager
-    private lazy var fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    private lazy var colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
-    private lazy var uiState: WindowAppearanceState = objectGraph.windowAppearanceState
+    private lazy var uiState: WindowAppearanceState = windowAppearanceState
     
     func menuNeedsUpdate(_ menu: NSMenu) {
         
         manageLayoutsMenuItem.enableIf(!windowLayoutsManager.userDefinedObjects.isEmpty)
         toggleChaptersListMenuItem.enableIf(player.chapterCount > 0)
         
-        let showingModalComponent: Bool = objectGraph.windowLayoutsManager.isShowingModalComponent
+        let showingModalComponent: Bool = windowLayoutsManager.isShowingModalComponent
         
         [applyThemeMenuItem, saveThemeMenuItem, createThemeMenuItem].forEach {$0.enableIf(!showingModalComponent)}
         manageThemesMenuItem.enableIf(!showingModalComponent && (themesManager.numberOfUserDefinedObjects > 0))

@@ -14,8 +14,6 @@ import Cocoa
  */
 struct Fonts {
     
-    private static let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    
     struct Player {
         
         static var infoBoxTitleFont: NSFont {fontSchemesManager.systemScheme.player.infoBoxTitleFont}

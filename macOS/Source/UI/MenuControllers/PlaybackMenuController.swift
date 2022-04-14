@@ -51,18 +51,16 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
     
     @IBOutlet weak var rememberLastPositionMenuItem: ToggleMenuItem!
     
-    private lazy var playbackInfo: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
-    private lazy var playbackProfiles: PlaybackProfiles = objectGraph.playbackDelegate.profiles
+    private lazy var playbackInfo: PlaybackInfoDelegateProtocol = playbackInfoDelegate
+    private lazy var playbackProfiles: PlaybackProfiles = playbackDelegate.profiles
     
-    private lazy var playQueue: PlayQueueDelegateProtocol = objectGraph.playQueueDelegate
+    private lazy var playQueue: PlayQueueDelegateProtocol = playQueueDelegate
     
-    private let preferences: PlaybackPreferences = objectGraph.preferences.playbackPreferences
+    private let playbackPreferences: PlaybackPreferences = preferences.playbackPreferences
     
     private lazy var jumpToTimeDialogLoader: LazyWindowLoader<JumpToTimeEditorWindowController> = LazyWindowLoader()
     
     private lazy var messenger = Messenger(for: self)
-    
-    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
     
     // One-time setup
     override func awakeFromNib() {
@@ -106,7 +104,7 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
         
         // Play/pause enabled if at least one track available
         playOrPauseMenuItem.onIf(playbackInfo.state == .playing)
-        rememberLastPositionMenuItem.showIf(preferences.rememberLastPositionOption == .individualTracks)
+        rememberLastPositionMenuItem.showIf(playbackPreferences.rememberLastPositionOption == .individualTracks)
         
         if let playingTrack = playbackInfo.playingTrack {
             rememberLastPositionMenuItem.onIf(playbackProfiles.hasFor(playingTrack))

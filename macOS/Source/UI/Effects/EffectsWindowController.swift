@@ -59,19 +59,13 @@ class EffectsWindowController: NSWindowController {
     // MARK: Services, utilities, helpers, and properties
 
     // Delegate that alters the audio graph
-    private let graph: AudioGraphDelegateProtocol = objectGraph.audioGraphDelegate
+    private let graph: AudioGraphDelegateProtocol = audioGraphDelegate
     
-    private let preferences: ViewPreferences = objectGraph.preferences.viewPreferences
+    private let viewPreferences: ViewPreferences = preferences.viewPreferences
 
     private lazy var messenger = Messenger(for: self)
     
-    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
-    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-    
-    private lazy var uiState: WindowAppearanceState = objectGraph.windowAppearanceState
+    private lazy var uiState: WindowAppearanceState = windowAppearanceState
     
     // ------------------------------------------------------------------------
     

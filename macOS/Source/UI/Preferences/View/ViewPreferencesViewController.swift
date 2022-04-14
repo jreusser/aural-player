@@ -29,8 +29,6 @@ class ViewPreferencesViewController: NSViewController, PreferencesViewProtocol {
     
     @IBOutlet weak var btnSnapToScreen: NSButton!
     
-    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-    
     override var nibName: String? {"ViewPreferences"}
     
     var preferencesView: NSView {self.view}

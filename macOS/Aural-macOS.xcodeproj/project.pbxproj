@@ -37,6 +37,7 @@
 		3E2779E926AF306600291244 /* MockScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025BE268E830800C5A1C5 /* MockScheduler.swift */; };
 		3E2779F426AF33B100291244 /* MockAVFPlaybackContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2779F326AF33B100291244 /* MockAVFPlaybackContext.swift */; };
 		3E2976132629473500459272 /* WindowCornerRadiusMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2976122629473500459272 /* WindowCornerRadiusMenuItemView.swift */; };
+		3E2A29FF2808DC42000F0539 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A29FE2808DC42000F0539 /* Globals.swift */; };
 		3E2EADD326B16EBF00A95119 /* HaltPlaybackActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025F0268E830900C5A1C5 /* HaltPlaybackActionTests.swift */; };
 		3E2EADD426B16F1200A95119 /* StartPlaybackActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025F1268E830900C5A1C5 /* StartPlaybackActionTests.swift */; };
 		3E2EADD526B170A200A95119 /* PlaybackChainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025F2268E830900C5A1C5 /* PlaybackChainTests.swift */; };
@@ -176,7 +177,6 @@
 		3E6C0EC325CEB3ED00BF0D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0EC225CEB3ED00BF0D07 /* AppDelegate.swift */; };
 		3E6C115425CEB9C200BF0D07 /* AlegreyaSansSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C114925CEB9C100BF0D07 /* AlegreyaSansSC-Regular.ttf */; };
 		3E6C115C25CEB9C200BF0D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C115325CEB9C100BF0D07 /* Assets.xcassets */; };
-		3E6C116725CEBD6000BF0D07 /* ObjectGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C105725CEB98600BF0D07 /* ObjectGraph.swift */; };
 		3E6C11B325CEBDA900BF0D07 /* MediaKeyTapInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C113025CEB98700BF0D07 /* MediaKeyTapInternals.swift */; };
 		3E6C11B525CEBDA900BF0D07 /* MKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C113325CEB98700BF0D07 /* MKExtensions.swift */; };
 		3E6C11B625CEBDA900BF0D07 /* MediaKeyTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C113125CEB98700BF0D07 /* MediaKeyTap.swift */; };
@@ -1465,6 +1465,7 @@
 		3E2779E126AEF21D00291244 /* HostedAudioUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostedAudioUnitTests.swift; sourceTree = "<group>"; };
 		3E2779F326AF33B100291244 /* MockAVFPlaybackContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAVFPlaybackContext.swift; sourceTree = "<group>"; };
 		3E2976122629473500459272 /* WindowCornerRadiusMenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowCornerRadiusMenuItemView.swift; sourceTree = "<group>"; };
+		3E2A29FE2808DC42000F0539 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		3E2ED4A425DBAD8400732E79 /* FontScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontScheme.swift; sourceTree = "<group>"; };
 		3E2ED4A625DBB24F00732E79 /* FontSchemePreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemePreset.swift; sourceTree = "<group>"; };
 		3E2ED4A825DBC50500732E79 /* FontSchemesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemesManager.swift; sourceTree = "<group>"; };
@@ -1761,7 +1762,6 @@
 		3E6C105125CEB98600BF0D07 /* WindowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowLayout.swift; sourceTree = "<group>"; };
 		3E6C105225CEB98600BF0D07 /* ModalComponentProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalComponentProtocols.swift; sourceTree = "<group>"; };
 		3E6C105525CEB98600BF0D07 /* WindowLayoutPresets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowLayoutPresets.swift; sourceTree = "<group>"; };
-		3E6C105725CEB98600BF0D07 /* ObjectGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectGraph.swift; sourceTree = "<group>"; };
 		3E6C113025CEB98700BF0D07 /* MediaKeyTapInternals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKeyTapInternals.swift; sourceTree = "<group>"; };
 		3E6C113125CEB98700BF0D07 /* MediaKeyTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKeyTap.swift; sourceTree = "<group>"; };
 		3E6C113225CEB98700BF0D07 /* MediaApplicationWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaApplicationWatcher.swift; sourceTree = "<group>"; };
@@ -4273,7 +4273,7 @@
 		3EFE35D527864895006F8B8C /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				3E6C105725CEB98600BF0D07 /* ObjectGraph.swift */,
+				3E2A29FE2808DC42000F0539 /* Globals.swift */,
 				3EFE366027864895006F8B8C /* AudioGraph */,
 				3EFE36E227864895006F8B8C /* Playback */,
 				3EF1A0BC27E4E03300E64F37 /* TrackList */,
@@ -5895,7 +5895,6 @@
 				3EAFB5F6267FEE9D00F0DC96 /* NSWindowExtensions.swift in Sources */,
 				3EFE37E927864896006F8B8C /* PreferencesDefaults.swift in Sources */,
 				3EFE3A2B27864898006F8B8C /* TrackInfoUpdatedNotification.swift in Sources */,
-				3E6C116725CEBD6000BF0D07 /* ObjectGraph.swift in Sources */,
 				3E6C128925CEBE1800BF0D07 /* OnOffImageButtons.swift in Sources */,
 				3EAFB60D267FF2F300F0DC96 /* PanSliderCell.swift in Sources */,
 				3EFE38ED27864897006F8B8C /* CompositeKeyMap.swift in Sources */,
@@ -6167,6 +6166,7 @@
 				3EFE384F27864896006F8B8C /* FilesAndPaths.swift in Sources */,
 				3EFE37E527864896006F8B8C /* UserDefaultsExtensions.swift in Sources */,
 				3E6C130C25CEBE8F00BF0D07 /* WindowLayoutPresets.swift in Sources */,
+				3E2A29FF2808DC42000F0539 /* Globals.swift in Sources */,
 				3EFE39CB27864897006F8B8C /* PitchShiftUnitPersistentState.swift in Sources */,
 				3EFE3A6527864898006F8B8C /* CoverArtReader.swift in Sources */,
 				3E6C130525CEBE8F00BF0D07 /* WindowLayoutsManager.swift in Sources */,

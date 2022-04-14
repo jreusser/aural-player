@@ -56,23 +56,19 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var rememberSettingsMenuItem: ToggleMenuItem!
     
     // Delegate that alters the audio graph
-    private lazy var graph: AudioGraphDelegateProtocol = objectGraph.audioGraphDelegate
-    private let soundProfiles: SoundProfiles = objectGraph.audioGraphDelegate.soundProfiles
+    private lazy var graph: AudioGraphDelegateProtocol = audioGraphDelegate
+    private let soundProfiles: SoundProfiles = audioGraphDelegate.soundProfiles
     
     private lazy var masterUnit: MasterUnitDelegateProtocol = graph.masterUnit
     private lazy var eqUnit: EQUnitDelegateProtocol = graph.eqUnit
     private lazy var pitchShiftUnit: PitchShiftUnitDelegateProtocol = graph.pitchShiftUnit
     private lazy var timeStretchUnit: TimeStretchUnitDelegateProtocol = graph.timeStretchUnit
     
-    private let player: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
-    
-    private let preferences: SoundPreferences = objectGraph.preferences.soundPreferences
+    private let soundPreferences: SoundPreferences = preferences.soundPreferences
     
     private lazy var presetsManager: PresetsManagerWindowController = PresetsManagerWindowController.instance
     
     private lazy var messenger = Messenger(for: self)
-    
-    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
     
     // One-time setup.
     override func awakeFromNib() {
@@ -107,7 +103,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {
         
         [panLeftMenuItem, panRightMenuItem].forEach {$0?.enableIf(!windowLayoutsManager.isShowingModalComponent)}
-        rememberSettingsMenuItem.enableIf(player.playingTrack != nil)
+        rememberSettingsMenuItem.enableIf(playbackInfoDelegate.playingTrack != nil)
     }
     
     func menuWillOpen(_ menu: NSMenu) {
@@ -137,9 +133,9 @@ class SoundMenuController: NSObject, NSMenuDelegate {
         } else {
             
             masterBypassMenuItem.onIf(!masterUnit.isActive)
-            rememberSettingsMenuItem.showIf(preferences.rememberEffectsSettingsOption == .individualTracks)
+            rememberSettingsMenuItem.showIf(soundPreferences.rememberEffectsSettingsOption == .individualTracks)
             
-            if let playingTrack = player.playingTrack {
+            if let playingTrack = playbackInfoDelegate.playingTrack {
                 rememberSettingsMenuItem.onIf(soundProfiles.hasFor(playingTrack))
             }
         }

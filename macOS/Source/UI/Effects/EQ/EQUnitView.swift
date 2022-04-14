@@ -47,7 +47,7 @@ class EQUnitView: NSView {
         allSliders = subviews.compactMap({$0 as? EffectsUnitSlider})
         bandSliders = allSliders.filter {$0.tag >= 0}
         
-        let eqUnit = objectGraph.audioGraphDelegate.eqUnit
+        let eqUnit = audioGraphDelegate.eqUnit
         
         allSliders.forEach {
             fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: eqUnit)

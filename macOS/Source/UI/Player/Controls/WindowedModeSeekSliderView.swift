@@ -14,9 +14,6 @@ class WindowedModeSeekSliderView: SeekSliderView, ColorSchemeable {
     // Used to display the bookmark name prompt popover
     @IBOutlet weak var seekPositionMarker: NSView!
     
-    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
     override func awakeFromNib() {
         
         super.awakeFromNib()

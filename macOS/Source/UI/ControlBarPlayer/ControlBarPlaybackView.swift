@@ -11,9 +11,6 @@ import Cocoa
 
 class ControlBarPlaybackView: PlaybackView {
     
-    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
     // When the buttons are in an "Off" state, they should be tinted according to the system color scheme's off state button color.
 //    override var offStateTintFunction: TintFunction {{Colors.toggleButtonOffStateColor}}
 

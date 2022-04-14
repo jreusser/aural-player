@@ -42,9 +42,9 @@ class PlayerViewPopupMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var timeRemainingMenuItem_durationSeconds: NSMenuItem!
     private var timeRemainingDisplayFormats: [NSMenuItem] = []
     
-    private let player: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
+    private let player: PlaybackInfoDelegateProtocol = playbackInfoDelegate
     
-    private lazy var uiState: PlayerUIState = objectGraph.playerUIState
+    private lazy var uiState: PlayerUIState = playerUIState
     
     private lazy var messenger = Messenger(for: self)
     

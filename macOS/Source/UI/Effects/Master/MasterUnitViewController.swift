@@ -35,10 +35,10 @@ class MasterUnitViewController: EffectsUnitViewController {
     private var delayUnit: DelayUnitDelegateProtocol {graph.delayUnit}
     private var filterUnit: FilterUnitDelegateProtocol {graph.filterUnit}
     
-    private let soundProfiles: SoundProfiles = objectGraph.audioGraphDelegate.soundProfiles
+    private let soundProfiles: SoundProfiles = audioGraphDelegate.soundProfiles
     
-    private let soundPreferences: SoundPreferences = objectGraph.preferences.soundPreferences
-    private let playbackPreferences: PlaybackPreferences = objectGraph.preferences.playbackPreferences
+    private let soundPreferences: SoundPreferences = preferences.soundPreferences
+    private let playbackPreferences: PlaybackPreferences = preferences.playbackPreferences
     
     // ------------------------------------------------------------------------
     

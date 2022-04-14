@@ -26,7 +26,7 @@ class EQUnitViewController: EffectsUnitViewController {
     
     // MARK: Services, utilities, helpers, and properties
     
-    private var eqUnit: EQUnitDelegateProtocol = objectGraph.audioGraphDelegate.eqUnit
+    private var eqUnit: EQUnitDelegateProtocol = audioGraphDelegate.eqUnit
     
     // ------------------------------------------------------------------------
     

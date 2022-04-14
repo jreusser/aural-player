@@ -13,11 +13,11 @@
 
 import Cocoa
 
-let systemColorScheme: ColorScheme = objectGraph.colorSchemesManager.systemScheme
+let systemColorScheme: ColorScheme = colorSchemesManager.systemScheme
 
 struct Colors {
     
-    private static let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
+    private static let colorSchemesManager: ColorSchemesManager = colorSchemesManager
     
 //    static var windowBackgroundColor: NSColor {
 //        return colorSchemesManager.systemScheme.backgroundColor

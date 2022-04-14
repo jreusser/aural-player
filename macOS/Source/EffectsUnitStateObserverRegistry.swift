@@ -18,7 +18,7 @@ class EffectsUnitStateObserverRegistry {
     
     private init() {
         
-        let audioGraph = objectGraph.audioGraphDelegate
+        let audioGraph = audioGraphDelegate
         
         // TODO: Handle adding / removing of AUs.
         

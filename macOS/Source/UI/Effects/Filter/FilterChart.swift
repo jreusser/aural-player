@@ -11,8 +11,6 @@ import Cocoa
 
 class FilterChart: NSView {
     
-    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    
     var bandsDataFunction: (() -> [FilterBand]) = {[]}
     var filterUnitStateFunction: EffectsUnitStateFunction = {.active}
     

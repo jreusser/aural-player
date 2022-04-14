@@ -39,10 +39,7 @@ class FilterBandView: NSView {
     
     // MARK: Services, utilities, helpers, and properties
     
-    private var filterUnit: FilterUnitDelegateProtocol = objectGraph.audioGraphDelegate.filterUnit
-    
-    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
+    private var filterUnit: FilterUnitDelegateProtocol = audioGraphDelegate.filterUnit
     
     private(set) var band: FilterBand = .bandPassBand(minFreq: SoundConstants.audibleRangeMin,
                                                       maxFreq: SoundConstants.audibleRangeMax) {

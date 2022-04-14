@@ -37,7 +37,7 @@ class VisualizerWindowController: NSWindowController, NSWindowDelegate {
     
     private lazy var visualizer: Visualizer = Visualizer(renderCallback: updateCurrentView)
     
-    private lazy var uiState: VisualizerUIState = objectGraph.visualizerUIState
+    private lazy var uiState: VisualizerUIState = visualizerUIState
     
     override func awakeFromNib() {
         

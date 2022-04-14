@@ -25,8 +25,6 @@ class GenericPresetPopupMenuController: NSObject {
     
     func presetExists(named name: String) -> Bool {false}
     
-    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-    
     // Must be overriden by subclasses
     @IBAction func applyPresetAction(_ sender: NSMenuItem) {
         applyPreset(named: sender.title)

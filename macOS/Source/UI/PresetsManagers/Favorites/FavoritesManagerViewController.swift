@@ -12,7 +12,7 @@ import Cocoa
 class FavoritesManagerViewController: PresetsManagerViewController {
     
     // Delegate that relays accessor operations to the bookmarks model
-    private let favorites: FavoritesDelegateProtocol = objectGraph.favoritesDelegate
+    private let favorites: FavoritesDelegateProtocol = favoritesDelegate
     
     override var nibName: String? {"FavoritesManager"}
     

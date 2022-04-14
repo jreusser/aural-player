@@ -13,7 +13,7 @@ class ControlBarSeekSliderView: SeekSliderView {
     
     @IBOutlet weak var lblSeekPosition: CenterTextLabel!
     
-    private let uiState: ControlBarPlayerUIState = objectGraph.controlBarPlayerUIState
+    private let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
     
     var seekPositionDisplayType: ControlBarSeekPositionDisplayType = .timeElapsed {
         
@@ -24,9 +24,6 @@ class ControlBarSeekSliderView: SeekSliderView {
         }
     }
  
-    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
     ///
     /// Determines whether or not the seek position needs to be displayed (when a track is playing).
     ///

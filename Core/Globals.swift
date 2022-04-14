@@ -1,0 +1,164 @@
+//
+//  Globals.swift
+//  Aural
+//
+//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//
+//  This software is licensed under the MIT software license.
+//  See the file "LICENSE" in the project root directory for license terms.
+//  
+
+import AppKit
+
+let appVersion: String = NSApp.appVersion
+
+let persistenceManager: PersistenceManager = PersistenceManager(persistentStateFile: FilesAndPaths.persistentStateFile)
+let persistentState: AppPersistentState = persistenceManager.load(type: AppPersistentState.self) ?? .defaults
+
+let preferences: Preferences = Preferences(defaults: .standard)
+
+#if os(macOS)
+
+let appModeManager: AppModeManager = AppModeManager(persistentState: persistentState.ui,
+                                                    preferences: preferences.viewPreferences)
+
+#endif
+
+fileprivate let playQueue: PlayQueue = PlayQueue()
+
+//    let playlistsManager: PlaylistsManager = {
+//
+//        let userPlaylistNames = (persistentState.playlist?.userPlaylists ?? []).compactMap {$0.name}
+//
+//        return PlaylistsManager(systemPlaylist: playlist,
+//                                userPlaylists: userPlaylistNames.map {
+//
+//                                    Playlist(name: $0, userDefined: true, needsLoadingFromPersistentState: true, FlatPlaylist(),
+//                                             [GroupingPlaylist(.artists), GroupingPlaylist(.albums), GroupingPlaylist(.genres)])
+//                                })
+//    }()
+
+//    let playlistDelegate: PlaylistDelegateProtocol = PlaylistDelegate(persistentState: persistentState.playlist, playlist,
+//                                                                           trackReader, preferences)
+
+let playQueueDelegate: PlayQueueDelegateProtocol = PlayQueueDelegate(playQueue: playQueue, trackReader: trackReader,
+                                                                     persistentState: persistentState.playQueue)
+
+let audioUnitsManager: AudioUnitsManager = AudioUnitsManager()
+fileprivate let audioEngine: AudioEngine = AudioEngine()
+
+let audioGraph: AudioGraph = AudioGraph(audioEngine: audioEngine, audioUnitsManager: audioUnitsManager,
+                                                    persistentState: persistentState.audioGraph)
+
+let audioGraphDelegate: AudioGraphDelegateProtocol = AudioGraphDelegate(graph: audioGraph, persistentState: persistentState.audioGraph,
+                                                                        player: playbackDelegate, preferences: preferences.soundPreferences)
+
+#if os(macOS)
+let player: PlayerProtocol = Player(graph: audioGraph, avfScheduler: avfScheduler, ffmpegScheduler: ffmpegScheduler)
+#elseif os(iOS)
+let player: PlayerProtocol = Player(graph: audioGraph, avfScheduler: avfScheduler, ffmpegScheduler: avfScheduler)
+#endif
+
+fileprivate let avfScheduler: PlaybackSchedulerProtocol = AVFScheduler(audioGraph.playerNode)
+
+#if os(macOS)
+
+fileprivate let ffmpegScheduler: PlaybackSchedulerProtocol = FFmpegScheduler(playerNode: audioGraph.playerNode,
+                                                                             sampleConverter: FFmpegSampleConverter())
+
+#endif
+
+let playbackDelegate: PlaybackDelegateProtocol = {
+    
+    let profiles = PlaybackProfiles(persistentState: persistentState.playbackProfiles ?? [])
+    
+    let startPlaybackChain = StartPlaybackChain(player, playQueue: playQueue, trackReader: trackReader, profiles, preferences.playbackPreferences)
+    let stopPlaybackChain = StopPlaybackChain(player, playQueue, profiles, preferences.playbackPreferences)
+    let trackPlaybackCompletedChain = TrackPlaybackCompletedChain(startPlaybackChain, stopPlaybackChain, playQueue)
+    
+    // Playback Delegate
+    return PlaybackDelegate(player, playQueue: playQueue, profiles, preferences.playbackPreferences,
+                            startPlaybackChain, stopPlaybackChain, trackPlaybackCompletedChain)
+}()
+
+var playbackInfoDelegate: PlaybackInfoDelegateProtocol {playbackDelegate}
+
+var historyDelegate: HistoryDelegateProtocol {_historyDelegate}
+fileprivate let _historyDelegate: HistoryDelegate = HistoryDelegate(persistentState: persistentState.history, preferences.historyPreferences, playQueueDelegate, playbackDelegate)
+
+var favoritesDelegate: FavoritesDelegateProtocol {_favoritesDelegate}
+fileprivate let _favoritesDelegate: FavoritesDelegate = FavoritesDelegate(persistentState: persistentState.favorites, playQueueDelegate,
+                                                                          playbackDelegate)
+
+var bookmarksDelegate: BookmarksDelegateProtocol {_bookmarksDelegate}
+fileprivate let _bookmarksDelegate: BookmarksDelegate = BookmarksDelegate(persistentState: persistentState.bookmarks, playQueueDelegate,
+                                                                          playbackDelegate)
+
+let fileReader: FileReader = FileReader()
+let trackReader: TrackReader = TrackReader(fileReader, coverArtReader)
+
+let coverArtReader: CoverArtReader = CoverArtReader(fileCoverArtReader, musicBrainzCoverArtReader)
+let fileCoverArtReader: FileCoverArtReader = FileCoverArtReader(fileReader)
+let musicBrainzCoverArtReader: MusicBrainzCoverArtReader = MusicBrainzCoverArtReader(preferences: preferences.metadataPreferences.musicBrainz,
+                                                                                     cache: musicBrainzCache)
+
+let musicBrainzCache: MusicBrainzCache = MusicBrainzCache(state: persistentState.musicBrainzCache,
+                                                          preferences: preferences.metadataPreferences.musicBrainz)
+
+#if os(macOS)
+
+let windowLayoutsManager: WindowLayoutsManager = WindowLayoutsManager(persistentState: persistentState.ui?.windowLayout,
+                                                                      viewPreferences: preferences.viewPreferences)
+
+let themesManager: ThemesManager = ThemesManager(persistentState: persistentState.ui?.themes, fontSchemesManager: fontSchemesManager)
+let fontSchemesManager: FontSchemesManager = FontSchemesManager(persistentState: persistentState.ui?.fontSchemes)
+let colorSchemesManager: ColorSchemesManager = ColorSchemesManager(persistentState: persistentState.ui?.colorSchemes)
+
+let playerUIState: PlayerUIState = PlayerUIState(persistentState: persistentState.ui?.player)
+//    let playlistUIState: PlaylistUIState = PlaylistUIState(persistentState: persistentState.ui?.playlist)
+let menuBarPlayerUIState: MenuBarPlayerUIState = MenuBarPlayerUIState(persistentState: persistentState.ui?.menuBarPlayer)
+let controlBarPlayerUIState: ControlBarPlayerUIState = ControlBarPlayerUIState(persistentState: persistentState.ui?.controlBarPlayer)
+let visualizerUIState: VisualizerUIState = VisualizerUIState(persistentState: persistentState.ui?.visualizer)
+let windowAppearanceState: WindowAppearanceState = WindowAppearanceState(persistentState: persistentState.ui?.windowAppearance)
+
+let mediaKeyHandler: MediaKeyHandler = MediaKeyHandler(preferences.controlsPreferences.mediaKeys)
+
+#endif
+
+let remoteControlManager: RemoteControlManager = RemoteControlManager(playbackInfo: playbackInfoDelegate, playQueue: playQueueDelegate, audioGraph: audioGraphDelegate,
+                                                                      preferences: preferences)
+
+var persistentStateOnExit: AppPersistentState {
+    
+    // Gather all pieces of persistent state into the persistentState object
+    var persistentState: AppPersistentState = AppPersistentState()
+    
+    persistentState.appVersion = appVersion
+    
+    persistentState.audioGraph = audioGraph.persistentState
+    persistentState.playQueue = playQueue.persistentState
+    persistentState.playbackProfiles = playbackDelegate.profiles.all().map {PlaybackProfilePersistentState(profile: $0)}
+    
+#if os(macOS)
+    
+    persistentState.ui = UIPersistentState(appMode: appModeManager.currentMode,
+                                           windowLayout: windowLayoutsManager.persistentState,
+                                           themes: themesManager.persistentState,
+                                           fontSchemes: fontSchemesManager.persistentState,
+                                           colorSchemes: colorSchemesManager.persistentState,
+                                           player: playerUIState.persistentState,
+                                           //                                               playlist: playlistUIState.persistentState,
+                                           visualizer: visualizerUIState.persistentState,
+                                           windowAppearance: windowAppearanceState.persistentState,
+                                           menuBarPlayer: menuBarPlayerUIState.persistentState,
+                                           controlBarPlayer: controlBarPlayerUIState.persistentState)
+    
+#endif
+    
+    persistentState.history = _historyDelegate.persistentState
+    persistentState.favorites = _favoritesDelegate.persistentState
+    persistentState.bookmarks = _bookmarksDelegate.persistentState
+    persistentState.musicBrainzCache = musicBrainzCoverArtReader.cache.persistentState
+    
+    return persistentState
+}

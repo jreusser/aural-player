@@ -66,7 +66,7 @@ class PitchShiftUnitView: NSView {
     }
     
     func initialize(stateFunction: @escaping EffectsUnitStateFunction) {
-        fxUnitStateObserverRegistry.registerObserver(pitchSlider, forFXUnit: objectGraph.audioGraphDelegate.pitchShiftUnit)
+        fxUnitStateObserverRegistry.registerObserver(pitchSlider, forFXUnit: audioGraphDelegate.pitchShiftUnit)
     }
     
     // ------------------------------------------------------------------------

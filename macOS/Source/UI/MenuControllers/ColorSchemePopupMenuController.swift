@@ -17,8 +17,6 @@ class ColorSchemePopupMenuController: GenericPresetPopupMenuController {
     private lazy var customizationDialogController: ColorSchemesWindowController = ColorSchemesWindowController.instance
     private lazy var managerWindowController: PresetsManagerWindowController = PresetsManagerWindowController.instance
     
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
     override var descriptionOfPreset: String {"color scheme"}
     override var descriptionOfPreset_plural: String {"color schemes"}
     

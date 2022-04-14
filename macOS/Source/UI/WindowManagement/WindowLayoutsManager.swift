@@ -260,7 +260,7 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     var persistentState: WindowLayoutsPersistentState {
         
         let userLayouts = userDefinedObjects.map {WindowLayoutPersistentState(layout: $0)}
-        let currentAppMode = objectGraph.appModeManager.currentMode
+        let currentAppMode = appModeManager.currentMode
         
         if currentAppMode == .windowed {
             

@@ -40,15 +40,12 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate, Destroya
     @IBOutlet weak var sequencingViewController: ControlBarPlayerSequencingViewController!
     
     // Delegate that conveys all playback requests to the player / playback sequencer
-    private let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
+    private let player: PlaybackDelegateProtocol = playbackDelegate
     
     // Delegate that provides access to the Favorites track list.
-    private lazy var favorites: FavoritesDelegateProtocol = objectGraph.favoritesDelegate
+    private lazy var favorites: FavoritesDelegateProtocol = favoritesDelegate
     
-    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
-    private let uiState: ControlBarPlayerUIState = objectGraph.controlBarPlayerUIState
+    private let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
     
     private var textViewConstraints: LayoutConstraintsManager!
     private var lblSeekPositionConstraints: LayoutConstraintsManager!

@@ -24,7 +24,7 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
     
     fileprivate var autoHideFields_showing: Bool = false
     
-    fileprivate lazy var uiState: PlayerUIState = objectGraph.playerUIState
+    fileprivate lazy var uiState: PlayerUIState = playerUIState
     
     var trackInfo: PlayingTrackInfo? {
         

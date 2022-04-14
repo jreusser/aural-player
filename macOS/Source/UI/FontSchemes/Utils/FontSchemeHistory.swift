@@ -15,8 +15,6 @@ import Cocoa
  */
 class FontSchemeHistory: ChangeHistory<FontScheme, FontSchemeChange> {
     
-    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    
     override func captureSnapshotAsRestorePoint() -> FontScheme {
         fontSchemesManager.systemScheme.clone()
     }

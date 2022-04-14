@@ -14,7 +14,7 @@ import Cocoa
  */
 class BookmarkNameInputReceiver: StringInputReceiver {
     
-    private lazy var bookmarks: BookmarksDelegateProtocol = objectGraph.bookmarksDelegate
+    private lazy var bookmarks: BookmarksDelegateProtocol = bookmarksDelegate
     
     private static let inputPromptString: String = "Enter a bookmark name:"
     

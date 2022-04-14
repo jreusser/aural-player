@@ -29,8 +29,6 @@ class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegat
     private lazy var playlistView: FontSchemesViewProtocol = PlaylistFontSchemeViewController()
     private lazy var effectsView: FontSchemesViewProtocol = EffectsFontSchemeViewController()
     
-    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    
     // Popover to collect user input (i.e. color scheme name) when saving new color schemes
     lazy var userSchemesPopover: StringInputPopoverViewController = .create(self)
     

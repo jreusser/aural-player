@@ -28,7 +28,7 @@ class PlaybackView: NSView {
     @IBOutlet weak var btnSeekBackward: TintedImageButton!
     @IBOutlet weak var btnSeekForward: TintedImageButton!
     
-    private let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
+    private let player: PlaybackDelegateProtocol = playbackDelegate
     
     private lazy var btnPlayPauseStateMachine: ButtonStateMachine<PlaybackState> = ButtonStateMachine(initialState: player.state,
                                                                                                       mappings: [
@@ -82,7 +82,7 @@ class PlaybackView: NSView {
         btnPlayPauseStateMachine.setState(player.state)
         btnLoopStateMachine.setState(player.playbackLoopState)
         
-        objectGraph.colorSchemesManager.registerObservers([btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack],
+        colorSchemesManager.registerObservers([btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack],
                                                           forProperty: \.buttonColor)
     }
     

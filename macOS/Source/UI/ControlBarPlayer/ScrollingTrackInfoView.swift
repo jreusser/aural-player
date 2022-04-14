@@ -18,7 +18,7 @@ import Cocoa
 ///
 class ScrollingTrackInfoView: NSView {
     
-    private lazy var uiState: ControlBarPlayerUIState = objectGraph.controlBarPlayerUIState
+    private lazy var uiState: ControlBarPlayerUIState = controlBarPlayerUIState
     
     override var frame: NSRect {
         didSet {resized()}

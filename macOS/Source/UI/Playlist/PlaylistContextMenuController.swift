@@ -56,23 +56,21 @@
 //    private lazy var infoPopup: InfoPopupViewController = InfoPopupViewController.instance
 //
 //    // Delegate that relays CRUD actions to the playlist
-//    private let playlist: PlaylistDelegateProtocol = objectGraph.playlistDelegate
+//    private let playlist: PlaylistDelegateProtocol = playlistDelegate
 //
 //    // Delegate that retrieves current playback info
-//    private let playbackInfo: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
+//    private let playbackInfo: PlaybackInfoDelegateProtocol = playbackInfoDelegate
 //
 //    // Delegate that provides access to History information
-//    private lazy var favorites: FavoritesDelegateProtocol = objectGraph.favoritesDelegate
+//    private lazy var favorites: FavoritesDelegateProtocol = favoritesDelegate
 //
-//    private lazy var trackReader: TrackReader = objectGraph.trackReader
+//    private lazy var trackReader: TrackReader = trackReader
 //
 //    private lazy var alertDialog: AlertWindowController = AlertWindowController.instance
 //
 //    private lazy var messenger = Messenger(for: self)
 //
-//    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-//
-//    private lazy var uiState: PlaylistUIState = objectGraph.playlistUIState
+//    private lazy var uiState: PlaylistUIState = playlistUIState
 //
 //    // One-time setup
 //    override func awakeFromNib() {

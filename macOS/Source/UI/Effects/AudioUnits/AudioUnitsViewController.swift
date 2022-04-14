@@ -38,13 +38,7 @@ class AudioUnitsViewController: NSViewController, Destroyable {
     
     // MARK: Services, utilities, helpers, and properties
     
-    let audioGraph: AudioGraphDelegateProtocol = objectGraph.audioGraphDelegate
-    
-    private let audioUnitsManager: AudioUnitsManager = objectGraph.audioUnitsManager
-    
-    let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
+    let audioGraph: AudioGraphDelegateProtocol = audioGraphDelegate
     
     private(set) lazy var messenger = Messenger(for: self)
     

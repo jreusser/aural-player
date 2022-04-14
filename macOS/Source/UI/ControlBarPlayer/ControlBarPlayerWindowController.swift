@@ -20,13 +20,11 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
     @IBOutlet weak var cornerRadiusStepper: NSStepper!
     @IBOutlet weak var lblCornerRadius: NSTextField!
     
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
     private var snappingWindow: SnappingWindow!
     
     private lazy var messenger = Messenger(for: self)
     
-    private let uiState: ControlBarPlayerUIState = objectGraph.controlBarPlayerUIState
+    private let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
     
     override var windowNibName: String? {"ControlBarPlayer"}
     

@@ -16,8 +16,6 @@ class ButtonStateMachine<E> where E: Hashable {
     private let button: TintedImageButton
     private(set) var mappings: [E: StateMapping] = [:]
     
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
     struct StateMapping {
         
         let state: E

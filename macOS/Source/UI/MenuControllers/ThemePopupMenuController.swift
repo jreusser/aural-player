@@ -17,17 +17,13 @@ class ThemePopupMenuController: GenericPresetPopupMenuController {
     private lazy var creationDialogController: CreateThemeDialogController = CreateThemeDialogController.instance
     private lazy var managerWindowController: PresetsManagerWindowController = PresetsManagerWindowController.instance
     
-    private lazy var themesManager: ThemesManager = objectGraph.themesManager
-    private lazy var fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    private lazy var colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
     override var descriptionOfPreset: String {"theme"}
     override var descriptionOfPreset_plural: String {"themes"}
     
     override var userDefinedPresets: [UserManagedObject] {themesManager.userDefinedObjects}
     override var numberOfUserDefinedPresets: Int {themesManager.numberOfUserDefinedObjects}
     
-    private lazy var uiState: WindowAppearanceState = objectGraph.windowAppearanceState
+    private lazy var uiState: WindowAppearanceState = windowAppearanceState
     
     override func presetExists(named name: String) -> Bool {
         themesManager.objectExists(named: name)

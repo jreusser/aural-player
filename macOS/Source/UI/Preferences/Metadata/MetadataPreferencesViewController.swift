@@ -19,10 +19,6 @@ class MetadataPreferencesViewController: NSViewController, PreferencesViewProtoc
     @IBOutlet weak var btnEnableMusicBrainzOnDiskCoverArtCache: NSButton!
     @IBOutlet weak var btnDisableMusicBrainzOnDiskCoverArtCache: NSButton!
     
-    private let playbackInfo: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
-    private let trackReader: TrackReader = objectGraph.trackReader
-    private let musicBrainzCache: MusicBrainzCache = objectGraph.musicBrainzCache
-    
     override var nibName: String? {"MetadataPreferences"}
     
     var preferencesView: NSView {
@@ -64,7 +60,7 @@ class MetadataPreferencesViewController: NSViewController, PreferencesViewProtoc
         prefs.enableOnDiskCoverArtCache = btnEnableMusicBrainzOnDiskCoverArtCache.isOn
         
         // If searching was disabled before but has been switched on, let's search for art for the playing track, if required.
-        if wasSearchDisabled && prefs.enableCoverArtSearch, let playingTrack = playbackInfo.playingTrack {
+        if wasSearchDisabled && prefs.enableCoverArtSearch, let playingTrack = playbackInfoDelegate.playingTrack {
             trackReader.loadArtAsync(for: playingTrack, immediate: true)
         }
         

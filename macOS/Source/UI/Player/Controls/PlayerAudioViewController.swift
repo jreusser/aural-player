@@ -33,12 +33,9 @@ class PlayerAudioViewController: NSViewController, Destroyable {
     @IBOutlet weak var lblPanCaption2: VALabel!
     
     // Delegate that conveys all volume/pan adjustments to the audio graph
-    var audioGraph: AudioGraphDelegateProtocol = objectGraph.audioGraphDelegate
-    let soundProfiles: SoundProfiles = objectGraph.audioGraphDelegate.soundProfiles
-    let soundPreferences: SoundPreferences = objectGraph.preferences.soundPreferences
-    
-    let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
+    var audioGraph: AudioGraphDelegateProtocol = audioGraphDelegate
+    let soundProfiles: SoundProfiles = audioGraphDelegate.soundProfiles
+    let soundPreferences: SoundPreferences = preferences.soundPreferences
     
     lazy var messenger = Messenger(for: self)
     

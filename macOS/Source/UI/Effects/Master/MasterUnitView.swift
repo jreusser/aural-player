@@ -45,7 +45,7 @@ class MasterUnitView: NSView {
         images = [imgEQBypass, imgPitchBypass, imgTimeBypass, imgReverbBypass, imgDelayBypass, imgFilterBypass, imgAUBypass]
 //        labels = [lblEQ, lblPitch, lblTime, lblReverb, lblDelay, lblFilter, lblAudioUnits]
         
-        let audioGraph = objectGraph.audioGraphDelegate
+        let audioGraph = audioGraphDelegate
         
         ([btnEQBypass, imgEQBypass] as! [FXUnitStateObserver]).forEach {
             fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.eqUnit)

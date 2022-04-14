@@ -28,8 +28,6 @@ class PreferencesWindowController: NSWindowController, ModalDialogDelegate {
     
     private var subViews: [PreferencesViewProtocol] = []
     
-    private lazy var preferences: Preferences = objectGraph.preferences
-    
     private var modalDialogResponse: ModalDialogResponse = .ok
     
     override var windowNibName: String? {"Preferences"}

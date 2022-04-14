@@ -31,12 +31,8 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     
     private var compactViewController: CompactPlayQueueViewController = .init()
     
-    private let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
-    private let playQueue: PlayQueueDelegateProtocol = objectGraph.playQueueDelegate
-    
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    private let windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
+    private let player: PlaybackDelegateProtocol = playbackDelegate
+    private let playQueue: PlayQueueDelegateProtocol = playQueueDelegate
     
     private lazy var alertDialog: AlertWindowController = .instance
     

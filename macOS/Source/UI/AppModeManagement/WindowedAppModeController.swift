@@ -23,7 +23,7 @@ class WindowedAppModeController: AppModeController {
     
     var mode: AppMode {.windowed}
     
-    private let manager: WindowLayoutsManager = objectGraph.windowLayoutsManager
+    private let manager: WindowLayoutsManager = windowLayoutsManager
     
     func presentMode(transitioningFromMode previousMode: AppMode?) {
         

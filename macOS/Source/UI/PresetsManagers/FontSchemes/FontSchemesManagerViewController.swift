@@ -14,8 +14,6 @@ import Cocoa
  */
 class FontSchemesManagerViewController: PresetsManagerViewController {
     
-    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    
     // A view that gives the user a visual preview of what each font scheme looks like.
     @IBOutlet weak var previewView: FontSchemePreviewView!
     

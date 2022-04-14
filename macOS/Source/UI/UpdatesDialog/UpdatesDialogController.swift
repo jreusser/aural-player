@@ -25,8 +25,6 @@ class UpdatesDialogController: NSWindowController, ModalComponentProtocol {
     private lazy var workspace: NSWorkspace = NSWorkspace.shared
     private let latestReleaseURL: URL = URL(string: "https://github.com/maculateConception/aural-player/releases/latest")!
     
-    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-    
     override func showWindow(_ sender: Any?) {
         
         forceLoadingOfWindow()

@@ -33,16 +33,13 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     
     // MARK: Services, utilities, helpers, and properties
     
-    let graph: AudioGraphDelegateProtocol = objectGraph.audioGraphDelegate
+    let graph: AudioGraphDelegateProtocol = audioGraphDelegate
     
     var effectsUnit: EffectsUnitDelegateProtocol!
     var unitType: EffectsUnitType {effectsUnit.unitType}
     var unitStateFunction: EffectsUnitStateFunction {effectsUnit.stateFunction}
     
     var presetsWrapper: PresetsWrapperProtocol!
-    
-    let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
     
     lazy var messenger = Messenger(for: self)
     

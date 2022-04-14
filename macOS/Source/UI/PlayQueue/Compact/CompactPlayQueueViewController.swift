@@ -15,8 +15,8 @@ class CompactPlayQueueViewController: TableViewController {
     override var nibName: String? {"CompactPlayQueue"}
     
     // Delegate that retrieves current playback info
-    private let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
-    private let playQueue: PlayQueueDelegateProtocol = objectGraph.playQueueDelegate
+    private let player: PlaybackDelegateProtocol = playbackDelegate
+    private let playQueue: PlayQueueDelegateProtocol = playQueueDelegate
     
     private lazy var messenger: Messenger = Messenger(for: self)
     

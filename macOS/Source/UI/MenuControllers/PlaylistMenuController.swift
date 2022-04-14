@@ -49,15 +49,13 @@
 //    @IBOutlet weak var previousViewMenuItem: NSMenuItem!
 //    @IBOutlet weak var nextViewMenuItem: NSMenuItem!
 //    
-//    private let playlist: PlaylistDelegateProtocol = objectGraph.playlistDelegate
+//    private let playlist: PlaylistDelegateProtocol = playlistDelegate
 //    
 //    private lazy var alertDialog: AlertWindowController = AlertWindowController.instance
 //    
 //    private lazy var messenger = Messenger(for: self)
 //    
-//    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-//    
-//    private lazy var uiState: PlaylistUIState = objectGraph.playlistUIState
+//    private lazy var uiState: PlaylistUIState = playlistUIState
 //    
 //    func menuNeedsUpdate(_ menu: NSMenu) {
 //        

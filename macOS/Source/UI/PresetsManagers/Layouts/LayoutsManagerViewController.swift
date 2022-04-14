@@ -13,11 +13,6 @@ class LayoutsManagerViewController: PresetsManagerViewController {
     
     @IBOutlet weak var previewView: LayoutPreviewView!
     
-    // Delegate that performs CRUD on user preferences
-    private lazy var preferences: Preferences = objectGraph.preferences
-    
-    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-    
     override var nibName: String? {"LayoutsManager"}
     
     override var numberOfPresets: Int {windowLayoutsManager.numberOfUserDefinedObjects}

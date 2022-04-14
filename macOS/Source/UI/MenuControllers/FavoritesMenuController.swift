@@ -18,15 +18,15 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var manageFavoritesMenuItem: NSMenuItem!    
 
     // Delegate that performs CRUD on the favorites model
-    private let favorites: FavoritesDelegateProtocol = objectGraph.favoritesDelegate
+    private let favorites: FavoritesDelegateProtocol = favoritesDelegate
     
-    private lazy var playbackInfo: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
+    private lazy var playbackInfo: PlaybackInfoDelegateProtocol = playbackInfoDelegate
     
-//    private lazy var playlist: PlaylistDelegateProtocol = objectGraph.playlistDelegate
+//    private lazy var playlist: PlaylistDelegateProtocol = playlistDelegate
     
     private lazy var managerWindowController: PresetsManagerWindowController = PresetsManagerWindowController.instance
     
-    private lazy var fileReader: FileReader = objectGraph.fileReader
+    private lazy var fileReader: FileReader = fileReader
     
     private lazy var messenger = Messenger(for: self)
     
@@ -85,9 +85,9 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
             
 //            if let theImage = self?.playlist.findFile(item.file)?.art?.image ?? self?.fileReader.getArt(for: item.file)?.image,
 //               let imgCopy = theImage.copy() as? NSImage {
-//                
+//
 //                imgCopy.size = menuItemCoverArtImageSize
-//                
+//
 //                DispatchQueue.main.async {
 //                    menuItem.image = imgCopy
 //                }

@@ -55,20 +55,13 @@ class MainWindowController: NSWindowController {
     
     var eventMonitor: EventMonitor! = EventMonitor()
     
-    // Delegate that retrieves current playback info
-    let playbackInfo: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
-    
-    let preferences: GesturesControlsPreferences = objectGraph.preferences.controlsPreferences.gestures
-    
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
+    let controlsPreferences: GesturesControlsPreferences = preferences.controlsPreferences.gestures
     
     override var windowNibName: String? {"MainWindow"}
     
-    lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-    
     lazy var messenger = Messenger(for: self)
     
-    private lazy var uiState: WindowAppearanceState = objectGraph.windowAppearanceState
+    private lazy var uiState: WindowAppearanceState = windowAppearanceState
     
     // MARK: Setup
     

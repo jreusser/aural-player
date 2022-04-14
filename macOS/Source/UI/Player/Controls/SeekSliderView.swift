@@ -30,12 +30,12 @@ class SeekSliderView: NSView {
     var seekTimer: RepeatingTaskExecutor?
     
     // Delegate representing the Time effects unit
-    let timeStretchUnit: TimeStretchUnitDelegateProtocol = objectGraph.audioGraphDelegate.timeStretchUnit
+    let timeStretchUnit: TimeStretchUnitDelegateProtocol = audioGraphDelegate.timeStretchUnit
     
     // Delegate that conveys all playback requests to the player / playback sequencer
-    let player: PlaybackDelegateProtocol = objectGraph.playbackDelegate
+    let player: PlaybackDelegateProtocol = playbackDelegate
     
-    private lazy var uiState: PlayerUIState = objectGraph.playerUIState
+    private lazy var uiState: PlayerUIState = playerUIState
     
     var seekSliderValue: Double {seekSlider.doubleValue}
     
@@ -53,7 +53,7 @@ class SeekSliderView: NSView {
     
     func initSeekPositionLabels() {
         
-        objectGraph.colorSchemesManager.registerObserver(lblTimeElapsed, forProperty: \.secondaryTextColor)
+        colorSchemesManager.registerObserver(lblTimeElapsed, forProperty: \.secondaryTextColor)
         
         // Allow clicks on the seek time display labels to switch to different display formats.
         lblTimeElapsed?.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(self.switchTimeElapsedDisplayAction)))

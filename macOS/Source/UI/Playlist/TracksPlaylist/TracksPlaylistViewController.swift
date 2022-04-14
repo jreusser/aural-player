@@ -27,21 +27,21 @@
 //    @IBOutlet weak var clipView: NSClipView!
 //
 //    // Delegate that relays CRUD actions to the playlist
-////    let playlist: PlaylistDelegateProtocol = objectGraph.playlistDelegate
+////    let playlist: PlaylistDelegateProtocol = playlistDelegate
 //
 //    // Delegate that retrieves current playback info
-//    let playbackInfo: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
+//    let playbackInfo: PlaybackInfoDelegateProtocol = playbackInfoDelegate
 //
-//    let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-//    let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
+//    let fontSchemesManager: FontSchemesManager = fontSchemesManager
+//    let colorSchemesManager: ColorSchemesManager = colorSchemesManager
 //
-//    private let preferences: PlaylistPreferences = objectGraph.preferences.playlistPreferences
+//    private let preferences: PlaylistPreferences = preferences.playlistPreferences
 //
 //    override var nibName: String? {"Tracks"}
 //
 //    private lazy var messenger = Messenger(for: self)
 //
-//    private lazy var uiState: PlaylistUIState = objectGraph.playlistUIState
+//    private lazy var uiState: PlaylistUIState = playlistUIState
 //
 //    override func viewDidLoad() {
 //

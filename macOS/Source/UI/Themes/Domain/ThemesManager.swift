@@ -14,12 +14,9 @@ import Cocoa
  */
 class ThemesManager: UserManagedObjects<Theme> {
     
-    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
     private lazy var messenger = Messenger(for: self)
     
-    private lazy var uiState: WindowAppearanceState = objectGraph.windowAppearanceState
+    private lazy var uiState: WindowAppearanceState = windowAppearanceState
     
     init(persistentState: ThemesPersistentState?, fontSchemesManager: FontSchemesManager) {
         

@@ -40,7 +40,7 @@ class TimeStretchUnitView: NSView {
     
     func initialize(stateFunction: @escaping EffectsUnitStateFunction) {
         
-        let timeStretchUnit = objectGraph.audioGraphDelegate.timeStretchUnit
+        let timeStretchUnit = audioGraphDelegate.timeStretchUnit
         fxUnitStateObserverRegistry.registerObserver(timeSlider, forFXUnit: timeStretchUnit)
 //        btnShiftPitch.stateFunction = stateFunction
     }

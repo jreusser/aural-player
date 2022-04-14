@@ -35,7 +35,7 @@ import Cocoa
 //    
 //    override var barRect: NSRect {_barRect}
 //    
-//    private let eqUnit: EQUnitDelegateProtocol = objectGraph.audioGraphDelegate.eqUnit
+//    private let eqUnit: EQUnitDelegateProtocol = audioGraphDelegate.eqUnit
 //    
 //    override var progressRect: NSRect {
 //        

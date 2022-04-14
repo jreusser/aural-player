@@ -28,7 +28,7 @@ class FilterUnitViewController: EffectsUnitViewController {
     
     // MARK: Services, utilities, helpers, and properties
     
-    var filterUnit: FilterUnitDelegateProtocol = objectGraph.audioGraphDelegate.filterUnit
+    var filterUnit: FilterUnitDelegateProtocol = audioGraphDelegate.filterUnit
     
     // ------------------------------------------------------------------------
     

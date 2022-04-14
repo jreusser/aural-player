@@ -28,6 +28,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// A window of time within which multiple file open operations will be considered as chunks of one single operation
     private let fileOpenNotificationWindow_seconds: Double = 3
     
+    private lazy var tearDownOpQueue: OperationQueue = OperationQueue(opCount: 2, qos: .userInteractive)
+    
     private lazy var messenger = Messenger(for: self)
     
     override init() {
@@ -48,16 +50,49 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Presents the application's user interface upon app startup.
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        objectGraph.appModeManager.presentApp()
+        initialize()
+        appModeManager.presentApp()
         
         // TODO: Put 'startObserving()' in some kind of protocol ???
-        objectGraph.colorSchemesManager.startObserving()
+        colorSchemesManager.startObserving()
         
         // Update the appLaunched flag
         appLaunched = true
         
         // Tell app components that the app has finished launching, and pass along any launch parameters (set of files to open)
         messenger.publish(.application_launched, payload: filesToOpen)
+    }
+    
+    private func initialize() {
+        
+        // Force initialization of objects that would not be initialized soon enough otherwise
+        // (they are not referred to in code that is executed on app startup).
+        
+    #if os(macOS)
+        
+        _ = mediaKeyHandler
+        
+    #endif
+        
+        _ = remoteControlManager
+        
+        DispatchQueue.global(qos: .background).async {
+            self.cleanUpLegacyFolders()
+        }
+    }
+    
+    ///
+    /// Clean up (delete) file system folders that were used by previous app versions that had the transcoder and/or recorder.
+    ///
+    private func cleanUpLegacyFolders() {
+        
+        let transcoderDir = FilesAndPaths.subDirectory(named: "transcoderStore")
+        let artDir = FilesAndPaths.subDirectory(named: "albumArt")
+        let recordingsDir = FilesAndPaths.subDirectory(named: "recordings")
+        
+        for folder in [transcoderDir, artDir, recordingsDir] {
+            folder.delete()
+        }
     }
     
     /// Opens the application with a single file (audio file or playlist)
@@ -101,10 +136,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         messenger.publish(.application_willExit)
         
         // Perform a final shutdown.
-        objectGraph.tearDown()
+        tearDown()
+    }
+    
+    // Called when app exits
+    private func tearDown() {
+        
+        // App state persistence and shutting down the audio engine can be performed concurrently
+        // on two background threads to save some time when exiting the app.
+        
+        let _persistentStateOnExit = persistentStateOnExit
+        
+        tearDownOpQueue.addOperations([
+            
+            // Persist app state to disk.
+            BlockOperation {
+                persistenceManager.save(_persistentStateOnExit)
+            },
+            
+            // Tear down the player and audio engine.
+            BlockOperation {
+                player.tearDown()
+                audioGraph.tearDown()
+            }
+            
+        ], waitUntilFinished: true)
     }
 }
-
-let objectGraph: ObjectGraph = .instance
-
-let appVersion: String = NSApp.appVersion

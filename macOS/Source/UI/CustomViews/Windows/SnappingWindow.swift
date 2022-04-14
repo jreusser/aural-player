@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-fileprivate let preferences: ViewPreferences = objectGraph.preferences.viewPreferences
+fileprivate let viewPreferences: ViewPreferences = preferences.viewPreferences
 
 @IBDesignable
 class SnappingWindow: NoTitleBarWindow {
@@ -57,7 +57,7 @@ class SnappingWindow: NoTitleBarWindow {
     
     func checkForSnap(to mate: NSWindow) -> Bool {
         
-        let gap = preferences.windowGap
+        let gap = viewPreferences.windowGap
         
         var snap: SnapToWindowType = checkForSnap_bottom(to: mate)
         

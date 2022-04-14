@@ -15,7 +15,7 @@ class TimeStretchPresetsManagerViewController: EffectsPresetsManagerGenericViewC
     
     override var nibName: String? {"TimeStretchPresetsManager"}
     
-    var timeStretchUnit: TimeStretchUnitDelegateProtocol = objectGraph.audioGraphDelegate.timeStretchUnit
+    var timeStretchUnit: TimeStretchUnitDelegateProtocol = audioGraphDelegate.timeStretchUnit
     
     override func awakeFromNib() {
         

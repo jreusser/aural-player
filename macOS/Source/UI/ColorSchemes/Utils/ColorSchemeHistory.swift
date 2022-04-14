@@ -16,8 +16,6 @@ import Cocoa
  */
 class ColorSchemeHistory: ChangeHistory<ColorScheme, ColorSchemeChange> {
     
-    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
     override func captureSnapshotAsRestorePoint() -> ColorScheme {
         colorSchemesManager.systemScheme.clone()
     }

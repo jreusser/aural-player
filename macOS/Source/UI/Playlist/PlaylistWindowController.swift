@@ -76,16 +76,16 @@
 //    private var eventMonitor: EventMonitor! = EventMonitor()
 //
 //    // Delegate that relays CRUD actions to the playlist
-//    private let playlist: PlaylistDelegateProtocol = objectGraph.playlistDelegate
+//    private let playlist: PlaylistDelegateProtocol = playlistDelegate
 //
 //    // Delegate that retrieves current playback info
-//    private let playbackInfo: PlaybackInfoDelegateProtocol = objectGraph.playbackInfoDelegate
+//    private let playbackInfo: PlaybackInfoDelegateProtocol = playbackInfoDelegate
 //
-//    private let playlistPreferences: PlaylistPreferences = objectGraph.preferences.playlistPreferences
-//    private lazy var gesturesPreferences: GesturesControlsPreferences = objectGraph.preferences.controlsPreferences.gestures
+//    private let playlistPreferences: PlaylistPreferences = preferences.playlistPreferences
+//    private lazy var gesturesPreferences: GesturesControlsPreferences = preferences.controlsPreferences.gestures
 //
-//    private let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-//    private let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
+//    private let fontSchemesManager: FontSchemesManager = fontSchemesManager
+//    private let colorSchemesManager: ColorSchemesManager = colorSchemesManager
 //
 //    private var childContainerBoxes: [NSBox] = []
 //    private var functionButtons: [TintedImageButton] = []
@@ -93,11 +93,9 @@
 //
 //    private lazy var messenger = Messenger(for: self)
 //
-//    private lazy var uiState: PlaylistUIState = objectGraph.playlistUIState
+//    private lazy var uiState: PlaylistUIState = playlistUIState
 //
-//    private lazy var windowLayoutsManager: WindowLayoutsManager = objectGraph.windowLayoutsManager
-//
-//    private lazy var windowAppearanceState: WindowAppearanceState = objectGraph.windowAppearanceState
+//    private lazy var windowAppearanceState: WindowAppearanceState = windowAppearanceState
 //
 //    override func windowDidLoad() {
 //

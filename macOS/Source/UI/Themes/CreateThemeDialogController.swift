@@ -26,11 +26,6 @@ class CreateThemeDialogController: SingletonWindowController, StringInputReceive
     @IBOutlet weak var windowCornerRadiusStepper: NSStepper!
     @IBOutlet weak var lblWindowCornerRadius: NSTextField!
     
-    private lazy var themesManager: ThemesManager = objectGraph.themesManager
-    
-    private lazy var fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    private lazy var colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
     var isModal: Bool {
         return self.window?.isVisible ?? false
     }
@@ -39,7 +34,7 @@ class CreateThemeDialogController: SingletonWindowController, StringInputReceive
 
         self.window?.isMovableByWindowBackground = true
         
-        for theMenu in [fontSchemesMenu, colorSchemesMenu] as! [NSMenu] {
+        for theMenu in [fontSchemesMenu, colorSchemesMenu].compactMap({$0}) {
         
             theMenu.insertItem(NSMenuItem.createDescriptor(title: "Built-in schemes"), at: 0)
             theMenu.insertItem(NSMenuItem.separator(), at: 0)

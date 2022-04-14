@@ -17,7 +17,7 @@ let menuItemCoverArtImageSize: NSSize = NSSize(width: 22, height: 22)
 class HistoryMenuController: NSObject {
 
     // Delegate that performs CRUD on the history model
-    private let history: HistoryDelegateProtocol = objectGraph.historyDelegate
+    private let history: HistoryDelegateProtocol = historyDelegate
     
     @IBAction fileprivate func clearHistoryAction(_ sender: NSMenuItem) {
         history.clearAllHistory()
@@ -35,8 +35,7 @@ class HistoryMenuItem: NSMenuItem {
     var historyItem: HistoryItem!
 }
 
-//fileprivate let playlist: PlaylistDelegateProtocol = objectGraph.playlistDelegate
-fileprivate let fileReader: FileReader = objectGraph.fileReader
+//fileprivate let playlist: PlaylistDelegateProtocol = playlistDelegate
 
 fileprivate func artForFile(_ _file: URL) -> NSImage? {
     
@@ -136,7 +135,7 @@ class RecentlyAddedMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var recentlyAddedMenu: NSMenu!
     
     // Delegate that performs CRUD on the history model
-    private let history: HistoryDelegateProtocol = objectGraph.historyDelegate
+    private let history: HistoryDelegateProtocol = historyDelegate
     
     // Before the menu opens, re-create the menu items from the model
     func menuWillOpen(_ menu: NSMenu) {
@@ -182,7 +181,7 @@ class RecentlyPlayedMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var recentlyPlayedMenu: NSMenu!
     
     // Delegate that performs CRUD on the history model
-    private let history: HistoryDelegateProtocol = objectGraph.historyDelegate
+    private let history: HistoryDelegateProtocol = historyDelegate
     
     // Before the menu opens, re-create the menu items from the model
     func menuWillOpen(_ menu: NSMenu) {
@@ -201,18 +200,18 @@ class RecentlyPlayedMenuController: NSObject, NSMenuDelegate {
     @IBAction fileprivate func playSelectedItemAction(_ sender: HistoryMenuItem) {
         
 //        if let item = sender.historyItem as? PlayedItem {
-//            
+//
 //            do {
-//                
+//
 //                try history.playItem(item.file, playlistUIState.currentView)
-//                
+//
 //            } catch {
-//                
+//
 //                if let fnfError = error as? FileNotFoundError {
-//                    
+//
 //                    // This needs to be done async. Otherwise, other open dialogs could hang.
 //                    DispatchQueue.main.async {
-//                        
+//
 //                        // Position and display an alert with error info
 //                        _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove item").showModal()
 //                        self.history.deleteItem(item)

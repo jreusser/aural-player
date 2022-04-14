@@ -17,8 +17,6 @@ class FontSchemePopupMenuController: GenericPresetPopupMenuController {
     private lazy var customizationDialogController: FontSchemesWindowController = FontSchemesWindowController.instance
     private lazy var managerWindowController: PresetsManagerWindowController = PresetsManagerWindowController.instance
     
-    private lazy var fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    
     override var descriptionOfPreset: String {"font scheme"}
     override var descriptionOfPreset_plural: String {"font schemes"}
     

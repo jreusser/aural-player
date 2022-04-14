@@ -17,9 +17,6 @@ class TableViewController: NSViewController, NSTableViewDelegate, ColorSchemeObs
     // Override this !
     var trackList: TrackListProtocol {TrackList()}
     
-    let fontSchemesManager: FontSchemesManager = objectGraph.fontSchemesManager
-    let colorSchemesManager: ColorSchemesManager = objectGraph.colorSchemesManager
-    
     var selectedRows: IndexSet {tableView.selectedRowIndexes}
     
     var selectedRowCount: Int {tableView.numberOfSelectedRows}
