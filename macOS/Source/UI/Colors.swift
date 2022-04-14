@@ -13,66 +13,64 @@
 
 import Cocoa
 
-let systemColorScheme: ColorScheme = colorSchemesManager.systemScheme
-
 struct Colors {
     
     private static let colorSchemesManager: ColorSchemesManager = colorSchemesManager
     
 //    static var windowBackgroundColor: NSColor {
-//        return colorSchemesManager.systemScheme.backgroundColor
+//        return systemColorScheme.backgroundColor
 //    }
 //
 //    static var appLogoColor: NSColor {
-//        return colorSchemesManager.systemScheme.general.appLogoColor
+//        return systemColorScheme.general.appLogoColor
 //    }
 //
 //    static var functionButtonColor: NSColor {
-//        return colorSchemesManager.systemScheme.buttonColor
+//        return systemColorScheme.buttonColor
 //    }
 //
 //    static var textButtonMenuGradient: NSGradient {
 //
-//        let color = colorSchemesManager.systemScheme.general.textButtonMenuColor
+//        let color = systemColorScheme.general.textButtonMenuColor
 //        return NSGradient(starting: color, ending: color.darkened(40))!
 //    }
 //
 //    static var toggleButtonOffStateColor: NSColor {
-//        return colorSchemesManager.systemScheme.buttonOffColor
+//        return systemColorScheme.buttonOffColor
 //    }
 //
 //    static var mainCaptionTextColor: NSColor {
-//        return colorSchemesManager.systemScheme.captionTextColor
+//        return systemColorScheme.captionTextColor
 //    }
 //
 //    static var tabButtonTextColor: NSColor {
-//        return colorSchemesManager.systemScheme.general.tabButtonTextColor
+//        return systemColorScheme.general.tabButtonTextColor
 //    }
 //
 //    static var selectedTabButtonTextColor: NSColor {
-//        return colorSchemesManager.systemScheme.general.selectedTabButtonTextColor
+//        return systemColorScheme.general.selectedTabButtonTextColor
 //    }
 //
 //    static var selectedTabButtonColor: NSColor {
-//        return colorSchemesManager.systemScheme.general.selectedTabButtonColor
+//        return systemColorScheme.general.selectedTabButtonColor
 //    }
 //
 //    static var buttonMenuTextColor: NSColor {
-//        return colorSchemesManager.systemScheme.general.buttonMenuTextColor
+//        return systemColorScheme.general.buttonMenuTextColor
 //    }
 //
 //    struct Player {
 //
 //        static var trackInfoTitleTextColor: NSColor {
-//            return colorSchemesManager.systemScheme.player.trackInfoPrimaryTextColor
+//            return systemColorScheme.player.trackInfoPrimaryTextColor
 //        }
 //
 //        static var trackInfoArtistAlbumTextColor: NSColor {
-//            return colorSchemesManager.systemScheme.player.trackInfoSecondaryTextColor
+//            return systemColorScheme.player.trackInfoSecondaryTextColor
 //        }
 //
 //        static var trackInfoChapterTextColor: NSColor {
-//            return colorSchemesManager.systemScheme.player.trackInfoTertiaryTextColor
+//            return systemColorScheme.player.trackInfoTertiaryTextColor
 //        }
 //
 //        // Updates the cached NSGradient objects used by the player's seek slider
@@ -92,9 +90,9 @@ struct Colors {
 //
 //        private static func computeSliderBackgroundGradient() -> NSGradient {
 //
-//            let endColor = colorSchemesManager.systemScheme.player.sliderBackgroundColor
+//            let endColor = systemColorScheme.player.sliderBackgroundColor
 //
-//            switch colorSchemesManager.systemScheme.player.sliderBackgroundGradientType {
+//            switch systemColorScheme.player.sliderBackgroundGradientType {
 //
 //            case .none:
 //
@@ -102,14 +100,14 @@ struct Colors {
 //
 //            case .darken:
 //
-//                let amount = colorSchemesManager.systemScheme.player.sliderBackgroundGradientAmount
+//                let amount = systemColorScheme.player.sliderBackgroundGradientAmount
 //                let startColor = endColor.darkened(CGFloat(amount))
 //
 //                return NSGradient(starting: startColor, ending: endColor)!
 //
 //            case .brighten:
 //
-//                let amount = colorSchemesManager.systemScheme.player.sliderBackgroundGradientAmount
+//                let amount = systemColorScheme.player.sliderBackgroundGradientAmount
 //                let startColor = endColor.brightened(CGFloat(amount))
 //
 //                return NSGradient(starting: startColor, ending: endColor)!
@@ -133,9 +131,9 @@ struct Colors {
 //
 //        private static func computeSliderForegroundGradient() -> NSGradient {
 //
-//            let startColor = colorSchemesManager.systemScheme.player.sliderForegroundColor
+//            let startColor = systemColorScheme.player.sliderForegroundColor
 //
-//            switch colorSchemesManager.systemScheme.player.sliderForegroundGradientType {
+//            switch systemColorScheme.player.sliderForegroundGradientType {
 //
 //            case .none:
 //
@@ -143,14 +141,14 @@ struct Colors {
 //
 //            case .darken:
 //
-//                let amount = colorSchemesManager.systemScheme.player.sliderForegroundGradientAmount
+//                let amount = systemColorScheme.player.sliderForegroundGradientAmount
 //                let endColor = startColor.darkened(CGFloat(amount))
 //
 //                return NSGradient(starting: startColor, ending: endColor)!
 //
 //            case .brighten:
 //
-//                let amount = colorSchemesManager.systemScheme.player.sliderForegroundGradientAmount
+//                let amount = systemColorScheme.player.sliderForegroundGradientAmount
 //                let endColor = startColor.brightened(CGFloat(amount))
 //
 //                return NSGradient(starting: startColor, ending: endColor)!
@@ -165,84 +163,84 @@ struct Colors {
 //        }
 //
 //        static var sliderForegroundColor: NSColor {
-//            return colorSchemesManager.systemScheme.player.sliderForegroundColor
+//            return systemColorScheme.player.sliderForegroundColor
 //        }
 //
 //        static var seekBarLoopColor: NSColor {
-//            return colorSchemesManager.systemScheme.player.sliderLoopSegmentColor
+//            return systemColorScheme.player.sliderLoopSegmentColor
 //        }
 //
 //        static var sliderKnobColor: NSColor {
 //
-//            return colorSchemesManager.systemScheme.player.sliderKnobColorSameAsForeground ? colorSchemesManager.systemScheme.player.sliderForegroundColor : colorSchemesManager.systemScheme.player.sliderKnobColor
+//            return systemColorScheme.player.sliderKnobColorSameAsForeground ? systemColorScheme.player.sliderForegroundColor : systemColorScheme.player.sliderKnobColor
 //        }
 //    }
 //
 //    struct Playlist {
 //
 //        static var trackNameTextColor: NSColor {
-//            return colorSchemesManager.systemScheme.playlist.trackNameTextColor
+//            return systemColorScheme.playlist.trackNameTextColor
 //        }
 //
 //        static var groupNameTextColor: NSColor {
-//            return colorSchemesManager.systemScheme.playlist.groupNameTextColor
+//            return systemColorScheme.playlist.groupNameTextColor
 //        }
 //
 //        static var indexDurationTextColor: NSColor {
-//            return colorSchemesManager.systemScheme.playlist.indexDurationTextColor
+//            return systemColorScheme.playlist.indexDurationTextColor
 //        }
 //
 //        static var trackNameSelectedTextColor: NSColor {
-//            return colorSchemesManager.systemScheme.playlist.trackNameSelectedTextColor
+//            return systemColorScheme.playlist.trackNameSelectedTextColor
 //        }
 //
 //        static var groupNameSelectedTextColor: NSColor {
-//            return colorSchemesManager.systemScheme.playlist.groupNameSelectedTextColor
+//            return systemColorScheme.playlist.groupNameSelectedTextColor
 //        }
 //
 //        static var indexDurationSelectedTextColor: NSColor {
-//            return colorSchemesManager.systemScheme.playlist.indexDurationSelectedTextColor
+//            return systemColorScheme.playlist.indexDurationSelectedTextColor
 //        }
 //
 //        static var playingTrackIconColor: NSColor {
-//            return colorSchemesManager.systemScheme.playlist.playingTrackIconColor
+//            return systemColorScheme.playlist.playingTrackIconColor
 //        }
 //
 //        static var selectionBoxColor: NSColor {
-//            return colorSchemesManager.systemScheme.playlist.selectionBoxColor
+//            return systemColorScheme.playlist.selectionBoxColor
 //        }
 //
 //        static var groupIconColor: NSColor {
-//            return colorSchemesManager.systemScheme.playlist.groupIconColor
+//            return systemColorScheme.playlist.groupIconColor
 //        }
 //
 //        static var groupDisclosureTriangleColor: NSColor {
-//            return colorSchemesManager.systemScheme.playlist.groupDisclosureTriangleColor
+//            return systemColorScheme.playlist.groupDisclosureTriangleColor
 //        }
 //
 //        static var summaryInfoColor: NSColor {
-//            return colorSchemesManager.systemScheme.playlist.summaryInfoColor
+//            return systemColorScheme.playlist.summaryInfoColor
 //        }
 //    }
 //
 //    struct Effects {
 //
 //        static var functionCaptionTextColor: NSColor {
-//            return colorSchemesManager.systemScheme.secondaryTextColor
+//            return systemColorScheme.secondaryTextColor
 //        }
 //
 //        static var functionValueTextColor: NSColor {
-//            return colorSchemesManager.systemScheme.primaryTextColor
+//            return systemColorScheme.primaryTextColor
 //        }
 //
 //        static var sliderBackgroundColor: NSColor {
-//            return colorSchemesManager.systemScheme.effects.sliderBackgroundColor
+//            return systemColorScheme.effects.sliderBackgroundColor
 //        }
 //
 //        static func sliderKnobColorForState(_ state: EffectsUnitState) -> NSColor {
 //
-//            let useForegroundColor: Bool = colorSchemesManager.systemScheme.effects.sliderKnobColorSameAsForeground
-//            let staticKnobColor: NSColor = colorSchemesManager.systemScheme.effects.sliderKnobColor
+//            let useForegroundColor: Bool = systemColorScheme.effects.sliderKnobColorSameAsForeground
+//            let staticKnobColor: NSColor = systemColorScheme.effects.sliderKnobColor
 //
 //            switch state {
 //
@@ -256,26 +254,26 @@ struct Colors {
 //        }
 //
 //        static var sliderTickColor: NSColor {
-//            return colorSchemesManager.systemScheme.effects.sliderTickColor
+//            return systemColorScheme.effects.sliderTickColor
 //        }
 //
 //        static var activeUnitStateColor: NSColor {
-//            return colorSchemesManager.systemScheme.activeControlColor
+//            return systemColorScheme.activeControlColor
 //        }
 //
 //        static var bypassedUnitStateColor: NSColor {
-//            return colorSchemesManager.systemScheme.bypassedControlColor
+//            return systemColorScheme.bypassedControlColor
 //        }
 //
 //        static var suppressedUnitStateColor: NSColor {
-//            return colorSchemesManager.systemScheme.suppressedControlColor
+//            return systemColorScheme.suppressedControlColor
 //        }
 //
 //        static var activeSliderGradient: NSGradient {
 //
-//            let startColor = colorSchemesManager.systemScheme.activeControlColor
+//            let startColor = systemColorScheme.activeControlColor
 //
-//            switch colorSchemesManager.systemScheme.effects.sliderForegroundGradientType {
+//            switch systemColorScheme.effects.sliderForegroundGradientType {
 //
 //            case .none:
 //
@@ -283,14 +281,14 @@ struct Colors {
 //
 //            case .darken:
 //
-//                let amount = colorSchemesManager.systemScheme.effects.sliderForegroundGradientAmount
+//                let amount = systemColorScheme.effects.sliderForegroundGradientAmount
 //                let endColor = startColor.darkened(CGFloat(amount))
 //
 //                return NSGradient(starting: startColor, ending: endColor)!
 //
 //            case .brighten:
 //
-//                let amount = colorSchemesManager.systemScheme.effects.sliderForegroundGradientAmount
+//                let amount = systemColorScheme.effects.sliderForegroundGradientAmount
 //                let endColor = startColor.brightened(CGFloat(amount))
 //
 //                return NSGradient(starting: startColor, ending: endColor)!
@@ -299,9 +297,9 @@ struct Colors {
 //
 //        static var bypassedSliderGradient: NSGradient {
 //
-//            let startColor = colorSchemesManager.systemScheme.bypassedControlColor
+//            let startColor = systemColorScheme.bypassedControlColor
 //
-//            switch colorSchemesManager.systemScheme.effects.sliderForegroundGradientType {
+//            switch systemColorScheme.effects.sliderForegroundGradientType {
 //
 //            case .none:
 //
@@ -309,14 +307,14 @@ struct Colors {
 //
 //            case .darken:
 //
-//                let amount = colorSchemesManager.systemScheme.effects.sliderForegroundGradientAmount
+//                let amount = systemColorScheme.effects.sliderForegroundGradientAmount
 //                let endColor = startColor.darkened(CGFloat(amount))
 //
 //                return NSGradient(starting: startColor, ending: endColor)!
 //
 //            case .brighten:
 //
-//                let amount = colorSchemesManager.systemScheme.effects.sliderForegroundGradientAmount
+//                let amount = systemColorScheme.effects.sliderForegroundGradientAmount
 //                let endColor = startColor.brightened(CGFloat(amount))
 //
 //                return NSGradient(starting: startColor, ending: endColor)!
@@ -325,9 +323,9 @@ struct Colors {
 //
 //        static var suppressedSliderGradient: NSGradient {
 //
-//            let startColor = colorSchemesManager.systemScheme.suppressedControlColor
+//            let startColor = systemColorScheme.suppressedControlColor
 //
-//            switch colorSchemesManager.systemScheme.effects.sliderForegroundGradientType {
+//            switch systemColorScheme.effects.sliderForegroundGradientType {
 //
 //            case .none:
 //
@@ -335,14 +333,14 @@ struct Colors {
 //
 //            case .darken:
 //
-//                let amount = colorSchemesManager.systemScheme.effects.sliderForegroundGradientAmount
+//                let amount = systemColorScheme.effects.sliderForegroundGradientAmount
 //                let endColor = startColor.darkened(CGFloat(amount))
 //
 //                return NSGradient(starting: startColor, ending: endColor)!
 //
 //            case .brighten:
 //
-//                let amount = colorSchemesManager.systemScheme.effects.sliderForegroundGradientAmount
+//                let amount = systemColorScheme.effects.sliderForegroundGradientAmount
 //                let endColor = startColor.brightened(CGFloat(amount))
 //
 //                return NSGradient(starting: startColor, ending: endColor)!
@@ -351,9 +349,9 @@ struct Colors {
 //
 //        static var sliderBackgroundGradient: NSGradient {
 //
-//            let endColor = colorSchemesManager.systemScheme.effects.sliderBackgroundColor
+//            let endColor = systemColorScheme.effects.sliderBackgroundColor
 //
-//            switch colorSchemesManager.systemScheme.effects.sliderBackgroundGradientType {
+//            switch systemColorScheme.effects.sliderBackgroundGradientType {
 //
 //            case .none:
 //
@@ -361,14 +359,14 @@ struct Colors {
 //
 //            case .darken:
 //
-//                let amount = colorSchemesManager.systemScheme.effects.sliderBackgroundGradientAmount
+//                let amount = systemColorScheme.effects.sliderBackgroundGradientAmount
 //                let startColor = endColor.darkened(CGFloat(amount))
 //
 //                return NSGradient(starting: startColor, ending: endColor)!
 //
 //            case .brighten:
 //
-//                let amount = colorSchemesManager.systemScheme.effects.sliderBackgroundGradientAmount
+//                let amount = systemColorScheme.effects.sliderBackgroundGradientAmount
 //                let startColor = endColor.brightened(CGFloat(amount))
 //
 //                return NSGradient(starting: startColor, ending: endColor)!

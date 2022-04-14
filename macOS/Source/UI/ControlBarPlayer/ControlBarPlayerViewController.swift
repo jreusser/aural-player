@@ -116,7 +116,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate, Destroya
         
         guard let track = player.playingTrack else {return 0}
         
-        let widthOfWidestNumber = String.widthOfWidestNumber(forFont: fontSchemesManager.systemScheme.player.trackTimesFont)
+        let widthOfWidestNumber = String.widthOfWidestNumber(forFont: systemFontScheme.player.trackTimesFont)
         let duration = track.duration
         
         let trackTimes = ValueFormatter.formatTrackTimes(0, duration, 0)
@@ -220,8 +220,8 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate, Destroya
     
     func applyTheme() {
         
-        applyFontScheme(fontSchemesManager.systemScheme)
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyFontScheme(systemFontScheme)
+        applyColorScheme(systemColorScheme)
     }
     
     func applyFontScheme(_ fontScheme: FontScheme) {

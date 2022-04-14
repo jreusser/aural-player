@@ -208,8 +208,8 @@ class EffectsWindowController: NSWindowController {
     
     private func applyTheme() {
         
-        applyFontScheme(fontSchemesManager.systemScheme)
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyFontScheme(systemFontScheme)
+        applyColorScheme(systemColorScheme)
         changeWindowCornerRadius(uiState.cornerRadius)
     }
     

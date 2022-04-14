@@ -31,7 +31,7 @@ class FontSchemePopupMenuController: GenericPresetPopupMenuController {
     override func addPreset(named name: String) {
         
         // Copy the current system scheme into the new scheme, and name it with the user's given scheme name
-        let newScheme: FontScheme = FontScheme(name, false, fontSchemesManager.systemScheme)
+        let newScheme: FontScheme = FontScheme(name, false, systemFontScheme)
         fontSchemesManager.addObject(newScheme)
     }
     

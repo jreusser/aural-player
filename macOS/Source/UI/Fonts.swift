@@ -16,24 +16,24 @@ struct Fonts {
     
     struct Player {
         
-        static var infoBoxTitleFont: NSFont {fontSchemesManager.systemScheme.player.infoBoxTitleFont}
-        static var infoBoxArtistAlbumFont: NSFont {fontSchemesManager.systemScheme.player.infoBoxArtistAlbumFont}
-        static var infoBoxChapterTitleFont: NSFont {fontSchemesManager.systemScheme.player.infoBoxChapterTitleFont}
+        static var infoBoxTitleFont: NSFont {systemFontScheme.player.infoBoxTitleFont}
+        static var infoBoxArtistAlbumFont: NSFont {systemFontScheme.player.infoBoxArtistAlbumFont}
+        static var infoBoxChapterTitleFont: NSFont {systemFontScheme.player.infoBoxChapterTitleFont}
     }
     
     struct Playlist {
         
-        static var trackTextFont: NSFont {fontSchemesManager.systemScheme.playlist.trackTextFont}
+        static var trackTextFont: NSFont {systemFontScheme.playlist.trackTextFont}
         
-        static var groupTextFont: NSFont {fontSchemesManager.systemScheme.playlist.groupTextFont}
+        static var groupTextFont: NSFont {systemFontScheme.playlist.groupTextFont}
         
-        static var tabButtonTextFont: NSFont {fontSchemesManager.systemScheme.playlist.tabButtonTextFont}
+        static var tabButtonTextFont: NSFont {systemFontScheme.playlist.tabButtonTextFont}
         
-        static var chaptersListHeaderFont: NSFont {fontSchemesManager.systemScheme.playlist.chaptersListHeaderFont}
+        static var chaptersListHeaderFont: NSFont {systemFontScheme.playlist.chaptersListHeaderFont}
     }
     
     struct Effects {
         
-        static var unitFunctionFont: NSFont {fontSchemesManager.systemScheme.effects.unitFunctionFont}
+        static var unitFunctionFont: NSFont {systemFontScheme.effects.unitFunctionFont}
     }
 }

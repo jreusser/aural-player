@@ -60,7 +60,7 @@ class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegat
     func showDialog() -> ModalDialogResponse {
         
         forceLoadingOfWindow()
-        subViews.forEach {$0.resetFields(fontSchemesManager.systemScheme)}
+        subViews.forEach {$0.resetFields(systemFontScheme)}
         
         // Reset the change history (every time the dialog is shown)
         history.begin()
@@ -76,7 +76,7 @@ class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegat
     
     @IBAction func applyChangesAction(_ sender: Any) {
         
-        let undoValue: FontScheme = fontSchemesManager.systemScheme.clone()
+        let undoValue: FontScheme = systemFontScheme.clone()
         
         let context = FontSchemeChangeContext()
         let newScheme = FontScheme("_temp", FontSchemePreset.standard)
@@ -86,7 +86,7 @@ class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegat
         [playerView, playlistView, effectsView].forEach {$0.applyFontScheme(context, to: newScheme)}
         fontSchemesManager.applyScheme(newScheme)
         
-        let redoValue: FontScheme = fontSchemesManager.systemScheme.clone()
+        let redoValue: FontScheme = systemFontScheme.clone()
         history.noteChange(FontSchemeChange(undoValue: undoValue, redoValue: redoValue))
     }
     
@@ -106,7 +106,7 @@ class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegat
     private func applyFontScheme(_ fontScheme: FontScheme) {
         
         fontSchemesManager.applyScheme(fontScheme)
-        let systemFontScheme = fontSchemesManager.systemScheme
+        let systemFontScheme = systemFontScheme
         
         subViews.forEach {$0.resetFields(systemFontScheme)}
         
@@ -214,7 +214,7 @@ extension FontSchemesWindowController: StringInputReceiver {
     func acceptInput(_ string: String) {
         
         // Copy the current system scheme into the new scheme, and name it with the user's given scheme name
-        let newScheme: FontScheme = FontScheme(string, false, fontSchemesManager.systemScheme)
+        let newScheme: FontScheme = FontScheme(string, false, systemFontScheme)
         fontSchemesManager.addObject(newScheme)
     }
 }

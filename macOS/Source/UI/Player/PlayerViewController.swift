@@ -44,8 +44,8 @@ class PlayerViewController: NSViewController, Destroyable {
         
         initSubscriptions()
         
-        infoView.applyFontScheme(fontSchemesManager.systemScheme)
-        infoView.applyColorScheme(colorSchemesManager.systemScheme)
+        infoView.applyFontScheme(systemFontScheme)
+        infoView.applyColorScheme(systemColorScheme)
         
         infoView.showView()
         

@@ -82,9 +82,9 @@ extension AudioUnitsViewController: NSTableViewDelegate {
         let audioUnit = audioGraph.audioUnits[row]
         
         cell.text = "\(audioUnit.name) v\(audioUnit.version) by \(audioUnit.manufacturerName)"
-        cell.textFont = fontSchemesManager.systemScheme.effects.unitFunctionFont
+        cell.textFont = systemFontScheme.effects.unitFunctionFont
         cell.rowSelectionStateFunction = {tableView.isRowSelected(row)}
-        cell.realignText(yOffset: fontSchemesManager.systemScheme.effects.auRowTextYOffset)
+        cell.realignText(yOffset: systemFontScheme.effects.auRowTextYOffset)
         
         return cell
     }
@@ -95,7 +95,7 @@ extension AudioUnitsViewController: NSTableViewDelegate {
         
         let audioUnit = audioGraph.audioUnits[row]
         
-//        cell.btnEdit.tintFunction = {[weak self] in self?.colorSchemesManager.systemScheme.buttonColor ?? ColorSchemePreset.blackAttack.functionButtonColor}
+//        cell.btnEdit.tintFunction = {[weak self] in self?.systemColorScheme.buttonColor ?? ColorSchemePreset.blackAttack.functionButtonColor}
         
 //        cell.btnEdit.reTint()
         

@@ -173,12 +173,12 @@ class MasterUnitViewController: EffectsUnitViewController {
     
     override func applyFontScheme(_ fontScheme: FontScheme) {
         
-//        lblCaption.font = fontSchemesManager.systemScheme.effects.unitCaptionFont
+//        lblCaption.font = systemFontScheme.effects.unitCaptionFont
         
         functionLabels.forEach {
             
-            $0.font = $0 is EffectsUnitTriStateLabel ? fontSchemesManager.systemScheme.effects.masterUnitFunctionFont :
-            fontSchemesManager.systemScheme.effects.unitFunctionFont
+            $0.font = $0 is EffectsUnitTriStateLabel ? systemFontScheme.effects.masterUnitFunctionFont :
+            systemFontScheme.effects.unitFunctionFont
         }
         
         presetsMenuButton.font = .menuFont

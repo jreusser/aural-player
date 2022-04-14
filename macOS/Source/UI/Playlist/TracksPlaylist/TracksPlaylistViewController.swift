@@ -47,7 +47,7 @@
 //
 //        initSubscriptions()
 //
-//        doApplyColorScheme(colorSchemesManager.systemScheme, false)
+//        doApplyColorScheme(systemColorScheme, false)
 //
 //        if uiState.currentView == .tracks, preferences.showNewTrackInPlaylist {
 //            showPlayingTrack()
@@ -378,8 +378,8 @@
 //
 //    private func applyTheme() {
 //
-//        applyFontScheme(fontSchemesManager.systemScheme)
-//        applyColorScheme(colorSchemesManager.systemScheme)
+//        applyFontScheme(systemFontScheme)
+//        applyColorScheme(systemColorScheme)
 //    }
 //
 //    private func applyFontScheme(_ fontScheme: FontScheme) {

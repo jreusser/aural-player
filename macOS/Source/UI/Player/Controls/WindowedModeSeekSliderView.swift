@@ -18,8 +18,8 @@ class WindowedModeSeekSliderView: SeekSliderView, ColorSchemeable {
         
         super.awakeFromNib()
         
-        applyFontScheme(fontSchemesManager.systemScheme)
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyFontScheme(systemFontScheme)
+        applyColorScheme(systemColorScheme)
     }
     
     // Positions the "seek position marker" view at the center of the seek slider knob.

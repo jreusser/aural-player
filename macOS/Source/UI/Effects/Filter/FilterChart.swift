@@ -31,7 +31,7 @@ class FilterChart: NSView {
 //    }
     
     var textFont: NSFont {
-        fontSchemesManager.systemScheme.effects.filterChartFont
+        systemFontScheme.effects.filterChartFont
     }
     
 //    var textColor: NSColor {

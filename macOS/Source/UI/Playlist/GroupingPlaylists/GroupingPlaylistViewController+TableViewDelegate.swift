@@ -84,8 +84,8 @@
 //            return false
 //        }
 //        
-//        cell.updateText(fontSchemesManager.systemScheme.playlist.trackTextFont, playlist.displayNameForTrack(self.playlistType, track))
-//        cell.realignText(yOffset: fontSchemesManager.systemScheme.playlist.trackTextYOffset)
+//        cell.updateText(systemFontScheme.playlist.trackTextFont, playlist.displayNameForTrack(self.playlistType, track))
+//        cell.realignText(yOffset: systemFontScheme.playlist.trackTextYOffset)
 //        
 //        if track == playbackInfo.playingTrack {
 //            
@@ -117,8 +117,8 @@
 //            return false
 //        }
 //        
-//        cell.updateText(fontSchemesManager.systemScheme.playlist.trackTextFont, ValueFormatter.formatSecondsToHMS(track.duration))
-//        cell.realignText(yOffset: fontSchemesManager.systemScheme.playlist.trackTextYOffset)
+//        cell.updateText(systemFontScheme.playlist.trackTextFont, ValueFormatter.formatSecondsToHMS(track.duration))
+//        cell.realignText(yOffset: systemFontScheme.playlist.trackTextYOffset)
 //        
 //        return cell
 //    }
@@ -139,8 +139,8 @@
 //            return false
 //        }
 //            
-//        cell.updateText(fontSchemesManager.systemScheme.playlist.groupTextFont, String(format: "%@ (%d)", group.name, group.size))
-//        cell.realignText(yOffset: fontSchemesManager.systemScheme.playlist.groupTextYOffset)
+//        cell.updateText(systemFontScheme.playlist.groupTextFont, String(format: "%@ (%d)", group.name, group.size))
+//        cell.realignText(yOffset: systemFontScheme.playlist.groupTextYOffset)
 //        cell.textField?.lineBreakMode = .byTruncatingMiddle
 //        
 //        // TODO: Change the imageView to a TintedImageView
@@ -169,8 +169,8 @@
 //            return false
 //        }
 //        
-//        cell.updateText(fontSchemesManager.systemScheme.playlist.groupTextFont, ValueFormatter.formatSecondsToHMS(group.duration))
-//        cell.realignText(yOffset: fontSchemesManager.systemScheme.playlist.groupTextYOffset)
+//        cell.updateText(systemFontScheme.playlist.groupTextFont, ValueFormatter.formatSecondsToHMS(group.duration))
+//        cell.realignText(yOffset: systemFontScheme.playlist.groupTextYOffset)
 //        
 //        return cell
 //    }

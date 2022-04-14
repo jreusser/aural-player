@@ -52,8 +52,8 @@ class EffectsUnitViewController: NSViewController, Destroyable {
         oneTimeSetup()
         initControls()
         
-        applyFontScheme(fontSchemesManager.systemScheme)
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyFontScheme(systemFontScheme)
+        applyColorScheme(systemColorScheme)
     }
     
     func oneTimeSetup() {
@@ -180,8 +180,8 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     
     func applyTheme() {
         
-        applyFontScheme(fontSchemesManager.systemScheme)
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyFontScheme(systemFontScheme)
+        applyColorScheme(systemColorScheme)
     }
     
     func applyFontScheme(_ fontScheme: FontScheme) {

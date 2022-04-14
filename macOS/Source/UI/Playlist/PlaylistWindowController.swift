@@ -113,8 +113,8 @@
 //
 //        tabButtons = [btnTracksTab, btnArtistsTab, btnAlbumsTab, btnGenresTab]
 //
-//        applyFontScheme(fontSchemesManager.systemScheme)
-//        applyColorScheme(colorSchemesManager.systemScheme)
+//        applyFontScheme(systemFontScheme)
+//        applyColorScheme(systemColorScheme)
 //        rootContainerBox.cornerRadius = windowAppearanceState.cornerRadius
 //
 //        setUpEventHandling()
@@ -429,8 +429,8 @@
 //
 //    private func applyTheme() {
 //
-//        applyFontScheme(fontSchemesManager.systemScheme)
-//        applyColorScheme(colorSchemesManager.systemScheme)
+//        applyFontScheme(systemFontScheme)
+//        applyColorScheme(systemColorScheme)
 //        changeWindowCornerRadius(windowAppearanceState.cornerRadius)
 //    }
 //

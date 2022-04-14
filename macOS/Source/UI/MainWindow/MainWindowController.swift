@@ -114,13 +114,13 @@ class MainWindowController: NSWindowController {
         
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
         
-//        kvoTokens.append(colorSchemesManager.systemScheme.general.observe(\.backgroundColor, options: [.initial, .new]) {[weak self] generalColorScheme, _ in
+//        kvoTokens.append(systemColorScheme.general.observe(\.backgroundColor, options: [.initial, .new]) {[weak self] generalColorScheme, _ in
 //
 //            print("\nKVO BC !!!")
 //            self?.changeBackgroundColor(generalColorScheme.backgroundColor)
 //        })
 //
-//        kvoTokens.append(colorSchemesManager.systemScheme.general.observe(\.functionButtonColor, options: [.initial, .new]) {[weak self] generalColorScheme, _ in
+//        kvoTokens.append(systemColorScheme.general.observe(\.functionButtonColor, options: [.initial, .new]) {[weak self] generalColorScheme, _ in
 //
 //            print("\nKVO !!!")
 //            self?.changeFunctionButtonColor(generalColorScheme.functionButtonColor)

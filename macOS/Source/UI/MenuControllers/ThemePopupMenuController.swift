@@ -33,8 +33,8 @@ class ThemePopupMenuController: GenericPresetPopupMenuController {
     override func addPreset(named name: String) {
         
         // Copy the current system scheme into the new scheme, and name it with the user's given scheme name
-        let fontScheme: FontScheme = FontScheme("Font scheme for theme '\(name)'", false, fontSchemesManager.systemScheme)
-        let colorScheme: ColorScheme = ColorScheme("Color scheme for theme '\(name)'", false, colorSchemesManager.systemScheme)
+        let fontScheme: FontScheme = FontScheme("Font scheme for theme '\(name)'", false, systemFontScheme)
+        let colorScheme: ColorScheme = ColorScheme("Color scheme for theme '\(name)'", false, systemColorScheme)
         let windowAppearance: WindowAppearance = WindowAppearance(cornerRadius: uiState.cornerRadius)
         
         themesManager.addObject(Theme(name: name, fontScheme: fontScheme, colorScheme: colorScheme, windowAppearance: windowAppearance, userDefined: true))

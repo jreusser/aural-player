@@ -72,18 +72,18 @@ class CompactPlayQueueViewController: TableViewController {
                 
             } else {
                 return TableCellBuilder().withText(text: "\(row + 1)",
-                                                   inFont: fontSchemesManager.systemScheme.playlist.trackTextFont, andColor: .white50Percent)
+                                                   inFont: systemFontScheme.playlist.trackTextFont, andColor: .white50Percent)
             }
             
         case .cid_trackName:
             
             return TableCellBuilder().withText(text: track.displayName,
-                                               inFont: fontSchemesManager.systemScheme.playlist.trackTextFont, andColor: .white80Percent)
+                                               inFont: systemFontScheme.playlist.trackTextFont, andColor: .white80Percent)
             
         case .cid_duration:
             
             return TableCellBuilder().withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
-                                               inFont: fontSchemesManager.systemScheme.playlist.trackTextFont, andColor: .white50Percent)
+                                               inFont: systemFontScheme.playlist.trackTextFont, andColor: .white50Percent)
             
         default:
             

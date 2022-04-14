@@ -105,8 +105,8 @@ class ControlBarSeekSliderView: SeekSliderView {
     
     func applyTheme() {
         
-        applyFontScheme(fontSchemesManager.systemScheme)
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyFontScheme(systemFontScheme)
+        applyColorScheme(systemColorScheme)
     }
     
     override func applyFontScheme(_ fontScheme: FontScheme) {

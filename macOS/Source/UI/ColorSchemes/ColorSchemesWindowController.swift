@@ -93,7 +93,7 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
         clipboard.clear()
         
         // Reset the subviews according to the current system color scheme, and show the first tab
-        subViews.forEach {$0.resetFields(colorSchemesManager.systemScheme, history, clipboard)}
+        subViews.forEach {$0.resetFields(systemColorScheme, history, clipboard)}
         tabView.selectTabViewItem(at: 0)
         
         // Enable/disable function buttons
@@ -108,13 +108,13 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
     @IBAction func applySchemeAction(_ sender: NSMenuItem) {
         
         // First, capture a snapshot of the current scheme (for potentially undoing later)
-        let undoValue: ColorScheme = colorSchemesManager.systemScheme.clone()
+        let undoValue: ColorScheme = systemColorScheme.clone()
         
         // Apply the user-selected scheme
         colorSchemesManager.applyScheme(named: sender.title)
             
         // Capture the new scheme (for potentially redoing changes later)
-        let newScheme = colorSchemesManager.systemScheme
+        let newScheme = systemColorScheme
         let redoValue: ColorScheme = newScheme.clone()
         history.noteChange(ColorSchemeChange(tag: 1, undoValue: undoValue, redoValue: redoValue, changeType: .applyScheme))
             
@@ -150,7 +150,7 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
     private func applyScheme(_ scheme: ColorScheme) {
         
         colorSchemesManager.applyScheme(scheme)
-        schemeUpdated(colorSchemesManager.systemScheme)
+        schemeUpdated(systemColorScheme)
     }
     
     // Notify UI components of a scheme update
@@ -282,7 +282,7 @@ extension ColorSchemesWindowController: StringInputReceiver {
     func acceptInput(_ string: String) {
         
         // Copy the current system scheme into the new scheme, and name it with the user's given scheme name
-        let newScheme: ColorScheme = ColorScheme(string, false, colorSchemesManager.systemScheme)
+        let newScheme: ColorScheme = ColorScheme(string, false, systemColorScheme)
         colorSchemesManager.addObject(newScheme)
     }
 }

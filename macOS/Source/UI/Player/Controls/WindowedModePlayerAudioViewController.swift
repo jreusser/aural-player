@@ -17,8 +17,8 @@ class WindowedModePlayerAudioViewController: PlayerAudioViewController {
         
         super.viewDidLoad()
         
-        applyFontScheme(fontSchemesManager.systemScheme)
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyFontScheme(systemFontScheme)
+        applyColorScheme(systemColorScheme)
     }
     
     override func initSubscriptions() {

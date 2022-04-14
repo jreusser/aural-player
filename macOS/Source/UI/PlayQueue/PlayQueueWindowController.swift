@@ -49,7 +49,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
         colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
         
-        lblCaption.font = fontSchemesManager.systemScheme.effects.unitCaptionFont
+        lblCaption.font = systemFontScheme.effects.unitCaptionFont
         
         lblTracksSummary.font = Fonts.Player.infoBoxArtistAlbumFont
         lblTracksSummary.textColor = systemColorScheme.secondaryTextColor

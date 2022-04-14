@@ -79,8 +79,8 @@ class FilterBandView: NSView {
         oneTimeSetup()
         updateFields()
         
-        applyFontScheme(fontSchemesManager.systemScheme)
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyFontScheme(systemFontScheme)
+        applyColorScheme(systemColorScheme)
     }
     
     private func oneTimeSetup() {
@@ -260,13 +260,13 @@ class FilterBandView: NSView {
         
         tabButton.redraw()
         
-        functionCaptionLabels.forEach {$0.font = fontSchemesManager.systemScheme.effects.unitFunctionFont}
+        functionCaptionLabels.forEach {$0.font = systemFontScheme.effects.unitFunctionFont}
         
-        filterTypeMenu.font = fontSchemesManager.systemScheme.effects.unitFunctionFont
+        filterTypeMenu.font = systemFontScheme.effects.unitFunctionFont
         filterTypeMenu.redraw()
         
-        presetRangesMenu.font = fontSchemesManager.systemScheme.effects.unitFunctionFont
-        lblFrequencies.font = fontSchemesManager.systemScheme.effects.unitFunctionFont
+        presetRangesMenu.font = systemFontScheme.effects.unitFunctionFont
+        lblFrequencies.font = systemFontScheme.effects.unitFunctionFont
     }
     
     func applyColorScheme(_ scheme: ColorScheme) {

@@ -111,8 +111,12 @@ let windowLayoutsManager: WindowLayoutsManager = WindowLayoutsManager(persistent
                                                                       viewPreferences: preferences.viewPreferences)
 
 let themesManager: ThemesManager = ThemesManager(persistentState: persistentState.ui?.themes, fontSchemesManager: fontSchemesManager)
+
 let fontSchemesManager: FontSchemesManager = FontSchemesManager(persistentState: persistentState.ui?.fontSchemes)
+let systemFontScheme: FontScheme = fontSchemesManager.systemScheme
+
 let colorSchemesManager: ColorSchemesManager = ColorSchemesManager(persistentState: persistentState.ui?.colorSchemes)
+let systemColorScheme: ColorScheme = colorSchemesManager.systemScheme
 
 let playerUIState: PlayerUIState = PlayerUIState(persistentState: persistentState.ui?.player)
 //    let playlistUIState: PlaylistUIState = PlaylistUIState(persistentState: persistentState.ui?.playlist)

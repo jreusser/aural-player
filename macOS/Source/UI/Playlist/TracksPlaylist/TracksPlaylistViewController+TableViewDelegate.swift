@@ -16,7 +16,7 @@
 //    
 //    private static let rowHeight: CGFloat = 30
 //    
-//    private var fontScheme: PlaylistFontScheme {fontSchemesManager.systemScheme.playlist}
+//    private var fontScheme: PlaylistFontScheme {systemFontScheme.playlist}
 //    
 //    // Returns a view for a single row
 //    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {

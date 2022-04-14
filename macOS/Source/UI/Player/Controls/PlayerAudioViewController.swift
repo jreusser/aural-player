@@ -207,13 +207,13 @@ class PlayerAudioViewController: NSViewController, Destroyable {
     
     func applyTheme() {
         
-        applyFontScheme(fontSchemesManager.systemScheme)
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyFontScheme(systemFontScheme)
+        applyColorScheme(systemColorScheme)
     }
     
     func applyFontScheme(_ fontScheme: FontScheme) {
         
-        [lblVolume, lblPan, lblPanCaption, lblPanCaption2].forEach {$0?.font = fontSchemesManager.systemScheme.player.feedbackFont}
+        [lblVolume, lblPan, lblPanCaption, lblPanCaption2].forEach {$0?.font = systemFontScheme.player.feedbackFont}
     }
     
     func applyColorScheme(_ scheme: ColorScheme) {

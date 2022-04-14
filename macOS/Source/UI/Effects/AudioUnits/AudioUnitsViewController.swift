@@ -51,8 +51,8 @@ class AudioUnitsViewController: NSViewController, Destroyable {
 //        audioUnitsMenuIconItem.tintFunction = {Colors.functionButtonColor}
 //        btnRemove.tintFunction = {Colors.functionButtonColor}
         
-        applyFontScheme(fontSchemesManager.systemScheme)
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyFontScheme(systemFontScheme)
+        applyColorScheme(systemColorScheme)
         
         // Subscribe to notifications
         messenger.subscribe(to: .effects_unitStateChanged, handler: stateChanged)
@@ -151,13 +151,13 @@ class AudioUnitsViewController: NSViewController, Destroyable {
     
     private func applyTheme() {
         
-        applyFontScheme(fontSchemesManager.systemScheme)
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyFontScheme(systemFontScheme)
+        applyColorScheme(systemColorScheme)
     }
     
     func applyFontScheme(_ fontScheme: FontScheme) {
         
-//        lblCaption.font = fontSchemesManager.systemScheme.effects.unitCaptionFont
+//        lblCaption.font = systemFontScheme.effects.unitCaptionFont
         tableView.reloadAllRows(columns: [1])
     }
     

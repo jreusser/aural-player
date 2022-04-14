@@ -61,7 +61,7 @@ class ChaptersListViewController: NSViewController, Destroyable {
         functionButtons = [btnClose, btnPreviousChapter, btnNextChapter, btnReplayChapter,
                            btnLoopChapter, btnCaseSensitive, btnPreviousMatch, btnNextMatch]
         
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyColorScheme(systemColorScheme)
         
         chaptersListView.customizeHeader(heightIncrease: 5, customCellType: ChaptersListTableHeaderCell.self)
         
@@ -122,11 +122,11 @@ class ChaptersListViewController: NSViewController, Destroyable {
         let chapterCount: Int = player.chapterCount
         lblSummary.stringValue = String(format: "%d %@", chapterCount, chapterCount == 1 ? "chapter" : "chapters")
         
-        lblWindowTitle.font = fontSchemesManager.systemScheme.playlist.chaptersListCaptionFont
-        lblSummary.font = fontSchemesManager.systemScheme.playlist.summaryFont
+        lblWindowTitle.font = systemFontScheme.playlist.chaptersListCaptionFont
+        lblSummary.font = systemFontScheme.playlist.summaryFont
         
-        txtSearch.font = fontSchemesManager.systemScheme.playlist.chaptersListSearchFont
-        lblNumMatches.font = fontSchemesManager.systemScheme.playlist.chaptersListSearchFont
+        txtSearch.font = systemFontScheme.playlist.chaptersListSearchFont
+        lblNumMatches.font = systemFontScheme.playlist.chaptersListSearchFont
         
         btnLoopChapter.onIf(player.chapterLoopExists)
         
@@ -359,8 +359,8 @@ class ChaptersListViewController: NSViewController, Destroyable {
     
     private func applyTheme() {
         
-        applyFontScheme(fontSchemesManager.systemScheme)
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyFontScheme(systemFontScheme)
+        applyColorScheme(systemColorScheme)
     }
     
     private func applyFontScheme(_ fontScheme: FontScheme) {
@@ -370,11 +370,11 @@ class ChaptersListViewController: NSViewController, Destroyable {
             
             chaptersListView.reloadDataMaintainingSelection()
             
-            lblWindowTitle.font = fontSchemesManager.systemScheme.playlist.chaptersListCaptionFont
-            lblSummary.font = fontSchemesManager.systemScheme.playlist.summaryFont
+            lblWindowTitle.font = systemFontScheme.playlist.chaptersListCaptionFont
+            lblSummary.font = systemFontScheme.playlist.summaryFont
             
-            txtSearch.font = fontSchemesManager.systemScheme.playlist.chaptersListSearchFont
-            lblNumMatches.font = fontSchemesManager.systemScheme.playlist.chaptersListSearchFont
+            txtSearch.font = systemFontScheme.playlist.chaptersListSearchFont
+            lblNumMatches.font = systemFontScheme.playlist.chaptersListSearchFont
         }
     }
     

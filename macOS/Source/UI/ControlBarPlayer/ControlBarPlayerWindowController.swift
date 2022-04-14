@@ -64,7 +64,7 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
     }
     
     func applyTheme() {
-        applyColorScheme(colorSchemesManager.systemScheme)
+        applyColorScheme(systemColorScheme)
     }
     
     func applyColorScheme(_ colorScheme: ColorScheme) {

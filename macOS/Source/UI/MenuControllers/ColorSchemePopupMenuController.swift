@@ -31,7 +31,7 @@ class ColorSchemePopupMenuController: GenericPresetPopupMenuController {
     override func addPreset(named name: String) {
         
         // Copy the current system scheme into the new scheme, and name it with the user's given scheme name
-        let newScheme: ColorScheme = ColorScheme(name, false, colorSchemesManager.systemScheme)
+        let newScheme: ColorScheme = ColorScheme(name, false, systemColorScheme)
         colorSchemesManager.addObject(newScheme)
     }
     
