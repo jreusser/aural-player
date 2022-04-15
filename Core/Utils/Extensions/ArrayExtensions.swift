@@ -245,22 +245,22 @@ extension Sequence where Element: Equatable {
 extension IndexSet {
     
     func sortedAscending() -> [Int] {
-        self.sorted(by: Int.ascendingIntComparator)
+        sorted(by: <)
     }
     
     func sortedDescending() -> [Int] {
-        self.sorted(by: Int.descendingIntComparator)
+        sorted(by: >)
     }
 }
 
 extension Array where Element: Comparable {
     
     func sortedAscending() -> Self {
-        self.sorted(by: {$0 < $1})
+        sorted(by: <)
     }
     
     func sortedDescending() -> Self {
-        self.sorted(by: {$0 > $1})
+        sorted(by: >)
     }
 }
 

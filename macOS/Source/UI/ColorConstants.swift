@@ -45,7 +45,7 @@ extension NSColor {
     static let defaultLightTextColor: NSColor = .white60Percent
     
     // Color of selected item text inside the playlist
-    static let defaultSelectedLightTextColor: NSColor = NSColor.white
+    static let defaultSelectedLightTextColor: NSColor = .white
     
     // Fill color of box drawn around selected playlist item
     static let playlistSelectionBoxColor: NSColor = .white15Percent

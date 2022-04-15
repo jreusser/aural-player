@@ -59,7 +59,7 @@ class EditableTextField: NSTextField {
     
     override func becomeFirstResponder() -> Bool {
         
-        self.textColor = NSColor.black
+//        self.textColor = NSColor.black
         
         // Cursor color
         let fieldEditor = self.window!.fieldEditor(true, for: self) as! NSTextView

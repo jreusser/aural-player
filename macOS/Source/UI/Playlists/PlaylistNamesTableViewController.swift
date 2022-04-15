@@ -11,7 +11,7 @@
 import Foundation
 import AppKit
 
-class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, ColorSchemeObserver {
+class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, ColorSchemeObserver {
     
     @IBOutlet weak var tableView: NSTableView!
     
@@ -75,7 +75,10 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
                                                   inFont: systemFontScheme.playlist.trackTextFont,
                                                   andColor: systemColorScheme.primaryTextColor)
         
-        return builder.buildCell(forTableView: tableView, forColumnWithId: columnId)
+        let cell = builder.buildCell(forTableView: tableView, forColumnWithId: columnId)
+        cell?.textField?.delegate = self
+        
+        return cell
     }
     
     // -------------------- Responding to notifications -------------------------------------------
@@ -89,10 +92,6 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
             tableView.scrollRowToVisible(index)
         }
     }
-
-    func playlistAdded(atIndex index: Int) {
-        tableView.insertRows(at: IndexSet(integer: index), withAnimation: .slideDown)
-    }
     
     func playlistsRemoved(from indices: IndexSet) {
         
@@ -104,11 +103,84 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
         // Update all rows from the first (i.e. smallest index) removed row, down to the end of the playlist
         guard let firstRemovedRow = indices.min() else {return}
         
-        let lastPlaylistRowAfterRemove = numberOfPlaylists - 1
+        let lastRowAfterRemove = numberOfPlaylists - 1
         
         // This will be true unless a contiguous block of tracks was removed from the bottom of the playlist.
-        if firstRemovedRow <= lastPlaylistRowAfterRemove {
-            tableView.reloadRows(firstRemovedRow...lastPlaylistRowAfterRemove)
+        if firstRemovedRow <= lastRowAfterRemove {
+            tableView.reloadRows(firstRemovedRow...lastRowAfterRemove)
+        }
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func createEmptyPlaylistAction(_ sender: NSMenuItem) {
+        
+        var newPlaylistName: String = "New Playlist"
+        var ctr: Int = 1
+        
+        while playlistsManager.objectExists(named: newPlaylistName) {
+            
+            ctr.increment()
+            newPlaylistName = "New Playlist \(ctr)"
+        }
+        
+        _ = playlistsManager.createNewPlaylist(named: newPlaylistName)
+        tableView.noteNumberOfRowsChanged()
+        
+        let rowIndex = lastRow
+        tableView.selectRow(rowIndex)
+        
+        let rowView = tableView.rowView(atRow: rowIndex, makeIfNecessary: true)
+        
+        if let editedTextField = (rowView?.view(atColumn: 0) as? NSTableCellView)?.textField {
+            view.window?.makeFirstResponder(editedTextField)
+        }
+    }
+    
+    @IBAction func deleteSelectedPlaylistsAction(_ sender: NSButton) {
+        
+        let selectedRows = self.selectedRows
+        guard !selectedRows.isEmpty else {return}
+        
+        for row in selectedRows.sortedDescending() {
+            _ = playlistsManager.deleteObject(atIndex: row)
+        }
+        
+        tableView.reloadData()
+    }
+    
+    // MARK: Text field delegate functions
+    
+    func controlTextDidEndEditing(_ obj: Notification) {
+        
+        guard let editedTextField = obj.object as? NSTextField else {return}
+        
+        let rowIndex = tableView.selectedRow
+        let playlist = playlistsManager.userDefinedObjects[rowIndex]
+        
+        let oldPlaylistName = playlist.name
+        let newPlaylistName = editedTextField.stringValue
+        
+        // No change in playlist name. Nothing to be done.
+        if newPlaylistName == oldPlaylistName {return}
+        
+        editedTextField.textColor = .defaultSelectedLightTextColor
+        
+        // If new name is empty or a playlist with the new name exists, revert to old value.
+        if newPlaylistName.isEmptyAfterTrimming {
+            
+            editedTextField.stringValue = playlist.name
+            
+            _ = DialogsAndAlerts.genericErrorAlert("Can't rename playlist", "Playlist name must have at least one non-whitespace character.", "Please type a valid name.").showModal()
+            
+        } else if playlistsManager.objectExists(named: newPlaylistName) {
+            
+            editedTextField.stringValue = playlist.name
+            
+            _ = DialogsAndAlerts.genericErrorAlert("Can't rename playlist", "Another playlist with that name already exists.", "Please type a unique name.").showModal()
+            
+        } else {
+            playlistsManager.renameObject(named: oldPlaylistName, to: newPlaylistName)
         }
     }
 }

@@ -140,10 +140,10 @@
                                                                                 <rect key="frame" x="8" y="0.0" width="168" height="24"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
-                                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hod-xA-UT7">
+                                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hod-xA-UT7" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
                                                                                         <rect key="frame" x="0.0" y="4" width="168" height="16"/>
                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="yAF-nK-zga">
+                                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="yAF-nK-zga">
                                                                                             <font key="font" usesAppearanceFont="YES"/>
                                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -250,16 +250,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="125" height="20"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <button toolTip="Delete selected playlists" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IU4-DL-MBi" userLabel="Remove Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="19" y="0.0" width="15" height="15"/>
+                                            <button toolTip="Delete selected playlists" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IU4-DL-MBi" userLabel="Delete selected playlists button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="1" width="13.5" height="13"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="minus" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="POm-r3-EMl">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <action selector="deleteSelectedPlaylistsAction:" target="KCA-ts-en2" id="XIy-N1-wsc"/>
+                                                </connections>
                                             </button>
-                                            <popUpButton toolTip="Add an Audio Unit" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BcN-Oh-449" userLabel="Add Menu Button">
-                                                <rect key="frame" x="-4" y="-1" width="22" height="17"/>
+                                            <popUpButton toolTip="Add an Audio Unit" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BcN-Oh-449" userLabel="Create playlist menu button">
+                                                <rect key="frame" x="-4" y="0.0" width="20" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="i7R-Pe-5Wb">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -274,6 +277,9 @@
                                                             </menuItem>
                                                             <menuItem title="Create empty playlist" id="l0H-y4-QGv">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                                                <connections>
+                                                                    <action selector="createEmptyPlaylistAction:" target="KCA-ts-en2" id="5qE-Uy-rQL"/>
+                                                                </connections>
                                                             </menuItem>
                                                             <menuItem title="Create playlist from directory" id="zc5-Kk-piU">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
