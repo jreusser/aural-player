@@ -14,6 +14,7 @@ import AppKit
 class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, ColorSchemeObserver {
     
     @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var playlistViewController: PlaylistViewController!
     
     var selectedRows: IndexSet {tableView.selectedRowIndexes}
     
@@ -81,6 +82,18 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
         return cell
     }
     
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        
+        let shouldShowPlaylist: Bool = selectedRowCount == 1
+        playlistViewController.showViewIf(shouldShowPlaylist)
+        
+        if shouldShowPlaylist, let row = selectedRows.first {
+            
+            let playlist = playlistsManager.userDefinedObjects[row]
+            playlistViewController.setPlaylist(playlist)
+        }
+    }
+    
     // -------------------- Responding to notifications -------------------------------------------
     
     // Selects (and shows) a certain track within the playlist view
@@ -146,6 +159,7 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
             _ = playlistsManager.deleteObject(atIndex: row)
         }
         
+        playlistViewController.showViewIf(false)
         tableView.reloadData()
     }
     
@@ -180,7 +194,9 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
             _ = DialogsAndAlerts.genericErrorAlert("Can't rename playlist", "Another playlist with that name already exists.", "Please type a unique name.").showModal()
             
         } else {
+            
             playlistsManager.renameObject(named: oldPlaylistName, to: newPlaylistName)
+            playlistViewController.setPlaylist(playlist)
         }
     }
 }

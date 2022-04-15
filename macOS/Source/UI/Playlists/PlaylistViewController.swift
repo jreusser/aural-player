@@ -45,4 +45,12 @@ class PlaylistViewController: NSViewController, NSTableViewDelegate, NSTableView
             return
         }
     }
+    
+    func showViewIf(_ condition: Bool) {
+        playlistContainer.showIf(condition)
+    }
+    
+    func setPlaylist(_ playlist: Playlist) {
+        lblPlaylistName.stringValue = playlist.name
+    }
 }
