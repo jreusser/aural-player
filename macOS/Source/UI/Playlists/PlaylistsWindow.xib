@@ -14,6 +14,7 @@
                 <outlet property="controlsBox" destination="ZDa-Wk-Jtf" id="ITp-R3-g40"/>
                 <outlet property="lblCaption" destination="Izm-XL-6kw" id="s2h-7h-MP2"/>
                 <outlet property="rootContainer" destination="fpr-mJ-5DC" id="xQ0-N2-uOj"/>
+                <outlet property="tabGroup" destination="XaG-jS-pAi" id="xHv-RG-o82"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="LDQ-f4-iaZ"/>
             </connections>
         </customObject>
@@ -25,8 +26,8 @@
             <rect key="contentRect" x="196" y="240" width="800" height="400"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
             <value key="minSize" type="size" width="800" height="250"/>
-            <view key="contentView" wantsLayer="YES" misplaced="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="800" height="401"/>
+            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="fpr-mJ-5DC" userLabel="Root Container">
@@ -280,38 +281,70 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="572" height="337"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="vra-Oq-sYZ" userLabel="Playlist Box">
-                                                                <rect key="frame" x="0.0" y="0.0" width="572" height="337"/>
-                                                                <view key="contentView" id="XJm-dm-gl9">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="572" height="337"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                    <subviews>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PkZ-lN-oeS" userLabel="Playlist Name Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                                                                            <rect key="frame" x="13" y="310" width="214" height="25"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="25" id="ByV-JB-PgN"/>
-                                                                                <constraint firstAttribute="width" constant="210" id="ubk-YW-rYa"/>
-                                                                            </constraints>
-                                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="My Playlist" id="fcr-aB-7DN">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
-                                                                    </subviews>
-                                                                    <constraints>
-                                                                        <constraint firstItem="PkZ-lN-oeS" firstAttribute="top" secondItem="XJm-dm-gl9" secondAttribute="top" constant="2" id="6Wa-3f-IZf"/>
-                                                                        <constraint firstItem="PkZ-lN-oeS" firstAttribute="leading" secondItem="XJm-dm-gl9" secondAttribute="leading" constant="15" id="uUG-e2-mbB"/>
-                                                                    </constraints>
-                                                                </view>
-                                                                <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </box>
+                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PkZ-lN-oeS" userLabel="Playlist Name Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                                                                <rect key="frame" x="3" y="306" width="214" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="25" id="ByV-JB-PgN"/>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="UVv-0J-Tc9"/>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="dZG-5d-3xF"/>
+                                                                    <constraint firstAttribute="width" constant="210" id="ubk-YW-rYa"/>
+                                                                </constraints>
+                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="My Playlist" id="fcr-aB-7DN">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
+                                                            <tabView wantsLayer="YES" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="XaG-jS-pAi" userLabel="Playlist Views Tab Group" customClass="AuralTabView" customModule="Aural" customModuleProvider="target">
+                                                                <rect key="frame" x="5" y="25" width="567" height="276"/>
+                                                                <font key="font" metaFont="system"/>
+                                                                <tabViewItems>
+                                                                    <tabViewItem label="Tracks" identifier="1" id="JPu-qP-F62" userLabel="Tracks Tab" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
+                                                                        <view key="view" id="bog-ZB-Pl2">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="567" height="276"/>
+                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                        </view>
+                                                                        <connections>
+                                                                            <outlet property="tabButton" destination="fNm-Ys-HID" id="TdD-M2-TgF"/>
+                                                                        </connections>
+                                                                    </tabViewItem>
+                                                                    <tabViewItem label="Artists" identifier="2" id="Vmt-EQ-TRZ" userLabel="Artists Tab" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
+                                                                        <view key="view" id="8cQ-Hx-O86">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="567" height="276"/>
+                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                        </view>
+                                                                        <connections>
+                                                                            <outlet property="tabButton" destination="7dx-SE-fid" id="9Hn-dB-IWj"/>
+                                                                        </connections>
+                                                                    </tabViewItem>
+                                                                    <tabViewItem label="Albums" identifier="" id="E9E-mO-Fxm" userLabel="Albums Tab" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
+                                                                        <view key="view" id="Pld-6g-S7M">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="567" height="276"/>
+                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                        </view>
+                                                                        <connections>
+                                                                            <outlet property="tabButton" destination="nQd-Pu-Fsm" id="nbc-RF-ROd"/>
+                                                                        </connections>
+                                                                    </tabViewItem>
+                                                                    <tabViewItem label="Genres" identifier="" id="KgB-4K-N3v" userLabel="Genres Tab" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
+                                                                        <view key="view" id="QvU-UE-zBC">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="567" height="276"/>
+                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                        </view>
+                                                                        <connections>
+                                                                            <outlet property="tabButton" destination="VpG-GA-2ts" id="xD9-as-CHg"/>
+                                                                        </connections>
+                                                                    </tabViewItem>
+                                                                </tabViewItems>
+                                                            </tabView>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstItem="vra-Oq-sYZ" firstAttribute="leading" secondItem="dX7-Ua-C87" secondAttribute="leading" id="V1y-ZL-cBj"/>
-                                                            <constraint firstAttribute="trailing" secondItem="vra-Oq-sYZ" secondAttribute="trailing" id="fGm-Ht-XDV"/>
-                                                            <constraint firstAttribute="bottom" secondItem="vra-Oq-sYZ" secondAttribute="bottom" id="kOB-2T-dUV"/>
-                                                            <constraint firstItem="vra-Oq-sYZ" firstAttribute="top" secondItem="dX7-Ua-C87" secondAttribute="top" id="wqw-j4-kIc"/>
+                                                            <constraint firstItem="XaG-jS-pAi" firstAttribute="leading" secondItem="dX7-Ua-C87" secondAttribute="leading" constant="5" id="3d1-v2-IcD"/>
+                                                            <constraint firstAttribute="trailing" secondItem="XaG-jS-pAi" secondAttribute="trailing" id="896-T0-RCR"/>
+                                                            <constraint firstItem="PkZ-lN-oeS" firstAttribute="leading" secondItem="dX7-Ua-C87" secondAttribute="leading" constant="5" id="IKl-ZR-BB2"/>
+                                                            <constraint firstAttribute="bottom" secondItem="XaG-jS-pAi" secondAttribute="bottom" constant="25" id="dPu-A5-Y1x"/>
+                                                            <constraint firstItem="XaG-jS-pAi" firstAttribute="top" secondItem="dX7-Ua-C87" secondAttribute="top" constant="36" id="g5U-nM-UhC"/>
+                                                            <constraint firstItem="PkZ-lN-oeS" firstAttribute="top" secondItem="dX7-Ua-C87" secondAttribute="top" constant="6" id="hCG-ko-2Cj"/>
                                                         </constraints>
                                                     </view>
                                                     <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -361,10 +394,9 @@
                 <outlet property="view" destination="9Si-sI-Nin" id="9AL-dX-w68"/>
             </connections>
         </customObject>
-        <customObject id="gPe-2R-NWZ" customClass="PlaylistViewController" customModule="Aural" customModuleProvider="target">
+        <customObject id="gPe-2R-NWZ" customClass="PlaylistContainerViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="lblPlaylistName" destination="PkZ-lN-oeS" id="srP-Ud-WBZ"/>
-                <outlet property="playlistBox" destination="vra-Oq-sYZ" id="7Kp-7F-lTF"/>
                 <outlet property="playlistContainer" destination="ndT-x8-qeV" id="gz5-hT-EqD"/>
                 <outlet property="view" destination="ndT-x8-qeV" id="SkK-NT-8n2"/>
             </connections>

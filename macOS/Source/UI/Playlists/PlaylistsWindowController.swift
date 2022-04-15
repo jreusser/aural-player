@@ -23,6 +23,12 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
     
     @IBOutlet weak var lblCaption: NSTextField!
     
+    // The tab group that switches between the 4 playlist views
+    @IBOutlet weak var tabGroup: AuralTabView!
+    
+    // The different playlist views
+    private let tableViewController: PlaylistViewController = PlaylistViewController()
+    
     override func windowDidLoad() {
         
         super.windowDidLoad()
@@ -31,6 +37,14 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
 
         colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
         colorSchemesManager.registerObservers([btnClose, btnCreatePlaylist, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)
+        
+        if let tab0View = tabGroup.tabViewItem(at: 0).view {
+            
+            tab0View.addSubview(tableViewController.view)
+            tableViewController.view.anchorToSuperview()
+            
+            print("Tab group: \(tabGroup.frame)")
+        }
     }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
