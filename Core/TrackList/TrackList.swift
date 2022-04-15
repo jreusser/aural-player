@@ -58,6 +58,10 @@ class TrackList: TrackListProtocol, Sequence {
         return tracks[index]
     }
     
+    subscript(indices: IndexSet) -> [Track] {
+        indices.compactMap {self[$0]}
+    }
+    
     func indexOfTrack(_ track: Track) -> Int?  {
         tracks.firstIndex(of: track)
     }
@@ -120,12 +124,12 @@ class TrackList: TrackListProtocol, Sequence {
 //    func search(_ searchQuery: SearchQuery) -> SearchResults {
 //        SearchResults([])
 //    }
-//    
+//
 //    // TODO:
 //    func sort(_ sort: Sort) -> SortResults {
 //        return SortResults(.tracks, .init())
 //    }
-//    
+//
 //    func sort(by comparator: (Track, Track) -> Bool) {
 //        // TODO:
 //    }

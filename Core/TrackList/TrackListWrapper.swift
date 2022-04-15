@@ -27,6 +27,10 @@ class TrackListWrapper {
     subscript(_ index: Int) -> Track? {
         trackList[index]
     }
+    
+    subscript(indices: IndexSet) -> [Track] {
+        trackList[indices]
+    }
 
     func indexOfTrack(_ track: Track) -> Int?  {
         trackList.indexOfTrack(track)

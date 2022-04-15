@@ -20,8 +20,11 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
         super.init(systemDefinedObjects: [], userDefinedObjects: playlists)
     }
 
-    func createNewPlaylist(named name: String) {
-        addObject(Playlist(name: name))
+    func createNewPlaylist(named name: String) -> Playlist {
+        
+        let newPlaylist = Playlist(name: name)
+        addObject(newPlaylist)
+        return newPlaylist
     }
 
     var persistentState: PlaylistsPersistentState {

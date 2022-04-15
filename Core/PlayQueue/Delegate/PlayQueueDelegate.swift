@@ -71,6 +71,10 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     subscript(_ index: Int) -> Track? {
         playQueue[index]
     }
+    
+    subscript(indices: IndexSet) -> [Track] {
+        playQueue[indices]
+    }
 
 //    func search(_ searchQuery: SearchQuery) -> SearchResults {
 //        return playQueue.search(searchQuery)

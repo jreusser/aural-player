@@ -26,6 +26,8 @@ protocol TrackListProtocol {
     
     subscript(_ index: Int) -> Track? {get}
     
+    subscript(indices: IndexSet) -> [Track] {get}
+    
     var summary: (size: Int, totalDuration: Double) {get}
     
 //    func search(_ searchQuery: SearchQuery) -> SearchResults
@@ -48,7 +50,7 @@ protocol TrackListProtocol {
     func removeAllTracks()
     
 //    func sort(_ sort: Sort) -> SortResults
-//    
+//
 //    func sort(by comparator: (Track, Track) -> Bool)
     
     func exportToFile(_ file: URL)
