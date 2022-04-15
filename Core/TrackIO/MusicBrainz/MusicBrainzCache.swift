@@ -115,7 +115,7 @@ class MusicBrainzCache: PersistentModelObject {
             
             self.baseDir.createDirectory()
             
-            let nowString = Date().serializableString_hms()
+            let nowString = Date().serializableStringAsHMS
             let randomNum = Int.random(in: 0..<10000)
             
             let outputFileName = String(format: "release-%@-%@-%@-%d.jpg", artist, title, nowString, randomNum)
@@ -150,7 +150,7 @@ class MusicBrainzCache: PersistentModelObject {
             
             self.baseDir.createDirectory()
             
-            let nowString = Date().serializableString_hms()
+            let nowString = Date().serializableStringAsHMS
             let randomNum = Int.random(in: 0..<10000)
             
             let outputFileName = String(format: "recording-%@-%@-%@-%d.jpg", artist, title, nowString, randomNum)

@@ -38,4 +38,6 @@ struct PlaylistPersistentState: Codable {
     
     // List of track files (as URL paths).
     let tracks: [URL]?
+    
+    let dateCreated: Date?
 }

@@ -58,7 +58,7 @@ class WindowLoader: DestroyableAndRestorable {
 }
 
 // Used for Playlist search / sort dialogs ... see if this class can be eliminated.
-class LazyWindowLoader<T>: Destroyable where T: NSWindowController, T: Destroyable {
+class LazyWindowLoader<T>: Destroyable where T: NSWindowController {
     
     lazy var controller: T = {
         

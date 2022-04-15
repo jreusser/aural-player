@@ -15,6 +15,9 @@ import Foundation
 ///
 class Playlist: TrackListWrapper, PlaylistProtocol, UserManagedObject {
     
+    var name: String
+    let dateCreated: Date
+    
     var key: String {
 
         get {name}
@@ -23,13 +26,10 @@ class Playlist: TrackListWrapper, PlaylistProtocol, UserManagedObject {
 
     let userDefined: Bool = true
 
-    var name: String
-    
-    // TODO:
-//    let dateCreated: Date
-    
     init(name: String) {
+        
         self.name = name
+        self.dateCreated = Date()
     }
 }
 
@@ -37,6 +37,6 @@ extension Playlist: PersistentModelObject {
     
     // Returns all state for this playlist that needs to be persisted to disk
     var persistentState: PlaylistPersistentState {
-        PlaylistPersistentState(name: name, tracks: tracks.map {$0.file})
+        PlaylistPersistentState(name: name, tracks: tracks.map {$0.file}, dateCreated: dateCreated)
     }
 }

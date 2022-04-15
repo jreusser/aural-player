@@ -20,7 +20,7 @@ fileprivate let thirtyDays: TimeInterval = 30 * oneDay
 extension Date {
     
     // Returns a String suitable for serialization as a timestamp, in the format: YYYY_MM_DD_hh_mm_ss
-    func serializableString_hms() -> String {
+    var serializableStringAsHMS: String {
         String(format: "%d_%d_%d_%d_%d_%d", year, month, day, hour, minute, second)
     }
     
