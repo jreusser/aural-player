@@ -31,6 +31,14 @@ class Playlist: TrackListWrapper, PlaylistProtocol, UserManagedObject {
         self.name = name
         self.dateCreated = Date()
     }
+    
+    init?(persistentState: PlaylistPersistentState) {
+        
+        guard let name = persistentState.name else {return nil}
+        
+        self.name = name
+        self.dateCreated = persistentState.dateCreated ?? Date()
+    }
 }
 
 extension Playlist: PersistentModelObject {

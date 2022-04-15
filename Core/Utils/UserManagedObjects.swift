@@ -21,21 +21,21 @@ protocol UserManagedObject: MenuItemMappable {
 
 ///
 /// A utility to perform CRUD operations on an ordered / mapped collection
-/// of **MappedObject** objects.
+/// of **UserManagedObject** objects.
 ///
-/// - SeeAlso: `MappedObject`
+/// - SeeAlso: `UserManagedObject`
 ///
-class UserManagedObjects<P: UserManagedObject> {
+class UserManagedObjects<O: UserManagedObject> {
     
-    private let userDefinedObjectsMap: UserManagedObjectsMap<P> = UserManagedObjectsMap()
-    private let systemDefinedObjectsMap: UserManagedObjectsMap<P> = UserManagedObjectsMap()
+    private let userDefinedObjectsMap: UserManagedObjectsMap<O> = UserManagedObjectsMap()
+    private let systemDefinedObjectsMap: UserManagedObjectsMap<O> = UserManagedObjectsMap()
     
-    var userDefinedObjects: [P] {userDefinedObjectsMap.allObjects}
-    var systemDefinedObjects: [P] {systemDefinedObjectsMap.allObjects}
+    var userDefinedObjects: [O] {userDefinedObjectsMap.allObjects}
+    var systemDefinedObjects: [O] {systemDefinedObjectsMap.allObjects}
     
-    var defaultPreset: P? {nil}
+    var defaultPreset: O? {nil}
     
-    init(systemDefinedObjects: [P], userDefinedObjects: [P]) {
+    init(systemDefinedObjects: [O], userDefinedObjects: [O]) {
         
         systemDefinedObjects.forEach {
             self.systemDefinedObjectsMap.addObject($0)
@@ -46,40 +46,40 @@ class UserManagedObjects<P: UserManagedObject> {
         }
     }
     
-    func addObject(_ object: P) {
+    func addObject(_ object: O) {
         userDefinedObjectsMap.addObject(object)
     }
     
-    func object(named name: String) -> P? {
+    func object(named name: String) -> O? {
         systemDefinedObjectsMap[name] ?? userDefinedObjectsMap[name]
     }
 
     var numberOfUserDefinedObjects: Int {userDefinedObjectsMap.count}
     
-    func userDefinedObject(named name: String) -> P? {
+    func userDefinedObject(named name: String) -> O? {
         userDefinedObjectsMap[name]
     }
     
-    func systemDefinedObject(named name: String) -> P? {
+    func systemDefinedObject(named name: String) -> O? {
         systemDefinedObjectsMap[name]
     }
     
-    func deleteObject(atIndex index: Int) -> P {
+    func deleteObject(atIndex index: Int) -> O {
         return userDefinedObjectsMap.removeObjectAtIndex(index)
     }
     
-    func deleteObjects(atIndices indices: IndexSet) -> [P] {
+    func deleteObjects(atIndices indices: IndexSet) -> [O] {
         
         return indices.sortedDescending().map {
             userDefinedObjectsMap.removeObjectAtIndex($0)
         }
     }
     
-    func deleteObject(named name: String) -> P? {
+    func deleteObject(named name: String) -> O? {
         return userDefinedObjectsMap.removeObject(withKey: name)
     }
     
-    func deleteObjects(named objectNames: [String]) -> [P] {
+    func deleteObjects(named objectNames: [String]) -> [O] {
         
         return objectNames.compactMap {
             deleteObject(named: $0)
@@ -103,26 +103,26 @@ class UserManagedObjects<P: UserManagedObject> {
 /// A specialized collection that functions as both an array and dictionary for **UserManagedObject** objects
 /// so that the objects can be accessed efficiently both by index and key.
 ///
-fileprivate class UserManagedObjectsMap<P: UserManagedObject> {
+fileprivate class UserManagedObjectsMap<O: UserManagedObject> {
     
-    private var array: [P] = []
-    private var map: [String: P] = [:]
+    private var array: [O] = []
+    private var map: [String: O] = [:]
     
-    subscript(_ index: Int) -> P {
+    subscript(_ index: Int) -> O {
         array[index]
     }
     
-    subscript(_ key: String) -> P? {
+    subscript(_ key: String) -> O? {
         map[key]
     }
     
-    func addObject(_ object: P) {
+    func addObject(_ object: O) {
         
         array.append(object)
         map[object.key] = object
     }
     
-    func removeObject(withKey key: String) -> P? {
+    func removeObject(withKey key: String) -> O? {
         
         guard let index = array.firstIndex(where: {$0.key == key}) else {return nil}
         
@@ -143,7 +143,7 @@ fileprivate class UserManagedObjectsMap<P: UserManagedObject> {
         }
     }
     
-    func removeObjectAtIndex(_ index: Int) -> P {
+    func removeObjectAtIndex(_ index: Int) -> O {
         
         let object = array[index]
         map.removeValue(forKey: object.key)
@@ -156,5 +156,5 @@ fileprivate class UserManagedObjectsMap<P: UserManagedObject> {
     
     var count: Int {array.count}
     
-    var allObjects: [P] {array}
+    var allObjects: [O] {array}
 }

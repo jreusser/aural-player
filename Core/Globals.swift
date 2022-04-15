@@ -26,17 +26,7 @@ let appModeManager: AppModeManager = AppModeManager(persistentState: persistentS
 
 fileprivate let playQueue: PlayQueue = PlayQueue()
 
-//    let playlistsManager: PlaylistsManager = {
-//
-//        let userPlaylistNames = (persistentState.playlist?.userPlaylists ?? []).compactMap {$0.name}
-//
-//        return PlaylistsManager(systemPlaylist: playlist,
-//                                userPlaylists: userPlaylistNames.map {
-//
-//                                    Playlist(name: $0, userDefined: true, needsLoadingFromPersistentState: true, FlatPlaylist(),
-//                                             [GroupingPlaylist(.artists), GroupingPlaylist(.albums), GroupingPlaylist(.genres)])
-//                                })
-//    }()
+let playlistsManager: PlaylistsManager = PlaylistsManager(playlists: persistentState.playlists?.playlists?.compactMap {Playlist(persistentState: $0)} ?? [])
 
 //    let playlistDelegate: PlaylistDelegateProtocol = PlaylistDelegate(persistentState: persistentState.playlist, playlist,
 //                                                                           trackReader, preferences)
@@ -141,6 +131,7 @@ var persistentStateOnExit: AppPersistentState {
     
     persistentState.audioGraph = audioGraph.persistentState
     persistentState.playQueue = playQueue.persistentState
+    persistentState.playlists = playlistsManager.persistentState
     persistentState.playbackProfiles = playbackDelegate.profiles.all().map {PlaybackProfilePersistentState(profile: $0)}
     
 #if os(macOS)
@@ -151,7 +142,7 @@ var persistentStateOnExit: AppPersistentState {
                                            fontSchemes: fontSchemesManager.persistentState,
                                            colorSchemes: colorSchemesManager.persistentState,
                                            player: playerUIState.persistentState,
-                                           //                                               playlist: playlistUIState.persistentState,
+                                           //                                               playlists: playlistUIState.persistentState,
                                            visualizer: visualizerUIState.persistentState,
                                            windowAppearance: windowAppearanceState.persistentState,
                                            menuBarPlayer: menuBarPlayerUIState.persistentState,

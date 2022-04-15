@@ -20,7 +20,7 @@ struct AppPersistentState: Codable {
     var ui: UIPersistentState?
     #endif
     
-    var playlist: PlaylistPersistentState?
+    var playlists: PlaylistsPersistentState?
     var playQueue: PlayQueuePersistentState?
     var audioGraph: AudioGraphPersistentState?
     
