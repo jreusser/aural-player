@@ -66,10 +66,9 @@ class Bookmark: UserManagedObject, Hashable {
     
     init?(persistentState: BookmarkPersistentState) {
         
-        guard let path = persistentState.file,
+        guard let file = persistentState.file,
               let startPosition = persistentState.startPosition else {return nil}
         
-        let file = URL(fileURLWithPath: path)
         self.file = file
         self._name = persistentState.name ?? file.lastPathComponent
         

@@ -42,7 +42,7 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         self.playQueue = playQueue
         self.trackReader = trackReader
         
-        self.persistentTracks = persistentState?.tracks?.map {URL(fileURLWithPath: $0)}
+        self.persistentTracks = persistentState?.tracks
      
         _ = setRepeatMode(persistentState?.repeatMode ?? .defaultMode)
         _ = setShuffleMode(persistentState?.shuffleMode ?? .defaultMode)

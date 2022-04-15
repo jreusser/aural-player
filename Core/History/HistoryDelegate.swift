@@ -51,19 +51,17 @@ class HistoryDelegate: HistoryDelegateProtocol {
         
         persistentState?.recentlyAdded?.reversed().forEach {item in
             
-            guard let path = item.file, let timeString = item.time,
+            guard let file = item.file, let timeString = item.time,
                   let date = Date.fromString(timeString) else {return}
             
-            let file = URL(fileURLWithPath: path)
             recentlyAddedItems.add(AddedItem(file, item.name ?? file.lastPathComponent, date))
         }
         
         persistentState?.recentlyPlayed?.reversed().forEach {item in
             
-            guard let path = item.file, let timeString = item.time,
+            guard let file = item.file, let timeString = item.time,
                   let date = Date.fromString(timeString) else {return}
             
-            let file = URL(fileURLWithPath: path)
             recentlyPlayedItems.add(PlayedItem(file, item.name ?? file.lastPathComponent, date))
         }
         
@@ -97,7 +95,7 @@ class HistoryDelegate: HistoryDelegateProtocol {
     }
     
 //    func playItem(_ item: URL, _ playlistType: PlaylistType) throws {
-//        
+//
 //        do {
 //
 //            // First, find or add the given file

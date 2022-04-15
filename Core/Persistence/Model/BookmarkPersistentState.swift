@@ -17,14 +17,14 @@ import Foundation
 struct BookmarkPersistentState: Codable {
     
     let name: String?
-    let file: URLPath?   // URL path
+    let file: URL?   // URL path
     let startPosition: Double?
     let endPosition: Double?
     
     init(bookmark: Bookmark) {
         
         self.name = bookmark.name
-        self.file = bookmark.file.path
+        self.file = bookmark.file
         self.startPosition = bookmark.startPosition
         self.endPosition = bookmark.endPosition
     }

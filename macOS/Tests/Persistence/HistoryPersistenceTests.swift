@@ -41,7 +41,7 @@ extension HistoryPersistentState: Equatable {
 
 extension HistoryItemPersistentState: Equatable {
     
-    init(file: URLPath?, name: String?, time: DateString?) {
+    init(file: URL?, name: String?, time: DateString?) {
         
         self.file = file
         self.name = name

@@ -22,11 +22,10 @@ class SoundProfiles: TrackKeyedMap<SoundProfile> {
         
         for profile in persistentState ?? [] {
             
-            guard let path = profile.file, let volume = profile.volume,
+            guard let url = profile.file, let volume = profile.volume,
                   let pan = profile.pan, let effects = profile.effects,
                   let masterPreset = MasterPreset(persistentState: effects) else {continue}
             
-            let url = URL(fileURLWithPath: path)
             self[url] = SoundProfile(file: url, volume: volume,
                                      pan: pan, effects: masterPreset)
         }

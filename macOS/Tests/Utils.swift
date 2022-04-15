@@ -423,20 +423,21 @@ var visibleFrameRect: NSRect {
 
 func moveLayoutToRandomLocation(layout: WindowLayout) -> WindowLayout {
     
-    let visibleFrame = visibleFrameRect
-    
-    let layoutBoundingBox = layout.boundingBox
-    let movedBoundingBox = visibleFrame.randomContainedRect(width: layoutBoundingBox.width,
-                                                            height: layoutBoundingBox.height)
-    
-    let distanceMovedX = movedBoundingBox.minX - layoutBoundingBox.minX
-    let distanceMovedY = movedBoundingBox.minY - layoutBoundingBox.minY
-    
-    let movedMainWindowOrigin = layout.mainWindowOrigin.translating(distanceMovedX, distanceMovedY)
-    let movedEffectsWindowOrigin = layout.effectsWindowOrigin?.translating(distanceMovedX, distanceMovedY)
-    let movedPlaylistWindowFrame = layout.playlistWindowFrame?.offsetBy(dx: distanceMovedX, dy: distanceMovedY)
-    
-    return WindowLayout(layout.name, layout.showEffects, layout.showPlaylist, movedMainWindowOrigin, movedEffectsWindowOrigin, movedPlaylistWindowFrame, layout.systemDefined)
+//    let visibleFrame = visibleFrameRect
+//
+//    let layoutBoundingBox = layout.boundingBox
+//    let movedBoundingBox = visibleFrame.randomContainedRect(width: layoutBoundingBox.width,
+//                                                            height: layoutBoundingBox.height)
+//
+//    let distanceMovedX = movedBoundingBox.minX - layoutBoundingBox.minX
+//    let distanceMovedY = movedBoundingBox.minY - layoutBoundingBox.minY
+//
+//    let movedMainWindowOrigin = layout.mainWindowOrigin.translating(distanceMovedX, distanceMovedY)
+//    let movedEffectsWindowOrigin = layout.effectsWindowOrigin?.translating(distanceMovedX, distanceMovedY)
+//    let movedPlaylistWindowFrame = layout.playlistWindowFrame?.offsetBy(dx: distanceMovedX, dy: distanceMovedY)
+//
+//    return WindowLayout(layout.name, layout.showEffects, layout.showPlaylist, movedMainWindowOrigin, movedEffectsWindowOrigin, movedPlaylistWindowFrame, layout.systemDefined)
+    WindowLayout(name: "", systemDefined: false, mainWindowFrame: .zero, displayedWindows: [])
 }
 
 func randomControlBarPlayerWindowFrame() -> NSRect {
@@ -448,30 +449,32 @@ func randomControlBarPlayerWindowFrame() -> NSRect {
 
 func randomRecentlyPlayedItems() -> [HistoryItemPersistentState] {
     
-    let numItems = Int.random(in: 10...100)
-    
-    return (1...numItems).map {_ in
-        
-        let file = randomAudioFile()
-        let name = randomString(length: Int.random(in: 10...50))
-        let time = Date.init(timeIntervalSinceNow: -randomTimeBeforeNow())
-        
-        return HistoryItemPersistentState(file: file, name: name, time: time.serializableString())
-    }
+//    let numItems = Int.random(in: 10...100)
+//
+//    return (1...numItems).map {_ in
+//
+//        let file = randomAudioFile()
+//        let name = randomString(length: Int.random(in: 10...50))
+//        let time = Date.init(timeIntervalSinceNow: -randomTimeBeforeNow())
+//
+//        return HistoryItemPersistentState(file: file, name: name, time: time.serializableString())
+//    }
+    []
 }
 
 func randomRecentlyAddedItems() -> [HistoryItemPersistentState] {
     
-    let numItems = Int.random(in: 10...100)
-    
-    return (1...numItems).map {_ in
-        
-        let file = randomRecentlyAddedItemFilePath()
-        let name = randomString(length: Int.random(in: 10...50))
-        let time = Date.init(timeIntervalSinceNow: -randomTimeBeforeNow())
-        
-        return HistoryItemPersistentState(file: file, name: name, time: time.serializableString())
-    }
+//    let numItems = Int.random(in: 10...100)
+//
+//    return (1...numItems).map {_ in
+//
+//        let file = randomRecentlyAddedItemFilePath()
+//        let name = randomString(length: Int.random(in: 10...50))
+//        let time = Date.init(timeIntervalSinceNow: -randomTimeBeforeNow())
+//
+//        return HistoryItemPersistentState(file: file, name: name, time: time.serializableString())
+//    }
+    []
 }
 
 func randomTimeBeforeNow() -> Double {
@@ -480,7 +483,7 @@ func randomTimeBeforeNow() -> Double {
     Double.random(in: 65...5184000)
 }
 
-func randomRecentlyAddedItemFilePath() -> URLPath {
+func randomRecentlyAddedItemFilePath() -> String {
     
     let randomNum = Int.random(in: 1...3)
     
@@ -523,7 +526,7 @@ func fileMetadata(_ title: String?, _ artist: String?, _ album: String?, _ genre
 
 let allAudioExtensions: [String] = Array(SupportedTypes.allAudioExtensions)
 
-func randomAudioFileExtension() -> URLPath {
+func randomAudioFileExtension() -> String {
     
     let randomIndex = Int.random(in: 0..<SupportedTypes.allAudioExtensions.count)
     return allAudioExtensions[randomIndex]
@@ -531,31 +534,31 @@ func randomAudioFileExtension() -> URLPath {
 
 private let imageFileExtensions: [String] = ["jpg", "png", "tiff", "bmp"]
 
-func randomImageFileExtension() -> URLPath {
+func randomImageFileExtension() -> String {
     
     let randomIndex = Int.random(in: 0..<imageFileExtensions.count)
     return imageFileExtensions[randomIndex]
 }
 
-func randomAudioFile() -> URLPath {
+func randomAudioFile() -> String {
     
     let pathComponents: [String] = (0..<Int.random(in: 2...10)).map {_ in randomString(length: Int.random(in: 5...20))}
     return "/\(pathComponents.joined(separator: "/")).\(randomAudioFileExtension())"
 }
 
-func randomPlaylistFile() -> URLPath {
+func randomPlaylistFile() -> String {
     
     let pathComponents: [String] = (0..<Int.random(in: 2...10)).map {_ in randomString(length: Int.random(in: 5...20))}
     return "/\(pathComponents.joined(separator: "/")).m3u"
 }
 
-func randomImageFile() -> URLPath {
+func randomImageFile() -> String {
     
     let pathComponents: [String] = (0..<Int.random(in: 2...10)).map {_ in randomString(length: Int.random(in: 5...20))}
     return "/\(pathComponents.joined(separator: "/")).\(randomImageFileExtension())"
 }
 
-func randomFolder() -> URLPath {
+func randomFolder() -> String {
     
     let pathComponents: [String] = (0..<Int.random(in: 2...10)).map {_ in randomString(length: Int.random(in: 5...20))}
     return "/\(pathComponents.joined(separator: "/"))"

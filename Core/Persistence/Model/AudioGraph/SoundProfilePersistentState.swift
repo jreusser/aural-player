@@ -16,13 +16,13 @@ import Foundation
 ///
 struct SoundProfilePersistentState: Codable {
     
-    let file: URLPath?
+    let file: URL?
     
     let volume: Float?
     let pan: Float?
     let effects: MasterPresetPersistentState?
     
-    init(file: URLPath?, volume: Float?, pan: Float?, effects: MasterPresetPersistentState?) {
+    init(file: URL?, volume: Float?, pan: Float?, effects: MasterPresetPersistentState?) {
         
         self.file = file
         self.volume = volume
@@ -32,7 +32,7 @@ struct SoundProfilePersistentState: Codable {
     
     init(profile: SoundProfile) {
         
-        self.file = profile.file.path
+        self.file = profile.file
         self.volume = profile.volume
         self.pan = profile.pan
         self.effects = MasterPresetPersistentState(preset: profile.effects)

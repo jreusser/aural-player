@@ -66,7 +66,6 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     
     private lazy var messenger = Messenger(for: self)
     
-    private lazy var playerUIState: PlayerUIState = playerUIState
 //    private lazy var playlistUIState: PlaylistUIState = playlistUIState
     
     override func viewDidLoad() {

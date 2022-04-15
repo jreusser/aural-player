@@ -36,7 +36,7 @@ class FavoritesPersistenceTests: PersistenceTestCase {
 
 extension FavoritePersistentState: Equatable {
     
-    init(file: URLPath?, name: String?) {
+    init(file: URL?, name: String?) {
         
         self.file = file
         self.name = name

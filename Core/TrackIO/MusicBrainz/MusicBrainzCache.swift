@@ -51,12 +51,10 @@ class MusicBrainzCache: PersistentModelObject {
             
         for entry in state?.releases ?? [] {
             
-            guard let path = entry.file, let artist = entry.artist,
+            guard let file = entry.file, let artist = entry.artist,
                   let title = entry.title else {continue}
             
             diskIOOpQueue.addOperation {
-                
-                let file = URL(fileURLWithPath: path)
                 
                 // Ensure that the image file exists and that it contains a valid image.
                 if file.exists, let coverArt = CoverArt(imageFile: file) {
@@ -71,12 +69,10 @@ class MusicBrainzCache: PersistentModelObject {
             
         for entry in state?.recordings ?? [] {
             
-            guard let path = entry.file, let artist = entry.artist,
+            guard let file = entry.file, let artist = entry.artist,
                   let title = entry.title else {continue}
             
             diskIOOpQueue.addOperation {
-                
-                let file = URL(fileURLWithPath: path)
                 
                 // Ensure that the image file exists and that it contains a valid image.
                 if file.exists, let coverArt = CoverArt(imageFile: file) {
@@ -238,11 +234,11 @@ class MusicBrainzCache: PersistentModelObject {
         var recordings: [MusicBrainzCacheEntryPersistentState] = []
         
         for (artist, title, file) in self.onDiskReleasesCache.entries {
-            releases.append(MusicBrainzCacheEntryPersistentState(artist: artist, title: title, file: file.path))
+            releases.append(MusicBrainzCacheEntryPersistentState(artist: artist, title: title, file: file))
         }
         
         for (artist, title, file) in self.onDiskRecordingsCache.entries {
-            recordings.append(MusicBrainzCacheEntryPersistentState(artist: artist, title: title, file: file.path))
+            recordings.append(MusicBrainzCacheEntryPersistentState(artist: artist, title: title, file: file))
         }
         
         return MusicBrainzCachePersistentState(releases: releases, recordings: recordings)

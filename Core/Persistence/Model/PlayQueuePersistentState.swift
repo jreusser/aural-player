@@ -12,14 +12,14 @@ import Foundation
 
 struct PlayQueuePersistentState: Codable {
     
-    let tracks: [URLPath]?
+    let tracks: [URL]?
     
     let repeatMode: RepeatMode?
     let shuffleMode: ShuffleMode?
     
     init(playQueue: PlayQueue) {
         
-        self.tracks = playQueue.tracks.map {$0.file.path}
+        self.tracks = playQueue.tracks.map {$0.file}
         self.repeatMode = playQueue.repeatMode
         self.shuffleMode = playQueue.shuffleMode
     }

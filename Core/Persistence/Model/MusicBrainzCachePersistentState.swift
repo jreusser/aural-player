@@ -29,5 +29,5 @@ struct MusicBrainzCacheEntryPersistentState: Codable {
     
     let artist: String?
     let title: String?
-    let file: URLPath?
+    let file: URL?
 }

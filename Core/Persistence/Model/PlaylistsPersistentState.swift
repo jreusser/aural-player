@@ -34,9 +34,8 @@ import Foundation
 ///
 struct PlaylistPersistentState: Codable {
     
-//    let name: String?
+    let name: String?
     
     // List of track files (as URL paths).
-    let tracks: [URLPath]?
-//    let groupingPlaylists: [String: GroupingPlaylistPersistentState]?
+    let tracks: [URL]?
 }

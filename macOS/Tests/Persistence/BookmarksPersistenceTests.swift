@@ -44,7 +44,7 @@ class BookmarksPersistenceTests: PersistenceTestCase {
 
 extension BookmarkPersistentState: Equatable {
     
-    init(name: String?, file: URLPath?, startPosition: Double?, endPosition: Double?) {
+    init(name: String?, file: URL?, startPosition: Double?, endPosition: Double?) {
         
         self.name = name
         self.file = file

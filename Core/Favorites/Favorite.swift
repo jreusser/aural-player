@@ -51,9 +51,9 @@ class Favorite: UserManagedObject, Hashable {
     
     init?(persistentState: FavoritePersistentState) {
         
-        guard let path = persistentState.file, let name = persistentState.name else {return nil}
+        guard let file = persistentState.file, let name = persistentState.name else {return nil}
         
-        self.file = URL(fileURLWithPath: path)
+        self.file = file
         self._name = name
     }
     

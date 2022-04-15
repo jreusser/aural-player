@@ -22,9 +22,8 @@ class PlaybackProfiles: TrackKeyedMap<PlaybackProfile> {
         
         for profile in persistentState ?? [] {
             
-            guard let path = profile.file, let lastPosition = profile.lastPosition else {continue}
+            guard let url = profile.file, let lastPosition = profile.lastPosition else {continue}
             
-            let url = URL(fileURLWithPath: path)
             self[url] = PlaybackProfile(url, lastPosition)
         }
     }
