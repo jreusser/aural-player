@@ -142,8 +142,12 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
         
         let rowIndex = lastRow
         tableView.selectRow(rowIndex)
+        editTextField(inRow: rowIndex)
+    }
+    
+    private func editTextField(inRow row: Int) {
         
-        let rowView = tableView.rowView(atRow: rowIndex, makeIfNecessary: true)
+        let rowView = tableView.rowView(atRow: row, makeIfNecessary: true)
         
         if let editedTextField = (rowView?.view(atColumn: 0) as? NSTableCellView)?.textField {
             view.window?.makeFirstResponder(editedTextField)
@@ -161,6 +165,14 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
         
         playlistViewController.showViewIf(false)
         tableView.reloadData()
+    }
+    
+    @IBAction func renameSelectedPlaylistAction(_ sender: NSButton) {
+        
+        let selectedRows = self.selectedRows
+        guard selectedRows.count == 1, let selectedRow = selectedRows.first else {return}
+        
+        editTextField(inRow: selectedRow)
     }
     
     // MARK: Text field delegate functions
