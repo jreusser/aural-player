@@ -15,7 +15,11 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
     override var windowNibName: String? {"PlaylistsWindow"}
 
     @IBOutlet weak var rootContainer: NSBox!
+    @IBOutlet weak var controlsBox: NSBox!
+
     @IBOutlet weak var btnClose: TintedImageButton!
+    @IBOutlet weak var btnCreatePlaylist: TintedIconMenuItem!
+    @IBOutlet weak var btnDeleteSelectedPlaylists: TintedImageButton!
     
     @IBOutlet weak var lblCaption: NSTextField!
     
@@ -24,10 +28,9 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
         super.windowDidLoad()
         
         lblCaption.font = systemFontScheme.effects.unitCaptionFont
-        
 
         colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
-        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
+        colorSchemesManager.registerObservers([btnClose, btnCreatePlaylist, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)
     }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
@@ -36,7 +39,9 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
             
         case \.backgroundColor:
             
-            rootContainer.fillColor = newColor
+            [rootContainer, controlsBox].forEach {
+                $0.fillColor = newColor
+            }
             
         case \.captionTextColor:
             

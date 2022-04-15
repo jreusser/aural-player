@@ -9,6 +9,9 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PlaylistsWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnClose" destination="d7D-xy-xw6" id="2r5-NN-17s"/>
+                <outlet property="btnCreatePlaylist" destination="5cw-fP-SEL" id="IDM-nn-wEH"/>
+                <outlet property="btnDeleteSelectedPlaylists" destination="IU4-DL-MBi" id="Hdj-pL-vd9"/>
+                <outlet property="controlsBox" destination="ZDa-Wk-Jtf" id="ITp-R3-g40"/>
                 <outlet property="lblCaption" destination="Izm-XL-6kw" id="s2h-7h-MP2"/>
                 <outlet property="rootContainer" destination="fpr-mJ-5DC" id="xQ0-N2-uOj"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="LDQ-f4-iaZ"/>
@@ -102,26 +105,26 @@
                                     <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </box>
                                 <splitView arrangesAllSubviews="NO" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qAe-ip-eeh">
-                                    <rect key="frame" x="15" y="15" width="770" height="332"/>
+                                    <rect key="frame" x="15" y="35" width="770" height="312"/>
                                     <subviews>
                                         <customView id="DaI-JX-k2K" userLabel="Playlist Names View">
-                                            <rect key="frame" x="0.0" y="0.0" width="189" height="332"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="189" height="312"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <scrollView borderType="groove" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ne8-0V-EED">
-                                                    <rect key="frame" x="0.0" y="0.0" width="189" height="332"/>
-                                                    <clipView key="contentView" id="jU6-lf-Ryw">
-                                                        <rect key="frame" x="2" y="2" width="185" height="328"/>
+                                                <scrollView borderType="groove" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ne8-0V-EED">
+                                                    <rect key="frame" x="0.0" y="0.0" width="189" height="312"/>
+                                                    <clipView key="contentView" copiesOnScroll="NO" id="jU6-lf-Ryw">
+                                                        <rect key="frame" x="2" y="2" width="185" height="308"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" id="9Si-sI-Nin">
-                                                                <rect key="frame" x="0.0" y="0.0" width="185" height="328"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="185" height="308"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <size key="intercellSpacing" width="17" height="0.0"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                 <tableColumns>
-                                                                    <tableColumn identifier="cid_PlaylistName" width="153" minWidth="100" maxWidth="500" id="QLP-7e-bxc" userLabel="Playlist Name">
+                                                                    <tableColumn identifier="cid_PlaylistName" width="173" minWidth="100" maxWidth="500" id="QLP-7e-bxc" userLabel="Playlist Name">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -134,11 +137,11 @@
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView identifier="cid_PlaylistName" id="IvX-kM-yoC" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
-                                                                                <rect key="frame" x="18" y="0.0" width="148" height="24"/>
+                                                                                <rect key="frame" x="8" y="0.0" width="168" height="24"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hod-xA-UT7">
-                                                                                        <rect key="frame" x="0.0" y="4" width="148" height="16"/>
+                                                                                        <rect key="frame" x="0.0" y="4" width="168" height="16"/>
                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="yAF-nK-zga">
                                                                                             <font key="font" usesAppearanceFont="YES"/>
@@ -163,11 +166,11 @@
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </clipView>
                                                     <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="RhA-Uu-YjG">
-                                                        <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                                        <rect key="frame" x="-100" y="-100" width="96" height="15"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="hSU-KG-gwg">
-                                                        <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                                        <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -176,27 +179,29 @@
                                                 <constraint firstAttribute="bottom" secondItem="Ne8-0V-EED" secondAttribute="bottom" id="2zO-OA-w6X"/>
                                                 <constraint firstItem="Ne8-0V-EED" firstAttribute="leading" secondItem="DaI-JX-k2K" secondAttribute="leading" id="6bl-6B-QmU"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ne8-0V-EED" secondAttribute="trailing" id="8yk-Es-QvY"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="CV9-KB-3Pt"/>
                                                 <constraint firstItem="Ne8-0V-EED" firstAttribute="top" secondItem="DaI-JX-k2K" secondAttribute="top" id="SSL-8q-Syq"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="fFz-6c-oxe"/>
                                             </constraints>
                                         </customView>
                                         <customView id="waI-nr-sJH" userLabel="Playlist View">
-                                            <rect key="frame" x="198" y="0.0" width="572" height="332"/>
+                                            <rect key="frame" x="198" y="0.0" width="572" height="312"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ndT-x8-qeV" userLabel="Playlist Container">
-                                                    <rect key="frame" x="0.0" y="0.0" width="572" height="332"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="572" height="312"/>
                                                     <view key="contentView" id="dX7-Ua-C87">
-                                                        <rect key="frame" x="0.0" y="0.0" width="572" height="332"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="572" height="312"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="vra-Oq-sYZ" userLabel="Playlist Box">
-                                                                <rect key="frame" x="0.0" y="0.0" width="572" height="332"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="572" height="312"/>
                                                                 <view key="contentView" id="XJm-dm-gl9">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="572" height="332"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="572" height="312"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PkZ-lN-oeS" userLabel="Playlist Name Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                                                                            <rect key="frame" x="13" y="305" width="214" height="25"/>
+                                                                            <rect key="frame" x="13" y="285" width="214" height="25"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="25" id="ByV-JB-PgN"/>
                                                                                 <constraint firstAttribute="width" constant="210" id="ubk-YW-rYa"/>
@@ -239,9 +244,61 @@
                                         <real value="250"/>
                                     </holdingPriorities>
                                 </splitView>
+                                <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ZDa-Wk-Jtf" userLabel="Controls Box">
+                                    <rect key="frame" x="15" y="10" width="125" height="20"/>
+                                    <view key="contentView" id="x9b-Jp-D3L">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <button toolTip="Delete selected playlists" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IU4-DL-MBi" userLabel="Remove Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                                <rect key="frame" x="19" y="0.0" width="15" height="15"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="minus" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="POm-r3-EMl">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
+                                            <popUpButton toolTip="Add an Audio Unit" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BcN-Oh-449" userLabel="Add Menu Button">
+                                                <rect key="frame" x="-4" y="-1" width="22" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="i7R-Pe-5Wb">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" size="11" name="Play-Regular"/>
+                                                    <menu key="menu" showsStateColumn="NO" id="Ywc-bJ-64d">
+                                                        <items>
+                                                            <menuItem image="plus" catalog="system" hidden="YES" id="5cw-fP-SEL" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="plus" catalog="system"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </menuItem>
+                                                            <menuItem title="Create empty playlist" id="l0H-y4-QGv">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Create playlist from directory" id="zc5-Kk-piU">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Create playlist from playlist file" id="eQb-Lu-Wpz">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                        </items>
+                                                    </menu>
+                                                </popUpButtonCell>
+                                            </popUpButton>
+                                        </subviews>
+                                    </view>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="125" id="3uO-Hd-P2U"/>
+                                        <constraint firstAttribute="height" constant="20" id="KMp-Lj-ZNu"/>
+                                    </constraints>
+                                    <color key="borderColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </box>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="qAe-ip-eeh" secondAttribute="bottom" constant="15" id="ONM-Px-MVW"/>
+                                <constraint firstAttribute="bottom" secondItem="qAe-ip-eeh" secondAttribute="bottom" constant="35" id="ONM-Px-MVW"/>
+                                <constraint firstItem="ZDa-Wk-Jtf" firstAttribute="leading" secondItem="rpW-JN-zj7" secondAttribute="leading" constant="15" id="QOn-T1-e6w"/>
+                                <constraint firstAttribute="bottom" secondItem="ZDa-Wk-Jtf" secondAttribute="bottom" constant="10" id="UUr-uZ-WeX"/>
                                 <constraint firstAttribute="trailing" secondItem="qAe-ip-eeh" secondAttribute="trailing" constant="15" id="VRw-6K-5OV"/>
                                 <constraint firstItem="qAe-ip-eeh" firstAttribute="leading" secondItem="rpW-JN-zj7" secondAttribute="leading" constant="15" id="WNt-dd-x8R"/>
                                 <constraint firstItem="YbT-9a-upN" firstAttribute="top" secondItem="rpW-JN-zj7" secondAttribute="top" constant="8" id="cFB-Z4-ztE"/>
@@ -283,6 +340,8 @@
         <image name="Artists" width="32" height="32"/>
         <image name="Genres" width="32" height="32"/>
         <image name="Tracks" width="32" height="32"/>
+        <image name="minus" catalog="system" width="14" height="4"/>
+        <image name="plus" catalog="system" width="14" height="13"/>
         <image name="xmark" catalog="system" width="14" height="13"/>
     </resources>
 </document>
