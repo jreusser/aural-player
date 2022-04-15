@@ -49,6 +49,10 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
                 
                 windowLoaders.append(WindowLoader(windowID: .effects, windowControllerType: EffectsWindowController.self))
                 
+            case .playlists:
+                
+                windowLoaders.append(WindowLoader(windowID: .playlists, windowControllerType: PlaylistsWindowController.self))
+                
             default:
                 
                 continue
@@ -249,6 +253,10 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     
     var isShowingEffects: Bool {
         isShowingWindow(withId: .effects)
+    }
+    
+    var isShowingPlaylists: Bool {
+        isShowingWindow(withId: .playlists)
     }
     
     // MARK: Miscellaneous functions ------------------------------------

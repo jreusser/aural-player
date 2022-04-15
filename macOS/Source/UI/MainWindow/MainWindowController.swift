@@ -30,6 +30,7 @@ class MainWindowController: NSWindowController {
     // Buttons to toggle the play queue/effects views
     @IBOutlet weak var btnTogglePlayQueue: TintedImageButton!
     @IBOutlet weak var btnToggleEffects: TintedImageButton!
+    @IBOutlet weak var btnTogglePlaylists: TintedImageButton!
     
     private lazy var btnTogglePlayQueueStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingPlayQueue,
                                                                                     mappings: [
@@ -46,6 +47,14 @@ class MainWindowController: NSWindowController {
                                                                                         ButtonStateMachine.StateMapping(state: false, image: Images.imgEffects, colorProperty: \.buttonOffColor, toolTip: "Show the Effects panel")
                                                                                     ],
                                                                                     button: btnToggleEffects)
+    
+    private lazy var btnTogglePlaylistsStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingPlaylists,
+                                                                                    mappings: [
+                                                                                        
+                                                                                        ButtonStateMachine.StateMapping(state: true, image: Images.imgPlaylist, colorProperty: \.buttonColor, toolTip: "Hide the Playlists"),
+                                                                                        ButtonStateMachine.StateMapping(state: false, image: Images.imgPlaylist, colorProperty: \.buttonOffColor, toolTip: "Show the Playlists")
+                                                                                    ],
+                                                                                    button: btnTogglePlaylists)
     
     @IBOutlet weak var btnSettingsMenu: NSPopUpButton!
     
@@ -154,7 +163,7 @@ class MainWindowController: NSWindowController {
     
     // MARK: Actions -----------------------------------------------------------
     
-    // Shows/hides the playlist window (by delegating)
+    // Shows/hides the play queue window (by delegating)
     @IBAction func togglePlayQueueAction(_ sender: AnyObject) {
         windowLayoutsManager.toggleWindow(withId: .playQueue)
     }
@@ -162,6 +171,11 @@ class MainWindowController: NSWindowController {
     // Shows/hides the effects panel on the main window
     @IBAction func toggleEffectsAction(_ sender: AnyObject) {
         windowLayoutsManager.toggleWindow(withId: .effects)
+    }
+    
+    // Shows/hides the playlists window (by delegating)
+    @IBAction func togglePlaylistsAction(_ sender: AnyObject) {
+        windowLayoutsManager.toggleWindow(withId: .playlists)
     }
     
     // Quits the app

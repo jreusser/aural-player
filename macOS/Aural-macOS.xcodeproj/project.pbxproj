@@ -38,6 +38,8 @@
 		3E2779F426AF33B100291244 /* MockAVFPlaybackContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2779F326AF33B100291244 /* MockAVFPlaybackContext.swift */; };
 		3E2976132629473500459272 /* WindowCornerRadiusMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2976122629473500459272 /* WindowCornerRadiusMenuItemView.swift */; };
 		3E2A29FF2808DC42000F0539 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A29FE2808DC42000F0539 /* Globals.swift */; };
+		3E2A2A02280909F9000F0539 /* PlaylistsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2A2A01280909F9000F0539 /* PlaylistsWindow.xib */; };
+		3E2A2A042809AFCA000F0539 /* PlaylistsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A2A032809AFCA000F0539 /* PlaylistsWindowController.swift */; };
 		3E2EADD326B16EBF00A95119 /* HaltPlaybackActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025F0268E830900C5A1C5 /* HaltPlaybackActionTests.swift */; };
 		3E2EADD426B16F1200A95119 /* StartPlaybackActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025F1268E830900C5A1C5 /* StartPlaybackActionTests.swift */; };
 		3E2EADD526B170A200A95119 /* PlaybackChainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025F2268E830900C5A1C5 /* PlaybackChainTests.swift */; };
@@ -1466,6 +1468,8 @@
 		3E2779F326AF33B100291244 /* MockAVFPlaybackContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAVFPlaybackContext.swift; sourceTree = "<group>"; };
 		3E2976122629473500459272 /* WindowCornerRadiusMenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowCornerRadiusMenuItemView.swift; sourceTree = "<group>"; };
 		3E2A29FE2808DC42000F0539 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		3E2A2A01280909F9000F0539 /* PlaylistsWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaylistsWindow.xib; sourceTree = "<group>"; };
+		3E2A2A032809AFCA000F0539 /* PlaylistsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsWindowController.swift; sourceTree = "<group>"; };
 		3E2ED4A425DBAD8400732E79 /* FontScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontScheme.swift; sourceTree = "<group>"; };
 		3E2ED4A625DBB24F00732E79 /* FontSchemePreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemePreset.swift; sourceTree = "<group>"; };
 		3E2ED4A825DBC50500732E79 /* FontSchemesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemesManager.swift; sourceTree = "<group>"; };
@@ -2579,6 +2583,15 @@
 			path = TableViewController;
 			sourceTree = "<group>";
 		};
+		3E2A2A00280909D2000F0539 /* Playlists */ = {
+			isa = PBXGroup;
+			children = (
+				3E2A2A01280909F9000F0539 /* PlaylistsWindow.xib */,
+				3E2A2A032809AFCA000F0539 /* PlaylistsWindowController.swift */,
+			);
+			path = Playlists;
+			sourceTree = "<group>";
+		};
 		3E2ED4A325DBAD6200732E79 /* FontSchemes */ = {
 			isa = PBXGroup;
 			children = (
@@ -2883,6 +2896,7 @@
 				3E6C0F1D25CEB98500BF0D07 /* MainWindow */,
 				3E6C101A25CEB98600BF0D07 /* Player */,
 				3E25B64C27F7812500D10A5F /* PlayQueue */,
+				3E2A2A00280909D2000F0539 /* Playlists */,
 				3E6C0F3B25CEB98600BF0D07 /* Playlist */,
 				3E6C0FED25CEB98600BF0D07 /* Effects */,
 				3E6C0F6925CEB98600BF0D07 /* PresetsManagers */,
@@ -5321,6 +5335,7 @@
 				3E53C41125E2E06C00B30A03 /* control-freak.regular.ttf in Resources */,
 				3E53C41325E2E06E00B30A03 /* neo-latina-demo-FFP.ttf in Resources */,
 				3E645A0A25E39337006C6981 /* coming-soon.regular.ttf in Resources */,
+				3E2A2A02280909F9000F0539 /* PlaylistsWindow.xib in Resources */,
 				3ECD7DF025DFE23700A61753 /* WalterTurncoat.ttf in Resources */,
 				3ECB54EE25E559E5002259C4 /* futura light bt.ttf in Resources */,
 				3E57AF8C262B2C8100678C16 /* ChicagoFLF.ttf in Resources */,
@@ -5902,6 +5917,7 @@
 				3E6C12C625CEBE6700BF0D07 /* PitchShiftUnitView.swift in Sources */,
 				3E6C12C125CEBE6700BF0D07 /* PitchShiftUnitViewController.swift in Sources */,
 				3E6C12B425CEBE5800BF0D07 /* PlaybackMenuController.swift in Sources */,
+				3E2A2A042809AFCA000F0539 /* PlaylistsWindowController.swift in Sources */,
 				3EFE396727864897006F8B8C /* AVFPlaybackContext.swift in Sources */,
 				3EFE38E927864897006F8B8C /* TrackKeyedMap.swift in Sources */,
 				3E6C122525CEBDE600BF0D07 /* PlaybackPreferencesViewController.swift in Sources */,
