@@ -41,6 +41,7 @@
 		3E2A2A02280909F9000F0539 /* PlaylistsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2A2A01280909F9000F0539 /* PlaylistsWindow.xib */; };
 		3E2A2A042809AFCA000F0539 /* PlaylistsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A2A032809AFCA000F0539 /* PlaylistsWindowController.swift */; };
 		3E2A2A062809B68A000F0539 /* PlaylistNamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A2A052809B68A000F0539 /* PlaylistNamesTableViewController.swift */; };
+		3E2A2A082809C824000F0539 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A2A072809C824000F0539 /* PlaylistViewController.swift */; };
 		3E2EADD326B16EBF00A95119 /* HaltPlaybackActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025F0268E830900C5A1C5 /* HaltPlaybackActionTests.swift */; };
 		3E2EADD426B16F1200A95119 /* StartPlaybackActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025F1268E830900C5A1C5 /* StartPlaybackActionTests.swift */; };
 		3E2EADD526B170A200A95119 /* PlaybackChainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025F2268E830900C5A1C5 /* PlaybackChainTests.swift */; };
@@ -1472,6 +1473,7 @@
 		3E2A2A01280909F9000F0539 /* PlaylistsWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaylistsWindow.xib; sourceTree = "<group>"; };
 		3E2A2A032809AFCA000F0539 /* PlaylistsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsWindowController.swift; sourceTree = "<group>"; };
 		3E2A2A052809B68A000F0539 /* PlaylistNamesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistNamesTableViewController.swift; sourceTree = "<group>"; };
+		3E2A2A072809C824000F0539 /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		3E2ED4A425DBAD8400732E79 /* FontScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontScheme.swift; sourceTree = "<group>"; };
 		3E2ED4A625DBB24F00732E79 /* FontSchemePreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemePreset.swift; sourceTree = "<group>"; };
 		3E2ED4A825DBC50500732E79 /* FontSchemesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemesManager.swift; sourceTree = "<group>"; };
@@ -2591,6 +2593,7 @@
 				3E2A2A01280909F9000F0539 /* PlaylistsWindow.xib */,
 				3E2A2A032809AFCA000F0539 /* PlaylistsWindowController.swift */,
 				3E2A2A052809B68A000F0539 /* PlaylistNamesTableViewController.swift */,
+				3E2A2A072809C824000F0539 /* PlaylistViewController.swift */,
 			);
 			path = Playlists;
 			sourceTree = "<group>";
@@ -5599,6 +5602,7 @@
 				3EABDDFA2694C561008066E8 /* ControlBarSeekPositionDisplayType.swift in Sources */,
 				3EFE391B27864897006F8B8C /* EnumExtensions.swift in Sources */,
 				3EFE397727864897006F8B8C /* CloseFileHandlesAction.swift in Sources */,
+				3E2A2A082809C824000F0539 /* PlaylistViewController.swift in Sources */,
 				3EFE3A0927864898006F8B8C /* TuneBrowserNotifications.swift in Sources */,
 				3E3975462688894C0055887E /* ControlBarSeekSliderCell.swift in Sources */,
 				3EFE37E327864896006F8B8C /* Preferences.swift in Sources */,
