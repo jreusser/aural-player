@@ -10,7 +10,7 @@
 
 import AppKit
 
-extension TableViewController: NSTableViewDataSource {
+extension TrackListViewController: NSTableViewDataSource {
     
     // Signifies an invalid drag/drop operation
     private static let invalidDragOperation: NSDragOperation = []

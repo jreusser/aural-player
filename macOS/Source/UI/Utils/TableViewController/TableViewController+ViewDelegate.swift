@@ -10,7 +10,7 @@
 
 import Cocoa
 
-extension TableViewController {
+extension TrackListViewController {
     
 //    func buildCell<T: NSTableCellView>(forColumn column: NSUserInterfaceItemIdentifier, ofType type: T.Type = AuralTableCellView.self as! T.Type,
 //                                       withText text: String, inFont font: PlatformFont, andColor color: PlatformColor) -> T? {

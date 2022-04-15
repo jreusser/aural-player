@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class CompactPlayQueueViewController: TableViewController {
+class CompactPlayQueueViewController: TrackListViewController {
     
     override var nibName: String? {"CompactPlayQueue"}
     

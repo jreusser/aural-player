@@ -98,13 +98,13 @@
                                 <splitView arrangesAllSubviews="NO" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qAe-ip-eeh">
                                     <rect key="frame" x="15" y="15" width="770" height="332"/>
                                     <subviews>
-                                        <customView misplaced="YES" id="DaI-JX-k2K" userLabel="Playlist Names View">
+                                        <customView id="DaI-JX-k2K" userLabel="Playlist Names View">
                                             <rect key="frame" x="0.0" y="0.0" width="189" height="332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ne8-0V-EED">
                                                     <rect key="frame" x="0.0" y="0.0" width="189" height="332"/>
-                                                    <clipView key="contentView" drawsBackground="NO" id="jU6-lf-Ryw">
+                                                    <clipView key="contentView" id="jU6-lf-Ryw">
                                                         <rect key="frame" x="1" y="1" width="187" height="330"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
@@ -127,7 +127,7 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView id="IvX-kM-yoC">
+                                                                            <tableCellView identifier="cid_PlaylistName" id="IvX-kM-yoC" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
                                                                                 <rect key="frame" x="8" y="0.0" width="170" height="24"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
@@ -148,6 +148,10 @@
                                                                         </prototypeCellViews>
                                                                     </tableColumn>
                                                                 </tableColumns>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="KCA-ts-en2" id="VeG-gT-hfh"/>
+                                                                    <outlet property="delegate" destination="KCA-ts-en2" id="M60-3H-Gcz"/>
+                                                                </connections>
                                                             </tableView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -169,7 +173,7 @@
                                                 <constraint firstItem="Ne8-0V-EED" firstAttribute="top" secondItem="DaI-JX-k2K" secondAttribute="top" id="SSL-8q-Syq"/>
                                             </constraints>
                                         </customView>
-                                        <customView misplaced="YES" id="waI-nr-sJH" userLabel="Playlist View">
+                                        <customView id="waI-nr-sJH" userLabel="Playlist View">
                                             <rect key="frame" x="198" y="0.0" width="572" height="332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -253,6 +257,12 @@
             <accessibility identifier="playlists"/>
             <point key="canvasLocation" x="299" y="248"/>
         </window>
+        <customObject id="KCA-ts-en2" customClass="PlaylistNamesTableViewController" customModule="Aural" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="9Si-sI-Nin" id="gEw-zc-bgD"/>
+                <outlet property="view" destination="9Si-sI-Nin" id="9AL-dX-w68"/>
+            </connections>
+        </customObject>
     </objects>
     <resources>
         <image name="Albums" width="32" height="32"/>
