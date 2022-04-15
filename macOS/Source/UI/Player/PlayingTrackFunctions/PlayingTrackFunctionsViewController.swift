@@ -45,8 +45,6 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     // Delegate that provides access to the Favorites track list.
     private lazy var favorites: FavoritesDelegateProtocol = favoritesDelegate
     
-    private lazy var trackReader: TrackReader = trackReader
-    
     // Popover view that displays detailed info for the currently playing track
     private lazy var detailedInfoPopover: DetailedTrackInfoViewController = {
         

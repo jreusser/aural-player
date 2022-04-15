@@ -47,22 +47,20 @@ class HistoryDelegate: HistoryDelegateProtocol {
         self.playQueue = playQueue
         self.player = player
         
-        // Restore the history model object from persistent state
+        // Restore the history model object from persistent state.
         
         persistentState?.recentlyAdded?.reversed().forEach {item in
             
-            guard let file = item.file, let timeString = item.time,
-                  let date = Date.fromString(timeString) else {return}
-            
-            recentlyAddedItems.add(AddedItem(file, item.name ?? file.lastPathComponent, date))
+            if let file = item.file, let date = item.time {
+                recentlyAddedItems.add(AddedItem(file, item.name ?? file.lastPathComponent, date))
+            }
         }
         
         persistentState?.recentlyPlayed?.reversed().forEach {item in
             
-            guard let file = item.file, let timeString = item.time,
-                  let date = Date.fromString(timeString) else {return}
-            
-            recentlyPlayedItems.add(PlayedItem(file, item.name ?? file.lastPathComponent, date))
+            if let file = item.file, let date = item.time {
+                recentlyPlayedItems.add(PlayedItem(file, item.name ?? file.lastPathComponent, date))
+            }
         }
         
         messenger.publish(.history_updated)
@@ -75,7 +73,7 @@ class HistoryDelegate: HistoryDelegateProtocol {
     
     func allRecentlyAddedItems() -> [AddedItem] {
         
-        // Reverse the array for chronological order (most recent items first)
+        // Reverse the array for chronological order (most recent items first).
         recentlyAddedItems.toArray().reversed()
     }
     

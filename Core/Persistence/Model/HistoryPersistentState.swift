@@ -33,12 +33,12 @@ struct HistoryItemPersistentState: Codable {
     
     let file: URL?
     let name: String?
-    let time: DateString?
+    let time: Date?
     
     init(item: HistoryItem) {
         
         self.file = item.file
         self.name = item.displayName
-        self.time = item.time.serializableString()
+        self.time = item.time
     }
 }

@@ -16,87 +16,46 @@ fileprivate let oneDay: TimeInterval = 24 * oneHour
 fileprivate let oneWeek: TimeInterval = 7 * oneDay
 fileprivate let thirtyDays: TimeInterval = 30 * oneDay
 
-typealias DateString = String
-
 // Convenience utility functions
 extension Date {
     
-    // Returns this date with time set to 00:00:00
-    var startOfDay: Date {
-        return Calendar.current.startOfDay(for: self)
-    }
-    
-    // Returns a String suitable for serialization as a timestamp, in the format: YYYY_MM_DD_hh_mm
-    func serializableString() -> String {
-        
-        let calendar = Calendar.current
-        
-        let year = calendar.component(.year, from: self)
-        let month = calendar.component(.month, from: self)
-        let day = calendar.component(.day, from: self)
-        let hour = calendar.component(.hour, from: self)
-        let minute = calendar.component(.minute, from: self)
-        
-        return String(format: "%d_%d_%d_%d_%d", year, month, day, hour, minute)
-    }
-    
     // Returns a String suitable for serialization as a timestamp, in the format: YYYY_MM_DD_hh_mm_ss
     func serializableString_hms() -> String {
-        
-        let calendar = Calendar.current
-        
-        let year = calendar.component(.year, from: self)
-        let month = calendar.component(.month, from: self)
-        let day = calendar.component(.day, from: self)
-        let hour = calendar.component(.hour, from: self)
-        let minute = calendar.component(.minute, from: self)
-        let second = calendar.component(.second, from: self)
-        
-        return String(format: "%d_%d_%d_%d_%d_%d", year, month, day, hour, minute, second)
+        String(format: "%d_%d_%d_%d_%d_%d", year, month, day, hour, minute, second)
     }
     
-    // Constructs a Date from a String of the format: YYYY_MM_DD_hh_mm (created by the serializableString() function).
-    static func fromString(_ string: String) -> Date? {
-        
-        // Parse the String into individual date components.
-        let dateStringComponents = string.components(separatedBy: "_")
-        
-        guard dateStringComponents.count == 5,
-              let year = Int(dateStringComponents[0]),
-              let month = Int(dateStringComponents[1]),
-              let day = Int(dateStringComponents[2]),
-              let hour = Int(dateStringComponents[3]),
-              let minute = Int(dateStringComponents[4]) else {return nil}
-        
-        let components = DateComponents(year: year, month: month, day: day,
-                                        hour: hour, minute: minute, second: 0)
-        
-        return Calendar(identifier: .gregorian).date(from: components)
+    // Returns this date with time set to 00:00:00
+    var startOfDay: Date {
+        Calendar.current.startOfDay(for: self)
+    }
+    
+    var second: Int {
+        Calendar.current.component(.second, from: self)
     }
     
     // Returns the minute component of this Date
     var minute: Int {
-        return Calendar.current.component(.minute, from: self)
+        Calendar.current.component(.minute, from: self)
     }
-    
+
     // Returns the hour component of this Date
     var hour: Int {
-        return Calendar.current.component(.hour, from: self)
+        Calendar.current.component(.hour, from: self)
     }
-    
+
     // Returns the day component of this Date
     var day: Int {
-        return Calendar.current.component(.day, from: self)
+        Calendar.current.component(.day, from: self)
     }
-    
+
     // Returns the month component of this Date
     var month: Int {
-        return Calendar.current.component(.month, from: self)
+        Calendar.current.component(.month, from: self)
     }
-    
+
     // Returns the year component of this Date
     var year: Int {
-        return Calendar.current.component(.year, from: self)
+        Calendar.current.component(.year, from: self)
     }
     
     // Computes a time category (see TimeElapsed) representing the time elapsed since a given date (until now)
