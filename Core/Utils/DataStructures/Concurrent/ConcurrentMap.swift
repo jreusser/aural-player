@@ -16,7 +16,7 @@ class ConcurrentMap<T: Hashable, U: Any> {
  
     private let lock: ExclusiveAccessSemaphore = ExclusiveAccessSemaphore()
     
-    private var map: [T: U] = [:]
+    private(set) var map: [T: U] = [:]
     
     subscript(_ key: T) -> U? {
         

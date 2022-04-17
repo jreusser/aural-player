@@ -17,8 +17,6 @@ import Foundation
 // How to deal with 2 simultaneous sessions on startup ? Play queue / Library / Custom playlists ? Adjust batch size accordingly ?
 class TrackLoader {
     
-    private let fileReader: FileReader = FileReader()
-    
     private var session: FileReadSession!
     private var batch: FileMetadataBatch!
     var blockOpFunction: ((URL) -> BlockOperation)!
@@ -74,11 +72,11 @@ class TrackLoader {
 
                 case .primary:
 
-                    fileMetadata.primary = try self.fileReader.getPrimaryMetadata(for: file)
+                    fileMetadata.primary = try fileReader.getPrimaryMetadata(for: file)
 
                 case .playback:
 
-                    fileMetadata.playback = try self.fileReader.getPlaybackMetadata(for: file)
+                    fileMetadata.playback = try fileReader.getPlaybackMetadata(for: file)
                     
                 default:
                     

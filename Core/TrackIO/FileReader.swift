@@ -33,11 +33,18 @@ class FileReader: FileReaderProtocol {
     
     func getPrimaryMetadata(for file: URL) throws -> PrimaryMetadata {
         
+        if let cachedMetadata = metadataRegistry[file] {
+            return cachedMetadata
+        }
+        
 #if os(macOS)
         
-        return file.isNativelySupported ?
+        let metadata = file.isNativelySupported ?
             try avfReader.getPrimaryMetadata(for: file) :
             try ffmpegReader.getPrimaryMetadata(for: file)
+        
+        metadataRegistry[file] = metadata
+        return metadata
         
         #elseif os(iOS)
         

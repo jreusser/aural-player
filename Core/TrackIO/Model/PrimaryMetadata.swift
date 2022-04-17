@@ -45,4 +45,24 @@ struct PrimaryMetadata {
     var durationIsAccurate: Bool = false
     
     var isProtected: Bool?
+    
+    init() {}
+    
+    init(persistentState: PrimaryMetadataPersistentState) {
+        
+        self.title = persistentState.title
+        self.artist = persistentState.artist
+        self.album = persistentState.album
+        self.albumArtist = persistentState.albumArtist
+        self.genre = persistentState.genre
+        
+        self.trackNumber = persistentState.trackNumber
+        self.totalTracks = persistentState.totalTracks
+        
+        self.discNumber = persistentState.discNumber
+        self.totalDiscs = persistentState.totalDiscs
+        
+        self.duration = persistentState.duration ?? 0
+        self.isProtected = persistentState.isProtected
+    }
 }

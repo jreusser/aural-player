@@ -80,7 +80,10 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     }
     
     func addTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
-        playQueue.addTracks(newTracks)
+        
+        let indices = playQueue.addTracks(newTracks)
+        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
+        return indices
     }
 
     func enqueueToPlayLater(_ newTracks: [Track]) -> ClosedRange<Int> {
@@ -105,7 +108,10 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     }
     
     func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
-        playQueue.insertTracks(newTracks, at: insertionIndex)
+        
+        let indices = playQueue.insertTracks(newTracks, at: insertionIndex)
+        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
+        return indices
     }
 
     func removeTracks(at indices: IndexSet) -> [Track] {
