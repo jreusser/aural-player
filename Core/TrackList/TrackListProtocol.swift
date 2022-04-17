@@ -10,7 +10,7 @@
 
 import Foundation
 
-protocol TrackListProtocol {
+protocol AbstractTrackListProtocol {
     
     var tracks: [Track] {get}
     var size: Int {get}
@@ -31,6 +31,8 @@ protocol TrackListProtocol {
     var summary: (size: Int, totalDuration: Double) {get}
     
 //    func search(_ searchQuery: SearchQuery) -> SearchResults
+    
+    func addTracks(_ newTracks: [Track]) -> ClosedRange<Int>
     
     // Inserts tracks from an external source (eg. saved playlist) at a given insertion index.
     func insertTracks(_ tracks: [Track], at insertionIndex: Int) -> ClosedRange<Int>
@@ -54,4 +56,9 @@ protocol TrackListProtocol {
 //    func sort(by comparator: (Track, Track) -> Bool)
     
     func exportToFile(_ file: URL)
+}
+
+protocol TrackListProtocol: AbstractTrackListProtocol {
+    
+    func loadTracks(from files: [URL], atPosition position: Int?)
 }

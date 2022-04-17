@@ -34,9 +34,12 @@ class TrackLoader {
     }
     
     // TODO: Allow the caller to specify a "sort order" for the files, eg. by file path ???
-    func loadMetadata(ofType type: MetadataType, from files: [URL], into trackList: TrackLoaderReceiver, at insertionIndex: Int?) {
+    func loadMetadata(ofType type: MetadataType, from files: [URL], into trackList: TrackLoaderReceiver, at insertionIndex: Int?,
+                      observer: TrackLoaderObserver) {
         
-        session = FileReadSession(metadataType: type, trackList: trackList, insertionIndex: insertionIndex)
+        observer.preTrackLoad()
+        
+        session = FileReadSession(metadataType: type, trackList: trackList, insertionIndex: insertionIndex, observer: observer)
         batch = FileMetadataBatch(ofSize: concurrentAddOpCount, insertionIndex: insertionIndex)
         blockOpFunction = blockOp(metadataType: type)
         
@@ -49,15 +52,13 @@ class TrackLoader {
                 self.flushBatch()
             }
             
-            let sessionFiles = self.session.files
-            
             // Cleanup
             self.session = nil
             self.batch = nil
             self.blockOpFunction = nil
             
             // Unblock this thread because the track list may perform a time consuming task in response to this callback.
-            trackList.allFileReadsCompleted(files: sessionFiles)
+            observer.postTrackLoad()
         }
     }
     
@@ -156,7 +157,8 @@ class TrackLoader {
         queue.addOperations(batch.files.map(blockOpFunction), waitUntilFinished: true)
         
         session.batchCompleted(batch.files)
-        session.trackList.acceptBatch(batch)
+        let newIndices = session.trackList.acceptBatch(batch)
+        session.observer.postBatchLoad(indices: newIndices)
         
         batch.clear()
     }

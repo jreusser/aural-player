@@ -17,12 +17,31 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
     private lazy var messenger = Messenger(for: self)
 
     init(playlists: [Playlist]) {
+        
         super.init(systemDefinedObjects: [], userDefinedObjects: playlists)
+        
+        for plst in playlists {
+            print("Playlist \(plst.name) has \(plst.size) tracks.")
+        }
+        
+        messenger.subscribe(to: .application_launched, handler: appLaunched)
+    }
+    
+    // MARK: Notification handling ---------------------------------------------------------------
+    
+    func appLaunched() {
+        
+        userDefinedObjects.forEach {
+            $0.loadPersistentTracks()
+        }
     }
 
     func createNewPlaylist(named name: String) -> Playlist {
         
         let newPlaylist = Playlist(name: name)
+        
+        newPlaylist.addTracks([playQueueDelegate[0]!, playQueueDelegate[1]!])
+        
         addObject(newPlaylist)
         return newPlaylist
     }

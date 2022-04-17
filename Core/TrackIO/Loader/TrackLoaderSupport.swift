@@ -16,9 +16,16 @@ protocol TrackLoaderReceiver {
     
     func shouldLoad(file: URL) -> Bool
     
-    func acceptBatch(_ batch: FileMetadataBatch)
+    func acceptBatch(_ batch: FileMetadataBatch) -> ClosedRange<Int>
+}
+
+protocol TrackLoaderObserver {
     
-    func allFileReadsCompleted(files: [URL])
+    func preTrackLoad()
+    
+    func postTrackLoad()
+    
+    func postBatchLoad(indices: ClosedRange<Int>)
 }
 
 class FileReadSession {
@@ -27,6 +34,7 @@ class FileReadSession {
     var files: [URL] = []
     let trackList: TrackLoaderReceiver
     let insertionIndex: Int?
+    let observer: TrackLoaderObserver
     
     // For history
     var historyItems: [URL] = []
@@ -35,11 +43,12 @@ class FileReadSession {
     var filesProcessed: Int = 0
     var errors: [DisplayableError] = []
     
-    init(metadataType: MetadataType, trackList: TrackLoaderReceiver, insertionIndex: Int?) {
+    init(metadataType: MetadataType, trackList: TrackLoaderReceiver, insertionIndex: Int?, observer: TrackLoaderObserver) {
         
         self.metadataType = metadataType
         self.trackList = trackList
         self.insertionIndex = insertionIndex
+        self.observer = observer
     }
     
     func addHistoryItem(_ item: URL) {
@@ -61,6 +70,15 @@ class FileMetadataBatch {
     var files: [URL] = []
     var metadata: ConcurrentMap<URL, FileMetadata> = ConcurrentMap()
     var insertionIndex: Int?
+    
+    var trackListIndices: ClosedRange<Int> {
+        
+        if let startIndex = insertionIndex {
+            return startIndex...(startIndex + files.count - 1)
+        }
+        
+        return 0...1
+    }
     
     var orderedMetadata: [(file: URL, metadata: FileMetadata)] {files.map {(file: $0, metadata: self.metadata[$0]!)}}
     

@@ -7,9 +7,6 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol {
     
     // MARK: Mutating functions ---------------------------------------------------------------
     
-    // TODO: Add autoplay param
-    func addTracks(from files: [URL], atPosition position: Int?)
-    
     // Adds tracks to the end of the queue, i.e. "Play Later"
     func enqueueToPlayLater(_ newTracks: [Track]) -> ClosedRange<Int>
     

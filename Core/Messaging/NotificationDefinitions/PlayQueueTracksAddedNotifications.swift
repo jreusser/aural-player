@@ -10,22 +10,30 @@
 
 import Foundation
 
-// Indicates that a new track has been added to the playlist, and that the UI should refresh itself to show the new information.
-struct PlayQueueTrackAddedNotification: NotificationPayload {
-    
-    let notificationName: Notification.Name = .playQueue_trackAdded
-    
-    // The index of the newly added track
-    let trackIndex: Int
-    
-    // The current progress of the track add operation (See TrackAddOperationProgress)
-    let addOperationProgress: TrackAddOperationProgress
-}
+class TracksAddedNotification: NotificationPayload {
 
-struct PlayQueueTracksAddedNotification: NotificationPayload {
-    
-    let notificationName: Notification.Name = .playQueue_tracksAdded
+    let notificationName: Notification.Name
     
     // The indices of the newly added tracks
     let trackIndices: ClosedRange<Int>
+    
+    init(notificationName: Notification.Name, trackIndices: ClosedRange<Int>) {
+        
+        self.notificationName = notificationName
+        self.trackIndices = trackIndices
+    }
+}
+
+class PlayQueueTracksAddedNotification: TracksAddedNotification {
+    
+    init(trackIndices: ClosedRange<Int>) {
+        super.init(notificationName: .playQueue_tracksAdded, trackIndices: trackIndices)
+    }
+}
+
+class PlaylistTracksAddedNotification: TracksAddedNotification {
+    
+    init(trackIndices: ClosedRange<Int>) {
+        super.init(notificationName: .playlist_tracksAdded, trackIndices: trackIndices)
+    }
 }

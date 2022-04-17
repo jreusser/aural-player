@@ -15,7 +15,7 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     @IBOutlet weak var tableView: NSTableView!
     
     // Override this !
-    var trackList: TrackListProtocol {TrackList()}
+    var trackList: TrackListProtocol! {nil}
     
     var selectedRows: IndexSet {tableView.selectedRowIndexes}
     
@@ -45,7 +45,9 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     
     var rowHeight: CGFloat {25}
     
-    var numberOfTracks: Int {0}
+    var numberOfTracks: Int {
+        trackList?.size ?? 0
+    }
     
     var isTrackListBeingModified: Bool {false}
     
@@ -219,10 +221,6 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
             tableView.removeRows(at: IndexSet(integer: result.sourceIndex), withAnimation: result.movedUp ? .slideUp : .slideDown)
             tableView.insertRows(at: IndexSet(integer: result.destinationIndex), withAnimation: result.movedUp ? .slideDown : .slideUp)
         }
-    }
-    
-    func trackAdded(_ notification: PlayQueueTrackAddedNotification) {
-        tableView.insertRows(at: IndexSet(integer: notification.trackIndex), withAnimation: .slideDown)
     }
     
     func tracksAdded(at indices: ClosedRange<Int>) {

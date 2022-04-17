@@ -1,6 +1,6 @@
 import Foundation
 
-class PlayQueue: TrackListWrapper, PlayQueueProtocol, PersistentModelObject {
+class PlayQueue: TrackList, PlayQueueProtocol, TrackLoaderObserver, PersistentModelObject {
     
     // MARK: Accessor functions
 
@@ -8,7 +8,7 @@ class PlayQueue: TrackListWrapper, PlayQueueProtocol, PersistentModelObject {
     var currentTrack: Track? {
         
         guard let index = curTrackIndex else {return nil}
-        return trackList[index]
+        return self[index]
     }
     
     var curTrackIndex: Int? = nil
@@ -18,18 +18,38 @@ class PlayQueue: TrackListWrapper, PlayQueueProtocol, PersistentModelObject {
     
     // Contains a pre-computed shuffle sequence, when shuffleMode is .on
     lazy var shuffleSequence: ShuffleSequence = ShuffleSequence()
+    
+    private lazy var loader: TrackLoader = TrackLoader()
+    
+    private lazy var messenger = Messenger(for: self)
 
     // MARK: Mutator functions ------------------------------------------------------------------------
+    
+    func loadTracks(from files: [URL], atPosition position: Int?) {
+        loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
+    }
+    
+    func preTrackLoad() {
+        messenger.publish(.playQueue_startedAddingTracks)
+    }
+    
+    func postTrackLoad() {
+        messenger.publish(.playQueue_doneAddingTracks)
+    }
+    
+    func postBatchLoad(indices: ClosedRange<Int>) {
+        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
+    }
 
     func enqueueTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
-        trackList.addTracks(newTracks)
+        addTracks(newTracks)
     }
 
     func enqueueTracksAtHead(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int> {
         
         if clearQueue {
             
-            trackList.removeAllTracks()
+            removeAllTracks()
             return enqueueTracks(newTracks)
             
         } else {
@@ -38,14 +58,14 @@ class PlayQueue: TrackListWrapper, PlayQueueProtocol, PersistentModelObject {
                 curTrackIndex = playingTrackIndex + newTracks.count
             }
 
-            return trackList.insertTracks(newTracks, at: 0)
+            return insertTracks(newTracks, at: 0)
         }
     }
 
     func enqueueTracksAfterCurrentTrack(_ newTracks: [Track]) -> ClosedRange<Int> {
 
         let insertionPoint = (curTrackIndex ?? -1) + 1
-        return trackList.insertTracks(newTracks, at: insertionPoint)
+        return insertTracks(newTracks, at: insertionPoint)
     }
     
     override func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
@@ -62,7 +82,7 @@ class PlayQueue: TrackListWrapper, PlayQueueProtocol, PersistentModelObject {
     
     override func removeTracks(at indexes: IndexSet) -> [Track] {
 
-        let removedTracks = trackList.removeTracks(at: indexes)
+        let removedTracks = super.removeTracks(at: indexes)
 
         if let playingTrackIndex = curTrackIndex {
 

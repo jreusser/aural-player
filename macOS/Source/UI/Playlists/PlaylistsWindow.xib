@@ -13,6 +13,7 @@
                 <outlet property="btnDeleteSelectedPlaylists" destination="IU4-DL-MBi" id="Hdj-pL-vd9"/>
                 <outlet property="controlsBox" destination="ZDa-Wk-Jtf" id="ITp-R3-g40"/>
                 <outlet property="lblCaption" destination="Izm-XL-6kw" id="s2h-7h-MP2"/>
+                <outlet property="playlistNamesViewController" destination="KCA-ts-en2" id="KZF-Oz-NEw"/>
                 <outlet property="rootContainer" destination="fpr-mJ-5DC" id="xQ0-N2-uOj"/>
                 <outlet property="tabGroup" destination="XaG-jS-pAi" id="xHv-RG-o82"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="LDQ-f4-iaZ"/>
@@ -144,7 +145,7 @@
                                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                                     <prototypeCellViews>
                                                                                         <tableCellView identifier="cid_PlaylistName" id="IvX-kM-yoC" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
-                                                                                            <rect key="frame" x="8" y="0.0" width="168" height="24"/>
+                                                                                            <rect key="frame" x="18" y="0.0" width="168" height="24"/>
                                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                             <subviews>
                                                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hod-xA-UT7" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">

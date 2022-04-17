@@ -16,24 +16,20 @@ class CompactPlayQueueViewController: TrackListViewController {
     
     // Delegate that retrieves current playback info
     private let player: PlaybackDelegateProtocol = playbackDelegate
-    private let playQueue: PlayQueueDelegateProtocol = playQueueDelegate
     
     private lazy var messenger: Messenger = Messenger(for: self)
     
     override var rowHeight: CGFloat {30}
     
-    override var isTrackListBeingModified: Bool {playQueue.isBeingModified}
+    override var isTrackListBeingModified: Bool {playQueueDelegate.isBeingModified}
     
-    override var numberOfTracks: Int {playQueue.size}
-    
-    override var trackList: TrackListProtocol {playQueue}
+    override var trackList: TrackListProtocol! {playQueueDelegate}
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         tableView.enableDragDrop()
         
-        messenger.subscribeAsync(to: .playQueue_trackAdded, handler: trackAdded(_:))
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
         messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: tracksRemoved(_:))
         
@@ -101,7 +97,7 @@ class CompactPlayQueueViewController: TrackListViewController {
     }
     
     override func insertFiles(_ files: [URL], atRow destRow: Int? = nil) {
-        playQueue.addTracks(from: files, atPosition: destRow)
+        playQueueDelegate.loadTracks(from: files, atPosition: destRow)
     }
     
     @IBAction func tableDoubleClickAction(_ sender: NSTableView) {

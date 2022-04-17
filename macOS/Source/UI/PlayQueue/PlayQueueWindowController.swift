@@ -63,7 +63,6 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         messenger.subscribeAsync(to: .playQueue_startedAddingTracks, handler: startedAddingTracks)
         messenger.subscribeAsync(to: .playQueue_doneAddingTracks, handler: doneAddingTracks)
         
-        messenger.subscribeAsync(to: .playQueue_trackAdded, handler: updateSummary)
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
         messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: updateSummary)
         

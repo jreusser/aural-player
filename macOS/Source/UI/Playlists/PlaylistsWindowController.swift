@@ -26,12 +26,16 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
     // The tab group that switches between the 4 playlist views
     @IBOutlet weak var tabGroup: AuralTabView!
     
+    @IBOutlet weak var playlistNamesViewController: PlaylistNamesTableViewController!
+    
     // The different playlist views
     private let tableViewController: PlaylistViewController = PlaylistViewController()
     
     override func windowDidLoad() {
         
         super.windowDidLoad()
+        
+        playlistNamesViewController.tableViewController = tableViewController
         
         lblCaption.font = systemFontScheme.effects.unitCaptionFont
 
@@ -42,8 +46,6 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
             
             tab0View.addSubview(tableViewController.view)
             tableViewController.view.anchorToSuperview()
-            
-            print("Tab group: \(tabGroup.frame)")
         }
     }
     

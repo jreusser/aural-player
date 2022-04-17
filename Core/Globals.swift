@@ -31,7 +31,7 @@ let playlistsManager: PlaylistsManager = PlaylistsManager(playlists: persistentS
 //    let playlistDelegate: PlaylistDelegateProtocol = PlaylistDelegate(persistentState: persistentState.playlist, playlist,
 //                                                                           trackReader, preferences)
 
-let playQueueDelegate: PlayQueueDelegateProtocol = PlayQueueDelegate(playQueue: playQueue, trackReader: trackReader,
+let playQueueDelegate: PlayQueueDelegateProtocol = PlayQueueDelegate(playQueue: playQueue,
                                                                      persistentState: persistentState.playQueue)
 
 let audioUnitsManager: AudioUnitsManager = AudioUnitsManager()

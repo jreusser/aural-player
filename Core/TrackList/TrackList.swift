@@ -10,7 +10,9 @@
 
 import Foundation
 
-class TrackList: TrackListProtocol, Sequence {
+class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
+    
+    static let empty: TrackList = .init()
     
     /// A type representing the sequence's elements.
     typealias Element = Track
@@ -79,7 +81,7 @@ class TrackList: TrackListProtocol, Sequence {
     }
     
     func addTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
-        tracks.addItems(newTracks)
+        newTracks.isEmpty ? -1...(-1) : tracks.addItems(newTracks)
     }
     
     func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
@@ -139,6 +141,51 @@ class TrackList: TrackListProtocol, Sequence {
         // Perform asynchronously, to unblock the main thread
         DispatchQueue.global(qos: .userInitiated).async {
             PlaylistIO.savePlaylist(tracks: self.tracks, toFile: file)
+        }
+    }
+    
+    // MARK: TrackLoaderReceiver ---------------------------------------------------------------------------
+    
+    func loadTracks(from files: [URL], atPosition position: Int?, usingLoader loader: TrackLoader, observer: TrackLoaderObserver) {
+        loader.loadMetadata(ofType: .primary, from: files, into: self, at: position, observer: observer)
+    }
+
+    func computeDuration(for files: [URL]) {
+
+    }
+
+    func shouldLoad(file: URL) -> Bool {
+        
+        // TODO: Should check if we already have a track for this file,
+        // then simply duplicate it instead of re-reading the file.
+
+//        if let trackInLibrary = self.library.findTrackByFile(file) {
+//
+//            _ = playQueue.enqueue([trackInLibrary])
+//            return false
+//        }
+
+        return true
+    }
+
+    func acceptBatch(_ batch: FileMetadataBatch) -> ClosedRange<Int> {
+
+        let tracks = batch.orderedMetadata.map {(file, metadata) -> Track in
+            
+            let track = Track(file, fileMetadata: metadata)
+
+            do {
+                try trackReader.computePlaybackContext(for: track)
+            } catch {}
+
+            return track
+        }
+        
+        if let insertionIndex = batch.insertionIndex {
+            return insertTracks(tracks, at: insertionIndex)
+            
+        } else {
+            return addTracks(tracks)
         }
     }
 }

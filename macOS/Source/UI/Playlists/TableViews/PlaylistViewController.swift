@@ -24,21 +24,8 @@ class PlaylistViewController: TrackListViewController {
         }
     }
     
-    override var trackList: TrackListProtocol {
+    override var trackList: TrackListProtocol! {
         playlist
-    }
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        print("\nVDL")
-    }
-    
-    override func viewDidAppear() {
-        
-        super.viewDidAppear()
-        print("\nVDA")
-        print("Table: \(tableView.frame)")
     }
     
     override func view(forColumn column: NSUserInterfaceItemIdentifier, row: Int, track: Track) -> TableCellBuilder {

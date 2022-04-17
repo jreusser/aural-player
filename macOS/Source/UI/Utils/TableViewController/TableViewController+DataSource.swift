@@ -16,7 +16,13 @@ extension TrackListViewController: NSTableViewDataSource {
     private static let invalidDragOperation: NSDragOperation = []
     
     // Returns the total number of playlist rows
-    func numberOfRows(in tableView: NSTableView) -> Int {numberOfTracks}
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        
+//        if let pvc = self as? PlaylistViewController {
+//            print("numRows = \(numberOfTracks) \(pvc.trackList.size) \(pvc.playlist?.size ?? 0) for: '\(pvc.playlist?.name ?? "")'")
+//        }
+        return numberOfTracks
+    }
     
     // MARK: Drag n drop
     

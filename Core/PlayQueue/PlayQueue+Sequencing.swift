@@ -30,7 +30,7 @@ extension PlayQueue {
 
     func select(trackAt index: Int) -> Track? {
         
-        guard let track = trackList[index] else {return nil}
+        guard let track = self[index] else {return nil}
         
         curTrackIndex = index
         return track
@@ -90,7 +90,7 @@ extension PlayQueue {
     func next() -> Track? {
 
         // If there is no previous track, don't change the playingTrack variable, because the playing track will continue playing
-        if let nextIndex = indexOfNext, let nextTrack = trackList[nextIndex] {
+        if let nextIndex = indexOfNext, let nextTrack = self[nextIndex] {
 
             curTrackIndex = nextIndex
             return nextTrack
@@ -116,7 +116,7 @@ extension PlayQueue {
     func previous() -> Track? {
 
         // If there is no previous track, don't change the playingTrack variable, because the playing track will continue playing
-        if let previousIndex = indexOfPrevious, let previousTrack = trackList[previousIndex] {
+        if let previousIndex = indexOfPrevious, let previousTrack = self[previousIndex] {
 
             curTrackIndex = previousIndex
             return previousTrack
@@ -142,20 +142,20 @@ extension PlayQueue {
     func peekSubsequent() -> Track? {
 
         guard let subsequentIndex = indexOfSubsequent else {return nil}
-        return trackList[subsequentIndex]
+        return self[subsequentIndex]
     }
 
     func peekNext() -> Track? {
 
         guard let nextIndex = indexOfNext else {return nil}
-        return trackList[nextIndex]
+        return self[nextIndex]
     }
 
     func peekPrevious() -> Track? {
 
         // If there is no previous track, don't change the playingTrack variable, because the playing track will continue playing
         guard let previousIndex = indexOfPrevious else {return nil}
-        return trackList[previousIndex]
+        return self[previousIndex]
     }
 
     // MARK: Repeat/Shuffle -------------------------------------------------------------------------------------

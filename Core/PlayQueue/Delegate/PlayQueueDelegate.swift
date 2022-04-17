@@ -9,7 +9,7 @@ struct PlayQueueTrackAddResult {
 }
 
 class PlayQueueDelegate: PlayQueueDelegateProtocol {
-
+    
     let playQueue: PlayQueueProtocol
 
     var tracks: [Track] {playQueue.tracks}
@@ -23,13 +23,9 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     private let trackAddQueue: OperationQueue = OperationQueue()
     private let trackUpdateQueue: OperationQueue = OperationQueue()
 
-    let trackReader: TrackReader
-
     private var addSession: TrackAddSession<PlayQueueTrackAddResult>!
 
     private let concurrentAddOpCount = (Double(SystemUtils.numberOfActiveCores) * 1.5).roundedInt
-
-    let trackLoader: TrackLoader = TrackLoader()
 
     var isBeingModified: Bool {addSession != nil}
     
@@ -37,10 +33,9 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     
     private let persistentTracks: [URL]?
 
-    init(playQueue: PlayQueueProtocol, trackReader: TrackReader, persistentState: PlayQueuePersistentState?) {
+    init(playQueue: PlayQueueProtocol, persistentState: PlayQueuePersistentState?) {
 
         self.playQueue = playQueue
-        self.trackReader = trackReader
         
         self.persistentTracks = persistentState?.tracks
      
@@ -79,6 +74,14 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
 //    func search(_ searchQuery: SearchQuery) -> SearchResults {
 //        return playQueue.search(searchQuery)
 //    }
+    
+    func loadTracks(from files: [URL], atPosition position: Int? = nil) {
+        playQueue.loadTracks(from: files, atPosition: position)
+    }
+    
+    func addTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
+        playQueue.addTracks(newTracks)
+    }
 
     func enqueueToPlayLater(_ newTracks: [Track]) -> ClosedRange<Int> {
 
@@ -190,13 +193,13 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
             
             // Launch parameters  specified, override playlist saved state and add file paths in params to playlist
 //            addTracks(from: filesToOpen, AutoplayOptions(true), userAction: false)
-            addTracks(from: filesToOpen)
+            loadTracks(from: filesToOpen)
 
         } else if let files = self.persistentTracks {
 
             // No launch parameters specified, load playlist saved state if "Remember state from last launch" preference is selected
 //            addFiles_async(tracks, AutoplayOptions(playbackPreferences.autoplayOnStartup), userAction: false, reorderGroupingPlaylists: true)
-            addTracks(from: files)
+            loadTracks(from: files)
         }
             
 //        } else if playlistPreferences.playlistOnStartup == .loadFile,
@@ -215,6 +218,6 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         
         // When a duplicate notification is sent, don't autoplay ! Otherwise, always autoplay.
 //        addTracks(from: notification.filesToOpen, AutoplayOptions(!notification.isDuplicateNotification))
-        addTracks(from: notification.filesToOpen)
+        loadTracks(from: notification.filesToOpen)
     }
 }

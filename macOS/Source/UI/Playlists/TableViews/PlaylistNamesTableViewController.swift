@@ -15,6 +15,7 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
     
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var playlistViewController: PlaylistContainerViewController!
+    var tableViewController: PlaylistViewController!
     
     var selectedRows: IndexSet {tableView.selectedRowIndexes}
     
@@ -94,6 +95,7 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
         
         let playlist = playlistsManager.userDefinedObjects[row]
         playlistViewController.playlist = playlist
+        tableViewController.playlist = playlist
     }
     
     // -------------------- Responding to notifications -------------------------------------------

@@ -23,9 +23,7 @@ extension Notification.Name {
     // Signifies that some chosen tracks could not be added to the play queue (i.e. an error condition).
     static let playQueue_tracksNotAdded = Notification.Name("playQueue_tracksNotAdded")
     
-    // Signifies that a new track has been added to the play queue.
-    static let playQueue_trackAdded = Notification.Name("playQueue_trackAdded")
-    
+    // Signifies that new tracks have been added to the play queue.
     static let playQueue_tracksAdded = Notification.Name("playQueue_tracksAdded")
     
     static let playQueue_tracksRemoved = Notification.Name("playQueue_tracksRemoved")
