@@ -31,6 +31,8 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         return rowCount > 1 && (1..<rowCount).contains(selectedRowCount)
     }
     
+    private lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -76,10 +78,6 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         TableCellBuilder()
     }
     
-    // ---------------- NSTableViewDataSource --------------------
-    
-    func insertFiles(_ files: [URL], atRow destRow: Int? = nil) {}
-    
     // --------------------- Responding to commands ------------------------------------------------
     
     // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
@@ -87,10 +85,8 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         
         guard !isTrackListBeingModified else {return}
         
-        let fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
-        
         if fileOpenDialog.runModal() == .OK {
-            insertFiles(fileOpenDialog.urls)
+            trackList.loadTracks(from: fileOpenDialog.urls)
         }
     }
     

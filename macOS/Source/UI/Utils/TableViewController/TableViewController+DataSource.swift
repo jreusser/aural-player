@@ -16,13 +16,7 @@ extension TrackListViewController: NSTableViewDataSource {
     private static let invalidDragOperation: NSDragOperation = []
     
     // Returns the total number of playlist rows
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        
-//        if let pvc = self as? PlaylistViewController {
-//            print("numRows = \(numberOfTracks) \(pvc.trackList.size) \(pvc.playlist?.size ?? 0) for: '\(pvc.playlist?.name ?? "")'")
-//        }
-        return numberOfTracks
-    }
+    func numberOfRows(in tableView: NSTableView) -> Int {numberOfTracks}
     
     // MARK: Drag n drop
     
@@ -106,7 +100,7 @@ extension TrackListViewController: NSTableViewDataSource {
         } else if let files = info.urls {
             
             // Files added from Finder, add them to the playlist as URLs
-            insertFiles(files, atRow: row)
+            trackList.loadTracks(from: files, atPosition: row)
             return true
         }
         

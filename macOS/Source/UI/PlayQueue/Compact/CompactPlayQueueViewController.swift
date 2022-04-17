@@ -96,10 +96,6 @@ class CompactPlayQueueViewController: TrackListViewController {
         }
     }
     
-    override func insertFiles(_ files: [URL], atRow destRow: Int? = nil) {
-        playQueueDelegate.loadTracks(from: files, atPosition: destRow)
-    }
-    
     @IBAction func tableDoubleClickAction(_ sender: NSTableView) {
         
         guard let trackIndex = selectedRows.first else {return}

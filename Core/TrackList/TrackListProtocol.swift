@@ -62,3 +62,10 @@ protocol TrackListProtocol: AbstractTrackListProtocol {
     
     func loadTracks(from files: [URL], atPosition position: Int?)
 }
+
+extension TrackListProtocol {
+    
+    func loadTracks(from files: [URL]) {
+        loadTracks(from: files, atPosition: nil)
+    }
+}
