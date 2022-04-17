@@ -81,13 +81,20 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     func addTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
-        newTracks.isEmpty ? -1...(-1) : tracks.addItems(newTracks)
+        
+        let dedupedTracks = newTracks.filter {!hasTrack($0)}
+        guard dedupedTracks.isNonEmpty else {return -1...(-1)}
+        
+        return tracks.addItems(dedupedTracks)
     }
     
     func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
         
-        tracks.insert(contentsOf: newTracks, at: insertionIndex)
-        return insertionIndex...(insertionIndex + newTracks.lastIndex)
+        let dedupedTracks = newTracks.filter {!hasTrack($0)}
+        guard dedupedTracks.isNonEmpty else {return -1...(-1)}
+        
+        tracks.insert(contentsOf: dedupedTracks, at: insertionIndex)
+        return insertionIndex...(insertionIndex + dedupedTracks.lastIndex)
     }
     
     func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
@@ -147,7 +154,11 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     // MARK: TrackLoaderReceiver ---------------------------------------------------------------------------
     
     func loadTracks(from files: [URL], atPosition position: Int?, usingLoader loader: TrackLoader, observer: TrackLoaderObserver) {
-        loader.loadMetadata(ofType: .primary, from: files, into: self, at: position, observer: observer)
+        
+        let dedupedFiles = files.filter {tracksByFile[$0] == nil}
+        guard dedupedFiles.isNonEmpty else {return}
+        
+        loader.loadMetadata(ofType: .primary, from: dedupedFiles, into: self, at: position, observer: observer)
     }
 
     func computeDuration(for files: [URL]) {

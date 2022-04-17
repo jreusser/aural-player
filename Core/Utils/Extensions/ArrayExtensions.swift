@@ -39,6 +39,8 @@ extension Array {
     }
 }
 
+// TODO: Replace Range / ClosedRange with IndexSet
+
 extension Array where Element: Equatable {
     
     func item(at index: Int) -> Element? {
