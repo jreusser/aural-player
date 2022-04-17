@@ -14,6 +14,8 @@ class PlaylistViewController: TrackListViewController {
     
     override var nibName: String? {"Playlist"}
     
+    override var rowHeight: CGFloat {30}
+    
     unowned var playlist: Playlist! = nil {
         
         didSet {
