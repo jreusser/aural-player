@@ -48,9 +48,6 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
         self.name = name
         self.dateCreated = persistentState.dateCreated ?? Date()
         self.persistentTracks = persistentState.tracks
-        
-//        super.init()
-//        addTracks((persistentState.tracks ?? []).map {Track($0)})
     }
     
     func loadPersistentTracks() {
@@ -73,7 +70,7 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
     }
     
     func postBatchLoad(indices: ClosedRange<Int>) {
-//        messenger.publish(TracksAddedNotification(trackIndices: indices))
+        messenger.publish(PlaylistTracksAddedNotification(trackIndices: indices))
     }
 }
 

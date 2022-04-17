@@ -65,35 +65,19 @@ extension TrackListViewController: NSTableViewDataSource {
         
         if isTrackListBeingModified {return false}
         
-        if info.draggingSource is NSTableView {
+        if let sourceTable = info.draggingSource as? NSTableView, let sourceIndices = info.sourceIndexes {
             
-            if let sourceIndices = info.sourceIndexes {
+            if sourceTable == self.tableView {
                 
-                let results = trackList.moveTracks(from: sourceIndices, to: row)
+                // Move tracks within the same table.
+                moveTracks(from: sourceIndices, to: row)
+                return true
                 
-                let sortedMoves = results.filter({$0.movedDown}).sorted(by: TrackMoveResult.compareDescending) +
-                    results.filter({$0.movedUp}).sorted(by: TrackMoveResult.compareAscending)
+            } else {
                 
-                var allIndices: [Int] = []
-                var destinationIndices: [Int] = []
-                
-                for move in sortedMoves {
-                    
-                    tableView.moveRow(at: move.sourceIndex, to: move.destinationIndex)
-                    
-                    // Collect source and destination indices for later
-                    allIndices += [move.sourceIndex, move.destinationIndex]
-                    destinationIndices.append(move.destinationIndex)
-                }
-                
-                // Reload all source and destination rows, and all rows in between.
-                if let minReloadIndex = allIndices.min(), let maxReloadIndex = allIndices.max() {
-                    tableView.reloadRows(minReloadIndex...maxReloadIndex)
-                }
-                
-                // Select all the destination rows (the new locations of the moved tracks).
-                tableView.selectRows(destinationIndices)
-                
+                // Import tracks from another table.
+                print("\nImporting tracks ...")
+                importTracks(from: sourceTable, sourceIndices: sourceIndices, to: row)
                 return true
             }
             
@@ -105,5 +89,44 @@ extension TrackListViewController: NSTableViewDataSource {
         }
         
         return false
+    }
+    
+    private func moveTracks(from sourceIndices: IndexSet, to destRow: Int) {
+        
+        let results = trackList.moveTracks(from: sourceIndices, to: destRow)
+        
+        let sortedMoves = results.filter({$0.movedDown}).sorted(by: TrackMoveResult.compareDescending) +
+            results.filter({$0.movedUp}).sorted(by: TrackMoveResult.compareAscending)
+        
+        var allIndices: [Int] = []
+        var destinationIndices: [Int] = []
+        
+        for move in sortedMoves {
+            
+            tableView.moveRow(at: move.sourceIndex, to: move.destinationIndex)
+            
+            // Collect source and destination indices for later
+            allIndices += [move.sourceIndex, move.destinationIndex]
+            destinationIndices.append(move.destinationIndex)
+        }
+        
+        // Reload all source and destination rows, and all rows in between.
+        if let minReloadIndex = allIndices.min(), let maxReloadIndex = allIndices.max() {
+            tableView.reloadRows(minReloadIndex...maxReloadIndex)
+        }
+        
+        // Select all the destination rows (the new locations of the moved tracks).
+        tableView.selectRows(destinationIndices)
+    }
+    
+    private func importTracks(from otherTable: NSTableView, sourceIndices: IndexSet, to destRow: Int) {
+        
+        if self is CompactPlayQueueViewController, let playlistVC = otherTable.delegate as? PlaylistViewController,
+           let playlist = playlistVC.playlist {
+            
+            // Importing from playlist.
+            let tracks: [Track] = sourceIndices.compactMap {playlist[$0]}
+            _ = trackList.insertTracks(tracks, at: destRow)
+        }
     }
 }

@@ -28,6 +28,14 @@ class PlaylistViewController: TrackListViewController {
         playlist
     }
     
+    private lazy var messenger: Messenger = Messenger(for: self)
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        messenger.subscribeAsync(to: .playlist_tracksAdded, handler: tracksAdded(_:))
+    }
+    
     override func view(forColumn column: NSUserInterfaceItemIdentifier, row: Int, track: Track) -> TableCellBuilder {
         
         let builder = TableCellBuilder()
@@ -51,5 +59,9 @@ class PlaylistViewController: TrackListViewController {
             
             return builder
         }
+    }
+    
+    private func tracksAdded(_ notif: PlaylistTracksAddedNotification) {
+        tracksAdded(at: notif.trackIndices)
     }
 }

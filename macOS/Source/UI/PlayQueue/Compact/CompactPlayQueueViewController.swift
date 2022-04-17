@@ -28,7 +28,6 @@ class CompactPlayQueueViewController: TrackListViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        tableView.enableDragDrop()
         
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
         messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: tracksRemoved(_:))

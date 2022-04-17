@@ -36,6 +36,8 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        tableView.enableDragDrop()
         colorSchemesManager.registerObserver(self, forProperty: \.backgroundColor)
     }
     
