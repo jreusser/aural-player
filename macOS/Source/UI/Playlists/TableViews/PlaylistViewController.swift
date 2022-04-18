@@ -63,6 +63,24 @@ class PlaylistViewController: TrackListViewController {
         }
     }
     
+    // MARK: Actions
+    
+    @IBAction func addFilesAction(_ sender: NSButton) {
+        addTracks()
+    }
+    
+    @IBAction func removeTracksAction(_ sender: NSButton) {
+        removeTracks()
+    }
+    
+    @IBAction func cropTracksAction(_ sender: NSButton) {
+        cropSelection()
+    }
+    
+    @IBAction func removeAllTracksAction(_ sender: NSButton) {
+        removeAllTracks()
+    }
+    
     private func tracksAdded(_ notif: PlaylistTracksAddedNotification) {
         tracksAdded(at: notif.trackIndices)
     }

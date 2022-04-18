@@ -101,6 +101,12 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         }
     }
     
+    func removeAllTracks() {
+        
+        trackList.removeAllTracks()
+        tableView.reloadData()
+    }
+    
     func cropSelection() {
         
         let tracksToDelete: IndexSet = tableView.invertedSelection

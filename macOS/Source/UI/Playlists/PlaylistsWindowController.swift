@@ -29,7 +29,7 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
     @IBOutlet weak var playlistNamesViewController: PlaylistNamesTableViewController!
     
     // The different playlist views
-    private let tableViewController: PlaylistViewController = PlaylistViewController()
+    @IBOutlet weak var tableViewController: PlaylistViewController!
     
     override func windowDidLoad() {
         
