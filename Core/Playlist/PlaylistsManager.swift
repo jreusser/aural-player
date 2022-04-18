@@ -36,11 +36,18 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
         }
     }
 
-    func createNewPlaylist(named name: String) -> Playlist {
+    @discardableResult func createNewPlaylist(named name: String) -> Playlist {
         
         let newPlaylist = Playlist(name: name)
         
-        newPlaylist.addTracks([playQueueDelegate[0]!, playQueueDelegate[1]!])
+        addObject(newPlaylist)
+        return newPlaylist
+    }
+    
+    @discardableResult func duplicatePlaylist(_ originalPlaylist: Playlist, withName nameOfDuplicate: String) -> Playlist {
+        
+        let newPlaylist = Playlist(name: nameOfDuplicate)
+        newPlaylist.addTracks(originalPlaylist.tracks)
         
         addObject(newPlaylist)
         return newPlaylist

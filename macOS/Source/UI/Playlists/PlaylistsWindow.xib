@@ -212,6 +212,20 @@
                                                                     <action selector="renameSelectedPlaylistAction:" target="KCA-ts-en2" id="3GZ-Az-teI"/>
                                                                 </connections>
                                                             </button>
+                                                            <button toolTip="Duplicate selected playlist" translatesAutoresizingMaskIntoConstraints="NO" id="CRT-bR-bW9" userLabel="Duplicate selected playlist button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                                                <rect key="frame" x="56" y="-4.5" width="12" height="23"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="12" id="ErB-sl-X1e"/>
+                                                                    <constraint firstAttribute="height" constant="14" id="brs-Oy-p0A"/>
+                                                                </constraints>
+                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="doc.on.doc" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="yqR-is-jkq">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="duplicateSelectedPlaylistAction:" target="KCA-ts-en2" id="1sE-Cb-1p0"/>
+                                                                </connections>
+                                                            </button>
                                                             <popUpButton toolTip="Create a new playlist" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BcN-Oh-449" userLabel="Create playlist menu button">
                                                                 <rect key="frame" x="0.0" y="0.0" width="18" height="15"/>
                                                                 <constraints>
@@ -247,6 +261,7 @@
                                                             </popUpButton>
                                                         </subviews>
                                                         <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="CRT-bR-bW9" secondAttribute="bottom" id="2E8-ml-e5w"/>
                                                             <constraint firstItem="KSP-Jj-DGe" firstAttribute="leading" secondItem="IU4-DL-MBi" secondAttribute="trailing" constant="4" id="8d5-Yb-JxH"/>
                                                             <constraint firstItem="KSP-Jj-DGe" firstAttribute="bottom" secondItem="IU4-DL-MBi" secondAttribute="bottom" constant="1" id="DUr-IQ-v4m"/>
                                                             <constraint firstAttribute="trailing" secondItem="Ne8-0V-EED" secondAttribute="trailing" id="Psl-HT-0AK"/>
@@ -254,6 +269,7 @@
                                                             <constraint firstAttribute="bottom" secondItem="BcN-Oh-449" secondAttribute="bottom" id="c9o-7e-d5f"/>
                                                             <constraint firstItem="BcN-Oh-449" firstAttribute="leading" secondItem="x9b-Jp-D3L" secondAttribute="leading" constant="5" id="cEb-HX-k5M"/>
                                                             <constraint firstItem="Ne8-0V-EED" firstAttribute="leading" secondItem="x9b-Jp-D3L" secondAttribute="leading" id="lXb-ZX-Ud3"/>
+                                                            <constraint firstItem="CRT-bR-bW9" firstAttribute="leading" secondItem="KSP-Jj-DGe" secondAttribute="trailing" constant="6" id="whU-Kq-kTp"/>
                                                             <constraint firstAttribute="bottom" secondItem="IU4-DL-MBi" secondAttribute="bottom" id="wt5-ME-5gY"/>
                                                             <constraint firstAttribute="bottom" secondItem="Ne8-0V-EED" secondAttribute="bottom" constant="23" id="xLP-pG-xeU"/>
                                                             <constraint firstItem="IU4-DL-MBi" firstAttribute="leading" secondItem="BcN-Oh-449" secondAttribute="trailing" id="ynR-OY-0Gg"/>
@@ -408,6 +424,7 @@
         <image name="Artists" width="32" height="32"/>
         <image name="Genres" width="32" height="32"/>
         <image name="Tracks" width="32" height="32"/>
+        <image name="doc.on.doc" catalog="system" width="16" height="18"/>
         <image name="minus" catalog="system" width="14" height="4"/>
         <image name="pencil" catalog="system" width="14" height="13"/>
         <image name="plus" catalog="system" width="14" height="13"/>

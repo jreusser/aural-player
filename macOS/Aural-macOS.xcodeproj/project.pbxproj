@@ -11,6 +11,8 @@
 		3E0E74E22807B62B00CD7A58 /* TrackListWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E74E12807B62B00CD7A58 /* TrackListWrapper.swift */; };
 		3E16BE0C280DB48E00CE9FE9 /* PlaylistsUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16BE0B280DB48E00CE9FE9 /* PlaylistsUIState.swift */; };
 		3E16BE0E280DC73800CE9FE9 /* PlaylistNamesTableViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16BE0D280DC73800CE9FE9 /* PlaylistNamesTableViewController+DataSource.swift */; };
+		3E16BE10280DCF7300CE9FE9 /* PlaylistNamesTableViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16BE0F280DCF7300CE9FE9 /* PlaylistNamesTableViewController+ViewDelegate.swift */; };
+		3E16BE12280DD01200CE9FE9 /* PlaylistNamesTableViewController+TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16BE11280DD01200CE9FE9 /* PlaylistNamesTableViewController+TextFieldDelegate.swift */; };
 		3E1741462801EA0A00772ED1 /* TableCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1741452801EA0A00772ED1 /* TableCellBuilder.swift */; };
 		3E1741482801FDE500772ED1 /* TrackListViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1741472801FDE500772ED1 /* TrackListViewController+DataSource.swift */; };
 		3E1B5C0926B6E2C70084FBA4 /* GroupingPlaylistTests+SortArtistsPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1B5C0826B6E2C70084FBA4 /* GroupingPlaylistTests+SortArtistsPlaylist.swift */; };
@@ -1453,6 +1455,8 @@
 		3E0E74E12807B62B00CD7A58 /* TrackListWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListWrapper.swift; sourceTree = "<group>"; };
 		3E16BE0B280DB48E00CE9FE9 /* PlaylistsUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsUIState.swift; sourceTree = "<group>"; };
 		3E16BE0D280DC73800CE9FE9 /* PlaylistNamesTableViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaylistNamesTableViewController+DataSource.swift"; sourceTree = "<group>"; };
+		3E16BE0F280DCF7300CE9FE9 /* PlaylistNamesTableViewController+ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaylistNamesTableViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
+		3E16BE11280DD01200CE9FE9 /* PlaylistNamesTableViewController+TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaylistNamesTableViewController+TextFieldDelegate.swift"; sourceTree = "<group>"; };
 		3E1741452801EA0A00772ED1 /* TableCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellBuilder.swift; sourceTree = "<group>"; };
 		3E1741472801FDE500772ED1 /* TrackListViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackListViewController+DataSource.swift"; sourceTree = "<group>"; };
 		3E1B5C0826B6E2C70084FBA4 /* GroupingPlaylistTests+SortArtistsPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupingPlaylistTests+SortArtistsPlaylist.swift"; sourceTree = "<group>"; };
@@ -2611,7 +2615,9 @@
 			isa = PBXGroup;
 			children = (
 				3E2A2A052809B68A000F0539 /* PlaylistNamesTableViewController.swift */,
+				3E16BE11280DD01200CE9FE9 /* PlaylistNamesTableViewController+TextFieldDelegate.swift */,
 				3E16BE0D280DC73800CE9FE9 /* PlaylistNamesTableViewController+DataSource.swift */,
+				3E16BE0F280DCF7300CE9FE9 /* PlaylistNamesTableViewController+ViewDelegate.swift */,
 				3E6C0F4025CEB98600BF0D07 /* Playlist.xib */,
 				3E2A2A0A280A032F000F0539 /* PlaylistViewController.swift */,
 			);
@@ -5686,6 +5692,7 @@
 				3E6C12B225CEBE5800BF0D07 /* DockMenuController.swift in Sources */,
 				3EFE39F327864898006F8B8C /* PlayedItem.swift in Sources */,
 				3EFE3A9327864898006F8B8C /* Chapter.swift in Sources */,
+				3E16BE12280DD01200CE9FE9 /* PlaylistNamesTableViewController+TextFieldDelegate.swift in Sources */,
 				3EFE382B27864896006F8B8C /* PlaylistProtocol.swift in Sources */,
 				3E63620426850B13006F5A2A /* EffectsFontScheme.swift in Sources */,
 				3EE7CB9F25E22D6C0075F1DD /* EffectsFontSchemeViewController.swift in Sources */,
@@ -6138,6 +6145,7 @@
 				3EFE388527864896006F8B8C /* AudioUnitPresets.swift in Sources */,
 				3E466C9127FA37AA00342C30 /* TrackListViewController+ViewDelegate.swift in Sources */,
 				3EFE3A1D27864898006F8B8C /* WindowManagerNotifications.swift in Sources */,
+				3E16BE10280DCF7300CE9FE9 /* PlaylistNamesTableViewController+ViewDelegate.swift in Sources */,
 				3EFE37DF27864896006F8B8C /* PlaybackPreferences.swift in Sources */,
 				3EFE39C927864897006F8B8C /* AppPersistentState.swift in Sources */,
 				3EBF2931268696FA00D87021 /* TrackInfoPopoverTabButtonCell.swift in Sources */,

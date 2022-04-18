@@ -11,7 +11,7 @@
 import Foundation
 import AppKit
 
-class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, ColorSchemeObserver {
+class PlaylistNamesTableViewController: NSViewController {
     
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var playlistViewController: PlaylistContainerViewController!
@@ -41,58 +41,73 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
         colorSchemesManager.registerObserver(self, forProperty: \.backgroundColor)
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        tableView.setBackgroundColor(newColor)
-    }
-
-    // ---------------- NSTableViewDelegate --------------------
+    // MARK: Actions
     
-    var rowHeight: CGFloat {25}
-    
-    var numberOfPlaylists: Int {
-        playlistsManager.numberOfUserDefinedObjects
-    }
-    
-    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {rowHeight}
-    
-    // Returns a view for a single row
-    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        AuralTableRowView()
-    }
-    
-    func playlist(forRow row: Int) -> Playlist? {
-        playlistsManager.userDefinedObjects[row]
-    }
-    
-    // Returns a view for a single column
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    @IBAction func createEmptyPlaylistAction(_ sender: NSMenuItem) {
         
-        guard let playlist = playlist(forRow: row), let columnId = tableColumn?.identifier,
-              columnId == .cid_playlistName else {return nil}
+        var newPlaylistName: String = "New Playlist"
+        var ctr: Int = 1
         
-        let builder = TableCellBuilder().withText(text: playlist.name,
-                                                  inFont: systemFontScheme.playlist.trackTextFont,
-                                                  andColor: systemColorScheme.primaryTextColor)
-        
-        let cell = builder.buildCell(forTableView: tableView, forColumnWithId: columnId)
-        cell?.textField?.delegate = self
-        
-        return cell
-    }
-    
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        
-        guard selectedRowCount == 1, let row = selectedRows.first else {
+        while playlistsManager.userDefinedObjectExists(named: newPlaylistName) {
             
-            playlistViewController.playlist = nil
-            return
+            ctr.increment()
+            newPlaylistName = "New Playlist \(ctr)"
         }
         
-        let playlist = playlistsManager.userDefinedObjects[row]
-        playlistViewController.playlist = playlist
-        tableViewController.playlist = playlist
+        _ = playlistsManager.createNewPlaylist(named: newPlaylistName)
+        tableView.noteNumberOfRowsChanged()
         
-        playlistsUIState.selectedPlaylistIndices = tableView.selectedRowIndexes
+        let rowIndex = lastRow
+        tableView.selectRow(rowIndex)
+        editTextField(inRow: rowIndex)
+    }
+    
+    private func editTextField(inRow row: Int) {
+        
+        let rowView = tableView.rowView(atRow: row, makeIfNecessary: true)
+        
+        if let editedTextField = (rowView?.view(atColumn: 0) as? NSTableCellView)?.textField {
+            view.window?.makeFirstResponder(editedTextField)
+        }
+    }
+    
+    @IBAction func deleteSelectedPlaylistsAction(_ sender: NSButton) {
+        
+        let selectedRows = self.selectedRows
+        guard !selectedRows.isEmpty else {return}
+        
+        for row in selectedRows.sortedDescending() {
+            playlistsManager.deleteObject(atIndex: row)
+        }
+        
+        playlistViewController.playlist = nil
+        tableView.reloadData()
+    }
+    
+    @IBAction func renameSelectedPlaylistAction(_ sender: NSButton) {
+        
+        let selectedRows = self.selectedRows
+        guard selectedRows.count == 1, let selectedRow = selectedRows.first else {return}
+        
+        editTextField(inRow: selectedRow)
+    }
+    
+    @IBAction func duplicateSelectedPlaylistAction(_ sender: NSButton) {
+        
+        let selectedRows = self.selectedRows
+        guard selectedRows.count == 1, let selectedRow = selectedRows.first else {return}
+        
+        let selectedPlaylist = playlistsManager.userDefinedObjects[selectedRow]
+        var newPlaylistName: String = "\(selectedPlaylist.name) Copy"
+        var ctr: Int = 1
+        
+        while playlistsManager.userDefinedObjectExists(named: newPlaylistName) {
+            newPlaylistName = "\(selectedPlaylist.name) Copy \(ctr.incrementAndGet())"
+        }
+        
+        playlistsManager.duplicatePlaylist(selectedPlaylist, withName: newPlaylistName)
+        tableView.noteNumberOfRowsChanged()
+        tableView.selectRow(lastRow)
     }
     
     // -------------------- Responding to notifications -------------------------------------------
@@ -124,93 +139,12 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
             tableView.reloadRows(firstRemovedRow...lastRowAfterRemove)
         }
     }
+}
+
+extension PlaylistNamesTableViewController: ColorSchemeObserver {
     
-    // MARK: Actions
-    
-    @IBAction func createEmptyPlaylistAction(_ sender: NSMenuItem) {
-        
-        var newPlaylistName: String = "New Playlist"
-        var ctr: Int = 1
-        
-        while playlistsManager.objectExists(named: newPlaylistName) {
-            
-            ctr.increment()
-            newPlaylistName = "New Playlist \(ctr)"
-        }
-        
-        _ = playlistsManager.createNewPlaylist(named: newPlaylistName)
-        tableView.noteNumberOfRowsChanged()
-        
-        let rowIndex = lastRow
-        tableView.selectRow(rowIndex)
-        editTextField(inRow: rowIndex)
-    }
-    
-    private func editTextField(inRow row: Int) {
-        
-        let rowView = tableView.rowView(atRow: row, makeIfNecessary: true)
-        
-        if let editedTextField = (rowView?.view(atColumn: 0) as? NSTableCellView)?.textField {
-            view.window?.makeFirstResponder(editedTextField)
-        }
-    }
-    
-    @IBAction func deleteSelectedPlaylistsAction(_ sender: NSButton) {
-        
-        let selectedRows = self.selectedRows
-        guard !selectedRows.isEmpty else {return}
-        
-        for row in selectedRows.sortedDescending() {
-            _ = playlistsManager.deleteObject(atIndex: row)
-        }
-        
-        playlistViewController.playlist = nil
-        tableView.reloadData()
-    }
-    
-    @IBAction func renameSelectedPlaylistAction(_ sender: NSButton) {
-        
-        let selectedRows = self.selectedRows
-        guard selectedRows.count == 1, let selectedRow = selectedRows.first else {return}
-        
-        editTextField(inRow: selectedRow)
-    }
-    
-    // MARK: Text field delegate functions
-    
-    func controlTextDidEndEditing(_ obj: Notification) {
-        
-        guard let editedTextField = obj.object as? NSTextField else {return}
-        
-        let rowIndex = tableView.selectedRow
-        let playlist = playlistsManager.userDefinedObjects[rowIndex]
-        
-        let oldPlaylistName = playlist.name
-        let newPlaylistName = editedTextField.stringValue
-        
-        // No change in playlist name. Nothing to be done.
-        if newPlaylistName == oldPlaylistName {return}
-        
-        editedTextField.textColor = .defaultSelectedLightTextColor
-        
-        // If new name is empty or a playlist with the new name exists, revert to old value.
-        if newPlaylistName.isEmptyAfterTrimming {
-            
-            editedTextField.stringValue = playlist.name
-            
-            _ = DialogsAndAlerts.genericErrorAlert("Can't rename playlist", "Playlist name must have at least one non-whitespace character.", "Please type a valid name.").showModal()
-            
-        } else if playlistsManager.objectExists(named: newPlaylistName) {
-            
-            editedTextField.stringValue = playlist.name
-            
-            _ = DialogsAndAlerts.genericErrorAlert("Can't rename playlist", "Another playlist with that name already exists.", "Please type a unique name.").showModal()
-            
-        } else {
-            
-            playlistsManager.renameObject(named: oldPlaylistName, to: newPlaylistName)
-            playlistViewController.playlist = playlist
-        }
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        tableView.setBackgroundColor(newColor)
     }
 }
 

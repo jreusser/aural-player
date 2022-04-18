@@ -64,22 +64,22 @@ class UserManagedObjects<O: UserManagedObject> {
         systemDefinedObjectsMap[name]
     }
     
-    func deleteObject(atIndex index: Int) -> O {
+    @discardableResult func deleteObject(atIndex index: Int) -> O {
         return userDefinedObjectsMap.removeObjectAtIndex(index)
     }
     
-    func deleteObjects(atIndices indices: IndexSet) -> [O] {
+    @discardableResult func deleteObjects(atIndices indices: IndexSet) -> [O] {
         
         return indices.sortedDescending().map {
             userDefinedObjectsMap.removeObjectAtIndex($0)
         }
     }
     
-    func deleteObject(named name: String) -> O? {
+    @discardableResult func deleteObject(named name: String) -> O? {
         return userDefinedObjectsMap.removeObject(withKey: name)
     }
     
-    func deleteObjects(named objectNames: [String]) -> [O] {
+    @discardableResult func deleteObjects(named objectNames: [String]) -> [O] {
         
         return objectNames.compactMap {
             deleteObject(named: $0)

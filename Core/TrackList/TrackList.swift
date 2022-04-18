@@ -80,7 +80,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         tracksByFile[file]
     }
     
-    func addTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
+    @discardableResult func addTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
         
         let dedupedTracks = newTracks.filter {!hasTrack($0)}
         guard dedupedTracks.isNonEmpty else {return -1...(-1)}
@@ -88,7 +88,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         return tracks.addItems(dedupedTracks)
     }
     
-    func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
+    @discardableResult func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
         
         let dedupedTracks = newTracks.filter {!hasTrack($0)}
         guard dedupedTracks.isNonEmpty else {return -1...(-1)}
@@ -97,19 +97,19 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         return insertionIndex...(insertionIndex + dedupedTracks.lastIndex)
     }
     
-    func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
+    @discardableResult func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
         tracks.moveItemsUp(from: indices).map {TrackMoveResult($0.key, $0.value)}
     }
     
-    func moveTracksToTop(from indices: IndexSet) -> [TrackMoveResult] {
+    @discardableResult func moveTracksToTop(from indices: IndexSet) -> [TrackMoveResult] {
         tracks.moveItemsToTop(from: indices).map {TrackMoveResult($0.key, $0.value)}
     }
     
-    func moveTracksToBottom(from indices: IndexSet) -> [TrackMoveResult] {
+    @discardableResult func moveTracksToBottom(from indices: IndexSet) -> [TrackMoveResult] {
         tracks.moveItemsToBottom(from: indices).map {TrackMoveResult($0.key, $0.value)}
     }
     
-    func moveTracksDown(from indices: IndexSet) -> [TrackMoveResult] {
+    @discardableResult func moveTracksDown(from indices: IndexSet) -> [TrackMoveResult] {
         tracks.moveItemsDown(from: indices).map {TrackMoveResult($0.key, $0.value)}
     }
     
@@ -117,15 +117,15 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         tracks.removeAll()
     }
     
-    func removeTracks(_ tracksToRemove: [Track]) -> IndexSet {
+    @discardableResult func removeTracks(_ tracksToRemove: [Track]) -> IndexSet {
         tracks.removeItems(tracksToRemove)
     }
     
-    func removeTracks(at indices: IndexSet) -> [Track] {
+    @discardableResult func removeTracks(at indices: IndexSet) -> [Track] {
         tracks.removeItems(at: indices)
     }
     
-    func moveTracks(from sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
+    @discardableResult func moveTracks(from sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
         tracks.dragAndDropItems(sourceIndices, dropIndex).map {TrackMoveResult($0.key, $0.value)}
     }
     
