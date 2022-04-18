@@ -35,6 +35,8 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
         
         super.viewDidLoad()
         
+        tableView.enableDragDrop()
+        
         playlistViewController.playlist = nil
         colorSchemesManager.registerObserver(self, forProperty: \.backgroundColor)
     }
@@ -43,13 +45,6 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
         tableView.setBackgroundColor(newColor)
     }
 
-    // ---------------- NSTableViewDataSource --------------------
-    
-    // Returns the total number of playlist rows
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        numberOfPlaylists
-    }
-    
     // ---------------- NSTableViewDelegate --------------------
     
     var rowHeight: CGFloat {25}
@@ -96,6 +91,8 @@ class PlaylistNamesTableViewController: NSViewController, NSTableViewDelegate, N
         let playlist = playlistsManager.userDefinedObjects[row]
         playlistViewController.playlist = playlist
         tableViewController.playlist = playlist
+        
+        playlistsUIState.selectedPlaylistIndices = tableView.selectedRowIndexes
     }
     
     // -------------------- Responding to notifications -------------------------------------------
