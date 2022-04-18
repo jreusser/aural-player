@@ -97,6 +97,10 @@ class UserManagedObjects<O: UserManagedObject> {
     func userDefinedObjectExists(named name: String) -> Bool {
         userDefinedObjectsMap.objectWithKeyExists(name)
     }
+    
+    func sortUserDefinedObjects(by sortFunction: (O, O) -> Bool) {
+        userDefinedObjectsMap.sortObjects(by: sortFunction)
+    }
 }
 
 ///
@@ -152,6 +156,10 @@ fileprivate class UserManagedObjectsMap<O: UserManagedObject> {
     
     func objectWithKeyExists(_ key: String) -> Bool {
         map[key] != nil
+    }
+    
+    func sortObjects(by sortFunction: (O, O) -> Bool) {
+        array.sort(by: sortFunction)
     }
     
     var count: Int {array.count}

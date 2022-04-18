@@ -27,15 +27,6 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
         messenger.subscribe(to: .application_launched, handler: appLaunched)
     }
     
-    // MARK: Notification handling ---------------------------------------------------------------
-    
-    func appLaunched() {
-        
-        userDefinedObjects.forEach {
-            $0.loadPersistentTracks()
-        }
-    }
-
     @discardableResult func createNewPlaylist(named name: String) -> Playlist {
         
         let newPlaylist = Playlist(name: name)
@@ -51,6 +42,15 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
         
         addObject(newPlaylist)
         return newPlaylist
+    }
+    
+    // MARK: Notification handling ---------------------------------------------------------------
+    
+    func appLaunched() {
+        
+        userDefinedObjects.forEach {
+            $0.loadPersistentTracks()
+        }
     }
 
     var persistentState: PlaylistsPersistentState {

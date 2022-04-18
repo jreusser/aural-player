@@ -110,6 +110,30 @@ class PlaylistNamesTableViewController: NSViewController {
         tableView.selectRow(lastRow)
     }
     
+    @IBAction func sortByNameAscendingAction(_ sender: Any) {
+        
+        playlistsManager.sortUserDefinedObjects(by: {$0.name < $1.name})
+        tableView.reloadData()
+    }
+    
+    @IBAction func sortByNameDescendingAction(_ sender: Any) {
+        
+        playlistsManager.sortUserDefinedObjects(by: {$0.name > $1.name})
+        tableView.reloadData()
+    }
+    
+    @IBAction func sortByDateCreatedAscendingAction(_ sender: Any) {
+        
+        playlistsManager.sortUserDefinedObjects(by: {$0.dateCreated < $1.dateCreated})
+        tableView.reloadData()
+    }
+    
+    @IBAction func sortByDateCreatedDescendingAction(_ sender: Any) {
+        
+        playlistsManager.sortUserDefinedObjects(by: {$0.dateCreated > $1.dateCreated})
+        tableView.reloadData()
+    }
+    
     // -------------------- Responding to notifications -------------------------------------------
     
     // Selects (and shows) a certain track within the playlist view
