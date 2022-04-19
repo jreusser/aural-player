@@ -126,8 +126,6 @@ extension TrackListViewController: NSTableViewDataSource {
             if otherTable.identifier == .tableId_playlist,
                let selectedPlaylist = playlistsUIState.selectedPlaylists.first {
                 
-                print("Importing selected tracks from a single playlist ...")
-                
                 let tracks: [Track] = sourceIndices.compactMap {selectedPlaylist[$0]}
                 _ = trackList.insertTracks(tracks, at: destRow)
             }
@@ -135,8 +133,6 @@ extension TrackListViewController: NSTableViewDataSource {
             // Import entire (selected) playlists.
             
             else if otherTable.identifier == .tableId_playlistNames {
-                
-                print("Importing entire (selected) playlists ...")
                 
                 let draggedPlaylists = sourceIndices.map {playlistsManager.userDefinedObjects[$0]}
                 let tracks: [Track] = draggedPlaylists.flatMap {$0.tracks}
