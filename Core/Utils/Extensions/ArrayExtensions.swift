@@ -9,9 +9,14 @@
 //
 import Foundation
 
+extension Collection {
+    
+    var isNonEmpty: Bool {count > 0}
+}
+
 extension Array {
     
-    var isNonEmpty: Bool {!isEmpty}
+    var isNonEmpty: Bool {count > 0}
     
     func categorizeOneToManyBy<C>(_ categorizingFunction: (Element) -> C) -> [C: [Element]] where C: Hashable {
         

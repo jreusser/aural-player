@@ -91,8 +91,8 @@ extension TrackListViewController: NSTableViewDataSource {
         
         let results = trackList.moveTracks(from: sourceIndices, to: destRow)
         
-        let sortedMoves = results.filter({$0.movedDown}).sorted(by: TrackMoveResult.compareDescending) +
-            results.filter({$0.movedUp}).sorted(by: TrackMoveResult.compareAscending)
+        let sortedMoves = results.filter({$0.movedDown}).sorted(by: >) +
+            results.filter({$0.movedUp}).sorted(by: <)
         
         var allIndices: [Int] = []
         var destinationIndices: [Int] = []

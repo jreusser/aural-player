@@ -10,6 +10,8 @@
 
 import Foundation
 
+typealias VoidFunction = () -> Void
+
 // TODO: How to deal with duplicate tracks ? (track is loaded individually and as part of a playlist)
 // What if a track exists in a different track list ? (Play Queue / Library). Should we have a global track registry ?
 // What about notifications / errors ? Return a result ?
@@ -33,7 +35,7 @@ class TrackLoader {
     
     // TODO: Allow the caller to specify a "sort order" for the files, eg. by file path ???
     func loadMetadata(ofType type: MetadataType, from files: [URL], into trackList: TrackLoaderReceiver, at insertionIndex: Int?,
-                      observer: TrackLoaderObserver) {
+                      observer: TrackLoaderObserver, completionHandler: VoidFunction?) {
         
         observer.preTrackLoad()
         
@@ -54,6 +56,8 @@ class TrackLoader {
             self.session = nil
             self.batch = nil
             self.blockOpFunction = nil
+            
+            completionHandler?()
             
             // Unblock this thread because the track list may perform a time consuming task in response to this callback.
             observer.postTrackLoad()

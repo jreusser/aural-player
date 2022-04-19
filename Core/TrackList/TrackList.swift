@@ -21,6 +21,12 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     
     private(set) var tracks: [Track] = []
     
+    private var _isBeingModified: AtomicBool = AtomicBool(value: false)
+    
+    var isBeingModified: Bool {
+        _isBeingModified.value
+    }
+    
     // A map to quickly look up tracks by (absolute) file path (used when adding tracks, to prevent duplicates)
     private var tracksByFile: [URL: Track] = [:]
     
@@ -69,7 +75,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     func hasTrack(_ track: Track) -> Bool {
-        tracks.contains(track)
+        tracksByFile[track.file] != nil
     }
     
     func hasTrackForFile(_ file: URL) -> Bool {
@@ -82,19 +88,36 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     
     @discardableResult func addTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
         
-        let dedupedTracks = newTracks.filter {!hasTrack($0)}
-        guard dedupedTracks.isNonEmpty else {return -1...(-1)}
+        var newTrackIndices: [Int] = []
         
-        return tracks.addItems(dedupedTracks)
+        for track in newTracks {
+            
+            guard !hasTrack(track) else {continue}
+            
+            newTrackIndices.append(tracks.addItem(track))
+            
+            // Add a mapping by track's file path.
+            tracksByFile[track.file] = track
+        }
+        
+        return newTrackIndices.isEmpty ? -1...(-1) : newTrackIndices.min()!...newTrackIndices.max()!
     }
     
     @discardableResult func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
         
-        let dedupedTracks = newTracks.filter {!hasTrack($0)}
-        guard dedupedTracks.isNonEmpty else {return -1...(-1)}
+        var curInsertionIndex: Int = insertionIndex
         
-        tracks.insert(contentsOf: dedupedTracks, at: insertionIndex)
-        return insertionIndex...(insertionIndex + dedupedTracks.lastIndex)
+        for track in newTracks {
+            
+            guard !hasTrack(track) else {continue}
+            
+            tracks.insert(track, at: curInsertionIndex.getAndIncrement())
+            
+            // Add a mapping by track's file path.
+            tracksByFile[track.file] = track
+        }
+        
+        return curInsertionIndex == insertionIndex ? -1...(-1) : insertionIndex...(curInsertionIndex - 1)
     }
     
     @discardableResult func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
@@ -114,15 +137,33 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     func removeAllTracks() {
+        
         tracks.removeAll()
+        tracksByFile.removeAll()
     }
     
     @discardableResult func removeTracks(_ tracksToRemove: [Track]) -> IndexSet {
-        tracks.removeItems(tracksToRemove)
+        
+        for track in tracksToRemove {
+            
+            // Add a mapping by track's file path.
+            tracksByFile.removeValue(forKey: track.file)
+        }
+        
+        return tracks.removeItems(tracksToRemove)
     }
     
     @discardableResult func removeTracks(at indices: IndexSet) -> [Track] {
-        tracks.removeItems(at: indices)
+        
+        let removedTracks = tracks.removeItems(at: indices)
+        
+        for track in removedTracks {
+            
+            // Add a mapping by track's file path.
+            tracksByFile.removeValue(forKey: track.file)
+        }
+        
+        return removedTracks
     }
     
     @discardableResult func moveTracks(from sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
@@ -155,10 +196,14 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     
     func loadTracks(from files: [URL], atPosition position: Int?, usingLoader loader: TrackLoader, observer: TrackLoaderObserver) {
         
+        _isBeingModified.setValue(true)
+        
         let dedupedFiles = files.filter {tracksByFile[$0] == nil}
         guard dedupedFiles.isNonEmpty else {return}
         
-        loader.loadMetadata(ofType: .primary, from: dedupedFiles, into: self, at: position, observer: observer)
+        loader.loadMetadata(ofType: .primary, from: dedupedFiles, into: self, at: position, observer: observer) {[weak self] in
+            self?._isBeingModified.setValue(false)
+        }
     }
 
     func computeDuration(for files: [URL]) {
@@ -180,7 +225,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
 
     func acceptBatch(_ batch: FileMetadataBatch) -> ClosedRange<Int> {
-
+        
         let tracks = batch.orderedMetadata.map {(file, metadata) -> Track in
             
             let track = Track(file, fileMetadata: metadata)

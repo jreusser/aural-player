@@ -30,7 +30,6 @@ class CompactPlayQueueViewController: TrackListViewController {
         super.viewDidLoad()
         
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
-        messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: tracksRemoved(_:))
         
         messenger.subscribe(to: .playQueue_playSelectedTrack, handler: playSelectedTrack)
         

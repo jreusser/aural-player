@@ -50,11 +50,11 @@ class TrackMoveResult {
         self.movedDown = !self.movedUp
     }
     
-    static func compareAscending(_ result1: TrackMoveResult, _ result2: TrackMoveResult) -> Bool {
+    static func <(_ result1: TrackMoveResult, _ result2: TrackMoveResult) -> Bool {
         result1.sortIndex < result2.sortIndex
     }
     
-    static func compareDescending(_ result1: TrackMoveResult, _ result2: TrackMoveResult) -> Bool {
+    static func >(_ result1: TrackMoveResult, _ result2: TrackMoveResult) -> Bool {
         result1.sortIndex > result2.sortIndex
     }
 }

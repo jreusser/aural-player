@@ -81,6 +81,36 @@ class PlaylistViewController: TrackListViewController {
         removeAllTracks()
     }
     
+    @IBAction func moveTracksUpAction(_ sender: NSButton) {
+        moveTracksUp()
+    }
+    
+    @IBAction func moveTracksDownAction(_ sender: NSButton) {
+        moveTracksDown()
+    }
+    
+    @IBAction func moveTracksToTopAction(_ sender: NSButton) {
+        moveTracksToTop()
+    }
+    
+    @IBAction func moveTracksToBottomAction(_ sender: NSButton) {
+        moveTracksToBottom()
+    }
+    
+    @IBAction func clearSelectionAction(_ sender: NSButton) {
+        clearSelection()
+    }
+    
+    @IBAction func invertSelectionAction(_ sender: NSButton) {
+        invertSelection()
+    }
+    
+    @IBAction func exportToPlaylistAction(_ sender: NSButton) {
+        exportTrackList()
+    }
+    
+    // MARK: Notification handling
+    
     private func tracksAdded(_ notif: PlaylistTracksAddedNotification) {
         tracksAdded(at: notif.trackIndices)
     }

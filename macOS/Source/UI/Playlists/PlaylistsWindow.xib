@@ -483,6 +483,9 @@
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="moveTracksUpAction:" target="uni-A1-Lee" id="zlz-CN-O0T"/>
+                                                                </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="JyI-dn-eXa" userLabel="Move Down" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                                                 <rect key="frame" x="379" y="0.5" width="13" height="13"/>
@@ -497,6 +500,9 @@
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="moveTracksDownAction:" target="uni-A1-Lee" id="REp-ih-EkN"/>
+                                                                </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="dfU-wy-Hvs" userLabel="Move to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                                                 <rect key="frame" x="403" y="2" width="13" height="13"/>
@@ -511,6 +517,9 @@
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="moveTracksToTopAction:" target="uni-A1-Lee" id="XJk-9U-dak"/>
+                                                                </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="9TR-hV-3NW" userLabel="Move to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                                                 <rect key="frame" x="419" y="2" width="13" height="13"/>
@@ -525,6 +534,9 @@
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="moveTracksToBottomAction:" target="uni-A1-Lee" id="KW7-c8-TcB"/>
+                                                                </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="vFf-sO-hjb" userLabel="Clear Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                                                 <rect key="frame" x="453" y="1" width="14" height="12"/>
@@ -539,6 +551,9 @@
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="clearSelectionAction:" target="uni-A1-Lee" id="rh8-nm-tnl"/>
+                                                                </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="2Pg-fB-LER" userLabel="Invert Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                                                 <rect key="frame" x="472" y="0.0" width="13.5" height="14"/>
@@ -553,6 +568,9 @@
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="invertSelectionAction:" target="uni-A1-Lee" id="GSg-Jt-7IN"/>
+                                                                </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="MOZ-sQ-SDW" userLabel="Search" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                                                 <rect key="frame" x="509" y="-0.5" width="15" height="15"/>
@@ -595,6 +613,9 @@
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="exportToPlaylistAction:" target="uni-A1-Lee" id="hnh-U7-m9p"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>

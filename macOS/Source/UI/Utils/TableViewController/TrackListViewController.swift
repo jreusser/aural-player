@@ -33,6 +33,10 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     
     private lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
     
+    private lazy var alertDialog: AlertWindowController = .instance
+    
+    private lazy var saveDialog = DialogsAndAlerts.savePlaylistDialog
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -94,10 +98,23 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     
     func removeTracks() {
         
-        if selectedRowCount > 0 {
-            
-            _ = trackList.removeTracks(at: selectedRows)
-            tableView.clearSelection()
+        let selectedRows = self.selectedRows
+        
+        // Check for at least 1 row (and also get the minimum index).
+        guard let firstRemovedRow = selectedRows.min() else {return}
+        
+        _ = trackList.removeTracks(at: selectedRows)
+        tableView.clearSelection()
+        
+        // Tell the playlist view that the number of rows has changed (should result in removal of rows)
+        tableView.noteNumberOfRowsChanged()
+        
+        // Update all rows from the first (i.e. smallest index) removed row, down to the end of the track list.
+        let lastRowAfterRemove = trackList.size - 1
+        
+        // This will be true unless a contiguous block of tracks was removed from the bottom of the track list.
+        if firstRemovedRow <= lastRowAfterRemove {
+            tableView.reloadRows(firstRemovedRow...lastRowAfterRemove)
         }
     }
     
@@ -111,11 +128,49 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         
         let tracksToDelete: IndexSet = tableView.invertedSelection
         
-        if tracksToDelete.count > 0 {
+        if tracksToDelete.isNonEmpty {
             
             _ = trackList.removeTracks(at: tracksToDelete)
             tableView.reloadData()
         }
+    }
+    
+    // MARK: Table view selection manipulation
+    
+    func clearSelection() {
+        tableView.clearSelection()
+    }
+    
+    func invertSelection() {
+        tableView.invertSelection()
+    }
+    
+    // Invokes the Save file dialog, to allow the user to save all playlist items to a playlist file
+    func exportTrackList() {
+        
+        // Make sure there is at least one track to save.
+        guard trackList.size > 0, !checkIfPlaylistIsBeingModified() else {return}
+        
+        if saveDialog.runModal() == .OK,
+           let playlistFile = saveDialog.url {
+            
+            trackList.exportToFile(playlistFile)
+        }
+    }
+    
+    // TODO: Can this func be put somewhere common / shared ???
+    private func checkIfPlaylistIsBeingModified() -> Bool {
+        
+        let playlistBeingModified = trackList.isBeingModified
+        
+        if playlistBeingModified {
+            
+            alertDialog.showAlert(.error, "Playlist not modified",
+                                  "The playlist cannot be modified while tracks are being added",
+                                  "Please wait till the playlist is done adding tracks ...")
+        }
+        
+        return playlistBeingModified
     }
     
     // -------------------- Responding to notifications -------------------------------------------
@@ -137,7 +192,7 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
 
         let results = trackList.moveTracksUp(from: selectedRows)
         
-        moveAndReloadItems(results.sorted(by: TrackMoveResult.compareAscending))
+        moveAndReloadItems(results.sorted(by: <))
         
         if let minRow = selectedRows.min() {
             tableView.scrollRowToVisible(minRow)
@@ -151,7 +206,7 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
 
         let results = trackList.moveTracksDown(from: selectedRows)
         
-        moveAndReloadItems(results.sorted(by: TrackMoveResult.compareDescending))
+        moveAndReloadItems(results.sorted(by: >))
         
         if let minRow = selectedRows.min() {
             tableView.scrollRowToVisible(minRow)
@@ -159,7 +214,7 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     }
 
     // Rearranges tracks within the view that have been reordered
-    func moveAndReloadItems(_ results: [TrackMoveResult]) {
+    private func moveAndReloadItems(_ results: [TrackMoveResult]) {
 
         for result in results {
 
@@ -179,7 +234,7 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         let results = trackList.moveTracksToTop(from: selectedRows)
         
         // Move the rows
-        removeAndInsertItems(results.sorted(by: TrackMoveResult.compareAscending))
+        removeAndInsertItems(results.sorted(by: <))
         
         // Refresh the relevant rows
         guard let maxSelectedRow = selectedRows.max() else {return}
@@ -202,7 +257,7 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         let results = trackList.moveTracksToBottom(from: selectedRows)
         
         // Move the rows
-        removeAndInsertItems(results.sorted(by: TrackMoveResult.compareDescending))
+        removeAndInsertItems(results.sorted(by: >))
         
         guard let minSelectedRow = selectedRows.min() else {return}
         
@@ -231,24 +286,5 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         
         tableView.noteNumberOfRowsChanged()
         tableView.reloadRows(indices.lowerBound..<rowCount)
-    }
-    
-    func tracksRemoved(_ results: TrackRemovalResults) {
-        
-        let indices = results.indices
-        guard !indices.isEmpty else {return}
-        
-        // Tell the playlist view that the number of rows has changed (should result in removal of rows)
-        tableView.noteNumberOfRowsChanged()
-        
-        // Update all rows from the first (i.e. smallest index) removed row, down to the end of the playlist
-        guard let firstRemovedRow = indices.min() else {return}
-        
-        let lastPlaylistRowAfterRemove = trackList.size - 1
-        
-        // This will be true unless a contiguous block of tracks was removed from the bottom of the playlist.
-        if firstRemovedRow <= lastPlaylistRowAfterRemove {
-            tableView.reloadRows(firstRemovedRow...lastPlaylistRowAfterRemove)
-        }
     }
 }

@@ -16,6 +16,8 @@ protocol AbstractTrackListProtocol {
     var size: Int {get}
     var duration: Double {get}
     
+    var isBeingModified: Bool {get}
+    
     func indexOfTrack(_ track: Track) -> Int?
     
     func hasTrack(_ track: Track) -> Bool
