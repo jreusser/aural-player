@@ -30,7 +30,7 @@
             <value key="minSize" type="size" width="800" height="250"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="fpr-mJ-5DC" userLabel="Root Container">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
@@ -402,7 +402,7 @@
                                                                 </tabViewItems>
                                                             </tabView>
                                                             <button toolTip="Add files to playlist" translatesAutoresizingMaskIntoConstraints="NO" id="LC1-Qc-eN6" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="246" y="-2" width="20" height="20"/>
+                                                                <rect key="frame" x="157" y="-2" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="19" id="0Cj-iT-Y1s"/>
                                                                     <constraint firstAttribute="height" constant="14" id="Poh-je-Blj"/>
@@ -419,7 +419,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="DF1-Ki-qdx" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="286" y="-2.5" width="19.5" height="20"/>
+                                                                <rect key="frame" x="197" y="-2.5" width="19.5" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="8kt-ej-Xxl"/>
                                                                     <constraint firstAttribute="width" constant="19" id="dIb-I6-ylO"/>
@@ -436,7 +436,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="Jq4-nN-eXe" userLabel="Crop" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="310" y="-3" width="19.5" height="21"/>
+                                                                <rect key="frame" x="221" y="-3" width="19.5" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="5LT-R2-ZvB"/>
                                                                     <constraint firstAttribute="width" constant="19" id="ays-Hp-rCb"/>
@@ -453,7 +453,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="XYo-bT-hd4" userLabel="Remove All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="333" y="1" width="14.5" height="14"/>
+                                                                <rect key="frame" x="244" y="1" width="14.5" height="14"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="14" id="J4g-hq-l4K"/>
                                                                     <constraint firstAttribute="height" constant="6" id="Unb-XC-Geg"/>
@@ -470,7 +470,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="BlR-9V-R1Q" userLabel="Move Up" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="363" y="0.5" width="13" height="13"/>
+                                                                <rect key="frame" x="274" y="0.5" width="13" height="13"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="8" id="Cab-LG-DL8"/>
                                                                     <constraint firstAttribute="width" constant="13" id="k9F-zS-XgS"/>
@@ -487,7 +487,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="JyI-dn-eXa" userLabel="Move Down" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="379" y="0.5" width="13" height="13"/>
+                                                                <rect key="frame" x="290" y="0.5" width="13" height="13"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="8" id="mgh-Aa-3mM"/>
                                                                     <constraint firstAttribute="width" constant="13" id="roF-rC-k9S"/>
@@ -504,7 +504,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="dfU-wy-Hvs" userLabel="Move to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="403" y="2" width="13" height="13"/>
+                                                                <rect key="frame" x="314" y="2" width="13" height="13"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="13" id="J8u-iN-Ig3"/>
                                                                     <constraint firstAttribute="height" constant="6" id="RxL-Cf-htr"/>
@@ -521,7 +521,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="9TR-hV-3NW" userLabel="Move to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="419" y="2" width="13" height="13"/>
+                                                                <rect key="frame" x="330" y="2" width="13" height="13"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="13" id="4Km-UR-Niw"/>
                                                                     <constraint firstAttribute="height" constant="6" id="r0Q-tZ-arB"/>
@@ -538,7 +538,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="vFf-sO-hjb" userLabel="Clear Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="453" y="1" width="14" height="12"/>
+                                                                <rect key="frame" x="364" y="1" width="14" height="12"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="6" id="0B6-EB-Pgi"/>
                                                                     <constraint firstAttribute="width" constant="14" id="AIu-1s-tPw"/>
@@ -555,7 +555,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="2Pg-fB-LER" userLabel="Invert Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="472" y="0.0" width="13.5" height="14"/>
+                                                                <rect key="frame" x="383" y="0.0" width="13.5" height="14"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="13" id="TB7-li-nmB"/>
                                                                     <constraint firstAttribute="height" constant="6" id="abP-s0-89k"/>
@@ -572,7 +572,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="MOZ-sQ-SDW" userLabel="Search" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="509" y="-0.5" width="15" height="15"/>
+                                                                <rect key="frame" x="420" y="-0.5" width="15" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="15" id="ElB-9n-fru"/>
                                                                     <constraint firstAttribute="height" constant="9" id="z80-JD-tZX"/>
@@ -586,7 +586,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="1x1-5u-CeW" userLabel="Sort" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="529" y="-1.5" width="17" height="17"/>
+                                                                <rect key="frame" x="440" y="-1.5" width="17" height="17"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="11" id="XIl-Gx-MfJ"/>
                                                                     <constraint firstAttribute="width" constant="17" id="rkM-bs-UVL"/>
@@ -600,7 +600,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                             <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="JN6-6a-Xq4" userLabel="Export" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="556" y="-0.5" width="16" height="16"/>
+                                                                <rect key="frame" x="467" y="-0.5" width="16" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="7" id="c6x-Y3-igV"/>
                                                                     <constraint firstAttribute="width" constant="16" id="nF0-Tl-l9B"/>
@@ -616,27 +616,99 @@
                                                                     <action selector="exportToPlaylistAction:" target="uni-A1-Lee" id="hnh-U7-m9p"/>
                                                                 </connections>
                                                             </button>
+                                                            <button toolTip="Scroll one page up" translatesAutoresizingMaskIntoConstraints="NO" id="nq7-t6-9Jj" userLabel="Page Up" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                                                <rect key="frame" x="503" y="-1.5" width="15.5" height="19"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="15" id="a5n-gs-Kn3"/>
+                                                                    <constraint firstAttribute="width" constant="15" id="rHY-FH-3N6"/>
+                                                                </constraints>
+                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.up" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="odT-oH-qBV">
+                                                                    <behavior key="behavior" lightByContents="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="pageUpAction:" target="uni-A1-Lee" id="YgH-zh-EAt"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button toolTip="Scroll one page down" translatesAutoresizingMaskIntoConstraints="NO" id="fdd-1x-X9I" userLabel="Page Down" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                                                <rect key="frame" x="520" y="-1.5" width="15.5" height="19"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="15" id="Qc7-jH-Ou5"/>
+                                                                    <constraint firstAttribute="height" constant="15" id="aTM-dp-jov"/>
+                                                                </constraints>
+                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.down" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="KYu-ub-69h">
+                                                                    <behavior key="behavior" lightByContents="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="pageDownAction:" target="uni-A1-Lee" id="TQH-ui-4ca"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button toolTip="Scroll to the top" translatesAutoresizingMaskIntoConstraints="NO" id="baV-Hx-eJh" userLabel="Scroll to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                                                <rect key="frame" x="543" y="2" width="12" height="12"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="12" id="6xZ-kv-XFe"/>
+                                                                    <constraint firstAttribute="width" constant="12" id="8Ab-kI-xe8"/>
+                                                                </constraints>
+                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ScrollToTop" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="SKi-N4-7s2">
+                                                                    <behavior key="behavior" lightByContents="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="scrollToTopAction:" target="uni-A1-Lee" id="sb2-Ip-rG8"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button toolTip="Scroll to the bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Ohu-Jj-C2c" userLabel="Scroll to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                                                <rect key="frame" x="560" y="2" width="12" height="12"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="12" id="dJ6-0T-Eyd"/>
+                                                                    <constraint firstAttribute="width" constant="12" id="uYO-a5-FD4"/>
+                                                                </constraints>
+                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ScrollToBottom" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="gZG-Q0-Z5L">
+                                                                    <behavior key="behavior" lightByContents="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="scrollToBottomAction:" target="uni-A1-Lee" id="L1W-D0-f7u"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstItem="2Pg-fB-LER" firstAttribute="leading" secondItem="vFf-sO-hjb" secondAttribute="trailing" constant="5" id="0Nl-n1-ET6"/>
                                                             <constraint firstItem="XaG-jS-pAi" firstAttribute="leading" secondItem="dX7-Ua-C87" secondAttribute="leading" constant="5" id="3d1-v2-IcD"/>
                                                             <constraint firstItem="9TR-hV-3NW" firstAttribute="leading" secondItem="dfU-wy-Hvs" secondAttribute="trailing" constant="3" id="43R-uM-roD"/>
+                                                            <constraint firstItem="fdd-1x-X9I" firstAttribute="leading" secondItem="nq7-t6-9Jj" secondAttribute="trailing" constant="2" id="4d4-pt-QRB"/>
                                                             <constraint firstItem="1x1-5u-CeW" firstAttribute="leading" secondItem="MOZ-sQ-SDW" secondAttribute="trailing" constant="5" id="4tF-5u-Y92"/>
                                                             <constraint firstItem="MOZ-sQ-SDW" firstAttribute="leading" secondItem="2Pg-fB-LER" secondAttribute="trailing" constant="24" id="6s6-3L-fdj"/>
                                                             <constraint firstAttribute="trailing" secondItem="XaG-jS-pAi" secondAttribute="trailing" id="896-T0-RCR"/>
                                                             <constraint firstItem="JN6-6a-Xq4" firstAttribute="leading" secondItem="1x1-5u-CeW" secondAttribute="trailing" constant="10" symbolic="YES" id="8rB-Af-K2V"/>
                                                             <constraint firstAttribute="bottom" secondItem="Jq4-nN-eXe" secondAttribute="bottom" id="9ze-am-1Qt"/>
                                                             <constraint firstAttribute="bottom" secondItem="XYo-bT-hd4" secondAttribute="bottom" constant="4" id="Czp-8k-RKn"/>
+                                                            <constraint firstAttribute="bottom" secondItem="baV-Hx-eJh" secondAttribute="bottom" constant="2" id="FDd-PQ-690"/>
                                                             <constraint firstItem="dfU-wy-Hvs" firstAttribute="leading" secondItem="JyI-dn-eXa" secondAttribute="trailing" constant="11" id="Fk7-S7-v1d"/>
                                                             <constraint firstItem="PkZ-lN-oeS" firstAttribute="leading" secondItem="dX7-Ua-C87" secondAttribute="leading" constant="5" id="IKl-ZR-BB2"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Ohu-Jj-C2c" secondAttribute="trailing" id="MIq-VL-fpv"/>
                                                             <constraint firstAttribute="bottom" secondItem="LC1-Qc-eN6" secondAttribute="bottom" id="Mfm-sq-fcb"/>
                                                             <constraint firstAttribute="bottom" secondItem="DF1-Ki-qdx" secondAttribute="bottom" id="Mof-8S-wma"/>
                                                             <constraint firstAttribute="bottom" secondItem="JyI-dn-eXa" secondAttribute="bottom" constant="3" id="RQK-fg-Uc6"/>
                                                             <constraint firstItem="XYo-bT-hd4" firstAttribute="leading" secondItem="Jq4-nN-eXe" secondAttribute="trailing" constant="4" id="SFN-7j-h7G"/>
                                                             <constraint firstAttribute="bottom" secondItem="vFf-sO-hjb" secondAttribute="bottom" constant="4" id="SO8-lJ-5Yu"/>
                                                             <constraint firstItem="BlR-9V-R1Q" firstAttribute="leading" secondItem="XYo-bT-hd4" secondAttribute="trailing" constant="16" id="U3K-Bj-Hyd"/>
+                                                            <constraint firstItem="fdd-1x-X9I" firstAttribute="bottom" secondItem="nq7-t6-9Jj" secondAttribute="bottom" id="VKn-mI-47c"/>
                                                             <constraint firstItem="Jq4-nN-eXe" firstAttribute="leading" secondItem="DF1-Ki-qdx" secondAttribute="trailing" constant="5" id="bOz-KO-hFb"/>
-                                                            <constraint firstAttribute="trailing" secondItem="JN6-6a-Xq4" secondAttribute="trailing" id="cKs-Gi-rHx"/>
+                                                            <constraint firstItem="nq7-t6-9Jj" firstAttribute="leading" secondItem="JN6-6a-Xq4" secondAttribute="trailing" constant="20" id="cKs-Gi-rHx"/>
                                                             <constraint firstAttribute="bottom" secondItem="XaG-jS-pAi" secondAttribute="bottom" constant="25" id="dPu-A5-Y1x"/>
                                                             <constraint firstAttribute="bottom" secondItem="MOZ-sQ-SDW" secondAttribute="bottom" constant="2" id="duY-bg-P1K"/>
                                                             <constraint firstItem="vFf-sO-hjb" firstAttribute="leading" secondItem="9TR-hV-3NW" secondAttribute="trailing" constant="21" id="eSR-XP-dif"/>
@@ -647,8 +719,12 @@
                                                             <constraint firstItem="DF1-Ki-qdx" firstAttribute="leading" secondItem="LC1-Qc-eN6" secondAttribute="trailing" constant="21" id="k2D-ps-4lZ"/>
                                                             <constraint firstItem="JyI-dn-eXa" firstAttribute="leading" secondItem="BlR-9V-R1Q" secondAttribute="trailing" constant="3" id="mWZ-V6-kbW"/>
                                                             <constraint firstAttribute="bottom" secondItem="dfU-wy-Hvs" secondAttribute="bottom" constant="5" id="meR-23-88j"/>
+                                                            <constraint firstAttribute="bottom" secondItem="fdd-1x-X9I" secondAttribute="bottom" id="qOR-zF-5HP"/>
                                                             <constraint firstAttribute="bottom" secondItem="9TR-hV-3NW" secondAttribute="bottom" constant="5" id="u8T-JS-ZcD"/>
                                                             <constraint firstAttribute="bottom" secondItem="1x1-5u-CeW" secondAttribute="bottom" constant="1" id="ukm-JP-Kxk"/>
+                                                            <constraint firstItem="baV-Hx-eJh" firstAttribute="leading" secondItem="fdd-1x-X9I" secondAttribute="trailing" constant="8" id="uz7-Nr-k8N"/>
+                                                            <constraint firstItem="Ohu-Jj-C2c" firstAttribute="leading" secondItem="baV-Hx-eJh" secondAttribute="trailing" constant="5" id="wGS-Vb-zm1"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Ohu-Jj-C2c" secondAttribute="bottom" constant="2" id="x5P-i8-9dE"/>
                                                             <constraint firstAttribute="bottom" secondItem="BlR-9V-R1Q" secondAttribute="bottom" constant="3" id="yIh-Ay-y2i"/>
                                                         </constraints>
                                                     </view>
@@ -715,6 +791,8 @@
         <image name="Artists" width="32" height="32"/>
         <image name="Genres" width="32" height="32"/>
         <image name="Remove" width="27" height="27"/>
+        <image name="ScrollToBottom" width="33" height="37"/>
+        <image name="ScrollToTop" width="33" height="37"/>
         <image name="Tracks" width="32" height="32"/>
         <image name="arrow.down" catalog="system" width="13" height="14"/>
         <image name="arrow.down.to.line.alt" catalog="system" width="13" height="16"/>
@@ -723,6 +801,8 @@
         <image name="arrow.up" catalog="system" width="13" height="14"/>
         <image name="arrow.up.arrow.down" catalog="system" width="18" height="15"/>
         <image name="arrow.up.to.line.alt" catalog="system" width="13" height="16"/>
+        <image name="arrowtriangle.down" catalog="system" width="14" height="13"/>
+        <image name="arrowtriangle.up" catalog="system" width="14" height="13"/>
         <image name="doc.on.doc" catalog="system" width="16" height="18"/>
         <image name="magnifyingglass" catalog="system" width="15" height="15"/>
         <image name="minus" catalog="system" width="14" height="4"/>

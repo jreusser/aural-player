@@ -109,6 +109,22 @@ class PlaylistViewController: TrackListViewController {
         exportTrackList()
     }
     
+    @IBAction func pageUpAction(_ sender: NSButton) {
+        pageUp()
+    }
+    
+    @IBAction func pageDownAction(_ sender: NSButton) {
+        pageDown()
+    }
+    
+    @IBAction func scrollToTopAction(_ sender: NSButton) {
+        scrollToTop()
+    }
+    
+    @IBAction func scrollToBottomAction(_ sender: NSButton) {
+        scrollToBottom()
+    }
+    
     // MARK: Notification handling
     
     private func tracksAdded(_ notif: PlaylistTracksAddedNotification) {

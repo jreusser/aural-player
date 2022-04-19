@@ -271,6 +271,22 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         tableView.selectRows(firstSelectedRow...lastRow)
         tableView.scrollToBottom()
     }
+    
+    func pageUp() {
+        tableView.pageUp()
+    }
+    
+    func pageDown() {
+        tableView.pageDown()
+    }
+    
+    func scrollToTop() {
+        tableView.scrollToTop()
+    }
+    
+    func scrollToBottom() {
+        tableView.scrollToBottom()
+    }
 
     // Refreshes the playlist view by rearranging the items that were moved
     func removeAndInsertItems(_ results: [TrackMoveResult]) {
