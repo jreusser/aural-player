@@ -328,7 +328,7 @@
                                                 </box>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="CV9-KB-3Pt"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="CV9-KB-3Pt"/>
                                                 <constraint firstItem="ZDa-Wk-Jtf" firstAttribute="top" secondItem="DaI-JX-k2K" secondAttribute="top" id="L9j-BI-L6q"/>
                                                 <constraint firstAttribute="bottom" secondItem="ZDa-Wk-Jtf" secondAttribute="bottom" id="Opx-zB-wlY"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZDa-Wk-Jtf" secondAttribute="trailing" id="agL-Ma-m1u"/>

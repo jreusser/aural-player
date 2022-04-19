@@ -138,8 +138,8 @@ extension TrackListViewController: NSTableViewDataSource {
                 
                 print("Importing entire (selected) playlists ...")
                 
-                let selectedPlaylists = playlistsUIState.selectedPlaylists
-                let tracks: [Track] = selectedPlaylists.flatMap {$0.tracks}
+                let draggedPlaylists = sourceIndices.map {playlistsManager.userDefinedObjects[$0]}
+                let tracks: [Track] = draggedPlaylists.flatMap {$0.tracks}
                 
                 _ = trackList.insertTracks(tracks, at: destRow)
             }
