@@ -51,12 +51,12 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         playQueue.hasTrack(track)
     }
     
-    func hasTrackForFile(_ file: URL) -> Bool {
-        playQueue.hasTrackForFile(file)
+    func hasTrack(forFile file: URL) -> Bool {
+        playQueue.hasTrack(forFile: file)
     }
     
-    func findTrackByFile(_ file: URL) -> Track? {
-        playQueue.findTrackByFile(file)
+    func findTrack(forFile file: URL) -> Track? {
+        playQueue.findTrack(forFile: file)
     }
 
     func indexOfTrack(_ track: Track) -> Int? {

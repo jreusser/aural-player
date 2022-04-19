@@ -22,9 +22,9 @@ protocol AbstractTrackListProtocol {
     
     func hasTrack(_ track: Track) -> Bool
     
-    func hasTrackForFile(_ file: URL) -> Bool
+    func hasTrack(forFile file: URL) -> Bool
     
-    func findTrackByFile(_ file: URL) -> Track?
+    func findTrack(forFile file: URL) -> Track?
     
     subscript(_ index: Int) -> Track? {get}
     

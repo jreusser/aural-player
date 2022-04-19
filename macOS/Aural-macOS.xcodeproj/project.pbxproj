@@ -86,6 +86,8 @@
 		3E3975462688894C0055887E /* ControlBarSeekSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3975452688894C0055887E /* ControlBarSeekSliderCell.swift */; };
 		3E397548268900C60055887E /* ControlBarVolumeSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E397547268900C60055887E /* ControlBarVolumeSliderCell.swift */; };
 		3E39754E26892C890055887E /* ControlBarPlayerUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */; };
+		3E3A6F20280F398E00FF978A /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 3E3A6F1F280F398E00FF978A /* Collections */; };
+		3E3A6F22280F398E00FF978A /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 3E3A6F21280F398E00FF978A /* OrderedCollections */; };
 		3E3DFFCE260D9BBA0092F0BF /* MetadataPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3DFFCD260D9BBA0092F0BF /* MetadataPreferences.xib */; };
 		3E3DFFD2260DA0560092F0BF /* MetadataPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DFFD1260DA0560092F0BF /* MetadataPreferencesViewController.swift */; };
 		3E419B5D27B18C0600C2B965 /* HorizontalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E419B5C27B18C0600C2B965 /* HorizontalSlider.swift */; };
@@ -2515,6 +2517,8 @@
 			files = (
 				3EDB340C25E8AEBC004DF7DE /* libavcodec.58.dylib in Frameworks */,
 				3EDB340825E8AEB5004DF7DE /* libavformat.58.dylib in Frameworks */,
+				3E3A6F22280F398E00FF978A /* OrderedCollections in Frameworks */,
+				3E3A6F20280F398E00FF978A /* Collections in Frameworks */,
 				3EDB340525E8AEB3004DF7DE /* libswresample.3.dylib in Frameworks */,
 				3EDB340A25E8AEB8004DF7DE /* libavutil.56.dylib in Frameworks */,
 			);
@@ -5302,6 +5306,10 @@
 			dependencies = (
 			);
 			name = Aural;
+			packageProductDependencies = (
+				3E3A6F1F280F398E00FF978A /* Collections */,
+				3E3A6F21280F398E00FF978A /* OrderedCollections */,
+			);
 			productName = Aural;
 			productReference = 3E6C0EBF25CEB3ED00BF0D07 /* Aural.app */;
 			productType = "com.apple.product-type.application";
@@ -5353,6 +5361,9 @@
 				Base,
 			);
 			mainGroup = 3E6C0EB625CEB3ED00BF0D07;
+			packageReferences = (
+				3E3A6F1E280F398E00FF978A /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = 3E6C0EC025CEB3ED00BF0D07 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -7084,6 +7095,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3E3A6F1E280F398E00FF978A /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3E3A6F1F280F398E00FF978A /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3E3A6F1E280F398E00FF978A /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		3E3A6F21280F398E00FF978A /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3E3A6F1E280F398E00FF978A /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3E6C0EB725CEB3ED00BF0D07 /* Project object */;
 }

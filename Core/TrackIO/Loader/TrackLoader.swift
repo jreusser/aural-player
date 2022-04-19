@@ -46,6 +46,8 @@ class TrackLoader {
         // Move to a background thread to unblock the main thread.
         DispatchQueue.global(qos: .userInteractive).async {
             
+            defer {completionHandler?()}
+            
             self.readFiles(files)
             
             if self.batch.fileCount > 0 {
@@ -56,8 +58,6 @@ class TrackLoader {
             self.session = nil
             self.batch = nil
             self.blockOpFunction = nil
-            
-            completionHandler?()
             
             // Unblock this thread because the track list may perform a time consuming task in response to this callback.
             observer.postTrackLoad()
@@ -140,7 +140,7 @@ class TrackLoader {
                     }
                     
                 } else if SupportedTypes.allAudioExtensions.contains(fileExtension),
-                          session.trackList.shouldLoad(file: resolvedFile) {
+                          !session.trackList.hasTrack(forFile: resolvedFile) {
                     
                     // Track
                     if !isRecursiveCall {session.addHistoryItem(resolvedFile)}

@@ -8,6 +8,7 @@
 //  See the file "LICENSE" in the project root directory for license terms.
 //
 import Foundation
+import OrderedCollections
 
 extension Collection {
     
@@ -45,6 +46,17 @@ extension Array {
 }
 
 // TODO: Replace Range / ClosedRange with IndexSet
+
+extension Array where Element: Hashable {
+    
+    mutating func addItems(_ items: OrderedSet<Element>) -> ClosedRange<Int> {
+        
+        let firstIndex: Int = self.count
+        self.append(contentsOf: items)
+        
+        return firstIndex...self.lastIndex
+    }
+}
 
 extension Array where Element: Equatable {
     

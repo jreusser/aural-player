@@ -52,7 +52,7 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
     
     func loadPersistentTracks() {
         
-        if let files = self.persistentTracks {
+        if let files = self.persistentTracks, files.isNonEmpty {
             loadTracks(from: files)
         }
     }

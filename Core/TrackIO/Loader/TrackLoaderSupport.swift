@@ -14,7 +14,7 @@ typealias FileReadSessionCompletionHandler = ([URL]) -> Void
 
 protocol TrackLoaderReceiver {
     
-    func shouldLoad(file: URL) -> Bool
+    func hasTrack(forFile file: URL) -> Bool
     
     func acceptBatch(_ batch: FileMetadataBatch) -> ClosedRange<Int>
 }

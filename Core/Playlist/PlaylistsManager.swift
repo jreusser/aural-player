@@ -19,11 +19,6 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
     init(playlists: [Playlist]) {
         
         super.init(systemDefinedObjects: [], userDefinedObjects: playlists)
-        
-        for plst in playlists {
-            print("Playlist \(plst.name) has \(plst.size) tracks.")
-        }
-        
         messenger.subscribe(to: .application_launched, handler: appLaunched)
     }
     
