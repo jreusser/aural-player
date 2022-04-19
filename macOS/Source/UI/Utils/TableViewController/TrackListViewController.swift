@@ -96,6 +96,11 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         }
     }
     
+    // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
+    func addChosenTracks(_ files: [URL]) {
+        trackList.loadTracks(from: files)
+    }
+    
     func removeTracks() {
         
         let selectedRows = self.selectedRows
@@ -301,6 +306,6 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     func tracksAdded(at indices: ClosedRange<Int>) {
         
         tableView.noteNumberOfRowsChanged()
-        tableView.reloadRows(indices.lowerBound..<rowCount)
+        tableView.reloadRows(indices.lowerBound..<numberOfTracks)
     }
 }

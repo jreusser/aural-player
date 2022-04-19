@@ -66,6 +66,9 @@ extension Notification.Name {
 
     // Invokes the file dialog to add tracks to the playlist
     static let playlist_addTracks = Notification.Name("playlist_addTracks")
+    
+    // Invokes the file dialog to add (pre-selected) tracks to the playlist
+    static let playlist_addChosenTracks = Notification.Name("playlist_addChosenTracks")
 
     // Commands the playlist to remove any selected tracks selected in the current playlist view.
     static let playlist_removeTracks = Notification.Name("playlist_removeTracks")

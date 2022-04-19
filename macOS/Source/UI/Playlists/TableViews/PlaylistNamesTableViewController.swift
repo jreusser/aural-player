@@ -31,6 +31,10 @@ class PlaylistNamesTableViewController: NSViewController {
         return rowCount > 1 && (1..<rowCount).contains(selectedRowCount)
     }
     
+    private lazy var messenger: Messenger = Messenger(for: self)
+    
+    private lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -45,6 +49,31 @@ class PlaylistNamesTableViewController: NSViewController {
     
     @IBAction func createEmptyPlaylistAction(_ sender: NSMenuItem) {
         
+        _ = playlistsManager.createNewPlaylist(named: uniquePlaylistName)
+        tableView.noteNumberOfRowsChanged()
+        
+        let rowIndex = lastRow
+        tableView.selectRow(rowIndex)
+        editTextField(inRow: rowIndex)
+    }
+    
+    @IBAction func createPlaylistFromFilesAndFoldersAction(_ sender: NSMenuItem) {
+        
+        guard fileOpenDialog.runModal() == .OK else {return}
+        
+        _ = playlistsManager.createNewPlaylist(named: uniquePlaylistName)
+        tableView.noteNumberOfRowsChanged()
+        
+        let rowIndex = lastRow
+        tableView.selectRow(rowIndex)
+        
+        messenger.publish(.playlist_addChosenTracks, payload: fileOpenDialog.urls)
+        
+        editTextField(inRow: rowIndex)
+    }
+    
+    private var uniquePlaylistName: String {
+        
         var newPlaylistName: String = "New Playlist"
         var ctr: Int = 1
         
@@ -54,12 +83,7 @@ class PlaylistNamesTableViewController: NSViewController {
             newPlaylistName = "New Playlist \(ctr)"
         }
         
-        _ = playlistsManager.createNewPlaylist(named: newPlaylistName)
-        tableView.noteNumberOfRowsChanged()
-        
-        let rowIndex = lastRow
-        tableView.selectRow(rowIndex)
-        editTextField(inRow: rowIndex)
+        return newPlaylistName
     }
     
     private func editTextField(inRow row: Int) {

@@ -250,11 +250,11 @@
                                                                                     <action selector="createEmptyPlaylistAction:" target="KCA-ts-en2" id="5qE-Uy-rQL"/>
                                                                                 </connections>
                                                                             </menuItem>
-                                                                            <menuItem title="Create playlist from directory" id="zc5-Kk-piU">
+                                                                            <menuItem title="Create playlist from files, folders, and playlist files" id="zc5-Kk-piU" userLabel="Create playlist from files, folders, and playlist files">
                                                                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                                                            </menuItem>
-                                                                            <menuItem title="Create playlist from playlist file" id="eQb-Lu-Wpz">
-                                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                <connections>
+                                                                                    <action selector="createPlaylistFromFilesAndFoldersAction:" target="KCA-ts-en2" id="2sy-RB-fcP"/>
+                                                                                </connections>
                                                                             </menuItem>
                                                                         </items>
                                                                     </menu>

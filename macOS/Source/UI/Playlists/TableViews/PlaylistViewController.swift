@@ -35,7 +35,30 @@ class PlaylistViewController: TrackListViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        messenger.subscribeAsync(to: .playlist_tracksAdded, handler: tracksAdded(_:))
+        
+        // TODO: This is not bullet-proof. Notifs for multiple playlists come in together
+        // on startup. Find a way to ignore them safely, to prevent row count exceptions.
+        
+        // NOTE - Maybe add a "isInitialized" flag to the PlaylistsManager and check that
+        // in the filter here ?
+        
+        // This is ONLY a problem during:
+        // 1- app startup.
+        // 2 - if we add a large num of tracks to one playlist and select another playlist
+        // before all tracks are added (i.e. race condition).
+        
+        // Can we add playlist ID information in the notif ?
+        
+        // *** BETTER IDEA !!! ***
+        //
+        // subscribe and unsubscribe in response to changes in table view selection - this will
+        // solve the app startup problem (no plst selected) ... AND add a filter to check playlist name in notif
+        // against selected playlist.
+        
+        messenger.subscribeAsync(to: .playlist_tracksAdded, handler: tracksAdded(_:),
+                                 filter: {_ in playlistsUIState.selectedPlaylists.count == 1})
+        
+        messenger.subscribe(to: .playlist_addChosenTracks, handler: addChosenTracks(_:))
     }
     
     override func view(forColumn column: NSUserInterfaceItemIdentifier, row: Int, track: Track) -> TableCellBuilder {
