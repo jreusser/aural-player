@@ -161,16 +161,4 @@ class PlaylistViewController: TrackListViewController {
     private func tracksAdded(_ notif: PlaylistTracksAddedNotification) {
         tracksAdded(at: notif.trackIndices)
     }
-    
-    private func startedAddingTracks() {
-        
-        progressSpinner.startAnimation(self)
-        progressSpinner.show()
-    }
-    
-    private func doneAddingTracks() {
-
-        progressSpinner.hide()
-        progressSpinner.stopAnimation(self)
-    }
 }

@@ -50,8 +50,8 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
         
         lblCaption.font = systemFontScheme.effects.unitCaptionFont
         
-        messenger.subscribe(to: .playlists_startedAddingTracks, handler: startedAddingTracks)
-        messenger.subscribe(to: .playlists_doneAddingTracks, handler: doneAddingTracks)
+        messenger.subscribeAsync(to: .playlists_startedAddingTracks, handler: startedAddingTracks)
+        messenger.subscribeAsync(to: .playlists_doneAddingTracks, handler: doneAddingTracks)
 
         colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
         colorSchemesManager.registerObservers([btnClose, btnCreatePlaylist, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)

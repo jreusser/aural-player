@@ -9,12 +9,10 @@
 //
 import Cocoa
 
-class PlaylistsContainer: NSBox {
+class PlaylistsContainer: NSView {
     
     @IBOutlet weak var lblTracksSummary: NSTextField!
     @IBOutlet weak var lblDurationSummary: NSTextField!
-    
-    @IBOutlet weak var btnExportPlaylist: TintedImageButton!
     
     @IBOutlet weak var btnAddTracks: TintedImageButton!
     
@@ -27,8 +25,13 @@ class PlaylistsContainer: NSBox {
     @IBOutlet weak var btnMoveTracksToTop: TintedImageButton!
     @IBOutlet weak var btnMoveTracksToBottom: TintedImageButton!
     
+    @IBOutlet weak var btnClearSelection: TintedImageButton!
+    @IBOutlet weak var btnInvertSelection: TintedImageButton!
+    
     @IBOutlet weak var btnSearch: TintedImageButton!
     @IBOutlet weak var btnSort: TintedImageButton!
+    
+    @IBOutlet weak var btnExport: TintedImageButton!
     
     @IBOutlet weak var btnPageUp: TintedImageButton!
     @IBOutlet weak var btnPageDown: TintedImageButton!
@@ -40,10 +43,12 @@ class PlaylistsContainer: NSBox {
     
     override func awakeFromNib() {
         
-        viewsToShowOnMouseOver = [btnExportPlaylist, btnAddTracks,
+        viewsToShowOnMouseOver = [btnAddTracks,
                                   btnRemoveTracks, btnCropTracks, btnRemoveAllTracks,
                                   btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom,
+                                  btnClearSelection, btnInvertSelection,
                                   btnSearch, btnSort,
+                                  btnExport,
                                   btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom]
         
         viewsToHideOnMouseOver = [lblTracksSummary, lblDurationSummary]

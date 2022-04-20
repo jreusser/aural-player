@@ -85,7 +85,7 @@
                         <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="btnAddTracks" destination="69P-I6-ESe" id="p3t-Yb-EgO"/>
-                            <outlet property="btnExportPlaylist" destination="gX9-U6-3fw" id="qwq-KN-0lz"/>
+                            <outlet property="btnExport" destination="gX9-U6-3fw" id="qwq-KN-0lz"/>
                             <outlet property="btnMoveTracksDown" destination="XMf-ei-tjw" id="SlI-8f-fIH"/>
                             <outlet property="btnMoveTracksUp" destination="2cB-rC-TAd" id="Ykq-h1-HzN"/>
                             <outlet property="btnPageDown" destination="MyO-C3-Vvb" id="FlY-Bh-buF"/>
