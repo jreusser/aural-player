@@ -51,6 +51,8 @@ class CompactPlayQueueViewController: TrackListViewController {
         messenger.subscribe(to: .playQueue_pageDown, handler: tableView.pageDown)
         messenger.subscribe(to: .playQueue_scrollToTop, handler: tableView.scrollToTop)
         messenger.subscribe(to: .playQueue_scrollToBottom, handler: tableView.scrollToBottom)
+        
+        messenger.subscribe(to: .playQueue_addAndPlayTrack, handler: addAndPlayTrack(_:))
     }
     
     // MARK: Table view delegate / data source --------------------------------------------------------------------------------------------------------
@@ -100,7 +102,20 @@ class CompactPlayQueueViewController: TrackListViewController {
         player.play(trackIndex, .defaultParams())
     }
     
+    // MARK: Notification / command handling ----------------------------------------------------------------------------------------
+    
     private func tracksAdded(_ notif: PlayQueueTracksAddedNotification) {
         tracksAdded(at: notif.trackIndices)
+    }
+    
+    private func addAndPlayTrack(_ track: Track) {
+        
+        let indices = trackList.addTracks([track])
+        
+        if indices != -1...(-1) {
+            tableView.noteNumberOfRowsChanged()
+        }
+        
+        messenger.publish(TrackPlaybackCommandNotification(track: track))
     }
 }

@@ -7,13 +7,10 @@ protocol PlayQueueProtocol: TrackListProtocol, SequencingProtocol {
     // MARK: Mutating functions ---------------------------------------------------------------
     
     // Adds tracks to the end of the queue, i.e. "Play Later"
-    func enqueueTracks(_ tracks: [Track]) -> ClosedRange<Int>
-    
-    // Adds tracks to the beginning of the queue, i.e. "Play Now"
-    func enqueueTracksAtHead(_ tracks: [Track], clearQueue: Bool) -> ClosedRange<Int>
+    func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int>
 
     // Inserts tracks immediately after the current track, i.e. "Play Next"
-    func enqueueTracksAfterCurrentTrack(_ tracks: [Track]) -> ClosedRange<Int>
+    func enqueueTracksAfterCurrentTrack(_ newTracks: [Track]) -> ClosedRange<Int>
 }
 
 /*
@@ -61,6 +58,8 @@ protocol SequencingProtocol {
         NOTE - When a single index is specified, it is implied that the playlist from which this request originated was the flat "Tracks" playlist, because this playlist locates tracks by a single absolute index. Hence, this function is intended to be called only when playback originates from the "Tracks" playlist.
     */
     func select(trackAt index: Int) -> Track?
+    
+    func selectTrack(_ track: Track) -> Bool
     
     /*
         Selects, for playback, the specified group, which implies playback of all tracks within this group. The first track determined by the playback sequence (dependent upon the repeat/shuffle modes) will be selected for playback and returned.

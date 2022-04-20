@@ -148,6 +148,14 @@ class PlaylistViewController: TrackListViewController {
         scrollToBottom()
     }
     
+    @IBAction func doubleClickAction(_ sender: NSTableView) {
+        
+        guard let selRow = selectedRows.first,
+              let selTrack = playlist[selRow] else {return}
+        
+        messenger.publish(.playQueue_addAndPlayTrack, payload: selTrack)
+    }
+    
     // MARK: Notification handling
     
     private func tracksAdded(_ notif: PlaylistTracksAddedNotification) {

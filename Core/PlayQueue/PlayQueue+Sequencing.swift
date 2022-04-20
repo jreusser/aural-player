@@ -35,6 +35,14 @@ extension PlayQueue {
         curTrackIndex = index
         return track
     }
+    
+    func selectTrack(_ track: Track) -> Bool {
+        
+        guard let index = indexOfTrack(track) else {return false}
+        
+        curTrackIndex = index
+        return true
+    }
 
     // MARK: Sequence iteration functions -------------------------------------------------------------------------------------
 

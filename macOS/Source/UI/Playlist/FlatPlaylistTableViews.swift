@@ -46,7 +46,7 @@ class AuralTableView: NSTableView {
         if row == -1 {return nil}
         
         // Select the clicked row, implicitly clearing the previous selection
-        selectRow(row)
+//        selectRow(row)
         
         // TODO: Shouldn't this be moved to AuralPlaylistTableView and AuralPlaylistOutlineView ?
         // Note that this view was clicked (this is required by the contextual menu)

@@ -784,6 +784,23 @@
                 <outlet property="view" destination="ndT-x8-qeV" id="SkK-NT-8n2"/>
             </connections>
         </customObject>
+        <menu id="Pi0-jt-0bv" userLabel="Context Menu">
+            <items>
+                <menuItem title="Play now" id="OwS-Qt-AQt">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Play now (clearing the play queue)" id="tsl-G3-Oit">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Enqueue to play next" id="hLC-nA-7Js">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Enqueue to play later" id="GCc-XF-g2v">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="-221" y="199"/>
+        </menu>
     </objects>
     <resources>
         <image name="Add" width="25" height="25"/>

@@ -44,28 +44,23 @@ class PlayQueue: TrackList, PlayQueueProtocol, TrackLoaderObserver, PersistentMo
     func enqueueTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
         addTracks(newTracks)
     }
-
-    func enqueueTracksAtHead(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int> {
+    
+    func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int> {
         
         if clearQueue {
-            
             removeAllTracks()
-            return enqueueTracks(newTracks)
-            
-        } else {
-            
-            if let playingTrackIndex = curTrackIndex {
-                curTrackIndex = playingTrackIndex + newTracks.count
-            }
-
-            return insertTracks(newTracks, at: 0)
         }
+        
+        return enqueueTracks(newTracks)
     }
 
     func enqueueTracksAfterCurrentTrack(_ newTracks: [Track]) -> ClosedRange<Int> {
 
-        let insertionPoint = (curTrackIndex ?? -1) + 1
-        return insertTracks(newTracks, at: insertionPoint)
+        if let curTrackIndex = self.curTrackIndex, curTrackIndex != tracks.lastIndex {
+            return insertTracks(newTracks, at: curTrackIndex + 1)
+        }
+        
+        return enqueueTracks(newTracks)
     }
     
     override func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {

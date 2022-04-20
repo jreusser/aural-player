@@ -86,21 +86,14 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         return indices
     }
 
-    func enqueueToPlayLater(_ newTracks: [Track]) -> ClosedRange<Int> {
+    func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int> {
 
-        let indices = playQueue.enqueueTracks(newTracks)
+        let indices = playQueue.enqueueTracks(newTracks, clearQueue: clearQueue)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
 
-    func enqueueToPlayNow(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int> {
-
-        let indices = playQueue.enqueueTracksAtHead(newTracks, clearQueue: clearQueue)
-        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
-        return indices
-    }
-
-    func enqueueToPlayNext(_ newTracks: [Track]) -> ClosedRange<Int> {
+    func enqueueTracksToPlayNext(_ newTracks: [Track]) -> ClosedRange<Int> {
 
         let indices = playQueue.enqueueTracksAfterCurrentTrack(newTracks)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))

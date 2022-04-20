@@ -124,7 +124,9 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
     }
     
     func play(_ track: Track, _ params: PlaybackParams) {
-//        doPlay({playQueue.select(trackAt: track)}, params)
+        
+        guard playQueue.selectTrack(track) else {return}
+        doPlay({track}, params)
     }
     
 //    func play(_ group: Group, _ params: PlaybackParams) {
@@ -132,7 +134,7 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
 //    }
     
     // Captures the current player state and proceeds with playback according to the playback sequence
-    private func doPlay(_ trackProducer: TrackProducer, _ params: PlaybackParams = PlaybackParams.defaultParams()) {
+    private func doPlay(_ trackProducer: TrackProducer, _ params: PlaybackParams = .defaultParams()) {
         
         // TODO: Optimization: If the requested track is the same as the current track, just do a forced seek.
         
