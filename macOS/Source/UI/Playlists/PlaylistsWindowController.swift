@@ -28,6 +28,9 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
     
     @IBOutlet weak var playlistNamesViewController: PlaylistNamesTableViewController!
     
+    @IBOutlet weak var lblTracksSummary: NSTextField!
+    @IBOutlet weak var lblDurationSummary: NSTextField!
+    
     // Spinner that shows progress when tracks are being added to any of the playlists.
     @IBOutlet weak var progressSpinner: NSProgressIndicator!
     
@@ -49,9 +52,17 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
         playlistNamesViewController.tableViewController = tableViewController
         
         lblCaption.font = systemFontScheme.effects.unitCaptionFont
+        lblTracksSummary.font = systemFontScheme.playlist.summaryFont
+        lblDurationSummary.font = systemFontScheme.playlist.summaryFont
+        
+        [lblTracksSummary, lblDurationSummary].forEach {
+            $0?.textColor = systemColorScheme.secondaryTextColor
+        }
         
         messenger.subscribeAsync(to: .playlists_startedAddingTracks, handler: startedAddingTracks)
         messenger.subscribeAsync(to: .playlists_doneAddingTracks, handler: doneAddingTracks)
+        
+        messenger.subscribeAsync(to: .playlists_updateSummary, handler: updateSummary)
 
         colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
         colorSchemesManager.registerObservers([btnClose, btnCreatePlaylist, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)
@@ -73,6 +84,20 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
 
         progressSpinner.hide()
         progressSpinner.stopAnimation(self)
+    }
+    
+    private func updateSummary() {
+        
+        guard let displayedPlaylist = playlistsUIState.displayedPlaylist else {
+            
+            lblTracksSummary.stringValue = "0 tracks"
+            lblDurationSummary.stringValue = "0:00"
+            return
+        }
+        
+        let numTracks = displayedPlaylist.size
+        lblTracksSummary.stringValue = "\(numTracks) \(numTracks == 1 ? "track" : "tracks")"
+        lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(displayedPlaylist.duration)
     }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {

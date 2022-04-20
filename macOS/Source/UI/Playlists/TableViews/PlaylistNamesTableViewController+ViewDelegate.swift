@@ -58,5 +58,7 @@ extension PlaylistNamesTableViewController: NSTableViewDelegate {
         let playlist = playlistsManager.userDefinedObjects[row]
         playlistViewController.playlist = playlist
         tableViewController.playlist = playlist
+        
+        messenger.publish(.playlists_updateSummary)
     }
 }

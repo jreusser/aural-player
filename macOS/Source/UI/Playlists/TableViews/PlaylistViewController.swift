@@ -56,7 +56,7 @@ class PlaylistViewController: TrackListViewController {
         // against selected playlist.
         
         messenger.subscribeAsync(to: .playlist_tracksAdded, handler: tracksAdded(_:),
-                                 filter: {notif in playlistsUIState.selectedPlaylists.first?.name == notif.playlistName})
+                                 filter: {notif in playlistsUIState.displayedPlaylist?.name == notif.playlistName})
         
         messenger.subscribe(to: .playlist_addChosenTracks, handler: addChosenTracks(_:))
     }
@@ -96,12 +96,30 @@ class PlaylistViewController: TrackListViewController {
         removeTracks()
     }
     
+    override func removeTracks() {
+        
+        super.removeTracks()
+        messenger.publish(.playlists_updateSummary)
+    }
+    
     @IBAction func cropTracksAction(_ sender: NSButton) {
         cropSelection()
     }
     
+    override func cropSelection() {
+        
+        super.cropSelection()
+        messenger.publish(.playlists_updateSummary)
+    }
+    
     @IBAction func removeAllTracksAction(_ sender: NSButton) {
         removeAllTracks()
+    }
+    
+    override func removeAllTracks() {
+        
+        super.removeAllTracks()
+        messenger.publish(.playlists_updateSummary)
     }
     
     @IBAction func moveTracksUpAction(_ sender: NSButton) {
@@ -159,6 +177,8 @@ class PlaylistViewController: TrackListViewController {
     // MARK: Notification handling
     
     private func tracksAdded(_ notif: PlaylistTracksAddedNotification) {
+        
         tracksAdded(at: notif.trackIndices)
+        messenger.publish(.playlists_updateSummary)
     }
 }

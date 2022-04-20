@@ -24,6 +24,9 @@ extension Notification.Name {
     
     // Signifies that all playlists have begun loading of new tracks from the file system.
     static let playlists_startedAddingTracks = Notification.Name("playlists_startedAddingTracks")
+    
+    // Signifies that the summary for the currently displayed playlist needs to be updated.
+    static let playlists_updateSummary = Notification.Name("playlists_updateSummary")
 
     // Signifies that the playlist has begun adding a set of tracks.
     static let playlist_startedAddingTracks = Notification.Name("playlist_startedAddingTracks")

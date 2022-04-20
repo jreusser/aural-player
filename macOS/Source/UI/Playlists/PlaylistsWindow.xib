@@ -13,6 +13,8 @@
                 <outlet property="btnDeleteSelectedPlaylists" destination="IU4-DL-MBi" id="Hdj-pL-vd9"/>
                 <outlet property="controlsBox" destination="ZDa-Wk-Jtf" id="ITp-R3-g40"/>
                 <outlet property="lblCaption" destination="Izm-XL-6kw" id="s2h-7h-MP2"/>
+                <outlet property="lblDurationSummary" destination="NBd-fr-sMZ" id="bqt-YN-TIj"/>
+                <outlet property="lblTracksSummary" destination="TN3-Pb-63f" id="9nx-zC-xsh"/>
                 <outlet property="playlistNamesViewController" destination="KCA-ts-en2" id="KZF-Oz-NEw"/>
                 <outlet property="progressSpinner" destination="voR-KZ-9Wo" id="31s-xJ-QHo"/>
                 <outlet property="rootContainer" destination="fpr-mJ-5DC" id="xQ0-N2-uOj"/>

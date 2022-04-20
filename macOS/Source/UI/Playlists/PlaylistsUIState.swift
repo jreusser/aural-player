@@ -17,4 +17,8 @@ class PlaylistsUIState {
     var selectedPlaylists: [Playlist] {
         selectedPlaylistIndices.compactMap {playlistsManager.userDefinedObjects[$0]}
     }
+    
+    var displayedPlaylist: Playlist? {
+        selectedPlaylists.first
+    }
 }

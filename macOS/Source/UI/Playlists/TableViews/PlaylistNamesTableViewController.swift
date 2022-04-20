@@ -31,7 +31,7 @@ class PlaylistNamesTableViewController: NSViewController {
         return rowCount > 1 && (1..<rowCount).contains(selectedRowCount)
     }
     
-    private lazy var messenger: Messenger = Messenger(for: self)
+    lazy var messenger: Messenger = Messenger(for: self)
     
     private lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
     
