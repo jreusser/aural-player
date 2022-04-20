@@ -99,4 +99,3 @@ class PlayQueueContainer: NSView {
         viewsToHideOnMouseOver.forEach {$0.show()}
     }
 }
-

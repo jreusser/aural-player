@@ -491,7 +491,7 @@
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </box>
-                    <button hidden="YES" toolTip="Import tracks from the file system" translatesAutoresizingMaskIntoConstraints="NO" id="vsQ-5f-UMP" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Import files / folders" translatesAutoresizingMaskIntoConstraints="NO" id="vsQ-5f-UMP" userLabel="Import" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="352" y="8" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="2wF-FH-OC3"/>
@@ -505,7 +505,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="addFilesAction:" target="uni-A1-Lee" id="IN7-gF-sCA"/>
+                            <action selector="importFilesAndFoldersAction:" target="uni-A1-Lee" id="8Xo-d0-Uth"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="jKJ-Fc-7ml" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">

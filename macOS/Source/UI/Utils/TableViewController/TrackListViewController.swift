@@ -87,7 +87,7 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     // --------------------- Responding to commands ------------------------------------------------
     
     // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
-    func addTracks() {
+    func importFilesAndFolders() {
         
         guard !isTrackListBeingModified else {return}
         
@@ -154,7 +154,7 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     func exportTrackList() {
         
         // Make sure there is at least one track to save.
-        guard trackList.size > 0, !checkIfPlaylistIsBeingModified() else {return}
+        guard trackList.size > 0, !checkIfTrackListIsBeingModified() else {return}
         
         if saveDialog.runModal() == .OK,
            let playlistFile = saveDialog.url {
@@ -164,7 +164,7 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     }
     
     // TODO: Can this func be put somewhere common / shared ???
-    private func checkIfPlaylistIsBeingModified() -> Bool {
+    private func checkIfTrackListIsBeingModified() -> Bool {
         
         let playlistBeingModified = trackList.isBeingModified
         

@@ -108,7 +108,15 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     }
 
     func removeTracks(at indices: IndexSet) -> [Track] {
-        playQueue.removeTracks(at: indices)
+        
+        let wasPlaying: Bool = playQueue.currentTrack != nil
+        let removedTracks = playQueue.removeTracks(at: indices)
+        
+        if wasPlaying {
+            messenger.publish(.player_stop)
+        }
+        
+        return removedTracks
     }
 
     func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
@@ -140,7 +148,13 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     }
 
     func removeAllTracks() {
+        
+        let wasPlaying: Bool = playQueue.currentTrack != nil
         playQueue.removeAllTracks()
+        
+        if wasPlaying {
+            messenger.publish(.player_stop)
+        }
     }
 
 //    func sort(_ sort: Sort) -> SortResults {

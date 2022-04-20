@@ -29,7 +29,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     // The tab group that switches between the 4 playlist views
     @IBOutlet weak var tabGroup: AuralTabView!
     
-    private var compactViewController: CompactPlayQueueViewController = .init()
+    @IBOutlet weak var compactViewController: CompactPlayQueueViewController!
     
     private let player: PlaybackDelegateProtocol = playbackDelegate
     private let playQueue: PlayQueueDelegateProtocol = playQueueDelegate

@@ -33,7 +33,7 @@ class CompactPlayQueueViewController: TrackListViewController {
         
         messenger.subscribe(to: .playQueue_playSelectedTrack, handler: playSelectedTrack)
         
-        messenger.subscribe(to: .playQueue_addTracks, handler: addTracks)
+        messenger.subscribe(to: .playQueue_addTracks, handler: importFilesAndFolders)
         messenger.subscribe(to: .playQueue_removeTracks, handler: removeTracks)
         messenger.subscribe(to: .playQueue_cropSelection, handler: cropSelection)
         
@@ -53,6 +53,8 @@ class CompactPlayQueueViewController: TrackListViewController {
         messenger.subscribe(to: .playQueue_scrollToBottom, handler: tableView.scrollToBottom)
         
         messenger.subscribe(to: .playQueue_enqueueAndPlayNow, handler: enqueueAndPlayNow(_:))
+        messenger.subscribe(to: .playQueue_enqueueAndPlayNext, handler: enqueueAndPlayNext(_:))
+        messenger.subscribe(to: .playQueue_enqueueAndPlayLater, handler: enqueueAndPlayLater(_:))
     }
     
     // MARK: Table view delegate / data source --------------------------------------------------------------------------------------------------------
@@ -87,6 +89,74 @@ class CompactPlayQueueViewController: TrackListViewController {
         }
     }
     
+    // MARK: Actions --------------------------------------------------------------------------------------------------------
+    
+    @IBAction func tableDoubleClickAction(_ sender: NSTableView) {
+        
+        guard let trackIndex = selectedRows.first else {return}
+        player.play(trackIndex, .defaultParams())
+    }
+    
+    @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {
+        importFilesAndFolders()
+    }
+    
+    @IBAction func removeTracksAction(_ sender: NSButton) {
+        removeTracks()
+    }
+    
+    @IBAction func cropSelectionAction(_ sender: NSButton) {
+        cropSelection()
+    }
+    
+    @IBAction func removeAllTracksAction(_ sender: NSButton) {
+        removeAllTracks()
+    }
+    
+    @IBAction func moveTracksUpAction(_ sender: NSButton) {
+        moveTracksUp()
+    }
+    
+    @IBAction func moveTracksDownAction(_ sender: NSButton) {
+        moveTracksDown()
+    }
+    
+    @IBAction func moveTracksToTopAction(_ sender: NSButton) {
+        moveTracksToTop()
+    }
+    
+    @IBAction func moveTracksToBottomAction(_ sender: NSButton) {
+        moveTracksToBottom()
+    }
+    
+    @IBAction func clearSelectionAction(_ sender: NSButton) {
+        clearSelection()
+    }
+    
+    @IBAction func invertSelectionAction(_ sender: NSButton) {
+        invertSelection()
+    }
+    
+    @IBAction func exportToPlaylistFileAction(_ sender: NSButton) {
+        exportTrackList()
+    }
+    
+    @IBAction func pageUpAction(_ sender: NSButton) {
+        pageUp()
+    }
+    
+    @IBAction func pageDownAction(_ sender: NSButton) {
+        pageDown()
+    }
+    
+    @IBAction func scrollToTopAction(_ sender: NSButton) {
+        scrollToTop()
+    }
+    
+    @IBAction func scrollToBottomAction(_ sender: NSButton) {
+        scrollToBottom()
+    }
+    
     // MARK: Commands --------------------------------------------------------------------------------------------------------
     
     private func playSelectedTrack() {
@@ -94,12 +164,6 @@ class CompactPlayQueueViewController: TrackListViewController {
         if let firstSelectedRow = selectedRows.min() {
             messenger.publish(TrackPlaybackCommandNotification(index: firstSelectedRow))
         }
-    }
-    
-    @IBAction func tableDoubleClickAction(_ sender: NSTableView) {
-        
-        guard let trackIndex = selectedRows.first else {return}
-        player.play(trackIndex, .defaultParams())
     }
     
     // MARK: Notification / command handling ----------------------------------------------------------------------------------------

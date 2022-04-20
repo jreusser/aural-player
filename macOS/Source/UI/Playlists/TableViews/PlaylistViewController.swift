@@ -71,8 +71,8 @@ class PlaylistViewController: TrackListViewController {
     
     // MARK: Actions (control buttons)
     
-    @IBAction func addFilesAction(_ sender: NSButton) {
-        addTracks()
+    @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {
+        importFilesAndFolders()
     }
     
     @IBAction func removeTracksAction(_ sender: NSButton) {
