@@ -45,8 +45,10 @@ class AuralTableView: NSTableView {
         // If the click occurred outside of any of the playlist rows (i.e. empty space), don't show the menu
         if row == -1 {return nil}
         
-        // Select the clicked row, implicitly clearing the previous selection
-//        selectRow(row)
+        // If the current selection doesn't contain the right-clicked row, select it.
+        if !selectedRowIndexes.contains(row) {
+            selectRow(row)
+        }
         
         // TODO: Shouldn't this be moved to AuralPlaylistTableView and AuralPlaylistOutlineView ?
         // Note that this view was clicked (this is required by the contextual menu)

@@ -61,7 +61,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     /// Safe array access.
-    subscript(_ index: Int) -> Track? {
+    subscript(index: Int) -> Track? {
         
         guard index >= 0, index < tracks.count else {return nil}
         return tracks[index]

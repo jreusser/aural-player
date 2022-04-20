@@ -109,6 +109,8 @@
 		3E475BC2269649880065FD53 /* FlatPlaylistTests+TrackAccessByIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E475BC1269649880065FD53 /* FlatPlaylistTests+TrackAccessByIndex.swift */; };
 		3E475BC6269652320065FD53 /* FlatPlaylistTests+RemoveTracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E475BC5269652320065FD53 /* FlatPlaylistTests+RemoveTracks.swift */; };
 		3E475BCA2696527A0065FD53 /* FlatPlaylistTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E475BC92696527A0065FD53 /* FlatPlaylistTestCase.swift */; };
+		3E495B8728105BAD00D4766A /* EnqueueAndPlayCommandNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E495B8628105BAD00D4766A /* EnqueueAndPlayCommandNotification.swift */; };
+		3E495B8828105BAD00D4766A /* EnqueueAndPlayCommandNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E495B8628105BAD00D4766A /* EnqueueAndPlayCommandNotification.swift */; };
 		3E4A90FE27F79AFA003A6C80 /* WindowID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A90FD27F79AFA003A6C80 /* WindowID.swift */; };
 		3E4A90FF27F79AFA003A6C80 /* WindowID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A90FD27F79AFA003A6C80 /* WindowID.swift */; };
 		3E4CC362261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */; };
@@ -1534,6 +1536,7 @@
 		3E475BC1269649880065FD53 /* FlatPlaylistTests+TrackAccessByIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlatPlaylistTests+TrackAccessByIndex.swift"; sourceTree = "<group>"; };
 		3E475BC5269652320065FD53 /* FlatPlaylistTests+RemoveTracks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlatPlaylistTests+RemoveTracks.swift"; sourceTree = "<group>"; };
 		3E475BC92696527A0065FD53 /* FlatPlaylistTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatPlaylistTestCase.swift; sourceTree = "<group>"; };
+		3E495B8628105BAD00D4766A /* EnqueueAndPlayCommandNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnqueueAndPlayCommandNotification.swift; sourceTree = "<group>"; };
 		3E4A90FD27F79AFA003A6C80 /* WindowID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowID.swift; sourceTree = "<group>"; };
 		3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterUnitViewController+AUTableViewDelegate.swift"; sourceTree = "<group>"; };
 		3E50D23127BADAAF0056F63A /* AuralSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuralSlider.swift; sourceTree = "<group>"; };
@@ -5014,6 +5017,7 @@
 				3EFE377227864895006F8B8C /* SelectSearchResultCommandNotification.swift */,
 				3EFE377327864895006F8B8C /* TrackPlaybackCommandNotification.swift */,
 				3EFE377427864895006F8B8C /* PlaylistCommandNotification.swift */,
+				3E495B8628105BAD00D4766A /* EnqueueAndPlayCommandNotification.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -6230,6 +6234,7 @@
 				3EFE386327864896006F8B8C /* FilterUnitProtocol.swift in Sources */,
 				3EEC041D2687AAAD004478CE /* WindowedModePlayerAudioViewController.swift in Sources */,
 				3EFE39EB27864898006F8B8C /* FavoritePersistentState.swift in Sources */,
+				3E495B8728105BAD00D4766A /* EnqueueAndPlayCommandNotification.swift in Sources */,
 				3EFE385327864896006F8B8C /* SoundConstants.swift in Sources */,
 				3EEC04192687A9E9004478CE /* WindowedModePlayerSequencingViewController.swift in Sources */,
 				3EEC04252687ABB5004478CE /* WindowedModeSeekSliderView.swift in Sources */,
@@ -6717,6 +6722,7 @@
 				3EFE3B0B27864958006F8B8C /* TypeAliases.swift in Sources */,
 				3EFE39E827864898006F8B8C /* HistoryPersistentState.swift in Sources */,
 				3EABDDAA26949044008066E8 /* WindowLayout.swift in Sources */,
+				3E495B8828105BAD00D4766A /* EnqueueAndPlayCommandNotification.swift in Sources */,
 				3EFE39E027864898006F8B8C /* AudioUnitPersistentState.swift in Sources */,
 				3EA62F4D2693D606004A780A /* PlaybackSequencePersistenceTests.swift in Sources */,
 				3EFE3A3827864898006F8B8C /* ChapterChangedNotification.swift in Sources */,

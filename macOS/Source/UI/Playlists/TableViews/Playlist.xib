@@ -164,6 +164,7 @@
                                     <action trigger="doubleAction" selector="doubleClickAction:" target="-2" id="IHw-lk-z8B"/>
                                     <outlet property="dataSource" destination="-2" id="Iaq-et-LTb"/>
                                     <outlet property="delegate" destination="-2" id="kz2-fy-MyH"/>
+                                    <outlet property="menu" destination="udY-Kb-i5J" id="jXb-Bv-dwZ"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -187,5 +188,28 @@
             </constraints>
             <point key="canvasLocation" x="146" y="193"/>
         </view>
+        <menu id="udY-Kb-i5J" userLabel="Context Menu">
+            <items>
+                <menuItem title="Play now" id="jXp-7m-EVa">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="playNowAction:" target="-2" id="9hD-iT-EcO"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Play now (clearing the play queue)" id="9wQ-gy-eam">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="playNowClearingPlayQueueAction:" target="-2" id="EC0-oX-igA"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Play next" id="tz5-H8-IlF">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Play later" id="KzX-4I-EDr">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="-379" y="233"/>
+        </menu>
     </objects>
 </document>

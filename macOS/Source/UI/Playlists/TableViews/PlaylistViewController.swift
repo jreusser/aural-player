@@ -36,25 +36,6 @@ class PlaylistViewController: TrackListViewController {
         
         super.viewDidLoad()
         
-        // TODO: This is not bullet-proof. Notifs for multiple playlists come in together
-        // on startup. Find a way to ignore them safely, to prevent row count exceptions.
-        
-        // NOTE - Maybe add a "isInitialized" flag to the PlaylistsManager and check that
-        // in the filter here ?
-        
-        // This is ONLY a problem during:
-        // 1- app startup.
-        // 2 - if we add a large num of tracks to one playlist and select another playlist
-        // before all tracks are added (i.e. race condition).
-        
-        // Can we add playlist ID information in the notif ?
-        
-        // *** BETTER IDEA !!! ***
-        //
-        // subscribe and unsubscribe in response to changes in table view selection - this will
-        // solve the app startup problem (no plst selected) ... AND add a filter to check playlist name in notif
-        // against selected playlist.
-        
         messenger.subscribeAsync(to: .playlist_tracksAdded, handler: tracksAdded(_:),
                                  filter: {notif in playlistsUIState.displayedPlaylist?.name == notif.playlistName})
         
@@ -86,7 +67,9 @@ class PlaylistViewController: TrackListViewController {
         }
     }
     
-    // MARK: Actions
+    // ---------------------------------------------------------------------------------------------------------
+    
+    // MARK: Actions (control buttons)
     
     @IBAction func addFilesAction(_ sender: NSButton) {
         addTracks()
@@ -168,11 +151,34 @@ class PlaylistViewController: TrackListViewController {
     
     @IBAction func doubleClickAction(_ sender: NSTableView) {
         
-        guard let selRow = selectedRows.first,
-              let selTrack = playlist[selRow] else {return}
-        
-        messenger.publish(.playQueue_addAndPlayTrack, payload: selTrack)
+        if let selRow: Int = selectedRows.first,
+            let selTrack = playlist[selRow] {
+            
+            messenger.publish(EnqueueAndPlayCommand(tracks: [selTrack], clearPlayQueue: false))
+        }
     }
+    
+    // ---------------------------------------------------------------------------------------------------------
+    
+    // MARK: Actions (context menu)
+    
+    @IBAction func playNowAction(_ sender: NSMenuItem) {
+        messenger.publish(EnqueueAndPlayCommand(tracks: playlist[selectedRows], clearPlayQueue: false))
+    }
+    
+    @IBAction func playNowClearingPlayQueueAction(_ sender: NSMenuItem) {
+        messenger.publish(EnqueueAndPlayCommand(tracks: playlist[selectedRows], clearPlayQueue: true))
+    }
+    
+    @IBAction func playNextAction(_ sender: NSMenuItem) {
+        
+    }
+    
+    @IBAction func playLaterAction(_ sender: NSMenuItem) {
+        
+    }
+    
+    // ---------------------------------------------------------------------------------------------------------
     
     // MARK: Notification handling
     
