@@ -66,11 +66,11 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
     }
     
     func postTrackLoad() {
-        messenger.publish(.playlist_doneAddingTracks)
+        messenger.publish(.playlist_doneAddingTracks, payload: name)
     }
     
     func postBatchLoad(indices: ClosedRange<Int>) {
-        messenger.publish(PlaylistTracksAddedNotification(trackIndices: indices))
+        messenger.publish(PlaylistTracksAddedNotification(playlistName: name, trackIndices: indices))
     }
 }
 

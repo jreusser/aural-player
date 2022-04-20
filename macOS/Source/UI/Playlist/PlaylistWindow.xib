@@ -50,7 +50,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="530" height="277"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="2Bk-G6-skT" userLabel="Root Container" customClass="PlaylistContainer" customModule="Aural" customModuleProvider="target">
+                    <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="2Bk-G6-skT" userLabel="Root Container" customClass="PlaylistsContainer" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="530" height="277"/>
                         <view key="contentView" id="ew4-md-MxP">
                             <rect key="frame" x="0.0" y="0.0" width="530" height="277"/>
@@ -85,12 +85,12 @@
                         <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="btnAddTracks" destination="69P-I6-ESe" id="p3t-Yb-EgO"/>
-                            <outlet property="btnClear" destination="6wk-oD-sAb" id="F71-N5-Opm"/>
                             <outlet property="btnExportPlaylist" destination="gX9-U6-3fw" id="qwq-KN-0lz"/>
                             <outlet property="btnMoveTracksDown" destination="XMf-ei-tjw" id="SlI-8f-fIH"/>
                             <outlet property="btnMoveTracksUp" destination="2cB-rC-TAd" id="Ykq-h1-HzN"/>
                             <outlet property="btnPageDown" destination="MyO-C3-Vvb" id="FlY-Bh-buF"/>
                             <outlet property="btnPageUp" destination="aRU-Xs-Jom" id="AwD-dB-Kaz"/>
+                            <outlet property="btnRemoveAllTracks" destination="6wk-oD-sAb" id="F71-N5-Opm"/>
                             <outlet property="btnRemoveTracks" destination="8bh-90-Ye2" id="dRU-Ge-5Nx"/>
                             <outlet property="btnScrollToBottom" destination="B7I-KW-j8r" id="QHD-Zt-YHk"/>
                             <outlet property="btnScrollToTop" destination="hbJ-4L-vUS" id="O3d-XT-xsm"/>
@@ -652,8 +652,8 @@
         <image name="Play-Padded-Small" width="15" height="15"/>
         <image name="Remove" width="27" height="27"/>
         <image name="Remove-Small" width="10" height="10"/>
-        <image name="ScrollToBottom" width="23" height="25"/>
-        <image name="ScrollToTop" width="23" height="25"/>
+        <image name="ScrollToBottom" width="33" height="37"/>
+        <image name="ScrollToTop" width="33" height="37"/>
         <image name="Search" width="26" height="26"/>
         <image name="ShowInFinder" width="15" height="15"/>
         <image name="Sort" width="32" height="27"/>

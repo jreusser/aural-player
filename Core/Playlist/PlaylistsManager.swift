@@ -13,13 +13,26 @@ import Foundation
 /// Manages the collection of all playlists - the default playlist and all user-defined playlists (if any).
 ///
 class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
+    
+    // Keeps track of how many playlists have been initialized so far, upon app startup.
+    private var playlistAddOpsCount: AtomicIntCounter = AtomicIntCounter()
 
     private lazy var messenger = Messenger(for: self)
+    
+    var isAnyPlaylistBeingModified: Bool {
+        
+        let playlistModifyFlags: Set<Bool> = Set(userDefinedObjects.map {$0.isBeingModified})
+        return playlistModifyFlags.contains(true)
+    }
 
     init(playlists: [Playlist]) {
         
         super.init(systemDefinedObjects: [], userDefinedObjects: playlists)
+        
         messenger.subscribe(to: .application_launched, handler: appLaunched)
+        
+        messenger.subscribe(to: .playlist_startedAddingTracks, handler: playlistStartedAddingTracks)
+        messenger.subscribe(to: .playlist_doneAddingTracks, handler: playlistDoneAddingTracks)
     }
     
     @discardableResult func createNewPlaylist(named name: String) -> Playlist {
@@ -45,6 +58,26 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
         
         userDefinedObjects.forEach {
             $0.loadPersistentTracks()
+        }
+    }
+    
+    private func playlistStartedAddingTracks() {
+        
+        playlistAddOpsCount.increment()
+        
+        // The first (of potentially multiple) playlist track load operation has begun.
+        if playlistAddOpsCount.value == 1 {
+            messenger.publish(.playlists_startedAddingTracks)
+        }
+    }
+    
+    private func playlistDoneAddingTracks() {
+        
+        playlistAddOpsCount.decrement()
+
+        // All playlists have finished track load operations.
+        if playlistAddOpsCount.isZero {
+            messenger.publish(.playlists_doneAddingTracks)
         }
     }
 

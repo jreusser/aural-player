@@ -13,7 +13,7 @@ import Cocoa
 class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
     
     override var windowNibName: String? {"PlaylistsWindow"}
-
+    
     @IBOutlet weak var rootContainer: NSBox!
     @IBOutlet weak var controlsBox: NSBox!
 
@@ -28,25 +28,51 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
     
     @IBOutlet weak var playlistNamesViewController: PlaylistNamesTableViewController!
     
+    // Spinner that shows progress when tracks are being added to any of the playlists.
+    @IBOutlet weak var progressSpinner: NSProgressIndicator!
+    
     // The different playlist views
     @IBOutlet weak var tableViewController: PlaylistViewController!
+    
+    private lazy var messenger: Messenger = Messenger(for: self)
     
     override func windowDidLoad() {
         
         super.windowDidLoad()
-        
-        playlistNamesViewController.tableViewController = tableViewController
-        
-        lblCaption.font = systemFontScheme.effects.unitCaptionFont
-
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
-        colorSchemesManager.registerObservers([btnClose, btnCreatePlaylist, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)
         
         if let tab0View = tabGroup.tabViewItem(at: 0).view {
             
             tab0View.addSubview(tableViewController.view)
             tableViewController.view.anchorToSuperview()
         }
+        
+        playlistNamesViewController.tableViewController = tableViewController
+        
+        lblCaption.font = systemFontScheme.effects.unitCaptionFont
+        
+        messenger.subscribe(to: .playlists_startedAddingTracks, handler: startedAddingTracks)
+        messenger.subscribe(to: .playlists_doneAddingTracks, handler: doneAddingTracks)
+
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
+        colorSchemesManager.registerObservers([btnClose, btnCreatePlaylist, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)
+    }
+    
+    @IBAction func closeAction(_ sender: Any) {
+        windowLayoutsManager.toggleWindow(withId: .playlists)
+    }
+    
+    // MARK: Notification handling
+    
+    private func startedAddingTracks() {
+        
+        progressSpinner.startAnimation(self)
+        progressSpinner.show()
+    }
+    
+    private func doneAddingTracks() {
+
+        progressSpinner.hide()
+        progressSpinner.stopAnimation(self)
     }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
@@ -67,9 +93,5 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
             
             return
         }
-    }
-    
-    @IBAction func closeAction(_ sender: Any) {
-        windowLayoutsManager.toggleWindow(withId: .playlists)
     }
 }

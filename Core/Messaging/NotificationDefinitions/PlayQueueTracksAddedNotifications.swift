@@ -33,7 +33,11 @@ class PlayQueueTracksAddedNotification: TracksAddedNotification {
 
 class PlaylistTracksAddedNotification: TracksAddedNotification {
     
-    init(trackIndices: ClosedRange<Int>) {
+    let playlistName: String
+    
+    init(playlistName: String, trackIndices: ClosedRange<Int>) {
+        
+        self.playlistName = playlistName
         super.init(notificationName: .playlist_tracksAdded, trackIndices: trackIndices)
     }
 }

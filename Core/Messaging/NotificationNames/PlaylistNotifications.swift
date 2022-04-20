@@ -18,6 +18,12 @@ extension Notification.Name {
     
 //    // Signifies that the current playlist has changed.
 //    static let playlist_currentPlaylistChanged = Notification.Name("playlist_currentPlaylistChanged")
+    
+    // Signifies that all playlists have completed loading of new tracks from the file system.
+    static let playlists_doneAddingTracks = Notification.Name("playlists_doneAddingTracks")
+    
+    // Signifies that all playlists have begun loading of new tracks from the file system.
+    static let playlists_startedAddingTracks = Notification.Name("playlists_startedAddingTracks")
 
     // Signifies that the playlist has begun adding a set of tracks.
     static let playlist_startedAddingTracks = Notification.Name("playlist_startedAddingTracks")

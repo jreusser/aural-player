@@ -56,7 +56,7 @@ class PlaylistViewController: TrackListViewController {
         // against selected playlist.
         
         messenger.subscribeAsync(to: .playlist_tracksAdded, handler: tracksAdded(_:),
-                                 filter: {_ in playlistsUIState.selectedPlaylists.count == 1})
+                                 filter: {notif in playlistsUIState.selectedPlaylists.first?.name == notif.playlistName})
         
         messenger.subscribe(to: .playlist_addChosenTracks, handler: addChosenTracks(_:))
     }
@@ -160,5 +160,17 @@ class PlaylistViewController: TrackListViewController {
     
     private func tracksAdded(_ notif: PlaylistTracksAddedNotification) {
         tracksAdded(at: notif.trackIndices)
+    }
+    
+    private func startedAddingTracks() {
+        
+        progressSpinner.startAnimation(self)
+        progressSpinner.show()
+    }
+    
+    private func doneAddingTracks() {
+
+        progressSpinner.hide()
+        progressSpinner.stopAnimation(self)
     }
 }
