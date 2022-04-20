@@ -39,11 +39,14 @@ extension Notification.Name {
     // Commands the play queue to display a file dialog to let the user add new tracks.
     static let playQueue_addTracks = Notification.Name("playQueue_addTracks")
     
-    // Commands the play queue to display a file dialog to let the user add new tracks, and auto-plays the first added track.
-    static let playQueue_addAndPlayTracks = Notification.Name("playQueue_addAndPlayTracks")
+    // Commands the play queue to enqueue the given tracks and begin playing the first one immediately.
+    static let playQueue_enqueueAndPlayNow = Notification.Name("playQueue_enqueueAndPlayNow")
     
-    // Commands the play queue to add a single new track, if required, and plays it.
-    static let playQueue_addAndPlayTrack = Notification.Name("playQueue_addAndPlayTrack")
+    // Commands the play queue to enqueue the given tracks so that they begin playing after the currently playing track.
+    static let playQueue_enqueueAndPlayNext = Notification.Name("playQueue_enqueueAndPlayNext")
+    
+    // Commands the play queue to enqueue the given tracks so that they begin playing after all the existing tracks have finished playing.
+    static let playQueue_enqueueAndPlayLater = Notification.Name("playQueue_enqueueAndPlayLater")
     
     // Commands the play queue to remove any selected tracks.
     static let playQueue_removeTracks = Notification.Name("playQueue_removeTracks")

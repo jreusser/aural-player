@@ -204,9 +204,15 @@
                 </menuItem>
                 <menuItem title="Play next" id="tz5-H8-IlF">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="playNextAction:" target="-2" id="Wcw-8n-xKr"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="Play later" id="KzX-4I-EDr">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="playLaterAction:" target="-2" id="AHa-IG-1M0"/>
+                    </connections>
                 </menuItem>
             </items>
             <point key="canvasLocation" x="-379" y="233"/>

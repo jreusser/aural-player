@@ -31,7 +31,7 @@
 //
 //    @IBOutlet weak var btnExportPlaylist: TintedImageButton!
 //
-//    @IBOutlet weak var btnAddTracks: TintedImageButton!
+//    @IBOutlet weak var btnImportTracks: TintedImageButton!
 //    @IBOutlet weak var btnRemoveTracks: TintedImageButton!
 //    @IBOutlet weak var btnClear: TintedImageButton!
 //
@@ -107,7 +107,7 @@
 //
 //        childContainerBoxes = [playlistContainerBox, tabButtonsBox]
 //
-//        functionButtons = [btnClose, btnExportPlaylist, btnAddTracks,
+//        functionButtons = [btnClose, btnExportPlaylist, btnImportTracks,
 //                           btnRemoveTracks, btnClear, btnMoveTracksUp, btnMoveTracksDown, btnSearch, btnSort,
 //                           btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom]
 //

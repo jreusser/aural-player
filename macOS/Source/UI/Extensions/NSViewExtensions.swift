@@ -74,8 +74,8 @@ extension NSView {
     
     func removeAllTrackingAreas() {
         
-        for area in self.trackingAreas {
-            self.removeTrackingArea(area)
+        for area in trackingAreas {
+            removeTrackingArea(area)
         }
     }
     

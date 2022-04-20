@@ -20,7 +20,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     
     typealias Iterator = TrackListIterator
     
-    private(set) var tracks: [Track] = []
+    var tracks: [Track] = []
     
     private var _isBeingModified: AtomicBool = AtomicBool(value: false)
     

@@ -8,13 +8,13 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PlaylistWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
-                <outlet property="btnAddTracks" destination="69P-I6-ESe" id="nRv-wg-SVn"/>
                 <outlet property="btnAlbumsTab" destination="Icf-Se-Yie" id="fzm-zb-WgA"/>
                 <outlet property="btnArtistsTab" destination="Gd5-Z1-IPv" id="UYS-iP-JS2"/>
                 <outlet property="btnClear" destination="6wk-oD-sAb" id="weD-7z-uPH"/>
                 <outlet property="btnClose" destination="vdc-Y5-FXG" id="SB6-vr-t8P"/>
                 <outlet property="btnExportPlaylist" destination="gX9-U6-3fw" id="V00-yR-ifj"/>
                 <outlet property="btnGenresTab" destination="WM5-oc-eXx" id="GTC-Jb-4Ps"/>
+                <outlet property="btnImportTracks" destination="69P-I6-ESe" id="nRv-wg-SVn"/>
                 <outlet property="btnMoveTracksDown" destination="XMf-ei-tjw" id="FMS-hL-gjR"/>
                 <outlet property="btnMoveTracksUp" destination="2cB-rC-TAd" id="0DF-Or-InP"/>
                 <outlet property="btnPageDown" destination="MyO-C3-Vvb" id="N0H-Kd-QCi"/>
@@ -84,8 +84,8 @@
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <connections>
-                            <outlet property="btnAddTracks" destination="69P-I6-ESe" id="p3t-Yb-EgO"/>
                             <outlet property="btnExport" destination="gX9-U6-3fw" id="qwq-KN-0lz"/>
+                            <outlet property="btnImportTracks" destination="69P-I6-ESe" id="p3t-Yb-EgO"/>
                             <outlet property="btnMoveTracksDown" destination="XMf-ei-tjw" id="SlI-8f-fIH"/>
                             <outlet property="btnMoveTracksUp" destination="2cB-rC-TAd" id="Ykq-h1-HzN"/>
                             <outlet property="btnPageDown" destination="MyO-C3-Vvb" id="FlY-Bh-buF"/>

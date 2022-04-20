@@ -926,12 +926,12 @@ DQ
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="ve6-tb-ash"/>
-                            <menuItem title=" Add files / folders" image="plus.rectangle.on.folder" catalog="system" keyEquivalent="o" id="PZW-mc-nbE">
+                            <menuItem title=" Import files / folders" image="plus.rectangle.on.folder" catalog="system" keyEquivalent="o" id="PZW-mc-nbE">
                                 <connections>
                                     <action selector="addTracksAction:" target="qFA-s7-21q" id="Hoa-gG-wV3"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title=" Add and play files / folders" image="plus.rectangle.on.folder" catalog="system" keyEquivalent="o" id="xXN-bb-9g1" userLabel="Add and play files / folders">
+                            <menuItem title=" Import and play files / folders" image="plus.rectangle.on.folder" catalog="system" keyEquivalent="o" id="xXN-bb-9g1" userLabel="Add and play files / folders">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                             </menuItem>
                             <menuItem title=" Export as playlist file" image="arrow.right.doc.on.clipboard" catalog="system" keyEquivalent="s" id="Jbq-S6-ZJ6">

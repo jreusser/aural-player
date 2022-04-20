@@ -52,7 +52,7 @@ class CompactPlayQueueViewController: TrackListViewController {
         messenger.subscribe(to: .playQueue_scrollToTop, handler: tableView.scrollToTop)
         messenger.subscribe(to: .playQueue_scrollToBottom, handler: tableView.scrollToBottom)
         
-        messenger.subscribe(to: .playQueue_addAndPlayTracks, handler: addAndPlayTracks(_:))
+        messenger.subscribe(to: .playQueue_enqueueAndPlayNow, handler: enqueueAndPlayNow(_:))
     }
     
     // MARK: Table view delegate / data source --------------------------------------------------------------------------------------------------------
@@ -108,13 +108,14 @@ class CompactPlayQueueViewController: TrackListViewController {
         tracksAdded(at: notif.trackIndices)
     }
     
-    private func addAndPlayTracks(_ command: EnqueueAndPlayCommand) {
+    // TODO: what to do with tracks already in the PQ ???
+    private func enqueueAndPlayNow(_ command: EnqueueAndPlayNowCommand) {
         
         if command.clearPlayQueue {
-            trackList.removeAllTracks()
+            playQueueDelegate.removeAllTracks()
         }
         
-        let indices = trackList.addTracks(command.tracks)
+        let indices = playQueueDelegate.addTracks(command.tracks)
         
         if indices != -1...(-1) {
             tableView.noteNumberOfRowsChanged()
@@ -123,5 +124,18 @@ class CompactPlayQueueViewController: TrackListViewController {
         if let firstTrack = command.tracks.first {
             messenger.publish(TrackPlaybackCommandNotification(track: firstTrack))
         }
+    }
+    
+    // TODO:
+    private func enqueueAndPlayNext(_ tracks: [Track]) {
+        
+//        let indices = playQueueDelegate.enqueueTracksToPlayNext(tracks)
+        
+    }
+    
+    // TODO:
+    private func enqueueAndPlayLater(_ tracks: [Track]) {
+        
+//        let indices = playQueueDelegate.enqueueTracks(tracks, clearQueue: false)
     }
 }
