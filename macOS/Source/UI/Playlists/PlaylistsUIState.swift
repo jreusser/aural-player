@@ -19,6 +19,10 @@ class PlaylistsUIState {
     }
     
     var displayedPlaylist: Playlist? {
-        selectedPlaylists.first
+        selectedPlaylistIndices.count == 1 ? selectedPlaylists.first : nil
+    }
+    
+    var isDisplayingAPlaylist: Bool {
+        selectedPlaylistIndices.count == 1
     }
 }

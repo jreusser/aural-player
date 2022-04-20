@@ -491,7 +491,7 @@
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </box>
-                    <button toolTip="Import tracks from the file system" translatesAutoresizingMaskIntoConstraints="NO" id="vsQ-5f-UMP" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Import tracks from the file system" translatesAutoresizingMaskIntoConstraints="NO" id="vsQ-5f-UMP" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="352" y="5" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="2wF-FH-OC3"/>
@@ -508,7 +508,7 @@
                             <action selector="addFilesAction:" target="uni-A1-Lee" id="IN7-gF-sCA"/>
                         </connections>
                     </button>
-                    <button toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="jKJ-Fc-7ml" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="jKJ-Fc-7ml" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="392" y="4.5" width="19.5" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="19" id="RjO-XK-l2d"/>
@@ -525,7 +525,7 @@
                             <action selector="removeTracksAction:" target="uni-A1-Lee" id="zmu-8I-ipE"/>
                         </connections>
                     </button>
-                    <button toolTip="Crop selected playlist tracks" translatesAutoresizingMaskIntoConstraints="NO" id="mA8-Pi-vae" userLabel="Crop" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Crop selected playlist tracks" translatesAutoresizingMaskIntoConstraints="NO" id="mA8-Pi-vae" userLabel="Crop" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="416" y="4" width="19.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="iWp-eA-bLM"/>
@@ -542,7 +542,7 @@
                             <action selector="cropTracksAction:" target="uni-A1-Lee" id="btJ-DQ-E2v"/>
                         </connections>
                     </button>
-                    <button toolTip="Remove all tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="SUr-pY-07E" userLabel="Remove All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Remove all tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="SUr-pY-07E" userLabel="Remove All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="441" y="8" width="14.5" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="14" id="mUd-8H-hVJ"/>
@@ -559,7 +559,7 @@
                             <action selector="removeAllTracksAction:" target="uni-A1-Lee" id="f6L-hT-a4J"/>
                         </connections>
                     </button>
-                    <button toolTip="Move selected tracks up one row" translatesAutoresizingMaskIntoConstraints="NO" id="Qsv-kc-Ijz" userLabel="Move Up" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Move selected tracks up one row" translatesAutoresizingMaskIntoConstraints="NO" id="Qsv-kc-Ijz" userLabel="Move Up" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="474" y="8.5" width="13" height="13"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="13" id="0jk-v1-F5W"/>
@@ -576,7 +576,7 @@
                             <action selector="moveTracksUpAction:" target="uni-A1-Lee" id="QVs-f6-YAS"/>
                         </connections>
                     </button>
-                    <button toolTip="Move selected tracks down one row" translatesAutoresizingMaskIntoConstraints="NO" id="EfW-JJ-tjY" userLabel="Move Down" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Move selected tracks down one row" translatesAutoresizingMaskIntoConstraints="NO" id="EfW-JJ-tjY" userLabel="Move Down" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="490" y="8.5" width="13" height="13"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="13" id="qZ3-Lo-byY"/>
@@ -593,7 +593,7 @@
                             <action selector="moveTracksDownAction:" target="uni-A1-Lee" id="0ig-ZT-Ims"/>
                         </connections>
                     </button>
-                    <button toolTip="Move selected tracks to the top" translatesAutoresizingMaskIntoConstraints="NO" id="JSv-nr-t3b" userLabel="Move to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Move selected tracks to the top" translatesAutoresizingMaskIntoConstraints="NO" id="JSv-nr-t3b" userLabel="Move to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="515" y="9" width="13" height="13"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="13" id="7HN-tx-o1E"/>
@@ -610,7 +610,7 @@
                             <action selector="moveTracksToTopAction:" target="uni-A1-Lee" id="nmt-ct-hDa"/>
                         </connections>
                     </button>
-                    <button toolTip="Move selected tracks to the bottom" translatesAutoresizingMaskIntoConstraints="NO" id="zvT-oq-fd0" userLabel="Move to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Move selected tracks to the bottom" translatesAutoresizingMaskIntoConstraints="NO" id="zvT-oq-fd0" userLabel="Move to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="532" y="9" width="13" height="13"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="13" id="jmz-hh-zcW"/>
@@ -627,7 +627,7 @@
                             <action selector="moveTracksToBottomAction:" target="uni-A1-Lee" id="fq4-gf-LWl"/>
                         </connections>
                     </button>
-                    <button toolTip="Clear the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="4JO-03-t5N" userLabel="Clear Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Clear the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="4JO-03-t5N" userLabel="Clear Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="562" y="9" width="14" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="6" id="NR4-ay-OVy"/>
@@ -644,7 +644,7 @@
                             <action selector="clearSelectionAction:" target="uni-A1-Lee" id="pam-ua-AtC"/>
                         </connections>
                     </button>
-                    <button toolTip="Invert the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="9SA-cR-AsS" userLabel="Invert Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Invert the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="9SA-cR-AsS" userLabel="Invert Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="582" y="8" width="13.5" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="6" id="6PK-4T-hhc"/>
@@ -661,7 +661,7 @@
                             <action selector="invertSelectionAction:" target="uni-A1-Lee" id="ym8-1e-Yh9"/>
                         </connections>
                     </button>
-                    <button toolTip="Search the playlist" translatesAutoresizingMaskIntoConstraints="NO" id="Of8-zy-UBj" userLabel="Search" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Search the playlist" translatesAutoresizingMaskIntoConstraints="NO" id="Of8-zy-UBj" userLabel="Search" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="611" y="8.5" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="aR7-jE-fTw"/>
@@ -675,7 +675,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                     </button>
-                    <button toolTip="Sort the playlist" translatesAutoresizingMaskIntoConstraints="NO" id="NK5-9L-oU1" userLabel="Sort" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Sort the playlist" translatesAutoresizingMaskIntoConstraints="NO" id="NK5-9L-oU1" userLabel="Sort" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="630" y="7.5" width="17" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="11" id="WkB-ma-0sx"/>
@@ -689,7 +689,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                     </button>
-                    <button toolTip="Export playlist tracks to a playlist file" translatesAutoresizingMaskIntoConstraints="NO" id="PIC-WT-DmK" userLabel="Export" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Export playlist tracks to a playlist file" translatesAutoresizingMaskIntoConstraints="NO" id="PIC-WT-DmK" userLabel="Export" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="666" y="7.5" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="7" id="2U0-cU-6cR"/>
@@ -706,7 +706,7 @@
                             <action selector="exportToPlaylistAction:" target="uni-A1-Lee" id="ZgB-uv-RBo"/>
                         </connections>
                     </button>
-                    <button toolTip="Scroll one page up" translatesAutoresizingMaskIntoConstraints="NO" id="vNs-gK-Dc3" userLabel="Page Up" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Scroll one page up" translatesAutoresizingMaskIntoConstraints="NO" id="vNs-gK-Dc3" userLabel="Page Up" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="700" y="5.5" width="15.5" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="1eH-CQ-fht"/>
@@ -723,7 +723,7 @@
                             <action selector="pageUpAction:" target="uni-A1-Lee" id="F4A-it-SVJ"/>
                         </connections>
                     </button>
-                    <button toolTip="Scroll one page down" translatesAutoresizingMaskIntoConstraints="NO" id="iiX-G7-Y4H" userLabel="Page Down" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Scroll one page down" translatesAutoresizingMaskIntoConstraints="NO" id="iiX-G7-Y4H" userLabel="Page Down" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="716" y="5.5" width="15.5" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="Jlt-UU-WkJ"/>
@@ -740,7 +740,7 @@
                             <action selector="pageDownAction:" target="uni-A1-Lee" id="r9l-bs-Pku"/>
                         </connections>
                     </button>
-                    <button toolTip="Scroll to the top" translatesAutoresizingMaskIntoConstraints="NO" id="amR-22-Bx7" userLabel="Scroll to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Scroll to the top" translatesAutoresizingMaskIntoConstraints="NO" id="amR-22-Bx7" userLabel="Scroll to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="745" y="9" width="12" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="1tR-eF-eEH"/>
@@ -757,7 +757,7 @@
                             <action selector="scrollToTopAction:" target="uni-A1-Lee" id="qZX-5v-b6g"/>
                         </connections>
                     </button>
-                    <button toolTip="Scroll to the bottom" translatesAutoresizingMaskIntoConstraints="NO" id="grw-Sl-DRk" userLabel="Scroll to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Scroll to the bottom" translatesAutoresizingMaskIntoConstraints="NO" id="grw-Sl-DRk" userLabel="Scroll to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="763" y="9" width="12" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="9cP-IW-xv1"/>

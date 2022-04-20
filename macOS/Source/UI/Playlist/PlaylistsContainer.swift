@@ -86,13 +86,37 @@ class PlaylistsContainer: NSView {
         super.updateTrackingAreas()
     }
     
+    func showControls() {
+        
+        if mouseOverView {
+            
+            viewsToShowOnMouseOver.forEach {$0.show()}
+            viewsToHideOnMouseOver.forEach {$0.hide()}
+        }
+    }
+    
+    func hideControls() {
+        
+        viewsToShowOnMouseOver.forEach {$0.hide()}
+        viewsToHideOnMouseOver.forEach {$0.show()}
+    }
+    
+    private var mouseOverView: Bool = false
+    
     override func mouseEntered(with event: NSEvent) {
+        
+        mouseOverView = true
+        
+        guard playlistsUIState.isDisplayingAPlaylist,
+              !playlistsManager.isAnyPlaylistBeingModified else {return}
         
         viewsToShowOnMouseOver.forEach {$0.show()}
         viewsToHideOnMouseOver.forEach {$0.hide()}
     }
     
     override func mouseExited(with event: NSEvent) {
+        
+        mouseOverView = false
         
         viewsToShowOnMouseOver.forEach {$0.hide()}
         viewsToHideOnMouseOver.forEach {$0.show()}

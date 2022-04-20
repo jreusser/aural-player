@@ -50,6 +50,7 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
         }
         
         playlistNamesViewController.tableViewController = tableViewController
+        playlistNamesViewController.controlsContainer = window?.contentView as? PlaylistsContainer
         
         lblCaption.font = systemFontScheme.effects.unitCaptionFont
         lblTracksSummary.font = systemFontScheme.playlist.summaryFont
