@@ -21,6 +21,15 @@ extension CompactPlayQueueViewController: NSMenuDelegate {
         }
         
         playNextMenuItem.enableIf(oneRowSelected && playQueueDelegate.currentTrack != nil)
+        
+        // TODO: playlist names menu should have a separate delegate so that the menu
+        // is not unnecessarily updated until required.
+        
+        playlistNamesMenu.items.removeAll()
+        
+        for playlist in playlistsManager.userDefinedObjects {
+            playlistNamesMenu.addItem(withTitle: playlist.name, action: #selector(copyTracksToPlaylistAction(_:)), keyEquivalent: "")
+        }
     }
     
     @IBAction func playNextAction(_ sender: NSMenuItem) {
@@ -43,4 +52,16 @@ extension CompactPlayQueueViewController: NSMenuDelegate {
         // Re-select the track that was moved.
         tableView.selectRow(destRow)
     }
+    
+    @IBAction func copyTracksToPlaylistAction(_ sender: NSMenuItem) {
+        messenger.publish(CopyTracksToPlaylistCommand(tracks: selectedTracks, destinationPlaylistName: sender.title))
+    }
 }
+
+//class PlaylistNamesMenuDelegate: NSObject, NSMenuDelegate {
+//
+//    func menuNeedsUpdate(_ menu: NSMenu) {
+//
+//
+//    }
+//}

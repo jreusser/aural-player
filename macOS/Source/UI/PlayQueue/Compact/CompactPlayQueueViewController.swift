@@ -17,7 +17,7 @@ class CompactPlayQueueViewController: TrackListViewController {
     // Delegate that retrieves current playback info
     private let player: PlaybackDelegateProtocol = playbackDelegate
     
-    private lazy var messenger: Messenger = Messenger(for: self)
+    lazy var messenger: Messenger = Messenger(for: self)
     
     override var rowHeight: CGFloat {30}
     
@@ -32,6 +32,8 @@ class CompactPlayQueueViewController: TrackListViewController {
     
     @IBOutlet weak var favoritesMenuItem: NSMenuItem!
     @IBOutlet weak var infoMenuItem: NSMenuItem!
+    
+    @IBOutlet weak var playlistNamesMenu: NSMenu!
     
     override func viewDidLoad() {
         

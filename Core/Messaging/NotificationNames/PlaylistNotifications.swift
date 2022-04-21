@@ -67,6 +67,9 @@ extension Notification.Name {
     static let playlist_cleared = Notification.Name("playlist_cleared")
     
     // MARK: Playlist commands
+    
+    // Command to copy given tracks (in payload) to destination playlist (name in payload).
+    static let playlist_copyTracks = Notification.Name("playlist_copyTracks")
 
     // Commands a playlist to refresh its list view (eg. in response to tracks being added/removed/updated).
     //

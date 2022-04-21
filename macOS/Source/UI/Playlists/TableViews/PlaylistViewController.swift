@@ -40,6 +40,8 @@ class PlaylistViewController: TrackListViewController {
                                  filter: {notif in playlistsUIState.displayedPlaylist?.name == notif.playlistName})
         
         messenger.subscribe(to: .playlist_addChosenTracks, handler: addChosenTracks(_:))
+        
+        messenger.subscribe(to: .playlist_copyTracks, handler: copyTracks(_:))
     }
     
     override func view(forColumn column: NSUserInterfaceItemIdentifier, row: Int, track: Track) -> TableCellBuilder {
@@ -234,5 +236,17 @@ class PlaylistViewController: TrackListViewController {
         
         tracksAdded(at: notif.trackIndices)
         messenger.publish(.playlists_updateSummary)
+    }
+    
+    private func copyTracks(_ notif: CopyTracksToPlaylistCommand) {
+        
+        guard let destinationPlaylist = playlistsManager.userDefinedObject(named: notif.destinationPlaylistName) else {return}
+        
+        destinationPlaylist.addTracks(notif.tracks)
+        
+        // If tracks were added to the displayed playlist, update the table view.
+        if destinationPlaylist == playlist {
+            tableView.noteNumberOfRowsChanged()
+        }
     }
 }

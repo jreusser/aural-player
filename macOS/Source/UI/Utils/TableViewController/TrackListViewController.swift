@@ -19,6 +19,8 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     
     var selectedRows: IndexSet {tableView.selectedRowIndexes}
     
+    var selectedTracks: [Track] {trackList[tableView.selectedRowIndexes]}
+    
     var selectedRowCount: Int {tableView.numberOfSelectedRows}
     
     var rowCount: Int {tableView.numberOfRows}

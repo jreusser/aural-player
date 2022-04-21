@@ -13,6 +13,7 @@
                 <outlet property="infoMenuItem" destination="E94-FX-PuM" id="c4A-Qo-w0t"/>
                 <outlet property="playNextMenuItem" destination="557-bs-7lR" id="dPM-ac-JTC"/>
                 <outlet property="playNowMenuItem" destination="jTl-IJ-icl" id="ZTv-GE-qXI"/>
+                <outlet property="playlistNamesMenu" destination="8qW-Wx-JfH" id="ffL-8D-TBU"/>
                 <outlet property="tableView" destination="RAo-B3-mxT" id="dsz-R1-5kW"/>
                 <outlet property="view" destination="c22-O7-iKe" id="XKF-eG-k8l"/>
             </connections>
@@ -187,6 +188,29 @@
                         <action selector="playNextAction:" target="-2" id="Mrr-2i-hDv"/>
                     </connections>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="n6M-3F-fnb"/>
+                <menuItem title="  Copy these tracks to playlist" image="doc.on.clipboard" catalog="system" id="NKJ-IV-vNC" userLabel="Copy these tracks to playlist">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="  Copy these tracks to playlist" id="8qW-Wx-JfH">
+                        <items>
+                            <menuItem title="Item 1" id="Mgs-1P-cTf">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Item 2" id="NIh-kx-lLD">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Item 3" id="19D-RL-dqO">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="  Remove these tracks" image="xmark.bin" catalog="system" id="hBY-5o-I8Z" userLabel="Remove tracks">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="  Crop selected tracks" image="scissors" catalog="system" id="FVD-zO-B89" userLabel="Crop selected tracks">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="KDo-db-t71"/>
                 <menuItem title="  Move these tracks up" image="arrow.up" catalog="system" id="Q39-Yy-l6l" userLabel="Move tracks up">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -211,26 +235,6 @@
                     <connections>
                         <action selector="moveTracksToBottomAction:" target="-2" id="Gxk-HC-Ocy"/>
                     </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="n6M-3F-fnb"/>
-                <menuItem title="  Copy these tracks to playlist" image="doc.on.clipboard" catalog="system" id="NKJ-IV-vNC" userLabel="Copy these tracks to playlist">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="  Copy these tracks to playlist" id="8qW-Wx-JfH">
-                        <items>
-                            <menuItem title="Item 1" id="Mgs-1P-cTf">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Item 2" id="NIh-kx-lLD">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Item 3" id="19D-RL-dqO">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="  Remove these tracks" image="xmark.bin" catalog="system" id="hBY-5o-I8Z" userLabel="Remove tracks">
-                    <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="vxS-3G-8Vh"/>
                 <menuItem title="  Add this track to Favorites" image="heart" catalog="system" id="ccr-O5-bNr" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">
@@ -268,6 +272,7 @@
         <image name="info" catalog="system" width="10" height="15"/>
         <image name="list.dash" catalog="system" width="16" height="11"/>
         <image name="play" catalog="system" width="12" height="13"/>
+        <image name="scissors" catalog="system" width="20" height="15"/>
         <image name="xmark.bin" catalog="system" width="19" height="14"/>
     </resources>
 </document>

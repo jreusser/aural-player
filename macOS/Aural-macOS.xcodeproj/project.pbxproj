@@ -579,6 +579,7 @@
 		3EC29A5F27865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
 		3EC29A6027865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
 		3EC856A82811BA7000647CF4 /* CompactPlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* CompactPlayQueueViewController+ContextMenuController.swift */; };
+		3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
 		3ECB54E825E552A9002259C4 /* ragingredlotus-bb.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3ECB54E625E552A1002259C4 /* ragingredlotus-bb.regular.ttf */; };
 		3ECB54EA25E552AC002259C4 /* shufen.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3ECB54E725E552A1002259C4 /* shufen.regular.ttf */; };
@@ -2025,6 +2026,7 @@
 		3EC29A5827865BC900B29551 /* MenuItemMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemMappable.swift; sourceTree = "<group>"; };
 		3EC29A5E27865CB500B29551 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		3EC856A72811BA7000647CF4 /* CompactPlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompactPlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
+		3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTracksToPlaylistCommand.swift; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
 		3ECB54E625E552A1002259C4 /* ragingredlotus-bb.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ragingredlotus-bb.regular.ttf"; sourceTree = "<group>"; };
 		3ECB54E725E552A1002259C4 /* shufen.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shufen.regular.ttf; sourceTree = "<group>"; };
@@ -5022,6 +5024,7 @@
 				3EFE377327864895006F8B8C /* TrackPlaybackCommandNotification.swift */,
 				3EFE377427864895006F8B8C /* PlaylistCommandNotification.swift */,
 				3E495B8628105BAD00D4766A /* EnqueueAndPlayNowCommand.swift */,
+				3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -5882,6 +5885,7 @@
 				3EFE38AF27864896006F8B8C /* FilterBand.swift in Sources */,
 				3E6C11B725CEBDA900BF0D07 /* MediaApplicationWatcher.swift in Sources */,
 				3EEFF58D27DE842C002CB0FE /* PlayQueueTrack.swift in Sources */,
+				3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */,
 				3E6C11B925CEBDAD00BF0D07 /* MediaKeyHandler.swift in Sources */,
 				3E2000C5267CEE53008BAB70 /* MediaKeysPreferencesViewController.swift in Sources */,
 				3EFE385127864896006F8B8C /* ValueConversions.swift in Sources */,
