@@ -14,16 +14,16 @@ import Foundation
 ///
 class Favorite: UserManagedObject, Hashable {
     
-    // The file of the track being favorited
-    let file: URL
+    var track: Track
     
-    private var _name: String
+    // The file of the track being favorited
+    var file: URL {
+        track.file
+    }
     
     // Used by the UI (track.displayName)
     var name: String {
-        
-        get {track?.displayName ?? _name}
-        set {_name = newValue}
+        track.displayName
     }
     
     var key: String {
@@ -34,27 +34,14 @@ class Favorite: UserManagedObject, Hashable {
     
     var userDefined: Bool {true}
     
-    var track: Track?
-    
-    init(_ track: Track) {
-        
+    init(track: Track) {
         self.track = track
-        self.file = track.file
-        self._name = track.displayName
-    }
-    
-    init(_ file: URL, _ name: String) {
-        
-        self.file = file
-        self._name = name
     }
     
     init?(persistentState: FavoritePersistentState) {
         
-        guard let file = persistentState.file, let name = persistentState.name else {return nil}
-        
-        self.file = file
-        self._name = name
+        guard let file = persistentState.file else {return nil}
+        self.track = Track(file)
     }
     
     static func == (lhs: Favorite, rhs: Favorite) -> Bool {

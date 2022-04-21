@@ -37,20 +37,13 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         
         let allFavorites = persistentState?.compactMap {Favorite(persistentState: $0)} ?? []
         self.favorites = Favorites(systemDefinedObjects: [], userDefinedObjects: allFavorites)
+        
+        // TODO: Use TrackLoader here to load tracks for all favorites.
     }
     
     func addFavorite(_ track: Track) -> Favorite {
         
-        let favorite = Favorite(track.file, track.displayName)
-        favorites.addObject(favorite)
-        messenger.publish(.favoritesList_trackAdded, payload: favorite)
-        
-        return favorite
-    }
-    
-    func addFavorite(_ file: URL, _ name: String) -> Favorite {
-        
-        let favorite = Favorite(file, name)
+        let favorite = Favorite(track: track)
         favorites.addObject(favorite)
         messenger.publish(.favoritesList_trackAdded, payload: favorite)
         
@@ -89,17 +82,17 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     func playFavorite(_ favorite: Favorite) throws {
         
 //        do {
-//            // First, find or add the given file
-//            if let newTrack = try playQueue.findOrAddFile(favorite.file) {
-//            
-//                // Try playing it
-//                player.play(newTrack)
-//            }
-//            
+        
+            // First, add the given track to the play queue.
+            playQueueDelegate.addTracks([favorite.track])
+            
+            // Play it.
+            player.play(favorite.track)
+            
 //        } catch {
-//            
+//
 //            if let fnfError = error as? FileNotFoundError {
-//                
+//
 //                // Log and rethrow error
 //                NSLog("Unable to play Favorites item. Details: %@", fnfError.message)
 //                throw fnfError
