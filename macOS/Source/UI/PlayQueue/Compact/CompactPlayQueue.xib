@@ -207,9 +207,15 @@
                 </menuItem>
                 <menuItem title="  Remove these tracks" image="xmark.bin" catalog="system" id="hBY-5o-I8Z" userLabel="Remove tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="removeTracksAction:" target="-2" id="WBa-Ke-foe"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Crop selected tracks" image="scissors" catalog="system" id="FVD-zO-B89" userLabel="Crop selected tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="cropSelectionAction:" target="-2" id="yRP-ht-kJ8"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="KDo-db-t71"/>
                 <menuItem title="  Move these tracks up" image="arrow.up" catalog="system" id="Q39-Yy-l6l" userLabel="Move tracks up">
@@ -242,9 +248,12 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="offStateTitle" value="  Add this track to Favorites"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="onStateTitle" value="  Remove this track from Favorites"/>
-                        <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="Favorites"/>
-                        <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="Favorites"/>
+                        <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="heart" catalog="system"/>
+                        <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="heart.slash" catalog="system"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="favoritesAction:" target="-2" id="GXf-iY-Ygs"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Get detailed track info" id="E94-FX-PuM">
                     <imageReference key="image" image="info" catalog="system" symbolScale="large"/>
@@ -252,6 +261,9 @@
                 </menuItem>
                 <menuItem title="  Show these tracks in Finder" image="ShowInFinder" id="2va-tB-KRm" userLabel="Show track in Finder">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showInFinderAction:" target="-2" id="lzU-uF-hyE"/>
+                    </connections>
                 </menuItem>
             </items>
             <connections>
@@ -261,7 +273,6 @@
         </menu>
     </objects>
     <resources>
-        <image name="Favorites" width="15" height="15"/>
         <image name="ShowInFinder" width="15" height="15"/>
         <image name="arrow.down" catalog="system" width="13" height="14"/>
         <image name="arrow.down.to.line.alt" catalog="system" width="13" height="16"/>
@@ -269,6 +280,7 @@
         <image name="arrow.up.to.line.alt" catalog="system" width="13" height="16"/>
         <image name="doc.on.clipboard" catalog="system" width="16" height="18"/>
         <image name="heart" catalog="system" width="16" height="14"/>
+        <image name="heart.slash" catalog="system" width="16" height="15"/>
         <image name="info" catalog="system" width="10" height="15"/>
         <image name="list.dash" catalog="system" width="16" height="11"/>
         <image name="play" catalog="system" width="12" height="13"/>

@@ -30,6 +30,11 @@ extension CompactPlayQueueViewController: NSMenuDelegate {
         for playlist in playlistsManager.userDefinedObjects {
             playlistNamesMenu.addItem(withTitle: playlist.name, action: #selector(copyTracksToPlaylistAction(_:)), keyEquivalent: "")
         }
+        
+        // Update the state of the favorites menu item (based on if the clicked track is already in the favorites list or not)
+        if let theClickedTrack = selectedTracks.first {
+            favoritesMenuItem.onIf(favoritesDelegate.favoriteWithFileExists(theClickedTrack.file))
+        }
     }
     
     @IBAction func playNextAction(_ sender: NSMenuItem) {
@@ -56,12 +61,37 @@ extension CompactPlayQueueViewController: NSMenuDelegate {
     @IBAction func copyTracksToPlaylistAction(_ sender: NSMenuItem) {
         messenger.publish(CopyTracksToPlaylistCommand(tracks: selectedTracks, destinationPlaylistName: sender.title))
     }
-}
+    
+    // Adds/removes the currently playing track, if there is one, to/from the "Favorites" list
+    @IBAction func favoritesAction(_ sender: NSMenuItem) {
+        
+        guard let theClickedTrack = selectedTracks.first else {return}
 
-//class PlaylistNamesMenuDelegate: NSObject, NSMenuDelegate {
-//
-//    func menuNeedsUpdate(_ menu: NSMenu) {
-//
-//
-//    }
-//}
+        if favoritesMenuItem.isOn {
+
+            // Remove from Favorites list and display notification
+            favoritesDelegate.deleteFavoriteWithFile(theClickedTrack.file)
+
+            if let rowView = selectedRowView {
+                infoPopup.showMessage("Track removed from Favorites !", rowView, .maxX)
+            }
+
+        } else {
+
+            // Add to Favorites list and display notification
+            _ = favoritesDelegate.addFavorite(theClickedTrack)
+
+            if let rowView = selectedRowView {
+                infoPopup.showMessage("Track added to Favorites !", rowView, .maxX)
+            }
+        }
+        
+        // If this isn't done, the app windows are hidden when the popover is displayed
+        windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)
+    }
+    
+    // Shows the selected tracks in Finder.
+    @IBAction func showInFinderAction(_ sender: NSMenuItem) {
+        URL.showInFinder(selectedTracks.map {$0.file})
+    }
+}

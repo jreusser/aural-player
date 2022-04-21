@@ -23,6 +23,10 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     
     var selectedRowCount: Int {tableView.numberOfSelectedRows}
     
+    var selectedRowView: NSView? {
+        return tableView.rowView(atRow: tableView.selectedRow, makeIfNecessary: false)
+    }
+    
     var rowCount: Int {tableView.numberOfRows}
     
     var lastRow: Int {tableView.numberOfRows - 1}

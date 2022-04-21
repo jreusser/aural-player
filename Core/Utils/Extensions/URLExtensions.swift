@@ -306,6 +306,10 @@ extension URL {
         NSWorkspace.shared.activateFileViewerSelecting([self])
     }
     
+    static func showInFinder(_ urls: [URL]) {
+        NSWorkspace.shared.activateFileViewerSelecting(urls)
+    }
+    
     #endif
 }
 

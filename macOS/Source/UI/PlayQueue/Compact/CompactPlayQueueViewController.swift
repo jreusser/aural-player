@@ -35,6 +35,9 @@ class CompactPlayQueueViewController: TrackListViewController {
     
     @IBOutlet weak var playlistNamesMenu: NSMenu!
     
+    // Popup view that displays a brief notification when a selected track is added/removed to/from the Favorites list
+    lazy var infoPopup: InfoPopupViewController = .instance
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
