@@ -205,6 +205,13 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="  Create a new playlist with these tracks" image="text.badge.plus" catalog="system" id="Try-Ah-q1X" userLabel="Remove tracks">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="createPlaylistWithTracksAction:" target="-2" id="sid-Cg-AtF"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="me0-dP-F1Q"/>
                 <menuItem title="  Remove these tracks" image="xmark.bin" catalog="system" id="hBY-5o-I8Z" userLabel="Remove tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -285,6 +292,7 @@
         <image name="list.dash" catalog="system" width="16" height="11"/>
         <image name="play" catalog="system" width="12" height="13"/>
         <image name="scissors" catalog="system" width="20" height="15"/>
+        <image name="text.badge.plus" catalog="system" width="16" height="14"/>
         <image name="xmark.bin" catalog="system" width="19" height="14"/>
     </resources>
 </document>

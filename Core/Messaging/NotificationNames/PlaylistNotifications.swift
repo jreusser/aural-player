@@ -68,6 +68,9 @@ extension Notification.Name {
     
     // MARK: Playlist commands
     
+    // Command to create a new playlist with the given tracks (in payload).
+    static let playlists_createPlaylistFromTracks = Notification.Name("playlists_createPlaylistFromTracks")
+    
     // Command to copy given tracks (in payload) to destination playlist (name in payload).
     static let playlist_copyTracks = Notification.Name("playlist_copyTracks")
 
@@ -80,7 +83,7 @@ extension Notification.Name {
     static let playlist_addTracks = Notification.Name("playlist_addTracks")
     
     // Invokes the file dialog to add (pre-selected) tracks to the playlist
-    static let playlist_addChosenTracks = Notification.Name("playlist_addChosenTracks")
+    static let playlist_addChosenFiles = Notification.Name("playlist_addChosenFiles")
 
     // Commands the playlist to remove any selected tracks selected in the current playlist view.
     static let playlist_removeTracks = Notification.Name("playlist_removeTracks")

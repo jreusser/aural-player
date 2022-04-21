@@ -39,7 +39,7 @@ class PlaylistViewController: TrackListViewController {
         messenger.subscribeAsync(to: .playlist_tracksAdded, handler: tracksAdded(_:),
                                  filter: {notif in playlistsUIState.displayedPlaylist?.name == notif.playlistName})
         
-        messenger.subscribe(to: .playlist_addChosenTracks, handler: addChosenTracks(_:))
+        messenger.subscribe(to: .playlist_addChosenFiles, handler: addChosenTracks(_:))
         
         messenger.subscribe(to: .playlist_copyTracks, handler: copyTracks(_:))
     }

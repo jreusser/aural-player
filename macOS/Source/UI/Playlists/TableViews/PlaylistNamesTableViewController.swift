@@ -44,6 +44,8 @@ class PlaylistNamesTableViewController: NSViewController {
         tableView.enableDragDrop()
         
         playlistViewController.playlist = nil
+        
+        messenger.subscribe(to: .playlists_createPlaylistFromTracks, handler: createPlaylistFromTracks(_:))
         colorSchemesManager.registerObserver(self, forProperty: \.backgroundColor)
     }
     
@@ -69,7 +71,7 @@ class PlaylistNamesTableViewController: NSViewController {
         let rowIndex = lastRow
         tableView.selectRow(rowIndex)
         
-        messenger.publish(.playlist_addChosenTracks, payload: fileOpenDialog.urls)
+        messenger.publish(.playlist_addChosenFiles, payload: fileOpenDialog.urls)
         
         editTextField(inRow: rowIndex)
     }
@@ -188,6 +190,21 @@ class PlaylistNamesTableViewController: NSViewController {
         if firstRemovedRow <= lastRowAfterRemove {
             tableView.reloadRows(firstRemovedRow...lastRowAfterRemove)
         }
+    }
+    
+    private func createPlaylistFromTracks(_ tracks: [Track]) {
+        
+        let newPlaylistName = uniquePlaylistName
+        _ = playlistsManager.createNewPlaylist(named: newPlaylistName)
+        tableView.noteNumberOfRowsChanged()
+        
+        let rowIndex = lastRow
+        tableView.selectRow(rowIndex)
+        
+        messenger.publish(.playlist_copyTracks, payload: CopyTracksToPlaylistCommand(tracks: tracks, destinationPlaylistName: newPlaylistName))
+        
+        editTextField(inRow: rowIndex)
+        view.window?.makeKeyAndOrderFront(self)
     }
 }
 

@@ -62,6 +62,10 @@ extension CompactPlayQueueViewController: NSMenuDelegate {
         messenger.publish(CopyTracksToPlaylistCommand(tracks: selectedTracks, destinationPlaylistName: sender.title))
     }
     
+    @IBAction func createPlaylistWithTracksAction(_ sender: NSMenuItem) {
+        messenger.publish(.playlists_createPlaylistFromTracks, payload: selectedTracks)
+    }
+    
     // Adds/removes the currently playing track, if there is one, to/from the "Favorites" list
     @IBAction func favoritesAction(_ sender: NSMenuItem) {
         
