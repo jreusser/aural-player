@@ -42,3 +42,9 @@ extension NSTabView {
         }
     }
 }
+
+extension NSDragOperation {
+    
+    // Signifies an invalid drag/drop operation
+    static let invalidDragOperation: NSDragOperation = []
+}

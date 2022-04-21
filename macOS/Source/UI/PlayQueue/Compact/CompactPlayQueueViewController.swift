@@ -89,6 +89,45 @@ class CompactPlayQueueViewController: TrackListViewController {
         }
     }
     
+    override func importTracks(from otherTable: NSTableView, sourceIndices: IndexSet, to destRow: Int) {
+        
+        guard !trackList.isBeingModified,
+              let otherTableId = otherTable.identifier else {return}
+        
+        switch otherTableId {
+            
+        case .tableId_playlist:
+            
+            importTracksFromPlaylist(sourceIndices: sourceIndices, to: destRow)
+            
+        case .tableId_playlistNames:
+            
+            importEntirePlaylist(sourceIndices: sourceIndices, to: destRow)
+            
+        default:
+            
+            return
+        }
+    }
+    
+    // Import selected tracks from a single playlist.
+    private func importTracksFromPlaylist(sourceIndices: IndexSet, to destRow: Int) {
+        
+        guard let displayedPlaylist = playlistsUIState.displayedPlaylist else {return}
+        
+        let tracks: [Track] = sourceIndices.compactMap {displayedPlaylist[$0]}
+        _ = trackList.insertTracks(tracks, at: destRow)
+    }
+    
+    // Import entire (selected) playlists.
+    private func importEntirePlaylist(sourceIndices: IndexSet, to destRow: Int) {
+        
+        let draggedPlaylists = sourceIndices.map {playlistsManager.userDefinedObjects[$0]}
+        let tracks: [Track] = draggedPlaylists.flatMap {$0.tracks}
+        
+        _ = trackList.insertTracks(tracks, at: destRow)
+    }
+    
     // MARK: Actions --------------------------------------------------------------------------------------------------------
     
     @IBAction func tableDoubleClickAction(_ sender: NSTableView) {

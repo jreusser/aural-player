@@ -74,6 +74,13 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
     }
 }
 
+extension Playlist: Equatable {
+    
+    static func == (lhs: Playlist, rhs: Playlist) -> Bool {
+        lhs.name == rhs.name
+    }
+}
+
 extension Playlist: PersistentModelObject {
     
     // Returns all state for this playlist that needs to be persisted to disk

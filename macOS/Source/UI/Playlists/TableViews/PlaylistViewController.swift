@@ -67,6 +67,42 @@ class PlaylistViewController: TrackListViewController {
         }
     }
     
+    override func importTracks(from otherTable: NSTableView, sourceIndices: IndexSet, to destRow: Int) {
+        
+        // Cannot import tracks into a playlist already being modified.
+        guard !playlist.isBeingModified,
+              let otherTableId = otherTable.identifier else {return}
+        
+        switch otherTableId {
+
+        case .tableId_playlistNames:
+            
+            // Import an entire playlist into this playlist.
+            
+            // Don't import this playlist into itself (will have no effect).
+            let draggedPlaylists: [Playlist] = sourceIndices.map {playlistsManager.userDefinedObjects[$0]}.filter {$0 != playlist}
+            guard draggedPlaylists.isNonEmpty else {return}
+            
+            let tracks: [Track] = draggedPlaylists.flatMap {$0.tracks}
+            
+            let newTrackIndices = playlist.insertTracks(tracks, at: destRow)
+            guard let minTrackIndex = newTrackIndices.min() else {return}
+            
+            tableView.noteNumberOfRowsChanged()
+            tableView.reloadRows(minTrackIndex...lastRow)
+            
+            messenger.publish(.playlists_updateSummary)
+            
+//        case .tableId_compactPlayQueue:
+//
+//            // TODO
+            
+        default:
+            
+            return
+        }
+    }
+    
     // ---------------------------------------------------------------------------------------------------------
     
     // MARK: Actions (control buttons)

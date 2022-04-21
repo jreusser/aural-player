@@ -12,9 +12,6 @@ import AppKit
 
 extension TrackListViewController: NSTableViewDataSource {
     
-    // Signifies an invalid drag/drop operation
-    private static let invalidDragOperation: NSDragOperation = []
-    
     // Returns the total number of playlist rows
     func numberOfRows(in tableView: NSTableView) -> Int {numberOfTracks}
     
@@ -32,14 +29,14 @@ extension TrackListViewController: NSTableViewDataSource {
     // Validates the proposed drag/drop operation
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
-        if isTrackListBeingModified {return Self.invalidDragOperation}
+        if isTrackListBeingModified {return .invalidDragOperation}
         
         // If the source is the same tableView, that means tracks are being reordered.
         if let sourceTable = info.draggingSource as? NSTableView,
            sourceTable == self.tableView, let sourceIndexSet = info.sourceIndexes {
             
             // Reordering of tracks
-            return validateReorderOperation(tableView, sourceIndexSet, row, dropOperation) ? .move : Self.invalidDragOperation
+            return validateReorderOperation(tableView, sourceIndexSet, row, dropOperation) ? .move : .invalidDragOperation
         }
         
         // TODO: What about items added from apps other than Finder ??? From VOX or other audio players ???
@@ -72,7 +69,6 @@ extension TrackListViewController: NSTableViewDataSource {
             } else {
                 
                 // Import tracks from another table.
-                print("\nImporting tracks ...")
                 importTracks(from: sourceTable, sourceIndices: sourceIndices, to: row)
                 return true
             }
@@ -115,31 +111,8 @@ extension TrackListViewController: NSTableViewDataSource {
         tableView.selectRows(destinationIndices)
     }
     
-    private func importTracks(from otherTable: NSTableView, sourceIndices: IndexSet, to destRow: Int) {
-        
-        // TODO: Use table ID to determine which table "otherTable" is.
-        
-        if self is CompactPlayQueueViewController {
-        
-            // Import selected tracks from a single playlist.
-            
-            if otherTable.identifier == .tableId_playlist,
-               let selectedPlaylist = playlistsUIState.selectedPlaylists.first {
-                
-                let tracks: [Track] = sourceIndices.compactMap {selectedPlaylist[$0]}
-                _ = trackList.insertTracks(tracks, at: destRow)
-            }
-            
-            // Import entire (selected) playlists.
-            
-            else if otherTable.identifier == .tableId_playlistNames {
-                
-                let draggedPlaylists = sourceIndices.map {playlistsManager.userDefinedObjects[$0]}
-                let tracks: [Track] = draggedPlaylists.flatMap {$0.tracks}
-                
-                _ = trackList.insertTracks(tracks, at: destRow)
-            }
-        }
+    @objc func importTracks(from otherTable: NSTableView, sourceIndices: IndexSet, to destRow: Int) {
+        // Overriden by subclasses
     }
 }
 

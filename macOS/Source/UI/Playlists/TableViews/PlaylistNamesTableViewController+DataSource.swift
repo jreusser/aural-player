@@ -32,6 +32,55 @@ extension PlaylistNamesTableViewController: NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int,
                    proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
-        .copy
+        // Cannot drop between playlist names, can only drop onto a playlist name.
+        if dropOperation == .above {
+            return .invalidDragOperation
+        }
+
+        // Dragging from its own table view is not allowed.
+        if let sourceTable = info.draggingSource as? NSTableView, sourceTable == tableView {
+            return .invalidDragOperation
+        }
+        
+        // Import an entire playlist from the playlist names table into either a playlist or the Play Queue.
+        return .copy
+    }
+    
+    // Performs the drop
+    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+        
+        guard let sourcePlaylist = playlistsUIState.displayedPlaylist,
+                let sourceIndices = info.sourceIndexes else {return false}
+        
+        let destinationPlaylist = playlistsManager.userDefinedObjects[row]
+        
+        // 1 - Neither source nor destination playlist should be being modified.
+        // 2 - Cannot drag onto the same playlist.
+        
+        guard sourcePlaylist != destinationPlaylist,
+              !sourcePlaylist.isBeingModified,
+              !destinationPlaylist.isBeingModified,
+              let otherTable = info.draggingSource as? NSTableView,
+              let otherTableId = otherTable.identifier else {return false}
+        
+        switch otherTableId {
+            
+        case .tableId_playlist:
+            
+            importTracksFromPlaylist(sourcePlaylist, intoPlaylist: destinationPlaylist, sourceIndices: sourceIndices)
+            return true
+            
+//        case .tableId_compactPlayQueue:
+//            
+//            // TODO
+            
+        default:
+            
+            return false
+        }
+    }
+    
+    private func importTracksFromPlaylist(_ sourcePlaylist: Playlist, intoPlaylist destinationPlaylist: Playlist, sourceIndices: IndexSet) {
+        destinationPlaylist.addTracks(sourcePlaylist[sourceIndices])
     }
 }
