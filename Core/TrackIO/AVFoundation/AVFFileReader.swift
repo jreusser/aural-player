@@ -17,22 +17,15 @@ class AVFFileReader: FileReaderProtocol {
     let commonParser: CommonAVFMetadataParser = CommonAVFMetadataParser()
     let id3Parser: ID3AVFParser = ID3AVFParser()
     let iTunesParser: ITunesParser = ITunesParser()
+    let audioToolboxParser: AudioToolboxParser = AudioToolboxParser()
 
     let allParsers: [AVFMetadataParser]
     let parsersMap: [AVMetadataKeySpace: AVFMetadataParser]
     
     init() {
         
-        // Audio Toolbox is only available starting with macOS 10.13.
-        if #available(OSX 10.13, *) {
-            
-            parsersMap = [.common: commonParser, .id3: id3Parser, .iTunes: iTunesParser, .audioFile: AudioToolboxParser()]
-            
-        } else {
-            parsersMap = [.common: commonParser, .id3: id3Parser, .iTunes: iTunesParser]
-        }
-        
-        allParsers = [id3Parser, iTunesParser, commonParser]
+        parsersMap = [.common: commonParser, .id3: id3Parser, .iTunes: iTunesParser, .audioFile: audioToolboxParser]
+        allParsers = [id3Parser, iTunesParser, commonParser, audioToolboxParser]
     }
     
     private func cleanUpString(_ string: String?) -> String? {
@@ -159,8 +152,7 @@ class AVFFileReader: FileReaderProtocol {
         
         if let thePlaybackContext = optionalPlaybackContext {
             
-            let intChannelCount = Int(thePlaybackContext.audioFormat.channelCount)
-            audioInfo.numChannels = intChannelCount
+            audioInfo.numChannels = Int(thePlaybackContext.audioFormat.channelCount)
             audioInfo.channelLayout = thePlaybackContext.audioFormat.channelLayoutString
             
             audioInfo.sampleRate = Int32(thePlaybackContext.sampleRate)
@@ -249,105 +241,39 @@ class AVFFileReader: FileReaderProtocol {
     // Reads all chapter metadata for a given track
     // NOTE - This code does not account for potential overlaps in chapter times due to bad metadata ... assumes no overlaps
     private func getChapters(for file: URL, from asset: AVURLAsset) -> [Chapter] {
-
-        // On older systems (Sierra/HighSierra), the end times are not properly read by **AVFoundation**
-        // So, use start times to compute end times / duration
-        let fileExtension = file.lowerCasedExtension
-        let useAlternativeComputation = SystemUtils.osVersion.minorVersion < 14 && !["m4a", "m4b"].contains(fileExtension)
-
-        if useAlternativeComputation {
-            return getChapters_olderSystems(for: file, from: asset)
-        }
+        
+        guard let langCode = asset.availableChapterLocales.first?.languageCode else {return []}
         
         var chapters: [Chapter] = []
+        let chapterMetadataGroups = asset.chapterMetadataGroups(bestMatchingPreferredLanguages: [langCode])
         
-        if let langCode = asset.availableChapterLocales.first?.languageCode {
-
-            let chapterMetadataGroups = asset.chapterMetadataGroups(bestMatchingPreferredLanguages: [langCode])
-
-            // Each group represents one chapter
-            for group in chapterMetadataGroups {
-
-                let title: String = getChapterTitle(group.items) ?? ""
-
-                let timeRange = group.timeRange
-                let start = timeRange.start.seconds
-                let end = timeRange.end.seconds
-                let duration = timeRange.duration.seconds
-
-                // Validate the time fields for NaN and negative values
-                let correctedStart = (start.isNaN || start < 0) ? 0 : start
-                let correctedEnd = (end.isNaN || end < 0) ? 0 : end
-                let correctedDuration = (duration.isNaN || duration < 0) ? nil : duration
-
-                chapters.append(Chapter(title: title, startTime: correctedStart, endTime: correctedEnd, duration: correctedDuration))
-            }
-
-            // Sort chapters by start time, in ascending order
-            chapters.sort(by: {(c1, c2) -> Bool in c1.startTime < c2.startTime})
-
-            // Correct the (empty) chapter titles if required
-            for index in 0..<chapters.count {
-
-                // If no title is available, create a default one using the chapter index
-                if chapters[index].title.isEmptyAfterTrimming {
-                    chapters[index].title = String(format: "Chapter %d", index + 1)
-                }
-            }
+        // Each group represents one chapter
+        for group in chapterMetadataGroups {
+            
+            let title: String = getChapterTitle(group.items) ?? ""
+            
+            let timeRange = group.timeRange
+            let start = timeRange.start.seconds
+            let end = timeRange.end.seconds
+            let duration = timeRange.duration.seconds
+            
+            // Validate the time fields for NaN and negative values
+            let correctedStart = (start.isNaN || start < 0) ? 0 : start
+            let correctedEnd = (end.isNaN || end < 0) ? 0 : end
+            let correctedDuration = (duration.isNaN || duration < 0) ? nil : duration
+            
+            chapters.append(Chapter(title: title, startTime: correctedStart, endTime: correctedEnd, duration: correctedDuration))
         }
         
-        return chapters
-    }
-    
-    // On older systems (Sierra/HighSierra), the end times are not properly read by **AVFoundation**
-    // So, use start times to compute end times / duration
-    private func getChapters_olderSystems(for file: URL, from asset: AVURLAsset) -> [Chapter] {
+        // Sort chapters by start time, in ascending order
+        chapters.sort(by: {(c1, c2) -> Bool in c1.startTime < c2.startTime})
         
-        // First sort by startTime, then use start times to compute end times / durations.
-        
-        var chapters: [Chapter] = []
-        
-        if let langCode = asset.availableChapterLocales.first?.languageCode {
-
-            let chapterMetadataGroups = asset.chapterMetadataGroups(bestMatchingPreferredLanguages: [langCode])
-
-            // Collect title and start time from each group
-            var titlesAndStartTimes: [(title: String, startTime: Double)] =
-                chapterMetadataGroups.map {(getChapterTitle($0.items) ?? "", $0.timeRange.start.seconds)}
-
-            if titlesAndStartTimes.isEmpty {return chapters}
-
-            // Start times must be in ascending order
-            titlesAndStartTimes.sort(by: {$0.startTime < $1.startTime})
-
-            for index in 0..<titlesAndStartTimes.count {
-
-                let title = titlesAndStartTimes[index].title
-                let start = titlesAndStartTimes[index].startTime
-
-                // Use start times to compute end times and durations
-
-                let end = index == titlesAndStartTimes.count - 1 ? asset.duration.seconds : titlesAndStartTimes[index + 1].startTime
-                let duration = end - start
-
-                // Validate the time fields for NaN and negative values
-                let correctedStart = (start.isNaN || start < 0) ? 0 : start
-                let correctedEnd = (end.isNaN || end < 0) ? 0 : end
-                let correctedDuration = (duration.isNaN || duration < 0) ? nil : duration
-
-                chapters.append(Chapter(title: title, startTime: correctedStart, endTime: correctedEnd, duration: correctedDuration))
-            }
-
-            // Sort chapters by start time, in ascending order
-            chapters.sort(by: {(c1, c2) -> Bool in c1.startTime < c2.startTime})
-
-            // Correct the (empty) chapter titles if required
-            for index in 0..<chapters.count {
-
-                // If no title is available, create a default one using the chapter index
-                if chapters[index].title.isEmptyAfterTrimming {
-                    chapters[index].title = String(format: "Chapter %d", index + 1)
-                }
+        // Correct the (empty) chapter titles if required
+        for index in 0..<chapters.count {
+            
+            // If no title is available, create a default one using the chapter index
+            if chapters[index].title.isEmptyAfterTrimming {
+                chapters[index].title = String(format: "Chapter %d", index + 1)
             }
         }
         
