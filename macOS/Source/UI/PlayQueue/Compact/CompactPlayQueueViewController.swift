@@ -89,10 +89,10 @@ class CompactPlayQueueViewController: TrackListViewController {
         }
     }
     
+    // Drag / drop
     override func importTracks(from otherTable: NSTableView, sourceIndices: IndexSet, to destRow: Int) {
         
-        guard !trackList.isBeingModified,
-              let otherTableId = otherTable.identifier else {return}
+        guard let otherTableId = otherTable.identifier else {return}
         
         switch otherTableId {
             
