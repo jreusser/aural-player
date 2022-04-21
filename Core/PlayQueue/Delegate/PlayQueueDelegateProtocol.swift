@@ -5,6 +5,10 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol {
     // Whether or not tracks are being added to the play queue (which could be time consuming)
     var isBeingModified: Bool {get}
     
+    var currentTrack: Track? {get}
+    
+    var currentTrackIndex: Int? {get}
+    
     // MARK: Mutating functions ---------------------------------------------------------------
     
     // Adds tracks to the end of the queue, i.e. "Play Now" or "Play Later"

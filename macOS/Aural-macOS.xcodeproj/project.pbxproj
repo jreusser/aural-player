@@ -441,7 +441,6 @@
 		3E8FF9DE27F634D7009CEDDD /* MetadataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FF9DD27F634D7009CEDDD /* MetadataType.swift */; };
 		3E8FF9E027F63D9B009CEDDD /* PlayQueueNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FF9DF27F63D9B009CEDDD /* PlayQueueNotifications.swift */; };
 		3E8FF9E227F63E30009CEDDD /* PlayQueueTracksAddedNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FF9E127F63E30009CEDDD /* PlayQueueTracksAddedNotifications.swift */; };
-		3E8FF9E427F63E46009CEDDD /* PlayQueueTracksDragDroppedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FF9E327F63E46009CEDDD /* PlayQueueTracksDragDroppedNotification.swift */; };
 		3E91932425E0CE2500F30F81 /* FontSchemes.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E91932325E0CE2500F30F81 /* FontSchemes.xib */; };
 		3E91932925E0CF5D00F30F81 /* GeneralFontScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E91932825E0CF5D00F30F81 /* GeneralFontScheme.xib */; };
 		3E91932C25E0D96A00F30F81 /* GeneralFontSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E91932B25E0D96A00F30F81 /* GeneralFontSchemeViewController.swift */; };
@@ -579,6 +578,7 @@
 		3EC29A5A27865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
 		3EC29A5F27865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
 		3EC29A6027865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
+		3EC856A82811BA7000647CF4 /* CompactPlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* CompactPlayQueueViewController+ContextMenuController.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
 		3ECB54E825E552A9002259C4 /* ragingredlotus-bb.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3ECB54E625E552A1002259C4 /* ragingredlotus-bb.regular.ttf */; };
 		3ECB54EA25E552AC002259C4 /* shufen.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3ECB54E725E552A1002259C4 /* shufen.regular.ttf */; };
@@ -1839,7 +1839,6 @@
 		3E8FF9DD27F634D7009CEDDD /* MetadataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataType.swift; sourceTree = "<group>"; };
 		3E8FF9DF27F63D9B009CEDDD /* PlayQueueNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueNotifications.swift; sourceTree = "<group>"; };
 		3E8FF9E127F63E30009CEDDD /* PlayQueueTracksAddedNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueTracksAddedNotifications.swift; sourceTree = "<group>"; };
-		3E8FF9E327F63E46009CEDDD /* PlayQueueTracksDragDroppedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueTracksDragDroppedNotification.swift; sourceTree = "<group>"; };
 		3E9025AD268E830800C5A1C5 /* ArrayExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensionsTests.swift; sourceTree = "<group>"; };
 		3E9025AE268E830800C5A1C5 /* GroupingPlaylistTests+AddAndRemoveTracks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupingPlaylistTests+AddAndRemoveTracks.swift"; sourceTree = "<group>"; };
 		3E9025B0268E830800C5A1C5 /* ValueFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueFormatterTests.swift; sourceTree = "<group>"; };
@@ -2025,6 +2024,7 @@
 		3EC2975927864CD400B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EC29A5827865BC900B29551 /* MenuItemMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemMappable.swift; sourceTree = "<group>"; };
 		3EC29A5E27865CB500B29551 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		3EC856A72811BA7000647CF4 /* CompactPlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompactPlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
 		3ECB54E625E552A1002259C4 /* ragingredlotus-bb.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ragingredlotus-bb.regular.ttf"; sourceTree = "<group>"; };
 		3ECB54E725E552A1002259C4 /* shufen.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shufen.regular.ttf; sourceTree = "<group>"; };
@@ -2588,6 +2588,7 @@
 			children = (
 				3E25B65527F7875700D10A5F /* CompactPlayQueue.xib */,
 				3E25B65A27F78EE100D10A5F /* CompactPlayQueueViewController.swift */,
+				3EC856A72811BA7000647CF4 /* CompactPlayQueueViewController+ContextMenuController.swift */,
 			);
 			path = Compact;
 			sourceTree = "<group>";
@@ -5009,7 +5010,6 @@
 				3EFE377027864895006F8B8C /* Commands */,
 				3EFE377527864895006F8B8C /* ChapterChangedNotification.swift */,
 				3E8FF9E127F63E30009CEDDD /* PlayQueueTracksAddedNotifications.swift */,
-				3E8FF9E327F63E46009CEDDD /* PlayQueueTracksDragDroppedNotification.swift */,
 			);
 			path = NotificationDefinitions;
 			sourceTree = "<group>";
@@ -5722,6 +5722,7 @@
 				3EAFB60F267FF35900F0DC96 /* EffectsUnitSliderCell.swift in Sources */,
 				3EFE3A1727864898006F8B8C /* AppearanceNotifications.swift in Sources */,
 				3EFE38D327864896006F8B8C /* MasterUnitDelegate.swift in Sources */,
+				3EC856A82811BA7000647CF4 /* CompactPlayQueueViewController+ContextMenuController.swift in Sources */,
 				3EAFB617267FF4C200F0DC96 /* EffectsSliderPreviewCell.swift in Sources */,
 				3EBF29332686979700D87021 /* EffectsTextButtonCell.swift in Sources */,
 				3EFE392F27864897006F8B8C /* TimeIntervalFormatter.swift in Sources */,
@@ -5918,7 +5919,6 @@
 				3EFE394F27864897006F8B8C /* ShuffleMode.swift in Sources */,
 				3EEFF58B27DE842C002CB0FE /* PlayQueue.swift in Sources */,
 				3EAFB611267FF3FE00F0DC96 /* MenuBarSeekSliderCell.swift in Sources */,
-				3E8FF9E427F63E46009CEDDD /* PlayQueueTracksDragDroppedNotification.swift in Sources */,
 				3EEC04232687AB76004478CE /* MenuBarSeekSliderView.swift in Sources */,
 				3EAFB613267FF42E00F0DC96 /* MenuBarVolumeSliderCell.swift in Sources */,
 				3EFE3A6127864898006F8B8C /* MusicBrainzRelease.swift in Sources */,

@@ -80,11 +80,11 @@ class WindowedModePlaybackViewController: PlaybackViewController {
     }
     
     func playTrackWithIndex(_ trackIndex: Int) {
-        player.play(trackIndex, PlaybackParams.defaultParams())
+        player.play(trackIndex, .defaultParams())
     }
     
     func playTrack(_ track: Track) {
-        player.play(track, PlaybackParams.defaultParams())
+        player.play(track, .defaultParams())
     }
     
 //    func playGroup(_ group: Group) {

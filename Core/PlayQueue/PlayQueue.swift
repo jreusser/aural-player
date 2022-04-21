@@ -7,11 +7,11 @@ class PlayQueue: TrackList, PlayQueueProtocol, TrackLoaderObserver, PersistentMo
     // Stores the currently playing track, if there is one
     var currentTrack: Track? {
         
-        guard let index = curTrackIndex else {return nil}
+        guard let index = currentTrackIndex else {return nil}
         return self[index]
     }
     
-    var curTrackIndex: Int? = nil
+    var currentTrackIndex: Int? = nil
 
     var repeatMode: RepeatMode = .defaultMode
     var shuffleMode: ShuffleMode = .defaultMode
@@ -56,7 +56,7 @@ class PlayQueue: TrackList, PlayQueueProtocol, TrackLoaderObserver, PersistentMo
 
     func enqueueTracksAfterCurrentTrack(_ newTracks: [Track]) -> ClosedRange<Int> {
         
-        guard let curTrackIndex = self.curTrackIndex else {
+        guard let curTrackIndex = self.currentTrackIndex else {
             return enqueueTracks(newTracks)
         }
         
@@ -79,8 +79,8 @@ class PlayQueue: TrackList, PlayQueueProtocol, TrackLoaderObserver, PersistentMo
         let indices = super.insertTracks(newTracks, at: insertionIndex)
         
         // Check if the new tracks were inserted above (<) or below (>) the playing track index.
-        if let playingTrackIndex = curTrackIndex, insertionIndex <= playingTrackIndex {
-            curTrackIndex = playingTrackIndex + newTracks.count
+        if let playingTrackIndex = currentTrackIndex, insertionIndex <= playingTrackIndex {
+            currentTrackIndex = playingTrackIndex + newTracks.count
         }
         
         return indices
@@ -90,7 +90,7 @@ class PlayQueue: TrackList, PlayQueueProtocol, TrackLoaderObserver, PersistentMo
 
         let removedTracks = super.removeTracks(at: indexes)
 
-        if let playingTrackIndex = curTrackIndex {
+        if let playingTrackIndex = currentTrackIndex {
 
             // Playing track removed
             if indexes.contains(playingTrackIndex) {
@@ -99,7 +99,7 @@ class PlayQueue: TrackList, PlayQueueProtocol, TrackLoaderObserver, PersistentMo
             } else {
 
                 // Compute how many tracks above (i.e. <) playingTrackIndex were removed ... this will determine the adjustment to the playing track index.
-                curTrackIndex = playingTrackIndex - (indexes.filter {$0 < playingTrackIndex}.count)
+                currentTrackIndex = playingTrackIndex - (indexes.filter {$0 < playingTrackIndex}.count)
             }
         }
 
@@ -134,14 +134,19 @@ class PlayQueue: TrackList, PlayQueueProtocol, TrackLoaderObserver, PersistentMo
 
     private func doMoveTracks(_ moveOperation: () -> [TrackMoveResult]) -> [TrackMoveResult] {
 
+        let playingTrack = currentTrack
         let moveResults = moveOperation()
 
         // If the playing track was moved, update the index of the playing track within the sequence
         
-        if let playingTrackIndex = curTrackIndex,
-           let newPlayingTrackIndex = moveResults.first(where: {$0.sourceIndex == playingTrackIndex})?.destinationIndex {
+        // TODO: Looking up index of the playing track is not very efficient ... this should be calculated
+        // from the move results ... and move results need to be improved to include the rows which were
+        // indirectly affected by the move (cascaded up / down).
+        
+        if let playingTrack = playingTrack,
+           let newPlayingTrackIndex = indexOfTrack(playingTrack) {
             
-            curTrackIndex = newPlayingTrackIndex
+            currentTrackIndex = newPlayingTrackIndex
         }
 
         return moveResults

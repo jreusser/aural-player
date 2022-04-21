@@ -25,6 +25,14 @@ class CompactPlayQueueViewController: TrackListViewController {
     
     override var trackList: TrackListProtocol! {playQueueDelegate}
     
+    // MARK: Menu items (for menu delegate)
+    
+    @IBOutlet weak var playNowMenuItem: NSMenuItem!
+    @IBOutlet weak var playNextMenuItem: NSMenuItem!
+    
+    @IBOutlet weak var favoritesMenuItem: NSMenuItem!
+    @IBOutlet weak var infoMenuItem: NSMenuItem!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -131,9 +139,7 @@ class CompactPlayQueueViewController: TrackListViewController {
     // MARK: Actions --------------------------------------------------------------------------------------------------------
     
     @IBAction func tableDoubleClickAction(_ sender: NSTableView) {
-        
-        guard let trackIndex = selectedRows.first else {return}
-        player.play(trackIndex, .defaultParams())
+        playSelectedTrack()
     }
     
     @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {
@@ -216,7 +222,7 @@ class CompactPlayQueueViewController: TrackListViewController {
     
     // MARK: Commands --------------------------------------------------------------------------------------------------------
     
-    private func playSelectedTrack() {
+    func playSelectedTrack() {
         
         if let firstSelectedRow = selectedRows.min() {
             messenger.publish(TrackPlaybackCommandNotification(index: firstSelectedRow))

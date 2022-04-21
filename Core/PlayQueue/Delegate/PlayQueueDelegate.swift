@@ -29,6 +29,10 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
 
     var isBeingModified: Bool {addSession != nil}
     
+    var currentTrack: Track? {playQueue.currentTrack}
+    
+    var currentTrackIndex: Int? {playQueue.currentTrackIndex}
+    
     lazy var messenger: Messenger = .init(for: self)
     
     private let persistentTracks: [URL]?

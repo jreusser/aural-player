@@ -4,6 +4,10 @@ typealias RepeatAndShuffleModes = (repeatMode: RepeatMode, shuffleMode: ShuffleM
 
 protocol PlayQueueProtocol: TrackListProtocol, SequencingProtocol {
     
+    var currentTrack: Track? {get}
+    
+    var currentTrackIndex: Int? {get}
+    
     // MARK: Mutating functions ---------------------------------------------------------------
     
     // Adds tracks to the end of the queue, i.e. "Play Later"
