@@ -105,12 +105,30 @@ class CompactPlayQueueViewController: TrackListViewController {
         removeTracks()
     }
     
+    override func removeTracks() {
+        
+        super.removeTracks()
+        messenger.publish(.playQueue_updateSummary)
+    }
+    
     @IBAction func cropSelectionAction(_ sender: NSButton) {
         cropSelection()
     }
     
+    override func cropSelection() {
+        
+        super.cropSelection()
+        messenger.publish(.playQueue_updateSummary)
+    }
+    
     @IBAction func removeAllTracksAction(_ sender: NSButton) {
         removeAllTracks()
+    }
+    
+    override func removeAllTracks() {
+        
+        super.removeAllTracks()
+        messenger.publish(.playQueue_updateSummary)
     }
     
     @IBAction func moveTracksUpAction(_ sender: NSButton) {

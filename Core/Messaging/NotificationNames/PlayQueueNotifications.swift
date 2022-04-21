@@ -32,6 +32,9 @@ extension Notification.Name {
     
     static let playQueue_sorted = Notification.Name("playQueue_sorted")
     
+    // Signifies that the summary for the play queue needs to be updated.
+    static let playQueue_updateSummary = Notification.Name("playQueue_updateSummary")
+    
     // ----------------------------------------------------------------------------------------
     
     // MARK: Play Queue commands

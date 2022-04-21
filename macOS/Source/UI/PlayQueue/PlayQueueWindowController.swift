@@ -68,6 +68,8 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: updateSummary)
         
+        messenger.subscribe(to: .playQueue_updateSummary, handler: updateSummary)
+        
         updateSummary()
     }
     

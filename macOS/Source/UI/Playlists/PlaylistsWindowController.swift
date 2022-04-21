@@ -63,7 +63,7 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
         messenger.subscribeAsync(to: .playlists_startedAddingTracks, handler: startedAddingTracks)
         messenger.subscribeAsync(to: .playlists_doneAddingTracks, handler: doneAddingTracks)
         
-        messenger.subscribeAsync(to: .playlists_updateSummary, handler: updateSummary)
+        messenger.subscribe(to: .playlists_updateSummary, handler: updateSummary)
 
         colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
         colorSchemesManager.registerObservers([btnClose, btnCreatePlaylist, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)
