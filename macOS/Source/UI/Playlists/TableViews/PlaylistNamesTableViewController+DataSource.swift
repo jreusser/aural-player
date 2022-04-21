@@ -49,30 +49,31 @@ extension PlaylistNamesTableViewController: NSTableViewDataSource {
     // Performs the drop
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
-        guard let sourcePlaylist = playlistsUIState.displayedPlaylist,
-                let sourceIndices = info.sourceIndexes else {return false}
-        
         let destinationPlaylist = playlistsManager.userDefinedObjects[row]
         
         // 1 - Neither source nor destination playlist should be being modified.
         // 2 - Cannot drag onto the same playlist.
         
-        guard sourcePlaylist != destinationPlaylist,
-              !sourcePlaylist.isBeingModified,
-              !destinationPlaylist.isBeingModified,
+        guard !destinationPlaylist.isBeingModified,
               let otherTable = info.draggingSource as? NSTableView,
-              let otherTableId = otherTable.identifier else {return false}
+              let otherTableId = otherTable.identifier,
+              let sourceIndices = info.sourceIndexes else {return false}
         
         switch otherTableId {
             
         case .tableId_playlist:
             
+            guard let sourcePlaylist = playlistsUIState.displayedPlaylist,
+                  sourcePlaylist != destinationPlaylist,
+                  !sourcePlaylist.isBeingModified else {return false}
+            
             importTracksFromPlaylist(sourcePlaylist, intoPlaylist: destinationPlaylist, sourceIndices: sourceIndices)
             return true
             
-//        case .tableId_compactPlayQueue:
-//            
-//            // TODO
+        case .tableId_compactPlayQueue:
+
+            importTracksFromPlayQueue(intoPlaylist: destinationPlaylist, sourceIndices: sourceIndices)
+            return true
             
         default:
             
@@ -82,5 +83,14 @@ extension PlaylistNamesTableViewController: NSTableViewDataSource {
     
     private func importTracksFromPlaylist(_ sourcePlaylist: Playlist, intoPlaylist destinationPlaylist: Playlist, sourceIndices: IndexSet) {
         destinationPlaylist.addTracks(sourcePlaylist[sourceIndices])
+    }
+    
+    private func importTracksFromPlayQueue(intoPlaylist destinationPlaylist: Playlist, sourceIndices: IndexSet) {
+        
+        let destinationIndices = destinationPlaylist.addTracks(playQueueDelegate[sourceIndices])
+        
+        if destinationPlaylist == playlistsUIState.displayedPlaylist {
+            messenger.publish(PlaylistTracksAddedNotification(playlistName: destinationPlaylist.name, trackIndices: destinationIndices))
+        }
     }
 }
