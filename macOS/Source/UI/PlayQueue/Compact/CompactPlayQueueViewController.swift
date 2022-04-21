@@ -138,7 +138,7 @@ class CompactPlayQueueViewController: TrackListViewController {
     
     // MARK: Actions --------------------------------------------------------------------------------------------------------
     
-    @IBAction func tableDoubleClickAction(_ sender: NSTableView) {
+    @IBAction func playNowAction(_ sender: Any) {
         playSelectedTrack()
     }
     
@@ -146,7 +146,7 @@ class CompactPlayQueueViewController: TrackListViewController {
         importFilesAndFolders()
     }
     
-    @IBAction func removeTracksAction(_ sender: NSButton) {
+    @IBAction func removeTracksAction(_ sender: Any) {
         removeTracks()
     }
     
@@ -156,7 +156,7 @@ class CompactPlayQueueViewController: TrackListViewController {
         messenger.publish(.playQueue_updateSummary)
     }
     
-    @IBAction func cropSelectionAction(_ sender: NSButton) {
+    @IBAction func cropSelectionAction(_ sender: Any) {
         cropSelection()
     }
     
@@ -176,19 +176,19 @@ class CompactPlayQueueViewController: TrackListViewController {
         messenger.publish(.playQueue_updateSummary)
     }
     
-    @IBAction func moveTracksUpAction(_ sender: NSButton) {
+    @IBAction func moveTracksUpAction(_ sender: Any) {
         moveTracksUp()
     }
     
-    @IBAction func moveTracksDownAction(_ sender: NSButton) {
+    @IBAction func moveTracksDownAction(_ sender: Any) {
         moveTracksDown()
     }
     
-    @IBAction func moveTracksToTopAction(_ sender: NSButton) {
+    @IBAction func moveTracksToTopAction(_ sender: Any) {
         moveTracksToTop()
     }
     
-    @IBAction func moveTracksToBottomAction(_ sender: NSButton) {
+    @IBAction func moveTracksToBottomAction(_ sender: Any) {
         moveTracksToBottom()
     }
     

@@ -146,7 +146,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
-                                    <action trigger="doubleAction" selector="tableDoubleClickAction:" target="-2" id="43x-Aw-gke"/>
+                                    <action trigger="doubleAction" selector="playNowAction:" target="-2" id="ag0-bH-OaU"/>
                                     <outlet property="dataSource" destination="-2" id="Mwz-mF-1kU"/>
                                     <outlet property="delegate" destination="-2" id="ued-SD-WDl"/>
                                     <outlet property="menu" destination="a5D-eN-GSW" id="IPH-hS-neU"/>
@@ -178,7 +178,7 @@
                 <menuItem title="  Play now" image="play" catalog="system" id="jTl-IJ-icl">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="playNowAction:" target="-2" id="2eh-Nh-JCS"/>
+                        <action selector="playNowAction:" target="-2" id="m1R-dI-vVv"/>
                     </connections>
                 </menuItem>
                 <menuItem title="  Play next" image="list.dash" catalog="system" id="557-bs-7lR">
@@ -188,22 +188,34 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="KDo-db-t71"/>
-                <menuItem title="  Move this track up" image="arrow.up" catalog="system" id="Q39-Yy-l6l" userLabel="Move track up">
+                <menuItem title="  Move these tracks up" image="arrow.up" catalog="system" id="Q39-Yy-l6l" userLabel="Move tracks up">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="moveTracksUpAction:" target="-2" id="6dC-NV-hw6"/>
+                    </connections>
                 </menuItem>
-                <menuItem title="  Move this track down" image="arrow.down" catalog="system" id="UXX-38-q2a" userLabel="Move track down">
+                <menuItem title="  Move these tracks down" image="arrow.down" catalog="system" id="UXX-38-q2a" userLabel="Move tracks down">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="moveTracksDownAction:" target="-2" id="tQR-DF-WNc"/>
+                    </connections>
                 </menuItem>
-                <menuItem title="  Move this track to the top" image="arrow.up.to.line.alt" catalog="system" id="7v6-tI-nVD" userLabel="Move track top">
+                <menuItem title="  Move these tracks to the top" image="arrow.up.to.line.alt" catalog="system" id="7v6-tI-nVD" userLabel="Move tracks top">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="moveTracksToTopAction:" target="-2" id="nZx-TU-Asb"/>
+                    </connections>
                 </menuItem>
-                <menuItem title="  Move this track to the bottom" image="arrow.down.to.line.alt" catalog="system" id="QwL-kJ-9Yv" userLabel="Move track bottom">
+                <menuItem title="  Move these tracks to the bottom" image="arrow.down.to.line.alt" catalog="system" id="QwL-kJ-9Yv" userLabel="Move tracks bottom">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="moveTracksToBottomAction:" target="-2" id="Gxk-HC-Ocy"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="n6M-3F-fnb"/>
-                <menuItem title="  Copy this track to playlist" image="doc.on.clipboard" catalog="system" id="NKJ-IV-vNC" userLabel="Copy this track to playlist">
+                <menuItem title="  Copy these tracks to playlist" image="doc.on.clipboard" catalog="system" id="NKJ-IV-vNC" userLabel="Copy these tracks to playlist">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" id="8qW-Wx-JfH">
+                    <menu key="submenu" title="  Copy these tracks to playlist" id="8qW-Wx-JfH">
                         <items>
                             <menuItem title="Item 1" id="Mgs-1P-cTf">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -217,7 +229,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="  Remove this track" image="xmark.bin" catalog="system" id="hBY-5o-I8Z" userLabel="Remove track">
+                <menuItem title="  Remove these tracks" image="xmark.bin" catalog="system" id="hBY-5o-I8Z" userLabel="Remove tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="vxS-3G-8Vh"/>
@@ -234,7 +246,7 @@
                     <imageReference key="image" image="info" catalog="system" symbolScale="large"/>
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="  Show this track in Finder" image="ShowInFinder" id="2va-tB-KRm" userLabel="Show track in Finder">
+                <menuItem title="  Show these tracks in Finder" image="ShowInFinder" id="2va-tB-KRm" userLabel="Show track in Finder">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
             </items>

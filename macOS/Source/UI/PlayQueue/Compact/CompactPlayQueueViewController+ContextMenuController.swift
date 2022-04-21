@@ -23,10 +23,6 @@ extension CompactPlayQueueViewController: NSMenuDelegate {
         playNextMenuItem.enableIf(oneRowSelected && playQueueDelegate.currentTrack != nil)
     }
     
-    @IBAction func playNowAction(_ sender: NSMenuItem) {
-        playSelectedTrack()
-    }
-    
     @IBAction func playNextAction(_ sender: NSMenuItem) {
         
         guard let selectedTrackIndex = selectedRows.first,
