@@ -53,7 +53,14 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, Destroyable {
         tabViewControllers = [metadataViewController, lyricsViewController, coverArtViewController,
                            audioViewController, fileSystemViewController]
         
-        tabView.addViewsForTabs(tabViewControllers.map {$0.view})
+        let tabViews = tabViewControllers.map {$0.view}
+        
+        tabView.addViewsForTabs(tabViews)
+        
+        tabViews.forEach {
+            $0.anchorToSuperview()
+        }
+        
         tabView.selectTabViewItem(at: 0)
         
         // Only respond to these notifications when the popover is shown, the updated track matches the displayed track,

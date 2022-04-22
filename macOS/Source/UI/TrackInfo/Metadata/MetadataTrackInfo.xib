@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    MetadataTrackInfo.xib
-    Aural
-
-    Copyright © 2021 Kartik Venugopal. All rights reserved.
-
-    This software is licensed under the MIT software license.
-    See the file "LICENSE" in the project root directory for license terms.
-
--->
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -29,15 +18,14 @@
             <rect key="frame" x="0.0" y="0.0" width="525" height="265"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView appearanceType="darkAqua" fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="202" horizontalPageScroll="10" verticalLineScroll="202" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtu-Br-Hcp" userLabel="Metadata Table">
-                    <rect key="frame" x="0.0" y="0.0" width="525" height="260"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                <scrollView appearanceType="darkAqua" borderType="none" autohidesScrollers="YES" horizontalLineScroll="202" horizontalPageScroll="10" verticalLineScroll="202" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtu-Br-Hcp" userLabel="Metadata Table">
+                    <rect key="frame" x="0.0" y="0.0" width="525" height="265"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="nH9-cc-blZ">
-                        <rect key="frame" x="0.0" y="0.0" width="525" height="260"/>
+                        <rect key="frame" x="0.0" y="0.0" width="525" height="265"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" tableStyle="plain" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="200" rowSizeStyle="automatic" viewBased="YES" id="hxq-Uy-1B0" userLabel="Metadata Table View">
-                                <rect key="frame" x="0.0" y="0.0" width="525" height="260"/>
+                                <rect key="frame" x="0.0" y="0.0" width="525" height="265"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
@@ -127,6 +115,12 @@
                     </scroller>
                 </scrollView>
             </subviews>
+            <constraints>
+                <constraint firstItem="mtu-Br-Hcp" firstAttribute="top" secondItem="k9f-Xp-VLt" secondAttribute="top" id="QQA-V1-57z"/>
+                <constraint firstAttribute="bottom" secondItem="mtu-Br-Hcp" secondAttribute="bottom" id="UOD-w8-58Z"/>
+                <constraint firstItem="mtu-Br-Hcp" firstAttribute="leading" secondItem="k9f-Xp-VLt" secondAttribute="leading" id="n7a-rS-7wb"/>
+                <constraint firstAttribute="trailing" secondItem="mtu-Br-Hcp" secondAttribute="trailing" id="ntY-8k-Iv9"/>
+            </constraints>
             <point key="canvasLocation" x="-236" y="132"/>
         </view>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>

@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    AudioTrackInfo.xib
-    Aural
-
-    Copyright © 2021 Kartik Venugopal. All rights reserved.
-
-    This software is licensed under the MIT software license.
-    See the file "LICENSE" in the project root directory for license terms.
-
--->
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -30,15 +19,14 @@
             <rect key="frame" x="0.0" y="0.0" width="525" height="265"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView appearanceType="darkAqua" fixedFrame="YES" borderType="none" horizontalLineScroll="202" horizontalPageScroll="10" verticalLineScroll="202" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuG-kN-0NT" userLabel="Audio Table">
-                    <rect key="frame" x="0.0" y="0.0" width="510" height="260"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                <scrollView appearanceType="darkAqua" borderType="none" horizontalLineScroll="202" horizontalPageScroll="10" verticalLineScroll="202" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuG-kN-0NT" userLabel="Audio Table">
+                    <rect key="frame" x="0.0" y="0.0" width="525" height="265"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="mcN-K1-uGg">
-                        <rect key="frame" x="0.0" y="0.0" width="510" height="260"/>
+                        <rect key="frame" x="0.0" y="0.0" width="525" height="265"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" tableStyle="plain" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="200" rowSizeStyle="automatic" viewBased="YES" id="vJv-ME-CQA" userLabel="Audio Table View">
-                                <rect key="frame" x="0.0" y="0.0" width="510" height="260"/>
+                                <rect key="frame" x="0.0" y="0.0" width="525" height="265"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
@@ -127,6 +115,12 @@
                     </scroller>
                 </scrollView>
             </subviews>
+            <constraints>
+                <constraint firstItem="kuG-kN-0NT" firstAttribute="top" secondItem="spf-5O-O8N" secondAttribute="top" id="7Fd-dE-qiF"/>
+                <constraint firstAttribute="bottom" secondItem="kuG-kN-0NT" secondAttribute="bottom" id="NfM-Aj-vfq"/>
+                <constraint firstAttribute="trailing" secondItem="kuG-kN-0NT" secondAttribute="trailing" id="avL-Va-NhK"/>
+                <constraint firstItem="kuG-kN-0NT" firstAttribute="leading" secondItem="spf-5O-O8N" secondAttribute="leading" id="vlr-xA-wpt"/>
+            </constraints>
             <point key="canvasLocation" x="11" y="487"/>
         </view>
         <customObject id="I5d-U7-Kin" customClass="AudioTrackInfoViewDelegate" customModule="Aural" customModuleProvider="target">

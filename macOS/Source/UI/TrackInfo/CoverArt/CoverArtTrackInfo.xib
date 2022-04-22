@@ -21,9 +21,21 @@
             <rect key="frame" x="0.0" y="0.0" width="525" height="265"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView appearanceType="darkAqua" fixedFrame="YES" borderType="none" horizontalLineScroll="200" horizontalPageScroll="10" verticalLineScroll="200" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWP-ca-fk8" userLabel="Cover Art Table">
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vod-w3-hfk" userLabel="Artwork" customClass="RoundedImageView" customModule="Aural" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="3" width="260" height="260"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="260" id="Q1x-VE-GK2"/>
+                        <constraint firstAttribute="height" constant="260" id="Y1U-LU-cdv"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="fwk-AN-HtG"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="roundingRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <scrollView appearanceType="darkAqua" borderType="none" horizontalLineScroll="200" horizontalPageScroll="10" verticalLineScroll="200" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWP-ca-fk8" userLabel="Cover Art Table">
                     <rect key="frame" x="280" y="33" width="245" height="200"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="EDn-FI-Cp9">
                         <rect key="frame" x="0.0" y="0.0" width="245" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -117,19 +129,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vod-w3-hfk" userLabel="Artwork" customClass="RoundedImageView" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="3" width="260" height="260"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="fwk-AN-HtG"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="roundingRadius">
-                            <real key="value" value="8"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </imageView>
-                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d00-kB-O0G">
-                    <rect key="frame" x="135" y="239" width="250" height="25"/>
-                    <autoresizingMask key="autoresizingMask"/>
+                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d00-kB-O0G">
+                    <rect key="frame" x="138" y="239" width="250" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="1Oc-5b-ucn"/>
+                        <constraint firstAttribute="width" constant="246" id="tzT-jD-4cw"/>
+                    </constraints>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="&lt; No cover art available for this track &gt;" id="XJ3-DE-sA3">
                         <font key="font" size="13" name="Play-Regular"/>
                         <color key="textColor" white="0.69598680899999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -137,6 +142,18 @@
                     </textFieldCell>
                 </textField>
             </subviews>
+            <constraints>
+                <constraint firstItem="RWP-ca-fk8" firstAttribute="top" secondItem="d00-kB-O0G" secondAttribute="bottom" constant="6" id="13l-gP-pxn"/>
+                <constraint firstItem="Vod-w3-hfk" firstAttribute="leading" secondItem="Ul4-Ea-95e" secondAttribute="leading" id="2BN-Iz-okl"/>
+                <constraint firstAttribute="bottom" secondItem="Vod-w3-hfk" secondAttribute="bottom" constant="3" id="E1K-15-fzy"/>
+                <constraint firstItem="d00-kB-O0G" firstAttribute="centerX" secondItem="Ul4-Ea-95e" secondAttribute="centerX" id="Ffe-Xc-5ji"/>
+                <constraint firstItem="Vod-w3-hfk" firstAttribute="leading" secondItem="Ul4-Ea-95e" secondAttribute="leading" id="NOY-TR-lrg"/>
+                <constraint firstItem="Vod-w3-hfk" firstAttribute="top" secondItem="Ul4-Ea-95e" secondAttribute="top" constant="2" id="ZBJ-Vs-hw3"/>
+                <constraint firstItem="RWP-ca-fk8" firstAttribute="leading" secondItem="Vod-w3-hfk" secondAttribute="trailing" constant="20" id="kvv-H9-btm"/>
+                <constraint firstItem="d00-kB-O0G" firstAttribute="top" secondItem="Ul4-Ea-95e" secondAttribute="top" constant="1" id="nVF-Hi-KBn"/>
+                <constraint firstAttribute="bottom" secondItem="RWP-ca-fk8" secondAttribute="bottom" constant="33" id="oMg-th-fzX"/>
+                <constraint firstAttribute="trailing" secondItem="RWP-ca-fk8" secondAttribute="trailing" id="px0-dk-si4"/>
+            </constraints>
             <point key="canvasLocation" x="-260" y="-180"/>
         </view>
         <customObject id="z4A-h9-oAa" customClass="CoverArtTrackInfoViewDelegate" customModule="Aural" customModuleProvider="target">
