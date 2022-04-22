@@ -31,6 +31,9 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, Destroyable {
     
     @IBOutlet weak var tabView: AuralTabView!
     
+    @IBOutlet weak var lblMainCaption: NSTextField!
+    @IBOutlet weak var lblTabCaption: NSTextField!
+    
     @IBOutlet weak var exportArtMenuItem: NSMenuItem!
     @IBOutlet weak var exportHTMLWithArtMenuItem: NSMenuItem!
     
@@ -75,6 +78,12 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, Destroyable {
         
         super.viewWillAppear()
         tabViewControllers.forEach {$0.refresh()}
+        
+        lblMainCaption.font = systemFontScheme.effects.unitCaptionFont
+        lblMainCaption.textColor = systemColorScheme.captionTextColor
+        
+        lblTabCaption.font = systemFontScheme.effects.unitCaptionFont
+        lblTabCaption.textColor = systemColorScheme.captionTextColor
     }
     
     func destroy() {
