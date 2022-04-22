@@ -14,6 +14,8 @@ import Cocoa
 */
 class DetailedTrackInfoViewController: SingletonPopoverViewController, NSMenuDelegate {
     
+    override var nibName: String? {"TrackInfo"}
+    
     @IBOutlet weak var tabView: AuralTabView!
     
     @IBOutlet weak var exportArtMenuItem: NSMenuItem!
@@ -34,8 +36,6 @@ class DetailedTrackInfoViewController: SingletonPopoverViewController, NSMenuDel
     var attachedToPlayer: Bool = true
     
     private lazy var dateFormatter: DateFormatter = DateFormatter(format: "MMMM dd, yyyy 'at' hh:mm:ss a")
-    
-    override var nibName: String? {"DetailedTrackInfo"}
     
     private lazy var messenger = Messenger(for: self)
     

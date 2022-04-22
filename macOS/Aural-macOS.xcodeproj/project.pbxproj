@@ -384,7 +384,7 @@
 		3E6C12FE25CEBE8F00BF0D07 /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C104625CEB98600BF0D07 /* PlaybackView.swift */; };
 		3E6C12FF25CEBE8F00BF0D07 /* PlayerViewPopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C104B25CEB98600BF0D07 /* PlayerViewPopupMenuController.swift */; };
 		3E6C130125CEBE8F00BF0D07 /* JumpToTimeEditorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C104D25CEB98600BF0D07 /* JumpToTimeEditorWindowController.swift */; };
-		3E6C130225CEBE8F00BF0D07 /* DetailedTrackInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C103D25CEB98600BF0D07 /* DetailedTrackInfo.xib */; };
+		3E6C130225CEBE8F00BF0D07 /* TrackInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C103D25CEB98600BF0D07 /* TrackInfo.xib */; };
 		3E6C130325CEBE8F00BF0D07 /* MetadataTrackInfoViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C103725CEB98600BF0D07 /* MetadataTrackInfoViewDelegate.swift */; };
 		3E6C130425CEBE8F00BF0D07 /* PlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C104725CEB98600BF0D07 /* PlaybackViewController.swift */; };
 		3E6C130525CEBE8F00BF0D07 /* WindowLayoutsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C105025CEB98600BF0D07 /* WindowLayoutsManager.swift */; };
@@ -1774,7 +1774,7 @@
 		3E6C103A25CEB98600BF0D07 /* DetailedTrackInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTrackInfoViewController.swift; sourceTree = "<group>"; };
 		3E6C103B25CEB98600BF0D07 /* FileSystemTrackInfoViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemTrackInfoViewDelegate.swift; sourceTree = "<group>"; };
 		3E6C103C25CEB98600BF0D07 /* CoverArtTrackInfoViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverArtTrackInfoViewDelegate.swift; sourceTree = "<group>"; };
-		3E6C103D25CEB98600BF0D07 /* DetailedTrackInfo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailedTrackInfo.xib; sourceTree = "<group>"; };
+		3E6C103D25CEB98600BF0D07 /* TrackInfo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackInfo.xib; sourceTree = "<group>"; };
 		3E6C103E25CEB98600BF0D07 /* AudioTrackInfoViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrackInfoViewDelegate.swift; sourceTree = "<group>"; };
 		3E6C104225CEB98600BF0D07 /* Player.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Player.xib; sourceTree = "<group>"; };
 		3E6C104425CEB98600BF0D07 /* SeekSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekSliderView.swift; sourceTree = "<group>"; };
@@ -2942,6 +2942,7 @@
 				3E6C0FDD25CEB98600BF0D07 /* MenuControllers */,
 				3E6C0F1D25CEB98500BF0D07 /* MainWindow */,
 				3E6C101A25CEB98600BF0D07 /* Player */,
+				3E6C103625CEB98600BF0D07 /* TrackInfo */,
 				3E25B64C27F7812500D10A5F /* PlayQueue */,
 				3E2A2A00280909D2000F0539 /* Playlists */,
 				3E6C0F3B25CEB98600BF0D07 /* Playlist */,
@@ -3536,7 +3537,6 @@
 				3E6C101F25CEB98600BF0D07 /* PlayerUIState.swift */,
 				3E6C101B25CEB98600BF0D07 /* PlayingTrackFunctions */,
 				3E6C102325CEB98600BF0D07 /* PlayingTrack */,
-				3E6C103625CEB98600BF0D07 /* DetailedTrackInfo */,
 				3E6C104325CEB98600BF0D07 /* Controls */,
 				3E6C104C25CEB98600BF0D07 /* JumpToTime */,
 			);
@@ -3573,10 +3573,10 @@
 			path = InfoPopup;
 			sourceTree = "<group>";
 		};
-		3E6C103625CEB98600BF0D07 /* DetailedTrackInfo */ = {
+		3E6C103625CEB98600BF0D07 /* TrackInfo */ = {
 			isa = PBXGroup;
 			children = (
-				3E6C103D25CEB98600BF0D07 /* DetailedTrackInfo.xib */,
+				3E6C103D25CEB98600BF0D07 /* TrackInfo.xib */,
 				3E6C103A25CEB98600BF0D07 /* DetailedTrackInfoViewController.swift */,
 				3EFB9ED226A68A2400EA8440 /* TrackInfoViewDelegate.swift */,
 				3EBF2930268696FA00D87021 /* TrackInfoPopoverTabButtonCell.swift */,
@@ -3587,7 +3587,7 @@
 				3E36BD3726A68F7000B6E28B /* Audio */,
 				3E36BD3826A68F7F00B6E28B /* FileSystem */,
 			);
-			path = DetailedTrackInfo;
+			path = TrackInfo;
 			sourceTree = "<group>";
 		};
 		3E6C104325CEB98600BF0D07 /* Controls */ = {
@@ -5428,7 +5428,7 @@
 				3E6C12C825CEBE6700BF0D07 /* ReverbUnit.xib in Resources */,
 				3EC2975A27864CD400B29551 /* Aural.xcassets in Resources */,
 				3E6C121D25CEBDE600BF0D07 /* Preferences.xib in Resources */,
-				3E6C130225CEBE8F00BF0D07 /* DetailedTrackInfo.xib in Resources */,
+				3E6C130225CEBE8F00BF0D07 /* TrackInfo.xib in Resources */,
 				3E6C12EE25CEBE8100BF0D07 /* FilterBand.xib in Resources */,
 				3E6C121525CEBDE500BF0D07 /* ViewPreferences.xib in Resources */,
 				3E6C126125CEBE0600BF0D07 /* LayoutsManager.xib in Resources */,
