@@ -19,15 +19,13 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="DlG-hJ-3cs" customClass="PlayingTrackFunctionsViewController" customModule="Aural" customModuleProvider="target">
+        <customObject id="DlG-hJ-3cs" customClass="PlayingTrackFunctionsMenuDelegate" customModule="Aural" customModuleProvider="target">
             <connections>
-                <outlet property="btnBookmark" destination="Fb8-Sv-OBW" id="DJX-dH-SOb"/>
-                <outlet property="btnFavorite" destination="e20-X0-3Aa" id="STr-vS-NMg"/>
-                <outlet property="btnMoreInfo" destination="120-MB-ltf" id="nK7-uB-2zC"/>
-                <outlet property="btnShowPlayingTrackInPlaylist" destination="xih-km-OJQ" id="cPE-B5-dqf"/>
+                <outlet property="btnMenu" destination="gVO-3W-k3p" id="GMc-6O-EuZ"/>
+                <outlet property="favoritesMenuItem" destination="FrP-jc-kMJ" id="Lby-jy-qyo"/>
+                <outlet property="playerWindowRootView" destination="ywj-Sd-BS4" id="kUb-bm-08g"/>
                 <outlet property="seekPositionMarkerView" destination="ibi-rN-iTf" id="qlf-33-BqW"/>
                 <outlet property="sliderView" destination="QDN-go-yNZ" id="VCT-Xe-sBe"/>
-                <outlet property="view" destination="AfR-G1-0Qr" id="Md7-Ak-PJi"/>
             </connections>
         </customObject>
         <slider verticalHuggingPriority="750" id="oxZ-LA-ON2" userLabel="Seek Slider Clone">
@@ -134,11 +132,64 @@
                                 </allowedInputSourceLocales>
                             </textFieldCell>
                         </textField>
+                        <popUpButton wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iwf-qn-PJh" userLabel="Functions Menu">
+                            <rect key="frame" x="498" y="142" width="20" height="14"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="8mJ-A6-W0m">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                                <menu key="menu" autoenablesItems="NO" id="owc-w6-7Hd">
+                                    <items>
+                                        <menuItem hidden="YES" id="gVO-3W-k3p" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                            <imageReference key="image" image="ellipsis" catalog="system" symbolScale="medium"/>
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Settings"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </menuItem>
+                                        <menuItem title="  Add this track to Favorites" image="heart" catalog="system" id="FrP-jc-kMJ" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="offStateTitle" value="  Add this track to Favorites"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="onStateTitle" value="  Remove this track from Favorites"/>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="heart" catalog="system"/>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="heart.slash" catalog="system"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="favoriteAction:" target="DlG-hJ-3cs" id="aAh-bs-qRC"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="  Bookmark this track position" image="bookmark" catalog="system" id="bAO-8m-amL" userLabel="Bookmark this track position">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="bookmarkAction:" target="DlG-hJ-3cs" id="sB0-yq-24k"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="  View detailed track info" id="0wq-Tf-qZl" userLabel="View detailed track info">
+                                            <imageReference key="image" image="info" catalog="system" symbolScale="large"/>
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="moreInfoAction:" target="DlG-hJ-3cs" id="EvS-0h-4pX"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="  Show track in Play Queue" image="text.insert" catalog="system" id="JHN-RI-rZo" userLabel="Show track in Play Queue">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showPlayingTrackAction:" target="DlG-hJ-3cs" id="VFe-pC-A4q"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                    <connections>
+                                        <outlet property="delegate" destination="DlG-hJ-3cs" id="QYq-DE-Yi2"/>
+                                    </connections>
+                                </menu>
+                            </popUpButtonCell>
+                        </popUpButton>
                     </subviews>
                     <connections>
                         <outlet property="artView" destination="igo-tR-LRb" id="VnL-Zp-NSE"/>
                         <outlet property="controlsBox" destination="tlk-RM-S0u" id="VNE-nE-atH"/>
-                        <outlet property="functionsBox" destination="AfR-G1-0Qr" id="6kq-NC-pUN"/>
+                        <outlet property="functionsButton" destination="iwf-qn-PJh" id="tyS-sm-Cej"/>
                         <outlet property="infoBox" destination="Bp8-ZH-oj4" id="nl6-4q-bZD"/>
                         <outlet property="textView" destination="mEf-IM-kjw" id="gMc-MR-kzX"/>
                     </connections>
@@ -391,84 +442,6 @@ G1BhbiBTbGlkZXI
                     <color key="borderColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.74713908449999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </box>
-                <box wantsLayer="YES" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" id="AfR-G1-0Qr" userLabel="Functions Box">
-                    <rect key="frame" x="438" y="146" width="80" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" id="OkF-Xg-tPe">
-                        <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button hidden="YES" toolTip="Detailed information about playing track" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="120-MB-ltf" userLabel="More Info Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="67" y="4" width="15.5" height="11"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="info" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="9e6-SH-w4q">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="MoreInfo"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="moreInfoAction:" target="DlG-hJ-3cs" id="oz8-KM-pj7"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e20-X0-3Aa" userLabel="Favorites Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="15" y="1.5" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="heart" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="HyT-su-Ztz">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="favoriteAction:" target="DlG-hJ-3cs" id="caN-Sl-nND"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" toolTip="Bookmark this track position" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fb8-Sv-OBW" userLabel="Bookmark Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="35" y="1" width="12" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="bookmark" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="iUC-q0-189">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Bookmark"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="bookmarkAction:" target="DlG-hJ-3cs" id="sW8-xU-nhc"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" toolTip="Show playing track within the playlist" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xih-km-OJQ" userLabel="Show Playing Track Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="51" y="2" width="15" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="text.insert" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Kay-hB-W7Y">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="ShowPlayingTrack"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="showPlayingTrackAction:" target="DlG-hJ-3cs" id="pkl-dh-nM8"/>
-                                </connections>
-                            </button>
-                            <button toolTip="Show playing track within the playlist" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TsZ-Xa-I8o" userLabel="Ellipsis" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="90" y="0.5" width="15" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ellipsis" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Vdy-y6-2Yi">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="ShowPlayingTrack"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="showPlayingTrackAction:" target="DlG-hJ-3cs" id="GLj-dg-G6E"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                    </view>
-                    <color key="borderColor" white="0.10159040179999999" alpha="1" colorSpace="calibratedWhite"/>
-                </box>
             </subviews>
             <connections>
                 <outlet property="defaultView" destination="Thd-zZ-LMv" id="PPD-sW-Xly"/>
@@ -483,15 +456,13 @@ G1BhbiBTbGlkZXI
         </customObject>
     </objects>
     <resources>
-        <image name="Bookmark" width="27" height="27"/>
         <image name="Loop" width="270" height="210"/>
-        <image name="MoreInfo" width="25" height="25"/>
         <image name="Pause" width="38" height="36"/>
         <image name="Play" width="31" height="35"/>
         <image name="PlayingArt" width="237" height="237"/>
         <image name="SeekBackward" width="16" height="12"/>
         <image name="SeekForward" width="16" height="12"/>
-        <image name="ShowPlayingTrack" width="72" height="72"/>
+        <image name="Settings" width="10" height="7"/>
         <image name="VolumeMedium" width="26" height="26"/>
         <image name="backward" catalog="system" width="19" height="12"/>
         <image name="backward.end" catalog="system" width="13" height="13"/>
@@ -500,7 +471,8 @@ G1BhbiBTbGlkZXI
         <image name="forward" catalog="system" width="19" height="12"/>
         <image name="forward.end" catalog="system" width="13" height="13"/>
         <image name="heart" catalog="system" width="16" height="14"/>
-        <image name="info" catalog="system" width="9" height="12"/>
+        <image name="heart.slash" catalog="system" width="16" height="15"/>
+        <image name="info" catalog="system" width="10" height="15"/>
         <image name="play" catalog="system" width="14" height="16"/>
         <image name="repeat" catalog="system" width="17" height="14"/>
         <image name="shuffle" catalog="system" width="18" height="14"/>

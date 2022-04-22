@@ -1,5 +1,5 @@
 //
-//  PlayingTrackFunctionsViewController.swift
+//  PlayingTrackFunctionsMenuDelegate.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -15,29 +15,17 @@ import Cocoa
  
     Also handles such requests from app menus.
  */
-class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
+class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
     
-    // Button to display more details about the playing track
-    @IBOutlet weak var btnMoreInfo: TintedImageButton!
+    @IBOutlet weak var btnMenu: TintedIconMenuItem!
     
     // Button to add/remove the currently playing track to/from the Favorites list
-    @IBOutlet weak var btnFavorite: TintedImageButton!
-    
-    private lazy var btnFavoriteStateMachine: ButtonStateMachine<Bool> = .init(initialState: true,
-                                                                               mappings: [
-                                                                                
-                                                                                ButtonStateMachine.StateMapping(state: true, image: Images.imgFavorite, colorProperty: \.buttonColor, toolTip: "Remove playing track from Favorites"),
-                                                                                ButtonStateMachine.StateMapping(state: false, image: Images.imgFavorite, colorProperty: \.buttonOffColor, toolTip: "Add playing track to Favorites")
-                                                                               ],
-                                                                               button: btnFavorite)
-    
-    // Button to bookmark current track and position
-    @IBOutlet weak var btnBookmark: TintedImageButton!
+    @IBOutlet weak var favoritesMenuItem: ToggleMenuItem!
     
     @IBOutlet weak var sliderView: WindowedModeSeekSliderView!
     @IBOutlet weak var seekPositionMarkerView: NSView!
     
-    @IBOutlet weak var btnShowPlayingTrackInPlaylist: TintedImageButton!
+    @IBOutlet weak var playerWindowRootView: NSView!
     
     // Delegate that provides info about the playing track
     private lazy var player: PlaybackInfoDelegateProtocol = playbackInfoDelegate
@@ -60,16 +48,14 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
     private lazy var bookmarkInputReceiver: BookmarkNameInputReceiver = BookmarkNameInputReceiver()
     private lazy var bookmarkNamePopover: StringInputPopoverViewController = StringInputPopoverViewController.create(bookmarkInputReceiver)
     
-//    private var allButtons: [Tintable] = []
-    
     private lazy var messenger = Messenger(for: self)
     
-//    private lazy var playlistUIState: PlaylistUIState = playlistUIState
-    
-    override func viewDidLoad() {
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
         
         updateFavoriteButtonState()
-        colorSchemesManager.registerObservers([btnMoreInfo, btnBookmark, btnShowPlayingTrackInPlaylist], forProperty: \.buttonColor)
+        colorSchemesManager.registerObservers([btnMenu], forProperty: \.buttonColor)
         
         if let playingTrack = player.playingTrack {
             newTrackStarted(playingTrack)
@@ -90,15 +76,15 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
         messenger.subscribe(to: .player_bookmarkLoop, handler: bookmarkLoop)
     }
     
+    func menuWillOpen(_ menu: NSMenu) {
+        updateFavoriteButtonState()
+    }
+    
     private func updateFavoriteButtonState() {
         
-        var isFavorite: Bool = false
-        
         if let playingTrack = player.playingTrack {
-            isFavorite = favorites.favoriteWithFileExists(playingTrack.file)
+            favoritesMenuItem.onIf(favorites.favoriteWithFileExists(playingTrack.file))
         }
-        
-        btnFavoriteStateMachine.setState(isFavorite)
     }
     
     func destroy() {
@@ -129,23 +115,14 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
                 
                 windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)
                 
-                let autoHideIsOn: Bool = playerUIState.viewType == .expandedArt || !playerUIState.showControls
-                
-                if btnMoreInfo.isVisible && !autoHideIsOn {
-                    
-                    detailedInfoPopover.show(playingTrack, btnMoreInfo, NSRectEdge.maxX)
-                    
-                } else if let windowRootView = self.view.window?.contentView {
-                    
-                    detailedInfoPopover.show(playingTrack, windowRootView, NSRectEdge.maxX)
-                }
+                detailedInfoPopover.show(playingTrack, playerWindowRootView, NSRectEdge.maxX)
             }
         }
     }
     
     // Shows (selects) the currently playing track, within the playlist, if there is one
     @IBAction func showPlayingTrackAction(_ sender: Any) {
-//        messenger.publish(.playlist_showPlayingTrack, payload: playlistUIState.currentViewSelector)
+        messenger.publish(.playQueue_showPlayingTrack)
     }
     
     // Adds/removes the currently playing track to/from the "Favorites" list
@@ -159,14 +136,10 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
 
         // Toggle the button state
         if favorites.favoriteWithFileExists(playingTrack.file) {
-            
             favorites.deleteFavoriteWithFile(playingTrack.file)
-            btnFavoriteStateMachine.setState(false)
             
         } else {
-            
             _ = favorites.addFavorite(playingTrack)
-            btnFavoriteStateMachine.setState(true)
         }
     }
     
@@ -221,9 +194,7 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
         if autoHideIsOn {
 
             // Show popover relative to window
-            if let windowRootView = self.view.window?.contentView {
-                bookmarkNamePopover.show(windowRootView, NSRectEdge.maxX)
-            }
+            bookmarkNamePopover.show(playerWindowRootView, NSRectEdge.maxX)
             
         } else {
             
@@ -233,13 +204,9 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
             if seekPositionMarkerView.isVisible {
                 bookmarkNamePopover.show(seekPositionMarkerView, NSRectEdge.maxY)
 
-            } // Show popover relative to bookmark function button
-            else if btnBookmark.isVisible {
-                bookmarkNamePopover.show(btnBookmark, NSRectEdge.maxX)
-                
             } // Show popover relative to window
-            else if let windowRootView = self.view.window?.contentView {
-                bookmarkNamePopover.show(windowRootView, NSRectEdge.maxX)
+            else {
+                bookmarkNamePopover.show(playerWindowRootView, NSRectEdge.maxX)
             }
         }
     }
@@ -263,18 +230,8 @@ class PlayingTrackFunctionsViewController: NSViewController, Destroyable {
         
         updateFavoriteButtonState()
         
-        let autoHideIsOn: Bool = playerUIState.viewType == .expandedArt || !playerUIState.showControls
-        
-        if btnFavorite.isVisible && !autoHideIsOn {
-            
-            infoPopup.showMessage(added ? "Track added to Favorites !" : "Track removed from Favorites !",
-                                  btnFavorite, .maxX)
-            
-        } else if let windowRootView = self.view.window?.contentView {
-            
-            infoPopup.showMessage(added ? "Track added to Favorites !" : "Track removed from Favorites !",
-                                  windowRootView, .maxX)
-        }
+        infoPopup.showMessage(added ? "Track added to Favorites !" : "Track removed from Favorites !",
+                                  playerWindowRootView, .maxX)
     }
     
     private func newTrackStarted(_ track: Track) {

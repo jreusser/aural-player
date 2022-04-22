@@ -20,7 +20,7 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
     @IBOutlet weak var textView: PlayingTrackTextView!
     
     @IBOutlet weak var controlsBox: NSBox!
-    @IBOutlet weak var functionsBox: NSBox!
+    @IBOutlet weak var functionsButton: NSPopUpButton!
     
     fileprivate var autoHideFields_showing: Bool = false
     
@@ -43,17 +43,11 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
         trackInfoSet()
     }
     
-    fileprivate var functionButtons: [NSButton] = []
-    
-    override func awakeFromNib() {
-        functionButtons = functionsBox.subviews[0].subviews.compactMap {$0 as? NSButton}
-    }
-    
     fileprivate func trackInfoSet() {
         
         textView.trackInfo = self.trackInfo
         artView.image = trackInfo?.art ?? Images.imgPlayingArt
-        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
+        functionsButton.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)
     }
 
     fileprivate func moveInfoBoxTo(_ point: NSPoint) {
@@ -61,7 +55,7 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
         infoBox.setFrameOrigin(point)
         
         // Vertically center functions box w.r.t. info box
-        functionsBox.frame.origin.y = infoBox.frame.maxY - functionsBox.frame.height - 5
+//        functionsBox.frame.origin.y = infoBox.frame.maxY - functionsBox.frame.height - 5
     }
     
     func showOrHidePlayingTrackInfo() {
@@ -85,7 +79,7 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
     }
     
     func showOrHidePlayingTrackFunctions() {
-        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
+//        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
     }
     
     func showOrHideMainControls() {
@@ -119,9 +113,7 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
     func changeBackgroundColor(_ color: NSColor) {
 
         // Solid color
-        [infoBox, functionsBox].forEach {
-            $0?.fillColor = color
-        }
+        infoBox.fillColor = color
         
         // The art view's shadow color will depend on the window background color (it needs to have contrast relative to it).
         artView.layer?.shadowColor = color.visibleShadowColor.cgColor
@@ -158,7 +150,7 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
         super.showView()
         
         artView.showIf(uiState.showAlbumArt)
-        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
+        functionsButton.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)
         moveInfoBoxTo(uiState.showControls ? infoBoxDefaultPosition : infoBoxCenteredPosition)
 
         controlsBox.showIf(uiState.showControls)

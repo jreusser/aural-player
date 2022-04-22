@@ -168,13 +168,6 @@ extension Notification.Name {
     // view, i.e. other playlist views can ignore this notification.
     static let playlist_collapseAllGroups = Notification.Name("playlist_collapseAllGroups")
     
-    // Commands the currently displayed playlist view to reveal (i.e. scroll to and
-    // select) the currently playing track.
-    //
-    // NOTE - This command is intended only for a single playlist
-    // view, i.e. other playlist views can ignore this notification.
-    static let playlist_showPlayingTrack = Notification.Name("playlist_showPlayingTrack")
-
     // Commands the currently displayed playlist view to reveal the currently
     // playing track in Finder.
     //

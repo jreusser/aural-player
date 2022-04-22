@@ -187,13 +187,12 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     // -------------------- Responding to notifications -------------------------------------------
     
     // Selects (and shows) a certain track within the playlist view
-    func selectTrack(_ index: Int) {
+    func selectTrack(at index: Int) {
         
-        if index >= 0 && index < rowCount {
-            
-            tableView.selectRow(index)
-            tableView.scrollRowToVisible(index)
-        }
+        guard index >= 0 && index < rowCount else {return}
+        
+        tableView.selectRow(index)
+        tableView.scrollRowToVisible(index)
     }
     
     // Must have a non-empty playlist, and at least one selected row, but not all rows selected.

@@ -68,6 +68,8 @@ class CompactPlayQueueViewController: TrackListViewController {
         messenger.subscribe(to: .playQueue_enqueueAndPlayNow, handler: enqueueAndPlayNow(_:))
         messenger.subscribe(to: .playQueue_enqueueAndPlayNext, handler: enqueueAndPlayNext(_:))
         messenger.subscribe(to: .playQueue_enqueueAndPlayLater, handler: enqueueAndPlayLater(_:))
+        
+        messenger.subscribe(to: .playQueue_showPlayingTrack, handler: showPlayingTrack)
     }
     
     // MARK: Table view delegate / data source --------------------------------------------------------------------------------------------------------
@@ -231,6 +233,13 @@ class CompactPlayQueueViewController: TrackListViewController {
         
         if let firstSelectedRow = selectedRows.min() {
             messenger.publish(TrackPlaybackCommandNotification(index: firstSelectedRow))
+        }
+    }
+    
+    private func showPlayingTrack() {
+        
+        if let indexOfPlayingTrack = playQueueDelegate.currentTrackIndex {
+            selectTrack(at: indexOfPlayingTrack)
         }
     }
     

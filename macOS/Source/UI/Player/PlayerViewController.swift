@@ -29,7 +29,7 @@ class PlayerViewController: NSViewController, Destroyable {
     @IBOutlet weak var playbackViewController: PlaybackViewController!
     @IBOutlet weak var playerSequencingViewController: PlayerSequencingViewController!
     @IBOutlet weak var playerAudioViewController: PlayerAudioViewController!
-    @IBOutlet weak var playingTrackFunctionsViewController: PlayingTrackFunctionsViewController!
+    @IBOutlet weak var playingTrackFunctionsViewController: PlayingTrackFunctionsMenuDelegate!
     
     @IBOutlet weak var infoView: PlayingTrackView!
     

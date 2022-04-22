@@ -51,6 +51,9 @@ extension Notification.Name {
     // Commands the play queue to enqueue the given tracks so that they begin playing after all the existing tracks have finished playing.
     static let playQueue_enqueueAndPlayLater = Notification.Name("playQueue_enqueueAndPlayLater")
     
+    // Commands the play queue view to reveal (i.e. scroll to and select) the currently playing track.
+    static let playQueue_showPlayingTrack = Notification.Name("playQueue_showPlayingTrack")
+    
     // Commands the play queue to remove any selected tracks.
     static let playQueue_removeTracks = Notification.Name("playQueue_removeTracks")
     static let playQueue_removeAllTracks = Notification.Name("playQueue_removeAllTracks")

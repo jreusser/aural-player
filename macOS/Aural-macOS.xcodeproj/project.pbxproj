@@ -367,7 +367,7 @@
 		3E6C12E425CEBE8100BF0D07 /* CutoffFrequencySlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C100F25CEB98600BF0D07 /* CutoffFrequencySlider.swift */; };
 		3E6C12E525CEBE8100BF0D07 /* EffectsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C100925CEB98600BF0D07 /* EffectsWindow.xib */; };
 		3E6C12E625CEBE8100BF0D07 /* FilterBandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C100E25CEB98600BF0D07 /* FilterBandViewController.swift */; };
-		3E6C12E925CEBE8100BF0D07 /* PlayingTrackFunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C101E25CEB98600BF0D07 /* PlayingTrackFunctionsViewController.swift */; };
+		3E6C12E925CEBE8100BF0D07 /* PlayingTrackFunctionsMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C101E25CEB98600BF0D07 /* PlayingTrackFunctionsMenuDelegate.swift */; };
 		3E6C12EB25CEBE8100BF0D07 /* BookmarkNameInputReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C101C25CEB98600BF0D07 /* BookmarkNameInputReceiver.swift */; };
 		3E6C12EC25CEBE8100BF0D07 /* PlayingTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C102825CEB98600BF0D07 /* PlayingTrackView.swift */; };
 		3E6C12ED25CEBE8100BF0D07 /* DelayUnit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C101625CEB98600BF0D07 /* DelayUnit.xib */; };
@@ -1759,7 +1759,7 @@
 		3E6C101725CEB98600BF0D07 /* DelayUnitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayUnitViewController.swift; sourceTree = "<group>"; };
 		3E6C101825CEB98600BF0D07 /* DelayUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayUnitView.swift; sourceTree = "<group>"; };
 		3E6C101C25CEB98600BF0D07 /* BookmarkNameInputReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkNameInputReceiver.swift; sourceTree = "<group>"; };
-		3E6C101E25CEB98600BF0D07 /* PlayingTrackFunctionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingTrackFunctionsViewController.swift; sourceTree = "<group>"; };
+		3E6C101E25CEB98600BF0D07 /* PlayingTrackFunctionsMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingTrackFunctionsMenuDelegate.swift; sourceTree = "<group>"; };
 		3E6C101F25CEB98600BF0D07 /* PlayerUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerUIState.swift; sourceTree = "<group>"; };
 		3E6C102425CEB98600BF0D07 /* MouseTrackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseTrackingView.swift; sourceTree = "<group>"; };
 		3E6C102525CEB98600BF0D07 /* PlayingTrackSubview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingTrackSubview.swift; sourceTree = "<group>"; };
@@ -3547,7 +3547,7 @@
 			isa = PBXGroup;
 			children = (
 				3E6C101C25CEB98600BF0D07 /* BookmarkNameInputReceiver.swift */,
-				3E6C101E25CEB98600BF0D07 /* PlayingTrackFunctionsViewController.swift */,
+				3E6C101E25CEB98600BF0D07 /* PlayingTrackFunctionsMenuDelegate.swift */,
 			);
 			path = PlayingTrackFunctions;
 			sourceTree = "<group>";
@@ -6008,7 +6008,7 @@
 				3E6C12FA25CEBE8F00BF0D07 /* PlayerViewController.swift in Sources */,
 				3E6C12FF25CEBE8F00BF0D07 /* PlayerViewPopupMenuController.swift in Sources */,
 				3E25B65927F78C0B00D10A5F /* TrackListViewController.swift in Sources */,
-				3E6C12E925CEBE8100BF0D07 /* PlayingTrackFunctionsViewController.swift in Sources */,
+				3E6C12E925CEBE8100BF0D07 /* PlayingTrackFunctionsMenuDelegate.swift in Sources */,
 				3E98E5F8262D51AF00A65BCE /* PlayingTrackInfo.swift in Sources */,
 				3E6C12E225CEBE8100BF0D07 /* PlayingTrackSubview.swift in Sources */,
 				3EFE39DD27864897006F8B8C /* EQUnitPersistentState.swift in Sources */,
