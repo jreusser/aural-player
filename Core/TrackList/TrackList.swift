@@ -171,10 +171,9 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
 //        SearchResults([])
 //    }
 //
-//    // TODO:
-//    func sort(_ sort: Sort) -> SortResults {
-//        return SortResults(.tracks, .init())
-//    }
+    func sort(_ sort: TrackListSort) {
+        tracks.sort(by: sort.comparator)
+    }
 //
 //    func sort(by comparator: (Track, Track) -> Bool) {
 //        // TODO:

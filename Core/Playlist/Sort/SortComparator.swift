@@ -7,7 +7,7 @@
 ////  This software is licensed under the MIT software license.
 ////  See the file "LICENSE" in the project root directory for license terms.
 ////
-//import Foundation
+import Foundation
 //
 /////
 ///// Utility class that encapsulates logic for different sort strategies.
@@ -127,18 +127,18 @@
 //    }
 //}
 //
-//extension Comparable {
-//
-//    func compare(_ other: Self) -> ComparisonResult {
-//
-//        if self == other {
-//            return .orderedSame
-//        }
-//
-//        if self < other {
-//            return .orderedAscending
-//        }
-//
-//        return .orderedDescending
-//    }
-//}
+extension Comparable {
+
+    func compare(_ other: Self) -> ComparisonResult {
+
+        if self == other {
+            return .orderedSame
+        }
+
+        if self < other {
+            return .orderedAscending
+        }
+
+        return .orderedDescending
+    }
+}

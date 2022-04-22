@@ -366,20 +366,39 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                     </button>
-                    <button hidden="YES" toolTip="Sort the playlist" translatesAutoresizingMaskIntoConstraints="NO" id="miY-ZD-wWN" userLabel="Sort" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="366" y="12.5" width="17" height="17"/>
+                    <popUpButton hidden="YES" toolTip="Create a new playlist" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M1K-Qj-yyf" userLabel="Sort">
+                        <rect key="frame" x="362" y="13" width="26" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="17" id="gAn-Rz-Nck"/>
-                            <constraint firstAttribute="height" constant="11" id="xK6-f1-AOS"/>
+                            <constraint firstAttribute="height" constant="18" id="41X-Re-iPn"/>
+                            <constraint firstAttribute="width" constant="21" id="j6O-J8-ZrA"/>
                         </constraints>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrow.up.arrow.down" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="rT6-fT-ULa">
-                            <behavior key="behavior" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
-                    </button>
+                        <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="DKF-1d-PV2">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="11" name="Play-Regular"/>
+                            <menu key="menu" showsStateColumn="NO" id="JrK-KI-aNY">
+                                <items>
+                                    <menuItem image="arrow.up.arrow.down" catalog="system" hidden="YES" id="9NY-PN-aAt" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="plus" catalog="system"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </menuItem>
+                                    <menuItem title="Sort by track name" id="sHi-Fo-mo4">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem title="Sort by artist" id="eaV-yZ-Tkg">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem title="Sort by album" id="AQY-L1-H32">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem title="Sort by duration" id="MGZ-1t-xB9">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
                     <button hidden="YES" toolTip="Export tracks to a playlist file" translatesAutoresizingMaskIntoConstraints="NO" id="O1x-ll-q6p" userLabel="Export" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="402" y="12.5" width="16" height="16"/>
                         <constraints>
@@ -470,18 +489,16 @@
                     <constraint firstItem="fCo-el-xpF" firstAttribute="leading" secondItem="gTQ-Bo-5Nj" secondAttribute="trailing" constant="14" id="0du-lK-XTT"/>
                     <constraint firstAttribute="bottom" secondItem="IR9-mZ-3qK" secondAttribute="bottom" constant="17" id="0oh-jj-orq"/>
                     <constraint firstAttribute="bottom" secondItem="mtC-J6-Vis" secondAttribute="bottom" constant="15" id="2aB-lm-YEq"/>
-                    <constraint firstItem="miY-ZD-wWN" firstAttribute="leading" secondItem="pM1-g9-qhj" secondAttribute="trailing" constant="4" id="2it-cB-wfM"/>
                     <constraint firstItem="Nmm-j9-Sqg" firstAttribute="leading" secondItem="O1x-ll-q6p" secondAttribute="trailing" constant="18" id="4tU-Xl-jeo"/>
                     <constraint firstItem="pM1-g9-qhj" firstAttribute="leading" secondItem="F4g-qT-OzU" secondAttribute="trailing" constant="16" id="7fv-k2-ocP"/>
                     <constraint firstAttribute="bottom" secondItem="gTQ-Bo-5Nj" secondAttribute="bottom" constant="13" id="8xK-eY-jto"/>
                     <constraint firstItem="hb9-0J-H5g" firstAttribute="bottom" secondItem="7ai-aZ-Q2X" secondAttribute="bottom" id="9E2-zF-Up6"/>
                     <constraint firstAttribute="bottom" secondItem="zXc-hr-Pet" secondAttribute="bottom" constant="50" id="9vG-h0-mwc"/>
-                    <constraint firstItem="O1x-ll-q6p" firstAttribute="leading" secondItem="miY-ZD-wWN" secondAttribute="trailing" constant="19" id="Ami-iL-1bt"/>
                     <constraint firstItem="IR9-mZ-3qK" firstAttribute="leading" secondItem="6HO-Fs-WPc" secondAttribute="trailing" constant="17" id="BdC-k6-0GZ"/>
-                    <constraint firstAttribute="bottom" secondItem="miY-ZD-wWN" secondAttribute="bottom" constant="15" id="BjS-a1-j98"/>
                     <constraint firstItem="mtC-J6-Vis" firstAttribute="bottom" secondItem="fCo-el-xpF" secondAttribute="bottom" id="ByK-dL-1UO"/>
                     <constraint firstAttribute="trailing" secondItem="mtC-J6-Vis" secondAttribute="trailing" constant="19" id="CRj-3n-3SI"/>
                     <constraint firstItem="F4g-qT-OzU" firstAttribute="leading" secondItem="IR9-mZ-3qK" secondAttribute="trailing" constant="6" id="Cds-2h-pMO"/>
+                    <constraint firstItem="O1x-ll-q6p" firstAttribute="leading" secondItem="M1K-Qj-yyf" secondAttribute="trailing" constant="14" id="GUR-oD-5i7"/>
                     <constraint firstAttribute="bottom" secondItem="2Hk-dP-vLE" secondAttribute="bottom" constant="12" id="HgQ-QV-W45"/>
                     <constraint firstAttribute="bottom" secondItem="pM1-g9-qhj" secondAttribute="bottom" constant="17" id="IUp-74-roX"/>
                     <constraint firstItem="mtC-J6-Vis" firstAttribute="leading" secondItem="fCo-el-xpF" secondAttribute="trailing" constant="6" id="JN9-Iv-9jt"/>
@@ -489,12 +506,14 @@
                     <constraint firstAttribute="bottom" secondItem="F4g-qT-OzU" secondAttribute="bottom" constant="17" id="LBA-zQ-ljr"/>
                     <constraint firstAttribute="bottom" secondItem="6HO-Fs-WPc" secondAttribute="bottom" constant="16" id="LGc-RI-W79"/>
                     <constraint firstAttribute="trailing" secondItem="zXc-hr-Pet" secondAttribute="trailing" constant="15" id="Q1v-qD-IZH"/>
+                    <constraint firstAttribute="bottom" secondItem="M1K-Qj-yyf" secondAttribute="bottom" constant="13" id="QKt-q6-0VL"/>
                     <constraint firstAttribute="bottom" secondItem="O1x-ll-q6p" secondAttribute="bottom" constant="17" id="R8f-VV-xB8"/>
                     <constraint firstItem="vPq-HC-h3c" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="TE7-vr-u5I"/>
                     <constraint firstAttribute="bottom" secondItem="lty-aX-5hk" secondAttribute="bottom" constant="12" id="U4B-ve-yiY"/>
                     <constraint firstAttribute="trailing" secondItem="xem-im-DfN" secondAttribute="trailing" constant="13" id="W01-4Y-mfO"/>
                     <constraint firstItem="7ai-aZ-Q2X" firstAttribute="leading" secondItem="qNZ-4V-boz" secondAttribute="trailing" constant="19" id="Z9S-YV-BL5"/>
                     <constraint firstAttribute="bottom" secondItem="qNZ-4V-boz" secondAttribute="bottom" constant="16" id="bYY-Ix-IwP"/>
+                    <constraint firstItem="M1K-Qj-yyf" firstAttribute="leading" secondItem="pM1-g9-qhj" secondAttribute="trailing" constant="5" id="c4S-VM-YOx"/>
                     <constraint firstItem="gTQ-Bo-5Nj" firstAttribute="bottom" secondItem="Nmm-j9-Sqg" secondAttribute="bottom" id="dhK-ly-iVF"/>
                     <constraint firstItem="xem-im-DfN" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="8" id="dmk-YN-B5y"/>
                     <constraint firstItem="qNZ-4V-boz" firstAttribute="leading" secondItem="lty-aX-5hk" secondAttribute="trailing" constant="6" id="eq7-lx-71N"/>
@@ -534,7 +553,7 @@
                     <outlet property="btnScrollToBottom" destination="mtC-J6-Vis" id="NAM-Bj-CE6"/>
                     <outlet property="btnScrollToTop" destination="fCo-el-xpF" id="SQG-QN-y6J"/>
                     <outlet property="btnSearch" destination="pM1-g9-qhj" id="zMb-7p-liL"/>
-                    <outlet property="btnSort" destination="miY-ZD-wWN" id="5gD-Sa-VtP"/>
+                    <outlet property="btnSort" destination="M1K-Qj-yyf" id="k6s-Vb-gHe"/>
                     <outlet property="lblDurationSummary" destination="kiu-sG-iy1" id="LCx-8F-zaa"/>
                     <outlet property="lblTracksSummary" destination="cBa-S3-IRH" id="ItA-ba-jGv"/>
                 </connections>
@@ -543,6 +562,48 @@
             <point key="canvasLocation" x="217" y="230.5"/>
         </window>
         <customObject id="QQB-l4-4dl" customClass="CompactPlayQueueViewController" customModule="Aural" customModuleProvider="target"/>
+        <customView id="lxO-Xj-vxb" userLabel="Window corner radius editor view" customClass="SortOrderMenuItemView" customModule="Aural" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="217" height="62"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fMJ-gb-sZ4">
+                    <rect key="frame" x="104" y="36" width="113" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="radio" title="Ascending" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="fKR-xT-QLk">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="changeSortOrderAction:" target="lxO-Xj-vxb" id="kSz-jY-Onv"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lcN-Lz-pWW">
+                    <rect key="frame" x="104" y="12" width="122" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="radio" title="Descending" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="H2t-fD-P5h">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="changeSortOrderAction:" target="lxO-Xj-vxb" id="S0y-Wf-gw6"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Da5-Be-5Rv">
+                    <rect key="frame" x="14" y="20" width="86" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Sort order:" id="9r3-S0-ngB">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <connections>
+                <outlet property="btnAscending" destination="fMJ-gb-sZ4" id="Kst-1m-c2U"/>
+                <outlet property="btnDescending" destination="lcN-Lz-pWW" id="79w-AF-yCC"/>
+            </connections>
+            <point key="canvasLocation" x="308.5" y="574"/>
+        </customView>
     </objects>
     <resources>
         <image name="Add" width="25" height="25"/>
@@ -5455,6 +5516,7 @@ AAAAAAABG/w
 </mutableData>
         </image>
         <image name="magnifyingglass" catalog="system" width="15" height="15"/>
+        <image name="plus" catalog="system" width="14" height="13"/>
         <image name="plus.rectangle.on.folder" catalog="system" width="19" height="15"/>
         <image name="scissors" catalog="system" width="20" height="15"/>
         <image name="square.slash" catalog="system" width="15" height="15"/>

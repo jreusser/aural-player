@@ -161,9 +161,9 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         }
     }
 
-//    func sort(_ sort: Sort) -> SortResults {
-//        playQueue.sort(sort)
-//    }
+    func sort(_ sort: TrackListSort) {
+        playQueue.sort(sort)
+    }
 //
 //    func sort(by comparator: (Track, Track) -> Bool) {
 //        playQueue.sort(by: comparator)

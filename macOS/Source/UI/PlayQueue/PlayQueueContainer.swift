@@ -30,7 +30,7 @@ class PlayQueueContainer: NSView {
     @IBOutlet weak var btnInvertSelection: TintedImageButton!
     
     @IBOutlet weak var btnSearch: TintedImageButton!
-    @IBOutlet weak var btnSort: TintedImageButton!
+    @IBOutlet weak var btnSort: NSPopUpButton!
     
     @IBOutlet weak var btnExport: TintedImageButton!
     

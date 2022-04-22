@@ -53,7 +53,7 @@ protocol AbstractTrackListProtocol {
     
     func removeAllTracks()
     
-//    func sort(_ sort: Sort) -> SortResults
+    func sort(_ sort: TrackListSort)
 //
 //    func sort(by comparator: (Track, Track) -> Bool)
     
