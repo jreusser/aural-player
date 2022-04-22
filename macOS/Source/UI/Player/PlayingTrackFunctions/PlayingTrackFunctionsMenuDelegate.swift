@@ -33,15 +33,6 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
     // Delegate that provides access to the Favorites track list.
     private lazy var favorites: FavoritesDelegateProtocol = favoritesDelegate
     
-    // Popover view that displays detailed info for the currently playing track
-    private lazy var detailedInfoPopover: DetailedTrackInfoViewController = {
-        
-        detailedInfoPopoverLoaded = true
-        return DetailedTrackInfoViewController.instance
-    }()
-    
-    private var detailedInfoPopoverLoaded: Bool = false
-    
     // Popup view that displays a brief notification when the currently playing track is added/removed to/from the Favorites list
     private lazy var infoPopup: InfoPopupViewController = InfoPopupViewController.instance
     
@@ -57,18 +48,10 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
         updateFavoriteButtonState()
         colorSchemesManager.registerObservers([btnMenu], forProperty: \.buttonColor)
         
-        if let playingTrack = player.playingTrack {
-            newTrackStarted(playingTrack)
-        }
-        
         // Subscribe to various notifications
         
         messenger.subscribe(to: .favoritesList_trackAdded, handler: trackAddedToFavorites(_:))
         messenger.subscribe(to: .favoritesList_tracksRemoved, handler: tracksRemovedFromFavorites(_:))
-        
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:),
-                                 filter: {msg in msg.trackChanged})
-        messenger.subscribeAsync(to: .player_trackNotPlayed, handler: noTrackPlaying)
         
         messenger.subscribe(to: .player_moreInfo, handler: moreInfo)
         messenger.subscribe(to: .favoritesList_addOrRemove, handler: addOrRemoveFavorite)
@@ -89,7 +72,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
     
     func destroy() {
         
-        DetailedTrackInfoViewController.destroy()
+        TrackInfoWindowController.destroy()
         messenger.unsubscribeFromAll()
     }
     
@@ -101,23 +84,11 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
     @IBAction func moreInfoAction(_ sender: AnyObject) {
         
         // If there is a track currently playing, load detailed track info and toggle the popover view
-        if let playingTrack = player.playingTrack {
-            
-            if detailedInfoPopover.isShown {
+        guard let playingTrack = player.playingTrack else {return}
                 
-                detailedInfoPopover.close()
-                
-            } else {
-                
-                detailedInfoPopover.attachedToPlayer = true
-                
-                trackReader.loadAuxiliaryMetadata(for: playingTrack)
-                
-                windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)
-                
-                detailedInfoPopover.show(playingTrack, playerWindowRootView, NSRectEdge.maxX)
-            }
-        }
+        trackReader.loadAuxiliaryMetadata(for: playingTrack)
+        TrackInfoViewContext.displayedTrack = playingTrack
+        windowLayoutsManager.showWindow(withId: .trackInfo)
     }
     
     // Shows (selects) the currently playing track, within the playlist, if there is one
@@ -232,41 +203,5 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
         
         infoPopup.showMessage(added ? "Track added to Favorites !" : "Track removed from Favorites !",
                                   playerWindowRootView, .maxX)
-    }
-    
-    private func newTrackStarted(_ track: Track) {
-        updateFavoriteButtonState()
-    }
-    
-    private func noTrackPlaying() {
-        
-        if detailedInfoPopoverLoaded {
-            detailedInfoPopover.close()
-        }
-    }
-    
-    private func trackChanged(_ newTrack: Track?) {
-        
-        if let theNewTrack = newTrack {
-            
-            newTrackStarted(theNewTrack)
-            
-            if detailedInfoPopoverLoaded && detailedInfoPopover.isShown && detailedInfoPopover.attachedToPlayer {
-                
-                trackReader.loadAuxiliaryMetadata(for: theNewTrack)
-                detailedInfoPopover.refresh(theNewTrack)
-            }
-            
-        } else {
-            
-            // No track playing, clear the info fields
-            noTrackPlaying()
-        }
-    }
-    
-    // MARK: Message handling
-    
-    func trackTransitioned(_ notification: TrackTransitionNotification) {
-        trackChanged(notification.endTrack)
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E045D06281322450069DEFE /* TrackInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E045D05281322450069DEFE /* TrackInfoWindow.xib */; };
 		3E0A1D27277223D100D69371 /* PitchShiftSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A1D26277223D100D69371 /* PitchShiftSliderCell.swift */; };
 		3E0E74E22807B62B00CD7A58 /* TrackListWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E74E12807B62B00CD7A58 /* TrackListWrapper.swift */; };
 		3E16BE0C280DB48E00CE9FE9 /* PlaylistsUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16BE0B280DB48E00CE9FE9 /* PlaylistsUIState.swift */; };
@@ -396,7 +397,7 @@
 		3E6C130E25CEBE8F00BF0D07 /* PopoverContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C103825CEB98600BF0D07 /* PopoverContentView.swift */; };
 		3E6C131025CEBE8F00BF0D07 /* ModalComponentProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C105225CEB98600BF0D07 /* ModalComponentProtocols.swift */; };
 		3E6C131125CEBE8F00BF0D07 /* CoverArtTrackInfoViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C103C25CEB98600BF0D07 /* CoverArtTrackInfoViewDelegate.swift */; };
-		3E6C131225CEBE8F00BF0D07 /* DetailedTrackInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C103A25CEB98600BF0D07 /* DetailedTrackInfoViewController.swift */; };
+		3E6C131225CEBE8F00BF0D07 /* TrackInfoWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C103A25CEB98600BF0D07 /* TrackInfoWindowController.swift */; };
 		3E6C131325CEBE8F00BF0D07 /* WindowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C105125CEB98600BF0D07 /* WindowLayout.swift */; };
 		3E6C131425CEBE8F00BF0D07 /* AudioTrackInfoViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C103E25CEB98600BF0D07 /* AudioTrackInfoViewDelegate.swift */; };
 		3E6C136B25CEBFB900BF0D07 /* Application.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C0FE125CEB98600BF0D07 /* Application.xib */; };
@@ -1458,6 +1459,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E045D05281322450069DEFE /* TrackInfoWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackInfoWindow.xib; sourceTree = "<group>"; };
 		3E0A1D26277223D100D69371 /* PitchShiftSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchShiftSliderCell.swift; sourceTree = "<group>"; };
 		3E0E74E12807B62B00CD7A58 /* TrackListWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListWrapper.swift; sourceTree = "<group>"; };
 		3E16BE0B280DB48E00CE9FE9 /* PlaylistsUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsUIState.swift; sourceTree = "<group>"; };
@@ -1771,7 +1773,7 @@
 		3E6C103525CEB98600BF0D07 /* InfoPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoPopup.xib; sourceTree = "<group>"; };
 		3E6C103725CEB98600BF0D07 /* MetadataTrackInfoViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataTrackInfoViewDelegate.swift; sourceTree = "<group>"; };
 		3E6C103825CEB98600BF0D07 /* PopoverContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverContentView.swift; sourceTree = "<group>"; };
-		3E6C103A25CEB98600BF0D07 /* DetailedTrackInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTrackInfoViewController.swift; sourceTree = "<group>"; };
+		3E6C103A25CEB98600BF0D07 /* TrackInfoWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackInfoWindowController.swift; sourceTree = "<group>"; };
 		3E6C103B25CEB98600BF0D07 /* FileSystemTrackInfoViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemTrackInfoViewDelegate.swift; sourceTree = "<group>"; };
 		3E6C103C25CEB98600BF0D07 /* CoverArtTrackInfoViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverArtTrackInfoViewDelegate.swift; sourceTree = "<group>"; };
 		3E6C103D25CEB98600BF0D07 /* TrackInfo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackInfo.xib; sourceTree = "<group>"; };
@@ -3576,8 +3578,9 @@
 		3E6C103625CEB98600BF0D07 /* TrackInfo */ = {
 			isa = PBXGroup;
 			children = (
+				3E045D05281322450069DEFE /* TrackInfoWindow.xib */,
 				3E6C103D25CEB98600BF0D07 /* TrackInfo.xib */,
-				3E6C103A25CEB98600BF0D07 /* DetailedTrackInfoViewController.swift */,
+				3E6C103A25CEB98600BF0D07 /* TrackInfoWindowController.swift */,
 				3EFB9ED226A68A2400EA8440 /* TrackInfoViewDelegate.swift */,
 				3EBF2930268696FA00D87021 /* TrackInfoPopoverTabButtonCell.swift */,
 				3E36BD4D26A6AA5A00B6E28B /* TableViewRepresentations.swift */,
@@ -5426,6 +5429,7 @@
 				3E6C122225CEBDE600BF0D07 /* SoundPreferences.xib in Resources */,
 				3E6C12F725CEBE8F00BF0D07 /* InfoPopup.xib in Resources */,
 				3E6C12C825CEBE6700BF0D07 /* ReverbUnit.xib in Resources */,
+				3E045D06281322450069DEFE /* TrackInfoWindow.xib in Resources */,
 				3EC2975A27864CD400B29551 /* Aural.xcassets in Resources */,
 				3E6C121D25CEBDE600BF0D07 /* Preferences.xib in Resources */,
 				3E6C130225CEBE8F00BF0D07 /* TrackInfo.xib in Resources */,
@@ -5703,7 +5707,7 @@
 				3E62979A26A3CD3800C96AB8 /* Destroyable.swift in Sources */,
 				3EFE39D327864897006F8B8C /* TimeStretchUnitPersistentState.swift in Sources */,
 				3EFE3AFB27864942006F8B8C /* FFmpegLoopDecoding.swift in Sources */,
-				3E6C131225CEBE8F00BF0D07 /* DetailedTrackInfoViewController.swift in Sources */,
+				3E6C131225CEBE8F00BF0D07 /* TrackInfoWindowController.swift in Sources */,
 				3EFE394B27864897006F8B8C /* RepeatMode.swift in Sources */,
 				3E6C12AE25CEBE2700BF0D07 /* DialogsAndAlerts.swift in Sources */,
 				3EFE386D27864896006F8B8C /* PitchShiftUnitProtocol.swift in Sources */,

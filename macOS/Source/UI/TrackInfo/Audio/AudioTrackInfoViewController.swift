@@ -19,9 +19,7 @@ class AudioTrackInfoViewController: NSViewController, TrackInfoViewProtocol {
     @IBOutlet weak var tableViewDelegate: AudioTrackInfoViewDelegate!
     
     // Called each time the popover is shown ... refreshes the data in the table view depending on which track is currently playing
-    func refresh(forTrack track: Track) {
-        
-        tableViewDelegate.displayedTrack = track
+    func refresh() {
         tableView.reloadData()
     }
     
@@ -29,7 +27,7 @@ class AudioTrackInfoViewController: NSViewController, TrackInfoViewProtocol {
         tableView.jsonObject
     }
     
-    func writeHTML(forTrack track: Track, to writer: HTMLWriter) {
+    func writeHTML(to writer: HTMLWriter) {
         writer.addTable("Audio:", 3, nil, tableView.htmlTable)
     }
 }

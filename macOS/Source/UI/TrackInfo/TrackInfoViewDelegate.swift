@@ -26,9 +26,6 @@ class TrackInfoViewDelegate: NSObject, NSTableViewDataSource, NSTableViewDelegat
     // Container for the key-value pairs of info displayed
     var keyValuePairs: [KeyValuePair] = []
     
-    // Cached playing track instance (to avoid reloading the same data)
-    var displayedTrack: Track?
-    
     // Constants used to calculate row height
     
     // Values used to determine the row height of table rows in the detailed track info popover view
@@ -42,7 +39,7 @@ class TrackInfoViewDelegate: NSObject, NSTableViewDataSource, NSTableViewDelegat
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        if let track = self.displayedTrack {
+        if let track = TrackInfoViewContext.displayedTrack {
             
             // A track is playing, add its info to the info array, as key-value pairs
             keyValuePairs = infoForTrack(track)

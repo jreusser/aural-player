@@ -53,6 +53,10 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
                 
                 windowLoaders.append(WindowLoader(windowID: .playlists, windowControllerType: PlaylistsWindowController.self))
                 
+            case .trackInfo:
+                
+                windowLoaders.append(WindowLoader(windowID: .trackInfo, windowControllerType: TrackInfoWindowController.self))
+                
             default:
                 
                 continue
@@ -217,10 +221,19 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
         layoutChanged()
     }
     
+    func showWindow(withId id: WindowID) {
+        
+        getWindow(forId: id).show()
+        layoutChanged()
+    }
+    
     func hideWindow(withId id: WindowID) {
         
-        getWindow(forId: id).hide()
-        layoutChanged()
+        if isShowingWindow(withId: id) {
+            
+            getWindow(forId: id).hide()
+            layoutChanged()
+        }
     }
     
     func isShowingWindow(withId id: WindowID) -> Bool {

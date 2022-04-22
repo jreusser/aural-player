@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="DetailedTrackInfoViewController" customModule="Aural" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="TrackInfoWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="exportArtMenuItem" destination="W8s-HZ-bzw" id="oEH-1g-W7b"/>
                 <outlet property="exportHTMLWithArtMenuItem" destination="Vmp-83-cAp" id="kIs-Zf-hI3"/>
@@ -16,7 +16,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView wantsLayer="YES" appearanceType="darkAqua" id="c22-O7-iKe" customClass="PopoverContentView" customModule="Aural" customModuleProvider="target">
+        <customView wantsLayer="YES" appearanceType="darkAqua" id="c22-O7-iKe">
             <rect key="frame" x="0.0" y="0.0" width="546" height="346"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>

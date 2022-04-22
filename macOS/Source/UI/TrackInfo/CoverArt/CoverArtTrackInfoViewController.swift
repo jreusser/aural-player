@@ -22,27 +22,29 @@ class CoverArtTrackInfoViewController: NSViewController, TrackInfoViewProtocol {
     @IBOutlet weak var tableViewDelegate: CoverArtTrackInfoViewDelegate!
     
     // Called each time the popover is shown ... refreshes the data in the table view depending on which track is currently playing
-    func refresh(forTrack track: Track) {
-
-        artView?.image = track.art?.image
+    func refresh() {
+        
+        artView?.image = TrackInfoViewContext.displayedTrack.art?.image
         lblNoArt.showIf(artView?.image == nil)
         
-        tableViewDelegate.displayedTrack = track
         tableView.reloadData()
     }
     
     func trackInfoUpdated(_ notification: TrackInfoUpdatedNotification) {
-        refresh(forTrack: notification.updatedTrack)
+        refresh()
     }
     
     var jsonObject: AnyObject? {
         artView.image != nil ? tableView.jsonObject : nil
     }
     
-    func writeHTML(forTrack track: Track, to writer: HTMLWriter) {
+    func writeHTML(to writer: HTMLWriter) {
+        
+        guard let track = TrackInfoViewContext.displayedTrack else {return}
         
         // Embed art in HTML
-        guard let image = track.art?.image, let bits = image.representations.first as? NSBitmapImageRep,
+        guard let image = track.art?.image,
+              let bits = image.representations.first as? NSBitmapImageRep,
               let data = bits.representation(using: .jpeg, properties: [:]) else {return}
         
         let outFile = writer.outputFile

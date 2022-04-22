@@ -29,15 +29,15 @@ class LyricsTrackInfoViewController: NSViewController, TrackInfoViewProtocol {
     private let noLyricsText: String = "< No lyrics available for this track >"
     
     // Called each time the popover is shown ... refreshes the data in the table view depending on which track is currently playing
-    func refresh(forTrack track: Track) {
-        textView?.string = track.lyrics ?? noLyricsText
+    func refresh() {
+        textView?.string = TrackInfoViewContext.displayedTrack.lyrics ?? noLyricsText
     }
     
     var jsonObject: AnyObject? {
         textView.string as NSString
     }
     
-    func writeHTML(forTrack track: Track, to writer: HTMLWriter) {
+    func writeHTML(to writer: HTMLWriter) {
         
         writer.addHeading("Lyrics:", 3, true)
         
