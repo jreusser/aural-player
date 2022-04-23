@@ -38,6 +38,7 @@ struct ColorSchemePersistentState: Codable {
     
     let primarySelectedTextColor: ColorPersistentState?
     let secondarySelectedTextColor: ColorPersistentState?
+    let tertiarySelectedTextColor: ColorPersistentState?
     
     let buttonColor: ColorPersistentState?
     let buttonOffColor: ColorPersistentState?
@@ -50,6 +51,7 @@ struct ColorSchemePersistentState: Codable {
     let sliderTickColor: ColorPersistentState?
     
     let textSelectionColor: ColorPersistentState?
+    let iconColor: ColorPersistentState?
     
     // When saving app state to disk
     init(_ scheme: ColorScheme) {
@@ -65,6 +67,7 @@ struct ColorSchemePersistentState: Codable {
         
         self.primarySelectedTextColor = ColorPersistentState(color: scheme.primarySelectedTextColor)
         self.secondarySelectedTextColor = ColorPersistentState(color: scheme.secondarySelectedTextColor)
+        self.tertiarySelectedTextColor = ColorPersistentState(color: scheme.tertiarySelectedTextColor)
         
         self.buttonColor = ColorPersistentState(color: scheme.buttonColor)
         self.buttonOffColor = ColorPersistentState(color: scheme.buttonOffColor)
@@ -77,5 +80,6 @@ struct ColorSchemePersistentState: Codable {
         self.sliderTickColor = ColorPersistentState(color: scheme.sliderTickColor)
         
         self.textSelectionColor = ColorPersistentState(color: scheme.textSelectionColor)
+        self.iconColor = ColorPersistentState(color: scheme.iconColor)
     }
 }

@@ -31,37 +31,11 @@ class ColorScheme: NSObject, UserManagedObject {
     // False if defined by the user
     let systemDefined: Bool
     
-    /*
-     
-     background
-     caption
-     
-     primaryText
-     secondaryText
-     tertiaryText
-     
-     primarySelectedText
-     secondarySelectedText
-     
-     button
-     buttonOffState
-     
-     activeControl
-     bypassedControl
-     suppressedControl
-     
-     sliderBackground
-     sliderTick
-     
-     textSelectionColor (table selection box, dropdown menu color)
-     
-     */
-
-    private var defaultPreset: ColorSchemePreset {
-        .defaultScheme
-    }
-    
     @objc dynamic var backgroundColor: NSColor
+    @objc dynamic var iconColor: NSColor
+    
+    // MARK: Text colors ----------------------------------------------------------------------------------------
+    
     @objc dynamic var captionTextColor: NSColor
     
     @objc dynamic var primaryTextColor: NSColor
@@ -70,9 +44,14 @@ class ColorScheme: NSObject, UserManagedObject {
     
     @objc dynamic var primarySelectedTextColor: NSColor
     @objc dynamic var secondarySelectedTextColor: NSColor
+    @objc dynamic var tertiarySelectedTextColor: NSColor
+    
+    // MARK: Button colors ----------------------------------------------------------------------------------------
     
     @objc dynamic var buttonColor: NSColor
     @objc dynamic var buttonOffColor: NSColor
+    
+    // MARK: Activity state colors ----------------------------------------------------------------------------------------
     
     @objc dynamic var activeControlColor: NSColor
     @objc dynamic var activeControlGradientColor: NSColor!
@@ -110,19 +89,24 @@ class ColorScheme: NSObject, UserManagedObject {
         NSGradient(starting: suppressedControlColor, ending: suppressedControlGradientColor)!
     }
     
+    // MARK: Miscellaneous colors ----------------------------------------------------------------------------------------
+    
+    @objc dynamic var textSelectionColor: NSColor
+    
+    // TODO: Do we need these ???
     @objc dynamic var sliderBackgroundColor: NSColor
     @objc dynamic var sliderTickColor: NSColor
     
-    @objc dynamic var textSelectionColor: NSColor
+    // MARK: Functions ----------------------------------------------------------------------------------------
     
     init(name: String, systemDefined: Bool,
          backgroundColor: NSColor, captionTextColor: NSColor,
          primaryTextColor: NSColor, secondaryTextColor: NSColor, tertiaryTextColor: NSColor,
-         primarySelectedTextColor: NSColor, secondarySelectedTextColor: NSColor,
+         primarySelectedTextColor: NSColor, secondarySelectedTextColor: NSColor, tertiarySelectedTextColor: NSColor,
          buttonColor: NSColor, buttonOffColor: NSColor,
          activeControlColor: NSColor, bypassedControlColor: NSColor, suppressedControlColor: NSColor,
          sliderBackgroundColor: NSColor, sliderTickColor: NSColor,
-         textSelectionColor: NSColor) {
+         textSelectionColor: NSColor, iconColor: NSColor) {
         
         self.name = name
         self.systemDefined = systemDefined
@@ -136,6 +120,7 @@ class ColorScheme: NSObject, UserManagedObject {
         
         self.primarySelectedTextColor = primarySelectedTextColor
         self.secondarySelectedTextColor = secondarySelectedTextColor
+        self.tertiarySelectedTextColor = tertiarySelectedTextColor
         
         self.buttonColor = buttonColor
         self.buttonOffColor = buttonOffColor
@@ -148,6 +133,7 @@ class ColorScheme: NSObject, UserManagedObject {
         self.sliderTickColor = sliderTickColor
         
         self.textSelectionColor = textSelectionColor
+        self.iconColor = iconColor
         
         super.init()
         
@@ -170,6 +156,7 @@ class ColorScheme: NSObject, UserManagedObject {
         
         primarySelectedTextColor = scheme.primarySelectedTextColor
         secondarySelectedTextColor = scheme.secondarySelectedTextColor
+        tertiarySelectedTextColor = scheme.tertiarySelectedTextColor
         
         buttonColor = scheme.buttonColor
         buttonOffColor = scheme.buttonOffColor
@@ -182,6 +169,7 @@ class ColorScheme: NSObject, UserManagedObject {
         sliderTickColor = scheme.sliderTickColor
         
         textSelectionColor = scheme.textSelectionColor
+        iconColor = scheme.iconColor
         
         super.init()
         
@@ -204,6 +192,7 @@ class ColorScheme: NSObject, UserManagedObject {
         
         primarySelectedTextColor = persistentState?.primarySelectedTextColor?.toColor() ?? Self.defaultScheme.primarySelectedTextColor
         secondarySelectedTextColor = persistentState?.secondarySelectedTextColor?.toColor() ?? Self.defaultScheme.secondarySelectedTextColor
+        tertiarySelectedTextColor = persistentState?.tertiarySelectedTextColor?.toColor() ?? Self.defaultScheme.tertiarySelectedTextColor
         
         buttonColor = persistentState?.buttonColor?.toColor() ?? Self.defaultScheme.buttonColor
         buttonOffColor = persistentState?.buttonOffColor?.toColor() ?? Self.defaultScheme.buttonOffColor
@@ -216,6 +205,7 @@ class ColorScheme: NSObject, UserManagedObject {
         sliderTickColor = persistentState?.sliderTickColor?.toColor() ?? Self.defaultScheme.sliderTickColor
         
         textSelectionColor = persistentState?.textSelectionColor?.toColor() ?? Self.defaultScheme.textSelectionColor
+        iconColor = persistentState?.iconColor?.toColor() ?? Self.defaultScheme.iconColor
         
         super.init()
         
@@ -274,6 +264,7 @@ class ColorScheme: NSObject, UserManagedObject {
         
         primarySelectedTextColor = scheme.primarySelectedTextColor
         secondarySelectedTextColor = scheme.secondarySelectedTextColor
+        tertiarySelectedTextColor = scheme.tertiarySelectedTextColor
         
         buttonColor = scheme.buttonColor
         buttonOffColor = scheme.buttonOffColor
@@ -286,11 +277,7 @@ class ColorScheme: NSObject, UserManagedObject {
         sliderTickColor = scheme.sliderTickColor
         
         textSelectionColor = scheme.textSelectionColor
-        
-//        self.general.applyScheme(scheme.general)
-//        self.player.applyScheme(scheme.player)
-//        self.playlist.applyScheme(scheme.playlist)
-//        self.effects.applyScheme(scheme.effects)
+        iconColor = scheme.iconColor
     }
     
     // Creates an identical copy of this color scheme
