@@ -152,6 +152,18 @@ class PlayQueue: TrackList, PlayQueueProtocol, TrackLoaderObserver, PersistentMo
         return moveResults
     }
     
+    override func sort(_ sort: TrackListSort) {
+        
+        let playingTrack = currentTrack
+        super.sort(sort)
+        
+        if let playingTrack = playingTrack,
+           let newPlayingTrackIndex = indexOfTrack(playingTrack) {
+            
+            currentTrackIndex = newPlayingTrackIndex
+        }
+    }
+    
     var persistentState: PlayQueuePersistentState {
         .init(playQueue: self)
     }

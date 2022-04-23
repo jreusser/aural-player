@@ -147,8 +147,8 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     
     private func updateSummary() {
         
-        if let playingTrack = player.playingTrack, let index = playQueue.indexOfTrack(playingTrack) {
-            lblTracksSummary.stringValue = "▶  \(index + 1) / \(playQueue.size) tracks"
+        if let playingTrackIndex = playQueue.currentTrackIndex {
+            lblTracksSummary.stringValue = "▶  \(playingTrackIndex + 1) / \(playQueue.size) tracks"
             
         } else {
             lblTracksSummary.stringValue = "\(playQueue.size) tracks"

@@ -33,7 +33,10 @@ class Player: PlayerProtocol {
     private(set) lazy var messenger = Messenger(for: self)
     
     private(set) var state: PlaybackState = .stopped {
-        didSet {messenger.publish(.player_playbackStateChanged)}
+
+        didSet {
+            messenger.publish(.player_playbackStateChanged)
+        }
     }
     
     init(graph: PlayerGraphProtocol, avfScheduler: PlaybackSchedulerProtocol, ffmpegScheduler: PlaybackSchedulerProtocol) {

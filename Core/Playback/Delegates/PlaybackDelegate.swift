@@ -326,15 +326,12 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
     
     var seekPosition: PlaybackPosition {
         
-        if let track = playingTrack {
-            
-            let elapsedTime: Double = player.seekPosition
-            let duration: Double = track.duration
-            
-            return PlaybackPosition(timeElapsed: elapsedTime, percentageElapsed: elapsedTime * 100 / duration, trackDuration: duration)
-        }
+        guard let track = playingTrack else {return .zero}
         
-        return .zero
+        let elapsedTime: Double = player.seekPosition
+        let duration: Double = track.duration
+        
+        return PlaybackPosition(timeElapsed: elapsedTime, percentageElapsed: elapsedTime * 100 / duration, trackDuration: duration)
     }
     
     var playingTrack: Track? {

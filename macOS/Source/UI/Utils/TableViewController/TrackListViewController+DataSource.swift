@@ -83,7 +83,7 @@ extension TrackListViewController: NSTableViewDataSource {
         return false
     }
     
-    private func moveTracks(from sourceIndices: IndexSet, to destRow: Int) {
+    @objc func moveTracks(from sourceIndices: IndexSet, to destRow: Int) {
         
         let results = trackList.moveTracks(from: sourceIndices, to: destRow)
         
@@ -104,11 +104,17 @@ extension TrackListViewController: NSTableViewDataSource {
         
         // Reload all source and destination rows, and all rows in between.
         if let minReloadIndex = allIndices.min(), let maxReloadIndex = allIndices.max() {
+            
             tableView.reloadRows(minReloadIndex...maxReloadIndex)
+            tracksMovedByDragDrop(minReloadIndex: minReloadIndex, maxReloadIndex: maxReloadIndex)
         }
         
         // Select all the destination rows (the new locations of the moved tracks).
         tableView.selectRows(destinationIndices)
+    }
+    
+    @objc func tracksMovedByDragDrop(minReloadIndex: Int, maxReloadIndex: Int) {
+        // Overriden by subclasses
     }
     
     @objc func importTracks(from otherTable: NSTableView, sourceIndices: IndexSet, to destRow: Int) {

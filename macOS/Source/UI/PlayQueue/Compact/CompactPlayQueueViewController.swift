@@ -106,6 +106,10 @@ class CompactPlayQueueViewController: TrackListViewController {
         }
     }
     
+    override func tracksMovedByDragDrop(minReloadIndex: Int, maxReloadIndex: Int) {
+        messenger.publish(.playQueue_updateSummary)
+    }
+    
     // Drag / drop
     override func importTracks(from otherTable: NSTableView, sourceIndices: IndexSet, to destRow: Int) {
         

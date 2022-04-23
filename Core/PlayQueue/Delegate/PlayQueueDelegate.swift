@@ -113,14 +113,11 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
 
     func removeTracks(at indices: IndexSet) -> [Track] {
         
-        let wasPlaying: Bool = playQueue.currentTrack != nil
-        let removedTracks = playQueue.removeTracks(at: indices)
-        
-        if wasPlaying {
+        if let playingTrackIndex = playQueue.currentTrackIndex, indices.contains(playingTrackIndex) {
             messenger.publish(.player_stop)
         }
         
-        return removedTracks
+        return playQueue.removeTracks(at: indices)
     }
 
     func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
