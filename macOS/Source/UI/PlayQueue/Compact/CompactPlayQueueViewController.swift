@@ -35,6 +35,8 @@ class CompactPlayQueueViewController: TrackListViewController {
     
     @IBOutlet weak var playlistNamesMenu: NSMenu!
     
+    @IBOutlet weak var sortOrderMenuItemView: SortOrderMenuItemView!
+    
     // Popup view that displays a brief notification when a selected track is added/removed to/from the Favorites list
     lazy var infoPopup: InfoPopupViewController = .instance
     
@@ -209,6 +211,28 @@ class CompactPlayQueueViewController: TrackListViewController {
     
     @IBAction func exportToPlaylistFileAction(_ sender: NSButton) {
         exportTrackList()
+    }
+    
+    @IBAction func sortByTrackNameAction(_ sender: NSMenuItem) {
+        doSort(by: [.name])
+    }
+    
+    @IBAction func sortByArtistAction(_ sender: NSMenuItem) {
+        doSort(by: [.artist])
+    }
+    
+    @IBAction func sortByAlbumAction(_ sender: NSMenuItem) {
+        doSort(by: [.album])
+    }
+    
+    @IBAction func sortByDurationAction(_ sender: NSMenuItem) {
+        doSort(by: [.duration])
+    }
+    
+    private func doSort(by fields: [SortField]) {
+        
+        playQueueDelegate.sort(TrackListSort(fields: fields, order: sortOrderMenuItemView.sortOrder))
+        tableView.reloadData()
     }
     
     @IBAction func pageUpAction(_ sender: NSButton) {

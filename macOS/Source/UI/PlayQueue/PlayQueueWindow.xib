@@ -374,7 +374,7 @@
                         </constraints>
                         <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="DKF-1d-PV2">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" size="11" name="Play-Regular"/>
+                            <font key="font" metaFont="system"/>
                             <menu key="menu" showsStateColumn="NO" id="JrK-KI-aNY">
                                 <items>
                                     <menuItem image="arrow.up.arrow.down" catalog="system" hidden="YES" id="9NY-PN-aAt" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
@@ -385,15 +385,34 @@
                                     </menuItem>
                                     <menuItem title="Sort by track name" id="sHi-Fo-mo4">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByTrackNameAction:" target="QQB-l4-4dl" id="KN6-G3-3qe"/>
+                                        </connections>
                                     </menuItem>
                                     <menuItem title="Sort by artist" id="eaV-yZ-Tkg">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByArtistAction:" target="QQB-l4-4dl" id="YRJ-LM-g1M"/>
+                                        </connections>
                                     </menuItem>
                                     <menuItem title="Sort by album" id="AQY-L1-H32">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByAlbumAction:" target="QQB-l4-4dl" id="W2K-hj-eEd"/>
+                                        </connections>
                                     </menuItem>
                                     <menuItem title="Sort by duration" id="MGZ-1t-xB9">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByDurationAction:" target="QQB-l4-4dl" id="5D0-SY-nRH"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="CXN-Bl-WHP"/>
+                                    <menuItem title="Sort order" id="dqF-L1-oDU">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <outlet property="view" destination="lxO-Xj-vxb" id="g0C-RM-qZ7"/>
+                                        </connections>
                                     </menuItem>
                                 </items>
                             </menu>
@@ -561,15 +580,19 @@
             <accessibility identifier="playQueue"/>
             <point key="canvasLocation" x="217" y="230.5"/>
         </window>
-        <customObject id="QQB-l4-4dl" customClass="CompactPlayQueueViewController" customModule="Aural" customModuleProvider="target"/>
-        <customView id="lxO-Xj-vxb" userLabel="Window corner radius editor view" customClass="SortOrderMenuItemView" customModule="Aural" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="217" height="62"/>
+        <customObject id="QQB-l4-4dl" customClass="CompactPlayQueueViewController" customModule="Aural" customModuleProvider="target">
+            <connections>
+                <outlet property="sortOrderMenuItemView" destination="lxO-Xj-vxb" id="Zcd-bS-Sl1"/>
+            </connections>
+        </customObject>
+        <customView id="lxO-Xj-vxb" userLabel="Sort order menu item view" customClass="SortOrderMenuItemView" customModule="Aural" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="186" height="30"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fMJ-gb-sZ4">
-                    <rect key="frame" x="104" y="36" width="113" height="18"/>
+                    <rect key="frame" x="99" y="5" width="43" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="radio" title="Ascending" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="fKR-xT-QLk">
+                    <buttonCell key="cell" type="radio" title="▲" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="fKR-xT-QLk">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -578,9 +601,9 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lcN-Lz-pWW">
-                    <rect key="frame" x="104" y="12" width="122" height="18"/>
+                    <rect key="frame" x="143" y="5" width="43" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="radio" title="Descending" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="H2t-fD-P5h">
+                    <buttonCell key="cell" type="radio" title="▼" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="H2t-fD-P5h">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -589,7 +612,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Da5-Be-5Rv">
-                    <rect key="frame" x="14" y="20" width="86" height="22"/>
+                    <rect key="frame" x="11" y="1" width="86" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Sort order:" id="9r3-S0-ngB">
                         <font key="font" metaFont="system"/>
@@ -602,7 +625,7 @@
                 <outlet property="btnAscending" destination="fMJ-gb-sZ4" id="Kst-1m-c2U"/>
                 <outlet property="btnDescending" destination="lcN-Lz-pWW" id="79w-AF-yCC"/>
             </connections>
-            <point key="canvasLocation" x="308.5" y="574"/>
+            <point key="canvasLocation" x="293" y="564"/>
         </customView>
     </objects>
     <resources>
