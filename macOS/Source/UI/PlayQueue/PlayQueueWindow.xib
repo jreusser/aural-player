@@ -389,16 +389,34 @@
                                             <action selector="sortByTrackNameAction:" target="QQB-l4-4dl" id="KN6-G3-3qe"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="Sort by artist" id="eaV-yZ-Tkg">
+                                    <menuItem title="Sort by artist, album, and disc/track #" id="eaV-yZ-Tkg" userLabel="Sort by artist, album, and disc/track #">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
-                                            <action selector="sortByArtistAction:" target="QQB-l4-4dl" id="YRJ-LM-g1M"/>
+                                            <action selector="sortByArtistAlbumDiscTrackNumberAction:" target="QQB-l4-4dl" id="EcN-Qj-DAj"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="Sort by album" id="AQY-L1-H32">
+                                    <menuItem title="Sort by artist, album, and track name" id="4mP-mx-9Pn" userLabel="Sort by artist, album, and track name">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
-                                            <action selector="sortByAlbumAction:" target="QQB-l4-4dl" id="W2K-hj-eEd"/>
+                                            <action selector="sortByArtistAlbumTrackNameAction:" target="QQB-l4-4dl" id="jsn-q7-WPt"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Sort by artist and track name" id="rPq-9U-3MU" userLabel="Sort by artist and track name">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByArtistTrackNameAction:" target="QQB-l4-4dl" id="RK8-iE-XcV"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Sort by album and disc/track #" id="AQY-L1-H32" userLabel="Sort by album and disc/track #">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByAlbumDiscTrackNumberAction:" target="QQB-l4-4dl" id="DTc-fi-Ory"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Sort by album and track name" id="4b9-Va-JEd" userLabel="Sort by album and track name">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByAlbumTrackNameAction:" target="QQB-l4-4dl" id="D1z-56-E6v"/>
                                         </connections>
                                     </menuItem>
                                     <menuItem title="Sort by duration" id="MGZ-1t-xB9">

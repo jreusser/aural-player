@@ -217,12 +217,24 @@ class CompactPlayQueueViewController: TrackListViewController {
         doSort(by: [.name])
     }
     
-    @IBAction func sortByArtistAction(_ sender: NSMenuItem) {
-        doSort(by: [.artist])
+    @IBAction func sortByArtistAlbumDiscTrackNumberAction(_ sender: NSMenuItem) {
+        doSort(by: [.artist, .album, .discNumberAndTrackNumber])
     }
     
-    @IBAction func sortByAlbumAction(_ sender: NSMenuItem) {
-        doSort(by: [.album])
+    @IBAction func sortByArtistAlbumTrackNameAction(_ sender: NSMenuItem) {
+        doSort(by: [.artist, .album, .name])
+    }
+    
+    @IBAction func sortByArtistTrackNameAction(_ sender: NSMenuItem) {
+        doSort(by: [.artist, .name])
+    }
+    
+    @IBAction func sortByAlbumDiscTrackNumberAction(_ sender: NSMenuItem) {
+        doSort(by: [.album, .discNumberAndTrackNumber])
+    }
+    
+    @IBAction func sortByAlbumTrackNameAction(_ sender: NSMenuItem) {
+        doSort(by: [.album, .name])
     }
     
     @IBAction func sortByDurationAction(_ sender: NSMenuItem) {
