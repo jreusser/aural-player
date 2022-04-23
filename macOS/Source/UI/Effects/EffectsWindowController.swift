@@ -13,7 +13,7 @@
 
 import Cocoa
 
-class EffectsWindowController: NSWindowController {
+class EffectsWindowController: NSWindowController, ColorSchemeObserver {
     
     override var windowNibName: String? {"EffectsWindow"}
     
@@ -78,7 +78,8 @@ class EffectsWindowController: NSWindowController {
         // Initialize all sub-views
         initTabGroup()
 
-        btnClose.observeColorSchemeProperty(\.buttonColor)
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
+        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
         
         applyTheme()
         
@@ -224,6 +225,24 @@ class EffectsWindowController: NSWindowController {
         changeFunctionButtonColor(scheme.buttonColor)
         
 //        tabViewButtons.forEach {$0.reTint()}
+    }
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        switch property {
+            
+        case \.backgroundColor:
+            
+            rootContainerBox.fillColor = newColor
+            
+        case \.captionTextColor:
+            
+            lblDisplayedUnit.textColor = newColor
+         
+        default:
+            
+            return
+        }
     }
     
     private func changeBackgroundColor(_ color: NSColor) {
