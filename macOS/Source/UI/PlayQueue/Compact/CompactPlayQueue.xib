@@ -278,6 +278,9 @@
                 <menuItem title="  Get detailed track info" id="E94-FX-PuM">
                     <imageReference key="image" image="info" catalog="system" symbolScale="large"/>
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="trackInfoAction:" target="-2" id="stg-3Z-TT0"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Show these tracks in Finder" image="ShowInFinder" id="2va-tB-KRm" userLabel="Show track in Finder">
                     <modifierMask key="keyEquivalentModifierMask"/>

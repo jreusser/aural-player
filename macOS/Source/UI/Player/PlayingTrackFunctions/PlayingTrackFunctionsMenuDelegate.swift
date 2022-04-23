@@ -27,9 +27,6 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
     
     @IBOutlet weak var playerWindowRootView: NSView!
     
-    // Delegate that provides info about the playing track
-    private lazy var player: PlaybackInfoDelegateProtocol = playbackInfoDelegate
-    
     // Delegate that provides access to the Favorites track list.
     private lazy var favorites: FavoritesDelegateProtocol = favoritesDelegate
     
@@ -65,7 +62,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
     
     private func updateFavoriteButtonState() {
         
-        if let playingTrack = player.playingTrack {
+        if let playingTrack = playbackInfoDelegate.playingTrack {
             favoritesMenuItem.onIf(favorites.favoriteWithFileExists(playingTrack.file))
         }
     }
@@ -84,7 +81,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
     @IBAction func moreInfoAction(_ sender: AnyObject) {
         
         // If there is a track currently playing, load detailed track info and toggle the popover view
-        guard let playingTrack = player.playingTrack else {return}
+        guard let playingTrack = playbackInfoDelegate.playingTrack else {return}
                 
         trackReader.loadAuxiliaryMetadata(for: playingTrack)
         TrackInfoViewContext.displayedTrack = playingTrack
@@ -103,7 +100,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
     
     private func addOrRemoveFavorite() {
         
-        guard let playingTrack = player.playingTrack else {return}
+        guard let playingTrack = playbackInfoDelegate.playingTrack else {return}
 
         // Toggle the button state
         if favorites.favoriteWithFileExists(playingTrack.file) {
@@ -117,8 +114,8 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
     // Adds the currently playing track position to/from the "Bookmarks" list
     @IBAction func bookmarkAction(_ sender: Any) {
         
-        if let playingTrack = player.playingTrack {
-            doBookmark(playingTrack, player.seekPosition.timeElapsed)
+        if let playingTrack = playbackInfoDelegate.playingTrack {
+            doBookmark(playingTrack, playbackInfoDelegate.seekPosition.timeElapsed)
         }
     }
     
@@ -130,7 +127,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
     private func bookmarkLoop() {
         
         // Check if we have a complete loop
-        if let playingTrack = player.playingTrack, let loop = player.playbackLoop, let loopEndTime = loop.endTime {
+        if let playingTrack = playbackInfoDelegate.playingTrack, let loop = playbackInfoDelegate.playbackLoop, let loopEndTime = loop.endTime {
             doBookmark(playingTrack, loop.startTime, loopEndTime)
         }
     }
@@ -194,7 +191,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
     private func favoritesUpdated(_ updatedFavoritesFiles: Set<URL>, _ added: Bool) {
         
         // Do this only if the track in the message is the playing track
-        guard let playingTrack = player.playingTrack, updatedFavoritesFiles.contains(playingTrack.file) else {return}
+        guard let playingTrack = playbackInfoDelegate.playingTrack, updatedFavoritesFiles.contains(playingTrack.file) else {return}
         
         // TODO: Is this really required ???
         windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)

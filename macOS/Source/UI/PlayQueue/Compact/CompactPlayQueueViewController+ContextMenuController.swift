@@ -94,6 +94,17 @@ extension CompactPlayQueueViewController: NSMenuDelegate {
         windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)
     }
     
+    // Shows a popover with detailed information for the currently playing track, if there is one
+    @IBAction func trackInfoAction(_ sender: AnyObject) {
+        
+        // If there is a track currently playing, load detailed track info and toggle the popover view
+        guard let selectedTrack = selectedTracks.first else {return}
+                
+        trackReader.loadAuxiliaryMetadata(for: selectedTrack)
+        TrackInfoViewContext.displayedTrack = selectedTrack
+        windowLayoutsManager.showWindow(withId: .trackInfo)
+    }
+    
     // Shows the selected tracks in Finder.
     @IBAction func showInFinderAction(_ sender: NSMenuItem) {
         URL.showInFinder(selectedTracks.map {$0.file})
