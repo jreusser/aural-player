@@ -17,11 +17,12 @@ struct Images {
     static let imgEffects: PlatformImage = PlatformImage(systemSymbolName: "slider.vertical.3", accessibilityDescription: nil)!
     
     static let imgPlay: PlatformImage = PlatformImage(systemSymbolName: "play", accessibilityDescription: nil)!
-    static let imgPause: PlatformImage = PlatformImage(systemSymbolName: "pause", accessibilityDescription: nil)!
+    static let imgPlayFilled: PlatformImage = PlatformImage(systemSymbolName: "play.fill", accessibilityDescription: nil)!
+    
+//    static let imgPlay: PlatformImage = PlatformImage(named: "Play")!
+    static let imgPause: PlatformImage = PlatformImage(named: "Pause")!
     
     static let imgPlayingArt: PlatformImage = PlatformImage(named: "PlayingArt")!
-    
-    static let imgPlayingTrack: PlatformImage = PlatformImage(named: "PlayingTrack")!
     
     static let imgFavorite: PlatformImage = PlatformImage(systemSymbolName: "heart", accessibilityDescription: nil)!
     

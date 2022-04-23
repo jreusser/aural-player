@@ -14,9 +14,6 @@ class CompactPlayQueueViewController: TrackListViewController {
     
     override var nibName: String? {"CompactPlayQueue"}
     
-    // Delegate that retrieves current playback info
-    private let player: PlaybackDelegateProtocol = playbackDelegate
-    
     lazy var messenger: Messenger = Messenger(for: self)
     
     override var rowHeight: CGFloat {30}
@@ -45,6 +42,8 @@ class CompactPlayQueueViewController: TrackListViewController {
         super.viewDidLoad()
         
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
+        
+        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
         
         messenger.subscribe(to: .playQueue_playSelectedTrack, handler: playSelectedTrack)
         
@@ -82,8 +81,8 @@ class CompactPlayQueueViewController: TrackListViewController {
             
         case .cid_index:
             
-            if track == player.playingTrack {
-                return TableCellBuilder().withImage(image: Images.imgPlayingTrack, inColor: .blue)
+            if track == playQueueDelegate.currentTrack {
+                return TableCellBuilder().withImage(image: Images.imgPlayFilled, inColor: systemColorScheme.activeControlColor)
                 
             } else {
                 return TableCellBuilder().withText(text: "\(row + 1)",
@@ -287,6 +286,19 @@ class CompactPlayQueueViewController: TrackListViewController {
     
     private func tracksAdded(_ notif: PlayQueueTracksAddedNotification) {
         tracksAdded(at: notif.trackIndices)
+    }
+    
+    private func trackTransitioned(_ notification: TrackTransitionNotification) {
+    
+        let refreshIndexes: [Int] = Set([notification.beginTrack, notification.endTrack]
+                                            .compactMap {$0})
+                                            .compactMap {playQueueDelegate.indexOfTrack($0)}
+
+        // If this is not done async, the row view could get garbled.
+        // (because of other potential simultaneous updates - e.g. PlayingTrackInfoUpdated)
+        DispatchQueue.main.async {
+            self.tableView.reloadRows(refreshIndexes)
+        }
     }
     
     // TODO: what to do with tracks already in the PQ ???

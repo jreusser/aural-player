@@ -74,10 +74,10 @@ class TableCellBuilder {
         
         cell.textField?.showIf(text != nil)
         
-        if let image = self.image {
+        if let image = self.image, let imageColor = self.imageColor {
             
             cell.image = image
-            cell.imageColor = self.imageColor
+            cell.imageColor = imageColor
         }
         
         cell.imageView?.showIf(image != nil)

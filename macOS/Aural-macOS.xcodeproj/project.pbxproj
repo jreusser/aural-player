@@ -611,6 +611,7 @@
 		3ED6D90326926867007DA433 /* FlatPlaylistTests+AddSizeDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6D90226926867007DA433 /* FlatPlaylistTests+AddSizeDuration.swift */; };
 		3ED6D905269268D6007DA433 /* MockTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025B8268E830800C5A1C5 /* MockTrack.swift */; };
 		3ED6D90826926A07007DA433 /* PlaylistTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6D90726926A07007DA433 /* PlaylistTestCase.swift */; };
+		3ED8E74A281482C9002E313F /* TableImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8E749281482C9002E313F /* TableImageCell.swift */; };
 		3EDB340525E8AEB3004DF7DE /* libswresample.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EDB334925E8AD89004DF7DE /* libswresample.3.dylib */; };
 		3EDB340625E8AEB3004DF7DE /* libswresample.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EDB334925E8AD89004DF7DE /* libswresample.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3EDB340825E8AEB5004DF7DE /* libavformat.58.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EDB334A25E8AD89004DF7DE /* libavformat.58.dylib */; };
@@ -2060,6 +2061,7 @@
 		3ED6D8F726925E4C007DA433 /* MusicBrainzPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBrainzPreferencesTests.swift; sourceTree = "<group>"; };
 		3ED6D90226926867007DA433 /* FlatPlaylistTests+AddSizeDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlatPlaylistTests+AddSizeDuration.swift"; sourceTree = "<group>"; };
 		3ED6D90726926A07007DA433 /* PlaylistTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTestCase.swift; sourceTree = "<group>"; };
+		3ED8E749281482C9002E313F /* TableImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableImageCell.swift; sourceTree = "<group>"; };
 		3EDB334925E8AD89004DF7DE /* libswresample.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libswresample.3.dylib; sourceTree = "<group>"; };
 		3EDB334A25E8AD89004DF7DE /* libavformat.58.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libavformat.58.dylib; sourceTree = "<group>"; };
 		3EDB334B25E8AD89004DF7DE /* libavutil.56.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libavutil.56.dylib; sourceTree = "<group>"; };
@@ -4082,6 +4084,7 @@
 				3E6C0FBE25CEB98600BF0D07 /* TintedImageView.swift */,
 				3E6C0FCA25CEB98600BF0D07 /* EffectsUnitTriStateBypassImage.swift */,
 				3E752743267F32A60092BB89 /* RoundedImageView.swift */,
+				3ED8E749281482C9002E313F /* TableImageCell.swift */,
 			);
 			path = ImageViews;
 			sourceTree = "<group>";
@@ -5836,6 +5839,7 @@
 				3E419B5F27B18C6500C2B965 /* CALayerExtensions.swift in Sources */,
 				3E91932F25E0DA9C00F30F81 /* FontSchemesWindowController.swift in Sources */,
 				3ECF275C26A5567000974120 /* FontSet.swift in Sources */,
+				3ED8E74A281482C9002E313F /* TableImageCell.swift in Sources */,
 				3EFE389527864896006F8B8C /* PitchShiftPresets.swift in Sources */,
 				3EFE3A3D27864898006F8B8C /* DefaultFFMpegMetadataParser.swift in Sources */,
 				3EFE383D27864896006F8B8C /* GroupedTrackMoveResult.swift in Sources */,
