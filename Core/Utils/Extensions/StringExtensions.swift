@@ -292,6 +292,10 @@ extension String {
                   style: style)
     }
     
+    func attributed(font: PlatformFont, color: PlatformColor) -> NSAttributedString {
+        NSAttributedString(string: self, attributes: [.font: font, .foregroundColor: color])
+    }
+    
     /*
         Takes a formatted artist/album string like "Artist -- Album" and truncates it so that it fits horizontally within a text view.
      */
@@ -365,3 +369,15 @@ extension NSMutableParagraphStyle {
 }
 
 #endif
+
+extension NSAttributedString {
+    
+    // concatenate attributed strings
+    static func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedString
+    {
+        let result = NSMutableAttributedString()
+        result.append(left)
+        result.append(right)
+        return result
+    }
+}

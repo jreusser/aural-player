@@ -51,6 +51,10 @@ class Track: Hashable, PlaylistItem {
         return title
     }
     
+    var titleAndArtist: (title: String, artist: String?) {
+        (title ?? defaultDisplayName, artist)
+    }
+    
     var albumArtist: String?
     var album: String?
     var genre: String?

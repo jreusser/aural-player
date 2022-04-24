@@ -18,6 +18,7 @@ class TableCellBuilder {
     static let noCell: TableCellBuilder = .init(cellFactory: {_,_ in nil})
     
     private var text: String? = nil
+    private var attributedText: NSAttributedString? = nil
     private var font: PlatformFont? = nil
     private var textColor: PlatformColor? = nil
 
@@ -53,6 +54,22 @@ class TableCellBuilder {
         return self
     }
     
+    func withAttributedText(strings: [(text: String, font: PlatformFont, color: PlatformColor)]) -> TableCellBuilder {
+        
+        var attStr = strings[0].text.attributed(font: strings[0].font, color: strings[0].color)
+        
+        if strings.count > 1 {
+            
+            for index in 1..<strings.count {
+                attStr = attStr + strings[index].text.attributed(font: strings[index].font, color: strings[index].color)
+            }
+        }
+        
+        self.attributedText = attStr
+        
+        return self
+    }
+    
     func withImage(image: PlatformImage, inColor color: PlatformColor) -> TableCellBuilder {
         
         self.image = image
@@ -65,14 +82,18 @@ class TableCellBuilder {
 
         guard let cell = cellFactory(tableView, columnId) else {return nil}
         
-        if let text = self.text {
+        if let attributedText = self.attributedText {
+            
+            cell.attributedText = attributedText
+            
+        } else if let text = self.text {
             
             cell.text = text
             cell.textFont = self.font
             cell.textColor = self.textColor
         }
         
-        cell.textField?.showIf(text != nil)
+        cell.textField?.showIf(attributedText != nil || text != nil)
         
         if let image = self.image, let imageColor = self.imageColor {
             

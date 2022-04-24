@@ -91,8 +91,18 @@ class CompactPlayQueueViewController: TrackListViewController {
             
         case .cid_trackName:
             
-            return TableCellBuilder().withText(text: track.displayName,
-                                               inFont: systemFontScheme.playlist.trackTextFont, andColor: .white80Percent)
+            let titleAndArtist = track.titleAndArtist
+            
+            if let artist = titleAndArtist.artist {
+                
+                return TableCellBuilder().withAttributedText(strings: [(text: artist + "  ", font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.secondaryTextColor),
+                                                                       (text: titleAndArtist.title, font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.primaryTextColor)])
+            } else {
+                
+                return TableCellBuilder().withAttributedText(strings: [(text: titleAndArtist.title,
+                                                                        font: systemFontScheme.playlist.trackTextFont,
+                                                                        color: systemColorScheme.primaryTextColor)])
+            }
             
         case .cid_duration:
             

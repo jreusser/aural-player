@@ -17,6 +17,12 @@ extension NSTableCellView {
         set {textField?.stringValue = newValue ?? ""}
     }
     
+    var attributedText: NSAttributedString? {
+        
+        get {textField?.attributedStringValue}
+        set {textField?.attributedStringValue = newValue ?? NSAttributedString(string: "")}
+    }
+    
     var textFont: NSFont? {
 
         get {textField?.font}
