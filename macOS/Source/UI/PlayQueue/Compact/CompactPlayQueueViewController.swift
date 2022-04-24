@@ -206,20 +206,35 @@ class CompactPlayQueueViewController: TrackListViewController {
         messenger.publish(.playQueue_updateSummary)
     }
     
+    private func updateSummaryIfRequired() {
+        
+        if let playingTrackIndex = playQueueDelegate.currentTrackIndex, selectedRows.contains(playingTrackIndex) {
+            messenger.publish(.playQueue_updateSummary)
+        }
+    }
+    
     @IBAction func moveTracksUpAction(_ sender: Any) {
+        
         moveTracksUp()
+        updateSummaryIfRequired()
     }
     
     @IBAction func moveTracksDownAction(_ sender: Any) {
+        
         moveTracksDown()
+        updateSummaryIfRequired()
     }
     
     @IBAction func moveTracksToTopAction(_ sender: Any) {
+        
         moveTracksToTop()
+        updateSummaryIfRequired()
     }
     
     @IBAction func moveTracksToBottomAction(_ sender: Any) {
+        
         moveTracksToBottom()
+        updateSummaryIfRequired()
     }
     
     @IBAction func clearSelectionAction(_ sender: NSButton) {
@@ -266,6 +281,7 @@ class CompactPlayQueueViewController: TrackListViewController {
         
         playQueueDelegate.sort(TrackListSort(fields: fields, order: sortOrderMenuItemView.sortOrder))
         tableView.reloadData()
+        updateSummaryIfRequired()
     }
     
     @IBAction func pageUpAction(_ sender: NSButton) {

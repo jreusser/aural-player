@@ -34,6 +34,7 @@ extension NSColor {
     static let white90Percent: NSColor = NSColor(white: 0.9)
     
     static let green75Percent: NSColor = NSColor(red: 0, green: 0.75, blue: 0)
+    static let green50Percent: NSColor = NSColor(red: 0, green: 0.5, blue: 0)
     
     static let aqua: NSColor = NSColor(red: 0, green: 0.5, blue: 1)
     

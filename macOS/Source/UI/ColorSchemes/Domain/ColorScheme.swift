@@ -15,7 +15,7 @@ import Cocoa
 class ColorScheme: NSObject, UserManagedObject {
     
     // Default color scheme (uses colors from the default system-defined preset)
-    static let defaultScheme: ColorScheme = ColorScheme("_default_", true, .blackAttack)
+    static let defaultScheme: ColorScheme = ColorScheme("_default_", true, .blackGreen)
     
     // Displayed name
     var name: String

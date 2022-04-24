@@ -10,24 +10,41 @@
 
 extension ColorScheme {
     
-    static let blackAttack: ColorScheme = .init(name: "Black attack (default)", systemDefined: true,
+    static let blackAqua: ColorScheme = .init(name: "Black & aqua (default)", systemDefined: true,
                                                 backgroundColor: .white8Percent, captionTextColor: .white40Percent,
-                                                primaryTextColor: .white90Percent, secondaryTextColor: .white55Percent, tertiaryTextColor: .white40Percent,
-                                                primarySelectedTextColor: .white80Percent, secondarySelectedTextColor: .white55Percent, tertiarySelectedTextColor: .white40Percent,
+                                                primaryTextColor: .white70Percent, secondaryTextColor: .white45Percent, tertiaryTextColor: .white30Percent,
+                                                primarySelectedTextColor: .white, secondarySelectedTextColor: .white75Percent, tertiarySelectedTextColor: .white50Percent,
                                                 buttonColor: .white90Percent, buttonOffColor: .white25Percent,
-                                                activeControlColor: .green75Percent, bypassedControlColor: .white60Percent, suppressedControlColor: PlatformColor(red: 0.76, green: 0.69, blue: 0),
+                                                activeControlColor: .aqua, bypassedControlColor: .white60Percent, suppressedControlColor: PlatformColor(red: 0, green: 0.31, blue: 0.5),
+                                                sliderBackgroundColor: .white15Percent, sliderTickColor: .black,
+                                                textSelectionColor: .white15Percent, iconColor: .white60Percent)
+    
+    static let blackGreen: ColorScheme = .init(name: "Black & green", systemDefined: true,
+                                               backgroundColor: .white8Percent, captionTextColor: .white40Percent,
+                                               primaryTextColor: .white70Percent, secondaryTextColor: .white45Percent, tertiaryTextColor: .white30Percent,
+                                               primarySelectedTextColor: .white, secondarySelectedTextColor: .white75Percent, tertiarySelectedTextColor: .white50Percent,
+                                               buttonColor: .white90Percent, buttonOffColor: .white25Percent,
+                                               activeControlColor: .green75Percent, bypassedControlColor: .white60Percent, suppressedControlColor: .green50Percent,
                                                 sliderBackgroundColor: .white15Percent, sliderTickColor: .black,
                                                 textSelectionColor: .white15Percent, iconColor: .white60Percent)
     
     static let lava: ColorScheme = .init(name: "Lava", systemDefined: true,
                                          backgroundColor: PlatformColor(red: 0.144, green: 0.144, blue: 0.144), captionTextColor: .white40Percent,
-                                         primaryTextColor: .white90Percent, secondaryTextColor: .white65Percent, tertiaryTextColor: .white55Percent,
-                                         primarySelectedTextColor: .white80Percent, secondarySelectedTextColor: .white55Percent,
-                                         tertiarySelectedTextColor: .white40Percent,
+                                         primaryTextColor: .white70Percent, secondaryTextColor: .white45Percent, tertiaryTextColor: .white30Percent,
+                                         primarySelectedTextColor: .white, secondarySelectedTextColor: .white75Percent, tertiarySelectedTextColor: .white50Percent,
                                          buttonColor: .white80Percent, buttonOffColor: .white35Percent,
                                          activeControlColor: .lava, bypassedControlColor: .white60Percent, suppressedControlColor: PlatformColor(red: 0.5, green: 0.204, blue: 0.107),
                                          sliderBackgroundColor: PlatformColor(red: 0.326, green: 0.326, blue: 0.326), sliderTickColor: .black,
                                          textSelectionColor: .black, iconColor: .white60Percent)
     
-    static let allPresets: [ColorScheme] = [.blackAttack, .lava]
+    static let gloomyDay: ColorScheme = .init(name: "Gloomy day", systemDefined: true,
+                                              backgroundColor: .white20Percent, captionTextColor: .white50Percent,
+                                         primaryTextColor: .white70Percent, secondaryTextColor: .white45Percent, tertiaryTextColor: .white35Percent,
+                                         primarySelectedTextColor: .white, secondarySelectedTextColor: .white75Percent, tertiarySelectedTextColor: .white50Percent,
+                                         buttonColor: .white80Percent, buttonOffColor: .white35Percent,
+                                              activeControlColor: .white70Percent, bypassedControlColor: .white30Percent, suppressedControlColor: .white50Percent,
+                                              sliderBackgroundColor: .black, sliderTickColor: .black,
+                                         textSelectionColor: .black, iconColor: .white60Percent)
+    
+    static let allPresets: [ColorScheme] = [.blackAqua, .blackGreen, .lava, .gloomyDay]
 }

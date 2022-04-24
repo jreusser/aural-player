@@ -399,16 +399,16 @@
                                                     <menu key="submenu" title="Color scheme" showsStateColumn="NO" id="7oK-Kd-rX4">
                                                         <items>
                                                             <menuItem isSeparatorItem="YES" id="GtB-hU-uN6"/>
-                                                            <menuItem title="Black attack (default)" indentationLevel="1" id="e6H-rX-5qX">
-                                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                                                <connections>
-                                                                    <action selector="applyPresetAction:" target="df9-sN-idv" id="OBG-05-7fK"/>
-                                                                </connections>
-                                                            </menuItem>
-                                                            <menuItem title="Black &amp; aqua" indentationLevel="1" id="Q49-Xm-uru">
+                                                            <menuItem title="Black &amp; aqua (default)" indentationLevel="1" id="Q49-Xm-uru">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
                                                                     <action selector="applyPresetAction:" target="df9-sN-idv" id="4QJ-pj-gq3"/>
+                                                                </connections>
+                                                            </menuItem>
+                                                            <menuItem title="Black &amp; green" indentationLevel="1" id="e6H-rX-5qX">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                                <connections>
+                                                                    <action selector="applyPresetAction:" target="df9-sN-idv" id="OBG-05-7fK"/>
                                                                 </connections>
                                                             </menuItem>
                                                             <menuItem title="Lava" indentationLevel="1" id="sNL-Wk-hye">
@@ -2136,7 +2136,7 @@ CA
         <image name="list.dash" catalog="system" width="20" height="14"/>
         <image name="magnifyingglass" catalog="system" width="15" height="15"/>
         <image name="minus" catalog="system" width="14" height="4"/>
-        <image name="music.note.list" catalog="system" width="16" height="15"/>
+        <image name="music.note.list" catalog="system" width="20" height="19"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>
         <image name="plus.rectangle.on.folder" catalog="system" width="19" height="15"/>
         <image name="scissors" catalog="system" width="16" height="12"/>

@@ -36,7 +36,7 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
         } else {
             
             self.systemScheme = systemDefinedSchemes.first(where: {$0.name == ColorScheme.defaultScheme.name}) ??
-            ColorScheme("_system_", true, .blackAttack)
+            ColorScheme("_system_", true, .blackAqua)
         }
         
         super.init(systemDefinedObjects: systemDefinedSchemes, userDefinedObjects: userDefinedSchemes)
