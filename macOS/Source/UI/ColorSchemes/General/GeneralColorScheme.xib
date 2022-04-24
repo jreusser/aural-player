@@ -35,7 +35,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6hn-iC-tsI" userLabel="Background">
-                                        <rect key="frame" x="20" y="193" width="183" height="23"/>
+                                        <rect key="frame" x="20" y="213" width="183" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Window background" id="Dns-ys-DTv" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
                                             <font key="font" metaFont="system"/>
@@ -43,8 +43,8 @@
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </textFieldCell>
                                     </textField>
-                                    <colorWell fixedFrame="YES" tag="104" translatesAutoresizingMaskIntoConstraints="NO" id="mfG-Aq-Mc0" userLabel="Control button color" customClass="AuralColorPicker" customModule="Aural" customModuleProvider="target">
-                                        <rect key="frame" x="410" y="152" width="25" height="25"/>
+                                    <colorWell fixedFrame="YES" tag="102" translatesAutoresizingMaskIntoConstraints="NO" id="mfG-Aq-Mc0" userLabel="Control button color" customClass="AuralColorPicker" customModule="Aural" customModuleProvider="target">
+                                        <rect key="frame" x="410" y="172" width="25" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -52,7 +52,7 @@
                                         </connections>
                                     </colorWell>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w0j-TL-nSr" userLabel="Control buttons">
-                                        <rect key="frame" x="20" y="153" width="183" height="23"/>
+                                        <rect key="frame" x="20" y="173" width="183" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Icons" id="dSf-n3-WNd" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
                                             <font key="font" metaFont="system"/>
@@ -61,7 +61,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <colorWell fixedFrame="YES" tag="101" translatesAutoresizingMaskIntoConstraints="NO" id="1Tg-2i-CV0" userLabel="Background color" customClass="AuralColorPicker" customModule="Aural" customModuleProvider="target">
-                                        <rect key="frame" x="410" y="192" width="25" height="25"/>
+                                        <rect key="frame" x="410" y="212" width="25" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -253,7 +253,7 @@
                         <rect key="frame" x="-100" y="-100" width="438" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Gwo-19-Isg" customClass="PrettyScroller" customModule="Aural" customModuleProvider="target">
+                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Gwo-19-Isg" customClass="PrettyScroller" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="445" y="0.0" width="15" height="260"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>

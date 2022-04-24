@@ -30,7 +30,7 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
 
     // Subviews that handle color scheme editing for different UI components
     private lazy var generalSchemeView: ColorSchemesViewProtocol = GeneralColorSchemeViewController()
-//    private lazy var playerSchemeView: ColorSchemesViewProtocol = PlayerColorSchemeViewController()
+    private lazy var textSchemeView: ColorSchemesViewProtocol = TextColorSchemeViewController()
 //    private lazy var playlistSchemeView: ColorSchemesViewProtocol = PlaylistColorSchemeViewController()
 //    private lazy var effectsSchemeView: ColorSchemesViewProtocol = EffectsColorSchemeViewController()
     //    private lazy var effectsSchemeView: ColorSchemesViewProtocol = EffectsColorSchemeViewController()
@@ -58,10 +58,12 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
         
         // Add the subviews to the tab group
 //        subViews = [generalSchemeView, playerSchemeView, playlistSchemeView, effectsSchemeView]
-        subViews = [generalSchemeView]
+        subViews = [generalSchemeView, textSchemeView]
         
         for (index, subView) in subViews.enumerated() {
+            
             tabView.tabViewItem(at: index).view?.addSubview(subView.view)
+            subView.view.anchorToSuperview()
         }
         
         // Disable color transparency in the color chooser panel (for now)

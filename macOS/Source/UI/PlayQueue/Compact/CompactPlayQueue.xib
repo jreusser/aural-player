@@ -65,10 +65,10 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2By-Sd-lGF">
-                                                        <rect key="frame" x="6" y="10" width="14" height="12"/>
+                                                        <rect key="frame" x="6" y="11" width="12" height="10"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="12" id="ihf-2D-kBa"/>
-                                                            <constraint firstAttribute="width" constant="14" id="jAz-5z-VHY"/>
+                                                            <constraint firstAttribute="height" constant="10" id="ihf-2D-kBa"/>
+                                                            <constraint firstAttribute="width" constant="12" id="jAz-5z-VHY"/>
                                                         </constraints>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyUpOrDown" id="cHB-S3-AA1" customClass="TableImageCell" customModule="Aural" customModuleProvider="target"/>
                                                     </imageView>

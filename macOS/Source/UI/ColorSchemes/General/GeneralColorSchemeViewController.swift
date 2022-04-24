@@ -14,10 +14,10 @@ import Cocoa
  */
 class GeneralColorSchemeViewController: ColorSchemeViewController {
     
+    override var nibName: NSNib.Name? {"GeneralColorScheme"}
+    
     @IBOutlet weak var backgroundColorPicker: AuralColorPicker!
     @IBOutlet weak var iconColorPicker: AuralColorPicker!
-    
-    override var nibName: NSNib.Name? {"GeneralColorScheme"}
     
     override func viewDidLoad() {
         
