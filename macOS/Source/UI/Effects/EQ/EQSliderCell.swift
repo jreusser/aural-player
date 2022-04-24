@@ -55,7 +55,7 @@ class EQSliderCell: AuralSliderCell {
     override var tickWidth: CGFloat {2}
     
     private let knobHeight: CGFloat = 12
-    private let knobWidthOutsideBar: CGFloat = 1
+    private let knobWidthOutsideBar: CGFloat = 2
     
     // ------------------------------------------------------------------------
     
@@ -82,7 +82,7 @@ class EQSliderCell: AuralSliderCell {
         let rect = NSRect(x: bar.minX - ((knobWidth - bar.width) / 2), y: knobMinY, width: knobWidth, height: knobHeight)
 
         NSBezierPath.fillRoundedRect(rect, radius: knobRadius, withColor: knobColor)
-        NSBezierPath.strokeRoundedRect(rect, radius: knobRadius, withColor: backgroundColor)
+        NSBezierPath.strokeRoundedRect(rect, radius: knobRadius, withColor: systemColorScheme.backgroundColor, lineWidth: 3)
     }
     
     override internal func drawBar(inside drawRect: NSRect, flipped: Bool) {
@@ -92,7 +92,8 @@ class EQSliderCell: AuralSliderCell {
                                 width: drawRect.width, height: knobFrame.centerY - drawRect.minY)
         
         // Top rect
-        NSBezierPath.fillRoundedRect(drawRect, radius: barRadius, withColor: backgroundColor)
+//        NSBezierPath.fillRoundedRect(drawRect, radius: barRadius, withColor: backgroundColor)
+        NSBezierPath.strokeRoundedRect(drawRect, radius: barRadius, withColor: systemColorScheme.activeControlColor, lineWidth: 0.5)
         
         // Bottom rect
         NSBezierPath.fillRoundedRect(bottomRect, radius: barRadius, withGradient: foregroundGradient, angle: .verticalGradientDegrees)

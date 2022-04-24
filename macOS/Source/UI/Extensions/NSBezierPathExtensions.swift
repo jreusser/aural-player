@@ -63,12 +63,12 @@ public extension NSBezierPath {
         NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius).fill(withColor: color)
     }
     
-    static func strokeRoundedRect(_ rect: NSRect, radius: CGFloat, withColor color: NSColor) {
+    static func strokeRoundedRect(_ rect: NSRect, radius: CGFloat, withColor color: NSColor, lineWidth: CGFloat = 1) {
         
         let path = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
         color.setStroke()
         
-        path.lineWidth = 1
+        path.lineWidth = lineWidth
         path.stroke()
     }
     
