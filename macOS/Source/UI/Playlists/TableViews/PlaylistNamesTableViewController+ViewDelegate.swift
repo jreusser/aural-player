@@ -37,7 +37,8 @@ extension PlaylistNamesTableViewController: NSTableViewDelegate {
         
         let builder = TableCellBuilder().withText(text: playlist.name,
                                                   inFont: systemFontScheme.playlist.trackTextFont,
-                                                  andColor: systemColorScheme.primaryTextColor)
+                                                  andColor: systemColorScheme.primaryTextColor,
+                                                  selectedTextColor: systemColorScheme.primarySelectedTextColor)
         
         let cell = builder.buildCell(forTableView: tableView, forColumnWithId: columnId)
         cell?.textField?.delegate = self

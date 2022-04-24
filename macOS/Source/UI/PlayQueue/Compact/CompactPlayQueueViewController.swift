@@ -80,16 +80,19 @@ class CompactPlayQueueViewController: TrackListViewController {
     
     override func view(forColumn column: NSUserInterfaceItemIdentifier, row: Int, track: Track) -> TableCellBuilder {
         
+        let builder = TableCellBuilder()
+        
         switch column {
             
         case .cid_index:
             
             if track == playQueueDelegate.currentTrack {
-                return TableCellBuilder().withImage(image: Images.imgPlayFilled, inColor: systemColorScheme.activeControlColor)
+                return builder.withImage(image: Images.imgPlayFilled, inColor: systemColorScheme.activeControlColor)
                 
             } else {
-                return TableCellBuilder().withText(text: "\(row + 1)",
-                                                   inFont: systemFontScheme.playlist.trackTextFont, andColor: systemColorScheme.tertiaryTextColor)
+                return builder.withText(text: "\(row + 1)",
+                                                   inFont: systemFontScheme.playlist.trackTextFont, andColor: systemColorScheme.tertiaryTextColor,
+                                                   selectedTextColor: systemColorScheme.tertiarySelectedTextColor)
             }
             
         case .cid_trackName:
@@ -98,19 +101,21 @@ class CompactPlayQueueViewController: TrackListViewController {
             
             if let artist = titleAndArtist.artist {
                 
-                return TableCellBuilder().withAttributedText(strings: [(text: artist + "  ", font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.secondaryTextColor),
-                                                                       (text: titleAndArtist.title, font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.primaryTextColor)])
+                return builder.withAttributedText(strings: [(text: artist + "  ", font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.secondaryTextColor),
+                                                                       (text: titleAndArtist.title, font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.primaryTextColor)],
+                                                             selectedTextColors: [systemColorScheme.secondarySelectedTextColor, systemColorScheme.primarySelectedTextColor])
             } else {
                 
-                return TableCellBuilder().withAttributedText(strings: [(text: titleAndArtist.title,
+                return builder.withAttributedText(strings: [(text: titleAndArtist.title,
                                                                         font: systemFontScheme.playlist.trackTextFont,
-                                                                        color: systemColorScheme.primaryTextColor)])
+                                                                        color: systemColorScheme.primaryTextColor)], selectedTextColors: [systemColorScheme.primarySelectedTextColor])
             }
             
         case .cid_duration:
             
-            return TableCellBuilder().withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
-                                               inFont: systemFontScheme.playlist.trackTextFont, andColor: systemColorScheme.tertiaryTextColor)
+            return builder.withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
+                                               inFont: systemFontScheme.playlist.trackTextFont, andColor: systemColorScheme.tertiaryTextColor,
+                                               selectedTextColor: systemColorScheme.tertiarySelectedTextColor)
             
         default:
             
@@ -303,13 +308,12 @@ class CompactPlayQueueViewController: TrackListViewController {
         
         switch property {
             
-        case \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor:
+        case \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
+             \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor:
             
+            let selection = selectedRows
             tableView.reloadData()
-            
-        case \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor:
-            
-            tableView.reloadRows(selectedRows)
+            tableView.selectRows(selection)
             
         case \.textSelectionColor:
             

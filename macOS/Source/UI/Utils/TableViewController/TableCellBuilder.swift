@@ -18,9 +18,12 @@ class TableCellBuilder {
     static let noCell: TableCellBuilder = .init(cellFactory: {_,_ in nil})
     
     private var text: String? = nil
-    private var attributedText: NSAttributedString? = nil
     private var font: PlatformFont? = nil
     private var textColor: PlatformColor? = nil
+    private var selectedTextColor: PlatformColor? = nil
+    
+    private var attributedText: NSAttributedString? = nil
+    private var selectedAttributedText: NSAttributedString? = nil
 
     private var image: PlatformImage? = nil
     private var imageColor: PlatformColor? = nil
@@ -45,27 +48,32 @@ class TableCellBuilder {
         self.cellFactory = cellFactory
     }
     
-    func withText(text: String, inFont font: PlatformFont, andColor color: PlatformColor) -> TableCellBuilder {
+    func withText(text: String, inFont font: PlatformFont, andColor color: PlatformColor, selectedTextColor: PlatformColor) -> TableCellBuilder {
         
         self.text = text
         self.font = font
         self.textColor = color
+        self.selectedTextColor = selectedTextColor
         
         return self
     }
     
-    func withAttributedText(strings: [(text: String, font: PlatformFont, color: PlatformColor)]) -> TableCellBuilder {
+    func withAttributedText(strings: [(text: String, font: PlatformFont, color: PlatformColor)], selectedTextColors: [PlatformColor]) -> TableCellBuilder {
         
         var attStr = strings[0].text.attributed(font: strings[0].font, color: strings[0].color)
+        var selAttStr = strings[0].text.attributed(font: strings[0].font, color: selectedTextColors[0])
         
         if strings.count > 1 {
             
             for index in 1..<strings.count {
+                
                 attStr = attStr + strings[index].text.attributed(font: strings[index].font, color: strings[index].color)
+                selAttStr = selAttStr + strings[index].text.attributed(font: strings[index].font, color: selectedTextColors[index])
             }
         }
         
         self.attributedText = attStr
+        self.selectedAttributedText = selAttStr
         
         return self
     }
@@ -82,15 +90,21 @@ class TableCellBuilder {
 
         guard let cell = cellFactory(tableView, columnId) else {return nil}
         
-        if let attributedText = self.attributedText {
+        if let attributedText = self.attributedText, let selectedAttributedText = self.selectedAttributedText {
             
             cell.attributedText = attributedText
             
-        } else if let text = self.text {
+            cell.unselectedAttributedText = attributedText
+            cell.selectedAttributedText = selectedAttributedText
+            
+        } else if let text = self.text, let selectedTextColor = self.selectedTextColor {
             
             cell.text = text
             cell.textFont = self.font
             cell.textColor = self.textColor
+            
+            cell.unselectedTextColor = self.textColor
+            cell.selectedTextColor = selectedTextColor
         }
         
         cell.textField?.showIf(attributedText != nil || text != nil)

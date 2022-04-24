@@ -62,6 +62,8 @@ class TextColorSchemeViewController: ColorSchemeViewController {
         primarySelectedTextColorPicker.color = systemColorScheme.primarySelectedTextColor
         secondarySelectedTextColorPicker.color = systemColorScheme.secondarySelectedTextColor
         tertiarySelectedTextColorPicker.color = systemColorScheme.tertiarySelectedTextColor
+        
+        textSelectionColorPicker.color = systemColorScheme.textSelectionColor
     }
     
     @IBAction func captionColorAction(_ sender: Any) {

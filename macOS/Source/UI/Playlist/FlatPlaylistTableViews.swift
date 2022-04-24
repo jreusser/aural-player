@@ -82,6 +82,12 @@ class AuralTableCellView: NSTableCellView {
     
     var rowIsSelected: Bool {rowSelectionStateFunction()}
     
+    var unselectedTextColor: PlatformColor?
+    var unselectedAttributedText: NSAttributedString?
+    
+    var selectedTextColor: PlatformColor?
+    var selectedAttributedText: NSAttributedString?
+    
     lazy var textFieldConstraintsManager = LayoutConstraintsManager(for: textField!)
     
     func updateText(_ font: NSFont, _ text: String) {
@@ -93,16 +99,6 @@ class AuralTableCellView: NSTableCellView {
         imageView?.hide()
     }
     
-    func updateImage(_ image: NSImage, color: NSColor) {
-        
-        self.image = image
-        
-        imageView?.contentTintColor = color
-        imageView?.show()
-        
-        textField?.hide()
-    }
-
     // Constraints
     func realignText(yOffset: CGFloat) {
 
@@ -116,8 +112,26 @@ class AuralTableCellView: NSTableCellView {
 
     // Check if this row is selected, change font and color accordingly
     func backgroundStyleChanged() {
-//        textColor = rowIsSelected ? Colors.Playlist.trackNameSelectedTextColor : Colors.Playlist.trackNameTextColor
-//        if textField.strin
+        
+        if rowIsSelected {
+
+            if let selectedTextColor = self.selectedTextColor {
+                textColor = selectedTextColor
+                
+            } else if let selectedAttributedText = self.selectedAttributedText {
+                attributedText = selectedAttributedText
+            }
+            
+        } else {
+            
+            if let unselectedTextColor = self.unselectedTextColor {
+                textColor = unselectedTextColor
+                
+            } else if let unselectedAttributedText = self.unselectedAttributedText {
+                attributedText = unselectedAttributedText
+            }
+            
+        }
     }
 }
 

@@ -84,8 +84,14 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         
         guard let track = track(forRow: row), let columnId = tableColumn?.identifier else {return nil}
         
-        return view(forColumn: columnId, row: row, track: track)
+        let cell = view(forColumn: columnId, row: row, track: track)
             .buildCell(forTableView: tableView, forColumnWithId: columnId)
+        
+        cell?.rowSelectionStateFunction = {[weak tableView] in
+            tableView?.selectedRowIndexes.contains(row) ?? false
+        }
+        
+        return cell
     }
     
     // Returns a view for a single column
