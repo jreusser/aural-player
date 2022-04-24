@@ -37,6 +37,15 @@ extension ColorScheme {
                                          sliderBackgroundColor: PlatformColor(red: 0.326, green: 0.326, blue: 0.326), sliderTickColor: .black,
                                          textSelectionColor: .black, iconColor: .white60Percent)
     
+    static let whiteBlight: ColorScheme = .init(name: "White blight", systemDefined: true,
+                                              backgroundColor: .white75Percent, captionTextColor: .white30Percent,
+                                         primaryTextColor: .black, secondaryTextColor: .white25Percent, tertiaryTextColor: .white40Percent,
+                                         primarySelectedTextColor: .white, secondarySelectedTextColor: .white70Percent, tertiarySelectedTextColor: .white60Percent,
+                                         buttonColor: .black, buttonOffColor: .white55Percent,
+                                              activeControlColor: .white40Percent, bypassedControlColor: .white30Percent, suppressedControlColor: .white50Percent,
+                                              sliderBackgroundColor: .black, sliderTickColor: .black,
+                                         textSelectionColor: .white15Percent, iconColor: .white60Percent)
+    
     static let gloomyDay: ColorScheme = .init(name: "Gloomy day", systemDefined: true,
                                               backgroundColor: .white20Percent, captionTextColor: .white50Percent,
                                          primaryTextColor: .white70Percent, secondaryTextColor: .white45Percent, tertiaryTextColor: .white35Percent,
@@ -46,5 +55,5 @@ extension ColorScheme {
                                               sliderBackgroundColor: .black, sliderTickColor: .black,
                                          textSelectionColor: .black, iconColor: .white60Percent)
     
-    static let allPresets: [ColorScheme] = [.blackAqua, .blackGreen, .lava, .gloomyDay]
+    static let allPresets: [ColorScheme] = [.blackAqua, .blackGreen, .lava, .gloomyDay, .whiteBlight]
 }
