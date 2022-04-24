@@ -26,6 +26,8 @@ class TextColorSchemeViewController: ColorSchemeViewController {
     @IBOutlet weak var secondarySelectedTextColorPicker: AuralColorPicker!
     @IBOutlet weak var tertiarySelectedTextColorPicker: AuralColorPicker!
     
+    @IBOutlet weak var textSelectionColorPicker: AuralColorPicker!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -41,6 +43,8 @@ class TextColorSchemeViewController: ColorSchemeViewController {
         actionsMap[primarySelectedTextColorPicker.tag] = changePrimarySelectedTextColor
         actionsMap[secondarySelectedTextColorPicker.tag] = changeSecondarySelectedTextColor
         actionsMap[tertiarySelectedTextColorPicker.tag] = changeTertiarySelectedTextColor
+        
+        actionsMap[textSelectionColorPicker.tag] = changeTextSelectionColor
     }
     
     override func resetFields(_ scheme: ColorScheme, _ history: ColorSchemeHistory, _ clipboard: ColorClipboard) {
@@ -135,5 +139,16 @@ class TextColorSchemeViewController: ColorSchemeViewController {
     
     private func changeTertiarySelectedTextColor() {
         systemColorScheme.tertiarySelectedTextColor = tertiarySelectedTextColorPicker.color
+    }
+    
+    @IBAction func textSelectionColorAction(_ sender: Any) {
+        
+        history.noteChange(ColorSchemeChange(tag: textSelectionColorPicker.tag, undoValue: systemColorScheme.textSelectionColor,
+                                             redoValue: textSelectionColorPicker.color, changeType: .changeColor))
+        changeTextSelectionColor()
+    }
+    
+    private func changeTextSelectionColor() {
+        systemColorScheme.textSelectionColor = textSelectionColorPicker.color
     }
 }

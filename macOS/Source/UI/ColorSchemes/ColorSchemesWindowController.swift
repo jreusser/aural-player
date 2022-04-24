@@ -14,6 +14,8 @@ import Cocoa
  */
 class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, ModalDialogDelegate {
     
+    override var windowNibName: NSNib.Name? {"ColorSchemes"}
+    
     @IBOutlet weak var tabView: NSTabView!
     
     @IBOutlet weak var btnSave: NSButton!
@@ -45,8 +47,6 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
     
     // Stores a single color copied by the user for later use.
     private var clipboard: ColorClipboard = ColorClipboard()
-    
-    override var windowNibName: NSNib.Name? {"ColorSchemes"}
     
     var isModal: Bool {
         window?.isVisible ?? false
