@@ -124,9 +124,7 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
     }
     
     func play(_ track: Track, _ params: PlaybackParams) {
-        
-        guard playQueue.selectTrack(track) else {return}
-        doPlay({track}, params)
+        doPlay({playQueue.selectTrack(track)}, params)
     }
     
 //    func play(_ group: Group, _ params: PlaybackParams) {

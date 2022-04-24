@@ -30,7 +30,7 @@ class PlayingTrackTextView: NSView, ColorSchemeable, ColorSchemeObserver {
         
         guard window != nil else {return}
         
-        colorSchemesManager.registerObserver(self, forProperties: \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor)
+        colorSchemesManager.registerObserver(self, forProperties: \.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor)
     }
     
     var trackInfo: PlayingTrackInfo? {
@@ -244,7 +244,16 @@ class PlayingTrackTextView: NSView, ColorSchemeable, ColorSchemeObserver {
     // MARK: ColorSchemeObserver functions
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        update()
+        
+        if property == \.backgroundColor {
+            
+            clipView.backgroundColor = newColor
+            clipView.enclosingScrollView?.backgroundColor = newColor
+            textView.backgroundColor = newColor
+            
+        } else {
+            update()
+        }
     }
 }
 

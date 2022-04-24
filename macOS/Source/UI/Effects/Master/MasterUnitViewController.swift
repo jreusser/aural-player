@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class MasterUnitViewController: EffectsUnitViewController {
+class MasterUnitViewController: EffectsUnitViewController, ColorSchemeObserver {
     
     override var nibName: String? {"MasterUnit"}
     
@@ -50,6 +50,12 @@ class MasterUnitViewController: EffectsUnitViewController {
         
         effectsUnit = masterUnit
         presetsWrapper = PresetsWrapper<MasterPreset, MasterPresets>(masterUnit.presets)
+    }
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor])
     }
     
     override func initControls() {
@@ -170,6 +176,20 @@ class MasterUnitViewController: EffectsUnitViewController {
     // ------------------------------------------------------------------------
     
     // MARK: Theming
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        switch property {
+            
+        case \.backgroundColor:
+            
+            audioUnitsTable.setBackgroundColor(newColor)
+            
+        default:
+            
+            return
+        }
+    }
     
     override func applyFontScheme(_ fontScheme: FontScheme) {
         

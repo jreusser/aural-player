@@ -65,18 +65,18 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2By-Sd-lGF">
-                                                        <rect key="frame" x="4" y="7" width="18" height="16"/>
+                                                        <rect key="frame" x="6" y="10" width="14" height="12"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="16" id="ihf-2D-kBa"/>
-                                                            <constraint firstAttribute="width" constant="18" id="jAz-5z-VHY"/>
+                                                            <constraint firstAttribute="height" constant="12" id="ihf-2D-kBa"/>
+                                                            <constraint firstAttribute="width" constant="14" id="jAz-5z-VHY"/>
                                                         </constraints>
-                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" id="cHB-S3-AA1" customClass="TableImageCell" customModule="Aural" customModuleProvider="target"/>
+                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyUpOrDown" id="cHB-S3-AA1" customClass="TableImageCell" customModule="Aural" customModuleProvider="target"/>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="tkS-pN-cgb" secondAttribute="trailing" id="BLC-t9-NlC"/>
-                                                    <constraint firstAttribute="bottom" secondItem="2By-Sd-lGF" secondAttribute="bottom" constant="7" id="J8a-vM-lbD"/>
-                                                    <constraint firstItem="2By-Sd-lGF" firstAttribute="leading" secondItem="5Eo-Qb-3K3" secondAttribute="leading" constant="4" id="UFe-iE-Zto"/>
+                                                    <constraint firstAttribute="centerY" secondItem="2By-Sd-lGF" secondAttribute="centerY" constant="1" id="J8a-vM-lbD"/>
+                                                    <constraint firstItem="2By-Sd-lGF" firstAttribute="leading" secondItem="5Eo-Qb-3K3" secondAttribute="leading" constant="6" id="UFe-iE-Zto"/>
                                                     <constraint firstItem="tkS-pN-cgb" firstAttribute="leading" secondItem="5Eo-Qb-3K3" secondAttribute="leading" constant="8" id="mlE-Hg-jUU"/>
                                                     <constraint firstAttribute="bottom" secondItem="tkS-pN-cgb" secondAttribute="bottom" id="xD8-Nk-dnc"/>
                                                 </constraints>

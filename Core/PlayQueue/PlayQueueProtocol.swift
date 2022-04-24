@@ -63,7 +63,7 @@ protocol SequencingProtocol {
     */
     func select(trackAt index: Int) -> Track?
     
-    func selectTrack(_ track: Track) -> Bool
+    func selectTrack(_ track: Track) -> Track?
     
     /*
         Selects, for playback, the specified group, which implies playback of all tracks within this group. The first track determined by the playback sequence (dependent upon the repeat/shuffle modes) will be selected for playback and returned.

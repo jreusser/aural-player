@@ -123,20 +123,20 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="189" height="337"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <scrollView borderType="groove" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ne8-0V-EED" userLabel="Scroll View">
+                                                            <scrollView autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ne8-0V-EED" userLabel="Scroll View">
                                                                 <rect key="frame" x="0.0" y="23" width="189" height="314"/>
                                                                 <clipView key="contentView" copiesOnScroll="NO" id="jU6-lf-Ryw">
-                                                                    <rect key="frame" x="2" y="2" width="185" height="310"/>
+                                                                    <rect key="frame" x="1" y="1" width="187" height="312"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <tableView identifier="tid_PlaylistNames" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" id="9Si-sI-Nin">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="185" height="310"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="187" height="312"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <size key="intercellSpacing" width="17" height="0.0"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                             <tableColumns>
-                                                                                <tableColumn identifier="cid_PlaylistName" width="173" minWidth="100" maxWidth="500" id="QLP-7e-bxc" userLabel="Playlist Name">
+                                                                                <tableColumn identifier="cid_PlaylistName" width="175" minWidth="100" maxWidth="500" id="QLP-7e-bxc" userLabel="Playlist Name">
                                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -149,11 +149,11 @@
                                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                                     <prototypeCellViews>
                                                                                         <tableCellView identifier="cid_PlaylistName" id="IvX-kM-yoC" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
-                                                                                            <rect key="frame" x="18" y="0.0" width="168" height="24"/>
+                                                                                            <rect key="frame" x="8" y="0.0" width="170" height="24"/>
                                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                             <subviews>
                                                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hod-xA-UT7" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
-                                                                                                    <rect key="frame" x="0.0" y="4" width="168" height="16"/>
+                                                                                                    <rect key="frame" x="0.0" y="4" width="170" height="16"/>
                                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="yAF-nK-zga">
                                                                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -349,7 +349,7 @@
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PkZ-lN-oeS" userLabel="Playlist Name Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                                                                <rect key="frame" x="3" y="306" width="214" height="25"/>
+                                                                <rect key="frame" x="3" y="312" width="214" height="25"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="25" id="ByV-JB-PgN"/>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="UVv-0J-Tc9"/>
@@ -454,7 +454,7 @@
                                                             <constraint firstAttribute="bottom" secondItem="NBd-fr-sMZ" secondAttribute="bottom" id="YyL-4j-dRt"/>
                                                             <constraint firstAttribute="bottom" secondItem="XaG-jS-pAi" secondAttribute="bottom" constant="25" id="dPu-A5-Y1x"/>
                                                             <constraint firstItem="XaG-jS-pAi" firstAttribute="top" secondItem="dX7-Ua-C87" secondAttribute="top" constant="36" id="g5U-nM-UhC"/>
-                                                            <constraint firstItem="PkZ-lN-oeS" firstAttribute="top" secondItem="dX7-Ua-C87" secondAttribute="top" constant="6" id="hCG-ko-2Cj"/>
+                                                            <constraint firstItem="PkZ-lN-oeS" firstAttribute="top" secondItem="dX7-Ua-C87" secondAttribute="top" id="hCG-ko-2Cj"/>
                                                             <constraint firstAttribute="bottom" secondItem="TN3-Pb-63f" secondAttribute="bottom" id="pLy-nd-ueR"/>
                                                             <constraint firstItem="voR-KZ-9Wo" firstAttribute="centerX" secondItem="dX7-Ua-C87" secondAttribute="centerX" id="pxq-j7-uuE"/>
                                                             <constraint firstAttribute="bottom" secondItem="voR-KZ-9Wo" secondAttribute="bottom" constant="3" id="rUk-22-uXF"/>

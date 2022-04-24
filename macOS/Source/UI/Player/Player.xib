@@ -85,11 +85,11 @@
                                     <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="WVD-qr-QV2">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Chc-FL-7dK">
+                                        <clipView key="contentView" copiesOnScroll="NO" id="Chc-FL-7dK">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <textView focusRingType="none" editable="NO" selectable="NO" drawsBackground="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" spellingCorrection="YES" id="lcR-Xs-exq">
+                                                <textView focusRingType="none" editable="NO" selectable="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" spellingCorrection="YES" id="lcR-Xs-exq">
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -137,7 +137,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="8mJ-A6-W0m">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
+                                <font key="font" metaFont="menu"/>
                                 <menu key="menu" autoenablesItems="NO" id="owc-w6-7Hd">
                                     <items>
                                         <menuItem hidden="YES" id="gVO-3W-k3p" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
@@ -457,7 +457,7 @@ G1BhbiBTbGlkZXI
     </objects>
     <resources>
         <image name="Loop" width="270" height="210"/>
-        <image name="Pause" width="38" height="36"/>
+        <image name="Pause" width="30" height="35"/>
         <image name="Play" width="31" height="35"/>
         <image name="PlayingArt" width="237" height="237"/>
         <image name="SeekBackward" width="16" height="12"/>
