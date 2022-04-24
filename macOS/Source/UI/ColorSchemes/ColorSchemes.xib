@@ -177,25 +177,19 @@ Gw
                             </tabViewItem>
                             <tabViewItem label="Text" identifier="" id="eRy-ia-DBE" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
                                 <view key="view" id="iqw-TM-gAQ">
-                                    <rect key="frame" x="10" y="33" width="475" height="261"/>
+                                    <rect key="frame" x="10" y="33" width="465" height="261"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="States" identifier="" id="TTI-dm-IrN" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
+                            <tabViewItem label="Control States" identifier="" id="TTI-dm-IrN" userLabel="Control States" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
                                 <view key="view" id="wdV-d8-NcF">
-                                    <rect key="frame" x="10" y="33" width="475" height="261"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </tabViewItem>
-                            <tabViewItem label="Controls" identifier="" id="ma2-R0-se4" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
-                                <view key="view" id="wus-KC-57s">
-                                    <rect key="frame" x="10" y="33" width="475" height="261"/>
+                                    <rect key="frame" x="10" y="33" width="465" height="261"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Buttons" identifier="" id="4Wa-HM-K1I" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
                                 <view key="view" id="lgR-54-JSy">
-                                    <rect key="frame" x="10" y="33" width="475" height="261"/>
+                                    <rect key="frame" x="10" y="33" width="465" height="261"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>

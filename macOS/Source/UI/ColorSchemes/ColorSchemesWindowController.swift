@@ -31,8 +31,8 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
     // Subviews that handle color scheme editing for different UI components
     private lazy var generalSchemeView: ColorSchemesViewProtocol = GeneralColorSchemeViewController()
     private lazy var textSchemeView: ColorSchemesViewProtocol = TextColorSchemeViewController()
-//    private lazy var playlistSchemeView: ColorSchemesViewProtocol = PlaylistColorSchemeViewController()
-//    private lazy var effectsSchemeView: ColorSchemesViewProtocol = EffectsColorSchemeViewController()
+    private lazy var controlStatesSchemeView: ColorSchemesViewProtocol = ControlStatesColorSchemeViewController()
+    private lazy var buttonsSchemeView: ColorSchemesViewProtocol = ButtonsColorSchemeViewController()
     //    private lazy var effectsSchemeView: ColorSchemesViewProtocol = EffectsColorSchemeViewController()
     
     private var subViews: [ColorSchemesViewProtocol] = []
@@ -57,8 +57,7 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
         window?.isMovableByWindowBackground = true
         
         // Add the subviews to the tab group
-//        subViews = [generalSchemeView, playerSchemeView, playlistSchemeView, effectsSchemeView]
-        subViews = [generalSchemeView, textSchemeView]
+        subViews = [generalSchemeView, textSchemeView, controlStatesSchemeView, buttonsSchemeView]
         
         for (index, subView) in subViews.enumerated() {
             
