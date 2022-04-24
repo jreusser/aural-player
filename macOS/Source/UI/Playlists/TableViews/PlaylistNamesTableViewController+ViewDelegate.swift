@@ -42,6 +42,9 @@ extension PlaylistNamesTableViewController: NSTableViewDelegate {
         
         let cell = builder.buildCell(forTableView: tableView, forColumnWithId: columnId)
         cell?.textField?.delegate = self
+        cell?.rowSelectionStateFunction = {[weak tableView] in
+            tableView?.selectedRowIndexes.contains(row) ?? false
+        }
         
         return cell
     }

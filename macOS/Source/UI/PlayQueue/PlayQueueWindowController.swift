@@ -46,7 +46,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         tabGroup.addViewsForTabs([compactView])
         compactView.anchorToSuperview()
         
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor, \.secondaryTextColor])
         colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
         
         lblCaption.font = systemFontScheme.effects.unitCaptionFont
@@ -126,6 +126,12 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         case \.captionTextColor:
             
             lblCaption.textColor = newColor
+            
+        case \.secondaryTextColor:
+            
+            [lblTracksSummary, lblDurationSummary].forEach {
+                $0?.textColor = newColor
+            }
          
         default:
             

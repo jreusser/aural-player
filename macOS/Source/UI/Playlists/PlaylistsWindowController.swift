@@ -65,7 +65,7 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
         
         messenger.subscribe(to: .playlists_updateSummary, handler: updateSummary)
 
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor, \.secondaryTextColor])
         colorSchemesManager.registerObservers([btnClose, btnCreatePlaylist, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)
     }
     
@@ -114,6 +114,12 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
         case \.captionTextColor:
             
             lblCaption.textColor = newColor
+            
+        case \.secondaryTextColor:
+            
+            [lblTracksSummary, lblDurationSummary].forEach {
+                $0?.textColor = newColor
+            }
             
         default:
             
