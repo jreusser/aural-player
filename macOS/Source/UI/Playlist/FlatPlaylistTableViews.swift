@@ -70,7 +70,7 @@ class AuralTableRowView: NSTableRowView {
             
             NSBezierPath.fillRoundedRect(bounds.insetBy(dx: 1, dy: 0),
                                          radius: 2,
-                                         withColor: .black)
+                                         withColor: systemColorScheme.textSelectionColor)
         }
     }
 }
@@ -116,9 +116,8 @@ class AuralTableCellView: NSTableCellView {
 
     // Check if this row is selected, change font and color accordingly
     func backgroundStyleChanged() {
-        
 //        textColor = rowIsSelected ? Colors.Playlist.trackNameSelectedTextColor : Colors.Playlist.trackNameTextColor
-        textFont = Fonts.Playlist.trackTextFont
+//        if textField.strin
     }
 }
 

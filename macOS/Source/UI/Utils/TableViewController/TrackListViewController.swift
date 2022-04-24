@@ -52,7 +52,10 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        tableView.setBackgroundColor(newColor)
+        
+        if property == \.backgroundColor {
+            tableView.setBackgroundColor(newColor)
+        }
     }
     
     // ---------------- NSTableViewDelegate --------------------

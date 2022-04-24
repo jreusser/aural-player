@@ -12,7 +12,7 @@ extension ColorScheme {
     
     static let blackAttack: ColorScheme = .init(name: "Black attack (default)", systemDefined: true,
                                                 backgroundColor: .white8Percent, captionTextColor: .white40Percent,
-                                                primaryTextColor: .white90Percent, secondaryTextColor: .white65Percent, tertiaryTextColor: .white55Percent,
+                                                primaryTextColor: .white90Percent, secondaryTextColor: .white55Percent, tertiaryTextColor: .white40Percent,
                                                 primarySelectedTextColor: .white80Percent, secondarySelectedTextColor: .white55Percent, tertiarySelectedTextColor: .white40Percent,
                                                 buttonColor: .white90Percent, buttonOffColor: .white25Percent,
                                                 activeControlColor: .green75Percent, bypassedControlColor: .white60Percent, suppressedControlColor: PlatformColor(red: 0.76, green: 0.69, blue: 0),

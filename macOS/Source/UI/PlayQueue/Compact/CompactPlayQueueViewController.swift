@@ -41,6 +41,9 @@ class CompactPlayQueueViewController: TrackListViewController {
         
         super.viewDidLoad()
         
+        colorSchemesManager.registerObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
+                                                                    \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
+        
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
         
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
@@ -86,7 +89,7 @@ class CompactPlayQueueViewController: TrackListViewController {
                 
             } else {
                 return TableCellBuilder().withText(text: "\(row + 1)",
-                                                   inFont: systemFontScheme.playlist.trackTextFont, andColor: .white50Percent)
+                                                   inFont: systemFontScheme.playlist.trackTextFont, andColor: systemColorScheme.tertiaryTextColor)
             }
             
         case .cid_trackName:
@@ -107,7 +110,7 @@ class CompactPlayQueueViewController: TrackListViewController {
         case .cid_duration:
             
             return TableCellBuilder().withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
-                                               inFont: systemFontScheme.playlist.trackTextFont, andColor: .white50Percent)
+                                               inFont: systemFontScheme.playlist.trackTextFont, andColor: systemColorScheme.tertiaryTextColor)
             
         default:
             
@@ -293,6 +296,31 @@ class CompactPlayQueueViewController: TrackListViewController {
     }
     
     // MARK: Notification / command handling ----------------------------------------------------------------------------------------
+    
+    override func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        super.colorChanged(to: newColor, forProperty: property)
+        
+        switch property {
+            
+        case \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor:
+            
+            tableView.reloadData()
+            
+        case \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor:
+            
+            tableView.reloadRows(selectedRows)
+            
+        case \.textSelectionColor:
+            
+            tableView.reloadRows(selectedRows)
+            tableView.redoRowSelection()
+            
+        default:
+            
+            return
+        }
+    }
     
     private func tracksAdded(_ notif: PlayQueueTracksAddedNotification) {
         tracksAdded(at: notif.trackIndices)
