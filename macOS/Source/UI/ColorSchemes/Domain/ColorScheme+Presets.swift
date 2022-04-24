@@ -16,7 +16,7 @@ extension ColorScheme {
                                                 primarySelectedTextColor: .white, secondarySelectedTextColor: .white75Percent, tertiarySelectedTextColor: .white50Percent,
                                                 buttonColor: .white90Percent, buttonOffColor: .white25Percent,
                                                 activeControlColor: .aqua, bypassedControlColor: .white60Percent, suppressedControlColor: PlatformColor(red: 0, green: 0.31, blue: 0.5),
-                                                sliderBackgroundColor: .white15Percent, sliderTickColor: .black,
+                                                sliderBackgroundColor: .white20Percent, sliderTickColor: .black,
                                                 textSelectionColor: .white15Percent, iconColor: .white60Percent)
     
     static let blackGreen: ColorScheme = .init(name: "Black & green", systemDefined: true,
