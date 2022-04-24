@@ -36,6 +36,9 @@ class PlaylistViewController: TrackListViewController {
         
         super.viewDidLoad()
         
+        colorSchemesManager.registerObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
+                                                                    \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
+        
         messenger.subscribeAsync(to: .playlist_tracksAdded, handler: tracksAdded(_:),
                                  filter: {notif in playlistsUIState.displayedPlaylist?.name == notif.playlistName})
         
@@ -251,6 +254,30 @@ class PlaylistViewController: TrackListViewController {
     // ---------------------------------------------------------------------------------------------------------
     
     // MARK: Notification handling
+    
+    override func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        super.colorChanged(to: newColor, forProperty: property)
+        
+        switch property {
+            
+        case \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
+             \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor:
+            
+            let selection = selectedRows
+            tableView.reloadData()
+            tableView.selectRows(selection)
+            
+        case \.textSelectionColor:
+            
+            tableView.reloadRows(selectedRows)
+            tableView.redoRowSelection()
+            
+        default:
+            
+            return
+        }
+    }
     
     private func tracksAdded(_ notif: PlaylistTracksAddedNotification) {
         
