@@ -15,7 +15,7 @@ import Cocoa
  
     Also handles such requests from app menus.
  */
-class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
+class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, ColorSchemeObserver {
     
     @IBOutlet weak var btnMenu: TintedIconMenuItem!
     
@@ -43,7 +43,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
         super.awakeFromNib()
         
         updateFavoriteButtonState()
-        colorSchemesManager.registerObservers([btnMenu], forProperty: \.buttonColor)
+        colorSchemesManager.registerObserver(self, forProperty: \.buttonColor)
         
         // Subscribe to various notifications
         
@@ -177,6 +177,12 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
                 bookmarkNamePopover.show(playerWindowRootView, NSRectEdge.maxX)
             }
         }
+    }
+    
+    // MARK: Notif handling
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        btnMenu.tintColor = newColor
     }
     
     func trackAddedToFavorites(_ favorite: Favorite) {

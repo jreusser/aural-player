@@ -447,7 +447,7 @@
 //    private func applyColorScheme(_ scheme: ColorScheme) {
 //
 //        changeBackgroundColor(scheme.backgroundColor)
-//        changeMainCaptionTextColor(scheme.captionTextColor)
+//        changeMainCaptionTextColor(scheme.secondaryTextColor)
 //        changeFunctionButtonColor(scheme.buttonColor)
 ////        changeSummaryInfoColor(scheme.playlist.summaryInfoColor)
 //    }

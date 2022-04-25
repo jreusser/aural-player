@@ -99,26 +99,4 @@ extension Notification.Name {
 
     // Commands the Time Stretch effects unit to set the playback rate to a specific value
     static let timeEffectsUnit_setRate = Notification.Name("timeEffectsUnit_setRate")
-    
-    // ----------------------------------------------------------------------------------------
-    
-    // MARK: Color scheme commands sent to the Effects UI
-    
-    // Commands all Effects views to change the text color of their function caption labels.
-    static let effects_changeFunctionCaptionTextColor = Notification.Name("effects_changeFunctionCaptionTextColor")
-
-    // Commands all Effects views to change the text color of their function value labels.
-    static let effects_changeFunctionValueTextColor = Notification.Name("effects_changeFunctionValueTextColor")
-
-    // Commands all Effects views to redraw their slider controls.
-    static let effects_changeSliderColors = Notification.Name("effects_changeSliderColors")
-
-    // Commands Effects views corresponding to "active" effects units, to redraw all their controls.
-    static let effects_changeActiveUnitStateColor = Notification.Name("effects_changeActiveUnitStateColor")
-
-    // Commands Effects views corresponding to "bypassed" effects units, to redraw all their controls.
-    static let effects_changeBypassedUnitStateColor = Notification.Name("effects_changeBypassedUnitStateColor")
-
-    // Commands Effects views corresponding to "suppressed" effects units, to redraw all their controls.
-    static let effects_changeSuppressedUnitStateColor = Notification.Name("effects_changeSuppressedUnitStateColor")
 }

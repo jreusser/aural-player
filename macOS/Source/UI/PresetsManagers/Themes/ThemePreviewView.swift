@@ -118,7 +118,7 @@ class ThemePreviewView: NSView {
 //                    seekSliderCell.foregroundEndColor = seekSliderCell.foregroundStartColor.brightened(CGFloat(amount))
 //                }
 //
-//                let endColor = colorScheme.player.sliderBackgroundColor
+//                let endColor = colorScheme.player.inactiveControlColor
 //                seekSliderCell.backgroundEndColor = endColor
 //
 //                switch colorScheme.player.sliderBackgroundGradientType {
@@ -164,7 +164,7 @@ class ThemePreviewView: NSView {
 //                        $0.foregroundEndColor = $0.foregroundStartColor.brightened(CGFloat(amount))
 //                    }
 //
-//                    let endColor = colorScheme.effects.sliderBackgroundColor
+//                    let endColor = colorScheme.effects.inactiveControlColor
 //                    $0.backgroundEndColor = endColor
 //
 //                    switch colorScheme.effects.sliderBackgroundGradientType {
@@ -190,7 +190,7 @@ class ThemePreviewView: NSView {
 //                eqSliders.forEach {$0.redraw()}
 //
 //                activeUnitColor = colorScheme.activeControlColor
-//                effectsCaptionColor = colorScheme.captionTextColor
+//                effectsCaptionColor = colorScheme.secondaryTextColor
 //
 //                playlistTrackTitleColor = colorScheme.playlist.trackNameTextColor
 //                playlistTrackIndexDurationColor = colorScheme.playlist.indexDurationTextColor

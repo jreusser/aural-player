@@ -61,18 +61,18 @@ class AudioUnitsViewController: NSViewController, Destroyable {
         messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
         
-        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
-        
-        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
-        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
-        
-        messenger.subscribe(to: .effects_changeActiveUnitStateColor, handler: changeActiveUnitStateColor(_:))
-        messenger.subscribe(to: .effects_changeBypassedUnitStateColor, handler: changeBypassedUnitStateColor(_:))
-        messenger.subscribe(to: .effects_changeSuppressedUnitStateColor, handler: changeSuppressedUnitStateColor(_:))
-        
-        messenger.subscribe(to: .playlist_changeSelectionBoxColor, handler: changeSelectionBoxColor(_:))
-        messenger.subscribe(to: .playlist_changeTrackNameTextColor, handler: changeAURowTextColor(_:))
-        messenger.subscribe(to: .playlist_changeTrackNameSelectedTextColor, handler: changeAURowSelectedTextColor(_:))
+//        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
+//        
+//        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
+//        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
+//        
+//        messenger.subscribe(to: .effects_changeActiveUnitStateColor, handler: changeActiveUnitStateColor(_:))
+//        messenger.subscribe(to: .effects_changeBypassedUnitStateColor, handler: changeBypassedUnitStateColor(_:))
+//        messenger.subscribe(to: .effects_changeSuppressedUnitStateColor, handler: changeSuppressedUnitStateColor(_:))
+//        
+//        messenger.subscribe(to: .playlist_changeSelectionBoxColor, handler: changeSelectionBoxColor(_:))
+//        messenger.subscribe(to: .playlist_changeTrackNameTextColor, handler: changeAURowTextColor(_:))
+//        messenger.subscribe(to: .playlist_changeTrackNameSelectedTextColor, handler: changeAURowSelectedTextColor(_:))
     }
     
     func destroy() {
@@ -164,7 +164,7 @@ class AudioUnitsViewController: NSViewController, Destroyable {
     func applyColorScheme(_ scheme: ColorScheme) {
         
         changeBackgroundColor(scheme.backgroundColor)
-        changeMainCaptionTextColor(scheme.captionTextColor)
+        changeMainCaptionTextColor(scheme.secondaryTextColor)
         
 //        audioUnitsMenuIconItem.reTint()
 //        btnRemove.reTint()

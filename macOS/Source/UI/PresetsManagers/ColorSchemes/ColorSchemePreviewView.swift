@@ -118,7 +118,7 @@ class ColorSchemePreviewView: NSView {
 //                    seekSliderCell.foregroundEndColor = seekSliderCell.foregroundStartColor.brightened(CGFloat(amount))
 //                }
 //
-//                let endColor = theScheme.player.sliderBackgroundColor
+//                let endColor = theScheme.player.inactiveControlColor
 //                seekSliderCell.backgroundEndColor = endColor
 //
 //                switch theScheme.player.sliderBackgroundGradientType {
@@ -164,7 +164,7 @@ class ColorSchemePreviewView: NSView {
 //                        $0.foregroundEndColor = $0.foregroundStartColor.brightened(CGFloat(amount))
 //                    }
 //
-//                    let endColor = theScheme.effects.sliderBackgroundColor
+//                    let endColor = theScheme.effects.inactiveControlColor
 //                    $0.backgroundEndColor = endColor
 //
 //                    switch theScheme.effects.sliderBackgroundGradientType {
@@ -190,7 +190,7 @@ class ColorSchemePreviewView: NSView {
 //                eqSliders.forEach {$0.redraw()}
 //
 //                activeUnitColor = theScheme.activeControlColor
-//                effectsCaptionColor = theScheme.captionTextColor
+//                effectsCaptionColor = theScheme.secondaryTextColor
 //
 //                playlistTrackTitleColor = theScheme.playlist.trackNameTextColor
 //                playlistTrackIndexDurationColor = theScheme.playlist.indexDurationTextColor

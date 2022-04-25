@@ -40,7 +40,7 @@ class PlaybackView: NSView {
     
     private lazy var btnLoopStateMachine: ButtonStateMachine<PlaybackLoopState> = ButtonStateMachine(initialState: player.playbackLoopState,
                                                                                                      mappings: [
-                                                                                                        ButtonStateMachine.StateMapping(state: .none, image: Images.imgLoop, colorProperty: \.buttonOffColor, toolTip: "Initiate a segment loop"),
+                                                                                                        ButtonStateMachine.StateMapping(state: .none, image: Images.imgLoop, colorProperty: \.inactiveControlColor, toolTip: "Initiate a segment loop"),
                                                                                                         ButtonStateMachine.StateMapping(state: .started, image: Images.imgLoopStarted, colorProperty: \.buttonColor, toolTip: "Complete the segment loop"),
                                                                                                         ButtonStateMachine.StateMapping(state: .complete, image: Images.imgLoop, colorProperty: \.buttonColor, toolTip: "Remove the segment loop")
                                                                                                      ],

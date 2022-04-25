@@ -12,9 +12,21 @@ import Cocoa
 /*
     A special menu item (with an image) to which a tint can be applied, to conform to the current system color scheme.
  */
-class TintedIconMenuItem: NSMenuItem, ColorSchemeObserver {
+@IBDesignable
+class TintedIconMenuItem: NSMenuItem {
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        image = image?.tintedWithColor(newColor)
+    // A base image that is used as an image template.
+    @IBInspectable var baseImage: NSImage? {
+        didSet {self.image = baseImage}
+    }
+    
+    var tintColor: PlatformColor? {
+        
+        didSet {
+            
+            if let color = tintColor {
+                image = baseImage?.tintedUsingCIFilterWithColor(color)
+            }
+        }
     }
 }

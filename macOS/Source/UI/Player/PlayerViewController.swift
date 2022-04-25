@@ -76,11 +76,11 @@ class PlayerViewController: NSViewController, Destroyable {
         messenger.subscribe(to: .applyTheme, handler: infoView.applyTheme)
         messenger.subscribe(to: .applyFontScheme, handler: infoView.applyFontScheme(_:))
         messenger.subscribe(to: .applyColorScheme, handler: infoView.applyColorScheme(_:))
-        messenger.subscribe(to: .changeBackgroundColor, handler: infoView.changeBackgroundColor(_:))
+//        messenger.subscribe(to: .changeBackgroundColor, handler: infoView.changeBackgroundColor(_:))
         
-        messenger.subscribe(to: .player_changeTrackInfoPrimaryTextColor, handler: infoView.changePrimaryTextColor(_:))
-        messenger.subscribe(to: .player_changeTrackInfoSecondaryTextColor, handler: infoView.changeSecondaryTextColor(_:))
-        messenger.subscribe(to: .player_changeTrackInfoTertiaryTextColor, handler: infoView.changeTertiaryTextColor(_:))
+//        messenger.subscribe(to: .player_changeTrackInfoPrimaryTextColor, handler: infoView.changePrimaryTextColor(_:))
+//        messenger.subscribe(to: .player_changeTrackInfoSecondaryTextColor, handler: infoView.changeSecondaryTextColor(_:))
+//        messenger.subscribe(to: .player_changeTrackInfoTertiaryTextColor, handler: infoView.changeTertiaryTextColor(_:))
     }
     
     func destroy() {

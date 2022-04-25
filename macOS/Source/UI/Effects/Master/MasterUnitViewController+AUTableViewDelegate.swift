@@ -98,7 +98,7 @@ extension MasterUnitViewController: NSTableViewDelegate {
             
         case .bypassed:
             
-            cell.textColor = systemColorScheme.bypassedControlColor
+            cell.textColor = systemColorScheme.inactiveControlColor
             
         case .suppressed:
             

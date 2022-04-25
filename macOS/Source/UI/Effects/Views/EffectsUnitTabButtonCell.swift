@@ -35,7 +35,7 @@ class EffectsUnitTabButtonCell: NSButtonCell {
             
         case .active:   return systemColorScheme.activeControlColor
             
-        case .bypassed: return systemColorScheme.bypassedControlColor
+        case .bypassed: return systemColorScheme.inactiveControlColor
             
         case .suppressed:   return systemColorScheme.suppressedControlColor
             

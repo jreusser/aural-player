@@ -229,39 +229,4 @@ extension Notification.Name {
     
     // Commands the chapters list to initiate playback of the selected chapter
     static let chaptersList_playSelectedChapter = Notification.Name("chaptersList_playSelectedChapter")
-    
-    // MARK: Color scheme commands sent to the playlist UI
-    
-    // Commands all playlist views to change the color of the text in their track name column.
-    static let playlist_changeTrackNameTextColor = Notification.Name("playlist_changeTrackNameTextColor")
-
-    // Commands all playlist views to change the color of the text in their group name column.
-    static let playlist_changeGroupNameTextColor = Notification.Name("playlist_changeGroupNameTextColor")
-
-    // Commands all playlist views to change the color of the text in their index/duration columns.
-    static let playlist_changeIndexDurationTextColor = Notification.Name("playlist_changeIndexDurationTextColor")
-
-    // Commands all playlist views to change the color of the text in selected rows, in the track name column.
-    static let playlist_changeTrackNameSelectedTextColor = Notification.Name("playlist_changeTrackNameSelectedTextColor")
-
-    // Commands all playlist views to change the color of the text in selected rows, in the group name column.
-    static let playlist_changeGroupNameSelectedTextColor = Notification.Name("playlist_changeGroupNameSelectedTextColor")
-
-    // Commands all playlist views to change the color of the text in selected rows, in the index/duration columns.
-    static let playlist_changeIndexDurationSelectedTextColor = Notification.Name("playlist_changeIndexDurationSelectedTextColor")
-
-    // Commands all playlist views to change the color of their summary info text.
-    static let playlist_changeSummaryInfoColor = Notification.Name("playlist_changeSummaryInfoColor")
-
-    // Commands all playlist views to change the color of their group icons.
-    static let playlist_changeGroupIconColor = Notification.Name("playlist_changeGroupIconColor")
-    
-    // Commands all playlist views to change the color of their group disclosure triangles.
-    static let playlist_changeGroupDisclosureTriangleColor = Notification.Name("playlist_changeGroupDisclosureTriangleColor")
-    
-    // Commands all playlist views to change the color of their selection boxes.
-    static let playlist_changeSelectionBoxColor = Notification.Name("playlist_changeSelectionBoxColor")
-
-    // Commands all playlist views to change the color of their playing track marker icons.
-    static let playlist_changePlayingTrackIconColor = Notification.Name("playlist_changePlayingTrackIconColor")
 }

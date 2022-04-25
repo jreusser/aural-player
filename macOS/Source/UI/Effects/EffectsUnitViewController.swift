@@ -146,20 +146,21 @@ class EffectsUnitViewController: NSViewController, Destroyable {
                                 unitType.equalsOneOf(self?.unitType, .master)
                             })
         
-        messenger.subscribe(to: .effects_changeSliderColors, handler: changeSliderColors)
+//        messenger.subscribe(to: .effects_changeSliderColors, handler: changeSliderColors)
         
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
         messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
-        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
-        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
         
-        messenger.subscribe(to: .effects_changeFunctionCaptionTextColor, handler: changeFunctionCaptionTextColor(_:))
-        messenger.subscribe(to: .effects_changeFunctionValueTextColor, handler: changeFunctionValueTextColor(_:))
-        
-        messenger.subscribe(to: .effects_changeActiveUnitStateColor, handler: changeActiveUnitStateColor(_:))
-        messenger.subscribe(to: .effects_changeBypassedUnitStateColor, handler: changeBypassedUnitStateColor(_:))
-        messenger.subscribe(to: .effects_changeSuppressedUnitStateColor, handler: changeSuppressedUnitStateColor(_:))
+//        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
+//        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
+//
+//        messenger.subscribe(to: .effects_changeFunctionCaptionTextColor, handler: changeFunctionCaptionTextColor(_:))
+//        messenger.subscribe(to: .effects_changeFunctionValueTextColor, handler: changeFunctionValueTextColor(_:))
+//
+//        messenger.subscribe(to: .effects_changeActiveUnitStateColor, handler: changeActiveUnitStateColor(_:))
+//        messenger.subscribe(to: .effects_changeBypassedUnitStateColor, handler: changeBypassedUnitStateColor(_:))
+//        messenger.subscribe(to: .effects_changeSuppressedUnitStateColor, handler: changeSuppressedUnitStateColor(_:))
     }
     
     func stateChanged() {
@@ -193,14 +194,14 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     
     func applyColorScheme(_ scheme: ColorScheme) {
         
-        changeMainCaptionTextColor(scheme.captionTextColor)
+        changeMainCaptionTextColor(scheme.secondaryTextColor)
         
         changeFunctionButtonColor(scheme.buttonColor)
         changeFunctionCaptionTextColor(scheme.secondaryTextColor)
         changeFunctionValueTextColor(scheme.primaryTextColor)
         
         changeActiveUnitStateColor(scheme.activeControlColor)
-        changeBypassedUnitStateColor(scheme.bypassedControlColor)
+        changeBypassedUnitStateColor(scheme.inactiveControlColor)
         changeSuppressedUnitStateColor(scheme.suppressedControlColor)
     }
     

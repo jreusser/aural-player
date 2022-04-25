@@ -31,12 +31,13 @@ class ColorScheme: NSObject, UserManagedObject {
     // False if defined by the user
     let systemDefined: Bool
     
+    // MARK: General colors ----------------------------------------------------------------------------------------
+    
     @objc dynamic var backgroundColor: NSColor
+    @objc dynamic var buttonColor: NSColor
     @objc dynamic var iconColor: NSColor
     
     // MARK: Text colors ----------------------------------------------------------------------------------------
-    
-    @objc dynamic var captionTextColor: NSColor
     
     @objc dynamic var primaryTextColor: NSColor
     @objc dynamic var secondaryTextColor: NSColor
@@ -46,12 +47,7 @@ class ColorScheme: NSObject, UserManagedObject {
     @objc dynamic var secondarySelectedTextColor: NSColor
     @objc dynamic var tertiarySelectedTextColor: NSColor
     
-    // MARK: Button colors ----------------------------------------------------------------------------------------
-    
-    @objc dynamic var buttonColor: NSColor
-    @objc dynamic var buttonOffColor: NSColor
-    
-    // MARK: Activity state colors ----------------------------------------------------------------------------------------
+    // MARK: Control state colors ----------------------------------------------------------------------------------------
     
     @objc dynamic var activeControlColor: NSColor
     @objc dynamic var activeControlGradientColor: NSColor!
@@ -65,16 +61,16 @@ class ColorScheme: NSObject, UserManagedObject {
         NSGradient(starting: activeControlColor, ending: activeControlGradientColor)!
     }
     
-    @objc dynamic var bypassedControlColor: NSColor
-    @objc dynamic var bypassedControlGradientColor: NSColor!
-    @objc dynamic var bypassedControlGradient: NSGradient!
+    @objc dynamic var inactiveControlColor: NSColor
+    @objc dynamic var inactiveControlGradientColor: NSColor!
+    @objc dynamic var inactiveControlGradient: NSGradient!
     
-    private func computeBypassedControlGradientColor() -> NSColor {
-        bypassedControlColor.darkened(50)
+    private func computeInactiveControlGradientColor() -> NSColor {
+        inactiveControlColor.darkened(50)
     }
     
-    private func computeBypassedControlGradient() -> NSGradient {
-        NSGradient(starting: bypassedControlColor, ending: bypassedControlGradientColor)!
+    private func computeInactiveControlGradient() -> NSGradient {
+        NSGradient(starting: inactiveControlColor, ending: inactiveControlGradientColor)!
     }
     
     @objc dynamic var suppressedControlColor: NSColor
@@ -93,26 +89,21 @@ class ColorScheme: NSObject, UserManagedObject {
     
     @objc dynamic var textSelectionColor: NSColor
     
-    // TODO: Do we need these ???
-    @objc dynamic var sliderBackgroundColor: NSColor
-    @objc dynamic var sliderTickColor: NSColor
-    
     // MARK: Functions ----------------------------------------------------------------------------------------
     
     init(name: String, systemDefined: Bool,
-         backgroundColor: NSColor, captionTextColor: NSColor,
+         backgroundColor: NSColor, buttonColor: NSColor, iconColor: NSColor,
          primaryTextColor: NSColor, secondaryTextColor: NSColor, tertiaryTextColor: NSColor,
          primarySelectedTextColor: NSColor, secondarySelectedTextColor: NSColor, tertiarySelectedTextColor: NSColor,
-         buttonColor: NSColor, buttonOffColor: NSColor,
-         activeControlColor: NSColor, bypassedControlColor: NSColor, suppressedControlColor: NSColor,
-         sliderBackgroundColor: NSColor, sliderTickColor: NSColor,
-         textSelectionColor: NSColor, iconColor: NSColor) {
+         textSelectionColor: NSColor,
+         activeControlColor: NSColor, inactiveControlColor: NSColor, suppressedControlColor: NSColor) {
         
         self.name = name
         self.systemDefined = systemDefined
         
         self.backgroundColor = backgroundColor
-        self.captionTextColor = captionTextColor
+        self.buttonColor = buttonColor
+        self.iconColor = iconColor
         
         self.primaryTextColor = primaryTextColor
         self.secondaryTextColor = secondaryTextColor
@@ -122,18 +113,11 @@ class ColorScheme: NSObject, UserManagedObject {
         self.secondarySelectedTextColor = secondarySelectedTextColor
         self.tertiarySelectedTextColor = tertiarySelectedTextColor
         
-        self.buttonColor = buttonColor
-        self.buttonOffColor = buttonOffColor
-        
         self.activeControlColor = activeControlColor
-        self.bypassedControlColor = bypassedControlColor
+        self.inactiveControlColor = inactiveControlColor
         self.suppressedControlColor = suppressedControlColor
         
-        self.sliderBackgroundColor = sliderBackgroundColor
-        self.sliderTickColor = sliderTickColor
-        
         self.textSelectionColor = textSelectionColor
-        self.iconColor = iconColor
         
         super.init()
         
@@ -148,7 +132,8 @@ class ColorScheme: NSObject, UserManagedObject {
         self.systemDefined = systemDefined
         
         backgroundColor = scheme.backgroundColor
-        captionTextColor = scheme.captionTextColor
+        buttonColor = scheme.buttonColor
+        iconColor = scheme.iconColor
         
         primaryTextColor = scheme.primaryTextColor
         secondaryTextColor = scheme.secondaryTextColor
@@ -158,18 +143,11 @@ class ColorScheme: NSObject, UserManagedObject {
         secondarySelectedTextColor = scheme.secondarySelectedTextColor
         tertiarySelectedTextColor = scheme.tertiarySelectedTextColor
         
-        buttonColor = scheme.buttonColor
-        buttonOffColor = scheme.buttonOffColor
+        textSelectionColor = scheme.textSelectionColor
         
         activeControlColor = scheme.activeControlColor
-        bypassedControlColor = scheme.bypassedControlColor
+        inactiveControlColor = scheme.inactiveControlColor
         suppressedControlColor = scheme.suppressedControlColor
-        
-        sliderBackgroundColor = scheme.sliderBackgroundColor
-        sliderTickColor = scheme.sliderTickColor
-        
-        textSelectionColor = scheme.textSelectionColor
-        iconColor = scheme.iconColor
         
         super.init()
         
@@ -184,7 +162,8 @@ class ColorScheme: NSObject, UserManagedObject {
         self.systemDefined = systemDefined
         
         backgroundColor = persistentState?.backgroundColor?.toColor() ?? Self.defaultScheme.backgroundColor
-        captionTextColor = persistentState?.captionTextColor?.toColor() ?? Self.defaultScheme.captionTextColor
+        buttonColor = persistentState?.buttonColor?.toColor() ?? Self.defaultScheme.buttonColor
+        iconColor = persistentState?.iconColor?.toColor() ?? Self.defaultScheme.iconColor
         
         primaryTextColor = persistentState?.primaryTextColor?.toColor() ?? Self.defaultScheme.primaryTextColor
         secondaryTextColor = persistentState?.secondaryTextColor?.toColor() ?? Self.defaultScheme.secondaryTextColor
@@ -194,18 +173,11 @@ class ColorScheme: NSObject, UserManagedObject {
         secondarySelectedTextColor = persistentState?.secondarySelectedTextColor?.toColor() ?? Self.defaultScheme.secondarySelectedTextColor
         tertiarySelectedTextColor = persistentState?.tertiarySelectedTextColor?.toColor() ?? Self.defaultScheme.tertiarySelectedTextColor
         
-        buttonColor = persistentState?.buttonColor?.toColor() ?? Self.defaultScheme.buttonColor
-        buttonOffColor = persistentState?.buttonOffColor?.toColor() ?? Self.defaultScheme.buttonOffColor
-        
         activeControlColor = persistentState?.activeControlColor?.toColor() ?? Self.defaultScheme.activeControlColor
-        bypassedControlColor = persistentState?.bypassedControlColor?.toColor() ?? Self.defaultScheme.bypassedControlColor
+        inactiveControlColor = persistentState?.inactiveControlColor?.toColor() ?? Self.defaultScheme.inactiveControlColor
         suppressedControlColor = persistentState?.suppressedControlColor?.toColor() ?? Self.defaultScheme.suppressedControlColor
         
-        sliderBackgroundColor = persistentState?.sliderBackgroundColor?.toColor() ?? Self.defaultScheme.sliderBackgroundColor
-        sliderTickColor = persistentState?.sliderTickColor?.toColor() ?? Self.defaultScheme.sliderTickColor
-        
         textSelectionColor = persistentState?.textSelectionColor?.toColor() ?? Self.defaultScheme.textSelectionColor
-        iconColor = persistentState?.iconColor?.toColor() ?? Self.defaultScheme.iconColor
         
         super.init()
         
@@ -218,8 +190,8 @@ class ColorScheme: NSObject, UserManagedObject {
         self.activeControlGradientColor = computeActiveControlGradientColor()
         self.activeControlGradient = computeActiveControlGradient()
         
-        self.bypassedControlGradientColor = computeBypassedControlGradientColor()
-        self.bypassedControlGradient = computeBypassedControlGradient()
+        self.inactiveControlGradientColor = computeInactiveControlGradientColor()
+        self.inactiveControlGradient = computeInactiveControlGradient()
         
         self.suppressedControlGradientColor = computeSuppressedControlGradientColor()
         self.suppressedControlGradient = computeSuppressedControlGradient()
@@ -239,10 +211,10 @@ class ColorScheme: NSObject, UserManagedObject {
             strongSelf.activeControlGradient = strongSelf.computeActiveControlGradient()
         }
         
-        kvoTokens.addObserver(forObject: self, keyPath: \.bypassedControlColor) {strongSelf, _ in
+        kvoTokens.addObserver(forObject: self, keyPath: \.inactiveControlColor) {strongSelf, _ in
             
-            strongSelf.bypassedControlGradientColor = strongSelf.computeBypassedControlGradientColor()
-            strongSelf.bypassedControlGradient = strongSelf.computeBypassedControlGradient()
+            strongSelf.inactiveControlGradientColor = strongSelf.computeInactiveControlGradientColor()
+            strongSelf.inactiveControlGradient = strongSelf.computeInactiveControlGradient()
         }
         
         kvoTokens.addObserver(forObject: self, keyPath: \.suppressedControlColor) {strongSelf, _ in
@@ -256,7 +228,8 @@ class ColorScheme: NSObject, UserManagedObject {
     func applyScheme(_ scheme: ColorScheme) {
         
         backgroundColor = scheme.backgroundColor
-        captionTextColor = scheme.captionTextColor
+        buttonColor = scheme.buttonColor
+        iconColor = scheme.iconColor
         
         primaryTextColor = scheme.primaryTextColor
         secondaryTextColor = scheme.secondaryTextColor
@@ -266,18 +239,11 @@ class ColorScheme: NSObject, UserManagedObject {
         secondarySelectedTextColor = scheme.secondarySelectedTextColor
         tertiarySelectedTextColor = scheme.tertiarySelectedTextColor
         
-        buttonColor = scheme.buttonColor
-        buttonOffColor = scheme.buttonOffColor
+        textSelectionColor = scheme.textSelectionColor
         
         activeControlColor = scheme.activeControlColor
-        bypassedControlColor = scheme.bypassedControlColor
+        inactiveControlColor = scheme.inactiveControlColor
         suppressedControlColor = scheme.suppressedControlColor
-        
-        sliderBackgroundColor = scheme.sliderBackgroundColor
-        sliderTickColor = scheme.sliderTickColor
-        
-        textSelectionColor = scheme.textSelectionColor
-        iconColor = scheme.iconColor
     }
     
     // Creates an identical copy of this color scheme

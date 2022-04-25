@@ -205,21 +205,4 @@ extension Notification.Name {
 
     // Commands the player to bookmark the current playback loop (if there is one) for the currently playing track
     static let player_bookmarkLoop = Notification.Name("player_bookmarkLoop")
-    
-    // MARK: Color scheme commands sent to the player UI
-
-    // Commands all relevant player UI components to change the color of their primary track info fields (eg. track name).
-    static let player_changeTrackInfoPrimaryTextColor = Notification.Name("player_changeTrackInfoPrimaryTextColor")
-    
-    // Commands all relevant player UI components to change the color of their secondary track info fields (eg. artist name).
-    static let player_changeTrackInfoSecondaryTextColor = Notification.Name("player_changeTrackInfoSecondaryTextColor")
-
-    // Commands all relevant player UI components to change the color of their tertiary track info fields (eg. current chapter title).
-    static let player_changeTrackInfoTertiaryTextColor = Notification.Name("player_changeTrackInfoTertiaryTextColor")
-
-    // Commands all relevant player UI components to change the color of the feedback text associated with their sliders (eg. seek bar / volume).
-    static let player_changeSliderValueTextColor = Notification.Name("player_changeSliderValueTextColor")
-
-    // Commands all relevant player UI components to redraw their sliders.
-    static let player_changeSliderColors = Notification.Name("player_changeSliderColors")
 }

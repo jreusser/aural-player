@@ -110,12 +110,12 @@ class FilterUnitViewController: EffectsUnitViewController {
         
         super.initSubscriptions()
         
-        messenger.subscribe(to: .changeBackgroundColor, handler: filterUnitView.changeBackgroundColor(_:))
-        messenger.subscribe(to: .changeTextButtonMenuColor, handler: filterUnitView.changeTextButtonMenuColor(_:))
-        messenger.subscribe(to: .changeSelectedTabButtonColor, handler: filterUnitView.changeSelectedTabButtonColor(_:))
-        messenger.subscribe(to: .changeTabButtonTextColor, handler: filterUnitView.changeTabButtonTextColor(_:))
-        messenger.subscribe(to: .changeButtonMenuTextColor, handler: filterUnitView.changeButtonMenuTextColor(_:))
-        messenger.subscribe(to: .changeSelectedTabButtonTextColor, handler: filterUnitView.changeSelectedTabButtonTextColor(_:))
+//        messenger.subscribe(to: .changeBackgroundColor, handler: filterUnitView.changeBackgroundColor(_:))
+//        messenger.subscribe(to: .changeTextButtonMenuColor, handler: filterUnitView.changeTextButtonMenuColor(_:))
+//        messenger.subscribe(to: .changeSelectedTabButtonColor, handler: filterUnitView.changeSelectedTabButtonColor(_:))
+//        messenger.subscribe(to: .changeTabButtonTextColor, handler: filterUnitView.changeTabButtonTextColor(_:))
+//        messenger.subscribe(to: .changeButtonMenuTextColor, handler: filterUnitView.changeButtonMenuTextColor(_:))
+//        messenger.subscribe(to: .changeSelectedTabButtonTextColor, handler: filterUnitView.changeSelectedTabButtonTextColor(_:))
     }
     
     override func stateChanged() {
@@ -138,14 +138,14 @@ class FilterUnitViewController: EffectsUnitViewController {
         
         // Need to do this to avoid multiple redundant redraw() calls
         
-        changeMainCaptionTextColor(scheme.captionTextColor)
+        changeMainCaptionTextColor(scheme.secondaryTextColor)
         
         super.changeFunctionButtonColor(scheme.buttonColor)
         super.changeFunctionCaptionTextColor(scheme.secondaryTextColor)
         super.changeFunctionValueTextColor(scheme.primaryTextColor)
         
         super.changeActiveUnitStateColor(scheme.activeControlColor)
-        super.changeBypassedUnitStateColor(scheme.bypassedControlColor)
+        super.changeBypassedUnitStateColor(scheme.inactiveControlColor)
         super.changeSuppressedUnitStateColor(scheme.suppressedControlColor)
         
         filterUnitView.applyColorScheme(scheme)

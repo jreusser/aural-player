@@ -36,11 +36,11 @@ struct Colors {
 //    }
 //
 //    static var toggleButtonOffStateColor: NSColor {
-//        return systemColorScheme.buttonOffColor
+//        return systemColorScheme.inactiveControlColor
 //    }
 //
 //    static var mainCaptionTextColor: NSColor {
-//        return systemColorScheme.captionTextColor
+//        return systemColorScheme.secondaryTextColor
 //    }
 //
 //    static var tabButtonTextColor: NSColor {
@@ -90,7 +90,7 @@ struct Colors {
 //
 //        private static func computeSliderBackgroundGradient() -> NSGradient {
 //
-//            let endColor = systemColorScheme.player.sliderBackgroundColor
+//            let endColor = systemColorScheme.player.inactiveControlColor
 //
 //            switch systemColorScheme.player.sliderBackgroundGradientType {
 //
@@ -233,8 +233,8 @@ struct Colors {
 //            return systemColorScheme.primaryTextColor
 //        }
 //
-//        static var sliderBackgroundColor: NSColor {
-//            return systemColorScheme.effects.sliderBackgroundColor
+//        static var inactiveControlColor: NSColor {
+//            return systemColorScheme.effects.inactiveControlColor
 //        }
 //
 //        static func sliderKnobColorForState(_ state: EffectsUnitState) -> NSColor {
@@ -262,7 +262,7 @@ struct Colors {
 //        }
 //
 //        static var bypassedUnitStateColor: NSColor {
-//            return systemColorScheme.bypassedControlColor
+//            return systemColorScheme.inactiveControlColor
 //        }
 //
 //        static var suppressedUnitStateColor: NSColor {
@@ -297,7 +297,7 @@ struct Colors {
 //
 //        static var bypassedSliderGradient: NSGradient {
 //
-//            let startColor = systemColorScheme.bypassedControlColor
+//            let startColor = systemColorScheme.inactiveControlColor
 //
 //            switch systemColorScheme.effects.sliderForegroundGradientType {
 //
@@ -349,7 +349,7 @@ struct Colors {
 //
 //        static var sliderBackgroundGradient: NSGradient {
 //
-//            let endColor = systemColorScheme.effects.sliderBackgroundColor
+//            let endColor = systemColorScheme.effects.inactiveControlColor
 //
 //            switch systemColorScheme.effects.sliderBackgroundGradientType {
 //

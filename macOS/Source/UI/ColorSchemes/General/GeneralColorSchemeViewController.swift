@@ -17,6 +17,7 @@ class GeneralColorSchemeViewController: ColorSchemeViewController {
     override var nibName: NSNib.Name? {"GeneralColorScheme"}
     
     @IBOutlet weak var backgroundColorPicker: AuralColorPicker!
+    @IBOutlet weak var buttonColorPicker: AuralColorPicker!
     @IBOutlet weak var iconColorPicker: AuralColorPicker!
     
     override func viewDidLoad() {
@@ -26,6 +27,7 @@ class GeneralColorSchemeViewController: ColorSchemeViewController {
         // Map control tags to their corresponding undo/redo actions
         
         actionsMap[backgroundColorPicker.tag] = changeBackgroundColor
+        actionsMap[buttonColorPicker.tag] = changeButtonColor
         actionsMap[iconColorPicker.tag] = changeIconColor
     }
     
@@ -36,6 +38,7 @@ class GeneralColorSchemeViewController: ColorSchemeViewController {
         // Update the UI to reflect the current system color scheme
         
         backgroundColorPicker.color = systemColorScheme.backgroundColor
+        buttonColorPicker.color = systemColorScheme.buttonColor
         iconColorPicker.color = systemColorScheme.iconColor
     }
     
@@ -48,6 +51,17 @@ class GeneralColorSchemeViewController: ColorSchemeViewController {
     
     private func changeBackgroundColor() {
         systemColorScheme.backgroundColor = backgroundColorPicker.color
+    }
+    
+    @IBAction func buttonColorAction(_ sender: Any) {
+        
+        history.noteChange(ColorSchemeChange(tag: buttonColorPicker.tag, undoValue: systemColorScheme.buttonColor,
+                                             redoValue: buttonColorPicker.color, changeType: .changeColor))
+        changeButtonColor()
+    }
+    
+    private func changeButtonColor() {
+        systemColorScheme.buttonColor = buttonColorPicker.color
     }
     
     @IBAction func iconColorAction(_ sender: Any) {

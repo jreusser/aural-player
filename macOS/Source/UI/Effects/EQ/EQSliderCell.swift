@@ -22,7 +22,7 @@ class EQSliderCell: AuralSliderCell {
             
         case .active:       return systemColorScheme.activeControlGradient
             
-        case .bypassed:     return systemColorScheme.bypassedControlGradient
+        case .bypassed:     return systemColorScheme.inactiveControlGradient
             
         case .suppressed:   return systemColorScheme.suppressedControlGradient
             
@@ -35,7 +35,7 @@ class EQSliderCell: AuralSliderCell {
             
         case .active:       return systemColorScheme.activeControlColor
             
-        case .bypassed:     return systemColorScheme.bypassedControlColor
+        case .bypassed:     return systemColorScheme.inactiveControlColor
             
         case .suppressed:   return systemColorScheme.suppressedControlColor
             
@@ -94,7 +94,7 @@ class EQSliderCell: AuralSliderCell {
         // Background line
         let startPoint = NSMakePoint(drawRect.centerX, drawRect.minY)
         let endPoint = NSMakePoint(drawRect.centerX, drawRect.maxY)
-        GraphicsUtils.drawLine(.white30Percent, pt1: startPoint, pt2: endPoint, width: 1)
+        GraphicsUtils.drawLine(systemColorScheme.inactiveControlColor, pt1: startPoint, pt2: endPoint, width: 1)
         
         // Progress rect
         NSBezierPath.fillRoundedRect(progressRect, radius: barRadius, withGradient: foregroundGradient, angle: .verticalGradientDegrees)

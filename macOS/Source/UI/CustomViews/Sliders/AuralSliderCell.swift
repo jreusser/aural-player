@@ -47,7 +47,7 @@ class AuralSliderCell: NSSliderCell {
     
     // MARK: Colors
     
-    var backgroundColor: NSColor {systemColorScheme.sliderBackgroundColor}
+    var backgroundColor: NSColor {systemColorScheme.inactiveControlColor}
     
     var foregroundGradient: NSGradient {
         systemColorScheme.activeControlGradient
@@ -75,7 +75,7 @@ class AuralSliderCell: NSSliderCell {
             self?.controlView?.redraw()
         })
         
-        kvoTokens.append(systemColorScheme.observe(\.sliderBackgroundColor, options: [.initial, .new]) {[weak self] _, _ in
+        kvoTokens.append(systemColorScheme.observe(\.inactiveControlColor, options: [.initial, .new]) {[weak self] _, _ in
             self?.controlView?.redraw()
         })
     }
@@ -122,7 +122,7 @@ class AuralSliderCell: NSSliderCell {
 
         let startPoint = NSMakePoint(rect.minX, rect.centerY)
         let endPoint = NSMakePoint(rect.maxX, rect.centerY)
-        GraphicsUtils.drawLine(.white30Percent, pt1: startPoint, pt2: endPoint, width: 1)
+        GraphicsUtils.drawLine(systemColorScheme.inactiveControlColor, pt1: startPoint, pt2: endPoint, width: 1)
     }
     
     func drawTicks(_ aRect: NSRect) {

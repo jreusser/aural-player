@@ -44,7 +44,7 @@ class PlayerAudioViewController: NSViewController, Destroyable {
     let mediumVolumeRange: Range<Float> = 100.0/3..<200.0/3
     let lowVolumeRange: Range<Float> = 1..<100.0/3
     
-    // Time intervals for which feedback labels or views that are to be auto-hidden are displayed, before being hidden
+    // Time intervals for which feedback labels or views that are to be auto-hidden are displayed, before being hidden.
     static let feedbackLabelAutoHideIntervalSeconds: TimeInterval = 1
     
     override func viewDidLoad() {

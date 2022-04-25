@@ -71,6 +71,38 @@ extension PlatformImage {
         return image
     }
     
+    func tintedUsingCIFilterWithColor(_ color: NSColor) -> NSImage {
+
+        let size: NSSize = self.size
+        let bounds: NSRect = NSRect(origin: NSPoint.zero, size: size)
+        let tmg: NSImage = NSImage(size: size)
+
+        tmg.lockFocus()
+
+        let colorGenerator: CIFilter = CIFilter(name: "CIConstantColorGenerator")!
+        let ciColor: CIColor = CIColor(color: color)!
+
+        colorGenerator.setValue(ciColor, forKey: "inputColor")
+    
+        let monoFilter: CIFilter = CIFilter(name: "CIColorMonochrome")!
+        let baseImg: CIImage = CIImage(data: self.tiffRepresentation!)!
+        
+        monoFilter.setValue(baseImg, forKey: "inputImage")
+        monoFilter.setValue(CIColor(color: NSColor(red: 0.75, green: 0.75, blue: 0.75))!, forKey: "inputColor")
+        monoFilter.setValue(NSNumber(floatLiteral: 1.0), forKey: "inputIntensity")
+        
+        let compFilter: CIFilter = CIFilter(name: "CIMultiplyCompositing")!
+        compFilter.setValue(colorGenerator.value(forKey: "outputImage")!, forKey: "inputImage")
+        compFilter.setValue(monoFilter.value(forKey: "outputImage")!, forKey: "inputBackgroundImage")
+        
+        let outImg: CIImage = compFilter.value(forKey: "outputImage") as! CIImage
+        
+        outImg.draw(at: NSPoint.zero, from: bounds, operation: .copy, fraction: 1.0)
+        tmg.unlockFocus()
+
+        return tmg
+    }
+    
 #endif
     
     func copy(ofSize size: CGSize) -> PlatformImage {

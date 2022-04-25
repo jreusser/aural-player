@@ -37,7 +37,7 @@ class PlaylistContainerViewController: NSViewController, ColorSchemeObserver {
         
         lblPlaylistName.font = systemFontScheme.effects.unitCaptionFont
         
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.secondaryTextColor])
     }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
@@ -48,7 +48,7 @@ class PlaylistContainerViewController: NSViewController, ColorSchemeObserver {
             
             playlistContainer.fillColor = newColor
             
-        case \.captionTextColor:
+        case \.secondaryTextColor:
             
             lblPlaylistName.textColor = newColor
             

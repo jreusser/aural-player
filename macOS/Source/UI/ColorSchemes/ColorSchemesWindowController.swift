@@ -34,8 +34,6 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
     private lazy var generalSchemeView: ColorSchemesViewProtocol = GeneralColorSchemeViewController()
     private lazy var textSchemeView: ColorSchemesViewProtocol = TextColorSchemeViewController()
     private lazy var controlStatesSchemeView: ColorSchemesViewProtocol = ControlStatesColorSchemeViewController()
-    private lazy var buttonsSchemeView: ColorSchemesViewProtocol = ButtonsColorSchemeViewController()
-    //    private lazy var effectsSchemeView: ColorSchemesViewProtocol = EffectsColorSchemeViewController()
     
     private var subViews: [ColorSchemesViewProtocol] = []
     
@@ -57,7 +55,7 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
         window?.isMovableByWindowBackground = true
         
         // Add the subviews to the tab group
-        subViews = [generalSchemeView, textSchemeView, controlStatesSchemeView, buttonsSchemeView]
+        subViews = [generalSchemeView, textSchemeView, controlStatesSchemeView]
         
         for (index, subView) in subViews.enumerated() {
             

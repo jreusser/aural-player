@@ -52,7 +52,7 @@ class WindowedModePlaybackViewController: PlaybackViewController {
         messenger.subscribe(to: .applyTheme, handler: playbackView.applyTheme)
         messenger.subscribe(to: .applyFontScheme, handler: playbackView.applyFontScheme(_:))
         messenger.subscribe(to: .applyColorScheme, handler: playbackView.applyColorScheme(_:))
-        messenger.subscribe(to: .player_changeSliderColors, handler: playbackView.changeSliderColors)
+//        messenger.subscribe(to: .player_changeSliderColors, handler: playbackView.changeSliderColors)
     }
     
     func performTrackPlayback(_ command: TrackPlaybackCommandNotification) {

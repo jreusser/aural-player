@@ -38,7 +38,7 @@ extension TintableFXUnitStateObserver {
             contentTintColor = systemColorScheme.activeControlColor
             
         case .bypassed:
-            contentTintColor = systemColorScheme.bypassedControlColor
+            contentTintColor = systemColorScheme.inactiveControlColor
             
         case .suppressed:
             contentTintColor = systemColorScheme.suppressedControlColor
@@ -61,7 +61,7 @@ extension TextualFXUnitStateObserver {
             textColor = systemColorScheme.activeControlColor
             
         case .bypassed:
-            textColor = systemColorScheme.bypassedControlColor
+            textColor = systemColorScheme.inactiveControlColor
             
         case .suppressed:
             textColor = systemColorScheme.suppressedControlColor

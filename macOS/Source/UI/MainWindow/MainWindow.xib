@@ -16,7 +16,6 @@
                 <outlet property="btnSettingsMenu" destination="hiE-G6-T2s" id="4bk-VK-3Q3"/>
                 <outlet property="btnToggleEffects" destination="W1Y-N5-RBQ" id="U8N-rP-qpZ"/>
                 <outlet property="btnTogglePlayQueue" destination="Br1-bp-Vzd" id="Cye-Wt-34K"/>
-                <outlet property="btnTogglePlaylists" destination="z7D-PL-6pR" id="eML-KS-Mhg"/>
                 <outlet property="containerBox" destination="hPg-iX-tXz" id="5Gt-cO-ZjA"/>
                 <outlet property="logoImage" destination="efk-uj-yYR" id="GYw-BM-8nr"/>
                 <outlet property="mainMenu" destination="tjv-P8-i0X" id="lVx-Xf-XfV"/>
@@ -98,7 +97,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <button toolTip="Show/hide Play Queue" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Br1-bp-Vzd" userLabel="Toggle Play Queue Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="434" y="199" width="17.5" height="23"/>
+                                    <rect key="frame" x="456" y="199" width="17.5" height="23"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="yEP-qA-m8Z">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -114,25 +113,8 @@
                                         <action selector="togglePlayQueueAction:" target="-2" id="uMq-TF-p4H"/>
                                     </connections>
                                 </button>
-                                <button toolTip="Show/hide Playlists" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z7D-PL-6pR" userLabel="Toggle Playlists Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="478" y="200" width="17.5" height="23"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="DoS-C9-qrh">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                        <imageReference key="image" image="list.dash" catalog="system" symbolScale="large"/>
-                                    </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="weight">
-                                            <real key="value" value="8"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="togglePlaylistsAction:" target="-2" id="HpL-0i-bMD"/>
-                                    </connections>
-                                </button>
                                 <popUpButton toolTip="Global and player view settings" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hiE-G6-T2s" userLabel="Settings Menu">
-                                    <rect key="frame" x="500" y="204" width="20" height="14"/>
+                                    <rect key="frame" x="498" y="202" width="20" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="QX7-Ug-p4q">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -140,10 +122,10 @@
                                         <menu key="menu" autoenablesItems="NO" id="drC-pX-0Rs">
                                             <items>
                                                 <menuItem hidden="YES" id="HM2-5O-u4Z" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
-                                                    <imageReference key="image" image="line.horizontal.3" catalog="system" symbolScale="medium"/>
+                                                    <imageReference key="image" image="Hamburger" symbolScale="medium"/>
                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Settings"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Hamburger"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </menuItem>
                                                 <menuItem title="Player view" id="b3A-Wj-7Xz" userLabel="Player View">
@@ -547,7 +529,7 @@
                                     </popUpButtonCell>
                                 </popUpButton>
                                 <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1Y-N5-RBQ" userLabel="Toggle Effects Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="456" y="203.5" width="17" height="16"/>
+                                    <rect key="frame" x="478" y="203.5" width="17" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="slider.vertical.3" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ayS-P6-02f">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2084,6 +2066,7 @@ CA
         <image name="Favorites" width="15" height="15"/>
         <image name="Favorites-Editor" width="15" height="15"/>
         <image name="FontScheme" width="14" height="14"/>
+        <image name="Hamburger" width="42" height="26"/>
         <image name="LoopOff-Small" width="15" height="13"/>
         <image name="MasterTab-Small" width="14" height="14"/>
         <image name="MenuBarMode" width="14" height="10"/>
@@ -2104,7 +2087,6 @@ CA
         <image name="Replay-Small" width="15" height="15"/>
         <image name="SeekBackward-Small" width="14" height="11"/>
         <image name="SeekForward-Small" width="14" height="11"/>
-        <image name="Settings" width="10" height="7"/>
         <image name="ShowPlayingTrack-Small" width="13" height="13"/>
         <image name="ShuffleOn-Small" width="15" height="15"/>
         <image name="Stop-Small" width="9" height="9"/>
@@ -2132,8 +2114,6 @@ CA
         <image name="arrow.up" catalog="system" width="13" height="14"/>
         <image name="arrow.up.arrow.down" catalog="system" width="18" height="15"/>
         <image name="arrow.up.to.line.alt" catalog="system" width="13" height="16"/>
-        <image name="line.horizontal.3" catalog="system" width="16" height="9"/>
-        <image name="list.dash" catalog="system" width="20" height="14"/>
         <image name="magnifyingglass" catalog="system" width="15" height="15"/>
         <image name="minus" catalog="system" width="14" height="4"/>
         <image name="music.note.list" catalog="system" width="16" height="15"/>

@@ -65,7 +65,7 @@ class OnOffImageButton: NSButton, ColorSchemeable {
     // Sets the button state to be "Off"
     override func off() {
         
-        contentTintColor = systemColorScheme.buttonOffColor
+        contentTintColor = systemColorScheme.inactiveControlColor
         toolTip = offStateTooltip
         
         super.off()

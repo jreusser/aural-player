@@ -62,7 +62,7 @@ class AuralSlider: NSSlider {
     
     // MARK: Colors
     
-    var backgroundColor: NSColor {systemColorScheme.sliderBackgroundColor}
+    var backgroundColor: NSColor {systemColorScheme.inactiveControlColor}
     
     var foregroundColor: NSColor {systemColorScheme.activeControlColor}
     var foregroundGradientColor: NSColor {systemColorScheme.activeControlGradientColor}

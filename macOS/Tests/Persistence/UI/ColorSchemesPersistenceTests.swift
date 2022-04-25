@@ -87,13 +87,13 @@ extension GeneralColorSchemePersistentState: Equatable {
 
 extension PlayerColorSchemePersistentState: Equatable {
     
-    init(trackInfoPrimaryTextColor: ColorPersistentState?, trackInfoSecondaryTextColor: ColorPersistentState?, trackInfoTertiaryTextColor: ColorPersistentState?, sliderValueTextColor: ColorPersistentState?, sliderBackgroundColor: ColorPersistentState?, sliderBackgroundGradientType: ColorSchemeGradientType?, sliderBackgroundGradientAmount: Int?, sliderForegroundColor: ColorPersistentState?, sliderForegroundGradientType: ColorSchemeGradientType?, sliderForegroundGradientAmount: Int?, sliderKnobColor: ColorPersistentState?, sliderKnobColorSameAsForeground: Bool?, sliderLoopSegmentColor: ColorPersistentState?) {
+    init(trackInfoPrimaryTextColor: ColorPersistentState?, trackInfoSecondaryTextColor: ColorPersistentState?, trackInfoTertiaryTextColor: ColorPersistentState?, sliderValueTextColor: ColorPersistentState?, inactiveControlColor: ColorPersistentState?, sliderBackgroundGradientType: ColorSchemeGradientType?, sliderBackgroundGradientAmount: Int?, sliderForegroundColor: ColorPersistentState?, sliderForegroundGradientType: ColorSchemeGradientType?, sliderForegroundGradientAmount: Int?, sliderKnobColor: ColorPersistentState?, sliderKnobColorSameAsForeground: Bool?, sliderLoopSegmentColor: ColorPersistentState?) {
         
         self.trackInfoPrimaryTextColor = trackInfoPrimaryTextColor
         self.trackInfoSecondaryTextColor = trackInfoSecondaryTextColor
         self.trackInfoTertiaryTextColor = trackInfoTertiaryTextColor
         self.sliderValueTextColor = sliderValueTextColor
-        self.sliderBackgroundColor = sliderBackgroundColor
+        self.inactiveControlColor = inactiveControlColor
         self.sliderBackgroundGradientType = sliderBackgroundGradientType
         self.sliderBackgroundGradientAmount = sliderBackgroundGradientAmount
         self.sliderForegroundColor = sliderForegroundColor
@@ -106,7 +106,7 @@ extension PlayerColorSchemePersistentState: Equatable {
     
     static func == (lhs: PlayerColorSchemePersistentState, rhs: PlayerColorSchemePersistentState) -> Bool {
         
-        lhs.sliderBackgroundColor == rhs.sliderBackgroundColor &&
+        lhs.inactiveControlColor == rhs.inactiveControlColor &&
             lhs.sliderForegroundColor == rhs.sliderForegroundColor &&
             lhs.sliderKnobColor == rhs.sliderKnobColor &&
             lhs.sliderLoopSegmentColor == rhs.sliderLoopSegmentColor &&
@@ -157,11 +157,11 @@ extension PlaylistColorSchemePersistentState: Equatable {
 
 extension EffectsColorSchemePersistentState: Equatable {
     
-    init(functionCaptionTextColor: ColorPersistentState?, functionValueTextColor: ColorPersistentState?, sliderBackgroundColor: ColorPersistentState?, sliderBackgroundGradientType: ColorSchemeGradientType?, sliderBackgroundGradientAmount: Int?, sliderForegroundGradientType: ColorSchemeGradientType?, sliderForegroundGradientAmount: Int?, sliderKnobColor: ColorPersistentState?, sliderKnobColorSameAsForeground: Bool?, sliderTickColor: ColorPersistentState?, activeUnitStateColor: ColorPersistentState?, bypassedUnitStateColor: ColorPersistentState?, suppressedUnitStateColor: ColorPersistentState?) {
+    init(functionCaptionTextColor: ColorPersistentState?, functionValueTextColor: ColorPersistentState?, inactiveControlColor: ColorPersistentState?, sliderBackgroundGradientType: ColorSchemeGradientType?, sliderBackgroundGradientAmount: Int?, sliderForegroundGradientType: ColorSchemeGradientType?, sliderForegroundGradientAmount: Int?, sliderKnobColor: ColorPersistentState?, sliderKnobColorSameAsForeground: Bool?, sliderTickColor: ColorPersistentState?, activeUnitStateColor: ColorPersistentState?, bypassedUnitStateColor: ColorPersistentState?, suppressedUnitStateColor: ColorPersistentState?) {
         
         self.functionCaptionTextColor = functionCaptionTextColor
         self.functionValueTextColor = functionValueTextColor
-        self.sliderBackgroundColor = sliderBackgroundColor
+        self.inactiveControlColor = inactiveControlColor
         self.sliderBackgroundGradientType = sliderBackgroundGradientType
         self.sliderBackgroundGradientAmount = sliderBackgroundGradientAmount
         self.sliderForegroundGradientType = sliderForegroundGradientType
@@ -180,7 +180,7 @@ extension EffectsColorSchemePersistentState: Equatable {
             lhs.bypassedUnitStateColor == rhs.bypassedUnitStateColor &&
             lhs.functionCaptionTextColor == rhs.functionCaptionTextColor &&
             lhs.functionValueTextColor == rhs.functionValueTextColor &&
-            lhs.sliderBackgroundColor == rhs.sliderBackgroundColor &&
+            lhs.inactiveControlColor == rhs.inactiveControlColor &&
             lhs.sliderBackgroundGradientAmount == rhs.sliderBackgroundGradientAmount &&
             lhs.sliderBackgroundGradientType == rhs.sliderBackgroundGradientType &&
             lhs.sliderForegroundGradientAmount == rhs.sliderForegroundGradientAmount &&

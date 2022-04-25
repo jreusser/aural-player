@@ -300,7 +300,7 @@ func randomColorScheme(named name: String) -> ColorSchemePersistentState {
                                                   trackInfoSecondaryTextColor: randomColor(),
                                                   trackInfoTertiaryTextColor: randomColor(),
                                                   sliderValueTextColor: randomColor(),
-                                                  sliderBackgroundColor: randomColor(),
+                                                  inactiveControlColor: randomColor(),
                                                   sliderBackgroundGradientType: .randomCase(),
                                                   sliderBackgroundGradientAmount: Int.random(in: 1...100),
                                                   sliderForegroundColor: randomColor(),
@@ -324,7 +324,7 @@ func randomColorScheme(named name: String) -> ColorSchemePersistentState {
     
     let effects = EffectsColorSchemePersistentState(functionCaptionTextColor: randomColor(),
                                                     functionValueTextColor: randomColor(),
-                                                    sliderBackgroundColor: randomColor(),
+                                                    inactiveControlColor: randomColor(),
                                                     sliderBackgroundGradientType: .randomCase(),
                                                     sliderBackgroundGradientAmount: .random(in: 1...100),
                                                     sliderForegroundGradientType: .randomCase(),

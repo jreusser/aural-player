@@ -187,12 +187,6 @@ Gw
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="Buttons" identifier="" id="4Wa-HM-K1I" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
-                                <view key="view" id="lgR-54-JSy">
-                                    <rect key="frame" x="10" y="33" width="465" height="261"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </tabViewItem>
                         </tabViewItems>
                     </tabView>
                     <button toolTip="Save color scheme" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MUl-jB-2L2" userLabel="Save to new scheme Button">

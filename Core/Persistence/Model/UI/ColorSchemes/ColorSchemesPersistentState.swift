@@ -30,7 +30,8 @@ struct ColorSchemePersistentState: Codable {
     let name: String
     
     let backgroundColor: ColorPersistentState?
-    let captionTextColor: ColorPersistentState?
+    let buttonColor: ColorPersistentState?
+    let iconColor: ColorPersistentState?
     
     let primaryTextColor: ColorPersistentState?
     let secondaryTextColor: ColorPersistentState?
@@ -40,18 +41,11 @@ struct ColorSchemePersistentState: Codable {
     let secondarySelectedTextColor: ColorPersistentState?
     let tertiarySelectedTextColor: ColorPersistentState?
     
-    let buttonColor: ColorPersistentState?
-    let buttonOffColor: ColorPersistentState?
+    let textSelectionColor: ColorPersistentState?
     
     let activeControlColor: ColorPersistentState?
-    let bypassedControlColor: ColorPersistentState?
+    let inactiveControlColor: ColorPersistentState?
     let suppressedControlColor: ColorPersistentState?
-    
-    let sliderBackgroundColor: ColorPersistentState?
-    let sliderTickColor: ColorPersistentState?
-    
-    let textSelectionColor: ColorPersistentState?
-    let iconColor: ColorPersistentState?
     
     // When saving app state to disk
     init(_ scheme: ColorScheme) {
@@ -59,7 +53,8 @@ struct ColorSchemePersistentState: Codable {
         self.name = scheme.name
 
         self.backgroundColor = ColorPersistentState(color: scheme.backgroundColor)
-        self.captionTextColor = ColorPersistentState(color: scheme.captionTextColor)
+        self.buttonColor = ColorPersistentState(color: scheme.buttonColor)
+        self.iconColor = ColorPersistentState(color: scheme.iconColor)
         
         self.primaryTextColor = ColorPersistentState(color: scheme.primaryTextColor)
         self.secondaryTextColor = ColorPersistentState(color: scheme.secondaryTextColor)
@@ -69,17 +64,10 @@ struct ColorSchemePersistentState: Codable {
         self.secondarySelectedTextColor = ColorPersistentState(color: scheme.secondarySelectedTextColor)
         self.tertiarySelectedTextColor = ColorPersistentState(color: scheme.tertiarySelectedTextColor)
         
-        self.buttonColor = ColorPersistentState(color: scheme.buttonColor)
-        self.buttonOffColor = ColorPersistentState(color: scheme.buttonOffColor)
+        self.textSelectionColor = ColorPersistentState(color: scheme.textSelectionColor)
         
         self.activeControlColor = ColorPersistentState(color: scheme.activeControlColor)
-        self.bypassedControlColor = ColorPersistentState(color: scheme.bypassedControlColor)
+        self.inactiveControlColor = ColorPersistentState(color: scheme.inactiveControlColor)
         self.suppressedControlColor = ColorPersistentState(color: scheme.suppressedControlColor)
-        
-        self.sliderBackgroundColor = ColorPersistentState(color: scheme.sliderBackgroundColor)
-        self.sliderTickColor = ColorPersistentState(color: scheme.sliderTickColor)
-        
-        self.textSelectionColor = ColorPersistentState(color: scheme.textSelectionColor)
-        self.iconColor = ColorPersistentState(color: scheme.iconColor)
     }
 }

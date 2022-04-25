@@ -26,7 +26,7 @@ class EffectsUnitSliderCell: HorizontalSliderCell {
             
         case .active:       return systemColorScheme.activeControlGradient
             
-        case .bypassed:     return systemColorScheme.bypassedControlGradient
+        case .bypassed:     return systemColorScheme.inactiveControlGradient
             
         case .suppressed:   return systemColorScheme.suppressedControlGradient
             
@@ -39,7 +39,7 @@ class EffectsUnitSliderCell: HorizontalSliderCell {
             
         case .active:       return systemColorScheme.activeControlColor
             
-        case .bypassed:     return systemColorScheme.bypassedControlColor
+        case .bypassed:     return systemColorScheme.inactiveControlColor
             
         case .suppressed:   return systemColorScheme.suppressedControlColor
             

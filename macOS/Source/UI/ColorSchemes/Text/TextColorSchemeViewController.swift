@@ -53,7 +53,7 @@ class TextColorSchemeViewController: ColorSchemeViewController {
         
         // Update the UI to reflect the current system color scheme
         
-        captionColorPicker.color = systemColorScheme.captionTextColor
+        captionColorPicker.color = systemColorScheme.secondaryTextColor
         
         primaryTextColorPicker.color = systemColorScheme.primaryTextColor
         secondaryTextColorPicker.color = systemColorScheme.secondaryTextColor
@@ -68,13 +68,13 @@ class TextColorSchemeViewController: ColorSchemeViewController {
     
     @IBAction func captionColorAction(_ sender: Any) {
         
-        history.noteChange(ColorSchemeChange(tag: captionColorPicker.tag, undoValue: systemColorScheme.captionTextColor,
+        history.noteChange(ColorSchemeChange(tag: captionColorPicker.tag, undoValue: systemColorScheme.secondaryTextColor,
                                              redoValue: captionColorPicker.color, changeType: .changeColor))
         changeCaptionColor()
     }
     
     private func changeCaptionColor() {
-        systemColorScheme.captionTextColor = captionColorPicker.color
+        systemColorScheme.secondaryTextColor = captionColorPicker.color
     }
     
     @IBAction func primaryTextColorAction(_ sender: Any) {

@@ -16,6 +16,13 @@ struct Images {
     static let imgPlayQueue: PlatformImage = PlatformImage(systemSymbolName: "music.note.list", accessibilityDescription: nil)!
     static let imgEffects: PlatformImage = PlatformImage(systemSymbolName: "slider.vertical.3", accessibilityDescription: nil)!
     
+    static let imgEllipsis: PlatformImage = {
+        
+        let image = PlatformImage(systemSymbolName: "ellipsis", accessibilityDescription: nil)!
+        image.isTemplate = true
+        return image
+    }()
+    
     static let imgPlay: PlatformImage = PlatformImage(systemSymbolName: "play", accessibilityDescription: nil)!
     static let imgPlayFilled: PlatformImage = PlatformImage(systemSymbolName: "play.fill", accessibilityDescription: nil)!
     

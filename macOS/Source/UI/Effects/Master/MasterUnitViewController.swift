@@ -142,7 +142,7 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemeObserver {
         messenger.subscribe(to: .masterEffectsUnit_toggleEffects, handler: toggleEffects)
         messenger.subscribe(to: .auEffectsUnit_audioUnitsAddedOrRemoved, handler: audioUnitsTable.reloadData)
         
-        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
+//        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
     }
     
     override func stateChanged() {

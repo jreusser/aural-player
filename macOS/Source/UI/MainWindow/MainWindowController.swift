@@ -12,7 +12,7 @@ import Cocoa
 /*
     Window controller for the main application window.
  */
-class MainWindowController: NSWindowController {
+class MainWindowController: NSWindowController, ColorSchemeObserver {
     
     @IBOutlet weak var logoImage: TintedImageView!
     
@@ -36,7 +36,7 @@ class MainWindowController: NSWindowController {
                                                                                     mappings: [
                                                                                         
                                                                                         ButtonStateMachine.StateMapping(state: true, image: Images.imgPlayQueue, colorProperty: \.buttonColor, toolTip: "Hide the Play Queue"),
-                                                                                        ButtonStateMachine.StateMapping(state: false, image: Images.imgPlayQueue, colorProperty: \.buttonOffColor, toolTip: "Show the Play Queue")
+                                                                                        ButtonStateMachine.StateMapping(state: false, image: Images.imgPlayQueue, colorProperty: \.inactiveControlColor, toolTip: "Show the Play Queue")
                                                                                     ],
                                                                                     button: btnTogglePlayQueue)
     
@@ -44,17 +44,9 @@ class MainWindowController: NSWindowController {
                                                                                     mappings: [
                                                                                         
                                                                                         ButtonStateMachine.StateMapping(state: true, image: Images.imgEffects, colorProperty: \.buttonColor, toolTip: "Hide the Effects panel"),
-                                                                                        ButtonStateMachine.StateMapping(state: false, image: Images.imgEffects, colorProperty: \.buttonOffColor, toolTip: "Show the Effects panel")
+                                                                                        ButtonStateMachine.StateMapping(state: false, image: Images.imgEffects, colorProperty: \.inactiveControlColor, toolTip: "Show the Effects panel")
                                                                                     ],
                                                                                     button: btnToggleEffects)
-    
-    private lazy var btnTogglePlaylistsStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingPlaylists,
-                                                                                    mappings: [
-                                                                                        
-                                                                                        ButtonStateMachine.StateMapping(state: true, image: Images.imgPlaylist, colorProperty: \.buttonColor, toolTip: "Hide the Playlists"),
-                                                                                        ButtonStateMachine.StateMapping(state: false, image: Images.imgPlaylist, colorProperty: \.buttonOffColor, toolTip: "Show the Playlists")
-                                                                                    ],
-                                                                                    button: btnTogglePlaylists)
     
     @IBOutlet weak var btnSettingsMenu: NSPopUpButton!
     
@@ -107,9 +99,9 @@ class MainWindowController: NSWindowController {
         btnTogglePlayQueue.weight = .black
         
         rootContainerBox.observeColorSchemeProperty(\.backgroundColor)
-        logoImage.observeColorSchemeProperty(\.captionTextColor)
+        logoImage.observeColorSchemeProperty(\.secondaryTextColor)
         
-        colorSchemesManager.registerObservers([btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode, settingsMenuIconItem],
+        colorSchemesManager.registerObservers([btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode, self],
                                               forProperty: \.buttonColor)
         
         rootContainerBox.cornerRadius = uiState.cornerRadius
@@ -200,6 +192,20 @@ class MainWindowController: NSWindowController {
     
     private func applyTheme() {
         changeWindowCornerRadius(uiState.cornerRadius)
+    }
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        switch property {
+            
+        case \.buttonColor:
+            
+            settingsMenuIconItem.tintColor = newColor
+            
+        default:
+            
+            return
+        }
     }
     
     func windowLayoutChanged() {

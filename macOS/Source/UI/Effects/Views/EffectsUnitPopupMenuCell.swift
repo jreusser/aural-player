@@ -28,10 +28,20 @@ class EffectsUnitPopupMenuCell: NicerPopupMenuCell {
     
     override func drawTitle(_ title: NSAttributedString, withFrame: NSRect, in inView: NSView) -> NSRect {
         
-//        title.string.drawCentered(in: withFrame,
-//                                  withFont: titleFont, andColor: titleColor, yOffset: -1)
+        title.string.drawCentered(in: withFrame,
+                                  withFont: titleFont, andColor: systemColorScheme.primaryTextColor, yOffset: 1)
         
         return withFrame
+    }
+    
+    override internal func drawBorderAndBackground(withFrame cellFrame: NSRect, in controlView: NSView) {
+        
+        let drawRect = cellFrame.insetBy(dx: cellInsetX, dy: cellInsetY)
+        NSBezierPath.strokeRoundedRect(drawRect, radius: rectRadius, withColor: systemColorScheme.buttonColor)
+        
+        // Draw arrow
+        let x = drawRect.maxX - arrowXMargin, y = drawRect.maxY - arrowYMargin
+        GraphicsUtils.drawArrow(systemColorScheme.buttonColor, origin: NSMakePoint(x, y), dx: arrowWidth, dy: arrowHeight, lineWidth: arrowLineWidth)
     }
     
     override func titleRect(forBounds cellFrame: NSRect) -> NSRect {cellFrame}

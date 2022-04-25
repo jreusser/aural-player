@@ -17,7 +17,7 @@ class ControlStatesColorSchemeViewController: ColorSchemeViewController {
     override var nibName: NSNib.Name? {"ControlStatesColorScheme"}
     
     @IBOutlet weak var activeControlColorPicker: AuralColorPicker!
-    @IBOutlet weak var bypassedControlColorPicker: AuralColorPicker!
+    @IBOutlet weak var inactiveControlColorPicker: AuralColorPicker!
     @IBOutlet weak var suppressedControlColorPicker: AuralColorPicker!
     
     override func viewDidLoad() {
@@ -27,7 +27,7 @@ class ControlStatesColorSchemeViewController: ColorSchemeViewController {
         // Map control tags to their corresponding undo/redo actions
         
         actionsMap[activeControlColorPicker.tag] = changeActiveControlColor
-        actionsMap[bypassedControlColorPicker.tag] = changeBypassedControlColor
+        actionsMap[inactiveControlColorPicker.tag] = changeInactiveControlColor
         actionsMap[suppressedControlColorPicker.tag] = changeSuppressedControlColor
     }
     
@@ -38,7 +38,7 @@ class ControlStatesColorSchemeViewController: ColorSchemeViewController {
         // Update the UI to reflect the current system color scheme
         
         activeControlColorPicker.color = systemColorScheme.activeControlColor
-        bypassedControlColorPicker.color = systemColorScheme.bypassedControlColor
+        inactiveControlColorPicker.color = systemColorScheme.inactiveControlColor
         suppressedControlColorPicker.color = systemColorScheme.suppressedControlColor
     }
     
@@ -53,15 +53,15 @@ class ControlStatesColorSchemeViewController: ColorSchemeViewController {
         systemColorScheme.activeControlColor = activeControlColorPicker.color
     }
     
-    @IBAction func bypassedControlColorAction(_ sender: Any) {
+    @IBAction func inactiveControlColorAction(_ sender: Any) {
         
-        history.noteChange(ColorSchemeChange(tag: bypassedControlColorPicker.tag, undoValue: systemColorScheme.bypassedControlColor,
-                                             redoValue: bypassedControlColorPicker.color, changeType: .changeColor))
-        changeBypassedControlColor()
+        history.noteChange(ColorSchemeChange(tag: inactiveControlColorPicker.tag, undoValue: systemColorScheme.inactiveControlColor,
+                                             redoValue: inactiveControlColorPicker.color, changeType: .changeColor))
+        changeInactiveControlColor()
     }
     
-    private func changeBypassedControlColor() {
-        systemColorScheme.bypassedControlColor = bypassedControlColorPicker.color
+    private func changeInactiveControlColor() {
+        systemColorScheme.inactiveControlColor = inactiveControlColorPicker.color
     }
     
     @IBAction func suppressedControlColorAction(_ sender: Any) {

@@ -9,9 +9,9 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ControlStatesColorSchemeViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="activeControlColorPicker" destination="1Tg-2i-CV0" id="1uh-Xd-sXV"/>
-                <outlet property="bypassedControlColorPicker" destination="mfG-Aq-Mc0" id="1vr-VN-jTI"/>
                 <outlet property="colorPickerContextMenu" destination="c2x-RI-LU6" id="7d7-eT-gHa"/>
                 <outlet property="containerView" destination="Ugk-bA-WmQ" id="SEa-yK-iER"/>
+                <outlet property="inactiveControlColorPicker" destination="mfG-Aq-Mc0" id="1vr-VN-jTI"/>
                 <outlet property="pasteColorMenuItem" destination="tsx-1S-m7V" id="Ua0-ai-0Gh"/>
                 <outlet property="scrollView" destination="Cop-lr-CNh" id="4vO-3r-KNW"/>
                 <outlet property="suppressedControlColorPicker" destination="Chc-od-ANJ" id="ldS-KD-OB9"/>
@@ -40,13 +40,13 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <action selector="bypassedControlColorAction:" target="-2" id="eei-aV-3S1"/>
+                                            <action selector="inactiveControlColorAction:" target="-2" id="eei-aV-3S1"/>
                                         </connections>
                                     </colorWell>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w0j-TL-nSr" userLabel="Control buttons">
                                         <rect key="frame" x="20" y="173" width="183" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Bypassed controls" id="dSf-n3-WNd" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Inactive / bypassed controls" id="dSf-n3-WNd" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" white="0.70157877599999996" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

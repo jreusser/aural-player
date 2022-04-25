@@ -133,7 +133,7 @@
                             </textFieldCell>
                         </textField>
                         <popUpButton wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iwf-qn-PJh" userLabel="Functions Menu">
-                            <rect key="frame" x="498" y="142" width="20" height="14"/>
+                            <rect key="frame" x="500" y="142" width="16" height="10"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="8mJ-A6-W0m">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -141,10 +141,10 @@
                                 <menu key="menu" autoenablesItems="NO" id="owc-w6-7Hd">
                                     <items>
                                         <menuItem hidden="YES" id="gVO-3W-k3p" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
-                                            <imageReference key="image" image="ellipsis" catalog="system" symbolScale="medium"/>
+                                            <imageReference key="image" image="ellipsis" catalog="system" symbolScale="medium" renderingMode="original"/>
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Settings"/>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="PlayingTrackFunctions"/>
                                             </userDefinedRuntimeAttributes>
                                         </menuItem>
                                         <menuItem title="  Add this track to Favorites" image="heart" catalog="system" id="FrP-jc-kMJ" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">
@@ -460,9 +460,9 @@ G1BhbiBTbGlkZXI
         <image name="Pause" width="30" height="35"/>
         <image name="Play" width="31" height="35"/>
         <image name="PlayingArt" width="237" height="237"/>
+        <image name="PlayingTrackFunctions" width="40" height="10"/>
         <image name="SeekBackward" width="16" height="12"/>
         <image name="SeekForward" width="16" height="12"/>
-        <image name="Settings" width="10" height="7"/>
         <image name="VolumeMedium" width="26" height="26"/>
         <image name="backward" catalog="system" width="19" height="12"/>
         <image name="backward.end" catalog="system" width="13" height="13"/>

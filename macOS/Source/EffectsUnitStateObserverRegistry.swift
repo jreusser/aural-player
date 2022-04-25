@@ -31,7 +31,7 @@ class EffectsUnitStateObserverRegistry {
         }
         
         observeColor(property: \.activeControlColor, forUnitState: .active)
-        observeColor(property: \.bypassedControlColor, forUnitState: .bypassed)
+        observeColor(property: \.inactiveControlColor, forUnitState: .bypassed)
         observeColor(property: \.suppressedControlColor, forUnitState: .suppressed)
     }
     

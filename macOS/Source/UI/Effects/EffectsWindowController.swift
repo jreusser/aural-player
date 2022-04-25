@@ -78,7 +78,7 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
         // Initialize all sub-views
         initTabGroup()
 
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.captionTextColor])
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.secondaryTextColor])
         colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
         
         applyTheme()
@@ -112,7 +112,7 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
         
         // Select Master tab view by default
 //        tabViewAction(masterTabViewButton)
-        tabViewAction(eqTabViewButton)
+        tabViewAction(reverbTabViewButton)
     }
 
     private func initUnits() {
@@ -161,15 +161,15 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
         messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
-        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
-        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
-        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
-        messenger.subscribe(to: .changeSelectedTabButtonColor, handler: changeSelectedTabButtonColor(_:))
-        messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
-        
-        messenger.subscribe(to: .effects_changeActiveUnitStateColor, handler: changeActiveUnitStateColor(_:))
-        messenger.subscribe(to: .effects_changeBypassedUnitStateColor, handler: changeBypassedUnitStateColor(_:))
-        messenger.subscribe(to: .effects_changeSuppressedUnitStateColor, handler: changeSuppressedUnitStateColor(_:))
+//        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
+//        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
+//        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
+//        messenger.subscribe(to: .changeSelectedTabButtonColor, handler: changeSelectedTabButtonColor(_:))
+//        messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
+//        
+//        messenger.subscribe(to: .effects_changeActiveUnitStateColor, handler: changeActiveUnitStateColor(_:))
+//        messenger.subscribe(to: .effects_changeBypassedUnitStateColor, handler: changeBypassedUnitStateColor(_:))
+//        messenger.subscribe(to: .effects_changeSuppressedUnitStateColor, handler: changeSuppressedUnitStateColor(_:))
     }
 
     // Notification that an effect unit's state has changed (active/inactive)
@@ -222,7 +222,7 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
     private func applyColorScheme(_ scheme: ColorScheme) {
         
         changeBackgroundColor(scheme.backgroundColor)
-        changeMainCaptionTextColor(scheme.captionTextColor)
+        changeMainCaptionTextColor(scheme.secondaryTextColor)
         changeFunctionButtonColor(scheme.buttonColor)
         
 //        tabViewButtons.forEach {$0.reTint()}
@@ -236,7 +236,7 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
             
             rootContainerBox.fillColor = newColor
             
-        case \.captionTextColor:
+        case \.secondaryTextColor:
             
             lblDisplayedUnit.textColor = newColor
          

@@ -89,21 +89,21 @@ class ChaptersListViewController: NSViewController, Destroyable {
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
         messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
-        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
-        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
-        messenger.subscribe(to: .changeToggleButtonOffStateColor, handler: changeToggleButtonOffStateColor(_:))
-        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
-        
-        messenger.subscribe(to: .playlist_changeTrackNameTextColor, handler: changeTrackNameTextColor(_:))
-        messenger.subscribe(to: .playlist_changeIndexDurationTextColor, handler: changeIndexDurationTextColor(_:))
-        
-        messenger.subscribe(to: .playlist_changeTrackNameSelectedTextColor, handler: changeTrackNameSelectedTextColor(_:))
-        messenger.subscribe(to: .playlist_changeIndexDurationSelectedTextColor, handler: changeIndexDurationSelectedTextColor(_:))
-        
-        messenger.subscribe(to: .playlist_changePlayingTrackIconColor, handler: changePlayingTrackIconColor(_:))
-        messenger.subscribe(to: .playlist_changeSelectionBoxColor, handler: changeSelectionBoxColor(_:))
-        
-        messenger.subscribe(to: .playlist_changeSummaryInfoColor, handler: changeSummaryInfoColor(_:))
+//        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
+//        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
+//        messenger.subscribe(to: .changeToggleButtonOffStateColor, handler: changeToggleButtonOffStateColor(_:))
+//        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
+//        
+//        messenger.subscribe(to: .playlist_changeTrackNameTextColor, handler: changeTrackNameTextColor(_:))
+//        messenger.subscribe(to: .playlist_changeIndexDurationTextColor, handler: changeIndexDurationTextColor(_:))
+//        
+//        messenger.subscribe(to: .playlist_changeTrackNameSelectedTextColor, handler: changeTrackNameSelectedTextColor(_:))
+//        messenger.subscribe(to: .playlist_changeIndexDurationSelectedTextColor, handler: changeIndexDurationSelectedTextColor(_:))
+//        
+//        messenger.subscribe(to: .playlist_changePlayingTrackIconColor, handler: changePlayingTrackIconColor(_:))
+//        messenger.subscribe(to: .playlist_changeSelectionBoxColor, handler: changeSelectionBoxColor(_:))
+//        
+//        messenger.subscribe(to: .playlist_changeSummaryInfoColor, handler: changeSummaryInfoColor(_:))
     }
     
     func destroy() {
@@ -383,7 +383,7 @@ class ChaptersListViewController: NSViewController, Destroyable {
         changeBackgroundColor(scheme.backgroundColor)
         
 //        changeSummaryInfoColor(scheme.playlist.summaryInfoColor)
-        changeMainCaptionTextColor(scheme.captionTextColor)
+        changeMainCaptionTextColor(scheme.secondaryTextColor)
         
         changeFunctionButtonColor(scheme.buttonColor)
         

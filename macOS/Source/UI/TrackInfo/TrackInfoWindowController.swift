@@ -80,10 +80,10 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, Destroyable {
         tabViewControllers.forEach {$0.refresh()}
         
         lblMainCaption.font = systemFontScheme.effects.unitCaptionFont
-        lblMainCaption.textColor = systemColorScheme.captionTextColor
+        lblMainCaption.textColor = systemColorScheme.secondaryTextColor
         
         lblTabCaption.font = systemFontScheme.effects.unitCaptionFont
-        lblTabCaption.textColor = systemColorScheme.captionTextColor
+        lblTabCaption.textColor = systemColorScheme.secondaryTextColor
     }
     
     func destroy() {

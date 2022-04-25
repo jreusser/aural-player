@@ -46,7 +46,7 @@ class FilterBandSlider: RangeSlider {
 //    }
     
 //    override var barBackgroundColor: NSColor {
-//        Colors.Effects.sliderBackgroundColor
+//        Colors.Effects.inactiveControlColor
 //    }
     
     var startFrequency: Float {
