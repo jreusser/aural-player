@@ -26,74 +26,74 @@ class MasterUnitView: NSView {
     @IBOutlet weak var imgFilterBypass: EffectsUnitTriStateBypassImage!
     @IBOutlet weak var imgAUBypass: EffectsUnitTriStateBypassImage!
     
-//    @IBOutlet weak var lblEQ: EffectsUnitTriStateLabel!
-//    @IBOutlet weak var lblPitch: EffectsUnitTriStateLabel!
-//    @IBOutlet weak var lblTime: EffectsUnitTriStateLabel!
-//    @IBOutlet weak var lblReverb: EffectsUnitTriStateLabel!
-//    @IBOutlet weak var lblDelay: EffectsUnitTriStateLabel!
-//    @IBOutlet weak var lblFilter: EffectsUnitTriStateLabel!
+    @IBOutlet weak var lblEQ: EffectsUnitTriStateLabel!
+    @IBOutlet weak var lblPitch: EffectsUnitTriStateLabel!
+    @IBOutlet weak var lblTime: EffectsUnitTriStateLabel!
+    @IBOutlet weak var lblReverb: EffectsUnitTriStateLabel!
+    @IBOutlet weak var lblDelay: EffectsUnitTriStateLabel!
+    @IBOutlet weak var lblFilter: EffectsUnitTriStateLabel!
     
     @IBOutlet weak var lblAudioUnits: EffectsUnitTriStateLabel!
     
     var buttons: [EffectsUnitTriStateBypassButton] = []
     var images: [EffectsUnitTriStateBypassImage] = []
-//    var labels: [EffectsUnitTriStateLabel] = []
+    var labels: [EffectsUnitTriStateLabel] = []
     
     override func awakeFromNib() {
         
         buttons = [btnEQBypass, btnPitchBypass, btnTimeBypass, btnReverbBypass, btnDelayBypass, btnFilterBypass]
         images = [imgEQBypass, imgPitchBypass, imgTimeBypass, imgReverbBypass, imgDelayBypass, imgFilterBypass, imgAUBypass]
-//        labels = [lblEQ, lblPitch, lblTime, lblReverb, lblDelay, lblFilter, lblAudioUnits]
+        labels = [lblEQ, lblPitch, lblTime, lblReverb, lblDelay, lblFilter, lblAudioUnits]
         
         let audioGraph = audioGraphDelegate
         
-        ([btnEQBypass, imgEQBypass] as! [FXUnitStateObserver]).forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.eqUnit)
-        }
-        
-        ([btnPitchBypass, imgPitchBypass] as! [FXUnitStateObserver]).forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.pitchShiftUnit)
-        }
-        
-        ([btnTimeBypass, imgTimeBypass] as! [FXUnitStateObserver]).forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.timeStretchUnit)
-        }
-        
-        ([btnReverbBypass, imgReverbBypass] as! [FXUnitStateObserver]).forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.reverbUnit)
-        }
-        
-        ([btnDelayBypass, imgDelayBypass] as! [FXUnitStateObserver]).forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.delayUnit)
-        }
-        
-        ([btnFilterBypass, imgFilterBypass] as! [FXUnitStateObserver]).forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.filterUnit)
-        }
-        
-//        ([btnEQBypass, imgEQBypass, lblEQ] as! [FXUnitStateObserver]).forEach {
+//        ([btnEQBypass, imgEQBypass] as! [FXUnitStateObserver]).forEach {
 //            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.eqUnit)
 //        }
 //
-//        ([btnPitchBypass, imgPitchBypass, lblPitch] as! [FXUnitStateObserver]).forEach {
+//        ([btnPitchBypass, imgPitchBypass] as! [FXUnitStateObserver]).forEach {
 //            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.pitchShiftUnit)
 //        }
 //
-//        ([btnTimeBypass, imgTimeBypass, lblTime] as! [FXUnitStateObserver]).forEach {
+//        ([btnTimeBypass, imgTimeBypass] as! [FXUnitStateObserver]).forEach {
 //            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.timeStretchUnit)
 //        }
 //
-//        ([btnReverbBypass, imgReverbBypass, lblReverb] as! [FXUnitStateObserver]).forEach {
+//        ([btnReverbBypass, imgReverbBypass] as! [FXUnitStateObserver]).forEach {
 //            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.reverbUnit)
 //        }
 //
-//        ([btnDelayBypass, imgDelayBypass, lblDelay] as! [FXUnitStateObserver]).forEach {
+//        ([btnDelayBypass, imgDelayBypass] as! [FXUnitStateObserver]).forEach {
 //            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.delayUnit)
 //        }
 //
-//        ([btnFilterBypass, imgFilterBypass, lblFilter] as! [FXUnitStateObserver]).forEach {
+//        ([btnFilterBypass, imgFilterBypass] as! [FXUnitStateObserver]).forEach {
 //            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.filterUnit)
 //        }
+        
+        ([btnEQBypass, imgEQBypass, lblEQ] as! [FXUnitStateObserver]).forEach {
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.eqUnit)
+        }
+
+        ([btnPitchBypass, imgPitchBypass, lblPitch] as! [FXUnitStateObserver]).forEach {
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.pitchShiftUnit)
+        }
+
+        ([btnTimeBypass, imgTimeBypass, lblTime] as! [FXUnitStateObserver]).forEach {
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.timeStretchUnit)
+        }
+
+        ([btnReverbBypass, imgReverbBypass, lblReverb] as! [FXUnitStateObserver]).forEach {
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.reverbUnit)
+        }
+
+        ([btnDelayBypass, imgDelayBypass, lblDelay] as! [FXUnitStateObserver]).forEach {
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.delayUnit)
+        }
+
+        ([btnFilterBypass, imgFilterBypass, lblFilter] as! [FXUnitStateObserver]).forEach {
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.filterUnit)
+        }
     }
     
     func applyPreset(_ preset: MasterPreset) {
@@ -112,11 +112,11 @@ class MasterUnitView: NSView {
         imgDelayBypass.onIf(preset.delay.state == .active)
         imgFilterBypass.onIf(preset.filter.state == .active)
         
-//        lblEQ.onIf(preset.eq.state == .active)
-//        lblPitch.onIf(preset.pitch.state == .active)
-//        lblTime.onIf(preset.time.state == .active)
-//        lblReverb.onIf(preset.reverb.state == .active)
-//        lblDelay.onIf(preset.delay.state == .active)
-//        lblFilter.onIf(preset.filter.state == .active)
+        lblEQ.onIf(preset.eq.state == .active)
+        lblPitch.onIf(preset.pitch.state == .active)
+        lblTime.onIf(preset.time.state == .active)
+        lblReverb.onIf(preset.reverb.state == .active)
+        lblDelay.onIf(preset.delay.state == .active)
+        lblFilter.onIf(preset.filter.state == .active)
     }
 }
