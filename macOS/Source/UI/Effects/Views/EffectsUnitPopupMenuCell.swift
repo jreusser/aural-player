@@ -37,7 +37,7 @@ class EffectsUnitPopupMenuCell: NicerPopupMenuCell {
     override internal func drawBorderAndBackground(withFrame cellFrame: NSRect, in controlView: NSView) {
         
         let drawRect = cellFrame.insetBy(dx: cellInsetX, dy: cellInsetY)
-        NSBezierPath.strokeRoundedRect(drawRect, radius: rectRadius, withColor: systemColorScheme.buttonColor)
+        NSBezierPath.strokeRoundedRect(drawRect.insetBy(dx: 0.5, dy: 0.5), radius: rectRadius, withColor: systemColorScheme.buttonColor)
         
         // Draw arrow
         let x = drawRect.maxX - arrowXMargin, y = drawRect.maxY - arrowYMargin
