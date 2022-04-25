@@ -32,7 +32,7 @@ extension ColorScheme {
                                          backgroundColor: PlatformColor(red: 0.144, green: 0.144, blue: 0.144), captionTextColor: .white40Percent,
                                          primaryTextColor: .white70Percent, secondaryTextColor: .white45Percent, tertiaryTextColor: .white30Percent,
                                          primarySelectedTextColor: .white, secondarySelectedTextColor: .white75Percent, tertiarySelectedTextColor: .white50Percent,
-                                         buttonColor: .white80Percent, buttonOffColor: .white35Percent,
+                                         buttonColor: .white80Percent, buttonOffColor: .white30Percent,
                                          activeControlColor: .lava, bypassedControlColor: .white60Percent, suppressedControlColor: PlatformColor(red: 0.5, green: 0.204, blue: 0.107),
                                          sliderBackgroundColor: PlatformColor(red: 0.326, green: 0.326, blue: 0.326), sliderTickColor: .black,
                                          textSelectionColor: .black, iconColor: .white60Percent)

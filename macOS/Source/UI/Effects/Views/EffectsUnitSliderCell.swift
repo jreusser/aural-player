@@ -33,7 +33,7 @@ class EffectsUnitSliderCell: HorizontalSliderCell {
         }
     }
     
-    override var knobColor: NSColor {
+    override var controlStateColor: NSColor {
         
         switch fxUnitStateObserverRegistry.currentState(forObserver: observingSlider) {
             

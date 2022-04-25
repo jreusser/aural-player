@@ -29,7 +29,7 @@ class EQSliderCell: AuralSliderCell {
         }
     }
     
-    override var knobColor: NSColor {
+    override var controlStateColor: NSColor {
         
         switch fxUnitStateObserverRegistry.currentState(forObserver: observingSlider) {
             
@@ -47,7 +47,7 @@ class EQSliderCell: AuralSliderCell {
     // MARK: Constants
     
     override var barRadius: CGFloat {0}
-    var barWidth: CGFloat {4}
+    var barWidth: CGFloat {3}
     
     override var knobRadius: CGFloat {1}
     
@@ -81,7 +81,7 @@ class EQSliderCell: AuralSliderCell {
         let knobMinY = yCenter - (knobHeight / 2)
         let rect = NSRect(x: bar.minX - ((knobWidth - bar.width) / 2), y: knobMinY, width: knobWidth, height: knobHeight)
 
-        NSBezierPath.fillRoundedRect(rect, radius: knobRadius, withColor: knobColor)
+        NSBezierPath.fillRoundedRect(rect, radius: knobRadius, withColor: controlStateColor)
         NSBezierPath.strokeRoundedRect(rect, radius: knobRadius, withColor: systemColorScheme.backgroundColor, lineWidth: 2)
     }
     
@@ -94,7 +94,7 @@ class EQSliderCell: AuralSliderCell {
         // Background line
         let startPoint = NSMakePoint(drawRect.centerX, drawRect.minY)
         let endPoint = NSMakePoint(drawRect.centerX, drawRect.maxY)
-        GraphicsUtils.drawLine(knobColor, pt1: startPoint, pt2: endPoint, width: 1)
+        GraphicsUtils.drawLine(.white30Percent, pt1: startPoint, pt2: endPoint, width: 1)
         
         // Progress rect
         NSBezierPath.fillRoundedRect(progressRect, radius: barRadius, withGradient: foregroundGradient, angle: .verticalGradientDegrees)

@@ -188,6 +188,19 @@ class RangeSlider: NSControl, FXUnitStateObserver {
     // TODO: Change this to a computed color
     var knobColor: NSColor {.white50Percent}
     
+    var controlStateColor: NSColor {
+        
+        switch fxUnitStateObserverRegistry.currentState(forObserver: self) {
+            
+        case .active:       return systemColorScheme.activeControlColor
+            
+        case .bypassed:     return systemColorScheme.bypassedControlColor
+            
+        case .suppressed:   return systemColorScheme.suppressedControlColor
+            
+        }
+    }
+    
     var barFillColor: NSColor {
         
         switch fxUnitStateObserverRegistry.currentState(forObserver: self) {
@@ -347,12 +360,16 @@ class RangeSlider: NSControl, FXUnitStateObserver {
                                                     width * CGFloat(selection.end - selection.start), barHeight))
         
         /*  Create bezier paths */
-        let framePath = NSBezierPath(roundedRect: barRect, xRadius: 1.5, yRadius: 1.5)
         let selectedPath = NSBezierPath(roundedRect: selectedRect, xRadius: 1.5, yRadius: 1.5)
         
         let startSliderPath = NSBezierPath(rect: startSliderFrame)
         let endSliderPath = NSBezierPath(rect: endSliderFrame)
-        framePath.fill(withColor: barBackgroundColor)
+        
+        let startPoint = NSMakePoint(barRect.minX, barRect.centerY)
+        let endPoint = NSMakePoint(barRect.maxX, barRect.centerY)
+        GraphicsUtils.drawLine(controlStateColor, pt1: startPoint, pt2: endPoint, width: 1)
+        
+//        framePath.stroke(withColor: barBackgroundColor)
         
         /*  Draw bar fill */
         if NSWidth(selectedRect) > 0.0 {
@@ -361,7 +378,7 @@ class RangeSlider: NSControl, FXUnitStateObserver {
             barFillStrokeColor.setStroke()
         }
         
-        framePath.stroke(withColor: barStrokeColor)
+//        framePath.stroke(withColor: barStrokeColor)
         
         /*  Draw slider shadows */
         if let shadow = sliderShadow() {

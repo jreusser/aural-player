@@ -12,7 +12,7 @@ import Cocoa
 
 class HorizontalSliderCell: AuralSliderCell {
     
-    var barHeight: CGFloat {4}
+    var barHeight: CGFloat {3}
     
     var knobHeightOutsideBar: CGFloat {2.5}
     
@@ -74,7 +74,7 @@ class HorizontalSliderCell: AuralSliderCell {
         
         let knobRect = NSRect(x: knobMinX, y: bar.minY - ((knobHeight - bar.height) / 2), width: knobWidth, height: knobHeight)
 
-        NSBezierPath.fillRoundedRect(knobRect, radius: knobRadius, withColor: knobColor)
+        NSBezierPath.fillRoundedRect(knobRect, radius: knobRadius, withColor: controlStateColor)
         NSBezierPath.strokeRoundedRect(knobRect, radius: knobRadius, withColor: systemColorScheme.backgroundColor, lineWidth: 2)
     }
 }

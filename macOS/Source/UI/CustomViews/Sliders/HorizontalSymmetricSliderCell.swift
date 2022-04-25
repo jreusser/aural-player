@@ -70,7 +70,7 @@ class SymmetricEffectsUnitSliderCell: HorizontalSymmetricSliderCell {
         }
     }
     
-    override var knobColor: NSColor {
+    override var controlStateColor: NSColor {
         
         switch fxUnitStateObserverRegistry.currentState(forObserver: observingSlider) {
             

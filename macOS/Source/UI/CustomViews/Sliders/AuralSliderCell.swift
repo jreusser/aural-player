@@ -53,7 +53,7 @@ class AuralSliderCell: NSSliderCell {
         systemColorScheme.activeControlGradient
     }
     
-    var knobColor: NSColor {
+    var controlStateColor: NSColor {
         systemColorScheme.activeControlColor
     }
     
@@ -122,7 +122,7 @@ class AuralSliderCell: NSSliderCell {
 
         let startPoint = NSMakePoint(rect.minX, rect.centerY)
         let endPoint = NSMakePoint(rect.maxX, rect.centerY)
-        GraphicsUtils.drawLine(knobColor, pt1: startPoint, pt2: endPoint, width: 1)
+        GraphicsUtils.drawLine(.white30Percent, pt1: startPoint, pt2: endPoint, width: 1)
     }
     
     func drawTicks(_ aRect: NSRect) {
