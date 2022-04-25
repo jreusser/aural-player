@@ -12,6 +12,8 @@ import Cocoa
 
 class HorizontalSymmetricSliderCell: HorizontalSliderCell {
     
+    override var knobHeightOutsideBar: CGFloat {3.5}
+    
     override var foregroundGradient: NSGradient {
         progress > 0.5 ? super.foregroundGradient : super.foregroundGradient.reversed()
     }

@@ -46,8 +46,8 @@ class EQSliderCell: AuralSliderCell {
     
     // MARK: Constants
     
-    override var barRadius: CGFloat {1}
-    var barWidth: CGFloat {3}
+    override var barRadius: CGFloat {0}
+    var barWidth: CGFloat {4}
     
     override var knobRadius: CGFloat {1}
     
@@ -55,7 +55,7 @@ class EQSliderCell: AuralSliderCell {
     override var tickWidth: CGFloat {2}
     
     private let knobHeight: CGFloat = 12
-    private let knobWidthOutsideBar: CGFloat = 2
+    private let knobWidthOutsideBar: CGFloat = 1.75
     
     // ------------------------------------------------------------------------
     
@@ -82,21 +82,22 @@ class EQSliderCell: AuralSliderCell {
         let rect = NSRect(x: bar.minX - ((knobWidth - bar.width) / 2), y: knobMinY, width: knobWidth, height: knobHeight)
 
         NSBezierPath.fillRoundedRect(rect, radius: knobRadius, withColor: knobColor)
-        NSBezierPath.strokeRoundedRect(rect, radius: knobRadius, withColor: systemColorScheme.backgroundColor, lineWidth: 3)
+        NSBezierPath.strokeRoundedRect(rect, radius: knobRadius, withColor: systemColorScheme.backgroundColor, lineWidth: 2)
     }
     
     override internal func drawBar(inside drawRect: NSRect, flipped: Bool) {
         
         let knobFrame = knobRect(flipped: false)
-        let bottomRect = NSRect(x: drawRect.minX, y: drawRect.minY,
+        let progressRect = NSRect(x: drawRect.minX, y: drawRect.minY,
                                 width: drawRect.width, height: knobFrame.centerY - drawRect.minY)
         
-        // Top rect
-//        NSBezierPath.fillRoundedRect(drawRect, radius: barRadius, withColor: backgroundColor)
-        NSBezierPath.strokeRoundedRect(drawRect, radius: barRadius, withColor: systemColorScheme.activeControlColor, lineWidth: 0.5)
+        // Background line
+        let startPoint = NSMakePoint(drawRect.centerX, drawRect.minY)
+        let endPoint = NSMakePoint(drawRect.centerX, drawRect.maxY)
+        GraphicsUtils.drawLine(knobColor, pt1: startPoint, pt2: endPoint, width: 1)
         
-        // Bottom rect
-        NSBezierPath.fillRoundedRect(bottomRect, radius: barRadius, withGradient: foregroundGradient, angle: .verticalGradientDegrees)
+        // Progress rect
+        NSBezierPath.fillRoundedRect(progressRect, radius: barRadius, withGradient: foregroundGradient, angle: .verticalGradientDegrees)
         
         // Draw one tick across the center of the bar (marking 0dB)
         let tickMinX = drawRect.minX + tickInset
@@ -106,7 +107,7 @@ class EQSliderCell: AuralSliderCell {
         let tickY = tickRect.centerY
         
         // Tick
-        GraphicsUtils.drawLine(.white, pt1: NSMakePoint(tickMinX, tickY), pt2: NSMakePoint(tickMaxX, tickY),
+        GraphicsUtils.drawLine(.black, pt1: NSMakePoint(tickMinX, tickY), pt2: NSMakePoint(tickMaxX, tickY),
                                width: tickWidth)
     }
     

@@ -119,7 +119,10 @@ class AuralSliderCell: NSSliderCell {
     }
     
     func drawBackground(inRect rect: NSRect) {
-        NSBezierPath.fillRoundedRect(rect, radius: barRadius, withColor: backgroundColor)
+
+        let startPoint = NSMakePoint(rect.minX, rect.centerY)
+        let endPoint = NSMakePoint(rect.maxX, rect.centerY)
+        GraphicsUtils.drawLine(knobColor, pt1: startPoint, pt2: endPoint, width: 1)
     }
     
     func drawTicks(_ aRect: NSRect) {

@@ -23,6 +23,8 @@ struct PlaybackLoopRange {
 // Cell for seek position slider
 class SeekSliderCell: HorizontalSliderCell {
     
+    override var knobHeightOutsideBar: CGFloat {4}
+    
     var loop: PlaybackLoopRange?
     
     // Returns the center of the current knob frame

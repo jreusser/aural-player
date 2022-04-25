@@ -111,7 +111,8 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
         devicesTabViewButton.stateFunction = {.bypassed}
         
         // Select Master tab view by default
-        tabViewAction(masterTabViewButton)
+//        tabViewAction(masterTabViewButton)
+        tabViewAction(eqTabViewButton)
     }
 
     private func initUnits() {

@@ -14,9 +14,9 @@ class EffectsUnitSliderCell: HorizontalSliderCell {
     
     override var barRadius: CGFloat {1.5}
     
-    override var knobWidth: CGFloat {10}
+    override var knobWidth: CGFloat {12}
     override var knobRadius: CGFloat {1}
-    override var knobHeightOutsideBar: CGFloat {2}
+    override var knobHeightOutsideBar: CGFloat {3.5}
     
     lazy var observingSlider: EffectsUnitSlider = controlView as! EffectsUnitSlider
     
