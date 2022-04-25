@@ -30,18 +30,18 @@
             <windowStyleMask key="styleMask" miniaturizable="YES" texturedBackground="YES" fullSizeContentView="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
-            <rect key="contentRect" x="335" y="100" width="530" height="230"/>
+            <rect key="contentRect" x="335" y="100" width="480" height="230"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
-            <value key="minSize" type="size" width="530" height="230"/>
-            <value key="maxSize" type="size" width="530" height="230"/>
+            <value key="minSize" type="size" width="480" height="230"/>
+            <value key="maxSize" type="size" width="480" height="230"/>
             <view key="contentView" id="W7v-UI-tl4">
-                <rect key="frame" x="0.0" y="0.0" width="530" height="230"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="230"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="s2a-4T-trI" userLabel="Root Container" customClass="ColorSchemeableBox" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="530" height="230"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="230"/>
                         <view key="contentView" id="sdu-Lk-MLz">
-                            <rect key="frame" x="0.0" y="0.0" width="530" height="230"/>
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="230"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <button toolTip="Quit application" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zFi-Se-R21" userLabel="Quit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -89,7 +89,7 @@
                                     </connections>
                                 </button>
                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="efk-uj-yYR" userLabel="Title view" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="238" y="202" width="54" height="15"/>
+                                    <rect key="frame" x="213" y="202" width="54" height="15"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppTitle" id="0JL-KA-nPB"/>
                                     <userDefinedRuntimeAttributes>
@@ -97,7 +97,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <button toolTip="Show/hide Play Queue" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Br1-bp-Vzd" userLabel="Toggle Play Queue Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="456" y="204" width="16.5" height="16"/>
+                                    <rect key="frame" x="411" y="204" width="16.5" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="yEP-qA-m8Z">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -114,7 +114,7 @@
                                     </connections>
                                 </button>
                                 <popUpButton toolTip="Global and player view settings" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hiE-G6-T2s" userLabel="Settings Menu">
-                                    <rect key="frame" x="498" y="203" width="18" height="18"/>
+                                    <rect key="frame" x="453" y="203" width="18" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="QX7-Ug-p4q">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -529,7 +529,7 @@
                                     </popUpButtonCell>
                                 </popUpButton>
                                 <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1Y-N5-RBQ" userLabel="Toggle Effects Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="478" y="205.5" width="16" height="16"/>
+                                    <rect key="frame" x="433" y="205.5" width="16" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="slider.vertical.3" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ayS-P6-02f">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -545,10 +545,10 @@
                                     </connections>
                                 </button>
                                 <box autoresizesSubviews="NO" fixedFrame="YES" boxType="custom" borderType="none" cornerRadius="5" titlePosition="noTitle" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hPg-iX-tXz" userLabel="Player Container Box">
-                                    <rect key="frame" x="0.0" y="0.0" width="530" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="480" height="200"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <view key="contentView" id="DYU-Up-NX9">
-                                        <rect key="frame" x="0.0" y="0.0" width="530" height="200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="480" height="200"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </view>
                                     <color key="borderColor" white="0.103108724" alpha="1" colorSpace="calibratedWhite"/>
@@ -2116,7 +2116,7 @@ CA
         <image name="arrow.up.to.line.alt" catalog="system" width="13" height="16"/>
         <image name="magnifyingglass" catalog="system" width="15" height="15"/>
         <image name="minus" catalog="system" width="14" height="4"/>
-        <image name="music.note.list" catalog="system" width="20" height="19"/>
+        <image name="music.note.list" catalog="system" width="16" height="15"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>
         <image name="plus.rectangle.on.folder" catalog="system" width="19" height="15"/>
         <image name="scissors" catalog="system" width="16" height="12"/>

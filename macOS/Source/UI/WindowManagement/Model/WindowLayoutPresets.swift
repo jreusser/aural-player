@@ -28,14 +28,14 @@ enum WindowLayoutPresets: String, CaseIterable {
     case verticalPlayerAndPlaylist
     case horizontalPlayerAndPlaylist
     
-    static let minPlaylistWidth: CGFloat = 530
+    static let minPlaylistWidth: CGFloat = 480
     
     // Main window size (never changes)
-    static let mainWindowWidth: CGFloat = 530
+    static let mainWindowWidth: CGFloat = 480
     static let mainWindowHeight: CGFloat = 230
     
     // Effects window size (never changes)
-    static let effectsWindowWidth: CGFloat = 530
+    static let effectsWindowWidth: CGFloat = 480
     static let effectsWindowHeight: CGFloat = 230
     
     // Converts a user-friendly display name to an instance of PitchShiftPresets
