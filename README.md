@@ -1,5 +1,7 @@
 <img width="225" src="https://raw.githubusercontent.com/maculateConception/aural-player/master/Documentation/Screenshots/readmeLogo.png"/>
 
+<img width="530" src="https://github.com/kartik-venugopal/aural-player/raw/v4.0/aural4.png"/>
+
 Aural Player v4.0 aims to take the app to the next level, bringing improvements such as:
 
 - A new "Unified" (single window) app presentation mode. NOTE - The existing modular UI mode will remain.
