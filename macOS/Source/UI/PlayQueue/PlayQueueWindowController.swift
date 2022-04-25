@@ -70,6 +70,8 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         
         messenger.subscribe(to: .playQueue_updateSummary, handler: updateSummary)
         
+        messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
+        
         updateSummary()
     }
     
@@ -113,6 +115,10 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     }
     
     // MARK: Notification handling ----------------------------------------------------------------------------------
+    
+    private func applyFontScheme(_ scheme: FontScheme) {
+        lblCaption.font = scheme.effects.unitCaptionFont
+    }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         

@@ -437,7 +437,7 @@ enum FontSchemePreset: String, CaseIterable {
                 
             case .programmer:  return programmerFontSet.captionFont(size: 16)
                 
-            case .futuristic:   return futuristicFontSet.captionFont(size: 19)
+            case .futuristic:   return futuristicFontSet.captionFont(size: 17)
                 
             case .novelist:  return novelistFontSet.captionFont(size: 15)
                 

@@ -76,25 +76,25 @@
                             </userDefinedRuntimeAttributes>
                         </imageView>
                         <box wantsLayer="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Bp8-ZH-oj4" userLabel="Playing Track Info Box">
-                            <rect key="frame" x="95" y="110" width="300" height="60"/>
+                            <rect key="frame" x="95" y="110" width="260" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <view key="contentView" id="mEf-IM-kjw" customClass="PlayingTrackTextView" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="260" height="60"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="WVD-qr-QV2">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <clipView key="contentView" copiesOnScroll="NO" id="Chc-FL-7dK">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="260" height="60"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView focusRingType="none" editable="NO" selectable="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" spellingCorrection="YES" id="lcR-Xs-exq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="260" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="300" height="60"/>
+                                                    <size key="minSize" width="260" height="60"/>
                                                     <size key="maxSize" width="300" height="60"/>
                                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </textView>
@@ -121,7 +121,7 @@
                             <color key="fillColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </box>
                         <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMU-Of-gsK" userLabel="Lbl Time Elapsed" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="383" y="113" width="134" height="26"/>
+                            <rect key="frame" x="365" y="113" width="100" height="26"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" placeholderString="" id="C2F-OI-QrT" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
                                 <font key="font" size="12" name="Play-Regular"/>
