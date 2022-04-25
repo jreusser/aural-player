@@ -9,7 +9,6 @@
         <customObject id="-2" userLabel="File's Owner" customClass="DelayUnitViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnBypass" destination="0Oi-jb-bmq" id="dap-fq-cQl"/>
-                <outlet property="btnSavePreset" destination="RNY-r7-uAF" id="vu3-Em-haf"/>
                 <outlet property="delayUnitView" destination="tFM-tl-kaj" id="vJA-5O-k2M"/>
                 <outlet property="presetsMenuButton" destination="aWr-na-Gft" id="NtQ-RJ-K45"/>
                 <outlet property="presetsMenuIconItem" destination="yH6-SM-gen" id="fc8-1J-E4b"/>
@@ -226,17 +225,17 @@
                     </connections>
                 </view>
                 <popUpButton toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aWr-na-Gft" userLabel="Presets Menu">
-                    <rect key="frame" x="454" y="3" width="27" height="15"/>
+                    <rect key="frame" x="466" y="0.0" width="19" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="oaL-ik-rVa">
+                    <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="oaL-ik-rVa">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="11" name="Play-Regular"/>
                         <menu key="menu" showsStateColumn="NO" id="hG2-4q-Wg7">
                             <items>
-                                <menuItem image="PresetsDisclosureTriangle" hidden="YES" id="yH6-SM-gen" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                <menuItem image="doc.badge.gearshape" catalog="system" hidden="YES" id="yH6-SM-gen" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="PresetsDisclosureTriangle"/>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="doc.badge.gearshape" catalog="system"/>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" id="f9r-61-lQS"/>
@@ -266,26 +265,11 @@
                         <action selector="presetsAction:" target="-2" id="q7f-4W-hZC"/>
                     </connections>
                 </popUpButton>
-                <button toolTip="Save new preset" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNY-r7-uAF" userLabel="Save" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="480" y="3" width="15" height="15"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SaveEQPreset" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="xNb-ed-5xY">
-                        <behavior key="behavior" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="SaveEQPreset"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="savePresetAction:" target="-2" id="kbY-Zb-my8"/>
-                    </connections>
-                </button>
             </subviews>
             <point key="canvasLocation" x="139" y="153.5"/>
         </view>
     </objects>
     <resources>
-        <image name="PresetsDisclosureTriangle" width="15" height="15"/>
-        <image name="SaveEQPreset" width="15" height="15"/>
+        <image name="doc.badge.gearshape" catalog="system" width="15" height="17"/>
     </resources>
 </document>

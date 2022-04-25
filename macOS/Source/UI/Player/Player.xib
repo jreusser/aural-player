@@ -458,7 +458,7 @@ G1BhbiBTbGlkZXI
     <resources>
         <image name="Loop" width="270" height="210"/>
         <image name="Pause" width="30" height="35"/>
-        <image name="Play" width="80" height="80"/>
+        <image name="Play" width="40" height="40"/>
         <image name="PlayingArt" width="237" height="237"/>
         <image name="PlayingTrackFunctions" width="40" height="10"/>
         <image name="SeekBackward" width="16" height="12"/>

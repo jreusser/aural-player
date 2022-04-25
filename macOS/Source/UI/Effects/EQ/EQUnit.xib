@@ -22,79 +22,6 @@
             <rect key="frame" x="0.0" y="0.0" width="518" height="185"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <popUpButton toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q15-iZ-G8V" userLabel="Presets Menu">
-                    <rect key="frame" x="469" y="8" width="22" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="WlN-df-qI3">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
-                        <menu key="menu" showsStateColumn="NO" id="VbO-RY-QUI">
-                            <items>
-                                <menuItem hidden="YES" id="ZUZ-sN-HFg" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
-                                    <imageReference key="image" image="gearshape.fill" catalog="system" symbolScale="small"/>
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="doc.badge.gearshape.fill" catalog="system"/>
-                                    </userDefinedRuntimeAttributes>
-                                </menuItem>
-                                <menuItem isSeparatorItem="YES" id="MP2-a4-2ox"/>
-                                <menuItem title="Flat" id="38q-k4-48Z">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="High bass and treble" id="j1m-3c-fup">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem isSeparatorItem="YES" id="89i-HR-FtZ"/>
-                                <menuItem title="Dance" id="VHq-3g-OK8">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Electronic" id="pLH-3u-JAm" userLabel="Electronic">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Hip Hop" id="oo6-wQ-hVP" userLabel="Hip Hop">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Jazz" id="CjP-yA-7gM" userLabel="Jazz">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Latin" id="NOS-PI-Dds" userLabel="Latin">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Lounge" id="TIh-i2-GaB" userLabel="Lounge">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Piano" id="0IY-9K-9K5" userLabel="Piano">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Pop" id="3we-Ul-N8b" userLabel="Pop">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="R&amp;B" id="2Vt-tV-eMF" userLabel="R&amp;B">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Rock" id="PTF-Qd-QRe" userLabel="Rock">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem isSeparatorItem="YES" id="Pb0-0B-IG7"/>
-                                <menuItem title="Soft" id="2bb-rm-Ei2">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Karaoke" id="UdX-ja-VoR">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Vocal" id="GaC-xr-M8F">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                            </items>
-                            <connections>
-                                <outlet property="delegate" destination="-2" id="9QW-sQ-46I"/>
-                            </connections>
-                        </menu>
-                    </popUpButtonCell>
-                    <connections>
-                        <action selector="presetsAction:" target="-2" id="S55-t7-M5I"/>
-                    </connections>
-                </popUpButton>
                 <button wantsLayer="YES" fixedFrame="YES" tag="373" translatesAutoresizingMaskIntoConstraints="NO" id="lmp-7m-bHA" userLabel="Bypass button" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="28" y="145" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -351,6 +278,79 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <popUpButton toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q15-iZ-G8V" userLabel="Presets Menu">
+                    <rect key="frame" x="466" y="0.0" width="19" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="WlN-df-qI3">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="11" name="Play-Regular"/>
+                        <menu key="menu" showsStateColumn="NO" id="VbO-RY-QUI">
+                            <items>
+                                <menuItem hidden="YES" id="ZUZ-sN-HFg" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                    <imageReference key="image" image="doc.badge.gearshape" catalog="system" symbolScale="default"/>
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="doc.badge.gearshape" catalog="system"/>
+                                    </userDefinedRuntimeAttributes>
+                                </menuItem>
+                                <menuItem isSeparatorItem="YES" id="MP2-a4-2ox"/>
+                                <menuItem title="Flat" id="38q-k4-48Z">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="High bass and treble" id="j1m-3c-fup">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem isSeparatorItem="YES" id="89i-HR-FtZ"/>
+                                <menuItem title="Dance" id="VHq-3g-OK8">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="Electronic" id="pLH-3u-JAm" userLabel="Electronic">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="Hip Hop" id="oo6-wQ-hVP" userLabel="Hip Hop">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="Jazz" id="CjP-yA-7gM" userLabel="Jazz">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="Latin" id="NOS-PI-Dds" userLabel="Latin">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="Lounge" id="TIh-i2-GaB" userLabel="Lounge">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="Piano" id="0IY-9K-9K5" userLabel="Piano">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="Pop" id="3we-Ul-N8b" userLabel="Pop">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="R&amp;B" id="2Vt-tV-eMF" userLabel="R&amp;B">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="Rock" id="PTF-Qd-QRe" userLabel="Rock">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem isSeparatorItem="YES" id="Pb0-0B-IG7"/>
+                                <menuItem title="Soft" id="2bb-rm-Ei2">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="Karaoke" id="UdX-ja-VoR">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="Vocal" id="GaC-xr-M8F">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                            </items>
+                            <connections>
+                                <outlet property="delegate" destination="-2" id="9QW-sQ-46I"/>
+                            </connections>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="presetsAction:" target="-2" id="S55-t7-M5I"/>
+                    </connections>
+                </popUpButton>
             </subviews>
             <connections>
                 <outlet property="globalGainSlider" destination="zow-HV-o9P" id="TOs-On-jys"/>
@@ -359,7 +359,6 @@
         </view>
     </objects>
     <resources>
-        <image name="doc.badge.gearshape.fill" catalog="system" width="16" height="17"/>
-        <image name="gearshape.fill" catalog="system" width="13" height="13"/>
+        <image name="doc.badge.gearshape" catalog="system" width="15" height="17"/>
     </resources>
 </document>
