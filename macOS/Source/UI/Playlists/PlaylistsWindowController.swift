@@ -65,8 +65,8 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
         
         messenger.subscribe(to: .playlists_updateSummary, handler: updateSummary)
 
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.secondaryTextColor, \.secondaryTextColor, \.buttonColor])
-        colorSchemesManager.registerObservers([btnClose, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.secondaryTextColor, \.secondaryTextColor])
+        colorSchemesManager.registerObservers([btnClose, btnCreatePlaylist, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)
     }
     
     @IBAction func closeAction(_ sender: Any) {
@@ -110,10 +110,6 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
             [rootContainer, controlsBox].forEach {
                 $0.fillColor = newColor
             }
-            
-        case \.buttonColor:
-            
-            btnCreatePlaylist.tintColor = newColor
             
         case \.secondaryTextColor:
             

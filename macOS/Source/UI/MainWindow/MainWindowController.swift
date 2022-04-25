@@ -12,7 +12,7 @@ import Cocoa
 /*
     Window controller for the main application window.
  */
-class MainWindowController: NSWindowController, ColorSchemeObserver {
+class MainWindowController: NSWindowController {
     
     @IBOutlet weak var logoImage: TintedImageView!
     
@@ -101,7 +101,7 @@ class MainWindowController: NSWindowController, ColorSchemeObserver {
         rootContainerBox.observeColorSchemeProperty(\.backgroundColor)
         logoImage.observeColorSchemeProperty(\.secondaryTextColor)
         
-        colorSchemesManager.registerObservers([btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode, self],
+        colorSchemesManager.registerObservers([btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode, settingsMenuIconItem],
                                               forProperty: \.buttonColor)
         
         rootContainerBox.cornerRadius = uiState.cornerRadius
@@ -192,20 +192,6 @@ class MainWindowController: NSWindowController, ColorSchemeObserver {
     
     private func applyTheme() {
         changeWindowCornerRadius(uiState.cornerRadius)
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        
-        switch property {
-            
-        case \.buttonColor:
-            
-            settingsMenuIconItem.tintColor = newColor
-            
-        default:
-            
-            return
-        }
     }
     
     func windowLayoutChanged() {

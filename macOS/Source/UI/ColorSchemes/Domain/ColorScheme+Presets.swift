@@ -81,10 +81,10 @@ extension ColorScheme {
                                                 tertiaryTextColor: .white40Percent,
                                                 
                                                 primarySelectedTextColor: .white,
-                                                secondarySelectedTextColor: .white70Percent,
-                                                tertiarySelectedTextColor: .white60Percent,
+                                                secondarySelectedTextColor: .white85Percent,
+                                                tertiarySelectedTextColor: .white20Percent,
                                                 
-                                                textSelectionColor: .white35Percent,
+                                                textSelectionColor: .white60Percent,
                                                 
                                                 activeControlColor: .black,
                                                 inactiveControlColor: .white50Percent,

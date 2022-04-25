@@ -15,9 +15,9 @@ import Cocoa
  
     Also handles such requests from app menus.
  */
-class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, ColorSchemeObserver {
+class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
     
-    @IBOutlet weak var btnMenu: TintedIconMenuItem!
+    @IBOutlet weak var iconMenuItem: TintedIconMenuItem!
     
     // Button to add/remove the currently playing track to/from the Favorites list
     @IBOutlet weak var favoritesMenuItem: ToggleMenuItem!
@@ -43,7 +43,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, ColorSchemeOb
         super.awakeFromNib()
         
         updateFavoriteButtonState()
-        colorSchemesManager.registerObserver(self, forProperty: \.buttonColor)
+        colorSchemesManager.registerObserver(iconMenuItem, forProperty: \.buttonColor)
         
         // Subscribe to various notifications
         
@@ -180,10 +180,6 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, ColorSchemeOb
     }
     
     // MARK: Notif handling
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        btnMenu.tintColor = newColor
-    }
     
     func trackAddedToFavorites(_ favorite: Favorite) {
         favoritesUpdated([favorite.file], true)
