@@ -24,14 +24,14 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView fixedFrame="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8U-Uo-cLm">
-                    <rect key="frame" x="30" y="27" width="462" height="118"/>
+                    <rect key="frame" x="30" y="27" width="380" height="118"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" copiesOnScroll="NO" id="Rf5-tM-f2s">
-                        <rect key="frame" x="1" y="1" width="445" height="116"/>
+                        <rect key="frame" x="1" y="1" width="363" height="116"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" tableStyle="plain" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" id="IHZ-s3-hWQ">
-                                <rect key="frame" x="0.0" y="0.0" width="445" height="116"/>
+                                <rect key="frame" x="0.0" y="0.0" width="401" height="116"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="2" height="0.0"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -68,7 +68,7 @@
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn identifier="cid_AudioUnitName" width="355" minWidth="355" maxWidth="355" id="iTy-Mt-a4i">
+                                    <tableColumn identifier="cid_AudioUnitName" width="345" minWidth="345" maxWidth="345" id="iTy-Mt-a4i">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -81,7 +81,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="1jH-Wo-xoL" customClass="AudioUnitNameCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="28" y="0.0" width="355" height="24"/>
+                                                <rect key="frame" x="28" y="0.0" width="305" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1jO-gX-HEt">
@@ -120,7 +120,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="r9Q-eF-PCd" customClass="AudioUnitEditCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="385" y="0.0" width="25" height="24"/>
+                                                <rect key="frame" x="375" y="0.0" width="25" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button toolTip="Audio Unit settings" wantsLayer="YES" id="jrf-Hh-PYN" userLabel="Edit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -155,12 +155,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="QMh-st-jUd">
-                        <rect key="frame" x="446" y="1" width="15" height="116"/>
+                        <rect key="frame" x="364" y="1" width="15" height="116"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
                 <popUpButton toolTip="Add an Audio Unit" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="skz-J4-Bsf" userLabel="Add Button">
-                    <rect key="frame" x="432" y="7" width="21" height="16"/>
+                    <rect key="frame" x="362" y="7" width="21" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="MtC-pC-BEV">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -184,7 +184,7 @@
                     </connections>
                 </popUpButton>
                 <button toolTip="Remove selected Audio Units" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FZh-10-i3P" userLabel="Remove Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="457" y="10" width="9" height="9"/>
+                    <rect key="frame" x="387" y="10" width="9" height="9"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Remove" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="tWh-Db-cIG">
                         <behavior key="behavior" lightByContents="YES"/>
