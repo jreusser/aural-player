@@ -53,7 +53,7 @@ class SeekSliderView: NSView {
     
     func initSeekPositionLabels() {
         
-        colorSchemesManager.registerObserver(lblTimeElapsed, forProperty: \.secondaryTextColor)
+        colorSchemesManager.registerObserver(lblTimeElapsed, forProperty: \.primaryTextColor)
         
         // Allow clicks on the seek time display labels to switch to different display formats.
         lblTimeElapsed?.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(self.switchTimeElapsedDisplayAction)))

@@ -9,11 +9,13 @@
 //
 import Cocoa
 
+// TODO: Consolidate these 2 classes into one, unless there will be an expanded art view.
+
 /*
     A base class for the 2 player views - Default and Expanded Art
  */
 @IBDesignable
-class PlayingTrackSubview: NSView, ColorSchemeable {
+class PlayingTrackSubview: MouseTrackingView, ColorSchemeable {
     
     @IBOutlet weak var infoBox: NSBox!
     @IBOutlet weak var artView: NSImageView!
@@ -47,7 +49,7 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
         
         textView.trackInfo = self.trackInfo
         artView.image = trackInfo?.art ?? Images.imgPlayingArt
-        functionsButton.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)
+//        functionsButton.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)
     }
 
     fileprivate func moveInfoBoxTo(_ point: NSPoint) {
@@ -86,11 +88,11 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
         controlsBox.showIf(uiState.showControls)
     }
     
-    func mouseEntered() {
+    override func mouseEntered(with event: NSEvent) {
         autoHideFields_showing = true
     }
     
-    func mouseExited() {
+    override func mouseExited(with event: NSEvent) {
         autoHideFields_showing = false
     }
     
@@ -139,10 +141,11 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
 class DefaultPlayingTrackSubview: PlayingTrackSubview {
     
     private let infoBoxDefaultPosition: NSPoint = NSPoint(x: 85, y: 85)
-    private let infoBoxCenteredPosition: NSPoint = NSPoint(x: 85, y: 85)
+    private let infoBoxCenteredPosition: NSPoint = NSPoint(x: 85, y: 65)
     
     override var needsMouseTracking: Bool {
-        return !uiState.showControls
+//        return !uiState.showControls
+        true
     }
     
     override func showView() {
@@ -150,11 +153,13 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
         super.showView()
         
         artView.showIf(uiState.showAlbumArt)
-        functionsButton.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)
+//        functionsButton.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)
         moveInfoBoxTo(uiState.showControls ? infoBoxDefaultPosition : infoBoxCenteredPosition)
 
         controlsBox.showIf(uiState.showControls)
         controlsBox.bringToFront()
+        
+        startTracking()
     }
     
     override fileprivate func moveInfoBoxTo(_ point: NSPoint) {
@@ -174,18 +179,24 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
     // Do nothing (this function is not allowed on the default player view)
     override func showOrHidePlayingTrackInfo() {}
     
-    override func mouseEntered() {
+    override func mouseEntered(with event: NSEvent) {
         
-        super.mouseEntered()
+        super.mouseEntered(with: event)
+        
+        if trackInfo != nil {
+            functionsButton.show()
+        }
         
         if !uiState.showControls {
             autoHideControls_show()
         }
     }
     
-    override func mouseExited() {
+    override func mouseExited(with event: NSEvent) {
         
-        super.mouseExited()
+        super.mouseExited(with: event)
+        
+        functionsButton.hide()
         
         if !uiState.showControls {
             autoHideControls_hide()

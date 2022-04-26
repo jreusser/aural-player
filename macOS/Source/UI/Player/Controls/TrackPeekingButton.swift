@@ -35,6 +35,8 @@ class TrackPeekingButton: TintedImageButton {
     }
     
     override func mouseEntered(with event: NSEvent) {
+        
+        super.mouseEntered(with: event)
         updateTooltip()
     }
 }

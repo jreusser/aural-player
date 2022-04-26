@@ -53,7 +53,7 @@ extension ColorScheme {
     static let lava: ColorScheme = .init(name: "Lava", systemDefined: true,
                                          
                                          backgroundColor: PlatformColor(red: 0.144, green: 0.144, blue: 0.144),
-                                         buttonColor: .white80Percent,
+                                         buttonColor: .white70Percent,
                                          iconColor: .white60Percent,
                                          
                                          primaryTextColor: .white70Percent,

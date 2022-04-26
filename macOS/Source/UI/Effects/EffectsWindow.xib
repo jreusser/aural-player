@@ -4,7 +4,6 @@
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="Image references" minToolsVersion="12.0"/>
-        <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -293,15 +292,6 @@
                                         <action selector="tabViewAction:" target="-2" id="PR7-AB-YYH"/>
                                     </connections>
                                 </button>
-                                <button hidden="YES" toolTip="Remember these sound settings for this track" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v7p-SL-iCd" userLabel="Remember Settings Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="15" y="10" width="18" height="18"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="clock.arrow.2.circlepath" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Top-nR-7PL">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <color key="contentTintColor" name="selectedContentBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </button>
                             </subviews>
                         </view>
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -336,7 +326,6 @@
         <image name="MasterTab" width="25" height="25"/>
         <image name="PitchTab" width="32" height="26"/>
         <image name="ReverbTab" width="25" height="25"/>
-        <image name="clock.arrow.2.circlepath" catalog="system" width="18" height="15"/>
         <image name="hifispeaker.fill" catalog="system" width="13" height="16"/>
         <image name="slider.vertical.3" catalog="system" width="18" height="17"/>
         <image name="timer" catalog="system" width="19" height="19"/>
