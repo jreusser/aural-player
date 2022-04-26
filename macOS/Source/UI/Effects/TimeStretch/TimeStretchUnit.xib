@@ -160,7 +160,7 @@
                             </connections>
                         </button>
                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cCd-P5-via" customClass="EffectsUnitTriStateCheckButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="109" y="16" width="126" height="35"/>
+                            <rect key="frame" x="109" y="16" width="126" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="bevel" title="     Shift Pitch" bezelStyle="regularSquare" image="NotChecked" imagePosition="leading" alternateImage="Checked" state="on" imageScaling="proportionallyDown" inset="2" id="3R0-wR-Qtt">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

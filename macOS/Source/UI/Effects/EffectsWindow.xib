@@ -111,7 +111,8 @@
                                         </tabViewItem>
                                         <tabViewItem label="Item 8" identifier="" id="wXN-n2-kiT">
                                             <view key="view" id="t4d-On-cox">
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </view>
                                         </tabViewItem>
                                     </tabViewItems>
