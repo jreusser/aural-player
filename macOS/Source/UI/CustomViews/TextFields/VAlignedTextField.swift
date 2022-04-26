@@ -59,6 +59,8 @@ class VALabel: NSTextField, ColorSchemeObserver {
 
 class VCenteredLabelCell: NSTextFieldCell {
     
+    let debug = false
+    
     override func titleRect(forBounds rect: NSRect) -> NSRect {
         
         var newRect: NSRect = super.titleRect(forBounds: rect)
@@ -71,6 +73,23 @@ class VCenteredLabelCell: NSTextFieldCell {
     }
     
     override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
+        
+        if debug {
+            
+            let rect: NSRect = self.titleRect(forBounds: cellFrame)
+            rect.fill(withColor: .gray)
+            
+            let r2: NSRect = self.drawingRect(forBounds: cellFrame)
+            r2.fill(withColor: .red)
+            
+            var drawPath = NSBezierPath.init(rect: rect)
+            drawPath.stroke(withColor: .yellow)
+            
+            let halfRect: NSRect = NSRect(x: rect.origin.x, y: rect.origin.y, width: rect.width, height: rect.height / 2)
+            drawPath = NSBezierPath.init(rect: halfRect)
+            drawPath.stroke(withColor: .green)
+        }
+        
         super.drawInterior(withFrame: self.titleRect(forBounds: cellFrame), in: controlView)
     }
 }

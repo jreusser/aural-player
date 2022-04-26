@@ -107,6 +107,15 @@ class PlayingTrackTextView: NSView, ColorSchemeable, ColorSchemeObserver {
         lineWidth = (textView?.width ?? 300) - 10
     }
     
+    func resized() {
+        
+        // Set the line width to assist with truncation of title/artist/album/chapter strings,
+        // with some padding to allow for slight discrepancies when truncating
+        lineWidth = (textView?.width ?? 300) - 10
+        
+        update()
+    }
+    
     func applyFontScheme(_ fontScheme: FontScheme) {
         update()
     }

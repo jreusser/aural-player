@@ -21,6 +21,14 @@ extension NSView {
         setFrameSize(NSMakeSize(width, height))
     }
     
+    func resize(width: CGFloat) {
+        setFrameSize(NSMakeSize(width, height))
+    }
+    
+    func resize(height: CGFloat) {
+        setFrameSize(NSMakeSize(width, height))
+    }
+    
     var isShown: Bool {!isHidden}
     
     func hide() {

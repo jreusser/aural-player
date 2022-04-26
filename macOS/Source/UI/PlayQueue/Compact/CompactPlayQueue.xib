@@ -103,16 +103,23 @@
                                                 <rect key="frame" x="24" y="2" width="320" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZBX-aA-NAy" userLabel="Track Name">
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZBX-aA-NAy" userLabel="Track Name">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" id="BtC-KO-vE4" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="v8e-Ut-9qP"/>
+                                                        </constraints>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" id="BtC-KO-vE4" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
                                                             <font key="font" usesAppearanceFont="YES"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="ZBX-aA-NAy" secondAttribute="bottom" id="4Mj-Bs-deM"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ZBX-aA-NAy" secondAttribute="trailing" constant="2" id="C7A-1o-ovx"/>
+                                                    <constraint firstItem="ZBX-aA-NAy" firstAttribute="leading" secondItem="sQN-39-9YE" secondAttribute="leading" constant="2" id="K8Q-AO-LBc"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="ZBX-aA-NAy" id="MDL-js-ClQ"/>
                                                 </connections>

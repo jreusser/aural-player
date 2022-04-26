@@ -24,6 +24,8 @@ class PlayingTrackSubview: MouseTrackingView, ColorSchemeable {
     @IBOutlet weak var controlsBox: NSBox!
     @IBOutlet weak var functionsButton: NSPopUpButton!
     
+    @IBOutlet weak var lblTrackTime: NSTextField!
+    
     fileprivate var autoHideFields_showing: Bool = false
     
     fileprivate lazy var uiState: PlayerUIState = playerUIState
@@ -78,6 +80,10 @@ class PlayingTrackSubview: MouseTrackingView, ColorSchemeable {
     
     func showOrHideMainControls() {
         controlsBox.showIf(uiState.showControls)
+    }
+    
+    func showOrHideTrackTime() {
+        lblTrackTime.showIf(uiState.showTrackTime)
     }
     
     override func mouseEntered(with event: NSEvent) {
@@ -135,6 +141,15 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
     private let infoBoxDefaultPosition: NSPoint = NSPoint(x: 85, y: 85)
     private let infoBoxCenteredPosition: NSPoint = NSPoint(x: 85, y: 65)
     
+    private let infoBoxDefaultWidth: CGFloat = 381
+    private let infoBoxWidth_noArt: CGFloat = 451
+    
+    private let textViewDefaultWidth: CGFloat = 305
+    private let textViewWidth_noArt: CGFloat = 375
+    
+    private let infoBoxDefaultPosition_noArt: NSPoint = NSPoint(x: 15, y: 85)
+    private let infoBoxCenteredPosition_noArt: NSPoint = NSPoint(x: 15, y: 65)
+    
     override var needsMouseTracking: Bool {
 //        return !uiState.showControls
         true
@@ -145,8 +160,10 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
         super.showView()
         
         artView.showIf(uiState.showAlbumArt)
+        lblTrackTime.showIf(trackInfo != nil && uiState.showTrackTime)
 //        functionsButton.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)
-        moveInfoBoxTo(uiState.showControls ? infoBoxDefaultPosition : infoBoxCenteredPosition)
+        
+        repositionInfoBox()
 
         controlsBox.showIf(uiState.showControls)
         controlsBox.bringToFront()
@@ -160,12 +177,43 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
         artView.frame.origin.y = infoBox.frame.origin.y - 2 // 5 is half the difference in height between infoBox and artView
     }
     
+    override func showOrHideAlbumArt() {
+        
+        super.showOrHideAlbumArt()
+        repositionInfoBox()
+    }
+    
+    private func repositionInfoBox() {
+        
+        if uiState.showAlbumArt {
+            
+            moveInfoBoxTo(uiState.showControls ? infoBoxDefaultPosition : infoBoxCenteredPosition)
+            infoBox.resize(infoBoxDefaultWidth, infoBox.height)
+            
+            textView.clipView.enclosingScrollView?.resize(width: textViewDefaultWidth)
+            textView.resized()
+            
+        } else {
+            
+            moveInfoBoxTo(uiState.showControls ? infoBoxDefaultPosition_noArt : infoBoxCenteredPosition_noArt)
+            infoBox.resize(infoBoxWidth_noArt, infoBox.height)
+            
+            textView.clipView.enclosingScrollView?.resize(width: textViewWidth_noArt)
+            textView.resized()
+        }
+    }
+    
     override func showOrHideMainControls() {
         
         super.showOrHideMainControls()
         
         // Re-position the info box, art view, and functions box
-        moveInfoBoxTo(uiState.showControls ? infoBoxDefaultPosition : infoBoxCenteredPosition)
+        
+        if uiState.showAlbumArt {
+            moveInfoBoxTo(uiState.showControls ? infoBoxDefaultPosition : infoBoxCenteredPosition)
+        } else {
+            moveInfoBoxTo(uiState.showControls ? infoBoxDefaultPosition_noArt : infoBoxCenteredPosition_noArt)
+        }
     }
     
     override func mouseEntered(with event: NSEvent) {
@@ -196,13 +244,13 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
         
         // Show controls
         controlsBox.show()
-        moveInfoBoxTo(infoBoxDefaultPosition)
+        moveInfoBoxTo(uiState.showAlbumArt ? infoBoxDefaultPosition : infoBoxDefaultPosition_noArt)
     }
     
     private func autoHideControls_hide() {
         
         // Hide controls
         controlsBox.hide()
-        moveInfoBoxTo(infoBoxCenteredPosition)
+        moveInfoBoxTo(uiState.showAlbumArt ? infoBoxCenteredPosition : infoBoxCenteredPosition_noArt)
     }
 }
