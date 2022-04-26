@@ -138,8 +138,8 @@ class PlayingTrackSubview: NSView, ColorSchemeable {
 @IBDesignable
 class DefaultPlayingTrackSubview: PlayingTrackSubview {
     
-    private let infoBoxDefaultPosition: NSPoint = NSPoint(x: 95, y: 105)
-    private let infoBoxCenteredPosition: NSPoint = NSPoint(x: 95, y: 90)
+    private let infoBoxDefaultPosition: NSPoint = NSPoint(x: 85, y: 85)
+    private let infoBoxCenteredPosition: NSPoint = NSPoint(x: 85, y: 85)
     
     override var needsMouseTracking: Bool {
         return !uiState.showControls
@@ -160,7 +160,7 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
     override fileprivate func moveInfoBoxTo(_ point: NSPoint) {
         
         super.moveInfoBoxTo(point)
-        artView.frame.origin.y = infoBox.frame.origin.y - 7 // 5 is half the difference in height between infoBox and artView
+        artView.frame.origin.y = infoBox.frame.origin.y - 2 // 5 is half the difference in height between infoBox and artView
     }
     
     override func showOrHideMainControls() {

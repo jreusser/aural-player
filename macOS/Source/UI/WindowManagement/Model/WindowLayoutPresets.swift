@@ -32,7 +32,7 @@ enum WindowLayoutPresets: String, CaseIterable {
     
     // Main window size (never changes)
     static let mainWindowWidth: CGFloat = 480
-    static let mainWindowHeight: CGFloat = 230
+    static let mainWindowHeight: CGFloat = 200
     
     // Effects window size (never changes)
     static let effectsWindowWidth: CGFloat = 480
