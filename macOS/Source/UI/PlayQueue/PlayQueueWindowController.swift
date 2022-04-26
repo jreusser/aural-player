@@ -41,6 +41,8 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         
         super.windowDidLoad()
         
+        theWindow.isMovableByWindowBackground = true
+        
         let compactView = compactViewController.view
         tabGroup.addViewsForTabs([compactView])
         compactView.anchorToSuperview()

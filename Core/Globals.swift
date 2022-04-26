@@ -105,7 +105,7 @@ let windowLayoutsManager: WindowLayoutsManager = WindowLayoutsManager(persistent
 let themesManager: ThemesManager = ThemesManager(persistentState: persistentState.ui?.themes, fontSchemesManager: fontSchemesManager)
 
 let fontSchemesManager: FontSchemesManager = FontSchemesManager(persistentState: persistentState.ui?.fontSchemes)
-let systemFontScheme: FontScheme = fontSchemesManager.systemScheme
+var systemFontScheme: FontScheme {fontSchemesManager.systemScheme}
 
 let colorSchemesManager: ColorSchemesManager = ColorSchemesManager(persistentState: persistentState.ui?.colorSchemes)
 let systemColorScheme: ColorScheme = colorSchemesManager.systemScheme

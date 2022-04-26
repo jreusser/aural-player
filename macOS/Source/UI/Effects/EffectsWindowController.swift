@@ -71,6 +71,8 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
 
     override func windowDidLoad() {
         
+        super.windowDidLoad()
+        
         theWindow.isMovableByWindowBackground = true
         
         // Initialize all sub-views

@@ -74,6 +74,8 @@ class CompactPlayQueueViewController: TrackListViewController {
         messenger.subscribe(to: .playQueue_enqueueAndPlayLater, handler: enqueueAndPlayLater(_:))
         
         messenger.subscribe(to: .playQueue_showPlayingTrack, handler: showPlayingTrack)
+        
+        messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
     }
     
     // MARK: Table view delegate / data source --------------------------------------------------------------------------------------------------------
@@ -317,6 +319,10 @@ class CompactPlayQueueViewController: TrackListViewController {
     }
     
     // MARK: Notification / command handling ----------------------------------------------------------------------------------------
+    
+    private func applyFontScheme(_ scheme: FontScheme) {
+        tableView.reloadData()
+    }
     
     override func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
