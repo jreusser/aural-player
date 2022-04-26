@@ -106,11 +106,18 @@ class CompactPlayQueueViewController: TrackListViewController {
                 return builder.withAttributedText(strings: [(text: artist + "  ", font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.secondaryTextColor),
                                                                        (text: titleAndArtist.title, font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.primaryTextColor)],
                                                              selectedTextColors: [systemColorScheme.secondarySelectedTextColor, systemColorScheme.primarySelectedTextColor])
+                
+//                return builder.withText(text: track.artistTitleString!, inFont: systemFontScheme.playlist.trackTextFont, andColor: systemColorScheme.secondaryTextColor,
+//                                        selectedTextColor: systemColorScheme.primarySelectedTextColor)
+                
             } else {
                 
                 return builder.withAttributedText(strings: [(text: titleAndArtist.title,
                                                                         font: systemFontScheme.playlist.trackTextFont,
                                                                         color: systemColorScheme.primaryTextColor)], selectedTextColors: [systemColorScheme.primarySelectedTextColor])
+                
+//                return builder.withText(text: track.displayName, inFont: systemFontScheme.playlist.trackTextFont, andColor: systemColorScheme.secondaryTextColor,
+//                                        selectedTextColor: systemColorScheme.primarySelectedTextColor)
             }
             
         case .cid_duration:

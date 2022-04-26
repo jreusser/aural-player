@@ -292,8 +292,9 @@ extension String {
                   style: style)
     }
     
-    func attributed(font: PlatformFont, color: PlatformColor) -> NSAttributedString {
-        NSAttributedString(string: self, attributes: [.font: font, .foregroundColor: color])
+    func attributed(font: PlatformFont, color: PlatformColor) -> NSMutableAttributedString {
+        NSMutableAttributedString(string: self, attributes: [.font: font, .foregroundColor: color])
+//        NSMutableAttributedString(string: self, attributes: [.foregroundColor: color])
     }
     
     /*
@@ -361,6 +362,13 @@ extension NSParagraphStyle {
 
 extension NSMutableParagraphStyle {
     
+    static let byTruncatingTail: NSMutableParagraphStyle = {
+        
+        let style: NSMutableParagraphStyle = NSMutableParagraphStyle()
+        style.lineBreakMode = .byTruncatingTail
+        return style
+    }()
+    
     convenience init(lineSpacing: CGFloat) {
 
         self.init()
@@ -370,14 +378,16 @@ extension NSMutableParagraphStyle {
 
 #endif
 
-extension NSAttributedString {
+extension NSMutableAttributedString {
     
     // concatenate attributed strings
-    static func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedString
+    static func + (left: NSMutableAttributedString, right: NSMutableAttributedString) -> NSMutableAttributedString
     {
-        let result = NSMutableAttributedString()
-        result.append(left)
-        result.append(right)
-        return result
+//        let result = NSMutableAttributedString()
+//        result.append(left)
+//        result.append(right)
+//        return result
+        left.append(right)
+        return left
     }
 }

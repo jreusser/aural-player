@@ -60,8 +60,8 @@ class TableCellBuilder {
     
     func withAttributedText(strings: [(text: String, font: PlatformFont, color: PlatformColor)], selectedTextColors: [PlatformColor]) -> TableCellBuilder {
         
-        var attStr = strings[0].text.attributed(font: strings[0].font, color: strings[0].color)
-        var selAttStr = strings[0].text.attributed(font: strings[0].font, color: selectedTextColors[0])
+        var attStr: NSMutableAttributedString = strings[0].text.attributed(font: strings[0].font, color: strings[0].color)
+        var selAttStr: NSMutableAttributedString = strings[0].text.attributed(font: strings[0].font, color: selectedTextColors[0])
         
         if strings.count > 1 {
             
@@ -71,6 +71,12 @@ class TableCellBuilder {
                 selAttStr = selAttStr + strings[index].text.attributed(font: strings[index].font, color: selectedTextColors[index])
             }
         }
+        
+//        let style: NSMutableParagraphStyle = NSMutableParagraphStyle()
+//        style.lineBreakMode = .byTruncatingTail
+//
+//        attStr.addAttribute(.paragraphStyle, value: style, range: NSMakeRange(0, attStr.length))
+//        selAttStr.addAttribute(.paragraphStyle, value: style, range: NSMakeRange(0, selAttStr.length))
         
         self.attributedText = attStr
         self.selectedAttributedText = selAttStr
@@ -93,6 +99,8 @@ class TableCellBuilder {
         if let attributedText = self.attributedText, let selectedAttributedText = self.selectedAttributedText {
             
             cell.attributedText = attributedText
+            
+//            cell.textField?.maximumNumberOfLines = 1
             
             cell.unselectedAttributedText = attributedText
             cell.selectedAttributedText = selectedAttributedText
