@@ -36,7 +36,7 @@ enum WindowLayoutPresets: String, CaseIterable {
     
     // Effects window size (never changes)
     static let effectsWindowWidth: CGFloat = 480
-    static let effectsWindowHeight: CGFloat = 230
+    static let effectsWindowHeight: CGFloat = 200
     
     // Converts a user-friendly display name to an instance of PitchShiftPresets
     static func fromDisplayName(_ displayName: String) -> WindowLayoutPresets {

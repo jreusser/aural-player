@@ -33,7 +33,7 @@
                     </connections>
                 </button>
                 <view id="elw-qF-nCD" customClass="ReverbUnitView" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="58" y="76" width="384" height="74"/>
+                    <rect key="frame" x="63" y="83" width="384" height="74"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cnv-IQ-PKn" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">

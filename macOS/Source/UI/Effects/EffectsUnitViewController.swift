@@ -54,6 +54,9 @@ class EffectsUnitViewController: NSViewController, Destroyable {
         
         applyFontScheme(systemFontScheme)
         applyColorScheme(systemColorScheme)
+        
+        // TODO: Temporary, remove this !!!
+        presetsMenuButton.hide()
     }
     
     func oneTimeSetup() {

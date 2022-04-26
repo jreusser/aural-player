@@ -92,6 +92,7 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
         for (index, viewController) in [masterViewController, eqViewController, pitchViewController, timeViewController, reverbViewController, delayViewController, filterViewController, auViewController, devicesViewController].enumerated() {
             
             tabView.tabViewItem(at: index).view?.addSubview(viewController.view)
+            viewController.view.anchorToSuperview()
         }
 
         tabViewButtons = [masterTabViewButton, eqTabViewButton, pitchTabViewButton, timeTabViewButton, reverbTabViewButton, delayTabViewButton, filterTabViewButton, auTabViewButton, devicesTabViewButton]
