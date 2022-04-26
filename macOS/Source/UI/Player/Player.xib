@@ -111,8 +111,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
-                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMU-Of-gsK" userLabel="Lbl Time Elapsed" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                                        <rect key="frame" x="288" y="31" width="94" height="24"/>
+                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMU-Of-gsK" userLabel="Lbl Time Elapsed" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                        <rect key="frame" x="288" y="18" width="94" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" placeholderString="" id="C2F-OI-QrT" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
                                             <font key="font" size="12" name="Play-Regular"/>
@@ -124,7 +124,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <popUpButton hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iwf-qn-PJh" userLabel="Functions Menu">
-                                        <rect key="frame" x="365" y="10" width="16" height="10"/>
+                                        <rect key="frame" x="365" y="5" width="16" height="10"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="8mJ-A6-W0m">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

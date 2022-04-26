@@ -89,7 +89,7 @@
                     </scroller>
                 </scrollView>
                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T5o-V5-G0J">
-                    <rect key="frame" x="141" y="16" width="140" height="20"/>
+                    <rect key="frame" x="141" y="16" width="160" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="-100" maxValue="100" tickMarkPosition="above" numberOfTickMarks="5" sliderType="linear" id="xMH-sh-KE0" customClass="HorizontalSymmetricSliderCell" customModule="Aural" customModuleProvider="target"/>
                     <connections>
@@ -115,7 +115,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JtL-qq-6rA" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="286" y="18" width="50" height="20"/>
+                    <rect key="frame" x="306" y="18" width="50" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Right" id="sIQ-Cx-Az6">
                         <font key="font" size="11" name="Play-Regular"/>
@@ -124,7 +124,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fsp-Yt-l6b" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="344" y="18" width="80" height="20"/>
+                    <rect key="frame" x="357" y="18" width="67" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Right" id="Cuu-Mk-59m">
                         <font key="font" size="11" name="Play-Regular"/>
@@ -133,7 +133,7 @@
                     </textFieldCell>
                 </textField>
             </subviews>
-            <point key="canvasLocation" x="-203" y="160.5"/>
+            <point key="canvasLocation" x="-203" y="160"/>
         </customView>
     </objects>
 </document>
