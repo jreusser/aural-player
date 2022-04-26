@@ -110,7 +110,7 @@ class PlaybackView: NSView {
     }
     
     func showOrHideTimeElapsedRemaining() {
-        sliderView.showOrHideTimeElapsedRemaining()
+        sliderView.showOrHideTrackTime()
     }
     
     func updateSeekPosition() {
@@ -121,12 +121,8 @@ class PlaybackView: NSView {
         sliderView.playbackRateChanged(rate, playbackState)
     }
     
-    func setTimeElapsedDisplayFormat(_ format: TimeElapsedDisplayType) {
-        sliderView.setTimeElapsedDisplayFormat(format)
-    }
-    
-    func setTimeRemainingDisplayFormat(_ format: TimeRemainingDisplayType) {
-        sliderView.setTimeRemainingDisplayFormat(format)
+    func setTrackTimeDisplayType(_ type: TrackTimeDisplayType) {
+        sliderView.setTrackTimeDisplayType(type)
     }
     
     func applyFontScheme(_ fontScheme: FontScheme) {

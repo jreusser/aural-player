@@ -84,8 +84,8 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate, Destroya
         updateTrackInfo()
         
         // View settings menu items
-        timeElapsedMenuItem.displayType = .timeElapsed
-        timeRemainingMenuItem.displayType = .timeRemaining
+        timeElapsedMenuItem.displayType = .elapsed
+        timeRemainingMenuItem.displayType = .remaining
         trackDurationMenuItem.displayType = .duration
         
         seekPositionDisplayTypeItems = [timeElapsedMenuItem, timeRemainingMenuItem, trackDurationMenuItem]
@@ -253,11 +253,11 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate, Destroya
         
         switch seekSliderView.seekPositionDisplayType {
         
-        case .timeElapsed:
+        case .elapsed:
             
             timeElapsedMenuItem.on()
             
-        case .timeRemaining:
+        case .remaining:
             
             timeRemainingMenuItem.on()
             
@@ -294,5 +294,5 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate, Destroya
 }
 
 class SeekPositionDisplayTypeMenuItem: NSMenuItem {
-    var displayType: ControlBarSeekPositionDisplayType = .timeElapsed
+    var displayType: TrackTimeDisplayType = .elapsed
 }

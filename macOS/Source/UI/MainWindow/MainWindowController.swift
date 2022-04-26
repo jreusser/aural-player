@@ -62,8 +62,6 @@ class MainWindowController: NSWindowController {
     
     lazy var messenger = Messenger(for: self)
     
-    private lazy var uiState: WindowAppearanceState = windowAppearanceState
-    
     // MARK: Setup
     
     override func awakeFromNib() {
@@ -104,7 +102,7 @@ class MainWindowController: NSWindowController {
         colorSchemesManager.registerObservers([btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode, settingsMenuIconItem],
                                               forProperty: \.buttonColor)
         
-        rootContainerBox.cornerRadius = uiState.cornerRadius
+        applyTheme()
     }
     
     private func initSubscriptions() {
@@ -191,7 +189,7 @@ class MainWindowController: NSWindowController {
     // MARK: Message handling -----------------------------------------------------------
     
     private func applyTheme() {
-        changeWindowCornerRadius(uiState.cornerRadius)
+        changeWindowCornerRadius(windowAppearanceState.cornerRadius)
     }
     
     func windowLayoutChanged() {

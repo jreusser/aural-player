@@ -12,8 +12,6 @@ import Foundation
 // Convenient accessor for the current state of the player UI
 class PlayerUIState {
     
-    var viewType: PlayerViewType
-    
     // Settings for individual track metadata fields
     
     var showAlbumArt: Bool
@@ -21,71 +19,45 @@ class PlayerUIState {
     var showAlbum: Bool
     var showCurrentChapter: Bool
     
-    var showTrackInfo: Bool
-    
-    var showPlayingTrackFunctions: Bool
     var showControls: Bool
-    var showTimeElapsedRemaining: Bool
+    var showTrackTime: Bool
     
-    var timeElapsedDisplayType: TimeElapsedDisplayType
-    var timeRemainingDisplayType: TimeRemainingDisplayType
+    var trackTimeDisplayType: TrackTimeDisplayType
     
     init(persistentState: PlayerUIPersistentState?) {
-        
-        viewType = persistentState?.viewType ?? PlayerUIDefaults.viewType
         
         showAlbumArt = persistentState?.showAlbumArt ?? PlayerUIDefaults.showAlbumArt
         showArtist = persistentState?.showArtist ?? PlayerUIDefaults.showArtist
         showAlbum = persistentState?.showAlbum ?? PlayerUIDefaults.showAlbum
         showCurrentChapter = persistentState?.showCurrentChapter ?? PlayerUIDefaults.showCurrentChapter
         
-        showTrackInfo = persistentState?.showTrackInfo ?? PlayerUIDefaults.showTrackInfo
-        
-        showPlayingTrackFunctions = persistentState?.showPlayingTrackFunctions ?? PlayerUIDefaults.showPlayingTrackFunctions
         showControls = persistentState?.showControls ?? PlayerUIDefaults.showControls
-        showTimeElapsedRemaining = persistentState?.showTimeElapsedRemaining ?? PlayerUIDefaults.showTimeElapsedRemaining
+        showTrackTime = persistentState?.showTrackTime ?? PlayerUIDefaults.showTrackTime
         
-        timeElapsedDisplayType = persistentState?.timeElapsedDisplayType ?? PlayerUIDefaults.timeElapsedDisplayType
-        timeRemainingDisplayType = persistentState?.timeRemainingDisplayType ?? PlayerUIDefaults.timeRemainingDisplayType
+        trackTimeDisplayType = persistentState?.trackTimeDisplayType ?? PlayerUIDefaults.trackTimeDisplayType
     }
     
     var persistentState: PlayerUIPersistentState {
         
-        PlayerUIPersistentState(viewType: viewType,
-            showAlbumArt: showAlbumArt,
-            showArtist: showArtist,
-            showAlbum: showAlbum,
-            showCurrentChapter: showCurrentChapter,
-            showTrackInfo: showTrackInfo,
-            showPlayingTrackFunctions: showPlayingTrackFunctions,
-            showControls: showControls,
-            showTimeElapsedRemaining: showTimeElapsedRemaining,
-            timeElapsedDisplayType: timeElapsedDisplayType,
-            timeRemainingDisplayType: timeRemainingDisplayType)
+        PlayerUIPersistentState(showAlbumArt: showAlbumArt,
+                                showArtist: showArtist,
+                                showAlbum: showAlbum,
+                                showCurrentChapter: showCurrentChapter,
+                                showControls: showControls,
+                                showTrackTime: showTrackTime,
+                                trackTimeDisplayType: trackTimeDisplayType)
     }
 }
 
 struct PlayerUIDefaults {
-    
-    static let viewType: PlayerViewType = .defaultView
     
     static let showAlbumArt: Bool = true
     static let showArtist: Bool = true
     static let showAlbum: Bool = true
     static let showCurrentChapter: Bool = true
     
-    static let showTrackInfo: Bool = true
-    
-    static let showPlayingTrackFunctions: Bool = true
     static let showControls: Bool = true
-    static let showTimeElapsedRemaining: Bool = true
+    static let showTrackTime: Bool = true
     
-    static let timeElapsedDisplayType: TimeElapsedDisplayType = .formatted
-    static let timeRemainingDisplayType: TimeRemainingDisplayType = .formatted
-}
-
-enum PlayerViewType: String, CaseIterable, Codable {
-    
-    case defaultView
-    case expandedArt
+    static let trackTimeDisplayType: TrackTimeDisplayType = .elapsed
 }

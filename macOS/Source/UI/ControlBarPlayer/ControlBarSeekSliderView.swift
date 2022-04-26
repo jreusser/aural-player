@@ -15,7 +15,7 @@ class ControlBarSeekSliderView: SeekSliderView {
     
     private let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
     
-    var seekPositionDisplayType: ControlBarSeekPositionDisplayType = .timeElapsed {
+    var seekPositionDisplayType: TrackTimeDisplayType = .elapsed {
         
         didSet {
             
@@ -83,11 +83,11 @@ class ControlBarSeekSliderView: SeekSliderView {
         
         switch seekPositionDisplayType {
         
-        case .timeElapsed:
+        case .elapsed:
             
             lblSeekPosition.stringValue = ValueFormatter.formatSecondsToHMS(seekPos.timeElapsed)
             
-        case .timeRemaining:
+        case .remaining:
             
             let trackTimes = ValueFormatter.formatTrackTimes(seekPos.timeElapsed, seekPos.trackDuration, seekPos.percentageElapsed)
             

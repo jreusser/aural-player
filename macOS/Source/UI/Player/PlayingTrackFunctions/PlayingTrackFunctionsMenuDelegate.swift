@@ -154,7 +154,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
         
         // Show popover
         
-        let autoHideIsOn: Bool = playerUIState.viewType == .expandedArt || !playerUIState.showControls
+        let autoHideIsOn: Bool = !playerUIState.showControls
         
         windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)
         

@@ -23,7 +23,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window identifier="playQueue" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingIdentifier="playQueue" titleVisibility="hidden" id="QvC-M9-y7g" customClass="SnappingWindow" customModule="Aural" customModuleProvider="target">
-            <windowStyleMask key="styleMask" resizable="YES" texturedBackground="YES"/>
+            <windowStyleMask key="styleMask" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="277"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
@@ -587,6 +587,11 @@
                     <outlet property="lblTracksSummary" destination="cBa-S3-IRH" id="ItA-ba-jGv"/>
                 </connections>
             </view>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <accessibility identifier="playQueue"/>
             <point key="canvasLocation" x="217" y="230.5"/>
         </window>

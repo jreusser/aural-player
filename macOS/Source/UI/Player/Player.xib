@@ -83,19 +83,19 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="WVD-qr-QV2">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="305" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <clipView key="contentView" copiesOnScroll="NO" id="Chc-FL-7dK">
-                                            <rect key="frame" x="0.0" y="0.0" width="280" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="305" height="60"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView focusRingType="none" editable="NO" selectable="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" spellingCorrection="YES" id="lcR-Xs-exq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="60"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="305" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="280" height="60"/>
-                                                    <size key="maxSize" width="300" height="60"/>
+                                                    <size key="minSize" width="305" height="60"/>
+                                                    <size key="maxSize" width="305" height="60"/>
                                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </textView>
                                             </subviews>
@@ -112,9 +112,9 @@
                                         </scroller>
                                     </scrollView>
                                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMU-Of-gsK" userLabel="Lbl Time Elapsed" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                        <rect key="frame" x="288" y="18" width="94" height="24"/>
+                                        <rect key="frame" x="312" y="18" width="70" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" placeholderString="" id="C2F-OI-QrT" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
+                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="-100:99:99" placeholderString="" id="C2F-OI-QrT" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
                                             <font key="font" size="12" name="Play-Regular"/>
                                             <color key="textColor" white="0.55233473330000005" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -417,8 +417,7 @@ G1BhbiBTbGlkZXI
                                             </slider>
                                         </subviews>
                                         <connections>
-                                            <outlet property="lblTimeElapsed" destination="UMU-Of-gsK" id="S0W-ve-e93"/>
-                                            <outlet property="lblTimeRemaining" destination="kob-kg-JL4" id="REh-r6-cb5"/>
+                                            <outlet property="lblTrackTime" destination="UMU-Of-gsK" id="dff-Zb-h24"/>
                                             <outlet property="seekPositionMarker" destination="ibi-rN-iTf" id="JC0-Fi-7uZ"/>
                                             <outlet property="seekSlider" destination="byN-wX-zim" id="8cV-zn-dOr"/>
                                             <outlet property="seekSliderCell" destination="tx9-Ld-QmK" id="Of0-R1-DI7"/>

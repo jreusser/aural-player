@@ -28,61 +28,38 @@ class ValueFormatter {
     static let oneHour = 60 * oneMin
     
     // Given the elapsed time, in seconds, for a playing track, and its duration (also in seconds), returns 2 formatted strings: 1 - Formatted elapsed time, and 2 - Formatted time remaining. See formatSecondsToHMS()
-    static func formatTrackTimes(_ elapsedSeconds: Double, _ duration: Double, _ percentageElapsed: Double, _ timeElapsedDisplayType: TimeElapsedDisplayType = .formatted, _ timeRemainingDisplayType: TimeRemainingDisplayType = .formatted) -> (elapsed: String, remaining: String) {
+    static func formatTrackTime(elapsedSeconds: Double, duration: Double, percentageElapsed: Double, trackTimeDisplayType: TrackTimeDisplayType) -> String {
         
-        var elapsedString: String
+        switch trackTimeDisplayType {
+         
+        case .elapsed:
+
+            return formatSecondsToHMS(elapsedSeconds)
+
+        case .remaining:
+            
+            let elapsedSecondsInt = elapsedSeconds.roundedInt
+            let durationInt = duration.roundedInt
+            
+            return formatSecondsToHMS(durationInt - elapsedSecondsInt, true)
+
+        case .duration:
+
+            return formatSecondsToHMS(duration)
+        }
+    }
+    
+    // Given the elapsed time, in seconds, for a playing track, and its duration (also in seconds), returns 2 formatted strings: 1 - Formatted elapsed time, and 2 - Formatted time remaining. See formatSecondsToHMS()
+    static func formatTrackTimes(_ elapsedSeconds: Double, _ duration: Double, _ percentageElapsed: Double) -> (elapsed: String, remaining: String) {
+        
         var remainingString: String
         
-        switch timeElapsedDisplayType {
-         
-        case .formatted:
-
-        elapsedString = formatSecondsToHMS(elapsedSeconds)
-
-        case .seconds:
-
-        let elapsedSecondsInt = elapsedSeconds.roundedInt
-        let secStr = commaSeparatedInt(elapsedSecondsInt)
-        elapsedString = String(format: "%@ sec", secStr)
-
-        case .percentage:
-            elapsedString = String(format: "%d%%", percentageElapsed.floorInt)
-        }
-
-        switch timeRemainingDisplayType {
-
-        case .formatted:
+        let elapsedString = formatSecondsToHMS(elapsedSeconds)
 
         let elapsedSecondsInt = elapsedSeconds.roundedInt
             let durationInt = duration.roundedInt
         
         remainingString = formatSecondsToHMS(durationInt - elapsedSecondsInt, true)
-
-        case .seconds:
-
-        let elapsedSecondsInt = elapsedSeconds.roundedInt
-            let durationInt = duration.roundedInt
-        let secStr = commaSeparatedInt(durationInt - elapsedSecondsInt)
-        
-        remainingString = String(format: "- %@ sec", secStr)
-
-        case .percentage:
-            
-            let percentageRemaining = 100 - percentageElapsed.floorInt
-            remainingString = String(format: "- %d%%", percentageRemaining)
-
-        case .duration_formatted:
-
-        remainingString = formatSecondsToHMS(duration)
-
-        case .duration_seconds:
-
-            let durationInt = duration.roundedInt
-        let secStr = commaSeparatedInt(durationInt)
-        
-        remainingString = String(format: "%@ sec", secStr)
-            
-        }
          
         return (elapsedString, remainingString)
     }

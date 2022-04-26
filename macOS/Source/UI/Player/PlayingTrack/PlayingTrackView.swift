@@ -50,15 +50,6 @@ class PlayingTrackView: NSView, ColorSchemeable {
         defaultView.update()
     }
     
-    func showOrHidePlayingTrackInfo() {
-        defaultView.showOrHidePlayingTrackInfo()
-    }
-    
-    func showOrHidePlayingTrackFunctions() {
-        
-        defaultView.showOrHidePlayingTrackFunctions()
-    }
-    
     func showOrHideAlbumArt() {
         
         defaultView.showOrHideAlbumArt()

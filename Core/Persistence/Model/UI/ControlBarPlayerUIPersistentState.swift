@@ -22,5 +22,5 @@ struct ControlBarPlayerUIPersistentState: Codable {
     let trackInfoScrollingEnabled: Bool?
     
     let showSeekPosition: Bool?
-    let seekPositionDisplayType: ControlBarSeekPositionDisplayType?
+    let seekPositionDisplayType: TrackTimeDisplayType?
 }

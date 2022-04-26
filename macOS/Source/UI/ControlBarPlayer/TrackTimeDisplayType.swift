@@ -1,5 +1,5 @@
 //
-//  ControlBarSeekPositionDisplayType.swift
+//  TrackTimeDisplayType.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -9,9 +9,3 @@
 //  
 import Foundation
 
-enum ControlBarSeekPositionDisplayType: String, CaseIterable, Codable {
-    
-    case timeElapsed
-    case timeRemaining
-    case duration
-}

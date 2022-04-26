@@ -43,9 +43,8 @@ class WindowedModePlaybackViewController: PlaybackViewController {
         messenger.subscribe(to: .player_replayChapter, handler: replayChapter)
         messenger.subscribe(to: .player_toggleChapterLoop, handler: toggleChapterLoop)
         
-        messenger.subscribe(to: .player_showOrHideTimeElapsedRemaining, handler: playbackView.showOrHideTimeElapsedRemaining)
-        messenger.subscribe(to: .player_setTimeElapsedDisplayFormat, handler: playbackView.setTimeElapsedDisplayFormat(_:))
-        messenger.subscribe(to: .player_setTimeRemainingDisplayFormat, handler: playbackView.setTimeRemainingDisplayFormat(_:))
+        messenger.subscribe(to: .player_showOrHideTrackTime, handler: playbackView.showOrHideTimeElapsedRemaining)
+        messenger.subscribe(to: .player_setTrackTimeDisplayType, handler: playbackView.setTrackTimeDisplayType(_:))
         
         guard let playbackView = self.playbackView as? WindowedModePlaybackView else {return}
         

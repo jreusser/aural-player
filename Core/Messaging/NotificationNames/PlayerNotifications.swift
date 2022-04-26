@@ -160,9 +160,6 @@ extension Notification.Name {
     
     // MARK: Player view commands
     
-    // Commands the player to switch between the 2 views - Default and Expanded Art
-    static let player_changeView = Notification.Name("player_changeView")
-
     // Commands the player to show or hide album art for the current track.
     static let player_showOrHideAlbumArt = Notification.Name("player_showOrHideAlbumArt")
 
@@ -175,23 +172,14 @@ extension Notification.Name {
     // Commands the player to show or hide the current chapter title for the current track.
     static let player_showOrHideCurrentChapter = Notification.Name("player_showOrHideCurrentChapter")
 
-    // Commands the player to show or hide all track info for the current track.
-    static let player_showOrHidePlayingTrackInfo = Notification.Name("player_showOrHidePlayingTrackInfo")
-
-    // Commands the player to show or hide the functions toolbar (ie. favorite/bookmark) for the current track.
-    static let player_showOrHidePlayingTrackFunctions = Notification.Name("player_showOrHidePlayingTrackFunctions")
-
     // Commands the player to show or hide the main playback controls (i.e. seek bar, play/pause/seek)
     static let player_showOrHideMainControls = Notification.Name("player_showOrHideMainControls")
     
     // Commands the player to show or hide the seek time elapsed/remaining displays.
-    static let player_showOrHideTimeElapsedRemaining = Notification.Name("player_showOrHideTimeElapsedRemaining")
+    static let player_showOrHideTrackTime = Notification.Name("player_showOrHideTrackTime")
 
     // Commands the player to set the format of the seek time elapsed display to a specific format.
-    static let player_setTimeElapsedDisplayFormat = Notification.Name("player_setTimeElapsedDisplayFormat")
-
-    // Commands the player to set the format of the seek time remaining display to a specific format.
-    static let player_setTimeRemainingDisplayFormat = Notification.Name("player_setTimeRemainingDisplayFormat")
+    static let player_setTrackTimeDisplayType = Notification.Name("player_setTrackTimeDisplayType")
     
     // ----------------------------------------------------------------------------------------
     

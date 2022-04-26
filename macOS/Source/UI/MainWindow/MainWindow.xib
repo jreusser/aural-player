@@ -113,7 +113,7 @@
                                         <action selector="togglePlayQueueAction:" target="-2" id="uMq-TF-p4H"/>
                                     </connections>
                                 </button>
-                                <popUpButton toolTip="Global and player view settings" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hiE-G6-T2s" userLabel="Settings Menu">
+                                <popUpButton toolTip="Options" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hiE-G6-T2s" userLabel="Settings Menu">
                                     <rect key="frame" x="453" y="173" width="18" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="QX7-Ug-p4q">
@@ -132,129 +132,64 @@
                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                     <menu key="submenu" title="Player view" id="H3h-If-8VU">
                                                         <items>
-                                                            <menuItem isSeparatorItem="YES" id="og3-cD-YOJ"/>
-                                                            <menuItem title="Default view" state="on" id="KXZ-Ro-nbz">
-                                                                <connections>
-                                                                    <action selector="playerDefaultViewAction:" target="gF1-jg-yeJ" id="udi-29-7gB"/>
-                                                                </connections>
-                                                            </menuItem>
-                                                            <menuItem title="Expanded art view" id="P5U-AN-0cd">
-                                                                <connections>
-                                                                    <action selector="playerExpandedArtViewAction:" target="gF1-jg-yeJ" id="MzE-1p-bbE"/>
-                                                                </connections>
-                                                            </menuItem>
-                                                            <menuItem isSeparatorItem="YES" id="1FF-lZ-iMo"/>
                                                             <menuItem title="Album art" id="1PV-wr-DCy">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
-                                                                    <action selector="showOrHideAlbumArtAction:" target="gF1-jg-yeJ" id="dSv-1b-j0c"/>
+                                                                    <action selector="showOrHideAlbumArtAction:" target="EaI-8U-RaS" id="wBA-JU-ipF"/>
                                                                 </connections>
                                                             </menuItem>
                                                             <menuItem title="Artist" id="rVN-5f-yfe">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
-                                                                    <action selector="showOrHideArtistAction:" target="gF1-jg-yeJ" id="oLU-9U-TIX"/>
+                                                                    <action selector="showOrHideArtistAction:" target="EaI-8U-RaS" id="Uvo-dn-Kbg"/>
                                                                 </connections>
                                                             </menuItem>
                                                             <menuItem title="Album" id="q2a-QM-USN">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
-                                                                    <action selector="showOrHideAlbumAction:" target="gF1-jg-yeJ" id="gVd-li-p5l"/>
+                                                                    <action selector="showOrHideAlbumAction:" target="EaI-8U-RaS" id="6u8-Zy-gQE"/>
                                                                 </connections>
                                                             </menuItem>
                                                             <menuItem title="Current chapter title" id="1GA-kl-Ps6">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
-                                                                    <action selector="showOrHideCurrentChapterAction:" target="gF1-jg-yeJ" id="ZJk-xY-QHR"/>
+                                                                    <action selector="showOrHideCurrentChapterAction:" target="EaI-8U-RaS" id="OId-5a-11o"/>
                                                                 </connections>
                                                             </menuItem>
                                                             <menuItem isSeparatorItem="YES" id="g2R-0M-347"/>
-                                                            <menuItem title="Playing track info" id="fVd-mV-11I" userLabel="Playing track info">
-                                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                                                <connections>
-                                                                    <action selector="showOrHidePlayingTrackInfoAction:" target="gF1-jg-yeJ" id="QKj-gQ-Bv5"/>
-                                                                </connections>
-                                                            </menuItem>
-                                                            <menuItem title="Playing track functions" id="Yhs-qW-5Tg">
-                                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                                                <connections>
-                                                                    <action selector="showOrHidePlayingTrackFunctionsAction:" target="gF1-jg-yeJ" id="8Jf-n0-APB"/>
-                                                                </connections>
-                                                            </menuItem>
                                                             <menuItem title="Main controls" id="5JO-9V-Tpl" userLabel="View Player Main Controls">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
-                                                                    <action selector="showOrHideMainControlsAction:" target="gF1-jg-yeJ" id="iIY-0X-Ec3"/>
+                                                                    <action selector="showOrHideMainControlsAction:" target="EaI-8U-RaS" id="AN4-7l-kHG"/>
                                                                 </connections>
                                                             </menuItem>
-                                                            <menuItem title="Time elapsed / remaining" id="qVo-UC-jVo">
+                                                            <menuItem title="Track position" id="qVo-UC-jVo">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
-                                                                    <action selector="showOrHideTimeElapsedRemainingAction:" target="gF1-jg-yeJ" id="68i-0Z-ouj"/>
+                                                                    <action selector="showOrHideTrackTimeAction:" target="EaI-8U-RaS" id="AIf-DY-VQn"/>
                                                                 </connections>
                                                             </menuItem>
-                                                            <menuItem title="Playback sequence info" hidden="YES" enabled="NO" id="4O6-OC-jAh">
-                                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                                            </menuItem>
                                                             <menuItem isSeparatorItem="YES" id="QIK-XF-WQD"/>
-                                                            <menuItem title="Time elapsed display" id="eFE-oQ-dY3">
+                                                            <menuItem title="Track position display" id="eFE-oQ-dY3">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                                                <menu key="submenu" title="Time elapsed display" id="pIW-iz-0LO">
+                                                                <menu key="submenu" title="Track position display" id="pIW-iz-0LO">
                                                                     <items>
-                                                                        <menuItem title="hh:mm:ss (e.g. &quot;15:36&quot;)" id="eWc-7F-XQe">
+                                                                        <menuItem title="Time elapsed" id="eWc-7F-XQe">
                                                                             <modifierMask key="keyEquivalentModifierMask"/>
                                                                             <connections>
-                                                                                <action selector="timeElapsedDisplayFormatAction:" target="gF1-jg-yeJ" id="PpY-FW-lyb"/>
+                                                                                <action selector="trackTimeElapsedDisplayTypeAction:" target="EaI-8U-RaS" id="ZTR-kv-LYV"/>
                                                                             </connections>
                                                                         </menuItem>
-                                                                        <menuItem title="Number of seconds (e.g. &quot;79 sec&quot;)" tag="1" id="H3a-j1-eXL">
+                                                                        <menuItem title="Time remaining" tag="1" id="H3a-j1-eXL">
                                                                             <modifierMask key="keyEquivalentModifierMask"/>
                                                                             <connections>
-                                                                                <action selector="timeElapsedDisplayFormatAction:" target="gF1-jg-yeJ" id="M81-gI-hDW"/>
+                                                                                <action selector="trackTimeRemainingDisplayTypeAction:" target="EaI-8U-RaS" id="gkD-Cc-7Hp"/>
                                                                             </connections>
                                                                         </menuItem>
-                                                                        <menuItem title="Percentage of track duration (e.g. &quot;12%&quot;)" tag="2" id="U8Y-9v-cIm">
+                                                                        <menuItem title="Track duration" tag="2" id="U8Y-9v-cIm">
                                                                             <modifierMask key="keyEquivalentModifierMask"/>
                                                                             <connections>
-                                                                                <action selector="timeElapsedDisplayFormatAction:" target="gF1-jg-yeJ" id="OSH-Dd-AM8"/>
-                                                                            </connections>
-                                                                        </menuItem>
-                                                                    </items>
-                                                                </menu>
-                                                            </menuItem>
-                                                            <menuItem title="Time remaining display" id="Dhr-dw-Zud" userLabel="Time remaining format">
-                                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                                                <menu key="submenu" title="Time remaining display" id="66D-bO-hgi">
-                                                                    <items>
-                                                                        <menuItem title="hh:mm:ss (e.g. &quot;- 2:15&quot;)" id="Lng-IT-seX">
-                                                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                                                            <connections>
-                                                                                <action selector="timeRemainingDisplayFormatAction:" target="gF1-jg-yeJ" id="dVv-JB-xk7"/>
-                                                                            </connections>
-                                                                        </menuItem>
-                                                                        <menuItem title="Number of seconds (e.g. &quot;- 17 sec&quot;)" tag="1" id="d1d-0T-WEH">
-                                                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                                                            <connections>
-                                                                                <action selector="timeRemainingDisplayFormatAction:" target="gF1-jg-yeJ" id="RzT-ea-TKn"/>
-                                                                            </connections>
-                                                                        </menuItem>
-                                                                        <menuItem title="Percentage of track duration (e.g. &quot;- 3%&quot;)" tag="2" id="2wD-Se-q6u">
-                                                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                                                            <connections>
-                                                                                <action selector="timeRemainingDisplayFormatAction:" target="gF1-jg-yeJ" id="TAT-rK-WFF"/>
-                                                                            </connections>
-                                                                        </menuItem>
-                                                                        <menuItem isSeparatorItem="YES" id="0Nz-k7-hVU"/>
-                                                                        <menuItem title="Track duration as hh:mm:ss (e.g. &quot;5:48&quot;)" tag="3" id="kEC-Tz-j39">
-                                                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                                                            <connections>
-                                                                                <action selector="timeRemainingDisplayFormatAction:" target="gF1-jg-yeJ" id="Eyi-tQ-hkY"/>
-                                                                            </connections>
-                                                                        </menuItem>
-                                                                        <menuItem title="Track duration as number of seconds (e.g. &quot;348 sec&quot;)" tag="4" id="95j-Jk-TyZ">
-                                                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                                                            <connections>
-                                                                                <action selector="timeRemainingDisplayFormatAction:" target="gF1-jg-yeJ" id="l65-v5-DMj"/>
+                                                                                <action selector="trackTimeDurationDisplayTypeAction:" target="EaI-8U-RaS" id="7V0-38-0lb"/>
                                                                             </connections>
                                                                         </menuItem>
                                                                     </items>
@@ -262,7 +197,7 @@
                                                             </menuItem>
                                                         </items>
                                                         <connections>
-                                                            <outlet property="delegate" destination="gF1-jg-yeJ" id="3ec-7U-iNP"/>
+                                                            <outlet property="delegate" destination="EaI-8U-RaS" id="OB7-fr-peG"/>
                                                         </connections>
                                                     </menu>
                                                 </menuItem>
@@ -687,26 +622,15 @@
         </customObject>
         <customObject id="EaI-8U-RaS" customClass="PlayerViewPopupMenuController" customModule="Aural" customModuleProvider="target">
             <connections>
-                <outlet property="playerDefaultViewMenuItem" destination="BaQ-8M-GIN" id="cgc-hw-QYf"/>
-                <outlet property="playerExpandedArtViewMenuItem" destination="RfH-2P-h3c" id="36D-or-CFJ"/>
-                <outlet property="showAlbumMenuItem" destination="spV-g2-kU5" id="mRC-Nl-bt5"/>
-                <outlet property="showArtMenuItem" destination="fmD-aM-X9O" id="rNI-Ag-MUf"/>
-                <outlet property="showArtistMenuItem" destination="m6g-iF-W4r" id="XYX-za-eix"/>
-                <outlet property="showCurrentChapterMenuItem" destination="DNG-fZ-iEo" id="oHY-Dq-dK3"/>
-                <outlet property="showMainControlsMenuItem" destination="buW-kt-mPH" id="vRi-RU-ffW"/>
-                <outlet property="showTimeElapsedRemainingMenuItem" destination="ydv-KF-EB5" id="cIX-Im-GW7"/>
-                <outlet property="showTrackFunctionsMenuItem" destination="Nun-Dc-rdQ" id="C1C-c1-LM4"/>
-                <outlet property="showTrackInfoMenuItem" destination="Qdq-Il-5ry" id="I2a-lZ-wgx"/>
-                <outlet property="timeElapsedFormatMenuItem" destination="WJU-vo-6K8" id="HOU-35-dLI"/>
-                <outlet property="timeElapsedMenuItem_hms" destination="Jpd-uD-MKW" id="KY7-KE-0nq"/>
-                <outlet property="timeElapsedMenuItem_percentage" destination="pnz-YU-rO1" id="ils-HE-aku"/>
-                <outlet property="timeElapsedMenuItem_seconds" destination="UWA-ea-w7B" id="SOo-LW-tOr"/>
-                <outlet property="timeRemainingFormatMenuItem" destination="hJ6-0m-zmL" id="YAy-Gd-IFs"/>
-                <outlet property="timeRemainingMenuItem_durationHMS" destination="9p2-eK-8td" id="pYA-Oc-CJM"/>
-                <outlet property="timeRemainingMenuItem_durationSeconds" destination="P6P-iv-Yuv" id="PCE-KS-k5a"/>
-                <outlet property="timeRemainingMenuItem_hms" destination="EI8-CO-Ohf" id="ZrH-sG-abh"/>
-                <outlet property="timeRemainingMenuItem_percentage" destination="jJI-QT-cuT" id="33k-mR-Yai"/>
-                <outlet property="timeRemainingMenuItem_seconds" destination="FaW-0f-mmw" id="DqD-2v-sc9"/>
+                <outlet property="showAlbumMenuItem" destination="q2a-QM-USN" id="qwi-Wc-J4Z"/>
+                <outlet property="showArtMenuItem" destination="1PV-wr-DCy" id="etD-qn-Wzb"/>
+                <outlet property="showArtistMenuItem" destination="rVN-5f-yfe" id="u7C-sP-hEk"/>
+                <outlet property="showCurrentChapterMenuItem" destination="1GA-kl-Ps6" id="yPg-sA-WM5"/>
+                <outlet property="showMainControlsMenuItem" destination="5JO-9V-Tpl" id="N4t-2y-AIN"/>
+                <outlet property="showTrackTimeMenuItem" destination="qVo-UC-jVo" id="Sj9-z7-LeP"/>
+                <outlet property="trackDurationMenuItem" destination="U8Y-9v-cIm" id="5VI-fb-HRO"/>
+                <outlet property="trackTimeElapsedMenuItem" destination="eWc-7F-XQe" id="NGZ-Us-EvP"/>
+                <outlet property="trackTimeRemainingMenuItem" destination="H3a-j1-eXL" id="eZQ-bL-HFY"/>
             </connections>
         </customObject>
         <customObject id="hwD-go-Fm4" customClass="ThemePopupMenuController" customModule="Aural" customModuleProvider="target">
@@ -732,26 +656,11 @@
         <customObject id="Ejb-cE-J2S" customClass="SupportMenuController" customModule="Aural" customModuleProvider="target"/>
         <customObject id="gF1-jg-yeJ" customClass="PlayerViewPopupMenuController" customModule="Aural" customModuleProvider="target">
             <connections>
-                <outlet property="playerDefaultViewMenuItem" destination="KXZ-Ro-nbz" id="0pr-QG-a9m"/>
-                <outlet property="playerExpandedArtViewMenuItem" destination="P5U-AN-0cd" id="Bfo-1I-nwk"/>
                 <outlet property="showAlbumMenuItem" destination="q2a-QM-USN" id="Jgu-iU-NHK"/>
                 <outlet property="showArtMenuItem" destination="1PV-wr-DCy" id="JTH-65-x6h"/>
                 <outlet property="showArtistMenuItem" destination="rVN-5f-yfe" id="RL0-5n-B7r"/>
                 <outlet property="showCurrentChapterMenuItem" destination="1GA-kl-Ps6" id="LzA-eU-nvb"/>
                 <outlet property="showMainControlsMenuItem" destination="5JO-9V-Tpl" id="RGL-eZ-Qup"/>
-                <outlet property="showTimeElapsedRemainingMenuItem" destination="qVo-UC-jVo" id="Qd6-R2-zYB"/>
-                <outlet property="showTrackFunctionsMenuItem" destination="Yhs-qW-5Tg" id="9hA-X9-zhj"/>
-                <outlet property="showTrackInfoMenuItem" destination="fVd-mV-11I" id="963-7n-J5M"/>
-                <outlet property="timeElapsedFormatMenuItem" destination="eFE-oQ-dY3" id="zwz-oU-17W"/>
-                <outlet property="timeElapsedMenuItem_hms" destination="eWc-7F-XQe" id="xuU-mo-QsP"/>
-                <outlet property="timeElapsedMenuItem_percentage" destination="U8Y-9v-cIm" id="QvX-Kw-ZUY"/>
-                <outlet property="timeElapsedMenuItem_seconds" destination="H3a-j1-eXL" id="nFR-NR-0Lt"/>
-                <outlet property="timeRemainingFormatMenuItem" destination="Dhr-dw-Zud" id="7uF-zb-FY0"/>
-                <outlet property="timeRemainingMenuItem_durationHMS" destination="kEC-Tz-j39" id="Y6p-Lp-P5y"/>
-                <outlet property="timeRemainingMenuItem_durationSeconds" destination="95j-Jk-TyZ" id="HHK-ud-bWr"/>
-                <outlet property="timeRemainingMenuItem_hms" destination="Lng-IT-seX" id="KUv-WE-4Lm"/>
-                <outlet property="timeRemainingMenuItem_percentage" destination="2wD-Se-q6u" id="jLA-l6-ipG"/>
-                <outlet property="timeRemainingMenuItem_seconds" destination="d1d-0T-WEH" id="Ta2-Co-OFZ"/>
             </connections>
         </customObject>
         <customObject id="lwq-x3-5V8" customClass="WindowLayoutPopupMenuController" customModule="Aural" customModuleProvider="target">
@@ -1609,46 +1518,25 @@ CA
                                     <items>
                                         <menuItem title="Default view" state="on" id="BaQ-8M-GIN">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="playerDefaultViewAction:" target="EaI-8U-RaS" id="4Ug-Er-e0J"/>
-                                            </connections>
                                         </menuItem>
                                         <menuItem title="Expanded art view" id="RfH-2P-h3c">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="playerExpandedArtViewAction:" target="EaI-8U-RaS" id="F47-aw-7gP"/>
-                                            </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Frv-PF-QVe"/>
                                         <menuItem title="Album art" id="fmD-aM-X9O">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showOrHideAlbumArtAction:" target="EaI-8U-RaS" id="BN2-hZ-jo4"/>
-                                            </connections>
                                         </menuItem>
                                         <menuItem title="Artist" id="m6g-iF-W4r">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showOrHideArtistAction:" target="EaI-8U-RaS" id="NMG-hA-x1W"/>
-                                            </connections>
                                         </menuItem>
                                         <menuItem title="Album" id="spV-g2-kU5">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showOrHideAlbumAction:" target="EaI-8U-RaS" id="ffx-pn-pOG"/>
-                                            </connections>
                                         </menuItem>
                                         <menuItem title="Current chapter title" id="DNG-fZ-iEo">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showOrHideCurrentChapterAction:" target="EaI-8U-RaS" id="2oL-HA-kHd"/>
-                                            </connections>
                                         </menuItem>
                                         <menuItem title="Playing track info" id="Qdq-Il-5ry" userLabel="Playing track info">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showOrHidePlayingTrackInfoAction:" target="EaI-8U-RaS" id="kna-Ut-kuA"/>
-                                            </connections>
                                         </menuItem>
                                         <menuItem title="Playback sequence info" hidden="YES" enabled="NO" id="4fB-VO-MI5">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -1656,21 +1544,12 @@ CA
                                         <menuItem isSeparatorItem="YES" id="X6O-5H-Ad0"/>
                                         <menuItem title="Playing track functions" id="Nun-Dc-rdQ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showOrHidePlayingTrackFunctionsAction:" target="EaI-8U-RaS" id="OBn-w9-u05"/>
-                                            </connections>
                                         </menuItem>
                                         <menuItem title="Main controls" id="buW-kt-mPH" userLabel="View Player Main Controls">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showOrHideMainControlsAction:" target="EaI-8U-RaS" id="lHa-lG-iT1"/>
-                                            </connections>
                                         </menuItem>
                                         <menuItem title="Time elapsed / remaining" id="ydv-KF-EB5">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showOrHideTimeElapsedRemainingAction:" target="EaI-8U-RaS" id="yDF-Cm-R2i"/>
-                                            </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="gQy-jM-YT7"/>
                                         <menuItem title="Time elapsed display" id="WJU-vo-6K8">
@@ -1679,21 +1558,12 @@ CA
                                                 <items>
                                                     <menuItem title="hh:mm:ss (e.g. &quot;15:36&quot;)" id="Jpd-uD-MKW">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="timeElapsedDisplayFormatAction:" target="EaI-8U-RaS" id="m0c-1I-0Lm"/>
-                                                        </connections>
                                                     </menuItem>
                                                     <menuItem title="Number of seconds (e.g. &quot;79 sec&quot;)" tag="1" id="UWA-ea-w7B">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="timeElapsedDisplayFormatAction:" target="EaI-8U-RaS" id="Xgm-fU-nYM"/>
-                                                        </connections>
                                                     </menuItem>
                                                     <menuItem title="Percentage of track duration (e.g. &quot;12%&quot;)" tag="2" id="pnz-YU-rO1">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="timeElapsedDisplayFormatAction:" target="EaI-8U-RaS" id="bzy-hY-lT7"/>
-                                                        </connections>
                                                     </menuItem>
                                                 </items>
                                             </menu>
@@ -1704,42 +1574,24 @@ CA
                                                 <items>
                                                     <menuItem title="hh:mm:ss (e.g. &quot;- 2:15&quot;)" id="EI8-CO-Ohf">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="timeRemainingDisplayFormatAction:" target="EaI-8U-RaS" id="AhE-Xe-ugn"/>
-                                                        </connections>
                                                     </menuItem>
                                                     <menuItem title="Number of seconds (e.g. &quot;- 17 sec&quot;)" tag="1" id="FaW-0f-mmw">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="timeRemainingDisplayFormatAction:" target="EaI-8U-RaS" id="3Al-bS-eyG"/>
-                                                        </connections>
                                                     </menuItem>
                                                     <menuItem title="Percentage of track duration (e.g. &quot;- 3%&quot;)" tag="2" id="jJI-QT-cuT">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="timeRemainingDisplayFormatAction:" target="EaI-8U-RaS" id="lxO-8G-fpf"/>
-                                                        </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="KSC-T6-kSs"/>
                                                     <menuItem title="Track duration as hh:mm:ss (e.g. &quot;5:48&quot;)" tag="3" id="9p2-eK-8td">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="timeRemainingDisplayFormatAction:" target="EaI-8U-RaS" id="L6e-C6-bcL"/>
-                                                        </connections>
                                                     </menuItem>
                                                     <menuItem title="Track duration as number of seconds (e.g. &quot;348 sec&quot;)" tag="4" id="P6P-iv-Yuv">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="timeRemainingDisplayFormatAction:" target="EaI-8U-RaS" id="UXs-UV-Hed"/>
-                                                        </connections>
                                                     </menuItem>
                                                 </items>
                                             </menu>
                                         </menuItem>
                                     </items>
-                                    <connections>
-                                        <outlet property="delegate" destination="EaI-8U-RaS" id="EkT-zl-9yJ"/>
-                                    </connections>
                                 </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="MCi-VX-sEG"/>

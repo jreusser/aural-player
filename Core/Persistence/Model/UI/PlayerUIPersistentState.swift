@@ -16,19 +16,13 @@ import Foundation
 ///
 struct PlayerUIPersistentState: Codable {
     
-    let viewType: PlayerViewType?
-    
     let showAlbumArt: Bool?
     let showArtist: Bool?
     let showAlbum: Bool?
     let showCurrentChapter: Bool?
     
-    let showTrackInfo: Bool?
-    
-    let showPlayingTrackFunctions: Bool?
     let showControls: Bool?
-    let showTimeElapsedRemaining: Bool?
+    let showTrackTime: Bool?
     
-    let timeElapsedDisplayType: TimeElapsedDisplayType?
-    let timeRemainingDisplayType: TimeRemainingDisplayType?
+    let trackTimeDisplayType: TrackTimeDisplayType?
 }

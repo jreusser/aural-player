@@ -60,10 +60,6 @@ class PlayingTrackSubview: MouseTrackingView, ColorSchemeable {
 //        functionsBox.frame.origin.y = infoBox.frame.maxY - functionsBox.frame.height - 5
     }
     
-    func showOrHidePlayingTrackInfo() {
-        infoBox.showIf(uiState.showTrackInfo || autoHideFields_showing)
-    }
-    
     func showOrHideAlbumArt() {
         artView.showIf(uiState.showAlbumArt)
     }
@@ -78,10 +74,6 @@ class PlayingTrackSubview: MouseTrackingView, ColorSchemeable {
     
     func showOrHideCurrentChapter() {
         textView.displayedTextChanged()
-    }
-    
-    func showOrHidePlayingTrackFunctions() {
-//        functionButtons.forEach {$0.showIf(trackInfo != nil && uiState.showPlayingTrackFunctions)}
     }
     
     func showOrHideMainControls() {
@@ -175,9 +167,6 @@ class DefaultPlayingTrackSubview: PlayingTrackSubview {
         // Re-position the info box, art view, and functions box
         moveInfoBoxTo(uiState.showControls ? infoBoxDefaultPosition : infoBoxCenteredPosition)
     }
-    
-    // Do nothing (this function is not allowed on the default player view)
-    override func showOrHidePlayingTrackInfo() {}
     
     override func mouseEntered(with event: NSEvent) {
         

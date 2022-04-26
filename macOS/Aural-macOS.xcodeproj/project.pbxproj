@@ -527,8 +527,8 @@
 		3EABDDE82694BC30008066E8 /* VisualizerViewOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDDE72694BC30008066E8 /* VisualizerViewOptions.swift */; };
 		3EABDDEA2694BC40008066E8 /* VisualizerViewOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDDE72694BC30008066E8 /* VisualizerViewOptions.swift */; };
 		3EABDDF12694C17D008066E8 /* MenuBarPlayerUIPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDDF02694C17D008066E8 /* MenuBarPlayerUIPersistenceTests.swift */; };
-		3EABDDF82694C4EC008066E8 /* ControlBarSeekPositionDisplayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDDF72694C4EC008066E8 /* ControlBarSeekPositionDisplayType.swift */; };
-		3EABDDFA2694C561008066E8 /* ControlBarSeekPositionDisplayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDDF72694C4EC008066E8 /* ControlBarSeekPositionDisplayType.swift */; };
+		3EABDDF82694C4EC008066E8 /* TrackTimeDisplayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDDF72694C4EC008066E8 /* TrackTimeDisplayType.swift */; };
+		3EABDDFA2694C561008066E8 /* TrackTimeDisplayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDDF72694C4EC008066E8 /* TrackTimeDisplayType.swift */; };
 		3EABDDFD2694C57B008066E8 /* ControlBarPlayerUIPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDDFC2694C57B008066E8 /* ControlBarPlayerUIPersistenceTests.swift */; };
 		3EABDE012694C98B008066E8 /* ColorSchemesPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDE002694C98B008066E8 /* ColorSchemesPersistenceTests.swift */; };
 		3EABDE052694C9A6008066E8 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FA825CEB98600BF0D07 /* ColorScheme.swift */; };
@@ -1991,7 +1991,7 @@
 		3EABDDE22694BC1E008066E8 /* VisualizationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationType.swift; sourceTree = "<group>"; };
 		3EABDDE72694BC30008066E8 /* VisualizerViewOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizerViewOptions.swift; sourceTree = "<group>"; };
 		3EABDDF02694C17D008066E8 /* MenuBarPlayerUIPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayerUIPersistenceTests.swift; sourceTree = "<group>"; };
-		3EABDDF72694C4EC008066E8 /* ControlBarSeekPositionDisplayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarSeekPositionDisplayType.swift; sourceTree = "<group>"; };
+		3EABDDF72694C4EC008066E8 /* TrackTimeDisplayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTimeDisplayType.swift; sourceTree = "<group>"; };
 		3EABDDFC2694C57B008066E8 /* ControlBarPlayerUIPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlayerUIPersistenceTests.swift; sourceTree = "<group>"; };
 		3EABDE002694C98B008066E8 /* ColorSchemesPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemesPersistenceTests.swift; sourceTree = "<group>"; };
 		3EABDE192694CFD4008066E8 /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
@@ -2777,7 +2777,7 @@
 				3E3975452688894C0055887E /* ControlBarSeekSliderCell.swift */,
 				3E397547268900C60055887E /* ControlBarVolumeSliderCell.swift */,
 				3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */,
-				3EABDDF72694C4EC008066E8 /* ControlBarSeekPositionDisplayType.swift */,
+				3EABDDF72694C4EC008066E8 /* TrackTimeDisplayType.swift */,
 			);
 			path = ControlBarPlayer;
 			sourceTree = "<group>";
@@ -5727,7 +5727,7 @@
 				3EFE3A3127864898006F8B8C /* SelectSearchResultCommandNotification.swift in Sources */,
 				3E43227F2687DE35009E8ADB /* ControlBarPlayerWindowController.swift in Sources */,
 				3EFE382527864896006F8B8C /* SearchQuery.swift in Sources */,
-				3EABDDFA2694C561008066E8 /* ControlBarSeekPositionDisplayType.swift in Sources */,
+				3EABDDFA2694C561008066E8 /* TrackTimeDisplayType.swift in Sources */,
 				3EFE391B27864897006F8B8C /* EnumExtensions.swift in Sources */,
 				3EFE397727864897006F8B8C /* CloseFileHandlesAction.swift in Sources */,
 				3E2A2A082809C824000F0539 /* PlaylistContainerViewController.swift in Sources */,
@@ -6873,7 +6873,7 @@
 				3E30AC1C26B06262005B7058 /* MockAVAudioFile.swift in Sources */,
 				3EF28DB22694DFC7005D5B43 /* ThemesPersistenceTests.swift in Sources */,
 				3EFE395A27864897006F8B8C /* AVFScheduler.swift in Sources */,
-				3EABDDF82694C4EC008066E8 /* ControlBarSeekPositionDisplayType.swift in Sources */,
+				3EABDDF82694C4EC008066E8 /* TrackTimeDisplayType.swift in Sources */,
 				3ED6D8F2269253BB007DA433 /* MediaKeysControlsPreferencesTests.swift in Sources */,
 				3EF28DA52694DD72005D5B43 /* FontSchemePreset.swift in Sources */,
 				3EFE3A9827864898006F8B8C /* TrackReader.swift in Sources */,

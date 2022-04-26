@@ -31,7 +31,6 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     
     @IBOutlet weak var compactViewController: CompactPlayQueueViewController!
     
-    private let player: PlaybackDelegateProtocol = playbackDelegate
     private let playQueue: PlayQueueDelegateProtocol = playQueueDelegate
     
     private lazy var alertDialog: AlertWindowController = .instance
@@ -57,6 +56,8 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         lblDurationSummary.font = Fonts.Player.infoBoxArtistAlbumFont
         lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
         
+        changeWindowCornerRadius(windowAppearanceState.cornerRadius)
+        
         messenger.subscribe(to: .playQueue_exportAsPlaylistFile, handler: exportAsPlaylistFile)
         messenger.subscribe(to: .playQueue_removeAllTracks, handler: removeAllTracks)
         
@@ -71,6 +72,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         messenger.subscribe(to: .playQueue_updateSummary, handler: updateSummary)
         
         messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
+        messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
         
         updateSummary()
     }
@@ -171,6 +173,10 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     
     override func destroy() {
         // TODO: 
+    }
+    
+    private func changeWindowCornerRadius(_ radius: CGFloat) {
+        rootContainer.cornerRadius = radius
     }
     
     // MARK: Actions ----------------------------------------------------------------------------------

@@ -65,8 +65,6 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
 
     private lazy var messenger = Messenger(for: self)
     
-    private lazy var uiState: WindowAppearanceState = windowAppearanceState
-    
     // ------------------------------------------------------------------------
     
     // MARK: UI initialization / life-cycle
@@ -166,7 +164,7 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
 //        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
 //        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
 //        messenger.subscribe(to: .changeSelectedTabButtonColor, handler: changeSelectedTabButtonColor(_:))
-//        messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
+        messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
 //        
 //        messenger.subscribe(to: .effects_changeActiveUnitStateColor, handler: changeActiveUnitStateColor(_:))
 //        messenger.subscribe(to: .effects_changeBypassedUnitStateColor, handler: changeBypassedUnitStateColor(_:))
@@ -213,7 +211,7 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
         
         applyFontScheme(systemFontScheme)
         applyColorScheme(systemColorScheme)
-        changeWindowCornerRadius(uiState.cornerRadius)
+        changeWindowCornerRadius(windowAppearanceState.cornerRadius)
     }
     
     private func applyFontScheme(_ scheme: FontScheme) {

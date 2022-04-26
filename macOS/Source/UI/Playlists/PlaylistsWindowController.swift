@@ -60,6 +60,8 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
             $0?.textColor = systemColorScheme.secondaryTextColor
         }
         
+        changeWindowCornerRadius(windowAppearanceState.cornerRadius)
+        
         messenger.subscribeAsync(to: .playlists_startedAddingTracks, handler: startedAddingTracks)
         messenger.subscribeAsync(to: .playlists_doneAddingTracks, handler: doneAddingTracks)
         
@@ -67,6 +69,8 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
 
         colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.secondaryTextColor, \.secondaryTextColor])
         colorSchemesManager.registerObservers([btnClose, btnCreatePlaylist, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)
+        
+        messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
     }
     
     @IBAction func closeAction(_ sender: Any) {
@@ -125,5 +129,9 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
             
             return
         }
+    }
+    
+    private func changeWindowCornerRadius(_ radius: CGFloat) {
+        rootContainer.cornerRadius = radius
     }
 }

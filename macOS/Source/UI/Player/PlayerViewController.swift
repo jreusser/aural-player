@@ -70,8 +70,6 @@ class PlayerViewController: NSViewController, Destroyable {
         messenger.subscribe(to: .player_showOrHideAlbum, handler: infoView.showOrHideAlbum)
         messenger.subscribe(to: .player_showOrHideCurrentChapter, handler: infoView.showOrHideCurrentChapter)
         messenger.subscribe(to: .player_showOrHideMainControls, handler: infoView.showOrHideMainControls)
-        messenger.subscribe(to: .player_showOrHidePlayingTrackInfo, handler: infoView.showOrHidePlayingTrackInfo)
-        messenger.subscribe(to: .player_showOrHidePlayingTrackFunctions, handler: infoView.showOrHidePlayingTrackFunctions)
         
         messenger.subscribe(to: .applyTheme, handler: infoView.applyTheme)
         messenger.subscribe(to: .applyFontScheme, handler: infoView.applyFontScheme(_:))
