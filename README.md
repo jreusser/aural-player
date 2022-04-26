@@ -7,6 +7,7 @@ Aural Player v4.0 aims to take the app to the next level, bringing improvements 
 - A new "Unified" (single window) app presentation mode. NOTE - The existing modular UI mode will remain.
 - The playlist becomes the "play queue" and the user can now save multiple playlists.
 - Nicer user interface aesthetics (look and feel)
+- More compact player and FX panel windows (area reduced by 20%)
 - Simplified theming (fonts and colors)
 - Improved usability
 - A lot more help and tool tips
