@@ -13,7 +13,7 @@ import Cocoa
     A special image button to which a tint can be applied, to conform to the current system color scheme.
  */
 @IBDesignable
-class TintedImageButton: NSButton, ColorSchemeObserver {
+class TintedImageButton: NSButton {
     
     var weight: NSFont.Weight = .heavy {
         
@@ -34,7 +34,10 @@ class TintedImageButton: NSButton, ColorSchemeObserver {
         super.awakeFromNib()
         image?.isTemplate = true
     }
- 
+}
+
+extension NSButton: ColorSchemeObserver {
+    
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         contentTintColor = newColor
     }

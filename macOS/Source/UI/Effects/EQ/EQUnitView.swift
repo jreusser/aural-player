@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class EQUnitView: NSView {
+class EQUnitView: NSView, ColorSchemeObserver {
     
     // ------------------------------------------------------------------------
     
@@ -58,6 +58,8 @@ class EQUnitView: NSView {
             $0.action = sliderAction
             $0.target = sliderActionTarget
         }
+        
+        colorSchemesManager.registerObserver(self, forProperty: \.backgroundColor)
     }
     
     func initialize(eqStateFunction: @escaping EffectsUnitStateFunction,
@@ -94,5 +96,12 @@ class EQUnitView: NSView {
     
     func applyPreset(_ preset: EQPreset) {
         bandsUpdated(preset.bands, globalGain: preset.globalGain)
+    }
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        allSliders.forEach {
+            $0.redraw()
+        }
     }
 }

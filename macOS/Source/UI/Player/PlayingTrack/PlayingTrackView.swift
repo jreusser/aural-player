@@ -141,10 +141,6 @@ class PlayingTrackView: MouseTrackingView {
         }
     }
     
-    var needsMouseTracking: Bool {
-        return false
-    }
-    
     private func autoHideControls_show() {
         
         // Show controls

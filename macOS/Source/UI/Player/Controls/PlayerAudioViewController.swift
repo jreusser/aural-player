@@ -12,7 +12,7 @@ import Cocoa
 /*
     View controller for player volume and pan
  */
-class PlayerAudioViewController: NSViewController, Destroyable {
+class PlayerAudioViewController: NSViewController, ColorSchemeObserver, Destroyable {
     
     var showsPanControl: Bool {true}
     
@@ -49,8 +49,6 @@ class PlayerAudioViewController: NSViewController, Destroyable {
     
     override func viewDidLoad() {
         
-        colorSchemesManager.registerObserver(btnVolume, forProperty: \.buttonColor)
-        
         autoHidingVolumeLabel = AutoHidingView(lblVolume, Self.feedbackLabelAutoHideIntervalSeconds)
         volumeSlider.floatValue = audioGraph.volume
         volumeChanged(audioGraph.volume, audioGraph.muted, true, false)
@@ -62,6 +60,8 @@ class PlayerAudioViewController: NSViewController, Destroyable {
             panChanged(audioGraph.pan, false)
         }
         
+        colorSchemesManager.registerObserver(btnVolume, forProperty: \.buttonColor)
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
         colorSchemesManager.registerObserver(lblVolume, forProperty: \.secondaryTextColor)
         
         initSubscriptions()
@@ -240,5 +240,9 @@ class PlayerAudioViewController: NSViewController, Destroyable {
     
     func changeSliderValueTextColor(_ color: NSColor) {
         lblPan?.textColor = color
+    }
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        volumeSlider.redraw()
     }
 }

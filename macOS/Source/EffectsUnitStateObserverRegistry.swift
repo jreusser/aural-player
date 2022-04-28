@@ -85,8 +85,8 @@ class EffectsUnitStateObserverRegistry {
     
     func currentState(forObserver observer: FXUnitStateObserver) -> EffectsUnitState {
         
-        let object = observer as! NSObject
-        return reverseRegistry[object]!.state
+        guard let object = observer as? NSObject else {return .bypassed}
+        return reverseRegistry[object]?.state ?? .bypassed
     }
 }
 
