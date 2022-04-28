@@ -316,7 +316,13 @@
                                                     <menu key="submenu" title="Color scheme" showsStateColumn="NO" id="7oK-Kd-rX4">
                                                         <items>
                                                             <menuItem isSeparatorItem="YES" id="GtB-hU-uN6"/>
-                                                            <menuItem title="Black &amp; aqua (default)" indentationLevel="1" id="Q49-Xm-uru">
+                                                            <menuItem title="Lava (default)" indentationLevel="1" id="sNL-Wk-hye">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                                <connections>
+                                                                    <action selector="applyPresetAction:" target="df9-sN-idv" id="gtc-ve-7oa"/>
+                                                                </connections>
+                                                            </menuItem>
+                                                            <menuItem title="Black &amp; aqua" indentationLevel="1" id="Q49-Xm-uru" userLabel="Black &amp; aqua">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
                                                                     <action selector="applyPresetAction:" target="df9-sN-idv" id="4QJ-pj-gq3"/>
@@ -326,12 +332,6 @@
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
                                                                     <action selector="applyPresetAction:" target="df9-sN-idv" id="OBG-05-7fK"/>
-                                                                </connections>
-                                                            </menuItem>
-                                                            <menuItem title="Lava" indentationLevel="1" id="sNL-Wk-hye">
-                                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                                                <connections>
-                                                                    <action selector="applyPresetAction:" target="df9-sN-idv" id="gtc-ve-7oa"/>
                                                                 </connections>
                                                             </menuItem>
                                                             <menuItem title="White blight" indentationLevel="1" id="41Q-2F-UWV">
@@ -1721,10 +1721,10 @@ CA
                                 <menu key="submenu" title=" Color scheme" showsStateColumn="NO" id="PId-rK-ss7">
                                     <items>
                                         <menuItem isSeparatorItem="YES" id="K5P-kB-NbQ"/>
-                                        <menuItem title="Black attack (default)" indentationLevel="1" id="949-Oc-MPu">
+                                        <menuItem title="Lava (default)" indentationLevel="1" id="0xg-XN-Yr0">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="applyPresetAction:" target="U0b-83-uhv" id="qFt-B5-ZTJ"/>
+                                                <action selector="applyPresetAction:" target="U0b-83-uhv" id="BqK-Dl-y6Q"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Black &amp; aqua" indentationLevel="1" id="yhH-Kc-78h">
@@ -1733,10 +1733,10 @@ CA
                                                 <action selector="applyPresetAction:" target="U0b-83-uhv" id="axU-H8-kuJ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Lava" indentationLevel="1" id="0xg-XN-Yr0">
+                                        <menuItem title="Black &amp; green" indentationLevel="1" id="949-Oc-MPu">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="applyPresetAction:" target="U0b-83-uhv" id="BqK-Dl-y6Q"/>
+                                                <action selector="applyPresetAction:" target="U0b-83-uhv" id="qFt-B5-ZTJ"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="White blight" indentationLevel="1" id="lpm-tW-lOV">

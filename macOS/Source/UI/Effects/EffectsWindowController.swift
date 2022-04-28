@@ -38,7 +38,7 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
     // Tab view and its buttons
 
     @IBOutlet weak var tabView: NSTabView!
-    @IBOutlet weak var lblDisplayedUnit: NSTextField!
+    @IBOutlet weak var lblCaption: NSTextField!
 
     @IBOutlet weak var masterTabViewButton: EffectsUnitTabButton!
     @IBOutlet weak var eqTabViewButton: EffectsUnitTabButton!
@@ -77,33 +77,38 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
         
         // Initialize all sub-views
         initTabGroup()
-
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.secondaryTextColor])
-        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
+        
+        colorSchemesManager.registerObservers(tabViewButtons + [rootContainerBox], forProperty: \.backgroundColor)
+        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+        colorSchemesManager.registerObservers([self, btnClose], forProperty: \.buttonColor)
         
         applyTheme()
         
-        initUnits()
         initSubscriptions()
     }
 
     private func initTabGroup() {
         
-        for (index, viewController) in [masterViewController, eqViewController, pitchViewController, timeViewController, reverbViewController, delayViewController, filterViewController, auViewController, devicesViewController].enumerated() {
+        for (index, viewController) in [masterViewController, eqViewController, pitchViewController, timeViewController,
+                                        reverbViewController, delayViewController, filterViewController, auViewController, devicesViewController].enumerated() {
             
             tabView.tabViewItem(at: index).view?.addSubview(viewController.view)
             viewController.view.anchorToSuperview()
         }
 
-        tabViewButtons = [masterTabViewButton, eqTabViewButton, pitchTabViewButton, timeTabViewButton, reverbTabViewButton, delayTabViewButton, filterTabViewButton, auTabViewButton, devicesTabViewButton]
+        tabViewButtons = [masterTabViewButton, eqTabViewButton, pitchTabViewButton, timeTabViewButton, reverbTabViewButton,
+                          delayTabViewButton, filterTabViewButton, auTabViewButton, devicesTabViewButton]
         
-        masterTabViewButton.stateFunction = graph.masterUnit.stateFunction
-        eqTabViewButton.stateFunction = graph.eqUnit.stateFunction
-        pitchTabViewButton.stateFunction = graph.pitchShiftUnit.stateFunction
-        timeTabViewButton.stateFunction = graph.timeStretchUnit.stateFunction
-        reverbTabViewButton.stateFunction = graph.reverbUnit.stateFunction
-        delayTabViewButton.stateFunction = graph.delayUnit.stateFunction
-        filterTabViewButton.stateFunction = graph.filterUnit.stateFunction
+        fxUnitStateObserverRegistry.registerObserver(masterTabViewButton, forFXUnit: audioGraphDelegate.masterUnit)
+        fxUnitStateObserverRegistry.registerObserver(eqTabViewButton, forFXUnit: audioGraphDelegate.eqUnit)
+        fxUnitStateObserverRegistry.registerObserver(pitchTabViewButton, forFXUnit: audioGraphDelegate.pitchShiftUnit)
+        fxUnitStateObserverRegistry.registerObserver(timeTabViewButton, forFXUnit: audioGraphDelegate.timeStretchUnit)
+        fxUnitStateObserverRegistry.registerObserver(reverbTabViewButton, forFXUnit: audioGraphDelegate.reverbUnit)
+        fxUnitStateObserverRegistry.registerObserver(delayTabViewButton, forFXUnit: audioGraphDelegate.delayUnit)
+        fxUnitStateObserverRegistry.registerObserver(filterTabViewButton, forFXUnit: audioGraphDelegate.filterUnit)
+        
+        // TODO: Add state observer for AU tab button (complicated - composite function comprising states of individual AUs)
+        // Might need an overload of registerObserver that takes a function instead of an FXUnitDelegate.
 
         auTabViewButton.stateFunction = {[weak self] in
             self?.graph.audioUnits.first(where: {$0.state == .active || $0.state == .suppressed})?.state ?? .bypassed
@@ -114,10 +119,6 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
         // Select Master tab view by default
         tabViewAction(masterTabViewButton)
 //        tabViewAction(eqTabViewButton)
-    }
-
-    private func initUnits() {
-        tabViewButtons.forEach {$0.updateState()}
     }
 
     override func destroy() {
@@ -142,7 +143,7 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
 
         // Button tag is the tab index
         tabView.selectTabViewItem(at: sender.tag)
-        lblDisplayedUnit.stringValue = EffectsUnitType(rawValue: sender.tag)!.caption
+        lblCaption.stringValue = EffectsUnitType(rawValue: sender.tag)!.caption
     }
     
     @IBAction func closeWindowAction(_ sender: AnyObject) {
@@ -155,31 +156,14 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
     
     private func initSubscriptions() {
 
-        messenger.subscribe(to: .effects_unitStateChanged, handler: stateChanged)
-        
         messenger.subscribe(to: .effects_showEffectsUnitTab, handler: showTab(_:))
         
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
         messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
-        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
-//        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
-//        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
-//        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
 //        messenger.subscribe(to: .changeSelectedTabButtonColor, handler: changeSelectedTabButtonColor(_:))
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
-//        
-//        messenger.subscribe(to: .effects_changeActiveUnitStateColor, handler: changeActiveUnitStateColor(_:))
-//        messenger.subscribe(to: .effects_changeBypassedUnitStateColor, handler: changeBypassedUnitStateColor(_:))
-//        messenger.subscribe(to: .effects_changeSuppressedUnitStateColor, handler: changeSuppressedUnitStateColor(_:))
     }
 
-    // Notification that an effect unit's state has changed (active/inactive)
-    private func stateChanged() {
-
-        // Update the tab button states
-        tabViewButtons.forEach {$0.updateState()}
-    }
-    
     private func showTab(_ effectsUnitType: EffectsUnitType) {
         
         switch effectsUnitType {
@@ -212,77 +196,35 @@ class EffectsWindowController: NSWindowController, ColorSchemeObserver {
     private func applyTheme() {
         
         applyFontScheme(systemFontScheme)
-        applyColorScheme(systemColorScheme)
         changeWindowCornerRadius(windowAppearanceState.cornerRadius)
     }
     
     private func applyFontScheme(_ scheme: FontScheme) {
-        lblDisplayedUnit.font = scheme.effects.unitCaptionFont
+        lblCaption.font = scheme.effects.unitCaptionFont
     }
     
-    private func applyColorScheme(_ scheme: ColorScheme) {
-        
-        changeBackgroundColor(scheme.backgroundColor)
-        changeMainCaptionTextColor(scheme.secondaryTextColor)
-        changeFunctionButtonColor(scheme.buttonColor)
-        
-//        tabViewButtons.forEach {$0.reTint()}
-    }
+//    private func changeActiveUnitStateColor(_ color: NSColor) {
+//
+////        tabViewButtons.filter {$0.unitState == .active}.forEach {
+////            $0.reTint()
+////        }
+//    }
+//
+//    private func changeBypassedUnitStateColor(_ color: NSColor) {
+//
+////        tabViewButtons.filter {$0.unitState == .bypassed}.forEach {
+////            $0.reTint()
+////        }
+//    }
+//
+//    private func changeSuppressedUnitStateColor(_ color: NSColor) {
+//
+////        tabViewButtons.filter {$0.unitState == .suppressed}.forEach {
+////            $0.reTint()
+////        }
+//    }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        
-        switch property {
-            
-        case \.backgroundColor:
-            
-            rootContainerBox.fillColor = newColor
-            
-        case \.secondaryTextColor:
-            
-            lblDisplayedUnit.textColor = newColor
-         
-        default:
-            
-            return
-        }
-    }
-    
-    private func changeBackgroundColor(_ color: NSColor) {
-        
-        rootContainerBox.fillColor = color
-        tabViewButtons.forEach {$0.redraw()}
-    }
-    
-    private func changeMainCaptionTextColor(_ color: NSColor) {
-        lblDisplayedUnit.textColor = color
-    }
-    
-    private func changeFunctionButtonColor(_ color: NSColor) {
-//        btnClose.reTint()
-    }
-    
-    private func changeActiveUnitStateColor(_ color: NSColor) {
-        
-//        tabViewButtons.filter {$0.unitState == .active}.forEach {
-//            $0.reTint()
-//        }
-    }
-    
-    private func changeBypassedUnitStateColor(_ color: NSColor) {
-        
-//        tabViewButtons.filter {$0.unitState == .bypassed}.forEach {
-//            $0.reTint()
-//        }
-    }
-    
-    private func changeSuppressedUnitStateColor(_ color: NSColor) {
-        
-//        tabViewButtons.filter {$0.unitState == .suppressed}.forEach {
-//            $0.reTint()
-//        }
-    }
-    
-    private func changeSelectedTabButtonColor(_ color: NSColor) {
         tabViewButtons[tabView.selectedIndex].redraw()
     }
     

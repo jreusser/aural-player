@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
+class PlayQueueWindowController: NSWindowController {
     
     override var windowNibName: String? {"PlayQueueWindow"}
     
@@ -47,16 +47,15 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         tabGroup.addViewsForTabs([compactView])
         compactView.anchorToSuperview()
         
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.secondaryTextColor, \.secondaryTextColor])
+        colorSchemesManager.registerObservers([rootContainer, tabButtonsContainer], forProperty: \.backgroundColor)
         colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
         
+        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+        colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
+        
         lblCaption.font = systemFontScheme.effects.unitCaptionFont
-        
         lblTracksSummary.font = Fonts.Player.infoBoxArtistAlbumFont
-        lblTracksSummary.textColor = systemColorScheme.secondaryTextColor
-        
         lblDurationSummary.font = Fonts.Player.infoBoxArtistAlbumFont
-        lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
         
         changeWindowCornerRadius(windowAppearanceState.cornerRadius)
         
@@ -123,32 +122,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     private func applyFontScheme(_ scheme: FontScheme) {
         lblCaption.font = scheme.effects.unitCaptionFont
     }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        
-        switch property {
-            
-        case \.backgroundColor:
-            
-            rootContainer.fillColor = newColor
-            tabButtonsContainer.fillColor = newColor
-            
-        case \.secondaryTextColor:
-            
-            lblCaption.textColor = newColor
-            
-        case \.secondaryTextColor:
-            
-            [lblTracksSummary, lblDurationSummary].forEach {
-                $0?.textColor = newColor
-            }
-         
-        default:
-            
-            return
-        }
-    }
-    
+
     private func startedAddingTracks() {
         
         progressSpinner.startAnimation(nil)
@@ -164,6 +138,8 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     private func updateSummary() {
         
         if let playingTrackIndex = playQueue.currentTrackIndex {
+            
+            // TODO: The play icon should be of a fixed smaller size font (use 2 attributed strings).
             lblTracksSummary.stringValue = "▶  \(playingTrackIndex + 1) / \(playQueue.size) tracks"
             
         } else {

@@ -10,11 +10,35 @@
 
 extension ColorScheme {
     
-    static let blackAqua: ColorScheme = .init(name: "Black & aqua (default)", systemDefined: true,
+    static let lava: ColorScheme = .init(name: "Lava (default)", systemDefined: true,
+                                         
+                                         backgroundColor: PlatformColor(red: 0.144, green: 0.144, blue: 0.144),
+                                         buttonColor: .white70Percent,
+                                         iconColor: .white60Percent,
+                                         
+                                         captionTextColor: .white40Percent,
+                                         
+                                         primaryTextColor: .white70Percent,
+                                         secondaryTextColor: .white45Percent,
+                                         tertiaryTextColor: .white30Percent,
+                                         
+                                         primarySelectedTextColor: .white,
+                                         secondarySelectedTextColor: .white75Percent,
+                                         tertiarySelectedTextColor: .white50Percent,
+                                         
+                                         textSelectionColor: .black,
+                                         
+                                         activeControlColor: .lava,
+                                         inactiveControlColor: .white35Percent,
+                                         suppressedControlColor: PlatformColor(red: 0.5, green: 0.204, blue: 0.107))
+    
+    static let blackAqua: ColorScheme = .init(name: "Black & aqua", systemDefined: true,
                                               
                                               backgroundColor: .white8Percent,
                                               buttonColor: .white90Percent,
                                               iconColor: .white60Percent,
+                                              
+                                              captionTextColor: .white40Percent,
                                               
                                               primaryTextColor: .white70Percent,
                                               secondaryTextColor: .white45Percent,
@@ -36,6 +60,8 @@ extension ColorScheme {
                                                buttonColor: .white90Percent,
                                                iconColor: .white60Percent,
                                                
+                                               captionTextColor: .white40Percent,
+                                               
                                                primaryTextColor: .white70Percent,
                                                secondaryTextColor: .white45Percent,
                                                tertiaryTextColor: .white30Percent,
@@ -50,31 +76,13 @@ extension ColorScheme {
                                                inactiveControlColor: .white30Percent,
                                                suppressedControlColor: .green50Percent)
     
-    static let lava: ColorScheme = .init(name: "Lava", systemDefined: true,
-                                         
-                                         backgroundColor: PlatformColor(red: 0.144, green: 0.144, blue: 0.144),
-                                         buttonColor: .white70Percent,
-                                         iconColor: .white60Percent,
-                                         
-                                         primaryTextColor: .white70Percent,
-                                         secondaryTextColor: .white45Percent,
-                                         tertiaryTextColor: .white30Percent,
-                                         
-                                         primarySelectedTextColor: .white,
-                                         secondarySelectedTextColor: .white75Percent,
-                                         tertiarySelectedTextColor: .white50Percent,
-                                         
-                                         textSelectionColor: .black,
-                                         
-                                         activeControlColor: .lava,
-                                         inactiveControlColor: .white35Percent,
-                                         suppressedControlColor: PlatformColor(red: 0.5, green: 0.204, blue: 0.107))
-    
     static let whiteBlight: ColorScheme = .init(name: "White blight", systemDefined: true,
                                                 
                                                 backgroundColor: .white75Percent,
                                                 buttonColor: .black,
                                                 iconColor: .white60Percent,
+                                                
+                                                captionTextColor: .white30Percent,
                                                 
                                                 primaryTextColor: .black,
                                                 secondaryTextColor: .white25Percent,
@@ -95,6 +103,8 @@ extension ColorScheme {
                                               backgroundColor: .white20Percent,
                                               buttonColor: .white80Percent,
                                               iconColor: .white60Percent,
+                                              
+                                              captionTextColor: .white40Percent,
                                               
                                               primaryTextColor: .white70Percent,
                                               secondaryTextColor: .white45Percent,

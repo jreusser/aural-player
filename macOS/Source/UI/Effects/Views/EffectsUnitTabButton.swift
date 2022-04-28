@@ -10,7 +10,7 @@
 import Cocoa
 
 @IBDesignable
-class EffectsUnitTabButton: OnOffImageButton {
+class EffectsUnitTabButton: OnOffImageButton, FXUnitStateObserver {
     
     var stateFunction: EffectsUnitStateFunction?
     
@@ -32,11 +32,11 @@ class EffectsUnitTabButton: OnOffImageButton {
         toolTip = offStateTooltip
         state = .off
         
-        if let cell = self.cell as? EffectsUnitTabButtonCell {
-            
-            cell.unitState = .bypassed
-            redraw()
-        }
+//        if let cell = self.cell as? EffectsUnitTabButtonCell {
+//
+//            cell.unitState = .bypassed
+//            redraw()
+//        }
     }
     
     override func on() {
@@ -44,22 +44,22 @@ class EffectsUnitTabButton: OnOffImageButton {
         toolTip = onStateTooltip
         state = .on
         
-        if let cell = self.cell as? EffectsUnitTabButtonCell {
-            
-            cell.unitState = .active
-            redraw()
-        }
+//        if let cell = self.cell as? EffectsUnitTabButtonCell {
+//
+//            cell.unitState = .active
+//            redraw()
+//        }
     }
     
     func mixed() {
         
         toolTip = mixedStateTooltip
         
-        if let cell = self.cell as? EffectsUnitTabButtonCell {
-            
-            cell.unitState = .suppressed
-            redraw()
-        }
+//        if let cell = self.cell as? EffectsUnitTabButtonCell {
+//            
+//            cell.unitState = .suppressed
+//            redraw()
+//        }
     }
     
     func updateState() {

@@ -33,6 +33,8 @@ struct ColorSchemePersistentState: Codable {
     let buttonColor: ColorPersistentState?
     let iconColor: ColorPersistentState?
     
+    let captionTextColor: ColorPersistentState?
+    
     let primaryTextColor: ColorPersistentState?
     let secondaryTextColor: ColorPersistentState?
     let tertiaryTextColor: ColorPersistentState?
@@ -55,6 +57,8 @@ struct ColorSchemePersistentState: Codable {
         self.backgroundColor = ColorPersistentState(color: scheme.backgroundColor)
         self.buttonColor = ColorPersistentState(color: scheme.buttonColor)
         self.iconColor = ColorPersistentState(color: scheme.iconColor)
+        
+        self.captionTextColor = ColorPersistentState(color: scheme.captionTextColor)
         
         self.primaryTextColor = ColorPersistentState(color: scheme.primaryTextColor)
         self.secondaryTextColor = ColorPersistentState(color: scheme.secondaryTextColor)

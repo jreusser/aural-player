@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
+class PlaylistsWindowController: NSWindowController {
     
     override var windowNibName: String? {"PlaylistsWindow"}
     
@@ -56,10 +56,6 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
         lblTracksSummary.font = systemFontScheme.playlist.summaryFont
         lblDurationSummary.font = systemFontScheme.playlist.summaryFont
         
-        [lblTracksSummary, lblDurationSummary].forEach {
-            $0?.textColor = systemColorScheme.secondaryTextColor
-        }
-        
         changeWindowCornerRadius(windowAppearanceState.cornerRadius)
         
         messenger.subscribeAsync(to: .playlists_startedAddingTracks, handler: startedAddingTracks)
@@ -67,8 +63,10 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
         
         messenger.subscribe(to: .playlists_updateSummary, handler: updateSummary)
 
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.secondaryTextColor, \.secondaryTextColor])
+        colorSchemesManager.registerObservers([rootContainer, controlsBox], forProperty: \.backgroundColor)
         colorSchemesManager.registerObservers([btnClose, btnCreatePlaylist, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)
+        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+        colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
         
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
     }
@@ -103,32 +101,6 @@ class PlaylistsWindowController: NSWindowController, ColorSchemeObserver {
         let numTracks = displayedPlaylist.size
         lblTracksSummary.stringValue = "\(numTracks) \(numTracks == 1 ? "track" : "tracks")"
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(displayedPlaylist.duration)
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        
-        switch property {
-            
-        case \.backgroundColor:
-            
-            [rootContainer, controlsBox].forEach {
-                $0.fillColor = newColor
-            }
-            
-        case \.secondaryTextColor:
-            
-            lblCaption.textColor = newColor
-            
-        case \.secondaryTextColor:
-            
-            [lblTracksSummary, lblDurationSummary].forEach {
-                $0?.textColor = newColor
-            }
-            
-        default:
-            
-            return
-        }
     }
     
     private func changeWindowCornerRadius(_ radius: CGFloat) {

@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class PlaylistContainerViewController: NSViewController, ColorSchemeObserver {
+class PlaylistContainerViewController: NSViewController {
 
     @IBOutlet weak var playlistContainer: NSBox!
     
@@ -37,24 +37,7 @@ class PlaylistContainerViewController: NSViewController, ColorSchemeObserver {
         
         lblPlaylistName.font = systemFontScheme.effects.unitCaptionFont
         
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.secondaryTextColor])
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        
-        switch property {
-            
-        case \.backgroundColor:
-            
-            playlistContainer.fillColor = newColor
-            
-        case \.secondaryTextColor:
-            
-            lblPlaylistName.textColor = newColor
-            
-        default:
-            
-            return
-        }
+        colorSchemesManager.registerObserver(playlistContainer, forProperty: \.backgroundColor)
+        colorSchemesManager.registerObserver(lblPlaylistName, forProperty: \.captionTextColor)
     }
 }

@@ -14,8 +14,8 @@ class EffectsUnitTabButtonCell: NSButtonCell {
     
 //    private var selectionBoxColor: NSColor {Colors.selectedTabButtonColor}
     
-    var unitState: EffectsUnitState = .bypassed
-
+    lazy var observingButton: EffectsUnitTabButton = controlView as! EffectsUnitTabButton
+    
     @IBInspectable var imgWidth: Int = 14
     @IBInspectable var imgHeight: Int = 14
     
@@ -31,11 +31,11 @@ class EffectsUnitTabButtonCell: NSButtonCell {
     
     var imageColor: NSColor {
         
-        switch unitState {
+        switch fxUnitStateObserverRegistry.currentState(forObserver: observingButton) {
             
-        case .active:   return systemColorScheme.activeControlColor
+        case .active:       return systemColorScheme.activeControlColor
             
-        case .bypassed: return systemColorScheme.inactiveControlColor
+        case .bypassed:     return systemColorScheme.inactiveControlColor
             
         case .suppressed:   return systemColorScheme.suppressedControlColor
             

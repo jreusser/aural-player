@@ -39,6 +39,8 @@ class ColorScheme: NSObject, UserManagedObject {
     
     // MARK: Text colors ----------------------------------------------------------------------------------------
     
+    @objc dynamic var captionTextColor: NSColor
+    
     @objc dynamic var primaryTextColor: NSColor
     @objc dynamic var secondaryTextColor: NSColor
     @objc dynamic var tertiaryTextColor: NSColor
@@ -93,6 +95,7 @@ class ColorScheme: NSObject, UserManagedObject {
     
     init(name: String, systemDefined: Bool,
          backgroundColor: NSColor, buttonColor: NSColor, iconColor: NSColor,
+         captionTextColor: NSColor,
          primaryTextColor: NSColor, secondaryTextColor: NSColor, tertiaryTextColor: NSColor,
          primarySelectedTextColor: NSColor, secondarySelectedTextColor: NSColor, tertiarySelectedTextColor: NSColor,
          textSelectionColor: NSColor,
@@ -104,6 +107,8 @@ class ColorScheme: NSObject, UserManagedObject {
         self.backgroundColor = backgroundColor
         self.buttonColor = buttonColor
         self.iconColor = iconColor
+        
+        self.captionTextColor = captionTextColor
         
         self.primaryTextColor = primaryTextColor
         self.secondaryTextColor = secondaryTextColor
@@ -135,6 +140,8 @@ class ColorScheme: NSObject, UserManagedObject {
         buttonColor = scheme.buttonColor
         iconColor = scheme.iconColor
         
+        captionTextColor = scheme.captionTextColor
+        
         primaryTextColor = scheme.primaryTextColor
         secondaryTextColor = scheme.secondaryTextColor
         tertiaryTextColor = scheme.tertiaryTextColor
@@ -164,6 +171,8 @@ class ColorScheme: NSObject, UserManagedObject {
         backgroundColor = persistentState?.backgroundColor?.toColor() ?? Self.defaultScheme.backgroundColor
         buttonColor = persistentState?.buttonColor?.toColor() ?? Self.defaultScheme.buttonColor
         iconColor = persistentState?.iconColor?.toColor() ?? Self.defaultScheme.iconColor
+        
+        captionTextColor = persistentState?.captionTextColor?.toColor() ?? Self.defaultScheme.captionTextColor
         
         primaryTextColor = persistentState?.primaryTextColor?.toColor() ?? Self.defaultScheme.primaryTextColor
         secondaryTextColor = persistentState?.secondaryTextColor?.toColor() ?? Self.defaultScheme.secondaryTextColor
@@ -230,6 +239,8 @@ class ColorScheme: NSObject, UserManagedObject {
         backgroundColor = scheme.backgroundColor
         buttonColor = scheme.buttonColor
         iconColor = scheme.iconColor
+        
+        captionTextColor = scheme.captionTextColor
         
         primaryTextColor = scheme.primaryTextColor
         secondaryTextColor = scheme.secondaryTextColor

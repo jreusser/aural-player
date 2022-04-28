@@ -97,7 +97,7 @@ class MainWindowController: NSWindowController {
         btnTogglePlayQueue.weight = .black
         
         colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
-        colorSchemesManager.registerObserver(logoImage, forProperty: \.secondaryTextColor)
+        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
         
         colorSchemesManager.registerObservers([btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode, settingsMenuIconItem],
                                               forProperty: \.buttonColor)
