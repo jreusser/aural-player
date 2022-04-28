@@ -12,7 +12,7 @@ import Cocoa
 /*
    View that encapsulates the seek slider and seek time labels.
 */
-class SeekSliderView: NSView {
+class SeekSliderView: NSView, ColorSchemeObserver {
     
     // Fields that display/control seek position within the playing track
     @IBOutlet weak var lblTrackTime: VALabel!
@@ -42,12 +42,16 @@ class SeekSliderView: NSView {
     
     override func awakeFromNib() {
         
+        super.awakeFromNib()
+        
         initSeekPositionLabels()
         
         // MARK: Update controls based on current player state
         
         initSeekTimer()
         trackChanged(player.playbackLoop, player.playingTrack)
+        
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
     }
     
     func initSeekPositionLabels() {
@@ -172,8 +176,7 @@ class SeekSliderView: NSView {
         }
     }
     
-    // TODO: Should disable / re-enable the timer when labels are hidden / shown (unnecessary CPU usage).
-    // TODO: Also do this ^ when in Expanded Art view and time labels are auto-hidden.
+    // TODO: Should disable / re-enable the timer when labels are hidden / shown (unnecessary CPU usage), or when showing track duration (which is static).
     func showOrHideTrackTime() {
         lblTrackTime.showIf(uiState.showTrackTime)
     }
@@ -191,12 +194,8 @@ class SeekSliderView: NSView {
     func applyFontScheme(_ fontScheme: FontScheme) {
         lblTrackTime.font = fontScheme.player.trackTimesFont
     }
-    
-    func applyColorScheme(_ scheme: ColorScheme) {
-        changeSliderColors()
-    }
-    
-    func changeSliderColors() {
+
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         seekSlider.redraw()
     }
 }

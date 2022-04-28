@@ -37,8 +37,6 @@ class ChaptersListViewController: NSViewController, Destroyable {
     @IBOutlet weak var btnPreviousMatch: TintedImageButton!
     @IBOutlet weak var btnNextMatch: TintedImageButton!
     
-    private var functionButtons: [ColorSchemeable] = []
-    
     // Holds all search results from the latest performed search
     private var searchResults: [Int] = []
     
@@ -58,8 +56,8 @@ class ChaptersListViewController: NSViewController, Destroyable {
         scrollView.drawsBackground = false
         clipView.drawsBackground = false
         
-        functionButtons = [btnClose, btnPreviousChapter, btnNextChapter, btnReplayChapter,
-                           btnLoopChapter, btnCaseSensitive, btnPreviousMatch, btnNextMatch]
+//        functionButtons = [btnClose, btnPreviousChapter, btnNextChapter, btnReplayChapter,
+//                           btnLoopChapter, btnCaseSensitive, btnPreviousMatch, btnNextMatch]
         
         applyColorScheme(systemColorScheme)
         

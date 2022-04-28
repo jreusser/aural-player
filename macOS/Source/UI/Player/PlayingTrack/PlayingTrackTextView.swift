@@ -14,7 +14,7 @@ import Cocoa
     Dynamically updates itself based on view settings to show either a single line or multiple
     lines of information.
  */
-class PlayingTrackTextView: NSView, ColorSchemeable, ColorSchemeObserver {
+class PlayingTrackTextView: NSView, ColorSchemeObserver {
     
     // The text view that displays all the track info
     @IBOutlet weak var textView: NSTextView!

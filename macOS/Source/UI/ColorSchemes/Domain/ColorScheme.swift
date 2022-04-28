@@ -266,19 +266,3 @@ enum ColorSchemeGradientType: String, CaseIterable, Codable {
     case darken
     case brighten
 }
-
-// A contract for any UI component that marks it as being able to apply a color scheme to itself.
-protocol ColorSchemeable {
-    
-    // Apply the given color scheme to this component.
-    func applyColorScheme(_ scheme: ColorScheme)
-    
-    func observeColorSchemeProperty(_ keyPath: KeyPath<ColorScheme, NSColor>)
-}
-
-extension ColorSchemeable {
-    
-    func observeColorSchemeProperty(_ keyPath: KeyPath<ColorScheme, NSColor>) {}
-    
-    func applyColorScheme(_ scheme: ColorScheme) {}
-}

@@ -1,5 +1,5 @@
 //
-//  ColorSchemeableBox.swift
+//  TintableTextField.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -10,9 +10,9 @@
 
 import Cocoa
 
-extension NSBox: ColorSchemeObserver {
+extension NSTextField: ColorSchemeObserver {
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        fillColor = newColor
+        textColor = newColor
     }
 }

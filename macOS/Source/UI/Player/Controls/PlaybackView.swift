@@ -128,12 +128,4 @@ class PlaybackView: NSView {
     func applyFontScheme(_ fontScheme: FontScheme) {
         sliderView.applyFontScheme(fontScheme)
     }
-    
-    func applyColorScheme(_ scheme: ColorScheme) {
-        sliderView.applyColorScheme(scheme)
-    }
-    
-    func changeSliderColors() {
-        sliderView.changeSliderColors()
-    }
 }

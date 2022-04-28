@@ -10,7 +10,7 @@
 import Cocoa
 
 @IBDesignable
-class TintedImageView: NSImageView, ColorSchemeable {
+class TintedImageView: NSImageView {
     
     private var kvoToken: NSKeyValueObservation?
     
@@ -26,17 +26,11 @@ class TintedImageView: NSImageView, ColorSchemeable {
         super.awakeFromNib()
         image?.isTemplate = true
     }
+}
+
+extension NSImageView: ColorSchemeObserver {
     
-    func observeColorSchemeProperty(_ keyPath: KeyPath<ColorScheme, NSColor>) {
-        
-        kvoToken = systemColorScheme.observe(keyPath, options: [.initial, .new]) {[weak self] changedObject, changedValue in
-            self?.contentTintColor = changedValue.newValue
-        }
-    }
-    
-    deinit {
-        
-        kvoToken?.invalidate()
-        kvoToken = nil
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        contentTintColor = newColor
     }
 }

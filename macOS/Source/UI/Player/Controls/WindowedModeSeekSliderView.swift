@@ -9,7 +9,7 @@
 //  
 import Cocoa
 
-class WindowedModeSeekSliderView: SeekSliderView, ColorSchemeable {
+class WindowedModeSeekSliderView: SeekSliderView {
     
     // Used to display the bookmark name prompt popover
     @IBOutlet weak var seekPositionMarker: NSView!
@@ -19,7 +19,6 @@ class WindowedModeSeekSliderView: SeekSliderView, ColorSchemeable {
         super.awakeFromNib()
         
         applyFontScheme(systemFontScheme)
-        applyColorScheme(systemColorScheme)
     }
     
     // Positions the "seek position marker" view at the center of the seek slider knob.

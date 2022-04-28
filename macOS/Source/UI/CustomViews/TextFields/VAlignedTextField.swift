@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class VALabel: NSTextField, ColorSchemeObserver {
+class VALabel: NSTextField {
     
     var debug: Bool = false
     
@@ -50,10 +50,6 @@ class VALabel: NSTextField, ColorSchemeObserver {
             
             self.cell = newCell
         }
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        textColor = newColor
     }
 }
 

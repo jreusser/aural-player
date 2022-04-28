@@ -13,7 +13,7 @@ import Cocoa
     A special image button to which a tint can be applied, to conform to the current system color scheme.
  */
 @IBDesignable
-class TintedImageButton: NSButton, ColorSchemeable, ColorSchemeObserver {
+class TintedImageButton: NSButton, ColorSchemeObserver {
     
     var weight: NSFont.Weight = .heavy {
         

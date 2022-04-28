@@ -65,7 +65,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2By-Sd-lGF">
-                                                        <rect key="frame" x="6" y="11" width="12" height="10"/>
+                                                        <rect key="frame" x="4" y="11" width="12" height="10"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="10" id="ihf-2D-kBa"/>
                                                             <constraint firstAttribute="width" constant="12" id="jAz-5z-VHY"/>
@@ -76,7 +76,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="tkS-pN-cgb" secondAttribute="trailing" id="BLC-t9-NlC"/>
                                                     <constraint firstAttribute="centerY" secondItem="2By-Sd-lGF" secondAttribute="centerY" constant="1" id="J8a-vM-lbD"/>
-                                                    <constraint firstItem="2By-Sd-lGF" firstAttribute="leading" secondItem="5Eo-Qb-3K3" secondAttribute="leading" constant="6" id="UFe-iE-Zto"/>
+                                                    <constraint firstItem="2By-Sd-lGF" firstAttribute="leading" secondItem="5Eo-Qb-3K3" secondAttribute="leading" constant="4" id="UFe-iE-Zto"/>
                                                     <constraint firstItem="tkS-pN-cgb" firstAttribute="leading" secondItem="5Eo-Qb-3K3" secondAttribute="leading" constant="6" id="mlE-Hg-jUU"/>
                                                     <constraint firstAttribute="bottom" secondItem="tkS-pN-cgb" secondAttribute="bottom" id="xD8-Nk-dnc"/>
                                                 </constraints>
@@ -139,7 +139,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="2RN-iX-l7t" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="387.5" y="2" width="66" height="30"/>
+                                                <rect key="frame" x="387" y="2" width="66" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bxe-de-Six" userLabel="Duration">

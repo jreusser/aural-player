@@ -17,7 +17,7 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var logoImage: TintedImageView!
     
     // The box that encloses the Now Playing info section
-    @IBOutlet weak var rootContainerBox: ColorSchemeableBox!
+    @IBOutlet weak var rootContainerBox: NSBox!
     @IBOutlet weak var containerBox: NSBox!
     
     private let playerViewController: PlayerViewController = PlayerViewController()
@@ -96,8 +96,8 @@ class MainWindowController: NSWindowController {
         btnToggleEffects.weight = .black
         btnTogglePlayQueue.weight = .black
         
-        rootContainerBox.observeColorSchemeProperty(\.backgroundColor)
-        logoImage.observeColorSchemeProperty(\.secondaryTextColor)
+        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
+        colorSchemesManager.registerObserver(logoImage, forProperty: \.secondaryTextColor)
         
         colorSchemesManager.registerObservers([btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode, settingsMenuIconItem],
                                               forProperty: \.buttonColor)
@@ -112,18 +112,6 @@ class MainWindowController: NSWindowController {
         messenger.subscribe(to: .windowManager_layoutChanged, handler: windowLayoutChanged)
         
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
-        
-//        kvoTokens.append(systemColorScheme.general.observe(\.backgroundColor, options: [.initial, .new]) {[weak self] generalColorScheme, _ in
-//
-//            print("\nKVO BC !!!")
-//            self?.changeBackgroundColor(generalColorScheme.backgroundColor)
-//        })
-//
-//        kvoTokens.append(systemColorScheme.general.observe(\.functionButtonColor, options: [.initial, .new]) {[weak self] generalColorScheme, _ in
-//
-//            print("\nKVO !!!")
-//            self?.changeFunctionButtonColor(generalColorScheme.functionButtonColor)
-//        })
     }
     
     override func destroy() {

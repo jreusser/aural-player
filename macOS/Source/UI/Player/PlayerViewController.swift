@@ -42,13 +42,11 @@ class PlayerViewController: NSViewController, Destroyable {
     
     override func viewDidLoad() {
         
+        super.viewDidLoad()
+        
         initSubscriptions()
         
         infoView.applyFontScheme(systemFontScheme)
-        infoView.applyColorScheme(systemColorScheme)
-        
-        infoView.showView()
-        
         trackChanged(player.playingTrack)
     }
 
@@ -73,7 +71,6 @@ class PlayerViewController: NSViewController, Destroyable {
         
         messenger.subscribe(to: .applyTheme, handler: infoView.applyTheme)
         messenger.subscribe(to: .applyFontScheme, handler: infoView.applyFontScheme(_:))
-        messenger.subscribe(to: .applyColorScheme, handler: infoView.applyColorScheme(_:))
 //        messenger.subscribe(to: .changeBackgroundColor, handler: infoView.changeBackgroundColor(_:))
         
 //        messenger.subscribe(to: .player_changeTrackInfoPrimaryTextColor, handler: infoView.changePrimaryTextColor(_:))

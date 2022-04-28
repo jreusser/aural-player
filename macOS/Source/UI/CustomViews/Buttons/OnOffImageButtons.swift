@@ -13,7 +13,7 @@ import Cocoa
     An image button that can be toggled On/Off and displays different images depending on its state. It conforms to the current system color scheme by conforming to Tintable.
  */
 @IBDesignable
-class OnOffImageButton: NSButton, ColorSchemeable {
+class OnOffImageButton: NSButton {
     
     var weight: NSFont.Weight = .heavy {
         

@@ -9,7 +9,7 @@
 //  
 import Cocoa
 
-class WindowedModePlaybackView: PlaybackView, ColorSchemeable {
+class WindowedModePlaybackView: PlaybackView {
     
 //    // When the buttons are in an "Off" state, they should be tinted according to the system color scheme's off state button color.
 //    override var offStateTintFunction: TintFunction {{Colors.toggleButtonOffStateColor}}
@@ -24,9 +24,7 @@ class WindowedModePlaybackView: PlaybackView, ColorSchemeable {
     }
     
     func applyTheme() {
-        
         applyFontScheme(systemFontScheme)
-        applyColorScheme(systemColorScheme)
     }
     
     // Positions the "seek position marker" view at the center of the seek slider knob.

@@ -24,8 +24,6 @@ class ControlBarPlaybackView: PlaybackView {
     }
     
     func applyTheme() {
-        
         applyFontScheme(systemFontScheme)
-        applyColorScheme(systemColorScheme)
     }
 }
