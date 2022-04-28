@@ -137,13 +137,17 @@ class PlayQueueWindowController: NSWindowController {
     
     private func updateSummary() {
         
+        let tracksCardinalString = playQueue.size == 1 ? "track" : "tracks"
+        
         if let playingTrackIndex = playQueue.currentTrackIndex {
             
-            // TODO: The play icon should be of a fixed smaller size font (use 2 attributed strings).
-            lblTracksSummary.stringValue = "▶  \(playingTrackIndex + 1) / \(playQueue.size) tracks"
+            let playIconAttStr = "▶".attributed(font: futuristicFontSet.mainFont(size: 12), color: systemColorScheme.secondaryTextColor)
+            let tracksSummaryAttStr = "  \(playingTrackIndex + 1) / \(playQueue.size) \(tracksCardinalString)".attributed(font: systemFontScheme.playlist.summaryFont, color: systemColorScheme.secondaryTextColor)
+            
+            lblTracksSummary.attributedStringValue = playIconAttStr + tracksSummaryAttStr
             
         } else {
-            lblTracksSummary.stringValue = "\(playQueue.size) tracks"
+            lblTracksSummary.stringValue = "\(playQueue.size) \(tracksCardinalString)"
         }
         
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(playQueue.duration)

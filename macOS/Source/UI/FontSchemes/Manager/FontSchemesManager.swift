@@ -33,7 +33,7 @@ class FontSchemesManager: UserManagedObjects<FontScheme> {
         } else {
             
             self.systemScheme = systemDefinedSchemes.first(where: {$0.name == FontSchemePreset.standard.name}) ??
-                FontScheme("_system_", FontSchemePreset.standard)
+                FontScheme("_system_", FontSchemePreset.futuristic)
         }
         
         super.init(systemDefinedObjects: systemDefinedSchemes, userDefinedObjects: userDefinedSchemes)

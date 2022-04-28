@@ -56,7 +56,7 @@ class ColorScheme: NSObject, UserManagedObject {
     @objc dynamic var activeControlGradient: NSGradient!
     
     private func computeActiveControlGradientColor() -> NSColor {
-        activeControlColor.darkened(50)
+        activeControlColor.brightened(25)
     }
     
     private func computeActiveControlGradient() -> NSGradient {
@@ -68,7 +68,7 @@ class ColorScheme: NSObject, UserManagedObject {
     @objc dynamic var inactiveControlGradient: NSGradient!
     
     private func computeInactiveControlGradientColor() -> NSColor {
-        inactiveControlColor.darkened(50)
+        inactiveControlColor.darkened(25)
     }
     
     private func computeInactiveControlGradient() -> NSGradient {
@@ -80,7 +80,7 @@ class ColorScheme: NSObject, UserManagedObject {
     @objc dynamic var suppressedControlGradient: NSGradient!
     
     private func computeSuppressedControlGradientColor() -> NSColor {
-        suppressedControlColor.darkened(50)
+        suppressedControlColor.darkened(25)
     }
     
     private func computeSuppressedControlGradient() -> NSGradient {
