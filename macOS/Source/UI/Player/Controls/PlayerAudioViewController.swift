@@ -12,7 +12,7 @@ import Cocoa
 /*
     View controller for player volume and pan
  */
-class PlayerAudioViewController: NSViewController, ColorSchemeObserver, Destroyable {
+class PlayerAudioViewController: NSViewController, Destroyable {
     
     var showsPanControl: Bool {true}
     
@@ -61,7 +61,7 @@ class PlayerAudioViewController: NSViewController, ColorSchemeObserver, Destroya
         }
         
         colorSchemesManager.registerObserver(btnVolume, forProperty: \.buttonColor)
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
+        colorSchemesManager.registerObserver(volumeSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
         colorSchemesManager.registerObserver(lblVolume, forProperty: \.secondaryTextColor)
         
         initSubscriptions()
@@ -240,9 +240,5 @@ class PlayerAudioViewController: NSViewController, ColorSchemeObserver, Destroya
     
     func changeSliderValueTextColor(_ color: NSColor) {
         lblPan?.textColor = color
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        volumeSlider.redraw()
     }
 }
