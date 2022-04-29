@@ -126,7 +126,9 @@ class Track: Hashable, PlaylistItem {
         self.duration = metadata.duration
         self.durationIsAccurate = metadata.durationIsAccurate
         
-//        self.chapters = metadata.chapters
+        self.chapters = metadata.chapters
+        
+        print("\n\nTrack '\(displayName)' has \(metadata.chapters.count) chapters !")
     }
     
     func setAuxiliaryMetadata(_ metadata: AuxiliaryMetadata) {

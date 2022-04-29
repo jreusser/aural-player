@@ -19,8 +19,8 @@ extension ColorScheme {
                                          captionTextColor: .white40Percent,
                                          
                                          primaryTextColor: .white70Percent,
-                                         secondaryTextColor: .white45Percent,
-                                         tertiaryTextColor: .white30Percent,
+                                         secondaryTextColor: .white50Percent,
+                                         tertiaryTextColor: .white40Percent,
                                          
                                          primarySelectedTextColor: .white,
                                          secondarySelectedTextColor: .white75Percent,

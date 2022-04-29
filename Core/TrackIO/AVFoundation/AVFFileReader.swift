@@ -79,7 +79,7 @@ class AVFFileReader: FileReaderProtocol {
         metadata.duration = metadataMap.avAsset.duration.seconds
         metadata.durationIsAccurate = false
         
-//        metadata.chapters = getChapters(for: file, from: metadataMap.avAsset)
+        metadata.chapters = getChapters(for: file, from: metadataMap.avAsset)
         
         return metadata
     }

@@ -24,15 +24,6 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
     
     private lazy var uiState: PlayerUIState = playerUIState
     
-    override func viewDidMoveToWindow() {
-        
-        super.viewDidMoveToWindow()
-        
-        guard window != nil else {return}
-        
-        colorSchemesManager.registerObserver(self, forProperties: \.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor)
-    }
-    
     var trackInfo: PlayingTrackInfo? {
         
         didSet {
@@ -173,11 +164,12 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
         // Title (truncate only if artist, album, or chapter are displayed)
         let truncatedTitle: String = hasArtistAlbum || hasChapter ? title.truncate(font: titleFont, maxWidth: lineWidth) : title
         
-        textView.textStorage?.append(attributedString(truncatedTitle, titleFont, titleColor, hasArtistAlbum ? 8 : (hasChapter ? 5 : nil)))
+        textView.textStorage?.append(attributedString(truncatedTitle, titleFont, titleColor, hasArtistAlbum ? (hasChapter ? 5 : 8) : (hasChapter ? 5 : nil)))
         
         // Artist / Album
         if let _truncatedArtistAlbumStr = truncatedArtistAlbumStr {
-            textView.textStorage?.append(attributedString(_truncatedArtistAlbumStr, artistAlbumFont, artistAlbumColor, hasChapter ? lineSpacingBetweenArtistAlbumAndChapterTitle : nil))
+//            textView.textStorage?.append(attributedString(_truncatedArtistAlbumStr, artistAlbumFont, artistAlbumColor, hasChapter ? lineSpacingBetweenArtistAlbumAndChapterTitle : nil))
+            textView.textStorage?.append(attributedString(_truncatedArtistAlbumStr, artistAlbumFont, artistAlbumColor, hasChapter ? 5 : nil))
         }
         
         // Chapter

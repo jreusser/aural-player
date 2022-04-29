@@ -33,9 +33,10 @@ class FileReader: FileReaderProtocol {
     
     func getPrimaryMetadata(for file: URL) throws -> PrimaryMetadata {
         
-        if let cachedMetadata = metadataRegistry[file] {
-            return cachedMetadata
-        }
+        // TODO: Temporarily disabling the cache. Un-comment this !!!
+//        if let cachedMetadata = metadataRegistry[file] {
+//            return cachedMetadata
+//        }
         
 #if os(macOS)
         

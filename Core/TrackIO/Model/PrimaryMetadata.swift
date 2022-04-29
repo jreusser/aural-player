@@ -46,6 +46,8 @@ struct PrimaryMetadata {
     
     var isProtected: Bool?
     
+    var chapters: [Chapter] = []
+    
     init() {}
     
     init(persistentState: PrimaryMetadataPersistentState) {
@@ -64,5 +66,7 @@ struct PrimaryMetadata {
         
         self.duration = persistentState.duration ?? 0
         self.isProtected = persistentState.isProtected
+        
+        self.chapters = (persistentState.chapters ?? []).enumerated().compactMap {Chapter.init(persistentState: $1, index: $0)}
     }
 }

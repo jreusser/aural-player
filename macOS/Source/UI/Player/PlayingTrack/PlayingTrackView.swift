@@ -55,7 +55,7 @@ class PlayingTrackView: MouseTrackingView {
         
         startTracking()
         
-        colorSchemesManager.registerObserver(infoBox, forProperty: \.backgroundColor)
+        colorSchemesManager.registerObservers([infoBox, textView], forProperty: \.backgroundColor)
         colorSchemesManager.registerObserver(textView, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor])
         
         fontSchemesManager.registerObserver(textView, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont, \.playerTertiaryFont])
@@ -84,7 +84,7 @@ class PlayingTrackView: MouseTrackingView {
     private func moveInfoBoxTo(_ point: NSPoint) {
         
         infoBox.setFrameOrigin(point)
-        artView.frame.origin.y = infoBox.frame.origin.y - 2 // 5 is half the difference in height between infoBox and artView
+        artView.frame.origin.y = infoBox.frame.origin.y + 2 // 5 is half the difference in height between infoBox and artView
     }
     
     func showOrHideAlbumArt() {

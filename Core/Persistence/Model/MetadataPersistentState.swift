@@ -32,6 +32,8 @@ struct PrimaryMetadataPersistentState: Codable {
     let duration: Double?
     let isProtected: Bool?
     
+    let chapters: [ChapterPersistentState]?
+    
     init(metadata: PrimaryMetadata) {
         
         self.title = metadata.title
@@ -48,5 +50,26 @@ struct PrimaryMetadataPersistentState: Codable {
         
         self.duration = metadata.duration
         self.isProtected = metadata.isProtected
+        
+        self.chapters = metadata.chapters.map {ChapterPersistentState(chapter: $0)}
+    }
+}
+
+struct ChapterPersistentState: Codable {
+    
+    let title: String?
+    
+    // Time bounds of this chapter
+    let startTime: Double?
+    let endTime: Double?
+    let duration: Double?
+    
+    init(chapter: Chapter) {
+        
+        self.title = chapter.title
+        
+        self.startTime = chapter.startTime
+        self.endTime = chapter.endTime
+        self.duration = chapter.duration
     }
 }

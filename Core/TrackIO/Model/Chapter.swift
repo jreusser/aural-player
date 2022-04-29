@@ -33,6 +33,22 @@ struct Chapter {
         self.duration = duration == nil ? max(endTime - startTime, 0) : duration!
     }
     
+    init?(persistentState: ChapterPersistentState, index: Int) {
+        
+        guard let startTime = persistentState.startTime, let endTime = persistentState.endTime else {return nil}
+        
+        if let title = persistentState.title, !title.isEmptyAfterTrimming {
+            self.title = title
+        } else {
+            self.title = "Chapter \(index + 1)"
+        }
+        
+        self.startTime = startTime
+        self.endTime = endTime
+        
+        self.duration = max(endTime - startTime, 0)
+    }
+    
     // Convenience function to determine if a given track position lies within this chapter's time bounds
     func containsTimePosition(_ seconds: Double) -> Bool {
         return seconds >= startTime && seconds <= endTime
