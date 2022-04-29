@@ -52,6 +52,7 @@ class SeekSliderView: NSView {
         trackChanged(player.playbackLoop, player.playingTrack)
         
         colorSchemesManager.registerObserver(seekSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
+        fontSchemesManager.registerObserver(lblTrackTime, forProperty: \.playerSecondaryFont)
     }
     
     func initSeekPositionLabels() {
@@ -189,9 +190,5 @@ class SeekSliderView: NSView {
         if interval != seekTimer?.interval {
             seekTimer?.interval = interval
         }
-    }
-    
-    func applyFontScheme(_ fontScheme: FontScheme) {
-        lblTrackTime.font = fontScheme.player.trackTimesFont
     }
 }

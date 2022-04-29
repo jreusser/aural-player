@@ -87,7 +87,7 @@ enum FontSchemePreset: String, CaseIterable {
         }
     }
     
-    var infoBoxTitleFont: NSFont {
+    var primaryFont: NSFont {
         
         switch self {
             
@@ -112,7 +112,7 @@ enum FontSchemePreset: String, CaseIterable {
         }
     }
     
-    var infoBoxArtistAlbumFont: NSFont {
+    var secondaryFont: NSFont {
         
         switch self {
             
@@ -137,7 +137,7 @@ enum FontSchemePreset: String, CaseIterable {
         }
     }
     
-    var infoBoxChapterTitleFont: NSFont {
+    var tertiaryFont: NSFont {
         
         switch self {
             
@@ -147,7 +147,7 @@ enum FontSchemePreset: String, CaseIterable {
             
         case .programmer:  return programmerFontSet.mainFont(size: 10)
             
-        case .futuristic:   return futuristicFontSet.mainFont(size: 14.5)
+        case .futuristic:   return futuristicFontSet.mainFont(size: 14)
             
         case .novelist:  return novelistFontSet.mainFont(size: 11)
             

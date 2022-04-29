@@ -50,13 +50,15 @@ class PlayingTrackView: MouseTrackingView {
         
         repositionInfoBox()
 
-        controlsBox.showIf(uiState.showControls)
+        controlsBox.showIf(trackInfo == nil || uiState.showControls)
         controlsBox.bringToFront()
         
         startTracking()
         
         colorSchemesManager.registerObserver(infoBox, forProperty: \.backgroundColor)
         colorSchemesManager.registerObserver(textView, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor])
+        
+        fontSchemesManager.registerObserver(textView, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont, \.playerTertiaryFont])
     }
     
     var trackInfo: PlayingTrackInfo? {
@@ -74,6 +76,9 @@ class PlayingTrackView: MouseTrackingView {
         
         textView.trackInfo = self.trackInfo
         artView.image = trackInfo?.art ?? Images.imgPlayingArt
+        
+        controlsBox.showIf(trackInfo == nil || uiState.showControls)
+        controlsBox.bringToFront()
     }
     
     private func moveInfoBoxTo(_ point: NSPoint) {
@@ -119,6 +124,8 @@ class PlayingTrackView: MouseTrackingView {
     
     override func mouseEntered(with event: NSEvent) {
         
+        guard trackInfo != nil else {return}
+        
         autoHideFields_showing = true
         
         if trackInfo != nil {
@@ -131,6 +138,8 @@ class PlayingTrackView: MouseTrackingView {
     }
     
     override func mouseExited(with event: NSEvent) {
+        
+        guard trackInfo != nil else {return}
         
         autoHideFields_showing = false
         

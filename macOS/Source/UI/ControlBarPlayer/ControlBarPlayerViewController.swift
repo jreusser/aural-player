@@ -116,7 +116,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate, Destroya
         
         guard let track = player.playingTrack else {return 0}
         
-        let widthOfWidestNumber = String.widthOfWidestNumber(forFont: systemFontScheme.player.trackTimesFont)
+        let widthOfWidestNumber = String.widthOfWidestNumber(forFont: systemFontScheme.playerPrimaryFont)
         let duration = track.duration
         
         let trackTimes = ValueFormatter.formatTrackTimes(0, duration, 0)
@@ -226,7 +226,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate, Destroya
     
     func applyFontScheme(_ fontScheme: FontScheme) {
         
-        textView.font = fontScheme.player.infoBoxArtistAlbumFont
+        textView.font = fontScheme.playerSecondaryFont
         layoutTextView()
     }
     

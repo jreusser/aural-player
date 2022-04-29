@@ -4979,9 +4979,9 @@
 		3EFE372E27864895006F8B8C /* FontSchemes */ = {
 			isa = PBXGroup;
 			children = (
+				3EFE373127864895006F8B8C /* FontSchemesPersistentState.swift */,
 				3EFE372F27864895006F8B8C /* PlayerFontSchemePersistentState.swift */,
 				3EFE373027864895006F8B8C /* PlaylistFontSchemePersistentState.swift */,
-				3EFE373127864895006F8B8C /* FontSchemesPersistentState.swift */,
 				3EFE373227864895006F8B8C /* EffectsFontSchemePersistentState.swift */,
 			);
 			path = FontSchemes;

@@ -24,7 +24,6 @@ class WindowedModePlaybackView: PlaybackView {
     }
     
     func applyTheme() {
-        applyFontScheme(systemFontScheme)
     }
     
     // Positions the "seek position marker" view at the center of the seek slider knob.

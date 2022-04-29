@@ -16,9 +16,9 @@ struct Fonts {
     
     struct Player {
         
-        static var infoBoxTitleFont: NSFont {systemFontScheme.player.infoBoxTitleFont}
-        static var infoBoxArtistAlbumFont: NSFont {systemFontScheme.player.infoBoxArtistAlbumFont}
-        static var infoBoxChapterTitleFont: NSFont {systemFontScheme.player.infoBoxChapterTitleFont}
+        static var infoBoxTitleFont: NSFont {systemFontScheme.playerPrimaryFont}
+        static var infoBoxArtistAlbumFont: NSFont {systemFontScheme.playerSecondaryFont}
+        static var infoBoxChapterTitleFont: NSFont {systemFontScheme.playerTertiaryFont}
     }
     
     struct Playlist {

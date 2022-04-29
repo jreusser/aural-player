@@ -124,8 +124,4 @@ class PlaybackView: NSView {
     func setTrackTimeDisplayType(_ type: TrackTimeDisplayType) {
         sliderView.setTrackTimeDisplayType(type)
     }
-    
-    func applyFontScheme(_ fontScheme: FontScheme) {
-        sliderView.applyFontScheme(fontScheme)
-    }
 }

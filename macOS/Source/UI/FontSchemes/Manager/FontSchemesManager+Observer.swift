@@ -51,6 +51,7 @@ extension FontSchemesManager {
         
         registry[property]!.append(observer)
         
+        // Set initial value.
         observer.fontChanged(to: systemScheme[keyPath: property], forProperty: property)
         
         if let observerObject = observer as? NSObject {
@@ -85,7 +86,7 @@ extension FontSchemesManager {
         }
     }
     
-    func registerObserver(_ observer: FontSchemeObserver, forProperties properties: KeyPath<FontScheme, PlatformFont>...) {
+    func registerObserver(_ observer: FontSchemeObserver, forProperties properties: [KeyPath<FontScheme, PlatformFont>]) {
 
         for property in properties {
 

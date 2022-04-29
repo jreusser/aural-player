@@ -42,8 +42,8 @@ class FontSchemePreviewView: NSView {
             
             if let theScheme = scheme {
                
-                playerTitleFont = theScheme.player.infoBoxTitleFont
-                playerArtistAlbumFont = theScheme.player.infoBoxArtistAlbumFont
+                playerTitleFont = theScheme.playerPrimaryFont
+                playerArtistAlbumFont = theScheme.playerSecondaryFont
                 
                 playlistHeadingFont = theScheme.playlist.tabButtonTextFont
                 playlistTrackTextFont = theScheme.playlist.trackTextFont

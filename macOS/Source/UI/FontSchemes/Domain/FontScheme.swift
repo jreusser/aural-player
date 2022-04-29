@@ -28,7 +28,10 @@ class FontScheme: NSObject, UserManagedObject {
     // False if defined by the user
     let systemDefined: Bool
     
-    var player: PlayerFontScheme
+    @objc dynamic var playerPrimaryFont: NSFont
+    @objc dynamic var playerSecondaryFont: NSFont
+    @objc dynamic var playerTertiaryFont: NSFont
+    
     var playlist: PlaylistFontScheme
     var effects: EffectsFontScheme
     
@@ -38,9 +41,28 @@ class FontScheme: NSObject, UserManagedObject {
         self.name = persistentState?.name ?? ""
         self.systemDefined = systemDefined
         
-        self.player = PlayerFontScheme(persistentState)
+        self.playerPrimaryFont = FontSchemePreset.standard.primaryFont
+        self.playerSecondaryFont = FontSchemePreset.standard.secondaryFont
+        self.playerTertiaryFont = FontSchemePreset.standard.tertiaryFont
+        
         self.playlist = PlaylistFontScheme(persistentState)
         self.effects = EffectsFontScheme(persistentState)
+        
+        guard let textFontName = persistentState?.textFontName else {
+            return
+        }
+        
+        if let primarySize = persistentState?.playerPrimarySize, let primaryFont = NSFont(name: textFontName, size: primarySize) {
+            self.playerPrimaryFont = primaryFont
+        }
+        
+        if let secondarySize = persistentState?.playerSecondarySize, let secondaryFont = NSFont(name: textFontName, size: secondarySize) {
+            self.playerSecondaryFont = secondaryFont
+        }
+        
+        if let tertiarySize = persistentState?.playerTertiarySize, let tertiaryFont = NSFont(name: textFontName, size: tertiarySize) {
+            self.playerTertiaryFont = tertiaryFont
+        }
     }
     
     init(_ name: String, _ preset: FontSchemePreset) {
@@ -48,7 +70,10 @@ class FontScheme: NSObject, UserManagedObject {
         self.name = name
         self.systemDefined = true
         
-        self.player = PlayerFontScheme(preset: preset)
+        self.playerPrimaryFont = preset.primaryFont
+        self.playerSecondaryFont = preset.secondaryFont
+        self.playerTertiaryFont = preset.tertiaryFont
+        
         self.playlist = PlaylistFontScheme(preset: preset)
         self.effects = EffectsFontScheme(preset: preset)
     }
@@ -58,8 +83,22 @@ class FontScheme: NSObject, UserManagedObject {
         self.name = name
         self.systemDefined = systemDefined
         
-        self.player = fontScheme.player.clone()
+        self.playerPrimaryFont = fontScheme.playerPrimaryFont
+        self.playerSecondaryFont = fontScheme.playerSecondaryFont
+        self.playerTertiaryFont = fontScheme.playerTertiaryFont
+        
         self.playlist  = fontScheme.playlist.clone()
+        self.effects = fontScheme.effects.clone()
+    }
+    
+    // Applies another font scheme to this scheme.
+    func applyScheme(_ fontScheme: FontScheme) {
+        
+        self.playerPrimaryFont = fontScheme.playerPrimaryFont
+        self.playerSecondaryFont = fontScheme.playerSecondaryFont
+        self.playerTertiaryFont = fontScheme.playerTertiaryFont
+        
+        self.playlist = fontScheme.playlist.clone()
         self.effects = fontScheme.effects.clone()
     }
     

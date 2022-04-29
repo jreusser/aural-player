@@ -29,6 +29,8 @@ class FontSizeStepper: NSStepper {
     
     override func awakeFromNib() {
         
+        super.awakeFromNib()
+        
         self.action = #selector(self.stepperAction(_:))
         self.target = self
     }

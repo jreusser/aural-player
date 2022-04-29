@@ -104,11 +104,6 @@ class ControlBarSeekSliderView: SeekSliderView {
     }
     
     func applyTheme() {
-        applyFontScheme(systemFontScheme)
-    }
-    
-    override func applyFontScheme(_ fontScheme: FontScheme) {
-        lblSeekPosition.font = fontScheme.player.trackTimesFont
     }
     
     // When the playback loop for the current playing track is changed, the seek slider needs to be updated (redrawn) to show the current loop state

@@ -16,3 +16,10 @@ extension NSTextField: ColorSchemeObserver {
         textColor = newColor
     }
 }
+
+extension NSTextField: FontSchemeObserver {
+    
+    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+        font = newFont
+    }
+}

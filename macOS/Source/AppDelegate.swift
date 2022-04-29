@@ -55,6 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // TODO: Put 'startObserving()' in some kind of protocol ???
         colorSchemesManager.startObserving()
+        fontSchemesManager.startObserving()
         
         // Update the appLaunched flag
         appLaunched = true

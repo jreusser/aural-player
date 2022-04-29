@@ -33,6 +33,5 @@ class ControlBarPlaybackViewController: PlaybackViewController {
         messenger.subscribe(to: .player_playbackLoopChanged, handler: playbackLoopChanged)
         
         messenger.subscribe(to: .applyTheme, handler: (playbackView as! ControlBarPlaybackView).applyTheme)
-        messenger.subscribe(to: .applyFontScheme, handler: playbackView.applyFontScheme(_:))
     }
 }

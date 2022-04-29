@@ -14,7 +14,7 @@ import Cocoa
     Dynamically updates itself based on view settings to show either a single line or multiple
     lines of information.
  */
-class PlayingTrackTextView: NSView, ColorSchemeObserver {
+class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
     
     // The text view that displays all the track info
     @IBOutlet weak var textView: NSTextView!
@@ -250,7 +250,11 @@ class PlayingTrackTextView: NSView, ColorSchemeObserver {
     
     // ------------------------------------------------------------------------------------------------------
     
-    // MARK: ColorSchemeObserver functions
+    // MARK: Appearance observer functions
+    
+    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+        update()
+    }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         

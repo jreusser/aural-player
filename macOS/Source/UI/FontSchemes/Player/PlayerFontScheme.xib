@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    PlayerFontScheme.xib
-    Aural
-
-    Copyright © 2021 Kartik Venugopal. All rights reserved.
-
-    This software is licensed under the MIT software license.
-    See the file "LICENSE" in the project root directory for license terms.
-
--->
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PlayerFontSchemeViewController" customModule="Aural" customModuleProvider="target">
             <connections>
-                <outlet property="artistAlbumStepper" destination="V37-W1-Svy" id="oOE-jG-edI"/>
-                <outlet property="chapterTitleStepper" destination="fXz-sU-RQa" id="MKb-qt-8uF"/>
                 <outlet property="feedbackTextStepper" destination="f0z-dG-w8F" id="XWg-4b-3DE"/>
+                <outlet property="primaryStepper" destination="sAa-s3-cuq" id="a9G-YA-VzS"/>
+                <outlet property="secondaryStepper" destination="V37-W1-Svy" id="oOE-jG-edI"/>
                 <outlet property="seekPositionStepper" destination="fFE-zc-mdF" id="hDJ-ax-LhO"/>
-                <outlet property="titleStepper" destination="sAa-s3-cuq" id="a9G-YA-VzS"/>
+                <outlet property="tertiaryStepper" destination="fXz-sU-RQa" id="MKb-qt-8uF"/>
                 <outlet property="view" destination="c22-O7-iKe" id="BLm-lZ-38I"/>
             </connections>
         </customObject>
@@ -38,7 +26,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="G57-bg-rzK">
                         <rect key="frame" x="0.0" y="0.0" width="460" height="260"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jAz-bG-o82">
                                 <rect key="frame" x="0.0" y="0.0" width="460" height="260"/>

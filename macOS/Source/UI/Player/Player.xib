@@ -242,7 +242,7 @@
                                         </connections>
                                     </slider>
                                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i7r-GF-ZgY" userLabel="Volume Value Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                                        <rect key="frame" x="414" y="32" width="50" height="20"/>
+                                        <rect key="frame" x="414" y="29" width="50" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="50%" id="syX-k9-H41" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
                                             <font key="font" size="9" name="Play-Regular"/>

@@ -14,13 +14,6 @@ class WindowedModeSeekSliderView: SeekSliderView {
     // Used to display the bookmark name prompt popover
     @IBOutlet weak var seekPositionMarker: NSView!
     
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        
-        applyFontScheme(systemFontScheme)
-    }
-    
     // Positions the "seek position marker" view at the center of the seek slider knob.
     func positionSeekPositionMarkerView() {
         

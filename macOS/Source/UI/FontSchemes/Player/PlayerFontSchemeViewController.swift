@@ -11,11 +11,9 @@ import Cocoa
 
 class PlayerFontSchemeViewController: NSViewController, FontSchemesViewProtocol {
     
-    @IBOutlet weak var titleStepper: FontSizeStepper!
-    @IBOutlet weak var artistAlbumStepper: FontSizeStepper!
-    @IBOutlet weak var chapterTitleStepper: FontSizeStepper!
-    @IBOutlet weak var seekPositionStepper: FontSizeStepper!
-    @IBOutlet weak var feedbackTextStepper: FontSizeStepper!
+    @IBOutlet weak var primaryStepper: FontSizeStepper!
+    @IBOutlet weak var secondaryStepper: FontSizeStepper!
+    @IBOutlet weak var tertiaryStepper: FontSizeStepper!
     
     override var nibName: NSNib.Name? {"PlayerFontScheme"}
     
@@ -25,23 +23,17 @@ class PlayerFontSchemeViewController: NSViewController, FontSchemesViewProtocol 
     
     func loadFontScheme(_ fontScheme: FontScheme) {
         
-        let scheme = fontScheme.player
-        
-        titleStepper.fontSize = scheme.infoBoxTitleFont.pointSize
-        artistAlbumStepper.fontSize = scheme.infoBoxArtistAlbumFont.pointSize
-        chapterTitleStepper.fontSize = scheme.infoBoxChapterTitleFont.pointSize
-        seekPositionStepper.fontSize = scheme.trackTimesFont.pointSize
-        feedbackTextStepper.fontSize = scheme.feedbackFont.pointSize
+        primaryStepper.fontSize = fontScheme.playerPrimaryFont.pointSize
+        secondaryStepper.fontSize = fontScheme.playerSecondaryFont.pointSize
+        tertiaryStepper.fontSize = fontScheme.playerTertiaryFont.pointSize
     }
     
     func applyFontScheme(_ context: FontSchemeChangeContext, to fontScheme: FontScheme) {
         
         let fontName = context.textFontName
         
-        fontScheme.player.infoBoxTitleFont = NSFont(name: fontName, size: titleStepper.fontSize)!
-        fontScheme.player.infoBoxArtistAlbumFont = NSFont(name: fontName, size: artistAlbumStepper.fontSize)!
-        fontScheme.player.infoBoxChapterTitleFont = NSFont(name: fontName, size: chapterTitleStepper.fontSize)!
-        fontScheme.player.trackTimesFont = NSFont(name: fontName, size: seekPositionStepper.fontSize)!
-        fontScheme.player.feedbackFont = NSFont(name: fontName, size: feedbackTextStepper.fontSize)!
+        fontScheme.playerPrimaryFont = NSFont(name: fontName, size: primaryStepper.fontSize)!
+        fontScheme.playerSecondaryFont = NSFont(name: fontName, size: secondaryStepper.fontSize)!
+        fontScheme.playerTertiaryFont = NSFont(name: fontName, size: tertiaryStepper.fontSize)!
     }
 }

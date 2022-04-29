@@ -48,7 +48,8 @@ class FontSchemesManager: UserManagedObjects<FontScheme> {
     
     func applyScheme(_ fontScheme: FontScheme) {
 
-        systemScheme = FontScheme("_system_", true, fontScheme)
+//        systemScheme = FontScheme("_system_", true, fontScheme)
+        systemScheme.applyScheme(fontScheme)
         messenger.publish(.applyFontScheme, payload: systemScheme)
     }
     
