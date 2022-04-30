@@ -206,45 +206,45 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
         audioUnitsTable.reloadAllRows(columns: [1])
     }
     
-    override func applyColorScheme(_ scheme: ColorScheme) {
-        
-        super.applyColorScheme(scheme)
-        
-        changeBackgroundColor(scheme.backgroundColor)
-        audioUnitsTable.reloadData()
-    }
-    
-    func changeBackgroundColor(_ color: NSColor) {
-        
-        audioUnitsScrollView.backgroundColor = color
-        audioUnitsClipView.backgroundColor = color
-        audioUnitsTable.backgroundColor = color
-    }
-    
-    override func changeFunctionCaptionTextColor(_ color: NSColor) {
-    }
-    
-    override func changeActiveUnitStateColor(_ color: NSColor) {
-        
-        super.changeActiveUnitStateColor(color)
-        
-        let rowsForActiveUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .active}
-        audioUnitsTable.reloadRows(rowsForActiveUnits, columns: [0, 1])
-    }
-    
-    override func changeBypassedUnitStateColor(_ color: NSColor) {
-        
-        super.changeBypassedUnitStateColor(color)
-        
-        let rowsForBypassedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .bypassed}
-        audioUnitsTable.reloadRows(rowsForBypassedUnits, columns: [0, 1])
-    }
-    
-    override func changeSuppressedUnitStateColor(_ color: NSColor) {
-        
-        // Master unit can never be suppressed, but update other unit state buttons
-        
-        let rowsForSuppressedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .suppressed}
-        audioUnitsTable.reloadRows(rowsForSuppressedUnits, columns: [0, 1])
-    }
+//    override func applyColorScheme(_ scheme: ColorScheme) {
+//        
+//        super.applyColorScheme(scheme)
+//        
+//        changeBackgroundColor(scheme.backgroundColor)
+//        audioUnitsTable.reloadData()
+//    }
+//    
+//    func changeBackgroundColor(_ color: NSColor) {
+//        
+//        audioUnitsScrollView.backgroundColor = color
+//        audioUnitsClipView.backgroundColor = color
+//        audioUnitsTable.backgroundColor = color
+//    }
+//    
+//    override func changeFunctionCaptionTextColor(_ color: NSColor) {
+//    }
+//    
+//    override func changeActiveUnitStateColor(_ color: NSColor) {
+//        
+//        super.changeActiveUnitStateColor(color)
+//        
+//        let rowsForActiveUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .active}
+//        audioUnitsTable.reloadRows(rowsForActiveUnits, columns: [0, 1])
+//    }
+//    
+//    override func changeBypassedUnitStateColor(_ color: NSColor) {
+//        
+//        super.changeBypassedUnitStateColor(color)
+//        
+//        let rowsForBypassedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .bypassed}
+//        audioUnitsTable.reloadRows(rowsForBypassedUnits, columns: [0, 1])
+//    }
+//    
+//    override func changeSuppressedUnitStateColor(_ color: NSColor) {
+//        
+//        // Master unit can never be suppressed, but update other unit state buttons
+//        
+//        let rowsForSuppressedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .suppressed}
+//        audioUnitsTable.reloadRows(rowsForSuppressedUnits, columns: [0, 1])
+//    }
 }

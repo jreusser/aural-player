@@ -47,19 +47,11 @@ class EQUnitView: NSView {
         allSliders = subviews.compactMap({$0 as? EffectsUnitSlider})
         bandSliders = allSliders.filter {$0.tag >= 0}
         
-        let eqUnit = audioGraphDelegate.eqUnit
-        
-        allSliders.forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: eqUnit)
-        }
-        
         bandSliders.forEach {
             
             $0.action = sliderAction
             $0.target = sliderActionTarget
         }
-        
-        colorSchemesManager.registerSchemeObservers(allSliders, forProperties: [\.backgroundColor])
     }
     
     func initialize(eqStateFunction: @escaping EffectsUnitStateFunction,

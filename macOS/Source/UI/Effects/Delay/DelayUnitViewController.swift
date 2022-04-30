@@ -96,31 +96,31 @@ class DelayUnitViewController: EffectsUnitViewController {
     
     // MARK: Theming
     
-    override func applyColorScheme(_ scheme: ColorScheme) {
-        
-        super.applyColorScheme(scheme)
-        changeSliderColors()
-    }
-    
-    override func changeSliderColors() {
-        delayUnitView.redrawSliders()
-    }
-    
-    override func changeActiveUnitStateColor(_ color: NSColor) {
-        
-        super.changeActiveUnitStateColor(color)
-        delayUnitView.redrawSliders()
-    }
-    
-    override func changeBypassedUnitStateColor(_ color: NSColor) {
-        
-        super.changeBypassedUnitStateColor(color)
-        delayUnitView.redrawSliders()
-    }
-    
-    override func changeSuppressedUnitStateColor(_ color: NSColor) {
-        
-        super.changeSuppressedUnitStateColor(color)
-        delayUnitView.redrawSliders()
-    }
+//    override func applyColorScheme(_ scheme: ColorScheme) {
+//        
+//        super.applyColorScheme(scheme)
+//        changeSliderColors()
+//    }
+//    
+//    override func changeSliderColors() {
+//        delayUnitView.redrawSliders()
+//    }
+//    
+//    override func changeActiveUnitStateColor(_ color: NSColor) {
+//        
+//        super.changeActiveUnitStateColor(color)
+//        delayUnitView.redrawSliders()
+//    }
+//    
+//    override func changeBypassedUnitStateColor(_ color: NSColor) {
+//        
+//        super.changeBypassedUnitStateColor(color)
+//        delayUnitView.redrawSliders()
+//    }
+//    
+//    override func changeSuppressedUnitStateColor(_ color: NSColor) {
+//        
+//        super.changeSuppressedUnitStateColor(color)
+//        delayUnitView.redrawSliders()
+//    }
 }

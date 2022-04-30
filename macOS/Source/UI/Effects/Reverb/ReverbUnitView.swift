@@ -33,14 +33,6 @@ class ReverbUnitView: NSView {
     
     // ------------------------------------------------------------------------
     
-    // MARK: View initialization
-    
-    func initialize(stateFunction: @escaping EffectsUnitStateFunction) {
-        fxUnitStateObserverRegistry.registerObserver(reverbAmountSlider, forFXUnit: audioGraphDelegate.reverbUnit)
-    }
-    
-    // ------------------------------------------------------------------------
-    
     // MARK: View update
     
     func setState(space: String, amount: Float, amountString: String) {
@@ -73,10 +65,6 @@ class ReverbUnitView: NSView {
         
         reverbSpaceMenu.font = fontScheme.effects.unitFunctionFont
         reverbSpaceMenu.redraw()
-    }
-    
-    func redrawSliders() {
-        reverbAmountSlider.redraw()
     }
     
     func redrawMenu() {

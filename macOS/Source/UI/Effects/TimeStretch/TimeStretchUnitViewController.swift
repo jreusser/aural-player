@@ -39,12 +39,6 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
         effectsUnit = graph.timeStretchUnit
         presetsWrapper = PresetsWrapper<TimeStretchPreset, TimeStretchPresets>(timeStretchUnit.presets)
     }
-    
-    override func oneTimeSetup() {
-        
-        super.oneTimeSetup()
-        timeStretchUnitView.initialize(stateFunction: unitStateFunction)
-    }
 
     override func initControls() {
 
@@ -181,19 +175,5 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
         showThisTab()
 
         messenger.publish(.effects_playbackRateChanged, payload: rateInfo.rate)
-    }
-    
-    // ------------------------------------------------------------------------
-    
-    // MARK: Theming
-    
-    override func applyColorScheme(_ scheme: ColorScheme) {
-        
-        super.applyColorScheme(scheme)
-        timeStretchUnitView.applyColorScheme(scheme)
-    }
-    
-    override func changeSliderColors() {
-        timeStretchUnitView.redrawSliders()
     }
 }

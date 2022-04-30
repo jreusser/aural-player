@@ -26,11 +26,13 @@ class ReverbPresetsManagerViewController: EffectsPresetsManagerGenericViewContro
         presetsWrapper = PresetsWrapper<ReverbPreset, ReverbPresets>(reverbUnit.presets)
     }
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        reverbView.initialize(stateFunction: {.active})
-    }
+    // TODO: Create a subclass of ReverbUnitView (and for other FX units) that can accept a custom state function.
+    
+//    override func viewDidLoad() {
+//
+//        super.viewDidLoad()
+//        reverbView.initialize(stateFunction: {.active})
+//    }
     
     override func renderPreview(_ presetName: String) {
         

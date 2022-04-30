@@ -15,7 +15,6 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     
     // MARK: UI fields
 
-//    @IBOutlet weak var lblCaption: VALabel!
     @IBOutlet weak var btnBypass: EffectsUnitTriStateBypassButton!
     
     // Presets controls
@@ -28,6 +27,9 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     var functionLabels: [NSTextField] = []
     var functionCaptionLabels: [NSTextField] = []
     var functionValueLabels: [NSTextField] = []
+    
+    var buttons: [TintedImageButton] = []
+    var sliders: [EffectsUnitSlider] = []
     
     // ------------------------------------------------------------------------
     
@@ -53,7 +55,6 @@ class EffectsUnitViewController: NSViewController, Destroyable {
         initControls()
         
         applyFontScheme(systemFontScheme)
-        applyColorScheme(systemColorScheme)
         
         // TODO: Temporary, remove this !!!
 //        presetsMenuButton.hide()
@@ -66,12 +67,12 @@ class EffectsUnitViewController: NSViewController, Destroyable {
 //        btnSavePreset.tintFunction = {Colors.functionButtonColor}
 //        presetsMenuIconItem.tintFunction = {Colors.functionButtonColor}
         
-        initSubscriptions()
+        findThemeableComponents(under: view)
         
-        findFunctionLabels(under: self.view)
+        initSubscriptions()
     }
     
-    func findFunctionLabels(under view: NSView) {
+    func findThemeableComponents(under view: NSView) {
         
         for subview in view.subviews {
             
@@ -88,10 +89,18 @@ class EffectsUnitViewController: NSViewController, Destroyable {
                     functionValueLabels.append(label)
                 }
                 
+            } else if let btn = subview as? TintedImageButton {
+                
+                buttons.append(btn)
+                
+            } else if let slider = subview as? EffectsUnitSlider {
+                
+                sliders.append(slider)
+                
             } else {
                 
                 // Recursive call
-                findFunctionLabels(under: subview)
+                findThemeableComponents(under: subview)
             }
         }
     }
@@ -153,9 +162,21 @@ class EffectsUnitViewController: NSViewController, Destroyable {
         
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
         messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
-        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
         
         colorSchemesManager.registerObserver(presetsMenuIconItem, forProperty: \.buttonColor)
+        
+        colorSchemesManager.registerObservers(functionCaptionLabels, forProperty: \.secondaryTextColor)
+        colorSchemesManager.registerObservers(functionValueLabels, forProperty: \.primaryTextColor)
+        
+        colorSchemesManager.registerObservers(buttons, forProperty: \.buttonColor)
+        
+        sliders.forEach {
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: effectsUnit)
+        }
+        
+        colorSchemesManager.registerSchemeObservers(sliders, forProperties: [\.backgroundColor])
+        
+//        fontSchemesManager.registerObservers(functionLabels, forProperty: \.effectsPrimaryFont)
         
 //        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
 //        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
@@ -195,7 +216,6 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     func applyTheme() {
         
         applyFontScheme(systemFontScheme)
-        applyColorScheme(systemColorScheme)
     }
     
     func applyFontScheme(_ fontScheme: FontScheme) {
@@ -203,58 +223,6 @@ class EffectsUnitViewController: NSViewController, Destroyable {
 //        lblCaption.font = fontScheme.effects.unitCaptionFont
         functionLabels.forEach {$0.font = fontScheme.effects.unitFunctionFont}
         presetsMenuButton.font = .menuFont
-    }
-    
-    func applyColorScheme(_ scheme: ColorScheme) {
-        
-        changeMainCaptionTextColor(scheme.secondaryTextColor)
-        
-        changeFunctionButtonColor(scheme.buttonColor)
-        changeFunctionCaptionTextColor(scheme.secondaryTextColor)
-        changeFunctionValueTextColor(scheme.primaryTextColor)
-        
-        changeActiveUnitStateColor(scheme.activeControlColor)
-        changeBypassedUnitStateColor(scheme.inactiveControlColor)
-        changeSuppressedUnitStateColor(scheme.suppressedControlColor)
-    }
-    
-    func changeMainCaptionTextColor(_ color: NSColor) {
-//        lblCaption.textColor = color
-    }
-    
-    func changeFunctionCaptionTextColor(_ color: NSColor) {
-        functionCaptionLabels.forEach {$0.textColor = color}
-    }
-    
-    func changeFunctionValueTextColor(_ color: NSColor) {
-        functionValueLabels.forEach {$0.textColor = color}
-    }
-    
-    func changeActiveUnitStateColor(_ color: NSColor) {
-        
-//        if effectsUnit.state == .active {
-//            btnBypass.reTint()
-//        }
-    }
-    
-    func changeBypassedUnitStateColor(_ color: NSColor) {
-        
-//        if effectsUnit.state == .bypassed {
-//            btnBypass.reTint()
-//        }
-    }
-    
-    func changeSuppressedUnitStateColor(_ color: NSColor) {
-        
-//        if effectsUnit.state == .suppressed {
-//            btnBypass.reTint()
-//        }
-    }
-    
-    func changeFunctionButtonColor(_ color: NSColor) {
-        
-//        btnSavePreset.reTint()
-//        presetsMenuIconItem.reTint()
     }
     
     func changeSliderColors() {

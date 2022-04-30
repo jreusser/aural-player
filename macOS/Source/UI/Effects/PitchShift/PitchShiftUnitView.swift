@@ -21,16 +21,6 @@ class PitchShiftUnitView: NSView {
     @IBOutlet weak var lblSemitones: NSTextField!
     @IBOutlet weak var lblCents: NSTextField!
     
-    @IBOutlet weak var btnIncreaseByOctave: TintedImageButton!
-    @IBOutlet weak var btnIncreaseBySemitone: TintedImageButton!
-    @IBOutlet weak var btnIncreaseByCent: TintedImageButton!
-    
-    @IBOutlet weak var btnDecreaseByOctave: TintedImageButton!
-    @IBOutlet weak var btnDecreaseBySemitone: TintedImageButton!
-    @IBOutlet weak var btnDecreaseByCent: TintedImageButton!
-    
-    private var functionButtons: [TintedImageButton] = []
-    
     // ------------------------------------------------------------------------
     
     // MARK: Properties
@@ -57,20 +47,6 @@ class PitchShiftUnitView: NSView {
     
     // ------------------------------------------------------------------------
     
-    // MARK: View initialization
-    
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        functionButtons = [btnIncreaseByOctave, btnIncreaseBySemitone, btnIncreaseByCent, btnDecreaseByOctave, btnDecreaseBySemitone, btnDecreaseByCent]
-    }
-    
-    func initialize(stateFunction: @escaping EffectsUnitStateFunction) {
-        fxUnitStateObserverRegistry.registerObserver(pitchSlider, forFXUnit: audioGraphDelegate.pitchShiftUnit)
-    }
-    
-    // ------------------------------------------------------------------------
-    
     // MARK: View update
     
     func pitchUpdated() -> PitchShift {
@@ -82,23 +58,5 @@ class PitchShiftUnitView: NSView {
     
     func applyPreset(_ preset: PitchShiftPreset) {
         pitch = PitchShift(fromCents: preset.pitch)
-    }
-    
-    // ------------------------------------------------------------------------
-    
-    // MARK: Theming
-    
-    func redrawSliders() {
-        pitchSlider.redraw()
-    }
-    
-    func applyColorScheme(_ scheme: ColorScheme) {
-        
-        redrawSliders()
-        changeFunctionButtonColor(scheme.buttonColor)
-    }
-    
-    func changeFunctionButtonColor(_ color: NSColor) {
-//        functionButtons.forEach {$0.reTint()}
     }
 }

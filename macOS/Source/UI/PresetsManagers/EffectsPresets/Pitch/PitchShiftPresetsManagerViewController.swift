@@ -26,12 +26,6 @@ class PitchShiftPresetsManagerViewController: EffectsPresetsManagerGenericViewCo
         presetsWrapper = PresetsWrapper<PitchShiftPreset, PitchShiftPresets>(pitchShiftUnit.presets)
     }
     
-    override func viewDidLoad() {
-
-        super.viewDidLoad()
-        pitchView.initialize(stateFunction: {.active})
-    }
-    
     override func renderPreview(_ presetName: String) {
         
         if let preset = pitchShiftUnit.presets.object(named: presetName) {

@@ -40,12 +40,6 @@ class PitchShiftUnitViewController: EffectsUnitViewController {
         presetsWrapper = PresetsWrapper<PitchShiftPreset, PitchShiftPresets>(pitchShiftUnit.presets)
     }
     
-    override func oneTimeSetup() {
-        
-        super.oneTimeSetup()
-        pitchShiftUnitView.initialize(stateFunction: unitStateFunction)
-    }
-    
     override func initControls() {
         
         super.initControls()
@@ -139,46 +133,46 @@ class PitchShiftUnitViewController: EffectsUnitViewController {
     
     // MARK: Theming
     
-    override func applyColorScheme(_ scheme: ColorScheme) {
-        
-        super.applyColorScheme(scheme)
-        pitchShiftUnitView.applyColorScheme(scheme)
-    }
-    
-    override func changeSliderColors() {
-        pitchShiftUnitView.redrawSliders()
-    }
-    
-    override func changeFunctionButtonColor(_ color: NSColor) {
-        
-        super.changeFunctionButtonColor(color)
-        pitchShiftUnitView.changeFunctionButtonColor(color)
-    }
-    
-    override func changeActiveUnitStateColor(_ color: NSColor) {
-        
-        super.changeActiveUnitStateColor(color)
-        
-        if pitchShiftUnit.isActive {
-            pitchShiftUnitView.redrawSliders()
-        }
-    }
-    
-    override func changeBypassedUnitStateColor(_ color: NSColor) {
-        
-        super.changeBypassedUnitStateColor(color)
-        
-        if pitchShiftUnit.state == .bypassed {
-            pitchShiftUnitView.redrawSliders()
-        }
-    }
-    
-    override func changeSuppressedUnitStateColor(_ color: NSColor) {
-        
-        super.changeSuppressedUnitStateColor(color)
-        
-        if pitchShiftUnit.state == .suppressed {
-            pitchShiftUnitView.redrawSliders()
-        }
-    }
+//    override func applyColorScheme(_ scheme: ColorScheme) {
+//
+//        super.applyColorScheme(scheme)
+//        pitchShiftUnitView.applyColorScheme(scheme)
+//    }
+//
+//    override func changeSliderColors() {
+//        pitchShiftUnitView.redrawSliders()
+//    }
+//
+//    override func changeFunctionButtonColor(_ color: NSColor) {
+//
+//        super.changeFunctionButtonColor(color)
+//        pitchShiftUnitView.changeFunctionButtonColor(color)
+//    }
+//
+//    override func changeActiveUnitStateColor(_ color: NSColor) {
+//
+//        super.changeActiveUnitStateColor(color)
+//
+//        if pitchShiftUnit.isActive {
+//            pitchShiftUnitView.redrawSliders()
+//        }
+//    }
+//
+//    override func changeBypassedUnitStateColor(_ color: NSColor) {
+//
+//        super.changeBypassedUnitStateColor(color)
+//
+//        if pitchShiftUnit.state == .bypassed {
+//            pitchShiftUnitView.redrawSliders()
+//        }
+//    }
+//
+//    override func changeSuppressedUnitStateColor(_ color: NSColor) {
+//
+//        super.changeSuppressedUnitStateColor(color)
+//
+//        if pitchShiftUnit.state == .suppressed {
+//            pitchShiftUnitView.redrawSliders()
+//        }
+//    }
 }

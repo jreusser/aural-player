@@ -34,16 +34,9 @@ class TimeStretchUnitView: NSView {
         btnShiftPitch.isOn
     }
     
-    // ------------------------------------------------------------------------
-    
-    // MARK: View initialization
-    
-    func initialize(stateFunction: @escaping EffectsUnitStateFunction) {
-        
-        let timeStretchUnit = audioGraphDelegate.timeStretchUnit
-        fxUnitStateObserverRegistry.registerObserver(timeSlider, forFXUnit: timeStretchUnit)
-//        btnShiftPitch.stateFunction = stateFunction
-    }
+    // TODO: Find a way to register this check button as an observer with colorSchemesManager.
+//    btnShiftPitch.attributedAlternateTitle = NSAttributedString(string: btnShiftPitch.title,
+//                                                                attributes: [.foregroundColor: scheme.secondaryTextColor])
     
     // ------------------------------------------------------------------------
     
@@ -81,23 +74,5 @@ class TimeStretchUnitView: NSView {
         
         timeSlider.rate = preset.rate
         lblTimeStretchRateValue.stringValue = ValueFormatter.formatTimeStretchRate(preset.rate)
-    }
-    
-    // ------------------------------------------------------------------------
-    
-    // MARK: Theming
-    
-    func applyColorScheme(_ scheme: ColorScheme) {
-        
-        redrawSliders()
-        
-//        btnShiftPitch.reTint()
-        
-        btnShiftPitch.attributedAlternateTitle = NSAttributedString(string: btnShiftPitch.title,
-                                                                    attributes: [.foregroundColor: scheme.secondaryTextColor])
-    }
-    
-    func redrawSliders() {
-        timeSlider.redraw()
     }
 }

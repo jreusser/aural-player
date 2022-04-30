@@ -26,12 +26,6 @@ class TimeStretchPresetsManagerViewController: EffectsPresetsManagerGenericViewC
         presetsWrapper = PresetsWrapper<TimeStretchPreset, TimeStretchPresets>(timeStretchUnit.presets)
     }
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        timeView.initialize(stateFunction: {.active})
-    }
-    
     override func renderPreview(_ presetName: String) {
 
         if let preset = timeStretchUnit.presets.object(named: presetName) {

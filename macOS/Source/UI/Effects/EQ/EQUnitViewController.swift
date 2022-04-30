@@ -53,15 +53,6 @@ class EQUnitViewController: EffectsUnitViewController {
         eqUnitView.setState(bands: eqUnit.bands, globalGain: eqUnit.globalGain)
     }
     
-    override func findFunctionLabels(under view: NSView) {
-        
-        let captionLabels = eqUnitView.functionCaptionLabels
-        
-        functionLabels = captionLabels
-        functionCaptionLabels = captionLabels
-        functionValueLabels = []
-    }
-    
     // ------------------------------------------------------------------------
     
     // MARK: Actions
@@ -136,9 +127,9 @@ class EQUnitViewController: EffectsUnitViewController {
     
     // MARK: Theming
     
-    override func applyColorScheme(_ scheme: ColorScheme) {
-        
-        super.applyColorScheme(scheme)
-        changeSliderColors()
-    }
+//    override func applyColorScheme(_ scheme: ColorScheme) {
+//
+//        super.applyColorScheme(scheme)
+//        changeSliderColors()
+//    }
 }
