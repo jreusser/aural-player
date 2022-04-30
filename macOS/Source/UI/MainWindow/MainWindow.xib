@@ -408,31 +408,31 @@
                                                                     <action selector="applyPresetAction:" target="lwq-x3-5V8" id="HR0-Sn-XBw"/>
                                                                 </connections>
                                                             </menuItem>
-                                                            <menuItem title="Big bottom playlist" image="WindowLayout-BigBottomPlaylist" id="i2s-Ws-ntU">
+                                                            <menuItem title="Big bottom play queue" image="WindowLayout-BigBottomPlaylist" id="i2s-Ws-ntU">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
                                                                     <action selector="applyPresetAction:" target="lwq-x3-5V8" id="7wH-Wb-pnL"/>
                                                                 </connections>
                                                             </menuItem>
-                                                            <menuItem title="Big right playlist" image="WindowLayout-BigRightPlaylist" id="e9A-2L-4GR">
+                                                            <menuItem title="Big right play queue" image="WindowLayout-BigRightPlaylist" id="e9A-2L-4GR">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
                                                                     <action selector="applyPresetAction:" target="lwq-x3-5V8" id="L6I-M0-fqI"/>
                                                                 </connections>
                                                             </menuItem>
-                                                            <menuItem title="Big left playlist" image="WindowLayout-BigLeftPlaylist" id="shG-Lq-iLv">
+                                                            <menuItem title="Big left play queue" image="WindowLayout-BigLeftPlaylist" id="shG-Lq-iLv">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
                                                                     <action selector="applyPresetAction:" target="lwq-x3-5V8" id="Et9-R6-giy"/>
                                                                 </connections>
                                                             </menuItem>
-                                                            <menuItem title="Vertical player and playlist" image="WindowLayout-VerticalPlayerAndPlaylist" id="xgu-nh-tCl">
+                                                            <menuItem title="Vertical player and play queue" image="WindowLayout-VerticalPlayerAndPlaylist" id="xgu-nh-tCl">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
                                                                     <action selector="applyPresetAction:" target="lwq-x3-5V8" id="a5Z-vr-W8O"/>
                                                                 </connections>
                                                             </menuItem>
-                                                            <menuItem title="Horizontal player and playlist" image="WindowLayout-HorizontalPlayerAndPlaylist" id="YgY-RJ-vjG">
+                                                            <menuItem title="Horizontal player and play queue" image="WindowLayout-HorizontalPlayerAndPlaylist" id="YgY-RJ-vjG">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
                                                                     <action selector="applyPresetAction:" target="lwq-x3-5V8" id="nuv-q5-y5F"/>
@@ -1819,31 +1819,31 @@ CA
                                                 <action selector="applyPresetAction:" target="pl0-NF-g2u" id="1jf-XK-aza"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Big bottom playlist" image="WindowLayout-BigBottomPlaylist" id="NYP-wb-cHd">
+                                        <menuItem title="Big bottom play queue" image="WindowLayout-BigBottomPlaylist" id="NYP-wb-cHd">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="applyPresetAction:" target="pl0-NF-g2u" id="rT9-M6-cRg"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Big right playlist" image="WindowLayout-BigRightPlaylist" id="FKI-zh-HQw">
+                                        <menuItem title="Big right play queue" image="WindowLayout-BigRightPlaylist" id="FKI-zh-HQw">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="applyPresetAction:" target="pl0-NF-g2u" id="GUX-By-e8v"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Big left playlist" image="WindowLayout-BigLeftPlaylist" id="IKJ-gc-EKS">
+                                        <menuItem title="Big left play queue" image="WindowLayout-BigLeftPlaylist" id="IKJ-gc-EKS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="applyPresetAction:" target="pl0-NF-g2u" id="MgD-QS-NQc"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Vertical player and playlist" image="WindowLayout-VerticalPlayerAndPlaylist" id="PEA-GM-jee">
+                                        <menuItem title="Vertical player and play queue" image="WindowLayout-VerticalPlayerAndPlaylist" id="PEA-GM-jee">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="applyPresetAction:" target="pl0-NF-g2u" id="aeH-k1-0ce"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Horizontal player and playlist" image="WindowLayout-HorizontalPlayerAndPlaylist" id="N86-i0-DFy">
+                                        <menuItem title="Horizontal player and play queue" image="WindowLayout-HorizontalPlayerAndPlaylist" id="N86-i0-DFy">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="applyPresetAction:" target="pl0-NF-g2u" id="wzc-fT-wUE"/>
@@ -1902,7 +1902,7 @@ CA
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="66" y="-356"/>
+            <point key="canvasLocation" x="-96" y="-63"/>
         </menu>
     </objects>
     <resources>
@@ -1968,7 +1968,7 @@ CA
         <image name="arrow.up.to.line.alt" catalog="system" width="13" height="16"/>
         <image name="magnifyingglass" catalog="system" width="15" height="15"/>
         <image name="minus" catalog="system" width="14" height="4"/>
-        <image name="music.note.list" catalog="system" width="20" height="19"/>
+        <image name="music.note.list" catalog="system" width="16" height="15"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>
         <image name="plus.rectangle.on.folder" catalog="system" width="19" height="15"/>
         <image name="scissors" catalog="system" width="16" height="12"/>

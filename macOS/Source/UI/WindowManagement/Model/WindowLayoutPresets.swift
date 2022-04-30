@@ -13,22 +13,22 @@ fileprivate var screenVisibleFrame: NSRect {
     return NSScreen.main!.visibleFrame
 }
 
-fileprivate let playlistHeight_verticalFullStack: CGFloat = 340
-fileprivate let playlistHeight_verticalPlayerAndPlaylist: CGFloat = 500
-fileprivate let playlistHeight_bigBottomPlaylist: CGFloat = 500
+fileprivate let playQueueHeight_verticalFullStack: CGFloat = 340
+fileprivate let playQueueHeight_verticalPlayerAndPlayQueue: CGFloat = 500
+fileprivate let playQueueHeight_bigBottomPlayQueue: CGFloat = 500
 
 enum WindowLayoutPresets: String, CaseIterable {
     
     case verticalFullStack
     case horizontalFullStack
     case compactCornered
-    case bigBottomPlaylist
-    case bigLeftPlaylist
-    case bigRightPlaylist
-    case verticalPlayerAndPlaylist
-    case horizontalPlayerAndPlaylist
+    case bigBottomPlayQueue
+    case bigLeftPlayQueue
+    case bigRightPlayQueue
+    case verticalPlayerAndPlayQueue
+    case horizontalPlayerAndPlayQueue
     
-    static let minPlaylistWidth: CGFloat = 480
+    static let minPlayQueueWidth: CGFloat = 480
     
     // Main window size (never changes)
     static let mainWindowWidth: CGFloat = 480
@@ -58,7 +58,7 @@ enum WindowLayoutPresets: String, CaseIterable {
         rawValue.splitAsCamelCaseWord(capitalizeEachWord: false)
     }
     
-    var showPlaylist: Bool {
+    var showPlayQueue: Bool {
         return self != .compactCornered
     }
     
@@ -66,7 +66,7 @@ enum WindowLayoutPresets: String, CaseIterable {
         
         switch self {
         
-        case .compactCornered, .verticalPlayerAndPlaylist, .horizontalPlayerAndPlaylist:
+        case .compactCornered, .verticalPlayerAndPlayQueue, .horizontalPlayerAndPlayQueue:
             
             return false
             
@@ -84,11 +84,11 @@ enum WindowLayoutPresets: String, CaseIterable {
         let visibleFrame = screenVisibleFrame
         
         var mainWindowOrigin: NSPoint = .zero
-        var playlistWindowOrigin: NSPoint? = nil
+        var playQueueWindowOrigin: NSPoint? = nil
         var effectsWindowOrigin: NSPoint? = nil
         
-        var playlistHeight: CGFloat = 0
-        var playlistWidth: CGFloat = 0
+        var playQueueHeight: CGFloat = 0
+        var playQueueWidth: CGFloat = 0
         
         switch self {
         
@@ -99,11 +99,11 @@ enum WindowLayoutPresets: String, CaseIterable {
             
         case .verticalFullStack:
             
-            playlistHeight = min(playlistHeight_verticalFullStack,
+            playQueueHeight = min(playQueueHeight_verticalFullStack,
                                  visibleFrame.height - (Self.mainWindowHeight + Self.effectsWindowHeight + twoGaps))
             
             let xPadding = visibleFrame.width - Self.mainWindowWidth
-            let totalStackHeight = Self.mainWindowHeight + Self.effectsWindowHeight + twoGaps + playlistHeight
+            let totalStackHeight = Self.mainWindowHeight + Self.effectsWindowHeight + twoGaps + playQueueHeight
             let yPadding = visibleFrame.height - totalStackHeight
             
             mainWindowOrigin = NSMakePoint(visibleFrame.minX + (xPadding / 2),
@@ -111,15 +111,15 @@ enum WindowLayoutPresets: String, CaseIterable {
             
             effectsWindowOrigin = NSMakePoint(mainWindowOrigin.x, mainWindowOrigin.y - gap - Self.effectsWindowHeight)
             
-            playlistWidth = Self.mainWindowWidth
+            playQueueWidth = Self.mainWindowWidth
             
-            playlistWindowOrigin = NSMakePoint(mainWindowOrigin.x, effectsWindowOrigin!.y - gap - playlistHeight)
+            playQueueWindowOrigin = NSMakePoint(mainWindowOrigin.x, effectsWindowOrigin!.y - gap - playQueueHeight)
             
         case .horizontalFullStack:
             
             // Sometimes, xPadding is negative, never go to the left of minX
-            playlistWidth = max(visibleFrame.width - (Self.mainWindowWidth + Self.effectsWindowWidth + twoGaps), Self.minPlaylistWidth)
-            let xPadding = visibleFrame.width - (Self.mainWindowWidth + Self.effectsWindowWidth + playlistWidth + twoGaps)
+            playQueueWidth = max(visibleFrame.width - (Self.mainWindowWidth + Self.effectsWindowWidth + twoGaps), Self.minPlayQueueWidth)
+            let xPadding = visibleFrame.width - (Self.mainWindowWidth + Self.effectsWindowWidth + playQueueWidth + twoGaps)
             let yPadding = visibleFrame.height - Self.mainWindowHeight
             
             mainWindowOrigin = NSMakePoint(max(visibleFrame.minX + (xPadding / 2), visibleFrame.minX),
@@ -128,28 +128,28 @@ enum WindowLayoutPresets: String, CaseIterable {
             effectsWindowOrigin = NSMakePoint(mainWindowOrigin.x + Self.mainWindowWidth + gap,
                                               mainWindowOrigin.y)
             
-            playlistHeight = Self.mainWindowHeight
+            playQueueHeight = Self.mainWindowHeight
             
-            playlistWindowOrigin = NSMakePoint(mainWindowOrigin.x + Self.mainWindowWidth + Self.effectsWindowWidth + twoGaps,
+            playQueueWindowOrigin = NSMakePoint(mainWindowOrigin.x + Self.mainWindowWidth + Self.effectsWindowWidth + twoGaps,
                                                mainWindowOrigin.y)
             
-        case .bigBottomPlaylist:
+        case .bigBottomPlayQueue:
             
             let xPadding = visibleFrame.width - (Self.mainWindowWidth + gap + Self.effectsWindowWidth)
-            playlistHeight = playlistHeight_bigBottomPlaylist
-            let yPadding = visibleFrame.height - (Self.mainWindowHeight + gap + playlistHeight)
+            playQueueHeight = playQueueHeight_bigBottomPlayQueue
+            let yPadding = visibleFrame.height - (Self.mainWindowHeight + gap + playQueueHeight)
             
             mainWindowOrigin = NSMakePoint(visibleFrame.minX + (xPadding / 2),
-                                           visibleFrame.minY + (yPadding / 2) + playlistHeight + gap)
+                                           visibleFrame.minY + (yPadding / 2) + playQueueHeight + gap)
             
             effectsWindowOrigin = NSMakePoint(mainWindowOrigin.x + Self.mainWindowWidth + gap,
                                               mainWindowOrigin.y)
             
-            playlistWidth = Self.mainWindowWidth + gap + Self.effectsWindowWidth
-            playlistWindowOrigin = NSMakePoint(mainWindowOrigin.x,
-                                               mainWindowOrigin.y - gap - playlistHeight)
+            playQueueWidth = Self.mainWindowWidth + gap + Self.effectsWindowWidth
+            playQueueWindowOrigin = NSMakePoint(mainWindowOrigin.x,
+                                               mainWindowOrigin.y - gap - playQueueHeight)
             
-        case .bigLeftPlaylist:
+        case .bigLeftPlayQueue:
             
             let pWidth = Self.mainWindowWidth
             let xPadding = visibleFrame.width - (Self.mainWindowWidth + gap + pWidth)
@@ -161,13 +161,13 @@ enum WindowLayoutPresets: String, CaseIterable {
             effectsWindowOrigin = NSMakePoint(mainWindowOrigin.x,
                                               mainWindowOrigin.y - gap - Self.effectsWindowHeight)
             
-            playlistHeight = Self.mainWindowHeight + gap + Self.effectsWindowHeight
-            playlistWidth = Self.mainWindowWidth
+            playQueueHeight = Self.mainWindowHeight + gap + Self.effectsWindowHeight
+            playQueueWidth = Self.mainWindowWidth
             
-            playlistWindowOrigin = NSMakePoint(mainWindowOrigin.x - gap - playlistWidth,
+            playQueueWindowOrigin = NSMakePoint(mainWindowOrigin.x - gap - playQueueWidth,
                                                mainWindowOrigin.y - gap - Self.effectsWindowHeight)
             
-        case .bigRightPlaylist:
+        case .bigRightPlayQueue:
             
             let xPadding = visibleFrame.width - (Self.mainWindowWidth + gap + Self.mainWindowWidth)
             let yPadding = visibleFrame.height - (Self.mainWindowHeight + gap + Self.effectsWindowHeight)
@@ -177,49 +177,51 @@ enum WindowLayoutPresets: String, CaseIterable {
             
             effectsWindowOrigin = NSMakePoint(mainWindowOrigin.x, mainWindowOrigin.y - gap - Self.effectsWindowHeight)
             
-            playlistHeight = Self.mainWindowHeight + gap + Self.effectsWindowHeight
-            playlistWidth = Self.mainWindowWidth
+            playQueueHeight = Self.mainWindowHeight + gap + Self.effectsWindowHeight
+            playQueueWidth = Self.mainWindowWidth
             
-            playlistWindowOrigin = NSMakePoint(mainWindowOrigin.x + Self.mainWindowWidth + gap,
+            playQueueWindowOrigin = NSMakePoint(mainWindowOrigin.x + Self.mainWindowWidth + gap,
                                                mainWindowOrigin.y - gap - Self.effectsWindowHeight)
             
-        case .verticalPlayerAndPlaylist:
+        case .verticalPlayerAndPlayQueue:
             
             let xPadding = visibleFrame.width - Self.mainWindowWidth
             
-            playlistHeight = playlistHeight_verticalPlayerAndPlaylist
-            let yPadding = (visibleFrame.height - Self.mainWindowHeight - playlistHeight - gap)
+            playQueueHeight = playQueueHeight_verticalPlayerAndPlayQueue
+            let yPadding = (visibleFrame.height - Self.mainWindowHeight - playQueueHeight - gap)
             let halfYPadding = yPadding / 2
             
             mainWindowOrigin = NSMakePoint(visibleFrame.minX + (xPadding / 2),
                                            visibleFrame.maxY - halfYPadding - Self.mainWindowHeight)
             
             
-            playlistWidth = Self.mainWindowWidth
+            playQueueWidth = Self.mainWindowWidth
             
-            playlistWindowOrigin = NSMakePoint(mainWindowOrigin.x, visibleFrame.minY + halfYPadding)
+            playQueueWindowOrigin = NSMakePoint(mainWindowOrigin.x, visibleFrame.minY + halfYPadding)
             
-        case .horizontalPlayerAndPlaylist:
+        case .horizontalPlayerAndPlayQueue:
             
+            playQueueHeight = Self.mainWindowHeight
+            playQueueWidth = Self.mainWindowWidth
+            
+            let xPadding = visibleFrame.width - (Self.mainWindowWidth + gap + playQueueWidth)
             let yPadding = visibleFrame.height - Self.mainWindowHeight
-            mainWindowOrigin = NSMakePoint(visibleFrame.minX, visibleFrame.minY + (yPadding / 2))
             
-            playlistHeight = Self.mainWindowHeight
-            playlistWidth = visibleFrame.width - (Self.mainWindowWidth + gap)
+            mainWindowOrigin = NSMakePoint(visibleFrame.minX + (xPadding / 2), visibleFrame.minY + (yPadding / 2))
             
-            playlistWindowOrigin = NSMakePoint(mainWindowOrigin.x + Self.mainWindowWidth + gap, mainWindowOrigin.y)
+            playQueueWindowOrigin = NSMakePoint(mainWindowOrigin.x + Self.mainWindowWidth + gap, mainWindowOrigin.y)
         }
         
         let mainWindowFrame: NSRect = NSRect(origin: mainWindowOrigin, size: NSMakeSize(Self.mainWindowWidth, Self.mainWindowHeight))
         
         var displayedWindows: [LayoutWindow] = []
         
-        if let playlistWindowOrigin = playlistWindowOrigin {
+        if let playQueueWindowOrigin = playQueueWindowOrigin {
             
-            let playlistWindowFrame: NSRect = NSMakeRect(playlistWindowOrigin.x, playlistWindowOrigin.y, playlistWidth, playlistHeight)
-            let playlistWindow: LayoutWindow = .init(id: .playQueue, frame: playlistWindowFrame)
+            let playQueueWindowFrame: NSRect = NSMakeRect(playQueueWindowOrigin.x, playQueueWindowOrigin.y, playQueueWidth, playQueueHeight)
+            let playQueueWindow: LayoutWindow = .init(id: .playQueue, frame: playQueueWindowFrame)
             
-            displayedWindows.append(playlistWindow)
+            displayedWindows.append(playQueueWindow)
         }
         
         if let effectsWindowOrigin = effectsWindowOrigin {
