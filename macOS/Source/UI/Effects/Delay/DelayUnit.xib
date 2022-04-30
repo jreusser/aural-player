@@ -224,7 +224,7 @@
                         <outlet property="timeSlider" destination="qAR-8T-oHx" id="mzv-zM-huO"/>
                     </connections>
                 </view>
-                <popUpButton toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aWr-na-Gft" userLabel="Presets Menu">
+                <popUpButton hidden="YES" toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aWr-na-Gft" userLabel="Presets Menu">
                     <rect key="frame" x="25" y="16" width="16" height="10"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="oaL-ik-rVa">

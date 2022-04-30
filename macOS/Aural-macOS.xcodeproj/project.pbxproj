@@ -414,6 +414,7 @@
 		3E6EFFA32815309500C813AC /* TextColorScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EFFA12815309500C813AC /* TextColorScheme.xib */; };
 		3E6EFFA42815309500C813AC /* TextColorSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EFFA22815309500C813AC /* TextColorSchemeViewController.swift */; };
 		3E752744267F32A60092BB89 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E752743267F32A60092BB89 /* RoundedImageView.swift */; };
+		3E758B06281DDA5900BBE872 /* EffectsWindowRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E758B05281DDA5900BBE872 /* EffectsWindowRootView.swift */; };
 		3E7AF1032806451B006DC98F /* TrackListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AF1022806451B006DC98F /* TrackListProtocol.swift */; };
 		3E7AF10528065441006DC98F /* PlayQueueMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AF10428065441006DC98F /* PlayQueueMenuController.swift */; };
 		3E7C35FE26AADD2A00B3552D /* FilterPresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C35FD26AADD2A00B3552D /* FilterPresetView.swift */; };
@@ -1828,6 +1829,7 @@
 		3E6EFFA12815309500C813AC /* TextColorScheme.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextColorScheme.xib; sourceTree = "<group>"; };
 		3E6EFFA22815309500C813AC /* TextColorSchemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextColorSchemeViewController.swift; sourceTree = "<group>"; };
 		3E752743267F32A60092BB89 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
+		3E758B05281DDA5900BBE872 /* EffectsWindowRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsWindowRootView.swift; sourceTree = "<group>"; };
 		3E7AF1022806451B006DC98F /* TrackListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListProtocol.swift; sourceTree = "<group>"; };
 		3E7AF10428065441006DC98F /* PlayQueueMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueMenuController.swift; sourceTree = "<group>"; };
 		3E7C35FD26AADD2A00B3552D /* FilterPresetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresetView.swift; sourceTree = "<group>"; };
@@ -3480,6 +3482,7 @@
 			children = (
 				3E6C100925CEB98600BF0D07 /* EffectsWindow.xib */,
 				3E6C0FF325CEB98600BF0D07 /* EffectsWindowController.swift */,
+				3E758B05281DDA5900BBE872 /* EffectsWindowRootView.swift */,
 				3E3633E12685FB2C006A88ED /* EffectsUnitViewController.swift */,
 				3E6C100525CEB98600BF0D07 /* Master */,
 				3E6C0FF725CEB98600BF0D07 /* EQ */,
@@ -6247,6 +6250,7 @@
 				3E6C12A025CEBE2700BF0D07 /* TintedImageView.swift in Sources */,
 				3E6C12A625CEBE2700BF0D07 /* ToggleMenuItem.swift in Sources */,
 				3ED0A4F027DD016200C7A438 /* ButtonStateMachine.swift in Sources */,
+				3E758B06281DDA5900BBE872 /* EffectsWindowRootView.swift in Sources */,
 				3EFE388527864896006F8B8C /* AudioUnitPresets.swift in Sources */,
 				3E466C9127FA37AA00342C30 /* TrackListViewController+ViewDelegate.swift in Sources */,
 				3EFE3A1D27864898006F8B8C /* WindowManagerNotifications.swift in Sources */,

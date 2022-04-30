@@ -172,6 +172,14 @@ class EffectsUnitViewController: NSViewController, Destroyable {
 //        btnBypass.setUnitState(effectsUnit.state)
     }
     
+    func mouseEnteredView() {
+        presetsMenuButton.show()
+    }
+    
+    func mouseExitedView() {
+        presetsMenuButton.hide()
+    }
+    
     // ------------------------------------------------------------------------
     
     // MARK: Helper functions

@@ -34,6 +34,9 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
     private let filterViewController: FilterUnitViewController = FilterUnitViewController()
     private let auViewController: AudioUnitsViewController = AudioUnitsViewController()
     private let devicesViewController: DevicesViewController = DevicesViewController()
+    
+    private lazy var viewControllers = [masterViewController, eqViewController, pitchViewController, timeViewController,
+                                        reverbViewController, delayViewController, filterViewController]
 
     // Tab view and its buttons
 
@@ -86,11 +89,10 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
         
         initSubscriptions()
     }
-
+    
     private func initTabGroup() {
         
-        for (index, viewController) in [masterViewController, eqViewController, pitchViewController, timeViewController,
-                                        reverbViewController, delayViewController, filterViewController, auViewController, devicesViewController].enumerated() {
+        for (index, viewController) in (viewControllers + [auViewController, devicesViewController]).enumerated() {
             
             tabView.tabViewItem(at: index).view?.addSubview(viewController.view)
             viewController.view.anchorToSuperview()
@@ -117,7 +119,7 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
         devicesTabViewButton.stateFunction = {.bypassed}
         
         // Select Master tab view by default
-        tabViewAction(masterTabViewButton)
+        doTabViewAction(masterTabViewButton)
 //        tabViewAction(eqTabViewButton)
     }
 
@@ -137,6 +139,16 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
     // Switches the tab group to a particular tab
     @IBAction func tabViewAction(_ sender: EffectsUnitTabButton) {
 
+        doTabViewAction(sender)
+        
+        guard tabView.selectedIndex < viewControllers.count else {return}
+        
+        let viewController = viewControllers[tabView.selectedIndex]
+        viewController.mouseEnteredView()
+    }
+    
+    private func doTabViewAction(_ sender: EffectsUnitTabButton) {
+        
         // Set sender button state, reset all other button states
         tabViewButtons.forEach {$0.unSelect()}
         sender.select()
@@ -187,6 +199,22 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
         case .devices:  tabViewAction(devicesTabViewButton)
 
         }
+    }
+    
+    func mouseEnteredView() {
+        
+        guard tabView.selectedIndex < viewControllers.count else {return}
+        
+        let viewController = viewControllers[tabView.selectedIndex]
+        viewController.mouseEnteredView()
+    }
+    
+    func mouseExitedView() {
+        
+        guard tabView.selectedIndex < viewControllers.count else {return}
+        
+        let viewController = viewControllers[tabView.selectedIndex]
+        viewController.mouseExitedView()
     }
     
     // ------------------------------------------------------------------------

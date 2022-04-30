@@ -99,7 +99,7 @@
                         <action selector="removeBandAction:" target="-2" id="iFC-rS-MwI"/>
                     </connections>
                 </button>
-                <popUpButton toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JJo-gm-Pih" userLabel="Presets Menu">
+                <popUpButton hidden="YES" toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JJo-gm-Pih" userLabel="Presets Menu">
                     <rect key="frame" x="25" y="16" width="16" height="10"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="NtI-XW-9Gl">

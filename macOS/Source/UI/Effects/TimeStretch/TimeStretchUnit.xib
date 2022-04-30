@@ -178,7 +178,7 @@
                         <outlet property="timeSlider" destination="ZrQ-re-04h" id="220-SK-88J"/>
                     </connections>
                 </view>
-                <popUpButton toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SzE-Ik-872" userLabel="Presets Menu">
+                <popUpButton hidden="YES" toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SzE-Ik-872" userLabel="Presets Menu">
                     <rect key="frame" x="25" y="16" width="16" height="10"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="p1L-4Q-opX">

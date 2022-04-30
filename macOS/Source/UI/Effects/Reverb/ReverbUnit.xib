@@ -141,7 +141,7 @@
                         <outlet property="reverbSpaceMenu" destination="ZjF-HF-nkd" id="lqu-9F-j2p"/>
                     </connections>
                 </view>
-                <popUpButton toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rrE-w8-gig" userLabel="Presets Menu">
+                <popUpButton hidden="YES" toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rrE-w8-gig" userLabel="Presets Menu">
                     <rect key="frame" x="25" y="16" width="16" height="10"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="aYW-ES-T3J">
@@ -152,7 +152,7 @@
                                 <menuItem image="Ellipsis" hidden="YES" id="8v4-M7-RfA" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="doc.badge.gearshape" catalog="system"/>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Ellipsis"/>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
                             </items>
@@ -171,6 +171,5 @@
     </objects>
     <resources>
         <image name="Ellipsis" width="40" height="10"/>
-        <image name="doc.badge.gearshape" catalog="system" width="15" height="17"/>
     </resources>
 </document>
