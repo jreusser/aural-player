@@ -56,7 +56,7 @@ class EffectsUnitViewController: NSViewController, Destroyable {
         applyColorScheme(systemColorScheme)
         
         // TODO: Temporary, remove this !!!
-        presetsMenuButton.hide()
+//        presetsMenuButton.hide()
     }
     
     func oneTimeSetup() {
@@ -154,6 +154,8 @@ class EffectsUnitViewController: NSViewController, Destroyable {
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
         messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
+        
+        colorSchemesManager.registerObserver(presetsMenuIconItem, forProperty: \.buttonColor)
         
 //        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
 //        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))

@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button wantsLayer="YES" fixedFrame="YES" tag="373" translatesAutoresizingMaskIntoConstraints="NO" id="lmp-7m-bHA" userLabel="Bypass button" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="15" y="130" width="16" height="16"/>
+                    <rect key="frame" x="25" y="133" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="fO0-0Q-ndW">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -279,18 +279,20 @@
                     </textFieldCell>
                 </textField>
                 <popUpButton toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q15-iZ-G8V" userLabel="Presets Menu">
-                    <rect key="frame" x="13" y="84" width="18" height="18"/>
+                    <rect key="frame" x="25" y="16" width="16" height="10"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="WlN-df-qI3">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" showsStateColumn="NO" id="VbO-RY-QUI">
                             <items>
                                 <menuItem hidden="YES" id="ZUZ-sN-HFg" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
-                                    <imageReference key="image" image="doc.badge.gearshape" catalog="system" symbolScale="default"/>
+                                    <imageReference key="image" image="Ellipsis" symbolScale="medium"/>
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="doc.badge.gearshape" catalog="system"/>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage">
+                                            <imageReference key="value" image="Ellipsis" symbolScale="medium"/>
+                                        </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" id="MP2-a4-2ox"/>
@@ -359,6 +361,6 @@
         </view>
     </objects>
     <resources>
-        <image name="doc.badge.gearshape" catalog="system" width="15" height="17"/>
+        <image name="Ellipsis" width="40" height="10"/>
     </resources>
 </document>

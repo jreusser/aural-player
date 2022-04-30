@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Oi-jb-bmq" userLabel="Bypass button" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="15" y="133" width="16" height="16"/>
+                    <rect key="frame" x="25" y="133" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ss8-tX-h53">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -225,17 +225,17 @@
                     </connections>
                 </view>
                 <popUpButton toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aWr-na-Gft" userLabel="Presets Menu">
-                    <rect key="frame" x="416" y="-25" width="19" height="19"/>
+                    <rect key="frame" x="25" y="16" width="16" height="10"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="oaL-ik-rVa">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="11" name="Play-Regular"/>
                         <menu key="menu" showsStateColumn="NO" id="hG2-4q-Wg7">
                             <items>
-                                <menuItem image="doc.badge.gearshape" catalog="system" hidden="YES" id="yH6-SM-gen" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                <menuItem image="Ellipsis" hidden="YES" id="yH6-SM-gen" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="doc.badge.gearshape" catalog="system"/>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Ellipsis"/>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" id="f9r-61-lQS"/>
@@ -270,6 +270,6 @@
         </view>
     </objects>
     <resources>
-        <image name="doc.badge.gearshape" catalog="system" width="15" height="17"/>
+        <image name="Ellipsis" width="40" height="10"/>
     </resources>
 </document>

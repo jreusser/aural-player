@@ -138,10 +138,10 @@
                                             <menu key="menu" autoenablesItems="NO" id="owc-w6-7Hd">
                                                 <items>
                                                     <menuItem hidden="YES" id="gVO-3W-k3p" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
-                                                        <imageReference key="image" image="ellipsis" catalog="system" symbolScale="medium" renderingMode="original"/>
+                                                        <imageReference key="image" image="Ellipsis" symbolScale="medium"/>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="PlayingTrackFunctions"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Ellipsis"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </menuItem>
                                                     <menuItem title="  Add this track to Favorites" image="heart" catalog="system" id="FrP-jc-kMJ" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">
@@ -465,18 +465,17 @@ G1BhbiBTbGlkZXI
         </customObject>
     </objects>
     <resources>
+        <image name="Ellipsis" width="40" height="10"/>
         <image name="Loop" width="270" height="210"/>
         <image name="Pause" width="30" height="35"/>
         <image name="Play" width="40" height="40"/>
         <image name="PlayingArt" width="237" height="237"/>
-        <image name="PlayingTrackFunctions" width="40" height="10"/>
         <image name="SeekBackward" width="16" height="12"/>
         <image name="SeekForward" width="16" height="12"/>
         <image name="VolumeMedium" width="26" height="26"/>
         <image name="backward" catalog="system" width="19" height="12"/>
         <image name="backward.end" catalog="system" width="13" height="13"/>
         <image name="bookmark" catalog="system" width="14" height="16"/>
-        <image name="ellipsis" catalog="system" width="14" height="5"/>
         <image name="forward" catalog="system" width="19" height="12"/>
         <image name="forward.end" catalog="system" width="13" height="13"/>
         <image name="heart" catalog="system" width="16" height="14"/>
