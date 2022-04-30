@@ -58,10 +58,6 @@ enum WindowLayoutPresets: String, CaseIterable {
         rawValue.splitAsCamelCaseWord(capitalizeEachWord: false)
     }
     
-    var showPlayQueue: Bool {
-        return self != .compactCornered
-    }
-    
     var showEffects: Bool {
         
         switch self {

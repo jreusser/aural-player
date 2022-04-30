@@ -35,7 +35,6 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
         
         let mainWindowLoader = WindowLoader(windowID: .main, windowControllerType: MainWindowController.self)
         windowLoaders.append(mainWindowLoader)
-//        self.mainWindow = mainWindowLoader.window
         
         for windowID in WindowID.allCases {
             
