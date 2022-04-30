@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class CompactPlayQueueViewController: TrackListViewController {
+class CompactPlayQueueViewController: TrackListViewController, ColorSchemeObserver {
     
     override var nibName: String? {"CompactPlayQueue"}
     
@@ -41,8 +41,8 @@ class CompactPlayQueueViewController: TrackListViewController {
         
         super.viewDidLoad()
         
-        colorSchemesManager.registerObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
-                                                                    \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
+        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
+                                                                          \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
         
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
         
@@ -340,11 +340,7 @@ class CompactPlayQueueViewController: TrackListViewController {
         case \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
              \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor:
             
-//            print("\nREloading PQ table ...")
-            
-            let selection = selectedRows
-            tableView.reloadData()
-            tableView.selectRows(selection)
+            tableView.reloadDataMaintainingSelection()
             
         case \.textSelectionColor:
             
@@ -355,6 +351,10 @@ class CompactPlayQueueViewController: TrackListViewController {
             
             return
         }
+    }
+    
+    func colorSchemeChanged() {
+        tableView.reloadDataMaintainingSelection()
     }
     
     private func tracksAdded(_ notif: PlayQueueTracksAddedNotification) {

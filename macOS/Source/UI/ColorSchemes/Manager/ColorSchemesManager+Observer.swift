@@ -26,12 +26,26 @@ extension ColorSchemesManager {
     
     func startObserving() {
         
-        for property in propertyObservers.keys {
-            beginKVO(forProperty: property)
+        for (property, observers) in propertyObservers {
+            
+            kvo.addObserver(forObject: systemScheme, keyPath: property) {_, newColor in
+                
+                observers.forEach {
+                    $0.colorChanged(to: newColor, forProperty: property)
+                }
+            }
         }
         
-        for property in schemeAndPropertyObservers.keys {
-            beginKVO(forProperty: property, options: [.new], isSchemeObserver: true)
+        for (property, observers) in schemeAndPropertyObservers {
+            
+            kvo.addObserver(forObject: systemScheme, keyPath: property, options: [.new]) {[weak self] _, newColor in
+                
+                guard let strongSelf = self, !strongSelf.schemeChanged else {return}
+                
+                observers.forEach {
+                    $0.colorChanged(to: newColor, forProperty: property)
+                }
+            }
         }
     }
     
@@ -43,20 +57,6 @@ extension ColorSchemesManager {
         schemeObservers.removeAll()
         
         kvo.invalidate()
-    }
-    
-    private func beginKVO(forProperty property: KeyPath<ColorScheme, PlatformColor>, options: NSKeyValueObservingOptions = [.initial, .new], isSchemeObserver: Bool = false) {
-        
-        kvo.addObserver(forObject: systemScheme, keyPath: property) {[weak self] _, newColor in
-            
-            guard let strongSelf = self,
-                    !(isSchemeObserver && strongSelf.schemeChanged),
-                    let observers = strongSelf.propertyObservers[property] else {return}
-            
-            observers.forEach {
-                $0.colorChanged(to: newColor, forProperty: property)
-            }
-        }
     }
     
     private typealias PropertyObserver = (observer: ColorSchemePropertyObserver, property: KeyPath<ColorScheme, PlatformColor>)

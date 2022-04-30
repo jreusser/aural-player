@@ -138,8 +138,6 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
     // Constructs the formatted "rich" text to be displayed in the text view
     func update(file: String = #file, line: Int = #line, function: String = #function) {
         
-        print("\nUpdating text view ... from '\(file) > \(function) > \(line)'")
-        
         // First, clear the view to remove any old text
         textView.string = ""
         
@@ -271,7 +269,6 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
     
     func colorSchemeChanged() {
         
-        print("\nColor Scheme Changed")
         backgroundColor = systemColorScheme.backgroundColor
         update()
     }
