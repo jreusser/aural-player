@@ -340,6 +340,8 @@ class CompactPlayQueueViewController: TrackListViewController {
         case \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
              \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor:
             
+//            print("\nREloading PQ table ...")
+            
             let selection = selectedRows
             tableView.reloadData()
             tableView.selectRows(selection)

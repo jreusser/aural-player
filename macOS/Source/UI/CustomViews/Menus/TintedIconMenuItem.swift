@@ -13,7 +13,7 @@ import Cocoa
     A special menu item (with an image) to which a tint can be applied, to conform to the current system color scheme.
  */
 @IBDesignable
-class TintedIconMenuItem: NSMenuItem, ColorSchemeObserver {
+class TintedIconMenuItem: NSMenuItem, ColorSchemePropertyObserver {
     
     // A base image that is used as an image template.
     @IBInspectable var baseImage: NSImage?

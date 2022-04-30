@@ -19,10 +19,18 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
     
     private lazy var messenger = Messenger(for: self)
     
-    var registry: [KeyPath<ColorScheme, PlatformColor>: [ColorSchemeObserver]] = [:]
+    var propertyObservers: [KeyPath<ColorScheme, PlatformColor>: [ColorSchemePropertyObserver]] = [:]
+    var schemeAndPropertyObservers: [KeyPath<ColorScheme, PlatformColor>: [ColorSchemeObserver]] = [:]
+    
+    var schemeObservers: [ColorSchemeObserver] = []
+    
+    // TODO: This will NOT work for an object that observes multiple properties !!!
+    // The value should be an array of KeyPath.
     var reverseRegistry: [NSObject: KeyPath<ColorScheme, PlatformColor>] = [:]
     
     var kvo: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
+    
+    var schemeChanged: Bool = false
     
     init(persistentState: ColorSchemesPersistentState?) {
         
@@ -30,7 +38,6 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
         let userDefinedSchemes = (persistentState?.userSchemes ?? []).map {ColorScheme($0, false)}
         
         if let persistentSystemScheme = persistentState?.systemScheme {
-            
             self.systemScheme = ColorScheme(persistentSystemScheme, true)
             
         } else {
@@ -47,13 +54,21 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
         // Update color / gradient caches whenever the system scheme changes.
 //        Colors.Player.updateSliderColors()
 //        AuralPlaylistOutlineView.updateCachedImages()
+        
+        schemeObservers.forEach {
+            $0.colorSchemeChanged()
+        }
     }
     
     // Applies a color scheme to the system color scheme and returns the modified system scheme.
     func applyScheme(_ scheme: ColorScheme) {
         
+        schemeChanged = true
+        
         systemScheme.applyScheme(scheme)
         systemSchemeChanged()
+        
+        schemeChanged = false
         
         messenger.publish(.applyColorScheme, payload: systemScheme)
     }

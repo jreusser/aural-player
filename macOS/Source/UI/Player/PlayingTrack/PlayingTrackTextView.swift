@@ -31,6 +31,20 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
         }
     }
     
+    private var backgroundColor: NSColor {
+        
+        get {
+            clipView.backgroundColor
+        }
+        
+        set(newColor) {
+            
+            clipView.backgroundColor = newColor
+            clipView.enclosingScrollView?.backgroundColor = newColor
+            textView.backgroundColor = newColor
+        }
+    }
+    
     var titleFont: NSFont {
         Fonts.Player.infoBoxTitleFont
     }
@@ -107,18 +121,14 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
         update()
     }
     
-    func applyFontScheme(_ fontScheme: FontScheme) {
-        update()
-    }
-    
-    // Responds to a change in user-defined color scheme
-    func applyColorScheme(_ scheme: ColorScheme) {
-        update()
-    }
-    
-    func changeTextColor() {
-        update()
-    }
+//    func applyFontScheme(_ fontScheme: FontScheme) {
+//        update()
+//    }
+//
+//    // Responds to a change in user-defined color scheme
+//    func applyColorScheme(_ scheme: ColorScheme) {
+//        update()
+//    }
     
     // Updates the view when the user settings that control display of metadata fields have changed
     func displayedTextChanged() {
@@ -126,7 +136,9 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
     }
     
     // Constructs the formatted "rich" text to be displayed in the text view
-    func update() {
+    func update(file: String = #file, line: Int = #line, function: String = #function) {
+        
+        print("\nUpdating text view ... from '\(file) > \(function) > \(line)'")
         
         // First, clear the view to remove any old text
         textView.string = ""
@@ -142,7 +154,6 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
         if let theArtist = artist, let theAlbum = album {
             
             fullLengthArtistAlbumStr = String(format: "%@ -- %@", theArtist, theAlbum)
-            
             truncatedArtistAlbumStr = String.truncateCompositeString(artistAlbumFont, lineWidth, fullLengthArtistAlbumStr!, theArtist, theAlbum, " -- ")
             
         } else if let theArtist = artist {
@@ -251,14 +262,18 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
         if property == \.backgroundColor {
-            
-            clipView.backgroundColor = newColor
-            clipView.enclosingScrollView?.backgroundColor = newColor
-            textView.backgroundColor = newColor
+            backgroundColor = newColor
             
         } else {
             update()
         }
+    }
+    
+    func colorSchemeChanged() {
+        
+        print("\nColor Scheme Changed")
+        backgroundColor = systemColorScheme.backgroundColor
+        update()
     }
 }
 

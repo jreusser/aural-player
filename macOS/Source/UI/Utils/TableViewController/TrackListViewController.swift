@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchemeObserver {
+class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchemePropertyObserver {
     
     @IBOutlet weak var tableView: NSTableView!
     

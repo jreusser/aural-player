@@ -13,7 +13,7 @@
 
 import Cocoa
 
-class EffectsWindowController: NSWindowController, ColorSchemeObserver {
+class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
     
     override var windowNibName: String? {"EffectsWindow"}
     

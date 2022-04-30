@@ -36,7 +36,7 @@ class TintedImageButton: NSButton {
     }
 }
 
-extension NSButton: ColorSchemeObserver {
+extension NSButton: ColorSchemePropertyObserver {
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         contentTintColor = newColor

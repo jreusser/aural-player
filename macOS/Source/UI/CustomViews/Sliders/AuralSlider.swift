@@ -71,8 +71,6 @@ class AuralSlider: NSSlider {
     
     // MARK: Init
     
-    var kvoTokens: [NSKeyValueObservation] = []
-    
     ///
     /// This slider will do all its drawing on CALayers, so
     /// make sure it has a base layer when initialized.
@@ -81,7 +79,6 @@ class AuralSlider: NSSlider {
 
         super.init(frame: frameRect)
         wantsLayer = true
-        setUpKVO()
     }
 
     ///
@@ -92,23 +89,6 @@ class AuralSlider: NSSlider {
 
         super.init(coder: coder)
         wantsLayer = true
-        setUpKVO()
-    }
-    
-    func setUpKVO() {
-        
-        kvoTokens.append(systemColorScheme.observe(\.activeControlGradientColor, options: [.initial, .new]) {[weak self] _, _ in
-            self?.needsDisplay = true
-        })
-    }
-    
-    deinit {
-        
-        kvoTokens.forEach {
-            $0.invalidate()
-        }
-        
-        kvoTokens.removeAll()
     }
     
     // ----------------------------------------------------

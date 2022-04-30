@@ -208,7 +208,7 @@ class PlaylistNamesTableViewController: NSViewController {
     }
 }
 
-extension PlaylistNamesTableViewController: ColorSchemeObserver {
+extension PlaylistNamesTableViewController: ColorSchemePropertyObserver {
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         tableView.setBackgroundColor(newColor)

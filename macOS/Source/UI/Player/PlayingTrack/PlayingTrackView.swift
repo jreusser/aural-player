@@ -55,10 +55,10 @@ class PlayingTrackView: MouseTrackingView {
         
         startTracking()
         
-        colorSchemesManager.registerObservers([infoBox, textView], forProperty: \.backgroundColor)
-        colorSchemesManager.registerObserver(textView, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor])
-        
-        fontSchemesManager.registerObserver(textView, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont, \.playerTertiaryFont])
+        colorSchemesManager.registerObserver(infoBox, forProperty: \.backgroundColor)
+        colorSchemesManager.registerSchemeObserver(textView, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor])
+//
+//        fontSchemesManager.registerObserver(textView, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont, \.playerTertiaryFont])
     }
     
     var trackInfo: PlayingTrackInfo? {
@@ -68,8 +68,8 @@ class PlayingTrackView: MouseTrackingView {
         }
     }
     
-    func update() {
-        trackInfoSet()
+    func artUpdated() {
+        artView.image = trackInfo?.art ?? Images.imgPlayingArt
     }
     
     private func trackInfoSet() {
@@ -172,7 +172,6 @@ class PlayingTrackView: MouseTrackingView {
             infoBox.resize(infoBoxDefaultWidth, infoBox.height)
             
             textView.clipView.enclosingScrollView?.resize(width: textViewDefaultWidth)
-            textView.resized()
             
         } else {
             
@@ -180,17 +179,13 @@ class PlayingTrackView: MouseTrackingView {
             infoBox.resize(infoBoxWidth_noArt, infoBox.height)
             
             textView.clipView.enclosingScrollView?.resize(width: textViewWidth_noArt)
-            textView.resized()
         }
+        
+        textView.resized()
     }
     
     // MARK: Appearance functions
     
     func applyTheme() {
-        applyFontScheme(systemFontScheme)
-    }
-    
-    func applyFontScheme(_ fontScheme: FontScheme) {
-        textView.applyFontScheme(fontScheme)
     }
 }

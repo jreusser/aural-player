@@ -1,5 +1,5 @@
 //
-//  NSSlider+ColorSchemeObserver.swift
+//  NSSlider+ColorSchemePropertyObserver.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -10,7 +10,7 @@
 
 import Cocoa
 
-extension NSSlider: ColorSchemeObserver {
+extension NSSlider: ColorSchemePropertyObserver {
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         redraw()

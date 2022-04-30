@@ -46,7 +46,6 @@ class PlayerViewController: NSViewController, Destroyable {
         
         initSubscriptions()
         
-        infoView.applyFontScheme(systemFontScheme)
         trackChanged(player.playingTrack)
     }
 
@@ -70,7 +69,6 @@ class PlayerViewController: NSViewController, Destroyable {
         messenger.subscribe(to: .player_showOrHideMainControls, handler: infoView.showOrHideMainControls)
         
         messenger.subscribe(to: .applyTheme, handler: infoView.applyTheme)
-        messenger.subscribe(to: .applyFontScheme, handler: infoView.applyFontScheme(_:))
 //        messenger.subscribe(to: .changeBackgroundColor, handler: infoView.changeBackgroundColor(_:))
         
 //        messenger.subscribe(to: .player_changeTrackInfoPrimaryTextColor, handler: infoView.changePrimaryTextColor(_:))
@@ -102,7 +100,7 @@ class PlayerViewController: NSViewController, Destroyable {
     
     // When track info for the playing track changes, display fields need to be updated
     func playingTrackInfoUpdated(_ notification: TrackInfoUpdatedNotification) {
-        infoView.update()
+        infoView.artUpdated()
     }
     
     func chapterChanged(_ notification: ChapterChangedNotification) {

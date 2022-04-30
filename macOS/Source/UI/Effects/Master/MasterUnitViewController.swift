@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class MasterUnitViewController: EffectsUnitViewController, ColorSchemeObserver {
+class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyObserver {
     
     override var nibName: String? {"MasterUnit"}
     
