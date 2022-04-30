@@ -41,8 +41,8 @@ class CompactPlayQueueViewController: TrackListViewController, ColorSchemeObserv
         
         super.viewDidLoad()
         
-        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
-                                                                          \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
+        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
+                                                                        \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
         
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
         
@@ -336,6 +336,12 @@ class CompactPlayQueueViewController: TrackListViewController, ColorSchemeObserv
         super.colorChanged(to: newColor, forProperty: property)
         
         switch property {
+            
+        case \.activeControlColor:
+            
+            if let playingTrackIndex = playQueueDelegate.currentTrackIndex {
+                tableView.reloadRows([playingTrackIndex])
+            }
             
         case \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
              \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor:

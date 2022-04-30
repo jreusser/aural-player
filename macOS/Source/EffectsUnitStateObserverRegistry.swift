@@ -9,12 +9,13 @@
 //  
 
 import Foundation
+import Cocoa
 
 class EffectsUnitStateObserverRegistry {
     
     static let shared: EffectsUnitStateObserverRegistry = .init()
     
-    private var kvoTokens: [NSKeyValueObservation] = []
+    private var kvoTokens: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
     
     private init() {
         
@@ -37,11 +38,9 @@ class EffectsUnitStateObserverRegistry {
     
     private func observeColor(property: KeyPath<ColorScheme, PlatformColor>, forUnitState state: EffectsUnitState) {
         
-        kvoTokens.append(systemColorScheme.observe(property, options: [.initial, .new]) {[weak self] _,_ in
+        kvoTokens.addObserver(forObject: systemColorScheme, keyPath: property) {[weak self] _, newColor in
             
-            // Redraw all observers of active units.
-            
-            let newColor: PlatformColor = systemColorScheme[keyPath: property]
+            // Redraw all observers of units with matching state.
             
             for unit in audioGraphDelegate.allUnits.filter({$0.state == state}) {
                 
@@ -49,18 +48,18 @@ class EffectsUnitStateObserverRegistry {
                 
                 for observer in observers {
                     
-                    if let tintableObserver = observer as? TintableFXUnitStateObserver {
-                        tintableObserver.contentTintColor = newColor
-                        
-                    } else if let textualObserver = observer as? TextualFXUnitStateObserver {
-                        textualObserver.textColor = newColor
-                        
-                    } else {
-                        observer.redraw()
-                    }
+                    // TODO: Can this be made more efficient ? Skipping **registered** scheme observers
+                    // when a scheme change is being made (check CSManager) ???
+                    
+//                    if observer is ColorSchemeObserver, colorSchemesManager.schemeChanged,
+//                    let slider = observer as? NSSlider {
+//                        print("I can skip this observer !!! Tag = \(slider.tag)")
+//                    }
+                    
+                    observer.colorForCurrentStateChanged(to: newColor)
                 }
             }
-        })
+        }
     }
     
     private var registry: [EffectsUnitType: [FXUnitStateObserver]] = [:]

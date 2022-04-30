@@ -51,7 +51,7 @@ class SeekSliderView: NSView {
         initSeekTimer()
         trackChanged(player.playbackLoop, player.playingTrack)
         
-        colorSchemesManager.registerObserver(seekSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
+        colorSchemesManager.registerSchemeObserver(seekSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
         fontSchemesManager.registerObserver(lblTrackTime, forProperty: \.playerSecondaryFont)
     }
     

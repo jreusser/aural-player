@@ -63,7 +63,7 @@ class PlayerAudioViewController: NSViewController, Destroyable {
         fontSchemesManager.registerObserver(lblVolume, forProperty: \.playerTertiaryFont)
         
         colorSchemesManager.registerObserver(btnVolume, forProperty: \.buttonColor)
-        colorSchemesManager.registerObserver(volumeSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
+        colorSchemesManager.registerSchemeObserver(volumeSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
         colorSchemesManager.registerObserver(lblVolume, forProperty: \.secondaryTextColor)
         
         initSubscriptions()

@@ -15,8 +15,8 @@ class KVOTokens<Object: NSObject, Property> {
     private var tokens: [NSKeyValueObservation] = []
     
     func addObserver(forObject object: Object, keyPath: KeyPath<Object, Property>,
-                            options: NSKeyValueObservingOptions = [.initial, .new],
-                            changeHandler: @escaping (Object, Property) -> Void) {
+                     options: NSKeyValueObservingOptions = [.initial, .new],
+                     changeHandler: @escaping (Object, Property) -> Void) {
         
         tokens.append(object.observe(keyPath, options: options) {_, changedValue in
             

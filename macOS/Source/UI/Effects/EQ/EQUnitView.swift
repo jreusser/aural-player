@@ -59,7 +59,7 @@ class EQUnitView: NSView {
             $0.target = sliderActionTarget
         }
         
-        colorSchemesManager.registerObservers(allSliders, forProperty: \.backgroundColor)
+        colorSchemesManager.registerSchemeObservers(allSliders, forProperties: [\.backgroundColor])
     }
     
     func initialize(eqStateFunction: @escaping EffectsUnitStateFunction,

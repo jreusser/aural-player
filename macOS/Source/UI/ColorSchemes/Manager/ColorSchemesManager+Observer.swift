@@ -47,6 +47,10 @@ extension ColorSchemesManager {
                 }
             }
         }
+        
+        for observer in schemeObservers {
+            observer.colorSchemeChanged()
+        }
     }
     
     // TODO: Call this from AppModeManager.dismissMode()
@@ -87,8 +91,25 @@ extension ColorSchemesManager {
             
             // TODO: Add to reverse registry
         }
+    }
+    
+    func registerSchemeObservers(_ observers: [ColorSchemeObserver], forProperties properties: [KeyPath<ColorScheme, PlatformColor>]) {
         
-        observer.colorSchemeChanged()
+        schemeObservers.append(contentsOf: observers)
+        
+        for observer in observers {
+            
+            for property in properties {
+                
+                if schemeAndPropertyObservers[property] == nil {
+                    schemeAndPropertyObservers[property] = []
+                }
+                
+                schemeAndPropertyObservers[property]!.append(observer)
+            }
+            
+            // TODO: Add to reverse registry
+        }
     }
     
     private func doRegisterObservers(_ observers: [PropertyObserver], initialize: Bool = true) {

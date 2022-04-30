@@ -13,12 +13,18 @@ protocol FXUnitStateObserver: AnyObject {
     
     func unitStateChanged(to newState: EffectsUnitState)
     
+    func colorForCurrentStateChanged(to newColor: PlatformColor)
+    
     func redraw()
 }
 
 extension FXUnitStateObserver {
     
     func unitStateChanged(to newState: EffectsUnitState) {
+        redraw()
+    }
+    
+    func colorForCurrentStateChanged(to newColor: PlatformColor) {
         redraw()
     }
 }
@@ -44,6 +50,10 @@ extension TintableFXUnitStateObserver {
             contentTintColor = systemColorScheme.suppressedControlColor
         }
     }
+    
+    func colorForCurrentStateChanged(to newColor: PlatformColor) {
+        contentTintColor = newColor
+    }
 }
 
 protocol TextualFXUnitStateObserver: FXUnitStateObserver {
@@ -66,6 +76,10 @@ extension TextualFXUnitStateObserver {
         case .suppressed:
             textColor = systemColorScheme.suppressedControlColor
         }
+    }
+    
+    func colorForCurrentStateChanged(to newColor: PlatformColor) {
+        textColor = newColor
     }
 }
 
