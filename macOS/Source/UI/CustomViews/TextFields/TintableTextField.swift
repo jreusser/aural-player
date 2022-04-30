@@ -17,7 +17,7 @@ extension NSTextField: ColorSchemePropertyObserver {
     }
 }
 
-extension NSTextField: FontSchemeObserver {
+extension NSTextField: FontSchemePropertyObserver {
     
     func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
         font = newFont

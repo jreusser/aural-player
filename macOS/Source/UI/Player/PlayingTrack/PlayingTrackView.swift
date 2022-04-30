@@ -57,8 +57,8 @@ class PlayingTrackView: MouseTrackingView {
         
         colorSchemesManager.registerObserver(infoBox, forProperty: \.backgroundColor)
         colorSchemesManager.registerSchemeObserver(textView, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor])
-//
-//        fontSchemesManager.registerObserver(textView, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont, \.playerTertiaryFont])
+
+        fontSchemesManager.registerSchemeObserver(textView, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont, \.playerTertiaryFont])
     }
     
     var trackInfo: PlayingTrackInfo? {

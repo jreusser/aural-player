@@ -112,7 +112,7 @@ extension ColorSchemesManager {
         }
     }
     
-    private func doRegisterObservers(_ observers: [PropertyObserver], initialize: Bool = true) {
+    private func doRegisterObservers(_ observers: [PropertyObserver]) {
         
         for (observer, property) in observers {
             
@@ -121,10 +121,6 @@ extension ColorSchemesManager {
             }
             
             propertyObservers[property]!.append(observer)
-            
-            if initialize {
-                observer.colorChanged(to: systemScheme[keyPath: property], forProperty: property)
-            }
             
             if let observerObject = observer as? NSObject {
                 reverseRegistry[observerObject] = property
