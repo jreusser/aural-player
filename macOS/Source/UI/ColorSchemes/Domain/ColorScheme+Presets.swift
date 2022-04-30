@@ -120,5 +120,27 @@ extension ColorScheme {
                                               inactiveControlColor: .white30Percent,
                                               suppressedControlColor: .white50Percent)
     
-    static let allPresets: [ColorScheme] = [.blackAqua, .blackGreen, .lava, .gloomyDay, .whiteBlight]
+    static let poolsideFM: ColorScheme = .init(name: "Poolside.fm", systemDefined: true,
+                                                
+                                                backgroundColor: PlatformColor(red: 1, green: 0.7882353, blue: 0.7882353),
+                                                buttonColor: .black,
+                                                iconColor: PlatformColor(red: 0.671, green: 0.467, blue: 0.475),
+                                                
+                                                captionTextColor: .black,
+                                                
+                                                primaryTextColor: .black,
+                                                secondaryTextColor: .white20Percent,
+                                                tertiaryTextColor: .white40Percent,
+                                                
+                                                primarySelectedTextColor: .white,
+                                                secondarySelectedTextColor: .white80Percent,
+                                                tertiarySelectedTextColor: .white60Percent,
+                                                
+                                                textSelectionColor: .black,
+                                                
+                                                activeControlColor: .black,
+                                                inactiveControlColor: .white50Percent,
+                                                suppressedControlColor: .white25Percent)
+    
+    static let allPresets: [ColorScheme] = [.lava, .blackAqua, .blackGreen, .whiteBlight, .gloomyDay, .poolsideFM]
 }
