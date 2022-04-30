@@ -16,55 +16,23 @@ class EffectsUnitTabButton: OnOffImageButton, FXUnitStateObserver {
     
     @IBInspectable var mixedStateTooltip: String?
     
-//    var mixedStateTintFunction: () -> NSColor = {Colors.Effects.suppressedUnitStateColor} {
-//        didSet {reTint()}
-//    }
-    
-    override func awakeFromNib() {
-        
-        // Override the tint functions from OnOffImageButton
-//        offStateTintFunction = {Colors.Effects.bypassedUnitStateColor}
-//        onStateTintFunction = {Colors.Effects.activeUnitStateColor}
-    }
-    
     override func off() {
         
         toolTip = offStateTooltip
         state = .off
-        
-//        if let cell = self.cell as? EffectsUnitTabButtonCell {
-//
-//            cell.unitState = .bypassed
-//            redraw()
-//        }
     }
     
     override func on() {
         
         toolTip = onStateTooltip
         state = .on
-        
-//        if let cell = self.cell as? EffectsUnitTabButtonCell {
-//
-//            cell.unitState = .active
-//            redraw()
-//        }
     }
     
     func mixed() {
-        
         toolTip = mixedStateTooltip
-        
-//        if let cell = self.cell as? EffectsUnitTabButtonCell {
-//            
-//            cell.unitState = .suppressed
-//            redraw()
-//        }
     }
     
-    func updateState() {
-        
-        let newState = stateFunction!()
+    func unitStateChanged(to newState: EffectsUnitState) {
         
         switch newState {
             
@@ -75,10 +43,8 @@ class EffectsUnitTabButton: OnOffImageButton, FXUnitStateObserver {
         case .suppressed: mixed()
             
         }
-    }
-    
-    var unitState: EffectsUnitState {
-        stateFunction?() ?? .bypassed
+        
+        redraw()
     }
     
     var isSelected: Bool = false {
