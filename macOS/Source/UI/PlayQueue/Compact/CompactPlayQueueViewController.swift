@@ -54,7 +54,7 @@ class CompactPlayQueueViewController: TrackListViewController, ColorSchemeObserv
         messenger.subscribe(to: .playQueue_removeTracks, handler: removeTracks)
         messenger.subscribe(to: .playQueue_cropSelection, handler: cropSelection)
         
-        messenger.subscribe(to: .playQueue_refresh, handler: tableView.reloadData)
+        messenger.subscribe(to: .playQueue_refresh, handler: tableView.reloadDataMaintainingSelection)
         
         messenger.subscribe(to: .playQueue_clearSelection, handler: tableView.clearSelection)
         messenger.subscribe(to: .playQueue_invertSelection, handler: tableView.invertSelection)
@@ -328,7 +328,7 @@ class CompactPlayQueueViewController: TrackListViewController, ColorSchemeObserv
     // MARK: Notification / command handling ----------------------------------------------------------------------------------------
     
     private func applyFontScheme(_ scheme: FontScheme) {
-        tableView.reloadData()
+        tableView.reloadDataMaintainingSelection()
     }
     
     override func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {

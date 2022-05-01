@@ -79,11 +79,11 @@ class ReverbUnitViewController: EffectsUnitViewController {
     
     // MARK: Theming
     
-    override func applyFontScheme(_ fontScheme: FontScheme) {
-        
-        super.applyFontScheme(fontScheme)
-        reverbUnitView.applyFontScheme(fontScheme)
-    }
+//    override func applyFontScheme(_ fontScheme: FontScheme) {
+//        
+//        super.applyFontScheme(fontScheme)
+//        reverbUnitView.applyFontScheme(fontScheme)
+//    }
     
 //    override func applyColorScheme(_ scheme: ColorScheme) {
 //

@@ -161,54 +161,6 @@ enum FontSchemePreset: String, CaseIterable {
             
         }
     }
-   
-    var trackTimesFont: NSFont {
-        
-        switch self {
-                
-            case .standard:  return standardFontSet.mainFont(size: 12)
-                
-            case .rounded:  return roundedFontSet.mainFont(size: 12)
-                
-            case .programmer:  return programmerFontSet.mainFont(size: 11)
-                
-        case .futuristic:   return futuristicFontSet.mainFont(size: 15)
-                
-            case .novelist:  return novelistFontSet.mainFont(size: 12)
-                
-            case .soySauce:     return soySauceFontSet.mainFont(size: 17)
-                
-            case .gothic:    return gothicFontSet.mainFont(size: 11)
-                
-            case .papyrus:      return papyrusFontSet.mainFont(size: 13)
-                
-            case .poolsideFM:   return poolsideFMFontSet.mainFont(size: 11)
-        }
-    }
-    
-    var feedbackFont: NSFont {
-        
-        switch self {
-                
-            case .standard:  return standardFontSet.mainFont(size: 10)
-                
-            case .rounded:  return roundedFontSet.mainFont(size: 10.5)
-                
-            case .programmer:  return programmerFontSet.mainFont(size: 9)
-                
-            case .futuristic:   return futuristicFontSet.mainFont(size: 11)
-                
-            case .novelist:  return novelistFontSet.mainFont(size: 9)
-                
-            case .soySauce:     return soySauceFontSet.mainFont(size: 14)
-                
-            case .gothic:    return gothicFontSet.mainFont(size: 9)
-                
-            case .papyrus:      return papyrusFontSet.mainFont(size: 11)
-                
-            case .poolsideFM:   return poolsideFMFontSet.mainFont(size: 9)
-        }
-    }
     
     var playlistTrackTextFont: NSFont {
         
@@ -439,7 +391,7 @@ enum FontSchemePreset: String, CaseIterable {
                 
             case .futuristic:   return futuristicFontSet.captionFont(size: 16)
                 
-            case .novelist:  return novelistFontSet.captionFont(size: 13)
+            case .novelist:  return novelistFontSet.captionFont(size: 14)
                 
             case .soySauce:  return soySauceFontSet.captionFont(size: 15)
                 
@@ -451,7 +403,7 @@ enum FontSchemePreset: String, CaseIterable {
         }
     }
     
-    var effectsUnitFunctionFont: NSFont {
+    var effectsPrimaryFont: NSFont {
         
         switch self {
                 
@@ -472,30 +424,6 @@ enum FontSchemePreset: String, CaseIterable {
             case .papyrus:      return papyrusFontSet.mainFont(size: 12)
                 
             case .poolsideFM:   return poolsideFMFontSet.mainFont(size: 11)
-        }
-    }
-    
-    var effectsMasterUnitFunctionFont: NSFont {
-        
-        switch self {
-                
-            case .standard:  return standardFontSet.captionFont(size: 14)
-                
-            case .rounded:  return roundedFontSet.captionFont(size: 13.5)
-                
-            case .programmer:  return programmerFontSet.captionFont(size: 13)
-                
-            case .futuristic:   return futuristicFontSet.captionFont(size: 14)
-                
-            case .novelist:  return novelistFontSet.captionFont(size: 12.5)
-                
-            case .soySauce:  return soySauceFontSet.captionFont(size: 14)
-                
-            case .gothic:    return gothicFontSet.captionFont(size: 14)
-                
-            case .papyrus:      return papyrusFontSet.captionFont(size: 10)
-                
-            case .poolsideFM:   return poolsideFMFontSet.captionFont(size: 13)
         }
     }
     

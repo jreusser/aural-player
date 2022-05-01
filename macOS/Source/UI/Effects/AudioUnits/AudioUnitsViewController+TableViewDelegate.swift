@@ -82,7 +82,7 @@ extension AudioUnitsViewController: NSTableViewDelegate {
         let audioUnit = audioGraph.audioUnits[row]
         
         cell.text = "\(audioUnit.name) v\(audioUnit.version) by \(audioUnit.manufacturerName)"
-        cell.textFont = systemFontScheme.effects.unitFunctionFont
+        cell.textFont = systemFontScheme.effectsPrimaryFont
         cell.rowSelectionStateFunction = {tableView.isRowSelected(row)}
         cell.realignText(yOffset: systemFontScheme.effects.auRowTextYOffset)
         

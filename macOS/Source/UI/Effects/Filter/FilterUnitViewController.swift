@@ -128,30 +128,30 @@ class FilterUnitViewController: EffectsUnitViewController {
     
     // MARK: Theming
     
-    override func applyFontScheme(_ fontScheme: FontScheme) {
-
-        super.applyFontScheme(fontScheme)
-        filterUnitView.applyFontScheme(fontScheme)
-    }
-    
-//    override func applyColorScheme(_ scheme: ColorScheme) {
+//    override func applyFontScheme(_ fontScheme: FontScheme) {
 //
-//        // Need to do this to avoid multiple redundant redraw() calls
-//
-//        super.changeFunctionButtonColor(scheme.buttonColor)
-////        super.changeFunctionCaptionTextColor(scheme.secondaryTextColor)
-////        super.changeFunctionValueTextColor(scheme.primaryTextColor)
-//
-//        super.changeActiveUnitStateColor(scheme.activeControlColor)
-//        super.changeBypassedUnitStateColor(scheme.inactiveControlColor)
-//        super.changeSuppressedUnitStateColor(scheme.suppressedControlColor)
-//
-//        filterUnitView.applyColorScheme(scheme)
+//        super.applyFontScheme(fontScheme)
+//        filterUnitView.applyFontScheme(fontScheme)
 //    }
-    
-    override func changeSliderColors() {
-        filterUnitView.changeSliderColors()
-    }
+//    
+////    override func applyColorScheme(_ scheme: ColorScheme) {
+////
+////        // Need to do this to avoid multiple redundant redraw() calls
+////
+////        super.changeFunctionButtonColor(scheme.buttonColor)
+//////        super.changeFunctionCaptionTextColor(scheme.secondaryTextColor)
+//////        super.changeFunctionValueTextColor(scheme.primaryTextColor)
+////
+////        super.changeActiveUnitStateColor(scheme.activeControlColor)
+////        super.changeBypassedUnitStateColor(scheme.inactiveControlColor)
+////        super.changeSuppressedUnitStateColor(scheme.suppressedControlColor)
+////
+////        filterUnitView.applyColorScheme(scheme)
+////    }
+//    
+//    override func changeSliderColors() {
+//        filterUnitView.changeSliderColors()
+//    }
     
 //    override func changeActiveUnitStateColor(_ color: NSColor) {
 //

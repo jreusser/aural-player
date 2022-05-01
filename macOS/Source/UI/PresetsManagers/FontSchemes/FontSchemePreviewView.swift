@@ -49,7 +49,7 @@ class FontSchemePreviewView: NSView {
                 playlistTrackTextFont = theScheme.playlist.trackTextFont
                 
                 effectsCaptionFont = theScheme.captionFont
-                effectsFunctionFont = theScheme.effects.unitFunctionFont
+                effectsFunctionFont = theScheme.effectsPrimaryFont
                 
                 containerBox.show()
             }

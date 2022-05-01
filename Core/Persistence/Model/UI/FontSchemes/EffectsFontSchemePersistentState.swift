@@ -16,15 +16,11 @@ import Foundation
 ///
 struct EffectsFontSchemePersistentState: Codable {
 
-    let unitFunctionSize: CGFloat?
-    let masterUnitFunctionSize: CGFloat?
     let filterChartSize: CGFloat?
     let auRowTextYOffset: CGFloat?
 
     init(_ scheme: EffectsFontScheme) {
 
-        self.unitFunctionSize = scheme.unitFunctionFont.pointSize
-        self.masterUnitFunctionSize = scheme.masterUnitFunctionFont.pointSize
         self.filterChartSize = scheme.filterChartFont.pointSize
         self.auRowTextYOffset = scheme.auRowTextYOffset
     }

@@ -101,8 +101,6 @@ class EffectsUnitStateObserverRegistry {
                     
                 } else if let auDelegate = unit as? HostedAudioUnitDelegateProtocol, let observers = strongSelf.auRegistry[auDelegate.id] {
                     
-                    print("\nChanged color for \(state) unit: '\(auDelegate.name)'")
-                    
                     for observer in observers {
                         observer.colorForCurrentStateChanged(to: newColor)
                     }
@@ -141,10 +139,6 @@ class EffectsUnitStateObserverRegistry {
             }
             
             auRegistry[auDelegate.id]!.append(observer)
-            
-            for (_, obs) in auRegistry {
-                print("\(obs.count) observers for AU: '\(auDelegate.name)'")
-            }
             
             if let object = observer as? NSObject {
                 auReverseRegistry[object] = auDelegate.id

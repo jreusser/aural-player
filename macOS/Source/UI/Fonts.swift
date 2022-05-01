@@ -34,6 +34,6 @@ struct Fonts {
     
     struct Effects {
         
-        static var unitFunctionFont: NSFont {systemFontScheme.effects.unitFunctionFont}
+        static var unitFunctionFont: NSFont {systemFontScheme.effectsPrimaryFont}
     }
 }

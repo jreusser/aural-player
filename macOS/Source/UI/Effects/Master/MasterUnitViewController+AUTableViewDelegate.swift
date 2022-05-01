@@ -89,7 +89,7 @@ extension MasterUnitViewController: NSTableViewDelegate {
         let audioUnit = graph.audioUnits[row]
         
         cell.text = audioUnit.name
-        cell.textFont = effectsFontScheme.unitFunctionFont
+        cell.textFont = systemFontScheme.effectsPrimaryFont
         cell.realignText(yOffset: effectsFontScheme.auRowTextYOffset)
         
         switch audioUnit.state {

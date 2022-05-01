@@ -54,8 +54,6 @@ class EffectsUnitViewController: NSViewController, Destroyable {
         oneTimeSetup()
         initControls()
         
-        applyFontScheme(systemFontScheme)
-        
         // TODO: Temporary, remove this !!!
 //        presetsMenuButton.hide()
     }
@@ -160,9 +158,6 @@ class EffectsUnitViewController: NSViewController, Destroyable {
         
 //        messenger.subscribe(to: .effects_changeSliderColors, handler: changeSliderColors)
         
-        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
-        
         colorSchemesManager.registerObserver(presetsMenuIconItem, forProperty: \.buttonColor)
         
         colorSchemesManager.registerObservers(functionCaptionLabels, forProperty: \.secondaryTextColor)
@@ -176,7 +171,7 @@ class EffectsUnitViewController: NSViewController, Destroyable {
         
         colorSchemesManager.registerSchemeObservers(sliders, forProperties: [\.backgroundColor])
         
-//        fontSchemesManager.registerObservers(functionLabels, forProperty: \.effectsPrimaryFont)
+        fontSchemesManager.registerObservers(functionLabels, forProperty: \.effectsPrimaryFont)
         
 //        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
 //        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
@@ -207,26 +202,6 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     
     func showThisTab() {
         messenger.publish(.effects_showEffectsUnitTab, payload: unitType)
-    }
-    
-    // ------------------------------------------------------------------------
-    
-    // MARK: Theming
-    
-    func applyTheme() {
-        
-        applyFontScheme(systemFontScheme)
-    }
-    
-    func applyFontScheme(_ fontScheme: FontScheme) {
-        
-//        lblCaption.font = fontScheme.captionFont
-        functionLabels.forEach {$0.font = fontScheme.effects.unitFunctionFont}
-        presetsMenuButton.font = .menuFont
-    }
-    
-    func changeSliderColors() {
-        // Do nothing. Meant to be overriden.
     }
 }
 

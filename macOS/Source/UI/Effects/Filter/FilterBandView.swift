@@ -260,13 +260,13 @@ class FilterBandView: NSView {
         
         tabButton.redraw()
         
-        functionCaptionLabels.forEach {$0.font = systemFontScheme.effects.unitFunctionFont}
+        functionCaptionLabels.forEach {$0.font = systemFontScheme.effectsPrimaryFont}
         
-        filterTypeMenu.font = systemFontScheme.effects.unitFunctionFont
+        filterTypeMenu.font = systemFontScheme.effectsPrimaryFont
         filterTypeMenu.redraw()
         
-        presetRangesMenu.font = systemFontScheme.effects.unitFunctionFont
-        lblFrequencies.font = systemFontScheme.effects.unitFunctionFont
+        presetRangesMenu.font = systemFontScheme.effectsPrimaryFont
+        lblFrequencies.font = systemFontScheme.effectsPrimaryFont
     }
     
     func applyColorScheme(_ scheme: ColorScheme) {

@@ -53,7 +53,7 @@ class FontScheme: NSObject, UserManagedObject {
         self.playerSecondaryFont = FontSchemePreset.standard.secondaryFont
         self.playerTertiaryFont = FontSchemePreset.standard.tertiaryFont
         
-        self.effectsPrimaryFont = FontSchemePreset.standard.primaryFont
+        self.effectsPrimaryFont = FontSchemePreset.standard.effectsPrimaryFont
         self.effectsSecondaryFont = FontSchemePreset.standard.secondaryFont
         self.effectsTertiaryFont = FontSchemePreset.standard.tertiaryFont
         
@@ -106,7 +106,7 @@ class FontScheme: NSObject, UserManagedObject {
         self.playerSecondaryFont = preset.secondaryFont
         self.playerTertiaryFont = preset.tertiaryFont
         
-        self.effectsPrimaryFont = preset.primaryFont
+        self.effectsPrimaryFont = preset.effectsPrimaryFont
         self.effectsSecondaryFont = preset.secondaryFont
         self.effectsTertiaryFont = preset.tertiaryFont
         
