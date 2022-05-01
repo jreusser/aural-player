@@ -24,6 +24,7 @@ class MasterUnitView: NSView {
     @IBOutlet weak var imgReverbBypass: EffectsUnitTriStateBypassImage!
     @IBOutlet weak var imgDelayBypass: EffectsUnitTriStateBypassImage!
     @IBOutlet weak var imgFilterBypass: EffectsUnitTriStateBypassImage!
+    
     @IBOutlet weak var imgAUBypass: EffectsUnitTriStateBypassImage!
     
     @IBOutlet weak var lblEQ: EffectsUnitTriStateLabel!
@@ -93,6 +94,10 @@ class MasterUnitView: NSView {
 
         ([btnFilterBypass, imgFilterBypass, lblFilter] as! [FXUnitStateObserver]).forEach {
             fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.filterUnit)
+        }
+        
+        ([imgAUBypass, lblAudioUnits] as! [FXUnitStateObserver]).forEach {
+            fxUnitStateObserverRegistry.registerAUObserver($0)
         }
     }
     

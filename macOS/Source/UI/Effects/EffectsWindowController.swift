@@ -109,6 +109,8 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
         fxUnitStateObserverRegistry.registerObserver(delayTabViewButton, forFXUnit: audioGraphDelegate.delayUnit)
         fxUnitStateObserverRegistry.registerObserver(filterTabViewButton, forFXUnit: audioGraphDelegate.filterUnit)
         
+        fxUnitStateObserverRegistry.registerAUObserver(auTabViewButton)
+        
         // TODO: Add state observer for AU tab button (complicated - composite function comprising states of individual AUs)
         // Might need an overload of registerObserver that takes a function instead of an FXUnitDelegate.
 

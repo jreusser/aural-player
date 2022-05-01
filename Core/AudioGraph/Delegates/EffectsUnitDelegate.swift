@@ -25,7 +25,7 @@ class EffectsUnitDelegate<T: EffectsUnit>: EffectsUnitDelegateProtocol {
     
     var unit: T
     
-    private var kvoTokens: [NSKeyValueObservation] = []
+    private var kvoTokens: Set<NSKeyValueObservation> = Set()
     
     init(for unit: T) {
         self.unit = unit
@@ -64,10 +64,17 @@ class EffectsUnitDelegate<T: EffectsUnit>: EffectsUnitDelegateProtocol {
 //        unit.ensureActive()
     }
     
-    func observeState(handler: @escaping EffectsUnitStateChangeHandler) {
+    func observeState(handler: @escaping EffectsUnitStateChangeHandler) -> NSKeyValueObservation {
         
-        kvoTokens.append(unit.observe(\.state, options: [.initial, .new]) {unit,_ in
+        let newToken = unit.observe(\.state, options: [.initial, .new]) {unit,_ in
             handler(unit.state)
-        })
+        }
+        
+        kvoTokens.insert(newToken)
+        return newToken
+    }
+    
+    func removeObserver(_ observer: NSKeyValueObservation) {
+        kvoTokens.remove(observer)?.invalidate()
     }
 }

@@ -217,8 +217,11 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
         let audioUnit = result.0
         let index = result.1
         
-        self.audioUnits.append(HostedAudioUnitDelegate(for: audioUnit))
-        return (audioUnit: self.audioUnits.last!, index: index)
+        let delegate = HostedAudioUnitDelegate(for: audioUnit)
+        audioUnits.append(delegate)
+        fxUnitStateObserverRegistry.observeAU(delegate)
+        
+        return (audioUnit: delegate, index: index)
     }
     
     func removeAudioUnits(at indices: IndexSet) -> [HostedAudioUnitDelegateProtocol] {

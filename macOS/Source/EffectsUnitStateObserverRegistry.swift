@@ -15,15 +15,26 @@ class EffectsUnitStateObserverRegistry {
     
     static let shared: EffectsUnitStateObserverRegistry = .init()
     
+    private var registry: [EffectsUnitType: [FXUnitStateObserver]] = [:]
+    
+    // AU ID -> Observer
+    private var auRegistry: [String: [FXUnitStateObserver]] = [:]
+    
+    private var auCompositeStateObservers: [FXUnitStateObserver] = []
+    private var reverseRegistry: [NSObject: EffectsUnitDelegateProtocol] = [:]
+    
     private var kvoTokens: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
+    
+//    private var unitStateKVOTokens: [NSKeyValueObservation] = []
     
     private init() {
         
-        // TODO: Handle adding / removing of AUs.
-        
         for unit in audioGraphDelegate.allUnits {
             
-            unit.observeState {[weak self] newState in
+            // AUs are dealt with differently.
+            guard unit.unitType != .au else {continue}
+            
+            _ = unit.observeState {[weak self] newState in
                 
                 for observer in self?.registry[unit.unitType] ?? [] {
                     observer.unitStateChanged(to: newState)
@@ -31,9 +42,38 @@ class EffectsUnitStateObserverRegistry {
             }
         }
         
+        for au in audioGraphDelegate.audioUnits {
+            observeAU(au)
+        }
+        
         observeColor(property: \.activeControlColor, forUnitState: .active)
         observeColor(property: \.inactiveControlColor, forUnitState: .bypassed)
         observeColor(property: \.suppressedControlColor, forUnitState: .suppressed)
+    }
+    
+    var compositeAUState: EffectsUnitState {
+        audioGraphDelegate.audioUnitsStateFunction()
+    }
+    
+    func observeAU(_ au: HostedAudioUnitDelegateProtocol) {
+        
+        _ = au.observeState {[weak self] newState in
+            
+            guard let strongSelf = self else {return}
+            
+            if let observers = strongSelf.auRegistry[au.id] {
+                
+                for observer in observers {
+                    observer.unitStateChanged(to: newState)
+                }
+            }
+            
+            let newCompositeAUState = strongSelf.compositeAUState
+            
+            for observer in strongSelf.auCompositeStateObservers {
+                observer.unitStateChanged(to: newCompositeAUState)
+            }
+        }
     }
     
     private func observeColor(property: KeyPath<ColorScheme, PlatformColor>, forUnitState state: EffectsUnitState) {
@@ -62,24 +102,41 @@ class EffectsUnitStateObserverRegistry {
         }
     }
     
-    private var registry: [EffectsUnitType: [FXUnitStateObserver]] = [:]
-    
-    private var reverseRegistry: [NSObject: EffectsUnitDelegateProtocol] = [:]
-    
     func registerObserver(_ observer: FXUnitStateObserver, forFXUnit fxUnit: EffectsUnitDelegateProtocol) {
         
-        if registry[fxUnit.unitType] == nil {
-            registry[fxUnit.unitType] = []
-        }
-        
-        registry[fxUnit.unitType]!.append(observer)
-        
-        if let object = observer as? NSObject {
-            reverseRegistry[object] = fxUnit
+        if fxUnit.unitType != .au {
+            
+            if registry[fxUnit.unitType] == nil {
+                registry[fxUnit.unitType] = []
+            }
+            
+            registry[fxUnit.unitType]!.append(observer)
+            
+            if let object = observer as? NSObject {
+                reverseRegistry[object] = fxUnit
+            }
+            
+        } else {
+            
+            guard let auDelegate = fxUnit as? HostedAudioUnitDelegateProtocol else {return}
+            
+            if auRegistry[auDelegate.id] == nil {
+                auRegistry[auDelegate.id] = []
+            }
+            
+            auRegistry[auDelegate.id]!.append(observer)
+            
+            // TODO: Reverse registry
         }
         
         // Set initial value.
         observer.unitStateChanged(to: fxUnit.state)
+    }
+    
+    func registerAUObserver(_ observer: FXUnitStateObserver) {
+        
+        auCompositeStateObservers.append(observer)
+        observer.unitStateChanged(to: compositeAUState)
     }
     
     func currentState(forObserver observer: FXUnitStateObserver) -> EffectsUnitState {
@@ -90,3 +147,77 @@ class EffectsUnitStateObserverRegistry {
 }
 
 let fxUnitStateObserverRegistry: EffectsUnitStateObserverRegistry = .shared
+
+protocol FXUnitStateObserver: AnyObject {
+    
+    func unitStateChanged(to newState: EffectsUnitState)
+    
+    func colorForCurrentStateChanged(to newColor: PlatformColor)
+    
+    func redraw()
+}
+
+extension FXUnitStateObserver {
+    
+    func unitStateChanged(to newState: EffectsUnitState) {
+        redraw()
+    }
+    
+    func colorForCurrentStateChanged(to newColor: PlatformColor) {
+        redraw()
+    }
+}
+
+protocol TintableFXUnitStateObserver: FXUnitStateObserver {
+    
+    var contentTintColor: NSColor? {get set}
+}
+
+extension TintableFXUnitStateObserver {
+    
+    func unitStateChanged(to newState: EffectsUnitState) {
+        
+        switch newState {
+            
+        case .active:
+            contentTintColor = systemColorScheme.activeControlColor
+            
+        case .bypassed:
+            contentTintColor = systemColorScheme.inactiveControlColor
+            
+        case .suppressed:
+            contentTintColor = systemColorScheme.suppressedControlColor
+        }
+    }
+    
+    func colorForCurrentStateChanged(to newColor: PlatformColor) {
+        contentTintColor = newColor
+    }
+}
+
+protocol TextualFXUnitStateObserver: FXUnitStateObserver {
+    
+    var textColor: NSColor? {get set}
+}
+
+extension TextualFXUnitStateObserver {
+    
+    func unitStateChanged(to newState: EffectsUnitState) {
+        
+        switch newState {
+            
+        case .active:
+            textColor = systemColorScheme.activeControlColor
+            
+        case .bypassed:
+            textColor = systemColorScheme.inactiveControlColor
+            
+        case .suppressed:
+            textColor = systemColorScheme.suppressedControlColor
+        }
+    }
+    
+    func colorForCurrentStateChanged(to newColor: PlatformColor) {
+        textColor = newColor
+    }
+}
