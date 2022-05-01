@@ -64,6 +64,8 @@ extension MasterUnitViewController: NSTableViewDelegate {
         
         let audioUnit = graph.audioUnits[row]
         
+        print("\nRegistering button in row \(row) for AU: '\(audioUnit.name)' ...")
+        
         fxUnitStateObserverRegistry.registerObserver(cell.btnSwitch, forFXUnit: audioUnit)
         
         cell.btnSwitch.offStateTooltip = "Activate this Audio Unit"

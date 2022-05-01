@@ -55,7 +55,7 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor])
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor, \.suppressedControlColor])
     }
     
     override func initControls() {
@@ -141,14 +141,11 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
         
         messenger.subscribe(to: .masterEffectsUnit_toggleEffects, handler: toggleEffects)
         messenger.subscribe(to: .auEffectsUnit_audioUnitsAddedOrRemoved, handler: audioUnitsTable.reloadData)
-        
-//        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
     }
     
     override func stateChanged() {
         messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.effectiveRate)
-        
-        audioUnitsTable.reloadData()
+        audioUnitsTable.reloadAllRows(columns: [1])
     }
     
     private func toggleEffects() {
@@ -198,6 +195,21 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
         case \.backgroundColor:
             
             audioUnitsTable.setBackgroundColor(newColor)
+            
+        case \.activeControlColor:
+            
+            let rowsForActiveUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .active}
+            audioUnitsTable.reloadRows(rowsForActiveUnits, columns: [1])
+            
+        case \.inactiveControlColor:
+            
+            let rowsForBypassedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .bypassed}
+            audioUnitsTable.reloadRows(rowsForBypassedUnits, columns: [1])
+            
+        case \.suppressedControlColor:
+            
+            let rowsForSuppressedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .suppressed}
+            audioUnitsTable.reloadRows(rowsForSuppressedUnits, columns: [1])
             
         default:
             

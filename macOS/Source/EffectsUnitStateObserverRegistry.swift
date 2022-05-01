@@ -82,22 +82,31 @@ class EffectsUnitStateObserverRegistry {
         
         kvoTokens.addObserver(forObject: systemColorScheme, keyPath: property) {[weak self] _, newColor in
             
+            guard let strongSelf = self else {return}
+            
             // Redraw all observers of units with matching state.
             
             for unit in audioGraphDelegate.allUnits.filter({$0.state == state}) {
                 
-                guard let observers = self?.registry[unit.unitType] else {continue}
+                if let observers = strongSelf.registry[unit.unitType] {
                 
-                for observer in observers {
+                    for observer in observers {
+                        observer.colorForCurrentStateChanged(to: newColor)
+                    }
                     
-                    // TODO: Can this be made more efficient ? Skipping **registered** scheme observers
-                    // when a scheme change is being made (check CSManager) ???
+                } else if let auDelegate = unit as? HostedAudioUnitDelegateProtocol, let observers = strongSelf.auRegistry[auDelegate.id] {
                     
-//                    if observer is ColorSchemeObserver, colorSchemesManager.schemeChanged,
-//                    let slider = observer as? NSSlider {
-//                        print("I can skip this observer !!! Tag = \(slider.tag)")
-//                    }
+                    print("\nChanged color for \(state) unit: '\(auDelegate.name)'")
                     
+                    for observer in observers {
+                        observer.colorForCurrentStateChanged(to: newColor)
+                    }
+                }
+            }
+            
+            if strongSelf.compositeAUState == state {
+                
+                for observer in strongSelf.auCompositeStateObservers {
                     observer.colorForCurrentStateChanged(to: newColor)
                 }
             }
@@ -127,6 +136,10 @@ class EffectsUnitStateObserverRegistry {
             }
             
             auRegistry[auDelegate.id]!.append(observer)
+            
+            for (_, obs) in auRegistry {
+                print("\(obs.count) observers for AU: '\(auDelegate.name)'")
+            }
             
             if let object = observer as? NSObject {
                 auReverseRegistry[object] = auDelegate.id

@@ -55,8 +55,6 @@ class AudioUnitsViewController: NSViewController, Destroyable {
         applyColorScheme(systemColorScheme)
         
         // Subscribe to notifications
-        messenger.subscribe(to: .effects_unitStateChanged, handler: stateChanged)
-        
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
         messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
@@ -207,10 +205,6 @@ class AudioUnitsViewController: NSViewController, Destroyable {
         
         let rowsForSuppressedUnits: [Int] = tableView.allRowIndices.filter {audioGraph.audioUnits[$0].state == .suppressed}
         tableView.reloadRows(rowsForSuppressedUnits, columns: [0])
-    }
-    
-    func stateChanged() {
-        tableView.reloadAllRows(columns: [0])
     }
     
     func changeFunctionButtonColor(_ color: NSColor) {
