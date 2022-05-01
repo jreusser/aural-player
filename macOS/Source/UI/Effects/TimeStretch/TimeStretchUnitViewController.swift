@@ -127,9 +127,9 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
     
     // Toggles the "Shift pitch" option of the Time stretch effects unit
     @IBAction func shiftPitchAction(_ sender: AnyObject) {
-
-        timeStretchUnit.shiftPitch = timeStretchUnitView.shiftPitch
-        timeStretchUnitView.updatePitchShift(shiftPitchString: timeStretchUnit.formattedPitch)
+        
+        timeStretchUnit.shiftPitch.toggle()
+        timeStretchUnitView.shiftPitch = timeStretchUnit.shiftPitch
     }
     
     // ------------------------------------------------------------------------

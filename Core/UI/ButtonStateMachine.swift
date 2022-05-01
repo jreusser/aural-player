@@ -12,7 +12,7 @@ import Foundation
 
 class ButtonStateMachine<E> where E: Hashable {
     
-    private var state: E
+    var state: E
     private let button: TintedImageButton
     private(set) var mappings: [E: StateMapping] = [:]
     

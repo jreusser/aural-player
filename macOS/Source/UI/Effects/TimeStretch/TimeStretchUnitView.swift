@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class TimeStretchUnitView: NSView {
+class TimeStretchUnitView: NSView, ColorSchemePropertyObserver {
     
     // ------------------------------------------------------------------------
     
@@ -17,10 +17,16 @@ class TimeStretchUnitView: NSView {
     
     @IBOutlet weak var timeSlider: TimeStretchSlider!
     
-    @IBOutlet weak var btnShiftPitch: EffectsUnitTriStateCheckButton!
+    @IBOutlet weak var btnShiftPitch: TintedImageButton!
     
     @IBOutlet weak var lblTimeStretchRateValue: NSTextField!
-    @IBOutlet weak var lblPitchShiftValue: NSTextField!
+    
+    private lazy var btnShiftPitchStateMachine: ButtonStateMachine<Bool> = ButtonStateMachine(initialState: audioGraphDelegate.timeStretchUnit.shiftPitch,
+                                                                                              mappings: [
+                                                                                                ButtonStateMachine.StateMapping(state: true, image: Images.imgChecked, colorProperty: \.buttonColor, toolTip: "Disable Pitch Shift"),
+                                                                                                ButtonStateMachine.StateMapping(state: false, image: Images.imgNotChecked, colorProperty: \.buttonColor, toolTip: "Enable Pitch Shift"),
+                                                                                              ],
+                                                                                              button: btnShiftPitch)
     
     // ------------------------------------------------------------------------
     
@@ -31,12 +37,17 @@ class TimeStretchUnitView: NSView {
     }
     
     var shiftPitch: Bool {
-        btnShiftPitch.isOn
+        
+        get {btnShiftPitchStateMachine.state}
+        
+        set {btnShiftPitchStateMachine.setState(newValue)}
     }
     
-    // TODO: Find a way to register this check button as an observer with colorSchemesManager.
-//    btnShiftPitch.attributedAlternateTitle = NSAttributedString(string: btnShiftPitch.title,
-//                                                                attributes: [.foregroundColor: scheme.secondaryTextColor])
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        colorSchemesManager.registerObserver(self, forProperty: \.buttonColor)
+    }
     
     // ------------------------------------------------------------------------
     
@@ -46,15 +57,9 @@ class TimeStretchUnitView: NSView {
                   shiftPitch: Bool, shiftPitchString: String) {
         
         btnShiftPitch.onIf(shiftPitch)
-        updatePitchShift(shiftPitchString: shiftPitchString)
         
         timeSlider.rate = rate
         lblTimeStretchRateValue.stringValue = rateString
-    }
-    
-    // Updates the label that displays the pitch shift value
-    func updatePitchShift(shiftPitchString: String) {
-        lblPitchShiftValue.stringValue = shiftPitchString
     }
     
     // Sets the playback rate to a specific value
@@ -62,17 +67,32 @@ class TimeStretchUnitView: NSView {
         
         lblTimeStretchRateValue.stringValue = rateString
         timeSlider.rate = rate
-        updatePitchShift(shiftPitchString: shiftPitchString)
     }
     
     func applyPreset(_ preset: TimeStretchPreset) {
         
-        btnShiftPitch.onIf(preset.shiftPitch)
-        btnShiftPitch.stateChanged()
-        
-        lblPitchShiftValue.stringValue = ValueFormatter.formatPitch(preset.shiftedPitch)
+        btnShiftPitchStateMachine.setState(preset.shiftPitch)
         
         timeSlider.rate = preset.rate
         lblTimeStretchRateValue.stringValue = ValueFormatter.formatTimeStretchRate(preset.rate)
+    }
+    
+    // ------------------------------------------------------------------------
+    
+    // MARK: Theming
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        switch property {
+            
+        case \.buttonColor:
+            
+            btnShiftPitch.image = btnShiftPitch.image?.tintedWithColor(newColor)
+            btnShiftPitch.alternateImage = btnShiftPitch.alternateImage?.tintedWithColor(newColor)
+            
+        default:
+            
+            return
+        }
     }
 }

@@ -21,6 +21,9 @@ struct Images {
     
     static let imgPause: PlatformImage = PlatformImage(named: "Pause")!
     
+    static let imgChecked: PlatformImage = PlatformImage(named: "Checked")!
+    static let imgNotChecked: PlatformImage = PlatformImage(named: "NotChecked")!
+    
     static let imgPlayingArt: PlatformImage = PlatformImage(named: "PlayingArt")!
     
     static let imgFavorite: PlatformImage = PlatformImage(systemSymbolName: "heart", accessibilityDescription: nil)!

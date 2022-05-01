@@ -99,6 +99,15 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XtF-Pu-aY0" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                            <rect key="frame" x="151" y="24" width="104" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Shift Pitch" id="xlO-FY-WYE">
+                                <font key="font" size="11" name="Play-Regular"/>
+                                <color key="textColor" white="0.39721565069999998" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
                         <button toolTip="Decrease rate by one tenth" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ISN-h2-7JL" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="124" y="92" width="12.5" height="7"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -159,20 +168,20 @@
                                 <action selector="increaseRateByHundredthAction:" target="-2" id="Qy5-H5-OqN"/>
                             </connections>
                         </button>
-                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cCd-P5-via" customClass="EffectsUnitTriStateCheckButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="109" y="16" width="126" height="30"/>
+                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dTa-gP-aeh" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                            <rect key="frame" x="117" y="24" width="30" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="bevel" title="     Shift Pitch" bezelStyle="regularSquare" image="NotChecked" imagePosition="leading" alternateImage="Checked" state="on" imageScaling="proportionallyDown" inset="2" id="3R0-wR-Qtt">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" size="11" name="Play-Regular"/>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Checked" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="JI3-Pc-sg8">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
-                                <action selector="shiftPitchAction:" target="-2" id="zNc-da-sch"/>
+                                <action selector="shiftPitchAction:" target="-2" id="lck-Tq-bsH"/>
                             </connections>
                         </button>
                     </subviews>
                     <connections>
-                        <outlet property="btnShiftPitch" destination="cCd-P5-via" id="cXj-3Q-uu8"/>
+                        <outlet property="btnShiftPitch" destination="dTa-gP-aeh" id="YlF-LB-0Zv"/>
                         <outlet property="lblPitchShiftValue" destination="wfQ-8f-44I" id="JVI-zy-dKn"/>
                         <outlet property="lblTimeStretchRateValue" destination="9IV-G1-qdp" id="oyI-aL-B59"/>
                         <outlet property="timeSlider" destination="ZrQ-re-04h" id="220-SK-88J"/>
@@ -245,7 +254,6 @@
         <image name="Add" width="25" height="25"/>
         <image name="Checked" width="200" height="200"/>
         <image name="Ellipsis" width="40" height="10"/>
-        <image name="NotChecked" width="200" height="200"/>
         <image name="Remove" width="27" height="27"/>
         <image name="minus" catalog="system" width="17" height="4"/>
         <image name="plus" catalog="system" width="17" height="16"/>
