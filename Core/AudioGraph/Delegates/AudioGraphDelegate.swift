@@ -228,6 +228,8 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
         
         graph.removeAudioUnits(at: indices)
         
+        defer {fxUnitStateObserverRegistry.compositeAUStateUpdated()}
+        
         let descendingIndices = indices.sortedDescending()
         return descendingIndices.map {audioUnits.remove(at: $0)}
     }

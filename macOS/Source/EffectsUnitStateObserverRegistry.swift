@@ -70,11 +70,16 @@ class EffectsUnitStateObserverRegistry {
                 }
             }
             
-            let newCompositeAUState = strongSelf.compositeAUState
-            
-            for observer in strongSelf.auCompositeStateObservers {
-                observer.unitStateChanged(to: newCompositeAUState)
-            }
+            strongSelf.compositeAUStateUpdated()
+        }
+    }
+    
+    func compositeAUStateUpdated() {
+        
+        let newCompositeAUState = compositeAUState
+        
+        for observer in auCompositeStateObservers {
+            observer.unitStateChanged(to: newCompositeAUState)
         }
     }
     
