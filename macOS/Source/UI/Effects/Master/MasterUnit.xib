@@ -285,7 +285,7 @@
                                                 <rect key="frame" x="23" y="0.0" width="185" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="2jd-cT-upy">
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="2jd-cT-upy" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="1" y="0.0" width="184" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="180" id="CXW-A8-ypT"/>
@@ -309,6 +309,10 @@
                                         </prototypeCellViews>
                                     </tableColumn>
                                 </tableColumns>
+                                <connections>
+                                    <outlet property="dataSource" destination="-2" id="yWH-fc-DIa"/>
+                                    <outlet property="delegate" destination="-2" id="fCO-IP-Nqh"/>
+                                </connections>
                             </tableView>
                         </subviews>
                     </clipView>

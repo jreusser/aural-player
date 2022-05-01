@@ -61,7 +61,6 @@ extension AudioUnitsViewController: NSTableViewDelegate {
         
         let audioUnit = audioGraph.audioUnits[row]
         
-//        cell.btnSwitch.stateFunction = audioUnit.stateFunction
         fxUnitStateObserverRegistry.registerObserver(cell.btnSwitch, forFXUnit: audioUnit)
 
         cell.btnSwitch.offStateTooltip = "Activate this Audio Unit"
