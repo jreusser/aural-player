@@ -23,6 +23,8 @@ class EffectsUnitStateObserverRegistry {
     private var auCompositeStateObservers: [FXUnitStateObserver] = []
     private var reverseRegistry: [NSObject: EffectsUnitDelegateProtocol] = [:]
     
+    private var auReverseRegistry: [NSObject: String] = [:]
+    
     private var kvoTokens: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
     
 //    private var unitStateKVOTokens: [NSKeyValueObservation] = []
@@ -126,6 +128,10 @@ class EffectsUnitStateObserverRegistry {
             
             auRegistry[auDelegate.id]!.append(observer)
             
+            if let object = observer as? NSObject {
+                auReverseRegistry[object] = auDelegate.id
+            }
+            
             // TODO: Reverse registry
         }
         
@@ -136,13 +142,32 @@ class EffectsUnitStateObserverRegistry {
     func registerAUObserver(_ observer: FXUnitStateObserver) {
         
         auCompositeStateObservers.append(observer)
+        
+        if let object = observer as? NSObject {
+            auReverseRegistry[object] = "_composite_"
+        }
+        
         observer.unitStateChanged(to: compositeAUState)
     }
     
     func currentState(forObserver observer: FXUnitStateObserver) -> EffectsUnitState {
         
         guard let object = observer as? NSObject else {return .bypassed}
-        return reverseRegistry[object]?.state ?? .bypassed
+        
+        if let state = reverseRegistry[object]?.state {
+            return state
+        }
+        
+        if let auID = auReverseRegistry[object] {
+            
+            if auID != "_composite_" {
+                return audioGraphDelegate.audioUnits.first(where: {$0.id == auID})?.state ?? .bypassed
+            } else {
+                return compositeAUState
+            }
+        }
+        
+        return .bypassed
     }
 }
 
