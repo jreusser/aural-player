@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class ReverbUnitView: NSView {
+class ReverbUnitView: NSView, ColorSchemeObserver {
     
     // ------------------------------------------------------------------------
     
@@ -18,6 +18,16 @@ class ReverbUnitView: NSView {
     @IBOutlet weak var reverbSpaceMenu: NSPopUpButton!
     @IBOutlet weak var reverbAmountSlider: EffectsUnitSlider!
     @IBOutlet weak var lblReverbAmountValue: NSTextField!
+    
+    // ------------------------------------------------------------------------
+    
+    // MARK: View init
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.buttonColor, \.primaryTextColor])
+    }
     
     // ------------------------------------------------------------------------
     
@@ -67,7 +77,11 @@ class ReverbUnitView: NSView {
         reverbSpaceMenu.redraw()
     }
     
-    func redrawMenu() {
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        reverbSpaceMenu.redraw()
+    }
+    
+    func colorSchemeChanged() {
         reverbSpaceMenu.redraw()
     }
 }

@@ -43,8 +43,10 @@ class ReverbUnitViewController: EffectsUnitViewController {
     override func initControls() {
         
         super.initControls()
+        
         reverbUnitView.setState(space: reverbUnit.space.description,
-                                amount: reverbUnit.amount, amountString: reverbUnit.formattedAmount)
+                                amount: reverbUnit.amount,
+                                amountString: reverbUnit.formattedAmount)
     }
     
     // ------------------------------------------------------------------------
@@ -61,74 +63,5 @@ class ReverbUnitViewController: EffectsUnitViewController {
         
         reverbUnit.amount = reverbUnitView.amount
         reverbUnitView.setAmount(reverbUnit.amount, amountString: reverbUnit.formattedAmount)
-    }
-    
-    // ------------------------------------------------------------------------
-    
-    // MARK: Message handling
-    
-    override func initSubscriptions() {
-        
-        super.initSubscriptions()
-        
-//        messenger.subscribe(to: .changeTextButtonMenuColor, handler: changeTextButtonMenuColor(_:))
-//        messenger.subscribe(to: .changeButtonMenuTextColor, handler: changeButtonMenuTextColor(_:))
-    }
-    
-    // ------------------------------------------------------------------------
-    
-    // MARK: Theming
-    
-//    override func applyFontScheme(_ fontScheme: FontScheme) {
-//        
-//        super.applyFontScheme(fontScheme)
-//        reverbUnitView.applyFontScheme(fontScheme)
-//    }
-    
-//    override func applyColorScheme(_ scheme: ColorScheme) {
-//
-//        super.applyColorScheme(scheme)
-//
-//        changeSliderColors()
-//        reverbUnitView.redrawMenu()
-//    }
-//
-//    override func changeSliderColors() {
-//        reverbUnitView.redrawSliders()
-//    }
-//
-//    override func changeActiveUnitStateColor(_ color: NSColor) {
-//
-//        super.changeActiveUnitStateColor(color)
-//
-//        if reverbUnit.isActive {
-//            reverbUnitView.redrawSliders()
-//        }
-//    }
-//
-//    override func changeBypassedUnitStateColor(_ color: NSColor) {
-//
-//        super.changeBypassedUnitStateColor(color)
-//
-//        if reverbUnit.state == .bypassed {
-//            reverbUnitView.redrawSliders()
-//        }
-//    }
-//
-//    override func changeSuppressedUnitStateColor(_ color: NSColor) {
-//
-//        super.changeSuppressedUnitStateColor(color)
-//
-//        if reverbUnit.state == .suppressed {
-//            reverbUnitView.redrawSliders()
-//        }
-//    }
-    
-    func changeTextButtonMenuColor(_ color: NSColor) {
-        reverbUnitView.redrawMenu()
-    }
-    
-    func changeButtonMenuTextColor(_ color: NSColor) {
-        reverbUnitView.redrawMenu()
     }
 }
