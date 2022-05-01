@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyObserver {
+class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyObserver, FontSchemePropertyObserver {
     
     override var nibName: String? {"MasterUnit"}
     
@@ -177,6 +177,20 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
     
     // MARK: Theming
     
+    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+        
+        switch property {
+            
+        case \.effectsPrimaryFont:
+            
+            audioUnitsTable.reloadAllRows(columns: [1])
+            
+        default:
+            
+            return
+        }
+    }
+    
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
         switch property {
@@ -189,21 +203,6 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
             
             return
         }
-    }
-    
-    override func applyFontScheme(_ fontScheme: FontScheme) {
-        
-//        lblCaption.font = systemFontScheme.effects.unitCaptionFont
-        
-        functionLabels.forEach {
-            
-            $0.font = $0 is EffectsUnitTriStateLabel ? fontScheme.effects.masterUnitFunctionFont :
-            systemFontScheme.effects.unitCaptionFont
-        }
-        
-        presetsMenuButton.font = .menuFont
-        
-        audioUnitsTable.reloadAllRows(columns: [1])
     }
     
 //    override func applyColorScheme(_ scheme: ColorScheme) {

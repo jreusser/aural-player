@@ -52,7 +52,7 @@ class PlaylistsWindowController: NSWindowController {
         playlistNamesViewController.tableViewController = tableViewController
         playlistNamesViewController.controlsContainer = window?.contentView as? PlaylistsContainer
         
-        lblCaption.font = systemFontScheme.effects.unitCaptionFont
+        lblCaption.font = systemFontScheme.captionFont
         lblTracksSummary.font = systemFontScheme.playlist.summaryFont
         lblDurationSummary.font = systemFontScheme.playlist.summaryFont
         

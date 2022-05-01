@@ -42,35 +42,13 @@ class MasterUnitView: NSView {
     
     override func awakeFromNib() {
         
+        super.awakeFromNib()
+        
         buttons = [btnEQBypass, btnPitchBypass, btnTimeBypass, btnReverbBypass, btnDelayBypass, btnFilterBypass]
         images = [imgEQBypass, imgPitchBypass, imgTimeBypass, imgReverbBypass, imgDelayBypass, imgFilterBypass, imgAUBypass]
         labels = [lblEQ, lblPitch, lblTime, lblReverb, lblDelay, lblFilter, lblAudioUnits]
         
         let audioGraph = audioGraphDelegate
-        
-//        ([btnEQBypass, imgEQBypass] as! [FXUnitStateObserver]).forEach {
-//            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.eqUnit)
-//        }
-//
-//        ([btnPitchBypass, imgPitchBypass] as! [FXUnitStateObserver]).forEach {
-//            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.pitchShiftUnit)
-//        }
-//
-//        ([btnTimeBypass, imgTimeBypass] as! [FXUnitStateObserver]).forEach {
-//            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.timeStretchUnit)
-//        }
-//
-//        ([btnReverbBypass, imgReverbBypass] as! [FXUnitStateObserver]).forEach {
-//            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.reverbUnit)
-//        }
-//
-//        ([btnDelayBypass, imgDelayBypass] as! [FXUnitStateObserver]).forEach {
-//            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.delayUnit)
-//        }
-//
-//        ([btnFilterBypass, imgFilterBypass] as! [FXUnitStateObserver]).forEach {
-//            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.filterUnit)
-//        }
         
         ([btnEQBypass, imgEQBypass, lblEQ] as! [FXUnitStateObserver]).forEach {
             fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.eqUnit)
@@ -99,6 +77,8 @@ class MasterUnitView: NSView {
         ([imgAUBypass, lblAudioUnits] as! [FXUnitStateObserver]).forEach {
             fxUnitStateObserverRegistry.registerAUObserver($0)
         }
+        
+        fontSchemesManager.registerObservers(labels, forProperty: \.captionFont)
     }
     
     func applyPreset(_ preset: MasterPreset) {

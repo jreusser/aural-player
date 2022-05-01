@@ -436,7 +436,7 @@
 //
 //    func applyFontScheme(_ fontScheme: FontScheme) {
 //
-//        lblPlaylistName.font = fontScheme.effects.unitCaptionFont
+//        lblPlaylistName.font = fontScheme.captionFont
 //
 //        lblTracksSummary.font = fontScheme.playlist.summaryFont
 //        lblDurationSummary.font = fontScheme.playlist.summaryFont

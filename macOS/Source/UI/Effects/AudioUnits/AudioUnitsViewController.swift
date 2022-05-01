@@ -157,7 +157,7 @@ class AudioUnitsViewController: NSViewController, Destroyable {
     
     func applyFontScheme(_ fontScheme: FontScheme) {
         
-//        lblCaption.font = systemFontScheme.effects.unitCaptionFont
+//        lblCaption.font = systemFontScheme.captionFont
         tableView.reloadAllRows(columns: [1])
     }
     

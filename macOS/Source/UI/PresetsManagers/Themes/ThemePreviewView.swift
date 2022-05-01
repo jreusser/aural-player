@@ -218,7 +218,7 @@ class ThemePreviewView: NSView {
 //
 //                (playlistIndexDurationLabels + playlistTrackTitleLabels + [lblPlaylistSelectedDuration, lblPlaylistSelectedTitle]).forEach {$0.font = fontScheme.playlist.trackTextFont}
 //
-//                lblEffectsCaption.font = fontScheme.effects.unitCaptionFont
+//                lblEffectsCaption.font = fontScheme.captionFont
 //            }
 //
 //            if let windowAppearance = theme?.windowAppearance {

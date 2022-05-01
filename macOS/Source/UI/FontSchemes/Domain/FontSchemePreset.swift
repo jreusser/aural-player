@@ -431,23 +431,23 @@ enum FontSchemePreset: String, CaseIterable {
         
         switch self {
                 
-            case .standard:  return standardFontSet.captionFont(size: 16)
+            case .standard:  return standardFontSet.captionFont(size: 14)
                 
-            case .rounded:  return roundedFontSet.captionFont(size: 16)
+            case .rounded:  return roundedFontSet.captionFont(size: 14)
                 
-            case .programmer:  return programmerFontSet.captionFont(size: 16)
+            case .programmer:  return programmerFontSet.captionFont(size: 14)
                 
-            case .futuristic:   return futuristicFontSet.captionFont(size: 17)
+            case .futuristic:   return futuristicFontSet.captionFont(size: 16)
                 
-            case .novelist:  return novelistFontSet.captionFont(size: 15)
+            case .novelist:  return novelistFontSet.captionFont(size: 13)
                 
-            case .soySauce:  return soySauceFontSet.captionFont(size: 19)
+            case .soySauce:  return soySauceFontSet.captionFont(size: 15)
                 
-            case .gothic:    return gothicFontSet.captionFont(size: 17)
+            case .gothic:    return gothicFontSet.captionFont(size: 15)
                 
-            case .papyrus:      return papyrusFontSet.captionFont(size: 12.5)
+            case .papyrus:      return papyrusFontSet.captionFont(size: 11)
                 
-            case .poolsideFM:   return poolsideFMFontSet.captionFont(size: 16)
+            case .poolsideFM:   return poolsideFMFontSet.captionFont(size: 14)
         }
     }
     

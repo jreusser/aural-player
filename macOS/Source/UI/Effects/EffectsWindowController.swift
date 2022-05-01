@@ -230,7 +230,7 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
     }
     
     private func applyFontScheme(_ scheme: FontScheme) {
-        lblCaption.font = scheme.effects.unitCaptionFont
+        lblCaption.font = scheme.captionFont
     }
     
 //    private func changeActiveUnitStateColor(_ color: NSColor) {

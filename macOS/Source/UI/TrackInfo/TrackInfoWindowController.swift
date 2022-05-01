@@ -79,10 +79,10 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, Destroyable {
         super.viewWillAppear()
         tabViewControllers.forEach {$0.refresh()}
         
-        lblMainCaption.font = systemFontScheme.effects.unitCaptionFont
+        lblMainCaption.font = systemFontScheme.captionFont
         lblMainCaption.textColor = systemColorScheme.captionTextColor
         
-        lblTabCaption.font = systemFontScheme.effects.unitCaptionFont
+        lblTabCaption.font = systemFontScheme.captionFont
         lblTabCaption.textColor = systemColorScheme.captionTextColor
     }
     

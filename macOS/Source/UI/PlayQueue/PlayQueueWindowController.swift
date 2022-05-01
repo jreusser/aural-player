@@ -53,7 +53,7 @@ class PlayQueueWindowController: NSWindowController {
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
         colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
         
-        lblCaption.font = systemFontScheme.effects.unitCaptionFont
+        lblCaption.font = systemFontScheme.captionFont
         lblTracksSummary.font = Fonts.Player.infoBoxArtistAlbumFont
         lblDurationSummary.font = Fonts.Player.infoBoxArtistAlbumFont
         
@@ -120,7 +120,7 @@ class PlayQueueWindowController: NSWindowController {
     // MARK: Notification handling ----------------------------------------------------------------------------------
     
     private func applyFontScheme(_ scheme: FontScheme) {
-        lblCaption.font = scheme.effects.unitCaptionFont
+        lblCaption.font = scheme.captionFont
     }
 
     private func startedAddingTracks() {

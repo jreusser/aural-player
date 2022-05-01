@@ -220,7 +220,7 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     
     func applyFontScheme(_ fontScheme: FontScheme) {
         
-//        lblCaption.font = fontScheme.effects.unitCaptionFont
+//        lblCaption.font = fontScheme.captionFont
         functionLabels.forEach {$0.font = fontScheme.effects.unitFunctionFont}
         presetsMenuButton.font = .menuFont
     }

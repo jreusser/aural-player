@@ -48,7 +48,7 @@ class FontSchemePreviewView: NSView {
                 playlistHeadingFont = theScheme.playlist.tabButtonTextFont
                 playlistTrackTextFont = theScheme.playlist.trackTextFont
                 
-                effectsCaptionFont = theScheme.effects.unitCaptionFont
+                effectsCaptionFont = theScheme.captionFont
                 effectsFunctionFont = theScheme.effects.unitFunctionFont
                 
                 containerBox.show()

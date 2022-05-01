@@ -33,12 +33,12 @@ class EffectsFontSchemeViewController: NSViewController, FontSchemesViewProtocol
         
         let scheme = fontScheme.effects
         
-        unitCaptionStepper.fontSize = scheme.unitCaptionFont.pointSize
-        unitFunctionStepper.fontSize = fontScheme.effects.unitFunctionFont.pointSize
-        masterUnitFunctionStepper.fontSize = fontScheme.effects.masterUnitFunctionFont.pointSize
-        filterChartStepper.fontSize = fontScheme.effects.filterChartFont.pointSize
+        unitCaptionStepper.fontSize = fontScheme.captionFont.pointSize
+        unitFunctionStepper.fontSize = scheme.unitFunctionFont.pointSize
+        masterUnitFunctionStepper.fontSize = scheme.masterUnitFunctionFont.pointSize
+        filterChartStepper.fontSize = scheme.filterChartFont.pointSize
         
-        auTableRowYOffsetStepper.integerValue = fontScheme.effects.auRowTextYOffset.roundedInt
+        auTableRowYOffsetStepper.integerValue = scheme.auRowTextYOffset.roundedInt
         txtAUTableRowYOffset.stringValue = String(format: "%d px", auTableRowYOffsetStepper.integerValue)
     }
     
@@ -51,7 +51,7 @@ class EffectsFontSchemeViewController: NSViewController, FontSchemesViewProtocol
         let textFontName = context.textFontName
         let headingFontName = context.headingFontName
         
-        fontScheme.effects.unitCaptionFont = NSFont(name: headingFontName, size: unitCaptionStepper.fontSize)!
+        fontScheme.captionFont = NSFont(name: headingFontName, size: unitCaptionStepper.fontSize)!
         fontScheme.effects.unitFunctionFont = NSFont(name: textFontName, size: unitFunctionStepper.fontSize)!
         fontScheme.effects.masterUnitFunctionFont = NSFont(name: headingFontName, size: masterUnitFunctionStepper.fontSize)!
         fontScheme.effects.filterChartFont = NSFont(name: textFontName, size: filterChartStepper.fontSize)!

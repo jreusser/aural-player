@@ -35,7 +35,7 @@ class PlaylistContainerViewController: NSViewController {
         
         super.viewDidLoad()
         
-        lblPlaylistName.font = systemFontScheme.effects.unitCaptionFont
+        lblPlaylistName.font = systemFontScheme.captionFont
         
         colorSchemesManager.registerObserver(playlistContainer, forProperty: \.backgroundColor)
         colorSchemesManager.registerObserver(lblPlaylistName, forProperty: \.captionTextColor)

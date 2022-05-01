@@ -31,6 +31,8 @@ struct FontSchemePersistentState: Codable {
     
     let textFontName: String?
     let headingFontName: String?
+    
+    let captionSize: CGFloat?
 
     let playerPrimarySize: CGFloat?
     let playerSecondarySize: CGFloat?
@@ -50,6 +52,8 @@ struct FontSchemePersistentState: Codable {
         
         self.textFontName = scheme.playerPrimaryFont.fontName
         self.headingFontName = scheme.playlist.tabButtonTextFont.fontName
+        
+        self.captionSize = scheme.captionFont.pointSize
         
         self.playerPrimarySize = scheme.playerPrimaryFont.pointSize
         self.playerSecondarySize = scheme.playerSecondaryFont.pointSize
