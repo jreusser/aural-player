@@ -46,9 +46,10 @@ class FilterChart: NSView {
     
     override func draw(_ dirtyRect: NSRect) {
         
-        let unitState: EffectsUnitState = filterUnitStateFunction()
+//        let unitState: EffectsUnitState = filterUnitStateFunction()
         
-        var drawPath = NSBezierPath(rect: dirtyRect)
+//        var drawPath = NSBezierPath(rect: dirtyRect)
+        NSBezierPath.fillRoundedRect(dirtyRect, radius: 2, withColor: .darkGray)
 //        drawPath.fill(withColor: backgroundColor)
         
 //        let width = self.width - 2 * offset

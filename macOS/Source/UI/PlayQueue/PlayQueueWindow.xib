@@ -451,7 +451,7 @@
                             <constraint firstAttribute="width" constant="15" id="G60-ob-Kkj"/>
                             <constraint firstAttribute="height" constant="15" id="qkJ-0N-PFI"/>
                         </constraints>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.up" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="bOK-fB-odD">
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.up" catalog="system" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="bOK-fB-odD">
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -468,7 +468,7 @@
                             <constraint firstAttribute="width" constant="15" id="TyP-fO-7pt"/>
                             <constraint firstAttribute="height" constant="15" id="mtf-1y-StA"/>
                         </constraints>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.down" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="dWa-b2-KCV">
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.down" catalog="system" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="dWa-b2-KCV">
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>

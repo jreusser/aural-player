@@ -78,8 +78,7 @@ extension ChaptersListViewController: NSTableViewDelegate {
         
         guard let cell = tableView.makeView(withIdentifier: .cid_chapterIndex, owner: nil) as? ChaptersListTableCellView else {return nil}
         
-        cell.unselectedTextFont = fontScheme.trackTextFont
-        cell.selectedTextFont = fontScheme.trackTextFont
+        cell.textFont = fontScheme.trackTextFont
         
 //        cell.unselectedTextColor = Colors.Playlist.indexDurationTextColor
 //        cell.selectedTextColor = Colors.Playlist.indexDurationSelectedTextColor
@@ -100,8 +99,7 @@ extension ChaptersListViewController: NSTableViewDelegate {
         
         guard let cell = tableView.makeView(withIdentifier: .cid_chapterTitle, owner: nil) as? ChaptersListTableCellView else {return nil}
         
-        cell.unselectedTextFont = fontScheme.trackTextFont
-        cell.selectedTextFont = fontScheme.trackTextFont
+        cell.textFont = fontScheme.trackTextFont
         
 //        cell.unselectedTextColor = Colors.Playlist.trackNameTextColor
 //        cell.selectedTextColor = Colors.Playlist.trackNameSelectedTextColor
@@ -118,8 +116,7 @@ extension ChaptersListViewController: NSTableViewDelegate {
         
         guard let cell = tableView.makeView(withIdentifier: id, owner: nil) as? ChaptersListTableCellView else {return nil}
         
-        cell.unselectedTextFont = fontScheme.trackTextFont
-        cell.selectedTextFont = fontScheme.trackTextFont
+        cell.textFont = fontScheme.trackTextFont
         
 //        cell.unselectedTextColor = Colors.Playlist.indexDurationTextColor
 //        cell.selectedTextColor = Colors.Playlist.indexDurationSelectedTextColor

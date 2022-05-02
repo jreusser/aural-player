@@ -21,6 +21,7 @@ class FilterUnitViewController: EffectsUnitViewController {
     // MARK: UI fields
     
     @IBOutlet weak var filterUnitView: FilterUnitView!
+    @IBOutlet weak var bandsTableView: NSTableView!
     
     private var bandControllers: [FilterBandViewController] = []
     
@@ -54,12 +55,12 @@ class FilterUnitViewController: EffectsUnitViewController {
 
         super.initControls()
         
-        bandControllers = filterUnit.bands.enumerated().map {
-            
-            FilterBandViewController.create(band: $1, at: $0,
-                                            withButtonAction: #selector(self.showBandAction(_:)),
-                                            andTarget: self)
-        }
+//        bandControllers = filterUnit.bands.enumerated().map {
+//
+//            FilterBandViewController.create(band: $1, at: $0,
+//                                            withButtonAction: #selector(self.showBandAction(_:)),
+//                                            andTarget: self)
+//        }
         
         filterUnitView.setBands(bandControllers.map {$0.bandView})
     }
@@ -68,38 +69,48 @@ class FilterUnitViewController: EffectsUnitViewController {
     
     // MARK: Actions
     
-    @IBAction func addBandAction(_ sender: AnyObject) {
-        
-        let newBandInfo: (band: FilterBand, index: Int) = filterUnit.addBand()
-        
-        let bandController = FilterBandViewController.create(band: newBandInfo.band, at: newBandInfo.index,
-                                                      withButtonAction: #selector(self.showBandAction(_:)),
-                                                      andTarget: self)
-
-        bandControllers.append(bandController)
-        filterUnitView.addBand(bandController.bandView, selectNewTab: true)
+    @IBAction func addBandStopBandAction(_ sender: AnyObject) {
+        doAddBand(ofType: .bandStop)
     }
     
-    @IBAction func removeBandAction(_ sender: AnyObject) {
+    @IBAction func addBandPassBandAction(_ sender: AnyObject) {
+        doAddBand(ofType: .bandPass)
+    }
+    
+    @IBAction func addLowPassBandAction(_ sender: AnyObject) {
+        doAddBand(ofType: .lowPass)
+    }
+    
+    @IBAction func addHighPassBandAction(_ sender: AnyObject) {
+        doAddBand(ofType: .highPass)
+    }
+    
+    private func doAddBand(ofType bandType: FilterBandType) {
         
-        let selectedTab = filterUnitView.selectedTab
-        filterUnit.removeBand(at: selectedTab)
+        let newBandInfo: (band: FilterBand, index: Int) = filterUnit.addBand(ofType: bandType)
+        bandsTableView.noteNumberOfRowsChanged()
         
-        // Remove the selected band's controller and view
-        filterUnitView.removeSelectedBand()
-        bandControllers.remove(at: selectedTab)
+        // TODO: Pop up band editor dialog
+        
+        //        let bandController = FilterBandViewController.create(band: newBandInfo.band, at: newBandInfo.index,
+        //                                                      withButtonAction: #selector(self.showBandAction(_:)),
+        //                                                      andTarget: self)
+        //
+        //        bandControllers.append(bandController)
+        //        filterUnitView.addBand(bandController.bandView, selectNewTab: true)
     }
     
-    @IBAction func showBandAction(_ sender: NSButton) {
-        filterUnitView.selectTab(at: sender.tag)
-    }
-    
-    @IBAction func scrollTabsLeftAction(_ sender: AnyObject) {
-        filterUnitView.scrollLeft()
-    }
-    
-    @IBAction func scrollTabsRightAction(_ sender: AnyObject) {
-        filterUnitView.scrollRight()
+    @IBAction func removeBandsAction(_ sender: AnyObject) {
+        
+        filterUnit.removeBands(atIndices: bandsTableView.selectedRowIndexes)
+        bandsTableView.reloadData()
+        
+//        let selectedTab = filterUnitView.selectedTab
+//        filterUnit.removeBand(at: selectedTab)
+//
+//        // Remove the selected band's controller and view
+//        filterUnitView.removeSelectedBand()
+//        bandControllers.remove(at: selectedTab)
     }
     
     // ------------------------------------------------------------------------

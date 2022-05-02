@@ -24,9 +24,9 @@ protocol FilterUnitDelegateProtocol: EffectsUnitDelegateProtocol {
     
     subscript(_ index: Int) -> FilterBand {get set}
     
-    func addBand() -> (band: FilterBand, index: Int)
+    func addBand(ofType bandType: FilterBandType) -> (band: FilterBand, index: Int)
     
-    func removeBand(at index: Int)
+    func removeBands(atIndices indices: IndexSet)
     
     var presets: FilterPresets {get}
 }

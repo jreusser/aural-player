@@ -28,9 +28,9 @@ class FilterUnitDelegate: EffectsUnitDelegate<FilterUnit>, FilterUnitDelegatePro
         set {unit.bands = newValue}
     }
     
-    func addBand() -> (band: FilterBand, index: Int) {
+    func addBand(ofType bandType: FilterBandType) -> (band: FilterBand, index: Int) {
         
-        let newBand: FilterBand = .bandStopBand(minFreq: SoundConstants.subBass_min, maxFreq: SoundConstants.subBass_max)
+        let newBand: FilterBand = .ofType(bandType)
         return (newBand, unit.addBand(newBand))
     }
     
@@ -40,7 +40,7 @@ class FilterUnitDelegate: EffectsUnitDelegate<FilterUnit>, FilterUnitDelegatePro
         set(newBand) {unit[index] = newBand}
     }
     
-    func removeBand(at index: Int) {
-        unit.removeBand(at: index)
+    func removeBands(atIndices indices: IndexSet) {
+        unit.removeBands(at: indices)
     }
 }

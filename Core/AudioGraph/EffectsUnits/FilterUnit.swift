@@ -8,6 +8,7 @@
 //  See the file "LICENSE" in the project root directory for license terms.
 //
 import AVFoundation
+import DequeModule
 
 ///
 /// An effects unit that eliminates certain frequencies from the input audio signal.
@@ -51,8 +52,8 @@ class FilterUnit: EffectsUnit, FilterUnitProtocol {
         return node.addBand(band)
     }
     
-    func removeBand(at index: Int) {
-        node.removeBands(atIndices: IndexSet([index]))
+    func removeBands(at indices: IndexSet) {
+        node.removeBands(atIndices: indices)
     }
     
     override func savePreset(named presetName: String) {

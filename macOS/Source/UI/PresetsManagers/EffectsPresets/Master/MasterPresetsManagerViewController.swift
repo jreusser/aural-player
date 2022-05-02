@@ -24,7 +24,7 @@ class MasterPresetsManagerViewController: EffectsPresetsManagerGenericViewContro
 
     @IBOutlet weak var filterSubPreview: FilterPresetView!
     @IBOutlet weak var filterBandsTable: NSTableView!
-    @IBOutlet weak var filterBandsTableViewDelegate: FilterBandsViewDelegate!
+    @IBOutlet weak var filterBandsTableViewDelegate: FilterPresetBandsTableViewDelegate!
     
     private lazy var preferences: Preferences = preferences
     
@@ -55,8 +55,6 @@ class MasterPresetsManagerViewController: EffectsPresetsManagerGenericViewContro
         let bandsDataFunction = {[weak self] in self?.filterChartBands ?? []}
         filterSubPreview.initialize(stateFunction: {[weak self] in self?.presetFilterUnitState ?? .active},
                                     bandsDataFunction: bandsDataFunction)
-        
-        filterBandsTableViewDelegate.allowSelection = false
     }
     
     private var filterChartBands: [FilterBand] {

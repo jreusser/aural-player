@@ -14,7 +14,7 @@ class FilterPresetsManagerViewController: EffectsPresetsManagerGenericViewContro
     @IBOutlet weak var filterView: FilterPresetView!
     
     @IBOutlet weak var bandsTable: NSTableView!
-    @IBOutlet weak var tableViewDelegate: FilterBandsViewDelegate!
+    @IBOutlet weak var tableViewDelegate: FilterPresetBandsTableViewDelegate!
     
     override var nibName: String? {"FilterPresetsManager"}
     
@@ -36,8 +36,6 @@ class FilterPresetsManagerViewController: EffectsPresetsManagerGenericViewContro
         let bandsDataFunction = {[weak self] in self?.filterChartBands ?? []}
         
         filterView.initialize(stateFunction: {.active}, bandsDataFunction: bandsDataFunction)
-        
-        tableViewDelegate.allowSelection = false
     }
     
     override func renderPreview(_ presetName: String) {

@@ -31,8 +31,6 @@ class FilterBandView: NSView {
     
     @IBOutlet weak var lblFrequencies: NSTextField!
     
-    @IBOutlet weak var tabButton: NSButton!
-    
     private var functionCaptionLabels: [NSTextField] = []
     
     // ------------------------------------------------------------------------
@@ -53,12 +51,6 @@ class FilterBandView: NSView {
         // Do nothing
     }
     
-    var buttonPosition: NSPoint {
-        
-        get {tabButton.frame.origin}
-        set {tabButton.setFrameOrigin(newValue)}
-    }
-    
     // ------------------------------------------------------------------------
     
     // MARK: UI initialization / life-cycle
@@ -68,10 +60,6 @@ class FilterBandView: NSView {
         self.band = band
         self.bandIndex = index
         
-        tabButton.title = "#\(index + 1)"
-        tabButton.tag = index
-        tabButton.action = action
-        tabButton.target = target
     }
     
     override func awakeFromNib() {
@@ -258,8 +246,6 @@ class FilterBandView: NSView {
     
     func applyFontScheme(_ fontScheme: FontScheme) {
         
-        tabButton.redraw()
-        
         functionCaptionLabels.forEach {$0.font = systemFontScheme.effectsPrimaryFont}
         
         filterTypeMenu.font = systemFontScheme.effectsPrimaryFont
@@ -276,7 +262,6 @@ class FilterBandView: NSView {
         changeFunctionCaptionTextColor(scheme.secondaryTextColor)
         changeFunctionValueTextColor(scheme.primaryTextColor)
         redrawSliders()
-        tabButton.redraw()
     }
     
     func changeFunctionButtonColor() {

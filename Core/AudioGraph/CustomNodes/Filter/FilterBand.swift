@@ -19,6 +19,8 @@ class FilterBand {
     
     var type: FilterBandType
     
+    var bypass: Bool = false
+    
     var minFreq: Float?     // Used for highPass, bandPass, and bandStop
     var maxFreq: Float?     // Used for lowPass, bandPass, and bandStop
     
@@ -61,6 +63,28 @@ class FilterBand {
     
     func clone() -> FilterBand {
         return FilterBand(type: self.type, minFreq: self.minFreq, maxFreq: self.maxFreq)
+    }
+    
+    static func ofType(_ type: FilterBandType) -> FilterBand {
+        
+        switch type {
+        
+        case .bandPass:
+            
+            return bandPassBand(minFreq: 60, maxFreq: SoundConstants.audibleRangeMax)
+                
+        case .bandStop:
+            
+            return bandStopBand(minFreq: SoundConstants.audibleRangeMin, maxFreq: 60)
+            
+        case .lowPass:
+            
+            return lowPassBand(maxFreq: SoundConstants.audibleRangeMax)
+            
+        case .highPass:
+            
+            return highPassBand(minFreq: 60)
+        }
     }
     
     static func bandPassBand(minFreq: Float, maxFreq: Float) -> FilterBand {

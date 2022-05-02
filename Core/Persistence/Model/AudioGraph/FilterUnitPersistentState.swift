@@ -31,12 +31,15 @@ struct FilterBandPersistentState: Codable {
     
     let type: FilterBandType?
     
+    let bypass: Bool?
+    
     let minFreq: Float?     // Used for highPass, bandPass, and bandStop
     let maxFreq: Float?
     
     init(band: FilterBand) {
         
         self.type = band.type
+        self.bypass = band.bypass
         self.minFreq = band.minFreq
         self.maxFreq = band.maxFreq
     }

@@ -30,9 +30,6 @@ class BasicTableCellView: NSTableCellView {
     
     var rowSelectionStateFunction: () -> Bool = {false}
     
-    var unselectedTextFont: NSFont = standardFontSet.mainFont(size: 10)
-    var selectedTextFont: NSFont = standardFontSet.mainFont(size: 10)
-    
     var unselectedTextColor: NSColor = .defaultLightTextColor
     var selectedTextColor: NSColor = .defaultSelectedLightTextColor
     
@@ -51,7 +48,6 @@ class BasicTableCellView: NSTableCellView {
         
         // Check if this row is selected, change font and color accordingly
         textColor = isSelectedRow ?  selectedTextColor : unselectedTextColor
-        textFont = isSelectedRow ? selectedTextFont : unselectedTextFont
     }
 }
 
