@@ -57,17 +57,15 @@ class FilterUnitViewController: EffectsUnitViewController {
 
         super.initControls()
         
-//        bandControllers = filterUnit.bands.enumerated().map {
-//
-//            FilterBandViewController.create(band: $1, at: $0,
-//                                            withButtonAction: #selector(self.showBandAction(_:)),
-//                                            andTarget: self)
-//        }
-        
-//        filterUnitView.setBands(bandControllers.map {$0.bandView})
-        
-        for _ in filterUnit.bands {
-            bandEditors.append(LazyWindowLoader<FilterBandEditorDialogController>())
+        for bandIndex in filterUnit.bands.indices {
+            
+            let editor = LazyWindowLoader<FilterBandEditorDialogController>()
+            
+            editor.controllerInitFunction = {controller in
+                controller.bandIndex = bandIndex
+            }
+            
+            bandEditors.append(editor)
         }
     }
     
@@ -106,6 +104,7 @@ class FilterUnitViewController: EffectsUnitViewController {
     @IBAction func removeBandsAction(_ sender: AnyObject) {
         
         let selRows = bandsTableView.selectedRowIndexes
+        guard selRows.isNonEmpty else {return}
         
         for index in selRows.sortedDescending() {
             bandEditors[index].destroy()
@@ -117,7 +116,16 @@ class FilterUnitViewController: EffectsUnitViewController {
         bandsTableView.reloadData()
         
         for (index, editor) in bandEditors.enumerated() {
-            editor.window.title = "Editing Filter band# \(index + 1)"
+            
+            if editor.isWindowLoaded {
+                editor.window.title = "Edit Filter band# \(index + 1)"
+                
+            } else {
+                
+                editor.controllerInitFunction = {controller in
+                    controller.bandIndex = index
+                }
+            }
         }
     }
     

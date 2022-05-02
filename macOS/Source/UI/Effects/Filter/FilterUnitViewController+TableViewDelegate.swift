@@ -118,12 +118,7 @@ extension FilterUnitViewController: NSTableViewDataSource, NSTableViewDelegate {
         guard let cell = tableView.makeView(withIdentifier: id, owner: nil) as? FilterBandEditCellView else {return nil}
         
         cell.action = {[weak self] in
-            
-            if let editor = self?.bandEditors[row] {
-                
-                editor.controller.bandIndex = row
-                editor.showWindow()
-            }
+            self?.bandEditors[row].showWindow()
         }
         
         return cell

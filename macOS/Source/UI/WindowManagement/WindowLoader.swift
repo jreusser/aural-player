@@ -63,8 +63,14 @@ class LazyWindowLoader<T>: Destroyable where T: NSWindowController {
     lazy var controller: T = {
         
         isWindowLoaded = true
-        return T.init()
+        
+        let theController = T.init()
+        controllerInitFunction(theController)
+        
+        return theController
     }()
+    
+    var controllerInitFunction: (T) -> Void = {_ in}
     
     lazy var window: NSWindow = controller.window!
     

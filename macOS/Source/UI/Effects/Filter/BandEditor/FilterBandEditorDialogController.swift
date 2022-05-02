@@ -21,7 +21,7 @@ class FilterBandEditorDialogController: NSWindowController {
     var bandIndex: Int! {
         
         didSet {
-            window?.title = "Editing Filter band# \(bandIndex + 1)"
+            window?.title = "Edit Filter band# \(bandIndex + 1)"
         }
     }
     
