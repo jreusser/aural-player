@@ -117,15 +117,13 @@ extension FilterUnitViewController: NSTableViewDataSource, NSTableViewDelegate {
         
         guard let cell = tableView.makeView(withIdentifier: id, owner: nil) as? FilterBandEditCellView else {return nil}
         
-        let band = filterUnit[row]
-        
-//        cell.btnEdit.tintFunction = {[weak self] in self?.systemColorScheme.buttonColor ?? ColorSchemePreset.blackAttack.functionButtonColor}
-        
-//        cell.btnEdit.reTint()
-        
         cell.action = {[weak self] in
-            // TODO: Pop up a band editor dialog.
-            self?.bandEditors[row].showWindow(self)
+            
+            if let editor = self?.bandEditors[row] {
+                
+                editor.controller.bandIndex = row
+                editor.showWindow()
+            }
         }
         
         return cell

@@ -60,6 +60,47 @@ extension Array where Element: Hashable {
 
 extension Array where Element: Equatable {
     
+    mutating func removeItem(_ item: Element) -> Int? {
+        
+        if let index = self.firstIndex(of: item) {
+            
+            self.remove(at: index)
+            return index
+        }
+        
+        return nil
+    }
+    
+    mutating func removeItems(_ items: [Element]) -> IndexSet {
+
+        // Collect and sort indices before removing items
+        let indices: [Int] = items.compactMap {self.firstIndex(of: ($0))}
+                                    .sortedDescending()
+        
+        indices.forEach {self.remove(at: $0)}
+        
+        return IndexSet(indices)
+    }
+    
+    mutating func moveItemsUp(_ items: [Element]) -> [Int: Int] {
+        return moveItemsUp(from: IndexSet(items.compactMap {self.firstIndex(of: $0)}))
+    }
+
+    mutating func moveItemsDown(_ items: [Element]) -> [Int: Int] {
+        return moveItemsDown(from: IndexSet(items.compactMap {self.firstIndex(of: $0)}))
+    }
+    
+    mutating func moveItemsToTop(_ items: [Element]) -> [Int: Int] {
+        return moveItemsToTop(from: IndexSet(items.compactMap {self.firstIndex(of: $0)}))
+    }
+    
+    mutating func moveItemsToBottom(_ items: [Element]) -> [Int: Int] {
+        return moveItemsToBottom(from: IndexSet(items.compactMap {self.firstIndex(of: $0)}))
+    }
+}
+
+extension Array {
+    
     func item(at index: Int) -> Element? {
         return indices.contains(index) ? self[index] : nil
     }
@@ -82,32 +123,10 @@ extension Array where Element: Equatable {
         return indices.contains(index) ? self.remove(at: index) : nil
     }
     
-    mutating func removeItem(_ item: Element) -> Int? {
-        
-        if let index = self.firstIndex(of: item) {
-            
-            self.remove(at: index)
-            return index
-        }
-        
-        return nil
-    }
-    
-    mutating func removeItems(at indices: IndexSet) -> [Element] {
+    @discardableResult mutating func removeItems(at indices: IndexSet) -> [Element] {
         
         return indices.sortedDescending()
             .compactMap {self.indices.contains($0) ? self.remove(at: $0) : nil}
-    }
-    
-    mutating func removeItems(_ items: [Element]) -> IndexSet {
-
-        // Collect and sort indices before removing items
-        let indices: [Int] = items.compactMap {self.firstIndex(of: ($0))}
-                                    .sortedDescending()
-        
-        indices.forEach {self.remove(at: $0)}
-        
-        return IndexSet(indices)
     }
     
     mutating func removeAndInsertItem(_ sourceIndex: Int, _ destinationIndex: Int) {
@@ -125,10 +144,6 @@ extension Array where Element: Equatable {
         swapAt(index, index + 1)
         return index + 1
     }
-    
-    mutating func moveItemsUp(_ items: [Element]) -> [Int: Int] {
-        return moveItemsUp(from: IndexSet(items.compactMap {self.firstIndex(of: $0)}))
-    }
 
     mutating func moveItemsUp(from indices: IndexSet) -> [Int: Int] {
         
@@ -141,10 +156,6 @@ extension Array where Element: Equatable {
         
         let oldIndices = (unmovableBlockSize..<ascendingOldIndices.count).map({ascendingOldIndices[$0]})
         return Dictionary(uniqueKeysWithValues: zip(oldIndices, oldIndices.map {moveItemUp(from: $0)}))
-    }
-    
-    mutating func moveItemsDown(_ items: [Element]) -> [Int: Int] {
-        return moveItemsDown(from: IndexSet(items.compactMap {self.firstIndex(of: $0)}))
     }
     
     mutating func moveItemsDown(from indices: IndexSet) -> [Int: Int] {
@@ -170,10 +181,6 @@ extension Array where Element: Equatable {
         return !indices.isEmpty && indices.first! < self.count && indices.last! >= 0 && indices.count < self.count
     }
     
-    mutating func moveItemsToTop(_ items: [Element]) -> [Int: Int] {
-        return moveItemsToTop(from: IndexSet(items.compactMap {self.firstIndex(of: $0)}))
-    }
-    
     mutating func moveItemsToTop(from indices: IndexSet) -> [Int: Int] {
         
         let sortedIndices = indices.sortedAscending()
@@ -190,10 +197,6 @@ extension Array where Element: Equatable {
         }
         
         return results
-    }
-    
-    mutating func moveItemsToBottom(_ items: [Element]) -> [Int: Int] {
-        return moveItemsToBottom(from: IndexSet(items.compactMap {self.firstIndex(of: $0)}))
     }
     
     mutating func moveItemsToBottom(from indices: IndexSet) -> [Int: Int] {

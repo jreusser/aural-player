@@ -25,7 +25,7 @@ class FilterUnitViewController: EffectsUnitViewController {
     
     private var bandControllers: [FilterBandViewController] = []
     
-    var bandEditors: [FilterBandEditorDialogController] = []
+    var bandEditors: [LazyWindowLoader<FilterBandEditorDialogController>] = []
     
     // ------------------------------------------------------------------------
     
@@ -66,12 +66,8 @@ class FilterUnitViewController: EffectsUnitViewController {
         
 //        filterUnitView.setBands(bandControllers.map {$0.bandView})
         
-        for index in filterUnit.bands.indices {
-            
-            let bandEditor = FilterBandEditorDialogController()
-            bandEditor.close()
-            bandEditor.bandIndex = index
-            bandEditors.append(bandEditor)
+        for _ in filterUnit.bands {
+            bandEditors.append(LazyWindowLoader<FilterBandEditorDialogController>())
         }
     }
     
@@ -100,32 +96,29 @@ class FilterUnitViewController: EffectsUnitViewController {
         let newBandInfo: (band: FilterBand, index: Int) = filterUnit.addBand(ofType: bandType)
         bandsTableView.noteNumberOfRowsChanged()
         
-        let bandEditor = FilterBandEditorDialogController()
-        bandEditor.bandIndex = newBandInfo.index
+        let bandEditor = LazyWindowLoader<FilterBandEditorDialogController>()
+        bandEditor.controller.bandIndex = newBandInfo.index
         bandEditors.append(bandEditor)
-        bandEditor.showWindow(self)
         
-        // TODO: Pop up band editor dialog
-        
-        //        let bandController = FilterBandViewController.create(band: newBandInfo.band, at: newBandInfo.index,
-        //                                                      withButtonAction: #selector(self.showBandAction(_:)),
-        //                                                      andTarget: self)
-        //
-        //        bandControllers.append(bandController)
-        //        filterUnitView.addBand(bandController.bandView, selectNewTab: true)
+        bandEditor.showWindow()
     }
     
     @IBAction func removeBandsAction(_ sender: AnyObject) {
         
-        filterUnit.removeBands(atIndices: bandsTableView.selectedRowIndexes)
+        let selRows = bandsTableView.selectedRowIndexes
+        
+        for index in selRows.sortedDescending() {
+            bandEditors[index].destroy()
+        }
+        
+        bandEditors.removeItems(at: selRows)
+        
+        filterUnit.removeBands(atIndices: selRows)
         bandsTableView.reloadData()
         
-//        let selectedTab = filterUnitView.selectedTab
-//        filterUnit.removeBand(at: selectedTab)
-//
-//        // Remove the selected band's controller and view
-//        filterUnitView.removeSelectedBand()
-//        bandControllers.remove(at: selectedTab)
+        for (index, editor) in bandEditors.enumerated() {
+            editor.window.title = "Editing Filter band# \(index + 1)"
+        }
     }
     
     // ------------------------------------------------------------------------

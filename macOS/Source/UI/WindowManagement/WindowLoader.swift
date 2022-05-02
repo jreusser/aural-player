@@ -70,9 +70,22 @@ class LazyWindowLoader<T>: Destroyable where T: NSWindowController {
     
     var isWindowLoaded: Bool = false
     
+    func showWindow() {
+        controller.showWindow(self)
+    }
+    
+    func close() {
+        
+        if isWindowLoaded {
+            controller.close()
+        }
+    }
+    
     func destroy() {
         
         if isWindowLoaded {
+            
+            controller.close()
             controller.destroy()
         }
     }
