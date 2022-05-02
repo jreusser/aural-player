@@ -14,7 +14,7 @@ class FilterBandsTableViewDelegate: NSObject, NSTableViewDataSource, NSTableView
     
     var allowSelection: Bool {true}
     
-    private let filterUnit: FilterUnitDelegateProtocol = audioGraphDelegate.filterUnit
+    private var filterUnit: FilterUnitDelegateProtocol = audioGraphDelegate.filterUnit
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         filterUnit.bands.count
@@ -65,6 +65,10 @@ class FilterBandsTableViewDelegate: NSObject, NSTableViewDataSource, NSTableView
             
             return createTextCell(tableView, colID, row, cellText, isPrimaryText: true)
             
+        case .cid_FilterBandSettings:
+            
+            return createEditCell(tableView, colID, row)
+            
         default:
             
             return nil
@@ -87,11 +91,17 @@ class FilterBandsTableViewDelegate: NSObject, NSTableViewDataSource, NSTableView
         
         let band = filterUnit[row]
         
-        cell.btnSwitch.offStateTooltip = "Activate this band"
-        cell.btnSwitch.onStateTooltip = "Deactivate this band"
+        cell.setBypassState(band.bypass)
         
         cell.action = {[weak self] in
-            // TODO: Tell the delegate to bypass / activate the band.
+            
+            guard let strongSelf = self else {return}
+            
+            let band = strongSelf.filterUnit[row]
+            
+            band.bypass.toggle()
+            strongSelf.filterUnit[row] = band
+            cell.setBypassState(band.bypass)
         }
         
         return cell
@@ -114,7 +124,7 @@ class FilterBandsTableViewDelegate: NSObject, NSTableViewDataSource, NSTableView
         
         guard let cell = tableView.makeView(withIdentifier: id, owner: nil) as? FilterBandEditCellView else {return nil}
         
-        let audioUnit = audioGraph.audioUnits[row]
+        let band = filterUnit[row]
         
 //        cell.btnEdit.tintFunction = {[weak self] in self?.systemColorScheme.buttonColor ?? ColorSchemePreset.blackAttack.functionButtonColor}
         
@@ -136,7 +146,15 @@ class FilterBandsTableViewDelegate: NSObject, NSTableViewDataSource, NSTableView
 @IBDesignable
 class FilterBandSwitchCellView: NSTableCellView {
     
-    @IBOutlet weak var btnSwitch: EffectsUnitTriStateBypassButton!
+    @IBOutlet weak var btnSwitch: TintedImageButton!
+    
+    private lazy var stateMachine = ButtonStateMachine<Bool>(initialState: false,
+                                                        mappings: [
+                                                            
+                                                            ButtonStateMachine.StateMapping(state: false, image: Images.imgSwitch, colorProperty: \.activeControlColor, toolTip: "Bypass this band"),
+                                                            ButtonStateMachine.StateMapping(state: true, image: Images.imgSwitch, colorProperty: \.inactiveControlColor, toolTip: "Activate this band")
+                                                        ],
+                                                        button: btnSwitch)
     
     var action: (() -> Void)! {
         
@@ -145,6 +163,10 @@ class FilterBandSwitchCellView: NSTableCellView {
             btnSwitch.action = #selector(self.toggleStateAction(_:))
             btnSwitch.target = self
         }
+    }
+    
+    func setBypassState(_ bypass: Bool) {
+        stateMachine.setState(bypass)
     }
     
     @objc func toggleStateAction(_ sender: Any) {

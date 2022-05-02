@@ -34,7 +34,7 @@
                     </connections>
                 </button>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WKo-oZ-DDd" customClass="FilterChart" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="109" y="124" width="320" height="25"/>
+                    <rect key="frame" x="99" y="124" width="320" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </customView>
                 <button toolTip="Add band" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dAC-v2-fWg" userLabel="Add button">
@@ -94,7 +94,7 @@
                     </connections>
                 </popUpButton>
                 <scrollView fixedFrame="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUD-Wn-crh">
-                    <rect key="frame" x="109" y="35" width="320" height="80"/>
+                    <rect key="frame" x="99" y="35" width="320" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" copiesOnScroll="NO" id="N4T-ea-4Yf">
                         <rect key="frame" x="1" y="1" width="303" height="78"/>
@@ -105,7 +105,6 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="3" height="0.0"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn identifier="cid_FilterBandSwitch" width="25" minWidth="25" maxWidth="25" id="JVl-qA-Uix">
@@ -120,19 +119,22 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
-                                            <tableCellView id="7vr-LK-BH8">
+                                            <tableCellView id="7vr-LK-BH8" customClass="FilterBandSwitchCellView" customModule="Aural" customModuleProvider="target">
                                                 <rect key="frame" x="1" y="0.0" width="30" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <button wantsLayer="YES" id="a9J-Ax-tG7" userLabel="Bypass button" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
+                                                    <button wantsLayer="YES" id="a9J-Ax-tG7" userLabel="Bypass button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="6" y="6" width="12" height="12"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ZTq-oQ-KDD">
+                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ZTq-oQ-KDD" customClass="TableButtonCell" customModule="Aural" customModuleProvider="target">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
                                                 </subviews>
+                                                <connections>
+                                                    <outlet property="btnSwitch" destination="a9J-Ax-tG7" id="pwH-tY-RUC"/>
+                                                </connections>
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
@@ -212,14 +214,14 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
-                                            <tableCellView id="72S-OP-fp5">
+                                            <tableCellView id="72S-OP-fp5" customClass="FilterBandEditCellView" customModule="Aural" customModuleProvider="target">
                                                 <rect key="frame" x="275" y="0.0" width="29" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button toolTip="Audio Unit settings" wantsLayer="YES" id="wF2-5l-iXB" userLabel="Edit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="6" y="6" width="12" height="12"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Edit" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="CDy-I9-z4u">
+                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Edit" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="CDy-I9-z4u" customClass="TableButtonCell" customModule="Aural" customModuleProvider="target">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
@@ -228,6 +230,9 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                 </subviews>
+                                                <connections>
+                                                    <outlet property="btnEdit" destination="wF2-5l-iXB" id="Hc4-pG-tCf"/>
+                                                </connections>
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
@@ -249,7 +254,7 @@
                     </scroller>
                 </scrollView>
                 <button toolTip="Remove selected tracks from playlist" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eoX-Qm-XCX" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="398" y="14" width="13.5" height="14"/>
+                    <rect key="frame" x="388" y="14" width="13.5" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="minus" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="jIr-k5-UU9">
                         <behavior key="behavior" lightByContents="YES"/>
@@ -263,7 +268,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="now-P6-fdm" userLabel="20 Hz" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="69" y="125" width="35" height="24"/>
+                    <rect key="frame" x="58" y="125" width="35" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="20" id="Lyj-PT-ooH">
                         <font key="font" size="11" name="Play-Regular"/>
@@ -272,7 +277,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fAk-xI-ftJ" userLabel="Twenty KHz" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="432" y="125" width="40" height="24"/>
+                    <rect key="frame" x="425" y="125" width="40" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="20K" id="8CR-5f-xmc">
                         <font key="font" size="11" name="Play-Regular"/>
@@ -281,7 +286,7 @@
                     </textFieldCell>
                 </textField>
                 <popUpButton toolTip="Create a new playlist" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jlg-W2-xKP" userLabel="Add band popup menu">
-                    <rect key="frame" x="379" y="15" width="16" height="11"/>
+                    <rect key="frame" x="369" y="15" width="16" height="11"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="6Qz-9c-fjD">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

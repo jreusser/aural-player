@@ -42,6 +42,8 @@ class FilterBand {
         guard let type = persistentState.type else {return nil}
         self.type = type
         
+        self.bypass = persistentState.bypass ?? false
+        
         self.minFreq = persistentState.minFreq
         self.maxFreq = persistentState.maxFreq
         
@@ -83,7 +85,7 @@ class FilterBand {
             
         case .highPass:
             
-            return highPassBand(minFreq: 60)
+            return highPassBand(minFreq: 125)
         }
     }
     

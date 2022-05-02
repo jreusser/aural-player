@@ -60,6 +60,7 @@ class FlexibleFilterNode: AVAudioUnitEQ {
             updatedBand.type = newBand.type
             updatedBand.minFreq = newBand.minFreq
             updatedBand.maxFreq = newBand.maxFreq
+            updatedBand.bypass = newBand.bypass
             
             setBandParameters(for: updatedBand)
         }
@@ -71,7 +72,7 @@ class FlexibleFilterNode: AVAudioUnitEQ {
         guard inactiveBands.isNonEmpty else {return -1}
         
         band.params = inactiveBands.removeLast()
-        band.params.bypass = false
+        band.params.bypass = band.bypass
         setBandParameters(for: band)
         
         bandInfos.append(band)
@@ -123,6 +124,8 @@ class FlexibleFilterNode: AVAudioUnitEQ {
         if params.filterType == .parametric {
             params.gain = Self.bandStopGain
         }
+        
+        params.bypass = band.bypass
     }
     
     func removeBands(atIndices indexSet: IndexSet) {

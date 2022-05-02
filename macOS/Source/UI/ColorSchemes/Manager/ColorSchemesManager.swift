@@ -30,6 +30,8 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
     
     var kvo: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
     
+    var isObserving: Bool = false
+    
     var schemeChanged: Bool = false
     
     init(persistentState: ColorSchemesPersistentState?) {

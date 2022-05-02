@@ -24,3 +24,18 @@ class TableImageCell: NSImageCell {
         set {}
     }
 }
+
+class TableButtonCell: NSButtonCell {
+    
+    override var backgroundStyle: NSView.BackgroundStyle {
+        
+        get {.normal}
+        set {}
+    }
+    
+    override var interiorBackgroundStyle: NSView.BackgroundStyle {
+        
+        get {.normal}
+        set {}
+    }
+}

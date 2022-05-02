@@ -51,6 +51,8 @@ extension ColorSchemesManager {
         for observer in schemeObservers {
             observer.colorSchemeChanged()
         }
+        
+        isObserving = true
     }
     
     // TODO: Call this from AppModeManager.dismissMode()
@@ -108,6 +110,10 @@ extension ColorSchemesManager {
                 schemeAndPropertyObservers[property]!.append(observer)
             }
             
+            if isObserving {
+                observer.colorSchemeChanged()
+            }
+            
             // TODO: Add to reverse registry
         }
     }
@@ -124,6 +130,10 @@ extension ColorSchemesManager {
             
             if let observerObject = observer as? NSObject {
                 reverseRegistry[observerObject] = property
+            }
+            
+            if isObserving {
+                observer.colorChanged(to: systemColorScheme[keyPath: property], forProperty: property)
             }
         }
     }
