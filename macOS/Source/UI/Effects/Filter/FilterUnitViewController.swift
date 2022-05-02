@@ -25,6 +25,8 @@ class FilterUnitViewController: EffectsUnitViewController {
     
     private var bandControllers: [FilterBandViewController] = []
     
+    var bandEditors: [FilterBandEditorDialogController] = []
+    
     // ------------------------------------------------------------------------
     
     // MARK: Services, utilities, helpers, and properties
@@ -62,7 +64,15 @@ class FilterUnitViewController: EffectsUnitViewController {
 //                                            andTarget: self)
 //        }
         
-        filterUnitView.setBands(bandControllers.map {$0.bandView})
+//        filterUnitView.setBands(bandControllers.map {$0.bandView})
+        
+        for index in filterUnit.bands.indices {
+            
+            let bandEditor = FilterBandEditorDialogController()
+            bandEditor.close()
+            bandEditor.bandIndex = index
+            bandEditors.append(bandEditor)
+        }
     }
     
     // ------------------------------------------------------------------------
@@ -89,6 +99,11 @@ class FilterUnitViewController: EffectsUnitViewController {
         
         let newBandInfo: (band: FilterBand, index: Int) = filterUnit.addBand(ofType: bandType)
         bandsTableView.noteNumberOfRowsChanged()
+        
+        let bandEditor = FilterBandEditorDialogController()
+        bandEditor.bandIndex = newBandInfo.index
+        bandEditors.append(bandEditor)
+        bandEditor.showWindow(self)
         
         // TODO: Pop up band editor dialog
         

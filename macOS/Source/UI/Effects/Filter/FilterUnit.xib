@@ -238,8 +238,8 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
-                                    <outlet property="dataSource" destination="aHf-z2-jHq" id="5Ar-qr-2i1"/>
-                                    <outlet property="delegate" destination="aHf-z2-jHq" id="O6d-Iw-edw"/>
+                                    <outlet property="dataSource" destination="-2" id="Jex-tO-UhM"/>
+                                    <outlet property="delegate" destination="-2" id="jws-e5-V4s"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -336,7 +336,6 @@
             </connections>
             <point key="canvasLocation" x="175" y="-82"/>
         </view>
-        <customObject id="aHf-z2-jHq" customClass="FilterBandsTableViewDelegate" customModule="Aural" customModuleProvider="target"/>
     </objects>
     <resources>
         <image name="CreatePlaylist" width="18" height="18"/>

@@ -9,19 +9,17 @@
 //
 import Cocoa
 
-class FilterPresetBandsTableViewDelegate: FilterBandsTableViewDelegate {
+class FilterPresetBandsTableViewDelegate: NSObject, NSTableViewDataSource, NSTableViewDelegate {
     
     var preset: FilterPreset?
     
-    override var allowSelection: Bool {false}
-    
-    override func numberOfRows(in tableView: NSTableView) -> Int {
-        preset?.bands.count ?? 0
-    }
-    
-    override func bandAtRow(_ row: Int) -> FilterBand? {
-        preset?.bands[row]
-    }
+//    override func numberOfRows(in tableView: NSTableView) -> Int {
+//        preset?.bands.count ?? 0
+//    }
+//
+//    override func bandAtRow(_ row: Int) -> FilterBand? {
+//        preset?.bands[row]
+//    }
 }
 
 extension NSUserInterfaceItemIdentifier {
