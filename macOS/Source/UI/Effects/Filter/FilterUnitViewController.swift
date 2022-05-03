@@ -137,6 +137,8 @@ class FilterUnitViewController: EffectsUnitViewController {
         
         super.initSubscriptions()
         
+        messenger.subscribe(to: .filterUnit_bandUpdated, handler: bandUpdated(_:))
+        
 //        messenger.subscribe(to: .changeBackgroundColor, handler: filterUnitView.changeBackgroundColor(_:))
 //        messenger.subscribe(to: .changeTextButtonMenuColor, handler: filterUnitView.changeTextButtonMenuColor(_:))
 //        messenger.subscribe(to: .changeSelectedTabButtonColor, handler: filterUnitView.changeSelectedTabButtonColor(_:))
@@ -149,6 +151,10 @@ class FilterUnitViewController: EffectsUnitViewController {
         
         super.stateChanged()
         filterUnitView.stateChanged()
+    }
+    
+    private func bandUpdated(_ band: Int) {
+        bandsTableView.reloadRows([band], columns: [2, 3])
     }
     
     // ------------------------------------------------------------------------

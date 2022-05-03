@@ -3563,12 +3563,12 @@
 		3E6C100D25CEB98600BF0D07 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				3ED2385A28207FAA0048CF8E /* BandEditor */,
 				3E6C101225CEB98600BF0D07 /* FilterUnit.xib */,
 				3E6C101425CEB98600BF0D07 /* FilterUnitViewController.swift */,
 				3ED23856282063330048CF8E /* FilterUnitViewController+TableViewDelegate.swift */,
 				3E6C101025CEB98600BF0D07 /* FilterUnitView.swift */,
 				3E6C101125CEB98600BF0D07 /* FilterChart.swift */,
+				3ED2385A28207FAA0048CF8E /* BandEditor */,
 			);
 			path = Filter;
 			sourceTree = "<group>";

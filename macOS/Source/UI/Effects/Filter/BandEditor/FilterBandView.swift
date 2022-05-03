@@ -47,9 +47,11 @@ class FilterBandView: NSView {
     
     var bandIndex: Int = -1
     
-    var bandChangedCallback: (() -> Void) = {
-        // Do nothing
+    private lazy var bandChangedCallback: (() -> Void) = {
+        self.messenger.publish(.filterUnit_bandUpdated, payload: self.bandIndex)
     }
+    
+    private lazy var messenger: Messenger = Messenger(for: self)
     
     // ------------------------------------------------------------------------
     

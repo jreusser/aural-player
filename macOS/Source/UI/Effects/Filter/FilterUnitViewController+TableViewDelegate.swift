@@ -29,6 +29,10 @@ extension FilterUnitViewController: NSTableViewDataSource, NSTableViewDelegate {
         
         switch colID {
             
+        case .cid_FilterBandIndex:
+            
+            return createTextCell(tableView, colID, row, "\(row + 1)", isPrimaryText: false)
+            
         case .cid_FilterBandSwitch:
             
             return createSwitchCell(tableView, colID, row)
@@ -178,6 +182,8 @@ class FilterBandEditCellView: NSTableCellView {
 extension NSUserInterfaceItemIdentifier {
     
     // Table view column identifiers
+    
+    static let cid_FilterBandIndex: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_FilterBandIndex")
     static let cid_FilterBandSwitch: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_FilterBandSwitch")
     static let cid_FilterBandType: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_FilterBandType")
     static let cid_FilterBand: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_FilterBand")

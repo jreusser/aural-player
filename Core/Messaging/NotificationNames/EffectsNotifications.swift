@@ -99,4 +99,11 @@ extension Notification.Name {
 
     // Commands the Time Stretch effects unit to set the playback rate to a specific value
     static let timeEffectsUnit_setRate = Notification.Name("timeEffectsUnit_setRate")
+    
+    // ----------------------------------------------------------------------------------------
+    
+    // MARK: Filter effects unit notifications
+    
+    // Notifies the filter unit that one of its bands has been updated. Payload includes the band index.
+    static let filterUnit_bandUpdated = Notification.Name("filterUnit_bandUpdated")
 }
