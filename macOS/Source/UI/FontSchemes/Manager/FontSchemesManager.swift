@@ -25,6 +25,8 @@ class FontSchemesManager: UserManagedObjects<FontScheme> {
     
     var kvo: KVOTokens<FontScheme, PlatformFont> = KVOTokens()
     
+    var isObserving: Bool = false
+    
     var schemeChanged: Bool = false
     
     init(persistentState: FontSchemesPersistentState?) {

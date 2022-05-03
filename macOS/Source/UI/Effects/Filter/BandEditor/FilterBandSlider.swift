@@ -15,20 +15,23 @@ class FilterBandSlider: RangeSlider {
         didSet {redraw()}
     }
     
-//    override var barFillColor: NSColor {
-//
-//        switch unitState {
-//
-//        case .active:   return filterType == .bandPass ?
-//                                Colors.Effects.activeUnitStateColor :
-//                                Colors.Effects.bypassedUnitStateColor
-//
-//        case .bypassed: return Colors.Effects.bypassedUnitStateColor
-//
-//        case .suppressed:   return Colors.Effects.suppressedUnitStateColor
-//
-//        }
-//    }
+    var bandIndex: Int!
+    
+    private var filterUnit: FilterUnitDelegateProtocol {
+        audioGraphDelegate.filterUnit
+    }
+    
+    override var barFillColor: NSColor {
+        
+        let unitState = fxUnitStateObserverRegistry.currentState(forObserver: self)
+
+        if filterUnit[bandIndex].bypass {
+            return systemColorScheme.inactiveControlColor
+            
+        } else {
+            return unitState == .active ? systemColorScheme.activeControlColor : systemColorScheme.suppressedControlColor
+        }
+    }
 //
 //    override var knobColor: NSColor {
 //

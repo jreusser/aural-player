@@ -14,6 +14,14 @@ class FilterBandEditorDialogController: NSWindowController {
     
     override var windowNibName: String? {"FilterBandEditorDialog"}
     
+    @IBOutlet weak var lblWindowCaption: NSTextField! {
+        didSet {
+            print("\nCaption LBL did set")
+        }
+    }
+    
+    
+    @IBOutlet weak var rootContainerBox: NSBox!
     @IBOutlet weak var bandView: FilterBandView!
     
     private var filterUnit: FilterUnitDelegateProtocol = audioGraphDelegate.filterUnit
@@ -21,15 +29,27 @@ class FilterBandEditorDialogController: NSWindowController {
     var bandIndex: Int! {
         
         didSet {
+            print("\nBand index SET")
             bandView?.bandIndex = self.bandIndex
-            window?.title = "Edit Filter band# \(bandIndex + 1)"
+            lblWindowCaption?.stringValue = "Filter band# \(bandIndex + 1)"
         }
     }
     
     override func windowDidLoad() {
         
+        print("\nWindow did load, index is: \(bandIndex + 1)")
+        
         super.windowDidLoad()
+        
+        window?.isMovableByWindowBackground = true
+        
+        lblWindowCaption?.stringValue = "Filter band 1"
         bandView.initialize(band: filterUnit[bandIndex], at: bandIndex)
+        
+        fontSchemesManager.registerObserver(lblWindowCaption, forProperty: \.captionFont)
+        
+        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
+        colorSchemesManager.registerObserver(lblWindowCaption, forProperty: \.captionTextColor)
     }
     
 //    override func showWindow(_ sender: Any?) {

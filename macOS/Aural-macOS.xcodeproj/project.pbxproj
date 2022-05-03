@@ -379,7 +379,6 @@
 		3E6C12EB25CEBE8100BF0D07 /* BookmarkNameInputReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C101C25CEB98600BF0D07 /* BookmarkNameInputReceiver.swift */; };
 		3E6C12EC25CEBE8100BF0D07 /* PlayingTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C102825CEB98600BF0D07 /* PlayingTrackView.swift */; };
 		3E6C12ED25CEBE8100BF0D07 /* DelayUnit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C101625CEB98600BF0D07 /* DelayUnit.xib */; };
-		3E6C12EE25CEBE8100BF0D07 /* FilterBand.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C101325CEB98600BF0D07 /* FilterBand.xib */; };
 		3E6C12EF25CEBE8100BF0D07 /* DelayUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C101825CEB98600BF0D07 /* DelayUnitView.swift */; };
 		3E6C12F025CEBE8100BF0D07 /* DelayUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C101725CEB98600BF0D07 /* DelayUnitViewController.swift */; };
 		3E6C12F125CEBE8100BF0D07 /* FilterUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C101025CEB98600BF0D07 /* FilterUnitView.swift */; };
@@ -1778,7 +1777,6 @@
 		3E6C101025CEB98600BF0D07 /* FilterUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUnitView.swift; sourceTree = "<group>"; };
 		3E6C101125CEB98600BF0D07 /* FilterChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterChart.swift; sourceTree = "<group>"; };
 		3E6C101225CEB98600BF0D07 /* FilterUnit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterUnit.xib; sourceTree = "<group>"; };
-		3E6C101325CEB98600BF0D07 /* FilterBand.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterBand.xib; sourceTree = "<group>"; };
 		3E6C101425CEB98600BF0D07 /* FilterUnitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUnitViewController.swift; sourceTree = "<group>"; };
 		3E6C101625CEB98600BF0D07 /* DelayUnit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DelayUnit.xib; sourceTree = "<group>"; };
 		3E6C101725CEB98600BF0D07 /* DelayUnitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayUnitViewController.swift; sourceTree = "<group>"; };
@@ -4207,7 +4205,6 @@
 			isa = PBXGroup;
 			children = (
 				3ED2385828207E2C0048CF8E /* FilterBandEditorDialog.xib */,
-				3E6C101325CEB98600BF0D07 /* FilterBand.xib */,
 				3ED2385B28207FD90048CF8E /* FilterBandEditorDialogController.swift */,
 				3E6C100E25CEB98600BF0D07 /* FilterBandViewController.swift */,
 				3E7C360026AADFA000B3552D /* FilterBandView.swift */,
@@ -5522,7 +5519,6 @@
 				3EC2975A27864CD400B29551 /* Aural.xcassets in Resources */,
 				3E6C121D25CEBDE600BF0D07 /* Preferences.xib in Resources */,
 				3E6C130225CEBE8F00BF0D07 /* TrackInfo.xib in Resources */,
-				3E6C12EE25CEBE8100BF0D07 /* FilterBand.xib in Resources */,
 				3ED2385928207E2C0048CF8E /* FilterBandEditorDialog.xib in Resources */,
 				3E6C121525CEBDE500BF0D07 /* ViewPreferences.xib in Resources */,
 				3E6C126125CEBE0600BF0D07 /* LayoutsManager.xib in Resources */,

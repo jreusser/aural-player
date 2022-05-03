@@ -285,19 +285,18 @@ class RangeSlider: NSControl, FXUnitStateObserver {
     
     private func updateForClick(atPoint point: NSPoint) {
         
-        if currentSliderDragging != nil {
-            
-            var x = Double(point.x / NSWidth(bounds))
-            x = max(min(1.0, x), 0.0)
-            
-            if currentSliderDragging! == .start {
-                selection = SelectionRange(start: x, end: max(selection.end, x))
-            } else {
-                selection = SelectionRange(start: min(selection.start, x), end: x)
-            }
-            
-            redraw()
+        guard currentSliderDragging != nil else {return}
+        
+        var x = Double(point.x / NSWidth(bounds))
+        x = max(min(1.0, x), 0.0)
+        
+        if currentSliderDragging! == .start {
+            selection = SelectionRange(start: x, end: max(selection.end, x))
+        } else {
+            selection = SelectionRange(start: min(selection.start, x), end: x)
         }
+        
+        redraw()
     }
     
     //MARK: - Utility -
@@ -367,7 +366,7 @@ class RangeSlider: NSControl, FXUnitStateObserver {
         
         let startPoint = NSMakePoint(barRect.minX, barRect.centerY)
         let endPoint = NSMakePoint(barRect.maxX, barRect.centerY)
-        GraphicsUtils.drawLine(controlStateColor, pt1: startPoint, pt2: endPoint, width: 1)
+        GraphicsUtils.drawLine(systemColorScheme.inactiveControlColor, pt1: startPoint, pt2: endPoint, width: 1)
         
 //        framePath.stroke(withColor: barBackgroundColor)
         
@@ -380,17 +379,17 @@ class RangeSlider: NSControl, FXUnitStateObserver {
         
 //        framePath.stroke(withColor: barStrokeColor)
         
-        /*  Draw slider shadows */
-        if let shadow = sliderShadow() {
-            
-            NSGraphicsContext.saveGraphicsState()
-            shadow.set()
-
-            startSliderPath.fill(withColor: .black)
-            endSliderPath.fill(withColor: .black)
-            
-            NSGraphicsContext.restoreGraphicsState()
-        }
+//        /*  Draw slider shadows */
+//        if let shadow = sliderShadow() {
+//
+//            NSGraphicsContext.saveGraphicsState()
+//            shadow.set()
+//
+//            startSliderPath.fill(withColor: .black)
+//            endSliderPath.fill(withColor: .black)
+//
+//            NSGraphicsContext.restoreGraphicsState()
+//        }
         
         /*  Draw slider knobs */
         sliderGradient.draw(in: endSliderPath, angle: .horizontalGradientDegrees)
@@ -400,6 +399,8 @@ class RangeSlider: NSControl, FXUnitStateObserver {
         startSliderPath.stroke()
         
         startSliderPath.fill(withColor: knobColor)
+        
+        
         endSliderPath.fill(withColor: knobColor)
     }
 }

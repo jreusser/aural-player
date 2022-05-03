@@ -49,6 +49,8 @@ extension FontSchemesManager {
         for observer in schemeObservers {
             observer.fontSchemeChanged()
         }
+        
+        isObserving = true
     }
     
     // TODO: Call this from AppModeManager.dismissMode()
@@ -88,6 +90,10 @@ extension FontSchemesManager {
             schemeAndPropertyObservers[property]!.append(observer)
             
             // TODO: Add to reverse registry
+            
+            if isObserving {
+                observer.fontSchemeChanged()
+            }
         }
     }
     
@@ -107,6 +113,10 @@ extension FontSchemesManager {
             }
             
             // TODO: Add to reverse registry
+            
+            if isObserving {
+                observer.fontSchemeChanged()
+            }
         }
     }
     
@@ -122,6 +132,10 @@ extension FontSchemesManager {
             
             if let observerObject = observer as? NSObject {
                 reverseRegistry[observerObject] = property
+            }
+            
+            if isObserving {
+                observer.fontChanged(to: systemFontScheme[keyPath: property], forProperty: property)
             }
         }
     }

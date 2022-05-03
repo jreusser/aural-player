@@ -45,7 +45,11 @@ class FilterBandView: NSView {
         didSet {updateFields()}
     }
     
-    var bandIndex: Int = -1
+    var bandIndex: Int = -1 {
+        didSet {
+            freqRangeSlider.bandIndex = bandIndex
+        }
+    }
     
     private lazy var bandChangedCallback: (() -> Void) = {
         self.messenger.publish(.filterUnit_bandUpdated, payload: self.bandIndex)
@@ -71,6 +75,9 @@ class FilterBandView: NSView {
         
         applyFontScheme(systemFontScheme)
         applyColorScheme(systemColorScheme)
+        
+        messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: bandBypassStateUpdated(bandIndex:),
+                            filter: {[weak self] bandIndex in (self?.bandIndex ?? -1) == bandIndex})
     }
     
     private func oneTimeSetup() {
@@ -205,6 +212,10 @@ class FilterBandView: NSView {
         cutoffFrequencyChanged()
         
         presetCutoffsMenu.deselect()
+    }
+    
+    private func bandBypassStateUpdated(bandIndex: Int) {
+        freqRangeSlider.redraw()
     }
     
     // ------------------------------------------------------------------------

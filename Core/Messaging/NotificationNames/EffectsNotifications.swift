@@ -106,4 +106,7 @@ extension Notification.Name {
     
     // Notifies the filter unit that one of its bands has been updated. Payload includes the band index.
     static let filterUnit_bandUpdated = Notification.Name("filterUnit_bandUpdated")
+    
+    // Notifies the filter unit that one of its bands' bypass state has been updated. Payload includes the band index.
+    static let filterUnit_bandBypassStateUpdated = Notification.Name("filterUnit_bandBypassStateUpdated")
 }
