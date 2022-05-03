@@ -32,6 +32,10 @@ class FilterBandSlider: RangeSlider {
             return unitState == .active ? systemColorScheme.activeControlColor : systemColorScheme.suppressedControlColor
         }
     }
+    
+    override var knobColor: NSColor {
+        barFillColor
+    }
 //
 //    override var knobColor: NSColor {
 //

@@ -239,8 +239,8 @@ class RangeSlider: NSControl, FXUnitStateObserver {
     
     //MARK: - UI Sizing -
     
-    private let sliderWidth: CGFloat = 10
-    private let sliderHeight: CGFloat = 5
+    private let sliderWidth: CGFloat = 12
+    private let sliderHeight: CGFloat = 7
     
     private let minSliderX: CGFloat = 0
     private var maxSliderX: CGFloat { return NSWidth(bounds) - sliderWidth - barTrailingMargin }
@@ -348,7 +348,7 @@ class RangeSlider: NSControl, FXUnitStateObserver {
         let width = NSWidth(bounds) - barTrailingMargin
         let height = NSHeight(bounds)
         
-        let barHeight: CGFloat = 5
+        let barHeight: CGFloat = 3
         let barY = floor((height - barHeight) / 2.0)
         
         let startSliderFrame = startKnobFrame()
@@ -361,8 +361,8 @@ class RangeSlider: NSControl, FXUnitStateObserver {
         /*  Create bezier paths */
         let selectedPath = NSBezierPath(roundedRect: selectedRect, xRadius: 1.5, yRadius: 1.5)
         
-        let startSliderPath = NSBezierPath(rect: startSliderFrame)
-        let endSliderPath = NSBezierPath(rect: endSliderFrame)
+        let startSliderPath = NSBezierPath(roundedRect: startSliderFrame, cornerRadius: 2)
+        let endSliderPath = NSBezierPath(roundedRect: endSliderFrame, cornerRadius: 2)
         
         let startPoint = NSMakePoint(barRect.minX, barRect.centerY)
         let endPoint = NSMakePoint(barRect.maxX, barRect.centerY)
@@ -399,9 +399,10 @@ class RangeSlider: NSControl, FXUnitStateObserver {
         startSliderPath.stroke()
         
         startSliderPath.fill(withColor: knobColor)
-        
+        NSBezierPath.strokeRoundedRect(startSliderFrame, radius: 1, withColor: systemColorScheme.backgroundColor, lineWidth: 2)
         
         endSliderPath.fill(withColor: knobColor)
+        NSBezierPath.strokeRoundedRect(endSliderFrame, radius: 1, withColor: systemColorScheme.backgroundColor, lineWidth: 2)
     }
 }
 
