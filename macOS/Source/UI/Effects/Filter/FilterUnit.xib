@@ -120,7 +120,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="GNa-Qu-QMx" customClass="BasicTableCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="1" y="0.0" width="25" height="24"/>
+                                                <rect key="frame" x="11" y="0.0" width="25" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5aj-LY-bKA" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
@@ -152,20 +152,20 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="7vr-LK-BH8" customClass="FilterBandSwitchCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="0.0" width="20" height="24"/>
+                                                <rect key="frame" x="39" y="0.0" width="20" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <button wantsLayer="YES" id="a9J-Ax-tG7" userLabel="Bypass button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                                    <button wantsLayer="YES" id="a9J-Ax-tG7" userLabel="Bypass button" customClass="FilterBandTriStateBypassButton" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="2" y="6" width="12" height="12"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ZTq-oQ-KDD" customClass="TableButtonCell" customModule="Aural" customModuleProvider="target">
+                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Switch" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ZTq-oQ-KDD" customClass="TableButtonCell" customModule="Aural" customModuleProvider="target">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </button>
                                                 </subviews>
                                                 <connections>
-                                                    <outlet property="btnSwitch" destination="a9J-Ax-tG7" id="pwH-tY-RUC"/>
+                                                    <outlet property="btnSwitch" destination="a9J-Ax-tG7" id="YMw-cK-IKt"/>
                                                 </connections>
                                             </tableCellView>
                                         </prototypeCellViews>
@@ -183,7 +183,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="XON-TZ-gFI" customClass="BasicTableCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="52" y="0.0" width="80" height="24"/>
+                                                <rect key="frame" x="62" y="0.0" width="80" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aac-rA-Im5" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
@@ -215,7 +215,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="stv-KD-ZZl" customClass="BasicTableCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="135" y="0.0" width="155" height="24"/>
+                                                <rect key="frame" x="145" y="0.0" width="155" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eCN-J7-YpR" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
@@ -247,7 +247,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="72S-OP-fp5" customClass="FilterBandEditCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="293" y="0.0" width="29" height="24"/>
+                                                <rect key="frame" x="303" y="0.0" width="29" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button toolTip="Audio Unit settings" wantsLayer="YES" id="wF2-5l-iXB" userLabel="Edit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -374,6 +374,7 @@
         <image name="Edit" width="12" height="12"/>
         <image name="Ellipsis" width="40" height="10"/>
         <image name="Remove" width="27" height="27"/>
+        <image name="Switch" width="21" height="23"/>
         <image name="minus" catalog="system" width="14" height="4"/>
     </resources>
 </document>

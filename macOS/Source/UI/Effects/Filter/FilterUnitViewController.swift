@@ -91,6 +91,8 @@ class FilterUnitViewController: EffectsUnitViewController {
     
     private func doAddBand(ofType bandType: FilterBandType) {
         
+        // TODO: Check if 31 bands already, and display error alert.
+        
         let newBandInfo: (band: FilterBand, index: Int) = filterUnit.addBand(ofType: bandType)
         bandsTableView.noteNumberOfRowsChanged()
         
@@ -118,7 +120,7 @@ class FilterUnitViewController: EffectsUnitViewController {
         for (index, editor) in bandEditors.enumerated() {
             
             if editor.isWindowLoaded {
-                editor.window.title = "Edit Filter band# \(index + 1)"
+                editor.controller.bandIndex = index
                 
             } else {
                 

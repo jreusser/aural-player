@@ -55,3 +55,26 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton, TintableFXUnitStateObse
         state = .mixed
     }
 }
+
+class FilterBandTriStateBypassButton: NSButton, TintableFXUnitStateObserver {
+    
+    var bandIndex: Int!
+    
+    private var filterUnit: FilterUnitDelegateProtocol {
+        audioGraphDelegate.filterUnit
+    }
+    
+    func unitStateChanged(to newState: EffectsUnitState) {
+        
+        if filterUnit[bandIndex].bypass {
+            
+            contentTintColor = systemColorScheme.inactiveControlColor
+            toolTip = "Activate this band"
+            
+        } else {
+            
+            contentTintColor = newState == .active ? systemColorScheme.activeControlColor : systemColorScheme.suppressedControlColor
+            toolTip = "Deactivate this band"
+        }
+    }
+}

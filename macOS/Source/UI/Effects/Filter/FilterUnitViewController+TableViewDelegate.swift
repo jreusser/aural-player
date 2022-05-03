@@ -86,9 +86,8 @@ extension FilterUnitViewController: NSTableViewDataSource, NSTableViewDelegate {
      
         guard let cell = tableView.makeView(withIdentifier: id, owner: nil) as? FilterBandSwitchCellView else {return nil}
         
-        let band = filterUnit[row]
-        
-        cell.setBypassState(band.bypass)
+        cell.bandIndex = row
+        fxUnitStateObserverRegistry.registerObserver(cell.btnSwitch, forFXUnit: filterUnit)
         
         cell.action = {[weak self] in
             
@@ -98,7 +97,7 @@ extension FilterUnitViewController: NSTableViewDataSource, NSTableViewDelegate {
             
             band.bypass.toggle()
             strongSelf.filterUnit[row] = band
-            cell.setBypassState(band.bypass)
+            cell.buttonStateUpdated(to: strongSelf.filterUnit.state)
         }
         
         return cell
@@ -132,15 +131,14 @@ extension FilterUnitViewController: NSTableViewDataSource, NSTableViewDelegate {
 @IBDesignable
 class FilterBandSwitchCellView: NSTableCellView {
     
-    @IBOutlet weak var btnSwitch: TintedImageButton!
+    var bandIndex: Int! {
+        
+        didSet {
+            btnSwitch.bandIndex = bandIndex
+        }
+    }
     
-    private lazy var stateMachine = ButtonStateMachine<Bool>(initialState: false,
-                                                        mappings: [
-                                                            
-                                                            ButtonStateMachine.StateMapping(state: false, image: Images.imgSwitch, colorProperty: \.activeControlColor, toolTip: "Bypass this band"),
-                                                            ButtonStateMachine.StateMapping(state: true, image: Images.imgSwitch, colorProperty: \.inactiveControlColor, toolTip: "Activate this band")
-                                                        ],
-                                                        button: btnSwitch)
+    @IBOutlet weak var btnSwitch: FilterBandTriStateBypassButton!
     
     var action: (() -> Void)! {
         
@@ -151,12 +149,12 @@ class FilterBandSwitchCellView: NSTableCellView {
         }
     }
     
-    func setBypassState(_ bypass: Bool) {
-        stateMachine.setState(bypass)
-    }
-    
     @objc func toggleStateAction(_ sender: Any) {
         self.action()
+    }
+    
+    func buttonStateUpdated(to newState: EffectsUnitState) {
+        btnSwitch.unitStateChanged(to: newState)
     }
 }
 
