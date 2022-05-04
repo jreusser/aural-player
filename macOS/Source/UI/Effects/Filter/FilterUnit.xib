@@ -11,6 +11,7 @@
                 <outlet property="bandsTableView" destination="DV5-Bt-Uye" id="X8x-tO-L2Q"/>
                 <outlet property="btnBypass" destination="N6p-bI-VWV" id="5UH-co-PWL"/>
                 <outlet property="filterUnitView" destination="e4i-Mp-MMA" id="FDB-df-ULi"/>
+                <outlet property="lblSummary" destination="cxN-B9-8Gf" id="JBz-fr-u7e"/>
                 <outlet property="presetsMenuButton" destination="JJo-gm-Pih" id="YoC-TC-Lse"/>
                 <outlet property="presetsMenuIconItem" destination="FlK-G5-JPk" id="p1U-3G-y9J"/>
                 <outlet property="view" destination="e4i-Mp-MMA" id="wyk-QH-lgV"/>
@@ -359,6 +360,15 @@
                         </menu>
                     </popUpButtonCell>
                 </popUpButton>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cxN-B9-8Gf" userLabel="Bands summary" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                    <rect key="frame" x="96" y="9" width="205" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="31 bands (31 active)" id="oDT-W9-rvm" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" white="0.70157877599999996" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <connections>
                 <outlet property="bandsTable" destination="DV5-Bt-Uye" id="inK-QO-tli"/>

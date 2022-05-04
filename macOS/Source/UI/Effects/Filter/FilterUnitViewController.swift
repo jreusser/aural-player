@@ -22,6 +22,7 @@ class FilterUnitViewController: EffectsUnitViewController {
     
     @IBOutlet weak var filterUnitView: FilterUnitView!
     @IBOutlet weak var bandsTableView: NSTableView!
+    @IBOutlet weak var lblSummary: NSTextField!
     
     private var bandControllers: [FilterBandViewController] = []
     
@@ -51,6 +52,7 @@ class FilterUnitViewController: EffectsUnitViewController {
 
         let bandsDataFunction = {[weak self] in self?.filterUnit.bands ?? []}
         filterUnitView.initialize(stateFunction: unitStateFunction, bandsDataFunction: bandsDataFunction)
+        updateSummary()
     }
  
     override func initControls() {
@@ -67,6 +69,22 @@ class FilterUnitViewController: EffectsUnitViewController {
             
             bandEditors.append(editor)
         }
+    }
+    
+    private func updateSummary() {
+        
+        let numberOfBands = filterUnit.numberOfBands
+        
+        guard numberOfBands > 0 else {
+            
+            lblSummary.stringValue = "0 bands"
+            return
+        }
+        
+        let numberOfActiveBands = filterUnit.numberOfActiveBands
+        let bandsCardinalString = numberOfBands == 1 ? "band" : "bands"
+        
+        lblSummary.stringValue = "\(numberOfBands) \(bandsCardinalString)  (\(numberOfActiveBands) active)"
     }
     
     // ------------------------------------------------------------------------
@@ -95,6 +113,7 @@ class FilterUnitViewController: EffectsUnitViewController {
         
         let newBandInfo: (band: FilterBand, index: Int) = filterUnit.addBand(ofType: bandType)
         bandsTableView.noteNumberOfRowsChanged()
+        updateSummary()
         
         let bandEditor = LazyWindowLoader<FilterBandEditorDialogController>()
         bandEditor.controller.bandIndex = newBandInfo.index
@@ -116,6 +135,7 @@ class FilterUnitViewController: EffectsUnitViewController {
         
         filterUnit.removeBands(atIndices: selRows)
         bandsTableView.reloadData()
+        updateSummary()
         
         for (index, editor) in bandEditors.enumerated() {
             
@@ -140,6 +160,11 @@ class FilterUnitViewController: EffectsUnitViewController {
         super.initSubscriptions()
         
         messenger.subscribe(to: .filterUnit_bandUpdated, handler: bandUpdated(_:))
+        
+        fontSchemesManager.registerObserver(lblSummary, forProperty: \.effectsPrimaryFont)
+        colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
+        
+        messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: updateSummary)
         
 //        messenger.subscribe(to: .changeBackgroundColor, handler: filterUnitView.changeBackgroundColor(_:))
 //        messenger.subscribe(to: .changeTextButtonMenuColor, handler: filterUnitView.changeTextButtonMenuColor(_:))

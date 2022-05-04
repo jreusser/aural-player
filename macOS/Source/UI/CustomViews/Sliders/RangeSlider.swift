@@ -366,28 +366,12 @@ class RangeSlider: NSControl, FXUnitStateObserver {
         let endPoint = NSMakePoint(barRect.maxX, barRect.centerY)
         GraphicsUtils.drawLine(barBackgroundColor, pt1: startPoint, pt2: endPoint, width: 1)
         
-//        framePath.stroke(withColor: barBackgroundColor)
-        
         /*  Draw bar fill */
         if NSWidth(selectedRect) > 0.0 {
 
             selectedPath.fill(withColor: barFillColor)
             barFillStrokeColor.setStroke()
         }
-        
-//        framePath.stroke(withColor: barStrokeColor)
-        
-//        /*  Draw slider shadows */
-//        if let shadow = sliderShadow() {
-//
-//            NSGraphicsContext.saveGraphicsState()
-//            shadow.set()
-//
-//            startSliderPath.fill(withColor: .black)
-//            endSliderPath.fill(withColor: .black)
-//
-//            NSGraphicsContext.restoreGraphicsState()
-//        }
         
         /*  Draw slider knobs */
         sliderGradient.draw(in: endSliderPath, angle: .horizontalGradientDegrees)

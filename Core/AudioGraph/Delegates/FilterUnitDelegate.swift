@@ -28,6 +28,14 @@ class FilterUnitDelegate: EffectsUnitDelegate<FilterUnit>, FilterUnitDelegatePro
         set {unit.bands = newValue}
     }
     
+    var numberOfBands: Int {
+        unit.bands.count
+    }
+    
+    var numberOfActiveBands: Int {
+        unit.bands.filter {!$0.bypass}.count
+    }
+    
     func addBand(ofType bandType: FilterBandType) -> (band: FilterBand, index: Int) {
         
         let newBand: FilterBand = .ofType(bandType)

@@ -22,6 +22,10 @@ protocol FilterUnitDelegateProtocol: EffectsUnitDelegateProtocol {
 
     var bands: [FilterBand] {get set}
     
+    var numberOfBands: Int {get}
+    
+    var numberOfActiveBands: Int {get}
+    
     subscript(_ index: Int) -> FilterBand {get set}
     
     func addBand(ofType bandType: FilterBandType) -> (band: FilterBand, index: Int)
