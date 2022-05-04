@@ -12,116 +12,94 @@ import Cocoa
 class FilterChart: NSView {
     
     var bandsDataFunction: (() -> [FilterBand]) = {[]}
-    var filterUnitStateFunction: EffectsUnitStateFunction = {.active}
-    
-//    var inactiveUnitGradient: NSGradient {
-//        Colors.Effects.defaultSliderBackgroundGradient
-//    }
-//
-//    var bandStopGradient: NSGradient {
-//        Colors.Effects.bypassedSliderGradient
-//    }
-//
-//    var bandPassGradient: NSGradient {
-//        Colors.Effects.activeSliderGradient
-//    }
-//
-//    var backgroundColor: NSColor {
-//        Colors.windowBackgroundColor
-//    }
+    var filterUnit: FilterUnitDelegateProtocol = audioGraphDelegate.filterUnit
     
     var textFont: NSFont {
-        systemFontScheme.effects.filterChartFont
+        systemFontScheme.effectsPrimaryFont
     }
     
-//    var textColor: NSColor {
-//        Colors.Effects.functionCaptionTextColor
-//    }
-    
-    private let offset: CGFloat = 5
-    private let bottomMargin: CGFloat = 5
+    private let offset: CGFloat = 0
+    private let bottomMargin: CGFloat = 0
     private let lineWidth: CGFloat = 2
     
     private let xMarks: [CGFloat] = [31, 63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000]
     
+    private lazy var messenger: Messenger = Messenger(for: self)
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        
+        messenger.subscribe(to: .filterUnit_bandUpdated, handler: redraw)
+        messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: redraw)
+    }
+    
     override func draw(_ dirtyRect: NSRect) {
         
-//        let unitState: EffectsUnitState = filterUnitStateFunction()
+        let unitState: EffectsUnitState = filterUnit.state
         
-//        var drawPath = NSBezierPath(rect: dirtyRect)
-        NSBezierPath.fillRoundedRect(dirtyRect, radius: 2, withColor: .darkGray)
-//        drawPath.fill(withColor: backgroundColor)
+        let width = self.width - 2 * offset
+        let height = self.height
+        let scale: CGFloat = width / 3
+
+        let frameRect: NSRect = NSRect(x: offset, y: 0, width: width, height: height)
+
+        var drawPath = NSBezierPath(rect: frameRect)
+        drawPath.stroke(withColor: .lightGray, lineWidth: 0.5)
+//        drawPath.fill(withColor: systemColorScheme.inactiveControlColor)
         
-//        let width = self.width - 2 * offset
-//        let height = self.height - 10
-//        let scale: CGFloat = width / 3
-//
-//        let frameRect: NSRect = NSRect(x: offset, y: bottomMargin, width: width, height: height / 2)
-//
-//        drawPath = NSBezierPath(rect: frameRect)
-//        drawPath.stroke(withColor: .lightGray, lineWidth: 0.5)
-//
-//        // Draw bands
-//        let bands = bandsDataFunction()
-//
-//        for band in bands {
-//
-//            switch band.type {
-//
-//            case .bandPass, .bandStop:
-//
-//                guard let min = band.minFreq, let max = band.maxFreq else {continue}
-//
-//                let x1 = log10(min/2) - 1
-//                let x2 = log10(max/2) - 1
-//
-//                let rx1 = offset + CGFloat(x1) * scale
-//                let rx2 = offset + CGFloat(x2) * scale
-//
-//                let gradient = unitState == .active ? (band.type == .bandStop ? bandStopGradient : bandPassGradient) : inactiveUnitGradient
-//
-//                let brect = NSRect(x: rx1, y: bottomMargin + 1, width: rx2 - rx1, height: (height / 2) - 2)
-//                drawPath = NSBezierPath(rect: brect)
-//
-//                gradient.draw(in: drawPath, angle: .verticalGradientDegrees)
-//
-//            case .lowPass:
-//
-//                guard let f = band.maxFreq else {continue}
-//
-//                let x = log10(f/2) - 1
-//                let rx = min(offset + CGFloat(x) * scale, frameRect.maxX - lineWidth / 2)
-//
-//                if unitState == .active {
-//
-//                    GraphicsUtils.drawVerticalLine(bandPassGradient, pt1: NSPoint(x: rx - lineWidth / 2, y: bottomMargin + 1), pt2: NSPoint(x: rx - lineWidth / 2, y: bottomMargin + (height / 2) - 2), width: lineWidth)
-//
-//                    GraphicsUtils.drawVerticalLine(bandStopGradient, pt1: NSPoint(x: rx + lineWidth / 2, y: bottomMargin + 1), pt2: NSPoint(x: rx + lineWidth / 2, y: bottomMargin + (height / 2) - 2), width: lineWidth)
-//
-//                } else {
-//
-//                    GraphicsUtils.drawVerticalLine(inactiveUnitGradient, pt1: NSPoint(x: rx, y: bottomMargin + 1), pt2: NSPoint(x: rx, y: bottomMargin + (height / 2) - 2), width: lineWidth)
-//                }
-//
-//            case .highPass:
-//
-//                guard let f = band.minFreq else {continue}
-//
-//                let x = log10(f/2) - 1
-//                let rx = min(offset + CGFloat(x) * scale, frameRect.maxX - lineWidth / 2)
-//
-//                if unitState == .active {
-//
-//                    GraphicsUtils.drawVerticalLine(bandStopGradient, pt1: NSPoint(x: rx - lineWidth / 2, y: bottomMargin + 1), pt2: NSPoint(x: rx - lineWidth / 2, y: bottomMargin + (height / 2) - 2), width: lineWidth)
-//
-//                    GraphicsUtils.drawVerticalLine(bandPassGradient, pt1: NSPoint(x: rx + lineWidth / 2, y: bottomMargin + 1), pt2: NSPoint(x: rx + lineWidth / 2, y: bottomMargin + (height / 2) - 2), width: lineWidth)
-//
-//                } else {
-//
-//                    GraphicsUtils.drawVerticalLine(inactiveUnitGradient, pt1: NSPoint(x: rx, y: bottomMargin + 1), pt2: NSPoint(x: rx, y: bottomMargin + (height / 2) - 2), width: lineWidth)
-//                }
-//            }
-//        }
+        guard unitState == .active else {return}
+
+        // Draw bands
+        let bands = bandsDataFunction()
+        let sortedBands = bands.sorted(by: {b1, b2 in
+            
+            if b2.type.equalsOneOf(.lowPass, .highPass), b1.type.equalsOneOf(.bandPass, .bandStop) {
+                return true
+            }
+            
+            if b1.type.equalsOneOf(.lowPass, .highPass), b2.type.equalsOneOf(.bandPass, .bandStop) {
+                return false
+            }
+            
+            return true
+        })
+
+        for band in sortedBands {
+            
+            guard !band.bypass else {continue}
+
+            switch band.type {
+
+            case .bandPass, .bandStop:
+
+                guard let min = band.minFreq, let max = band.maxFreq else {continue}
+
+                let x1 = log10(min/2) - 1
+                let x2 = log10(max/2) - 1
+
+                let rx1 = offset + CGFloat(x1) * scale
+                let rx2 = offset + CGFloat(x2) * scale
+
+                let color = unitState == .active ? (band.type == .bandStop ? systemColorScheme.inactiveControlColor : systemColorScheme.activeControlColor) : systemColorScheme.inactiveControlColor
+
+                let brect = NSRect(x: rx1, y: bottomMargin, width: rx2 - rx1, height: height)
+                drawPath = NSBezierPath(rect: brect)
+
+                drawPath.fill(withColor: color)
+
+            case .lowPass, .highPass:
+                
+                let freq = band.type == .lowPass ? band.maxFreq : band.minFreq
+                guard let f = freq else {continue}
+
+                let x = log10(f/2) - 1
+                let rx = min(offset + CGFloat(x) * scale, frameRect.maxX - lineWidth / 2)
+
+                GraphicsUtils.drawLine(systemColorScheme.activeControlColor, pt1: NSPoint(x: rx, y: bottomMargin), pt2: NSPoint(x: rx, y: bottomMargin + height), width: lineWidth)
+//                GraphicsUtils.drawLine(systemColorScheme.activeControlColor, pt1: NSPoint(x: rx + lineWidth / 2, y: bottomMargin + 1), pt2: NSPoint(x: rx + lineWidth / 2, y: bottomMargin + (height / 2) - 2), width: lineWidth)
+            }
+        }
 //
 //        // Draw X-axis markings
 //

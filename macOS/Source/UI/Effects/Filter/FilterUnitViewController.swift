@@ -114,6 +114,7 @@ class FilterUnitViewController: EffectsUnitViewController {
         let newBandInfo: (band: FilterBand, index: Int) = filterUnit.addBand(ofType: bandType)
         bandsTableView.noteNumberOfRowsChanged()
         updateSummary()
+        filterUnitView.redrawChart()
         
         let bandEditor = LazyWindowLoader<FilterBandEditorDialogController>()
         bandEditor.controller.bandIndex = newBandInfo.index
@@ -136,6 +137,7 @@ class FilterUnitViewController: EffectsUnitViewController {
         filterUnit.removeBands(atIndices: selRows)
         bandsTableView.reloadData()
         updateSummary()
+        filterUnitView.redrawChart()
         
         for (index, editor) in bandEditors.enumerated() {
             

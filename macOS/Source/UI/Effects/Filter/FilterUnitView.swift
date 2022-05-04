@@ -37,7 +37,6 @@ class FilterUnitView: NSView {
     func initialize(stateFunction: @escaping EffectsUnitStateFunction,
                     bandsDataFunction: @escaping () -> [FilterBand]) {
         
-        chart.filterUnitStateFunction = stateFunction
         chart.bandsDataFunction = bandsDataFunction
         
         bandsTable.setBackgroundColor(systemColorScheme.backgroundColor)
