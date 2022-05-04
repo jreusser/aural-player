@@ -68,7 +68,7 @@ class BookmarksMenuController: NSObject, NSMenuDelegate {
         let menuItem = BookmarksMenuItem(title: "  " + bookmark.name, action: action)
         menuItem.target = self
         
-        menuItem.image = Images.imgPlayedTrack
+        menuItem.image = .imgPlayedTrack
         menuItem.image?.size = menuItemCoverArtImageSize
         
         artLoadingQueue.addOperation {[weak self] in

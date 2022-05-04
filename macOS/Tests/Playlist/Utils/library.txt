@@ -8701,7 +8701,7 @@
 /Volumes/Shared/Music/Timo/Wumpscut/Blutkind [CD 1]/[Wumpscut] - 17 - Default (Alternative Take).mp3,:Wumpscut: - Default (Alternative Take),Default (Alternative Take),:Wumpscut:,Blutkind [CD1],Industrial,150.30857142857144
 /Volumes/Shared/Music/Timo/Wumpscut/Blutkind [CD 2]/[Wumpscut] - 02 - Praise Your Fears.mp3,:Wumpscut: - Praise Your Fears,Praise Your Fears,:Wumpscut:,Blutkind [CD2],Industrial,312.6334693877551
 /Volumes/Shared/Music/Timo/Wumpscut/Blutkind [CD 2]/[Wumpscut] - 03 - The Dark Chamber.mp3,:Wumpscut: - The Dark Chamber,The Dark Chamber,:Wumpscut:,Blutkind [CD2],Industrial,264.46367346938774
-/Volumes/Shared/Music/Timo/Wumpscut/Blutkind [CD 2]/[Wumpscut] - 04 - Frozen Images.mp3,:Wumpscut: - Frozen Images,Frozen Images,:Wumpscut:,Blutkind [CD2],Industrial,323.6048979591837
+/Volumes/Shared/Music/Timo/Wumpscut/Blutkind [CD 2]/[Wumpscut] - 04 - Frozen .mp3,:Wumpscut: - Frozen Images,Frozen Images,:Wumpscut:,Blutkind [CD2],Industrial,323.6048979591837
 /Volumes/Shared/Music/Timo/Wumpscut/Blutkind [CD 2]/[Wumpscut] - 05 - Phase Shifter.mp3,:Wumpscut: - Phase Shifter,Phase Shifter,:Wumpscut:,Blutkind [CD2],Industrial,222.0408163265306
 /Volumes/Shared/Music/Timo/Wumpscut/Blutkind [CD 2]/[Wumpscut] - 06 - Throbberstalk.mp3,:Wumpscut: - Throbberstalk,Throbberstalk,:Wumpscut:,Blutkind [CD2],Industrial,259.68326530612245
 /Volumes/Shared/Music/Timo/Wumpscut/Blutkind [CD 2]/[Wumpscut] - 07 - Clinics.mp3,:Wumpscut: - Clinics,Clinics,:Wumpscut:,Blutkind [CD2],Industrial,101.27673469387756

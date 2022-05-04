@@ -27,7 +27,7 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton, TintableFXUnitStateObse
         
         super.awakeFromNib()
         
-        image = Images.imgSwitch
+        image = .imgSwitch
         image?.isTemplate = true
         
         offStateTooltip = offStateTooltip ?? "Activate this effects unit"

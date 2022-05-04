@@ -10,7 +10,7 @@
 /*
     Container for images used by the UI
 */
-struct Images {
+extension PlatformImage {
     
     static let imgPlaylist: PlatformImage = PlatformImage(systemSymbolName: "list.dash", accessibilityDescription: nil)!
     static let imgPlayQueue: PlatformImage = PlatformImage(systemSymbolName: "music.note.list", accessibilityDescription: nil)!

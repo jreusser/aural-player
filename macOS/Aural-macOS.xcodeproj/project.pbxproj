@@ -416,6 +416,7 @@
 		3E7AF1032806451B006DC98F /* TrackListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AF1022806451B006DC98F /* TrackListProtocol.swift */; };
 		3E7AF10528065441006DC98F /* PlayQueueMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AF10428065441006DC98F /* PlayQueueMenuController.swift */; };
 		3E7BDD742822E93200EC5BC6 /* neo-latina-withNums.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BDD732822E93200EC5BC6 /* neo-latina-withNums.ttf */; };
+		3E7BDD762823118D00EC5BC6 /* NSAlert+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BDD752823118D00EC5BC6 /* NSAlert+Extensions.swift */; };
 		3E7C35FE26AADD2A00B3552D /* FilterPresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C35FD26AADD2A00B3552D /* FilterPresetView.swift */; };
 		3E7C360126AADFA000B3552D /* FilterBandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C360026AADFA000B3552D /* FilterBandView.swift */; };
 		3E7C978D268BB8BE00287158 /* NSLayoutConstraintExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C978C268BB8BE00287158 /* NSLayoutConstraintExtensions.swift */; };
@@ -1833,6 +1834,7 @@
 		3E7AF1022806451B006DC98F /* TrackListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListProtocol.swift; sourceTree = "<group>"; };
 		3E7AF10428065441006DC98F /* PlayQueueMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueMenuController.swift; sourceTree = "<group>"; };
 		3E7BDD732822E93200EC5BC6 /* neo-latina-withNums.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "neo-latina-withNums.ttf"; sourceTree = "<group>"; };
+		3E7BDD752823118D00EC5BC6 /* NSAlert+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+Extensions.swift"; sourceTree = "<group>"; };
 		3E7C35FD26AADD2A00B3552D /* FilterPresetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresetView.swift; sourceTree = "<group>"; };
 		3E7C360026AADFA000B3552D /* FilterBandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBandView.swift; sourceTree = "<group>"; };
 		3E7C978C268BB8BE00287158 /* NSLayoutConstraintExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtensions.swift; sourceTree = "<group>"; };
@@ -4165,6 +4167,7 @@
 				3EC29A5E27865CB500B29551 /* Images.swift */,
 				3EAFB5F9267FEEEA00F0DC96 /* NSImageExtensions.swift */,
 				3ED0A4EF27DD016200C7A438 /* ButtonStateMachine.swift */,
+				3E7BDD752823118D00EC5BC6 /* NSAlert+Extensions.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -5978,6 +5981,7 @@
 				3EFE38B727864896006F8B8C /* AudioGraphDefaults.swift in Sources */,
 				3E4CC362261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift in Sources */,
 				3EFE39C527864897006F8B8C /* PlayerUIPersistentState.swift in Sources */,
+				3E7BDD762823118D00EC5BC6 /* NSAlert+Extensions.swift in Sources */,
 				3EFE37F127864896006F8B8C /* PlaylistPreferences.swift in Sources */,
 				3E6C12BE25CEBE6700BF0D07 /* MasterUnitView.swift in Sources */,
 				3E6C12D425CEBE6700BF0D07 /* MasterUnitViewController.swift in Sources */,

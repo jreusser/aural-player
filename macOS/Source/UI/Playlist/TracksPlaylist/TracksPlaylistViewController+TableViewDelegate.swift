@@ -50,8 +50,8 @@
 //            
 //            // Check if there is a track currently playing, and if this row matches that track.
 //            if track == playbackInfo.playingTrack {
-////                return createIndexImageCell(tableView, row, Images.imgPlayingTrack, color: Colors.Playlist.playingTrackIconColor)
-//                return createIndexImageCell(tableView, row, Images.imgPlayingTrack, color: .blue)
+////                return createIndexImageCell(tableView, row, .imgPlayingTrack, color: Colors.Playlist.playingTrackIconColor)
+//                return createIndexImageCell(tableView, row, .imgPlayingTrack, color: .blue)
 //            }
 //            
 //            // Otherwise, create a text cell with the track index

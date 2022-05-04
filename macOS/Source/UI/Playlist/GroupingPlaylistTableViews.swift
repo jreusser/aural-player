@@ -76,10 +76,10 @@
 //        
 //        if identifier == NSOutlineView.disclosureButtonIdentifier, let disclosureButton = view as? NSButton {
 //            
-//            disclosureButton.image = Images.imgDisclosure_collapsed
+//            disclosureButton.image = .imgDisclosure_collapsed
 //            disclosureButton.image?.isTemplate = true
 //            
-//            disclosureButton.alternateImage = Images.imgDisclosure_expanded
+//            disclosureButton.alternateImage = .imgDisclosure_expanded
 //            disclosureButton.alternateImage?.isTemplate = true
 //            
 //            Self.disclosureButtons.append(disclosureButton)

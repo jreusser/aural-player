@@ -32,7 +32,7 @@ class NowPlayingInfoManager: NSObject {
     private static let optimalArtworkSize: CGSize = CGSize(width: 50, height: 50)
     
     /// An image to display when the currently playing track does not have any associated cover art, resized to an optimal size for display in Control Center.
-    private static let defaultArtwork: PlatformImage = Images.imgPlayingArt.copy(ofSize: optimalArtworkSize)
+    private static let defaultArtwork: PlatformImage = .imgPlayingArt.copy(ofSize: optimalArtworkSize)
     
     /// A flag used to prevent unnecessary redundant updates.
     private var preTrackChange: Bool = false

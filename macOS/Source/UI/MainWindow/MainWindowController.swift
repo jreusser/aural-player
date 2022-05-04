@@ -35,16 +35,16 @@ class MainWindowController: NSWindowController {
     private lazy var btnTogglePlayQueueStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingPlayQueue,
                                                                                     mappings: [
                                                                                         
-                                                                                        ButtonStateMachine.StateMapping(state: true, image: Images.imgPlayQueue, colorProperty: \.buttonColor, toolTip: "Hide the Play Queue"),
-                                                                                        ButtonStateMachine.StateMapping(state: false, image: Images.imgPlayQueue, colorProperty: \.inactiveControlColor, toolTip: "Show the Play Queue")
+                                                                                        ButtonStateMachine.StateMapping(state: true, image: .imgPlayQueue, colorProperty: \.buttonColor, toolTip: "Hide the Play Queue"),
+                                                                                        ButtonStateMachine.StateMapping(state: false, image: .imgPlayQueue, colorProperty: \.inactiveControlColor, toolTip: "Show the Play Queue")
                                                                                     ],
                                                                                     button: btnTogglePlayQueue)
     
     private lazy var btnToggleEffectsStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingEffects,
                                                                                     mappings: [
                                                                                         
-                                                                                        ButtonStateMachine.StateMapping(state: true, image: Images.imgEffects, colorProperty: \.buttonColor, toolTip: "Hide the Effects panel"),
-                                                                                        ButtonStateMachine.StateMapping(state: false, image: Images.imgEffects, colorProperty: \.inactiveControlColor, toolTip: "Show the Effects panel")
+                                                                                        ButtonStateMachine.StateMapping(state: true, image: .imgEffects, colorProperty: \.buttonColor, toolTip: "Hide the Effects panel"),
+                                                                                        ButtonStateMachine.StateMapping(state: false, image: .imgEffects, colorProperty: \.inactiveControlColor, toolTip: "Show the Effects panel")
                                                                                     ],
                                                                                     button: btnToggleEffects)
     

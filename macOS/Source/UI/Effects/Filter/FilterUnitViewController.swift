@@ -109,7 +109,11 @@ class FilterUnitViewController: EffectsUnitViewController {
     
     private func doAddBand(ofType bandType: FilterBandType) {
         
-        // TODO: Check if 31 bands already, and display error alert.
+        guard filterUnit.numberOfBands < 31 else {
+            
+            NSAlert.showError(withTitle: "Cannot add Filter band", andText: "The Filter unit already has the maximum of 31 bands.")
+            return
+        }
         
         let newBandInfo: (band: FilterBand, index: Int) = filterUnit.addBand(ofType: bandType)
         bandsTableView.noteNumberOfRowsChanged()

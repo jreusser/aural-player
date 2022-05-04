@@ -33,11 +33,11 @@ class AlertWindowController: SingletonWindowController, ModalComponentProtocol {
         
         switch alertType {
             
-        case .error:    icon.image = Images.imgError
+        case .error:    icon.image = .imgError
             
-        case .warning:  icon.image = Images.imgWarning
+        case .warning:  icon.image = .imgWarning
 
-        default:    icon.image = Images.imgWarning
+        default:    icon.image = .imgWarning
             
         }
         

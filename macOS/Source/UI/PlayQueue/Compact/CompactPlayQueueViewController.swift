@@ -89,7 +89,7 @@ class CompactPlayQueueViewController: TrackListViewController, ColorSchemeObserv
         case .cid_index:
             
             if track == playQueueDelegate.currentTrack {
-                return builder.withImage(image: Images.imgPlayFilled, inColor: systemColorScheme.activeControlColor)
+                return builder.withImage(image: .imgPlayFilled, inColor: systemColorScheme.activeControlColor)
                 
             } else {
                 return builder.withText(text: "\(row + 1)",

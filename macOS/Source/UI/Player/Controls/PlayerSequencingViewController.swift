@@ -20,16 +20,16 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
     
     private lazy var btnRepeatStateMachine: ButtonStateMachine<RepeatMode> = ButtonStateMachine(initialState: playQueueDelegate.repeatAndShuffleModes.repeatMode,
                                                                                                 mappings: [
-                                                                                                    ButtonStateMachine.StateMapping(state: .off, image: Images.imgRepeat, colorProperty: \.inactiveControlColor, toolTip: "Repeat"),
-                                                                                                    ButtonStateMachine.StateMapping(state: .all, image: Images.imgRepeat, colorProperty: \.activeControlColor, toolTip: "Repeat"),
-                                                                                                    ButtonStateMachine.StateMapping(state: .one, image: Images.imgRepeatOne, colorProperty: \.activeControlColor, toolTip: "Repeat")
+                                                                                                    ButtonStateMachine.StateMapping(state: .off, image: .imgRepeat, colorProperty: \.inactiveControlColor, toolTip: "Repeat"),
+                                                                                                    ButtonStateMachine.StateMapping(state: .all, image: .imgRepeat, colorProperty: \.activeControlColor, toolTip: "Repeat"),
+                                                                                                    ButtonStateMachine.StateMapping(state: .one, image: .imgRepeatOne, colorProperty: \.activeControlColor, toolTip: "Repeat")
                                                                                                 ],
                                                                                                 button: btnRepeat)
     
     private lazy var btnShuffleStateMachine: ButtonStateMachine<ShuffleMode> = ButtonStateMachine(initialState: playQueueDelegate.repeatAndShuffleModes.shuffleMode,
                                                                                                   mappings: [
-                                                                                                    ButtonStateMachine.StateMapping(state: .off, image: Images.imgShuffle, colorProperty: \.inactiveControlColor, toolTip: "Shuffle"),
-                                                                                                    ButtonStateMachine.StateMapping(state: .on, image: Images.imgShuffle, colorProperty: \.activeControlColor, toolTip: "Shuffle")
+                                                                                                    ButtonStateMachine.StateMapping(state: .off, image: .imgShuffle, colorProperty: \.inactiveControlColor, toolTip: "Shuffle"),
+                                                                                                    ButtonStateMachine.StateMapping(state: .on, image: .imgShuffle, colorProperty: \.activeControlColor, toolTip: "Shuffle")
                                                                                                   ],
                                                                                                   button: btnShuffle)
     

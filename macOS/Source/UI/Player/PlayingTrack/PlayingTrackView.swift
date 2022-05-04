@@ -69,13 +69,13 @@ class PlayingTrackView: MouseTrackingView {
     }
     
     func artUpdated() {
-        artView.image = trackInfo?.art ?? Images.imgPlayingArt
+        artView.image = trackInfo?.art ?? .imgPlayingArt
     }
     
     private func trackInfoSet() {
         
         textView.trackInfo = self.trackInfo
-        artView.image = trackInfo?.art ?? Images.imgPlayingArt
+        artView.image = trackInfo?.art ?? .imgPlayingArt
         
         controlsBox.showIf(trackInfo == nil || uiState.showControls)
         controlsBox.bringToFront()

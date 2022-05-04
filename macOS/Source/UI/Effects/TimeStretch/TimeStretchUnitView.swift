@@ -23,8 +23,8 @@ class TimeStretchUnitView: NSView, ColorSchemePropertyObserver {
     
     private lazy var btnShiftPitchStateMachine: ButtonStateMachine<Bool> = ButtonStateMachine(initialState: audioGraphDelegate.timeStretchUnit.shiftPitch,
                                                                                               mappings: [
-                                                                                                ButtonStateMachine.StateMapping(state: true, image: Images.imgChecked, colorProperty: \.buttonColor, toolTip: "Disable Pitch Shift"),
-                                                                                                ButtonStateMachine.StateMapping(state: false, image: Images.imgNotChecked, colorProperty: \.buttonColor, toolTip: "Enable Pitch Shift"),
+                                                                                                ButtonStateMachine.StateMapping(state: true, image: .imgChecked, colorProperty: \.buttonColor, toolTip: "Disable Pitch Shift"),
+                                                                                                ButtonStateMachine.StateMapping(state: false, image: .imgNotChecked, colorProperty: \.buttonColor, toolTip: "Enable Pitch Shift"),
                                                                                               ],
                                                                                               button: btnShiftPitch)
     

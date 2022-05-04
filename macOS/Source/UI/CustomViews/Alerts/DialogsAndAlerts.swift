@@ -120,7 +120,7 @@ struct DialogsAndAlerts {
         configureAlert(alert, title: title,
                        message: message,
                        info: info,
-                       icon: Images.imgError,
+                       icon: .imgError,
                        buttonTitles: ["OK"])
         
         return alert
@@ -131,7 +131,7 @@ struct DialogsAndAlerts {
         configureAlert(alert, title: "Track not played",
                        message: String(format: "The track '%@' cannot be played back !", error.file.lastPathComponent),
                        info: error.message,
-                       icon: Images.imgError,
+                       icon: .imgError,
                        buttonTitles: ["OK"])
         
         return alert
@@ -142,7 +142,7 @@ struct DialogsAndAlerts {
         configureAlert(alert, title: "Track not played",
                        message: String(format: "The track '%@' cannot be played back !", error.file.lastPathComponent),
                        info: error.message,
-                       icon: Images.imgError,
+                       icon: .imgError,
                        buttonTitles: [actionMessage ?? "OK"])
         
         return alert
@@ -153,7 +153,7 @@ struct DialogsAndAlerts {
         configureAlert(alert, title: "History item not found",
                        message: String(format: "The history item '%@' cannot be added to the playlist !", error.file.lastPathComponent),
                        info: error.message,
-                       icon: Images.imgError,
+                       icon: .imgError,
                        buttonTitles: [actionMessage ?? "OK"])
         
         return alert
@@ -165,7 +165,7 @@ struct DialogsAndAlerts {
         configureAlert(alert, title: "File(s) not added",
                        message: String(format: "%d of your chosen files were not added to the playlist. Possible reasons are listed below.", errors.count),
                        info: "- File(s) point to missing/broken paths.\n- Playlist file(s) point to audio file(s) with missing/broken paths.\n- File(s) are corrupted/damaged.",
-                       icon: Images.imgWarning,
+                       icon: .imgWarning,
                        buttonTitles: ["OK"])
         
         let rect: NSRect = NSRect(x: alert.window.x, y: alert.window.y, width: alert.window.width, height: 150)

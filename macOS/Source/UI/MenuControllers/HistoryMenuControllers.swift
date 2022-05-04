@@ -46,7 +46,7 @@ fileprivate func artForFile(_ _file: URL) -> NSImage? {
         
         // Display name is last path component
         // Art is folder icon
-        return Images.imgGroup_menu
+        return .imgGroup_menu
         
     } else {
         
@@ -58,7 +58,7 @@ fileprivate func artForFile(_ _file: URL) -> NSImage? {
             // Playlist
             // Display name is last path component
             // Art is playlist icon
-            return Images.imgHistory_playlist_padded
+            return .imgHistory_playlist_padded
             
         } else if SupportedTypes.allAudioExtensions.contains(fileExtension) {
             
@@ -78,7 +78,7 @@ fileprivate func createHistoryMenuItem(_ item: HistoryItem, _ actionTarget: AnyO
     let menuItem = HistoryMenuItem(title: "  " + item.displayName, action: action)
     menuItem.target = actionTarget
     
-    menuItem.image = Images.imgPlayedTrack
+    menuItem.image = .imgPlayedTrack
     menuItem.image?.size = menuItemCoverArtImageSize
     
     let queue = item is AddedItem ? addedItemsArtLoadingQueue : playedItemsArtLoadingQueue

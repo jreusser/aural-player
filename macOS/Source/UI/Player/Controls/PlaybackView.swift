@@ -32,17 +32,17 @@ class PlaybackView: NSView {
     
     private lazy var btnPlayPauseStateMachine: ButtonStateMachine<PlaybackState> = ButtonStateMachine(initialState: player.state,
                                                                                                       mappings: [
-                                                                                                        ButtonStateMachine.StateMapping(state: .stopped, image: Images.imgPlay, colorProperty: \.buttonColor, toolTip: "Play"),
-                                                                                                        ButtonStateMachine.StateMapping(state: .playing, image: Images.imgPause, colorProperty: \.buttonColor, toolTip: "Pause"),
-                                                                                                        ButtonStateMachine.StateMapping(state: .paused, image: Images.imgPlay, colorProperty: \.buttonColor, toolTip: "Play")
+                                                                                                        ButtonStateMachine.StateMapping(state: .stopped, image: .imgPlay, colorProperty: \.buttonColor, toolTip: "Play"),
+                                                                                                        ButtonStateMachine.StateMapping(state: .playing, image: .imgPause, colorProperty: \.buttonColor, toolTip: "Pause"),
+                                                                                                        ButtonStateMachine.StateMapping(state: .paused, image: .imgPlay, colorProperty: \.buttonColor, toolTip: "Play")
                                                                                                       ],
                                                                                                       button: btnPlayPause)
     
     private lazy var btnLoopStateMachine: ButtonStateMachine<PlaybackLoopState> = ButtonStateMachine(initialState: player.playbackLoopState,
                                                                                                      mappings: [
-                                                                                                        ButtonStateMachine.StateMapping(state: .none, image: Images.imgLoop, colorProperty: \.inactiveControlColor, toolTip: "Initiate a segment loop"),
-                                                                                                        ButtonStateMachine.StateMapping(state: .started, image: Images.imgLoopStarted, colorProperty: \.buttonColor, toolTip: "Complete the segment loop"),
-                                                                                                        ButtonStateMachine.StateMapping(state: .complete, image: Images.imgLoop, colorProperty: \.buttonColor, toolTip: "Remove the segment loop")
+                                                                                                        ButtonStateMachine.StateMapping(state: .none, image: .imgLoop, colorProperty: \.inactiveControlColor, toolTip: "Initiate a segment loop"),
+                                                                                                        ButtonStateMachine.StateMapping(state: .started, image: .imgLoopStarted, colorProperty: \.buttonColor, toolTip: "Complete the segment loop"),
+                                                                                                        ButtonStateMachine.StateMapping(state: .complete, image: .imgLoop, colorProperty: \.buttonColor, toolTip: "Remove the segment loop")
                                                                                                      ],
                                                                                                      button: btnLoop)
     

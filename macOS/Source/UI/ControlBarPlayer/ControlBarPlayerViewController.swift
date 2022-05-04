@@ -162,7 +162,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate, Destroya
             textView.clear()
         }
         
-        imgArt.image = player.playingTrack?.art?.image ?? Images.imgPlayingArt
+        imgArt.image = player.playingTrack?.art?.image ?? .imgPlayingArt
     }
     
     // MARK: Message handling

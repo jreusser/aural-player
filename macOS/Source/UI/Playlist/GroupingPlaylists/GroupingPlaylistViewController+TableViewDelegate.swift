@@ -89,7 +89,7 @@
 //        
 //        if track == playbackInfo.playingTrack {
 //            
-//            cell.image = Images.imgPlayingTrack
+//            cell.image = .imgPlayingTrack
 ////            cell.imageView?.contentTintColor = Colors.Playlist.playingTrackIconColor
 //            
 //        } else {
@@ -144,7 +144,7 @@
 //        cell.textField?.lineBreakMode = .byTruncatingMiddle
 //        
 //        // TODO: Change the imageView to a TintedImageView
-//        cell.image = Images.imgGroup
+//        cell.image = .imgGroup
 //        cell.image?.isTemplate = true
 ////        cell.imageView?.contentTintColor = Colors.Playlist.groupIconColor
 //        

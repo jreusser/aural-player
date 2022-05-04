@@ -78,7 +78,7 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
         let menuItem = FavoritesMenuItem(title: "  " + item.name, action: action)
         menuItem.target = self
         
-        menuItem.image = Images.imgPlayedTrack
+        menuItem.image = .imgPlayedTrack
         menuItem.image?.size = menuItemCoverArtImageSize
         
         artLoadingQueue.addOperation {[weak self] in
