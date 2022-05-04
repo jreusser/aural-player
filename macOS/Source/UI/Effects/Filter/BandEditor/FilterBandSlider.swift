@@ -17,20 +17,34 @@ class FilterBandSlider: RangeSlider {
     
     var bandIndex: Int!
     
+    var band: FilterBand {
+        filterUnit[bandIndex]
+    }
+    
     private var filterUnit: FilterUnitDelegateProtocol {
         audioGraphDelegate.filterUnit
     }
     
     override var barFillColor: NSColor {
         
-        let unitState = fxUnitStateObserverRegistry.currentState(forObserver: self)
+        let unitState = filterUnit.state
+        let bandType = band.type
 
-        if filterUnit[bandIndex].bypass {
+        if bandType == .bandStop || filterUnit[bandIndex].bypass {
             return systemColorScheme.inactiveControlColor
             
         } else {
             return unitState == .active ? systemColorScheme.activeControlColor : systemColorScheme.suppressedControlColor
         }
+    }
+    
+    override var barBackgroundColor: NSColor {
+        
+        if band.type == .bandStop, !band.bypass, filterUnit.state == .active {
+            return systemColorScheme.activeControlColor
+        }
+        
+        return super.barBackgroundColor
     }
     
     override var knobColor: NSColor {

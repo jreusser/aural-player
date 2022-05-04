@@ -20,48 +20,57 @@ class CutoffFrequencySlider: EffectsUnitSlider {
     }
 }
 
+class FilterCutoffFrequencySlider: CutoffFrequencySlider {
+    
+    var bandIndex: Int! {
+        
+        didSet {
+            (cell as! FilterCutoffFrequencySliderCell).bandIndex = bandIndex
+        }
+    }
+}
+
 class CutoffFrequencySliderCell: EffectsUnitSliderCell {
     
     var filterType: FilterBandType = .lowPass
-    
-//    override var backgroundGradient: NSGradient {
-//        
-//        if filterType == .lowPass {
-//            return Colors.Effects.sliderBackgroundGradient
-//        }
-//        
-//        switch (unitState, filterType) {
-//        
-//        case (.active, .highPass):  return Colors.Effects.activeSliderGradient.reversed()
-//            
-//        case (.bypassed, .highPass):  return Colors.Effects.bypassedSliderGradient.reversed()
-//            
-//        case (.suppressed, .highPass):  return Colors.Effects.suppressedSliderGradient.reversed()
-//            
-//        default:    return Colors.Effects.sliderBackgroundGradient
-//            
-//        }
-//    }
-//    
-//    override var foregroundGradient: NSGradient {
-//        
-//        if filterType == .highPass {
-//            return Colors.Effects.sliderBackgroundGradient.reversed()
-//        }
-//        
-//        switch (unitState, filterType) {
-//        
-//        case (.active, .lowPass):  return Colors.Effects.activeSliderGradient
-//            
-//        case (.bypassed, .lowPass):  return Colors.Effects.bypassedSliderGradient
-//            
-//        case (.suppressed, .lowPass):  return Colors.Effects.suppressedSliderGradient
-//            
-//        default:    return Colors.Effects.sliderBackgroundGradient.reversed()
-//            
-//        }
-//    }
 }
 
 class FilterCutoffFrequencySliderCell: CutoffFrequencySliderCell {
+    
+    var bandIndex: Int!
+    
+    private var filterUnit: FilterUnitDelegateProtocol {
+        audioGraphDelegate.filterUnit
+    }
+    
+    override var controlStateColor: NSColor {
+        
+        let unitState = filterUnit.state
+
+        if filterUnit[bandIndex].bypass {
+            return systemColorScheme.inactiveControlColor
+            
+        } else {
+            return unitState == .active ? systemColorScheme.activeControlColor : systemColorScheme.suppressedControlColor
+        }
+    }
+    
+    override var foregroundGradient: NSGradient {
+        
+        let unitState = filterUnit.state
+
+        if filterUnit[bandIndex].bypass {
+            return systemColorScheme.inactiveControlGradient
+            
+        } else {
+            return unitState == .active ? systemColorScheme.activeControlGradient : systemColorScheme.suppressedControlGradient
+        }
+    }
+    
+    override func progressRect(forBarRect barRect: NSRect, andKnobRect knobRect: NSRect) -> NSRect {
+        
+        filterType == .lowPass ?
+        NSRect(x: barRect.minX, y: barRect.minY, width: max(halfKnobWidth, (knobRect.minX + halfKnobWidth) - barRect.minX), height: barRect.height) :
+        NSRect(x: knobRect.minX + halfKnobWidth, y: barRect.minY, width: max(halfKnobWidth, barRect.maxX - knobRect.minX + halfKnobWidth), height: barRect.height)
+    }
 }

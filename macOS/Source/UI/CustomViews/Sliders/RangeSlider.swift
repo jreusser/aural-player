@@ -172,9 +172,7 @@ class RangeSlider: NSControl, FXUnitStateObserver {
     
     //MARK: - Appearance -
     
-    let _barBackgroundColor: NSColor = NSColor(white: 0.2, alpha: 1.0)
-    
-    var barBackgroundColor: NSColor {_barBackgroundColor}
+    var barBackgroundColor: NSColor {systemColorScheme.inactiveControlColor}
     
     private lazy var sliderGradient: NSGradient = {
         let backgroundStart = NSColor(white: 0.92, alpha: 1.0)
@@ -366,7 +364,7 @@ class RangeSlider: NSControl, FXUnitStateObserver {
         
         let startPoint = NSMakePoint(barRect.minX, barRect.centerY)
         let endPoint = NSMakePoint(barRect.maxX, barRect.centerY)
-        GraphicsUtils.drawLine(systemColorScheme.inactiveControlColor, pt1: startPoint, pt2: endPoint, width: 1)
+        GraphicsUtils.drawLine(barBackgroundColor, pt1: startPoint, pt2: endPoint, width: 1)
         
 //        framePath.stroke(withColor: barBackgroundColor)
         

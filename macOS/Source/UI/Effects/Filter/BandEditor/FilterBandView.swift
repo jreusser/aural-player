@@ -18,7 +18,7 @@ class FilterBandView: NSView {
     @IBOutlet weak var filterTypeMenu: NSPopUpButton!
     
     @IBOutlet weak var freqRangeSlider: FilterBandSlider!
-    @IBOutlet weak var cutoffSlider: CutoffFrequencySlider!
+    @IBOutlet weak var cutoffSlider: FilterCutoffFrequencySlider!
     @IBOutlet weak var cutoffSliderCell: FilterCutoffFrequencySliderCell!
     
     @IBOutlet weak var lblRangeCaption: NSTextField!
@@ -46,8 +46,11 @@ class FilterBandView: NSView {
     }
     
     var bandIndex: Int = -1 {
+        
         didSet {
+            
             freqRangeSlider.bandIndex = bandIndex
+            cutoffSlider.bandIndex = bandIndex
         }
     }
     
@@ -215,7 +218,12 @@ class FilterBandView: NSView {
     }
     
     private func bandBypassStateUpdated(bandIndex: Int) {
-        freqRangeSlider.redraw()
+
+        if filterUnit[bandIndex].type.equalsOneOf(.bandStop, .bandPass) {
+            freqRangeSlider.redraw()
+        } else {
+            cutoffSlider.redraw()
+        }
     }
     
     // ------------------------------------------------------------------------
