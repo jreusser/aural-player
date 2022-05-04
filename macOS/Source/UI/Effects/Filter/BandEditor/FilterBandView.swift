@@ -15,6 +15,7 @@ class FilterBandView: NSView {
     
     // MARK: UI fields
     
+    @IBOutlet weak var lblFilterTypeCaption: NSTextField!
     @IBOutlet weak var filterTypeMenu: NSPopUpButton!
     
     @IBOutlet weak var freqRangeSlider: FilterBandSlider!
@@ -28,6 +29,9 @@ class FilterBandView: NSView {
     @IBOutlet weak var lblCutoffCaption: NSTextField!
     @IBOutlet weak var presetCutoffsMenu: NSPopUpButton!
     @IBOutlet weak var presetCutoffsIconMenuItem: TintedIconMenuItem!
+    
+    @IBOutlet weak var lbl20Hz: NSTextField!
+    @IBOutlet weak var lbl20KHz: NSTextField!
     
     @IBOutlet weak var lblFrequencies: NSTextField!
     
@@ -78,6 +82,12 @@ class FilterBandView: NSView {
         
         applyFontScheme(systemFontScheme)
         applyColorScheme(systemColorScheme)
+        
+        colorSchemesManager.registerObservers([lblFilterTypeCaption, lblRangeCaption, lblCutoffCaption, lbl20Hz, lbl20KHz], forProperty: \.secondaryTextColor)
+        colorSchemesManager.registerObserver(lblFrequencies, forProperty: \.primaryTextColor)
+        
+        colorSchemesManager.registerSchemeObserver(filterTypeMenu, forProperties: [\.buttonColor, \.primaryTextColor])
+        colorSchemesManager.registerObservers([presetRangesIconMenuItem, presetCutoffsIconMenuItem], forProperty: \.buttonColor)
         
         messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: bandBypassStateUpdated(bandIndex:),
                             filter: {[weak self] bandIndex in (self?.bandIndex ?? -1) == bandIndex})

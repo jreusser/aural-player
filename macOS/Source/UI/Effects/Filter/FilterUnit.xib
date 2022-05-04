@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="FilterUnitViewController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="addButtonMenuIcon" destination="hUl-m1-80y" id="qmt-Cy-QHT"/>
                 <outlet property="bandsTableView" destination="DV5-Bt-Uye" id="X8x-tO-L2Q"/>
                 <outlet property="btnBypass" destination="N6p-bI-VWV" id="5UH-co-PWL"/>
                 <outlet property="filterUnitView" destination="e4i-Mp-MMA" id="FDB-df-ULi"/>

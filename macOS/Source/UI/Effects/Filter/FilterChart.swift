@@ -9,8 +9,8 @@
 //
 import Cocoa
 
-class FilterChart: NSView {
-    
+class FilterChart: NSView, ColorSchemeObserver {
+
     var bandsDataFunction: (() -> [FilterBand]) = {[]}
     var filterUnit: FilterUnitDelegateProtocol = audioGraphDelegate.filterUnit
     
@@ -30,8 +30,18 @@ class FilterChart: NSView {
         
         super.awakeFromNib()
         
+        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor])
+        
         messenger.subscribe(to: .filterUnit_bandUpdated, handler: redraw)
         messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: redraw)
+    }
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        redraw()
+    }
+    
+    func colorSchemeChanged() {
+        redraw()
     }
     
     override func draw(_ dirtyRect: NSRect) {
@@ -45,8 +55,7 @@ class FilterChart: NSView {
         let frameRect: NSRect = NSRect(x: offset, y: 0, width: width, height: height)
 
         var drawPath = NSBezierPath(rect: frameRect)
-        drawPath.stroke(withColor: .lightGray, lineWidth: 0.5)
-//        drawPath.fill(withColor: systemColorScheme.inactiveControlColor)
+        drawPath.stroke(withColor: systemColorScheme.inactiveControlColor, lineWidth: 1)
         
         guard unitState == .active else {return}
 

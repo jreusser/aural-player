@@ -121,6 +121,7 @@ extension FilterUnitViewController: NSTableViewDataSource, NSTableViewDelegate {
     private func createEditCell(_ tableView: NSTableView, _ id: NSUserInterfaceItemIdentifier, _ row: Int) -> FilterBandEditCellView? {
         
         guard let cell = tableView.makeView(withIdentifier: id, owner: nil) as? FilterBandEditCellView else {return nil}
+        colorSchemesManager.registerObserver(cell.btnEdit, forProperty: \.buttonColor)
         
         cell.action = {[weak self] in
             self?.bandEditors[row].showWindow()

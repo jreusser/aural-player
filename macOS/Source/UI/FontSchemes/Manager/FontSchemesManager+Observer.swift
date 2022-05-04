@@ -24,9 +24,11 @@ extension FontSchemesManager {
     
     func startObserving() {
         
-        for (property, observers) in propertyObservers {
+        for property in propertyObservers.keys {
             
-            kvo.addObserver(forObject: systemScheme, keyPath: property) {_, newFont in
+            kvo.addObserver(forObject: systemScheme, keyPath: property) {[weak self] _, newFont in
+                
+                guard let observers = self?.propertyObservers[property] else {return}
                 
                 observers.forEach {
                     $0.fontChanged(to: newFont, forProperty: property)
@@ -34,11 +36,12 @@ extension FontSchemesManager {
             }
         }
         
-        for (property, observers) in schemeAndPropertyObservers {
+        for property in schemeAndPropertyObservers.keys {
             
             kvo.addObserver(forObject: systemScheme, keyPath: property, options: [.new]) {[weak self] _, newFont in
                 
-                guard let strongSelf = self, !strongSelf.schemeChanged else {return}
+                guard let strongSelf = self, !strongSelf.schemeChanged,
+                      let observers = strongSelf.schemeAndPropertyObservers[property] else {return}
                 
                 observers.forEach {
                     $0.fontChanged(to: newFont, forProperty: property)

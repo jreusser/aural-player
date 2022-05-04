@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="FilterBandEditorDialogController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="bandView" destination="dvQ-2f-jgw" id="QcX-bk-vFu"/>
+                <outlet property="btnClose" destination="jdQ-BP-83d" id="O5F-5v-ahc"/>
                 <outlet property="lblWindowCaption" destination="7nl-w7-QLS" id="wFX-Rz-QhE"/>
                 <outlet property="rootContainerBox" destination="Ryl-fE-3Ks" id="Cu2-bj-c1b"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="P8h-MC-axk"/>
@@ -338,7 +339,10 @@
                             <outlet property="cutoffSliderCell" destination="r0j-3D-eY8" id="Bwa-eD-MK0"/>
                             <outlet property="filterTypeMenu" destination="LQR-yA-SaR" id="0cY-R9-7iq"/>
                             <outlet property="freqRangeSlider" destination="VP4-Nj-k9m" id="WuC-fr-88i"/>
+                            <outlet property="lbl20Hz" destination="dSa-h4-V2e" id="OnV-TN-bLa"/>
+                            <outlet property="lbl20KHz" destination="zfh-Uw-rT2" id="3RL-RC-78a"/>
                             <outlet property="lblCutoffCaption" destination="Ye2-Vr-Aow" id="cmL-XT-nGG"/>
+                            <outlet property="lblFilterTypeCaption" destination="dJy-oF-k9o" id="3ad-mM-Pqd"/>
                             <outlet property="lblFrequencies" destination="CUM-cB-VRz" id="6mk-da-f3k"/>
                             <outlet property="lblRangeCaption" destination="th2-6U-MIw" id="Kuq-Uc-rtS"/>
                             <outlet property="presetCutoffsIconMenuItem" destination="kol-e3-IhW" id="h7L-rf-0zE"/>

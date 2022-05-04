@@ -12,8 +12,8 @@ import Cocoa
 /*
     View controller for the Filter effects unit
  */
-class FilterUnitViewController: EffectsUnitViewController {
-    
+class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver {
+
     override var nibName: String? {"FilterUnit"}
     
     // ------------------------------------------------------------------------
@@ -23,6 +23,7 @@ class FilterUnitViewController: EffectsUnitViewController {
     @IBOutlet weak var filterUnitView: FilterUnitView!
     @IBOutlet weak var bandsTableView: NSTableView!
     @IBOutlet weak var lblSummary: NSTextField!
+    @IBOutlet weak var addButtonMenuIcon: TintedIconMenuItem!
     
     private var bandControllers: [FilterBandViewController] = []
     
@@ -58,6 +59,10 @@ class FilterUnitViewController: EffectsUnitViewController {
     override func initControls() {
 
         super.initControls()
+        addEditorsForAllBands()
+    }
+    
+    private func addEditorsForAllBands() {
         
         for bandIndex in filterUnit.bands.indices {
             
@@ -157,6 +162,25 @@ class FilterUnitViewController: EffectsUnitViewController {
         }
     }
     
+    // Applies a preset to the effects unit
+    @IBAction override func presetsAction(_ sender: AnyObject) {
+        
+        guard let selectedPresetItem = presetsMenuButton.titleOfSelectedItem else {return}
+        
+        for editor in bandEditors {
+            editor.destroy()
+        }
+        
+        bandEditors.removeAll()
+        
+        effectsUnit.applyPreset(named: selectedPresetItem)
+        bandsTableView.reloadData()
+        updateSummary()
+        filterUnitView.redrawChart()
+        
+        addEditorsForAllBands()
+    }
+    
     // ------------------------------------------------------------------------
     
     // MARK: Message handling
@@ -169,6 +193,8 @@ class FilterUnitViewController: EffectsUnitViewController {
         
         fontSchemesManager.registerObserver(lblSummary, forProperty: \.effectsPrimaryFont)
         colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
+        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor])
+        colorSchemesManager.registerObserver(addButtonMenuIcon, forProperty: \.buttonColor)
         
         messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: updateSummary)
         
@@ -193,6 +219,38 @@ class FilterUnitViewController: EffectsUnitViewController {
     // ------------------------------------------------------------------------
     
     // MARK: Theming
+    
+    func colorSchemeChanged() {
+        
+        bandsTableView.setBackgroundColor(systemColorScheme.backgroundColor)
+        bandsTableView.reloadData()
+    }
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        switch property {
+            
+        case \.backgroundColor:
+            
+            bandsTableView.setBackgroundColor(newColor)
+            
+        case \.activeControlColor, \.inactiveControlColor, \.suppressedControlColor:
+            
+            bandsTableView.reloadAllRows(columns: [0])
+            
+        case \.primaryTextColor:
+            
+            bandsTableView.reloadAllRows(columns: [3])
+            
+        case \.secondaryTextColor:
+            
+            bandsTableView.reloadAllRows(columns: [2])
+            
+        default:
+            
+            return
+        }
+    }
     
 //    override func applyFontScheme(_ fontScheme: FontScheme) {
 //

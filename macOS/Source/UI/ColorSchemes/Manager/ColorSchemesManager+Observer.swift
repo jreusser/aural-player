@@ -26,9 +26,11 @@ extension ColorSchemesManager {
     
     func startObserving() {
         
-        for (property, observers) in propertyObservers {
+        for property in propertyObservers.keys {
             
-            kvo.addObserver(forObject: systemScheme, keyPath: property) {_, newColor in
+            kvo.addObserver(forObject: systemScheme, keyPath: property) {[weak self] _, newColor in
+                
+                guard let observers = self?.propertyObservers[property] else {return}
                 
                 observers.forEach {
                     $0.colorChanged(to: newColor, forProperty: property)
@@ -36,11 +38,12 @@ extension ColorSchemesManager {
             }
         }
         
-        for (property, observers) in schemeAndPropertyObservers {
+        for property in schemeAndPropertyObservers.keys {
             
             kvo.addObserver(forObject: systemScheme, keyPath: property, options: [.new]) {[weak self] _, newColor in
                 
-                guard let strongSelf = self, !strongSelf.schemeChanged else {return}
+                guard let strongSelf = self, !strongSelf.schemeChanged,
+                      let observers = strongSelf.schemeAndPropertyObservers[property] else {return}
                 
                 observers.forEach {
                     $0.colorChanged(to: newColor, forProperty: property)
