@@ -16,8 +16,6 @@ class ControlBarPlayerAudioViewController: PlayerAudioViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        applyFontScheme(systemFontScheme)
         applyColorScheme(systemColorScheme)
     }
     
@@ -31,7 +29,6 @@ class ControlBarPlayerAudioViewController: PlayerAudioViewController {
         messenger.subscribe(to: .player_increaseVolume, handler: increaseVolume(_:))
         
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
     }
 }

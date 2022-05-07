@@ -37,11 +37,7 @@
         <customObject id="bbe-2a-cSz" customClass="WindowedModePlayerAudioViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnVolume" destination="TDX-6H-xzc" id="aKC-Wy-MKo"/>
-                <outlet property="lblPan" destination="02u-ld-jAl" id="UKa-6E-34Y"/>
-                <outlet property="lblPanCaption" destination="kPj-kX-wi1" id="wIJ-zd-UVS"/>
-                <outlet property="lblPanCaption2" destination="0Wj-JJ-PAf" id="Snp-Dl-TUD"/>
                 <outlet property="lblVolume" destination="i7r-GF-ZgY" id="4SO-Ev-Uc6"/>
-                <outlet property="panSlider" destination="QRT-te-AGM" id="uYq-eL-OtA"/>
                 <outlet property="view" destination="Jrx-i6-RpP" id="7hc-zD-blw"/>
                 <outlet property="volumeSlider" destination="cwg-dx-g0W" id="a3W-1D-UVU"/>
             </connections>
@@ -250,44 +246,6 @@
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="02u-ld-jAl" userLabel="Pan Value Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                                        <rect key="frame" x="463" y="-82" width="46" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="C" id="set-LM-4qa" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
-                                            <font key="font" size="9" name="Play-Regular"/>
-                                            <color key="textColor" white="0.70298936629999997" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kPj-kX-wi1" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                        <rect key="frame" x="446" y="-96" width="19" height="15"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="L" id="TKW-NX-TPZ">
-                                            <font key="font" size="9" name="Play-Regular"/>
-                                            <color key="textColor" white="0.70298936629999997" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Wj-JJ-PAf" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                        <rect key="frame" x="507" y="-96" width="19" height="15"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="R" id="VXj-Jb-IsZ">
-                                            <font key="font" size="9" name="Play-Regular"/>
-                                            <color key="textColor" white="0.70298936629999997" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <slider hidden="YES" toolTip="Stereo Pan" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QRT-te-AGM">
-                                        <rect key="frame" x="466" y="-101" width="40" height="18"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="-100" maxValue="100" tickMarkPosition="below" numberOfTickMarks="1" sliderType="linear" id="StG-HM-O8x" customClass="PanSliderCell" customModule="Aural" customModuleProvider="target"/>
-                                        <string key="userLabel" base64-UTF8="YES">
-G1BhbiBTbGlkZXI
-</string>
-                                        <connections>
-                                            <action selector="panAction:" target="bbe-2a-cSz" id="1Sh-5T-exO"/>
-                                        </connections>
-                                    </slider>
                                     <button toolTip="Seek forward" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pow-8G-nbs" userLabel="Seek Fwd Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="281" y="13.5" width="20" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>

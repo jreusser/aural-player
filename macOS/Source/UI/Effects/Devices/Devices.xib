@@ -8,10 +8,11 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DevicesViewController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="lblBalance" destination="drv-rM-2bk" id="xfU-Ri-3gq"/>
                 <outlet property="lblPan" destination="fsp-Yt-l6b" id="sVM-Jg-EM1"/>
+                <outlet property="lblPanLeft" destination="zby-Z1-H4K" id="m9I-KL-NP2"/>
+                <outlet property="lblPanRight" destination="JtL-qq-6rA" id="G4g-no-MUk"/>
                 <outlet property="panSlider" destination="T5o-V5-G0J" id="yOa-8b-slb"/>
-                <outlet property="tableClipView" destination="ZlV-f6-hdL" id="0bO-dh-644"/>
-                <outlet property="tableScrollView" destination="3eM-UJ-z73" id="1fN-r8-blT"/>
                 <outlet property="tableView" destination="xeh-k7-Jq1" id="GED-gk-qHR"/>
                 <outlet property="view" destination="AfF-E2-3Cj" id="wym-3z-iQL"/>
             </connections>
@@ -88,7 +89,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T5o-V5-G0J">
+                <slider identifier="muthuPan" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T5o-V5-G0J">
                     <rect key="frame" x="141" y="16" width="160" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="-100" maxValue="100" tickMarkPosition="above" numberOfTickMarks="5" sliderType="linear" id="xMH-sh-KE0" customClass="HorizontalSymmetricSliderCell" customModule="Aural" customModuleProvider="target"/>

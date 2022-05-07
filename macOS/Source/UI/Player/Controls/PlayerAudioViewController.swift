@@ -23,14 +23,10 @@ class PlayerAudioViewController: NSViewController, Destroyable {
     
     // These are feedback labels that are shown briefly and automatically hidden
     @IBOutlet weak var lblVolume: VALabel!
-    @IBOutlet weak var lblPan: VALabel!
     
     // Wrappers around the feedback labels that automatically hide them after showing them for a brief interval
     var autoHidingVolumeLabel: AutoHidingView!
     var autoHidingPanLabel: AutoHidingView!
-    
-    @IBOutlet weak var lblPanCaption: VALabel!
-    @IBOutlet weak var lblPanCaption2: VALabel!
     
     // Delegate that conveys all volume/pan adjustments to the audio graph
     var audioGraph: AudioGraphDelegateProtocol = audioGraphDelegate
@@ -52,13 +48,6 @@ class PlayerAudioViewController: NSViewController, Destroyable {
         autoHidingVolumeLabel = AutoHidingView(lblVolume, Self.feedbackLabelAutoHideIntervalSeconds)
         volumeSlider.floatValue = audioGraph.volume
         volumeChanged(audioGraph.volume, audioGraph.muted, true, false)
-        
-        if showsPanControl {
-            
-            autoHidingPanLabel = AutoHidingView(lblPan, Self.feedbackLabelAutoHideIntervalSeconds)
-            panSlider.floatValue = audioGraph.pan
-            panChanged(audioGraph.pan, false)
-        }
         
         fontSchemesManager.registerObserver(lblVolume, forProperty: \.playerTertiaryFont)
         
@@ -155,49 +144,11 @@ class PlayerAudioViewController: NSViewController, Destroyable {
         }
     }
     
-    // Updates the stereo pan
-    @IBAction func panAction(_ sender: AnyObject) {
-        
-        audioGraph.pan = panSlider.floatValue
-        panChanged(audioGraph.pan)
-    }
-    
-    // Pans the sound towards the left channel, by a certain preset value
-    func panLeft() {
-        
-        panChanged(audioGraph.panLeft())
-        panSlider.floatValue = audioGraph.pan
-    }
-    
-    // Pans the sound towards the right channel, by a certain preset value
-    func panRight() {
-        
-        panChanged(audioGraph.panRight())
-        panSlider.floatValue = audioGraph.pan
-    }
-    
-    func panChanged(_ pan: Float, _ showFeedback: Bool = true) {
-        
-        lblPan.stringValue = audioGraph.formattedPan
-        
-        // Shows and automatically hides the pan label after a preset time interval
-        if showFeedback {
-            autoHidingPanLabel.showView()
-        }
-    }
-    
     func trackChanged(_ newTrack: Track?) {
         
         // Apply sound profile if there is one for the new track and the preferences allow it
         if let theNewTrack = newTrack, soundProfiles.hasFor(theNewTrack) {
-
             volumeChanged(audioGraph.volume, audioGraph.muted)
-            
-            if showsPanControl {
-                
-                panChanged(audioGraph.pan)
-                panSlider.floatValue = audioGraph.pan
-            }
         }
     }
     
@@ -208,39 +159,9 @@ class PlayerAudioViewController: NSViewController, Destroyable {
     }
     
     func applyTheme() {
-        
-        applyFontScheme(systemFontScheme)
         applyColorScheme(systemColorScheme)
     }
     
-    func applyFontScheme(_ fontScheme: FontScheme) {
-        
-        [lblPan, lblPanCaption, lblPanCaption2].forEach {$0?.font = systemFontScheme.playerTertiaryFont}
-    }
-    
     func applyColorScheme(_ scheme: ColorScheme) {
-        
-        changeFunctionButtonColor(scheme.buttonColor)   // This call will also take care of toggle buttons.
-        changeSliderColors()
-        changeSliderValueTextColor(scheme.secondaryTextColor)
-    }
-    
-    func changeFunctionButtonColor(_ color: NSColor) {
-        
-//        btnVolume.reTint()
-        
-        if showsPanControl {
-            
-            lblPanCaption.textColor = color
-            lblPanCaption2.textColor = color
-        }
-    }
-    
-    func changeSliderColors() {
-        [volumeSlider, panSlider].forEach {$0?.redraw()}
-    }
-    
-    func changeSliderValueTextColor(_ color: NSColor) {
-        lblPan?.textColor = color
     }
 }

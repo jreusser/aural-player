@@ -19,13 +19,19 @@ class DevicesViewController: NSViewController, Destroyable {
     // MARK: UI fields
     
     @IBOutlet weak var tableView: NSTableView!
-    @IBOutlet weak var tableScrollView: NSScrollView!
-    @IBOutlet weak var tableClipView: NSClipView!
     
     @IBOutlet weak var panSlider: NSSlider!
     @IBOutlet weak var lblPan: VALabel!
+
+    // Caption labels
+    
+    @IBOutlet weak var lblBalance: VALabel!
+    @IBOutlet weak var lblPanLeft: VALabel!
+    @IBOutlet weak var lblPanRight: VALabel!
     
     private lazy var audioGraph: AudioGraphDelegateProtocol = audioGraphDelegate
+    private lazy var soundProfiles: SoundProfiles = audioGraphDelegate.soundProfiles
+    private lazy var messenger: Messenger = Messenger(for: self)
     
     override func viewDidLoad() {
         
@@ -36,15 +42,50 @@ class DevicesViewController: NSViewController, Destroyable {
 //        tableScrollView.backgroundColor = backgroundColor
 //        tableClipView.backgroundColor = backgroundColor
 //        tableView.backgroundColor = backgroundColor
+        
         panSlider.floatValue = audioGraph.pan
         lblPan.stringValue = audioGraph.formattedPan
         
+        fontSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight, lblPan], forProperty: \.effectsPrimaryFont)
+
+        colorSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight], forProperty: \.secondaryTextColor)
         colorSchemesManager.registerObserver(lblPan, forProperty: \.primaryTextColor)
+        
+        colorSchemesManager.registerSchemeObserver(panSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
+        
+        messenger.subscribe(to: .player_panLeft, handler: panLeft)
+        messenger.subscribe(to: .player_panRight, handler: panRight)
+        
+        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:),
+                                 filter: {msg in msg.trackChanged})
     }
     
     @IBAction func panAction(_ sender: Any) {
         
         audioGraph.pan = panSlider.floatValue
+        lblPan.stringValue = audioGraph.formattedPan
+    }
+    
+    // Pans the sound towards the left channel, by a certain preset value
+    func panLeft() {
+        
+        panSlider.floatValue = audioGraph.panLeft()
+        lblPan.stringValue = audioGraph.formattedPan
+    }
+    
+    // Pans the sound towards the right channel, by a certain preset value
+    func panRight() {
+        
+        panSlider.floatValue = audioGraph.panRight()
+        lblPan.stringValue = audioGraph.formattedPan
+    }
+    
+    private func trackTransitioned(_ notification: TrackTransitionNotification) {
+        
+        // Apply sound profile if there is one for the new track and the preferences allow it
+        guard let theNewTrack = notification.endTrack, soundProfiles.hasFor(theNewTrack) else {return}
+        
+        panSlider.floatValue = audioGraph.pan
         lblPan.stringValue = audioGraph.formattedPan
     }
 }

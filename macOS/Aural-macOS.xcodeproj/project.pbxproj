@@ -552,7 +552,6 @@
 		3EAFB607267FF24900F0DC96 /* SeekSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFB606267FF24900F0DC96 /* SeekSliderCell.swift */; };
 		3EAFB609267FF29300F0DC96 /* VolumeSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFB608267FF29300F0DC96 /* VolumeSliderCell.swift */; };
 		3EAFB60B267FF2B900F0DC96 /* PreferencesSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFB60A267FF2B900F0DC96 /* PreferencesSliderCell.swift */; };
-		3EAFB60D267FF2F300F0DC96 /* PanSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFB60C267FF2F300F0DC96 /* PanSliderCell.swift */; };
 		3EAFB60F267FF35900F0DC96 /* EffectsUnitSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFB60E267FF35900F0DC96 /* EffectsUnitSliderCell.swift */; };
 		3EAFB611267FF3FE00F0DC96 /* MenuBarSeekSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFB610267FF3FE00F0DC96 /* MenuBarSeekSliderCell.swift */; };
 		3EAFB613267FF42E00F0DC96 /* MenuBarVolumeSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFB612267FF42E00F0DC96 /* MenuBarVolumeSliderCell.swift */; };
@@ -2019,7 +2018,6 @@
 		3EAFB606267FF24900F0DC96 /* SeekSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekSliderCell.swift; sourceTree = "<group>"; };
 		3EAFB608267FF29300F0DC96 /* VolumeSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeSliderCell.swift; sourceTree = "<group>"; };
 		3EAFB60A267FF2B900F0DC96 /* PreferencesSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesSliderCell.swift; sourceTree = "<group>"; };
-		3EAFB60C267FF2F300F0DC96 /* PanSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanSliderCell.swift; sourceTree = "<group>"; };
 		3EAFB60E267FF35900F0DC96 /* EffectsUnitSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsUnitSliderCell.swift; sourceTree = "<group>"; };
 		3EAFB610267FF3FE00F0DC96 /* MenuBarSeekSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarSeekSliderCell.swift; sourceTree = "<group>"; };
 		3EAFB612267FF42E00F0DC96 /* MenuBarVolumeSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarVolumeSliderCell.swift; sourceTree = "<group>"; };
@@ -3654,7 +3652,6 @@
 				3E6C104425CEB98600BF0D07 /* SeekSliderView.swift */,
 				3EAFB606267FF24900F0DC96 /* SeekSliderCell.swift */,
 				3EAFB608267FF29300F0DC96 /* VolumeSliderCell.swift */,
-				3EAFB60C267FF2F300F0DC96 /* PanSliderCell.swift */,
 				3E6C0FBD25CEB98600BF0D07 /* TrackPeekingButton.swift */,
 				3E6C104625CEB98600BF0D07 /* PlaybackView.swift */,
 				3E6C104725CEB98600BF0D07 /* PlaybackViewController.swift */,
@@ -6084,7 +6081,6 @@
 				3EFE37E927864896006F8B8C /* PreferencesDefaults.swift in Sources */,
 				3EFE3A2B27864898006F8B8C /* TrackInfoUpdatedNotification.swift in Sources */,
 				3E6C128925CEBE1800BF0D07 /* OnOffImageButtons.swift in Sources */,
-				3EAFB60D267FF2F300F0DC96 /* PanSliderCell.swift in Sources */,
 				3EFE38ED27864897006F8B8C /* CompositeKeyMap.swift in Sources */,
 				3E6C126425CEBE0600BF0D07 /* PitchShiftPresetsManagerViewController.swift in Sources */,
 				3E6C12C625CEBE6700BF0D07 /* PitchShiftUnitView.swift in Sources */,
