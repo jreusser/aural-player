@@ -122,7 +122,7 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
         
         // Select Master tab view by default
 //        doTabViewAction(masterTabViewButton)
-        doTabViewAction(devicesTabViewButton)
+        doTabViewAction(eqTabViewButton)
     }
 
     override func destroy() {

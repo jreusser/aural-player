@@ -132,6 +132,8 @@ class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver, 
     
     @IBAction func removeBandsAction(_ sender: AnyObject) {
         
+        // TODO: Before removing, remove the bypass switches in the removed rows as FX unit state observers.
+        
         let selRows = bandsTableView.selectedRowIndexes
         guard selRows.isNonEmpty else {return}
         

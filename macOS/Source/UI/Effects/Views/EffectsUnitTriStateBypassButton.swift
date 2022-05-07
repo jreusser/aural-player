@@ -66,6 +66,9 @@ class FilterBandTriStateBypassButton: NSButton, TintableFXUnitStateObserver {
     
     func unitStateChanged(to newState: EffectsUnitState) {
         
+        // TODO: How to deal with observers that have been removed from table cells ???
+        guard bandIndex != nil, bandIndex < filterUnit.numberOfBands else {return}
+        
         if filterUnit[bandIndex].bypass {
             
             contentTintColor = systemColorScheme.inactiveControlColor

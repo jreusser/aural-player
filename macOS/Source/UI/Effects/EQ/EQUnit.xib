@@ -278,20 +278,20 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <popUpButton hidden="YES" toolTip="Load preset" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q15-iZ-G8V" userLabel="Presets Menu">
-                    <rect key="frame" x="25" y="16" width="16" height="10"/>
+                <popUpButton hidden="YES" toolTip="Presets" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q15-iZ-G8V" userLabel="Presets Menu">
+                    <rect key="frame" x="24" y="16" width="16" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="WlN-df-qI3">
+                    <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="WlN-df-qI3">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" showsStateColumn="NO" id="VbO-RY-QUI">
                             <items>
                                 <menuItem hidden="YES" id="ZUZ-sN-HFg" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
-                                    <imageReference key="image" image="Ellipsis" symbolScale="medium"/>
+                                    <imageReference key="image" image="SavedSettings" symbolScale="default"/>
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="image" keyPath="baseImage">
-                                            <imageReference key="value" image="Ellipsis" symbolScale="medium"/>
+                                            <imageReference key="value" image="SavedSettings" symbolScale="medium"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
@@ -361,6 +361,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Ellipsis" width="40" height="10"/>
+        <image name="SavedSettings" width="12" height="15"/>
     </resources>
 </document>
