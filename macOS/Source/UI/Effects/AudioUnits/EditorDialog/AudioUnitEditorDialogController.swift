@@ -18,6 +18,7 @@ class AudioUnitEditorDialogController: NSWindowController {
     // MARK: UI fields
     
     @IBOutlet weak var rootContainer: NSBox!
+    @IBOutlet weak var btnClose: TintedImageButton!
     
     @IBOutlet weak var lblTitle: NSTextField!
     @IBOutlet weak var viewContainer: NSBox!
@@ -76,10 +77,16 @@ class AudioUnitEditorDialogController: NSWindowController {
             strongSelf.theWindow.resize(curWindowSize.width - widthDelta, curWindowSize.height - heightDelta)
         }
         
-        lblTitle.stringValue = "\(audioUnit.name) v\(audioUnit.version) by \(audioUnit.manufacturerName)"
+        lblTitle.stringValue = "\(audioUnit.name) v\(audioUnit.version)"
         
         initFactoryPresets()
         initUserPresets()
+        
+        fontSchemesManager.registerObserver(lblTitle, forProperty: \.captionFont)
+        
+        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
+        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
+        colorSchemesManager.registerObserver(lblTitle, forProperty: \.captionTextColor)
     }
     
     private func initFactoryPresets() {
