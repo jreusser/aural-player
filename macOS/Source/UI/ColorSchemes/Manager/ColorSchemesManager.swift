@@ -28,7 +28,8 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
     // The value should be an array of KeyPath.
     var reverseRegistry: [NSObject: KeyPath<ColorScheme, PlatformColor>] = [:]
     
-    var kvo: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
+    var propertyKVO: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
+    var schemeKVO: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
     
     var isObserving: Bool = false
     

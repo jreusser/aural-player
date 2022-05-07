@@ -26,36 +26,19 @@ extension ColorSchemesManager {
     
     func startObserving() {
         
-        for property in propertyObservers.keys {
-            
-            kvo.addObserver(forObject: systemScheme, keyPath: property) {[weak self] _, newColor in
-                
-                guard let observers = self?.propertyObservers[property] else {return}
-                
-                observers.forEach {
-                    $0.colorChanged(to: newColor, forProperty: property)
-                }
-            }
-        }
-        
-        for property in schemeAndPropertyObservers.keys {
-            
-            kvo.addObserver(forObject: systemScheme, keyPath: property, options: [.new]) {[weak self] _, newColor in
-                
-                guard let strongSelf = self, !strongSelf.schemeChanged,
-                      let observers = strongSelf.schemeAndPropertyObservers[property] else {return}
-                
-                observers.forEach {
-                    $0.colorChanged(to: newColor, forProperty: property)
-                }
-            }
-        }
-        
-        for observer in schemeObservers {
-            observer.colorSchemeChanged()
-        }
-        
-        isObserving = true
+//        for property in propertyObservers.keys {
+//            observeProperty(property)
+//        }
+//
+//        for property in schemeAndPropertyObservers.keys {
+//            observePropertyForSchemeObserver(property)
+//        }
+//
+//        for observer in schemeObservers {
+//            observer.colorSchemeChanged()
+//        }
+//
+//        isObserving = true
     }
     
     // TODO: Call this from AppModeManager.dismissMode()
@@ -65,7 +48,8 @@ extension ColorSchemesManager {
         schemeAndPropertyObservers.removeAll()
         schemeObservers.removeAll()
         
-        kvo.invalidate()
+        propertyKVO.invalidate()
+        schemeKVO.invalidate()
     }
     
     private typealias PropertyObserver = (observer: ColorSchemePropertyObserver, property: KeyPath<ColorScheme, PlatformColor>)
@@ -82,45 +66,6 @@ extension ColorSchemesManager {
         doRegisterObservers(observers.map {($0, property)})
     }
     
-    func registerSchemeObserver(_ observer: ColorSchemeObserver, forProperties properties: [KeyPath<ColorScheme, PlatformColor>]) {
-        
-        schemeObservers.append(observer)
-        
-        for property in properties {
-            
-            if schemeAndPropertyObservers[property] == nil {
-                schemeAndPropertyObservers[property] = []
-            }
-            
-            schemeAndPropertyObservers[property]!.append(observer)
-            
-            // TODO: Add to reverse registry
-        }
-    }
-    
-    func registerSchemeObservers(_ observers: [ColorSchemeObserver], forProperties properties: [KeyPath<ColorScheme, PlatformColor>]) {
-        
-        schemeObservers.append(contentsOf: observers)
-        
-        for observer in observers {
-            
-            for property in properties {
-                
-                if schemeAndPropertyObservers[property] == nil {
-                    schemeAndPropertyObservers[property] = []
-                }
-                
-                schemeAndPropertyObservers[property]!.append(observer)
-            }
-            
-            if isObserving {
-                observer.colorSchemeChanged()
-            }
-            
-            // TODO: Add to reverse registry
-        }
-    }
-    
     private func doRegisterObservers(_ observers: [PropertyObserver]) {
         
         for (observer, property) in observers {
@@ -135,8 +80,27 @@ extension ColorSchemesManager {
                 reverseRegistry[observerObject] = property
             }
             
-            if isObserving {
-                observer.colorChanged(to: systemColorScheme[keyPath: property], forProperty: property)
+            if !propertyKVO.isPropertyObserved(property) {
+                observeProperty(property)
+            }
+            
+            // Set initial value.
+            observer.colorChanged(to: systemScheme[keyPath: property], forProperty: property)
+        }
+    }
+    
+    private func observeProperty(_ property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        propertyKVO.addObserver(forObject: systemScheme, keyPath: property, options: [.new]) {[weak self] _, newColor in
+            
+            guard let observers = self?.propertyObservers[property] else {return}
+            
+//            if property == \.effectsSecondaryColor {
+//                print("\nI have \(observers.count) observers for eff sec.")
+//            }
+            
+            observers.forEach {
+                $0.colorChanged(to: newColor, forProperty: property)
             }
         }
     }
@@ -153,5 +117,80 @@ extension ColorSchemesManager {
         }
         
         reverseRegistry.removeValue(forKey: observerObject)
+    }
+    
+    // ----------------------------------------------------------------------------------------------------
+    
+    // MARK: Scheme observing
+    
+    func registerSchemeObserver(_ observer: ColorSchemeObserver, forProperties properties: [KeyPath<ColorScheme, PlatformColor>]) {
+        
+        schemeObservers.append(observer)
+        
+        for property in properties {
+            
+            if schemeAndPropertyObservers[property] == nil {
+                schemeAndPropertyObservers[property] = []
+            }
+            
+            schemeAndPropertyObservers[property]!.append(observer)
+            
+            // TODO: Add to reverse registry
+            
+            if !schemeKVO.isPropertyObserved(property) {
+                observePropertyForSchemeObserver(property)
+            }
+            
+            observer.colorSchemeChanged()
+        }
+    }
+    
+    func registerSchemeObservers(_ observers: [ColorSchemeObserver], forProperties properties: [KeyPath<ColorScheme, PlatformColor>]) {
+        
+        schemeObservers.append(contentsOf: observers)
+        
+        for observer in observers {
+            
+            for property in properties {
+                
+                if schemeAndPropertyObservers[property] == nil {
+                    schemeAndPropertyObservers[property] = []
+                }
+                
+                schemeAndPropertyObservers[property]!.append(observer)
+                
+                if !schemeKVO.isPropertyObserved(property) {
+                    observePropertyForSchemeObserver(property)
+                }
+            }
+            
+            // TODO: Add to reverse registry
+            
+            observer.colorSchemeChanged()
+        }
+    }
+    
+    private func observePropertyForSchemeObserver(_ property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        schemeKVO.addObserver(forObject: systemScheme, keyPath: property, options: [.new]) {[weak self] _, newColor in
+            
+            guard let strongSelf = self else {return}
+                    
+            guard !strongSelf.schemeChanged else {
+
+                strongSelf.schemeObservers.forEach {
+                    $0.colorSchemeChanged()
+                }
+                
+                return
+            }
+            
+            if let observers = strongSelf.schemeAndPropertyObservers[property] {
+            
+                observers.forEach {
+                    $0.colorChanged(to: newColor, forProperty: property)
+                }
+            }
+        }
     }
 }
