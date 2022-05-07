@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class DevicesViewController: NSViewController, ColorSchemeObserver, Destroyable {
+class DevicesViewController: NSViewController, FontSchemePropertyObserver, ColorSchemeObserver, Destroyable {
     
     override var nibName: String? {"Devices"}
     
@@ -33,19 +33,16 @@ class DevicesViewController: NSViewController, ColorSchemeObserver, Destroyable 
     private lazy var soundProfiles: SoundProfiles = audioGraphDelegate.soundProfiles
     private lazy var messenger: Messenger = Messenger(for: self)
     
+    var selectionChangeIsInternal: Bool = true
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-//        let backgroundColor = systemColorScheme.backgroundColor
-//
-//        tableScrollView.backgroundColor = backgroundColor
-//        tableClipView.backgroundColor = backgroundColor
-//        tableView.backgroundColor = backgroundColor
-        
         panSlider.floatValue = audioGraph.pan
         lblPan.stringValue = audioGraph.formattedPan
         
+        fontSchemesManager.registerObserver(self, forProperty: \.effectsPrimaryFont)
         fontSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight, lblPan], forProperty: \.effectsPrimaryFont)
 
         colorSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight], forProperty: \.secondaryTextColor)
@@ -63,6 +60,10 @@ class DevicesViewController: NSViewController, ColorSchemeObserver, Destroyable 
         
         tableView.reloadData()
         tableView.selectRow(audioGraphDelegate.availableDevices.indexOfOutputDevice)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.selectionChangeIsInternal = false
+        }
     }
     
     @IBAction func panAction(_ sender: Any) {
@@ -97,6 +98,10 @@ class DevicesViewController: NSViewController, ColorSchemeObserver, Destroyable 
     // ---------------------------------------------------------------------------------------------------------
     
     // MARK: Theming
+    
+    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+        tableView.reloadDataMaintainingSelection()
+    }
     
     func colorSchemeChanged() {
         

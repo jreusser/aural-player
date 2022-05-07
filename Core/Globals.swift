@@ -40,7 +40,7 @@ fileprivate let audioEngine: AudioEngine = AudioEngine()
 let audioGraph: AudioGraph = AudioGraph(audioEngine: audioEngine, audioUnitsManager: audioUnitsManager,
                                                     persistentState: persistentState.audioGraph)
 
-let audioGraphDelegate: AudioGraphDelegateProtocol = AudioGraphDelegate(graph: audioGraph, persistentState: persistentState.audioGraph,
+var audioGraphDelegate: AudioGraphDelegateProtocol = AudioGraphDelegate(graph: audioGraph, persistentState: persistentState.audioGraph,
                                                                         player: playbackDelegate, preferences: preferences.soundPreferences)
 
 #if os(macOS)

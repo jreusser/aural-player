@@ -12,6 +12,10 @@ import Cocoa
 
 extension DevicesViewController: NSTableViewDataSource, NSTableViewDelegate {
     
+    private var devices: [AudioDevice] {
+        audioGraphDelegate.availableDevices.allDevices
+    }
+    
     func numberOfRows(in tableView: NSTableView) -> Int {
         audioGraphDelegate.availableDevices.numberOfDevices
     }
@@ -25,7 +29,7 @@ extension DevicesViewController: NSTableViewDataSource, NSTableViewDelegate {
     // Returns a view for a single column
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-        let device = audioGraphDelegate.availableDevices.allDevices[row]
+        let device = devices[row]
         
         let builder = TableCellBuilder().withText(text: device.name, inFont: systemFontScheme.effectsPrimaryFont,
                                                   andColor: systemColorScheme.primaryTextColor, selectedTextColor: systemColorScheme.primarySelectedTextColor)
@@ -37,6 +41,16 @@ extension DevicesViewController: NSTableViewDataSource, NSTableViewDelegate {
         }
         
         return cell
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        
+        if selectionChangeIsInternal {return}
+        
+        let row = tableView.selectedRow
+        guard row >= 0 else {return}
+        
+        audioGraphDelegate.outputDevice = devices[row]
     }
 }
 
