@@ -25,8 +25,6 @@ class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver {
     @IBOutlet weak var lblSummary: NSTextField!
     @IBOutlet weak var addButtonMenuIcon: TintedIconMenuItem!
     
-    private var bandControllers: [FilterBandViewController] = []
-    
     var bandEditors: [LazyWindowLoader<FilterBandEditorDialogController>] = []
     
     // ------------------------------------------------------------------------
@@ -114,7 +112,7 @@ class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver {
     
     private func doAddBand(ofType bandType: FilterBandType) {
         
-        guard filterUnit.numberOfBands < 31 else {
+        guard filterUnit.numberOfBands < filterUnit.maximumNumberOfBands else {
             
             NSAlert.showError(withTitle: "Cannot add Filter band", andText: "The Filter unit already has the maximum of 31 bands.")
             return
@@ -192,18 +190,13 @@ class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver {
         messenger.subscribe(to: .filterUnit_bandUpdated, handler: bandUpdated(_:))
         
         fontSchemesManager.registerObserver(lblSummary, forProperty: \.effectsPrimaryFont)
+        
+        
         colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
         colorSchemesManager.registerSchemeObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor])
         colorSchemesManager.registerObserver(addButtonMenuIcon, forProperty: \.buttonColor)
         
         messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: updateSummary)
-        
-//        messenger.subscribe(to: .changeBackgroundColor, handler: filterUnitView.changeBackgroundColor(_:))
-//        messenger.subscribe(to: .changeTextButtonMenuColor, handler: filterUnitView.changeTextButtonMenuColor(_:))
-//        messenger.subscribe(to: .changeSelectedTabButtonColor, handler: filterUnitView.changeSelectedTabButtonColor(_:))
-//        messenger.subscribe(to: .changeTabButtonTextColor, handler: filterUnitView.changeTabButtonTextColor(_:))
-//        messenger.subscribe(to: .changeButtonMenuTextColor, handler: filterUnitView.changeButtonMenuTextColor(_:))
-//        messenger.subscribe(to: .changeSelectedTabButtonTextColor, handler: filterUnitView.changeSelectedTabButtonTextColor(_:))
     }
     
     override func stateChanged() {

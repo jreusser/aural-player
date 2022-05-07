@@ -24,36 +24,19 @@ extension FontSchemesManager {
     
     func startObserving() {
         
-        for property in propertyObservers.keys {
-            
-            kvo.addObserver(forObject: systemScheme, keyPath: property) {[weak self] _, newFont in
-                
-                guard let observers = self?.propertyObservers[property] else {return}
-                
-                observers.forEach {
-                    $0.fontChanged(to: newFont, forProperty: property)
-                }
-            }
-        }
-        
-        for property in schemeAndPropertyObservers.keys {
-            
-            kvo.addObserver(forObject: systemScheme, keyPath: property, options: [.new]) {[weak self] _, newFont in
-                
-                guard let strongSelf = self, !strongSelf.schemeChanged,
-                      let observers = strongSelf.schemeAndPropertyObservers[property] else {return}
-                
-                observers.forEach {
-                    $0.fontChanged(to: newFont, forProperty: property)
-                }
-            }
-        }
-        
-        for observer in schemeObservers {
-            observer.fontSchemeChanged()
-        }
-        
-        isObserving = true
+//        for property in propertyObservers.keys {
+//            observeProperty(property)
+//        }
+//
+//        for property in schemeAndPropertyObservers.keys {
+//            observePropertyForSchemeObserver(property)
+//        }
+//
+//        for observer in schemeObservers {
+//            observer.fontSchemeChanged()
+//        }
+//
+//        isObserving = true
     }
     
     // TODO: Call this from AppModeManager.dismissMode()
@@ -63,7 +46,8 @@ extension FontSchemesManager {
         schemeAndPropertyObservers.removeAll()
         schemeObservers.removeAll()
         
-        kvo.invalidate()
+        propertyKVO.invalidate()
+        schemeKVO.invalidate()
     }
     
     private typealias PropertyObserver = (observer: FontSchemePropertyObserver, property: KeyPath<FontScheme, PlatformFont>)
@@ -80,49 +64,6 @@ extension FontSchemesManager {
         doRegisterObservers(observers.map {($0, property)})
     }
     
-    func registerSchemeObserver(_ observer: FontSchemeObserver, forProperties properties: [KeyPath<FontScheme, PlatformFont>]) {
-        
-        schemeObservers.append(observer)
-        
-        for property in properties {
-            
-            if schemeAndPropertyObservers[property] == nil {
-                schemeAndPropertyObservers[property] = []
-            }
-            
-            schemeAndPropertyObservers[property]!.append(observer)
-            
-            // TODO: Add to reverse registry
-            
-            if isObserving {
-                observer.fontSchemeChanged()
-            }
-        }
-    }
-    
-    func registerSchemeObservers(_ observers: [FontSchemeObserver], forProperties properties: [KeyPath<FontScheme, PlatformFont>]) {
-        
-        schemeObservers.append(contentsOf: observers)
-        
-        for observer in observers {
-            
-            for property in properties {
-                
-                if schemeAndPropertyObservers[property] == nil {
-                    schemeAndPropertyObservers[property] = []
-                }
-                
-                schemeAndPropertyObservers[property]!.append(observer)
-            }
-            
-            // TODO: Add to reverse registry
-            
-            if isObserving {
-                observer.fontSchemeChanged()
-            }
-        }
-    }
-    
     private func doRegisterObservers(_ observers: [PropertyObserver]) {
         
         for (observer, property) in observers {
@@ -137,8 +78,27 @@ extension FontSchemesManager {
                 reverseRegistry[observerObject] = property
             }
             
-            if isObserving {
-                observer.fontChanged(to: systemFontScheme[keyPath: property], forProperty: property)
+            if !propertyKVO.isPropertyObserved(property) {
+                observeProperty(property)
+            }
+            
+            // Set initial value.
+            observer.fontChanged(to: systemScheme[keyPath: property], forProperty: property)
+        }
+    }
+    
+    private func observeProperty(_ property: KeyPath<FontScheme, PlatformFont>) {
+        
+        propertyKVO.addObserver(forObject: systemScheme, keyPath: property, options: [.new]) {[weak self] _, newFont in
+            
+            guard let observers = self?.propertyObservers[property] else {return}
+            
+//            if property == \.effectsSecondaryFont {
+//                print("\nI have \(observers.count) observers for eff sec.")
+//            }
+            
+            observers.forEach {
+                $0.fontChanged(to: newFont, forProperty: property)
             }
         }
     }
@@ -155,5 +115,80 @@ extension FontSchemesManager {
         }
         
         reverseRegistry.removeValue(forKey: observerObject)
+    }
+    
+    // ----------------------------------------------------------------------------------------------------
+    
+    // MARK: Scheme observing
+    
+    func registerSchemeObserver(_ observer: FontSchemeObserver, forProperties properties: [KeyPath<FontScheme, PlatformFont>]) {
+        
+        schemeObservers.append(observer)
+        
+        for property in properties {
+            
+            if schemeAndPropertyObservers[property] == nil {
+                schemeAndPropertyObservers[property] = []
+            }
+            
+            schemeAndPropertyObservers[property]!.append(observer)
+            
+            // TODO: Add to reverse registry
+            
+            if !schemeKVO.isPropertyObserved(property) {
+                observePropertyForSchemeObserver(property)
+            }
+            
+            observer.fontSchemeChanged()
+        }
+    }
+    
+    func registerSchemeObservers(_ observers: [FontSchemeObserver], forProperties properties: [KeyPath<FontScheme, PlatformFont>]) {
+        
+        schemeObservers.append(contentsOf: observers)
+        
+        for observer in observers {
+            
+            for property in properties {
+                
+                if schemeAndPropertyObservers[property] == nil {
+                    schemeAndPropertyObservers[property] = []
+                }
+                
+                schemeAndPropertyObservers[property]!.append(observer)
+                
+                if !schemeKVO.isPropertyObserved(property) {
+                    observePropertyForSchemeObserver(property)
+                }
+            }
+            
+            // TODO: Add to reverse registry
+            
+            observer.fontSchemeChanged()
+        }
+    }
+    
+    private func observePropertyForSchemeObserver(_ property: KeyPath<FontScheme, PlatformFont>) {
+        
+        schemeKVO.addObserver(forObject: systemScheme, keyPath: property, options: [.new]) {[weak self] _, newFont in
+            
+            guard let strongSelf = self else {return}
+                    
+            guard !strongSelf.schemeChanged else {
+
+                strongSelf.schemeObservers.forEach {
+                    $0.fontSchemeChanged()
+                }
+                
+                return
+            }
+            
+            if let observers = strongSelf.schemeAndPropertyObservers[property] {
+            
+                observers.forEach {
+                    $0.fontChanged(to: newFont, forProperty: property)
+                }
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ class FilterChart: NSView, ColorSchemeObserver {
     private let bottomMargin: CGFloat = 0
     private let lineWidth: CGFloat = 2
     
-    private let xMarks: [CGFloat] = [31, 63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000]
+//    private let xMarks: [CGFloat] = [31, 63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000]
     
     private lazy var messenger: Messenger = Messenger(for: self)
     
@@ -106,7 +106,6 @@ class FilterChart: NSView, ColorSchemeObserver {
                 let rx = min(offset + CGFloat(x) * scale, frameRect.maxX - lineWidth / 2)
 
                 GraphicsUtils.drawLine(systemColorScheme.activeControlColor, pt1: NSPoint(x: rx, y: bottomMargin), pt2: NSPoint(x: rx, y: bottomMargin + height), width: lineWidth)
-//                GraphicsUtils.drawLine(systemColorScheme.activeControlColor, pt1: NSPoint(x: rx + lineWidth / 2, y: bottomMargin + 1), pt2: NSPoint(x: rx + lineWidth / 2, y: bottomMargin + (height / 2) - 2), width: lineWidth)
             }
         }
 //

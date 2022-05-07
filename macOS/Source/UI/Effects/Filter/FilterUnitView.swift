@@ -38,8 +38,6 @@ class FilterUnitView: NSView {
                     bandsDataFunction: @escaping () -> [FilterBand]) {
         
         chart.bandsDataFunction = bandsDataFunction
-        
-        bandsTable.setBackgroundColor(systemColorScheme.backgroundColor)
     }
     
     func setBands(_ bands: [FilterBandView]) {
@@ -89,14 +87,6 @@ class FilterUnitView: NSView {
     // ------------------------------------------------------------------------
     
     // MARK: Theming
-    
-    func applyFontScheme(_ fontScheme: FontScheme) {
-        
-        redrawChart()
-
-        // Redraw the add/remove band buttons
-        [btnAdd, btnRemove].forEach {$0?.redraw()}
-    }
     
     func applyColorScheme(_ scheme: ColorScheme) {
         

@@ -16,6 +16,7 @@ class FilterBandEditorDialogController: NSWindowController {
     
     @IBOutlet weak var lblWindowCaption: NSTextField!
     @IBOutlet weak var btnClose: NSButton!
+    @IBOutlet weak var btnDone: NSButton!
     @IBOutlet weak var rootContainerBox: NSBox!
     @IBOutlet weak var bandView: FilterBandView!
     
@@ -38,11 +39,12 @@ class FilterBandEditorDialogController: NSWindowController {
         bandView.initialize(band: filterUnit[bandIndex], at: bandIndex)
         
         fontSchemesManager.registerObserver(lblWindowCaption, forProperty: \.captionFont)
+        fontSchemesManager.registerObservers([btnClose, btnDone], forProperty: \.effectsSecondaryFont)
         
         colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
         colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
+        colorSchemesManager.registerSchemeObserver(btnDone, forProperties: [\.buttonColor, \.primaryTextColor])
         colorSchemesManager.registerObserver(lblWindowCaption, forProperty: \.captionTextColor)
-        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
     }
     
     @IBAction func doneAction(_ sender: NSButton) {

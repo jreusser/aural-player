@@ -379,7 +379,7 @@ enum FontSchemePreset: String, CaseIterable {
         }
     }
     
-    var effectsUnitCaptionFont: NSFont {
+    var captionFont: NSFont {
         
         switch self {
                 
@@ -427,7 +427,7 @@ enum FontSchemePreset: String, CaseIterable {
         }
     }
     
-    var effectsFilterChartFont: NSFont {
+    var effectsSecondaryFont: NSFont {
         
         switch self {
                 

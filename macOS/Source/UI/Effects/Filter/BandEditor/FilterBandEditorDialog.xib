@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="bandView" destination="dvQ-2f-jgw" id="QcX-bk-vFu"/>
                 <outlet property="btnClose" destination="jdQ-BP-83d" id="O5F-5v-ahc"/>
+                <outlet property="btnDone" destination="JYX-WF-MMo" id="c6x-2w-es7"/>
                 <outlet property="lblWindowCaption" destination="7nl-w7-QLS" id="wFX-Rz-QhE"/>
                 <outlet property="rootContainerBox" destination="Ryl-fE-3Ks" id="Cu2-bj-c1b"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="P8h-MC-axk"/>
@@ -354,7 +355,7 @@
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JYX-WF-MMo" userLabel="Done button">
                         <rect key="frame" x="428" y="9" width="55" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SYl-ma-4EQ">
+                        <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SYl-ma-4EQ" customClass="ModalDialogButtonCell" customModule="Aural" customModuleProvider="target">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="cellTitle"/>
                             <string key="keyEquivalent" base64-UTF8="YES">

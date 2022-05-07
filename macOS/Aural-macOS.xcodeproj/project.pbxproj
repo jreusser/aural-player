@@ -560,6 +560,7 @@
 		3EAFB617267FF4C200F0DC96 /* EffectsSliderPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFB616267FF4C200F0DC96 /* EffectsSliderPreviewCell.swift */; };
 		3EAFB619267FF68C00F0DC96 /* CGFloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFB618267FF68C00F0DC96 /* CGFloatExtensions.swift */; };
 		3EAFD75F269B6C2B009B904F /* ParserUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFD75E269B6C2B009B904F /* ParserUtilsTests.swift */; };
+		3EB1A8112826D14F00866012 /* ThemablePopupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1A8102826D14F00866012 /* ThemablePopupButton.swift */; };
 		3EB3A60426A726EF0060487C /* NSTableCellViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A60326A726EF0060487C /* NSTableCellViewExtensions.swift */; };
 		3EB3A60726A73E720060487C /* NSPopoverExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A60626A73E720060487C /* NSPopoverExtensions.swift */; };
 		3EB3A60B26A7425C0060487C /* SingletonWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A60A26A7425C0060487C /* SingletonWindowController.swift */; };
@@ -2026,6 +2027,7 @@
 		3EAFB616267FF4C200F0DC96 /* EffectsSliderPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsSliderPreviewCell.swift; sourceTree = "<group>"; };
 		3EAFB618267FF68C00F0DC96 /* CGFloatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtensions.swift; sourceTree = "<group>"; };
 		3EAFD75E269B6C2B009B904F /* ParserUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserUtilsTests.swift; sourceTree = "<group>"; };
+		3EB1A8102826D14F00866012 /* ThemablePopupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemablePopupButton.swift; sourceTree = "<group>"; };
 		3EB3A60326A726EF0060487C /* NSTableCellViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTableCellViewExtensions.swift; sourceTree = "<group>"; };
 		3EB3A60626A73E720060487C /* NSPopoverExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPopoverExtensions.swift; sourceTree = "<group>"; };
 		3EB3A60A26A7425C0060487C /* SingletonWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonWindowController.swift; sourceTree = "<group>"; };
@@ -3401,6 +3403,7 @@
 				3E6C0FBA25CEB98600BF0D07 /* TabGroupButtonCells.swift */,
 				3E6C0FBB25CEB98600BF0D07 /* CheckRadioButtonCell.swift */,
 				3E6C0FBC25CEB98600BF0D07 /* TintedImageButton.swift */,
+				3EB1A8102826D14F00866012 /* ThemablePopupButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -6317,6 +6320,7 @@
 				3EFE38F127864897006F8B8C /* ConcurrentMap.swift in Sources */,
 				3EFE390927864897006F8B8C /* DictionaryExtensions.swift in Sources */,
 				3EFE3AED27864942006F8B8C /* FFmpegChapter.swift in Sources */,
+				3EB1A8112826D14F00866012 /* ThemablePopupButton.swift in Sources */,
 				3E6C12B825CEBE5800BF0D07 /* ViewMenuController.swift in Sources */,
 				3EFE385727864896006F8B8C /* Favorite.swift in Sources */,
 				3EFE390127864897006F8B8C /* AVAudioFormatExtensions.swift in Sources */,

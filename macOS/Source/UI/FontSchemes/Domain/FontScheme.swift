@@ -47,14 +47,14 @@ class FontScheme: NSObject, UserManagedObject {
         self.name = persistentState?.name ?? ""
         self.systemDefined = systemDefined
         
-        self.captionFont = FontSchemePreset.standard.effectsUnitCaptionFont
+        self.captionFont = FontSchemePreset.standard.captionFont
         
         self.playerPrimaryFont = FontSchemePreset.standard.primaryFont
         self.playerSecondaryFont = FontSchemePreset.standard.secondaryFont
         self.playerTertiaryFont = FontSchemePreset.standard.tertiaryFont
         
         self.effectsPrimaryFont = FontSchemePreset.standard.effectsPrimaryFont
-        self.effectsSecondaryFont = FontSchemePreset.standard.secondaryFont
+        self.effectsSecondaryFont = FontSchemePreset.standard.effectsSecondaryFont
         self.effectsTertiaryFont = FontSchemePreset.standard.tertiaryFont
         
         self.playlist = PlaylistFontScheme(persistentState)
@@ -100,14 +100,14 @@ class FontScheme: NSObject, UserManagedObject {
         self.name = name
         self.systemDefined = true
         
-        self.captionFont = preset.effectsUnitCaptionFont
+        self.captionFont = preset.captionFont
         
         self.playerPrimaryFont = preset.primaryFont
         self.playerSecondaryFont = preset.secondaryFont
         self.playerTertiaryFont = preset.tertiaryFont
         
         self.effectsPrimaryFont = preset.effectsPrimaryFont
-        self.effectsSecondaryFont = preset.secondaryFont
+        self.effectsSecondaryFont = preset.effectsSecondaryFont
         self.effectsTertiaryFont = preset.tertiaryFont
         
         self.playlist = PlaylistFontScheme(preset: preset)

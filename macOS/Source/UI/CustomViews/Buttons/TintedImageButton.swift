@@ -54,3 +54,17 @@ extension NSButton: ColorSchemeObserver {
         redraw()
     }
 }
+
+extension NSButton: FontSchemePropertyObserver {
+    
+    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+        redraw()
+    }
+}
+
+extension NSButton: FontSchemeObserver {
+    
+    func fontSchemeChanged() {
+        redraw()
+    }
+}

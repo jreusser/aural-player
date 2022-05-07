@@ -82,6 +82,20 @@ class FilterBandView: NSView {
         
         applyFontScheme(systemFontScheme)
         applyColorScheme(systemColorScheme)
+    }
+    
+    private func oneTimeSetup() {
+        
+        functionCaptionLabels = findFunctionCaptionLabels(under: self)
+        
+        freqRangeSlider.onControlChanged = {[weak self] slider in self?.freqRangeChanged()}
+        
+        fxUnitStateObserverRegistry.registerObserver(freqRangeSlider, forFXUnit: filterUnit)
+        fxUnitStateObserverRegistry.registerObserver(cutoffSlider, forFXUnit: filterUnit)
+        
+        fontSchemesManager.registerObservers([lblFilterTypeCaption, lblRangeCaption, lblCutoffCaption, lblFrequencies, lbl20Hz, lbl20KHz], forProperty: \.effectsPrimaryFont)
+        
+        fontSchemesManager.registerObserver(filterTypeMenu, forProperty: \.effectsPrimaryFont)
         
         colorSchemesManager.registerObservers([lblFilterTypeCaption, lblRangeCaption, lblCutoffCaption, lbl20Hz, lbl20KHz], forProperty: \.secondaryTextColor)
         colorSchemesManager.registerObserver(lblFrequencies, forProperty: \.primaryTextColor)
@@ -91,16 +105,6 @@ class FilterBandView: NSView {
         
         messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: bandBypassStateUpdated(bandIndex:),
                             filter: {[weak self] bandIndex in (self?.bandIndex ?? -1) == bandIndex})
-    }
-    
-    private func oneTimeSetup() {
-        
-        freqRangeSlider.onControlChanged = {[weak self] slider in self?.freqRangeChanged()}
-        
-        fxUnitStateObserverRegistry.registerObserver(freqRangeSlider, forFXUnit: filterUnit)
-        fxUnitStateObserverRegistry.registerObserver(cutoffSlider, forFXUnit: filterUnit)
-        
-        functionCaptionLabels = findFunctionCaptionLabels(under: self)
         
 //        presetRangesIconMenuItem.tintFunction = {Colors.functionButtonColor}
 //        presetCutoffsIconMenuItem.tintFunction = {Colors.functionButtonColor}

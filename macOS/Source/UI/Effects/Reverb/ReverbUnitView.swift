@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class ReverbUnitView: NSView, ColorSchemeObserver {
+class ReverbUnitView: NSView {
     
     // ------------------------------------------------------------------------
     
@@ -26,7 +26,9 @@ class ReverbUnitView: NSView, ColorSchemeObserver {
     override func awakeFromNib() {
         
         super.awakeFromNib()
-        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.buttonColor, \.primaryTextColor])
+        
+        fontSchemesManager.registerObserver(reverbSpaceMenu, forProperties: [\.effectsPrimaryFont])
+        colorSchemesManager.registerSchemeObserver(reverbSpaceMenu, forProperties: [\.buttonColor, \.primaryTextColor])
     }
     
     // ------------------------------------------------------------------------
@@ -65,23 +67,5 @@ class ReverbUnitView: NSView, ColorSchemeObserver {
         
         setSpace(preset.space.description)
         setAmount(preset.amount, amountString: ValueFormatter.formatReverbAmount(preset.amount))
-    }
-    
-    // ------------------------------------------------------------------------
-    
-    // MARK: Theming
-    
-    func applyFontScheme(_ fontScheme: FontScheme) {
-        
-        reverbSpaceMenu.font = fontScheme.effectsPrimaryFont
-        reverbSpaceMenu.redraw()
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        reverbSpaceMenu.redraw()
-    }
-    
-    func colorSchemeChanged() {
-        reverbSpaceMenu.redraw()
     }
 }

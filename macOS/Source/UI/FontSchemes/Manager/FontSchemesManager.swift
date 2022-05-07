@@ -23,7 +23,8 @@ class FontSchemesManager: UserManagedObjects<FontScheme> {
     
     var reverseRegistry: [NSObject: KeyPath<FontScheme, PlatformFont>] = [:]
     
-    var kvo: KVOTokens<FontScheme, PlatformFont> = KVOTokens()
+    var propertyKVO: KVOTokens<FontScheme, PlatformFont> = KVOTokens()
+    var schemeKVO: KVOTokens<FontScheme, PlatformFont> = KVOTokens()
     
     var isObserving: Bool = false
     
@@ -57,14 +58,7 @@ class FontSchemesManager: UserManagedObjects<FontScheme> {
     func applyScheme(_ fontScheme: FontScheme) {
         
         schemeChanged = true
-
-//        systemScheme = FontScheme("_system_", true, fontScheme)
         systemScheme.applyScheme(fontScheme)
-        
-        schemeObservers.forEach {
-            $0.fontSchemeChanged()
-        }
-        
         schemeChanged = false
         
         messenger.publish(.applyFontScheme, payload: systemScheme)

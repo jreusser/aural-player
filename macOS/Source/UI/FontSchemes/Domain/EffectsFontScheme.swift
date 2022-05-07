@@ -17,7 +17,7 @@ class EffectsFontScheme {
     
     init(_ persistentState: FontSchemePersistentState?) {
         
-        self.filterChartFont = FontSchemePreset.standard.effectsFilterChartFont
+        self.filterChartFont = FontSchemePreset.standard.effectsSecondaryFont
         self.auRowTextYOffset = FontSchemePreset.standard.effectsAURowTextYOffset
         
         guard let textFontName = persistentState?.textFontName else {
@@ -35,7 +35,7 @@ class EffectsFontScheme {
     
     init(preset: FontSchemePreset) {
         
-        self.filterChartFont = preset.effectsFilterChartFont
+        self.filterChartFont = preset.effectsSecondaryFont
         self.auRowTextYOffset = preset.effectsAURowTextYOffset
     }
     

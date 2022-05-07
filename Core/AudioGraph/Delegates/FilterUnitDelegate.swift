@@ -32,6 +32,8 @@ class FilterUnitDelegate: EffectsUnitDelegate<FilterUnit>, FilterUnitDelegatePro
         unit.bands.count
     }
     
+    var maximumNumberOfBands: Int {31}
+    
     var numberOfActiveBands: Int {
         unit.bands.filter {!$0.bypass}.count
     }

@@ -16,29 +16,26 @@ import Cocoa
 // Base class for all modal dialog button cells
 class ModalDialogButtonCell: NSButtonCell {
     
-    var cellInsetX: CGFloat {0}
-    var cellInsetY: CGFloat {0}
+    var cellInsetX: CGFloat {1}
+    var cellInsetY: CGFloat {1}
     
-    var backgroundFillGradient: NSGradient {.modalDialogButtonGradient}
-    var backgroundFillGradient_disabled: NSGradient {.modalDialogButtonGradient_disabled}
     var borderRadius: CGFloat {2}
     
-    var textColor: NSColor {.modalDialogButtonTextColor}
-    var textColor_disabled: NSColor {.modalDialogButtonTextColor_disabled}
+    var textColor: NSColor {systemColorScheme.primaryTextColor}
+//    var textColor_disabled: NSColor {systemColorScheme.primaryTextColor}
     
-    var textFont: NSFont {.modalDialogButtonFont}
+    var textFont: NSFont {systemFontScheme.effectsSecondaryFont}
     
-    var yOffset: CGFloat {0}
+    var yOffset: CGFloat {2}
     
     override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
         
         // Background
         let drawRect = cellFrame.insetBy(dx: cellInsetX, dy: cellInsetY)
-        let gradient = isEnabled ? backgroundFillGradient : backgroundFillGradient_disabled
-        NSBezierPath.fillRoundedRect(drawRect, radius: borderRadius, withGradient: gradient, angle: -.verticalGradientDegrees)
+        NSBezierPath.strokeRoundedRect(drawRect, radius: borderRadius, withColor: systemColorScheme.buttonColor)
         
         // Title
-        title.drawCentered(in: drawRect, withFont: textFont, andColor: isEnabled ? textColor : textColor_disabled, yOffset: yOffset)
+        title.drawCentered(in: drawRect, withFont: textFont, andColor: textColor, yOffset: yOffset)
     }
 }
 
