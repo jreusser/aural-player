@@ -13,7 +13,7 @@ import AVFoundation
 /*
     View controller for the Audio Units view.
  */
-class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, Destroyable {
+class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, FontSchemePropertyObserver, Destroyable {
     
     override var nibName: String? {"AudioUnits"}
     
@@ -47,6 +47,8 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, D
     // MARK: UI initialization / life-cycle
     
     override func viewDidLoad() {
+        
+        fontSchemesManager.registerObserver(self, forProperty: \.effectsPrimaryFont)
 
         colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.primarySelectedTextColor, \.textSelectionColor])
         colorSchemesManager.registerObservers([audioUnitsMenuIconItem, btnRemove], forProperty: \.buttonColor)
@@ -149,6 +151,9 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, D
 //        tableView.setBackgroundColor()
 //        tableView.reloadAllRows(columns: [1])
 //    }
+    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+        tableView.reloadAllRows(columns: [1])
+    }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         

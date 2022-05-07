@@ -112,12 +112,12 @@
                         <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </box>
                     <tabView drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="zXc-hr-Pet" userLabel="Play Queue Tab Group" customClass="AuralTabView" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="15" y="50" width="450" height="177"/>
+                        <rect key="frame" x="15" y="50" width="450" height="182"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="DefaultView" identifier="" id="dGb-9y-jTT" userLabel="Default View" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
                                 <view key="view" id="luF-b9-Q1I">
-                                    <rect key="frame" x="0.0" y="0.0" width="450" height="177"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="182"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <connections>
@@ -554,7 +554,7 @@
                     <constraint firstAttribute="bottom" secondItem="hb9-0J-H5g" secondAttribute="bottom" constant="15" id="s0v-zk-SrP"/>
                     <constraint firstItem="gTQ-Bo-5Nj" firstAttribute="leading" secondItem="Nmm-j9-Sqg" secondAttribute="trailing" constant="1" id="sLZ-ks-TfE"/>
                     <constraint firstItem="vPq-HC-h3c" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="sgs-z5-Ugd"/>
-                    <constraint firstItem="zXc-hr-Pet" firstAttribute="top" secondItem="xem-im-DfN" secondAttribute="bottom" constant="12" id="su5-V7-CFO"/>
+                    <constraint firstItem="zXc-hr-Pet" firstAttribute="top" secondItem="xem-im-DfN" secondAttribute="bottom" constant="7" id="su5-V7-CFO"/>
                     <constraint firstItem="6HO-Fs-WPc" firstAttribute="bottom" secondItem="T7P-Fx-Iib" secondAttribute="bottom" id="uX7-CW-esg"/>
                     <constraint firstAttribute="bottom" secondItem="Lre-iP-HTM" secondAttribute="bottom" constant="12" id="w8q-om-4li"/>
                     <constraint firstItem="Lre-iP-HTM" firstAttribute="leading" secondItem="2Hk-dP-vLE" secondAttribute="trailing" constant="21" id="wwe-5j-SIZ"/>

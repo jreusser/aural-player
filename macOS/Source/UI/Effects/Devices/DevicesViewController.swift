@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class DevicesViewController: NSViewController, Destroyable {
+class DevicesViewController: NSViewController, ColorSchemeObserver, Destroyable {
     
     override var nibName: String? {"Devices"}
     
@@ -51,6 +51,8 @@ class DevicesViewController: NSViewController, Destroyable {
         colorSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight], forProperty: \.secondaryTextColor)
         colorSchemesManager.registerObserver(lblPan, forProperty: \.primaryTextColor)
         
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.textSelectionColor])
+        
         colorSchemesManager.registerSchemeObserver(panSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
         
         messenger.subscribe(to: .player_panLeft, handler: panLeft)
@@ -87,5 +89,37 @@ class DevicesViewController: NSViewController, Destroyable {
         
         panSlider.floatValue = audioGraph.pan
         lblPan.stringValue = audioGraph.formattedPan
+    }
+    
+    // ---------------------------------------------------------------------------------------------------------
+    
+    // MARK: Theming
+    
+    func colorSchemeChanged() {
+        
+        tableView.setBackgroundColor(systemColorScheme.backgroundColor)
+        tableView.reloadDataMaintainingSelection()
+    }
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        switch property {
+            
+        case \.backgroundColor:
+            
+            tableView.setBackgroundColor(systemColorScheme.backgroundColor)
+            
+        case \.primaryTextColor:
+            
+            tableView.reloadDataMaintainingSelection()
+            
+        case \.textSelectionColor:
+            
+            tableView.redoRowSelection()
+            
+        default:
+            
+            return
+        }
     }
 }
