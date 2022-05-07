@@ -49,7 +49,7 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, D
     override func viewDidLoad() {
 
         colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.primarySelectedTextColor, \.textSelectionColor])
-        colorSchemesManager.registerObservers([btnAudioUnitsMenu, btnRemove], forProperty: \.buttonColor)
+        colorSchemesManager.registerObservers([audioUnitsMenuIconItem, btnRemove], forProperty: \.buttonColor)
         
 //        audioUnitsMenuIconItem.tintFunction = {Colors.functionButtonColor}
 //        btnRemove.tintFunction = {Colors.functionButtonColor}

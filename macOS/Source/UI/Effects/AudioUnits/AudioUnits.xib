@@ -160,7 +160,7 @@
                     </scroller>
                 </scrollView>
                 <popUpButton toolTip="Add an Audio Unit" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="skz-J4-Bsf" userLabel="Add Button">
-                    <rect key="frame" x="388" y="9" width="17" height="12"/>
+                    <rect key="frame" x="387" y="9" width="17" height="12"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="MtC-pC-BEV">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -170,7 +170,7 @@
                                 <menuItem image="Plus" hidden="YES" id="Bcn-gB-UfW" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add-AU"/>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Plus"/>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
                             </items>
@@ -202,7 +202,6 @@
         </customView>
     </objects>
     <resources>
-        <image name="Add-AU" width="10" height="10"/>
         <image name="Edit" width="12" height="12"/>
         <image name="Plus" width="18" height="18"/>
         <image name="Remove" width="27" height="27"/>
