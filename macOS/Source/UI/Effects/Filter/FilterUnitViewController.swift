@@ -12,7 +12,7 @@ import Cocoa
 /*
     View controller for the Filter effects unit
  */
-class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver {
+class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver, FontSchemePropertyObserver {
 
     override var nibName: String? {"FilterUnit"}
     
@@ -189,8 +189,7 @@ class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver {
         
         messenger.subscribe(to: .filterUnit_bandUpdated, handler: bandUpdated(_:))
         
-        fontSchemesManager.registerObserver(lblSummary, forProperty: \.effectsPrimaryFont)
-        
+        fontSchemesManager.registerObservers([self, lblSummary], forProperty: \.effectsPrimaryFont)
         
         colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
         colorSchemesManager.registerSchemeObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor])
@@ -213,6 +212,10 @@ class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver {
     
     // MARK: Theming
     
+    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+        bandsTableView.reloadAllRows(columns: [0, 2, 3])
+    }
+    
     func colorSchemeChanged() {
         
         bandsTableView.setBackgroundColor(systemColorScheme.backgroundColor)
@@ -226,10 +229,6 @@ class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver {
         case \.backgroundColor:
             
             bandsTableView.setBackgroundColor(newColor)
-            
-        case \.activeControlColor, \.inactiveControlColor, \.suppressedControlColor:
-            
-            bandsTableView.reloadAllRows(columns: [0])
             
         case \.primaryTextColor:
             
