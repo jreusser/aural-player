@@ -23,8 +23,11 @@ class AudioDeviceList {
     
     let allDevices: [AudioDevice]
     
+    var numberOfDevices: Int {allDevices.count}
+    
     let systemDevice: AudioDevice
     let outputDevice: AudioDevice
+    let indexOfOutputDevice: Int
     
     init(allDevices: [AudioDevice], outputDeviceId: AudioDeviceID, systemDeviceId: AudioDeviceID) {
         
@@ -34,6 +37,7 @@ class AudioDeviceList {
         self.systemDevice = systemDevice
         
         self.outputDevice = allDevices.first(where: {$0.id == outputDeviceId}) ?? systemDevice
+        self.indexOfOutputDevice = allDevices.firstIndex(of: outputDevice) ?? 0
     }
     
     func find(byName name: String, andUID uid: String) -> AudioDevice? {

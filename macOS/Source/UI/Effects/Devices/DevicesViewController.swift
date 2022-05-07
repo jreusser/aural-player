@@ -60,6 +60,9 @@ class DevicesViewController: NSViewController, ColorSchemeObserver, Destroyable 
         
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:),
                                  filter: {msg in msg.trackChanged})
+        
+        tableView.reloadData()
+        tableView.selectRow(audioGraphDelegate.availableDevices.indexOfOutputDevice)
     }
     
     @IBAction func panAction(_ sender: Any) {

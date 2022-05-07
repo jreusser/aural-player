@@ -93,6 +93,13 @@ public class AudioDevice {
     }
 }
 
+extension AudioDevice: Equatable {
+    
+    public static func ==(lhs: AudioDevice, rhs: AudioDevice) -> Bool {
+        lhs.uid == rhs.uid
+    }
+}
+
 fileprivate extension AudioDeviceID {
     
     func getCFStringProperty(addressPtr: UnsafePointer<AudioObjectPropertyAddress>) -> String? {

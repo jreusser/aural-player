@@ -30,7 +30,7 @@
                         <rect key="frame" x="1" y="1" width="363" height="91"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" tableStyle="plain" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" id="xeh-k7-Jq1" customClass="AuralTableView" customModule="Aural" customModuleProvider="target">
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" tableStyle="plain" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" id="xeh-k7-Jq1" customClass="AuralTableView" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="402" height="91"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="2" height="0.0"/>
@@ -49,11 +49,11 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
-                                            <tableCellView id="zV3-SF-GI9" customClass="AudioUnitNameCellView" customModule="Aural" customModuleProvider="target">
+                                            <tableCellView id="zV3-SF-GI9" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
                                                 <rect key="frame" x="1" y="0.0" width="400" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TSc-YX-7DU">
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TSc-YX-7DU" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="3" y="0.0" width="349" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="KpH-vm-PIT"/>
@@ -77,6 +77,10 @@
                                         </prototypeCellViews>
                                     </tableColumn>
                                 </tableColumns>
+                                <connections>
+                                    <outlet property="dataSource" destination="-2" id="gFf-aJ-sBr"/>
+                                    <outlet property="delegate" destination="-2" id="dUp-7H-7OT"/>
+                                </connections>
                             </tableView>
                         </subviews>
                     </clipView>
