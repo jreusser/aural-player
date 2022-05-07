@@ -114,7 +114,7 @@ class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver, 
         
         guard filterUnit.numberOfBands < filterUnit.maximumNumberOfBands else {
             
-            NSAlert.showError(withTitle: "Cannot add Filter band", andText: "The Filter unit already has the maximum of 31 bands.")
+            NSAlert.showError(withTitle: "Cannot add Filter band", andText: "The Filter unit already has the maximum of \(filterUnit.maximumNumberOfBands) bands.")
             return
         }
         

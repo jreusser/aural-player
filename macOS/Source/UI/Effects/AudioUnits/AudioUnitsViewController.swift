@@ -13,7 +13,7 @@ import AVFoundation
 /*
     View controller for the Audio Units view.
  */
-class AudioUnitsViewController: NSViewController, Destroyable {
+class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, Destroyable {
     
     override var nibName: String? {"AudioUnits"}
     
@@ -47,17 +47,12 @@ class AudioUnitsViewController: NSViewController, Destroyable {
     // MARK: UI initialization / life-cycle
     
     override func viewDidLoad() {
+
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.primarySelectedTextColor, \.textSelectionColor])
+        colorSchemesManager.registerObservers([btnAudioUnitsMenu, btnRemove], forProperty: \.buttonColor)
         
 //        audioUnitsMenuIconItem.tintFunction = {Colors.functionButtonColor}
 //        btnRemove.tintFunction = {Colors.functionButtonColor}
-        
-        applyFontScheme(systemFontScheme)
-        applyColorScheme(systemColorScheme)
-        
-        // Subscribe to notifications
-        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
-        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
         
 //        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
 //        
@@ -147,10 +142,40 @@ class AudioUnitsViewController: NSViewController, Destroyable {
         }
     }
     
-    private func applyTheme() {
+    // MARK: Theming
+    
+//    func colorSchemeChanged() {
+//
+//        tableView.setBackgroundColor()
+//        tableView.reloadAllRows(columns: [1])
+//    }
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
-        applyFontScheme(systemFontScheme)
-        applyColorScheme(systemColorScheme)
+        
+        switch property {
+            
+        case \.backgroundColor:
+            
+            tableView.setBackgroundColor(newColor)
+            
+        case \.primaryTextColor:
+            
+            tableView.reloadAllRows(columns: [1])
+            
+        case \.primarySelectedTextColor:
+            
+            tableView.reloadRows(tableView.selectedRowIndexes, columns: [1])
+            tableView.redoRowSelection()
+            
+        case \.textSelectionColor:
+            
+            tableView.redoRowSelection()
+            
+        default:
+            
+            return
+        }
     }
     
     func applyFontScheme(_ fontScheme: FontScheme) {

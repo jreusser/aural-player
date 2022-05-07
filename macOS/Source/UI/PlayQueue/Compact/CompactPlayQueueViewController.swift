@@ -350,7 +350,7 @@ class CompactPlayQueueViewController: TrackListViewController, ColorSchemeObserv
             
         case \.textSelectionColor:
             
-            tableView.reloadRows(selectedRows)
+//            tableView.reloadRows(selectedRows)
             tableView.redoRowSelection()
             
         default:
