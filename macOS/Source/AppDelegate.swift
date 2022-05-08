@@ -8,6 +8,7 @@
 //  See the file "LICENSE" in the project root directory for license terms.
 //
 import Cocoa
+import AVFoundation
 
 ///
 /// Entry point for the Aural Player application. Performs application life-cycle functions and allows launching of the app with specific files
@@ -49,6 +50,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     /// Presents the application's user interface upon app startup.
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
+        print("\nBT code: \(kAudioDeviceTransportTypeDisplayPort.toString())\n\n")
         
         initialize()
         appModeManager.presentApp()

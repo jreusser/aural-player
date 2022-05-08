@@ -49,8 +49,7 @@ public class AudioDevice {
     let channelCount: Int
     
     let dataSource: String?
-    let transportType: String?
-    let isConnectedViaBluetooth: Bool
+    let transportType: FourCharCode?
     
     init?(deviceId: AudioDeviceID) {
         
@@ -88,31 +87,80 @@ public class AudioDevice {
         
         self.channelCount = channelCount
         
-        self.dataSource = deviceId.getCodeProperty(addressPtr: &Self.dataSourcePropertyAddress)
+        self.dataSource = deviceId.getCodePropertyAsString(addressPtr: &Self.dataSourcePropertyAddress)
         self.transportType = deviceId.getCodeProperty(addressPtr: &Self.transportTypePropertyAddress)
-        self.isConnectedViaBluetooth = transportType?.lowercased() == "blue"
     }
     
-    var icon: NSImage {
+    lazy var icon: NSImage = {
         
         guard let transportType = transportType else {
             return .imgDeviceType_builtIn
         }
         
+        // TODO: Support USB, HDMI, Firewire, Thunderbolt, PCI, AirPlay, Aggregate etc.
+        
         switch transportType {
             
-        case "bltn":    return name.lowercased().contains("headphone") ? .imgDeviceType_headphones : .imgDeviceType_builtIn
+        case kAudioDeviceTransportTypeBuiltIn:
             
-        case "blue":    return .imgDeviceType_bluetooth
+            return name.lowercased().contains("headphone") ? .imgDeviceType_headphones : .imgDeviceType_builtIn
             
-        case "dprt":    return .imgDeviceType_displayPort
+        case kAudioDeviceTransportTypeBluetooth, kAudioDeviceTransportTypeBluetoothLE:
             
-        case "virt":    return .imgDeviceType_virtual
+            return .imgDeviceType_bluetooth
             
-        default:        return .imgDeviceType_builtIn
+        case kAudioDeviceTransportTypeDisplayPort:
             
+            return .imgDeviceType_displayPort
+            
+        case kAudioDeviceTransportTypeVirtual:
+            
+            return .imgDeviceType_virtual
+            
+        default:
+            
+            return .imgDeviceType_builtIn
         }
-    }
+        
+        /*
+         
+         static func from(_ constant: UInt32) -> TransportType {
+             switch constant {
+             case kAudioDeviceTransportTypeBuiltIn:
+                 return .builtIn
+             case kAudioDeviceTransportTypeAggregate:
+                 return .aggregate
+             case kAudioDeviceTransportTypeVirtual:
+                 return .virtual
+             case kAudioDeviceTransportTypePCI:
+                 return .pci
+             case kAudioDeviceTransportTypeUSB:
+                 return .usb
+             case kAudioDeviceTransportTypeFireWire:
+                 return .fireWire
+             case kAudioDeviceTransportTypeBluetooth:
+                 return .bluetooth
+             case kAudioDeviceTransportTypeBluetoothLE:
+                 return .bluetoothLE
+             case kAudioDeviceTransportTypeHDMI:
+                 return .hdmi
+             case kAudioDeviceTransportTypeDisplayPort:
+                 return .displayPort
+             case kAudioDeviceTransportTypeAirPlay:
+                 return .airPlay
+             case kAudioDeviceTransportTypeAVB:
+                 return .avb
+             case kAudioDeviceTransportTypeThunderbolt:
+                 return .thunderbolt
+             case kAudioDeviceTransportTypeUnknown:
+                 fallthrough
+             default:
+                 return .unknown
+             }
+         }
+         
+         */
+    }()
 }
 
 extension AudioDevice: Equatable {
@@ -133,13 +181,22 @@ fileprivate extension AudioDeviceID {
         return result == noErr ? prop as String? : nil
     }
     
-    func getCodeProperty(addressPtr: UnsafePointer<AudioObjectPropertyAddress>) -> String? {
+    func getCodeProperty(addressPtr: UnsafePointer<AudioObjectPropertyAddress>) -> FourCharCode? {
         
         var prop: UInt32 = 0
         var size: UInt32 = sizeOfUInt32
         
         let result: OSStatus = AudioObjectGetPropertyData(self, addressPtr, 0, nil, &size, &prop)
-        return result == noErr ? (prop as FourCharCode).toString() : nil
+        return result == noErr ? prop : nil
+    }
+    
+    func getCodePropertyAsString(addressPtr: UnsafePointer<AudioObjectPropertyAddress>) -> String? {
+        
+        var prop: UInt32 = 0
+        var size: UInt32 = sizeOfUInt32
+        
+        let result: OSStatus = AudioObjectGetPropertyData(self, addressPtr, 0, nil, &size, &prop)
+        return result == noErr ? prop.toString() : nil
     }
 }
 
