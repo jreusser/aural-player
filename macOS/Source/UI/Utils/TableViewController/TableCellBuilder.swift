@@ -92,7 +92,7 @@ class TableCellBuilder {
         return self
     }
     
-    func buildCell(forTableView tableView: NSTableView, forColumnWithId columnId: NSUserInterfaceItemIdentifier) -> AuralTableCellView? {
+    func buildCell(forTableView tableView: NSTableView, forColumnWithId columnId: NSUserInterfaceItemIdentifier, inRow row: Int) -> AuralTableCellView? {
 
         guard let cell = cellFactory(tableView, columnId) else {return nil}
         
@@ -124,6 +124,10 @@ class TableCellBuilder {
         }
         
         cell.imageView?.showIf(image != nil)
+        
+        cell.rowSelectionStateFunction = {[weak tableView] in
+            tableView?.selectedRowIndexes.contains(row) ?? false
+        }
         
         return cell
     }

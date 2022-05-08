@@ -11,6 +11,7 @@
 #if os(macOS)
 
 import AVFoundation
+import Cocoa
 
 ///
 /// Encapsulates a single audio hardware device.
@@ -90,6 +91,27 @@ public class AudioDevice {
         self.dataSource = deviceId.getCodeProperty(addressPtr: &Self.dataSourcePropertyAddress)
         self.transportType = deviceId.getCodeProperty(addressPtr: &Self.transportTypePropertyAddress)
         self.isConnectedViaBluetooth = transportType?.lowercased() == "blue"
+    }
+    
+    var icon: NSImage {
+        
+        guard let transportType = transportType else {
+            return .imgDeviceType_builtIn
+        }
+        
+        switch transportType {
+            
+        case "bltn":    return name.lowercased().contains("headphone") ? .imgDeviceType_headphones : .imgDeviceType_builtIn
+            
+        case "blue":    return .imgDeviceType_bluetooth
+            
+        case "dprt":    return .imgDeviceType_displayPort
+            
+        case "virt":    return .imgDeviceType_virtual
+            
+        default:        return .imgDeviceType_builtIn
+            
+        }
     }
 }
 

@@ -20,7 +20,7 @@ extension DevicesViewController: NSTableViewDataSource, NSTableViewDelegate {
         audioGraphDelegate.availableDevices.numberOfDevices
     }
     
-    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {24}
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {32}
     
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         AuralTableRowView()
@@ -29,18 +29,48 @@ extension DevicesViewController: NSTableViewDataSource, NSTableViewDelegate {
     // Returns a view for a single column
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
+        guard let colId = tableColumn?.identifier else {return nil}
+        
         let device = devices[row]
         
-        let builder = TableCellBuilder().withText(text: device.name, inFont: systemFontScheme.effectsPrimaryFont,
-                                                  andColor: systemColorScheme.primaryTextColor, selectedTextColor: systemColorScheme.primarySelectedTextColor)
-        
-        let cell = builder.buildCell(forTableView: tableView, forColumnWithId: .cid_Device)
-        
-        cell?.rowSelectionStateFunction = {[weak tableView] in
-            tableView?.selectedRowIndexes.contains(row) ?? false
+        switch colId {
+            
+        case .cid_Device:
+            
+            return createNameCell(with: tableView, forDevice: device, row: row)
+            
+        case .cid_DeviceType:
+            
+            guard let cell = createTypeCell(with: tableView, forDevice: device, row: row) else {return nil}
+            
+            let cstrt = LayoutConstraintsManager(for: cell.imageView!)
+            cstrt.setHeight(20)
+            cstrt.setWidth(20)
+            cstrt.centerVerticallyInSuperview()
+            cstrt.centerHorizontallyInSuperview()
+            
+            return cell
+            
+        default:
+            
+            return nil
         }
+    }
+    
+    private func createNameCell(with tableView: NSTableView, forDevice device: AudioDevice, row: Int) -> NSTableCellView? {
         
-        return cell
+        let builder = TableCellBuilder().withText(text: device.name, inFont: systemFontScheme.effectsPrimaryFont,
+                                                  andColor: systemColorScheme.primaryTextColor,
+                                                  selectedTextColor: systemColorScheme.primarySelectedTextColor)
+        
+        return builder.buildCell(forTableView: tableView, forColumnWithId: .cid_Device, inRow: row)
+    }
+    
+    private func createTypeCell(with tableView: NSTableView, forDevice device: AudioDevice, row: Int) -> NSTableCellView? {
+        
+        let builder = TableCellBuilder().withImage(image: device.icon, inColor: systemColorScheme.secondaryTextColor)
+        
+        return builder.buildCell(forTableView: tableView, forColumnWithId: .cid_DeviceType, inRow: row)
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -57,4 +87,5 @@ extension DevicesViewController: NSTableViewDataSource, NSTableViewDelegate {
 extension NSUserInterfaceItemIdentifier {
     
     static let cid_Device: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_Device")
+    static let cid_DeviceType: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_DeviceType")
 }

@@ -40,11 +40,8 @@ extension PlaylistNamesTableViewController: NSTableViewDelegate {
                                                   andColor: systemColorScheme.primaryTextColor,
                                                   selectedTextColor: systemColorScheme.primarySelectedTextColor)
         
-        let cell = builder.buildCell(forTableView: tableView, forColumnWithId: columnId)
+        let cell = builder.buildCell(forTableView: tableView, forColumnWithId: columnId, inRow: row)
         cell?.textField?.delegate = self
-        cell?.rowSelectionStateFunction = {[weak tableView] in
-            tableView?.selectedRowIndexes.contains(row) ?? false
-        }
         
         return cell
     }

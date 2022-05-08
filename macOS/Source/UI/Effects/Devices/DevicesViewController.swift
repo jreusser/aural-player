@@ -61,6 +61,10 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
         tableView.reloadData()
         tableView.selectRow(audioGraphDelegate.availableDevices.indexOfOutputDevice)
         
+        let dvcs = audioGraphDelegate.availableDevices.allDevices
+        let types = dvcs.map {$0.transportType!}
+        print("Types: \(types)")
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.selectionChangeIsInternal = false
         }

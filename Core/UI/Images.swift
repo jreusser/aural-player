@@ -64,4 +64,12 @@ extension PlatformImage {
     
     static let imgDisclosure_collapsed: PlatformImage = PlatformImage(named: "DisclosureTriangle-Collapsed")!
     static let imgDisclosure_expanded: PlatformImage = PlatformImage(named: "DisclosureTriangle-Expanded")!
+    
+    // --------------- Device type icons -------------------
+    
+    static let imgDeviceType_builtIn: PlatformImage = PlatformImage(systemSymbolName: "speaker.wave.2.fill", accessibilityDescription: nil)!
+    static let imgDeviceType_headphones: PlatformImage = PlatformImage(systemSymbolName: "headphones", accessibilityDescription: nil)!
+    static let imgDeviceType_bluetooth: PlatformImage = PlatformImage(named: "DeviceType_Bluetooth")!
+    static let imgDeviceType_displayPort: PlatformImage = PlatformImage(named: "DeviceType_DisplayPort")!
+    static let imgDeviceType_virtual: PlatformImage = PlatformImage(systemSymbolName: "waveform", accessibilityDescription: nil)!
 }

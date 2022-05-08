@@ -121,4 +121,11 @@ class LayoutConstraintsManager {
         
         superview?.activateAndAddConstraint(constraint)
     }
+    
+    func centerHorizontallyInSuperview(offset: CGFloat = 0) {
+        
+        let constraint = NSLayoutConstraint(item: view, attribute: .centerX, relatedBy: .equal, toItem: view.superview, attribute: .centerX, multiplier: 1, constant: offset)
+        
+        superview?.activateAndAddConstraint(constraint)
+    }
 }
