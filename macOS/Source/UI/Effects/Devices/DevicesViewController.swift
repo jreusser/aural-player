@@ -75,6 +75,8 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
         
         panSlider.floatValue = audioGraph.panLeft()
         lblPan.stringValue = audioGraph.formattedPan
+        
+        messenger.publish(.effects_showEffectsUnitTab, payload: EffectsUnitType.devices)
     }
     
     // Pans the sound towards the right channel, by a certain preset value
@@ -82,6 +84,8 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
         
         panSlider.floatValue = audioGraph.panRight()
         lblPan.stringValue = audioGraph.formattedPan
+        
+        messenger.publish(.effects_showEffectsUnitTab, payload: EffectsUnitType.devices)
     }
     
     private func trackTransitioned(_ notification: TrackTransitionNotification) {
