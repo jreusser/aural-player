@@ -81,6 +81,10 @@ extension String {
         (self.removingPercentEncoding ?? self).replacingOccurrences(of: "\0", with: "")
     }
     
+    func removingNewlines() -> String {
+        self.replacingOccurrences(of: "\n", with: "")
+    }
+    
     // Splits a camel cased word into separate words, all capitalized. For ex, "albumName" -> "Album Name". This is useful for display within the UI.
     func splitAsCamelCaseWord(capitalizeEachWord: Bool) -> String {
         
