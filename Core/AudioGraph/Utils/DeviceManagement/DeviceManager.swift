@@ -43,8 +43,12 @@ public class DeviceManager {
     }
     
     // A listing of all available audio output devices
-    var allDevices: AudioDeviceList {
-        AudioDeviceList(allDevices: list.devices, outputDeviceId: outputDeviceId, systemDeviceId: systemDeviceId)
+    var allDevices: [AudioDevice] {
+        list.devices
+    }
+    
+    var numberOfDevices: Int {
+        list.devices.count
     }
     
     var systemDevice: AudioDevice {
@@ -58,6 +62,12 @@ public class DeviceManager {
         
         get {list.deviceById(outputDeviceId) ?? AudioDevice(deviceId: outputDeviceId) ?? systemDevice}
         set {outputDeviceId = newValue.id}
+    }
+    
+    var indexOfOutputDevice: Int {
+        
+        let outputDeviceId = self.outputDeviceId
+        return list.devices.firstIndex(where: {$0.id == outputDeviceId})!
     }
     
     // The variable used to get/set the application's audio output device

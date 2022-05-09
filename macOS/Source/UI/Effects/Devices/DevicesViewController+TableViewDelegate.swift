@@ -13,11 +13,11 @@ import Cocoa
 extension DevicesViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     private var devices: [AudioDevice] {
-        audioGraphDelegate.availableDevices.allDevices
+        audioGraphDelegate.availableDevices
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        audioGraphDelegate.availableDevices.numberOfDevices
+        audioGraphDelegate.numberOfDevices
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {32}

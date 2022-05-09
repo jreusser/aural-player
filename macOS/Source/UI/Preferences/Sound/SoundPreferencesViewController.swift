@@ -143,7 +143,7 @@ class SoundPreferencesViewController: NSViewController, PreferencesViewProtocol 
         
         var selItem: NSMenuItem?
         
-        for device in audioGraph.availableDevices.allDevices {
+        for device in audioGraph.availableDevices {
 
             preferredDevicesMenu.insertItem(withTitle: device.name, at: 0)
             

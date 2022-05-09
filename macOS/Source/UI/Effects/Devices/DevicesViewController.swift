@@ -102,7 +102,7 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
         selectionChangeIsInternal = true
         
         tableView.reloadData()
-        tableView.selectRow(audioGraphDelegate.availableDevices.indexOfOutputDevice)
+        tableView.selectRow(audioGraphDelegate.indexOfOutputDevice)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             self.selectionChangeIsInternal = false
@@ -113,7 +113,7 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
         
         selectionChangeIsInternal = true
         
-        tableView.selectRow(audioGraphDelegate.availableDevices.indexOfOutputDevice)
+        tableView.selectRow(audioGraphDelegate.indexOfOutputDevice)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             self.selectionChangeIsInternal = false

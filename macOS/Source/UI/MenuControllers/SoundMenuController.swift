@@ -118,7 +118,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
             let outputDeviceName: String = graph.outputDevice.name
             
             // Add menu items for each available device
-            for device in graph.availableDevices.allDevices {
+            for device in graph.availableDevices {
                 
                 let menuItem = NSMenuItem(title: device.name, action: #selector(self.outputDeviceAction(_:)))
                 menuItem.image = device.icon

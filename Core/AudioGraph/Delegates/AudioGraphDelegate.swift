@@ -26,7 +26,9 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
     
 #if os(macOS)
     
-    var availableDevices: AudioDeviceList {graph.availableDevices}
+    var availableDevices: [AudioDevice] {graph.availableDevices}
+    
+    var numberOfDevices: Int {graph.numberOfDevices}
     
     var systemDevice: AudioDevice {graph.systemDevice}
     
@@ -34,6 +36,10 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
         
         get {graph.outputDevice}
         set {graph.outputDevice = newValue}
+    }
+    
+    var indexOfOutputDevice: Int {
+        graph.indexOfOutputDevice
     }
     
     var outputDeviceBufferSize: Int {
@@ -109,7 +115,7 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
         // Check if remembered device is available (based on name and UID).
         if preferences.outputDeviceOnStartup.option == .rememberFromLastAppLaunch,
            let prefDeviceUID = persistentState?.outputDevice?.uid,
-           let foundDevice = graph.availableDevices.find(byUID: prefDeviceUID) {
+           let foundDevice = graph.availableDevices.first(where: {$0.uid == prefDeviceUID}) {
             
             self.graph.outputDevice = foundDevice
             
@@ -117,7 +123,7 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
         else if preferences.outputDeviceOnStartup.option == .specific,
            let prefDeviceName = preferences.outputDeviceOnStartup.preferredDeviceName,
            let prefDeviceUID = preferences.outputDeviceOnStartup.preferredDeviceUID,
-           let foundDevice = graph.availableDevices.find(byName: prefDeviceName, andUID: prefDeviceUID) {
+                let foundDevice = graph.availableDevices.first(where: {$0.name == prefDeviceName && $0.uid == prefDeviceUID}) {
             
             self.graph.outputDevice = foundDevice
         }

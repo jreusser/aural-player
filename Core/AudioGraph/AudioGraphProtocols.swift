@@ -19,9 +19,11 @@ protocol AudioGraphProtocol: PlayerGraphProtocol {
     
     #if os(macOS)
     
-    var availableDevices: AudioDeviceList {get}
+    var availableDevices: [AudioDevice] {get}
+    var numberOfDevices: Int {get}
     var systemDevice: AudioDevice {get}
     var outputDevice: AudioDevice {get set}
+    var indexOfOutputDevice: Int {get}
     var outputDeviceBufferSize: Int {get set}
     var outputDeviceSampleRate: Double {get}
     

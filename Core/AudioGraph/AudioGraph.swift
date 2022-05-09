@@ -204,7 +204,9 @@ let audioSession: AVAudioSession = .sharedInstance()
     
     // MARK: Device management ----------------------------------
     
-    var availableDevices: AudioDeviceList {deviceManager.allDevices}
+    var availableDevices: [AudioDevice] {deviceManager.allDevices}
+    
+    var numberOfDevices: Int {deviceManager.numberOfDevices}
     
     var systemDevice: AudioDevice {deviceManager.systemDevice}
     
@@ -212,6 +214,10 @@ let audioSession: AVAudioSession = .sharedInstance()
         
         get {deviceManager.outputDevice}
         set(newDevice) {deviceManager.outputDevice = newDevice}
+    }
+    
+    var indexOfOutputDevice: Int {
+        deviceManager.indexOfOutputDevice
     }
     
     var outputDeviceSampleRate: Double {deviceManager.outputDeviceSampleRate}

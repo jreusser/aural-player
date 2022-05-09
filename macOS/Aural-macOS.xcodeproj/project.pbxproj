@@ -901,8 +901,6 @@
 		3EFE38A227864896006F8B8C /* AudioDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE368827864895006F8B8C /* AudioDevice.swift */; };
 		3EFE38A327864896006F8B8C /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE368927864895006F8B8C /* DeviceManager.swift */; };
 		3EFE38A427864896006F8B8C /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE368927864895006F8B8C /* DeviceManager.swift */; };
-		3EFE38A527864896006F8B8C /* AudioDeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE368A27864895006F8B8C /* AudioDeviceList.swift */; };
-		3EFE38A627864896006F8B8C /* AudioDeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE368A27864895006F8B8C /* AudioDeviceList.swift */; };
 		3EFE38A727864896006F8B8C /* InternalDeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE368B27864895006F8B8C /* InternalDeviceList.swift */; };
 		3EFE38A827864896006F8B8C /* InternalDeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE368B27864895006F8B8C /* InternalDeviceList.swift */; };
 		3EFE38AB27864896006F8B8C /* ParametricEQNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE368F27864895006F8B8C /* ParametricEQNode.swift */; };
@@ -2250,7 +2248,6 @@
 		3EFE368627864895006F8B8C /* AUExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AUExtensions.swift; sourceTree = "<group>"; };
 		3EFE368827864895006F8B8C /* AudioDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDevice.swift; sourceTree = "<group>"; };
 		3EFE368927864895006F8B8C /* DeviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
-		3EFE368A27864895006F8B8C /* AudioDeviceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDeviceList.swift; sourceTree = "<group>"; };
 		3EFE368B27864895006F8B8C /* InternalDeviceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalDeviceList.swift; sourceTree = "<group>"; };
 		3EFE368F27864895006F8B8C /* ParametricEQNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParametricEQNode.swift; sourceTree = "<group>"; };
 		3EFE369027864895006F8B8C /* VariableRateNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableRateNode.swift; sourceTree = "<group>"; };
@@ -4588,13 +4585,13 @@
 			isa = PBXGroup;
 			children = (
 				3EFE366127864895006F8B8C /* EffectsUnits */,
+				3EFE36AC27864895006F8B8C /* AudioGraphProtocols.swift */,
 				3EFE367627864895006F8B8C /* AudioGraph.swift */,
 				3EFE367727864895006F8B8C /* PresetsAndProfiles */,
 				3EFE368327864895006F8B8C /* Utils */,
 				3EFE368C27864895006F8B8C /* CustomNodes */,
 				3EFE369627864895006F8B8C /* AudioGraphDefaults.swift */,
 				3EFE369727864895006F8B8C /* Delegates */,
-				3EFE36AC27864895006F8B8C /* AudioGraphProtocols.swift */,
 				3EFE36AD27864895006F8B8C /* AudioEngine.swift */,
 			);
 			path = AudioGraph;
@@ -4659,7 +4656,6 @@
 			children = (
 				3EFE368827864895006F8B8C /* AudioDevice.swift */,
 				3EFE368927864895006F8B8C /* DeviceManager.swift */,
-				3EFE368A27864895006F8B8C /* AudioDeviceList.swift */,
 				3EFE368B27864895006F8B8C /* InternalDeviceList.swift */,
 			);
 			path = DeviceManagement;
@@ -6078,7 +6074,6 @@
 				3EAFB5F4267FEE6400F0DC96 /* NSTabViewExtensions.swift in Sources */,
 				3EFE391D27864897006F8B8C /* DateExtensions.swift in Sources */,
 				3EFE386F27864896006F8B8C /* FilterUnit.swift in Sources */,
-				3EFE38A527864896006F8B8C /* AudioDeviceList.swift in Sources */,
 				3EFE39A727864897006F8B8C /* ColorPersistentState.swift in Sources */,
 				3EAFB5EC267FEC5C00F0DC96 /* NSViewExtensions.swift in Sources */,
 				3EAFB5F6267FEE9D00F0DC96 /* NSWindowExtensions.swift in Sources */,
@@ -6484,7 +6479,6 @@
 				3EFFEB8427D9CEF8006A333B /* KVOTokens.swift in Sources */,
 				3EFE387E27864896006F8B8C /* MasterUnit.swift in Sources */,
 				3EFE3A4027864898006F8B8C /* CommonFFMpegMetadataParser.swift in Sources */,
-				3EFE38A627864896006F8B8C /* AudioDeviceList.swift in Sources */,
 				3EA1BE13268F60DA00A5D81B /* PlaybackSequenceCreationTests.swift in Sources */,
 				3EFE38D227864896006F8B8C /* FilterUnitDelegate.swift in Sources */,
 				3EFE395427864897006F8B8C /* FFmpegPlaybackContext.swift in Sources */,
