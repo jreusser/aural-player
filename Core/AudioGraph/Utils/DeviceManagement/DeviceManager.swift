@@ -11,6 +11,8 @@
 
 import AVFoundation
 
+fileprivate var deviceChangeHandler: () -> Void = {}
+
 ///
 /// Utility class that provides a simple facade of operations dealing with audio output hardware devices,
 /// hiding interactions with low-level CoreAudio functions.
@@ -19,18 +21,25 @@ import AVFoundation
 ///
 public class DeviceManager {
     
-    private let systemAudioObjectId: AudioObjectID = .systemAudioObject
+    private let systemAudioObject: AudioObjectID = .systemAudioObject
     
     // The AudioUnit underlying AVAudioEngine's output node (used to set the output device)
     var outputAudioUnit: AudioUnit
     
     private let list: InternalDeviceList
     
+    private lazy var messenger = Messenger(for: self)
+    
     init(outputAudioUnit: AudioUnit) {
         
         self.outputAudioUnit = outputAudioUnit
         self.list = InternalDeviceList()
         self.outputDeviceId = systemDeviceId
+        
+        deviceChangeHandler = self.outputDeviceChanged
+        
+        // System output device change listener
+        outputAudioUnit.registerDeviceChangeCallback(inProc: deviceChanged, inProcUserData: Unmanaged.passUnretained(self).toOpaque())
     }
     
     // A listing of all available audio output devices
@@ -43,7 +52,7 @@ public class DeviceManager {
     }
     
     // The AudioDeviceID of the audio output device currently being used by the OS
-    private var systemDeviceId: AudioDeviceID {systemAudioObjectId.defaultOutputDevice}
+    private var systemDeviceId: AudioDeviceID {systemAudioObject.defaultOutputDevice}
     
     var outputDevice: AudioDevice {
         
@@ -66,6 +75,10 @@ public class DeviceManager {
         }
     }
     
+    private func outputDeviceChanged() {
+        messenger.publish(.deviceManager_defaultDeviceChanged)
+    }
+    
     var outputDeviceBufferSize: Int {
         
         get {Int(outputAudioUnit.bufferFrameSize)}
@@ -83,6 +96,15 @@ public class DeviceManager {
     }
 }
 
+fileprivate func deviceChanged(inRefCon: UnsafeMutableRawPointer,
+                               inUnit: AudioUnit,
+                               inID: AudioUnitPropertyID,
+                               inScope: AudioUnitScope,
+                               inElement: AudioUnitElement) {
+    
+    deviceChangeHandler()
+}
+
 extension Notification.Name {
     
     // ----------------------------------------------------------------------------------------
@@ -91,6 +113,9 @@ extension Notification.Name {
     
     // Signifies that the list of audio output devices has been updated.
     static let deviceManager_deviceListUpdated = Notification.Name("deviceManager_deviceListUpdated")
+    
+    // Signifies that the default system output device has changed.
+    static let deviceManager_defaultDeviceChanged = Notification.Name("deviceManager_defaultDeviceChanged")
 }
 
 #endif

@@ -58,16 +58,10 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:),
                                  filter: {msg in msg.trackChanged})
         
-        tableView.reloadData()
-        tableView.selectRow(audioGraphDelegate.availableDevices.indexOfOutputDevice)
+        messenger.subscribeAsync(to: .deviceManager_deviceListUpdated, handler: deviceListUpdated)
+        messenger.subscribeAsync(to: .deviceManager_defaultDeviceChanged, handler: defaultDeviceChanged)
         
-        let dvcs = audioGraphDelegate.availableDevices.allDevices
-        let types = dvcs.map {$0.transportType!}
-        print("Types: \(types)")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.selectionChangeIsInternal = false
-        }
+        deviceListUpdated()
     }
     
     @IBAction func panAction(_ sender: Any) {
@@ -97,6 +91,33 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
         
         panSlider.floatValue = audioGraph.pan
         lblPan.stringValue = audioGraph.formattedPan
+    }
+    
+    // ---------------------------------------------------------------------------------------------------------
+    
+    // MARK: Device list updates
+    
+    private func deviceListUpdated() {
+        
+        selectionChangeIsInternal = true
+        
+        tableView.reloadData()
+        tableView.selectRow(audioGraphDelegate.availableDevices.indexOfOutputDevice)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.selectionChangeIsInternal = false
+        }
+    }
+    
+    private func defaultDeviceChanged() {
+        
+        selectionChangeIsInternal = true
+        
+        tableView.selectRow(audioGraphDelegate.availableDevices.indexOfOutputDevice)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.selectionChangeIsInternal = false
+        }
     }
     
     // ---------------------------------------------------------------------------------------------------------

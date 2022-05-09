@@ -126,7 +126,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
                 menuItem.representedObject = device
                 menuItem.target = self
                 
-                self.devicesMenu.insertItem(menuItem, at: 0)
+                devicesMenu.addItem(menuItem)
             
                 // Select this item if it represents the current output device
                 menuItem.onIf(outputDeviceName == menuItem.title)

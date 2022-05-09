@@ -60,23 +60,28 @@ class InternalDeviceList {
             
             self.lastRebuildTime = now
             
+            let oldDeviceIds = Set(devices.map {$0.id})
+            
             devices.removeAll()
             devicesMap.removeAll()
             
             for deviceId in deviceIds {
                 
-                if let device = knownDevices[deviceId] ?? AudioDevice(deviceId: deviceId) {
-                    
-                    devices.append(device)
-                    devicesMap[deviceId] = device
-                    
-                    if knownDevices[deviceId] == nil {
-                        knownDevices[deviceId] = device
-                    }
+                guard let device = knownDevices[deviceId] ?? AudioDevice(deviceId: deviceId) else {continue}
+                
+                devices.append(device)
+                devicesMap[deviceId] = device
+                
+                if knownDevices[deviceId] == nil {
+                    knownDevices[deviceId] = device
                 }
             }
             
-            messenger.publish(.deviceManager_deviceListUpdated)
+            let newDeviceIds = Set(devices.map {$0.id})
+            
+            if newDeviceIds != oldDeviceIds {
+                messenger.publish(.deviceManager_deviceListUpdated)
+            }
         }
     }
     
