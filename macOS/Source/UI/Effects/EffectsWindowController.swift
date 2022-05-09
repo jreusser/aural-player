@@ -121,8 +121,8 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
         devicesTabViewButton.stateFunction = {.bypassed}
         
         // Select Master tab view by default
-//        doTabViewAction(masterTabViewButton)
-        doTabViewAction(devicesTabViewButton)
+        doTabViewAction(masterTabViewButton)
+//        doTabViewAction(devicesTabViewButton)
     }
 
     override func destroy() {
@@ -174,7 +174,6 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
         
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
         messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
-//        messenger.subscribe(to: .changeSelectedTabButtonColor, handler: changeSelectedTabButtonColor(_:))
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
     }
 
