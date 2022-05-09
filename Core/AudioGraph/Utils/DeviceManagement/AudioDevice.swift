@@ -91,75 +91,66 @@ public class AudioDevice {
         self.transportType = deviceId.getCodeProperty(addressPtr: &Self.transportTypePropertyAddress)
     }
     
-    lazy var icon: NSImage = {
+    lazy var icon: (image: NSImage, toolTip: String) = {
         
         guard let transportType = transportType else {
-            return .imgDeviceType_builtIn
+            return (.imgDeviceType_builtIn, "Unknown device type")
         }
-        
-        // TODO: Support USB, HDMI, Firewire, Thunderbolt, PCI, AirPlay, Aggregate etc.
         
         switch transportType {
             
         case kAudioDeviceTransportTypeBuiltIn:
             
-            return name.lowercased().contains("headphone") ? .imgDeviceType_headphones : .imgDeviceType_builtIn
+            return (name.lowercased().contains("headphone") ? .imgDeviceType_headphones : .imgDeviceType_builtIn, "Built-in")
             
         case kAudioDeviceTransportTypeBluetooth, kAudioDeviceTransportTypeBluetoothLE:
             
-            return .imgDeviceType_bluetooth
+            return (.imgDeviceType_bluetooth, "Bluetooth")
+            
+        case kAudioDeviceTransportTypeUSB:
+            
+            return (.imgDeviceType_usb, "USB")
             
         case kAudioDeviceTransportTypeDisplayPort:
             
-            return .imgDeviceType_displayPort
+            return (.imgDeviceType_displayPort, "DisplayPort")
+            
+        case kAudioDeviceTransportTypeHDMI:
+            
+            return (.imgDeviceType_hdmi, "HDMI")
+            
+        case kAudioDeviceTransportTypeFireWire:
+            
+            return (.imgDeviceType_firewire, "FireWire")
+            
+        case kAudioDeviceTransportTypeThunderbolt:
+            
+            return (.imgDeviceType_thunderbolt, "Thunderbolt")
+            
+        case kAudioDeviceTransportTypePCI:
+            
+            return (.imgDeviceType_pci, "PCI")
             
         case kAudioDeviceTransportTypeVirtual:
             
-            return .imgDeviceType_virtual
+            return (.imgDeviceType_virtual, "Virtual")
+            
+        case kAudioDeviceTransportTypeAirPlay:
+            
+            return (.imgDeviceType_airplay, "AirPlay")
+            
+        case kAudioDeviceTransportTypeAggregate:
+            
+            return (.imgDeviceType_aggregate, "Aggregate")
+            
+        case kAudioDeviceTransportTypeAVB:
+            
+            return (.imgDeviceType_avb, "AVB")
             
         default:
             
-            return .imgDeviceType_builtIn
+            return (.imgDeviceType_builtIn, "Unknown device type")
         }
-        
-        /*
-         
-         static func from(_ constant: UInt32) -> TransportType {
-             switch constant {
-             case kAudioDeviceTransportTypeBuiltIn:
-                 return .builtIn
-             case kAudioDeviceTransportTypeAggregate:
-                 return .aggregate
-             case kAudioDeviceTransportTypeVirtual:
-                 return .virtual
-             case kAudioDeviceTransportTypePCI:
-                 return .pci
-             case kAudioDeviceTransportTypeUSB:
-                 return .usb
-             case kAudioDeviceTransportTypeFireWire:
-                 return .fireWire
-             case kAudioDeviceTransportTypeBluetooth:
-                 return .bluetooth
-             case kAudioDeviceTransportTypeBluetoothLE:
-                 return .bluetoothLE
-             case kAudioDeviceTransportTypeHDMI:
-                 return .hdmi
-             case kAudioDeviceTransportTypeDisplayPort:
-                 return .displayPort
-             case kAudioDeviceTransportTypeAirPlay:
-                 return .airPlay
-             case kAudioDeviceTransportTypeAVB:
-                 return .avb
-             case kAudioDeviceTransportTypeThunderbolt:
-                 return .thunderbolt
-             case kAudioDeviceTransportTypeUnknown:
-                 fallthrough
-             default:
-                 return .unknown
-             }
-         }
-         
-         */
     }()
 }
 

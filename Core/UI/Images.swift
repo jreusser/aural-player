@@ -71,5 +71,13 @@ extension PlatformImage {
     static let imgDeviceType_headphones: PlatformImage = PlatformImage(systemSymbolName: "headphones", accessibilityDescription: nil)!
     static let imgDeviceType_bluetooth: PlatformImage = PlatformImage(named: "DeviceType_Bluetooth")!
     static let imgDeviceType_displayPort: PlatformImage = PlatformImage(named: "DeviceType_DisplayPort")!
+    static let imgDeviceType_hdmi: PlatformImage = PlatformImage(named: "DeviceType_HDMI")!
+    static let imgDeviceType_usb: PlatformImage = PlatformImage(named: "DeviceType_USB")!
+    static let imgDeviceType_pci: PlatformImage = PlatformImage(named: "DeviceType_PCI")!
+    static let imgDeviceType_firewire: PlatformImage = PlatformImage(named: "DeviceType_FireWire")!
+    static let imgDeviceType_thunderbolt: PlatformImage = PlatformImage(named: "DeviceType_Thunderbolt")!
     static let imgDeviceType_virtual: PlatformImage = PlatformImage(systemSymbolName: "waveform", accessibilityDescription: nil)!
+    static let imgDeviceType_airplay: PlatformImage = PlatformImage(systemSymbolName: "airplayaudio", accessibilityDescription: nil)!
+    static let imgDeviceType_aggregate: PlatformImage = PlatformImage(named: "DeviceType_Aggregate")!
+    static let imgDeviceType_avb: PlatformImage = PlatformImage(named: "DeviceType_AVB")!
 }

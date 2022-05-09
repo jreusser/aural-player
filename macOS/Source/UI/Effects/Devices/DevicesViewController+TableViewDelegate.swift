@@ -68,9 +68,12 @@ extension DevicesViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     private func createTypeCell(with tableView: NSTableView, forDevice device: AudioDevice, row: Int) -> NSTableCellView? {
         
-        let builder = TableCellBuilder().withImage(image: device.icon, inColor: systemColorScheme.secondaryTextColor)
+        let iconWithTooltip = device.icon
+        let builder = TableCellBuilder().withImage(image: iconWithTooltip.image, inColor: systemColorScheme.secondaryTextColor)
         
-        return builder.buildCell(forTableView: tableView, forColumnWithId: .cid_DeviceType, inRow: row)
+        let cell = builder.buildCell(forTableView: tableView, forColumnWithId: .cid_DeviceType, inRow: row)
+        cell?.imageView?.toolTip = iconWithTooltip.toolTip
+        return cell
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
