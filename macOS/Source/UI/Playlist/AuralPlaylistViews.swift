@@ -55,6 +55,8 @@ extension NSUserInterfaceItemIdentifier {
     
     // Playlist view column identifiers
     
+    static let cid_art: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_Art")
+    
     static let cid_index: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_Index")
     
     static let cid_trackName: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_Name")

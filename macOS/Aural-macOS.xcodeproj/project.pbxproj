@@ -536,6 +536,8 @@
 		3EABDE052694C9A6008066E8 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FA825CEB98600BF0D07 /* ColorScheme.swift */; };
 		3EABDE1A2694CFD4008066E8 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDE192694CFD4008066E8 /* ColorConstants.swift */; };
 		3EABDE1C2694D002008066E8 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDE192694CFD4008066E8 /* ColorConstants.swift */; };
+		3EAD418F2829D35900763A12 /* PrettyPlayQueue.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAD418E2829D35900763A12 /* PrettyPlayQueue.xib */; };
+		3EAD41912829D4AE00763A12 /* PrettyPlayQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAD41902829D4AE00763A12 /* PrettyPlayQueueViewController.swift */; };
 		3EAF886F26B706530051871E /* GroupingPlaylistTests+SortGenresPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF886E26B706530051871E /* GroupingPlaylistTests+SortGenresPlaylist.swift */; };
 		3EAFB5EC267FEC5C00F0DC96 /* NSViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFB5EB267FEC5C00F0DC96 /* NSViewExtensions.swift */; };
 		3EAFB5EE267FECEE00F0DC96 /* NSButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFB5ED267FECEE00F0DC96 /* NSButtonExtensions.swift */; };
@@ -2001,6 +2003,8 @@
 		3EABDDFC2694C57B008066E8 /* ControlBarPlayerUIPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlayerUIPersistenceTests.swift; sourceTree = "<group>"; };
 		3EABDE002694C98B008066E8 /* ColorSchemesPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemesPersistenceTests.swift; sourceTree = "<group>"; };
 		3EABDE192694CFD4008066E8 /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
+		3EAD418E2829D35900763A12 /* PrettyPlayQueue.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrettyPlayQueue.xib; sourceTree = "<group>"; };
+		3EAD41902829D4AE00763A12 /* PrettyPlayQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyPlayQueueViewController.swift; sourceTree = "<group>"; };
 		3EAF886E26B706530051871E /* GroupingPlaylistTests+SortGenresPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupingPlaylistTests+SortGenresPlaylist.swift"; sourceTree = "<group>"; };
 		3EAFB5EB267FEC5C00F0DC96 /* NSViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewExtensions.swift; sourceTree = "<group>"; };
 		3EAFB5ED267FECEE00F0DC96 /* NSButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSButtonExtensions.swift; sourceTree = "<group>"; };
@@ -2641,6 +2645,8 @@
 		3E25B65227F785D800D10A5F /* Pretty */ = {
 			isa = PBXGroup;
 			children = (
+				3EAD418E2829D35900763A12 /* PrettyPlayQueue.xib */,
+				3EAD41902829D4AE00763A12 /* PrettyPlayQueueViewController.swift */,
 			);
 			path = Pretty;
 			sourceTree = "<group>";
@@ -5507,6 +5513,7 @@
 				3E6C125025CEBDF400BF0D07 /* TracksPlaylistSort.xib in Resources */,
 				3E91932425E0CE2500F30F81 /* FontSchemes.xib in Resources */,
 				3E6C125A25CEBE0600BF0D07 /* EQPresetsManager.xib in Resources */,
+				3EAD418F2829D35900763A12 /* PrettyPlayQueue.xib in Resources */,
 				3E36BD3126A68E9800B6E28B /* LyricsTrackInfo.xib in Resources */,
 				3E6C12BD25CEBE6700BF0D07 /* EQUnit.xib in Resources */,
 				3E308D1B268A336900B0FD60 /* UpdatesDialog.xib in Resources */,
@@ -6309,6 +6316,7 @@
 				3E6C129825CEBE2700BF0D07 /* VAlignedTextField.swift in Sources */,
 				3EFE3AEF27864942006F8B8C /* FFmpegPacket.swift in Sources */,
 				3EFE39DF27864897006F8B8C /* AudioUnitPersistentState.swift in Sources */,
+				3EAD41912829D4AE00763A12 /* PrettyPlayQueueViewController.swift in Sources */,
 				3EFE37E727864896006F8B8C /* HistoryPreferences.swift in Sources */,
 				3EEFF58A27DE842C002CB0FE /* PlayQueueDelegate.swift in Sources */,
 				3EFE393927864897006F8B8C /* BookmarksDelegateProtocol.swift in Sources */,
