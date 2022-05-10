@@ -448,6 +448,11 @@ class PrettyPlayQueueTrackNameCell: NSTableCellView {
         } else {
             showDefaultDisplayName(track.defaultDisplayName)
         }
+        
+        [lblTitle, lblArtistAlbum, lblDefaultDisplayName].forEach {
+            $0.font = systemFontScheme.playlist.trackTextFont
+        }
+        
     }
     
     private func showTitleAndArtistAlbum(title: String, artistAlbumString: String) {

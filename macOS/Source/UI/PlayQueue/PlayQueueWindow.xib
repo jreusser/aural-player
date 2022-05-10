@@ -595,7 +595,7 @@
             <accessibility identifier="playQueue"/>
             <point key="canvasLocation" x="217" y="230.5"/>
         </window>
-        <customObject id="QQB-l4-4dl" customClass="CompactPlayQueueViewController" customModule="Aural" customModuleProvider="target">
+        <customObject id="QQB-l4-4dl" customClass="PrettyPlayQueueViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="sortOrderMenuItemView" destination="lxO-Xj-vxb" id="Zcd-bS-Sl1"/>
             </connections>
