@@ -113,7 +113,7 @@ class PrettyPlayQueueViewController: TrackListViewController, ColorSchemeObserve
     private func createArtCell(tableView: NSTableView, track: Track) -> NSTableCellView? {
         
         guard let cell = tableView.makeView(withIdentifier: .cid_art, owner: nil) as? NSTableCellView else {return nil}
-        cell.image = track.art?.image
+        cell.image = track.art?.image ?? .imgPlayingArt
         
         return cell
     }
