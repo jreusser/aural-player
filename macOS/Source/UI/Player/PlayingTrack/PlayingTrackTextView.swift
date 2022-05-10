@@ -46,7 +46,7 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
     }
     
     var titleFont: NSFont {
-        Fonts.Player.infoBoxTitleFont
+        systemFontScheme.playerPrimaryFont
     }
     
     var titleColor: NSColor {
@@ -54,7 +54,7 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
     }
     
     var artistAlbumFont: NSFont {
-        Fonts.Player.infoBoxArtistAlbumFont
+        systemFontScheme.playerSecondaryFont
     }
     
     var artistAlbumColor: NSColor {
@@ -62,7 +62,7 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
     }
     
     var chapterTitleFont: NSFont {
-        Fonts.Player.infoBoxChapterTitleFont
+        systemFontScheme.playerTertiaryFont
     }
     
     var chapterTitleColor: NSColor {
@@ -120,15 +120,6 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
         
         update()
     }
-    
-//    func applyFontScheme(_ fontScheme: FontScheme) {
-//        update()
-//    }
-//
-//    // Responds to a change in user-defined color scheme
-//    func applyColorScheme(_ scheme: ColorScheme) {
-//        update()
-//    }
     
     // Updates the view when the user settings that control display of metadata fields have changed
     func displayedTextChanged() {

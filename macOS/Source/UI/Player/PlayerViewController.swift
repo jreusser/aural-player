@@ -87,7 +87,7 @@ class PlayerViewController: NSViewController, Destroyable {
     private func trackChanged(_ track: Track?) {
         
         if let theTrack = track {
-            infoView.trackInfo = PlayingTrackInfo(theTrack, player.playingChapter?.chapter.title)
+            infoView.trackInfo = PlayingTrackInfo(track: theTrack, playingChapterTitle: player.playingChapter?.chapter.title)
             
         } else {
             infoView.trackInfo = nil
@@ -106,7 +106,7 @@ class PlayerViewController: NSViewController, Destroyable {
     func chapterChanged(_ notification: ChapterChangedNotification) {
         
         if let playingTrack = player.playingTrack {
-            infoView.trackInfo = PlayingTrackInfo(playingTrack, notification.newChapter?.chapter.title)
+            infoView.trackInfo = PlayingTrackInfo(track: playingTrack, playingChapterTitle: notification.newChapter?.chapter.title)
         }
     }
     

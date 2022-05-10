@@ -79,7 +79,7 @@ class MenuBarPlayerViewController: NSViewController, Destroyable {
     private func updateTrackInfo() {
         
         if let theTrack = player.playingTrack {
-            trackInfoView.trackInfo = PlayingTrackInfo(theTrack, player.playingChapter?.chapter.title)
+            trackInfoView.trackInfo = PlayingTrackInfo(track: theTrack, playingChapterTitle: player.playingChapter?.chapter.title)
             
         } else {
             trackInfoView.trackInfo = nil
@@ -153,7 +153,7 @@ class MenuBarPlayerViewController: NSViewController, Destroyable {
     func chapterChanged(_ notification: ChapterChangedNotification) {
         
         if let playingTrack = player.playingTrack {
-            trackInfoView.trackInfo = PlayingTrackInfo(playingTrack, notification.newChapter?.chapter.title)
+            trackInfoView.trackInfo = PlayingTrackInfo(track: playingTrack, playingChapterTitle: notification.newChapter?.chapter.title)
         }
     }
     

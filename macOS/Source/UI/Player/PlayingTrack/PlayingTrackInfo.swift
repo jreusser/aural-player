@@ -15,25 +15,25 @@ struct PlayingTrackInfo {
     let track: Track
     let playingChapterTitle: String?
     
-    init(_ track: Track, _ playingChapterTitle: String?) {
+    init(track: Track, playingChapterTitle: String? = nil) {
         
         self.track = track
         self.playingChapterTitle = playingChapterTitle
     }
     
     var art: NSImage? {
-        return track.art?.image
+        track.art?.image
     }
     
     var artist: String? {
-        return track.artist
+        track.artist
     }
     
     var album: String? {
-        return track.album
+        track.album
     }
     
     var title: String? {
-        return track.title ?? track.defaultDisplayName
+        track.title ?? track.defaultDisplayName
     }
 }
