@@ -66,6 +66,20 @@ extension ColorSchemesManager {
         doRegisterObservers(observers.map {($0, property)})
     }
     
+    func registerObservers(_ observers: [ColorSchemePropertyObserver], forProperties properties: [KeyPath<ColorScheme, PlatformColor>]) {
+        
+        var tuples: [PropertyObserver] = []
+        
+        for observer in observers {
+            
+            for property in properties {
+                tuples.append((observer, property))
+            }
+        }
+        
+        doRegisterObservers(tuples)
+    }
+    
     private func doRegisterObservers(_ observers: [PropertyObserver]) {
         
         for (observer, property) in observers {

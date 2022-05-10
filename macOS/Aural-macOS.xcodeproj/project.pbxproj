@@ -114,6 +114,7 @@
 		3E466C8F27FA296C00342C30 /* MainWindowController+EventHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E466C8E27FA296C00342C30 /* MainWindowController+EventHandling.swift */; };
 		3E466C9127FA37AA00342C30 /* TrackListViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E466C9027FA37AA00342C30 /* TrackListViewController+ViewDelegate.swift */; };
 		3E47214B282AB5DC0097F1AB /* PlayQueueTrackTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E47214A282AB5DC0097F1AB /* PlayQueueTrackTextView.swift */; };
+		3E47214D282AE3820097F1AB /* PlayQueueTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E47214C282AE3820097F1AB /* PlayQueueTabButton.swift */; };
 		3E475BC2269649880065FD53 /* FlatPlaylistTests+TrackAccessByIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E475BC1269649880065FD53 /* FlatPlaylistTests+TrackAccessByIndex.swift */; };
 		3E475BC6269652320065FD53 /* FlatPlaylistTests+RemoveTracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E475BC5269652320065FD53 /* FlatPlaylistTests+RemoveTracks.swift */; };
 		3E475BCA2696527A0065FD53 /* FlatPlaylistTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E475BC92696527A0065FD53 /* FlatPlaylistTestCase.swift */; };
@@ -1562,6 +1563,7 @@
 		3E466C8E27FA296C00342C30 /* MainWindowController+EventHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainWindowController+EventHandling.swift"; sourceTree = "<group>"; };
 		3E466C9027FA37AA00342C30 /* TrackListViewController+ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackListViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
 		3E47214A282AB5DC0097F1AB /* PlayQueueTrackTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueTrackTextView.swift; sourceTree = "<group>"; };
+		3E47214C282AE3820097F1AB /* PlayQueueTabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueTabButton.swift; sourceTree = "<group>"; };
 		3E475BC1269649880065FD53 /* FlatPlaylistTests+TrackAccessByIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlatPlaylistTests+TrackAccessByIndex.swift"; sourceTree = "<group>"; };
 		3E475BC5269652320065FD53 /* FlatPlaylistTests+RemoveTracks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlatPlaylistTests+RemoveTracks.swift"; sourceTree = "<group>"; };
 		3E475BC92696527A0065FD53 /* FlatPlaylistTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatPlaylistTestCase.swift; sourceTree = "<group>"; };
@@ -2630,6 +2632,7 @@
 				3E495B8928108DF800D4766A /* PlayQueueContainer.swift */,
 				3E25B65127F7859800D10A5F /* Compact */,
 				3E25B65227F785D800D10A5F /* Pretty */,
+				3E47214C282AE3820097F1AB /* PlayQueueTabButton.swift */,
 			);
 			path = PlayQueue;
 			sourceTree = "<group>";
@@ -5998,6 +6001,7 @@
 				3E6C12D425CEBE6700BF0D07 /* MasterUnitViewController.swift in Sources */,
 				3EFE38AF27864896006F8B8C /* FilterBand.swift in Sources */,
 				3E6C11B725CEBDA900BF0D07 /* MediaApplicationWatcher.swift in Sources */,
+				3E47214D282AE3820097F1AB /* PlayQueueTabButton.swift in Sources */,
 				3EEFF58D27DE842C002CB0FE /* PlayQueueTrack.swift in Sources */,
 				3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */,
 				3E6C11B925CEBDAD00BF0D07 /* MediaKeyHandler.swift in Sources */,

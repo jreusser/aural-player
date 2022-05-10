@@ -27,9 +27,13 @@ class PlayQueueWindowController: NSWindowController {
     @IBOutlet weak var tabButtonsContainer: NSBox!
     
     // The tab group that switches between the 4 playlist views
-    @IBOutlet weak var tabGroup: AuralTabView!
+    @IBOutlet weak var tabGroup: NSTabView!
     
-    @IBOutlet weak var compactViewController: PrettyPlayQueueViewController!
+    @IBOutlet weak var btnListView: PlayQueueTabButton!
+    @IBOutlet weak var btnTableView: PlayQueueTabButton!
+    
+    @IBOutlet weak var compactViewController: CompactPlayQueueViewController!
+    @IBOutlet weak var prettyViewController: PrettyPlayQueueViewController!
     
     private let playQueue: PlayQueueDelegateProtocol = playQueueDelegate
     
@@ -44,8 +48,18 @@ class PlayQueueWindowController: NSWindowController {
         theWindow.isMovableByWindowBackground = true
         
         let compactView = compactViewController.view
-        tabGroup.addViewsForTabs([compactView])
-        compactView.anchorToSuperview()
+        let prettyView = prettyViewController.view
+        
+        for (index, view) in [compactView, prettyView].enumerated() {
+            
+            tabGroup.tabViewItem(at: index).view?.addSubview(view)
+            view.anchorToSuperview()
+        }
+        
+        [1, 0].forEach {tabGroup.selectTabViewItem(at: $0)}
+        tabViewAction(btnTableView)
+        
+        colorSchemesManager.registerObservers([btnTableView, btnListView], forProperties: [\.buttonColor, \.inactiveControlColor])
         
         colorSchemesManager.registerObservers([rootContainer, tabButtonsContainer], forProperty: \.backgroundColor)
         colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
@@ -162,6 +176,18 @@ class PlayQueueWindowController: NSWindowController {
     }
     
     // MARK: Actions ----------------------------------------------------------------------------------
+    
+    // Switches the tab group to a particular tab
+    @IBAction func tabViewAction(_ sender: PlayQueueTabButton) {
+
+        // Set sender button state, reset all other button states
+        [btnTableView, btnListView].forEach {$0.unSelect()}
+        sender.select()
+
+        // Button tag is the tab index
+        tabGroup.selectTabViewItem(at: sender.tag)
+        lblCaption.stringValue = EffectsUnitType(rawValue: sender.tag)!.caption
+    }
     
     @IBAction func closeAction(_ sender: NSButton) {
         windowLayoutsManager.toggleWindow(withId: .playQueue)

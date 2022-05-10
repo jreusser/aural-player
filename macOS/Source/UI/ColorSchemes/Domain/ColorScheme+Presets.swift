@@ -29,7 +29,7 @@ extension ColorScheme {
                                          textSelectionColor: .black,
                                          
                                          activeControlColor: .lava,
-                                         inactiveControlColor: .white35Percent,
+                                         inactiveControlColor: .white40Percent,
                                          suppressedControlColor: PlatformColor(red: 0.5, green: 0.204, blue: 0.107))
     
     static let blackAqua: ColorScheme = .init(name: "Black & aqua", systemDefined: true,

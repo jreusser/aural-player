@@ -18,8 +18,12 @@ class PlaylistViewsButtonCell: TabGroupButtonCell {
     override var borderRadius: CGFloat {3}
 //    override var selectionBoxColor: NSColor {Colors.selectedTabButtonColor}
     
-    @IBInspectable var imgWidth: Int = 16
-    @IBInspectable var imgHeight: Int = 16
+    private var button: PlayQueueTabButton {
+        controlView as! PlayQueueTabButton
+    }
+    
+    @IBInspectable var imgWidth: Int = 14
+    @IBInspectable var imgHeight: Int = 14
     
     override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
         drawInterior(withFrame: cellFrame, in: controlView)
@@ -39,15 +43,15 @@ class PlaylistViewsButtonCell: TabGroupButtonCell {
         
         // Raise the selected tab image by a few pixels so it is prominent
         let imgRect = cellFrame.insetBy(dx: xInset, dy: yInset).offsetBy(dx: 0, dy: isOn ? -1 : 0)
-        self.image?.filledWithColor(isOn ? selectedTextColor : unselectedTextColor).draw(in: imgRect)
+        self.image?.filledWithColor(button.isSelected ? systemColorScheme.buttonColor : systemColorScheme.inactiveControlColor).draw(in: imgRect)
         
         // Selection underline
-        if isOn {
+        if button.isSelected {
             
             let drawRect = NSRect(x: cellFrame.centerX - halfImgWidth, y: cellFrame.maxY - 2,
-                                  width: imgWidth, height: 2)
+                                  width: imgWidth, height: 1)
             
-            drawRect.fill(withColor: selectionBoxColor)
+            drawRect.fill(withColor: systemColorScheme.buttonColor)
         }
     }
 }

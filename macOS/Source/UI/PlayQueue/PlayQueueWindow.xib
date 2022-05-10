@@ -9,10 +9,13 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PlayQueueWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnClose" destination="rtm-3T-0kW" id="quf-CQ-FOk"/>
-                <outlet property="compactViewController" destination="QQB-l4-4dl" id="p15-4Q-HEW"/>
+                <outlet property="btnListView" destination="G9C-Vb-k83" id="EAB-yH-u1U"/>
+                <outlet property="btnTableView" destination="jSb-Nt-vEZ" id="mc4-Tr-KVZ"/>
+                <outlet property="compactViewController" destination="5I3-5u-fJw" id="3gD-3k-tpN"/>
                 <outlet property="lblCaption" destination="HUl-8T-ZjG" id="1lX-ZB-j4z"/>
                 <outlet property="lblDurationSummary" destination="kiu-sG-iy1" id="LaF-Fa-T9v"/>
                 <outlet property="lblTracksSummary" destination="cBa-S3-IRH" id="y0q-MV-VYI"/>
+                <outlet property="prettyViewController" destination="QQB-l4-4dl" id="BNT-o7-9ur"/>
                 <outlet property="progressSpinner" destination="5K6-jN-rb1" id="4BU-LG-HAw"/>
                 <outlet property="rootContainer" destination="vPq-HC-h3c" id="J8s-OX-NF1"/>
                 <outlet property="tabButtonsContainer" destination="xem-im-DfN" id="kuU-Au-6rg"/>
@@ -111,11 +114,11 @@
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </box>
-                    <tabView drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="zXc-hr-Pet" userLabel="Play Queue Tab Group" customClass="AuralTabView" customModule="Aural" customModuleProvider="target">
+                    <tabView drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="zXc-hr-Pet" userLabel="Play Queue Tab Group">
                         <rect key="frame" x="15" y="50" width="450" height="182"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
-                            <tabViewItem label="DefaultView" identifier="" id="dGb-9y-jTT" userLabel="Default View" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
+                            <tabViewItem label="Table View" identifier="" id="dGb-9y-jTT">
                                 <view key="view" id="luF-b9-Q1I">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="182"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,9 +127,9 @@
                                     <outlet property="tabButton" destination="jSb-Nt-vEZ" id="u0S-ew-cPd"/>
                                 </connections>
                             </tabViewItem>
-                            <tabViewItem label="PrettyView" identifier="" id="PNu-a6-BpD" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
+                            <tabViewItem label="List View" identifier="" id="PNu-a6-BpD">
                                 <view key="view" id="l0r-Hz-3yI">
-                                    <rect key="frame" x="0.0" y="0.0" width="500" height="177"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="182"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <connections>
@@ -141,7 +144,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <button toolTip="Tracks view" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSb-Nt-vEZ" userLabel="Tracks Button">
+                                <button toolTip="Table view" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSb-Nt-vEZ" userLabel="Table View Button" customClass="PlayQueueTabButton" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="77" y="0.0" width="22" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="list.dash" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Md-kL-76c" customClass="PlaylistViewsButtonCell" customModule="Aural" customModuleProvider="target">
@@ -149,21 +152,24 @@
                                         <font key="font" metaFont="system"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="imgWidth">
-                                                <integer key="value" value="18"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="imgHeight">
-                                                <integer key="value" value="14"/>
+                                                <integer key="value" value="17"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </buttonCell>
+                                    <connections>
+                                        <action selector="tabViewAction:" target="-2" id="eLo-IJ-8UU"/>
+                                    </connections>
                                 </button>
-                                <button toolTip="Artists view" verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="G9C-Vb-k83" userLabel="Artists Button">
+                                <button toolTip="List view" verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="G9C-Vb-k83" userLabel="List View Button" customClass="PlayQueueTabButton" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="102" y="0.0" width="22" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="text.below.photo.rtl" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MNb-6I-Ya2" customClass="PlaylistViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
+                                    <connections>
+                                        <action selector="tabViewAction:" target="-2" id="MFW-Zv-eCa"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </view>
@@ -643,6 +649,7 @@
             </connections>
             <point key="canvasLocation" x="293" y="564"/>
         </customView>
+        <customObject id="5I3-5u-fJw" customClass="CompactPlayQueueViewController" customModule="Aural" customModuleProvider="target"/>
     </objects>
     <resources>
         <image name="Add" width="25" height="25"/>
