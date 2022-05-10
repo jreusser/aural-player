@@ -74,8 +74,6 @@ class PrettyPlayQueueViewController: TrackListViewController, ColorSchemeObserve
         messenger.subscribe(to: .playQueue_enqueueAndPlayLater, handler: enqueueAndPlayLater(_:))
         
         messenger.subscribe(to: .playQueue_showPlayingTrack, handler: showPlayingTrack)
-        
-        messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
     }
     
     // MARK: Table view delegate / data source --------------------------------------------------------------------------------------------------------
@@ -114,6 +112,7 @@ class PrettyPlayQueueViewController: TrackListViewController, ColorSchemeObserve
         
         guard let cell = tableView.makeView(withIdentifier: .cid_art, owner: nil) as? NSTableCellView else {return nil}
         cell.image = track.art?.image ?? .imgPlayingArt
+        cell.imageColor = systemColorScheme.secondaryTextColor
         
         return cell
     }
@@ -122,6 +121,9 @@ class PrettyPlayQueueViewController: TrackListViewController, ColorSchemeObserve
         
         guard let cell = tableView.makeView(withIdentifier: .cid_trackName, owner: nil) as? PrettyPlayQueueTrackNameCell else {return nil}
         cell.updateForTrack(track)
+        cell.rowSelectionStateFunction = {[weak tableView] in
+            tableView?.selectedRowIndexes.contains(row) ?? false
+        }
         
         return cell
     }
@@ -329,10 +331,6 @@ class PrettyPlayQueueViewController: TrackListViewController, ColorSchemeObserve
     
     // MARK: Notification / command handling ----------------------------------------------------------------------------------------
     
-    private func applyFontScheme(_ scheme: FontScheme) {
-        tableView.reloadDataMaintainingSelection()
-    }
-    
     override func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
         super.colorChanged(to: newColor, forProperty: property)
@@ -461,6 +459,8 @@ class PrettyPlayQueueTrackNameCell: NSTableCellView {
         
         lblArtistAlbum.lineBreakMode = .byTruncatingTail
         lblArtistAlbum.usesSingleLineMode = true
+        
+        backgroundStyleChanged()
     }
     
     private func showTitleAndArtistAlbum(title: String, artistAlbumString: String) {
@@ -495,17 +495,6 @@ class PrettyPlayQueueTrackNameCell: NSTableCellView {
     func backgroundStyleChanged() {
         
         if rowIsSelected {
-
-            if lblTitle.isShown {
-                
-                lblTitle.textColor = systemColorScheme.primaryTextColor
-                lblArtistAlbum.textColor = systemColorScheme.secondaryTextColor
-                
-            } else {
-                lblDefaultDisplayName.textColor = systemColorScheme.primaryTextColor
-            }
-            
-        } else {
             
             if lblTitle.isShown {
                 
@@ -514,6 +503,17 @@ class PrettyPlayQueueTrackNameCell: NSTableCellView {
                 
             } else {
                 lblDefaultDisplayName.textColor = systemColorScheme.primarySelectedTextColor
+            }
+            
+        } else {
+            
+            if lblTitle.isShown {
+                
+                lblTitle.textColor = systemColorScheme.primaryTextColor
+                lblArtistAlbum.textColor = systemColorScheme.secondaryTextColor
+                
+            } else {
+                lblDefaultDisplayName.textColor = systemColorScheme.primaryTextColor
             }
         }
     }

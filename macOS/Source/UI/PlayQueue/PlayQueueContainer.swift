@@ -31,6 +31,7 @@ class PlayQueueContainer: NSView {
     
     @IBOutlet weak var btnSearch: TintedImageButton!
     @IBOutlet weak var btnSort: NSPopUpButton!
+    @IBOutlet weak var sortTintedIconMenuItem: TintedIconMenuItem!
     
     @IBOutlet weak var btnExport: TintedImageButton!
     
@@ -53,6 +54,10 @@ class PlayQueueContainer: NSView {
                                   btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom]
         
         viewsToHideOnMouseOver = [lblTracksSummary, lblDurationSummary]
+        
+        colorSchemesManager.registerObservers([btnImportTracks, btnRemoveTracks, btnCropTracks, btnRemoveAllTracks, btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom, btnClearSelection, btnInvertSelection, btnSearch, sortTintedIconMenuItem, btnExport, btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom], forProperty: \.buttonColor)
+        
+//        colorSchemesManager.registerObservers([btnImportTracks, btnRemoveTracks, btnCropTracks, btnRemoveAllTracks, btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom, btnClearSelection, btnInvertSelection, btnSearch, btnExport, btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom], forProperty: \.buttonColor)
     }
     
     override func viewDidEndLiveResize() {
