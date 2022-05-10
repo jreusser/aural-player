@@ -59,6 +59,9 @@ class PlayQueueWindowController: NSWindowController {
         [1, 0].forEach {tabGroup.selectTabViewItem(at: $0)}
         tabViewAction(btnTableView)
         
+        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+        fontSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
+        
         colorSchemesManager.registerObservers([btnTableView, btnListView], forProperties: [\.buttonColor, \.inactiveControlColor])
         
         colorSchemesManager.registerObservers([rootContainer, tabButtonsContainer], forProperty: \.backgroundColor)
@@ -66,10 +69,6 @@ class PlayQueueWindowController: NSWindowController {
         
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
         colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
-        
-        lblCaption.font = systemFontScheme.captionFont
-        lblTracksSummary.font = Fonts.Player.infoBoxArtistAlbumFont
-        lblDurationSummary.font = Fonts.Player.infoBoxArtistAlbumFont
         
         changeWindowCornerRadius(windowAppearanceState.cornerRadius)
         
@@ -86,7 +85,6 @@ class PlayQueueWindowController: NSWindowController {
         
         messenger.subscribe(to: .playQueue_updateSummary, handler: updateSummary)
         
-        messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
         
         updateSummary()
@@ -132,10 +130,6 @@ class PlayQueueWindowController: NSWindowController {
     }
     
     // MARK: Notification handling ----------------------------------------------------------------------------------
-    
-    private func applyFontScheme(_ scheme: FontScheme) {
-        lblCaption.font = scheme.captionFont
-    }
 
     private func startedAddingTracks() {
         
@@ -186,7 +180,6 @@ class PlayQueueWindowController: NSWindowController {
 
         // Button tag is the tab index
         tabGroup.selectTabViewItem(at: sender.tag)
-        lblCaption.stringValue = EffectsUnitType(rawValue: sender.tag)!.caption
     }
     
     @IBAction func closeAction(_ sender: NSButton) {

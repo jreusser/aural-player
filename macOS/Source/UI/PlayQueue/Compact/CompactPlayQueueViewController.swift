@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class CompactPlayQueueViewController: TrackListViewController, ColorSchemeObserver {
+class CompactPlayQueueViewController: TrackListViewController, FontSchemeObserver, ColorSchemeObserver {
     
     override var nibName: String? {"CompactPlayQueue"}
     
@@ -40,6 +40,8 @@ class CompactPlayQueueViewController: TrackListViewController, ColorSchemeObserv
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        fontSchemesManager.registerSchemeObserver(self, forProperties: [\.playQueuePrimaryFont, \.playQueueSecondaryFont, \.playQueueTertiaryFont])
         
         colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
                                                                         \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
@@ -74,8 +76,6 @@ class CompactPlayQueueViewController: TrackListViewController, ColorSchemeObserv
         messenger.subscribe(to: .playQueue_enqueueAndPlayLater, handler: enqueueAndPlayLater(_:))
         
         messenger.subscribe(to: .playQueue_showPlayingTrack, handler: showPlayingTrack)
-        
-        messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
     }
     
     // MARK: Table view delegate / data source --------------------------------------------------------------------------------------------------------
@@ -321,7 +321,11 @@ class CompactPlayQueueViewController: TrackListViewController, ColorSchemeObserv
     
     // MARK: Notification / command handling ----------------------------------------------------------------------------------------
     
-    private func applyFontScheme(_ scheme: FontScheme) {
+    func fontSchemeChanged() {
+        tableView.reloadDataMaintainingSelection()
+    }
+    
+    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
         tableView.reloadDataMaintainingSelection()
     }
     

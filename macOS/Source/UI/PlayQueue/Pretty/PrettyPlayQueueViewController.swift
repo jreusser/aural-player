@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class PrettyPlayQueueViewController: TrackListViewController, ColorSchemeObserver {
+class PrettyPlayQueueViewController: TrackListViewController, FontSchemeObserver, ColorSchemeObserver {
     
     override var nibName: String? {"PrettyPlayQueue"}
     
@@ -40,6 +40,8 @@ class PrettyPlayQueueViewController: TrackListViewController, ColorSchemeObserve
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        fontSchemesManager.registerSchemeObserver(self, forProperties: [\.playQueuePrimaryFont, \.playQueueSecondaryFont, \.playQueueTertiaryFont])
         
         colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
                                                                         \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
@@ -330,6 +332,14 @@ class PrettyPlayQueueViewController: TrackListViewController, ColorSchemeObserve
     }
     
     // MARK: Notification / command handling ----------------------------------------------------------------------------------------
+    
+    func fontSchemeChanged() {
+        tableView.reloadDataMaintainingSelection()
+    }
+    
+    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+        tableView.reloadDataMaintainingSelection()
+    }
     
     override func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         

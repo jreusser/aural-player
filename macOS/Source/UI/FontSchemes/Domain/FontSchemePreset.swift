@@ -162,27 +162,78 @@ enum FontSchemePreset: String, CaseIterable {
         }
     }
     
-    var playlistTrackTextFont: NSFont {
+    var playQueuePrimaryFont: NSFont {
         
         switch self {
-                
-            case .standard:  return standardFontSet.mainFont(size: 12)
-                
-            case .rounded:  return roundedFontSet.mainFont(size: 13)
-                
-            case .programmer:  return programmerFontSet.mainFont(size: 12)
-                
+            
+        case .standard:  return standardFontSet.mainFont(size: 12)
+            
+        case .rounded:  return roundedFontSet.mainFont(size: 13)
+            
+        case .programmer:  return programmerFontSet.mainFont(size: 12)
+            
         case .futuristic:   return futuristicFontSet.mainFont(size: 14.5)
-                
-            case .novelist:  return novelistFontSet.mainFont(size: 12.5)
-                
-            case .soySauce:     return soySauceFontSet.mainFont(size: 20)
-                
-            case .gothic:    return gothicFontSet.mainFont(size: 11.5)
-                
-            case .papyrus:      return papyrusFontSet.mainFont(size: 13.5)
-                
-            case .poolsideFM:   return poolsideFMFontSet.mainFont(size: 12)
+            
+        case .novelist:  return novelistFontSet.mainFont(size: 12.5)
+            
+        case .soySauce:     return soySauceFontSet.mainFont(size: 20)
+            
+        case .gothic:    return gothicFontSet.mainFont(size: 11.5)
+            
+        case .papyrus:      return papyrusFontSet.mainFont(size: 13.5)
+            
+        case .poolsideFM:   return poolsideFMFontSet.mainFont(size: 12)
+            
+        }
+    }
+    
+    var playQueueSecondaryFont: NSFont {
+        
+        switch self {
+            
+        case .standard:  return standardFontSet.mainFont(size: 12)
+            
+        case .rounded:  return roundedFontSet.mainFont(size: 13)
+            
+        case .programmer:  return programmerFontSet.mainFont(size: 12)
+            
+        case .futuristic:   return futuristicFontSet.mainFont(size: 14.5)
+            
+        case .novelist:  return novelistFontSet.mainFont(size: 12.5)
+            
+        case .soySauce:     return soySauceFontSet.mainFont(size: 20)
+            
+        case .gothic:    return gothicFontSet.mainFont(size: 11.5)
+            
+        case .papyrus:      return papyrusFontSet.mainFont(size: 13.5)
+            
+        case .poolsideFM:   return poolsideFMFontSet.mainFont(size: 12)
+            
+        }
+    }
+    
+    var playQueueTertiaryFont: NSFont {
+        
+        switch self {
+            
+        case .standard:  return standardFontSet.mainFont(size: 12)
+            
+        case .rounded:  return roundedFontSet.mainFont(size: 13)
+            
+        case .programmer:  return programmerFontSet.mainFont(size: 12)
+            
+        case .futuristic:   return futuristicFontSet.mainFont(size: 14.5)
+            
+        case .novelist:  return novelistFontSet.mainFont(size: 12.5)
+            
+        case .soySauce:     return soySauceFontSet.mainFont(size: 20)
+            
+        case .gothic:    return gothicFontSet.mainFont(size: 11.5)
+            
+        case .papyrus:      return papyrusFontSet.mainFont(size: 13.5)
+            
+        case .poolsideFM:   return poolsideFMFontSet.mainFont(size: 12)
+            
         }
     }
     
