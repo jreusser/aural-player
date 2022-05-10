@@ -48,6 +48,8 @@ struct PrimaryMetadata {
     
     var chapters: [Chapter] = []
     
+    var art: CoverArt?
+    
     init() {}
     
     init(persistentState: PrimaryMetadataPersistentState) {

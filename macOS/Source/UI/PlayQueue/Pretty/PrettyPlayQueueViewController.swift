@@ -453,6 +453,14 @@ class PrettyPlayQueueTrackNameCell: NSTableCellView {
             $0.font = systemFontScheme.playlist.trackTextFont
         }
         
+        lblTitle.lineBreakMode = .byTruncatingTail
+        lblTitle.usesSingleLineMode = true
+        
+        lblDefaultDisplayName.lineBreakMode = .byWordWrapping
+        lblDefaultDisplayName.usesSingleLineMode = false
+        
+        lblArtistAlbum.lineBreakMode = .byTruncatingTail
+        lblArtistAlbum.usesSingleLineMode = true
     }
     
     private func showTitleAndArtistAlbum(title: String, artistAlbumString: String) {

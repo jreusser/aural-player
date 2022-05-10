@@ -81,6 +81,8 @@ class AVFFileReader: FileReaderProtocol {
         
         metadata.chapters = getChapters(for: file, from: metadataMap.avAsset)
         
+        metadata.art = getArt(for: file)
+        
         return metadata
     }
     
