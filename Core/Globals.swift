@@ -111,6 +111,7 @@ let colorSchemesManager: ColorSchemesManager = ColorSchemesManager(persistentSta
 let systemColorScheme: ColorScheme = colorSchemesManager.systemScheme
 
 let playerUIState: PlayerUIState = PlayerUIState(persistentState: persistentState.ui?.player)
+let playQueueUIState: PlayQueueUIState = PlayQueueUIState(persistentState: persistentState.ui?.playQueue)
 let playlistsUIState: PlaylistsUIState = PlaylistsUIState()
 let menuBarPlayerUIState: MenuBarPlayerUIState = MenuBarPlayerUIState(persistentState: persistentState.ui?.menuBarPlayer)
 let controlBarPlayerUIState: ControlBarPlayerUIState = ControlBarPlayerUIState(persistentState: persistentState.ui?.controlBarPlayer)
@@ -145,6 +146,7 @@ var persistentStateOnExit: AppPersistentState {
                                            fontSchemes: fontSchemesManager.persistentState,
                                            colorSchemes: colorSchemesManager.persistentState,
                                            player: playerUIState.persistentState,
+                                           playQueue: playQueueUIState.persistentState,
                                            //                                               playlists: playlistUIState.persistentState,
                                            visualizer: visualizerUIState.persistentState,
                                            windowAppearance: windowAppearanceState.persistentState,

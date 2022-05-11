@@ -10,8 +10,8 @@
 
 import Cocoa
 
-class PlayQueueWindowController: NSWindowController {
-    
+class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver, ColorSchemePropertyObserver {
+
     override var windowNibName: String? {"PlayQueueWindow"}
     
     @IBOutlet weak var btnClose: TintedImageButton!
@@ -31,6 +31,8 @@ class PlayQueueWindowController: NSWindowController {
     
     @IBOutlet weak var btnListView: PlayQueueTabButton!
     @IBOutlet weak var btnTableView: PlayQueueTabButton!
+    
+    private lazy var tabButtons: [PlayQueueTabButton] = [btnTableView, btnListView]
     
     @IBOutlet weak var tableViewController: PlayQueueTableViewController!
     @IBOutlet weak var listViewController: PlayQueueListViewController!
@@ -56,11 +58,10 @@ class PlayQueueWindowController: NSWindowController {
             view.anchorToSuperview()
         }
         
-        [1, 0].forEach {tabGroup.selectTabViewItem(at: $0)}
-        tabViewAction(btnTableView)
+        doSelectTab(at: playQueueUIState.currentView.rawValue)
         
         fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-        fontSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
+        fontSchemesManager.registerObserver(self, forProperty: \.playQueueSecondaryFont)
         
         colorSchemesManager.registerObservers([btnTableView, btnListView], forProperties: [\.buttonColor, \.inactiveControlColor])
         
@@ -68,7 +69,7 @@ class PlayQueueWindowController: NSWindowController {
         colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
         
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
-        colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
+        colorSchemesManager.registerObserver(self, forProperty: \.secondaryTextColor)
         
         changeWindowCornerRadius(windowAppearanceState.cornerRadius)
         
@@ -130,6 +131,14 @@ class PlayQueueWindowController: NSWindowController {
     }
     
     // MARK: Notification handling ----------------------------------------------------------------------------------
+    
+    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+        updateSummary()
+    }
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        updateSummary()
+    }
 
     private func startedAddingTracks() {
         
@@ -150,15 +159,21 @@ class PlayQueueWindowController: NSWindowController {
         if let playingTrackIndex = playQueue.currentTrackIndex {
             
             let playIconAttStr = "▶".attributed(font: futuristicFontSet.mainFont(size: 12), color: systemColorScheme.secondaryTextColor)
-            let tracksSummaryAttStr = "  \(playingTrackIndex + 1) / \(playQueue.size) \(tracksCardinalString)".attributed(font: systemFontScheme.playlist.summaryFont, color: systemColorScheme.secondaryTextColor)
+            let tracksSummaryAttStr = "  \(playingTrackIndex + 1) / \(playQueue.size) \(tracksCardinalString)".attributed(font: systemFontScheme.playQueueSecondaryFont,
+                                                                                                                          color: systemColorScheme.secondaryTextColor)
             
             lblTracksSummary.attributedStringValue = playIconAttStr + tracksSummaryAttStr
             
         } else {
+            
             lblTracksSummary.stringValue = "\(playQueue.size) \(tracksCardinalString)"
+            lblTracksSummary.font = systemFontScheme.playQueueSecondaryFont
+            lblTracksSummary.textColor = systemColorScheme.secondaryTextColor
         }
         
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(playQueue.duration)
+        lblDurationSummary.font = systemFontScheme.playQueueSecondaryFont
+        lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
     }
     
     override func destroy() {
@@ -173,13 +188,17 @@ class PlayQueueWindowController: NSWindowController {
     
     // Switches the tab group to a particular tab
     @IBAction func tabViewAction(_ sender: PlayQueueTabButton) {
-
-        // Set sender button state, reset all other button states
-        [btnTableView, btnListView].forEach {$0.unSelect()}
-        sender.select()
-
+        doSelectTab(at: sender.tag)
+    }
+    
+    private func doSelectTab(at tabIndex: Int) {
+        
+        tabButtons.forEach {$0.unSelect()}
+        tabButtons.first(where: {$0.tag == tabIndex})?.select()
+        
         // Button tag is the tab index
-        tabGroup.selectTabViewItem(at: sender.tag)
+        tabGroup.selectTabViewItem(at: tabIndex)
+        playQueueUIState.currentView = PlayQueueView(rawValue: tabIndex)!
     }
     
     @IBAction func closeAction(_ sender: NSButton) {

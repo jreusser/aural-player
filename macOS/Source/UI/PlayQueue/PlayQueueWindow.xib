@@ -350,7 +350,7 @@
                             <action selector="invertSelectionAction:" target="QQB-l4-4dl" id="EzM-U2-wu8"/>
                         </connections>
                     </button>
-                    <button hidden="YES" toolTip="Search the playlist" translatesAutoresizingMaskIntoConstraints="NO" id="pM1-g9-qhj" userLabel="Search" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <button hidden="YES" toolTip="Search the play queue" translatesAutoresizingMaskIntoConstraints="NO" id="pM1-g9-qhj" userLabel="Search" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="324" y="11.5" width="13" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="13" id="3Tv-BE-LcS"/>
@@ -364,7 +364,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                     </button>
-                    <popUpButton hidden="YES" toolTip="Create a new playlist" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M1K-Qj-yyf" userLabel="Sort">
+                    <popUpButton hidden="YES" toolTip="Sort the play queue" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M1K-Qj-yyf" userLabel="Sort">
                         <rect key="frame" x="337" y="12" width="19" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="41X-Re-iPn"/>

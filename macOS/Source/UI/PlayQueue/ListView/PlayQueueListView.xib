@@ -67,9 +67,9 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sU1-Gz-vdu" userLabel="Playing Track Indicator">
-                                                        <rect key="frame" x="18" y="17" width="15.5" height="16"/>
+                                                        <rect key="frame" x="12" y="17" width="16.5" height="16"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="15" id="PFM-GY-uJd"/>
+                                                            <constraint firstAttribute="width" constant="16" id="PFM-GY-uJd"/>
                                                             <constraint firstAttribute="height" constant="12" id="xNO-xd-kl5"/>
                                                         </constraints>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyUpOrDown" image="play.fill" catalog="system" id="Yir-ka-W4F" customClass="TableImageCell" customModule="Aural" customModuleProvider="target"/>
@@ -78,7 +78,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="centerY" secondItem="2By-Sd-lGF" secondAttribute="centerY" id="J8a-vM-lbD"/>
                                                     <constraint firstItem="2By-Sd-lGF" firstAttribute="leading" secondItem="5Eo-Qb-3K3" secondAttribute="leading" constant="10" id="UFe-iE-Zto"/>
-                                                    <constraint firstItem="sU1-Gz-vdu" firstAttribute="centerX" secondItem="2By-Sd-lGF" secondAttribute="centerX" id="fMv-s3-2If"/>
+                                                    <constraint firstItem="sU1-Gz-vdu" firstAttribute="centerX" secondItem="2By-Sd-lGF" secondAttribute="centerX" constant="-5" id="fMv-s3-2If"/>
                                                     <constraint firstItem="sU1-Gz-vdu" firstAttribute="centerY" secondItem="2By-Sd-lGF" secondAttribute="centerY" id="iR0-7k-F73"/>
                                                 </constraints>
                                                 <connections>

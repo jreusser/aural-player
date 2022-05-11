@@ -23,7 +23,7 @@ struct PlaybackLoopRange {
 // Cell for seek position slider
 class SeekSliderCell: HorizontalSliderCell {
     
-    override var knobHeightOutsideBar: CGFloat {4}
+    override var barHeight: CGFloat {2}
     
     var loop: PlaybackLoopRange?
     
@@ -46,6 +46,9 @@ class SeekSliderCell: HorizontalSliderCell {
     func removeLoop() {
         self.loop = nil
     }
+    
+    // Don't draw the knob.
+    override func drawKnob() {}
     
     override func drawBar(inside aRect: NSRect, flipped: Bool) {
         

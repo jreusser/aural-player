@@ -12,15 +12,7 @@ import Cocoa
 
 class PlaylistViewsButtonCell: TabGroupButtonCell {
     
-//    override var unselectedTextColor: NSColor {Colors.tabButtonTextColor}
-//    override var selectedTextColor: NSColor {Colors.selectedTabButtonTextColor}
-    
-    override var borderRadius: CGFloat {3}
-//    override var selectionBoxColor: NSColor {Colors.selectedTabButtonColor}
-    
-    private var button: PlayQueueTabButton {
-        controlView as! PlayQueueTabButton
-    }
+    private lazy var button: PlayQueueTabButton = controlView as! PlayQueueTabButton
     
     @IBInspectable var imgWidth: Int = 14
     @IBInspectable var imgHeight: Int = 14

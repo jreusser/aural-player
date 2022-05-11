@@ -298,7 +298,6 @@ extension String {
     
     func attributed(font: PlatformFont, color: PlatformColor) -> NSMutableAttributedString {
         NSMutableAttributedString(string: self, attributes: [.font: font, .foregroundColor: color])
-//        NSMutableAttributedString(string: self, attributes: [.foregroundColor: color])
     }
     
     /*
