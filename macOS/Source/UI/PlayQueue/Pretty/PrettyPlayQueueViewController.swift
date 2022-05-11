@@ -110,11 +110,10 @@ class PrettyPlayQueueViewController: TrackListViewController, FontSchemeObserver
         }
     }
     
-    private func createArtCell(tableView: NSTableView, track: Track) -> NSTableCellView? {
+    private func createArtCell(tableView: NSTableView, track: Track) -> PrettyPlayQueueArtCell? {
         
-        guard let cell = tableView.makeView(withIdentifier: .cid_art, owner: nil) as? NSTableCellView else {return nil}
-        cell.image = track.art?.image ?? .imgPlayingArt
-        cell.imageColor = systemColorScheme.secondaryTextColor
+        guard let cell = tableView.makeView(withIdentifier: .cid_art, owner: nil) as? PrettyPlayQueueArtCell else {return nil}
+        cell.updateForTrack(track, isPlayingTrack: playQueueDelegate.currentTrack == track)
         
         return cell
     }
@@ -525,6 +524,34 @@ class PrettyPlayQueueTrackNameCell: NSTableCellView {
             } else {
                 lblDefaultDisplayName.textColor = systemColorScheme.primaryTextColor
             }
+        }
+    }
+}
+
+class PrettyPlayQueueArtCell: NSTableCellView {
+    
+    @IBOutlet weak var imgArt: NSImageView!
+    @IBOutlet weak var imgPlayingTrackIndicator: NSImageView!
+    @IBOutlet weak var overlayBox: NSBox!
+    
+    func updateForTrack(_ track: Track, isPlayingTrack: Bool) {
+        
+        if let coverArt = track.art?.image {
+            imgArt.image = coverArt
+            
+        } else {
+            
+            imgArt.image = .imgPlayingArt
+            imgArt.contentTintColor = systemColorScheme.secondaryTextColor
+        }
+        
+        if isPlayingTrack {
+            
+            NSView.showViews(imgPlayingTrackIndicator, overlayBox)
+            imgPlayingTrackIndicator.contentTintColor = systemColorScheme.activeControlColor
+            
+        } else {
+            NSView.hideViews(imgPlayingTrackIndicator, overlayBox)
         }
     }
 }

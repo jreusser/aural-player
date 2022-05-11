@@ -49,25 +49,51 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
-                                            <tableCellView id="5Eo-Qb-3K3">
+                                            <tableCellView id="5Eo-Qb-3K3" customClass="PrettyPlayQueueArtCell" customModule="Aural" customModuleProvider="target">
                                                 <rect key="frame" x="1" y="2" width="40" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2By-Sd-lGF">
+                                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2By-Sd-lGF" userLabel="Cover Art" customClass="RoundedImageView" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="10" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="ihf-2D-kBa"/>
                                                             <constraint firstAttribute="width" constant="30" id="jAz-5z-VHY"/>
                                                         </constraints>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyUpOrDown" id="cHB-S3-AA1" customClass="TableImageCell" customModule="Aural" customModuleProvider="target"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="roundingRadius">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </imageView>
+                                                    <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="gho-uR-hmh" userLabel="Overlay">
+                                                        <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <view key="contentView" id="GBb-TU-qWf">
+                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        </view>
+                                                        <color key="fillColor" white="0.0" alpha="0.7959590574511054" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </box>
+                                                    <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sU1-Gz-vdu" userLabel="Playing Track Indicator">
+                                                        <rect key="frame" x="19" y="18" width="12.5" height="14"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="12" id="PFM-GY-uJd"/>
+                                                            <constraint firstAttribute="height" constant="10" id="xNO-xd-kl5"/>
+                                                        </constraints>
+                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyUpOrDown" image="play.fill" catalog="system" id="Yir-ka-W4F" customClass="TableImageCell" customModule="Aural" customModuleProvider="target"/>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="centerY" secondItem="2By-Sd-lGF" secondAttribute="centerY" id="J8a-vM-lbD"/>
                                                     <constraint firstItem="2By-Sd-lGF" firstAttribute="leading" secondItem="5Eo-Qb-3K3" secondAttribute="leading" constant="10" id="UFe-iE-Zto"/>
+                                                    <constraint firstItem="sU1-Gz-vdu" firstAttribute="centerX" secondItem="2By-Sd-lGF" secondAttribute="centerX" id="fMv-s3-2If"/>
+                                                    <constraint firstItem="sU1-Gz-vdu" firstAttribute="centerY" secondItem="2By-Sd-lGF" secondAttribute="centerY" id="iR0-7k-F73"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="imageView" destination="2By-Sd-lGF" id="usi-7n-HN1"/>
+                                                    <outlet property="imgArt" destination="2By-Sd-lGF" id="9ua-eY-udS"/>
+                                                    <outlet property="imgPlayingTrackIndicator" destination="sU1-Gz-vdu" id="h5m-SB-9Xu"/>
+                                                    <outlet property="overlayBox" destination="gho-uR-hmh" id="GlR-Ki-Qjg"/>
                                                 </connections>
                                             </tableCellView>
                                         </prototypeCellViews>
@@ -330,6 +356,7 @@
         <image name="info" catalog="system" width="10" height="15"/>
         <image name="list.dash" catalog="system" width="16" height="11"/>
         <image name="play" catalog="system" width="12" height="13"/>
+        <image name="play.fill" catalog="system" width="12" height="13"/>
         <image name="scissors" catalog="system" width="20" height="15"/>
         <image name="text.badge.plus" catalog="system" width="16" height="14"/>
         <image name="xmark.bin" catalog="system" width="19" height="14"/>
