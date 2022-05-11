@@ -32,8 +32,8 @@ class PlayQueueWindowController: NSWindowController {
     @IBOutlet weak var btnListView: PlayQueueTabButton!
     @IBOutlet weak var btnTableView: PlayQueueTabButton!
     
-    @IBOutlet weak var compactViewController: CompactPlayQueueViewController!
-    @IBOutlet weak var prettyViewController: PrettyPlayQueueViewController!
+    @IBOutlet weak var tableViewController: PlayQueueTableViewController!
+    @IBOutlet weak var listViewController: PlayQueueListViewController!
     
     private let playQueue: PlayQueueDelegateProtocol = playQueueDelegate
     
@@ -47,8 +47,8 @@ class PlayQueueWindowController: NSWindowController {
         
         theWindow.isMovableByWindowBackground = true
         
-        let compactView = compactViewController.view
-        let prettyView = prettyViewController.view
+        let compactView = tableViewController.view
+        let prettyView = listViewController.view
         
         for (index, view) in [compactView, prettyView].enumerated() {
             

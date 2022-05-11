@@ -1,5 +1,5 @@
 //
-//  PrettyPlayQueueViewController.swift
+//  PlayQueueListViewController.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -10,9 +10,9 @@
 
 import Cocoa
 
-class PrettyPlayQueueViewController: TrackListViewController, FontSchemeObserver, ColorSchemeObserver {
+class PlayQueueListViewController: TrackListViewController, FontSchemeObserver, ColorSchemeObserver {
     
-    override var nibName: String? {"PrettyPlayQueue"}
+    override var nibName: String? {"PlayQueueListView"}
     
     lazy var messenger: Messenger = Messenger(for: self)
     

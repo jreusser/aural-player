@@ -42,7 +42,7 @@ class PlaylistViewsButtonCell: TabGroupButtonCell {
         let yInset = (rectHeight - imgHeight) / 2
         
         // Raise the selected tab image by a few pixels so it is prominent
-        let imgRect = cellFrame.insetBy(dx: xInset, dy: yInset).offsetBy(dx: 0, dy: isOn ? -1 : 0)
+        let imgRect = cellFrame.insetBy(dx: xInset, dy: yInset).offsetBy(dx: 0, dy: button.isSelected ? -1 : 0)
         self.image?.filledWithColor(button.isSelected ? systemColorScheme.buttonColor : systemColorScheme.inactiveControlColor).draw(in: imgRect)
         
         // Selection underline

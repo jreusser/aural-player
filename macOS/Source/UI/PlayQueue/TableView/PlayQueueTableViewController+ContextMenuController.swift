@@ -1,5 +1,5 @@
 //
-//  CompactPlayQueueViewController+ContextMenuController.swift
+//  PlayQueueTableViewController+ContextMenuController.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -10,7 +10,7 @@
 
 import Cocoa
 
-extension CompactPlayQueueViewController: NSMenuDelegate {
+extension PlayQueueTableViewController: NSMenuDelegate {
     
     func menuNeedsUpdate(_ menu: NSMenu) {
         

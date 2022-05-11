@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CompactPlayQueueViewController" customModule="Aural" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="PlayQueueTableViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="favoritesMenuItem" destination="ccr-O5-bNr" id="GrD-P9-yNO"/>
                 <outlet property="infoMenuItem" destination="E94-FX-PuM" id="c4A-Qo-w0t"/>
@@ -139,7 +139,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="2RN-iX-l7t" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="387" y="2" width="66" height="30"/>
+                                                <rect key="frame" x="387.5" y="2" width="66" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bxe-de-Six" userLabel="Duration">
@@ -205,7 +205,7 @@
                 <menuItem title="  Play next" image="list.dash" catalog="system" id="557-bs-7lR">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="playNextAction:" target="-2" id="Mrr-2i-hDv"/>
+                        <action selector="playNextAction:" target="-2" id="lSw-zr-E2J"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="n6M-3F-fnb"/>
@@ -228,7 +228,7 @@
                 <menuItem title="  Create a new playlist with these tracks" image="text.badge.plus" catalog="system" id="Try-Ah-q1X" userLabel="Remove tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="createPlaylistWithTracksAction:" target="-2" id="sid-Cg-AtF"/>
+                        <action selector="createPlaylistWithTracksAction:" target="-2" id="vUa-1j-QKK"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="me0-dP-F1Q"/>
@@ -279,20 +279,20 @@
                         <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="heart.slash" catalog="system"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="favoritesAction:" target="-2" id="GXf-iY-Ygs"/>
+                        <action selector="favoritesAction:" target="-2" id="FtO-Eq-xN7"/>
                     </connections>
                 </menuItem>
                 <menuItem title="  Get detailed track info" id="E94-FX-PuM">
                     <imageReference key="image" image="info" catalog="system" symbolScale="large"/>
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="trackInfoAction:" target="-2" id="stg-3Z-TT0"/>
+                        <action selector="trackInfoAction:" target="-2" id="YmM-7u-IX6"/>
                     </connections>
                 </menuItem>
                 <menuItem title="  Show these tracks in Finder" image="ShowInFinder" id="2va-tB-KRm" userLabel="Show track in Finder">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="showInFinderAction:" target="-2" id="lzU-uF-hyE"/>
+                        <action selector="showInFinderAction:" target="-2" id="FBv-Yt-KE7"/>
                     </connections>
                 </menuItem>
             </items>

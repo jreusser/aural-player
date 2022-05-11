@@ -11,15 +11,15 @@
                 <outlet property="btnClose" destination="rtm-3T-0kW" id="quf-CQ-FOk"/>
                 <outlet property="btnListView" destination="G9C-Vb-k83" id="EAB-yH-u1U"/>
                 <outlet property="btnTableView" destination="jSb-Nt-vEZ" id="mc4-Tr-KVZ"/>
-                <outlet property="compactViewController" destination="5I3-5u-fJw" id="3gD-3k-tpN"/>
                 <outlet property="lblCaption" destination="HUl-8T-ZjG" id="1lX-ZB-j4z"/>
                 <outlet property="lblDurationSummary" destination="kiu-sG-iy1" id="LaF-Fa-T9v"/>
                 <outlet property="lblTracksSummary" destination="cBa-S3-IRH" id="y0q-MV-VYI"/>
-                <outlet property="prettyViewController" destination="QQB-l4-4dl" id="BNT-o7-9ur"/>
+                <outlet property="listViewController" destination="QQB-l4-4dl" id="gTi-kp-3an"/>
                 <outlet property="progressSpinner" destination="5K6-jN-rb1" id="4BU-LG-HAw"/>
                 <outlet property="rootContainer" destination="vPq-HC-h3c" id="J8s-OX-NF1"/>
                 <outlet property="tabButtonsContainer" destination="xem-im-DfN" id="kuU-Au-6rg"/>
                 <outlet property="tabGroup" destination="zXc-hr-Pet" id="zPW-GQ-rVg"/>
+                <outlet property="tableViewController" destination="5I3-5u-fJw" id="2jK-PG-7TX"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="8nc-Zg-MsA"/>
             </connections>
         </customObject>
@@ -602,7 +602,7 @@
             <accessibility identifier="playQueue"/>
             <point key="canvasLocation" x="217" y="230.5"/>
         </window>
-        <customObject id="QQB-l4-4dl" customClass="PrettyPlayQueueViewController" customModule="Aural" customModuleProvider="target">
+        <customObject id="QQB-l4-4dl" customClass="PlayQueueListViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="sortOrderMenuItemView" destination="lxO-Xj-vxb" id="Zcd-bS-Sl1"/>
             </connections>
@@ -649,7 +649,7 @@
             </connections>
             <point key="canvasLocation" x="293" y="564"/>
         </customView>
-        <customObject id="5I3-5u-fJw" customClass="CompactPlayQueueViewController" customModule="Aural" customModuleProvider="target"/>
+        <customObject id="5I3-5u-fJw" customClass="PlayQueueTableViewController" customModule="Aural" customModuleProvider="target"/>
     </objects>
     <resources>
         <image name="Add" width="25" height="25"/>

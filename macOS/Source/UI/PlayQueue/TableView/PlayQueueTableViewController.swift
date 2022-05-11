@@ -1,5 +1,5 @@
 //
-//  CompactPlayQueueViewController.swift
+//  PlayQueueTableViewController.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -10,9 +10,9 @@
 
 import Cocoa
 
-class CompactPlayQueueViewController: TrackListViewController, FontSchemeObserver, ColorSchemeObserver {
+class PlayQueueTableViewController: TrackListViewController, FontSchemeObserver, ColorSchemeObserver {
     
-    override var nibName: String? {"CompactPlayQueue"}
+    override var nibName: String? {"PlayQueueTableView"}
     
     lazy var messenger: Messenger = Messenger(for: self)
     
