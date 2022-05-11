@@ -144,10 +144,6 @@ class PlaylistViewController: TrackListViewController {
     
     // MARK: Actions (control buttons)
     
-    @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {
-        importFilesAndFolders()
-    }
-    
     @IBAction func removeTracksAction(_ sender: NSButton) {
         removeTracks()
     }
@@ -159,13 +155,7 @@ class PlaylistViewController: TrackListViewController {
     }
     
     @IBAction func cropTracksAction(_ sender: NSButton) {
-        cropSelection()
-    }
-    
-    override func cropSelection() {
-        
-        super.cropSelection()
-        messenger.publish(.playlists_updateSummary)
+//        cropSelection()
     }
     
     @IBAction func removeAllTracksAction(_ sender: NSButton) {

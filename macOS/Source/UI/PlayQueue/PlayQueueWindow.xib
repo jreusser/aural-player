@@ -194,7 +194,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="importFilesAndFoldersAction:" target="QQB-l4-4dl" id="6xG-Oc-tYv"/>
+                            <action selector="importFilesAndFoldersAction:" target="-2" id="DGO-KM-gsd"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="Lre-iP-HTM" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -211,7 +211,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="removeTracksAction:" target="QQB-l4-4dl" id="1hU-Be-C2N"/>
+                            <action selector="removeTracksAction:" target="-2" id="QI2-us-Qiu"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Crop selected playlist tracks" translatesAutoresizingMaskIntoConstraints="NO" id="lty-aX-5hk" userLabel="Crop" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -228,7 +228,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="cropSelectionAction:" target="QQB-l4-4dl" id="r7I-8m-iHX"/>
+                            <action selector="cropSelectionAction:" target="-2" id="1Te-qY-LTq"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Remove all tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="qNZ-4V-boz" userLabel="Remove All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -245,7 +245,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="removeAllTracksAction:" target="QQB-l4-4dl" id="OAX-ik-9aG"/>
+                            <action selector="removeAllTracksAction:" target="-2" id="QR8-sM-hcc"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Move selected tracks up one row" translatesAutoresizingMaskIntoConstraints="NO" id="7ai-aZ-Q2X" userLabel="Move Up" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -262,7 +262,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="moveTracksUpAction:" target="QQB-l4-4dl" id="70K-3R-6KX"/>
+                            <action selector="moveTracksUpAction:" target="-2" id="O0R-jZ-n4U"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Move selected tracks down one row" translatesAutoresizingMaskIntoConstraints="NO" id="hb9-0J-H5g" userLabel="Move Down" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -279,7 +279,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="moveTracksDownAction:" target="QQB-l4-4dl" id="b9F-ak-Hda"/>
+                            <action selector="moveTracksDownAction:" target="5I3-5u-fJw" id="ppa-x0-zxJ"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Move selected tracks to the top" translatesAutoresizingMaskIntoConstraints="NO" id="T7P-Fx-Iib" userLabel="Move to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -296,7 +296,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="moveTracksToTopAction:" target="QQB-l4-4dl" id="GAR-Mk-BlG"/>
+                            <action selector="moveTracksToTopAction:" target="5I3-5u-fJw" id="NU3-qZ-ldq"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Move selected tracks to the bottom" translatesAutoresizingMaskIntoConstraints="NO" id="6HO-Fs-WPc" userLabel="Move to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -313,7 +313,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="moveTracksToBottomAction:" target="QQB-l4-4dl" id="bBN-R1-HI8"/>
+                            <action selector="moveTracksToBottomAction:" target="5I3-5u-fJw" id="N5m-Ul-Kz3"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Clear the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="IR9-mZ-3qK" userLabel="Clear Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -330,7 +330,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="clearSelectionAction:" target="QQB-l4-4dl" id="9zB-NP-TYy"/>
+                            <action selector="clearSelectionAction:" target="5I3-5u-fJw" id="8vk-lb-HUI"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Invert the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="F4g-qT-OzU" userLabel="Invert Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -347,7 +347,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="invertSelectionAction:" target="QQB-l4-4dl" id="EzM-U2-wu8"/>
+                            <action selector="invertSelectionAction:" target="5I3-5u-fJw" id="m2B-gx-a9Z"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Search the play queue" translatesAutoresizingMaskIntoConstraints="NO" id="pM1-g9-qhj" userLabel="Search" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -448,7 +448,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="exportToPlaylistFileAction:" target="QQB-l4-4dl" id="gI6-Vg-Xg9"/>
+                            <action selector="exportToPlaylistFileAction:" target="5I3-5u-fJw" id="HZz-N6-rYL"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Scroll one page up" translatesAutoresizingMaskIntoConstraints="NO" id="Nmm-j9-Sqg" userLabel="Page Up" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -465,7 +465,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="pageUpAction:" target="QQB-l4-4dl" id="KEK-SV-Tq2"/>
+                            <action selector="pageUpAction:" target="5I3-5u-fJw" id="BaW-n9-LWe"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Scroll one page down" translatesAutoresizingMaskIntoConstraints="NO" id="gTQ-Bo-5Nj" userLabel="Page Down" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -482,7 +482,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="pageDownAction:" target="QQB-l4-4dl" id="AGn-Bn-S2j"/>
+                            <action selector="pageDownAction:" target="5I3-5u-fJw" id="zgv-lq-h1X"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Scroll to the top" translatesAutoresizingMaskIntoConstraints="NO" id="fCo-el-xpF" userLabel="Scroll to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -499,7 +499,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="scrollToTopAction:" target="QQB-l4-4dl" id="lVL-h8-c7b"/>
+                            <action selector="scrollToTopAction:" target="5I3-5u-fJw" id="Tuj-sD-PY7"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Scroll to the bottom" translatesAutoresizingMaskIntoConstraints="NO" id="mtC-J6-Vis" userLabel="Scroll to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -516,7 +516,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="scrollToBottomAction:" target="QQB-l4-4dl" id="2ix-xg-jnR"/>
+                            <action selector="scrollToBottomAction:" target="5I3-5u-fJw" id="3Q3-S0-Gck"/>
                         </connections>
                     </button>
                 </subviews>

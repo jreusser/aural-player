@@ -37,6 +37,8 @@ class PlaylistsWindowController: NSWindowController {
     // The different playlist views
     @IBOutlet weak var tableViewController: PlaylistViewController!
     
+    lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
+    
     private lazy var messenger: Messenger = Messenger(for: self)
     
     override func windowDidLoad() {
@@ -105,5 +107,19 @@ class PlaylistsWindowController: NSWindowController {
     
     private func changeWindowCornerRadius(_ radius: CGFloat) {
         rootContainer.cornerRadius = radius
+    }
+    
+    @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {
+        importFilesAndFolders()
+    }
+    
+    // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
+    func importFilesAndFolders() {
+        
+        guard !playQueueDelegate.isBeingModified else {return}
+        
+        if fileOpenDialog.runModal() == .OK {
+            playQueueDelegate.loadTracks(from: fileOpenDialog.urls)
+        }
     }
 }

@@ -19,6 +19,8 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     
     var selectedRows: IndexSet {tableView.selectedRowIndexes}
     
+    var invertedSelection: IndexSet {tableView.invertedSelection}
+    
     var selectedTracks: [Track] {trackList[tableView.selectedRowIndexes]}
     
     var selectedRowCount: Int {tableView.numberOfSelectedRows}
@@ -36,12 +38,6 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         let rowCount = self.rowCount
         return rowCount > 1 && (1..<rowCount).contains(selectedRowCount)
     }
-    
-    private lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
-    
-    private lazy var alertDialog: AlertWindowController = .instance
-    
-    private lazy var saveDialog = DialogsAndAlerts.savePlaylistDialog
     
     override func viewDidLoad() {
         
@@ -102,16 +98,6 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     // --------------------- Responding to commands ------------------------------------------------
     
     // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
-    func importFilesAndFolders() {
-        
-        guard !isTrackListBeingModified else {return}
-        
-        if fileOpenDialog.runModal() == .OK {
-            trackList.loadTracks(from: fileOpenDialog.urls)
-        }
-    }
-    
-    // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
     func addChosenTracks(_ files: [URL]) {
         trackList.loadTracks(from: files)
     }
@@ -138,21 +124,22 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         }
     }
     
+    func noteNumberOfRowsChanged() {
+        tableView.noteNumberOfRowsChanged()
+    }
+    
+    func reloadTableRows(_ rows: ClosedRange<Int>) {
+        tableView.reloadRows(rows)
+    }
+    
     func removeAllTracks() {
         
         trackList.removeAllTracks()
-        tableView.reloadData()
+        reloadTable()
     }
     
-    func cropSelection() {
-        
-        let tracksToDelete: IndexSet = tableView.invertedSelection
-        
-        if tracksToDelete.isNonEmpty {
-            
-            _ = trackList.removeTracks(at: tracksToDelete)
-            tableView.reloadData()
-        }
+    func reloadTable() {
+        tableView.reloadData()
     }
     
     // MARK: Table view selection manipulation
@@ -168,29 +155,30 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     // Invokes the Save file dialog, to allow the user to save all playlist items to a playlist file
     func exportTrackList() {
         
-        // Make sure there is at least one track to save.
-        guard trackList.size > 0, !checkIfTrackListIsBeingModified() else {return}
-        
-        if saveDialog.runModal() == .OK,
-           let playlistFile = saveDialog.url {
-            
-            trackList.exportToFile(playlistFile)
-        }
+//        // Make sure there is at least one track to save.
+//        guard trackList.size > 0, !checkIfTrackListIsBeingModified() else {return}
+//
+//        if saveDialog.runModal() == .OK,
+//           let playlistFile = saveDialog.url {
+//
+//            trackList.exportToFile(playlistFile)
+//        }
     }
     
     // TODO: Can this func be put somewhere common / shared ???
     private func checkIfTrackListIsBeingModified() -> Bool {
         
-        let playlistBeingModified = trackList.isBeingModified
-        
-        if playlistBeingModified {
-            
-            alertDialog.showAlert(.error, "Playlist not modified",
-                                  "The playlist cannot be modified while tracks are being added",
-                                  "Please wait till the playlist is done adding tracks ...")
-        }
-        
-        return playlistBeingModified
+//        let playlistBeingModified = trackList.isBeingModified
+//
+//        if playlistBeingModified {
+//
+//            alertDialog.showAlert(.error, "Playlist not modified",
+//                                  "The playlist cannot be modified while tracks are being added",
+//                                  "Please wait till the playlist is done adding tracks ...")
+//        }
+//
+//        return playlistBeingModified
+        false
     }
     
     // -------------------- Responding to notifications -------------------------------------------
@@ -233,7 +221,7 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
     }
 
     // Rearranges tracks within the view that have been reordered
-    private func moveAndReloadItems(_ results: [TrackMoveResult]) {
+    func moveAndReloadItems(_ results: [TrackMoveResult]) {
 
         for result in results {
 
@@ -289,6 +277,10 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         let firstSelectedRow = lastRow - selectedRowCount + 1
         tableView.selectRows(firstSelectedRow...lastRow)
         tableView.scrollToBottom()
+    }
+    
+    func scrollRowToVisible(_ row: Int) {
+        tableView.scrollRowToVisible(row)
     }
     
     func pageUp() {

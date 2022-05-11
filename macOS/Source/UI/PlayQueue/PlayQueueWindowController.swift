@@ -32,16 +32,25 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
     @IBOutlet weak var btnListView: PlayQueueTabButton!
     @IBOutlet weak var btnTableView: PlayQueueTabButton!
     
-    private lazy var tabButtons: [PlayQueueTabButton] = [btnTableView, btnListView]
+    lazy var tabButtons: [PlayQueueTabButton] = [btnTableView, btnListView]
+    
+    @IBOutlet weak var sortOrderMenuItemView: SortOrderMenuItemView!
     
     @IBOutlet weak var tableViewController: PlayQueueTableViewController!
     @IBOutlet weak var listViewController: PlayQueueListViewController!
+    lazy var controllers: [PlayQueueViewController] = [tableViewController, listViewController]
     
-    private let playQueue: PlayQueueDelegateProtocol = playQueueDelegate
+    lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
     
-    private lazy var alertDialog: AlertWindowController = .instance
+    lazy var alertDialog: AlertWindowController = .instance
     
-    private lazy var messenger: Messenger = Messenger(for: self)
+    lazy var saveDialog = DialogsAndAlerts.savePlaylistDialog
+    
+    var currentViewController: PlayQueueViewController {
+        tabGroup.selectedIndex == 0 ? tableViewController : listViewController
+    }
+    
+    lazy var messenger: Messenger = Messenger(for: self)
     
     override func windowDidLoad() {
         
@@ -73,6 +82,11 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
         
         changeWindowCornerRadius(windowAppearanceState.cornerRadius)
         
+        messenger.subscribe(to: .playQueue_addTracks, handler: importFilesAndFolders)
+        
+        messenger.subscribe(to: .playQueue_removeTracks, handler: removeTracks)
+        messenger.subscribe(to: .playQueue_cropSelection, handler: cropSelection)
+        
         messenger.subscribe(to: .playQueue_exportAsPlaylistFile, handler: exportAsPlaylistFile)
         messenger.subscribe(to: .playQueue_removeAllTracks, handler: removeAllTracks)
         
@@ -95,23 +109,23 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
     private func exportAsPlaylistFile() {
         
         // Make sure there is at least one track to save.
-        guard playQueue.size > 0, !checkIfPlayQueueIsBeingModified() else {return}
+        guard playQueueDelegate.size > 0, !checkIfPlayQueueIsBeingModified() else {return}
         
         let saveDialog = DialogsAndAlerts.savePlaylistDialog
         
         if saveDialog.runModal() == .OK,
            let newFileURL = saveDialog.url {
             
-            playQueue.exportToFile(newFileURL)
+            playQueueDelegate.exportToFile(newFileURL)
         }
     }
     
     // Removes all items from the playlist
     func removeAllTracks() {
         
-        guard playQueue.size > 0, !checkIfPlayQueueIsBeingModified() else {return}
+        guard playQueueDelegate.size > 0, !checkIfPlayQueueIsBeingModified() else {return}
         
-        playQueue.removeAllTracks()
+        playQueueDelegate.removeAllTracks()
         
         // Tell the play queue UI to refresh its views.
         messenger.publish(.playQueue_refresh)
@@ -121,7 +135,7 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
     
     private func checkIfPlayQueueIsBeingModified() -> Bool {
         
-        let playQueueBeingModified = playQueue.isBeingModified
+        let playQueueBeingModified = playQueueDelegate.isBeingModified
         
         if playQueueBeingModified {
             alertDialog.showAlert(.error, "Play Queue not modified", "The Play Queue cannot be modified while tracks are being added", "Please wait till the Play Queue is done adding tracks ...")
@@ -152,26 +166,26 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
         progressSpinner.stopAnimation(nil)
     }
     
-    private func updateSummary() {
+    func updateSummary() {
         
-        let tracksCardinalString = playQueue.size == 1 ? "track" : "tracks"
+        let tracksCardinalString = playQueueDelegate.size == 1 ? "track" : "tracks"
         
-        if let playingTrackIndex = playQueue.currentTrackIndex {
+        if let playingTrackIndex = playQueueDelegate.currentTrackIndex {
             
             let playIconAttStr = "▶".attributed(font: futuristicFontSet.mainFont(size: 12), color: systemColorScheme.secondaryTextColor)
-            let tracksSummaryAttStr = "  \(playingTrackIndex + 1) / \(playQueue.size) \(tracksCardinalString)".attributed(font: systemFontScheme.playQueueSecondaryFont,
+            let tracksSummaryAttStr = "  \(playingTrackIndex + 1) / \(playQueueDelegate.size) \(tracksCardinalString)".attributed(font: systemFontScheme.playQueueSecondaryFont,
                                                                                                                           color: systemColorScheme.secondaryTextColor)
             
             lblTracksSummary.attributedStringValue = playIconAttStr + tracksSummaryAttStr
             
         } else {
             
-            lblTracksSummary.stringValue = "\(playQueue.size) \(tracksCardinalString)"
+            lblTracksSummary.stringValue = "\(playQueueDelegate.size) \(tracksCardinalString)"
             lblTracksSummary.font = systemFontScheme.playQueueSecondaryFont
             lblTracksSummary.textColor = systemColorScheme.secondaryTextColor
         }
         
-        lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(playQueue.duration)
+        lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(playQueueDelegate.duration)
         lblDurationSummary.font = systemFontScheme.playQueueSecondaryFont
         lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
     }
@@ -182,26 +196,5 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
     
     private func changeWindowCornerRadius(_ radius: CGFloat) {
         rootContainer.cornerRadius = radius
-    }
-    
-    // MARK: Actions ----------------------------------------------------------------------------------
-    
-    // Switches the tab group to a particular tab
-    @IBAction func tabViewAction(_ sender: PlayQueueTabButton) {
-        doSelectTab(at: sender.tag)
-    }
-    
-    private func doSelectTab(at tabIndex: Int) {
-        
-        tabButtons.forEach {$0.unSelect()}
-        tabButtons.first(where: {$0.tag == tabIndex})?.select()
-        
-        // Button tag is the tab index
-        tabGroup.selectTabViewItem(at: tabIndex)
-        playQueueUIState.currentView = PlayQueueView(rawValue: tabIndex)!
-    }
-    
-    @IBAction func closeAction(_ sender: NSButton) {
-        windowLayoutsManager.toggleWindow(withId: .playQueue)
     }
 }

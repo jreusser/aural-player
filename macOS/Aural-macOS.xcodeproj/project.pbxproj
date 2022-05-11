@@ -639,6 +639,8 @@
 		3EDC157C27C2ACB100B91157 /* HorizontalSymmetricSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC157B27C2ACB100B91157 /* HorizontalSymmetricSliderCell.swift */; };
 		3EDCC4B8282C2223002AF3AE /* PlayQueueUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDCC4B7282C2223002AF3AE /* PlayQueueUIState.swift */; };
 		3EDCC4BA282C2312002AF3AE /* PlayQueueUIPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDCC4B9282C2312002AF3AE /* PlayQueueUIPersistentState.swift */; };
+		3EDCC4BC282C37D8002AF3AE /* PlayQueueWindowController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDCC4BB282C37D8002AF3AE /* PlayQueueWindowController+Actions.swift */; };
+		3EDCC4BE282C3912002AF3AE /* PlayQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDCC4BD282C3912002AF3AE /* PlayQueueViewController.swift */; };
 		3EDDEFC5269156B200219BDA /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025D7268E830800C5A1C5 /* PlayerTests.swift */; };
 		3EDDEFC926916AF300219BDA /* AudioUnitPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDEFC826916AF300219BDA /* AudioUnitPersistenceTests.swift */; };
 		3EDE74E425DE9190007F16A5 /* Play-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EDE74E325DE9168007F16A5 /* Play-Regular.ttf */; };
@@ -2104,6 +2106,8 @@
 		3EDC529526B478FF001CCCE8 /* Playback.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Playback.xctestplan; sourceTree = "<group>"; };
 		3EDCC4B7282C2223002AF3AE /* PlayQueueUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueUIState.swift; sourceTree = "<group>"; };
 		3EDCC4B9282C2312002AF3AE /* PlayQueueUIPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueUIPersistentState.swift; sourceTree = "<group>"; };
+		3EDCC4BB282C37D8002AF3AE /* PlayQueueWindowController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueWindowController+Actions.swift"; sourceTree = "<group>"; };
+		3EDCC4BD282C3912002AF3AE /* PlayQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueViewController.swift; sourceTree = "<group>"; };
 		3EDDEFC826916AF300219BDA /* AudioUnitPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitPersistenceTests.swift; sourceTree = "<group>"; };
 		3EDE74E325DE9168007F16A5 /* Play-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Play-Regular.ttf"; sourceTree = "<group>"; };
 		3EE2CC3226811074002C1B29 /* NSTableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTableViewExtensions.swift; sourceTree = "<group>"; };
@@ -2631,7 +2635,9 @@
 			children = (
 				3E25B64F27F7818900D10A5F /* PlayQueueWindow.xib */,
 				3E25B65327F7865900D10A5F /* PlayQueueWindowController.swift */,
+				3EDCC4BB282C37D8002AF3AE /* PlayQueueWindowController+Actions.swift */,
 				3E495B8928108DF800D4766A /* PlayQueueContainer.swift */,
+				3EDCC4BD282C3912002AF3AE /* PlayQueueViewController.swift */,
 				3E25B65127F7859800D10A5F /* TableView */,
 				3E25B65227F785D800D10A5F /* ListView */,
 				3E47214C282AE3820097F1AB /* PlayQueueTabButton.swift */,
@@ -6030,6 +6036,7 @@
 				3EFB64952772491C00D47A6B /* EffectsUnitTriStateCheckButton.swift in Sources */,
 				3EFE3A2127864898006F8B8C /* TrackNotPlayedNotification.swift in Sources */,
 				3EFE3A6727864898006F8B8C /* TrackIOErrors.swift in Sources */,
+				3EDCC4BC282C37D8002AF3AE /* PlayQueueWindowController+Actions.swift in Sources */,
 				3EBABCBE262C1A350015A73A /* MenuBarPlayerSettingsViewController.swift in Sources */,
 				3EFE383327864896006F8B8C /* GroupMoveResult.swift in Sources */,
 				3EFE390527864897006F8B8C /* NSApplicationExtensions.swift in Sources */,
@@ -6314,6 +6321,7 @@
 				3EFE39D927864897006F8B8C /* ReverbUnitPersistentState.swift in Sources */,
 				3E308D1D268A356300B0FD60 /* UpdatesDialogController.swift in Sources */,
 				3E8C7918269C40FC005E78D1 /* UserInputMode.swift in Sources */,
+				3EDCC4BE282C3912002AF3AE /* PlayQueueViewController.swift in Sources */,
 				3EFE393127864897006F8B8C /* FileSize.swift in Sources */,
 				3EFE384927864896006F8B8C /* PlaylistDelegateProtocol.swift in Sources */,
 				3EFE383927864896006F8B8C /* GroupedTracksRemovalResult.swift in Sources */,

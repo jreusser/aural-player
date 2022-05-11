@@ -505,7 +505,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="importFilesAndFoldersAction:" target="uni-A1-Lee" id="8Xo-d0-Uth"/>
+                            <action selector="importFilesAndFoldersAction:" target="-2" id="Sda-Sr-0Ib"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="jKJ-Fc-7ml" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
