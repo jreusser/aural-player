@@ -532,26 +532,29 @@ class PrettyPlayQueueArtCell: NSTableCellView {
     
     @IBOutlet weak var imgArt: NSImageView!
     @IBOutlet weak var imgPlayingTrackIndicator: NSImageView!
-    @IBOutlet weak var overlayBox: NSBox!
     
     func updateForTrack(_ track: Track, isPlayingTrack: Bool) {
         
-        if let coverArt = track.art?.image {
-            imgArt.image = coverArt
-            
-        } else {
-            
-            imgArt.image = .imgPlayingArt
-            imgArt.contentTintColor = systemColorScheme.secondaryTextColor
-        }
-        
         if isPlayingTrack {
             
-            NSView.showViews(imgPlayingTrackIndicator, overlayBox)
+            imgPlayingTrackIndicator.show()
             imgPlayingTrackIndicator.contentTintColor = systemColorScheme.activeControlColor
             
+            imgArt.hide()
+            
         } else {
-            NSView.hideViews(imgPlayingTrackIndicator, overlayBox)
+            
+            imgPlayingTrackIndicator.hide()
+            imgArt.show()
+            
+            if let coverArt = track.art?.image {
+                imgArt.image = coverArt
+                
+            } else {
+                
+                imgArt.image = .imgPlayingArt
+                imgArt.contentTintColor = systemColorScheme.secondaryTextColor
+            }
         }
     }
 }

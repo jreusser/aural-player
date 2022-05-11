@@ -66,20 +66,11 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
-                                                    <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="gho-uR-hmh" userLabel="Overlay">
-                                                        <rect key="frame" x="10" y="10" width="30" height="30"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <view key="contentView" id="GBb-TU-qWf">
-                                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        </view>
-                                                        <color key="fillColor" white="0.0" alpha="0.7959590574511054" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </box>
                                                     <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sU1-Gz-vdu" userLabel="Playing Track Indicator">
-                                                        <rect key="frame" x="19" y="18" width="12.5" height="14"/>
+                                                        <rect key="frame" x="18" y="17" width="15.5" height="16"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="12" id="PFM-GY-uJd"/>
-                                                            <constraint firstAttribute="height" constant="10" id="xNO-xd-kl5"/>
+                                                            <constraint firstAttribute="width" constant="15" id="PFM-GY-uJd"/>
+                                                            <constraint firstAttribute="height" constant="12" id="xNO-xd-kl5"/>
                                                         </constraints>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyUpOrDown" image="play.fill" catalog="system" id="Yir-ka-W4F" customClass="TableImageCell" customModule="Aural" customModuleProvider="target"/>
                                                     </imageView>
@@ -93,7 +84,6 @@
                                                 <connections>
                                                     <outlet property="imgArt" destination="2By-Sd-lGF" id="9ua-eY-udS"/>
                                                     <outlet property="imgPlayingTrackIndicator" destination="sU1-Gz-vdu" id="h5m-SB-9Xu"/>
-                                                    <outlet property="overlayBox" destination="gho-uR-hmh" id="GlR-Ki-Qjg"/>
                                                 </connections>
                                             </tableCellView>
                                         </prototypeCellViews>
