@@ -72,9 +72,6 @@
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Close"/>
-                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="closeWindowAction:" target="-2" id="1Wc-kJ-i8h"/>
                                     </connections>
@@ -262,9 +259,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="ScrollToTop"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="scrollToTopAction:" target="-2" id="cbL-bi-2mF"/>
                         </connections>
@@ -279,9 +273,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="PageUp"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="pageUpAction:" target="-2" id="c2B-qD-TfT"/>
                         </connections>
@@ -296,9 +287,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="ScrollToBottom"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="scrollToBottomAction:" target="-2" id="TDg-mR-lQb"/>
                         </connections>
@@ -313,9 +301,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="PageDown"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="pageDownAction:" target="-2" id="XcS-3y-RUh"/>
                         </connections>
@@ -330,9 +315,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="ExportMetadata"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="savePlaylistAction:" target="-2" id="I2f-PR-b9Y"/>
                         </connections>
@@ -347,9 +329,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="addTracksAction:" target="-2" id="yHV-Oz-dq9"/>
                         </connections>
@@ -364,9 +343,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="removeTracksAction:" target="-2" id="r86-Yn-P8V"/>
                         </connections>
@@ -381,9 +357,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Clear"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="clearPlaylistAction:" target="-2" id="l0Z-2l-hUM"/>
                         </connections>
@@ -398,9 +371,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Up"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="moveTracksUpAction:" target="-2" id="SiI-8R-bZI"/>
                         </connections>
@@ -415,9 +385,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Down"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="moveTracksDownAction:" target="-2" id="uFd-ph-czc"/>
                         </connections>
@@ -432,9 +399,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Search"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="searchAction:" target="-2" id="F9C-kE-tqc"/>
                         </connections>
@@ -449,9 +413,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Sort"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="sortAction:" target="-2" id="idA-3N-g2O"/>
                         </connections>
@@ -656,7 +617,7 @@
         <image name="ScrollToTop" width="33" height="37"/>
         <image name="Search" width="26" height="26"/>
         <image name="ShowInFinder" width="15" height="15"/>
-        <image name="Sort" width="32" height="27"/>
+        <image name="Sort" width="35" height="25"/>
         <image name="ToggleChaptersList-Small" width="14" height="11"/>
         <image name="Tracks" width="32" height="32"/>
         <image name="Up" width="25" height="35"/>

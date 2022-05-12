@@ -130,7 +130,7 @@
                                     <tabViewItems>
                                         <tabViewItem label="Metadata" identifier="0" id="6lp-HE-id9" userLabel="Metadata" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
                                             <view key="view" id="jtC-sV-AlS">
-                                                <rect key="frame" x="0.0" y="0.0" width="647" height="397"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="627" height="391"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </view>
                                             <connections>
@@ -204,9 +204,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                     </button>
                 </subviews>
                 <constraints>
@@ -254,7 +251,6 @@
         </customObject>
     </objects>
     <resources>
-        <image name="Remove" width="27" height="27"/>
         <image name="arrow.right.doc.on.clipboard" catalog="system" width="16" height="18"/>
         <image name="doc.text" catalog="system" width="14" height="16"/>
         <image name="folder" catalog="system" width="18" height="14"/>

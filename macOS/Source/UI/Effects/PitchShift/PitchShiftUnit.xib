@@ -96,9 +96,6 @@
                                 <behavior key="behavior" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="decreasePitchByOctaveAction:" target="-2" id="Y9U-Nf-fXM"/>
                             </connections>
@@ -110,9 +107,6 @@
                                 <behavior key="behavior" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="decreasePitchBySemitoneAction:" target="-2" id="gqh-Hw-DwQ"/>
                             </connections>
@@ -124,9 +118,6 @@
                                 <behavior key="behavior" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="decreasePitchByCentAction:" target="-2" id="7yU-u3-hJT"/>
                             </connections>
@@ -139,9 +130,6 @@
                                 <font key="font" metaFont="system"/>
                                 <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                             </buttonCell>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="increasePitchByOctaveAction:" target="-2" id="PUE-e2-dvq"/>
                             </connections>
@@ -154,9 +142,6 @@
                                 <font key="font" metaFont="system"/>
                                 <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                             </buttonCell>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="increasePitchBySemitoneAction:" target="-2" id="wZw-0b-nQv"/>
                             </connections>
@@ -169,9 +154,6 @@
                                 <font key="font" metaFont="system"/>
                                 <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                             </buttonCell>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="increasePitchByCentAction:" target="-2" id="d6q-RP-eal"/>
                             </connections>
@@ -196,12 +178,6 @@
                         </textField>
                     </subviews>
                     <connections>
-                        <outlet property="btnDecreaseByCent" destination="iBd-9i-f1s" id="Fek-fa-EGX"/>
-                        <outlet property="btnDecreaseByOctave" destination="RQA-L4-epa" id="MH1-Gu-gvW"/>
-                        <outlet property="btnDecreaseBySemitone" destination="eom-m7-tJ1" id="je6-Xb-Xqu"/>
-                        <outlet property="btnIncreaseByCent" destination="hjS-Te-fwb" id="gBW-JD-kXG"/>
-                        <outlet property="btnIncreaseByOctave" destination="mv3-7U-JqJ" id="t1q-zn-4Ob"/>
-                        <outlet property="btnIncreaseBySemitone" destination="tNi-4E-OGo" id="BKy-oF-lEE"/>
                         <outlet property="lblCents" destination="NUl-Dd-8pD" id="4Gc-ej-Nou"/>
                         <outlet property="lblOctaves" destination="xCr-wj-fUa" id="hfQ-57-MPh"/>
                         <outlet property="lblSemitones" destination="x2g-QP-TBH" id="bxz-pt-d2R"/>
@@ -290,8 +266,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Add" width="25" height="25"/>
-        <image name="Remove" width="27" height="27"/>
         <image name="SavedSettings" width="16" height="16"/>
         <image name="minus" catalog="system" width="14" height="4"/>
         <image name="plus" catalog="system" width="17" height="16"/>

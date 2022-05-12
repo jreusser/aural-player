@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    ControlBarPlayer.xib
-    Aural
-
-    Copyright © 2021 Kartik Venugopal. All rights reserved.
-
-    This software is licensed under the MIT software license.
-    See the file "LICENSE" in the project root directory for license terms.
-
--->
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,7 +23,7 @@
             <windowStyleMask key="styleMask" closable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="570" height="40"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
             <value key="minSize" type="size" width="570" height="40"/>
             <value key="maxSize" type="size" width="10000" height="40"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ" customClass="ControlBarPlaybackView" customModule="Aural" customModuleProvider="target">
@@ -54,9 +43,6 @@
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Close"/>
-                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="quitAction:" target="-2" id="tjv-tv-Pvt"/>
                                     </connections>
@@ -373,29 +359,26 @@
                                     </connections>
                                 </slider>
                                 <button toolTip="Seek forward" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KtZ-rZ-MnJ" userLabel="Seek Fwd Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="464" y="15" width="13" height="10"/>
+                                    <rect key="frame" x="464" y="13.5" width="13" height="13"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="10" id="iNN-2d-Fqh"/>
                                         <constraint firstAttribute="width" constant="13" id="jTm-kX-vva"/>
                                     </constraints>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SeekForward" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="g8z-N6-MM4">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="forward" catalog="system" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="g8z-N6-MM4">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="SeekForward"/>
-                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="seekForwardAction:" target="SuS-L4-zP8" id="xlL-Co-vxj"/>
                                     </connections>
                                 </button>
                                 <button toolTip="Next track" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iaY-fV-voY" userLabel="NextTrack Button" customClass="TrackPeekingButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="446" y="15" width="13" height="10"/>
+                                    <rect key="frame" x="446" y="13.5" width="13" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="13" id="HyY-vC-ha3"/>
                                         <constraint firstAttribute="height" constant="10" id="Z0d-G1-T97"/>
                                     </constraints>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NextTrack" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="DPM-rC-GE6">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="forward.end" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="DPM-rC-GE6">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
@@ -428,12 +411,12 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Previous track" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8py-2V-iWJ" userLabel="PrevTrack Button" customClass="TrackPeekingButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="404" y="15" width="13" height="10"/>
+                                    <rect key="frame" x="404" y="13.5" width="13" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="13" id="gcV-E3-itD"/>
                                         <constraint firstAttribute="height" constant="10" id="qZL-nq-Cnf"/>
                                     </constraints>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="PreviousTrack" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Jmr-Xb-im2">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="backward.end" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Jmr-Xb-im2">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
@@ -446,35 +429,29 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Seek backward" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rMK-zd-YvE" userLabel="Seek Bwd Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="386" y="15" width="13" height="10"/>
+                                    <rect key="frame" x="386" y="13.5" width="13" height="13"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="13" id="AdY-ah-fAj"/>
                                         <constraint firstAttribute="height" constant="10" id="gPy-pO-OSz"/>
                                     </constraints>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SeekBackward" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="kCE-Fr-eDh">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="backward" catalog="system" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="kCE-Fr-eDh">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="SeekBackward"/>
-                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="seekBackwardAction:" target="SuS-L4-zP8" id="eaT-6B-DKg"/>
                                     </connections>
                                 </button>
                                 <button toolTip="Mute / Unmute" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cQe-K3-rAJ" userLabel="Volume Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="505" y="13" width="13" height="13"/>
+                                    <rect key="frame" x="505" y="11" width="13.5" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="13" id="FIj-Vt-sk0"/>
                                         <constraint firstAttribute="height" constant="13" id="sUR-kR-zEq"/>
                                     </constraints>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="VolumeMedium" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="DMc-l7-m6m">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="volume.2" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="DMc-l7-m6m">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="VolumeMedium"/>
-                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="muteOrUnmuteAction:" target="khd-7d-e1B" id="BRi-fm-jWj"/>
                                     </connections>
@@ -491,12 +468,12 @@
                                     </connections>
                                 </slider>
                                 <button toolTip="Repeat" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4qN-q5-DoC" userLabel="Repeat Button" customClass="MultiStateImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="292" y="14" width="12" height="12"/>
+                                    <rect key="frame" x="292" y="11.5" width="12" height="17"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="12" id="R7a-bR-159"/>
                                         <constraint firstAttribute="width" constant="12" id="RuZ-5O-J2z"/>
                                     </constraints>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Repeat" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="2gi-bY-1f7">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="repeat" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="2gi-bY-1f7">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
@@ -505,12 +482,12 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Shuffle" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hat-OP-WNr" userLabel="Shuffle Button" customClass="MultiStateImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="310" y="14" width="12" height="12"/>
+                                    <rect key="frame" x="310" y="11.5" width="12" height="17"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="12" id="BVT-Xa-7cT"/>
                                         <constraint firstAttribute="width" constant="12" id="TiD-eC-ybh"/>
                                     </constraints>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Shuffle" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="saS-rv-Llg">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="shuffle" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="saS-rv-Llg">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
@@ -704,18 +681,20 @@
         <image name="DockTopCenter" width="14" height="12"/>
         <image name="DockTopLeft" width="14" height="12"/>
         <image name="DockTopRight" width="14" height="12"/>
-        <image name="Loop" width="42" height="15"/>
+        <image name="Loop" width="270" height="210"/>
         <image name="MenuBarMode-Small" width="14" height="10"/>
         <image name="NextTrack" width="21" height="23"/>
-        <image name="Pause" width="38" height="36"/>
-        <image name="Play" width="31" height="35"/>
+        <image name="Pause" width="30" height="35"/>
+        <image name="Play" width="40" height="40"/>
         <image name="PreviousTrack" width="21" height="23"/>
-        <image name="Repeat" width="18" height="18"/>
-        <image name="SeekBackward" width="16" height="12"/>
-        <image name="SeekForward" width="16" height="12"/>
         <image name="Settings-Small" width="8" height="7"/>
-        <image name="Shuffle" width="120" height="120"/>
-        <image name="VolumeMedium" width="26" height="26"/>
         <image name="WindowedMode-Small" width="13" height="13"/>
+        <image name="backward" catalog="system" width="19" height="12"/>
+        <image name="backward.end" catalog="system" width="13" height="13"/>
+        <image name="forward" catalog="system" width="19" height="12"/>
+        <image name="forward.end" catalog="system" width="13" height="13"/>
+        <image name="repeat" catalog="system" width="17" height="14"/>
+        <image name="shuffle" catalog="system" width="18" height="14"/>
+        <image name="volume.2" catalog="system" width="19" height="14"/>
     </resources>
 </document>

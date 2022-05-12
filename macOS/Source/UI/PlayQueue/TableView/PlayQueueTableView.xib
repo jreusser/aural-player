@@ -100,11 +100,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="sQN-39-9YE" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="2" width="350" height="30"/>
+                                                <rect key="frame" x="34" y="2" width="351" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZBX-aA-NAy" userLabel="Track Name">
-                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="351" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="v8e-Ut-9qP"/>
                                                         </constraints>
@@ -139,11 +139,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="2RN-iX-l7t" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="387.5" y="2" width="66" height="30"/>
+                                                <rect key="frame" x="387.5" y="2" width="65" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bxe-de-Six" userLabel="Duration">
-                                                        <rect key="frame" x="-2" y="0.0" width="65" height="30"/>
+                                                        <rect key="frame" x="-2" y="0.0" width="64" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="J5d-DA-zWJ"/>
                                                         </constraints>
@@ -198,9 +198,6 @@
             <items>
                 <menuItem title="  Play now" image="play" catalog="system" id="jTl-IJ-icl">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="playNowAction:" target="-2" id="m1R-dI-vVv"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="  Play next" image="list.dash" catalog="system" id="557-bs-7lR">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -234,40 +231,22 @@
                 <menuItem isSeparatorItem="YES" id="me0-dP-F1Q"/>
                 <menuItem title="  Remove these tracks" image="xmark.bin" catalog="system" id="hBY-5o-I8Z" userLabel="Remove tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="removeTracksAction:" target="-2" id="WBa-Ke-foe"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="  Crop selected tracks" image="scissors" catalog="system" id="FVD-zO-B89" userLabel="Crop selected tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="cropSelectionAction:" target="-2" id="yRP-ht-kJ8"/>
-                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="KDo-db-t71"/>
                 <menuItem title="  Move these tracks up" image="arrow.up" catalog="system" id="Q39-Yy-l6l" userLabel="Move tracks up">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="moveTracksUpAction:" target="-2" id="6dC-NV-hw6"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks down" image="arrow.down" catalog="system" id="UXX-38-q2a" userLabel="Move tracks down">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="moveTracksDownAction:" target="-2" id="tQR-DF-WNc"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks to the top" image="arrow.up.to.line.alt" catalog="system" id="7v6-tI-nVD" userLabel="Move tracks top">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="moveTracksToTopAction:" target="-2" id="nZx-TU-Asb"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks to the bottom" image="arrow.down.to.line.alt" catalog="system" id="QwL-kJ-9Yv" userLabel="Move tracks bottom">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="moveTracksToBottomAction:" target="-2" id="Gxk-HC-Ocy"/>
-                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="vxS-3G-8Vh"/>
                 <menuItem title="  Add this track to Favorites" image="heart" catalog="system" id="ccr-O5-bNr" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">

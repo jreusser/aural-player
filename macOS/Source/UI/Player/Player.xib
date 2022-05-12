@@ -228,9 +228,6 @@
                                             <font key="font" metaFont="system"/>
                                             <imageReference key="image" image="volume.3" catalog="system" symbolScale="large"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="VolumeMedium"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="muteOrUnmuteAction:" target="bbe-2a-cSz" id="HQY-3Q-bnS"/>
                                         </connections>
@@ -259,9 +256,6 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="SeekForward"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="seekForwardAction:" target="W5O-7l-xTa" id="zhE-TY-i3Y"/>
                                         </connections>
@@ -288,12 +282,6 @@
                                             <font key="font" metaFont="message" size="11"/>
                                             <imageReference key="image" image="Play" symbolScale="large"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="offStateTooltip" value="Play"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="onStateTooltip" value="Pause"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="offStateImage" value="Play"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="onStateImage" value="Pause"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="playPauseAction:" target="W5O-7l-xTa" id="9GB-Gb-5Wt"/>
                                         </connections>
@@ -319,9 +307,6 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="SeekBackward"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="seekBackwardAction:" target="W5O-7l-xTa" id="dDh-wJ-m6m"/>
                                         </connections>
@@ -431,12 +416,8 @@
     <resources>
         <image name="Ellipsis" width="40" height="10"/>
         <image name="Loop" width="270" height="210"/>
-        <image name="Pause" width="30" height="35"/>
         <image name="Play" width="40" height="40"/>
         <image name="PlayingArt" width="237" height="237"/>
-        <image name="SeekBackward" width="16" height="12"/>
-        <image name="SeekForward" width="16" height="12"/>
-        <image name="VolumeMedium" width="26" height="26"/>
         <image name="backward" catalog="system" width="19" height="12"/>
         <image name="backward.end" catalog="system" width="13" height="13"/>
         <image name="bookmark" catalog="system" width="14" height="16"/>

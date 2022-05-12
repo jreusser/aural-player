@@ -124,18 +124,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="182"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
-                                <connections>
-                                    <outlet property="tabButton" destination="jSb-Nt-vEZ" id="u0S-ew-cPd"/>
-                                </connections>
                             </tabViewItem>
                             <tabViewItem label="List View" identifier="" id="PNu-a6-BpD">
                                 <view key="view" id="l0r-Hz-3yI">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="182"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
-                                <connections>
-                                    <outlet property="tabButton" destination="G9C-Vb-k83" id="gda-PF-tRw"/>
-                                </connections>
                             </tabViewItem>
                         </tabViewItems>
                     </tabView>
@@ -191,9 +185,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="importFilesAndFoldersAction:" target="-2" id="DGO-KM-gsd"/>
                         </connections>
@@ -208,9 +199,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="removeTracksAction:" target="-2" id="QI2-us-Qiu"/>
                         </connections>
@@ -225,9 +213,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="cropSelectionAction:" target="-2" id="1Te-qY-LTq"/>
                         </connections>
@@ -242,9 +227,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="removeAllTracksAction:" target="-2" id="QR8-sM-hcc"/>
                         </connections>
@@ -259,9 +241,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="moveTracksUpAction:" target="-2" id="O0R-jZ-n4U"/>
                         </connections>
@@ -276,9 +255,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="moveTracksDownAction:" target="-2" id="BoJ-JK-C6x"/>
                         </connections>
@@ -293,9 +269,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="moveTracksToTopAction:" target="-2" id="sg0-2q-XGv"/>
                         </connections>
@@ -310,9 +283,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="moveTracksToBottomAction:" target="-2" id="ogL-f4-m9J"/>
                         </connections>
@@ -327,9 +297,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="clearSelectionAction:" target="-2" id="aB3-4b-emj"/>
                         </connections>
@@ -344,9 +311,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="invertSelectionAction:" target="-2" id="Cqk-rK-J5T"/>
                         </connections>
@@ -361,9 +325,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                     </button>
                     <popUpButton hidden="YES" toolTip="Sort the play queue" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M1K-Qj-yyf" userLabel="Sort">
                         <rect key="frame" x="337" y="12" width="19" height="14"/>
@@ -445,9 +406,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="exportToPlaylistFileAction:" target="-2" id="yfC-dd-WXZ"/>
                         </connections>
@@ -462,9 +420,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="pageUpAction:" target="-2" id="9Q8-jM-CyM"/>
                         </connections>
@@ -479,9 +434,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="pageDownAction:" target="-2" id="I4f-Md-2hV"/>
                         </connections>
@@ -496,9 +448,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="scrollToTopAction:" target="-2" id="bcQ-yY-Zfh"/>
                         </connections>
@@ -513,9 +462,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="scrollToBottomAction:" target="-2" id="iNc-Fw-y0q"/>
                         </connections>
@@ -603,11 +549,7 @@
             <accessibility identifier="playQueue"/>
             <point key="canvasLocation" x="217" y="230.5"/>
         </window>
-        <customObject id="QQB-l4-4dl" customClass="PlayQueueListViewController" customModule="Aural" customModuleProvider="target">
-            <connections>
-                <outlet property="sortOrderMenuItemView" destination="lxO-Xj-vxb" id="Zcd-bS-Sl1"/>
-            </connections>
-        </customObject>
+        <customObject id="QQB-l4-4dl" customClass="PlayQueueListViewController" customModule="Aural" customModuleProvider="target"/>
         <customView id="lxO-Xj-vxb" userLabel="Sort order menu item view" customClass="SortOrderMenuItemView" customModule="Aural" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="186" height="30"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -653,8 +595,6 @@
         <customObject id="5I3-5u-fJw" customClass="PlayQueueTableViewController" customModule="Aural" customModuleProvider="target"/>
     </objects>
     <resources>
-        <image name="Add" width="25" height="25"/>
-        <image name="Remove" width="27" height="27"/>
         <image name="ScrollToBottom" width="33" height="37"/>
         <image name="ScrollToTop" width="33" height="37"/>
         <image name="Sort" width="35" height="25"/>

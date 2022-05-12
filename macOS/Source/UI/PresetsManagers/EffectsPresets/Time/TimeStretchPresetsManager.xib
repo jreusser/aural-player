@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -189,9 +189,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button toolTip="Decrease rate by one hundredth" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UJM-ng-Cu2" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="158" y="60" width="12" height="12"/>
@@ -200,9 +197,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button toolTip="Increase rate by one tenth" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LCs-Df-rf3" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="233" y="89" width="12" height="12"/>
@@ -211,9 +205,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
-                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button toolTip="Increase rate by one hundredth" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yph-Ze-obv" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="233" y="60" width="12" height="12"/>
@@ -222,9 +213,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
-                                        </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
                                 <connections>

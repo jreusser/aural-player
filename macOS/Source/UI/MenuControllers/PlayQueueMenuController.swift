@@ -29,7 +29,7 @@ class PlayQueueMenuController: NSObject, NSMenuDelegate {
     }
     
     // Exports the play queue as an M3U playlist file.
-    @IBAction func exportAsPlayQueueFileAction(_ sender: Any) {
+    @IBAction func exportAsPlaylistFileAction(_ sender: Any) {
         messenger.publish(.playQueue_exportAsPlaylistFile)
     }
     

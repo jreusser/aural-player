@@ -117,9 +117,6 @@
                                 <font key="font" metaFont="system"/>
                                 <imageReference key="image" image="minus" catalog="system" symbolScale="large"/>
                             </buttonCell>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="decreaseRateByTenthAction:" target="-2" id="VhS-AC-9Rw"/>
                             </connections>
@@ -132,9 +129,6 @@
                                 <font key="font" metaFont="system"/>
                                 <imageReference key="image" image="minus" catalog="system" symbolScale="large"/>
                             </buttonCell>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="decreaseRateByHundredthAction:" target="-2" id="fgC-8e-whe"/>
                             </connections>
@@ -147,9 +141,6 @@
                                 <font key="font" metaFont="system"/>
                                 <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                             </buttonCell>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="increaseRateByTenthAction:" target="-2" id="syU-Ff-XQj"/>
                             </connections>
@@ -162,9 +153,6 @@
                                 <font key="font" metaFont="system"/>
                                 <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                             </buttonCell>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="increaseRateByHundredthAction:" target="-2" id="Qy5-H5-OqN"/>
                             </connections>
@@ -183,7 +171,6 @@
                     </subviews>
                     <connections>
                         <outlet property="btnShiftPitch" destination="dTa-gP-aeh" id="YlF-LB-0Zv"/>
-                        <outlet property="lblPitchShiftValue" destination="wfQ-8f-44I" id="JVI-zy-dKn"/>
                         <outlet property="lblTimeStretchRateValue" destination="9IV-G1-qdp" id="oyI-aL-B59"/>
                         <outlet property="timeSlider" destination="ZrQ-re-04h" id="220-SK-88J"/>
                     </connections>
@@ -265,9 +252,7 @@
         </view>
     </objects>
     <resources>
-        <image name="Add" width="25" height="25"/>
         <image name="Checked" width="200" height="200"/>
-        <image name="Remove" width="27" height="27"/>
         <image name="SavedSettings" width="16" height="16"/>
         <image name="minus" catalog="system" width="17" height="4"/>
         <image name="plus" catalog="system" width="17" height="16"/>

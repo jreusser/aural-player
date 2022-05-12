@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -172,9 +172,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button toolTip="Decrease pitch by one semitone" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q59-J0-Xpi" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="125" y="34" width="12" height="12"/>
@@ -183,9 +180,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button toolTip="Decrease pitch by one cent" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PGd-2T-mlL" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="125" y="5" width="12" height="12"/>
@@ -194,9 +188,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button toolTip="Increase pitch by one octave" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ECa-xi-2dZ" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="230" y="63" width="12" height="12"/>
@@ -205,9 +196,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
-                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button toolTip="Increase pitch by one semitone" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ojL-Mh-r1O" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="230" y="34" width="12" height="12"/>
@@ -216,9 +204,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
-                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button toolTip="Increase pitch by one cent" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UlW-NO-EDp" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="230" y="5" width="12" height="12"/>
@@ -227,9 +212,6 @@
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
-                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JG7-na-cp1" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="296" y="30" width="60" height="24"/>

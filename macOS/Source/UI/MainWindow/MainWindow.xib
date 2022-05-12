@@ -38,7 +38,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="200"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="s2a-4T-trI" userLabel="Root Container" customClass="ColorSchemeableBox" customModule="Aural" customModuleProvider="target">
+                    <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="s2a-4T-trI" userLabel="Root Container">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="200"/>
                         <view key="contentView" id="sdu-Lk-MLz">
                             <rect key="frame" x="0.0" y="0.0" width="480" height="200"/>
@@ -92,9 +92,6 @@
                                     <rect key="frame" x="213" y="172" width="54" height="15"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppTitle" id="0JL-KA-nPB"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="AppTitle"/>
-                                    </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <button toolTip="Show/hide Play Queue" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Br1-bp-Vzd" userLabel="Toggle Play Queue Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="411" y="174" width="16.5" height="16"/>
@@ -104,11 +101,6 @@
                                         <font key="font" metaFont="system"/>
                                         <imageReference key="image" image="music.note.list" catalog="system" symbolScale="large"/>
                                     </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="weight">
-                                            <real key="value" value="8"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="togglePlayQueueAction:" target="-2" id="uMq-TF-p4H"/>
                                     </connections>
@@ -470,11 +462,6 @@
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="weight">
-                                            <real key="value" value="2"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="toggleEffectsAction:" target="-2" id="maE-Ym-EeP"/>
                                     </connections>
@@ -540,7 +527,6 @@
                 <outlet property="manageBookmarksMenuItem" destination="rEg-So-8Nd" id="INY-T1-h0G"/>
             </connections>
         </customObject>
-        <customObject id="z4t-PF-r6l" customClass="PlaylistMenuController" customModule="Aural" customModuleProvider="target"/>
         <customObject id="xhs-xH-OCR" customClass="PlaybackMenuController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="detailedInfoMenuItem" destination="Z5g-6o-hKT" id="OWW-Vq-y7D"/>
@@ -827,7 +813,7 @@ DQ
                             </menuItem>
                             <menuItem title=" Export as playlist file" image="arrow.right.doc.on.clipboard" catalog="system" keyEquivalent="s" id="Jbq-S6-ZJ6">
                                 <connections>
-                                    <action selector="exportAsPlaylistFileAction:" target="qFA-s7-21q" id="fnf-Oa-kpm"/>
+                                    <action selector="exportAsPlaylistFileAction:" target="qFA-s7-21q" id="4vh-hR-4yK"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="vo3-6V-fS0"/>
@@ -1968,7 +1954,7 @@ CA
         <image name="arrow.up.to.line.alt" catalog="system" width="13" height="16"/>
         <image name="magnifyingglass" catalog="system" width="15" height="15"/>
         <image name="minus" catalog="system" width="14" height="4"/>
-        <image name="music.note.list" catalog="system" width="16" height="15"/>
+        <image name="music.note.list" catalog="system" width="20" height="19"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>
         <image name="plus.rectangle.on.folder" catalog="system" width="19" height="15"/>
         <image name="scissors" catalog="system" width="16" height="12"/>

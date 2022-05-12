@@ -501,9 +501,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Add"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="importFilesAndFoldersAction:" target="-2" id="Sda-Sr-0Ib"/>
                         </connections>
@@ -518,9 +515,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="removeTracksAction:" target="uni-A1-Lee" id="zmu-8I-ipE"/>
                         </connections>
@@ -535,9 +529,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="cropTracksAction:" target="uni-A1-Lee" id="btJ-DQ-E2v"/>
                         </connections>
@@ -552,9 +543,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="removeAllTracksAction:" target="uni-A1-Lee" id="f6L-hT-a4J"/>
                         </connections>
@@ -569,9 +557,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="moveTracksUpAction:" target="uni-A1-Lee" id="QVs-f6-YAS"/>
                         </connections>
@@ -586,9 +571,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="moveTracksDownAction:" target="uni-A1-Lee" id="0ig-ZT-Ims"/>
                         </connections>
@@ -603,9 +585,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="moveTracksToTopAction:" target="uni-A1-Lee" id="nmt-ct-hDa"/>
                         </connections>
@@ -620,9 +599,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="moveTracksToBottomAction:" target="uni-A1-Lee" id="fq4-gf-LWl"/>
                         </connections>
@@ -637,9 +613,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="clearSelectionAction:" target="uni-A1-Lee" id="pam-ua-AtC"/>
                         </connections>
@@ -654,9 +627,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="invertSelectionAction:" target="uni-A1-Lee" id="ym8-1e-Yh9"/>
                         </connections>
@@ -671,9 +641,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                     </button>
                     <button hidden="YES" toolTip="Sort the playlist" translatesAutoresizingMaskIntoConstraints="NO" id="NK5-9L-oU1" userLabel="Sort" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="630" y="10.5" width="17" height="17"/>
@@ -685,9 +652,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                     </button>
                     <button hidden="YES" toolTip="Export tracks to a playlist file" translatesAutoresizingMaskIntoConstraints="NO" id="PIC-WT-DmK" userLabel="Export" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="666" y="10.5" width="16" height="16"/>
@@ -699,9 +663,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="exportToPlaylistAction:" target="uni-A1-Lee" id="ZgB-uv-RBo"/>
                         </connections>
@@ -716,9 +677,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="pageUpAction:" target="uni-A1-Lee" id="F4A-it-SVJ"/>
                         </connections>
@@ -733,9 +691,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="pageDownAction:" target="uni-A1-Lee" id="r9l-bs-Pku"/>
                         </connections>
@@ -750,9 +705,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="scrollToTopAction:" target="uni-A1-Lee" id="qZX-5v-b6g"/>
                         </connections>
@@ -767,9 +719,6 @@
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="scrollToBottomAction:" target="uni-A1-Lee" id="IKW-JO-Zhn"/>
                         </connections>
@@ -857,13 +806,11 @@
         </customObject>
     </objects>
     <resources>
-        <image name="Add" width="25" height="25"/>
         <image name="Albums" width="32" height="32"/>
         <image name="Artists" width="32" height="32"/>
         <image name="CreatePlaylist" width="18" height="18"/>
         <image name="Genres" width="32" height="32"/>
         <image name="Plus" width="18" height="18"/>
-        <image name="Remove" width="27" height="27"/>
         <image name="ScrollToBottom" width="33" height="37"/>
         <image name="ScrollToTop" width="33" height="37"/>
         <image name="Tracks" width="32" height="32"/>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,13 +27,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box appearanceType="darkAqua" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Ksp-Uu-T5P" userLabel="Root Container">
-                        <rect key="frame" x="0.0" y="0.0" width="583" height="255"/>
+                        <rect key="frame" x="0.0" y="0.0" width="583" height="178"/>
                         <view key="contentView" id="R3F-5h-tZn">
-                            <rect key="frame" x="0.0" y="0.0" width="583" height="255"/>
+                            <rect key="frame" x="0.0" y="0.0" width="583" height="178"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5J6-lG-aTa" userLabel="Window Title">
-                                    <rect key="frame" x="212" y="244" width="159" height="33"/>
+                                    <rect key="frame" x="212" y="139" width="159" height="33"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="33" id="l6k-8f-81B"/>
                                         <constraint firstAttribute="width" constant="155" id="uL5-ar-yXz"/>
@@ -44,7 +45,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Of-xA-IUV" userLabel="Num Matches Label">
-                                    <rect key="frame" x="428" y="205" width="104" height="28"/>
+                                    <rect key="frame" x="428" y="100" width="104" height="28"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="28" id="Am4-mI-hbN"/>
                                         <constraint firstAttribute="width" constant="100" id="z86-uq-dhe"/>
@@ -56,7 +57,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <button toolTip="Hide the chapters list" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bqb-2Y-Uw2" userLabel="Close Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="14" y="257" width="10" height="10"/>
+                                    <rect key="frame" x="14" y="152" width="10" height="10"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="10" id="FQB-Oe-tVg"/>
                                         <constraint firstAttribute="height" constant="10" id="JdG-gw-JJa"/>
@@ -65,9 +66,6 @@
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Close"/>
-                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="closeWindowAction:" target="-2" id="pbv-ne-DbR"/>
                                     </connections>
@@ -85,52 +83,43 @@
                                     </textFieldCell>
                                 </textField>
                                 <button toolTip="Previous chapter" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Axi-IH-THL" userLabel="Previous Chapter Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="254" y="8" width="14" height="11"/>
+                                    <rect key="frame" x="254" y="6.5" width="14" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="14" id="dEO-mN-5K5"/>
                                         <constraint firstAttribute="height" constant="11" id="h3x-Ht-Ek1"/>
                                     </constraints>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="PreviousTrack" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="h7P-iZ-vNE">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="backward.end" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="h7P-iZ-vNE">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="PreviousTrack"/>
-                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="playPreviousChapterAction:" target="uhU-UR-xwr" id="NdA-MV-VOd"/>
                                     </connections>
                                 </button>
                                 <button toolTip="Previous search result" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ISr-Ro-Dis" userLabel="Previous Result" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="535" y="211" width="14" height="11"/>
+                                    <rect key="frame" x="535" y="104.5" width="14.5" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="11" id="EKB-Bw-bRp"/>
                                         <constraint firstAttribute="width" constant="14" id="fEw-Rn-0KT"/>
                                     </constraints>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="PreviousTrack" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="fHQ-0d-xxv">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.backward" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="fHQ-0d-xxv">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="PreviousTrack"/>
-                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="previousSearchResultAction:" target="uhU-UR-xwr" id="2fM-vP-DC4"/>
                                     </connections>
                                 </button>
                                 <button toolTip="Next chapter" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iBr-vY-6sc" userLabel="Next Chapter Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="273" y="8" width="14" height="11"/>
+                                    <rect key="frame" x="273" y="6.5" width="14" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="14" id="Zcc-HB-5qH"/>
                                         <constraint firstAttribute="height" constant="11" id="dbX-MT-yPB"/>
                                     </constraints>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NextTrack" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Tma-2F-034">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="forward.end" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Tma-2F-034">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="NextTrack"/>
-                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="playNextChapterAction:" target="uhU-UR-xwr" id="4x0-K9-PQF"/>
                                     </connections>
@@ -165,15 +154,12 @@
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system" size="21"/>
                                     </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Replay"/>
-                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="replayCurrentChapterAction:" target="uhU-UR-xwr" id="Os2-Lr-1A4"/>
                                     </connections>
                                 </button>
                                 <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jY6-EF-Drz">
-                                    <rect key="frame" x="14" y="208" width="376" height="22"/>
+                                    <rect key="frame" x="14" y="103" width="376" height="22"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="22" id="kBw-fO-9r2"/>
                                     </constraints>
@@ -187,7 +173,7 @@
                                     </connections>
                                 </searchField>
                                 <button toolTip="Case sensitive search (disabled)" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PhG-3g-wVK" userLabel="Case Sensitive" customClass="OnOffImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="399" y="212" width="20" height="15"/>
+                                    <rect key="frame" x="399" y="107" width="20" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="EiF-Jn-i3E"/>
                                         <constraint firstAttribute="width" constant="20" id="l2K-IR-HRY"/>
@@ -207,18 +193,15 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Next search result" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CPE-oP-CME" userLabel="Next Result" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="553" y="211" width="14" height="11"/>
+                                    <rect key="frame" x="553" y="104.5" width="14.5" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="14" id="TK9-Do-n1j"/>
                                         <constraint firstAttribute="height" constant="11" id="wnr-R3-SAX"/>
                                     </constraints>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NextTrack" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="DlC-q9-rs6">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.right" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="DlC-q9-rs6">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="NextTrack"/>
-                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="nextSearchResultAction:" target="uhU-UR-xwr" id="W6G-mZ-tjP"/>
                                     </connections>
@@ -256,13 +239,13 @@
                         <color key="fillColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </box>
                     <scrollView appearanceType="darkAqua" borderType="none" horizontalLineScroll="34" horizontalPageScroll="10" verticalLineScroll="34" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbU-sK-75k" userLabel="Chapters View">
-                        <rect key="frame" x="15" y="54" width="553" height="111"/>
+                        <rect key="frame" x="15" y="54" width="553" height="34"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Ehf-3j-NsA">
-                            <rect key="frame" x="0.0" y="0.0" width="553" height="111"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <rect key="frame" x="0.0" y="0.0" width="553" height="34"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="plain" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="30" rowSizeStyle="automatic" headerView="o7A-Nv-ijK" viewBased="YES" id="rlg-QY-3mV" userLabel="Chapters View" customClass="AuralTableView" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="553" height="86"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="553" height="34"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="4"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -503,10 +486,12 @@
         <image name="Close" width="18" height="18"/>
         <image name="LoopChapter-Off" width="20" height="20"/>
         <image name="LoopChapter-On" width="20" height="20"/>
-        <image name="NextTrack" width="21" height="23"/>
-        <image name="PreviousTrack" width="21" height="23"/>
         <image name="Replay" width="35" height="35"/>
         <image name="Search-CaseSensitive-Off" width="43" height="31"/>
         <image name="Search-CaseSensitive-On" width="43" height="31"/>
+        <image name="arrowtriangle.backward" catalog="system" width="14" height="13"/>
+        <image name="arrowtriangle.right" catalog="system" width="14" height="13"/>
+        <image name="backward.end" catalog="system" width="13" height="13"/>
+        <image name="forward.end" catalog="system" width="13" height="13"/>
     </resources>
 </document>
