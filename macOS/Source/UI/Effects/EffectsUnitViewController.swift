@@ -53,9 +53,6 @@ class EffectsUnitViewController: NSViewController, Destroyable {
         
         oneTimeSetup()
         initControls()
-        
-        // TODO: Temporary, remove this !!!
-//        presetsMenuButton.hide()
     }
     
     func oneTimeSetup() {

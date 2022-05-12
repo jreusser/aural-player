@@ -123,10 +123,10 @@
                                         <font key="font" metaFont="system"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="imgWidth">
-                                                <integer key="value" value="18"/>
+                                                <integer key="value" value="17"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="imgHeight">
-                                                <integer key="value" value="10"/>
+                                                <integer key="value" value="12"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </buttonCell>
@@ -331,7 +331,7 @@
         <image name="AUTab" width="32" height="19"/>
         <image name="DelayTab" width="23" height="22"/>
         <image name="FilterTab" width="26" height="26"/>
-        <image name="MasterTab" width="60" height="41"/>
+        <image name="MasterTab" width="20" height="14"/>
         <image name="PitchTab" width="32" height="26"/>
         <image name="ReverbTab" width="25" height="25"/>
         <image name="hifispeaker.fill" catalog="system" width="13" height="16"/>

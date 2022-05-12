@@ -204,18 +204,18 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
     
     func mouseEnteredView() {
         
-        guard tabView.selectedIndex < viewControllers.count else {return}
-        
-        let viewController = viewControllers[tabView.selectedIndex]
-        viewController.mouseEnteredView()
+//        guard tabView.selectedIndex < viewControllers.count else {return}
+//
+//        let viewController = viewControllers[tabView.selectedIndex]
+//        viewController.mouseEnteredView()
     }
     
     func mouseExitedView() {
         
-        guard tabView.selectedIndex < viewControllers.count else {return}
-        
-        let viewController = viewControllers[tabView.selectedIndex]
-        viewController.mouseExitedView()
+//        guard tabView.selectedIndex < viewControllers.count else {return}
+//        
+//        let viewController = viewControllers[tabView.selectedIndex]
+//        viewController.mouseExitedView()
     }
     
     // ------------------------------------------------------------------------

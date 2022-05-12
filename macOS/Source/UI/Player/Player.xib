@@ -53,7 +53,7 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="170"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <view id="Thd-zZ-LMv" userLabel="Playing Track V" customClass="PlayingTrackView" customModule="Aural" customModuleProvider="target">
+                <view id="Thd-zZ-LMv" customClass="PlayingTrackView" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="170"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
@@ -210,14 +210,14 @@
                     </connections>
                 </view>
                 <box wantsLayer="YES" boxType="custom" borderType="none" borderWidth="0.0" transparent="YES" id="tlk-RM-S0u" userLabel="Controls Box">
-                    <rect key="frame" x="0.0" y="10" width="530" height="80"/>
+                    <rect key="frame" x="0.0" y="10" width="480" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="rhD-hs-O0f">
-                        <rect key="frame" x="0.0" y="0.0" width="530" height="80"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="80"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view id="Jrx-i6-RpP" userLabel="Controls View" customClass="WindowedModePlaybackView" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="530" height="80"/>
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="80"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button toolTip="Mute / Unmute" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TDX-6H-xzc" userLabel="Volume Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">

@@ -26,8 +26,8 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
     @IBOutlet weak var btnRememberSettings: TintedImageButton!
     
     private lazy var btnRememberSettingsStateMachine: ButtonStateMachine<Bool> = ButtonStateMachine(initialState: false, mappings: [
-        ButtonStateMachine.StateMapping(state: false, image: .imgRememberSettings, colorProperty: \.inactiveControlColor, toolTip: "Remember settings for this track"),
-        ButtonStateMachine.StateMapping(state: true, image: .imgRememberSettings, colorProperty: \.activeControlColor, toolTip: "Don't remember settings for this track"),
+        ButtonStateMachine.StateMapping(state: false, image: .imgRememberSettings, colorProperty: \.inactiveControlColor, toolTip: "Remember all sound settings for this track"),
+        ButtonStateMachine.StateMapping(state: true, image: .imgRememberSettings, colorProperty: \.activeControlColor, toolTip: "Don't remember sound settings for this track"),
       ],
       button: btnRememberSettings)
     
@@ -138,6 +138,25 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
         broadcastStateChangeNotification()
     }
     
+    // Sound profile for current track.
+    @IBAction func rememberSettingsAction(_ sender: AnyObject) {
+        
+        guard let playingTrack = playQueueDelegate.currentTrack else {return}
+        
+        let soundProfiles = audioGraphDelegate.soundProfiles
+        
+        if soundProfiles.hasFor(playingTrack) {
+            
+            messenger.publish(.effects_deleteSoundProfile)
+            btnRememberSettingsStateMachine.setState(false)
+            
+        } else {
+            
+            messenger.publish(.effects_saveSoundProfile)
+            btnRememberSettingsStateMachine.setState(true)
+        }
+    }
+    
     // ------------------------------------------------------------------------
     
     // MARK: Message handling
@@ -154,6 +173,7 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
     }
     
     override func stateChanged() {
+        
         messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.effectiveRate)
         audioUnitsTable.reloadAllRows(columns: [1])
     }
@@ -165,8 +185,21 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
     func trackChanged(_ notification: TrackTransitionNotification) {
         
         // Apply sound profile if there is one for the new track and if the preferences allow it
-        if let newTrack = notification.endTrack, soundProfiles.hasFor(newTrack) {
-            messenger.publish(.effects_updateEffectsUnitView, payload: EffectsUnitType.master)
+        if let newTrack = notification.endTrack {
+            
+            if soundProfiles.hasFor(newTrack) {
+                
+                messenger.publish(.effects_updateEffectsUnitView, payload: EffectsUnitType.master)
+                btnRememberSettingsStateMachine.setState(true)
+                
+            } else {
+                btnRememberSettingsStateMachine.setState(false)
+            }
+            
+            btnRememberSettings.show()
+            
+        } else {
+            btnRememberSettings.hide()
         }
     }
     
@@ -226,46 +259,4 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
             return
         }
     }
-    
-//    override func applyColorScheme(_ scheme: ColorScheme) {
-//        
-//        super.applyColorScheme(scheme)
-//        
-//        changeBackgroundColor(scheme.backgroundColor)
-//        audioUnitsTable.reloadData()
-//    }
-//    
-//    func changeBackgroundColor(_ color: NSColor) {
-//        
-//        audioUnitsScrollView.backgroundColor = color
-//        audioUnitsClipView.backgroundColor = color
-//        audioUnitsTable.backgroundColor = color
-//    }
-//    
-//    override func changeFunctionCaptionTextColor(_ color: NSColor) {
-//    }
-//    
-//    override func changeActiveUnitStateColor(_ color: NSColor) {
-//        
-//        super.changeActiveUnitStateColor(color)
-//        
-//        let rowsForActiveUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .active}
-//        audioUnitsTable.reloadRows(rowsForActiveUnits, columns: [0, 1])
-//    }
-//    
-//    override func changeBypassedUnitStateColor(_ color: NSColor) {
-//        
-//        super.changeBypassedUnitStateColor(color)
-//        
-//        let rowsForBypassedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .bypassed}
-//        audioUnitsTable.reloadRows(rowsForBypassedUnits, columns: [0, 1])
-//    }
-//    
-//    override func changeSuppressedUnitStateColor(_ color: NSColor) {
-//        
-//        // Master unit can never be suppressed, but update other unit state buttons
-//        
-//        let rowsForSuppressedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .suppressed}
-//        audioUnitsTable.reloadRows(rowsForSuppressedUnits, columns: [0, 1])
-//    }
 }
