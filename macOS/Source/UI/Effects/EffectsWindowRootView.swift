@@ -10,21 +10,21 @@
 
 import Cocoa
 
-class EffectsWindowRootView: MouseTrackingView {
-    
-    private lazy var windowController = window!.windowController as! EffectsWindowController
-    
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        startTracking()
-    }
-    
-    override func mouseEntered(with event: NSEvent) {
-        windowController.mouseEnteredView()
-    }
-    
-    override func mouseExited(with event: NSEvent) {
-        windowController.mouseExitedView()
-    }
-}
+//class EffectsWindowRootView: MouseTrackingView {
+//    
+//    private lazy var windowController = window!.windowController as! EffectsWindowController
+//    
+//    override func awakeFromNib() {
+//        
+//        super.awakeFromNib()
+//        startTracking()
+//    }
+//    
+//    override func mouseEntered(with event: NSEvent) {
+//        windowController.mouseEnteredView()
+//    }
+//    
+//    override func mouseExited(with event: NSEvent) {
+//        windowController.mouseExitedView()
+//    }
+//}

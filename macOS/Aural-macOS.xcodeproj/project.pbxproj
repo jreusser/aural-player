@@ -593,7 +593,7 @@
 		3EC29A5A27865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
 		3EC29A5F27865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
 		3EC29A6027865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
-		3EC856A82811BA7000647CF4 /* PlayQueueTableViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* PlayQueueTableViewController+ContextMenuController.swift */; };
+		3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */; };
 		3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
 		3ECB54E825E552A9002259C4 /* ragingredlotus-bb.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3ECB54E625E552A1002259C4 /* ragingredlotus-bb.regular.ttf */; };
@@ -670,6 +670,7 @@
 		3EEC04232687AB76004478CE /* MenuBarSeekSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC04222687AB76004478CE /* MenuBarSeekSliderView.swift */; };
 		3EEC04252687ABB5004478CE /* WindowedModeSeekSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC04242687ABB5004478CE /* WindowedModeSeekSliderView.swift */; };
 		3EED0C0F269629C40027B7E1 /* PreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED0C0E269629C40027B7E1 /* PreferencesTests.swift */; };
+		3EEEEADA282DB96A00AFD3AD /* PlayQueueWindowController+ContextMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEEEAD9282DB96A00AFD3AD /* PlayQueueWindowController+ContextMenuDelegate.swift */; };
 		3EEF3737268F6B3C002EA77F /* SequencerBeginAndEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025C4268E830800C5A1C5 /* SequencerBeginAndEndTests.swift */; };
 		3EEF3739268F6B5A002EA77F /* SequencerPlaylistTypeChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025C5268E830800C5A1C5 /* SequencerPlaylistTypeChangeTests.swift */; };
 		3EEF373B268F6B68002EA77F /* SequencerRepeatAndShuffleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025CB268E830800C5A1C5 /* SequencerRepeatAndShuffleTests.swift */; };
@@ -2062,7 +2063,7 @@
 		3EC2975927864CD400B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EC29A5827865BC900B29551 /* MenuItemMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemMappable.swift; sourceTree = "<group>"; };
 		3EC29A5E27865CB500B29551 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
-		3EC856A72811BA7000647CF4 /* PlayQueueTableViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueTableViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
+		3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
 		3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTracksToPlaylistCommand.swift; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
 		3ECB54E625E552A1002259C4 /* ragingredlotus-bb.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ragingredlotus-bb.regular.ttf"; sourceTree = "<group>"; };
@@ -2138,6 +2139,7 @@
 		3EEC04222687AB76004478CE /* MenuBarSeekSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarSeekSliderView.swift; sourceTree = "<group>"; };
 		3EEC04242687ABB5004478CE /* WindowedModeSeekSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowedModeSeekSliderView.swift; sourceTree = "<group>"; };
 		3EED0C0E269629C40027B7E1 /* PreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTests.swift; sourceTree = "<group>"; };
+		3EEEEAD9282DB96A00AFD3AD /* PlayQueueWindowController+ContextMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueWindowController+ContextMenuDelegate.swift"; sourceTree = "<group>"; };
 		3EEFF58327DE842C002CB0FE /* PlayQueueDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayQueueDelegateProtocol.swift; sourceTree = "<group>"; };
 		3EEFF58427DE842C002CB0FE /* PlayQueueDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayQueueDelegate.swift; sourceTree = "<group>"; };
 		3EEFF58527DE842C002CB0FE /* PlayQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayQueue.swift; sourceTree = "<group>"; };
@@ -2636,8 +2638,10 @@
 				3E25B64F27F7818900D10A5F /* PlayQueueWindow.xib */,
 				3E25B65327F7865900D10A5F /* PlayQueueWindowController.swift */,
 				3EDCC4BB282C37D8002AF3AE /* PlayQueueWindowController+Actions.swift */,
+				3EEEEAD9282DB96A00AFD3AD /* PlayQueueWindowController+ContextMenuDelegate.swift */,
 				3E495B8928108DF800D4766A /* PlayQueueContainer.swift */,
 				3EDCC4BD282C3912002AF3AE /* PlayQueueViewController.swift */,
+				3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */,
 				3E25B65127F7859800D10A5F /* TableView */,
 				3E25B65227F785D800D10A5F /* ListView */,
 				3E47214C282AE3820097F1AB /* PlayQueueTabButton.swift */,
@@ -2651,7 +2655,6 @@
 			children = (
 				3E25B65527F7875700D10A5F /* PlayQueueTableView.xib */,
 				3E25B65A27F78EE100D10A5F /* PlayQueueTableViewController.swift */,
-				3EC856A72811BA7000647CF4 /* PlayQueueTableViewController+ContextMenuController.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -5845,7 +5848,7 @@
 				3E6EFFA42815309500C813AC /* TextColorSchemeViewController.swift in Sources */,
 				3EFE3A1727864898006F8B8C /* AppearanceNotifications.swift in Sources */,
 				3EFE38D327864896006F8B8C /* MasterUnitDelegate.swift in Sources */,
-				3EC856A82811BA7000647CF4 /* PlayQueueTableViewController+ContextMenuController.swift in Sources */,
+				3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */,
 				3EAFB617267FF4C200F0DC96 /* EffectsSliderPreviewCell.swift in Sources */,
 				3EBF29332686979700D87021 /* EffectsTextButtonCell.swift in Sources */,
 				3EFE392F27864897006F8B8C /* TimeIntervalFormatter.swift in Sources */,
@@ -6174,6 +6177,7 @@
 				3EFE399727864897006F8B8C /* PersistenceManager.swift in Sources */,
 				3EAFB60B267FF2B900F0DC96 /* PreferencesSliderCell.swift in Sources */,
 				3EEFF58C27DE842C002CB0FE /* PlayQueueGrouping.swift in Sources */,
+				3EEEEADA282DB96A00AFD3AD /* PlayQueueWindowController+ContextMenuDelegate.swift in Sources */,
 				3E6C121825CEBDE500BF0D07 /* PreferencesWindowController.swift in Sources */,
 				3E3579D226837D3D009522A0 /* PresetsManagerViewController.swift in Sources */,
 				3EFE38F527864897006F8B8C /* Queue.swift in Sources */,

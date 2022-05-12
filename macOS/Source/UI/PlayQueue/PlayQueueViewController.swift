@@ -51,10 +51,10 @@ class PlayQueueViewController: TrackListViewController, FontSchemeObserver, Colo
         messenger.subscribe(to: .playQueue_clearSelection, handler: tableView.clearSelection)
         messenger.subscribe(to: .playQueue_invertSelection, handler: tableView.invertSelection)
         
-        messenger.subscribe(to: .playQueue_moveTracksUp, handler: moveTracksUp)
-        messenger.subscribe(to: .playQueue_moveTracksDown, handler: moveTracksDown)
-        messenger.subscribe(to: .playQueue_moveTracksToTop, handler: moveTracksToTop)
-        messenger.subscribe(to: .playQueue_moveTracksToBottom, handler: moveTracksToBottom)
+//        messenger.subscribe(to: .playQueue_moveTracksUp, handler: moveTracksUp)
+//        messenger.subscribe(to: .playQueue_moveTracksDown, handler: moveTracksDown)
+//        messenger.subscribe(to: .playQueue_moveTracksToTop, handler: moveTracksToTop)
+//        messenger.subscribe(to: .playQueue_moveTracksToBottom, handler: moveTracksToBottom)
         
         messenger.subscribe(to: .playQueue_pageUp, handler: tableView.pageUp)
         messenger.subscribe(to: .playQueue_pageDown, handler: tableView.pageDown)

@@ -230,6 +230,9 @@
             <items>
                 <menuItem title="  Play now" image="play" catalog="system" id="jTl-IJ-icl">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="playNowAction:" target="-2" id="Xnt-VT-aXB"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Play next" image="list.dash" catalog="system" id="557-bs-7lR">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -253,6 +256,9 @@
                 </menuItem>
                 <menuItem title="  Create a new playlist with these tracks" image="text.badge.plus" catalog="system" id="Try-Ah-q1X" userLabel="Remove tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="createPlaylistWithTracksAction:" target="-2" id="a8m-pn-O1L"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="me0-dP-F1Q"/>
                 <menuItem title="  Remove these tracks" image="xmark.bin" catalog="system" id="hBY-5o-I8Z" userLabel="Remove tracks">
@@ -283,13 +289,22 @@
                         <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="heart" catalog="system"/>
                         <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="heart.slash" catalog="system"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="favoritesAction:" target="-2" id="Ndh-ed-ylr"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Get detailed track info" id="E94-FX-PuM">
                     <imageReference key="image" image="info" catalog="system" symbolScale="large"/>
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="trackInfoAction:" target="-2" id="PlD-0i-Fms"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Show these tracks in Finder" image="ShowInFinder" id="2va-tB-KRm" userLabel="Show track in Finder">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showInFinderAction:" target="-2" id="abk-uI-baa"/>
+                    </connections>
                 </menuItem>
             </items>
             <connections>

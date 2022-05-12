@@ -140,13 +140,7 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
 
     // Switches the tab group to a particular tab
     @IBAction func tabViewAction(_ sender: EffectsUnitTabButton) {
-
         doTabViewAction(sender)
-        
-        guard tabView.selectedIndex < viewControllers.count else {return}
-        
-        let viewController = viewControllers[tabView.selectedIndex]
-        viewController.mouseEnteredView()
     }
     
     private func doTabViewAction(_ sender: EffectsUnitTabButton) {
@@ -200,22 +194,6 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
         case .devices:  tabViewAction(devicesTabViewButton)
 
         }
-    }
-    
-    func mouseEnteredView() {
-        
-//        guard tabView.selectedIndex < viewControllers.count else {return}
-//
-//        let viewController = viewControllers[tabView.selectedIndex]
-//        viewController.mouseEnteredView()
-    }
-    
-    func mouseExitedView() {
-        
-//        guard tabView.selectedIndex < viewControllers.count else {return}
-//        
-//        let viewController = viewControllers[tabView.selectedIndex]
-//        viewController.mouseExitedView()
     }
     
     // ------------------------------------------------------------------------

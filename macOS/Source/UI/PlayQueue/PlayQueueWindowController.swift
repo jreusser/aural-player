@@ -96,6 +96,11 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
         messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: updateSummary)
         
+        messenger.subscribeAsync(to: .playQueue_moveTracksUp, handler: moveTracksUp)
+        messenger.subscribeAsync(to: .playQueue_moveTracksDown, handler: moveTracksDown)
+        messenger.subscribeAsync(to: .playQueue_moveTracksToTop, handler: moveTracksToTop)
+        messenger.subscribeAsync(to: .playQueue_moveTracksToBottom, handler: moveTracksToBottom)
+        
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: updateSummary)
         
         messenger.subscribe(to: .playQueue_updateSummary, handler: updateSummary)

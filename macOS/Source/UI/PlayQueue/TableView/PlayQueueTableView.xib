@@ -100,11 +100,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="sQN-39-9YE" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="2" width="351" height="30"/>
+                                                <rect key="frame" x="34" y="2" width="350" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZBX-aA-NAy" userLabel="Track Name">
-                                                        <rect key="frame" x="0.0" y="0.0" width="351" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="v8e-Ut-9qP"/>
                                                         </constraints>
@@ -198,12 +198,12 @@
             <items>
                 <menuItem title="  Play now" image="play" catalog="system" id="jTl-IJ-icl">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="playNowAction:" target="-2" id="0c4-Fp-4Oo"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Play next" image="list.dash" catalog="system" id="557-bs-7lR">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="playNextAction:" target="-2" id="lSw-zr-E2J"/>
-                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="n6M-3F-fnb"/>
                 <menuItem title="  Copy these tracks to playlist" image="doc.on.clipboard" catalog="system" id="NKJ-IV-vNC" userLabel="Copy these tracks to playlist">
