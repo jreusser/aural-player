@@ -13,7 +13,7 @@ import Foundation
 typealias TrackComparison = (Track, Track) -> ComparisonResult
 
 let trackNameComparison: TrackComparison = {t1, t2 in
-    t1.displayName.compare(t2.displayName)
+    t1.titleOrDefaultDisplayName.compare(t2.titleOrDefaultDisplayName)
 }
 
 let trackArtistComparison: TrackComparison = {t1, t2 in

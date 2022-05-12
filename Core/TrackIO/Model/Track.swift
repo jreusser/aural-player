@@ -36,6 +36,10 @@ class Track: Hashable, PlaylistItem {
 
     var title: String?
     
+    var titleOrDefaultDisplayName: String {
+        title ?? defaultDisplayName
+    }
+    
     private var theArtist: String?
     
     var artist: String? {

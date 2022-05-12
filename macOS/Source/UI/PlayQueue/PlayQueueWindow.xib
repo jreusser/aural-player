@@ -17,6 +17,7 @@
                 <outlet property="listViewController" destination="QQB-l4-4dl" id="gTi-kp-3an"/>
                 <outlet property="progressSpinner" destination="5K6-jN-rb1" id="4BU-LG-HAw"/>
                 <outlet property="rootContainer" destination="vPq-HC-h3c" id="J8s-OX-NF1"/>
+                <outlet property="sortOrderMenuItemView" destination="lxO-Xj-vxb" id="AzD-qx-rbv"/>
                 <outlet property="tabButtonsContainer" destination="xem-im-DfN" id="kuU-Au-6rg"/>
                 <outlet property="tabGroup" destination="zXc-hr-Pet" id="zPW-GQ-rVg"/>
                 <outlet property="tableViewController" destination="5I3-5u-fJw" id="2jK-PG-7TX"/>
@@ -279,7 +280,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="moveTracksDownAction:" target="5I3-5u-fJw" id="ppa-x0-zxJ"/>
+                            <action selector="moveTracksDownAction:" target="-2" id="BoJ-JK-C6x"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Move selected tracks to the top" translatesAutoresizingMaskIntoConstraints="NO" id="T7P-Fx-Iib" userLabel="Move to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -296,7 +297,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="moveTracksToTopAction:" target="5I3-5u-fJw" id="NU3-qZ-ldq"/>
+                            <action selector="moveTracksToTopAction:" target="-2" id="sg0-2q-XGv"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Move selected tracks to the bottom" translatesAutoresizingMaskIntoConstraints="NO" id="6HO-Fs-WPc" userLabel="Move to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -313,7 +314,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="moveTracksToBottomAction:" target="5I3-5u-fJw" id="N5m-Ul-Kz3"/>
+                            <action selector="moveTracksToBottomAction:" target="-2" id="ogL-f4-m9J"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Clear the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="IR9-mZ-3qK" userLabel="Clear Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -330,7 +331,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="clearSelectionAction:" target="5I3-5u-fJw" id="8vk-lb-HUI"/>
+                            <action selector="clearSelectionAction:" target="-2" id="aB3-4b-emj"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Invert the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="F4g-qT-OzU" userLabel="Invert Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -347,7 +348,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="invertSelectionAction:" target="5I3-5u-fJw" id="m2B-gx-a9Z"/>
+                            <action selector="invertSelectionAction:" target="-2" id="Cqk-rK-J5T"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Search the play queue" translatesAutoresizingMaskIntoConstraints="NO" id="pM1-g9-qhj" userLabel="Search" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -384,43 +385,43 @@
                                     <menuItem title="Sort by track name" id="sHi-Fo-mo4">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
-                                            <action selector="sortByTrackNameAction:" target="QQB-l4-4dl" id="KN6-G3-3qe"/>
+                                            <action selector="sortByTrackNameAction:" target="-2" id="FzH-BU-0gA"/>
                                         </connections>
                                     </menuItem>
                                     <menuItem title="Sort by artist, album, and disc/track #" id="eaV-yZ-Tkg" userLabel="Sort by artist, album, and disc/track #">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
-                                            <action selector="sortByArtistAlbumDiscTrackNumberAction:" target="QQB-l4-4dl" id="EcN-Qj-DAj"/>
+                                            <action selector="sortByArtistAlbumDiscTrackNumberAction:" target="-2" id="NG5-NC-qc1"/>
                                         </connections>
                                     </menuItem>
                                     <menuItem title="Sort by artist, album, and track name" id="4mP-mx-9Pn" userLabel="Sort by artist, album, and track name">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
-                                            <action selector="sortByArtistAlbumTrackNameAction:" target="QQB-l4-4dl" id="jsn-q7-WPt"/>
+                                            <action selector="sortByArtistAlbumTrackNameAction:" target="-2" id="3hQ-U6-tYL"/>
                                         </connections>
                                     </menuItem>
                                     <menuItem title="Sort by artist and track name" id="rPq-9U-3MU" userLabel="Sort by artist and track name">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
-                                            <action selector="sortByArtistTrackNameAction:" target="QQB-l4-4dl" id="RK8-iE-XcV"/>
+                                            <action selector="sortByArtistTrackNameAction:" target="-2" id="91S-fd-1Nc"/>
                                         </connections>
                                     </menuItem>
                                     <menuItem title="Sort by album and disc/track #" id="AQY-L1-H32" userLabel="Sort by album and disc/track #">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
-                                            <action selector="sortByAlbumDiscTrackNumberAction:" target="QQB-l4-4dl" id="DTc-fi-Ory"/>
+                                            <action selector="sortByAlbumDiscTrackNumberAction:" target="-2" id="zqW-4z-fXY"/>
                                         </connections>
                                     </menuItem>
                                     <menuItem title="Sort by album and track name" id="4b9-Va-JEd" userLabel="Sort by album and track name">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
-                                            <action selector="sortByAlbumTrackNameAction:" target="QQB-l4-4dl" id="D1z-56-E6v"/>
+                                            <action selector="sortByAlbumTrackNameAction:" target="-2" id="peP-tD-8nw"/>
                                         </connections>
                                     </menuItem>
                                     <menuItem title="Sort by duration" id="MGZ-1t-xB9">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
-                                            <action selector="sortByDurationAction:" target="QQB-l4-4dl" id="5D0-SY-nRH"/>
+                                            <action selector="sortByDurationAction:" target="-2" id="4zk-uV-Plm"/>
                                         </connections>
                                     </menuItem>
                                     <menuItem isSeparatorItem="YES" id="CXN-Bl-WHP"/>
@@ -448,7 +449,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="exportToPlaylistFileAction:" target="5I3-5u-fJw" id="HZz-N6-rYL"/>
+                            <action selector="exportToPlaylistFileAction:" target="-2" id="yfC-dd-WXZ"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Scroll one page up" translatesAutoresizingMaskIntoConstraints="NO" id="Nmm-j9-Sqg" userLabel="Page Up" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -465,7 +466,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="pageUpAction:" target="5I3-5u-fJw" id="BaW-n9-LWe"/>
+                            <action selector="pageUpAction:" target="-2" id="9Q8-jM-CyM"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Scroll one page down" translatesAutoresizingMaskIntoConstraints="NO" id="gTQ-Bo-5Nj" userLabel="Page Down" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -482,7 +483,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="pageDownAction:" target="5I3-5u-fJw" id="zgv-lq-h1X"/>
+                            <action selector="pageDownAction:" target="-2" id="I4f-Md-2hV"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Scroll to the top" translatesAutoresizingMaskIntoConstraints="NO" id="fCo-el-xpF" userLabel="Scroll to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -499,7 +500,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="scrollToTopAction:" target="5I3-5u-fJw" id="Tuj-sD-PY7"/>
+                            <action selector="scrollToTopAction:" target="-2" id="bcQ-yY-Zfh"/>
                         </connections>
                     </button>
                     <button hidden="YES" toolTip="Scroll to the bottom" translatesAutoresizingMaskIntoConstraints="NO" id="mtC-J6-Vis" userLabel="Scroll to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -516,7 +517,7 @@
                             <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Remove"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="scrollToBottomAction:" target="5I3-5u-fJw" id="3Q3-S0-Gck"/>
+                            <action selector="scrollToBottomAction:" target="-2" id="iNc-Fw-y0q"/>
                         </connections>
                     </button>
                 </subviews>

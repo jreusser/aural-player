@@ -192,6 +192,14 @@ class TrackListViewController: NSViewController, NSTableViewDelegate, ColorSchem
         tableView.scrollRowToVisible(index)
     }
     
+    func selectRows(_ rows: Range<Int>) {
+        tableView.selectRows(rows)
+    }
+    
+    func selectRows(_ rows: ClosedRange<Int>) {
+        tableView.selectRows(rows)
+    }
+    
     // Must have a non-empty playlist, and at least one selected row, but not all rows selected.
     func moveTracksUp() {
 
