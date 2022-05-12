@@ -116,7 +116,7 @@
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="ZBX-aA-NAy" secondAttribute="bottom" id="4Mj-Bs-deM"/>
+                                                    <constraint firstItem="ZBX-aA-NAy" firstAttribute="bottom" secondItem="sQN-39-9YE" secondAttribute="bottom" id="4Mj-Bs-deM"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZBX-aA-NAy" secondAttribute="trailing" constant="2" id="C7A-1o-ovx"/>
                                                     <constraint firstItem="ZBX-aA-NAy" firstAttribute="leading" secondItem="sQN-39-9YE" secondAttribute="leading" constant="2" id="K8Q-AO-LBc"/>
                                                 </constraints>

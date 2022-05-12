@@ -237,7 +237,7 @@ enum FontSchemePreset: String, CaseIterable {
         }
     }
     
-    var playlistTrackTextYOffset: CGFloat {
+    var playQueueYOffset: CGFloat {
         
         switch self {
                 

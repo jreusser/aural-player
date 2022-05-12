@@ -42,6 +42,8 @@ class FontScheme: NSObject, UserManagedObject {
     @objc dynamic var playQueueSecondaryFont: NSFont
     @objc dynamic var playQueueTertiaryFont: NSFont
     
+    @objc dynamic var playQueueYOffset: CGFloat
+    
     var playlist: PlaylistFontScheme
     var effects: EffectsFontScheme
     
@@ -64,6 +66,7 @@ class FontScheme: NSObject, UserManagedObject {
         self.playQueuePrimaryFont = FontSchemePreset.standard.playQueuePrimaryFont
         self.playQueueSecondaryFont = FontSchemePreset.standard.playQueueSecondaryFont
         self.playQueueTertiaryFont = FontSchemePreset.standard.playQueueTertiaryFont
+        self.playQueueYOffset = FontSchemePreset.standard.playQueueYOffset
         
         self.playlist = PlaylistFontScheme(persistentState)
         self.effects = EffectsFontScheme(persistentState)
@@ -113,6 +116,10 @@ class FontScheme: NSObject, UserManagedObject {
         if let tertiarySize = persistentState?.playQueueTertiarySize, let tertiaryFont = NSFont(name: textFontName, size: tertiarySize) {
             self.playQueueTertiaryFont = tertiaryFont
         }
+        
+        if let yOffset = persistentState?.playQueueYOffset {
+            self.playQueueYOffset = yOffset
+        }
     }
     
     init(_ name: String, _ preset: FontSchemePreset) {
@@ -133,6 +140,7 @@ class FontScheme: NSObject, UserManagedObject {
         self.playQueuePrimaryFont = preset.playQueuePrimaryFont
         self.playQueueSecondaryFont = preset.playQueueSecondaryFont
         self.playQueueTertiaryFont = preset.playQueueTertiaryFont
+        self.playQueueYOffset = preset.playQueueYOffset
         
         self.playlist = PlaylistFontScheme(preset: preset)
         self.effects = EffectsFontScheme(preset: preset)
@@ -156,6 +164,7 @@ class FontScheme: NSObject, UserManagedObject {
         self.playQueuePrimaryFont = fontScheme.playQueuePrimaryFont
         self.playQueueSecondaryFont = fontScheme.playQueueSecondaryFont
         self.playQueueTertiaryFont = fontScheme.playQueueTertiaryFont
+        self.playQueueYOffset = fontScheme.playQueueYOffset
         
         self.playlist  = fontScheme.playlist.clone()
         self.effects = fontScheme.effects.clone()
@@ -177,6 +186,7 @@ class FontScheme: NSObject, UserManagedObject {
         self.playQueuePrimaryFont = fontScheme.playQueuePrimaryFont
         self.playQueueSecondaryFont = fontScheme.playQueueSecondaryFont
         self.playQueueTertiaryFont = fontScheme.playQueueTertiaryFont
+        self.playQueueYOffset = fontScheme.playQueueYOffset
         
         self.playlist = fontScheme.playlist.clone()
         self.effects = fontScheme.effects.clone()

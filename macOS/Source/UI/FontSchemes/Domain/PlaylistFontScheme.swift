@@ -27,7 +27,7 @@ class PlaylistFontScheme {
     init(_ persistentState: FontSchemePersistentState?) {
         
         self.trackTextFont = FontSchemePreset.standard.playQueuePrimaryFont
-        self.trackTextYOffset = FontSchemePreset.standard.playlistTrackTextYOffset
+        self.trackTextYOffset = FontSchemePreset.standard.playQueueYOffset
         
         self.groupTextFont = FontSchemePreset.standard.playlistGroupTextFont
         self.groupTextYOffset = FontSchemePreset.standard.playlistGroupTextYOffset
@@ -89,7 +89,7 @@ class PlaylistFontScheme {
     init(preset: FontSchemePreset) {
         
         self.trackTextFont = preset.playQueuePrimaryFont
-        self.trackTextYOffset = preset.playlistTrackTextYOffset
+        self.trackTextYOffset = preset.playQueueYOffset
         self.groupTextFont = preset.playlistGroupTextFont
         self.groupTextYOffset = preset.playlistGroupTextYOffset
         self.summaryFont = preset.playlistSummaryFont

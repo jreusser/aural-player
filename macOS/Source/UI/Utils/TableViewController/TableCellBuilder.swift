@@ -19,6 +19,7 @@ class TableCellBuilder {
     
     private var text: String? = nil
     private var font: PlatformFont? = nil
+    private var yOffset: CGFloat? = nil
     private var textColor: PlatformColor? = nil
     private var selectedTextColor: PlatformColor? = nil
     
@@ -48,17 +49,20 @@ class TableCellBuilder {
         self.cellFactory = cellFactory
     }
     
-    func withText(text: String, inFont font: PlatformFont, andColor color: PlatformColor, selectedTextColor: PlatformColor) -> TableCellBuilder {
+    func withText(text: String, inFont font: PlatformFont, andColor color: PlatformColor, selectedTextColor: PlatformColor, yOffset: CGFloat? = nil) -> TableCellBuilder {
         
         self.text = text
+        
         self.font = font
+        self.yOffset = yOffset
+        
         self.textColor = color
         self.selectedTextColor = selectedTextColor
         
         return self
     }
     
-    func withAttributedText(strings: [(text: String, font: PlatformFont, color: PlatformColor)], selectedTextColors: [PlatformColor]) -> TableCellBuilder {
+    func withAttributedText(strings: [(text: String, font: PlatformFont, color: PlatformColor)], selectedTextColors: [PlatformColor], yOffset: CGFloat? = nil) -> TableCellBuilder {
         
         var attStr: NSMutableAttributedString = strings[0].text.attributed(font: strings[0].font, color: strings[0].color)
         var selAttStr: NSMutableAttributedString = strings[0].text.attributed(font: strings[0].font, color: selectedTextColors[0])
@@ -80,6 +84,8 @@ class TableCellBuilder {
         
         self.attributedText = attStr
         self.selectedAttributedText = selAttStr
+        
+        self.yOffset = yOffset
         
         return self
     }
@@ -113,6 +119,10 @@ class TableCellBuilder {
             
             cell.unselectedTextColor = self.textColor
             cell.selectedTextColor = selectedTextColor
+        }
+        
+        if let yOffset = self.yOffset {
+            cell.realignText(yOffset: yOffset)
         }
         
         cell.textField?.showIf(attributedText != nil || text != nil)

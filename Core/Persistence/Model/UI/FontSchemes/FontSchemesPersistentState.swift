@@ -45,6 +45,7 @@ struct FontSchemePersistentState: Codable {
     let playQueuePrimarySize: CGFloat?
     let playQueueSecondarySize: CGFloat?
     let playQueueTertiarySize: CGFloat?
+    let playQueueYOffset: CGFloat?
 
     let playlist: PlaylistFontSchemePersistentState?
     let effects: EffectsFontSchemePersistentState?
@@ -70,6 +71,7 @@ struct FontSchemePersistentState: Codable {
         self.playQueuePrimarySize = scheme.playQueuePrimaryFont.pointSize
         self.playQueueSecondarySize = scheme.playQueueSecondaryFont.pointSize
         self.playQueueTertiarySize = scheme.playQueueTertiaryFont.pointSize
+        self.playQueueYOffset = scheme.playQueueYOffset
 
         self.playlist = PlaylistFontSchemePersistentState(scheme.playlist)
         self.effects = EffectsFontSchemePersistentState(scheme.effects)
