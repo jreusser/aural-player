@@ -45,8 +45,9 @@ extension PlatformImage {
     static let imgLoop: PlatformImage = PlatformImage(named: "Loop")!
     static let imgLoopStarted: PlatformImage = PlatformImage(named: "LoopStarted")!
     
-    static let imgSwitch: PlatformImage = PlatformImage(named: "Switch")!
+    static let imgSwitch: PlatformImage = PlatformImage(systemSymbolName: "power", accessibilityDescription: nil)!
     
+    static let imgRememberSettings: PlatformImage = PlatformImage(systemSymbolName: "clock.arrow.2.circlepath", accessibilityDescription: nil)!
     static let imgHistory_playlist_padded: PlatformImage = PlatformImage(named: "History_PaddedPlaylist")!
     
     // Displayed in the playlist view

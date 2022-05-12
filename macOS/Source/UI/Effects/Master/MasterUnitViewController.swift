@@ -23,6 +23,14 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
     @IBOutlet weak var audioUnitsClipView: NSClipView!
     @IBOutlet weak var audioUnitsTable: NSTableView!
     
+    @IBOutlet weak var btnRememberSettings: TintedImageButton!
+    
+    private lazy var btnRememberSettingsStateMachine: ButtonStateMachine<Bool> = ButtonStateMachine(initialState: false, mappings: [
+        ButtonStateMachine.StateMapping(state: false, image: .imgRememberSettings, colorProperty: \.inactiveControlColor, toolTip: "Remember settings for this track"),
+        ButtonStateMachine.StateMapping(state: true, image: .imgRememberSettings, colorProperty: \.activeControlColor, toolTip: "Don't remember settings for this track"),
+      ],
+      button: btnRememberSettings)
+    
     // ------------------------------------------------------------------------
     
     // MARK: Services, utilities, helpers, and properties
@@ -55,6 +63,8 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        btnRememberSettingsStateMachine.setState(false)
         colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor, \.suppressedControlColor])
     }
     

@@ -171,6 +171,12 @@
                                                             <action selector="showPlayingTrackAction:" target="DlG-hJ-3cs" id="VFe-pC-A4q"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem title="  Remember track position" image="clock.arrow.2.circlepath" catalog="system" id="AbS-M3-f1L" userLabel="Show track in Play Queue">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="showPlayingTrackAction:" target="DlG-hJ-3cs" id="XxR-S2-T38"/>
+                                                        </connections>
+                                                    </menuItem>
                                                 </items>
                                                 <connections>
                                                     <outlet property="delegate" destination="DlG-hJ-3cs" id="QYq-DE-Yi2"/>
@@ -434,6 +440,7 @@
         <image name="backward" catalog="system" width="19" height="12"/>
         <image name="backward.end" catalog="system" width="13" height="13"/>
         <image name="bookmark" catalog="system" width="14" height="16"/>
+        <image name="clock.arrow.2.circlepath" catalog="system" width="18" height="15"/>
         <image name="forward" catalog="system" width="19" height="12"/>
         <image name="forward.end" catalog="system" width="13" height="13"/>
         <image name="heart" catalog="system" width="16" height="14"/>

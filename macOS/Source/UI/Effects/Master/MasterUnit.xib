@@ -12,6 +12,7 @@
                 <outlet property="audioUnitsScrollView" destination="T9w-gh-2Hp" id="KZI-eb-PtV"/>
                 <outlet property="audioUnitsTable" destination="eil-eP-SY2" id="Rgo-Gw-4YX"/>
                 <outlet property="btnBypass" destination="moJ-jS-aMf" id="1c7-3L-xKO"/>
+                <outlet property="btnRememberSettings" destination="zQa-Sk-jsP" id="c8I-h1-6Po"/>
                 <outlet property="masterUnitView" destination="0Bs-7g-5at" id="YDY-Lh-KOG"/>
                 <outlet property="presetsMenuButton" destination="uqP-oj-xNY" id="Fth-M5-zlm"/>
                 <outlet property="presetsMenuIconItem" destination="bE8-u7-FFo" id="Rba-vo-6zI"/>
@@ -24,8 +25,8 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="160"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <popUpButton hidden="YES" toolTip="Presets" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uqP-oj-xNY" userLabel="Presets Menu">
-                    <rect key="frame" x="22" y="101" width="20" height="18"/>
+                <popUpButton toolTip="Presets" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uqP-oj-xNY" userLabel="Presets Menu">
+                    <rect key="frame" x="12" y="97" width="20" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="Tg0-YE-4cH">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -46,7 +47,7 @@
                     </popUpButtonCell>
                 </popUpButton>
                 <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moJ-jS-aMf" userLabel="Bypass button" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="25" y="133" width="16" height="16"/>
+                    <rect key="frame" x="15" y="133" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="QrC-Ov-AOd">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -325,6 +326,15 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
+                <button toolTip="Repeat" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-Sk-jsP" userLabel="Remember Settings Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <rect key="frame" x="14" y="74" width="17" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="clock.arrow.2.circlepath" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="X5A-LV-v56">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <color key="contentTintColor" white="0.23582202404529065" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </button>
             </subviews>
             <connections>
                 <outlet property="btnDelayBypass" destination="t99-9E-imb" id="y24-le-FeZ"/>
@@ -360,5 +370,6 @@
         <image name="ReverbTab" width="25" height="25"/>
         <image name="SavedSettings" width="16" height="16"/>
         <image name="TimeTab" width="32" height="32"/>
+        <image name="clock.arrow.2.circlepath" catalog="system" width="18" height="15"/>
     </resources>
 </document>

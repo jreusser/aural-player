@@ -105,7 +105,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZBX-aA-NAy" userLabel="Title" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="8" y="24" width="332" height="22"/>
+                                                        <rect key="frame" x="8" y="25" width="332" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="a9d-Cg-WAK"/>
                                                         </constraints>
@@ -127,9 +127,9 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="vJS-xt-F7y" userLabel="Artist Album" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="8" y="4" width="332" height="20"/>
+                                                        <rect key="frame" x="8" y="3" width="332" height="22"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="20" id="3m7-rA-xeC"/>
+                                                            <constraint firstAttribute="height" constant="22" id="3m7-rA-xeC"/>
                                                         </constraints>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="r5J-h3-xQ6" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
                                                             <font key="font" usesAppearanceFont="YES"/>
@@ -141,11 +141,11 @@
                                                 <constraints>
                                                     <constraint firstItem="SU0-ut-uHa" firstAttribute="leading" secondItem="sQN-39-9YE" secondAttribute="leading" constant="10" id="7Sv-xj-cPg"/>
                                                     <constraint firstItem="vJS-xt-F7y" firstAttribute="leading" secondItem="sQN-39-9YE" secondAttribute="leading" constant="10" id="J7z-br-TCc"/>
-                                                    <constraint firstAttribute="bottom" secondItem="vJS-xt-F7y" secondAttribute="bottom" constant="4" id="TwE-Pb-gHV"/>
+                                                    <constraint firstAttribute="bottom" secondItem="vJS-xt-F7y" secondAttribute="bottom" constant="3" id="TwE-Pb-gHV"/>
                                                     <constraint firstItem="ZBX-aA-NAy" firstAttribute="leading" secondItem="sQN-39-9YE" secondAttribute="leading" constant="10" id="USV-eF-NLc"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZBX-aA-NAy" secondAttribute="trailing" constant="2" id="bJW-QZ-ENv"/>
                                                     <constraint firstAttribute="bottom" secondItem="SU0-ut-uHa" secondAttribute="bottom" constant="5" id="cOZ-jM-ZPG"/>
-                                                    <constraint firstItem="ZBX-aA-NAy" firstAttribute="top" secondItem="sQN-39-9YE" secondAttribute="top" constant="4" id="ecC-8h-Wzx"/>
+                                                    <constraint firstItem="ZBX-aA-NAy" firstAttribute="top" secondItem="sQN-39-9YE" secondAttribute="top" constant="3" id="ecC-8h-Wzx"/>
                                                     <constraint firstAttribute="trailing" secondItem="SU0-ut-uHa" secondAttribute="trailing" constant="2" id="oj6-yq-0Cz"/>
                                                     <constraint firstAttribute="trailing" secondItem="vJS-xt-F7y" secondAttribute="trailing" constant="2" id="t7e-KP-jAg"/>
                                                 </constraints>
