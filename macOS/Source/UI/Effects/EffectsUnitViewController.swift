@@ -57,12 +57,13 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     
     func oneTimeSetup() {
         
-        fxUnitStateObserverRegistry.registerObserver(btnBypass, forFXUnit: effectsUnit)
-        
-//        btnSavePreset.tintFunction = {Colors.functionButtonColor}
-//        presetsMenuIconItem.tintFunction = {Colors.functionButtonColor}
-        
         findThemeableComponents(under: view)
+        
+        presetsMenu?.items.forEach {
+            
+            $0.action = presetsMenuButton.action
+            $0.target = presetsMenuButton.target
+        }
         
         initSubscriptions()
     }
@@ -139,6 +140,8 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     // MARK: Message handling
     
     func initSubscriptions() {
+        
+        fxUnitStateObserverRegistry.registerObserver(btnBypass, forFXUnit: effectsUnit)
         
         // Subscribe to notifications
         messenger.subscribe(to: .effects_unitStateChanged, handler: stateChanged)
@@ -236,12 +239,7 @@ extension EffectsUnitViewController: NSMenuDelegate {
     
     func menuNeedsUpdate(_ menu: NSMenu) {
         
-//        presetsMenuButton.recreateMenu(insertingItemsAt: 1, fromItems: presetsWrapper.userDefinedPresets)
-        
         presetsMenu?.recreateMenu(insertingItemsAt: 0, fromItems: presetsWrapper.userDefinedPresets,
                                  action: presetsMenuButton.action, target: presetsMenuButton.target)
-        
-        // Don't select any items from the EQ presets menu
-//        presetsMenuButton.deselect()
     }
 }
