@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="btnBypass" destination="0Wm-Yf-mhU" id="lt6-Dr-xyx"/>
                 <outlet property="pitchShiftUnitView" destination="Nbf-AE-zAG" id="UXG-p7-MF7"/>
+                <outlet property="presetsMenu" destination="H4F-YF-hmn" id="OYO-0R-YpX"/>
                 <outlet property="presetsMenuButton" destination="kLM-JQ-Lj4" id="gK0-FV-36c"/>
                 <outlet property="presetsMenuIconItem" destination="Oa1-cy-CFz" id="zQi-12-DxR"/>
                 <outlet property="view" destination="rBN-FU-dcW" id="36W-5X-XyO"/>
@@ -232,34 +233,47 @@
                                         <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="SavedSettings"/>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
-                                <menuItem isSeparatorItem="YES" id="Ktx-Xu-UQO"/>
-                                <menuItem title="Normal" id="z18-12-Pj4">
+                                <menuItem title="Load preset" id="4DL-vP-sNz">
                                     <modifierMask key="keyEquivalentModifierMask"/>
+                                    <menu key="submenu" title="Load preset" id="H4F-YF-hmn">
+                                        <items>
+                                            <menuItem isSeparatorItem="YES" id="NwJ-hf-Urk"/>
+                                            <menuItem title="Normal" id="z18-12-Pj4">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Happy little girl" id="i9W-ND-y9c" userLabel="Happy little girl">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Chipmunk" id="fm3-D9-bo7">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="A bit deep" id="b1c-Qq-adH">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Robocop" id="l0a-Wu-0Mg">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem isSeparatorItem="YES" id="qBe-7b-kum"/>
+                                            <menuItem title="+2 8ve" id="g59-qC-UEV">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="+1 8ve" id="OU7-b8-5Et">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="-1 8ve" id="XqJ-BY-a6L">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="-2 8ve" id="eLX-w5-TWx">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
                                 </menuItem>
-                                <menuItem title="Happy little girl" id="i9W-ND-y9c" userLabel="Happy little girl">
+                                <menuItem title="Save new preset ..." id="HRG-XD-ZVz" userLabel="Save new preset">
                                     <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Chipmunk" id="fm3-D9-bo7">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="A bit deep" id="b1c-Qq-adH">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Robocop" id="l0a-Wu-0Mg">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem isSeparatorItem="YES" id="qBe-7b-kum"/>
-                                <menuItem title="+2 8ve" id="g59-qC-UEV">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="+1 8ve" id="OU7-b8-5Et">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="-1 8ve" id="XqJ-BY-a6L">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="-2 8ve" id="eLX-w5-TWx">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                    <connections>
+                                        <action selector="savePresetAction:" target="-2" id="7Kp-kb-GJu"/>
+                                    </connections>
                                 </menuItem>
                             </items>
                             <connections>

@@ -20,7 +20,7 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     // Presets controls
     @IBOutlet weak var presetsMenuButton: NSPopUpButton!
     @IBOutlet weak var presetsMenuIconItem: TintedIconMenuItem!
-    @IBOutlet weak var btnSavePreset: TintedImageButton!
+    @IBOutlet weak var presetsMenu: NSMenu!
     lazy var userPresetsPopover: StringInputPopoverViewController = .create(self)
     
     // Labels
@@ -123,18 +123,15 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     }
     
     // Applies a preset to the effects unit
-    @IBAction func presetsAction(_ sender: AnyObject) {
+    @IBAction func presetsAction(_ sender: NSMenuItem) {
         
-        if let selectedPresetItem = presetsMenuButton.titleOfSelectedItem {
-            
-            effectsUnit.applyPreset(named: selectedPresetItem)
-            initControls()
-        }
+        effectsUnit.applyPreset(named: sender.title)
+        initControls()
     }
     
     // Displays a popover to allow the user to name the new custom preset
     @IBAction func savePresetAction(_ sender: AnyObject) {
-        userPresetsPopover.show(btnSavePreset, .minY)
+        userPresetsPopover.show(presetsMenuButton, .minY)
     }
     
     // ------------------------------------------------------------------------
@@ -239,9 +236,12 @@ extension EffectsUnitViewController: NSMenuDelegate {
     
     func menuNeedsUpdate(_ menu: NSMenu) {
         
-        presetsMenuButton.recreateMenu(insertingItemsAt: 1, fromItems: presetsWrapper.userDefinedPresets)
+//        presetsMenuButton.recreateMenu(insertingItemsAt: 1, fromItems: presetsWrapper.userDefinedPresets)
+        
+        presetsMenu?.recreateMenu(insertingItemsAt: 0, fromItems: presetsWrapper.userDefinedPresets,
+                                 action: presetsMenuButton.action, target: presetsMenuButton.target)
         
         // Don't select any items from the EQ presets menu
-        presetsMenuButton.deselect()
+//        presetsMenuButton.deselect()
     }
 }

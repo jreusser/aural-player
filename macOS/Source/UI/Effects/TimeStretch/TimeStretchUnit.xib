@@ -10,6 +10,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="TimeStretchUnitViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnBypass" destination="0b3-aI-4fr" id="b9o-1J-3tO"/>
+                <outlet property="presetsMenu" destination="OBh-pH-csn" id="OZp-im-tu6"/>
                 <outlet property="presetsMenuButton" destination="SzE-Ik-872" id="ud1-pS-ufy"/>
                 <outlet property="presetsMenuIconItem" destination="HQi-sq-AI8" id="zbw-Qt-GBa"/>
                 <outlet property="timeStretchUnitView" destination="ux8-Uv-FBN" id="3Qh-04-Roz"/>
@@ -201,40 +202,53 @@
                                         <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="SavedSettings"/>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
-                                <menuItem isSeparatorItem="YES" id="rOe-XR-fw1"/>
-                                <menuItem title="Too much coffee" id="mmt-Dd-b44">
+                                <menuItem title="Load preset" id="Fzv-K8-hJF">
                                     <modifierMask key="keyEquivalentModifierMask"/>
+                                    <menu key="submenu" title="Load preset" id="OBh-pH-csn">
+                                        <items>
+                                            <menuItem isSeparatorItem="YES" id="ESS-cV-r4L"/>
+                                            <menuItem title="Too much coffee" id="mmt-Dd-b44">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Speedy Gonzales" id="q9J-sx-rSG">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Laid back" id="GPW-hb-kdb">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Slow like molasses" id="NRl-aD-c9J">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem isSeparatorItem="YES" id="WKP-T0-DxG"/>
+                                            <menuItem title="0.25x" id="hSA-w4-MCe">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="0.5x" id="Yvv-Gk-GhR">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="0.75x" id="8nd-zo-o7k">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Normal (1x)" id="9JQ-Gn-8Zv">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="2x" id="koQ-nP-tQh">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="3x" id="Kmk-wS-dmE">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="4x" id="Axx-qm-dVJ">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
                                 </menuItem>
-                                <menuItem title="Speedy Gonzales" id="q9J-sx-rSG">
+                                <menuItem title="Save new preset ..." id="cei-yu-qb3" userLabel="Save new preset">
                                     <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Laid back" id="GPW-hb-kdb">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Slow like molasses" id="NRl-aD-c9J">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem isSeparatorItem="YES" id="WKP-T0-DxG"/>
-                                <menuItem title="0.25x" id="hSA-w4-MCe">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="0.5x" id="Yvv-Gk-GhR">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="0.75x" id="8nd-zo-o7k">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="Normal (1x)" id="9JQ-Gn-8Zv">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="2x" id="koQ-nP-tQh">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="3x" id="Kmk-wS-dmE">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="4x" id="Axx-qm-dVJ">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                    <connections>
+                                        <action selector="savePresetAction:" target="-2" id="VH1-sK-c5k"/>
+                                    </connections>
                                 </menuItem>
                             </items>
                             <connections>

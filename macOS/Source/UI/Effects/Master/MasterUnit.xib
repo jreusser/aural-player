@@ -14,6 +14,7 @@
                 <outlet property="btnBypass" destination="moJ-jS-aMf" id="1c7-3L-xKO"/>
                 <outlet property="btnRememberSettings" destination="zQa-Sk-jsP" id="c8I-h1-6Po"/>
                 <outlet property="masterUnitView" destination="0Bs-7g-5at" id="YDY-Lh-KOG"/>
+                <outlet property="presetsMenu" destination="GNL-Vn-rAm" id="Tw6-X2-3Wj"/>
                 <outlet property="presetsMenuButton" destination="uqP-oj-xNY" id="Fth-M5-zlm"/>
                 <outlet property="presetsMenuIconItem" destination="bE8-u7-FFo" id="Rba-vo-6zI"/>
                 <outlet property="view" destination="0Bs-7g-5at" id="Vo0-Tr-kPb"/>
@@ -38,6 +39,16 @@
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="SavedSettings"/>
                                     </userDefinedRuntimeAttributes>
+                                </menuItem>
+                                <menuItem title="Load preset" id="3Rk-uS-j0Z">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                    <menu key="submenu" title="Load preset" id="GNL-Vn-rAm"/>
+                                </menuItem>
+                                <menuItem title="Save new preset ..." id="AFX-98-nqE" userLabel="Save new preset">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                    <connections>
+                                        <action selector="savePresetAction:" target="-2" id="xBK-Xf-wur"/>
+                                    </connections>
                                 </menuItem>
                             </items>
                             <connections>

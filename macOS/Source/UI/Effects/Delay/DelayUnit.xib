@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="btnBypass" destination="0Oi-jb-bmq" id="dap-fq-cQl"/>
                 <outlet property="delayUnitView" destination="tFM-tl-kaj" id="vJA-5O-k2M"/>
+                <outlet property="presetsMenu" destination="TaJ-YU-Bx8" id="5aU-Wz-oW9"/>
                 <outlet property="presetsMenuButton" destination="aWr-na-Gft" id="NtQ-RJ-K45"/>
                 <outlet property="presetsMenuIconItem" destination="yH6-SM-gen" id="fc8-1J-E4b"/>
                 <outlet property="view" destination="eXu-49-wDq" id="ENz-f9-LMp"/>
@@ -238,22 +239,35 @@
                                         <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="SavedSettings"/>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
-                                <menuItem isSeparatorItem="YES" id="f9r-61-lQS"/>
-                                <menuItem title="Slight echo" id="xLb-3H-K5F">
+                                <menuItem title="Load preset" id="Vqs-mf-vpC">
                                     <modifierMask key="keyEquivalentModifierMask"/>
+                                    <menu key="submenu" title="Load preset" id="TaJ-YU-Bx8">
+                                        <items>
+                                            <menuItem isSeparatorItem="YES" id="hNf-d1-Fnb"/>
+                                            <menuItem title="Slight echo" id="xLb-3H-K5F">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem isSeparatorItem="YES" id="HbR-4z-rgz"/>
+                                            <menuItem title="1/4 second delay" id="BBw-bn-PG8">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="1/2 second delay" id="3g9-ks-syT">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="1 second delay" id="XGU-cD-xdf">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="2 seconds delay" id="7Cr-5v-lPI">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
                                 </menuItem>
-                                <menuItem isSeparatorItem="YES" id="HbR-4z-rgz"/>
-                                <menuItem title="1/4 second delay" id="BBw-bn-PG8">
+                                <menuItem title="Save new preset ..." id="nes-SU-Hro" userLabel="Save new preset">
                                     <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="1/2 second delay" id="3g9-ks-syT">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="1 second delay" id="XGU-cD-xdf">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                                <menuItem title="2 seconds delay" id="7Cr-5v-lPI">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                    <connections>
+                                        <action selector="savePresetAction:" target="-2" id="VqW-Wb-tEQ"/>
+                                    </connections>
                                 </menuItem>
                             </items>
                             <connections>

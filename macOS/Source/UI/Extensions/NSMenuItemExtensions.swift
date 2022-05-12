@@ -29,15 +29,21 @@ extension NSMenu {
         
         // Recreate the user-defined color scheme items
         titles.forEach {
-
+            
             let item: NSMenuItem = NSMenuItem(title: $0, action: action, keyEquivalent: "")
-            item.target = target
+//            item.target = target
             
             if let level = indentationLevel {
                 item.indentationLevel = level
             }
 
             insertItem(item, at: index)
+        }
+        
+        items.forEach {
+            
+            $0.action = action
+            $0.target = target
         }
     }
     

@@ -163,9 +163,7 @@ class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver, 
     }
     
     // Applies a preset to the effects unit
-    @IBAction override func presetsAction(_ sender: AnyObject) {
-        
-        guard let selectedPresetItem = presetsMenuButton.titleOfSelectedItem else {return}
+    @IBAction override func presetsAction(_ sender: NSMenuItem) {
         
         for editor in bandEditors {
             editor.destroy()
@@ -173,7 +171,7 @@ class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver, 
         
         bandEditors.removeAll()
         
-        effectsUnit.applyPreset(named: selectedPresetItem)
+        effectsUnit.applyPreset(named: sender.title)
         bandsTableView.reloadData()
         updateSummary()
         filterUnitView.redrawChart()
