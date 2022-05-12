@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CompactPlayQueueViewController" customModule="Aural" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="PlayQueueListViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="favoritesMenuItem" destination="ccr-O5-bNr" id="GrD-P9-yNO"/>
                 <outlet property="infoMenuItem" destination="E94-FX-PuM" id="c4A-Qo-w0t"/>
@@ -199,7 +199,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
-                                    <action trigger="doubleAction" selector="playNowAction:" target="-2" id="ag0-bH-OaU"/>
+                                    <action trigger="doubleAction" selector="playSelectedTrackAction:" target="-2" id="5hc-8n-tRD"/>
                                     <outlet property="dataSource" destination="-2" id="Mwz-mF-1kU"/>
                                     <outlet property="delegate" destination="-2" id="ued-SD-WDl"/>
                                     <outlet property="menu" destination="a5D-eN-GSW" id="IPH-hS-neU"/>
@@ -230,15 +230,9 @@
             <items>
                 <menuItem title="  Play now" image="play" catalog="system" id="jTl-IJ-icl">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="playNowAction:" target="-2" id="m1R-dI-vVv"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="  Play next" image="list.dash" catalog="system" id="557-bs-7lR">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="playNextAction:" target="-2" id="Mrr-2i-hDv"/>
-                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="n6M-3F-fnb"/>
                 <menuItem title="  Copy these tracks to playlist" image="doc.on.clipboard" catalog="system" id="NKJ-IV-vNC" userLabel="Copy these tracks to playlist">
@@ -259,47 +253,26 @@
                 </menuItem>
                 <menuItem title="  Create a new playlist with these tracks" image="text.badge.plus" catalog="system" id="Try-Ah-q1X" userLabel="Remove tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="createPlaylistWithTracksAction:" target="-2" id="sid-Cg-AtF"/>
-                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="me0-dP-F1Q"/>
                 <menuItem title="  Remove these tracks" image="xmark.bin" catalog="system" id="hBY-5o-I8Z" userLabel="Remove tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="removeTracksAction:" target="-2" id="WBa-Ke-foe"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="  Crop selected tracks" image="scissors" catalog="system" id="FVD-zO-B89" userLabel="Crop selected tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="cropSelectionAction:" target="-2" id="yRP-ht-kJ8"/>
-                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="KDo-db-t71"/>
                 <menuItem title="  Move these tracks up" image="arrow.up" catalog="system" id="Q39-Yy-l6l" userLabel="Move tracks up">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="moveTracksUpAction:" target="-2" id="6dC-NV-hw6"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks down" image="arrow.down" catalog="system" id="UXX-38-q2a" userLabel="Move tracks down">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="moveTracksDownAction:" target="-2" id="tQR-DF-WNc"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks to the top" image="arrow.up.to.line.alt" catalog="system" id="7v6-tI-nVD" userLabel="Move tracks top">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="moveTracksToTopAction:" target="-2" id="nZx-TU-Asb"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks to the bottom" image="arrow.down.to.line.alt" catalog="system" id="QwL-kJ-9Yv" userLabel="Move tracks bottom">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="moveTracksToBottomAction:" target="-2" id="Gxk-HC-Ocy"/>
-                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="vxS-3G-8Vh"/>
                 <menuItem title="  Add this track to Favorites" image="heart" catalog="system" id="ccr-O5-bNr" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">
@@ -310,22 +283,13 @@
                         <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="heart" catalog="system"/>
                         <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="heart.slash" catalog="system"/>
                     </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="favoritesAction:" target="-2" id="GXf-iY-Ygs"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="  Get detailed track info" id="E94-FX-PuM">
                     <imageReference key="image" image="info" catalog="system" symbolScale="large"/>
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="trackInfoAction:" target="-2" id="stg-3Z-TT0"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="  Show these tracks in Finder" image="ShowInFinder" id="2va-tB-KRm" userLabel="Show track in Finder">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="showInFinderAction:" target="-2" id="lzU-uF-hyE"/>
-                    </connections>
                 </menuItem>
             </items>
             <connections>

@@ -167,7 +167,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
-                                    <action trigger="doubleAction" selector="playNowAction:" target="-2" id="ag0-bH-OaU"/>
+                                    <action trigger="doubleAction" selector="playSelectedTrackAction:" target="-2" id="bTL-RG-q7Y"/>
                                     <outlet property="dataSource" destination="-2" id="Mwz-mF-1kU"/>
                                     <outlet property="delegate" destination="-2" id="ued-SD-WDl"/>
                                     <outlet property="menu" destination="a5D-eN-GSW" id="IPH-hS-neU"/>

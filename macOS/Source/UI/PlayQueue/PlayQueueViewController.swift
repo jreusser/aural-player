@@ -113,6 +113,10 @@ class PlayQueueViewController: TrackListViewController, FontSchemeObserver, Colo
     
     // MARK: Commands --------------------------------------------------------------------------------------------------------
     
+    @IBAction func playSelectedTrackAction(_ sender: Any) {
+        playSelectedTrack()
+    }
+    
     func playSelectedTrack() {
         
         if let firstSelectedRow = selectedRows.min() {
