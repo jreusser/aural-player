@@ -21,10 +21,7 @@ class WindowCornerRadiusMenuItemView: NSView {
     private lazy var uiState: WindowAppearanceState = windowAppearanceState
     
     override func awakeFromNib() {
-        
-        if lblCornerRadiusCaption != nil {
-            [lblCornerRadius, lblCornerRadiusCaption].forEach {$0.font = .menuFont}
-        }
+        [lblCornerRadius, lblCornerRadiusCaption].forEach {$0?.font = .menuFont}
     }
     
     @IBAction func cornerRadiusStepperAction(_ sender: NSStepper) {

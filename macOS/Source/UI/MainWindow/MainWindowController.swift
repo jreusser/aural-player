@@ -40,6 +40,14 @@ class MainWindowController: NSWindowController {
                                                                                     ],
                                                                                     button: btnTogglePlayQueue)
     
+    private lazy var btnTogglePlaylistsStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingPlaylists,
+                                                                                    mappings: [
+                                                                                        
+                                                                                        ButtonStateMachine.StateMapping(state: true, image: .imgPlaylist, colorProperty: \.buttonColor, toolTip: "Hide Playlists"),
+                                                                                        ButtonStateMachine.StateMapping(state: false, image: .imgPlaylist, colorProperty: \.inactiveControlColor, toolTip: "Show Playlists")
+                                                                                    ],
+                                                                                    button: btnTogglePlaylists)
+    
     private lazy var btnToggleEffectsStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingEffects,
                                                                                     mappings: [
                                                                                         
@@ -90,8 +98,7 @@ class MainWindowController: NSWindowController {
         
         containerBox.addSubview(playerViewController.view)
 
-        btnTogglePlayQueueStateMachine.setState(windowLayoutsManager.isShowingPlayQueue)
-        btnToggleEffectsStateMachine.setState(windowLayoutsManager.isShowingEffects)
+        windowLayoutChanged()
         
         btnToggleEffects.weight = .black
         btnTogglePlayQueue.weight = .black
@@ -183,6 +190,7 @@ class MainWindowController: NSWindowController {
     func windowLayoutChanged() {
 
         btnTogglePlayQueueStateMachine.setState(windowLayoutsManager.isShowingPlayQueue)
+        btnTogglePlaylistsStateMachine.setState(windowLayoutsManager.isShowingPlaylists)
         btnToggleEffectsStateMachine.setState(windowLayoutsManager.isShowingEffects)
     }
     

@@ -55,15 +55,10 @@ class PlaylistViewController: TrackListViewController {
             
         case .cid_index:
             
-            if track == playQueueDelegate.currentTrack {
-                return builder.withImage(image: .imgPlayFilled, inColor: systemColorScheme.activeControlColor)
-                
-            } else {
-                return builder.withText(text: "\(row + 1)",
+            return builder.withText(text: "\(row + 1)",
                                                    inFont: systemFontScheme.playlist.trackTextFont, andColor: systemColorScheme.tertiaryTextColor,
                                                    selectedTextColor: systemColorScheme.tertiarySelectedTextColor)
-            }
-            
+
         case .cid_trackName:
             
             let titleAndArtist = track.titleAndArtist

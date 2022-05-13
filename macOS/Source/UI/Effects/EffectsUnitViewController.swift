@@ -60,6 +60,8 @@ class EffectsUnitViewController: NSViewController, Destroyable {
         
         findThemeableComponents(under: view)
         
+        presetsMenuButton.font = .menuFont
+        
         presetsMenu?.items.forEach {
             
             $0.action = presetsMenuButton.action

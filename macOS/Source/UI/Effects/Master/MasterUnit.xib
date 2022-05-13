@@ -8,8 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MasterUnitViewController" customModule="Aural" customModuleProvider="target">
             <connections>
-                <outlet property="audioUnitsClipView" destination="d25-ls-j0N" id="nv4-40-fNB"/>
-                <outlet property="audioUnitsScrollView" destination="T9w-gh-2Hp" id="KZI-eb-PtV"/>
                 <outlet property="audioUnitsTable" destination="eil-eP-SY2" id="Rgo-Gw-4YX"/>
                 <outlet property="btnBypass" destination="moJ-jS-aMf" id="1c7-3L-xKO"/>
                 <outlet property="btnRememberSettings" destination="zQa-Sk-jsP" id="c8I-h1-6Po"/>
