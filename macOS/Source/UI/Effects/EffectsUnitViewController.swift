@@ -181,9 +181,7 @@ class EffectsUnitViewController: NSViewController, Destroyable {
 //        messenger.subscribe(to: .effects_changeSuppressedUnitStateColor, handler: changeSuppressedUnitStateColor(_:))
     }
     
-    func stateChanged() {
-//        btnBypass.setUnitState(effectsUnit.state)
-    }
+    func stateChanged() {}
     
     // ------------------------------------------------------------------------
     

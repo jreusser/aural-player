@@ -32,28 +32,35 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton, TintableFXUnitStateObse
         
         offStateTooltip = offStateTooltip ?? "Activate this effects unit"
         onStateTooltip = onStateTooltip ?? "Deactivate this effects unit"
-        mixedStateTooltip = offStateTooltip
+        mixedStateTooltip = "Re-activate this effects unit"
+    }
+    
+    func unitStateChanged(to newState: EffectsUnitState) {
+        
+        switch newState {
+            
+        case .active:
+            
+            contentTintColor = systemColorScheme.activeControlColor
+            toolTip = onStateTooltip
+            
+        case .bypassed:
+            
+            contentTintColor = systemColorScheme.inactiveControlColor
+            toolTip = offStateTooltip
+            
+        case .suppressed:
+            
+            contentTintColor = systemColorScheme.suppressedControlColor
+            toolTip = mixedStateTooltip
+        }
     }
     
     // Sets the button state to be "Off"
-    override func off() {
-        
-        toolTip = offStateTooltip
-        state = .off
-    }
-    
+    override func off() {}
+
     // Sets the button state to be "On"
-    override func on() {
-        
-        toolTip = onStateTooltip
-        state = .on
-    }
-    
-    func mixed() {
-        
-        toolTip = mixedStateTooltip
-        state = .mixed
-    }
+    override func on() {}
 }
 
 class FilterBandTriStateBypassButton: NSButton, TintableFXUnitStateObserver {
