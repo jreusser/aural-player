@@ -152,7 +152,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" selectedItem="kol-e3-IhW" id="zvl-G7-Udt">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="11" name="Play-Regular"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" showsStateColumn="NO" id="IUZ-r6-gTD">
                                         <items>
                                             <menuItem image="DisclosureTriangle-Expanded" hidden="YES" id="kol-e3-IhW" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
@@ -197,7 +197,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" selectedItem="y5C-Gc-KwA" id="3SJ-Nr-rzf">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="11" name="Play-Regular"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" showsStateColumn="NO" id="nc2-SA-FA7">
                                         <items>
                                             <menuItem image="DisclosureTriangle-Expanded" hidden="YES" id="y5C-Gc-KwA" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">

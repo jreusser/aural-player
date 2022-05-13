@@ -117,6 +117,10 @@ extension NSView {
         self.frame.origin.x += distance
     }
     
+    func moveX(to xPos: CGFloat) {
+        self.frame.origin.x = xPos
+    }
+    
     // MARK - Static functions
     
     static func showViews(_ views: NSView...) {

@@ -19,14 +19,8 @@ extension NSMenu {
                       action: Selector? = nil, target: AnyObject? = nil,
                       indentationLevel: Int? = nil) {
         
-        print("\n\n*** RECREATING ... index = \(index), titles: \(titles), action: \(action), target: \(target), indentLevel: \(indentationLevel)")
-        
-        // Remove all user-defined scheme items (i.e. all items before the first separator)
-        print("\nEntering loop")
-        
+        // Remove all user-defined preset items (i.e. all items before the first separator)
         while index < items.count, let item = item(at: index), !item.isSeparatorItem {
-            
-            print("\nEntered loop, removing at index: \(index), item = \(item.title)")
             removeItem(at: index)
         }
         

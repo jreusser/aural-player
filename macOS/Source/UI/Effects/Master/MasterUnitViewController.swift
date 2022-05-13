@@ -18,9 +18,6 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
     // MARK: UI fields
     
     @IBOutlet weak var masterUnitView: MasterUnitView!
-    
-    @IBOutlet weak var audioUnitsScrollView: NSScrollView!
-    @IBOutlet weak var audioUnitsClipView: NSClipView!
     @IBOutlet weak var audioUnitsTable: NSTableView!
     
     @IBOutlet weak var btnRememberSettings: TintedImageButton!
@@ -190,16 +187,20 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
             if soundProfiles.hasFor(newTrack) {
                 
                 messenger.publish(.effects_updateEffectsUnitView, payload: EffectsUnitType.master)
+                
                 btnRememberSettingsStateMachine.setState(true)
                 
             } else {
                 btnRememberSettingsStateMachine.setState(false)
             }
-            
-            btnRememberSettings.show()
+
+            // HACK: To make the tool tip appear (without hiding / showing)
+            btnRememberSettings.moveX(to: 14)
             
         } else {
-            btnRememberSettings.hide()
+            
+            // HACK: To make the tool tip disappear (without hiding / showing)
+            btnRememberSettings.moveX(to: -50)
         }
     }
     
