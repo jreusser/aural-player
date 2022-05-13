@@ -15,12 +15,13 @@ extension PlayQueueViewController: NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {
         
         let oneRowSelected = selectedRowCount == 1
+        let playingTrackSelected = playQueueDelegate.currentTrackIndex == selectedRows.first
         
         [playNowMenuItem, favoritesMenuItem, infoMenuItem].forEach {
             $0.enableIf(oneRowSelected)
         }
         
-        playNextMenuItem.enableIf(oneRowSelected && playQueueDelegate.currentTrack != nil)
+        playNextMenuItem.enableIf(oneRowSelected && playQueueDelegate.currentTrack != nil && !playingTrackSelected)
         
         // TODO: playlist names menu should have a separate delegate so that the menu
         // is not unnecessarily updated until required.
@@ -41,12 +42,40 @@ extension PlayQueueViewController: NSMenuDelegate {
         playSelectedTrack()
     }
     
+    @IBAction func playNextAction(_ sender: NSMenuItem) {
+        messenger.publish(.playQueue_playNext)
+    }
+    
     @IBAction func copyTracksToPlaylistAction(_ sender: NSMenuItem) {
         messenger.publish(CopyTracksToPlaylistCommand(tracks: selectedTracks, destinationPlaylistName: sender.title))
     }
     
     @IBAction func createPlaylistWithTracksAction(_ sender: NSMenuItem) {
         messenger.publish(.playlists_createPlaylistFromTracks, payload: selectedTracks)
+    }
+    
+    @IBAction func removeTracksAction(_ sender: Any) {
+        messenger.publish(.playQueue_removeTracks)
+    }
+    
+    @IBAction func cropSelectionAction(_ sender: Any) {
+        messenger.publish(.playQueue_cropSelection)
+    }
+    
+    @IBAction func moveTracksUpAction(_ sender: Any) {
+        messenger.publish(.playQueue_moveTracksUp)
+    }
+    
+    @IBAction func moveTracksDownAction(_ sender: Any) {
+        messenger.publish(.playQueue_moveTracksDown)
+    }
+    
+    @IBAction func moveTracksToTopAction(_ sender: Any) {
+        messenger.publish(.playQueue_moveTracksToTop)
+    }
+
+    @IBAction func moveTracksToBottomAction(_ sender: Any) {
+        messenger.publish(.playQueue_moveTracksToBottom)
     }
     
     // Adds/removes the currently playing track, if there is one, to/from the "Favorites" list
@@ -81,7 +110,7 @@ extension PlayQueueViewController: NSMenuDelegate {
     @IBAction func trackInfoAction(_ sender: AnyObject) {
         
         // If there is a track currently playing, load detailed track info and toggle the popover view
-        guard let selectedTrack = currentViewController.selectedTracks.first else {return}
+        guard let selectedTrack = selectedTracks.first else {return}
                 
         trackReader.loadAuxiliaryMetadata(for: selectedTrack)
         TrackInfoViewContext.displayedTrack = selectedTrack
@@ -90,6 +119,6 @@ extension PlayQueueViewController: NSMenuDelegate {
     
     // Shows the selected tracks in Finder.
     @IBAction func showInFinderAction(_ sender: NSMenuItem) {
-        URL.showInFinder(currentViewController.selectedTracks.map {$0.file})
+        URL.showInFinder(selectedTracks.map {$0.file})
     }
 }

@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -594,79 +593,10 @@
             <point key="canvasLocation" x="293" y="564"/>
         </customView>
         <customObject id="5I3-5u-fJw" customClass="PlayQueueTableViewController" customModule="Aural" customModuleProvider="target"/>
-        <menu autoenablesItems="NO" id="T92-uh-ND6" userLabel="Context Menu">
-            <items>
-                <menuItem title="  Play now" image="play" catalog="system" id="63y-s7-pjN">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="  Play next" image="list.dash" catalog="system" id="8e7-6k-PZY">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="H8m-w1-cXm"/>
-                <menuItem title="  Copy these tracks to playlist" image="doc.on.clipboard" catalog="system" id="yvs-3C-JjY" userLabel="Copy these tracks to playlist">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="  Copy these tracks to playlist" id="s7m-tu-TzV">
-                        <items>
-                            <menuItem title="Item 1" id="YdE-e3-Fxp">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Item 2" id="X7c-TG-HVC">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Item 3" id="a0O-pN-H2s">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="  Create a new playlist with these tracks" image="text.badge.plus" catalog="system" id="4c9-ai-xZ9" userLabel="Remove tracks">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="eWt-gh-Sl1"/>
-                <menuItem title="  Remove these tracks" image="xmark.bin" catalog="system" id="W20-ud-DJl" userLabel="Remove tracks">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="  Crop selected tracks" image="scissors" catalog="system" id="EdE-Cl-K21" userLabel="Crop selected tracks">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="yev-T5-KIS"/>
-                <menuItem title="  Move these tracks up" image="arrow.up" catalog="system" id="na9-9V-6Cp" userLabel="Move tracks up">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="  Move these tracks down" image="arrow.down" catalog="system" id="BlE-Nn-dBG" userLabel="Move tracks down">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="  Move these tracks to the top" image="arrow.up.to.line.alt" catalog="system" id="t0P-fw-YKf" userLabel="Move tracks top">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="  Move these tracks to the bottom" image="arrow.down.to.line.alt" catalog="system" id="1ys-Kk-yDk" userLabel="Move tracks bottom">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="5qw-NP-8as"/>
-                <menuItem title="  Add this track to Favorites" image="heart" catalog="system" id="Zkj-gE-mNJ" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="offStateTitle" value="  Add this track to Favorites"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="onStateTitle" value="  Remove this track from Favorites"/>
-                        <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="heart" catalog="system"/>
-                        <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="heart.slash" catalog="system"/>
-                    </userDefinedRuntimeAttributes>
-                </menuItem>
-                <menuItem title="  Get detailed track info" id="fOd-lr-XIz">
-                    <imageReference key="image" image="info" catalog="system" symbolScale="large"/>
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="  Show these tracks in Finder" image="ShowInFinder" id="Bz2-DS-Y5S" userLabel="Show track in Finder">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-            </items>
-            <point key="canvasLocation" x="-379" y="233"/>
-        </menu>
     </objects>
     <resources>
         <image name="ScrollToBottom" width="33" height="37"/>
         <image name="ScrollToTop" width="33" height="37"/>
-        <image name="ShowInFinder" width="15" height="15"/>
         <image name="Sort" width="35" height="25"/>
         <image name="arrow.down" catalog="system" width="13" height="14"/>
         <image name="arrow.down.to.line.alt" catalog="system" width="13" height="16"/>
@@ -676,17 +606,11 @@
         <image name="arrow.up.to.line.alt" catalog="system" width="13" height="16"/>
         <image name="arrowtriangle.down" catalog="system" width="14" height="13"/>
         <image name="arrowtriangle.up" catalog="system" width="14" height="13"/>
-        <image name="doc.on.clipboard" catalog="system" width="16" height="18"/>
-        <image name="heart" catalog="system" width="16" height="14"/>
-        <image name="heart.slash" catalog="system" width="16" height="15"/>
-        <image name="info" catalog="system" width="10" height="15"/>
         <image name="list.dash" catalog="system" width="16" height="11"/>
         <image name="magnifyingglass" catalog="system" width="15" height="15"/>
-        <image name="play" catalog="system" width="12" height="13"/>
         <image name="plus.rectangle.on.folder" catalog="system" width="19" height="15"/>
         <image name="scissors" catalog="system" width="20" height="15"/>
         <image name="square.slash" catalog="system" width="15" height="15"/>
-        <image name="text.badge.plus" catalog="system" width="16" height="14"/>
         <image name="text.below.photo.rtl" catalog="system" width="17" height="19"/>
         <image name="trash" catalog="system" width="15" height="17"/>
         <image name="xmark" catalog="system" width="14" height="13"/>

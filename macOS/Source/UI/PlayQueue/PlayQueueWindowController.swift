@@ -86,20 +86,22 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
         
         messenger.subscribe(to: .playQueue_removeTracks, handler: removeTracks)
         messenger.subscribe(to: .playQueue_cropSelection, handler: cropSelection)
+        messenger.subscribe(to: .playQueue_removeAllTracks, handler: removeAllTracks)
+        
+        messenger.subscribe(to: .playQueue_playNext, handler: playNext)
+        
+        messenger.subscribe(to: .playQueue_moveTracksUp, handler: moveTracksUp)
+        messenger.subscribe(to: .playQueue_moveTracksDown, handler: moveTracksDown)
+        messenger.subscribe(to: .playQueue_moveTracksToTop, handler: moveTracksToTop)
+        messenger.subscribe(to: .playQueue_moveTracksToBottom, handler: moveTracksToBottom)
         
         messenger.subscribe(to: .playQueue_exportAsPlaylistFile, handler: exportAsPlaylistFile)
-        messenger.subscribe(to: .playQueue_removeAllTracks, handler: removeAllTracks)
         
         messenger.subscribeAsync(to: .playQueue_startedAddingTracks, handler: startedAddingTracks)
         messenger.subscribeAsync(to: .playQueue_doneAddingTracks, handler: doneAddingTracks)
         
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
         messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: updateSummary)
-        
-        messenger.subscribeAsync(to: .playQueue_moveTracksUp, handler: moveTracksUp)
-        messenger.subscribeAsync(to: .playQueue_moveTracksDown, handler: moveTracksDown)
-        messenger.subscribeAsync(to: .playQueue_moveTracksToTop, handler: moveTracksToTop)
-        messenger.subscribeAsync(to: .playQueue_moveTracksToBottom, handler: moveTracksToBottom)
         
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: updateSummary)
         

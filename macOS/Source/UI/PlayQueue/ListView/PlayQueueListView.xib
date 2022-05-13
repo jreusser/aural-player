@@ -236,6 +236,9 @@
                 </menuItem>
                 <menuItem title="  Play next" image="list.dash" catalog="system" id="557-bs-7lR">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="playNextAction:" target="-2" id="RW8-ow-wzS"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="n6M-3F-fnb"/>
                 <menuItem title="  Copy these tracks to playlist" image="doc.on.clipboard" catalog="system" id="NKJ-IV-vNC" userLabel="Copy these tracks to playlist">
@@ -263,22 +266,40 @@
                 <menuItem isSeparatorItem="YES" id="me0-dP-F1Q"/>
                 <menuItem title="  Remove these tracks" image="xmark.bin" catalog="system" id="hBY-5o-I8Z" userLabel="Remove tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="removeTracksAction:" target="-2" id="RNw-mW-LG4"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Crop selected tracks" image="scissors" catalog="system" id="FVD-zO-B89" userLabel="Crop selected tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="cropSelectionAction:" target="-2" id="9Y1-fH-8aX"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="KDo-db-t71"/>
                 <menuItem title="  Move these tracks up" image="arrow.up" catalog="system" id="Q39-Yy-l6l" userLabel="Move tracks up">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="moveTracksUpAction:" target="-2" id="Wjm-Vm-Izi"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks down" image="arrow.down" catalog="system" id="UXX-38-q2a" userLabel="Move tracks down">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="moveTracksDownAction:" target="-2" id="y4T-rc-tuT"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks to the top" image="arrow.up.to.line.alt" catalog="system" id="7v6-tI-nVD" userLabel="Move tracks top">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="moveTracksToTopAction:" target="-2" id="d2v-s9-3EW"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks to the bottom" image="arrow.down.to.line.alt" catalog="system" id="QwL-kJ-9Yv" userLabel="Move tracks bottom">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="moveTracksToBottomAction:" target="-2" id="lkd-aa-iL8"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="vxS-3G-8Vh"/>
                 <menuItem title="  Add this track to Favorites" image="heart" catalog="system" id="ccr-O5-bNr" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">

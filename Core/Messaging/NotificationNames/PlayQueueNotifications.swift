@@ -65,6 +65,9 @@ extension Notification.Name {
     // Commands the playlist to initiate playback of a selected item.
     static let playQueue_playSelectedTrack = Notification.Name("playQueue_playSelectedTrack")
     
+    // Context-menu action to play the selected track next.
+    static let playQueue_playNext = Notification.Name("playQueue_playNext")
+    
     static let playQueue_moveTracksUp = Notification.Name("playQueue_moveTracksUp")
     static let playQueue_moveTracksDown = Notification.Name("playQueue_moveTracksDown")
     static let playQueue_moveTracksToTop = Notification.Name("playQueue_moveTracksToTop")
