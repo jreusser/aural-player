@@ -362,7 +362,7 @@ class EQSliderConstantColorPreviewCell: EQSliderCell {
 //    }
 }
 
-class PlaylistPreviewTabButtonCell: PlaylistViewsButtonCell {
+class PlaylistPreviewTabButtonCell: TrackListViewsButtonCell {
     
     var tabButtonTextColor: NSColor = NSColor.white
     var selectedTabButtonTextColor: NSColor = NSColor.white

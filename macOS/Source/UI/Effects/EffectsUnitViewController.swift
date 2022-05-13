@@ -20,6 +20,7 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     // Presets controls
     @IBOutlet weak var presetsMenuButton: NSPopUpButton!
     @IBOutlet weak var presetsMenuIconItem: TintedIconMenuItem!
+    @IBOutlet weak var loadPresetsMenuItem: NSMenuItem!
     @IBOutlet weak var presetsMenu: NSMenu!
     lazy var userPresetsPopover: StringInputPopoverViewController = .create(self)
     
@@ -124,7 +125,7 @@ class EffectsUnitViewController: NSViewController, Destroyable {
     }
     
     // Applies a preset to the effects unit
-    @IBAction func presetsAction(_ sender: NSMenuItem) {
+    @IBAction func presetsAction(_ sender: AnyObject) {
         
         effectsUnit.applyPreset(named: sender.title)
         initControls()
@@ -229,7 +230,14 @@ extension EffectsUnitViewController: NSMenuDelegate {
     
     func menuNeedsUpdate(_ menu: NSMenu) {
         
-        presetsMenu?.recreateMenu(insertingItemsAt: 0, fromItems: presetsWrapper.userDefinedPresets,
-                                 action: presetsMenuButton.action, target: presetsMenuButton.target)
+        guard presetsWrapper.hasAnyPresets else {
+
+            loadPresetsMenuItem?.disable()
+            return
+        }
+
+        loadPresetsMenuItem?.enable()
+        presetsMenu.recreateMenu(insertingItemsAt: 0, fromItems: presetsWrapper.userDefinedPresets,
+                                 action: #selector(presetsAction(_:)), target: self)
     }
 }

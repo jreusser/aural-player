@@ -14,6 +14,8 @@ protocol PresetsWrapperProtocol {
     var userDefinedPresets: [EffectsUnitPreset] {get}
     var systemDefinedPresets: [EffectsUnitPreset] {get}
     
+    var hasAnyPresets: Bool {get}
+    
     func preset(named name: String) -> EffectsUnitPreset?
     
     func deletePresets(atIndices indices: IndexSet)
@@ -32,10 +34,14 @@ class PresetsWrapper<T: EffectsUnitPreset, U: EffectsUnitPresets<T>>: PresetsWra
     }
     
     var userDefinedPresets: [EffectsUnitPreset] {
-        return presets.userDefinedObjects
+        presets.userDefinedObjects
     }
     var systemDefinedPresets: [EffectsUnitPreset] {
-        return presets.systemDefinedObjects
+        presets.systemDefinedObjects
+    }
+    
+    var hasAnyPresets: Bool {
+        presets.systemDefinedObjects.isNonEmpty || presets.userDefinedObjects.isNonEmpty
     }
     
     func preset(named name: String) -> EffectsUnitPreset? {

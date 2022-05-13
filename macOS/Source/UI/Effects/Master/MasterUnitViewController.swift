@@ -88,7 +88,7 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
         audioUnitsTable.reloadData()
     }
     
-    @IBAction override func presetsAction(_ sender: NSMenuItem) {
+    @IBAction override func presetsAction(_ sender: AnyObject) {
         
         super.presetsAction(sender)
         messenger.publish(.effects_updateEffectsUnitView, payload: EffectsUnitType.master)

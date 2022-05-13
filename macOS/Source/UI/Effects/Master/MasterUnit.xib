@@ -13,6 +13,7 @@
                 <outlet property="audioUnitsTable" destination="eil-eP-SY2" id="Rgo-Gw-4YX"/>
                 <outlet property="btnBypass" destination="moJ-jS-aMf" id="1c7-3L-xKO"/>
                 <outlet property="btnRememberSettings" destination="zQa-Sk-jsP" id="c8I-h1-6Po"/>
+                <outlet property="loadPresetsMenuItem" destination="3Rk-uS-j0Z" id="qir-Si-lpG"/>
                 <outlet property="masterUnitView" destination="0Bs-7g-5at" id="YDY-Lh-KOG"/>
                 <outlet property="presetsMenu" destination="GNL-Vn-rAm" id="Tw6-X2-3Wj"/>
                 <outlet property="presetsMenuButton" destination="uqP-oj-xNY" id="Fth-M5-zlm"/>
@@ -52,7 +53,7 @@
                                 </menuItem>
                             </items>
                             <connections>
-                                <outlet property="delegate" destination="-2" id="teh-ey-Kre"/>
+                                <outlet property="delegate" destination="-2" id="Ehz-tP-lmQ"/>
                             </connections>
                         </menu>
                     </popUpButtonCell>

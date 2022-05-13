@@ -29,10 +29,10 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
     // The tab group that switches between the 4 playlist views
     @IBOutlet weak var tabGroup: NSTabView!
     
-    @IBOutlet weak var btnListView: PlayQueueTabButton!
-    @IBOutlet weak var btnTableView: PlayQueueTabButton!
+    @IBOutlet weak var btnListView: TrackListTabButton!
+    @IBOutlet weak var btnTableView: TrackListTabButton!
     
-    lazy var tabButtons: [PlayQueueTabButton] = [btnTableView, btnListView]
+    lazy var tabButtons: [TrackListTabButton] = [btnTableView, btnListView]
     
     @IBOutlet weak var sortOrderMenuItemView: SortOrderMenuItemView!
     

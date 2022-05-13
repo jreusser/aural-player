@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ReverbUnitViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnBypass" destination="II7-fY-0FS" id="ekP-WC-hYk"/>
+                <outlet property="loadPresetsMenuItem" destination="LVL-nD-43p" id="NUh-jF-jtT"/>
                 <outlet property="presetsMenu" destination="YDW-db-oFd" id="fLG-1N-vp1"/>
                 <outlet property="presetsMenuButton" destination="rrE-w8-gig" id="ZBc-UX-iGA"/>
                 <outlet property="presetsMenuIconItem" destination="8v4-M7-RfA" id="8c9-6g-DWY"/>

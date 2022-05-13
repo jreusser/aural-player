@@ -139,10 +139,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <button toolTip="Table view" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSb-Nt-vEZ" userLabel="Table View Button" customClass="PlayQueueTabButton" customModule="Aural" customModuleProvider="target">
+                                <button toolTip="Table view" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSb-Nt-vEZ" userLabel="Table View Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="77" y="0.0" width="22" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="list.dash" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Md-kL-76c" customClass="PlaylistViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="list.dash" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Md-kL-76c" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                         <userDefinedRuntimeAttributes>
@@ -155,10 +155,10 @@
                                         <action selector="tabViewAction:" target="-2" id="eLo-IJ-8UU"/>
                                     </connections>
                                 </button>
-                                <button toolTip="List view" verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="G9C-Vb-k83" userLabel="List View Button" customClass="PlayQueueTabButton" customModule="Aural" customModuleProvider="target">
+                                <button toolTip="List view" verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="G9C-Vb-k83" userLabel="List View Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="102" y="0.0" width="22" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="text.below.photo.rtl" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MNb-6I-Ya2" customClass="PlaylistViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="text.below.photo.rtl" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MNb-6I-Ya2" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>

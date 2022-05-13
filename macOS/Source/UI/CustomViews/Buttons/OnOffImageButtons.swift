@@ -31,25 +31,6 @@ class OnOffImageButton: NSButton {
         }
     }
     
-    func observeColorSchemeProperty(_ keyPath: KeyPath<ColorScheme, NSColor>, forState state: NSControl.StateValue) {
-        
-        kvoTokens.append(systemColorScheme.observe(keyPath, options: [.initial, .new]) {[weak self] _, changedValue in
-            
-            if let strongSelf = self, strongSelf is EffectsUnitTriStateBypassButton {
-                
-                print("State HERE is: \(strongSelf.state.rawValue)")
-                
-                if strongSelf.state == state, let newColor = changedValue.newValue {
-                    
-                    if state == .mixed {
-                        print("RESPONDED TO MIXED STATE COLOR CHANGE !")
-                    }
-                    strongSelf.contentTintColor = newColor
-                }
-            }
-        })
-    }
-    
     // The button's tooltip when the button is in an "Off" state
     @IBInspectable var offStateTooltip: String?
     

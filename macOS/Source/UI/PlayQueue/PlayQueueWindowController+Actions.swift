@@ -13,7 +13,7 @@ import Cocoa
 extension PlayQueueWindowController {
     
     // Switches the tab group to a particular tab
-    @IBAction func tabViewAction(_ sender: PlayQueueTabButton) {
+    @IBAction func tabViewAction(_ sender: TrackListTabButton) {
         doSelectTab(at: sender.tag)
     }
     
@@ -305,5 +305,26 @@ extension PlayQueueWindowController {
     
     @IBAction func scrollToBottomAction(_ sender: NSButton) {
         currentViewController.scrollToBottom()
+    }
+    
+    func playNext() {
+        
+        guard let selectedTrackIndex = currentViewController.selectedRows.first,
+              let indexOfPlayingTrack = playQueueDelegate.currentTrackIndex else {return}
+        
+        let selectedTrackAbovePlayingTrack: Bool = selectedTrackIndex < indexOfPlayingTrack
+        let destRow = indexOfPlayingTrack + (selectedTrackAbovePlayingTrack ? 0 : 1)
+        
+        playQueueDelegate.moveTracks(from: IndexSet([selectedTrackIndex]), to: destRow)
+        
+        let minRow = min(selectedTrackIndex, destRow)
+        let maxRow = max(selectedTrackIndex, destRow)
+        
+        controllers.forEach {
+            $0.reloadTableRows(minRow...maxRow)
+        }
+        
+        // Re-select the track that was moved.
+        currentViewController.selectRows([destRow])
     }
 }

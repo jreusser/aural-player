@@ -19,12 +19,15 @@ extension NSMenu {
                       action: Selector? = nil, target: AnyObject? = nil,
                       indentationLevel: Int? = nil) {
         
+        print("\n\n*** RECREATING ... index = \(index), titles: \(titles), action: \(action), target: \(target), indentLevel: \(indentationLevel)")
+        
         // Remove all user-defined scheme items (i.e. all items before the first separator)
-        if index < items.count {
+        print("\nEntering loop")
+        
+        while index < items.count, let item = item(at: index), !item.isSeparatorItem {
             
-            while let item = item(at: index), !item.isSeparatorItem {
-                removeItem(at: index)
-            }
+            print("\nEntered loop, removing at index: \(index), item = \(item.title)")
+            removeItem(at: index)
         }
         
         // Recreate the user-defined color scheme items
@@ -37,13 +40,19 @@ extension NSMenu {
                 item.indentationLevel = level
             }
 
-            insertItem(item, at: index)
+            if items.isNonEmpty {
+                insertItem(item, at: index)
+            } else {
+                addItem(item)
+            }
         }
     }
     
     func recreateMenu<T: MenuItemMappable>(insertingItemsAt index: Int, fromItems mappableItems: [T],
                                              action: Selector? = nil, target: AnyObject? = nil,
                                              indentationLevel: Int? = nil) {
+        
+        guard mappableItems.isNonEmpty else {return}
         
         recreateMenu(insertingItemsAt: index, withTitles: mappableItems.map {$0.name},
                      action: action, target: target, indentationLevel: indentationLevel)

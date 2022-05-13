@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -70,7 +69,7 @@
                                             <button toolTip="Tracks view" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fNm-Ys-HID" userLabel="Tracks Button">
                                                 <rect key="frame" x="1" y="0.0" width="22" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Tracks" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Jc-Ta-tqj" customClass="PlaylistViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Tracks" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Jc-Ta-tqj" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -78,7 +77,7 @@
                                             <button toolTip="Artists view" verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="7dx-SE-fid" userLabel="Artists Button">
                                                 <rect key="frame" x="34" y="0.0" width="22" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Artists" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mgW-6c-c7O" customClass="PlaylistViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Artists" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mgW-6c-c7O" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -86,7 +85,7 @@
                                             <button toolTip="Albums view" verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="nQd-Pu-Fsm" userLabel="Albums Button">
                                                 <rect key="frame" x="67" y="0.0" width="22" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Albums" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lrT-0G-ES1" customClass="PlaylistViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Albums" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lrT-0G-ES1" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -94,7 +93,7 @@
                                             <button toolTip="Genres view" verticalHuggingPriority="750" fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="VpG-GA-2ts" userLabel="Genres Button">
                                                 <rect key="frame" x="100" y="0.0" width="22" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Genres" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wFc-Ut-af3" customClass="PlaylistViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Genres" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wFc-Ut-af3" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -127,7 +126,7 @@
                                                                 <rect key="frame" x="0.0" y="23" width="189" height="314"/>
                                                                 <clipView key="contentView" copiesOnScroll="NO" id="jU6-lf-Ryw">
                                                                     <rect key="frame" x="1" y="1" width="187" height="312"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <tableView identifier="tid_PlaylistNames" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" id="9Si-sI-Nin">
                                                                             <rect key="frame" x="0.0" y="0.0" width="187" height="312"/>

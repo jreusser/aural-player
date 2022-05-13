@@ -163,7 +163,7 @@ class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver, 
     }
     
     // Applies a preset to the effects unit
-    @IBAction override func presetsAction(_ sender: NSMenuItem) {
+    @IBAction override func presetsAction(_ sender: AnyObject) {
         
         for editor in bandEditors {
             editor.destroy()

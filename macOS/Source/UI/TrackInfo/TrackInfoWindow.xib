@@ -65,7 +65,7 @@
                                             <button toolTip="Tracks view" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yFW-vn-kbQ" userLabel="Metadata Button">
                                                 <rect key="frame" x="11" y="0.0" width="22" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="doc.text" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PTA-3p-YZn" customClass="PlaylistViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="doc.text" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PTA-3p-YZn" customClass="ImageTabButtonCell" customModule="Aural" customModuleProvider="target">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -73,7 +73,7 @@
                                             <button toolTip="Artists view" verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="fP4-DI-eVx" userLabel="Lyrics Button">
                                                 <rect key="frame" x="44" y="0.0" width="22" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="music.mic" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vtd-pZ-qD9" customClass="PlaylistViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="music.mic" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vtd-pZ-qD9" customClass="ImageTabButtonCell" customModule="Aural" customModuleProvider="target">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -81,7 +81,7 @@
                                             <button toolTip="Albums view" verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="QmD-eH-8zb" userLabel="Cover Art Button">
                                                 <rect key="frame" x="77" y="0.0" width="22" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2P8-wp-26B" customClass="PlaylistViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2P8-wp-26B" customClass="ImageTabButtonCell" customModule="Aural" customModuleProvider="target">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                     <imageReference key="image" image="photo" catalog="system" symbolScale="large"/>
@@ -90,7 +90,7 @@
                                             <button toolTip="Genres view" verticalHuggingPriority="750" fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="ZCz-89-x86" userLabel="Audio Button">
                                                 <rect key="frame" x="110" y="0.0" width="22" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="waveform" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fNE-7v-3oV" customClass="PlaylistViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="waveform" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fNE-7v-3oV" customClass="ImageTabButtonCell" customModule="Aural" customModuleProvider="target">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -98,7 +98,7 @@
                                             <button toolTip="Genres view" verticalHuggingPriority="750" fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="Jyf-xz-1nh" userLabel="File System Button">
                                                 <rect key="frame" x="143" y="0.0" width="22" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="folder" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TCx-DJ-Zr8" customClass="PlaylistViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="folder" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TCx-DJ-Zr8" customClass="ImageTabButtonCell" customModule="Aural" customModuleProvider="target">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
