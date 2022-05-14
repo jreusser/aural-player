@@ -69,6 +69,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Force initialization of objects that would not be initialized soon enough otherwise
         // (they are not referred to in code that is executed on app startup).
         
+        _ = playlistsManager
+        
     #if os(macOS)
         
         _ = mediaKeyHandler
