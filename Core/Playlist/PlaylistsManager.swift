@@ -29,8 +29,6 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
         
         super.init(systemDefinedObjects: [], userDefinedObjects: playlists)
         
-        messenger.subscribe(to: .application_launched, handler: appLaunched)
-        
         messenger.subscribe(to: .playlist_startedAddingTracks, handler: playlistStartedAddingTracks)
         messenger.subscribe(to: .playlist_doneAddingTracks, handler: playlistDoneAddingTracks)
     }
@@ -54,7 +52,7 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
     
     // MARK: Notification handling ---------------------------------------------------------------
     
-    func appLaunched() {
+    func loadPlaylists() {
         
         userDefinedObjects.forEach {
             $0.loadPersistentTracks()

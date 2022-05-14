@@ -58,6 +58,8 @@ class PlaylistsWindowController: NSWindowController {
             tableViewController.view.anchorToSuperview()
         }
         
+        playlistsManager.loadPlaylists()
+        
         doTabViewAction(tracksTabViewButton)
         
         playlistNamesViewController.tableViewController = tableViewController

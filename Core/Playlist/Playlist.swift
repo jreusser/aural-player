@@ -21,7 +21,7 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
 //    let dateModified: Date
 //    let datePlayed: Date
     
-    private var persistentTracks: [URL]? = nil
+    private var persistentStateToLoad: PlaylistPersistentState? = nil
     
     var key: String {
 
@@ -47,12 +47,12 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
         
         self.name = name
         self.dateCreated = persistentState.dateCreated ?? Date()
-        self.persistentTracks = persistentState.tracks
+        self.persistentStateToLoad = persistentState
     }
     
     func loadPersistentTracks() {
         
-        if let files = self.persistentTracks, files.isNonEmpty {
+        if let files = self.persistentState.tracks, files.isNonEmpty {
             loadTracks(from: files)
         }
     }
@@ -66,6 +66,11 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
     }
     
     func postTrackLoad() {
+        
+        // Now that the tracks have been loaded into the playlist, invalidate
+        // and release the persistent state.
+        persistentStateToLoad = nil
+        
         messenger.publish(.playlist_doneAddingTracks, payload: name)
     }
     
@@ -85,6 +90,6 @@ extension Playlist: PersistentModelObject {
     
     // Returns all state for this playlist that needs to be persisted to disk
     var persistentState: PlaylistPersistentState {
-        PlaylistPersistentState(name: name, tracks: tracks.map {$0.file}, dateCreated: dateCreated)
+        persistentStateToLoad ?? PlaylistPersistentState(name: name, tracks: tracks.map {$0.file}, dateCreated: dateCreated)
     }
 }

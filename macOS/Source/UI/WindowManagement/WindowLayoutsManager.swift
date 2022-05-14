@@ -91,7 +91,13 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     
     func restore() {
         
-        windowLoaders.forEach {$0.restore()}
+        let layout = savedLayout ?? defaultLayout
+        
+        // NOTE - No need to include main window loader here as that will be lazily loaded
+        // through the 'mainWindow' reference in performInitialLayout().
+        let loaders = (layout.displayedWindows.map {$0.id}.map {loader(withID: $0)})
+        
+        loaders.forEach {$0.restore()}
         performInitialLayout()
     }
     
@@ -107,22 +113,11 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     
     private func performInitialLayout() {
         
-        if let initialLayout = self.savedLayout {
-            
-            // Remember from last app launch
-            applyLayout(initialLayout)
-            
-        } else {
-            performDefaultLayout()
-        }
+        // Remember from last app launch, reverting to default layout if app state is corrupted
+        applyLayout(savedLayout ?? defaultLayout)
         
         (mainWindow as? SnappingWindow)?.ensureOnScreen()
         mainWindow.makeKeyAndOrderFront(self)
-    }
-    
-    // Revert to default layout if app state is corrupted
-    private func performDefaultLayout() {
-        applyLayout(defaultLayout)
     }
     
     private func getWindow(forId id: WindowID) -> NSWindow {
