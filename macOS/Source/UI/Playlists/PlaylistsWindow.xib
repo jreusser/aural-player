@@ -8,18 +8,23 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PlaylistsWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="albumsTabViewButton" destination="nQd-Pu-Fsm" id="f2x-VW-Ofx"/>
+                <outlet property="artistsTabViewButton" destination="7dx-SE-fid" id="4WB-vr-Lmk"/>
                 <outlet property="btnClose" destination="d7D-xy-xw6" id="2r5-NN-17s"/>
                 <outlet property="btnCreatePlaylist" destination="5cw-fP-SEL" id="IDM-nn-wEH"/>
                 <outlet property="btnDeleteSelectedPlaylists" destination="IU4-DL-MBi" id="Hdj-pL-vd9"/>
                 <outlet property="controlsBox" destination="ZDa-Wk-Jtf" id="ITp-R3-g40"/>
+                <outlet property="genresTabViewButton" destination="VpG-GA-2ts" id="djl-Ed-n7A"/>
                 <outlet property="lblCaption" destination="Izm-XL-6kw" id="s2h-7h-MP2"/>
                 <outlet property="lblDurationSummary" destination="NBd-fr-sMZ" id="bqt-YN-TIj"/>
                 <outlet property="lblTracksSummary" destination="TN3-Pb-63f" id="9nx-zC-xsh"/>
                 <outlet property="playlistNamesViewController" destination="KCA-ts-en2" id="KZF-Oz-NEw"/>
                 <outlet property="progressSpinner" destination="voR-KZ-9Wo" id="31s-xJ-QHo"/>
                 <outlet property="rootContainer" destination="fpr-mJ-5DC" id="xQ0-N2-uOj"/>
+                <outlet property="tabButtonsBox" destination="YbT-9a-upN" id="xIE-91-rhx"/>
                 <outlet property="tabGroup" destination="XaG-jS-pAi" id="xHv-RG-o82"/>
                 <outlet property="tableViewController" destination="uni-A1-Lee" id="ZDi-sj-piV"/>
+                <outlet property="tracksTabViewButton" destination="fNm-Ys-HID" id="MYL-2s-vqZ"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="LDQ-f4-iaZ"/>
             </connections>
         </customObject>
@@ -41,9 +46,12 @@
                             <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <button toolTip="Hide Playlists" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d7D-xy-xw6" userLabel="Close Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                <button toolTip="Hide Playlists" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d7D-xy-xw6" userLabel="Close Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="10" y="376.5" width="11.5" height="10"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="6" id="3dM-y4-b2K"/>
+                                        <constraint firstAttribute="width" constant="11" id="riO-oX-IBr"/>
+                                    </constraints>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Tlh-x8-xMx">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -52,64 +60,18 @@
                                         <action selector="closeAction:" target="-2" id="bY8-zl-nbI"/>
                                     </connections>
                                 </button>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Izm-XL-6kw" userLabel="Playlists Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Izm-XL-6kw" userLabel="Playlists Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="40" y="371" width="214" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="210" id="3DD-eu-zDn"/>
+                                        <constraint firstAttribute="height" constant="25" id="Ygu-uj-WLY"/>
+                                    </constraints>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Playlists" id="MdO-46-poD">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <box hidden="YES" focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="YbT-9a-upN" userLabel="Tab Buttons Box">
-                                    <rect key="frame" x="662" y="362" width="125" height="30"/>
-                                    <view key="contentView" id="OaN-3s-4Td">
-                                        <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <button toolTip="Tracks view" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fNm-Ys-HID" userLabel="Tracks Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="1" y="0.0" width="22" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Tracks" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Jc-Ta-tqj" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                            </button>
-                                            <button toolTip="Artists view" verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="7dx-SE-fid" userLabel="Artists Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="0.0" width="22" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Artists" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mgW-6c-c7O" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                            </button>
-                                            <button toolTip="Albums view" verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="nQd-Pu-Fsm" userLabel="Albums Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="67" y="0.0" width="22" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Albums" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lrT-0G-ES1" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                            </button>
-                                            <button toolTip="Genres view" verticalHuggingPriority="750" fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="VpG-GA-2ts" userLabel="Genres Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="100" y="0.0" width="22" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Genres" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wFc-Ut-af3" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                            </button>
-                                        </subviews>
-                                    </view>
-                                    <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="5mm-T8-b1Q"/>
-                                        <constraint firstAttribute="height" constant="30" id="J5a-aV-Pbg"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="RJ9-3t-ccW"/>
-                                        <constraint firstAttribute="width" constant="125" id="eeU-2Q-B6e"/>
-                                    </constraints>
-                                    <color key="borderColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </box>
                                 <splitView arrangesAllSubviews="NO" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qAe-ip-eeh">
                                     <rect key="frame" x="15" y="10" width="770" height="337"/>
                                     <subviews>
@@ -362,7 +324,68 @@
                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
                                                             </textField>
-                                                            <tabView wantsLayer="YES" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="XaG-jS-pAi" userLabel="Playlist Views Tab Group" customClass="AuralTabView" customModule="Aural" customModuleProvider="target">
+                                                            <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="YbT-9a-upN" userLabel="Tab Buttons Box">
+                                                                <rect key="frame" x="443" y="304" width="125" height="30"/>
+                                                                <view key="contentView" id="OaN-3s-4Td">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <button toolTip="Tracks view" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fNm-Ys-HID" userLabel="Tracks Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
+                                                                            <rect key="frame" x="1" y="0.0" width="22" height="30"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Tracks" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Jc-Ta-tqj" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
+                                                                            <connections>
+                                                                                <action selector="tabViewAction:" target="-2" id="HC1-7P-hde"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                        <button toolTip="Artists view" verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="7dx-SE-fid" userLabel="Artists Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
+                                                                            <rect key="frame" x="34" y="0.0" width="22" height="30"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Artists" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mgW-6c-c7O" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
+                                                                            <connections>
+                                                                                <action selector="tabViewAction:" target="-2" id="Ge9-0i-e9P"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                        <button toolTip="Albums view" verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="nQd-Pu-Fsm" userLabel="Albums Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
+                                                                            <rect key="frame" x="67" y="0.0" width="22" height="30"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Albums" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lrT-0G-ES1" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
+                                                                            <connections>
+                                                                                <action selector="tabViewAction:" target="-2" id="yy6-IW-sOe"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                        <button toolTip="Genres view" verticalHuggingPriority="750" fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="VpG-GA-2ts" userLabel="Genres Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
+                                                                            <rect key="frame" x="100" y="0.0" width="22" height="30"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Genres" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wFc-Ut-af3" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
+                                                                            <connections>
+                                                                                <action selector="tabViewAction:" target="-2" id="ePh-tK-SFc"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                    </subviews>
+                                                                </view>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="30" id="J5a-aV-Pbg"/>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="PDd-qz-mTg"/>
+                                                                    <constraint firstAttribute="width" constant="125" id="eeU-2Q-B6e"/>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="zuG-y7-ZxD"/>
+                                                                </constraints>
+                                                                <color key="borderColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </box>
+                                                            <tabView wantsLayer="YES" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="XaG-jS-pAi" userLabel="Playlist Views Tab Group">
                                                                 <rect key="frame" x="5" y="25" width="567" height="276"/>
                                                                 <font key="font" metaFont="system"/>
                                                                 <tabViewItems>
@@ -446,11 +469,13 @@
                                                             </textField>
                                                         </subviews>
                                                         <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="YbT-9a-upN" secondAttribute="trailing" constant="4" id="0qw-Nt-YHV"/>
                                                             <constraint firstItem="NBd-fr-sMZ" firstAttribute="baseline" secondItem="TN3-Pb-63f" secondAttribute="baseline" id="1xv-G3-wnP"/>
                                                             <constraint firstItem="XaG-jS-pAi" firstAttribute="leading" secondItem="dX7-Ua-C87" secondAttribute="leading" constant="5" id="3d1-v2-IcD"/>
                                                             <constraint firstAttribute="trailing" secondItem="XaG-jS-pAi" secondAttribute="trailing" id="896-T0-RCR"/>
                                                             <constraint firstItem="TN3-Pb-63f" firstAttribute="leading" secondItem="dX7-Ua-C87" secondAttribute="leading" constant="14" id="Fve-ws-X9B"/>
                                                             <constraint firstItem="PkZ-lN-oeS" firstAttribute="leading" secondItem="dX7-Ua-C87" secondAttribute="leading" constant="5" id="IKl-ZR-BB2"/>
+                                                            <constraint firstItem="YbT-9a-upN" firstAttribute="top" secondItem="dX7-Ua-C87" secondAttribute="top" constant="3" id="VwR-69-kdn"/>
                                                             <constraint firstAttribute="bottom" secondItem="NBd-fr-sMZ" secondAttribute="bottom" id="YyL-4j-dRt"/>
                                                             <constraint firstAttribute="bottom" secondItem="XaG-jS-pAi" secondAttribute="bottom" constant="25" id="dPu-A5-Y1x"/>
                                                             <constraint firstItem="XaG-jS-pAi" firstAttribute="top" secondItem="dX7-Ua-C87" secondAttribute="top" constant="36" id="g5U-nM-UhC"/>
@@ -480,12 +505,14 @@
                                 </splitView>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="Izm-XL-6kw" firstAttribute="leading" secondItem="d7D-xy-xw6" secondAttribute="trailing" constant="21" id="IKD-5u-F1b"/>
+                                <constraint firstItem="d7D-xy-xw6" firstAttribute="leading" secondItem="rpW-JN-zj7" secondAttribute="leading" constant="10" id="NCu-YH-N3i"/>
                                 <constraint firstAttribute="bottom" secondItem="qAe-ip-eeh" secondAttribute="bottom" constant="10" id="ONM-Px-MVW"/>
+                                <constraint firstItem="qAe-ip-eeh" firstAttribute="top" secondItem="Izm-XL-6kw" secondAttribute="bottom" constant="24" id="Q6N-WN-aMg"/>
                                 <constraint firstAttribute="trailing" secondItem="qAe-ip-eeh" secondAttribute="trailing" constant="15" id="VRw-6K-5OV"/>
                                 <constraint firstItem="qAe-ip-eeh" firstAttribute="leading" secondItem="rpW-JN-zj7" secondAttribute="leading" constant="15" id="WNt-dd-x8R"/>
-                                <constraint firstItem="YbT-9a-upN" firstAttribute="top" secondItem="rpW-JN-zj7" secondAttribute="top" constant="8" id="cFB-Z4-ztE"/>
-                                <constraint firstAttribute="trailing" secondItem="YbT-9a-upN" secondAttribute="trailing" constant="13" id="gkm-Ea-vzo"/>
-                                <constraint firstItem="qAe-ip-eeh" firstAttribute="top" secondItem="YbT-9a-upN" secondAttribute="bottom" constant="15" id="yyQ-dc-whx"/>
+                                <constraint firstItem="d7D-xy-xw6" firstAttribute="top" secondItem="rpW-JN-zj7" secondAttribute="top" constant="16" id="Y7S-Bk-y3d"/>
+                                <constraint firstItem="Izm-XL-6kw" firstAttribute="top" secondItem="rpW-JN-zj7" secondAttribute="top" constant="4" id="Z4r-ev-sRu"/>
                             </constraints>
                         </view>
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

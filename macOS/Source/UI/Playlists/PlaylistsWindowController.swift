@@ -15,6 +15,7 @@ class PlaylistsWindowController: NSWindowController {
     override var windowNibName: String? {"PlaylistsWindow"}
     
     @IBOutlet weak var rootContainer: NSBox!
+    @IBOutlet weak var tabButtonsBox: NSBox!
     @IBOutlet weak var controlsBox: NSBox!
 
     @IBOutlet weak var btnClose: TintedImageButton!
@@ -24,7 +25,13 @@ class PlaylistsWindowController: NSWindowController {
     @IBOutlet weak var lblCaption: NSTextField!
     
     // The tab group that switches between the 4 playlist views
-    @IBOutlet weak var tabGroup: AuralTabView!
+    @IBOutlet weak var tabGroup: NSTabView!
+    @IBOutlet weak var tracksTabViewButton: TrackListTabButton!
+    @IBOutlet weak var artistsTabViewButton: TrackListTabButton!
+    @IBOutlet weak var albumsTabViewButton: TrackListTabButton!
+    @IBOutlet weak var genresTabViewButton: TrackListTabButton!
+    
+    private lazy var tabViewButtons: [TrackListTabButton] = [tracksTabViewButton, artistsTabViewButton, albumsTabViewButton, genresTabViewButton]
     
     @IBOutlet weak var playlistNamesViewController: PlaylistNamesTableViewController!
     
@@ -51,6 +58,8 @@ class PlaylistsWindowController: NSWindowController {
             tableViewController.view.anchorToSuperview()
         }
         
+        doTabViewAction(tracksTabViewButton)
+        
         playlistNamesViewController.tableViewController = tableViewController
         playlistNamesViewController.controlsContainer = window?.contentView as? PlaylistsContainer
         
@@ -65,7 +74,7 @@ class PlaylistsWindowController: NSWindowController {
         
         messenger.subscribe(to: .playlists_updateSummary, handler: updateSummary)
 
-        colorSchemesManager.registerObservers([rootContainer, controlsBox], forProperty: \.backgroundColor)
+        colorSchemesManager.registerObservers([rootContainer, tabButtonsBox, controlsBox], forProperty: \.backgroundColor)
         colorSchemesManager.registerObservers([btnClose, btnCreatePlaylist, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
         colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
@@ -111,6 +120,20 @@ class PlaylistsWindowController: NSWindowController {
     
     @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {
         importFilesAndFolders()
+    }
+    
+    @IBAction func tabViewAction(_ sender: TrackListTabButton) {
+        doTabViewAction(sender)
+    }
+    
+    private func doTabViewAction(_ sender: TrackListTabButton) {
+        
+        // Set sender button state, reset all other button states
+        tabViewButtons.forEach {$0.unSelect()}
+        sender.select()
+
+        // Button tag is the tab index
+        tabGroup.selectTabViewItem(at: sender.tag)
     }
     
     // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist

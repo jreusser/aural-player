@@ -175,13 +175,13 @@ Gw
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="Text" identifier="" id="eRy-ia-DBE" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
+                            <tabViewItem label="Text" identifier="" id="eRy-ia-DBE">
                                 <view key="view" id="iqw-TM-gAQ">
                                     <rect key="frame" x="10" y="33" width="465" height="261"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="Control States" identifier="" id="TTI-dm-IrN" userLabel="Control States" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
+                            <tabViewItem label="Control States" identifier="" id="TTI-dm-IrN" userLabel="Control States">
                                 <view key="view" id="wdV-d8-NcF">
                                     <rect key="frame" x="10" y="33" width="465" height="261"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
