@@ -72,6 +72,11 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
         persistentStateToLoad = nil
         
         messenger.publish(.playlist_doneAddingTracks, payload: name)
+        
+        let grouping = ArtistsGrouping()
+        let groups = grouping.applyTo(trackList: self)
+        
+        print("\n\n**** TOP LEVEL GROUPS for Playlist '\(name)': \(groups.map {$0.name + " (\($0.subGroups.count) sub-groups)"})")
     }
     
     func postBatchLoad(indices: ClosedRange<Int>) {

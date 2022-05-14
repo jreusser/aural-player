@@ -30,8 +30,9 @@ class PlaylistsWindowController: NSWindowController {
     @IBOutlet weak var artistsTabViewButton: TrackListTabButton!
     @IBOutlet weak var albumsTabViewButton: TrackListTabButton!
     @IBOutlet weak var genresTabViewButton: TrackListTabButton!
+    @IBOutlet weak var decadesTabViewButton: TrackListTabButton!
     
-    private lazy var tabViewButtons: [TrackListTabButton] = [tracksTabViewButton, artistsTabViewButton, albumsTabViewButton, genresTabViewButton]
+    private lazy var tabViewButtons: [TrackListTabButton] = [tracksTabViewButton, artistsTabViewButton, albumsTabViewButton, genresTabViewButton, decadesTabViewButton]
     
     @IBOutlet weak var playlistNamesViewController: PlaylistNamesTableViewController!
     
@@ -78,6 +79,7 @@ class PlaylistsWindowController: NSWindowController {
 
         colorSchemesManager.registerObservers([rootContainer, tabButtonsBox, controlsBox], forProperty: \.backgroundColor)
         colorSchemesManager.registerObservers([btnClose, btnCreatePlaylist, btnDeleteSelectedPlaylists], forProperty: \.buttonColor)
+        colorSchemesManager.registerObservers(tabViewButtons, forProperties: [\.backgroundColor, \.buttonColor, \.inactiveControlColor])
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
         colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
         

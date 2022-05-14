@@ -53,7 +53,8 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
     @IBOutlet weak var auTabViewButton: EffectsUnitTabButton!
     @IBOutlet weak var devicesTabViewButton: EffectsUnitTabButton!
 
-    private var tabViewButtons: [EffectsUnitTabButton] = []
+    private lazy var tabViewButtons: [EffectsUnitTabButton] = [masterTabViewButton, eqTabViewButton, pitchTabViewButton, timeTabViewButton, reverbTabViewButton,
+                                                                                delayTabViewButton, filterTabViewButton, auTabViewButton, devicesTabViewButton]
     
     @IBOutlet weak var btnClose: TintedImageButton!
     
@@ -98,9 +99,6 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
             viewController.view.anchorToSuperview()
         }
 
-        tabViewButtons = [masterTabViewButton, eqTabViewButton, pitchTabViewButton, timeTabViewButton, reverbTabViewButton,
-                          delayTabViewButton, filterTabViewButton, auTabViewButton, devicesTabViewButton]
-        
         fxUnitStateObserverRegistry.registerObserver(masterTabViewButton, forFXUnit: audioGraphDelegate.masterUnit)
         fxUnitStateObserverRegistry.registerObserver(eqTabViewButton, forFXUnit: audioGraphDelegate.eqUnit)
         fxUnitStateObserverRegistry.registerObserver(pitchTabViewButton, forFXUnit: audioGraphDelegate.pitchShiftUnit)

@@ -14,6 +14,7 @@
                 <outlet property="btnCreatePlaylist" destination="5cw-fP-SEL" id="IDM-nn-wEH"/>
                 <outlet property="btnDeleteSelectedPlaylists" destination="IU4-DL-MBi" id="Hdj-pL-vd9"/>
                 <outlet property="controlsBox" destination="ZDa-Wk-Jtf" id="ITp-R3-g40"/>
+                <outlet property="decadesTabViewButton" destination="Ijx-nr-V35" id="pgQ-HD-rZ2"/>
                 <outlet property="genresTabViewButton" destination="VpG-GA-2ts" id="djl-Ed-n7A"/>
                 <outlet property="lblCaption" destination="Izm-XL-6kw" id="s2h-7h-MP2"/>
                 <outlet property="lblDurationSummary" destination="NBd-fr-sMZ" id="bqt-YN-TIj"/>
@@ -325,9 +326,9 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="YbT-9a-upN" userLabel="Tab Buttons Box">
-                                                                <rect key="frame" x="443" y="305" width="125" height="30"/>
+                                                                <rect key="frame" x="418" y="305" width="150" height="30"/>
                                                                 <view key="contentView" id="OaN-3s-4Td">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <button toolTip="Tracks view" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fNm-Ys-HID" userLabel="Tracks Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
@@ -374,11 +375,22 @@
                                                                                 <action selector="tabViewAction:" target="-2" id="ePh-tK-SFc"/>
                                                                             </connections>
                                                                         </button>
+                                                                        <button toolTip="Genres view" verticalHuggingPriority="750" fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ijx-nr-V35" userLabel="Decades Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
+                                                                            <rect key="frame" x="125" y="0.0" width="22" height="30"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="calendar" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qsH-nW-7Xj" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
+                                                                            <connections>
+                                                                                <action selector="tabViewAction:" target="-2" id="s0T-AE-zp8"/>
+                                                                            </connections>
+                                                                        </button>
                                                                     </subviews>
                                                                 </view>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="J5a-aV-Pbg"/>
-                                                                    <constraint firstAttribute="width" constant="125" id="eeU-2Q-B6e"/>
+                                                                    <constraint firstAttribute="width" constant="150" id="eeU-2Q-B6e"/>
                                                                 </constraints>
                                                                 <color key="borderColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -422,6 +434,12 @@
                                                                         <connections>
                                                                             <outlet property="tabButton" destination="VpG-GA-2ts" id="xD9-as-CHg"/>
                                                                         </connections>
+                                                                    </tabViewItem>
+                                                                    <tabViewItem label="Decades Tab" identifier="" id="NaQ-Lp-g24">
+                                                                        <view key="view" id="sfK-Sr-23u">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="567" height="276"/>
+                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                        </view>
                                                                     </tabViewItem>
                                                                 </tabViewItems>
                                                             </tabView>
@@ -847,6 +865,7 @@
         <image name="arrow.up.to.line.alt" catalog="system" width="13" height="16"/>
         <image name="arrowtriangle.down" catalog="system" width="14" height="13"/>
         <image name="arrowtriangle.up" catalog="system" width="14" height="13"/>
+        <image name="calendar" catalog="system" width="16" height="14"/>
         <image name="doc.on.doc" catalog="system" width="16" height="18"/>
         <image name="doc.text" catalog="system" width="14" height="16"/>
         <image name="magnifyingglass" catalog="system" width="15" height="15"/>
