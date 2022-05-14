@@ -116,12 +116,12 @@
                         <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </box>
                     <tabView drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="zXc-hr-Pet" userLabel="Play Queue Tab Group">
-                        <rect key="frame" x="15" y="50" width="450" height="182"/>
+                        <rect key="frame" x="15" y="50" width="450" height="184"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Table View" identifier="" id="dGb-9y-jTT">
                                 <view key="view" id="luF-b9-Q1I">
-                                    <rect key="frame" x="0.0" y="0.0" width="450" height="182"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="184"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
@@ -134,20 +134,23 @@
                         </tabViewItems>
                     </tabView>
                     <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="xem-im-DfN" userLabel="Tab Buttons Box">
-                        <rect key="frame" x="342" y="239" width="125" height="30"/>
+                        <rect key="frame" x="342" y="241" width="125" height="30"/>
                         <view key="contentView" id="f2s-MX-LOO">
                             <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <button toolTip="Table view" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSb-Nt-vEZ" userLabel="Table View Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="77" y="0.0" width="22" height="30"/>
+                                    <rect key="frame" x="83" y="2" width="16" height="28"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="list.dash" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Md-kL-76c" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="imgWidth">
-                                                <integer key="value" value="17"/>
+                                                <integer key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="imgHeight">
+                                                <integer key="value" value="12"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </buttonCell>
@@ -156,7 +159,7 @@
                                     </connections>
                                 </button>
                                 <button toolTip="List view" verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="G9C-Vb-k83" userLabel="List View Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="102" y="0.0" width="22" height="30"/>
+                                    <rect key="frame" x="108" y="2" width="16" height="28"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="text.below.photo.rtl" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MNb-6I-Ya2" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -497,7 +500,7 @@
                     <constraint firstAttribute="bottom" secondItem="qNZ-4V-boz" secondAttribute="bottom" constant="15" id="bYY-Ix-IwP"/>
                     <constraint firstItem="M1K-Qj-yyf" firstAttribute="leading" secondItem="pM1-g9-qhj" secondAttribute="trailing" constant="5" id="c4S-VM-YOx"/>
                     <constraint firstItem="gTQ-Bo-5Nj" firstAttribute="bottom" secondItem="Nmm-j9-Sqg" secondAttribute="bottom" id="dhK-ly-iVF"/>
-                    <constraint firstItem="xem-im-DfN" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="8" id="dmk-YN-B5y"/>
+                    <constraint firstItem="xem-im-DfN" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="6" id="dmk-YN-B5y"/>
                     <constraint firstItem="qNZ-4V-boz" firstAttribute="leading" secondItem="lty-aX-5hk" secondAttribute="trailing" constant="6" id="eq7-lx-71N"/>
                     <constraint firstItem="lty-aX-5hk" firstAttribute="leading" secondItem="Lre-iP-HTM" secondAttribute="trailing" constant="5" id="fPL-3B-uaG"/>
                     <constraint firstAttribute="bottom" secondItem="vPq-HC-h3c" secondAttribute="bottom" id="gzx-jl-suG"/>

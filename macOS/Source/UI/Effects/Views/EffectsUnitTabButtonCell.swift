@@ -16,8 +16,8 @@ class EffectsUnitTabButtonCell: NSButtonCell {
     
     lazy var observingButton: EffectsUnitTabButton = controlView as! EffectsUnitTabButton
     
-    @IBInspectable var imgWidth: Int = 14
-    @IBInspectable var imgHeight: Int = 14
+    @IBInspectable var imgWidth: Int = 13
+    @IBInspectable var imgHeight: Int = 13
     
     override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
         drawInterior(withFrame: cellFrame, in: controlView)
@@ -50,7 +50,7 @@ class EffectsUnitTabButtonCell: NSButtonCell {
         let yInset = (rectHeight - CGFloat(imgHeight)) / 2
         
         // Raise the selected tab image by a few pixels so it is prominent
-        let imgRect = cellFrame.insetBy(dx: xInset, dy: yInset).offsetBy(dx: 0, dy: isSelected ? -2 : 0)
+        let imgRect = cellFrame.insetBy(dx: xInset, dy: yInset).offsetBy(dx: 0, dy: isSelected ? -1 : 0)
         
         self.image? = self.image!.tintedWithColor(imageColor)
         

@@ -14,8 +14,8 @@ class TrackListViewsButtonCell: TabGroupButtonCell {
     
     private lazy var button: TrackListTabButton = controlView as! TrackListTabButton
     
-    @IBInspectable var imgWidth: Int = 14
-    @IBInspectable var imgHeight: Int = 14
+    @IBInspectable var imgWidth: Int = 13
+    @IBInspectable var imgHeight: Int = 13
     
     override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
         drawInterior(withFrame: cellFrame, in: controlView)

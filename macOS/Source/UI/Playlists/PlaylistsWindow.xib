@@ -325,13 +325,13 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="YbT-9a-upN" userLabel="Tab Buttons Box">
-                                                                <rect key="frame" x="443" y="304" width="125" height="30"/>
+                                                                <rect key="frame" x="443" y="305" width="125" height="30"/>
                                                                 <view key="contentView" id="OaN-3s-4Td">
                                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <button toolTip="Tracks view" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fNm-Ys-HID" userLabel="Tracks Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
-                                                                            <rect key="frame" x="1" y="0.0" width="22" height="30"/>
+                                                                            <rect key="frame" x="25" y="0.0" width="22" height="30"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Tracks" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Jc-Ta-tqj" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -342,7 +342,7 @@
                                                                             </connections>
                                                                         </button>
                                                                         <button toolTip="Artists view" verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="7dx-SE-fid" userLabel="Artists Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
-                                                                            <rect key="frame" x="34" y="0.0" width="22" height="30"/>
+                                                                            <rect key="frame" x="50" y="0.0" width="22" height="30"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Artists" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mgW-6c-c7O" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -353,7 +353,7 @@
                                                                             </connections>
                                                                         </button>
                                                                         <button toolTip="Albums view" verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="nQd-Pu-Fsm" userLabel="Albums Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
-                                                                            <rect key="frame" x="67" y="0.0" width="22" height="30"/>
+                                                                            <rect key="frame" x="75" y="0.0" width="22" height="30"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Albums" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lrT-0G-ES1" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -378,9 +378,7 @@
                                                                 </view>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="J5a-aV-Pbg"/>
-                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="PDd-qz-mTg"/>
                                                                     <constraint firstAttribute="width" constant="125" id="eeU-2Q-B6e"/>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="zuG-y7-ZxD"/>
                                                                 </constraints>
                                                                 <color key="borderColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -475,7 +473,7 @@
                                                             <constraint firstAttribute="trailing" secondItem="XaG-jS-pAi" secondAttribute="trailing" id="896-T0-RCR"/>
                                                             <constraint firstItem="TN3-Pb-63f" firstAttribute="leading" secondItem="dX7-Ua-C87" secondAttribute="leading" constant="14" id="Fve-ws-X9B"/>
                                                             <constraint firstItem="PkZ-lN-oeS" firstAttribute="leading" secondItem="dX7-Ua-C87" secondAttribute="leading" constant="5" id="IKl-ZR-BB2"/>
-                                                            <constraint firstItem="YbT-9a-upN" firstAttribute="top" secondItem="dX7-Ua-C87" secondAttribute="top" constant="3" id="VwR-69-kdn"/>
+                                                            <constraint firstItem="YbT-9a-upN" firstAttribute="top" secondItem="dX7-Ua-C87" secondAttribute="top" constant="2" id="VwR-69-kdn"/>
                                                             <constraint firstAttribute="bottom" secondItem="NBd-fr-sMZ" secondAttribute="bottom" id="YyL-4j-dRt"/>
                                                             <constraint firstAttribute="bottom" secondItem="XaG-jS-pAi" secondAttribute="bottom" constant="25" id="dPu-A5-Y1x"/>
                                                             <constraint firstItem="XaG-jS-pAi" firstAttribute="top" secondItem="dX7-Ua-C87" secondAttribute="top" constant="36" id="g5U-nM-UhC"/>
