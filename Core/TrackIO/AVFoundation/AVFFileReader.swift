@@ -67,6 +67,7 @@ class AVFFileReader: FileReaderProtocol {
         metadata.artist = cleanUpString(parsers.firstNonNilMappedValue {$0.getArtist(metadataMap)})
         metadata.album = cleanUpString(parsers.firstNonNilMappedValue {$0.getAlbum(metadataMap)})
         metadata.genre = cleanUpString(parsers.firstNonNilMappedValue {$0.getGenre(metadataMap)})
+        metadata.year = parsers.firstNonNilMappedValue {$0.getYear(metadataMap)}
         
         let trackNum: (number: Int?, total: Int?)? = parsers.firstNonNilMappedValue {$0.getTrackNumber(metadataMap)}
         metadata.trackNumber = trackNum?.number

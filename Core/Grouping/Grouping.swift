@@ -115,7 +115,7 @@ class GenresGrouping: Grouping {
 
 class DecadesGrouping: Grouping {
     
-    init(name: String) {
+    init() {
         
         super.init(name: "Decades") {track in
             

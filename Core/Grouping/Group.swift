@@ -14,8 +14,12 @@ import OrderedCollections
 class Group {
     
     let name: String
+    
     var tracks: OrderedSet<Track>
+    var hasTracks: Bool {tracks.isNonEmpty}
+    
     var subGroups: [Group]
+    var hasSubGroups: Bool {subGroups.isNonEmpty}
     
     init(name: String, tracks: [Track]) {
         

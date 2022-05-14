@@ -22,6 +22,7 @@ struct PrimaryMetadataPersistentState: Codable {
     let albumArtist: String?
     let album: String?
     let genre: String?
+    let year: Int?
     
     let trackNumber: Int?
     let totalTracks: Int?
@@ -41,6 +42,7 @@ struct PrimaryMetadataPersistentState: Codable {
         self.album = metadata.album
         self.albumArtist = metadata.albumArtist
         self.genre = metadata.genre
+        self.year = metadata.year
         
         self.trackNumber = metadata.trackNumber
         self.totalTracks = metadata.totalTracks

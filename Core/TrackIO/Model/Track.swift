@@ -120,6 +120,7 @@ class Track: Hashable, PlaylistItem {
         
         self.album = metadata.album
         self.genre = metadata.genre
+        self.year = metadata.year
 
         self.trackNumber = metadata.trackNumber
         self.totalTracks = metadata.totalTracks

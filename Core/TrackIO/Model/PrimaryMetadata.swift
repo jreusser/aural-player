@@ -26,6 +26,7 @@ struct PrimaryMetadata {
     var albumArtist: String?
     var album: String?
     var genre: String?
+    var year: Int?
     
 //    var composer: String?
 //    var conductor: String?
@@ -38,7 +39,6 @@ struct PrimaryMetadata {
     var discNumber: Int?
     var totalDiscs: Int?
     
-//    var year: Int?
 //    var bpm: Int?
     
     var duration: Double = 0
@@ -59,6 +59,7 @@ struct PrimaryMetadata {
         self.album = persistentState.album
         self.albumArtist = persistentState.albumArtist
         self.genre = persistentState.genre
+        self.year = persistentState.year
         
         self.trackNumber = persistentState.trackNumber
         self.totalTracks = persistentState.totalTracks
