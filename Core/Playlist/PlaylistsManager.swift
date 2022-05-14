@@ -19,6 +19,8 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
 
     private lazy var messenger = Messenger(for: self)
     
+    private var playlistsLoaded: Bool = false
+    
     var isAnyPlaylistBeingModified: Bool {
         
         let playlistModifyFlags: Set<Bool> = Set(userDefinedObjects.map {$0.isBeingModified})
@@ -53,6 +55,10 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
     // MARK: Notification handling ---------------------------------------------------------------
     
     func loadPlaylists() {
+        
+        if playlistsLoaded {return}
+        
+        playlistsLoaded = true
         
         userDefinedObjects.forEach {
             $0.loadPersistentTracks()
