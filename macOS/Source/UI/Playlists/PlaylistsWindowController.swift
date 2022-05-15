@@ -43,7 +43,7 @@ class PlaylistsWindowController: NSWindowController {
     @IBOutlet weak var progressSpinner: NSProgressIndicator!
     
     // The different playlist views
-    @IBOutlet weak var tableViewController: PlaylistViewController!
+    @IBOutlet weak var tableViewController: PlaylistTracksViewController!
     
     lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
     

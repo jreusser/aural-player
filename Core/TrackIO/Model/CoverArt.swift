@@ -21,7 +21,7 @@ struct CoverArt {
     
     init?(imageFile: URL) {
         
-        guard let image = PlatformImage(contentsOfFile: imageFile.path) else {return nil}
+        guard let image = PlatformImage(contentsOf: imageFile) else {return nil}
         self.image = image
         
         do {

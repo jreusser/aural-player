@@ -12,7 +12,7 @@ import Foundation
 ///
 /// Encapsulates all information about a single track
 ///
-class Track: Hashable, PlaylistItem {
+class Track: Hashable, PlaylistItem, PlayableItem {
     
     let file: URL
     let isNativelySupported: Bool

@@ -213,6 +213,13 @@ extension NSTableView {
     }
 }
 
+extension NSTableView: ColorSchemePropertyObserver {
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        setBackgroundColor(newColor)
+    }
+}
+
 extension NSOutlineView {
     
     func isItemSelected(_ item: Any) -> Bool {

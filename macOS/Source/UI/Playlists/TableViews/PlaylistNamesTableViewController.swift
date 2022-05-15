@@ -16,7 +16,7 @@ class PlaylistNamesTableViewController: NSViewController {
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var playlistViewController: PlaylistContainerViewController!
     
-    var tableViewController: PlaylistViewController!
+    var tableViewController: PlaylistTracksViewController!
     var controlsContainer: PlaylistsContainer!
     
     var selectedRows: IndexSet {tableView.selectedRowIndexes}
@@ -46,7 +46,8 @@ class PlaylistNamesTableViewController: NSViewController {
         playlistViewController.playlist = nil
         
         messenger.subscribe(to: .playlists_createPlaylistFromTracks, handler: createPlaylistFromTracks(_:))
-        colorSchemesManager.registerObserver(self, forProperty: \.backgroundColor)
+        colorSchemesManager.registerObserver(tableView, forProperty: \.backgroundColor)
+        colorSchemesManager.registerObserver(self, forProperties: [\.primaryTextColor, \.primarySelectedTextColor, \.textSelectionColor])
     }
     
     // MARK: Actions
@@ -211,7 +212,21 @@ class PlaylistNamesTableViewController: NSViewController {
 extension PlaylistNamesTableViewController: ColorSchemePropertyObserver {
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        tableView.setBackgroundColor(newColor)
+        
+        switch property {
+            
+        case \.primaryTextColor, \.primarySelectedTextColor:
+            
+            tableView.reloadDataMaintainingSelection()
+            
+        case \.textSelectionColor:
+            
+            tableView.redoRowSelection()
+            
+        default:
+            
+            return
+        }
     }
 }
 

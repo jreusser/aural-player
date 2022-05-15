@@ -34,7 +34,7 @@ class Grouping {
     
     func applyTo(trackList: TrackList) -> [Group] {
         
-        let groups = groupTracks(trackList.tracks, accordingTo: self.keyFunction)
+        let groups = groupTracks(trackList.tracks, accordingTo: self)
         
         if let subGrouping = self.subGrouping {
             return subGroup(groups, accordingTo: subGrouping)
@@ -43,24 +43,32 @@ class Grouping {
         return groups
     }
     
-    private func groupTracks(_ tracks: [Track], accordingTo keyFunction: GroupingFunction) -> [Group] {
+    private func groupTracks(_ tracks: [Track], accordingTo grouping: Grouping) -> [Group] {
         
         var kvMap: [String: [Track]] = [:]
     
         for track in tracks {
-            kvMap.append(track, forKey: keyFunction(track))
+            kvMap.append(track, forKey: grouping.keyFunction(track))
         }
         
-        return kvMap.map {key, value in Group(name: key, tracks: value)}
+        return kvMap.map {key, value in
+            
+            if grouping is AlbumsGrouping {
+                return AlbumGroup(name: key, tracks: value)
+            }
+            
+            return Group(name: key, tracks: value)
+        }
     }
     
+    // Recursive sub-grouping function.
     private func subGroup(_ groups: [Group], accordingTo grouping: Grouping) -> [Group] {
         
         var newGroups: [Group] = []
         
         for group in groups {
             
-            let subGroups = groupTracks(Array(group.tracks), accordingTo: grouping.keyFunction)
+            let subGroups = groupTracks(Array(group.tracks), accordingTo: grouping)
             newGroups.append(Group(name: group.name, subGroups: subGroups))
         }
         

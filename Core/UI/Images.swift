@@ -84,4 +84,8 @@ extension PlatformImage {
     static let imgDeviceType_airplay: PlatformImage = PlatformImage(systemSymbolName: "airplayaudio", accessibilityDescription: nil)!
     static let imgDeviceType_aggregate: PlatformImage = PlatformImage(named: "DeviceType_Aggregate")!
     static let imgDeviceType_avb: PlatformImage = PlatformImage(named: "DeviceType_AVB")!
+    
+    // --------------- Playlist group icons -----------------
+    
+    static let imgAlbumGroup: PlatformImage = PlatformImage(named: "Albums")!
 }

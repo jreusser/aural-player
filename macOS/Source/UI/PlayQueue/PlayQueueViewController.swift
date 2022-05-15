@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class PlayQueueViewController: TrackListViewController, FontSchemeObserver, ColorSchemeObserver {
+class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver, ColorSchemeObserver {
 
     lazy var messenger: Messenger = Messenger(for: self)
     
@@ -141,9 +141,7 @@ class PlayQueueViewController: TrackListViewController, FontSchemeObserver, Colo
         tableView.reloadDataMaintainingSelection()
     }
     
-    override func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        
-        super.colorChanged(to: newColor, forProperty: property)
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
         switch property {
             

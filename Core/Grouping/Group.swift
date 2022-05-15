@@ -11,11 +11,15 @@
 import Foundation
 import OrderedCollections
 
-class Group {
+class Group: PlayableItem {
     
     let name: String
     
-    var tracks: OrderedSet<Track>
+    var duration: Double {
+        tracks.duration
+    }
+    
+    var tracks: TrackList = TrackList()
     var hasTracks: Bool {tracks.isNonEmpty}
     
     var subGroups: [Group]
@@ -24,14 +28,13 @@ class Group {
     init(name: String, tracks: [Track]) {
         
         self.name = name
-        self.tracks = OrderedSet<Track>(tracks)
+        self.tracks.addTracks(tracks)
         self.subGroups = []
     }
     
     init(name: String, subGroups: [Group]) {
         
         self.name = name
-        self.tracks = []
         self.subGroups = subGroups
     }
     
@@ -39,18 +42,27 @@ class Group {
         
         for (index, track) in tracksMap {
             
-            if index >= tracks.count {
-                tracks.append(track)
+            if index >= tracks.size {
+                tracks.addTracks([track])
             } else {
-                tracks.insert(track, at: index)
+                tracks.insertTracks([track], at: index)
             }
         }
     }
     
     func removeTracks(_ tracksToRemove: [Track]) {
-        
-        tracksToRemove.forEach {
-            tracks.remove($0)
-        }
+        tracks.removeTracks(tracksToRemove)
+    }
+    
+    // TODO: Name comparison is not enough !!!
+    
+    // Equatable ocnformance.
+    static func == (lhs: Group, rhs: Group) -> Bool {
+        lhs.name == rhs.name
+    }
+    
+    // Hashable conformance.
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
     }
 }

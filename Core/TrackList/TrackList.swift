@@ -20,16 +20,17 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     
     typealias Iterator = TrackListIterator
     
+    // TODO: Consider using OrderedSet instead of []. It will eliminate the need for the tracksByFile [:].
     var tracks: [Track] = []
+    
+    // A map to quickly look up tracks by (absolute) file path (used when adding tracks, to prevent duplicates)
+    private var tracksByFile: [URL: Track] = [:]
     
     private var _isBeingModified: AtomicBool = AtomicBool(value: false)
     
     var isBeingModified: Bool {
         _isBeingModified.value
     }
-    
-    // A map to quickly look up tracks by (absolute) file path (used when adding tracks, to prevent duplicates)
-    private var tracksByFile: [URL: Track] = [:]
     
     var size: Int {
         tracks.count

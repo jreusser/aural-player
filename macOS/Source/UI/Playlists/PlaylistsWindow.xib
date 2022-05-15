@@ -839,7 +839,7 @@
                 <outlet property="view" destination="9Si-sI-Nin" id="9AL-dX-w68"/>
             </connections>
         </customObject>
-        <customObject id="uni-A1-Lee" customClass="PlaylistViewController" customModule="Aural" customModuleProvider="target"/>
+        <customObject id="uni-A1-Lee" customClass="PlaylistTracksViewController" customModule="Aural" customModuleProvider="target"/>
         <customObject id="gPe-2R-NWZ" customClass="PlaylistContainerViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="lblPlaylistName" destination="PkZ-lN-oeS" id="srP-Ud-WBZ"/>

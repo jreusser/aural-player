@@ -106,8 +106,6 @@ class TableCellBuilder {
             
             cell.attributedText = attributedText
             
-//            cell.textField?.maximumNumberOfLines = 1
-            
             cell.unselectedAttributedText = attributedText
             cell.selectedAttributedText = selectedAttributedText
             
@@ -137,6 +135,48 @@ class TableCellBuilder {
         
         cell.rowSelectionStateFunction = {[weak tableView] in
             tableView?.selectedRowIndexes.contains(row) ?? false
+        }
+        
+        return cell
+    }
+    
+    func buildCell(forOutlineView outlineView: NSOutlineView, forColumnWithId columnId: NSUserInterfaceItemIdentifier, havingItem item: Any) -> AuralTableCellView? {
+
+        guard let cell = cellFactory(outlineView, columnId) else {return nil}
+        
+        if let attributedText = self.attributedText, let selectedAttributedText = self.selectedAttributedText {
+            
+            cell.attributedText = attributedText
+            
+            cell.unselectedAttributedText = attributedText
+            cell.selectedAttributedText = selectedAttributedText
+            
+        } else if let text = self.text, let selectedTextColor = self.selectedTextColor {
+            
+            cell.text = text
+            cell.textFont = self.font
+            cell.textColor = self.textColor
+            
+            cell.unselectedTextColor = self.textColor
+            cell.selectedTextColor = selectedTextColor
+        }
+        
+        if let yOffset = self.yOffset {
+            cell.realignText(yOffset: yOffset)
+        }
+        
+        cell.textField?.showIf(attributedText != nil || text != nil)
+        
+        if let image = self.image, let imageColor = self.imageColor {
+            
+            cell.image = image
+            cell.imageColor = imageColor
+        }
+        
+        cell.imageView?.showIf(image != nil)
+        
+        cell.rowSelectionStateFunction = {[weak outlineView] in
+            outlineView?.isItemSelected(item) ?? false
         }
         
         return cell
