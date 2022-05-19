@@ -15,7 +15,6 @@
 		3E08AC11281B214F004A53F7 /* TintableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E08AC10281B214F004A53F7 /* TintableTextField.swift */; };
 		3E08AC13281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E08AC12281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift */; };
 		3E0A1D27277223D100D69371 /* PitchShiftSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A1D26277223D100D69371 /* PitchShiftSliderCell.swift */; };
-		3E0E74E22807B62B00CD7A58 /* TrackListWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E74E12807B62B00CD7A58 /* TrackListWrapper.swift */; };
 		3E16BE0C280DB48E00CE9FE9 /* PlaylistsUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16BE0B280DB48E00CE9FE9 /* PlaylistsUIState.swift */; };
 		3E16BE0E280DC73800CE9FE9 /* PlaylistNamesTableViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16BE0D280DC73800CE9FE9 /* PlaylistNamesTableViewController+DataSource.swift */; };
 		3E16BE10280DCF7300CE9FE9 /* PlaylistNamesTableViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16BE0F280DCF7300CE9FE9 /* PlaylistNamesTableViewController+ViewDelegate.swift */; };
@@ -1514,7 +1513,6 @@
 		3E08AC10281B214F004A53F7 /* TintableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintableTextField.swift; sourceTree = "<group>"; };
 		3E08AC12281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSlider+ColorSchemeObserver.swift"; sourceTree = "<group>"; };
 		3E0A1D26277223D100D69371 /* PitchShiftSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchShiftSliderCell.swift; sourceTree = "<group>"; };
-		3E0E74E12807B62B00CD7A58 /* TrackListWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListWrapper.swift; sourceTree = "<group>"; };
 		3E16BE0B280DB48E00CE9FE9 /* PlaylistsUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsUIState.swift; sourceTree = "<group>"; };
 		3E16BE0D280DC73800CE9FE9 /* PlaylistNamesTableViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaylistNamesTableViewController+DataSource.swift"; sourceTree = "<group>"; };
 		3E16BE0F280DCF7300CE9FE9 /* PlaylistNamesTableViewController+ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaylistNamesTableViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
@@ -4521,7 +4519,6 @@
 				3EF1A0BD27E4E08A00E64F37 /* TrackList.swift */,
 				3EF1A0BF27E4E18700E64F37 /* TrackListIterator.swift */,
 				3E7AF1022806451B006DC98F /* TrackListProtocol.swift */,
-				3E0E74E12807B62B00CD7A58 /* TrackListWrapper.swift */,
 				3EFE363A27864895006F8B8C /* Search */,
 				3E045D07281340630069DEFE /* Sort */,
 				3EF84D862835D7D9004EF57B /* GroupedTrackList.swift */,
@@ -6034,7 +6031,6 @@
 				3EBF292B268695B700D87021 /* EffectsUnitTriStateBypassButton.swift in Sources */,
 				3E6C12A925CEBE2700BF0D07 /* EffectsUnitTriStateBypassImage.swift in Sources */,
 				3E3633E22685FB2C006A88ED /* EffectsUnitViewController.swift in Sources */,
-				3E0E74E22807B62B00CD7A58 /* TrackListWrapper.swift in Sources */,
 				3EFE38E127864897006F8B8C /* AudioGraphProtocols.swift in Sources */,
 				3EFE389727864896006F8B8C /* ReverbPresets.swift in Sources */,
 				3E6C12CA25CEBE6700BF0D07 /* EffectsWindowController.swift in Sources */,

@@ -94,9 +94,8 @@ class Track: Hashable, PlaylistItem, PlayableItem {
     init(_ file: URL, fileMetadata: FileMetadata? = nil) {
 
         self.file = file
-        self.fileSystemInfo = FileSystemInfo(file: file)
-        
-        self.defaultDisplayName = file.deletingPathExtension().lastPathComponent
+        self.defaultDisplayName = file.nameWithoutExtension
+        self.fileSystemInfo = FileSystemInfo(file: file, fileName: self.defaultDisplayName)
         
         self.isNativelySupported = file.isNativelySupported
         

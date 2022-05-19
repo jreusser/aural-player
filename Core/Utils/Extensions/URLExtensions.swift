@@ -25,6 +25,10 @@ extension URL {
         pathExtension.lowercased()
     }
     
+    var nameWithoutExtension: String {
+        deletingLastPathComponent().lastPathComponent
+    }
+    
     var isNativelySupported: Bool {
         SupportedTypes.nativeAudioExtensions.contains(lowerCasedExtension)
     }

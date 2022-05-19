@@ -20,7 +20,6 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     
     typealias Iterator = TrackListIterator
     
-    // TODO: Consider using OrderedSet instead of []. It will eliminate the need for the tracksByFile [:].
     var _tracks: OrderedSet<Track> = OrderedSet()
     
     var tracks: [Track] {
@@ -127,8 +126,12 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         let dedupedTracks = newTracks.filter {!_tracks.contains($0)}
         guard dedupedTracks.isNonEmpty else {return .empty}
         
+        // Need to insert in reverse order.
         for index in stride(from: dedupedTracks.lastIndex, through: -1, by: -1) {
-            _tracks.insert(dedupedTracks[index], at: insertionIndex)
+            
+            let track = dedupedTracks[index]
+            _tracks.insert(track, at: insertionIndex)
+            tracksByFile[track.file] = track
         }
         
         return IndexSet(insertionIndex..<(insertionIndex + dedupedTracks.count))

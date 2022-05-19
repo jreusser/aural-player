@@ -26,9 +26,9 @@ class FileSystemInfo {
     var lastModified: Date? {attributes.lastModified}
     var lastOpened: Date? {attributes.lastOpened}
     
-    init(file: URL) {
+    init(file: URL, fileName: String) {
         
         self.file = file
-        self.fileName = file.deletingPathExtension().lastPathComponent
+        self.fileName = fileName
     }
 }
