@@ -47,14 +47,19 @@
                                                 <rect key="frame" x="8" y="0.0" width="183" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView identifier="Icon" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CN8-jU-61m" userLabel="Icon">
-                                                        <rect key="frame" x="2" y="-2" width="16" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <imageView identifier="Icon" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CN8-jU-61m" userLabel="Icon">
+                                                        <rect key="frame" x="2" y="2" width="16" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="18" id="OjO-5X-5az"/>
+                                                            <constraint firstAttribute="width" constant="16" id="wqM-Cs-mjr"/>
+                                                        </constraints>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="l5U-98-aqL" customClass="TableImageCell" customModule="Aural" customModuleProvider="target"/>
                                                     </imageView>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbx-P6-PoE" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="22" y="0.0" width="183" height="24"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="cbx-P6-PoE" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                        <rect key="frame" x="22" y="0.0" width="163" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="24" id="coh-TP-Qyv"/>
+                                                        </constraints>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="EnI-Ge-gTp">
                                                             <font key="font" usesAppearanceFont="YES"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -62,6 +67,13 @@
                                                         </textFieldCell>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="CN8-jU-61m" firstAttribute="centerY" secondItem="myZ-55-nYT" secondAttribute="centerY" constant="1" id="0Df-xj-c6V"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cbx-P6-PoE" secondAttribute="trailing" id="2pN-rJ-qFc"/>
+                                                    <constraint firstItem="CN8-jU-61m" firstAttribute="leading" secondItem="myZ-55-nYT" secondAttribute="leading" constant="2" id="5BH-WS-VFG"/>
+                                                    <constraint firstItem="cbx-P6-PoE" firstAttribute="centerY" secondItem="myZ-55-nYT" secondAttribute="centerY" id="k0z-T4-jG3"/>
+                                                    <constraint firstItem="cbx-P6-PoE" firstAttribute="leading" secondItem="CN8-jU-61m" secondAttribute="trailing" constant="6" id="uVh-ap-hma"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="imageView" destination="CN8-jU-61m" id="Fuv-PO-mVn"/>
                                                     <outlet property="textField" destination="cbx-P6-PoE" id="eH5-YM-sVN"/>

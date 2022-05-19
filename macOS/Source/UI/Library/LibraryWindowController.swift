@@ -46,4 +46,8 @@ class LibraryWindowController: NSWindowController {
         fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
     }
+    
+    @IBAction func closeAction(_ sender: Any) {
+        windowLayoutsManager.toggleWindow(withId: .library)
+    }
 }

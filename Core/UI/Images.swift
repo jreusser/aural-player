@@ -50,6 +50,8 @@ extension PlatformImage {
     static let imgSwitch: PlatformImage = PlatformImage(systemSymbolName: "power", accessibilityDescription: nil)!
     
     static let imgRememberSettings: PlatformImage = PlatformImage(systemSymbolName: "clock.arrow.2.circlepath", accessibilityDescription: nil)!
+    
+    static let imgHistory: PlatformImage = PlatformImage(systemSymbolName: "clock", accessibilityDescription: nil)!
     static let imgHistory_playlist_padded: PlatformImage = PlatformImage(named: "History_PaddedPlaylist")!
     
     // Displayed in the playlist view

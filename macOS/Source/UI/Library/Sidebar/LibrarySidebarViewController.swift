@@ -118,7 +118,7 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
         if let category = item as? LibrarySidebarCategory {
-            return createNameCell(outlineView, category.description, font: systemFontScheme.playerPrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image)
+            return createNameCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image)
             
         } else if let sidebarItem = item as? LibrarySidebarItem {
             return createNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor)

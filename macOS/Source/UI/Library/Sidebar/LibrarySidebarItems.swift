@@ -39,7 +39,7 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
             
         case .history:
             
-            return .imgRememberSettings
+            return .imgHistory
             
         case .favorites:
             
