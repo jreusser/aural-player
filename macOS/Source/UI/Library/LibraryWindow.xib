@@ -11,6 +11,7 @@
                 <outlet property="btnClose" destination="8J0-bC-5HZ" id="Uo2-YD-5Pa"/>
                 <outlet property="lblCaption" destination="bV3-BU-lI2" id="oP1-vf-Y92"/>
                 <outlet property="rootContainer" destination="seh-25-6bz" id="WTP-4o-jl1"/>
+                <outlet property="splitView" destination="w60-lv-Hyh" id="ItC-QP-6wr"/>
                 <outlet property="tabGroup" destination="kDh-fQ-j7J" id="zMM-VS-rRd"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="AcV-gx-JMf"/>
             </connections>
