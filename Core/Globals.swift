@@ -26,6 +26,8 @@ let appModeManager: AppModeManager = AppModeManager(persistentState: persistentS
 
 fileprivate let playQueue: PlayQueue = PlayQueue()
 
+let library: Library = Library()
+
 let playlistsManager: PlaylistsManager = PlaylistsManager(playlists: persistentState.playlists?.playlists?.compactMap {Playlist(persistentState: $0)} ?? [])
 
 //    let playlistDelegate: PlaylistDelegateProtocol = PlaylistDelegate(persistentState: persistentState.playlist, playlist,

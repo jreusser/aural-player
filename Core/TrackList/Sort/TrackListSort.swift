@@ -21,13 +21,6 @@ struct TrackListSort {
         self.fields = fields
         self.order = order
         
-        func comparisonToComparator(_ comparision: @escaping TrackComparison) -> TrackComparator {
-            
-            {t1, t2 in
-                comparision(t1, t2) == (order == .ascending ? .orderedAscending : .orderedDescending)
-            }
-        }
-        
         let comparisons = fields.map {$0.comparison}
         var compositeFunction: TrackComparison = comparisons[0]
         
@@ -38,7 +31,9 @@ struct TrackListSort {
             }
         }
         
-        self.comparator = comparisonToComparator(compositeFunction)
+        self.comparator = {t1, t2 in
+            compositeFunction(t1, t2) == (order == .ascending ? .orderedAscending : .orderedDescending)
+        }
     }
 }
 

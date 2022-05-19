@@ -62,7 +62,7 @@
                                 <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w60-lv-Hyh" userLabel="LeftRight SplitView">
                                     <rect key="frame" x="5" y="0.0" width="995" height="451"/>
                                     <subviews>
-                                        <customView misplaced="YES" id="shO-p5-YdO">
+                                        <customView id="shO-p5-YdO">
                                             <rect key="frame" x="0.0" y="0.0" width="234" height="451"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <constraints>
@@ -70,12 +70,12 @@
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="LDW-hw-XFX"/>
                                             </constraints>
                                         </customView>
-                                        <customView misplaced="YES" id="jRt-01-52h">
+                                        <customView id="jRt-01-52h">
                                             <rect key="frame" x="235" y="0.0" width="760" height="451"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="kDh-fQ-j7J" userLabel="BrowserTabView">
-                                                    <rect key="frame" x="0.0" y="1" width="760" height="451"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
                                                     <font key="font" metaFont="system"/>
                                                     <tabViewItems>
                                                         <tabViewItem label="Tracks" identifier="" id="HRv-Jn-Es0">

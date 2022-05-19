@@ -1,6 +1,6 @@
 import Foundation
 
-class PlayQueue: TrackList, PlayQueueProtocol, TrackLoaderObserver, PersistentModelObject {
+class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
     
     // MARK: Accessor functions
 
@@ -29,18 +29,6 @@ class PlayQueue: TrackList, PlayQueueProtocol, TrackLoaderObserver, PersistentMo
         loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
     }
     
-    func preTrackLoad() {
-        messenger.publish(.playQueue_startedAddingTracks)
-    }
-    
-    func postTrackLoad() {
-        messenger.publish(.playQueue_doneAddingTracks)
-    }
-    
-    func postBatchLoad(indices: ClosedRange<Int>) {
-        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
-    }
-
     func enqueueTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
         addTracks(newTracks)
     }
@@ -166,5 +154,20 @@ class PlayQueue: TrackList, PlayQueueProtocol, TrackLoaderObserver, PersistentMo
     
     var persistentState: PlayQueuePersistentState {
         .init(playQueue: self)
+    }
+}
+
+extension PlayQueue: TrackLoaderObserver {
+    
+    func preTrackLoad() {
+        messenger.publish(.playQueue_startedAddingTracks)
+    }
+    
+    func postTrackLoad() {
+        messenger.publish(.playQueue_doneAddingTracks)
+    }
+    
+    func postBatchLoad(indices: ClosedRange<Int>) {
+        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
     }
 }

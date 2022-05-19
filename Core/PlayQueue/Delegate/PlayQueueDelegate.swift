@@ -64,7 +64,7 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     }
 
     func indexOfTrack(_ track: Track) -> Int? {
-        return playQueue.indexOfTrack(track)
+        playQueue.indexOfTrack(track)
     }
 
     subscript(_ index: Int) -> Track? {
@@ -121,23 +121,23 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     }
 
     func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
-        return playQueue.moveTracksUp(from: indices)
+        playQueue.moveTracksUp(from: indices)
     }
 
     func moveTracksToTop(from indices: IndexSet) -> [TrackMoveResult] {
-        return playQueue.moveTracksToTop(from: indices)
+        playQueue.moveTracksToTop(from: indices)
     }
 
     func moveTracksDown(from indices: IndexSet) -> [TrackMoveResult] {
-        return playQueue.moveTracksDown(from: indices)
+        playQueue.moveTracksDown(from: indices)
     }
 
     func moveTracksToBottom(from indices: IndexSet) -> [TrackMoveResult] {
-        return playQueue.moveTracksToBottom(from: indices)
+        playQueue.moveTracksToBottom(from: indices)
     }
 
     func moveTracks(from sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
-        return playQueue.moveTracks(from: sourceIndices, to: dropIndex)
+        playQueue.moveTracks(from: sourceIndices, to: dropIndex)
     }
 
     func export(to file: URL) {
