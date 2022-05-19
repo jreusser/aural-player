@@ -196,7 +196,7 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         
         let indices = playQueueDelegate.addTracks(command.tracks)
         
-        if indices != -1...(-1) {
+        if indices.isNonEmpty {
             tableView.noteNumberOfRowsChanged()
         }
         

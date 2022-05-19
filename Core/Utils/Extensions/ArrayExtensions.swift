@@ -119,7 +119,7 @@ extension Array {
         return firstIndex...self.lastIndex
     }
     
-    mutating func removeItem(_ index: Int) -> Element? {
+    mutating func removeItem(at index: Int) -> Element? {
         return indices.contains(index) ? self.remove(at: index) : nil
     }
     
@@ -230,7 +230,7 @@ extension Array {
         
         // Make sure that the source indices are iterated in descending order, because tracks need to be removed from the bottom up.
         // Collect all the tracks into an array for re-insertion later.
-        let sourceItems: [Element] = sourceIndices.sortedDescending().compactMap {self.removeItem($0)}
+        let sourceItems: [Element] = sourceIndices.sortedDescending().compactMap {self.removeItem(at: $0)}
         
         // Reverse the source items collection to match the order of the destination indices.
         // For each destination index, copy over a source item into the corresponding destination hole.

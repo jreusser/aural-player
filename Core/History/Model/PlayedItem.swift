@@ -14,6 +14,8 @@ import Foundation
 ///
 class PlayedItem: HistoryItem {
     
+    // TODO: Played item should not just be a track ... it could be a file system folder, a saved playlist, an M3U playlist, or a track.
+    
     init(_ track: Track, _ time: Date) {
         
         super.init(track.file, track.displayName, time)

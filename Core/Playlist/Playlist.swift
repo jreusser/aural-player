@@ -80,7 +80,7 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
 //        print("\n\n**** TOP LEVEL GROUPS for Playlist '\(name)': \(groups.map {$0.name + " (\($0.tracks.size) tracks)"})")
     }
     
-    func postBatchLoad(indices: ClosedRange<Int>) {
+    func postBatchLoad(indices: IndexSet) {
         messenger.publish(PlaylistTracksAddedNotification(playlistName: name, trackIndices: indices))
     }
 }

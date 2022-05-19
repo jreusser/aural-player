@@ -83,28 +83,28 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         playQueue.loadTracks(from: files, atPosition: position)
     }
     
-    func addTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
+    func addTracks(_ newTracks: [Track]) -> IndexSet {
         
         let indices = playQueue.addTracks(newTracks)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
 
-    func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int> {
+    func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> IndexSet {
 
         let indices = playQueue.enqueueTracks(newTracks, clearQueue: clearQueue)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
 
-    func enqueueTracksToPlayNext(_ newTracks: [Track]) -> ClosedRange<Int> {
+    func enqueueTracksToPlayNext(_ newTracks: [Track]) -> IndexSet {
 
         let indices = playQueue.enqueueTracksAfterCurrentTrack(newTracks)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
     
-    func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
+    func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> IndexSet {
         
         let indices = playQueue.insertTracks(newTracks, at: insertionIndex)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))

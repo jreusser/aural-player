@@ -21,27 +21,37 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     typealias Iterator = TrackListIterator
     
     // TODO: Consider using OrderedSet instead of []. It will eliminate the need for the tracksByFile [:].
-    var tracks: [Track] = []
+    var _tracks: OrderedSet<Track> = OrderedSet()
+    
+    var tracks: [Track] {
+        _tracks.elements
+    }
     
     // A map to quickly look up tracks by (absolute) file path (used when adding tracks, to prevent duplicates)
     private var tracksByFile: [URL: Track] = [:]
     
     private var _isBeingModified: AtomicBool = AtomicBool(value: false)
     
+    let sortOrder: TrackListSort?
+    
+    init(sortOrder: TrackListSort? = nil) {
+        self.sortOrder = sortOrder
+    }
+    
     var isBeingModified: Bool {
         _isBeingModified.value
     }
     
     var size: Int {
-        tracks.count
+        _tracks.count
     }
     
     var indices: Range<Int> {
-        tracks.indices
+        _tracks.indices
     }
     
     var duration: Double {
-        tracks.reduce(0.0, {(totalSoFar: Double, track: Track) -> Double in totalSoFar + track.duration})
+        _tracks.reduce(0.0, {(totalSoFar: Double, track: Track) -> Double in totalSoFar + track.duration})
     }
     
     var summary: (size: Int, totalDuration: Double) {
@@ -54,18 +64,18 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     var isEmpty: Bool {
-        tracks.isEmpty
+        _tracks.isEmpty
     }
     
     var isNonEmpty: Bool {
-        tracks.isNonEmpty
+        _tracks.isNonEmpty
     }
     
     /// Safe array access.
     subscript(index: Int) -> Track? {
         
-        guard index >= 0, index < tracks.count else {return nil}
-        return tracks[index]
+        guard index >= 0, index < _tracks.count else {return nil}
+        return _tracks[index]
     }
     
     subscript(indices: IndexSet) -> [Track] {
@@ -73,7 +83,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     func indexOfTrack(_ track: Track) -> Int?  {
-        tracks.firstIndex(of: track)
+        _tracks.firstIndex(of: track)
     }
     
     func hasTrack(_ track: Track) -> Bool {
@@ -92,50 +102,57 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         OrderedSet<Track>(tracks).filter {!hasTrack($0)}
     }
     
-    @discardableResult func addTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
+    @discardableResult func addTracks(_ newTracks: [Track]) -> IndexSet {
         
         let dedupedTracks = deDupeTracks(newTracks)
+        
+        guard dedupedTracks.isNonEmpty else {return .empty}
         
         for track in dedupedTracks {
             tracksByFile[track.file] = track
         }
         
-        return dedupedTracks.isNonEmpty ? tracks.addItems(dedupedTracks) : -1...(-1)
+        _tracks.append(contentsOf: dedupedTracks)
+        
+        if let sortOrder = self.sortOrder {
+            _tracks.sort(by: sortOrder.comparator)
+        }
+        
+        let newIndices = dedupedTracks.compactMap {_tracks.firstIndex(of: $0)}
+        return IndexSet(newIndices)
     }
     
-    @discardableResult func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
+    @discardableResult func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> IndexSet {
         
-        let dedupedTracks = deDupeTracks(newTracks)
-        guard dedupedTracks.isNonEmpty else {return -1...(-1)}
+        let dedupedTracks = newTracks.filter {!_tracks.contains($0)}
+        guard dedupedTracks.isNonEmpty else {return .empty}
         
-        tracks.insert(contentsOf: dedupedTracks, at: insertionIndex)
-        
-        for track in dedupedTracks {
-            tracksByFile[track.file] = track
+        for index in stride(from: dedupedTracks.lastIndex, through: -1, by: -1) {
+            _tracks.insert(dedupedTracks[index], at: insertionIndex)
         }
         
-        return insertionIndex...(insertionIndex + dedupedTracks.lastIndex)
+        return IndexSet(insertionIndex..<(insertionIndex + dedupedTracks.count))
     }
     
     @discardableResult func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
-        tracks.moveItemsUp(from: indices).map {TrackMoveResult($0.key, $0.value)}
+        _tracks.moveItemsUp(from: indices).map {TrackMoveResult($0.key, $0.value)}
     }
     
     @discardableResult func moveTracksToTop(from indices: IndexSet) -> [TrackMoveResult] {
-        tracks.moveItemsToTop(from: indices).map {TrackMoveResult($0.key, $0.value)}
+        _tracks.moveItemsToTop(from: indices).map {TrackMoveResult($0.key, $0.value)}
     }
     
     @discardableResult func moveTracksToBottom(from indices: IndexSet) -> [TrackMoveResult] {
-        tracks.moveItemsToBottom(from: indices).map {TrackMoveResult($0.key, $0.value)}
+        _tracks.moveItemsToBottom(from: indices).map {TrackMoveResult($0.key, $0.value)}
     }
     
     @discardableResult func moveTracksDown(from indices: IndexSet) -> [TrackMoveResult] {
-        tracks.moveItemsDown(from: indices).map {TrackMoveResult($0.key, $0.value)}
+        _tracks.moveItemsDown(from: indices).map {TrackMoveResult($0.key, $0.value)}
     }
     
     func removeAllTracks() {
         
-        tracks.removeAll()
+        _tracks.removeAll()
         tracksByFile.removeAll()
     }
     
@@ -147,12 +164,12 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
             tracksByFile.removeValue(forKey: track.file)
         }
         
-        return tracks.removeItems(tracksToRemove)
+        return _tracks.removeItems(tracksToRemove)
     }
     
     @discardableResult func removeTracks(at indices: IndexSet) -> [Track] {
         
-        let removedTracks = tracks.removeItems(at: indices)
+        let removedTracks = _tracks.removeItems(at: indices)
         
         for track in removedTracks {
             
@@ -164,7 +181,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     @discardableResult func moveTracks(from sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
-        tracks.dragAndDropItems(sourceIndices, dropIndex).map {TrackMoveResult($0.key, $0.value)}
+        _tracks.dragAndDropItems(sourceIndices, dropIndex).map {TrackMoveResult($0.key, $0.value)}
     }
     
 //    // TODO:
@@ -173,18 +190,18 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
 //    }
 //
     func sort(_ sort: TrackListSort) {
-        tracks.sort(by: sort.comparator)
+        _tracks.sort(by: sort.comparator)
     }
 
     func sort(by comparator: (Track, Track) -> Bool) {
-        tracks.sort(by: comparator)
+        _tracks.sort(by: comparator)
     }
     
     func exportToFile(_ file: URL) {
         
         // Perform asynchronously, to unblock the main thread
         DispatchQueue.global(qos: .userInitiated).async {
-            PlaylistIO.savePlaylist(tracks: self.tracks, toFile: file)
+            PlaylistIO.savePlaylist(tracks: self._tracks.elements, toFile: file)
         }
     }
     
@@ -202,7 +219,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         }
     }
 
-    func acceptBatch(_ batch: FileMetadataBatch) -> ClosedRange<Int> {
+    func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet {
         
         let tracks = batch.orderedMetadata.map {(file, metadata) -> Track in
             
@@ -222,4 +239,9 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
             return addTracks(tracks)
         }
     }
+}
+
+extension IndexSet {
+    
+    static let empty: IndexSet = IndexSet()
 }

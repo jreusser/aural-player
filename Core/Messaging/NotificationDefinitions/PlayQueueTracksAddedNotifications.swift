@@ -15,9 +15,9 @@ class TracksAddedNotification: NotificationPayload {
     let notificationName: Notification.Name
     
     // The indices of the newly added tracks
-    let trackIndices: ClosedRange<Int>
+    let trackIndices: IndexSet
     
-    init(notificationName: Notification.Name, trackIndices: ClosedRange<Int>) {
+    init(notificationName: Notification.Name, trackIndices: IndexSet) {
         
         self.notificationName = notificationName
         self.trackIndices = trackIndices
@@ -26,8 +26,15 @@ class TracksAddedNotification: NotificationPayload {
 
 class PlayQueueTracksAddedNotification: TracksAddedNotification {
     
-    init(trackIndices: ClosedRange<Int>) {
+    init(trackIndices: IndexSet) {
         super.init(notificationName: .playQueue_tracksAdded, trackIndices: trackIndices)
+    }
+}
+
+class LibraryTracksAddedNotification: TracksAddedNotification {
+    
+    init(trackIndices: IndexSet) {
+        super.init(notificationName: .library_tracksAdded, trackIndices: trackIndices)
     }
 }
 
@@ -35,7 +42,7 @@ class PlaylistTracksAddedNotification: TracksAddedNotification {
     
     let playlistName: String
     
-    init(playlistName: String, trackIndices: ClosedRange<Int>) {
+    init(playlistName: String, trackIndices: IndexSet) {
         
         self.playlistName = playlistName
         super.init(notificationName: .playlist_tracksAdded, trackIndices: trackIndices)

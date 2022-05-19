@@ -34,10 +34,10 @@ protocol AbstractTrackListProtocol {
     
 //    func search(_ searchQuery: SearchQuery) -> SearchResults
     
-    @discardableResult func addTracks(_ newTracks: [Track]) -> ClosedRange<Int>
+    @discardableResult func addTracks(_ newTracks: [Track]) -> IndexSet
     
     // Inserts tracks from an external source (eg. saved playlist) at a given insertion index.
-    func insertTracks(_ tracks: [Track], at insertionIndex: Int) -> ClosedRange<Int>
+    func insertTracks(_ tracks: [Track], at insertionIndex: Int) -> IndexSet
     
     func removeTracks(at indices: IndexSet) -> [Track]
 

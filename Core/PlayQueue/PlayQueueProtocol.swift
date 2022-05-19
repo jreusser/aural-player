@@ -11,10 +11,10 @@ protocol PlayQueueProtocol: TrackListProtocol, SequencingProtocol {
     // MARK: Mutating functions ---------------------------------------------------------------
     
     // Adds tracks to the end of the queue, i.e. "Play Later"
-    func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int>
+    func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> IndexSet
 
     // Inserts tracks immediately after the current track, i.e. "Play Next"
-    func enqueueTracksAfterCurrentTrack(_ newTracks: [Track]) -> ClosedRange<Int>
+    func enqueueTracksAfterCurrentTrack(_ newTracks: [Track]) -> IndexSet
 }
 
 /*

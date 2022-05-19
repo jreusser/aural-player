@@ -18,7 +18,7 @@ class GroupedTrackList: TrackList {
         self.groupings = groupings
     }
     
-    override func addTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
+    override func addTracks(_ newTracks: [Track]) -> IndexSet {
         
         let indices = super.addTracks(newTracks)
         

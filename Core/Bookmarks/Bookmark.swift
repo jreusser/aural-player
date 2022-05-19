@@ -43,18 +43,6 @@ class Bookmark: UserManagedObject, Hashable {
     // Seek position within track, expressed in seconds
     let endPosition: Double?
     
-    convenience init(_ name: String, _ file: URL, _ startPosition: Double) {
-        self.init(name, file, startPosition, nil)
-    }
-    
-    init(_ name: String, _ file: URL, _ startPosition: Double, _ endPosition: Double?) {
-        
-        self._name = name
-        self.file = file
-        self.startPosition = startPosition
-        self.endPosition = endPosition
-    }
-    
     init(_ name: String, _ track: Track, _ startPosition: Double, _ endPosition: Double?) {
         
         self._name = name

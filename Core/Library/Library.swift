@@ -31,14 +31,14 @@ class Library: GroupedTrackList, LibraryProtocol {
 extension Library: TrackLoaderObserver {
     
     func preTrackLoad() {
-        messenger.publish(.playQueue_startedAddingTracks)
+        messenger.publish(.library_startedAddingTracks)
     }
     
     func postTrackLoad() {
-        messenger.publish(.playQueue_doneAddingTracks)
+        messenger.publish(.library_doneAddingTracks)
     }
     
-    func postBatchLoad(indices: ClosedRange<Int>) {
-        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
+    func postBatchLoad(indices: IndexSet) {
+        messenger.publish(LibraryTracksAddedNotification(trackIndices: indices))
     }
 }

@@ -45,7 +45,7 @@ class BookmarksDelegate: BookmarksDelegateProtocol {
     
     func addBookmark(_ name: String, _ track: Track, _ startPosition: Double, _ endPosition: Double? = nil) -> Bookmark {
         
-        let newBookmark = Bookmark(name, track.file, startPosition, endPosition)
+        let newBookmark = Bookmark(name, track, startPosition, endPosition)
         bookmarks.addObject(newBookmark)
         
         messenger.publish(.bookmarksList_trackAdded, payload: newBookmark)

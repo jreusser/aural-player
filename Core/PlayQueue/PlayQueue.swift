@@ -29,11 +29,11 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
         loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
     }
     
-    func enqueueTracks(_ newTracks: [Track]) -> ClosedRange<Int> {
+    func enqueueTracks(_ newTracks: [Track]) -> IndexSet {
         addTracks(newTracks)
     }
     
-    func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> ClosedRange<Int> {
+    func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> IndexSet {
         
         if clearQueue {
             removeAllTracks()
@@ -42,7 +42,7 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
         return enqueueTracks(newTracks)
     }
 
-    func enqueueTracksAfterCurrentTrack(_ newTracks: [Track]) -> ClosedRange<Int> {
+    func enqueueTracksAfterCurrentTrack(_ newTracks: [Track]) -> IndexSet {
         
         guard let curTrackIndex = self.currentTrackIndex else {
             return enqueueTracks(newTracks)
@@ -53,16 +53,16 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
         for track in newTracks {
             
             if let sourceIndex = indexOfTrack(track) {
-                tracks.removeAndInsertItem(sourceIndex, insertionIndex.getAndIncrement())
+                _tracks.removeAndInsertItem(sourceIndex, insertionIndex.getAndIncrement())
             } else {
                 insertTracks([track], at: insertionIndex.getAndIncrement())
             }
         }
         
-        return curTrackIndex...(insertionIndex - 1)
+        return IndexSet(curTrackIndex...(insertionIndex - 1))
     }
     
-    override func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> ClosedRange<Int> {
+    override func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> IndexSet {
         
         let indices = super.insertTracks(newTracks, at: insertionIndex)
         
@@ -167,7 +167,7 @@ extension PlayQueue: TrackLoaderObserver {
         messenger.publish(.playQueue_doneAddingTracks)
     }
     
-    func postBatchLoad(indices: ClosedRange<Int>) {
+    func postBatchLoad(indices: IndexSet) {
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
     }
 }

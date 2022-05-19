@@ -16,7 +16,7 @@ protocol TrackLoaderReceiver {
     
     func hasTrack(forFile file: URL) -> Bool
     
-    func acceptBatch(_ batch: FileMetadataBatch) -> ClosedRange<Int>
+    func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet
 }
 
 protocol TrackLoaderObserver {
@@ -25,7 +25,7 @@ protocol TrackLoaderObserver {
     
     func postTrackLoad()
     
-    func postBatchLoad(indices: ClosedRange<Int>)
+    func postBatchLoad(indices: IndexSet)
 }
 
 class FileReadSession {
