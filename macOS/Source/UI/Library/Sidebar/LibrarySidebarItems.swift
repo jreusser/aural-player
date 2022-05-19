@@ -20,6 +20,36 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
     case bookmarks = "Bookmarks"
     
     var description: String {rawValue}
+    
+    var image: PlatformImage {
+        
+        switch self {
+            
+        case .library:
+            
+            return .imgLibrary
+            
+        case .fileSystem:
+            
+            return .imgFileSystem
+            
+        case .playlists:
+            
+            return .imgPlaylist
+            
+        case .history:
+            
+            return .imgRememberSettings
+            
+        case .favorites:
+            
+            return .imgFavorite
+            
+        case .bookmarks:
+            
+            return .imgBookmark
+        }
+    }
 }
 
 struct LibrarySidebarItem {

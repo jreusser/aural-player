@@ -33,10 +33,16 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
         
         categories.forEach {sidebarView.expandItem($0)}
         sidebarView.selectRowIndexes(IndexSet(integer: 2), byExtendingSelection: false)
+        
+        colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
     }
     
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        item is LibrarySidebarCategory ? 40: 24
+        item is LibrarySidebarCategory ? 34: 27
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, rowViewForItem item: Any) -> NSTableRowView? {
+        AuralTableRowView()
     }
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
@@ -112,25 +118,28 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
         if let category = item as? LibrarySidebarCategory {
-            return createNameCell(outlineView, category.description.uppercased())
+            return createNameCell(outlineView, category.description, font: systemFontScheme.playerPrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image)
             
         } else if let sidebarItem = item as? LibrarySidebarItem {
-            return createNameCell(outlineView, sidebarItem.displayName)
+            return createNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor)
         }
         
         return nil
     }
     
-    private func createNameCell(_ outlineView: NSOutlineView, _ text: String) -> NSTableCellView? {
+    private func createNameCell(_ outlineView: NSOutlineView, _ text: String, font: NSFont, textColor: NSColor, image: NSImage? = nil) -> NSTableCellView? {
         
         guard let cell = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("name"), owner: nil)
             as? NSTableCellView else {return nil}
         
         cell.imageView?.image = nil
 
-        cell.textField?.stringValue = text
-        cell.textField?.font = mainFont_14
-//        cell.textColor = .white
+        cell.text = text
+        cell.textFont = font
+        cell.textColor = textColor
+        
+        cell.image = image
+        cell.imageColor = textColor
         
         return cell
     }

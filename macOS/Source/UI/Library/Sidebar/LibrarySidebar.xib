@@ -18,20 +18,20 @@
             <rect key="frame" x="0.0" y="0.0" width="200" height="560"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RT-L1-fnw">
+                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RT-L1-fnw">
                     <rect key="frame" x="0.0" y="0.0" width="200" height="560"/>
                     <clipView key="contentView" id="QRH-nZ-rh5">
-                        <rect key="frame" x="1" y="1" width="198" height="558"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="560"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" tableStyle="plain" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="12" outlineTableColumn="MoY-kj-7s6" id="qbK-16-iai">
-                                <rect key="frame" x="0.0" y="0.0" width="198" height="558"/>
+                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" tableStyle="plain" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="10" outlineTableColumn="MoY-kj-7s6" id="qbK-16-iai">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="560"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="17" height="0.0"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn identifier="name" width="181" minWidth="40" maxWidth="1000" id="MoY-kj-7s6">
+                                    <tableColumn identifier="name" width="183" minWidth="40" maxWidth="1000" id="MoY-kj-7s6">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -44,11 +44,16 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="myZ-55-nYT">
-                                                <rect key="frame" x="8" y="0.0" width="181" height="24"/>
+                                                <rect key="frame" x="8" y="0.0" width="183" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbx-P6-PoE">
-                                                        <rect key="frame" x="0.0" y="4" width="181" height="16"/>
+                                                    <imageView identifier="Icon" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CN8-jU-61m" userLabel="Icon">
+                                                        <rect key="frame" x="2" y="-2" width="16" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="l5U-98-aqL" customClass="TableImageCell" customModule="Aural" customModuleProvider="target"/>
+                                                    </imageView>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbx-P6-PoE" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                        <rect key="frame" x="22" y="0.0" width="183" height="24"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="EnI-Ge-gTp">
                                                             <font key="font" usesAppearanceFont="YES"/>
@@ -58,6 +63,7 @@
                                                     </textField>
                                                 </subviews>
                                                 <connections>
+                                                    <outlet property="imageView" destination="CN8-jU-61m" id="Fuv-PO-mVn"/>
                                                     <outlet property="textField" destination="cbx-P6-PoE" id="eH5-YM-sVN"/>
                                                 </connections>
                                             </tableCellView>

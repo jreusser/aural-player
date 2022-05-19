@@ -31,6 +31,7 @@ extension PlatformImage {
     static let imgPlayingArt: PlatformImage = PlatformImage(systemSymbolName: "music.quarternote.3", accessibilityDescription: nil)!
     
     static let imgFavorite: PlatformImage = PlatformImage(systemSymbolName: "heart", accessibilityDescription: nil)!
+    static let imgBookmark: PlatformImage = PlatformImage(systemSymbolName: "bookmark", accessibilityDescription: nil)!
     
     static let imgVolumeZero: PlatformImage = PlatformImage(systemSymbolName: "volume", accessibilityDescription: nil)!
     static let imgVolumeLow: PlatformImage = PlatformImage(systemSymbolName: "volume.1", accessibilityDescription: nil)!
@@ -89,4 +90,5 @@ extension PlatformImage {
     // --------------- Playlist group icons -----------------
     
     static let imgAlbumGroup: PlatformImage = PlatformImage(named: "Albums")!
+    static let imgFileSystem: PlatformImage = PlatformImage(systemSymbolName: "folder", accessibilityDescription: nil)!
 }
