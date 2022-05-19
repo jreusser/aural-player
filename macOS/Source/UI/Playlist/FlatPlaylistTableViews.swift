@@ -69,7 +69,7 @@ class AuralTableRowView: NSTableRowView {
         if selectionHighlightStyle != .none {
             
             NSBezierPath.fillRoundedRect(bounds.insetBy(dx: 1, dy: 0),
-                                         radius: 5,
+                                         radius: 3,
                                          withColor: systemColorScheme.textSelectionColor)
         }
     }

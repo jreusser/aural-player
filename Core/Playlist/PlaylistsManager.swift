@@ -26,6 +26,10 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
         let playlistModifyFlags: Set<Bool> = Set(userDefinedObjects.map {$0.isBeingModified})
         return playlistModifyFlags.contains(true)
     }
+    
+    var playlistNames: [String] {
+        userDefinedObjects.map {$0.name}
+    }
 
     init(playlists: [Playlist]) {
         

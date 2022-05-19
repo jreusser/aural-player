@@ -20,10 +20,6 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
     
     let categories: [LibrarySidebarCategory] = LibrarySidebarCategory.allCases
     
-    let libraryItems: [LibrarySidebarItem] = ["Tracks", "Artists", "Albums", "Genres", "Decades"].map {LibrarySidebarItem(displayName: $0)}
-    let historyItems: [LibrarySidebarItem] = ["Recently Played", "Most Played", "Recently Added"].map {LibrarySidebarItem(displayName: $0)}
-    let playlistsItems: [LibrarySidebarItem] = ["Biosphere Tranquility", "Nature Sounds"].map {LibrarySidebarItem(displayName: $0)}
-    
 //    let favoritesItems: LibrarySidebarItem = LibrarySidebarItem(displayName: "Favorites")
 //    let bookmarksItem: LibrarySidebarItem = LibrarySidebarItem(displayName: "Bookmarks")
     
@@ -38,11 +34,11 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
     }
     
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        item is LibrarySidebarCategory ? 34: 27
+        item is LibrarySidebarCategory ? 31: 27
     }
     
     func outlineView(_ outlineView: NSOutlineView, rowViewForItem item: Any) -> NSTableRowView? {
-        AuralTableRowView()
+        LibrarySidebarRowView()
     }
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
@@ -51,30 +47,7 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
             return categories.count
             
         } else if let sidebarCat = item as? LibrarySidebarCategory {
-            
-            switch sidebarCat {
-                
-            case .library:
-                
-                return libraryItems.count
-                
-            case .fileSystem:
-                
-                // TODO
-                return 0
-                
-            case .playlists:
-                
-                return playlistsItems.count
-                
-            case .history:
-                
-                return historyItems.count
-                
-            case .favorites, .bookmarks:
-                
-                return 0
-            }
+            return sidebarCat.numberOfItems
         }
         
         return 0
@@ -83,29 +56,10 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
         if item == nil {
-            
             return categories[index]
             
         } else if let sidebarCat = item as? LibrarySidebarCategory {
-            
-            switch sidebarCat {
-                
-            case .library:
-                
-                return libraryItems[index]
-                
-            case .history:
-                
-                return historyItems[index]
-                
-            case .playlists:
-                
-                return playlistsItems[index]
-                
-            default:
-                
-                return ""
-            }
+            return sidebarCat.items[index]
         }
         
         return ""
@@ -147,12 +101,7 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         !(item is LibrarySidebarCategory) || (sidebarView.numberOfChildren(ofItem: item) == 0)
     }
-//
-//    func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
-////        item as? LibrarySidebarCategory == .playlists
-//        true
-//    }
-    
+
     func outlineViewSelectionDidChange(_ notification: Notification) {
         
         guard let outlineView = notification.object as? NSOutlineView else {return}
@@ -168,3 +117,20 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
     }
 }
 
+class LibrarySidebarRowView: AuralTableRowView {
+
+    override func didAddSubview(_ subview: NSView) {
+
+        if let disclosureButton = subview as? NSButton {
+
+            disclosureButton.translatesAutoresizingMaskIntoConstraints = false
+
+            NSLayoutConstraint.activate([
+                disclosureButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+                disclosureButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 7)
+            ])
+        }
+
+        super.didAddSubview(subview)
+    }
+}

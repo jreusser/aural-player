@@ -60,27 +60,27 @@
                                     </textFieldCell>
                                 </textField>
                                 <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w60-lv-Hyh" userLabel="LeftRight SplitView">
-                                    <rect key="frame" x="10" y="0.0" width="990" height="444"/>
+                                    <rect key="frame" x="5" y="0.0" width="995" height="451"/>
                                     <subviews>
-                                        <customView id="shO-p5-YdO">
-                                            <rect key="frame" x="0.0" y="0.0" width="234" height="444"/>
+                                        <customView misplaced="YES" id="shO-p5-YdO">
+                                            <rect key="frame" x="0.0" y="0.0" width="234" height="451"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="B9w-Lk-cBw"/>
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="LDW-hw-XFX"/>
                                             </constraints>
                                         </customView>
-                                        <customView id="jRt-01-52h">
-                                            <rect key="frame" x="235" y="0.0" width="755" height="444"/>
+                                        <customView misplaced="YES" id="jRt-01-52h">
+                                            <rect key="frame" x="235" y="0.0" width="760" height="451"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="kDh-fQ-j7J" userLabel="BrowserTabView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="755" height="444"/>
+                                                    <rect key="frame" x="0.0" y="1" width="760" height="451"/>
                                                     <font key="font" metaFont="system"/>
                                                     <tabViewItems>
                                                         <tabViewItem label="Tracks" identifier="" id="HRv-Jn-Es0">
                                                             <view key="view" id="Ght-pd-CkO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>
@@ -158,8 +158,8 @@
                             <constraints>
                                 <constraint firstItem="bV3-BU-lI2" firstAttribute="top" secondItem="TSk-Ua-HlI" secondAttribute="top" constant="4" id="F5r-Ol-47D"/>
                                 <constraint firstAttribute="trailing" secondItem="w60-lv-Hyh" secondAttribute="trailing" id="Xv6-32-EQG"/>
-                                <constraint firstItem="w60-lv-Hyh" firstAttribute="leading" secondItem="TSk-Ua-HlI" secondAttribute="leading" constant="10" id="cu6-x2-Be9"/>
-                                <constraint firstItem="w60-lv-Hyh" firstAttribute="top" secondItem="bV3-BU-lI2" secondAttribute="bottom" constant="27" id="edv-mh-3zd"/>
+                                <constraint firstItem="w60-lv-Hyh" firstAttribute="leading" secondItem="TSk-Ua-HlI" secondAttribute="leading" constant="5" id="cu6-x2-Be9"/>
+                                <constraint firstItem="w60-lv-Hyh" firstAttribute="top" secondItem="bV3-BU-lI2" secondAttribute="bottom" constant="20" id="edv-mh-3zd"/>
                                 <constraint firstItem="8J0-bC-5HZ" firstAttribute="top" secondItem="TSk-Ua-HlI" secondAttribute="top" constant="16" id="j1f-ik-zJ4"/>
                                 <constraint firstItem="bV3-BU-lI2" firstAttribute="leading" secondItem="8J0-bC-5HZ" secondAttribute="trailing" constant="21" id="l9q-yN-Cdz"/>
                                 <constraint firstItem="8J0-bC-5HZ" firstAttribute="leading" secondItem="TSk-Ua-HlI" secondAttribute="leading" constant="10" id="nVc-Ht-Du0"/>
