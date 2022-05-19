@@ -9,6 +9,7 @@
 //  
 
 import Foundation
+import OrderedCollections
 
 typealias GroupingFunction = (Track) -> String
 
@@ -22,75 +23,117 @@ extension Dictionary {
 class Grouping {
     
     var name: String
+    let depth: Int
     let keyFunction: GroupingFunction
     let subGrouping: Grouping?
     
-    init(name: String, keyFunction: @escaping GroupingFunction, subGrouping: Grouping? = nil) {
+    var groups: OrderedSet<Group> = OrderedSet()
+    fileprivate var groupsByName: [String: Group] = [:]
+    
+    fileprivate init(name: String, depth: Int, keyFunction: @escaping GroupingFunction, subGrouping: Grouping? = nil) {
         
         self.name = name
+        self.depth = depth
         self.keyFunction = keyFunction
         self.subGrouping = subGrouping
     }
     
-    func applyTo(trackList: TrackList) -> [Group] {
+    func addTracks(_ newTracks: [Track]) {}
+    
+    fileprivate func createGroup(named groupName: String) -> Group {
         
-        let groups = groupTracks(trackList.tracks, accordingTo: self)
+        let newGroup = Group(name: groupName, depth: depth)
         
-        if let subGrouping = self.subGrouping {
-            return subGroup(groups, accordingTo: subGrouping)
-        }
+        // TODO: When adding a new group, maintain (alphabetical or user-defined) sort order ???
+        groups.append(newGroup)
         
-        return groups
+        return newGroup
     }
     
-    private func groupTracks(_ tracks: [Track], accordingTo grouping: Grouping) -> [Group] {
+    func remove(tracks: [Track], groups: [Group]) {
         
-        var kvMap: [String: [Track]] = [:]
-    
-        for track in tracks {
-            kvMap.append(track, forKey: grouping.keyFunction(track))
-        }
         
-        return kvMap.map {key, value in
-            
-            if grouping is AlbumsGrouping {
-                return AlbumGroup(name: key, tracks: value)
-            }
-            
-            return Group(name: key, tracks: value)
-        }
     }
     
-    // Recursive sub-grouping function.
-    private func subGroup(_ groups: [Group], accordingTo grouping: Grouping) -> [Group] {
+//    func applyTo(trackList: TrackList) -> [Group] {
+//
+//        let groups = groupTracks(trackList.tracks, accordingTo: self)
+//
+//        if let subGrouping = self.subGrouping {
+//            return subGroup(groups, accordingTo: subGrouping)
+//        }
+//
+//        return groups
+//    }
+//
+//    private func groupTracks(_ tracks: [Track], accordingTo grouping: Grouping) -> [Group] {
+//
+//        var kvMap: [String: [Track]] = [:]
+//
+//        for track in tracks {
+//            kvMap.append(track, forKey: grouping.keyFunction(track))
+//        }
+//
+//        return kvMap.map {key, value in
+//
+//            if grouping is AlbumsGrouping {
+//                return AlbumGroup(name: key, tracks: value)
+//            }
+//
+//            return Group(name: key, tracks: value)
+//        }
+//    }
+//
+//    // Recursive sub-grouping function.
+//    private func subGroup(_ groups: [Group], accordingTo grouping: Grouping) -> [Group] {
+//
+//        var newGroups: [Group] = []
+//
+//        for group in groups {
+//
+//            let subGroups = groupTracks(Array(group.tracks), accordingTo: grouping)
+//            newGroups.append(Group(name: group.name, subGroups: subGroups))
+//        }
+//
+//        if let subGrouping = grouping.subGrouping {
+//            return subGroup(newGroups, accordingTo: subGrouping)
+//        }
+//
+//        return newGroups
+//    }
+}
+
+class AlbumsGrouping: Grouping {
+    
+    private static let trackNumberComparator: TrackSortFunction = {t1, t2 in
+        (t1.trackNumber ?? 0) < (t2.trackNumber ?? 0)
+    }
+    
+    init(depth: Int = 0) {
+        super.init(name: "Albums", depth: depth) {track in track.album ?? "<Unknown>"}
+    }
+    
+    override func addTracks(_ newTracks: [Track]) {
         
-        var newGroups: [Group] = []
+        var tracksByGroupName: [String: [Track]] = [:]
         
-        for group in groups {
+        for track in newTracks {
+            tracksByGroupName[keyFunction(track), default: []].append(track)
+        }
+        
+        for (groupName, tracks) in tracksByGroupName {
             
-            let subGroups = groupTracks(Array(group.tracks), accordingTo: grouping)
-            newGroups.append(Group(name: group.name, subGroups: subGroups))
+            let group = groupsByName[groupName] ?? createGroup(named: groupName)
+            group.addTracks(tracks)
+            group.sortTracks(by: Self.trackNumberComparator)
         }
-        
-        if let subGrouping = grouping.subGrouping {
-            return subGroup(newGroups, accordingTo: subGrouping)
-        }
-        
-        return newGroups
     }
 }
 
 class ArtistsGrouping: Grouping {
     
-    init(subGroupByAlbum: Bool = true) {
-        super.init(name: "Artists", keyFunction: {track in track.artist ?? "<Unknown>"}, subGrouping: subGroupByAlbum ? AlbumsGrouping() : nil)
-    }
-}
-
-class AlbumsGrouping: Grouping {
-    
-    init() {
-        super.init(name: "Albums") {track in track.album ?? "<Unknown>"}
+    init(depth: Int = 0, subGroupByAlbum: Bool = true) {
+        super.init(name: "Artists", depth: depth, keyFunction: {track in track.artist ?? "<Unknown>"}, subGrouping: subGroupByAlbum ? AlbumsGrouping(depth: 1) : nil)
     }
 }
 
@@ -104,28 +147,28 @@ class GenresGrouping: Grouping {
             
         case (true, true):
             
-            super.init(name: "Genres", keyFunction: keyFunction, subGrouping: ArtistsGrouping())
+            super.init(name: "Genres", depth: 0, keyFunction: keyFunction, subGrouping: ArtistsGrouping(depth: 1))
             
         case (true, false):
             
-            super.init(name: "Genres", keyFunction: keyFunction, subGrouping: ArtistsGrouping(subGroupByAlbum: false))
+            super.init(name: "Genres", depth: 0, keyFunction: keyFunction, subGrouping: ArtistsGrouping(depth: 1, subGroupByAlbum: false))
             
         case (false, true):
         
-            super.init(name: "Genres", keyFunction: keyFunction, subGrouping: AlbumsGrouping())
+            super.init(name: "Genres", depth: 0, keyFunction: keyFunction, subGrouping: AlbumsGrouping(depth: 1))
             
         case (false, false):
         
-            super.init(name: "Genres", keyFunction: keyFunction)
+            super.init(name: "Genres", depth: 0, keyFunction: keyFunction)
         }
     }
 }
 
 class DecadesGrouping: Grouping {
     
-    init() {
+    init(depth: Int = 0) {
         
-        super.init(name: "Decades") {track in
+        super.init(name: "Decades", depth: depth) {track in
             
             guard let year = track.year else {return "<Unknown>"}
             

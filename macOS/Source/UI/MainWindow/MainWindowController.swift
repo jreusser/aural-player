@@ -30,7 +30,7 @@ class MainWindowController: NSWindowController {
     // Buttons to toggle the play queue/effects views
     @IBOutlet weak var btnTogglePlayQueue: TintedImageButton!
     @IBOutlet weak var btnToggleEffects: TintedImageButton!
-    @IBOutlet weak var btnTogglePlaylists: TintedImageButton!
+    @IBOutlet weak var btnToggleLibrary: TintedImageButton!
     
     private lazy var btnTogglePlayQueueStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingPlayQueue,
                                                                                     mappings: [
@@ -40,13 +40,13 @@ class MainWindowController: NSWindowController {
                                                                                     ],
                                                                                     button: btnTogglePlayQueue)
     
-    private lazy var btnTogglePlaylistsStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingPlaylists,
+    private lazy var btnToggleLibraryStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingPlaylists,
                                                                                     mappings: [
                                                                                         
-                                                                                        ButtonStateMachine.StateMapping(state: true, image: .imgPlaylist, colorProperty: \.buttonColor, toolTip: "Hide Playlists"),
-                                                                                        ButtonStateMachine.StateMapping(state: false, image: .imgPlaylist, colorProperty: \.inactiveControlColor, toolTip: "Show Playlists")
+                                                                                        ButtonStateMachine.StateMapping(state: true, image: .imgLibrary, colorProperty: \.buttonColor, toolTip: "Hide the Library"),
+                                                                                        ButtonStateMachine.StateMapping(state: false, image: .imgLibrary, colorProperty: \.inactiveControlColor, toolTip: "Show the Library")
                                                                                     ],
-                                                                                    button: btnTogglePlaylists)
+                                                                                    button: btnToggleLibrary)
     
     private lazy var btnToggleEffectsStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingEffects,
                                                                                     mappings: [
@@ -93,7 +93,6 @@ class MainWindowController: NSWindowController {
     // Set window properties
     private func initWindow() {
         
-        theWindow.isMovableByWindowBackground = true
         theWindow.makeKeyAndOrderFront(self)
         
         containerBox.addSubview(playerViewController.view)
@@ -158,9 +157,9 @@ class MainWindowController: NSWindowController {
         windowLayoutsManager.toggleWindow(withId: .effects)
     }
     
-    // Shows/hides the playlists window (by delegating)
-    @IBAction func togglePlaylistsAction(_ sender: AnyObject) {
-        windowLayoutsManager.toggleWindow(withId: .playlists)
+    // Shows/hides the library window (by delegating)
+    @IBAction func toggleLibraryAction(_ sender: AnyObject) {
+        windowLayoutsManager.toggleWindow(withId: .library)
     }
     
     // Quits the app
@@ -190,7 +189,7 @@ class MainWindowController: NSWindowController {
     func windowLayoutChanged() {
 
         btnTogglePlayQueueStateMachine.setState(windowLayoutsManager.isShowingPlayQueue)
-        btnTogglePlaylistsStateMachine.setState(windowLayoutsManager.isShowingPlaylists)
+        btnToggleLibraryStateMachine.setState(windowLayoutsManager.isShowingLibrary)
         btnToggleEffectsStateMachine.setState(windowLayoutsManager.isShowingEffects)
     }
     

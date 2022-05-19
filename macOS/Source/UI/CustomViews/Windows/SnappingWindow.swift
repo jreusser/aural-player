@@ -28,7 +28,10 @@ class SnappingWindow: NoTitleBarWindow {
     private lazy var theDelegate: SnappingWindowDelegate = SnappingWindowDelegate(window: self)
     
     override func awakeFromNib() {
+        
+        super.awakeFromNib()
         self.delegate = theDelegate
+        isMovableByWindowBackground = true
     }
 
     override func mouseUp(with event: NSEvent) {

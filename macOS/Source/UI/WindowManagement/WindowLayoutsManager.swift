@@ -48,6 +48,10 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
                 
                 windowLoaders.append(WindowLoader(windowID: .effects, windowControllerType: EffectsWindowController.self))
                 
+            case .library:
+                
+                windowLoaders.append(WindowLoader(windowID: .library, windowControllerType: LibraryWindowController.self))
+                
             case .playlists:
                 
                 windowLoaders.append(WindowLoader(windowID: .playlists, windowControllerType: PlaylistsWindowController.self))
@@ -260,6 +264,10 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     
     var isShowingEffects: Bool {
         isShowingWindow(withId: .effects)
+    }
+    
+    var isShowingLibrary: Bool {
+        isShowingWindow(withId: .library)
     }
     
     var isShowingPlaylists: Bool {

@@ -714,6 +714,18 @@
 		3EF28DBB2694E46B005D5B43 /* AppMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF28DB82694E42C005D5B43 /* AppMode.swift */; };
 		3EF28DBE2694E48C005D5B43 /* UIPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF28DBD2694E48C005D5B43 /* UIPersistenceTests.swift */; };
 		3EF28DC22694EDC1005D5B43 /* AppStatePersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF28DC12694EDC1005D5B43 /* AppStatePersistenceTests.swift */; };
+		3EF84D872835D7D9004EF57B /* GroupedTrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84D862835D7D9004EF57B /* GroupedTrackList.swift */; };
+		3EF84D8A2835E6FE004EF57B /* FolderMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84D892835E6FE004EF57B /* FolderMonitor.swift */; };
+		3EF84D9728360BEC004EF57B /* EonilFSEventStreamEventID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84D8F28360BEB004EF57B /* EonilFSEventStreamEventID.swift */; };
+		3EF84D9828360BEC004EF57B /* EonilFSEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84D9028360BEB004EF57B /* EonilFSEvents.swift */; };
+		3EF84D9928360BEC004EF57B /* EonilFSEventStreamError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84D9128360BEB004EF57B /* EonilFSEventStreamError.swift */; };
+		3EF84D9A28360BEC004EF57B /* EonilFSEventStreamEventFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84D9228360BEB004EF57B /* EonilFSEventStreamEventFlags.swift */; };
+		3EF84D9B28360BEC004EF57B /* EonilFSEventStreamCreateFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84D9328360BEC004EF57B /* EonilFSEventStreamCreateFlags.swift */; };
+		3EF84D9C28360BEC004EF57B /* EonilFSEventStreamEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84D9428360BEC004EF57B /* EonilFSEventStreamEvent.swift */; };
+		3EF84D9D28360BEC004EF57B /* EonilFSEventStreamIllogicalErrorLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84D9528360BEC004EF57B /* EonilFSEventStreamIllogicalErrorLog.swift */; };
+		3EF84D9E28360BEC004EF57B /* EonilFSEventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84D9628360BEC004EF57B /* EonilFSEventStream.swift */; };
+		3EF84DA128362753004EF57B /* LibraryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EF84DA028362753004EF57B /* LibraryWindow.xib */; };
+		3EF84DA328362A4D004EF57B /* LibraryWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84DA228362A4D004EF57B /* LibraryWindowController.swift */; };
 		3EFA0AD1262ABBA40023143E /* MasterPresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA0AD0262ABBA40023143E /* MasterPresetView.swift */; };
 		3EFB64932772361D00D47A6B /* TimeStretchSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFB64922772361D00D47A6B /* TimeStretchSliderCell.swift */; };
 		3EFB64952772491C00D47A6B /* EffectsUnitTriStateCheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFB64942772491C00D47A6B /* EffectsUnitTriStateCheckButton.swift */; };
@@ -2168,6 +2180,18 @@
 		3EF28DB82694E42C005D5B43 /* AppMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMode.swift; sourceTree = "<group>"; };
 		3EF28DBD2694E48C005D5B43 /* UIPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPersistenceTests.swift; sourceTree = "<group>"; };
 		3EF28DC12694EDC1005D5B43 /* AppStatePersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStatePersistenceTests.swift; sourceTree = "<group>"; };
+		3EF84D862835D7D9004EF57B /* GroupedTrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedTrackList.swift; sourceTree = "<group>"; };
+		3EF84D892835E6FE004EF57B /* FolderMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderMonitor.swift; sourceTree = "<group>"; };
+		3EF84D8F28360BEB004EF57B /* EonilFSEventStreamEventID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamEventID.swift; sourceTree = "<group>"; };
+		3EF84D9028360BEB004EF57B /* EonilFSEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEvents.swift; sourceTree = "<group>"; };
+		3EF84D9128360BEB004EF57B /* EonilFSEventStreamError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamError.swift; sourceTree = "<group>"; };
+		3EF84D9228360BEB004EF57B /* EonilFSEventStreamEventFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamEventFlags.swift; sourceTree = "<group>"; };
+		3EF84D9328360BEC004EF57B /* EonilFSEventStreamCreateFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamCreateFlags.swift; sourceTree = "<group>"; };
+		3EF84D9428360BEC004EF57B /* EonilFSEventStreamEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamEvent.swift; sourceTree = "<group>"; };
+		3EF84D9528360BEC004EF57B /* EonilFSEventStreamIllogicalErrorLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamIllogicalErrorLog.swift; sourceTree = "<group>"; };
+		3EF84D9628360BEC004EF57B /* EonilFSEventStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStream.swift; sourceTree = "<group>"; };
+		3EF84DA028362753004EF57B /* LibraryWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryWindow.xib; sourceTree = "<group>"; };
+		3EF84DA228362A4D004EF57B /* LibraryWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryWindowController.swift; sourceTree = "<group>"; };
 		3EFA0AD0262ABBA40023143E /* MasterPresetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPresetView.swift; sourceTree = "<group>"; };
 		3EFB64922772361D00D47A6B /* TimeStretchSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStretchSliderCell.swift; sourceTree = "<group>"; };
 		3EFB64942772491C00D47A6B /* EffectsUnitTriStateCheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsUnitTriStateCheckButton.swift; sourceTree = "<group>"; };
@@ -3010,6 +3034,7 @@
 				3EDB335125E8ADBA004DF7DE /* Aural-Bridging-Header.h */,
 				3EFE3A9B27864942006F8B8C /* FFmpeg */,
 				3E6C112C25CEB98700BF0D07 /* MediaKeyHandling */,
+				3EF84D882835E6E9004EF57B /* FolderMonitor */,
 				3E6C0F1A25CEB98500BF0D07 /* UI */,
 				3EEBC6ED27C16CF700880DFD /* EffectsUnitStateObserverRegistry.swift */,
 			);
@@ -3027,6 +3052,7 @@
 				3E6C101A25CEB98600BF0D07 /* Player */,
 				3E6C103625CEB98600BF0D07 /* TrackInfo */,
 				3E25B64C27F7812500D10A5F /* PlayQueue */,
+				3EF84D9F283623D3004EF57B /* Library */,
 				3E2A2A00280909D2000F0539 /* Playlists */,
 				3E6C0F3B25CEB98600BF0D07 /* Playlist */,
 				3E6C0FED25CEB98600BF0D07 /* Effects */,
@@ -4465,8 +4491,42 @@
 				3E0E74E12807B62B00CD7A58 /* TrackListWrapper.swift */,
 				3EFE363A27864895006F8B8C /* Search */,
 				3E045D07281340630069DEFE /* Sort */,
+				3EF84D862835D7D9004EF57B /* GroupedTrackList.swift */,
 			);
 			path = TrackList;
+			sourceTree = "<group>";
+		};
+		3EF84D882835E6E9004EF57B /* FolderMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				3EF84D8E28360BC2004EF57B /* FSEvents */,
+				3EF84D892835E6FE004EF57B /* FolderMonitor.swift */,
+			);
+			path = FolderMonitor;
+			sourceTree = "<group>";
+		};
+		3EF84D8E28360BC2004EF57B /* FSEvents */ = {
+			isa = PBXGroup;
+			children = (
+				3EF84D9028360BEB004EF57B /* EonilFSEvents.swift */,
+				3EF84D9628360BEC004EF57B /* EonilFSEventStream.swift */,
+				3EF84D9328360BEC004EF57B /* EonilFSEventStreamCreateFlags.swift */,
+				3EF84D9128360BEB004EF57B /* EonilFSEventStreamError.swift */,
+				3EF84D9428360BEC004EF57B /* EonilFSEventStreamEvent.swift */,
+				3EF84D9228360BEB004EF57B /* EonilFSEventStreamEventFlags.swift */,
+				3EF84D8F28360BEB004EF57B /* EonilFSEventStreamEventID.swift */,
+				3EF84D9528360BEC004EF57B /* EonilFSEventStreamIllogicalErrorLog.swift */,
+			);
+			path = FSEvents;
+			sourceTree = "<group>";
+		};
+		3EF84D9F283623D3004EF57B /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				3EF84DA028362753004EF57B /* LibraryWindow.xib */,
+				3EF84DA228362A4D004EF57B /* LibraryWindowController.swift */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 		3EFB9EC326A683A100EA8440 /* buildScripts */ = {
@@ -5564,6 +5624,7 @@
 				3ECB54F025E559E7002259C4 /* roundornoncommercial.regular.otf in Resources */,
 				3ECB54EA25E552AC002259C4 /* shufen.regular.ttf in Resources */,
 				3ECB54E825E552A9002259C4 /* ragingredlotus-bb.regular.ttf in Resources */,
+				3EF84DA128362753004EF57B /* LibraryWindow.xib in Resources */,
 				3EA3CE7025E420DE00BC7D07 /* Papyrus.ttf in Resources */,
 				3E7BDD742822E93200EC5BC6 /* neo-latina-withNums.ttf in Resources */,
 				3EA3CE7325E420EC00BC7D07 /* AnironRegular.ttf in Resources */,
@@ -5698,6 +5759,7 @@
 				3EFE38A327864896006F8B8C /* DeviceManager.swift in Sources */,
 				3EFE397327864897006F8B8C /* StopPlaybackChain.swift in Sources */,
 				3E6C12AA25CEBE2700BF0D07 /* AboutDialogController.swift in Sources */,
+				3EF84D9B28360BEC004EF57B /* EonilFSEventStreamCreateFlags.swift in Sources */,
 				3EFE390D27864897006F8B8C /* MirrorExtensions.swift in Sources */,
 				3EFE388D27864896006F8B8C /* TimeStretchPresets.swift in Sources */,
 				3E6C124F25CEBDF400BF0D07 /* AlbumsPlaylistSortViewController.swift in Sources */,
@@ -5751,6 +5813,7 @@
 				3E6C12EB25CEBE8100BF0D07 /* BookmarkNameInputReceiver.swift in Sources */,
 				3EFB64932772361D00D47A6B /* TimeStretchSliderCell.swift in Sources */,
 				3EFE38FF27864897006F8B8C /* OptionSetExtensions.swift in Sources */,
+				3EF84DA328362A4D004EF57B /* LibraryWindowController.swift in Sources */,
 				3EFE39B927864897006F8B8C /* WindowLayoutPersistentState.swift in Sources */,
 				3EFE397127864897006F8B8C /* PlaybackDelegateProtocol.swift in Sources */,
 				3E6C126B25CEBE0600BF0D07 /* BookmarksManagerViewController.swift in Sources */,
@@ -5766,6 +5829,7 @@
 				3EFE392D27864897006F8B8C /* HTTPErrors.swift in Sources */,
 				3E6C123F25CEBDF400BF0D07 /* ChaptersListViewController+TableViewDelegate.swift in Sources */,
 				3E6C123A25CEBDF400BF0D07 /* ChaptersListWindowController.swift in Sources */,
+				3EF84D9E28360BEC004EF57B /* EonilFSEventStream.swift in Sources */,
 				3EFE3B0327864943006F8B8C /* FFmpegChannelLayoutsMapper.swift in Sources */,
 				3EFE397F27864897006F8B8C /* ApplyPlaybackProfileAction.swift in Sources */,
 				3E6C128F25CEBE1800BF0D07 /* CheckRadioButtonCell.swift in Sources */,
@@ -5808,6 +5872,7 @@
 				3E4322832687E138009E8ADB /* ControlBarPlaybackViewController.swift in Sources */,
 				3E4322872687E24A009E8ADB /* ControlBarPlayerAudioViewController.swift in Sources */,
 				3EFE38D527864896006F8B8C /* FilterUnitDelegateProtocol.swift in Sources */,
+				3EF84D9D28360BEC004EF57B /* EonilFSEventStreamIllogicalErrorLog.swift in Sources */,
 				3E4322852687E1C2009E8ADB /* ControlBarPlayerSequencingViewController.swift in Sources */,
 				3EDC157C27C2ACB100B91157 /* HorizontalSymmetricSliderCell.swift in Sources */,
 				3EFE390327864897006F8B8C /* ArrayExtensions.swift in Sources */,
@@ -5825,6 +5890,7 @@
 				3EFE3A3127864898006F8B8C /* SelectSearchResultCommandNotification.swift in Sources */,
 				3E43227F2687DE35009E8ADB /* ControlBarPlayerWindowController.swift in Sources */,
 				3EFE382527864896006F8B8C /* SearchQuery.swift in Sources */,
+				3EF84D9C28360BEC004EF57B /* EonilFSEventStreamEvent.swift in Sources */,
 				3EABDDFA2694C561008066E8 /* TrackTimeDisplayType.swift in Sources */,
 				3EFE391B27864897006F8B8C /* EnumExtensions.swift in Sources */,
 				3EFE397727864897006F8B8C /* CloseFileHandlesAction.swift in Sources */,
@@ -6114,6 +6180,7 @@
 				3E6C130325CEBE8F00BF0D07 /* MetadataTrackInfoViewDelegate.swift in Sources */,
 				3EFE396327864897006F8B8C /* PlaybackParams.swift in Sources */,
 				3EFE395527864897006F8B8C /* FFmpegLoopScheduling.swift in Sources */,
+				3EF84D9928360BEC004EF57B /* EonilFSEventStreamError.swift in Sources */,
 				3E6C11B525CEBDA900BF0D07 /* MKExtensions.swift in Sources */,
 				3E6C131025CEBE8F00BF0D07 /* ModalComponentProtocols.swift in Sources */,
 				3E6C128125CEBE1800BF0D07 /* ModalDialogButtonCells.swift in Sources */,
@@ -6159,6 +6226,7 @@
 				3EFE37E927864896006F8B8C /* PreferencesDefaults.swift in Sources */,
 				3EFE3A2B27864898006F8B8C /* TrackInfoUpdatedNotification.swift in Sources */,
 				3E6C128925CEBE1800BF0D07 /* OnOffImageButtons.swift in Sources */,
+				3EF84D9728360BEC004EF57B /* EonilFSEventStreamEventID.swift in Sources */,
 				3EFE38ED27864897006F8B8C /* CompositeKeyMap.swift in Sources */,
 				3E6C126425CEBE0600BF0D07 /* PitchShiftPresetsManagerViewController.swift in Sources */,
 				3E6C12C625CEBE6700BF0D07 /* PitchShiftUnitView.swift in Sources */,
@@ -6222,6 +6290,7 @@
 				3EFE39F127864898006F8B8C /* HistoryDelegateProtocol.swift in Sources */,
 				3EFE385527864896006F8B8C /* FavoritesDelegateProtocol.swift in Sources */,
 				3E6C130E25CEBE8F00BF0D07 /* PopoverContentView.swift in Sources */,
+				3EF84D9A28360BEC004EF57B /* EonilFSEventStreamEventFlags.swift in Sources */,
 				3E6C12A125CEBE2700BF0D07 /* PopupMenuCells.swift in Sources */,
 				3E95C6DD28303B5300E59B91 /* Grouping.swift in Sources */,
 				3EBF293526869A1200D87021 /* PreferencesPopupMenuCell.swift in Sources */,
@@ -6241,6 +6310,7 @@
 				3EFE38AB27864896006F8B8C /* ParametricEQNode.swift in Sources */,
 				3E6C126225CEBE0600BF0D07 /* PresetsManagerWindowController.swift in Sources */,
 				3E6C12C025CEBE6700BF0D07 /* PresetsWrapper.swift in Sources */,
+				3EF84D872835D7D9004EF57B /* GroupedTrackList.swift in Sources */,
 				3E6C129425CEBE1800BF0D07 /* PrettyScroller.swift in Sources */,
 				3E6C12AC25CEBE2700BF0D07 /* RangeSlider.swift in Sources */,
 				3E2000C9267CEF83008BAB70 /* RemoteControlPreferencesViewController.swift in Sources */,
@@ -6441,6 +6511,7 @@
 				3ED23857282063330048CF8E /* FilterUnitViewController+TableViewDelegate.swift in Sources */,
 				3EFE399B27864897006F8B8C /* NSPointPersistentState.swift in Sources */,
 				3EFE384F27864896006F8B8C /* FilesAndPaths.swift in Sources */,
+				3EF84D9828360BEC004EF57B /* EonilFSEvents.swift in Sources */,
 				3EA8A906283182AE006B48C6 /* PlaylistAlbumsViewController.swift in Sources */,
 				3EFE37E527864896006F8B8C /* UserDefaultsExtensions.swift in Sources */,
 				3E6C130C25CEBE8F00BF0D07 /* WindowLayoutPresets.swift in Sources */,
@@ -6456,6 +6527,7 @@
 				3EFE39BF27864897006F8B8C /* FontSchemesPersistentState.swift in Sources */,
 				3E59A175262C9EDA006DF775 /* WindowLoader.swift in Sources */,
 				3EFE3AF527864942006F8B8C /* FFmpegSampleConverter.swift in Sources */,
+				3EF84D8A2835E6FE004EF57B /* FolderMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

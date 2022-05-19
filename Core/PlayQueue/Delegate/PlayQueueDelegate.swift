@@ -161,10 +161,10 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     func sort(_ sort: TrackListSort) {
         playQueue.sort(sort)
     }
-//
-//    func sort(by comparator: (Track, Track) -> Bool) {
-//        playQueue.sort(by: comparator)
-//    }
+
+    func sort(by comparator: (Track, Track) -> Bool) {
+        playQueue.sort(by: comparator)
+    }
     
     func exportToFile(_ file: URL) {
         playQueue.exportToFile(file)

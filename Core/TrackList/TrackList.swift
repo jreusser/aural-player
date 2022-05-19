@@ -175,10 +175,10 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     func sort(_ sort: TrackListSort) {
         tracks.sort(by: sort.comparator)
     }
-//
-//    func sort(by comparator: (Track, Track) -> Bool) {
-//        // TODO:
-//    }
+
+    func sort(by comparator: (Track, Track) -> Bool) {
+        tracks.sort(by: comparator)
+    }
     
     func exportToFile(_ file: URL) {
         

@@ -42,7 +42,6 @@ class VisualizerWindowController: NSWindowController, NSWindowDelegate {
     override func awakeFromNib() {
         
         window?.delegate = self
-        window?.isMovableByWindowBackground = true
         window?.aspectRatio = NSSize(width: 3.0, height: 2.0)
         
         [spectrogram, supernova, discoBall].forEach {$0?.anchorToSuperview()}

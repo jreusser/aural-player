@@ -30,6 +30,13 @@ class FontScheme: NSObject, UserManagedObject {
     
     @objc dynamic var captionFont: NSFont
     
+//    @objc dynamic var xtraSmallFont: NSFont
+//    @objc dynamic var smallFont: NSFont
+//    @objc dynamic var mediumFont: NSFont
+//    @objc dynamic var largeFont: NSFont
+//    @objc dynamic var xtraLargeFont: NSFont
+//    @objc dynamic var tableTextYOffset: CGFloat
+    
     @objc dynamic var playerPrimaryFont: NSFont
     @objc dynamic var playerSecondaryFont: NSFont
     @objc dynamic var playerTertiaryFont: NSFont

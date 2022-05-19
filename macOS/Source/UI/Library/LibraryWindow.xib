@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="LibraryWindowController" customModule="Aural" customModuleProvider="target">
+            <connections>
+                <outlet property="btnClose" destination="8J0-bC-5HZ" id="Uo2-YD-5Pa"/>
+                <outlet property="lblCaption" destination="bV3-BU-lI2" id="oP1-vf-Y92"/>
+                <outlet property="rootContainer" destination="seh-25-6bz" id="WTP-4o-jl1"/>
+                <outlet property="tabGroup" destination="kDh-fQ-j7J" id="zMM-VS-rRd"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="AcV-gx-JMf"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window identifier="library" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titleVisibility="hidden" id="QvC-M9-y7g" customClass="SnappingWindow" customModule="Aural" customModuleProvider="target">
+            <windowStyleMask key="styleMask" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="1000" height="500"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
+            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="1000" height="500"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="seh-25-6bz" userLabel="Root Container">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="500"/>
+                        <view key="contentView" id="TSk-Ua-HlI">
+                            <rect key="frame" x="0.0" y="0.0" width="1000" height="500"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <button toolTip="Hide Playlists" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8J0-bC-5HZ" userLabel="Close Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="10" y="476.5" width="11.5" height="10"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="11" id="P8o-fD-jig"/>
+                                        <constraint firstAttribute="height" constant="6" id="cGu-45-9ng"/>
+                                    </constraints>
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ytr-Jm-47T">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bV3-BU-lI2" userLabel="Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="40" y="471" width="214" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="210" id="u0x-qw-e3d"/>
+                                        <constraint firstAttribute="height" constant="25" id="zIf-ld-b2I"/>
+                                    </constraints>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Library" id="59h-Aq-mYh">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w60-lv-Hyh" userLabel="LeftRight SplitView">
+                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="444"/>
+                                    <subviews>
+                                        <customView id="shO-p5-YdO">
+                                            <rect key="frame" x="0.0" y="0.0" width="234" height="444"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="B9w-Lk-cBw"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="LDW-hw-XFX"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView id="jRt-01-52h">
+                                            <rect key="frame" x="235" y="0.0" width="765" height="444"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="kDh-fQ-j7J" userLabel="BrowserTabView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <tabViewItems>
+                                                        <tabViewItem label="Tracks" identifier="" id="HRv-Jn-Es0">
+                                                            <view key="view" id="Ght-pd-CkO">
+                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
+                                                        <tabViewItem label="Artists" identifier="" id="60R-jf-oaw">
+                                                            <view key="view" id="0Nf-ay-qSF">
+                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
+                                                        <tabViewItem label="Albums" identifier="" id="NgP-UK-uNS">
+                                                            <view key="view" id="smc-vv-Phn">
+                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
+                                                        <tabViewItem label="Genres" identifier="" id="1yk-xS-PLe">
+                                                            <view key="view" id="Yz6-68-u4j">
+                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
+                                                        <tabViewItem label="Decades" identifier="" id="2gD-8A-JdM">
+                                                            <view key="view" id="kTP-AF-nNj">
+                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
+                                                        <tabViewItem label="File System" identifier="" id="xEl-mc-SsJ">
+                                                            <view key="view" id="OfS-kY-UBT">
+                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
+                                                        <tabViewItem label="Playlists" identifier="" id="wtD-Ld-mJ1">
+                                                            <view key="view" id="EzC-6o-AVt">
+                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
+                                                        <tabViewItem label="History" identifier="" id="VCE-Ws-H2u">
+                                                            <view key="view" id="Hbb-xH-nY3">
+                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
+                                                        <tabViewItem label="Favorites" identifier="" id="846-f3-KCT">
+                                                            <view key="view" id="B9t-8X-Zns">
+                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
+                                                        <tabViewItem label="Bookmarks" identifier="" id="v2d-Xl-ZHs">
+                                                            <view key="view" id="4bT-Z1-V0S">
+                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
+                                                    </tabViewItems>
+                                                </tabView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kDh-fQ-j7J" firstAttribute="leading" secondItem="jRt-01-52h" secondAttribute="leading" id="E1y-xI-NuG"/>
+                                                <constraint firstAttribute="bottom" secondItem="kDh-fQ-j7J" secondAttribute="bottom" id="Q3a-dW-swU"/>
+                                                <constraint firstAttribute="trailing" secondItem="kDh-fQ-j7J" secondAttribute="trailing" id="juZ-9R-CGh"/>
+                                                <constraint firstItem="kDh-fQ-j7J" firstAttribute="top" secondItem="jRt-01-52h" secondAttribute="top" id="xvP-Kl-55M"/>
+                                            </constraints>
+                                        </customView>
+                                    </subviews>
+                                    <holdingPriorities>
+                                        <real value="251"/>
+                                        <real value="250"/>
+                                    </holdingPriorities>
+                                </splitView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="bV3-BU-lI2" firstAttribute="top" secondItem="TSk-Ua-HlI" secondAttribute="top" constant="4" id="F5r-Ol-47D"/>
+                                <constraint firstAttribute="trailing" secondItem="w60-lv-Hyh" secondAttribute="trailing" id="Xv6-32-EQG"/>
+                                <constraint firstItem="w60-lv-Hyh" firstAttribute="leading" secondItem="TSk-Ua-HlI" secondAttribute="leading" id="cu6-x2-Be9"/>
+                                <constraint firstItem="w60-lv-Hyh" firstAttribute="top" secondItem="bV3-BU-lI2" secondAttribute="bottom" constant="27" id="edv-mh-3zd"/>
+                                <constraint firstItem="8J0-bC-5HZ" firstAttribute="top" secondItem="TSk-Ua-HlI" secondAttribute="top" constant="16" id="j1f-ik-zJ4"/>
+                                <constraint firstItem="bV3-BU-lI2" firstAttribute="leading" secondItem="8J0-bC-5HZ" secondAttribute="trailing" constant="21" id="l9q-yN-Cdz"/>
+                                <constraint firstItem="8J0-bC-5HZ" firstAttribute="leading" secondItem="TSk-Ua-HlI" secondAttribute="leading" constant="10" id="nVc-Ht-Du0"/>
+                                <constraint firstAttribute="bottom" secondItem="w60-lv-Hyh" secondAttribute="bottom" id="pVz-JG-cQz"/>
+                            </constraints>
+                        </view>
+                        <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </box>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="seh-25-6bz" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="4Ui-3E-SWv"/>
+                    <constraint firstAttribute="bottom" secondItem="seh-25-6bz" secondAttribute="bottom" id="714-Pd-hoM"/>
+                    <constraint firstAttribute="trailing" secondItem="seh-25-6bz" secondAttribute="trailing" id="atQ-GG-NiS"/>
+                    <constraint firstItem="seh-25-6bz" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="cgb-6h-3u3"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="139" y="144"/>
+        </window>
+    </objects>
+    <resources>
+        <image name="xmark" catalog="system" width="14" height="13"/>
+    </resources>
+</document>

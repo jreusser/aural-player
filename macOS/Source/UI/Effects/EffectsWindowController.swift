@@ -77,8 +77,6 @@ class EffectsWindowController: NSWindowController, ColorSchemePropertyObserver {
         
         super.windowDidLoad()
         
-        theWindow.isMovableByWindowBackground = true
-        
         // Initialize all sub-views
         initTabGroup()
         

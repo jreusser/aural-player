@@ -54,8 +54,8 @@ protocol AbstractTrackListProtocol {
     func removeAllTracks()
     
     func sort(_ sort: TrackListSort)
-//
-//    func sort(by comparator: (Track, Track) -> Bool)
+
+    func sort(by comparator: (Track, Track) -> Bool)
     
     func exportToFile(_ file: URL)
 }
