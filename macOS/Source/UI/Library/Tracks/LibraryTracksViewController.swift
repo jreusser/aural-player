@@ -15,6 +15,7 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
     override var nibName: String? {"LibraryTracks"}
     
     @IBOutlet weak var rootContainer: NSBox!
+    @IBOutlet weak var lblCaption: NSTextField!
     
     @IBOutlet weak var lblTracksSummary: NSTextField!
     @IBOutlet weak var lblDurationSummary: NSTextField!
@@ -25,7 +26,7 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
     override var rowHeight: CGFloat {30}
     
     override var trackList: TrackListProtocol! {
-        library
+        libraryDelegate
     }
     
     private lazy var messenger: Messenger = Messenger(for: self)
@@ -34,7 +35,12 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
         
         super.viewDidLoad()
         
+        updateSummary()
+        
         colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
+        
+        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
         
         fontSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
         colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
@@ -267,7 +273,14 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
     private func tracksAdded(_ notif: LibraryTracksAddedNotification) {
         
         tracksAdded(at: notif.trackIndices)
-        messenger.publish(.playlists_updateSummary)
+        updateSummary()
+    }
+    
+    private func updateSummary() {
+        
+        let numTracks = library.size
+        lblTracksSummary.stringValue = "\(numTracks) \(numTracks == 1 ? "track" : "tracks")"
+        lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(library.duration)
     }
     
     private func copyTracks(_ notif: CopyTracksToPlaylistCommand) {

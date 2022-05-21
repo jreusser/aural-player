@@ -27,6 +27,7 @@ let appModeManager: AppModeManager = AppModeManager(persistentState: persistentS
 fileprivate let playQueue: PlayQueue = PlayQueue()
 
 let library: Library = Library()
+let libraryDelegate: LibraryDelegateProtocol = LibraryDelegate(persistentState: persistentState.library)
 
 let playlistsManager: PlaylistsManager = PlaylistsManager(playlists: persistentState.playlists?.playlists?.compactMap {Playlist(persistentState: $0)} ?? [])
 
@@ -136,6 +137,7 @@ var persistentStateOnExit: AppPersistentState {
     
     persistentState.audioGraph = audioGraph.persistentState
     persistentState.playQueue = playQueue.persistentState
+    persistentState.library = library.persistentState
     persistentState.playlists = playlistsManager.persistentState
     persistentState.metadata = metadataRegistry.persistentState
     persistentState.playbackProfiles = playbackDelegate.profiles.all().map {PlaybackProfilePersistentState(profile: $0)}

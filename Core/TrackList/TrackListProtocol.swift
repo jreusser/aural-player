@@ -18,6 +18,7 @@ protocol AbstractTrackListProtocol {
     var size: Int {get}
     var duration: Double {get}
     
+    // Whether or not tracks are being added to the track list (which could be time consuming)
     var isBeingModified: Bool {get}
     
     func indexOfTrack(_ track: Track) -> Int?

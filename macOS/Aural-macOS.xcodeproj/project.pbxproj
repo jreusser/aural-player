@@ -414,6 +414,8 @@
 		3E758B06281DDA5900BBE872 /* EffectsWindowRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E758B05281DDA5900BBE872 /* EffectsWindowRootView.swift */; };
 		3E7979E4282EEEBD005AB91E /* ImageTabButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7979E3282EEEBD005AB91E /* ImageTabButtonCell.swift */; };
 		3E798F3528386009000CFAE8 /* SortedTrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E798F3428386009000CFAE8 /* SortedTrackList.swift */; };
+		3E798F3728389C10000CFAE8 /* LibraryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E798F3628389C10000CFAE8 /* LibraryDelegate.swift */; };
+		3E798F3928389DCD000CFAE8 /* LibraryPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E798F3828389DCD000CFAE8 /* LibraryPersistentState.swift */; };
 		3E7AF1032806451B006DC98F /* TrackListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AF1022806451B006DC98F /* TrackListProtocol.swift */; };
 		3E7AF10528065441006DC98F /* PlayQueueMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AF10428065441006DC98F /* PlayQueueMenuController.swift */; };
 		3E7BDD742822E93200EC5BC6 /* neo-latina-withNums.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BDD732822E93200EC5BC6 /* neo-latina-withNums.ttf */; };
@@ -1864,6 +1866,8 @@
 		3E758B05281DDA5900BBE872 /* EffectsWindowRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsWindowRootView.swift; sourceTree = "<group>"; };
 		3E7979E3282EEEBD005AB91E /* ImageTabButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTabButtonCell.swift; sourceTree = "<group>"; };
 		3E798F3428386009000CFAE8 /* SortedTrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedTrackList.swift; sourceTree = "<group>"; };
+		3E798F3628389C10000CFAE8 /* LibraryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDelegate.swift; sourceTree = "<group>"; };
+		3E798F3828389DCD000CFAE8 /* LibraryPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPersistentState.swift; sourceTree = "<group>"; };
 		3E7AF1022806451B006DC98F /* TrackListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListProtocol.swift; sourceTree = "<group>"; };
 		3E7AF10428065441006DC98F /* PlayQueueMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueMenuController.swift; sourceTree = "<group>"; };
 		3E7BDD732822E93200EC5BC6 /* neo-latina-withNums.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "neo-latina-withNums.ttf"; sourceTree = "<group>"; };
@@ -4215,6 +4219,7 @@
 			isa = PBXGroup;
 			children = (
 				3EAE9CBF2836B139004499FE /* Library.swift */,
+				3E798F3628389C10000CFAE8 /* LibraryDelegate.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -5138,6 +5143,7 @@
 				3EFE374827864895006F8B8C /* FavoritePersistentState.swift */,
 				3EFE374927864895006F8B8C /* PlaylistsPersistentState.swift */,
 				3EBF3F2928037B1A00035D18 /* PlayQueuePersistentState.swift */,
+				3E798F3828389DCD000CFAE8 /* LibraryPersistentState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6414,6 +6420,7 @@
 				3EFE3A1127864898006F8B8C /* PresetsManagerNotifications.swift in Sources */,
 				3E6C12BB25CEBE5800BF0D07 /* SoundMenuController.swift in Sources */,
 				3E8FF9D427F61CEA009CEDDD /* PlayQueue+SearchAndSort.swift in Sources */,
+				3E798F3928389DCD000CFAE8 /* LibraryPersistentState.swift in Sources */,
 				3E6C121C25CEBDE600BF0D07 /* SoundPreferencesViewController.swift in Sources */,
 				3E5F943325E571A6002DEF80 /* Spectrogram.swift in Sources */,
 				3EFE3A6D27864898006F8B8C /* AudioToolboxParser.swift in Sources */,
@@ -6537,6 +6544,7 @@
 				3EABDDD82694BA75008066E8 /* VisualizerUIState.swift in Sources */,
 				3EABDDEA2694BC40008066E8 /* VisualizerViewOptions.swift in Sources */,
 				3E5F943025E571A6002DEF80 /* VisualizerViewProtocol.swift in Sources */,
+				3E798F3728389C10000CFAE8 /* LibraryDelegate.swift in Sources */,
 				3EFE39D127864897006F8B8C /* FilterUnitPersistentState.swift in Sources */,
 				3EFE39B727864897006F8B8C /* NSRectPersistentState.swift in Sources */,
 				3E5F943225E571A6002DEF80 /* VisualizerWindowController.swift in Sources */,

@@ -10,9 +10,7 @@
 
 import Foundation
 
-protocol LibraryProtocol: TrackListProtocol {
-    
-}
+protocol LibraryProtocol: TrackListProtocol {}
 
 class Library: GroupedSortedTrackList, LibraryProtocol {
     
@@ -42,5 +40,12 @@ extension Library: TrackLoaderObserver {
     
     func postBatchLoad(indices: IndexSet) {
         messenger.publish(LibraryTracksAddedNotification(trackIndices: indices))
+    }
+}
+
+extension Library: PersistentModelObject {
+    
+    var persistentState: LibraryPersistentState {
+        .init(library: self)
     }
 }

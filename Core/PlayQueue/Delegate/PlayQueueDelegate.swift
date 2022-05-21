@@ -140,14 +140,6 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         playQueue.moveTracks(from: sourceIndices, to: dropIndex)
     }
 
-    func export(to file: URL) {
-
-        // Perform asynchronously, to unblock the main thread
-        DispatchQueue.global(qos: .userInitiated).async {
-            PlaylistIO.savePlaylist(tracks: self.tracks, toFile: file)
-        }
-    }
-
     func removeAllTracks() {
         
         let wasPlaying: Bool = playQueue.currentTrack != nil
