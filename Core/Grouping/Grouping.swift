@@ -46,13 +46,15 @@ class Grouping {
         
         // TODO: When adding a new group, maintain (alphabetical or user-defined) sort order ???
         groups.append(newGroup)
+        groups.sort(by: {g1, g2 in g1.name < g2.name})
         
         return newGroup
     }
     
-    func remove(tracks: [Track], groups: [Group]) {
+    func remove(tracks: [GroupedTrack], andGroups groups: [Group]) -> TrackRemovalResults {
         
-        
+        // TODO
+        .empty
     }
     
 //    func applyTo(trackList: TrackList) -> [Group] {
@@ -105,10 +107,6 @@ class Grouping {
 
 class AlbumsGrouping: Grouping {
     
-    private static let trackNumberComparator: TrackSortFunction = {t1, t2 in
-        (t1.trackNumber ?? 0) < (t2.trackNumber ?? 0)
-    }
-    
     init(depth: Int = 0) {
         super.init(name: "Albums", depth: depth) {track in track.album ?? "<Unknown>"}
     }
@@ -125,7 +123,7 @@ class AlbumsGrouping: Grouping {
             
             let group = groupsByName[groupName] ?? createGroup(named: groupName)
             group.addTracks(tracks)
-            group.sortTracks(by: Self.trackNumberComparator)
+            group.sortTracks(by: trackDiscAndTrackNumberAscendingComparator)
         }
     }
 }

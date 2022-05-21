@@ -31,7 +31,7 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
 
     let userDefined: Bool = true
     
-    private lazy var loader: TrackLoader = TrackLoader()
+    private lazy var loader: TrackLoader = TrackLoader(priority: .medium)
     
     private lazy var messenger: Messenger = Messenger(for: self)
 
@@ -50,6 +50,7 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
         self.persistentStateToLoad = persistentState
     }
     
+    // TODO: Add a loader argument here ? So that the playlists can share a single loader ?
     func loadPersistentTracks() {
         
         if let files = self.persistentState.tracks, files.isNonEmpty {

@@ -50,6 +50,12 @@ class GroupedSortedTrackList: SortedTrackList, GroupedSortedTrackListProtocol {
     }
     
     func remove(tracks: [GroupedTrack], andGroups groups: [Group]) -> TrackRemovalResults {
+        
+        // TODO: Remove the tracks / groups from the current grouping, then remove those
+        // tracks from the track list and other groupings. Finally, collate all the results.
+        
+        // TODO: See the old 'GroupingPlaylist' class
+        
         .empty
     }
     

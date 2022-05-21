@@ -22,7 +22,7 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
                    withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])
     }
     
-    private lazy var loader: TrackLoader = TrackLoader()
+    private lazy var loader: TrackLoader = TrackLoader(priority: .highest)
     private lazy var messenger = Messenger(for: self)
     
     func loadTracks(from files: [URL], atPosition position: Int?) {

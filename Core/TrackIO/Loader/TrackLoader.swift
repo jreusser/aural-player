@@ -12,23 +12,55 @@ import Foundation
 
 typealias VoidFunction = () -> Void
 
+enum TrackLoaderPriority: Int, CaseIterable {
+    
+    private static let opCounts: [TrackLoaderPriority: Int] = {
+        
+        let physicalCores: Int = SystemUtils.numberOfPhysicalCores
+        let activeCores: Int = SystemUtils.numberOfActiveCores
+        
+        return [
+            
+            .low: max(physicalCores / 2, 2),
+            
+            .medium: max(3, physicalCores),
+            
+            .high: max(4, activeCores),
+            
+            .highest: max(4, (Double(activeCores) * 1.5).roundedInt)
+        ]
+    }()
+    
+    case low, medium, high, highest
+    
+    var concurrentOpCount: Int {
+        Self.opCounts[self]!
+    }
+}
+
 // TODO: How to deal with duplicate tracks ? (track is loaded individually and as part of a playlist)
+
+// TODO: *********** How about using an OrderedSet<Track> to collect the tracks ?
+
 // What if a track exists in a different track list ? (Play Queue / Library). Should we have a global track registry ?
 // What about notifications / errors ? Return a result ?
 // Create a track load session and a batch class
 // How to deal with 2 simultaneous sessions on startup ? Play queue / Library / Custom playlists ? Adjust batch size accordingly ?
 class TrackLoader {
     
+    let priority: TrackLoaderPriority
+    
     private var session: FileReadSession!
     private var batch: FileMetadataBatch!
     var blockOpFunction: ((URL) -> BlockOperation)!
     
     private let queue: OperationQueue = OperationQueue()
-    private let concurrentAddOpCount = (Double(SystemUtils.numberOfActiveCores) * 1.5).roundedInt
     
-    init() {
+    init(priority: TrackLoaderPriority) {
         
-        queue.maxConcurrentOperationCount = concurrentAddOpCount
+        self.priority = priority
+        
+        queue.maxConcurrentOperationCount = priority.concurrentOpCount
         queue.underlyingQueue = DispatchQueue.global(qos: .userInteractive)
         queue.qualityOfService = .userInteractive
     }
@@ -40,7 +72,7 @@ class TrackLoader {
         observer.preTrackLoad()
         
         session = FileReadSession(metadataType: type, trackList: trackList, insertionIndex: insertionIndex, observer: observer)
-        batch = FileMetadataBatch(ofSize: concurrentAddOpCount, insertionIndex: insertionIndex)
+        batch = FileMetadataBatch(ofSize: queue.maxConcurrentOperationCount, insertionIndex: insertionIndex)
         blockOpFunction = blockOp(metadataType: type)
         
         // Move to a background thread to unblock the main thread.

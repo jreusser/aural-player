@@ -60,6 +60,8 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
     
     func loadPlaylists() {
         
+        // TODO: Load each individual playlist lazily !!!
+        
         if playlistsLoaded {return}
         
         playlistsLoaded = true
