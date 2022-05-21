@@ -78,63 +78,75 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
                                                     <font key="font" metaFont="system"/>
                                                     <tabViewItems>
-                                                        <tabViewItem label="Tracks" identifier="" id="HRv-Jn-Es0">
+                                                        <tabViewItem label="Library-Tracks" identifier="" id="HRv-Jn-Es0">
                                                             <view key="view" id="Ght-pd-CkO">
                                                                 <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>
-                                                        <tabViewItem label="Artists" identifier="" id="60R-jf-oaw">
+                                                        <tabViewItem label="Library-Artists" identifier="" id="60R-jf-oaw">
                                                             <view key="view" id="0Nf-ay-qSF">
-                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>
-                                                        <tabViewItem label="Albums" identifier="" id="NgP-UK-uNS">
+                                                        <tabViewItem label="Library-Albums" identifier="" id="NgP-UK-uNS">
                                                             <view key="view" id="smc-vv-Phn">
-                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>
-                                                        <tabViewItem label="Genres" identifier="" id="1yk-xS-PLe">
+                                                        <tabViewItem label="Library-Genres" identifier="" id="1yk-xS-PLe">
                                                             <view key="view" id="Yz6-68-u4j">
-                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>
-                                                        <tabViewItem label="Decades" identifier="" id="2gD-8A-JdM">
+                                                        <tabViewItem label="Library-Decades" identifier="" id="2gD-8A-JdM">
                                                             <view key="view" id="kTP-AF-nNj">
-                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>
                                                         <tabViewItem label="File System" identifier="" id="xEl-mc-SsJ">
                                                             <view key="view" id="OfS-kY-UBT">
-                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>
                                                         <tabViewItem label="Playlists" identifier="" id="wtD-Ld-mJ1">
                                                             <view key="view" id="EzC-6o-AVt">
-                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>
-                                                        <tabViewItem label="History" identifier="" id="VCE-Ws-H2u">
+                                                        <tabViewItem label="History-RecentlyPlayed" identifier="" id="VCE-Ws-H2u">
                                                             <view key="view" id="Hbb-xH-nY3">
-                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
+                                                        <tabViewItem label="History-MostPlayed" identifier="" id="NgM-pc-qOI">
+                                                            <view key="view" id="M7z-CT-HrQ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
+                                                        <tabViewItem label="History-RecentlyAdded" identifier="" id="QFv-AD-pIq">
+                                                            <view key="view" id="FrL-q3-uTB">
+                                                                <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>
                                                         <tabViewItem label="Favorites" identifier="" id="846-f3-KCT">
                                                             <view key="view" id="B9t-8X-Zns">
-                                                                <rect key="frame" x="0.0" y="0.0" width="765" height="444"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>
                                                         <tabViewItem label="Bookmarks" identifier="" id="v2d-Xl-ZHs">
                                                             <view key="view" id="4bT-Z1-V0S">
-                                                                <rect key="frame" x="0.0" y="0.0" width="755" height="444"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>

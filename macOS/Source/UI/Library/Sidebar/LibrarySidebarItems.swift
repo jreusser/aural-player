@@ -12,9 +12,21 @@ import Foundation
 
 enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
     
-    private static let libraryItems: [LibrarySidebarItem] = ["Tracks", "Artists", "Albums", "Genres", "Decades"].map {LibrarySidebarItem(displayName: $0)}
-    private static let historyItems: [LibrarySidebarItem] = ["Recently Played", "Most Played", "Recently Added"].map {LibrarySidebarItem(displayName: $0)}
-    private static let playlistsItems: [LibrarySidebarItem] = ["Biosphere Tranquility", "Nature Sounds"].map {LibrarySidebarItem(displayName: $0)}
+    private static let libraryItems: [LibrarySidebarItem] = [
+        
+        LibrarySidebarItem(displayName: "Tracks", browserTab: .libraryTracks),
+        LibrarySidebarItem(displayName: "Artists", browserTab: .libraryArtists),
+        LibrarySidebarItem(displayName: "Albums", browserTab: .libraryAlbums),
+        LibrarySidebarItem(displayName: "Genres", browserTab: .libraryGenres),
+        LibrarySidebarItem(displayName: "Decades", browserTab: .libraryDecades),
+    ]
+    
+    private static let historyItems: [LibrarySidebarItem] = [
+        
+        LibrarySidebarItem(displayName: "Recently Played", browserTab: .historyRecentlyPlayed),
+        LibrarySidebarItem(displayName: "Most Played", browserTab: .historyMostPlayed),
+        LibrarySidebarItem(displayName: "Recently Added", browserTab: .historyRecentlyAdded)
+    ]
     
     case library = "Library"
     case fileSystem = "File System"
@@ -22,6 +34,24 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
     case history = "History"
     case favorites = "Favorites"
     case bookmarks = "Bookmarks"
+    
+    var browserTab: LibraryBrowserTab {
+        
+        switch self {
+            
+        case .favorites:
+            
+            return .favorites
+            
+        case .bookmarks:
+            
+            return .favorites
+            
+        default:
+            
+            return .libraryTracks
+        }
+    }
     
     var description: String {rawValue}
     
@@ -63,11 +93,11 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         case .fileSystem:
             
             // TODO:
-            return [LibrarySidebarItem(displayName: "My Music")]
+            return [LibrarySidebarItem(displayName: "My Music", browserTab: .fileSystem)]
             
         case .playlists:
             
-            return playlistsManager.playlistNames.map {LibrarySidebarItem(displayName: $0)}
+            return playlistsManager.playlistNames.map {LibrarySidebarItem(displayName: $0, browserTab: .playlist)}
             
         case .history:
             
@@ -117,4 +147,21 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
 struct LibrarySidebarItem {
     
     let displayName: String
+    let browserTab: LibraryBrowserTab
+}
+
+enum LibraryBrowserTab: Int {
+    
+    case libraryTracks = 0,
+         libraryArtists = 1,
+         libraryAlbums = 2,
+         libraryGenres = 3,
+         libraryDecades = 4,
+         playlist = 5,
+         fileSystem = 6,
+         historyRecentlyPlayed = 7,
+         historyMostPlayed = 8,
+         historyRecentlyAdded = 9,
+         favorites = 10,
+         bookmarks = 11
 }

@@ -14,6 +14,14 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
     
     override var nibName: String? {"LibraryTracks"}
     
+    @IBOutlet weak var rootContainer: NSBox!
+    
+    @IBOutlet weak var lblTracksSummary: NSTextField!
+    @IBOutlet weak var lblDurationSummary: NSTextField!
+    
+    // Spinner that shows progress when tracks are being added to the play queue.
+    @IBOutlet weak var progressSpinner: NSProgressIndicator!
+    
     override var rowHeight: CGFloat {30}
     
     override var trackList: TrackListProtocol! {
@@ -26,15 +34,19 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
         
         super.viewDidLoad()
         
+        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
+        
+        fontSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
+        colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
+        
         colorSchemesManager.registerObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
                                                                     \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
         
-        messenger.subscribeAsync(to: .playlist_tracksAdded, handler: tracksAdded(_:),
-                                 filter: {notif in playlistsUIState.displayedPlaylist?.name == notif.playlistName})
+        messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
         
-        messenger.subscribe(to: .playlist_addChosenFiles, handler: addChosenTracks(_:))
-        
-        messenger.subscribe(to: .playlist_copyTracks, handler: copyTracks(_:))
+//        messenger.subscribe(to: .library_addChosenFiles, handler: addChosenTracks(_:))
+//
+//        messenger.subscribe(to: .library_copyTracks, handler: copyTracks(_:))
     }
     
     override func view(forColumn column: NSUserInterfaceItemIdentifier, row: Int, track: Track) -> TableCellBuilder {
@@ -252,7 +264,7 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
         }
     }
     
-    private func tracksAdded(_ notif: PlaylistTracksAddedNotification) {
+    private func tracksAdded(_ notif: LibraryTracksAddedNotification) {
         
         tracksAdded(at: notif.trackIndices)
         messenger.publish(.playlists_updateSummary)

@@ -34,4 +34,7 @@ extension Notification.Name {
     
     // Signifies that the summary for the library needs to be updated.
     static let library_updateSummary = Notification.Name("library_updateSummary")
+    
+    // Command to show a specific Library browser tab (specified in the payload).
+    static let library_showBrowserTab = Notification.Name("library_showBrowserTab")
 }

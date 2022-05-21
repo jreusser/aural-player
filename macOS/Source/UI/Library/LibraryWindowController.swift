@@ -30,15 +30,25 @@ class LibraryWindowController: NSWindowController {
     
     private lazy var sidebarController: LibrarySidebarViewController = LibrarySidebarViewController()
     
-//    private lazy var messenger: Messenger = Messenger(for: self)
+    private lazy var libraryTracksController: LibraryTracksViewController = LibraryTracksViewController()
+    
+    private lazy var messenger: Messenger = Messenger(for: self)
     
     override func windowDidLoad() {
         
         super.windowDidLoad()
         
+        let libraryTracksView: NSView = libraryTracksController.view
+        tabGroup.tabViewItem(at: 0).view?.addSubview(libraryTracksView)
+        libraryTracksView.anchorToSuperview()
+        
+        print("\nTracksView: \(libraryTracksView.frame) \(libraryTracksView.isHidden)")
+        
         let sidebarView: NSView = sidebarController.view
         splitView.arrangedSubviews[0].addSubview(sidebarView)
         sidebarView.anchorToSuperview()
+        
+        messenger.subscribe(to: .library_showBrowserTab, handler: showBrowserTab(_:))
 
         colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
         colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
@@ -49,5 +59,9 @@ class LibraryWindowController: NSWindowController {
     
     @IBAction func closeAction(_ sender: Any) {
         windowLayoutsManager.toggleWindow(withId: .library)
+    }
+    
+    private func showBrowserTab(_ tab: LibraryBrowserTab) {
+        tabGroup.selectTabViewItem(at: tab.rawValue)
     }
 }
