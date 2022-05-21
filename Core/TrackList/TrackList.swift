@@ -27,15 +27,9 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     // A map to quickly look up tracks by (absolute) file path (used when adding tracks, to prevent duplicates)
-    private var tracksByFile: [URL: Track] = [:]
+    var tracksByFile: [URL: Track] = [:]
     
     private var _isBeingModified: AtomicBool = AtomicBool(value: false)
-    
-    let sortOrder: TrackListSort?
-    
-    init(sortOrder: TrackListSort? = nil) {
-        self.sortOrder = sortOrder
-    }
     
     var isBeingModified: Bool {
         _isBeingModified.value
@@ -86,7 +80,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     func hasTrack(_ track: Track) -> Bool {
-        tracksByFile[track.file] != nil
+        tracks.contains(track)
     }
     
     func hasTrack(forFile file: URL) -> Bool {
@@ -96,38 +90,35 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     func findTrack(forFile file: URL) -> Track? {
         tracksByFile[file]
     }
+
+    // TODO: Verify that this actually works (OrderedSet) ... no duplicates !!!
+    // Use case - A track and a playlist containing it (M3U) are both added.
     
-    private func deDupeTracks(_ tracks: [Track]) -> [Track] {
+    @inlinable
+    @inline(__always)
+    func deDupeTracks(_ tracks: [Track]) -> [Track] {
         OrderedSet<Track>(tracks).filter {!hasTrack($0)}
     }
     
     @discardableResult func addTracks(_ newTracks: [Track]) -> IndexSet {
         
         let dedupedTracks = deDupeTracks(newTracks)
-        
         guard dedupedTracks.isNonEmpty else {return .empty}
         
         for track in dedupedTracks {
             tracksByFile[track.file] = track
         }
         
-        _tracks.append(contentsOf: dedupedTracks)
-        
-        if let sortOrder = self.sortOrder {
-            _tracks.sort(by: sortOrder.comparator)
-        }
-        
-        let newIndices = dedupedTracks.compactMap {_tracks.firstIndex(of: $0)}
-        return IndexSet(newIndices)
+        return _tracks.addItems(dedupedTracks)
     }
     
     @discardableResult func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> IndexSet {
         
-        let dedupedTracks = newTracks.filter {!_tracks.contains($0)}
+        let dedupedTracks = deDupeTracks(newTracks)
         guard dedupedTracks.isNonEmpty else {return .empty}
         
         // Need to insert in reverse order.
-        for index in stride(from: dedupedTracks.lastIndex, through: -1, by: -1) {
+        for index in stride(from: dedupedTracks.lastIndex, through: 0, by: -1) {
             
             let track = dedupedTracks[index]
             _tracks.insert(track, at: insertionIndex)
@@ -141,16 +132,16 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         _tracks.moveItemsUp(from: indices).map {TrackMoveResult($0.key, $0.value)}
     }
     
+    @discardableResult func moveTracksDown(from indices: IndexSet) -> [TrackMoveResult] {
+        _tracks.moveItemsDown(from: indices).map {TrackMoveResult($0.key, $0.value)}
+    }
+    
     @discardableResult func moveTracksToTop(from indices: IndexSet) -> [TrackMoveResult] {
         _tracks.moveItemsToTop(from: indices).map {TrackMoveResult($0.key, $0.value)}
     }
     
     @discardableResult func moveTracksToBottom(from indices: IndexSet) -> [TrackMoveResult] {
         _tracks.moveItemsToBottom(from: indices).map {TrackMoveResult($0.key, $0.value)}
-    }
-    
-    @discardableResult func moveTracksDown(from indices: IndexSet) -> [TrackMoveResult] {
-        _tracks.moveItemsDown(from: indices).map {TrackMoveResult($0.key, $0.value)}
     }
     
     func removeAllTracks() {

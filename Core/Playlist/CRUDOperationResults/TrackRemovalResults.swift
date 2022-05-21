@@ -14,6 +14,8 @@ import Foundation
 ///
 struct TrackRemovalResults {
     
+    static let empty: TrackRemovalResults = .init(tracks: [], indices: .empty)
+    
     /// The tracks that were removed from the playlist.
     let tracks: [Track]
     

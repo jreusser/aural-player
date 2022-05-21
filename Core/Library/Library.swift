@@ -14,10 +14,12 @@ protocol LibraryProtocol: TrackListProtocol {
     
 }
 
-class Library: GroupedTrackList, LibraryProtocol {
+class Library: GroupedSortedTrackList, LibraryProtocol {
     
     init() {
-        super.init(withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])
+        
+        super.init(sortOrder: TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending),
+                   withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])
     }
     
     private lazy var loader: TrackLoader = TrackLoader()

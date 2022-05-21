@@ -12,6 +12,8 @@ import Foundation
 
 protocol AbstractTrackListProtocol {
     
+    // MARK: Read-only functions ------------------------------------------------------------------------
+    
     var tracks: [Track] {get}
     var size: Int {get}
     var duration: Double {get}
@@ -34,12 +36,18 @@ protocol AbstractTrackListProtocol {
     
 //    func search(_ searchQuery: SearchQuery) -> SearchResults
     
+    // MARK: Add and remove ------------------------------------------------------------------------
+    
     @discardableResult func addTracks(_ newTracks: [Track]) -> IndexSet
     
     // Inserts tracks from an external source (eg. saved playlist) at a given insertion index.
     func insertTracks(_ tracks: [Track], at insertionIndex: Int) -> IndexSet
     
     func removeTracks(at indices: IndexSet) -> [Track]
+    
+    func removeAllTracks()
+    
+    // MARK: Reordering ------------------------------------------------------------------------
 
     func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult]
     
@@ -51,13 +59,23 @@ protocol AbstractTrackListProtocol {
     
     func moveTracks(from sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult]
     
-    func removeAllTracks()
-    
     func sort(_ sort: TrackListSort)
 
     func sort(by comparator: (Track, Track) -> Bool)
     
+    // MARK: Miscellaneous ------------------------------------------------------------------------
+    
     func exportToFile(_ file: URL)
+}
+
+protocol SortedTrackListProtocol: AbstractTrackListProtocol {
+    
+    var sortOrder: TrackListSort {get set}
+}
+
+protocol GroupedSortedTrackListProtocol: SortedTrackListProtocol {
+    
+    func remove(tracks: [GroupedTrack], andGroups groups: [Group]) -> TrackRemovalResults
 }
 
 protocol TrackListProtocol: AbstractTrackListProtocol {

@@ -11,11 +11,11 @@
 ///
 /// Wrapper around **Track** that includes its location within a group in a hierarchical playlist.
 ///
-//struct GroupedTrack {
-//    
-//    let track: Track
-//    let group: Group
-//    
-//    let trackIndex: Int
-//    let groupIndex: Int
-//}
+struct GroupedTrack {
+    
+    let track: Track
+    let group: Group
+    
+    let trackIndex: Int
+    let groupIndex: Int
+}

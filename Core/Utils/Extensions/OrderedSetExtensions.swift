@@ -42,13 +42,13 @@ extension OrderedSet {
         count - 1
     }
     
-    mutating func addItem(_ item: Element) -> Int {
+    @discardableResult mutating func addItem(_ item: Element) -> Int {
         
         self.append(item)
         return lastIndex
     }
     
-    mutating func addItems(_ items: [Element]) -> IndexSet {
+    @discardableResult mutating func addItems(_ items: [Element]) -> IndexSet {
         
         let firstIndex: Int = self.count
         self.append(contentsOf: items)

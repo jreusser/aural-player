@@ -70,15 +70,15 @@ class Group: PlayableItem {
         tracks.removeTracks(tracksToRemove)
     }
     
-    // TODO: Name comparison is not enough !!!
-    
     // Equatable conformance.
     static func == (lhs: Group, rhs: Group) -> Bool {
-        lhs.name == rhs.name
+        lhs.name == rhs.name && lhs.depth == rhs.depth
     }
     
     // Hashable conformance.
     func hash(into hasher: inout Hasher) {
+        
         hasher.combine(name)
+        hasher.combine(depth)
     }
 }
