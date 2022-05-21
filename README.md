@@ -24,7 +24,7 @@ As of May 21, 2022, Aural Player version 4.0 is in active development, and aims 
 
 ### Notes:
 
-- Version 4.0 will only support macOS 11.0 (Big Sur) and newer versions, because of its use of newer AppKit APIs. This is to:
+- Version 4.0 will only support macOS 11.0 (Big Sur) and newer versions. This is to:
   * Take advantage of more recent advancements to the AppKit framework and other features unavailable on older platforms 
   * Simplify codebase maintenance
   * Simplify app testing.
