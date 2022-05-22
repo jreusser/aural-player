@@ -16,12 +16,7 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
     
     @IBOutlet weak var sidebarView: NSOutlineView!
     
-    let mainFont_14: NSFont = NSFont(name: "Play Regular", size: 13)!
-    
     let categories: [LibrarySidebarCategory] = LibrarySidebarCategory.allCases
-    
-//    let favoritesItems: LibrarySidebarItem = LibrarySidebarItem(displayName: "Favorites")
-//    let bookmarksItem: LibrarySidebarItem = LibrarySidebarItem(displayName: "Bookmarks")
     
     private lazy var messenger: Messenger = Messenger(for: self)
     
@@ -77,7 +72,7 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
             return createNameCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image)
             
         } else if let sidebarItem = item as? LibrarySidebarItem {
-            return createNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor)
+            return createNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
         }
         
         return nil

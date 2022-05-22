@@ -14,11 +14,11 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
     
     private static let libraryItems: [LibrarySidebarItem] = [
         
-        LibrarySidebarItem(displayName: "Tracks", browserTab: .libraryTracks),
-        LibrarySidebarItem(displayName: "Artists", browserTab: .libraryArtists),
-        LibrarySidebarItem(displayName: "Albums", browserTab: .libraryAlbums),
-        LibrarySidebarItem(displayName: "Genres", browserTab: .libraryGenres),
-        LibrarySidebarItem(displayName: "Decades", browserTab: .libraryDecades),
+        LibrarySidebarItem(displayName: "Tracks", browserTab: .libraryTracks, image: .imgTracks),
+        LibrarySidebarItem(displayName: "Artists", browserTab: .libraryArtists, image: .imgArtistGroup),
+        LibrarySidebarItem(displayName: "Albums", browserTab: .libraryAlbums, image: .imgAlbumGroup),
+        LibrarySidebarItem(displayName: "Genres", browserTab: .libraryGenres, image: .imgGenreGroup),
+        LibrarySidebarItem(displayName: "Decades", browserTab: .libraryDecades, image: .imgDecadeGroup),
     ]
     
     private static let historyItems: [LibrarySidebarItem] = [
@@ -148,6 +148,14 @@ struct LibrarySidebarItem {
     
     let displayName: String
     let browserTab: LibraryBrowserTab
+    let image: PlatformImage?
+    
+    init(displayName: String, browserTab: LibraryBrowserTab, image: PlatformImage? = nil) {
+        
+        self.displayName = displayName
+        self.browserTab = browserTab
+        self.image = image
+    }
 }
 
 enum LibraryBrowserTab: Int {

@@ -91,6 +91,10 @@ extension PlatformImage {
     
     // --------------- Playlist group icons -----------------
     
+    static let imgTracks: PlatformImage = PlatformImage(named: "Tracks")!
+    static let imgArtistGroup: PlatformImage = PlatformImage(named: "Artists")!
     static let imgAlbumGroup: PlatformImage = PlatformImage(named: "Albums")!
+    static let imgGenreGroup: PlatformImage = PlatformImage(named: "Genres")!
+    static let imgDecadeGroup: PlatformImage = PlatformImage(systemSymbolName: "calendar", accessibilityDescription: nil)!
     static let imgFileSystem: PlatformImage = PlatformImage(systemSymbolName: "folder", accessibilityDescription: nil)!
 }

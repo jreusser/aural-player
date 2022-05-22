@@ -189,12 +189,18 @@ class AlbumCellView: AuralTableCellView {
             string = string + "\nby \(artists)".attributed(font: systemFontScheme.playerSecondaryFont, color: systemColorScheme.secondaryTextColor, lineSpacing: 3)
         }
         
-        if let year = group.yearString {
-            string = string + " [\(year)]".attributed(font: systemFontScheme.playerSecondaryFont, color: systemColorScheme.secondaryTextColor, lineSpacing: 3)
-        }
+        var hasGenre: Bool = false
         
         if let genres = group.genresString {
-            string = string + "\n\(genres)".attributed(font: systemFontScheme.playerSecondaryFont, color: systemColorScheme.secondaryTextColor)
+            
+            string = string + "\n\(genres)".attributed(font: systemFontScheme.playerSecondaryFont, color: systemColorScheme.tertiaryTextColor)
+            hasGenre = true
+        }
+        
+        if let year = group.yearString {
+            
+            let padding = hasGenre ? "  " : ""
+            string = string + "\(padding)[\(year)]".attributed(font: systemFontScheme.playerSecondaryFont, color: systemColorScheme.tertiaryTextColor, lineSpacing: 3)
         }
         
         textField?.attributedStringValue = string

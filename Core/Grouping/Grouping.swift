@@ -60,19 +60,11 @@ class Grouping: Hashable {
     
     func addTracks(_ newTracks: [Track]) {
         
-        if self is AlbumsGrouping {
-            print("\nAdding \(newTracks.count) ...")
-        }
-        
         groupTracks(newTracks, accordingTo: self)
 
         if let subGrouping = self.subGrouping {
             subGroup(groups, accordingTo: subGrouping)
         }
-    }
-    
-    func printGroups() {
-        print("\nGrouping '\(name)' has \(groups.count) groups: \(groups.map {$0.name}), type: \(Mirror(reflecting: groups.first!))")
     }
     
     fileprivate func doCreateGroup(named groupName: String) -> Group {
@@ -122,24 +114,10 @@ class Grouping: Hashable {
         // Sort tracks only if they will not be further sub-grouped.
         let needToSortTracks: Bool = grouping.subGrouping == nil
         
-        let categ = categorizeTracksByGroupName(tracks, keyFunction: grouping.keyFunction)
-        
-        if self is AlbumsGrouping {
-            print("\nCategTracks: \(categ)")
-        }
-        
-        for (groupName, tracks) in categ {
-            
-            if self is AlbumsGrouping {
-                print("\nFor groupName: \(groupName), has \(tracks.count) tracks.")
-            }
+        for (groupName, tracks) in categorizeTracksByGroupName(tracks, keyFunction: grouping.keyFunction) {
             
             let group = grouping.findOrCreateGroup(named: groupName)
             group.addTracks(tracks)
-            
-            if self is AlbumsGrouping {
-                print("Added \(group.numberOfTracks) tracks to group: \(groupName).")
-            }
             
             if needToSortTracks {
                 group.sortTracks(by: grouping.sortOrder)
@@ -158,8 +136,6 @@ class Grouping: Hashable {
         if let subGrouping = grouping.subGrouping {
             subGroup(grouping.groups, accordingTo: subGrouping)
         }
-        
-        grouping.printGroups()
     }
 }
 
