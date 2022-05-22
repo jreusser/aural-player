@@ -46,11 +46,31 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
     }
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        item == nil ? albumsGrouping.numberOfGroups : 0
+        
+        if item == nil {
+            return albumsGrouping.numberOfGroups
+        }
+        
+        if let group = item as? AlbumGroup {
+            
+            print("\nGroup '\(group.name)' has \(group.numberOfTracks) tracks")
+            return group.numberOfTracks
+        }
+        
+        return 0
     }
     
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        item == nil ? albumsGrouping.groups[index] : ""
+        
+        if item == nil {
+            return albumsGrouping.groups[index]
+        }
+        
+        if let group = item as? AlbumGroup {
+            return group[index] as Any
+        }
+        
+        return ""
     }
     
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
@@ -65,13 +85,24 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
             
         case .cid_Name:
             
-            guard let album = item as? AlbumGroup,
-                  let cell = outlineView.makeView(withIdentifier: .cid_AlbumName, owner: nil) as? AlbumCellView else {return nil}
+            if let album = item as? AlbumGroup,
+               let cell = outlineView.makeView(withIdentifier: .cid_AlbumName, owner: nil) as? AlbumCellView {
             
             cell.update(forGroup: album)
             cell.rowSelectionStateFunction = {[weak outlineView, weak album] in outlineView?.isItemSelected(album as Any) ?? false}
             
             return cell
+                
+            }
+            
+            if let track = item as? Track,
+               let cell = outlineView.makeView(withIdentifier: .cid_TrackName, owner: nil) as? AlbumTrackCellView {
+                
+                cell.update(forTrack: track)
+                cell.rowSelectionStateFunction = {[weak outlineView, weak track] in outlineView?.isItemSelected(track as Any) ?? false}
+                
+                return cell
+            }
             
             //        case .cid_TrackName:
             //
@@ -82,6 +113,8 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
             return nil
             //        }
         }
+        
+        return nil
     }
     
     // Refreshes the playlist view in response to a new track being added to the playlist
@@ -118,12 +151,14 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         outlineView.selectItems(selectedItems)
         
         updateSummary()
+        
+        print("\nReloading ...")
     }
     
     private func updateSummary() {
         
         let numGroups = albumsGrouping.numberOfGroups
-        lblAlbumsSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "group" : "groups")"
+        lblAlbumsSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "album" : "albums")"
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(library.duration)
     }
 }
@@ -132,7 +167,22 @@ class AlbumCellView: AuralTableCellView {
     
     func update(forGroup group: AlbumGroup) {
         
-        textField?.attributedStringValue = group.name.attributed(font: systemFontScheme.playerPrimaryFont, color: systemColorScheme.primaryTextColor)
+        var string = group.name.attributed(font: systemFontScheme.playerPrimaryFont, color: systemColorScheme.primaryTextColor, lineSpacing: 5)
+        
+        if let artists = group.artistsString {
+            string = string + "\nby \(artists)".attributed(font: systemFontScheme.playerSecondaryFont, color: systemColorScheme.secondaryTextColor, lineSpacing: 3)
+        }
+        
+        if let year = group.yearString {
+            string = string + " [\(year)]".attributed(font: systemFontScheme.playerSecondaryFont, color: systemColorScheme.secondaryTextColor, lineSpacing: 3)
+        }
+        
+        if let genres = group.genresString {
+            string = string + "\n\(genres)".attributed(font: systemFontScheme.playerSecondaryFont, color: systemColorScheme.secondaryTextColor)
+        }
+        
+        textField?.attributedStringValue = string
+        
         imageView?.image = group.art
     }
 }

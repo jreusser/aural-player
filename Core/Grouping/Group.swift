@@ -23,7 +23,13 @@ class Group: PlayableItem {
     }
     
     var tracks: TrackList = TrackList()
+    var numberOfTracks: Int {tracks.size}
     var hasTracks: Bool {tracks.isNonEmpty}
+    
+    /// Safe array access.
+    subscript(index: Int) -> Track? {
+        tracks[index]
+    }
     
     var parentGroup: Group?
     var isRootLevelGroup: Bool {parentGroup == nil}

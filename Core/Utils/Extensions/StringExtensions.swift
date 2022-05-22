@@ -296,8 +296,15 @@ extension String {
                   style: style)
     }
     
-    func attributed(font: PlatformFont, color: PlatformColor) -> NSMutableAttributedString {
-        NSMutableAttributedString(string: self, attributes: [.font: font, .foregroundColor: color])
+    func attributed(font: PlatformFont, color: PlatformColor, lineSpacing: CGFloat? = nil) -> NSMutableAttributedString {
+        
+        var attributes: [NSAttributedString.Key : Any] = [.font: font, .foregroundColor: color]
+        
+        if let lineSpacing = lineSpacing {
+            attributes[.paragraphStyle] = NSMutableParagraphStyle(lineSpacing: lineSpacing)
+        }
+        
+        return NSMutableAttributedString(string: self, attributes: attributes)
     }
     
     /*

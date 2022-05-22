@@ -16,15 +16,18 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     
     init() {
         
+//        super.init(sortOrder: TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending),
+//                   withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])
+        
         super.init(sortOrder: TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending),
-                   withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])
+                   withGroupings: [AlbumsGrouping()])
     }
     
     private lazy var loader: TrackLoader = TrackLoader(priority: .highest)
     private lazy var messenger = Messenger(for: self)
     
     var albumsGrouping: AlbumsGrouping {
-        groupings[1] as! AlbumsGrouping
+        groupings[0] as! AlbumsGrouping
     }
     
     func loadTracks(from files: [URL], atPosition position: Int?) {

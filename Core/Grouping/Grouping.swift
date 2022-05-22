@@ -60,6 +60,10 @@ class Grouping: Hashable {
     
     func addTracks(_ newTracks: [Track]) {
         
+        if self is AlbumsGrouping {
+            print("\nAdding \(newTracks.count) ...")
+        }
+        
         groupTracks(newTracks, accordingTo: self)
 
         if let subGrouping = self.subGrouping {
@@ -75,15 +79,19 @@ class Grouping: Hashable {
         Group(name: groupName, depth: self.depth)
     }
     
-    fileprivate func createGroup(named groupName: String, under grouping: Grouping) -> Group {
+    fileprivate func createGroup(named groupName: String) -> Group {
         
-        let newGroup = grouping.doCreateGroup(named: groupName)
+        let group = doCreateGroup(named: groupName)
         
-        // TODO: When adding a new group, maintain (alphabetical or user-defined) sort order ???
-        grouping.groups.append(newGroup)
-        grouping.groups.sort(by: {g1, g2 in g1.name < g2.name})
+        groups.append(group)
+        groupsByName[groupName] = group
+        groups.sort(by: {g1, g2 in g1.name < g2.name})
         
-        return newGroup
+        return group
+    }
+    
+    fileprivate func findOrCreateGroup(named groupName: String) -> Group {
+        groupsByName[groupName] ?? createGroup(named: groupName)
     }
     
     func remove(tracks: [GroupedTrack], andGroups groups: [Group]) -> TrackRemovalResults {
@@ -114,10 +122,24 @@ class Grouping: Hashable {
         // Sort tracks only if they will not be further sub-grouped.
         let needToSortTracks: Bool = grouping.subGrouping == nil
         
-        for (groupName, tracks) in categorizeTracksByGroupName(tracks, keyFunction: grouping.keyFunction) {
+        let categ = categorizeTracksByGroupName(tracks, keyFunction: grouping.keyFunction)
+        
+        if self is AlbumsGrouping {
+            print("\nCategTracks: \(categ)")
+        }
+        
+        for (groupName, tracks) in categ {
             
-            let group = groupsByName[groupName] ?? createGroup(named: groupName, under: grouping)
+            if self is AlbumsGrouping {
+                print("\nFor groupName: \(groupName), has \(tracks.count) tracks.")
+            }
+            
+            let group = grouping.findOrCreateGroup(named: groupName)
             group.addTracks(tracks)
+            
+            if self is AlbumsGrouping {
+                print("Added \(group.numberOfTracks) tracks to group: \(groupName).")
+            }
             
             if needToSortTracks {
                 group.sortTracks(by: grouping.sortOrder)

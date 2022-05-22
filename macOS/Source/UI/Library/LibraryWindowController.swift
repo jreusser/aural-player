@@ -58,6 +58,9 @@ class LibraryWindowController: NSWindowController {
         
         fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+        
+        // TODO: Temporary, remove this !!!
+        tabGroup.selectTabViewItem(at: 2)
     }
     
     @IBAction func closeAction(_ sender: Any) {
