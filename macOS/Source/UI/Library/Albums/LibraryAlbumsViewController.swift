@@ -87,12 +87,11 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
             
             if let album = item as? AlbumGroup,
                let cell = outlineView.makeView(withIdentifier: .cid_AlbumName, owner: nil) as? AlbumCellView {
-            
-            cell.update(forGroup: album)
-            cell.rowSelectionStateFunction = {[weak outlineView, weak album] in outlineView?.isItemSelected(album as Any) ?? false}
-            
-            return cell
                 
+                cell.update(forGroup: album)
+                cell.rowSelectionStateFunction = {[weak outlineView, weak album] in outlineView?.isItemSelected(album as Any) ?? false}
+                
+                return cell
             }
             
             if let track = item as? Track,
@@ -104,9 +103,26 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
                 return cell
             }
             
-            //        case .cid_TrackName:
-            //
-            //        case .cid_Duration:
+        case .cid_Duration:
+            
+            if let album = item as? AlbumGroup,
+               let cell = outlineView.makeView(withIdentifier: .cid_AlbumDuration, owner: nil) as? GroupSummaryCellView {
+                
+                cell.update(forGroup: album)
+                cell.rowSelectionStateFunction = {[weak outlineView, weak album] in outlineView?.isItemSelected(album as Any) ?? false}
+                
+                return cell
+            }
+            
+            if let track = item as? Track {
+                
+                return TableCellBuilder().withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
+                                                   inFont: systemFontScheme.playQueuePrimaryFont,
+                                                   andColor: systemColorScheme.tertiaryTextColor,
+                                                   selectedTextColor: systemColorScheme.tertiarySelectedTextColor)
+                    .buildCell(forOutlineView: outlineView,
+                               forColumnWithId: .cid_TrackDuration, havingItem: track)
+            }
             
         default:
             
@@ -122,30 +138,30 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         
         let selectedItems = outlineView.selectedItems
         
-//        guard let results = notification.groupingResults[albumsGrouping] else {return}
-//
-//        var groupsToReload: Set<Group> = Set()
-//
-//        for result in results {
-//
-//            if result.groupCreated {
-//
-//                // Insert the new group
-//                outlineView.insertItems(at: IndexSet(integer: result.track.groupIndex), inParent: nil, withAnimation: .effectFade)
-//
-//            } else {
-//
-//                // Insert the new track under its parent group, and reload the parent group
-//                let group = result.track.group
-//                groupsToReload.insert(group)
-//
-//                outlineView.insertItems(at: IndexSet(integer: result.track.trackIndex), inParent: group, withAnimation: .effectGap)
-//            }
-//        }
-//
-//        for group in groupsToReload {
-//            outlineView.reloadItem(group, reloadChildren: true)
-//        }
+        //        guard let results = notification.groupingResults[albumsGrouping] else {return}
+        //
+        //        var groupsToReload: Set<Group> = Set()
+        //
+        //        for result in results {
+        //
+        //            if result.groupCreated {
+        //
+        //                // Insert the new group
+        //                outlineView.insertItems(at: IndexSet(integer: result.track.groupIndex), inParent: nil, withAnimation: .effectFade)
+        //
+        //            } else {
+        //
+        //                // Insert the new track under its parent group, and reload the parent group
+        //                let group = result.track.group
+        //                groupsToReload.insert(group)
+        //
+        //                outlineView.insertItems(at: IndexSet(integer: result.track.trackIndex), inParent: group, withAnimation: .effectGap)
+        //            }
+        //        }
+        //
+        //        for group in groupsToReload {
+        //            outlineView.reloadItem(group, reloadChildren: true)
+        //        }
         
         outlineView.reloadData()
         outlineView.selectItems(selectedItems)
@@ -230,9 +246,31 @@ class AlbumTrackCellView: AuralTableCellView {
     }
 }
 
+class GroupSummaryCellView: AuralTableCellView {
+    
+    @IBOutlet weak var lblTrackCount: NSTextField!
+    @IBOutlet weak var lblDuration: NSTextField!
+    
+    func update(forGroup group: AlbumGroup) {
+        
+        let trackCount = group.numberOfTracks
+        lblTrackCount.stringValue = "\(trackCount) \(trackCount == 1 ? "track" : "tracks")"
+        lblDuration.stringValue = ValueFormatter.formatSecondsToHMS(group.duration)
+        
+        lblTrackCount.font = systemFontScheme.playQueuePrimaryFont
+        lblDuration.font = systemFontScheme.playQueuePrimaryFont
+        
+        lblTrackCount.textColor = systemColorScheme.secondaryTextColor
+        lblDuration.textColor = systemColorScheme.secondaryTextColor
+    }
+}
+
 extension NSUserInterfaceItemIdentifier {
     
     // Outline view column identifiers
     static let cid_AlbumName: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_AlbumName")
     static let cid_TrackName: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_TrackName")
+    
+    static let cid_AlbumDuration: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_AlbumDuration")
+    static let cid_TrackDuration: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_TrackDuration")
 }
