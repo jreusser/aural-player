@@ -23,6 +23,10 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     private lazy var loader: TrackLoader = TrackLoader(priority: .highest)
     private lazy var messenger = Messenger(for: self)
     
+    var albumsGrouping: AlbumsGrouping {
+        groupings[1] as! AlbumsGrouping
+    }
+    
     func loadTracks(from files: [URL], atPosition position: Int?) {
         loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
     }
@@ -39,7 +43,7 @@ extension Library: TrackLoaderObserver {
     }
     
     func postBatchLoad(indices: IndexSet) {
-        messenger.publish(LibraryTracksAddedNotification(trackIndices: indices))
+        messenger.publish(LibraryTracksAddedNotification(trackIndices: indices, groupingResults: [:]))
     }
 }
 

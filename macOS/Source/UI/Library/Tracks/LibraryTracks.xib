@@ -248,10 +248,10 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Z7u-0a-Wfd" secondAttribute="bottom" constant="13" id="262-7d-gNZ"/>
+                <constraint firstItem="L8K-b9-L5F" firstAttribute="top" secondItem="FsO-Nz-vtb" secondAttribute="bottom" id="3Mu-re-KYd"/>
                 <constraint firstAttribute="bottom" secondItem="L8K-b9-L5F" secondAttribute="bottom" constant="10" id="8gu-mQ-WgP"/>
                 <constraint firstItem="Z7u-0a-Wfd" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="BOZ-gl-BcW"/>
                 <constraint firstAttribute="trailing" secondItem="WZ6-e9-sbG" secondAttribute="trailing" id="JCK-XR-F2H"/>
-                <constraint firstAttribute="bottom" secondItem="FsO-Nz-vtb" secondAttribute="bottom" constant="35" id="Kgf-oy-y4U"/>
                 <constraint firstItem="FsO-Nz-vtb" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Pa1-PX-r30"/>
                 <constraint firstItem="FsO-Nz-vtb" firstAttribute="top" secondItem="oJQ-Ad-Jvy" secondAttribute="bottom" constant="15" id="Pls-v3-4A7"/>
                 <constraint firstAttribute="bottom" secondItem="WZ6-e9-sbG" secondAttribute="bottom" id="RWt-Uj-6TE"/>

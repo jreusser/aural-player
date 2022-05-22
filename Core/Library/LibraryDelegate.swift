@@ -70,14 +70,14 @@ class LibraryDelegate: LibraryDelegateProtocol {
     func addTracks(_ newTracks: [Track]) -> IndexSet {
         
         let indices = library.addTracks(newTracks)
-        messenger.publish(LibraryTracksAddedNotification(trackIndices: indices))
+        messenger.publish(LibraryTracksAddedNotification(trackIndices: indices, groupingResults: [:]))
         return indices
     }
     
     func insertTracks(_ tracks: [Track], at insertionIndex: Int) -> IndexSet {
         
         let indices = library.insertTracks(tracks, at: insertionIndex)
-        messenger.publish(LibraryTracksAddedNotification(trackIndices: indices))
+        messenger.publish(LibraryTracksAddedNotification(trackIndices: indices, groupingResults: [:]))
         return indices
     }
     

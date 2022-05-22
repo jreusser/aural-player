@@ -20,7 +20,17 @@ extension Dictionary {
     }
 }
 
-class Grouping {
+class Grouping: Hashable {
+    
+    static func == (lhs: Grouping, rhs: Grouping) -> Bool {
+        lhs.name == rhs.name && lhs.depth == rhs.depth
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        
+        hasher.combine(name)
+        hasher.combine(depth)
+    }
     
     var name: String
     let depth: Int
@@ -29,6 +39,12 @@ class Grouping {
     
     var groups: OrderedSet<Group> = OrderedSet()
     fileprivate var groupsByName: [String: Group] = [:]
+    
+    var numberOfGroups: Int {groups.count}
+    
+    var duration: Double {
+        groups.reduce(0.0, {(totalSoFar: Double, group: Group) -> Double in totalSoFar + group.duration})
+    }
     
     var sortOrder: TrackComparator {
         trackNameAscendingComparator

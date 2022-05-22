@@ -31,6 +31,7 @@ class LibraryWindowController: NSWindowController {
     private lazy var sidebarController: LibrarySidebarViewController = LibrarySidebarViewController()
     
     private lazy var libraryTracksController: LibraryTracksViewController = LibraryTracksViewController()
+    private lazy var libraryAlbumsController: LibraryAlbumsViewController = LibraryAlbumsViewController()
     
     private lazy var messenger: Messenger = Messenger(for: self)
     
@@ -41,6 +42,10 @@ class LibraryWindowController: NSWindowController {
         let libraryTracksView: NSView = libraryTracksController.view
         tabGroup.tabViewItem(at: 0).view?.addSubview(libraryTracksView)
         libraryTracksView.anchorToSuperview()
+        
+        let libraryAlbumsView: NSView = libraryAlbumsController.view
+        tabGroup.tabViewItem(at: 2).view?.addSubview(libraryAlbumsView)
+        libraryAlbumsView.anchorToSuperview()
         
         let sidebarView: NSView = sidebarController.view
         splitView.arrangedSubviews[0].addSubview(sidebarView)

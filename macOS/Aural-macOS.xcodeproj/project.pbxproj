@@ -12,6 +12,8 @@
 		3E045D0B281341110069DEFE /* TrackComparators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E045D0A281341110069DEFE /* TrackComparators.swift */; };
 		3E045D0D281346540069DEFE /* TrackComparisons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E045D0C281346540069DEFE /* TrackComparisons.swift */; };
 		3E045D0F281352370069DEFE /* SortOrderMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E045D0E281352370069DEFE /* SortOrderMenuItemView.swift */; };
+		3E05FD42283A453D00EB7861 /* LibraryAlbums.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E05FD41283A453D00EB7861 /* LibraryAlbums.xib */; };
+		3E05FD44283A455300EB7861 /* LibraryAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E05FD43283A455300EB7861 /* LibraryAlbumsViewController.swift */; };
 		3E08AC11281B214F004A53F7 /* TintableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E08AC10281B214F004A53F7 /* TintableTextField.swift */; };
 		3E08AC13281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E08AC12281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift */; };
 		3E0A1D27277223D100D69371 /* PitchShiftSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A1D26277223D100D69371 /* PitchShiftSliderCell.swift */; };
@@ -1513,6 +1515,8 @@
 		3E045D0A281341110069DEFE /* TrackComparators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackComparators.swift; sourceTree = "<group>"; };
 		3E045D0C281346540069DEFE /* TrackComparisons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackComparisons.swift; sourceTree = "<group>"; };
 		3E045D0E281352370069DEFE /* SortOrderMenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOrderMenuItemView.swift; sourceTree = "<group>"; };
+		3E05FD41283A453D00EB7861 /* LibraryAlbums.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryAlbums.xib; sourceTree = "<group>"; };
+		3E05FD43283A455300EB7861 /* LibraryAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryAlbumsViewController.swift; sourceTree = "<group>"; };
 		3E08AC10281B214F004A53F7 /* TintableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintableTextField.swift; sourceTree = "<group>"; };
 		3E08AC12281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSlider+ColorSchemeObserver.swift"; sourceTree = "<group>"; };
 		3E0A1D26277223D100D69371 /* PitchShiftSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchShiftSliderCell.swift; sourceTree = "<group>"; };
@@ -2657,6 +2661,15 @@
 				3E045D0C281346540069DEFE /* TrackComparisons.swift */,
 			);
 			path = Sort;
+			sourceTree = "<group>";
+		};
+		3E05FD40283A451F00EB7861 /* Albums */ = {
+			isa = PBXGroup;
+			children = (
+				3E05FD41283A453D00EB7861 /* LibraryAlbums.xib */,
+				3E05FD43283A455300EB7861 /* LibraryAlbumsViewController.swift */,
+			);
+			path = Albums;
 			sourceTree = "<group>";
 		};
 		3E2000BB267CDF7E008BAB70 /* MediaKeys */ = {
@@ -4565,6 +4578,7 @@
 				3EF84DA228362A4D004EF57B /* LibraryWindowController.swift */,
 				3EF84DA4283632D2004EF57B /* Sidebar */,
 				3EAE9CB92836ADE2004499FE /* Tracks */,
+				3E05FD40283A451F00EB7861 /* Albums */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -5739,6 +5753,7 @@
 				3E47D2342815A5BD00938F20 /* ControlStatesColorScheme.xib in Resources */,
 				3EE7CB9C25E22D5D0075F1DD /* EffectsFontScheme.xib in Resources */,
 				3E6C123425CEBDF400BF0D07 /* GenresPlaylistSort.xib in Resources */,
+				3E05FD42283A453D00EB7861 /* LibraryAlbums.xib in Resources */,
 				3E6C123B25CEBDF400BF0D07 /* Genres.xib in Resources */,
 				3E25B65627F7875700D10A5F /* PlayQueueTableView.xib in Resources */,
 				3E6C12ED25CEBE8100BF0D07 /* DelayUnit.xib in Resources */,
@@ -6295,6 +6310,7 @@
 				3EFE38E927864897006F8B8C /* TrackKeyedMap.swift in Sources */,
 				3E6C122525CEBDE600BF0D07 /* PlaybackPreferencesViewController.swift in Sources */,
 				3EFE383127864896006F8B8C /* ItemMoveResults.swift in Sources */,
+				3E05FD44283A455300EB7861 /* LibraryAlbumsViewController.swift in Sources */,
 				3EFE393B27864897006F8B8C /* BookmarksDelegate.swift in Sources */,
 				3EFE385F27864896006F8B8C /* ReverbUnitProtocol.swift in Sources */,
 				3E6C12FE25CEBE8F00BF0D07 /* PlaybackView.swift in Sources */,

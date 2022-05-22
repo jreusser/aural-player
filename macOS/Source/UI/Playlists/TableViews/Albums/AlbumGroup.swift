@@ -47,6 +47,9 @@ class AlbumGroup: Group {
         }
     }
     
+    // TODO: Make these lazily computed and updated (invalidated) when tracks are added / removed, so
+    // that they're more efficient, not re-computed every single time.
+    
     var yearString: String? {
         
         guard let firstYear = years.first else {return nil}
@@ -67,6 +70,8 @@ class AlbumGroup: Group {
             parentFolders.insert(track.file.parentDir)
         }
         
+        // 1 - Check for an image file in the album folder.
+        
         for parentDir in parentFolders {
             
             let albumArtFile = parentDir.appendingPathComponent(Self.albumArtFileName, isDirectory: false)
@@ -82,6 +87,16 @@ class AlbumGroup: Group {
             }
         }
         
+        // 2 - Check for an image file in any of the tracks.
+        
+        for track in tracks {
+            
+            if let art = track.art?.image {
+                return art
+            }
+        }
+
+        // 3 - Default icon for an album.
         return .imgAlbumGroup
     }
 }
