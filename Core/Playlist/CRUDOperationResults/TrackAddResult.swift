@@ -12,14 +12,11 @@ import Foundation
 ///
 /// Contains the aggregated results of adding a single track to each of the playlist types.
 ///
-struct TrackAddResult {
-    
-    // The track that was added to the playlist.
-    let track: Track
+struct TrackAddResults {
     
     // Index of the added track, within the flat playlist
-    let flatPlaylistResult: Int
+    let indices: IndexSet
     
     // Grouping info for the added track, within each of the grouping playlists
-//    let groupingPlaylistResults: [GroupType: GroupedTrackAddResult]
+    let groupingResults: [Grouping: [GroupedTrackAddResult]]
 }

@@ -43,7 +43,7 @@ extension Library: TrackLoaderObserver {
     }
     
     func postBatchLoad(indices: IndexSet) {
-        messenger.publish(LibraryTracksAddedNotification(trackIndices: indices, groupingResults: [:]))
+        messenger.publish(LibraryTracksAddedNotification(trackIndices: indices))
     }
 }
 

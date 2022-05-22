@@ -33,11 +33,7 @@ class PlayQueueTracksAddedNotification: TracksAddedNotification {
 
 class LibraryTracksAddedNotification: TracksAddedNotification {
     
-    let groupingResults: [Grouping: [GroupedTrackAddResult]]
-    
-    init(trackIndices: IndexSet, groupingResults: [Grouping: [GroupedTrackAddResult]]) {
-        
-        self.groupingResults = groupingResults
+    init(trackIndices: IndexSet) {
         super.init(notificationName: .library_tracksAdded, trackIndices: trackIndices)
     }
 }

@@ -22,9 +22,13 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
     
     private lazy var albumsGrouping: AlbumsGrouping = library.albumsGrouping
     
+    private lazy var messenger: Messenger = Messenger(for: self)
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
         
         colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
         
@@ -49,13 +53,17 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         item == nil ? albumsGrouping.groups[index] : ""
     }
     
+    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
+        item is Group
+    }
+    
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
         guard let columnId = tableColumn?.identifier else {return nil}
         
         switch columnId {
             
-        case .cid_AlbumName:
+        case .cid_Name:
             
             guard let album = item as? AlbumGroup,
                   let cell = outlineView.makeView(withIdentifier: .cid_AlbumName, owner: nil) as? AlbumCellView else {return nil}
@@ -79,30 +87,37 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
     // Refreshes the playlist view in response to a new track being added to the playlist
     func tracksAdded(_ notification: LibraryTracksAddedNotification) {
         
-        guard let results = notification.groupingResults[albumsGrouping] else {return}
+        let selectedItems = outlineView.selectedItems
         
-        var groupsToReload: Set<Group> = Set()
+//        guard let results = notification.groupingResults[albumsGrouping] else {return}
+//
+//        var groupsToReload: Set<Group> = Set()
+//
+//        for result in results {
+//
+//            if result.groupCreated {
+//
+//                // Insert the new group
+//                outlineView.insertItems(at: IndexSet(integer: result.track.groupIndex), inParent: nil, withAnimation: .effectFade)
+//
+//            } else {
+//
+//                // Insert the new track under its parent group, and reload the parent group
+//                let group = result.track.group
+//                groupsToReload.insert(group)
+//
+//                outlineView.insertItems(at: IndexSet(integer: result.track.trackIndex), inParent: group, withAnimation: .effectGap)
+//            }
+//        }
+//
+//        for group in groupsToReload {
+//            outlineView.reloadItem(group, reloadChildren: true)
+//        }
         
-        for result in results {
-            
-            if result.groupCreated {
-                
-                // Insert the new group
-                outlineView.insertItems(at: IndexSet(integer: result.track.groupIndex), inParent: nil, withAnimation: .effectFade)
-                
-            } else {
-                
-                // Insert the new track under its parent group, and reload the parent group
-                let group = result.track.group
-                groupsToReload.insert(group)
-                
-                outlineView.insertItems(at: IndexSet(integer: result.track.trackIndex), inParent: group, withAnimation: .effectGap)
-            }
-        }
+        outlineView.reloadData()
+        outlineView.selectItems(selectedItems)
         
-        for group in groupsToReload {
-            outlineView.reloadItem(group)
-        }
+        updateSummary()
     }
     
     private func updateSummary() {

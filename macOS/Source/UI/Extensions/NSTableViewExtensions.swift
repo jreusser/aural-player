@@ -225,4 +225,12 @@ extension NSOutlineView {
     func isItemSelected(_ item: Any) -> Bool {
         selectedRowIndexes.contains(row(forItem: item))
     }
+    
+    var selectedItems: [Any] {
+        selectedRowIndexes.compactMap {item(atRow: $0)}
+    }
+    
+    func selectItems(_ items: [Any]) {
+        self.selectRows(items.map {row(forItem: $0)})
+    }
 }
