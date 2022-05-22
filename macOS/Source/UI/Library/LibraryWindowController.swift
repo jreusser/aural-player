@@ -42,8 +42,6 @@ class LibraryWindowController: NSWindowController {
         tabGroup.tabViewItem(at: 0).view?.addSubview(libraryTracksView)
         libraryTracksView.anchorToSuperview()
         
-        print("\nTracksView: \(libraryTracksView.frame) \(libraryTracksView.isHidden)")
-        
         let sidebarView: NSView = sidebarController.view
         splitView.arrangedSubviews[0].addSubview(sidebarView)
         sidebarView.anchorToSuperview()

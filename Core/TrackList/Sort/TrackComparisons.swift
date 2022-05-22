@@ -38,6 +38,12 @@ let trackDiscAndTrackNumberComparison: TrackComparison = {t1, t2 in
     return compositeFunction(t1, t2)
 }
 
+let trackAlbumDiscAndTrackNumberComparison: TrackComparison = {t1, t2 in
+    
+    let compositeFunction = chainTrackComparisons(trackAlbumComparison, trackDiscAndTrackNumberComparison)
+    return compositeFunction(t1, t2)
+}
+
 let trackDurationComparison: TrackComparison = {t1, t2 in
     (t1.duration).compare(t2.duration)
 }
@@ -52,4 +58,12 @@ func chainTrackComparisons(_ c1: @escaping TrackComparison, _ c2: @escaping Trac
             return c1(t1, t2)
         }
     }
+}
+
+func chainTrackComparisonsToAscendingComparator(_ c1: @escaping TrackComparison, _ c2: @escaping TrackComparison) -> TrackComparator {
+    comparisonToAscendingComparator(chainTrackComparisons(c1, c2))
+}
+
+func chainTrackComparisonsToDescendingComparator(_ c1: @escaping TrackComparison, _ c2: @escaping TrackComparison) -> TrackComparator {
+    comparisonToDescendingComparator(chainTrackComparisons(c1, c2))
 }

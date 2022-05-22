@@ -60,10 +60,32 @@ let trackDiscAndTrackNumberDescendingComparator: TrackComparator = {t1, t2 in
     trackDiscAndTrackNumberComparison(t1, t2) == .orderedDescending
 }
 
+let trackAlbumDiscAndTrackNumberAscendingComparator: TrackComparator = {t1, t2 in
+    trackAlbumDiscAndTrackNumberComparison(t1, t2) == .orderedAscending
+}
+
+let trackAlbumDiscAndTrackNumberDescendingComparator: TrackComparator = {t1, t2 in
+    trackAlbumDiscAndTrackNumberComparison(t1, t2) == .orderedDescending
+}
+
 let trackDurationAscendingComparator: TrackComparator = {t1, t2 in
     trackDurationComparison(t1, t2) == .orderedAscending
 }
 
 let trackDurationDescendingComparator: TrackComparator = {t1, t2 in
     trackDurationComparison(t1, t2) == .orderedDescending
+}
+
+func comparisonToAscendingComparator(_ comparison: @escaping TrackComparison) -> TrackComparator {
+    
+    {t1, t2 in
+        comparison(t1, t2) == .orderedAscending
+    }
+}
+
+func comparisonToDescendingComparator(_ comparison: @escaping TrackComparison) -> TrackComparator {
+    
+    {t1, t2 in
+        comparison(t1, t2) == .orderedDescending
+    }
 }

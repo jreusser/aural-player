@@ -16,15 +16,15 @@ class AlbumGroup: Group {
     private static let folderArtFileName: String = "Folder.jpg"
     
     private lazy var artists: Set<String> = {
-        Set(tracks.tracks.compactMap {$0.artist})
+        Set(tracks.compactMap {$0.artist})
     }()
     
     private lazy var genres: Set<String> =  {
-        Set(tracks.tracks.compactMap {$0.genre})
+        Set(tracks.compactMap {$0.genre})
     }()
     
     private lazy var years: Set<Int> =  {
-        Set(tracks.tracks.compactMap {$0.year})
+        Set(tracks.compactMap {$0.year})
     }()
     
     var artistsString: String? {

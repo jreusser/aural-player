@@ -31,9 +31,9 @@ struct TrackListSort {
             }
         }
         
-        self.comparator = {t1, t2 in
-            compositeFunction(t1, t2) == (order == .ascending ? .orderedAscending : .orderedDescending)
-        }
+        self.comparator = order == .ascending ?
+        comparisonToAscendingComparator(compositeFunction) :
+        comparisonToDescendingComparator(compositeFunction)
     }
 }
 

@@ -47,17 +47,6 @@ class Group: PlayableItem {
         self.subGroups = subGroups
     }
     
-//    func addTracks(_ tracksMap: [(Int, Track)]) {
-//
-//        for (index, track) in tracksMap {
-//
-//            if index >= tracks.size {
-//                tracks.addTracks([track])
-//            } else {
-//                tracks.insertTracks([track], at: index)
-//            }
-//        }
-//    }
     func addTracks(_ newTracks: [Track]) {
         tracks.addTracks(newTracks)
     }
