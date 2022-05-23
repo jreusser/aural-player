@@ -61,10 +61,6 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         messenger.subscribe(to: .playQueue_scrollToTop, handler: tableView.scrollToTop)
         messenger.subscribe(to: .playQueue_scrollToBottom, handler: tableView.scrollToBottom)
         
-        messenger.subscribe(to: .playQueue_enqueueAndPlayNow, handler: enqueueAndPlayNow(_:))
-        messenger.subscribe(to: .playQueue_enqueueAndPlayNext, handler: enqueueAndPlayNext(_:))
-        messenger.subscribe(to: .playQueue_enqueueAndPlayLater, handler: enqueueAndPlayLater(_:))
-        
         messenger.subscribe(to: .playQueue_showPlayingTrack, handler: showPlayingTrack)
     }
     
@@ -185,36 +181,5 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         DispatchQueue.main.async {
             self.tableView.reloadRows(refreshIndexes)
         }
-    }
-    
-    // TODO: what to do with tracks already in the PQ ???
-    private func enqueueAndPlayNow(_ command: EnqueueAndPlayNowCommand) {
-        
-        if command.clearPlayQueue {
-            playQueueDelegate.removeAllTracks()
-        }
-        
-        let indices = playQueueDelegate.addTracks(command.tracks)
-        
-        if indices.isNonEmpty {
-            tableView.noteNumberOfRowsChanged()
-        }
-        
-        if let firstTrack = command.tracks.first {
-            messenger.publish(TrackPlaybackCommandNotification(track: firstTrack))
-        }
-    }
-    
-    // TODO:
-    private func enqueueAndPlayNext(_ tracks: [Track]) {
-        
-//        let indices = playQueueDelegate.enqueueTracksToPlayNext(tracks)
-        
-    }
-    
-    // TODO:
-    private func enqueueAndPlayLater(_ tracks: [Track]) {
-        
-//        let indices = playQueueDelegate.enqueueTracks(tracks, clearQueue: false)
     }
 }

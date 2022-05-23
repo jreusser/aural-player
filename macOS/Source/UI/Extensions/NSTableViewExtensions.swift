@@ -226,6 +226,10 @@ extension NSOutlineView {
         selectedRowIndexes.contains(row(forItem: item))
     }
     
+    var selectedItem: Any? {
+        item(atRow: selectedRow)
+    }
+    
     var selectedItems: [Any] {
         selectedRowIndexes.compactMap {item(atRow: $0)}
     }

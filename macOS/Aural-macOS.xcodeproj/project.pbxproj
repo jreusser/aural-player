@@ -608,6 +608,7 @@
 		3EC29A5A27865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
 		3EC29A5F27865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
 		3EC29A6027865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
+		3EC78E99283B53E200C0C255 /* LibraryAlbumsViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC78E98283B53E200C0C255 /* LibraryAlbumsViewController+Actions.swift */; };
 		3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */; };
 		3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
@@ -2107,6 +2108,7 @@
 		3EC2975927864CD400B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EC29A5827865BC900B29551 /* MenuItemMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemMappable.swift; sourceTree = "<group>"; };
 		3EC29A5E27865CB500B29551 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		3EC78E98283B53E200C0C255 /* LibraryAlbumsViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibraryAlbumsViewController+Actions.swift"; sourceTree = "<group>"; };
 		3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
 		3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTracksToPlaylistCommand.swift; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
@@ -2668,6 +2670,7 @@
 			children = (
 				3E05FD41283A453D00EB7861 /* LibraryAlbums.xib */,
 				3E05FD43283A455300EB7861 /* LibraryAlbumsViewController.swift */,
+				3EC78E98283B53E200C0C255 /* LibraryAlbumsViewController+Actions.swift */,
 			);
 			path = Albums;
 			sourceTree = "<group>";
@@ -6569,6 +6572,7 @@
 				3E2976132629473500459272 /* WindowCornerRadiusMenuItemView.swift in Sources */,
 				3E9E591025DB6B150064EB5F /* WindowedAppModeController.swift in Sources */,
 				3EEC04212687AB45004478CE /* WindowedModePlaybackView.swift in Sources */,
+				3EC78E99283B53E200C0C255 /* LibraryAlbumsViewController+Actions.swift in Sources */,
 				3EFE39D527864897006F8B8C /* AudioGraphPersistentState.swift in Sources */,
 				3E045D092813407D0069DEFE /* TrackListSort.swift in Sources */,
 				3EEC04152687A940004478CE /* WindowedModePlaybackViewController.swift in Sources */,

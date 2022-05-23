@@ -316,6 +316,8 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     
     func tracksAdded(at indices: IndexSet) {
         
+        guard indices.isNonEmpty else {return}
+        
         tableView.noteNumberOfRowsChanged()
         tableView.reloadRows(indices.min()!..<numberOfTracks)
     }

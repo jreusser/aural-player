@@ -22,7 +22,7 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
     
     private lazy var albumsGrouping: AlbumsGrouping = library.albumsGrouping
     
-    private lazy var messenger: Messenger = Messenger(for: self)
+    lazy var messenger: Messenger = Messenger(for: self)
     
     override func viewDidLoad() {
         
@@ -52,8 +52,6 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         }
         
         if let group = item as? AlbumGroup {
-            
-            print("\nGroup '\(group.name)' has \(group.numberOfTracks) tracks")
             return group.numberOfTracks
         }
         

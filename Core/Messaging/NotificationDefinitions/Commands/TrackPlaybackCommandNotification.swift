@@ -39,7 +39,7 @@ struct TrackPlaybackCommandNotification: NotificationPayload {
         self.type = .track
     }
     
-    // Initialize the request with a group. This will be done from a grouping/hierarchical playlist.
+//    // Initialize the request with a group. This will be done from a grouping/hierarchical playlist.
 //    init(group: Group) {
 //
 //        self.group = group

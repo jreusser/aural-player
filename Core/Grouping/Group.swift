@@ -19,16 +19,18 @@ class Group: PlayableItem {
     let depth: Int
     
     var duration: Double {
-        tracks.duration
+        _tracks.duration
     }
     
-    var tracks: TrackList = TrackList()
-    var numberOfTracks: Int {tracks.size}
-    var hasTracks: Bool {tracks.isNonEmpty}
+    var _tracks: TrackList = TrackList()
+    var tracks: [Track] {_tracks.tracks}
+    
+    var numberOfTracks: Int {_tracks.size}
+    var hasTracks: Bool {_tracks.isNonEmpty}
     
     /// Safe array access.
     subscript(index: Int) -> Track? {
-        tracks[index]
+        _tracks[index]
     }
     
     var parentGroup: Group?
@@ -41,7 +43,7 @@ class Group: PlayableItem {
         
         self.name = name
         self.depth = depth
-        self.tracks.addTracks(tracks)
+        self._tracks.addTracks(tracks)
         self.subGroups = []
     }
     
@@ -54,15 +56,15 @@ class Group: PlayableItem {
     }
     
     func addTracks(_ newTracks: [Track]) {
-        tracks.addTracks(newTracks)
+        _tracks.addTracks(newTracks)
     }
     
     func sortTracks(by comparator: @escaping TrackSortFunction) {
-        tracks.sort(by: comparator)
+        _tracks.sort(by: comparator)
     }
     
     func removeTracks(_ tracksToRemove: [Track]) {
-        tracks.removeTracks(tracksToRemove)
+        _tracks.removeTracks(tracksToRemove)
     }
     
     // Equatable conformance.

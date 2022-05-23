@@ -327,4 +327,38 @@ extension PlayQueueWindowController {
         // Re-select the track that was moved.
         currentViewController.selectRows([destRow])
     }
+    
+    // TODO: what to do with tracks already in the PQ ???
+    func enqueueAndPlayNow(_ command: EnqueueAndPlayNowCommand) {
+        
+        if command.clearPlayQueue {
+            playQueueDelegate.removeAllTracks()
+        }
+        
+        let indices = playQueueDelegate.addTracks(command.tracks)
+        
+        if indices.isNonEmpty {
+            
+            controllers.forEach {
+                $0.noteNumberOfRowsChanged()
+            }
+        }
+        
+        if let firstTrack = command.tracks.first {
+            messenger.publish(TrackPlaybackCommandNotification(track: firstTrack))
+        }
+    }
+    
+    // TODO:
+    func enqueueAndPlayNext(_ tracks: [Track]) {
+        
+//        let indices = playQueueDelegate.enqueueTracksToPlayNext(tracks)
+        
+    }
+    
+    // TODO:
+    func enqueueAndPlayLater(_ tracks: [Track]) {
+        
+//        let indices = playQueueDelegate.enqueueTracks(tracks, clearQueue: false)
+    }
 }

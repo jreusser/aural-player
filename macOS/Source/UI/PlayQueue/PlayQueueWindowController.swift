@@ -86,6 +86,10 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
         messenger.subscribe(to: .playQueue_cropSelection, handler: cropSelection)
         messenger.subscribe(to: .playQueue_removeAllTracks, handler: removeAllTracks)
         
+        messenger.subscribe(to: .playQueue_enqueueAndPlayNow, handler: enqueueAndPlayNow(_:))
+        messenger.subscribe(to: .playQueue_enqueueAndPlayNext, handler: enqueueAndPlayNext(_:))
+        messenger.subscribe(to: .playQueue_enqueueAndPlayLater, handler: enqueueAndPlayLater(_:))
+        
         messenger.subscribe(to: .playQueue_playNext, handler: playNext)
         
         messenger.subscribe(to: .playQueue_moveTracksUp, handler: moveTracksUp)
