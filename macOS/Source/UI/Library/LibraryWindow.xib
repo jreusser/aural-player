@@ -191,6 +191,7 @@
             </view>
             <point key="canvasLocation" x="139" y="144"/>
         </window>
+        <customObject id="e2v-J5-220" customClass="LibraryTracksViewController" customModule="Aural" customModuleProvider="target"/>
     </objects>
     <resources>
         <image name="xmark" catalog="system" width="14" height="13"/>

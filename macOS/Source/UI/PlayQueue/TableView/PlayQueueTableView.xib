@@ -235,13 +235,13 @@
                 <menuItem title="  Remove these tracks" image="xmark.bin" catalog="system" id="hBY-5o-I8Z" userLabel="Remove tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="removeTracksAction:" target="-2" id="lHK-eg-M8Q"/>
+                        <action selector="removeTracksMenuAction:" target="-2" id="7tc-5R-oza"/>
                     </connections>
                 </menuItem>
                 <menuItem title="  Crop selected tracks" image="scissors" catalog="system" id="FVD-zO-B89" userLabel="Crop selected tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="cropSelectionAction:" target="-2" id="Rcc-Gi-4Qd"/>
+                        <action selector="cropSelectionMenuAction:" target="-2" id="0RI-T3-xr8"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="KDo-db-t71"/>

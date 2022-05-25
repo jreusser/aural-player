@@ -165,8 +165,6 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         outlineView.selectItems(selectedItems)
         
         updateSummary()
-        
-        print("\nReloading ...")
     }
     
     private func updateSummary() {

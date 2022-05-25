@@ -39,6 +39,8 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         return rowCount > 1 && (1..<rowCount).contains(selectedRowCount)
     }
     
+    lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -90,9 +92,25 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     
     // --------------------- Responding to commands ------------------------------------------------
     
+    @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {
+        importFilesAndFolders()
+    }
+    
+    // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
+    func importFilesAndFolders() {
+        
+        if !trackList.isBeingModified, fileOpenDialog.runModal() == .OK {
+            trackList.loadTracks(from: fileOpenDialog.urls)
+        }
+    }
+    
     // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
     func addChosenTracks(_ files: [URL]) {
         trackList.loadTracks(from: files)
+    }
+    
+    @IBAction func removeTracksAction(_ sender: NSButton) {
+        removeTracks()
     }
     
     func removeTracks() {
@@ -125,22 +143,45 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         tableView.reloadRows(rows)
     }
     
+    @IBAction func cropSelectionAction(_ sender: Any) {
+        cropSelection()
+    }
+    
+    func cropSelection() {
+        
+        let tracksToDelete: IndexSet = invertedSelection
+        guard tracksToDelete.isNonEmpty else {return}
+        
+        _ = trackList.removeTracks(at: tracksToDelete)
+        reloadTable()
+    }
+    
+    @IBAction func removeAllTracksAction(_ sender: NSButton) {
+        removeAllTracks()
+    }
+    
     func removeAllTracks() {
         
         trackList.removeAllTracks()
         reloadTable()
     }
     
+    @inlinable
+    @inline(__always)
     func reloadTable() {
         tableView.reloadData()
     }
     
     // MARK: Table view selection manipulation
     
+    @inlinable
+    @inline(__always)
     func clearSelection() {
         tableView.clearSelection()
     }
     
+    @inlinable
+    @inline(__always)
     func invertSelection() {
         tableView.invertSelection()
     }

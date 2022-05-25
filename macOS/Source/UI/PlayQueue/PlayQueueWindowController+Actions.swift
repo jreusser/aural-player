@@ -82,13 +82,12 @@ extension PlayQueueWindowController {
         
         let tracksToDelete: IndexSet = currentViewController.invertedSelection
         
-        if tracksToDelete.isNonEmpty {
-            
-            _ = playQueueDelegate.removeTracks(at: tracksToDelete)
-            
-            controllers.forEach {
-                $0.reloadTable()
-            }
+        guard tracksToDelete.isNonEmpty else {return}
+        
+        _ = playQueueDelegate.removeTracks(at: tracksToDelete)
+        
+        controllers.forEach {
+            $0.reloadTable()
         }
         
         updateSummary()

@@ -49,6 +49,7 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
                                                                     \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
         
         messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
+        messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
         
 //        messenger.subscribe(to: .library_addChosenFiles, handler: addChosenTracks(_:))
 //
@@ -147,44 +148,22 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
     
     // MARK: Actions (control buttons)
     
-    @IBAction func removeTracksAction(_ sender: NSButton) {
-        removeTracks()
-    }
-    
     override func removeTracks() {
         
         super.removeTracks()
-        messenger.publish(.playlists_updateSummary)
+        messenger.publish(.library_updateSummary)
     }
     
-    @IBAction func cropTracksAction(_ sender: NSButton) {
-//        cropSelection()
-    }
-    
-    @IBAction func removeAllTracksAction(_ sender: NSButton) {
-        removeAllTracks()
+    override func cropSelection() {
+        
+        super.cropSelection()
+        messenger.publish(.library_updateSummary)
     }
     
     override func removeAllTracks() {
         
         super.removeAllTracks()
-        messenger.publish(.playlists_updateSummary)
-    }
-    
-    @IBAction func moveTracksUpAction(_ sender: NSButton) {
-        moveTracksUp()
-    }
-    
-    @IBAction func moveTracksDownAction(_ sender: NSButton) {
-        moveTracksDown()
-    }
-    
-    @IBAction func moveTracksToTopAction(_ sender: NSButton) {
-        moveTracksToTop()
-    }
-    
-    @IBAction func moveTracksToBottomAction(_ sender: NSButton) {
-        moveTracksToBottom()
+        messenger.publish(.library_updateSummary)
     }
     
     @IBAction func clearSelectionAction(_ sender: NSButton) {
@@ -215,21 +194,12 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
         scrollToBottom()
     }
     
-    @IBAction func doubleClickAction(_ sender: NSTableView) {
-        
-//        if let selRow: Int = selectedRows.first,
-//            let selTrack = playlist[selRow] {
-//
-//            messenger.publish(EnqueueAndPlayNowCommand(tracks: [selTrack], clearPlayQueue: false))
-//        }
-    }
-    
     // ---------------------------------------------------------------------------------------------------------
     
     // MARK: Actions (context menu)
     
-    @IBAction func playNowAction(_ sender: NSMenuItem) {
-//        messenger.publish(EnqueueAndPlayNowCommand(tracks: playlist[selectedRows], clearPlayQueue: false))
+    @IBAction func playNowAction(_ sender: AnyObject) {
+        messenger.publish(EnqueueAndPlayNowCommand(tracks: selectedTracks, clearPlayQueue: false))
     }
     
     @IBAction func playNowClearingPlayQueueAction(_ sender: NSMenuItem) {

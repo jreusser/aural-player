@@ -54,11 +54,11 @@ extension PlayQueueViewController: NSMenuDelegate {
         messenger.publish(.playlists_createPlaylistFromTracks, payload: selectedTracks)
     }
     
-    @IBAction func removeTracksAction(_ sender: Any) {
+    @IBAction func removeTracksMenuAction(_ sender: Any) {
         messenger.publish(.playQueue_removeTracks)
     }
     
-    @IBAction func cropSelectionAction(_ sender: Any) {
+    @IBAction func cropSelectionMenuAction(_ sender: Any) {
         messenger.publish(.playQueue_cropSelection)
     }
     

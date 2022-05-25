@@ -139,7 +139,7 @@ class PlaylistTracksViewController: TrackListTableViewController, ColorSchemePro
     
     // MARK: Actions (control buttons)
     
-    @IBAction func removeTracksAction(_ sender: NSButton) {
+    @IBAction override func removeTracksAction(_ sender: NSButton) {
         removeTracks()
     }
     
@@ -153,7 +153,7 @@ class PlaylistTracksViewController: TrackListTableViewController, ColorSchemePro
 //        cropSelection()
     }
     
-    @IBAction func removeAllTracksAction(_ sender: NSButton) {
+    @IBAction override func removeAllTracksAction(_ sender: NSButton) {
         removeAllTracks()
     }
     
