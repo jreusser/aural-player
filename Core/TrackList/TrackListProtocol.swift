@@ -12,6 +12,8 @@ import Foundation
 
 protocol AbstractTrackListProtocol {
     
+    var displayName: String {get}
+    
     // MARK: Read-only functions ------------------------------------------------------------------------
     
     var tracks: [Track] {get}

@@ -166,18 +166,6 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
         messenger.publish(.library_updateSummary)
     }
     
-    @IBAction func clearSelectionAction(_ sender: NSButton) {
-        clearSelection()
-    }
-    
-    @IBAction func invertSelectionAction(_ sender: NSButton) {
-        invertSelection()
-    }
-    
-    @IBAction func exportToPlaylistAction(_ sender: NSButton) {
-        exportTrackList()
-    }
-    
     @IBAction func pageUpAction(_ sender: NSButton) {
         pageUp()
     }

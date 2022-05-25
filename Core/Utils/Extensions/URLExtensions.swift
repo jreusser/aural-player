@@ -26,7 +26,7 @@ extension URL {
     }
     
     var nameWithoutExtension: String {
-        deletingLastPathComponent().lastPathComponent
+        deletingPathExtension().lastPathComponent
     }
     
     var isNativelySupported: Bool {

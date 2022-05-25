@@ -10,6 +10,8 @@ struct PlayQueueTrackAddResult {
 
 class PlayQueueDelegate: PlayQueueDelegateProtocol {
     
+    var displayName: String {playQueue.displayName}
+    
     let playQueue: PlayQueueProtocol
 
     var tracks: [Track] {playQueue.tracks}

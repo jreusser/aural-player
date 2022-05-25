@@ -14,6 +14,8 @@ protocol LibraryDelegateProtocol: TrackListProtocol {}
 
 class LibraryDelegate: LibraryDelegateProtocol {
     
+    var displayName: String {library.displayName}
+    
     private lazy var messenger: Messenger = .init(for: self)
     
     private let persistentTracks: [URL]?

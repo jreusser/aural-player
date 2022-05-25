@@ -40,6 +40,7 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     }
     
     lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
+    lazy var saveDialog = DialogsAndAlerts.savePlaylistDialog
     
     override func viewDidLoad() {
         
@@ -174,10 +175,18 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     
     // MARK: Table view selection manipulation
     
+    @IBAction func clearSelectionAction(_ sender: NSButton) {
+        clearSelection()
+    }
+    
     @inlinable
     @inline(__always)
     func clearSelection() {
         tableView.clearSelection()
+    }
+    
+    @IBAction func invertSelectionAction(_ sender: NSButton) {
+        invertSelection()
     }
     
     @inlinable
@@ -186,33 +195,32 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         tableView.invertSelection()
     }
     
+    @IBAction func exportToPlaylistAction(_ sender: NSButton) {
+        exportTrackList()
+    }
+    
     // Invokes the Save file dialog, to allow the user to save all playlist items to a playlist file
     func exportTrackList() {
         
-//        // Make sure there is at least one track to save.
-//        guard trackList.size > 0, !checkIfTrackListIsBeingModified() else {return}
-//
-//        if saveDialog.runModal() == .OK,
-//           let playlistFile = saveDialog.url {
-//
-//            trackList.exportToFile(playlistFile)
-//        }
+        // Make sure there is at least one track to save.
+        guard trackList.size > 0, !checkIfTrackListIsBeingModified() else {return}
+
+        if saveDialog.runModal() == .OK, let playlistFile = saveDialog.url {
+            trackList.exportToFile(playlistFile)
+        }
     }
     
-    // TODO: Can this func be put somewhere common / shared ???
     private func checkIfTrackListIsBeingModified() -> Bool {
         
-//        let playlistBeingModified = trackList.isBeingModified
-//
-//        if playlistBeingModified {
-//
-//            alertDialog.showAlert(.error, "Playlist not modified",
-//                                  "The playlist cannot be modified while tracks are being added",
-//                                  "Please wait till the playlist is done adding tracks ...")
-//        }
-//
-//        return playlistBeingModified
-        false
+        let trackListBeingModified = trackList.isBeingModified
+
+        if trackListBeingModified {
+
+            NSAlert.showError(withTitle: "\(trackList.displayName) was not modified",
+                              andText: "\(trackList.displayName) cannot be modified while tracks are being added. Please wait ...")
+        }
+
+        return trackListBeingModified
     }
     
     // -------------------- Responding to notifications -------------------------------------------

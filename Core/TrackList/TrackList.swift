@@ -20,6 +20,9 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     
     typealias Iterator = TrackListIterator
     
+    // Meant to be overriden
+    var displayName: String {"Track List"}
+    
     var _tracks: OrderedSet<Track> = OrderedSet()
     
     var tracks: [Track] {

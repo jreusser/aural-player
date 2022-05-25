@@ -14,6 +14,8 @@ protocol LibraryProtocol: TrackListProtocol {}
 
 class Library: GroupedSortedTrackList, LibraryProtocol {
     
+    override var displayName: String {"The Library"}
+    
     init() {
         
 //        super.init(sortOrder: TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending),

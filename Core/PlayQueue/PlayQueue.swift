@@ -2,6 +2,8 @@ import Foundation
 
 class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
     
+    override var displayName: String {"The Play Queue"}
+    
     // MARK: Accessor functions
 
     // Stores the currently playing track, if there is one

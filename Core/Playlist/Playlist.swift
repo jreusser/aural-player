@@ -15,6 +15,8 @@ import Foundation
 ///
 class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObserver {
     
+    override var displayName: String {"The playlist '\(name)'"}
+    
     var name: String
     
     let dateCreated: Date
