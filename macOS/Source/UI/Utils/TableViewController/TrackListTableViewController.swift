@@ -13,6 +13,7 @@ import Cocoa
 class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     
     @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var sortOrderMenuItemView: SortOrderMenuItemView!
     
     // Override this !
     var trackList: TrackListProtocol! {nil}
@@ -208,6 +209,46 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         return trackListBeingModified
     }
     
+    @IBAction func sortByTrackNameAction(_ sender: NSMenuItem) {
+        doSort(by: [.name])
+    }
+    
+    @IBAction func sortByArtistAlbumDiscTrackNumberAction(_ sender: NSMenuItem) {
+        doSort(by: [.artist, .album, .discNumberAndTrackNumber])
+    }
+    
+    @IBAction func sortByArtistAlbumTrackNameAction(_ sender: NSMenuItem) {
+        doSort(by: [.artist, .album, .name])
+    }
+    
+    @IBAction func sortByArtistTrackNameAction(_ sender: NSMenuItem) {
+        doSort(by: [.artist, .name])
+    }
+    
+    @IBAction func sortByAlbumDiscTrackNumberAction(_ sender: NSMenuItem) {
+        doSort(by: [.album, .discNumberAndTrackNumber])
+    }
+    
+    @IBAction func sortByAlbumTrackNameAction(_ sender: NSMenuItem) {
+        doSort(by: [.album, .name])
+    }
+    
+    @IBAction func sortByDurationAction(_ sender: NSMenuItem) {
+        doSort(by: [.duration])
+    }
+    
+    func doSort(by fields: [SortField]) {
+        
+        trackList.sort(TrackListSort(fields: fields, order: sortOrderMenuItemView.sortOrder))
+        notifyReloadTable()
+    }
+    
+    func sort(by fields: [SortField], order: SortOrder) {
+        
+        trackList.sort(TrackListSort(fields: fields, order: order))
+        notifyReloadTable()
+    }
+    
     // -------------------- Responding to notifications -------------------------------------------
     
     // Selects (and shows) a certain track within the playlist view
@@ -320,6 +361,22 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     
     func scrollRowToVisible(_ row: Int) {
         tableView.scrollRowToVisible(row)
+    }
+    
+    @IBAction func pageUpAction(_ sender: NSButton) {
+        pageUp()
+    }
+    
+    @IBAction func pageDownAction(_ sender: NSButton) {
+        pageDown()
+    }
+    
+    @IBAction func scrollToTopAction(_ sender: NSButton) {
+        scrollToTop()
+    }
+    
+    @IBAction func scrollToBottomAction(_ sender: NSButton) {
+        scrollToBottom()
     }
     
     func pageUp() {

@@ -179,22 +179,6 @@ class PlaylistTracksViewController: TrackListTableViewController, ColorSchemePro
         moveTracksToBottom()
     }
     
-    @IBAction func pageUpAction(_ sender: NSButton) {
-        pageUp()
-    }
-    
-    @IBAction func pageDownAction(_ sender: NSButton) {
-        pageDown()
-    }
-    
-    @IBAction func scrollToTopAction(_ sender: NSButton) {
-        scrollToTop()
-    }
-    
-    @IBAction func scrollToBottomAction(_ sender: NSButton) {
-        scrollToBottom()
-    }
-    
     @IBAction func doubleClickAction(_ sender: NSTableView) {
         
         if let selRow: Int = selectedRows.first,

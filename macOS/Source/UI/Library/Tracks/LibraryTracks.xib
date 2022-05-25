@@ -13,6 +13,7 @@
                 <outlet property="lblTracksSummary" destination="L8K-b9-L5F" id="BiQ-Op-F7d"/>
                 <outlet property="progressSpinner" destination="Z7u-0a-Wfd" id="OlP-QE-Jmr"/>
                 <outlet property="rootContainer" destination="WZ6-e9-sbG" id="hJ2-F9-0R7"/>
+                <outlet property="sortOrderMenuItemView" destination="O6f-Kb-kUP" id="8Jc-gy-4f7"/>
                 <outlet property="tableView" destination="ouh-pe-wzd" id="ozA-4J-8wG"/>
                 <outlet property="view" destination="c22-O7-iKe" id="ta4-Yi-UVI"/>
             </connections>
@@ -374,28 +375,52 @@
                                 </menuItem>
                                 <menuItem title="Sort by track name" id="PuO-Aa-cuN">
                                     <modifierMask key="keyEquivalentModifierMask"/>
+                                    <connections>
+                                        <action selector="sortByTrackNameAction:" target="-2" id="yjQ-eL-zh3"/>
+                                    </connections>
                                 </menuItem>
                                 <menuItem title="Sort by artist, album, and disc/track #" id="zMI-kX-6Xt" userLabel="Sort by artist, album, and disc/track #">
                                     <modifierMask key="keyEquivalentModifierMask"/>
+                                    <connections>
+                                        <action selector="sortByArtistAlbumDiscTrackNumberAction:" target="-2" id="1Hg-mf-xTI"/>
+                                    </connections>
                                 </menuItem>
                                 <menuItem title="Sort by artist, album, and track name" id="c8x-kE-lQS" userLabel="Sort by artist, album, and track name">
                                     <modifierMask key="keyEquivalentModifierMask"/>
+                                    <connections>
+                                        <action selector="sortByArtistAlbumTrackNameAction:" target="-2" id="l1i-b1-YW9"/>
+                                    </connections>
                                 </menuItem>
                                 <menuItem title="Sort by artist and track name" id="SUF-Ad-KTr" userLabel="Sort by artist and track name">
                                     <modifierMask key="keyEquivalentModifierMask"/>
+                                    <connections>
+                                        <action selector="sortByArtistTrackNameAction:" target="-2" id="4fF-Ib-MY2"/>
+                                    </connections>
                                 </menuItem>
                                 <menuItem title="Sort by album and disc/track #" id="Zpo-R6-e2x" userLabel="Sort by album and disc/track #">
                                     <modifierMask key="keyEquivalentModifierMask"/>
+                                    <connections>
+                                        <action selector="sortByAlbumDiscTrackNumberAction:" target="-2" id="YzD-wM-tPe"/>
+                                    </connections>
                                 </menuItem>
                                 <menuItem title="Sort by album and track name" id="ecN-kd-W99" userLabel="Sort by album and track name">
                                     <modifierMask key="keyEquivalentModifierMask"/>
+                                    <connections>
+                                        <action selector="sortByAlbumTrackNameAction:" target="-2" id="6zk-5u-rjP"/>
+                                    </connections>
                                 </menuItem>
                                 <menuItem title="Sort by duration" id="d14-l1-sAd">
                                     <modifierMask key="keyEquivalentModifierMask"/>
+                                    <connections>
+                                        <action selector="sortByDurationAction:" target="-2" id="wMX-gq-f0D"/>
+                                    </connections>
                                 </menuItem>
                                 <menuItem isSeparatorItem="YES" id="tSe-mk-djS"/>
                                 <menuItem title="Sort order" id="AAJ-Fk-6IS">
                                     <modifierMask key="keyEquivalentModifierMask"/>
+                                    <connections>
+                                        <outlet property="view" destination="O6f-Kb-kUP" id="7wM-2y-YHq"/>
+                                    </connections>
                                 </menuItem>
                             </items>
                         </menu>
@@ -522,6 +547,48 @@
                 <outlet property="sortTintedIconMenuItem" destination="5bZ-J7-95d" id="bAy-B4-Vyb"/>
             </connections>
             <point key="canvasLocation" x="138.5" y="154"/>
+        </customView>
+        <customView id="O6f-Kb-kUP" userLabel="Sort order menu item view" customClass="SortOrderMenuItemView" customModule="Aural" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="186" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJ3-JN-wvi">
+                    <rect key="frame" x="99" y="5" width="43" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="radio" title="▲" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Nov-hf-5mn">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="changeSortOrderAction:" target="O6f-Kb-kUP" id="ec3-Kj-6FY"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Zy-jC-1sE">
+                    <rect key="frame" x="143" y="5" width="43" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="radio" title="▼" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="JUs-t8-Hjo">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="changeSortOrderAction:" target="O6f-Kb-kUP" id="A5U-p6-ryf"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I10-QW-Wa3">
+                    <rect key="frame" x="11" y="1" width="86" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Sort order:" id="uiy-be-n96">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <connections>
+                <outlet property="btnAscending" destination="EJ3-JN-wvi" id="Hjo-C8-ubF"/>
+                <outlet property="btnDescending" destination="5Zy-jC-1sE" id="BKY-fq-eF3"/>
+            </connections>
+            <point key="canvasLocation" x="293" y="564"/>
         </customView>
     </objects>
     <resources>

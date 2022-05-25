@@ -172,22 +172,6 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
         messenger.publish(.library_updateSummary)
     }
     
-    @IBAction func pageUpAction(_ sender: NSButton) {
-        pageUp()
-    }
-    
-    @IBAction func pageDownAction(_ sender: NSButton) {
-        pageDown()
-    }
-    
-    @IBAction func scrollToTopAction(_ sender: NSButton) {
-        scrollToTop()
-    }
-    
-    @IBAction func scrollToBottomAction(_ sender: NSButton) {
-        scrollToBottom()
-    }
-    
     // ---------------------------------------------------------------------------------------------------------
     
     // MARK: Actions (context menu)

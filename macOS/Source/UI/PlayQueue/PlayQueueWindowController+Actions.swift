@@ -281,12 +281,7 @@ extension PlayQueueWindowController {
     
     private func doSort(by fields: [SortField]) {
         
-        playQueueDelegate.sort(TrackListSort(fields: fields, order: sortOrderMenuItemView.sortOrder))
-        
-        controllers.forEach {
-            $0.reloadTable()
-        }
-
+        currentViewController.sort(by: fields, order: sortOrderMenuItemView.sortOrder)
         updateSummary()
     }
     

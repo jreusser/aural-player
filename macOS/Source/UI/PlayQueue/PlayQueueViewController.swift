@@ -46,7 +46,7 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         
         messenger.subscribe(to: .playQueue_playSelectedTrack, handler: playSelectedTrack)
         
-        messenger.subscribe(to: .playQueue_refresh, handler: tableView.reloadDataMaintainingSelection)
+        messenger.subscribe(to: .playQueue_refresh, handler: tableView.reloadData)
         
         messenger.subscribe(to: .playQueue_clearSelection, handler: tableView.clearSelection)
         messenger.subscribe(to: .playQueue_invertSelection, handler: tableView.invertSelection)
@@ -66,6 +66,10 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
     
     override func tracksMovedByDragDrop(minReloadIndex: Int, maxReloadIndex: Int) {
         messenger.publish(.playQueue_updateSummary)
+    }
+    
+    override func notifyReloadTable() {
+        messenger.publish(.playQueue_refresh)
     }
     
     // Drag / drop
