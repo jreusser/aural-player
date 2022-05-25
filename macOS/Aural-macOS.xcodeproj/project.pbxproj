@@ -1463,6 +1463,7 @@
 		3EFE3B0827864943006F8B8C /* ffmpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE3ADC27864942006F8B8C /* ffmpeg.c */; };
 		3EFE3B0A27864958006F8B8C /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE3B0927864958006F8B8C /* TypeAliases.swift */; };
 		3EFE3B0B27864958006F8B8C /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE3B0927864958006F8B8C /* TypeAliases.swift */; };
+		3EFE735C283EAD9900AC0A38 /* OrderedDictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE735B283EAD9900AC0A38 /* OrderedDictionaryExtensions.swift */; };
 		3EFFEB8027D9CB25006A333B /* ColorSchemesManager+Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFFEB7F27D9CB25006A333B /* ColorSchemesManager+Observer.swift */; };
 		3EFFEB8127D9CB25006A333B /* ColorSchemesManager+Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFFEB7F27D9CB25006A333B /* ColorSchemesManager+Observer.swift */; };
 		3EFFEB8327D9CEF8006A333B /* KVOTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFFEB8227D9CEF8006A333B /* KVOTokens.swift */; };
@@ -2625,6 +2626,7 @@
 		3EFE3ADB27864942006F8B8C /* swresample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swresample.h; sourceTree = "<group>"; };
 		3EFE3ADC27864942006F8B8C /* ffmpeg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffmpeg.c; sourceTree = "<group>"; };
 		3EFE3B0927864958006F8B8C /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		3EFE735B283EAD9900AC0A38 /* OrderedDictionaryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedDictionaryExtensions.swift; sourceTree = "<group>"; };
 		3EFFEB7F27D9CB25006A333B /* ColorSchemesManager+Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorSchemesManager+Observer.swift"; sourceTree = "<group>"; };
 		3EFFEB8227D9CEF8006A333B /* KVOTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVOTokens.swift; sourceTree = "<group>"; };
 		3EFFEB8627D9D33D006A333B /* FontSchemesManager+Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontSchemesManager+Observer.swift"; sourceTree = "<group>"; };
@@ -4990,6 +4992,7 @@
 				3EFE36D027864895006F8B8C /* OperationQueueExtensions.swift */,
 				3EFE36D127864895006F8B8C /* AVFExtensions.swift */,
 				3EAE9CC32836E7BA004499FE /* OrderedSetExtensions.swift */,
+				3EFE735B283EAD9900AC0A38 /* OrderedDictionaryExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -6498,6 +6501,7 @@
 				3EFE388127864896006F8B8C /* EffectsUnitState.swift in Sources */,
 				3EFE39C127864897006F8B8C /* EffectsFontSchemePersistentState.swift in Sources */,
 				3E6C12C725CEBE6700BF0D07 /* TimeStretchUnitView.swift in Sources */,
+				3EFE735C283EAD9900AC0A38 /* OrderedDictionaryExtensions.swift in Sources */,
 				3EFE398D27864897006F8B8C /* Player.swift in Sources */,
 				3E6C12D125CEBE6700BF0D07 /* TimeStretchUnitViewController.swift in Sources */,
 				3EFE393527864897006F8B8C /* SystemUtils.swift in Sources */,

@@ -26,7 +26,10 @@ class SortedTrackList: TrackList, SortedTrackListProtocol {
     @inlinable
     @inline(__always)
     func maintainSortOrder() {
-        _tracks.sort(by: sortOrder.comparator)
+        
+        _tracks.sort(by: {m1, m2 in
+            sortOrder.comparator(m1.value, m2.value)
+        })
     }
     
     @discardableResult override func addTracks(_ newTracks: [Track]) -> IndexSet {
@@ -35,13 +38,12 @@ class SortedTrackList: TrackList, SortedTrackListProtocol {
         guard dedupedTracks.isNonEmpty else {return .empty}
         
         for track in dedupedTracks {
-            tracksByFile[track.file] = track
+            _tracks[track.file] = track
         }
         
-        _tracks.addItems(dedupedTracks)
         maintainSortOrder()
         
-        return IndexSet(dedupedTracks.compactMap {_tracks.firstIndex(of: $0)})
+        return IndexSet(dedupedTracks.compactMap {_tracks.index(forKey: $0.file)})
     }
     
     @discardableResult override func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> IndexSet {

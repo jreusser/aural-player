@@ -23,15 +23,13 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     // Meant to be overriden
     var displayName: String {"Track List"}
     
-    var _tracks: OrderedSet<Track> = OrderedSet()
+    // A map to quickly look up tracks by (absolute) file path (used when adding tracks, to prevent duplicates)
+    var _tracks: OrderedDictionary<URL, Track> = OrderedDictionary()
     
     var tracks: [Track] {
-        _tracks.elements
+        Array(_tracks.values)
     }
-    
-    // A map to quickly look up tracks by (absolute) file path (used when adding tracks, to prevent duplicates)
-    var tracksByFile: [URL: Track] = [:]
-    
+
     private var _isBeingModified: AtomicBool = AtomicBool(value: false)
     
     var isBeingModified: Bool {
@@ -43,11 +41,11 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     var indices: Range<Int> {
-        _tracks.indices
+        0..<_tracks.count
     }
     
     var duration: Double {
-        _tracks.reduce(0.0, {(totalSoFar: Double, track: Track) -> Double in totalSoFar + track.duration})
+        _tracks.values.reduce(0.0, {(totalSoFar: Double, track: Track) -> Double in totalSoFar + track.duration})
     }
     
     var summary: (size: Int, totalDuration: Double) {
@@ -64,22 +62,22 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     var isNonEmpty: Bool {
-        _tracks.isNonEmpty
+        !isEmpty
     }
     
     /// Safe array access.
     subscript(index: Int) -> Track? {
         
         guard index >= 0, index < _tracks.count else {return nil}
-        return _tracks[index]
+        return _tracks.elements[index].value
     }
     
     subscript(indices: IndexSet) -> [Track] {
-        indices.compactMap {self[$0]}
+        indices.map {_tracks.elements[$0].value}
     }
     
     func indexOfTrack(_ track: Track) -> Int?  {
-        _tracks.firstIndex(of: track)
+        _tracks.index(forKey: track.file)
     }
     
     func hasTrack(_ track: Track) -> Bool {
@@ -87,11 +85,11 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     func hasTrack(forFile file: URL) -> Bool {
-        tracksByFile[file] != nil
+        _tracks[file] != nil
     }
     
     func findTrack(forFile file: URL) -> Track? {
-        tracksByFile[file]
+        _tracks[file]
     }
 
     // TODO: Verify that this actually works (OrderedSet) ... no duplicates !!!
@@ -111,13 +109,10 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         return doAddTracks(dedupedTracks)
     }
     
-    private func doAddTracks(_ newTracks: [Track]) -> IndexSet {
-        
-        for track in newTracks {
-            tracksByFile[track.file] = track
-        }
-        
-        return _tracks.addItems(newTracks)
+    @inlinable
+    @inline(__always)
+    func doAddTracks(_ newTracks: [Track]) -> IndexSet {
+        _tracks.addMappings(newTracks.map {($0.file, $0)})
     }
     
     @discardableResult func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> IndexSet {
@@ -129,8 +124,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         for index in stride(from: dedupedTracks.lastIndex, through: 0, by: -1) {
             
             let track = dedupedTracks[index]
-            _tracks.insert(track, at: insertionIndex)
-            tracksByFile[track.file] = track
+            _tracks.insertItem(track, forKey: track.file, at: insertionIndex)
         }
         
         return IndexSet(insertionIndex..<(insertionIndex + dedupedTracks.count))
@@ -153,33 +147,24 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     func removeAllTracks() {
-        
         _tracks.removeAll()
-        tracksByFile.removeAll()
     }
     
     @discardableResult func removeTracks(_ tracksToRemove: [Track]) -> IndexSet {
         
+        let indices: [Int] = tracksToRemove.compactMap {_tracks.index(forKey: $0.file)}
+        
         for track in tracksToRemove {
             
             // Add a mapping by track's file path.
-            tracksByFile.removeValue(forKey: track.file)
+            _tracks.removeValue(forKey: track.file)
         }
         
-        return _tracks.removeItems(tracksToRemove)
+        return IndexSet(indices)
     }
     
     @discardableResult func removeTracks(at indices: IndexSet) -> [Track] {
-        
-        let removedTracks = _tracks.removeItems(at: indices)
-        
-        for track in removedTracks {
-            
-            // Add a mapping by track's file path.
-            tracksByFile.removeValue(forKey: track.file)
-        }
-        
-        return removedTracks
+        _tracks.removeItems(at: indices)
     }
     
     func cropTracks(at indices: IndexSet) {
@@ -199,18 +184,24 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
 //    }
 //
     func sort(_ sort: TrackListSort) {
-        _tracks.sort(by: sort.comparator)
+        
+        _tracks.sort(by: {m1, m2 in
+            sort.comparator(m1.value, m2.value)
+        })
     }
 
     func sort(by comparator: (Track, Track) -> Bool) {
-        _tracks.sort(by: comparator)
+        
+        _tracks.sort(by: {m1, m2 in
+            comparator(m1.value, m2.value)
+        })
     }
     
     func exportToFile(_ file: URL) {
         
         // Perform asynchronously, to unblock the main thread
         DispatchQueue.global(qos: .userInitiated).async {
-            PlaylistIO.savePlaylist(tracks: self._tracks.elements, toFile: file)
+            PlaylistIO.savePlaylist(tracks: self.tracks, toFile: file)
         }
     }
     
@@ -218,7 +209,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     
     func loadTracks(from files: [URL], atPosition position: Int?, usingLoader loader: TrackLoader, observer: TrackLoaderObserver) {
         
-        let dedupedFiles = files.filter {tracksByFile[$0] == nil}
+        let dedupedFiles = files.filter {_tracks[$0] == nil}
         guard dedupedFiles.isNonEmpty else {return}
         
         _isBeingModified.setValue(true)
