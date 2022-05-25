@@ -137,8 +137,10 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     func cropSelection() {
         
         trackList.cropTracks(at: selectedRows)
-        reloadTable()
+        notifyReloadTable()
     }
+    
+    func notifyReloadTable() {}
     
     @IBAction func removeAllTracksAction(_ sender: NSButton) {
         removeAllTracks()
@@ -147,7 +149,7 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     func removeAllTracks() {
         
         trackList.removeAllTracks()
-        reloadTable()
+        notifyReloadTable()
     }
     
     @inlinable

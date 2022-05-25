@@ -51,6 +51,7 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
         messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
         messenger.subscribeAsync(to: .library_tracksRemoved, handler: tracksRemoved(_:))
         messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
+        messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
         
 //        messenger.subscribe(to: .library_addChosenFiles, handler: addChosenTracks(_:))
 //
@@ -143,6 +144,10 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
 //        tableView.reloadRows(minTrackIndex...lastRow)
 //
 //        messenger.publish(.playlists_updateSummary)
+    }
+    
+    override func notifyReloadTable() {
+        messenger.publish(.library_reloadTable)
     }
     
     // ---------------------------------------------------------------------------------------------------------
