@@ -91,6 +91,10 @@ extension NSTableView {
         reloadData(forRowIndexes: IndexSet(rows), columnIndexes: allColumnIndices)
     }
     
+    func reloadRows(_ rows: ClosedRange<Int>, columns: [Int]) {
+        reloadData(forRowIndexes: IndexSet(rows), columnIndexes: IndexSet(columns))
+    }
+    
     func reloadRows(_ rows: IndexSet) {
         reloadData(forRowIndexes: rows, columnIndexes: allColumnIndices)
     }

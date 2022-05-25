@@ -49,6 +49,7 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
                                                                     \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
         
         messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
+        messenger.subscribeAsync(to: .library_tracksRemoved, handler: tracksRemoved(_:))
         messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
         
 //        messenger.subscribe(to: .library_addChosenFiles, handler: addChosenTracks(_:))
@@ -231,6 +232,12 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
     private func tracksAdded(_ notif: LibraryTracksAddedNotification) {
         
         tracksAdded(at: notif.trackIndices)
+        updateSummary()
+    }
+    
+    private func tracksRemoved(_ notif: LibraryTracksRemovedNotification) {
+        
+        tracksRemoved(at: notif.trackIndices)
         updateSummary()
     }
     

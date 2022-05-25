@@ -17,6 +17,10 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     // Override this !
     var trackList: TrackListProtocol! {nil}
     
+    lazy var hasIndexColumn: Bool = {
+        tableView.tableColumns[0].identifier == .cid_index
+    }()
+    
     var selectedRows: IndexSet {tableView.selectedRowIndexes}
     
     var invertedSelection: IndexSet {tableView.invertedSelection}
@@ -115,25 +119,7 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     }
     
     func removeTracks() {
-        
-        let selectedRows = self.selectedRows
-        
-        // Check for at least 1 row (and also get the minimum index).
-        guard let firstRemovedRow = selectedRows.min() else {return}
-        
         _ = trackList.removeTracks(at: selectedRows)
-        tableView.clearSelection()
-        
-        // Tell the playlist view that the number of rows has changed (should result in removal of rows)
-        tableView.noteNumberOfRowsChanged()
-        
-        // Update all rows from the first (i.e. smallest index) removed row, down to the end of the track list.
-        let lastRowAfterRemove = trackList.size - 1
-        
-        // This will be true unless a contiguous block of tracks was removed from the bottom of the track list.
-        if firstRemovedRow <= lastRowAfterRemove {
-            tableView.reloadRows(firstRemovedRow...lastRowAfterRemove)
-        }
     }
     
     func noteNumberOfRowsChanged() {
@@ -150,10 +136,7 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     
     func cropSelection() {
         
-        let tracksToDelete: IndexSet = invertedSelection
-        guard tracksToDelete.isNonEmpty else {return}
-        
-        _ = trackList.removeTracks(at: tracksToDelete)
+        trackList.cropTracks(at: selectedRows)
         reloadTable()
     }
     
@@ -369,5 +352,20 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         
         tableView.noteNumberOfRowsChanged()
         tableView.reloadRows(indices.min()!..<numberOfTracks)
+    }
+    
+    func tracksRemoved(at indices: IndexSet) {
+        
+        tableView.removeRows(at: indices, withAnimation: .slideUp)
+        
+        guard hasIndexColumn, let firstRemovedRow = indices.min() else {return}
+        
+        // Update all rows from the first (i.e. smallest index) removed row, down to the end of the track list.
+        let lastRowAfterRemove = trackList.size - 1
+        
+        // This will be true unless a contiguous block of tracks was removed from the bottom of the track list.
+        if firstRemovedRow <= lastRowAfterRemove {
+            tableView.reloadRows(firstRemovedRow...lastRowAfterRemove, columns: [0])
+        }
     }
 }

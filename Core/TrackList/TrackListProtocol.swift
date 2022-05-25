@@ -48,6 +48,8 @@ protocol AbstractTrackListProtocol {
     
     func removeTracks(at indices: IndexSet) -> [Track]
     
+    func cropTracks(at indices: IndexSet)
+    
     func removeAllTracks()
     
     // MARK: Reordering ------------------------------------------------------------------------

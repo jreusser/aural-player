@@ -17,6 +17,20 @@ class TracksAddedNotification: NotificationPayload {
     // The indices of the newly added tracks
     let trackIndices: IndexSet
     
+    fileprivate init(notificationName: Notification.Name, trackIndices: IndexSet) {
+        
+        self.notificationName = notificationName
+        self.trackIndices = trackIndices
+    }
+}
+
+class TracksRemovedNotification: NotificationPayload {
+
+    let notificationName: Notification.Name
+    
+    // The indices of the newly added tracks
+    let trackIndices: IndexSet
+    
     init(notificationName: Notification.Name, trackIndices: IndexSet) {
         
         self.notificationName = notificationName
@@ -35,6 +49,13 @@ class LibraryTracksAddedNotification: TracksAddedNotification {
     
     init(trackIndices: IndexSet) {
         super.init(notificationName: .library_tracksAdded, trackIndices: trackIndices)
+    }
+}
+
+class LibraryTracksRemovedNotification: TracksAddedNotification {
+    
+    init(trackIndices: IndexSet) {
+        super.init(notificationName: .library_tracksRemoved, trackIndices: trackIndices)
     }
 }
 

@@ -84,7 +84,14 @@ class LibraryDelegate: LibraryDelegateProtocol {
     }
     
     func removeTracks(at indices: IndexSet) -> [Track] {
-        library.removeTracks(at: indices)
+        
+        let removedTracks = library.removeTracks(at: indices)
+        messenger.publish(LibraryTracksRemovedNotification(trackIndices: indices))
+        return removedTracks
+    }
+    
+    func cropTracks(at indices: IndexSet) {
+        library.cropTracks(at: indices)
     }
     
     func removeAllTracks() {

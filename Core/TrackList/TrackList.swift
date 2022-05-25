@@ -108,11 +108,16 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         let dedupedTracks = deDupeTracks(newTracks)
         guard dedupedTracks.isNonEmpty else {return .empty}
         
-        for track in dedupedTracks {
+        return doAddTracks(dedupedTracks)
+    }
+    
+    private func doAddTracks(_ newTracks: [Track]) -> IndexSet {
+        
+        for track in newTracks {
             tracksByFile[track.file] = track
         }
         
-        return _tracks.addItems(dedupedTracks)
+        return _tracks.addItems(newTracks)
     }
     
     @discardableResult func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> IndexSet {
@@ -175,6 +180,13 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         }
         
         return removedTracks
+    }
+    
+    func cropTracks(at indices: IndexSet) {
+        
+        let tracksToKeep = self[indices]
+        removeAllTracks()
+        _ = doAddTracks(tracksToKeep)
     }
     
     @discardableResult func moveTracks(from sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
