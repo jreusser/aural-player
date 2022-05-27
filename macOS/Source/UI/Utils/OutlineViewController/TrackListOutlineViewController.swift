@@ -77,6 +77,36 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, N
         return nil
     }
     
+    @IBAction func removeSelectedItemsAction(_ sender: AnyObject) {
+        removeSelectedItems()
+    }
+    
+    func removeSelectedItems() {
+        
+        let selectedItems = outlineView.selectedItems
+        var groups: Set<Group> = Set()
+        var tracks: [Track] = []
+        
+        for item in selectedItems {
+            
+            if let group = item as? Group {
+                groups.insert(group)
+                
+            } else if let track = item as? Track {
+                
+                guard let parentGroup = outlineView.parent(forItem: track) as? Group else {continue}
+                
+                // If the parent group is already going to be deleted, no need to remove the track.
+                if !groups.contains(parentGroup) {
+                    tracks.append(track)
+                }
+            }
+        }
+        
+        print("\n\nDeleting groups: \(groups.map {$0.name})")
+        print("\nDeleting tracks: \(tracks.map {$0.displayName})")
+    }
+    
     @inlinable
     @inline(__always)
     func reloadTable() {
