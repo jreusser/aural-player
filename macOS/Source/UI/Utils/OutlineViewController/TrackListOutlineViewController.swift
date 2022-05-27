@@ -77,5 +77,14 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, N
         return nil
     }
     
+    @inlinable
+    @inline(__always)
+    func reloadTable() {
+        
+        outlineView.reloadData()
+        updateSummary()
+    }
     
+    /// Override this !
+    func updateSummary() {}
 }

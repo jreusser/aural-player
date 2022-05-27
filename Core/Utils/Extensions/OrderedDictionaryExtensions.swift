@@ -129,11 +129,11 @@ extension OrderedDictionary {
     }
     
     @discardableResult mutating func removeItems(at indices: IndexSet) -> [Value] {
-        indices.map {remove(at: $0).value}
+        indices.sortedDescending().map {remove(at: $0).value}
     }
     
     @discardableResult mutating func removeMappings(at indices: [Int]) -> [(key: Key, value: Value)] {
-        indices.map {remove(at: $0)}
+        indices.sortedDescending().map {remove(at: $0)}
     }
     
     mutating func dragAndDropItems(_ sourceIndices: IndexSet, _ dropIndex: Int) -> [Int: Int] {

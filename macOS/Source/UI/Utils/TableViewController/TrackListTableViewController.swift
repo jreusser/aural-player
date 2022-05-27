@@ -120,8 +120,13 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     }
     
     func removeTracks() {
+        
         _ = trackList.removeTracks(at: selectedRows)
+        updateSummary()
     }
+    
+    /// Override this !
+    func updateSummary() {}
     
     func noteNumberOfRowsChanged() {
         tableView.noteNumberOfRowsChanged()
@@ -156,7 +161,9 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     @inlinable
     @inline(__always)
     func reloadTable() {
+        
         tableView.reloadData()
+        updateSummary()
     }
     
     // MARK: Table view selection manipulation

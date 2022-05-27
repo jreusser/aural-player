@@ -29,6 +29,8 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         super.viewDidLoad()
         
         messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
+        messenger.subscribeAsync(to: .library_tracksRemoved, handler: reloadTable)
+        messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
         
         colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
         
@@ -167,7 +169,7 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         updateSummary()
     }
     
-    private func updateSummary() {
+    override func updateSummary() {
         
         let numGroups = albumsGrouping.numberOfGroups
         lblAlbumsSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "album" : "albums")"
@@ -259,8 +261,8 @@ class GroupSummaryCellView: AuralTableCellView {
         lblTrackCount.stringValue = "\(trackCount) \(trackCount == 1 ? "track" : "tracks")"
         lblDuration.stringValue = ValueFormatter.formatSecondsToHMS(group.duration)
         
-        lblTrackCount.font = systemFontScheme.playQueuePrimaryFont
-        lblDuration.font = systemFontScheme.playQueuePrimaryFont
+        lblTrackCount.font = systemFontScheme.playerPrimaryFont
+        lblDuration.font = systemFontScheme.playerPrimaryFont
         
         lblTrackCount.textColor = systemColorScheme.secondaryTextColor
         lblDuration.textColor = systemColorScheme.secondaryTextColor

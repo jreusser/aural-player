@@ -152,28 +152,6 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
     
     // ---------------------------------------------------------------------------------------------------------
     
-    // MARK: Actions (control buttons)
-    
-    override func removeTracks() {
-        
-        super.removeTracks()
-        messenger.publish(.library_updateSummary)
-    }
-    
-    override func cropSelection() {
-        
-        super.cropSelection()
-        messenger.publish(.library_updateSummary)
-    }
-    
-    override func removeAllTracks() {
-        
-        super.removeAllTracks()
-        messenger.publish(.library_updateSummary)
-    }
-    
-    // ---------------------------------------------------------------------------------------------------------
-    
     // MARK: Actions (context menu)
     
     @IBAction func playNowAction(_ sender: AnyObject) {
@@ -230,7 +208,7 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
         updateSummary()
     }
     
-    private func updateSummary() {
+    override func updateSummary() {
         
         let numTracks = library.size
         lblTracksSummary.stringValue = "\(numTracks) \(numTracks == 1 ? "track" : "tracks")"

@@ -33,11 +33,13 @@ class GroupedSortedTrackList: SortedTrackList, GroupedSortedTrackListProtocol {
     
     override func removeTracks(at indices: IndexSet) -> [Track] {
         
-        let tracks = super.removeTracks(at: indices)
+        let removedTracks = super.removeTracks(at: IndexSet(indices.sortedDescending()))
         
-        // TODO: Remove from groupings
+        groupings.forEach {
+            $0.removeTracks(removedTracks)
+        }
         
-        return tracks
+        return removedTracks
     }
     
     override func removeTracks(_ tracksToRemove: [Track]) -> IndexSet {

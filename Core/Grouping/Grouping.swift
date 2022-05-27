@@ -37,6 +37,7 @@ class Grouping: Hashable {
     let keyFunction: GroupingFunction
     let subGrouping: Grouping?
     
+    // TODO: Make these 2 an OrderedDictionary !!!
     var groups: OrderedSet<Group> = OrderedSet()
     fileprivate var groupsByName: [String: Group] = [:]
     
@@ -86,10 +87,19 @@ class Grouping: Hashable {
         groupsByName[groupName] ?? createGroup(named: groupName)
     }
     
-    func remove(tracks: [GroupedTrack], andGroups groups: [Group]) -> TrackRemovalResults {
+    // Tracks removed from linear list, parent groups unknown.
+    func removeTracks(_ tracksToRemove: [Track]) {
         
+        let categorizedTracks: [String: [Track]] = categorizeTracksByGroupName(tracksToRemove)
+        
+        for (groupName, groupTracks) in categorizedTracks {
+            groupsByName[groupName]?.removeTracks(groupTracks)
+        }
+    }
+    
+    // Tracks removed from hierarchical list, parent groups known.
+    func remove(tracks: [GroupedTrack], andGroups groups: [Group]) {
         // TODO
-        .empty
     }
     
     @inlinable
