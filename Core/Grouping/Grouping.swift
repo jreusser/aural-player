@@ -93,13 +93,39 @@ class Grouping: Hashable {
         let categorizedTracks: [String: [Track]] = categorizeTracksByGroupName(tracksToRemove)
         
         for (groupName, groupTracks) in categorizedTracks {
-            groupsByName[groupName]?.removeTracks(groupTracks)
+            
+            guard let group = groupsByName[groupName] else {continue}
+            
+            if group.numberOfTracks == groupTracks.count {
+                groups.remove(group)
+                
+            } else {
+                group.removeTracks(groupTracks)
+            }
         }
     }
     
     // Tracks removed from hierarchical list, parent groups known.
-    func remove(tracks: [GroupedTrack], andGroups groups: [Group]) {
-        // TODO
+    func remove(tracks tracksToRemove: [GroupedTrack], andGroups groupsToRemove: [Group]) {
+        
+        var groupedTracks: [Group: [Track]] = [:]
+        
+        for track in tracksToRemove {
+            groupedTracks[track.group, default: []].append(track.track)
+        }
+        
+        for (parent, tracks) in groupedTracks {
+            
+            // If all tracks were removed from this group, remove the group itself.
+            if parent.numberOfTracks == tracks.count {
+                groups.remove(parent)
+                
+            } else {
+                parent.removeTracks(tracks)
+            }
+        }
+        
+        _ = groups.removeItems(groupsToRemove)
     }
     
     @inlinable

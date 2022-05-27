@@ -369,6 +369,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="removeSelectedItemsAction:" target="-2" id="yJh-FW-fxQ"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Crop selected playlist tracks" translatesAutoresizingMaskIntoConstraints="NO" id="Zoi-43-oIe" userLabel="Crop" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="201" y="9" width="16.5" height="18"/>

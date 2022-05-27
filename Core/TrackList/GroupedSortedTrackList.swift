@@ -51,14 +51,23 @@ class GroupedSortedTrackList: SortedTrackList, GroupedSortedTrackListProtocol {
         return indices
     }
     
-    func remove(tracks: [GroupedTrack], andGroups groups: [Group]) -> TrackRemovalResults {
+    func remove(tracks: [GroupedTrack], andGroups groups: [Group], from grouping: Grouping) -> IndexSet {
         
         // TODO: Remove the tracks / groups from the current grouping, then remove those
         // tracks from the track list and other groupings. Finally, collate all the results.
         
         // TODO: See the old 'GroupingPlaylist' class
         
-        .empty
+        let tracksToRemove = tracks.map {$0.track} + groups.flatMap {$0.tracks}
+        let indices = super.removeTracks(tracksToRemove)
+        
+        grouping.remove(tracks: tracks, andGroups: groups)
+        
+        groupings.filter {$0 != grouping}.forEach {
+            $0.removeTracks(tracksToRemove)
+        }
+        
+        return indices
     }
     
     override func removeAllTracks() {

@@ -80,7 +80,7 @@ protocol SortedTrackListProtocol: AbstractTrackListProtocol {
 
 protocol GroupedSortedTrackListProtocol: SortedTrackListProtocol {
     
-    func remove(tracks: [GroupedTrack], andGroups groups: [Group]) -> TrackRemovalResults
+    func remove(tracks: [GroupedTrack], andGroups groups: [Group], from grouping: Grouping) -> IndexSet
 }
 
 protocol TrackListProtocol: AbstractTrackListProtocol {

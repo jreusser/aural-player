@@ -14,8 +14,11 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, N
     
     @IBOutlet weak var outlineView: NSOutlineView!
     
-    // Override this !
-    var trackList: TrackListProtocol! {nil}
+    /// Override this !
+    var trackList: GroupedSortedTrackListProtocol! {nil}
+    
+    /// Override this !
+    var grouping: Grouping! {nil}
     
     var selectedRows: IndexSet {outlineView.selectedRowIndexes}
     
@@ -85,7 +88,7 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, N
         
         let selectedItems = outlineView.selectedItems
         var groups: Set<Group> = Set()
-        var tracks: [Track] = []
+        var groupedTracks: [GroupedTrack] = []
         
         for item in selectedItems {
             
@@ -98,13 +101,15 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, N
                 
                 // If the parent group is already going to be deleted, no need to remove the track.
                 if !groups.contains(parentGroup) {
-                    tracks.append(track)
+                    groupedTracks.append(GroupedTrack(track: track, group: parentGroup, trackIndex: -1, groupIndex: -1))    // Indices not important.
                 }
             }
         }
         
         print("\n\nDeleting groups: \(groups.map {$0.name})")
-        print("\nDeleting tracks: \(tracks.map {$0.displayName})")
+        print("\nDeleting tracks: \(groupedTracks.map {$0.track.displayName})")
+        
+        _ = trackList.remove(tracks: groupedTracks, andGroups: Array(groups), from: grouping)
     }
     
     @inlinable

@@ -21,8 +21,13 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
     @IBOutlet weak var lblDurationSummary: NSTextField!
     
     private lazy var albumsGrouping: AlbumsGrouping = library.albumsGrouping
+    override var grouping: Grouping! {albumsGrouping}
     
     lazy var messenger: Messenger = Messenger(for: self)
+    
+    override var trackList: GroupedSortedTrackListProtocol! {
+        libraryDelegate
+    }
     
     override func viewDidLoad() {
         

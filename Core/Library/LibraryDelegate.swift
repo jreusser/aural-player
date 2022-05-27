@@ -10,9 +10,15 @@
 
 import Foundation
 
-protocol LibraryDelegateProtocol: TrackListProtocol {}
+protocol LibraryDelegateProtocol: TrackListProtocol, GroupedSortedTrackListProtocol {}
 
 class LibraryDelegate: LibraryDelegateProtocol {
+    
+    var sortOrder: TrackListSort {
+        
+        get {library.sortOrder}
+        set {library.sortOrder = newValue}
+    }
     
     var displayName: String {library.displayName}
     
@@ -88,6 +94,13 @@ class LibraryDelegate: LibraryDelegateProtocol {
         let removedTracks = library.removeTracks(at: indices)
         messenger.publish(LibraryTracksRemovedNotification(trackIndices: indices))
         return removedTracks
+    }
+    
+    func remove(tracks: [GroupedTrack], andGroups groups: [Group], from grouping: Grouping) -> IndexSet {
+        
+        let indices = library.remove(tracks: tracks, andGroups: groups, from: grouping)
+        messenger.publish(LibraryTracksRemovedNotification(trackIndices: indices))
+        return indices
     }
     
     func cropTracks(at indices: IndexSet) {
