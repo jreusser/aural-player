@@ -51,7 +51,16 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
     }
     
     override func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        item is AlbumGroup ? 90 : 30
+        
+        if item is AlbumGroup {
+            return 90
+        }
+        
+        if item is AlbumDiscGroup {
+            return 40
+        }
+        
+        return 30
     }
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
@@ -60,8 +69,8 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
             return albumsGrouping.numberOfGroups
         }
         
-        if let group = item as? AlbumGroup {
-            return group.numberOfTracks
+        if let group = item as? Group {
+            return group.hasSubGroups ? group.subGroups.count : group.numberOfTracks
         }
         
         return 0
@@ -73,8 +82,8 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
             return albumsGrouping.group(at: index)
         }
         
-        if let group = item as? AlbumGroup {
-            return group[index] as Any
+        if let group = item as? Group {
+            return (group.hasSubGroups ? group.subGroups.values[index] : group[index] ?? "") as Any
         }
         
         return ""
@@ -86,11 +95,24 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
+        if let group = item as? Group {
+            print("\nView for group: \(group.name)")
+        }
+        
         guard let columnId = tableColumn?.identifier else {return nil}
         
         switch columnId {
             
         case .cid_Name:
+            
+            if let track = item as? Track,
+               let cell = outlineView.makeView(withIdentifier: .cid_TrackName, owner: nil) as? AlbumTrackCellView {
+                
+                cell.update(forTrack: track)
+                cell.rowSelectionStateFunction = {[weak outlineView, weak track] in outlineView?.isItemSelected(track as Any) ?? false}
+                
+                return cell
+            }
             
             if let album = item as? AlbumGroup,
                let cell = outlineView.makeView(withIdentifier: .cid_AlbumName, owner: nil) as? AlbumCellView {
@@ -101,14 +123,15 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
                 return cell
             }
             
-            if let track = item as? Track,
-               let album = outlineView.parent(forItem: item) as? AlbumGroup,
-               let cell = outlineView.makeView(withIdentifier: .cid_TrackName, owner: nil) as? AlbumTrackCellView {
+            if let disc = item as? AlbumDiscGroup {
                 
-                cell.update(forTrack: track, inGroup: album)
-                cell.rowSelectionStateFunction = {[weak outlineView, weak track] in outlineView?.isItemSelected(track as Any) ?? false}
-                
-                return cell
+                return TableCellBuilder().withText(text: disc.name,
+                                                   inFont: systemFontScheme.playQueuePrimaryFont,
+                                                   andColor: systemColorScheme.secondaryTextColor,
+                                                   selectedTextColor: systemColorScheme.secondarySelectedTextColor,
+                                                   centerYOffset: systemFontScheme.playQueueYOffset)
+                    .buildCell(forOutlineView: outlineView,
+                               forColumnWithId: .cid_DiscName, havingItem: disc)
             }
             
         case .cid_Duration:
@@ -243,16 +266,10 @@ class AlbumTrackCellView: AuralTableCellView {
         trackNameConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.playQueueYOffset)
     }
     
-    func update(forTrack track: Track, inGroup group: AlbumGroup) {
+    func update(forTrack track: Track) {
         
         if let trackNumber = track.trackNumber {
-            
-            if group.hasMoreThanOneTotalDisc, let discNumber = track.discNumber {
-                lblTrackNumber.stringValue = "\(discNumber) - \(trackNumber)"
-                
-            } else {
-                lblTrackNumber.stringValue = "\(trackNumber)"
-            }
+            lblTrackNumber.stringValue = "\(trackNumber)"
         }
         
         lblTrackName.stringValue = track.titleOrDefaultDisplayName
@@ -307,6 +324,7 @@ extension NSUserInterfaceItemIdentifier {
     
     // Outline view column identifiers
     static let cid_AlbumName: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_AlbumName")
+    static let cid_DiscName: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_DiscName")
     static let cid_TrackName: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_TrackName")
     
     static let cid_AlbumDuration: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_AlbumDuration")

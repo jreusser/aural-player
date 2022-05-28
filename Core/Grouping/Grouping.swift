@@ -152,7 +152,7 @@ class Grouping: Hashable {
     func applyTo(trackList: TrackList) -> [Group] {
         []
     }
-
+    
     fileprivate func groupTracks(_ tracks: [Track], accordingTo grouping: Grouping) {
         
         // Sort tracks only if they will not be further sub-grouped.
@@ -169,11 +169,38 @@ class Grouping: Hashable {
         }
     }
 
+    fileprivate func groupTracks(in parentGroup: Group, accordingTo grouping: Grouping) {
+        
+        // Sort tracks only if they will not be further sub-grouped.
+        let needToSortTracks: Bool = grouping.subGrouping == nil
+        
+        print("\n\nparent \(parentGroup.name) has \(parentGroup.numberOfTracks) tracks.")
+        
+        for (groupName, tracks) in categorizeTracksByGroupName(parentGroup.tracks, keyFunction: grouping.keyFunction) {
+            
+            print("\n\n \(groupName) has \(tracks.count) tracks.")
+            
+            let group = grouping.findOrCreateGroup(named: groupName)
+            parentGroup.addSubGroup(group)
+            group.addTracks(tracks)
+            
+            if needToSortTracks {
+                group.sortTracks(by: grouping.sortOrder)
+            }
+        }
+        
+        parentGroup.removeAllTracks()
+    }
+
     // Recursive sub-grouping function.
     fileprivate func subGroup(_ groups: OrderedDictionary<String, Group>.Values, accordingTo grouping: Grouping) {
+        
+        if grouping is AlbumDiscsGrouping {
+            print("\n\nIT IS GROUPING BY DISC NUMBER !")
+        }
 
         for group in groups {
-            groupTracks(Array(group.tracks), accordingTo: grouping)
+            groupTracks(in: group, accordingTo: grouping)
         }
 
         // Recursive call
@@ -190,11 +217,36 @@ class AlbumsGrouping: Grouping {
     }
     
     init(depth: Int = 0) {
-        super.init(name: "Albums", depth: depth) {track in track.album ?? "<Unknown>"}
+        
+        super.init(name: "Albums", depth: depth, keyFunction: {track in track.album ?? "<Unknown>"},
+                   subGrouping: AlbumDiscsGrouping(depth: depth + 1))
     }
     
     override fileprivate func doCreateGroup(named groupName: String) -> Group {
         AlbumGroup(name: groupName, depth: self.depth)
+    }
+}
+
+class AlbumDiscsGrouping: Grouping {
+    
+    override var sortOrder: TrackComparator {
+        trackNumberAscendingComparator
+    }
+    
+    init(depth: Int) {
+        
+        super.init(name: "Album Discs", depth: depth) {track in
+            
+            if let discNumber = track.discNumber {
+                return "Disc \(discNumber)"
+            }
+            
+            return "<Unknown Disc>"
+        }
+    }
+    
+    override fileprivate func doCreateGroup(named groupName: String) -> Group {
+        AlbumDiscGroup(name: groupName, depth: self.depth)
     }
 }
 
@@ -210,7 +262,9 @@ class ArtistsGrouping: Grouping {
     }
     
     init(depth: Int = 0, subGroupByAlbum: Bool = true) {
-        super.init(name: "Artists", depth: depth, keyFunction: {track in track.artist ?? "<Unknown>"}, subGrouping: subGroupByAlbum ? AlbumsGrouping(depth: 1) : nil)
+        
+        super.init(name: "Artists", depth: depth, keyFunction: {track in track.artist ?? "<Unknown>"},
+                   subGrouping: subGroupByAlbum ? AlbumsGrouping(depth: 1) : nil)
     }
 }
 

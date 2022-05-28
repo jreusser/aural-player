@@ -33,26 +33,37 @@ class Group: PlayableItem {
         _tracks[index]
     }
     
-    var parentGroup: Group?
+    unowned var parentGroup: Group?
     var isRootLevelGroup: Bool {parentGroup == nil}
     
-    var subGroups: [Group]
-    var hasSubGroups: Bool {subGroups.isNonEmpty}
+    var subGroups: OrderedDictionary<String, Group> = OrderedDictionary()
+    var hasSubGroups: Bool {!subGroups.isEmpty}
     
     init(name: String, depth: Int, tracks: [Track] = []) {
         
         self.name = name
         self.depth = depth
         self._tracks.addTracks(tracks)
-        self.subGroups = []
     }
     
-    init(name: String, depth: Int, parentGroup: Group? = nil, subGroups: [Group]) {
+//    init(name: String, depth: Int, parentGroup: Group? = nil, subGroups: [Group]) {
+//
+//        self.name = name
+//        self.depth = depth
+//        self.parentGroup = parentGroup
+//
+//        for group in
+//    }
+    
+    func addSubGroup(_ subGroup: Group) {
         
-        self.name = name
-        self.depth = depth
-        self.parentGroup = parentGroup
-        self.subGroups = subGroups
+        if subGroups[subGroup.name] == nil {
+            
+            print("\nAdding subgroup '\(subGroup.name)' to \(name)")
+            
+            subGroups[subGroup.name] = subGroup
+            subGroup.parentGroup = self
+        }
     }
     
     func addTracks(_ newTracks: [Track]) {
@@ -65,6 +76,10 @@ class Group: PlayableItem {
     
     func removeTracks(_ tracksToRemove: [Track]) {
         _tracks.removeTracks(tracksToRemove)
+    }
+    
+    func removeAllTracks() {
+        _tracks.removeAllTracks()
     }
     
     // Equatable conformance.

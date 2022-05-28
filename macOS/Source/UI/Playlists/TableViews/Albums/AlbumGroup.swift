@@ -15,24 +15,28 @@ class AlbumGroup: Group {
     private static let albumArtFileName: String = "AlbumArtSmall.jpg"
     private static let folderArtFileName: String = "Folder.jpg"
     
+    var theTracks: [Track] {
+        hasSubGroups ? subGroups.values.flatMap {$0.tracks} : tracks
+    }
+    
     private lazy var artists: Set<String> = {
-        Set(tracks.compactMap {$0.artist})
+        Set(theTracks.compactMap {$0.artist})
     }()
     
     private lazy var genres: Set<String> = {
-        Set(tracks.compactMap {$0.genre})
+        Set(theTracks.compactMap {$0.genre})
     }()
     
     private lazy var years: Set<Int> = {
-        Set(tracks.compactMap {$0.year})
+        Set(theTracks.compactMap {$0.year})
     }()
     
     private lazy var discNumbers: Set<Int> = {
-        Set(tracks.compactMap {$0.discNumber})
+        Set(theTracks.compactMap {$0.discNumber})
     }()
     
     private lazy var totalDiscsCounts: Set<Int> = {
-        Set(tracks.compactMap {$0.totalDiscs})
+        Set(theTracks.compactMap {$0.totalDiscs})
     }()
     
     var artistsString: String? {
@@ -99,7 +103,7 @@ class AlbumGroup: Group {
         
         var parentFolders: Set<URL> = Set()
         
-        for track in tracks {
+        for track in theTracks {
             parentFolders.insert(track.file.parentDir)
         }
         
@@ -122,7 +126,7 @@ class AlbumGroup: Group {
         
         // 2 - Check for an image file in any of the tracks.
         
-        for track in tracks {
+        for track in theTracks {
             
             if let art = track.art?.image {
                 return art
@@ -132,4 +136,7 @@ class AlbumGroup: Group {
         // 3 - Default icon for an album.
         return .imgAlbumGroup
     }
+}
+
+class AlbumDiscGroup: Group {
 }

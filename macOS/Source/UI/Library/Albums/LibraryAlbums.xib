@@ -139,28 +139,17 @@
                                                     <outlet property="textField" destination="ubi-8G-g2I" id="N2C-5Y-Fzs"/>
                                                 </connections>
                                             </tableCellView>
-                                            <tableCellView identifier="cid_TrackName" id="f3s-ew-Odk" userLabel="Track Cell" customClass="AlbumTrackCellView" customModule="Aural" customModuleProvider="target">
+                                            <tableCellView identifier="cid_DiscName" id="f3s-ew-Odk" userLabel="Disc Cell" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="105" width="3234" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="O02-j2-XNN" userLabel="Track Number" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="-2" y="0.0" width="44" height="24"/>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="O02-j2-XNN" userLabel="Disc Number" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                        <rect key="frame" x="-2" y="0.0" width="104" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="3HP-me-PUP"/>
-                                                            <constraint firstAttribute="width" constant="40" id="Ws1-cg-L7G"/>
+                                                            <constraint firstAttribute="width" constant="100" id="Ws1-cg-L7G"/>
                                                         </constraints>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="1" id="6Bt-6v-scl">
-                                                            <font key="font" usesAppearanceFont="YES"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uph-vH-74z" userLabel="Track Name" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="40" y="0.0" width="3191" height="24"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="24" id="7xW-Ep-MIj"/>
-                                                        </constraints>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="bS3-Ha-Bom">
                                                             <font key="font" usesAppearanceFont="YES"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -169,15 +158,52 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="O02-j2-XNN" firstAttribute="leading" secondItem="f3s-ew-Odk" secondAttribute="leading" id="FVO-V9-bus"/>
-                                                    <constraint firstItem="uph-vH-74z" firstAttribute="centerY" secondItem="f3s-ew-Odk" secondAttribute="centerY" id="OFn-kQ-kdY"/>
-                                                    <constraint firstItem="uph-vH-74z" firstAttribute="leading" secondItem="O02-j2-XNN" secondAttribute="trailing" constant="2" id="Zqr-X6-ehx"/>
-                                                    <constraint firstAttribute="trailing" secondItem="uph-vH-74z" secondAttribute="trailing" constant="5" id="eVm-hS-f6I"/>
                                                     <constraint firstItem="O02-j2-XNN" firstAttribute="centerY" secondItem="f3s-ew-Odk" secondAttribute="centerY" id="ol1-gB-JBn"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="lblTrackName" destination="uph-vH-74z" id="lkU-BC-fxO"/>
                                                     <outlet property="lblTrackNumber" destination="O02-j2-XNN" id="cPF-h0-UGg"/>
                                                     <outlet property="textField" destination="O02-j2-XNN" id="nAa-bp-m49"/>
+                                                </connections>
+                                            </tableCellView>
+                                            <tableCellView identifier="cid_TrackName" id="phA-Yn-Lqk" userLabel="Track Cell" customClass="AlbumTrackCellView" customModule="Aural" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="139" width="3234" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zna-O7-LrP" userLabel="Track Number" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                        <rect key="frame" x="-2" y="0.0" width="44" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="40" id="9RK-Wu-sNd"/>
+                                                            <constraint firstAttribute="height" constant="24" id="lbi-bk-xdY"/>
+                                                        </constraints>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="1" id="zLK-FQ-fMw">
+                                                            <font key="font" usesAppearanceFont="YES"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9wl-GT-m9z" userLabel="Track Name" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                        <rect key="frame" x="40" y="0.0" width="3191" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="24" id="Hsl-Yo-hOw"/>
+                                                        </constraints>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Vms-94-BF5">
+                                                            <font key="font" usesAppearanceFont="YES"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="Zna-O7-LrP" firstAttribute="leading" secondItem="phA-Yn-Lqk" secondAttribute="leading" id="2fL-OQ-bIp"/>
+                                                    <constraint firstItem="Zna-O7-LrP" firstAttribute="centerY" secondItem="phA-Yn-Lqk" secondAttribute="centerY" id="JHn-oN-e5x"/>
+                                                    <constraint firstAttribute="trailing" secondItem="9wl-GT-m9z" secondAttribute="trailing" constant="5" id="OLU-Y1-aJc"/>
+                                                    <constraint firstItem="9wl-GT-m9z" firstAttribute="centerY" secondItem="phA-Yn-Lqk" secondAttribute="centerY" id="cAC-lQ-OOt"/>
+                                                    <constraint firstItem="9wl-GT-m9z" firstAttribute="leading" secondItem="Zna-O7-LrP" secondAttribute="trailing" constant="2" id="n5z-28-4ZM"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="lblTrackName" destination="9wl-GT-m9z" id="e40-d2-dDf"/>
+                                                    <outlet property="lblTrackNumber" destination="Zna-O7-LrP" id="a2m-db-DQo"/>
+                                                    <outlet property="textField" destination="Zna-O7-LrP" id="IFf-yx-pDO"/>
                                                 </connections>
                                             </tableCellView>
                                         </prototypeCellViews>
