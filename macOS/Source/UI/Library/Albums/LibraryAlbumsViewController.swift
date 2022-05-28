@@ -102,9 +102,10 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
             }
             
             if let track = item as? Track,
+               let album = outlineView.parent(forItem: item) as? AlbumGroup,
                let cell = outlineView.makeView(withIdentifier: .cid_TrackName, owner: nil) as? AlbumTrackCellView {
                 
-                cell.update(forTrack: track)
+                cell.update(forTrack: track, inGroup: album)
                 cell.rowSelectionStateFunction = {[weak outlineView, weak track] in outlineView?.isItemSelected(track as Any) ?? false}
                 
                 return cell
@@ -242,10 +243,16 @@ class AlbumTrackCellView: AuralTableCellView {
         trackNameConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.playQueueYOffset)
     }
     
-    func update(forTrack track: Track) {
+    func update(forTrack track: Track, inGroup group: AlbumGroup) {
         
         if let trackNumber = track.trackNumber {
-            lblTrackNumber.stringValue = "\(trackNumber)"
+            
+            if group.hasMoreThanOneTotalDisc, let discNumber = track.discNumber {
+                lblTrackNumber.stringValue = "\(discNumber) - \(trackNumber)"
+                
+            } else {
+                lblTrackNumber.stringValue = "\(trackNumber)"
+            }
         }
         
         lblTrackName.stringValue = track.titleOrDefaultDisplayName
@@ -277,11 +284,19 @@ class GroupSummaryCellView: AuralTableCellView {
     func update(forGroup group: AlbumGroup) {
         
         let trackCount = group.numberOfTracks
-        lblTrackCount.stringValue = "\(trackCount) \(trackCount == 1 ? "track" : "tracks")"
+        let discCount = group.discCount
+        
+        if discCount > 1 {
+            lblTrackCount.stringValue = "\(discCount) discs, \(trackCount) \(trackCount == 1 ? "track" : "tracks")"
+            
+        } else {
+            lblTrackCount.stringValue = "\(trackCount) \(trackCount == 1 ? "track" : "tracks")"
+        }
+        
         lblDuration.stringValue = ValueFormatter.formatSecondsToHMS(group.duration)
         
-        lblTrackCount.font = systemFontScheme.playerPrimaryFont
-        lblDuration.font = systemFontScheme.playerPrimaryFont
+        lblTrackCount.font = systemFontScheme.playQueuePrimaryFont
+        lblDuration.font = systemFontScheme.playQueuePrimaryFont
         
         lblTrackCount.textColor = systemColorScheme.secondaryTextColor
         lblDuration.textColor = systemColorScheme.secondaryTextColor

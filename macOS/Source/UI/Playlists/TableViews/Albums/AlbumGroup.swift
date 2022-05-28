@@ -19,12 +19,20 @@ class AlbumGroup: Group {
         Set(tracks.compactMap {$0.artist})
     }()
     
-    private lazy var genres: Set<String> =  {
+    private lazy var genres: Set<String> = {
         Set(tracks.compactMap {$0.genre})
     }()
     
-    private lazy var years: Set<Int> =  {
+    private lazy var years: Set<Int> = {
         Set(tracks.compactMap {$0.year})
+    }()
+    
+    private lazy var discNumbers: Set<Int> = {
+        Set(tracks.compactMap {$0.discNumber})
+    }()
+    
+    private lazy var totalDiscsCounts: Set<Int> = {
+        Set(tracks.compactMap {$0.totalDiscs})
     }()
     
     var artistsString: String? {
@@ -60,6 +68,31 @@ class AlbumGroup: Group {
         
         let sortedYears = years.sorted(by: <)
         return "\(sortedYears.min()!) - \(sortedYears.max()!)"
+    }
+    
+    var discCount: Int {
+        discNumbers.count
+    }
+    
+    var totalDiscs: Int? {
+        
+        if totalDiscsCounts.isEmpty {return nil}
+        
+        if totalDiscsCounts.count == 1 {
+            return totalDiscsCounts.first
+        }
+        
+        // Maximum of all total discs counts.
+        return totalDiscsCounts.sorted(by: >).first
+    }
+    
+    var hasMoreThanOneTotalDisc: Bool {
+        
+        if let totalDiscs = self.totalDiscs {
+            return totalDiscs > 1
+        }
+
+        return false
     }
     
     var art: NSImage {

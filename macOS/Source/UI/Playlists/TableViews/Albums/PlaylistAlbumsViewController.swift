@@ -57,7 +57,7 @@ class PlaylistAlbumsViewController: TrackListOutlineViewController {
         
         guard let cell = outlineView.makeView(withIdentifier: .cid_AlbumTrack, owner: nil) as? AlbumTrackCellView else {return nil}
         
-        cell.update(forTrack: track)
+//        cell.update(forTrack: track)
         
         cell.rowSelectionStateFunction = {[weak outlineView] in
             outlineView?.isItemSelected(track) ?? false
