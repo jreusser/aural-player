@@ -100,10 +100,17 @@ class AuralTableCellView: NSTableCellView {
     }
     
     // Constraints
-    func realignText(yOffset: CGFloat) {
+    func realignTextBottom(yOffset: CGFloat) {
 
         textFieldConstraintsManager.removeAll(withAttributes: [.bottom])
         textFieldConstraintsManager.setBottom(relatedToBottomOf: self, offset: yOffset)
+    }
+    
+    // Constraints
+    func realignTextCenterY(yOffset: CGFloat) {
+
+        textFieldConstraintsManager.removeAll(withAttributes: [.centerY])
+        textFieldConstraintsManager.centerVerticallyInSuperview(offset: yOffset)
     }
     
     override var backgroundStyle: NSView.BackgroundStyle {

@@ -72,7 +72,7 @@ class PlaylistAlbumsViewController: TrackListOutlineViewController {
                                            inFont: systemFontScheme.playQueuePrimaryFont,
                                            andColor: systemColorScheme.tertiaryTextColor,
                                            selectedTextColor: systemColorScheme.tertiarySelectedTextColor,
-                                           yOffset: systemFontScheme.playQueueYOffset)
+                                    bottomYOffset: systemFontScheme.playQueueYOffset)
             .buildCell(forOutlineView: outlineView, forColumnWithId: .cid_Duration, havingItem: item)
     }
 }

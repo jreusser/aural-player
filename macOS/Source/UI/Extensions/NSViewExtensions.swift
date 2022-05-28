@@ -147,7 +147,7 @@ extension NSView {
         
         guard let superview = self.superview else {return}
             
-        superview.constraints.filter {$0.firstItem === self && attributes?.contains($0.firstAttribute) ?? true}.forEach {superview.deactivateAndRemoveConstraint($0)}
+        superview.constraints.filter {($0.firstItem === self && attributes?.contains($0.firstAttribute) ?? true) || ($0.secondItem === self && attributes?.contains($0.secondAttribute) ?? true)}.forEach {superview.deactivateAndRemoveConstraint($0)}
     }
 }
 

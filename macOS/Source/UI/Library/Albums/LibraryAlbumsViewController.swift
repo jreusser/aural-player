@@ -124,7 +124,8 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
                 return TableCellBuilder().withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
                                                    inFont: systemFontScheme.playQueuePrimaryFont,
                                                    andColor: systemColorScheme.tertiaryTextColor,
-                                                   selectedTextColor: systemColorScheme.tertiarySelectedTextColor)
+                                                   selectedTextColor: systemColorScheme.tertiarySelectedTextColor,
+                                                   centerYOffset: systemFontScheme.playQueueYOffset)
                     .buildCell(forOutlineView: outlineView,
                                forColumnWithId: .cid_TrackDuration, havingItem: track)
             }
@@ -217,15 +218,22 @@ class AlbumTrackCellView: AuralTableCellView {
     @IBOutlet weak var lblTrackNumber: NSTextField!
     @IBOutlet weak var lblTrackName: NSTextField!
     
+    lazy var trackNumberConstraintsManager = LayoutConstraintsManager(for: lblTrackNumber!)
+    lazy var trackNameConstraintsManager = LayoutConstraintsManager(for: lblTrackName!)
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()
         
         lblTrackNumber.font = systemFontScheme.playQueuePrimaryFont
         lblTrackNumber.textColor = systemColorScheme.tertiaryTextColor
+        trackNumberConstraintsManager.removeAll(withAttributes: [.centerY])
+        trackNumberConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.playQueueYOffset)
         
         lblTrackName.font = systemFontScheme.playQueuePrimaryFont
         lblTrackName.textColor = systemColorScheme.primaryTextColor
+        trackNameConstraintsManager.removeAll(withAttributes: [.centerY])
+        trackNameConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.playQueueYOffset)
     }
     
     func update(forTrack track: Track) {

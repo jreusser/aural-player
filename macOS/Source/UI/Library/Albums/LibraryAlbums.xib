@@ -144,9 +144,9 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="O02-j2-XNN" userLabel="Track Number" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="-2" y="4" width="44" height="16"/>
+                                                        <rect key="frame" x="-2" y="0.0" width="44" height="24"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="16" id="3HP-me-PUP"/>
+                                                            <constraint firstAttribute="height" constant="24" id="3HP-me-PUP"/>
                                                             <constraint firstAttribute="width" constant="40" id="Ws1-cg-L7G"/>
                                                         </constraints>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="1" id="6Bt-6v-scl">
@@ -156,9 +156,9 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uph-vH-74z" userLabel="Track Name" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="40" y="4" width="438" height="16"/>
+                                                        <rect key="frame" x="40" y="0.0" width="438" height="24"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="16" id="7xW-Ep-MIj"/>
+                                                            <constraint firstAttribute="height" constant="24" id="7xW-Ep-MIj"/>
                                                         </constraints>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="bS3-Ha-Bom">
                                                             <font key="font" usesAppearanceFont="YES"/>
@@ -169,10 +169,10 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="O02-j2-XNN" firstAttribute="leading" secondItem="f3s-ew-Odk" secondAttribute="leading" id="FVO-V9-bus"/>
+                                                    <constraint firstItem="uph-vH-74z" firstAttribute="centerY" secondItem="f3s-ew-Odk" secondAttribute="centerY" id="OFn-kQ-kdY"/>
                                                     <constraint firstItem="uph-vH-74z" firstAttribute="leading" secondItem="O02-j2-XNN" secondAttribute="trailing" constant="2" id="Zqr-X6-ehx"/>
                                                     <constraint firstAttribute="trailing" secondItem="uph-vH-74z" secondAttribute="trailing" constant="5" id="eVm-hS-f6I"/>
-                                                    <constraint firstAttribute="bottom" secondItem="uph-vH-74z" secondAttribute="bottom" constant="4" id="gUp-vL-E9s"/>
-                                                    <constraint firstAttribute="bottom" secondItem="O02-j2-XNN" secondAttribute="bottom" constant="4" id="wzF-xI-rbv"/>
+                                                    <constraint firstItem="O02-j2-XNN" firstAttribute="centerY" secondItem="f3s-ew-Odk" secondAttribute="centerY" id="ol1-gB-JBn"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="lblTrackName" destination="uph-vH-74z" id="lkU-BC-fxO"/>
@@ -281,7 +281,7 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="hBY-pE-fw3" firstAttribute="leading" secondItem="QEO-Sl-n0O" secondAttribute="leading" constant="2" id="Fgp-9K-Y8g"/>
-                                                    <constraint firstAttribute="bottom" secondItem="hBY-pE-fw3" secondAttribute="bottom" constant="3" id="nYV-fY-VIr"/>
+                                                    <constraint firstItem="hBY-pE-fw3" firstAttribute="centerY" secondItem="QEO-Sl-n0O" secondAttribute="centerY" id="Grs-k7-zSL"/>
                                                     <constraint firstAttribute="trailing" secondItem="hBY-pE-fw3" secondAttribute="trailing" constant="5" id="tqg-gh-01q"/>
                                                 </constraints>
                                                 <connections>

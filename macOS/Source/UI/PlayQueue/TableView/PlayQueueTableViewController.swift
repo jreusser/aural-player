@@ -44,14 +44,14 @@ class PlayQueueTableViewController: PlayQueueViewController {
                 return builder.withAttributedText(strings: [(text: artist + "  ", font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.secondaryTextColor),
                                                             (text: titleAndArtist.title, font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.primaryTextColor)],
                                                   selectedTextColors: [systemColorScheme.secondarySelectedTextColor, systemColorScheme.primarySelectedTextColor],
-                                                  yOffset: systemFontScheme.playQueueYOffset)
+                                                  bottomYOffset: systemFontScheme.playQueueYOffset)
                 
             } else {
                 
                 return builder.withAttributedText(strings: [(text: titleAndArtist.title,
                                                              font: systemFontScheme.playlist.trackTextFont,
                                                              color: systemColorScheme.primaryTextColor)], selectedTextColors: [systemColorScheme.primarySelectedTextColor],
-                                                  yOffset: systemFontScheme.playQueueYOffset)
+                                                  bottomYOffset: systemFontScheme.playQueueYOffset)
             }
             
         case .cid_duration:
