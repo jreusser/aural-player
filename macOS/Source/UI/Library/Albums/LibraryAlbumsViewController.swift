@@ -70,7 +70,7 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
         if item == nil {
-            return albumsGrouping.groups[index]
+            return albumsGrouping.group(at: index)
         }
         
         if let group = item as? AlbumGroup {

@@ -38,13 +38,16 @@ class Grouping: Hashable {
     let subGrouping: Grouping?
     
     // TODO: Make these 2 an OrderedDictionary !!!
-    var groups: OrderedSet<Group> = OrderedSet()
-    fileprivate var groupsByName: [String: Group] = [:]
+    var groups: OrderedDictionary<String, Group> = OrderedDictionary()
+    
+    func group(at index: Int) -> Group {
+        groups.elements[index].value
+    }
     
     var numberOfGroups: Int {groups.count}
     
     var duration: Double {
-        groups.reduce(0.0, {(totalSoFar: Double, group: Group) -> Double in totalSoFar + group.duration})
+        groups.values.reduce(0.0, {(totalSoFar: Double, group: Group) -> Double in totalSoFar + group.duration})
     }
     
     var sortOrder: TrackComparator {
@@ -64,7 +67,7 @@ class Grouping: Hashable {
         groupTracks(newTracks, accordingTo: self)
 
         if let subGrouping = self.subGrouping {
-            subGroup(groups, accordingTo: subGrouping)
+            subGroup(groups.values, accordingTo: subGrouping)
         }
     }
     
@@ -76,15 +79,14 @@ class Grouping: Hashable {
         
         let group = doCreateGroup(named: groupName)
         
-        groups.append(group)
-        groupsByName[groupName] = group
-        groups.sort(by: {g1, g2 in g1.name < g2.name})
+        groups[groupName] = group
+        groups.sort(by: {g1, g2 in g1.value.name < g2.value.name})
         
         return group
     }
     
     fileprivate func findOrCreateGroup(named groupName: String) -> Group {
-        groupsByName[groupName] ?? createGroup(named: groupName)
+        groups[groupName] ?? createGroup(named: groupName)
     }
     
     // Tracks removed from linear list, parent groups unknown.
@@ -94,10 +96,10 @@ class Grouping: Hashable {
         
         for (groupName, groupTracks) in categorizedTracks {
             
-            guard let group = groupsByName[groupName] else {continue}
+            guard let group = groups[groupName] else {continue}
             
             if group.numberOfTracks == groupTracks.count {
-                groups.remove(group)
+                groups.removeValue(forKey: group.name)
                 
             } else {
                 group.removeTracks(groupTracks)
@@ -118,20 +120,20 @@ class Grouping: Hashable {
             
             // If all tracks were removed from this group, remove the group itself.
             if parent.numberOfTracks == tracks.count {
-                groups.remove(parent)
+                groups.removeValue(forKey: parent.name)
                 
             } else {
                 parent.removeTracks(tracks)
             }
         }
         
-        _ = groups.removeItems(groupsToRemove)
+        for group in groupsToRemove {
+            _ = groups.removeValue(forKey: group.name)
+        }
     }
     
     func removeAllTracks() {
-        
         groups.removeAll()
-        groupsByName.removeAll()
     }
     
     @inlinable
@@ -168,7 +170,7 @@ class Grouping: Hashable {
     }
 
     // Recursive sub-grouping function.
-    fileprivate func subGroup(_ groups: OrderedSet<Group>, accordingTo grouping: Grouping) {
+    fileprivate func subGroup(_ groups: OrderedDictionary<String, Group>.Values, accordingTo grouping: Grouping) {
 
         for group in groups {
             groupTracks(Array(group.tracks), accordingTo: grouping)
@@ -176,7 +178,7 @@ class Grouping: Hashable {
 
         // Recursive call
         if let subGrouping = grouping.subGrouping {
-            subGroup(grouping.groups, accordingTo: subGrouping)
+            subGroup(grouping.groups.values, accordingTo: subGrouping)
         }
     }
 }
