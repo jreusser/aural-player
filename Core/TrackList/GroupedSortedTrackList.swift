@@ -74,6 +74,8 @@ class GroupedSortedTrackList: SortedTrackList, GroupedSortedTrackListProtocol {
         
         super.removeAllTracks()
         
-        // TODO: Remove from groupings
+        groupings.forEach {
+            $0.removeAllTracks()
+        }
     }
 }

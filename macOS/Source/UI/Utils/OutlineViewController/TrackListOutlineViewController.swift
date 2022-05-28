@@ -112,6 +112,18 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, N
         _ = trackList.remove(tracks: groupedTracks, andGroups: Array(groups), from: grouping)
     }
     
+    func notifyReloadTable() {}
+    
+    @IBAction func removeAllTracksAction(_ sender: NSButton) {
+        removeAllTracks()
+    }
+    
+    func removeAllTracks() {
+        
+        trackList.removeAllTracks()
+        notifyReloadTable()
+    }
+    
     @inlinable
     @inline(__always)
     func reloadTable() {

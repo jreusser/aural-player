@@ -35,6 +35,8 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         
         messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
         messenger.subscribeAsync(to: .library_tracksRemoved, handler: reloadTable)
+        
+        messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
         messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
         
         colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
@@ -180,6 +182,10 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         let numGroups = albumsGrouping.numberOfGroups
         lblAlbumsSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "album" : "albums")"
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(library.duration)
+    }
+    
+    override func notifyReloadTable() {
+        messenger.publish(.library_reloadTable)
     }
 }
 

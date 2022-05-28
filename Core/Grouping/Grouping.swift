@@ -128,6 +128,12 @@ class Grouping: Hashable {
         _ = groups.removeItems(groupsToRemove)
     }
     
+    func removeAllTracks() {
+        
+        groups.removeAll()
+        groupsByName.removeAll()
+    }
+    
     @inlinable
     @inline(__always)
     func categorizeTracksByGroupName(_ tracks: [Track], keyFunction: GroupingFunction? = nil) -> [String: [Track]] {
