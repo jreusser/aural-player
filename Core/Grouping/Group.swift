@@ -21,6 +21,17 @@ class AlbumsRootGroup: Group {
     }
 }
 
+class DecadesRootGroup: Group {
+    
+    override func doCreateSubGroup(named groupName: String, atDepth depth: Int) -> Group {
+        DecadeGroup(name: groupName, depth: depth)
+    }
+}
+
+class DecadeGroup: Group {
+    
+}
+
 class Group: PlayableItem {
     
     let name: String

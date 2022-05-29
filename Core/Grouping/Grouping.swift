@@ -21,6 +21,14 @@ fileprivate let albumsKeyFunction: KeyFunction = {track in
     track.album ?? "<Unknown>"
 }
 
+fileprivate let decadesKeyFunction: KeyFunction = {track in
+    
+    guard let year = track.year else {return "<Unknown>"}
+    
+    let decade = year - (year % 10)
+    return "\(decade)'s"
+}
+
 fileprivate let albumDiscsKeyFunction: KeyFunction = {track in
     
     if let discNumber = track.discNumber {
@@ -55,6 +63,7 @@ class GroupingFunction {
         self.trackSortOrder = trackSortOrder
     }
     
+    // TODO: What is the most suitable place for this logic ???
     func canSubGroup(group: Group) -> Bool {
         
         guard let albumGroup = group as? AlbumGroup else {return true}
@@ -112,10 +121,6 @@ class Grouping {
     
     func group(at index: Int) -> Group {
         rootGroup.subGroup(at: index)
-    }
-    
-    fileprivate func doCreateGroup(named groupName: String, atDepth depth: Int) -> Group {
-        Group(name: groupName, depth: depth)
     }
     
     func addTracks(_ newTracks: [Track]) {
@@ -205,18 +210,15 @@ class AlbumsGrouping: Grouping {
                                                                              (albumDiscsKeyFunction, groupSortByName, trackNumberAscendingComparator)]),
         rootGroup: AlbumsRootGroup(name: "Albums-Root", depth: 0))
     }
+}
+
+class DecadesGrouping: Grouping {
     
-    override fileprivate func doCreateGroup(named groupName: String, atDepth depth: Int) -> Group {
+    init() {
         
-        switch depth {
-            
-        case 2:
-            
-            return AlbumDiscGroup(name: groupName, depth: depth)
-            
-        default:
-            
-            return AlbumGroup(name: groupName, depth: depth)
-        }
+        let trackComparator = TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending)
+        
+        super.init(name: "Decades", function: GroupingFunction.fromFunctions([(decadesKeyFunction, groupSortByName, trackComparator.comparator)]),
+                   rootGroup: DecadesRootGroup(name: "Decades-Root", depth: 0))
     }
 }

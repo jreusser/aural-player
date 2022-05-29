@@ -83,7 +83,7 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         }
         
         if let group = item as? Group {
-            return (group.hasSubGroups ? group.subGroups.values[index] : group[index] ?? "") as Any
+            return (group.hasSubGroups ? group.subGroups.values[index] : group[index]) as Any
         }
         
         return ""
@@ -160,7 +160,7 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
             if let album = item as? AlbumGroup,
                let cell = outlineView.makeView(withIdentifier: .cid_AlbumDuration, owner: nil) as? GroupSummaryCellView {
                 
-                cell.update(forGroup: album)
+                cell.update(forAlbumGroup: album)
                 cell.rowSelectionStateFunction = {[weak outlineView, weak album] in outlineView?.isItemSelected(album as Any) ?? false}
                 
                 return cell
@@ -312,7 +312,21 @@ class GroupSummaryCellView: AuralTableCellView {
     @IBOutlet weak var lblTrackCount: NSTextField!
     @IBOutlet weak var lblDuration: NSTextField!
     
-    func update(forGroup group: AlbumGroup) {
+    func update(forGroup group: Group) {
+        
+        let trackCount = group.numberOfTracks
+        
+        lblTrackCount.stringValue = "\(trackCount) \(trackCount == 1 ? "track" : "tracks")"
+        lblDuration.stringValue = ValueFormatter.formatSecondsToHMS(group.duration)
+        
+        lblTrackCount.font = systemFontScheme.playQueuePrimaryFont
+        lblDuration.font = systemFontScheme.playQueuePrimaryFont
+        
+        lblTrackCount.textColor = systemColorScheme.secondaryTextColor
+        lblDuration.textColor = systemColorScheme.secondaryTextColor
+    }
+    
+    func update(forAlbumGroup group: AlbumGroup) {
         
         let trackCount = group.numberOfTracks
         let discCount = group.discCount
