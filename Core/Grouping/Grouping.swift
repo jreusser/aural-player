@@ -11,7 +11,24 @@
 import Foundation
 import OrderedCollections
 
-typealias GroupingFunction = (Track) -> String
+typealias KeyFunction = (Track) -> String
+
+fileprivate let groupSortByName: GroupSortFunction = {g1, g2 in
+    g1.name < g2.name
+}
+
+fileprivate let albumsKeyFunction: KeyFunction = {track in
+    track.album ?? "<Unknown>"
+}
+
+fileprivate let albumDiscsKeyFunction: KeyFunction = {track in
+    
+    if let discNumber = track.discNumber {
+        return "Disc \(discNumber)"
+    }
+    
+    return "<Unknown Disc>"
+}
 
 extension Dictionary {
     
@@ -20,291 +37,204 @@ extension Dictionary {
     }
 }
 
-class Grouping: Hashable {
+class GroupingFunction {
     
-    static func == (lhs: Grouping, rhs: Grouping) -> Bool {
-        lhs.name == rhs.name && lhs.depth == rhs.depth
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        
-        hasher.combine(name)
-        hasher.combine(depth)
-    }
-    
-    var name: String
+    let keyFunction: KeyFunction
     let depth: Int
-    let keyFunction: GroupingFunction
-    let subGrouping: Grouping?
+    let subGroupingFunction: GroupingFunction?
+    let groupSortOrder: GroupSortFunction
+    let trackSortOrder: TrackSortFunction
     
-    // TODO: Make these 2 an OrderedDictionary !!!
-    var groups: OrderedDictionary<String, Group> = OrderedDictionary()
-    
-    func group(at index: Int) -> Group {
-        groups.elements[index].value
+    init(keyFunction: @escaping KeyFunction, depth: Int = 0, subGroupingFunction: GroupingFunction? = nil, groupSortOrder: @escaping GroupSortFunction, trackSortOrder: @escaping TrackSortFunction) {
+        
+        self.keyFunction = keyFunction
+        self.depth = depth
+        
+        self.subGroupingFunction = subGroupingFunction
+        self.groupSortOrder = groupSortOrder
+        self.trackSortOrder = trackSortOrder
     }
+    
+    static func fromFunctions(_ functions: [(keyFunction: KeyFunction, groupSortFunction: GroupSortFunction, trackSortFunction: TrackSortFunction)]) -> GroupingFunction {
+        
+        if functions.count == 1 {
+            return GroupingFunction(keyFunction: functions[0].keyFunction, depth: 1, groupSortOrder: functions[0].groupSortFunction, trackSortOrder: functions[0].trackSortFunction)
+        }
+        
+        var childIndex: Int = functions.lastIndex
+        var parentIndex: Int = childIndex - 1
+        
+        var child: GroupingFunction
+        var parent: GroupingFunction
+        
+        repeat {
+            
+            child = GroupingFunction(keyFunction: functions[childIndex].keyFunction,
+                                     depth: childIndex + 1,
+                                     groupSortOrder: functions[childIndex].groupSortFunction,
+                                     trackSortOrder: functions[childIndex].trackSortFunction)
+            
+            parent = GroupingFunction(keyFunction: functions[parentIndex].keyFunction,
+                                      depth: parentIndex + 1,
+                                      subGroupingFunction: child,
+                                      groupSortOrder: functions[parentIndex].groupSortFunction,
+                                      trackSortOrder: functions[parentIndex].trackSortFunction)
+            
+            parentIndex.decrement()
+            childIndex.decrement()
+            
+        } while parentIndex >= 0
+        
+        return parent
+    }
+}
+
+class Grouping {
+    
+    let name: String
+    let function: GroupingFunction
+    
+    init(name: String, function: GroupingFunction) {
+
+        self.name = name
+        self.function = function
+    }
+    
+    var groups: OrderedDictionary<String, Group> = OrderedDictionary()
     
     var numberOfGroups: Int {groups.count}
     
-    var duration: Double {
-        groups.values.reduce(0.0, {(totalSoFar: Double, group: Group) -> Double in totalSoFar + group.duration})
+    func group(at index: Int) -> Group {
+        groups.values[index]
     }
     
-    var sortOrder: TrackComparator {
-        trackNameAscendingComparator
+    fileprivate func doCreateGroup(named groupName: String, atDepth depth: Int) -> Group {
+        Group(name: groupName, depth: depth)
     }
     
-    fileprivate init(name: String, depth: Int, keyFunction: @escaping GroupingFunction, subGrouping: Grouping? = nil) {
+    func findOrCreateGroup(named groupName: String) -> Group {
         
-        self.name = name
-        self.depth = depth
-        self.keyFunction = keyFunction
-        self.subGrouping = subGrouping
+        if let group = groups[groupName] {
+            return group
+        }
+        
+        let newGroup = doCreateGroup(named: groupName, atDepth: 1)
+        groups[groupName] = newGroup
+        return newGroup
     }
     
     func addTracks(_ newTracks: [Track]) {
-        
-        groupTracks(newTracks, accordingTo: self)
-
-        if let subGrouping = self.subGrouping {
-            subGroup(groups.values, accordingTo: subGrouping)
-        }
-    }
-    
-    fileprivate func doCreateGroup(named groupName: String) -> Group {
-        Group(name: groupName, depth: self.depth)
-    }
-    
-    fileprivate func createGroup(named groupName: String) -> Group {
-        
-        let group = doCreateGroup(named: groupName)
-        
-        groups[groupName] = group
-        groups.sort(by: {g1, g2 in g1.value.name < g2.value.name})
-        
-        return group
-    }
-    
-    fileprivate func findOrCreateGroup(named groupName: String) -> Group {
-        groups[groupName] ?? createGroup(named: groupName)
-    }
-    
-    // Tracks removed from linear list, parent groups unknown.
-    func removeTracks(_ tracksToRemove: [Track]) {
-        
-        let categorizedTracks: [String: [Track]] = categorizeTracksByGroupName(tracksToRemove)
-        
-        for (groupName, groupTracks) in categorizedTracks {
-            
-            guard let group = groups[groupName] else {continue}
-            
-            if group.numberOfTracks == groupTracks.count {
-                groups.removeValue(forKey: group.name)
-                
-            } else {
-                group.removeTracks(groupTracks)
-            }
-        }
-    }
-    
-    // Tracks removed from hierarchical list, parent groups known.
-    func remove(tracks tracksToRemove: [GroupedTrack], andGroups groupsToRemove: [Group]) {
-        
-        var groupedTracks: [Group: [Track]] = [:]
-        
-        for track in tracksToRemove {
-            groupedTracks[track.group, default: []].append(track.track)
-        }
-        
-        for (parent, tracks) in groupedTracks {
-            
-            // If all tracks were removed from this group, remove the group itself.
-            if parent.numberOfTracks == tracks.count {
-                groups.removeValue(forKey: parent.name)
-                
-            } else {
-                parent.removeTracks(tracks)
-            }
-        }
-        
-        for group in groupsToRemove {
-            _ = groups.removeValue(forKey: group.name)
-        }
-    }
-    
-    func removeAllTracks() {
-        groups.removeAll()
+        groupTracks(newTracks, by: self.function)
     }
     
     @inlinable
     @inline(__always)
-    func categorizeTracksByGroupName(_ tracks: [Track], keyFunction: GroupingFunction? = nil) -> [String: [Track]] {
+    func categorizeTracksByGroupName(_ tracks: [Track], keyFunction: KeyFunction) -> [String: [Track]] {
         
         var tracksByGroupName: [String: [Track]] = [:]
         
         for track in tracks {
-            tracksByGroupName[(keyFunction ?? self.keyFunction)(track), default: []].append(track)
+            tracksByGroupName[keyFunction(track), default: []].append(track)
         }
         
         return tracksByGroupName
     }
     
-    func applyTo(trackList: TrackList) -> [Group] {
-        []
+    fileprivate func groupTracks(_ tracks: [Track], by function: GroupingFunction) {
+        
+        let tracksByGroupName = categorizeTracksByGroupName(tracks, keyFunction: function.keyFunction)
+        
+        for (groupName, tracks) in tracksByGroupName {
+        
+            // Top-level groups
+            
+            let group = findOrCreateGroup(named: groupName)
+            group.addTracks(tracks)
+            
+            if function.subGroupingFunction == nil {
+                group.sortTracks(by: function.trackSortOrder)
+            }
+            
+            groups[groupName] = group
+        }
+        
+        // Sort by group name in ascending order.
+        groups.sort(by: {kvPair1, kvPair2 in
+            function.groupSortOrder(kvPair1.value, kvPair2.value)
+        })
+        
+        if let subGroupingFunction = function.subGroupingFunction {
+            
+            for group in groups.values {
+                subGroupTracks(in: group, by: subGroupingFunction)
+            }
+        }
     }
     
-    fileprivate func groupTracks(_ tracks: [Track], accordingTo grouping: Grouping) {
+    fileprivate func subGroupTracks(in group: Group, by function: GroupingFunction) {
         
-        // Sort tracks only if they will not be further sub-grouped.
-        let needToSortTracks: Bool = grouping.subGrouping == nil
+        let tracksByGroupName = categorizeTracksByGroupName(group.tracks, keyFunction: function.keyFunction)
         
-        for (groupName, tracks) in categorizeTracksByGroupName(tracks, keyFunction: grouping.keyFunction) {
+        for (groupName, tracks) in tracksByGroupName {
             
-            let group = grouping.findOrCreateGroup(named: groupName)
-            group.addTracks(tracks)
+            let subGroup = group.findOrCreateSubGroup(named: groupName)
+            subGroup.addTracks(tracks)
             
-            if needToSortTracks {
-                group.sortTracks(by: grouping.sortOrder)
-            }
-        }
-    }
-
-    fileprivate func groupTracks(in parentGroup: Group, accordingTo grouping: Grouping) {
-        
-        // Sort tracks only if they will not be further sub-grouped.
-        let needToSortTracks: Bool = grouping.subGrouping == nil
-        
-        print("\n\nparent \(parentGroup.name) has \(parentGroup.numberOfTracks) tracks.")
-        
-        for (groupName, tracks) in categorizeTracksByGroupName(parentGroup.tracks, keyFunction: grouping.keyFunction) {
-            
-            print("\n\n \(groupName) has \(tracks.count) tracks.")
-            
-            let group = grouping.findOrCreateGroup(named: groupName)
-            parentGroup.addSubGroup(group)
-            group.addTracks(tracks)
-            
-            if needToSortTracks {
-                group.sortTracks(by: grouping.sortOrder)
+            if function.subGroupingFunction == nil {
+                subGroup.sortTracks(by: function.trackSortOrder)
             }
         }
         
-        parentGroup.removeAllTracks()
-    }
-
-    // Recursive sub-grouping function.
-    fileprivate func subGroup(_ groups: OrderedDictionary<String, Group>.Values, accordingTo grouping: Grouping) {
+        // Tracks no longer in parent.
+        group.removeAllTracks()
         
-        if grouping is AlbumDiscsGrouping {
-            print("\n\nIT IS GROUPING BY DISC NUMBER !")
+        group.sortSubGroups(by: groupSortByName)
+        
+        if let subGroupingFunction = function.subGroupingFunction {
+            
+            for group in group.subGroups.values {
+                subGroupTracks(in: group, by: subGroupingFunction)
+            }
         }
+    }
+    
+    func removeTracks(_ newTracks: [Track]) {}
+    
+    func remove(tracks: [GroupedTrack], andGroups groups: [Group]) {}
+    
+    func removeAllTracks() {}
+}
 
-        for group in groups {
-            groupTracks(in: group, accordingTo: grouping)
-        }
-
-        // Recursive call
-        if let subGrouping = grouping.subGrouping {
-            subGroup(grouping.groups.values, accordingTo: subGrouping)
-        }
+extension Grouping: Hashable {
+    
+    static func == (lhs: Grouping, rhs: Grouping) -> Bool {
+        lhs.name == rhs.name
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
     }
 }
 
 class AlbumsGrouping: Grouping {
     
-    override var sortOrder: TrackComparator {
-        trackDiscAndTrackNumberAscendingComparator
-    }
-    
-    init(depth: Int = 0) {
+    init() {
         
-        super.init(name: "Albums", depth: depth, keyFunction: {track in track.album ?? "<Unknown>"},
-                   subGrouping: AlbumDiscsGrouping(depth: depth + 1))
+        super.init(name: "Albums", function: GroupingFunction.fromFunctions([(albumsKeyFunction, groupSortByName, trackNumberAscendingComparator),
+                                                                             (albumDiscsKeyFunction, groupSortByName, trackNumberAscendingComparator)]))
     }
     
-    override fileprivate func doCreateGroup(named groupName: String) -> Group {
-        AlbumGroup(name: groupName, depth: self.depth)
-    }
-}
-
-class AlbumDiscsGrouping: Grouping {
-    
-    override var sortOrder: TrackComparator {
-        trackNumberAscendingComparator
-    }
-    
-    init(depth: Int) {
+    override fileprivate func doCreateGroup(named groupName: String, atDepth depth: Int) -> Group {
         
-        super.init(name: "Album Discs", depth: depth) {track in
+        switch depth {
             
-            if let discNumber = track.discNumber {
-                return "Disc \(discNumber)"
-            }
+        case 2:
             
-            return "<Unknown Disc>"
-        }
-    }
-    
-    override fileprivate func doCreateGroup(named groupName: String) -> Group {
-        AlbumDiscGroup(name: groupName, depth: self.depth)
-    }
-}
-
-class ArtistsGrouping: Grouping {
-    
-    typealias GroupType = Group
-    
-    // TODO: Parse out collaborators: eg. "Grimes (feat. Magical Clouds)", so that all tracks
-    // end up in the same group.
-    
-    override var sortOrder: TrackComparator {
-        trackAlbumDiscAndTrackNumberAscendingComparator
-    }
-    
-    init(depth: Int = 0, subGroupByAlbum: Bool = true) {
-        
-        super.init(name: "Artists", depth: depth, keyFunction: {track in track.artist ?? "<Unknown>"},
-                   subGrouping: subGroupByAlbum ? AlbumsGrouping(depth: 1) : nil)
-    }
-}
-
-class GenresGrouping: Grouping {
-    
-    init(subGroupByArtist: Bool = true, subGroupByAlbum: Bool = true) {
-        
-        let keyFunction: GroupingFunction = {track in track.genre ?? "<Unknown>"}
-        
-        switch (subGroupByArtist, subGroupByAlbum) {
+            return AlbumDiscGroup(name: groupName, depth: depth)
             
-        case (true, true):
+        default:
             
-            super.init(name: "Genres", depth: 0, keyFunction: keyFunction, subGrouping: ArtistsGrouping(depth: 1))
-            
-        case (true, false):
-            
-            super.init(name: "Genres", depth: 0, keyFunction: keyFunction, subGrouping: ArtistsGrouping(depth: 1, subGroupByAlbum: false))
-            
-        case (false, true):
-        
-            super.init(name: "Genres", depth: 0, keyFunction: keyFunction, subGrouping: AlbumsGrouping(depth: 1))
-            
-        case (false, false):
-        
-            super.init(name: "Genres", depth: 0, keyFunction: keyFunction)
-        }
-    }
-}
-
-class DecadesGrouping: Grouping {
-    
-    init(depth: Int = 0) {
-        
-        super.init(name: "Decades", depth: depth) {track in
-            
-            guard let year = track.year else {return "<Unknown>"}
-            
-            let decade = year - (year % 10)
-            return "\(decade)'s"
+            return AlbumGroup(name: groupName, depth: depth)
         }
     }
 }

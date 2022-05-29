@@ -136,6 +136,10 @@ class AlbumGroup: Group {
         // 3 - Default icon for an album.
         return .imgAlbumGroup
     }
+    
+    override func doCreateSubGroup(named groupName: String, atDepth depth: Int) -> Group {
+        AlbumDiscGroup(name: groupName, depth: depth)
+    }
 }
 
 class AlbumDiscGroup: Group {

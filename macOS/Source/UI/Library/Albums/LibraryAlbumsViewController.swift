@@ -95,10 +95,6 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
-        if let group = item as? Group {
-            print("\nView for group: \(group.name)")
-        }
-        
         guard let columnId = tableColumn?.identifier else {return nil}
         
         switch columnId {

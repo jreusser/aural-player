@@ -12,6 +12,7 @@ import Foundation
 import OrderedCollections
 
 typealias TrackSortFunction = (Track, Track) -> Bool
+typealias GroupSortFunction = (Group, Group) -> Bool
 
 class Group: PlayableItem {
     
@@ -19,18 +20,18 @@ class Group: PlayableItem {
     let depth: Int
     
     var duration: Double {
-        _tracks.duration
+        _tracks.values.reduce(0.0, {(totalSoFar: Double, track: Track) -> Double in totalSoFar + track.duration})
     }
     
-    var _tracks: TrackList = TrackList()
-    var tracks: [Track] {_tracks.tracks}
+    var _tracks: OrderedDictionary<URL, Track> = OrderedDictionary()
+    var tracks: [Track] {Array(_tracks.values)}
     
-    var numberOfTracks: Int {_tracks.size}
-    var hasTracks: Bool {_tracks.isNonEmpty}
+    var numberOfTracks: Int {_tracks.count}
+    var hasTracks: Bool {!_tracks.isEmpty}
     
     /// Safe array access.
     subscript(index: Int) -> Track? {
-        _tracks[index]
+        _tracks.elements[index].value
     }
     
     unowned var parentGroup: Group?
@@ -43,7 +44,10 @@ class Group: PlayableItem {
         
         self.name = name
         self.depth = depth
-        self._tracks.addTracks(tracks)
+        
+        for track in tracks {
+            self._tracks[track.file] = track
+        }
     }
     
 //    init(name: String, depth: Int, parentGroup: Group? = nil, subGroups: [Group]) {
@@ -54,6 +58,23 @@ class Group: PlayableItem {
 //
 //        for group in
 //    }
+    
+    func doCreateSubGroup(named groupName: String, atDepth depth: Int) -> Group {
+        Group(name: groupName, depth: depth)
+    }
+    
+    func findOrCreateSubGroup(named groupName: String) -> Group {
+        
+        if let subGroup = subGroups[groupName] {
+            return subGroup
+        }
+        
+        let newGroup = doCreateSubGroup(named: groupName, atDepth: 2)
+        newGroup.parentGroup = self
+        subGroups[groupName] = newGroup
+        
+        return newGroup
+    }
     
     func addSubGroup(_ subGroup: Group) {
         
@@ -67,19 +88,35 @@ class Group: PlayableItem {
     }
     
     func addTracks(_ newTracks: [Track]) {
-        _tracks.addTracks(newTracks)
+        
+        for track in newTracks {
+            _tracks[track.file] = track
+        }
     }
     
     func sortTracks(by comparator: @escaping TrackSortFunction) {
-        _tracks.sort(by: comparator)
+        
+        _tracks.sort(by: {kvPair1, kvPair2 in
+            comparator(kvPair1.value, kvPair2.value)
+        })
+    }
+    
+    func sortSubGroups(by comparator: @escaping GroupSortFunction) {
+        
+        subGroups.sort(by: {kvPair1, kvPair2 in
+            comparator(kvPair1.value, kvPair2.value)
+        })
     }
     
     func removeTracks(_ tracksToRemove: [Track]) {
-        _tracks.removeTracks(tracksToRemove)
+        
+        for track in tracksToRemove {
+            _tracks.removeValue(forKey: track.file)
+        }
     }
     
     func removeAllTracks() {
-        _tracks.removeAllTracks()
+        _tracks.removeAll()
     }
     
     // Equatable conformance.
