@@ -55,6 +55,12 @@ class GroupingFunction {
         self.trackSortOrder = trackSortOrder
     }
     
+    func canSubGroup(group: Group) -> Bool {
+        
+        guard let albumGroup = group as? AlbumGroup else {return true}
+        return albumGroup.hasMoreThanOneTotalDisc
+    }
+    
     static func fromFunctions(_ functions: [(keyFunction: KeyFunction, groupSortFunction: GroupSortFunction, trackSortFunction: TrackSortFunction)]) -> GroupingFunction {
         
         if functions.count == 1 {
@@ -172,6 +178,8 @@ class Grouping {
     }
     
     fileprivate func subGroupTracks(in group: Group, by function: GroupingFunction) {
+        
+        guard function.canSubGroup(group: group) else {return}
         
         let tracksByGroupName = categorizeTracksByGroupName(group.tracks, keyFunction: function.keyFunction)
         
