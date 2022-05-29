@@ -93,6 +93,28 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         item is Group
     }
     
+    func outlineViewItemDidExpand(_ notification: Notification) {
+        
+        if let album = notification.userInfo?.values.first as? AlbumGroup,
+           album.hasSubGroups {
+            
+            for group in album.subGroups.values {
+                
+                outlineView.expandItem(group)
+                
+                let sub = outlineView.row(forItem: group)
+                
+                if sub >= 0 {
+                    print("Index: \(sub) for: \(group.name)")
+                }
+            }
+        }
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
+        !(item is AlbumDiscGroup)
+    }
+    
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
         guard let columnId = tableColumn?.identifier else {return nil}
@@ -122,7 +144,7 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
             if let disc = item as? AlbumDiscGroup {
                 
                 return TableCellBuilder().withText(text: disc.name,
-                                                   inFont: systemFontScheme.playQueuePrimaryFont,
+                                                   inFont: systemFontScheme.playerPrimaryFont,
                                                    andColor: systemColorScheme.secondaryTextColor,
                                                    selectedTextColor: systemColorScheme.secondarySelectedTextColor,
                                                    centerYOffset: systemFontScheme.playQueueYOffset)
@@ -131,15 +153,6 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
             }
             
         case .cid_Duration:
-            
-            if let album = item as? AlbumGroup,
-               let cell = outlineView.makeView(withIdentifier: .cid_AlbumDuration, owner: nil) as? GroupSummaryCellView {
-                
-                cell.update(forGroup: album)
-                cell.rowSelectionStateFunction = {[weak outlineView, weak album] in outlineView?.isItemSelected(album as Any) ?? false}
-                
-                return cell
-            }
             
             if let track = item as? Track {
                 
@@ -150,6 +163,19 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
                                                    centerYOffset: systemFontScheme.playQueueYOffset)
                     .buildCell(forOutlineView: outlineView,
                                forColumnWithId: .cid_TrackDuration, havingItem: track)
+            }
+            
+            if let album = item as? AlbumGroup,
+               let cell = outlineView.makeView(withIdentifier: .cid_AlbumDuration, owner: nil) as? GroupSummaryCellView {
+                
+                cell.update(forGroup: album)
+                cell.rowSelectionStateFunction = {[weak outlineView, weak album] in outlineView?.isItemSelected(album as Any) ?? false}
+                
+                return cell
+            }
+            
+            if item is AlbumDiscGroup {
+                return outlineView.makeView(withIdentifier: .cid_DiscDuration, owner: nil) as? NSTableCellView
             }
             
         default:
@@ -324,5 +350,6 @@ extension NSUserInterfaceItemIdentifier {
     static let cid_TrackName: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_TrackName")
     
     static let cid_AlbumDuration: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_AlbumDuration")
+    static let cid_DiscDuration: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_DiscDuration")
     static let cid_TrackDuration: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_TrackDuration")
 }
