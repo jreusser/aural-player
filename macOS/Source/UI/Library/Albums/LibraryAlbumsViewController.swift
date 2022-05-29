@@ -95,19 +95,11 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
     
     func outlineViewItemDidExpand(_ notification: Notification) {
         
-        if let album = notification.userInfo?.values.first as? AlbumGroup,
-           album.hasSubGroups {
-            
-            for group in album.subGroups.values {
-                
-                outlineView.expandItem(group)
-                
-                let sub = outlineView.row(forItem: group)
-                
-                if sub >= 0 {
-                    print("Index: \(sub) for: \(group.name)")
-                }
-            }
+        guard let album = notification.userInfo?.values.first as? AlbumGroup,
+              album.hasSubGroups else {return}
+        
+        for group in album.subGroups.values {
+            outlineView.expandItem(group)
         }
     }
     

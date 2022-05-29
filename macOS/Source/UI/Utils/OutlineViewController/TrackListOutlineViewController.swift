@@ -106,9 +106,6 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, N
             }
         }
         
-        print("\n\nDeleting groups: \(groups.map {$0.name})")
-        print("\nDeleting tracks: \(groupedTracks.map {$0.track.displayName})")
-        
         _ = trackList.remove(tracks: groupedTracks, andGroups: Array(groups), from: grouping)
     }
     

@@ -14,6 +14,13 @@ import OrderedCollections
 typealias TrackSortFunction = (Track, Track) -> Bool
 typealias GroupSortFunction = (Group, Group) -> Bool
 
+class AlbumsRootGroup: Group {
+    
+    override func doCreateSubGroup(named groupName: String, atDepth depth: Int) -> Group {
+        AlbumGroup(name: groupName, depth: depth)
+    }
+}
+
 class Group: PlayableItem {
     
     let name: String
@@ -30,14 +37,19 @@ class Group: PlayableItem {
     var hasTracks: Bool {!_tracks.isEmpty}
     
     /// Safe array access.
-    subscript(index: Int) -> Track? {
+    subscript(index: Int) -> Track {
         _tracks.elements[index].value
+    }
+    
+    func subGroup(at index: Int) -> Group {
+        subGroups.elements[index].value
     }
     
     unowned var parentGroup: Group?
     var isRootLevelGroup: Bool {parentGroup == nil}
     
     var subGroups: OrderedDictionary<String, Group> = OrderedDictionary()
+    var numberOfSubGroups: Int {subGroups.count}
     var hasSubGroups: Bool {!subGroups.isEmpty}
     
     init(name: String, depth: Int, tracks: [Track] = []) {
@@ -80,11 +92,26 @@ class Group: PlayableItem {
         
         if subGroups[subGroup.name] == nil {
             
-            print("\nAdding subgroup '\(subGroup.name)' to \(name)")
-            
             subGroups[subGroup.name] = subGroup
             subGroup.parentGroup = self
         }
+    }
+    
+    func removeSubGroup(_ subGroup: Group) {
+        
+        subGroups.removeValue(forKey: subGroup.name)
+        
+        if subGroups.isEmpty {
+            removeFromParent()
+        }
+    }
+    
+    func removeAllSubGroups() {
+        subGroups.removeAll()
+    }
+    
+    func removeFromParent() {
+        parentGroup?.removeSubGroup(self)
     }
     
     func addTracks(_ newTracks: [Track]) {

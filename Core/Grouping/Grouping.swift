@@ -99,89 +99,38 @@ class Grouping {
     
     let name: String
     let function: GroupingFunction
+    let rootGroup: Group
     
-    init(name: String, function: GroupingFunction) {
+    init(name: String, function: GroupingFunction, rootGroup: Group) {
 
         self.name = name
         self.function = function
+        self.rootGroup = rootGroup
     }
     
-    var groups: OrderedDictionary<String, Group> = OrderedDictionary()
-    
-    var numberOfGroups: Int {groups.count}
+    var numberOfGroups: Int {rootGroup.numberOfSubGroups}
     
     func group(at index: Int) -> Group {
-        groups.values[index]
+        rootGroup.subGroup(at: index)
     }
     
     fileprivate func doCreateGroup(named groupName: String, atDepth depth: Int) -> Group {
         Group(name: groupName, depth: depth)
     }
     
-    func findOrCreateGroup(named groupName: String) -> Group {
-        
-        if let group = groups[groupName] {
-            return group
-        }
-        
-        let newGroup = doCreateGroup(named: groupName, atDepth: 1)
-        groups[groupName] = newGroup
-        return newGroup
-    }
-    
     func addTracks(_ newTracks: [Track]) {
-        groupTracks(newTracks, by: self.function)
-    }
-    
-    @inlinable
-    @inline(__always)
-    func categorizeTracksByGroupName(_ tracks: [Track], keyFunction: KeyFunction) -> [String: [Track]] {
         
-        var tracksByGroupName: [String: [Track]] = [:]
-        
-        for track in tracks {
-            tracksByGroupName[keyFunction(track), default: []].append(track)
-        }
-        
-        return tracksByGroupName
-    }
-    
-    fileprivate func groupTracks(_ tracks: [Track], by function: GroupingFunction) {
-        
-        let tracksByGroupName = categorizeTracksByGroupName(tracks, keyFunction: function.keyFunction)
-        
-        for (groupName, tracks) in tracksByGroupName {
-        
-            // Top-level groups
-            
-            let group = findOrCreateGroup(named: groupName)
-            group.addTracks(tracks)
-            
-            if function.subGroupingFunction == nil {
-                group.sortTracks(by: function.trackSortOrder)
-            }
-            
-            groups[groupName] = group
-        }
-        
-        // Sort by group name in ascending order.
-        groups.sort(by: {kvPair1, kvPair2 in
-            function.groupSortOrder(kvPair1.value, kvPair2.value)
-        })
-        
-        if let subGroupingFunction = function.subGroupingFunction {
-            
-            for group in groups.values {
-                subGroupTracks(in: group, by: subGroupingFunction)
-            }
-        }
+        rootGroup.addTracks(newTracks)
+        subGroupTracks(in: rootGroup, by: self.function)
     }
     
     fileprivate func subGroupTracks(in group: Group, by function: GroupingFunction) {
         
         guard function.canSubGroup(group: group) else {return}
         
-        let tracksByGroupName = categorizeTracksByGroupName(group.tracks, keyFunction: function.keyFunction)
+        let tracksByGroupName = group.tracks.categorizeOneToManyBy {track in
+            function.keyFunction(track)
+        }
         
         for (groupName, tracks) in tracksByGroupName {
             
@@ -208,9 +157,33 @@ class Grouping {
     
     func removeTracks(_ newTracks: [Track]) {}
     
-    func remove(tracks: [GroupedTrack], andGroups groups: [Group]) {}
+    func remove(tracks tracksToRemove: [GroupedTrack], andGroups groupsToRemove: [Group]) {
+        
+        var groupedTracks: [Group: [Track]] = [:]
+        
+        for track in tracksToRemove {
+            groupedTracks[track.group, default: []].append(track.track)
+        }
+        
+        for (parent, tracks) in groupedTracks {
+            
+            // If all tracks were removed from this group, remove the group itself.
+            if parent.numberOfTracks == tracks.count {
+                parent.removeFromParent()
+                
+            } else {
+                parent.removeTracks(tracks)
+            }
+        }
+        
+        for group in groupsToRemove {
+            group.removeFromParent()
+        }
+    }
     
-    func removeAllTracks() {}
+    func removeAllTracks() {
+        rootGroup.removeAllSubGroups()
+    }
 }
 
 extension Grouping: Hashable {
@@ -229,7 +202,8 @@ class AlbumsGrouping: Grouping {
     init() {
         
         super.init(name: "Albums", function: GroupingFunction.fromFunctions([(albumsKeyFunction, groupSortByName, trackNumberAscendingComparator),
-                                                                             (albumDiscsKeyFunction, groupSortByName, trackNumberAscendingComparator)]))
+                                                                             (albumDiscsKeyFunction, groupSortByName, trackNumberAscendingComparator)]),
+        rootGroup: AlbumsRootGroup(name: "Albums-Root", depth: 0))
     }
     
     override fileprivate func doCreateGroup(named groupName: String, atDepth depth: Int) -> Group {
