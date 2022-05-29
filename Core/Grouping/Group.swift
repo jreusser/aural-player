@@ -14,23 +14,29 @@ import OrderedCollections
 typealias TrackSortFunction = (Track, Track) -> Bool
 typealias GroupSortFunction = (Group, Group) -> Bool
 
+class ArtistsRootGroup: Group {
+    
+    override func doCreateSubGroup(named groupName: String) -> Group {
+        ArtistGroup(name: groupName, depth: self.depth + 1)
+    }
+}
+
 class AlbumsRootGroup: Group {
     
-    override func doCreateSubGroup(named groupName: String, atDepth depth: Int) -> Group {
-        AlbumGroup(name: groupName, depth: depth)
+    override func doCreateSubGroup(named groupName: String) -> Group {
+        AlbumGroup(name: groupName, depth: self.depth + 1)
     }
 }
 
 class DecadesRootGroup: Group {
     
-    override func doCreateSubGroup(named groupName: String, atDepth depth: Int) -> Group {
-        DecadeGroup(name: groupName, depth: depth)
+    override func doCreateSubGroup(named groupName: String) -> Group {
+        DecadeGroup(name: groupName, depth: self.depth + 1)
     }
 }
 
-class DecadeGroup: Group {
-    
-}
+class ArtistGroup: Group {}
+class DecadeGroup: Group {}
 
 class Group: PlayableItem {
     
@@ -82,8 +88,8 @@ class Group: PlayableItem {
 //        for group in
 //    }
     
-    func doCreateSubGroup(named groupName: String, atDepth depth: Int) -> Group {
-        Group(name: groupName, depth: depth)
+    func doCreateSubGroup(named groupName: String) -> Group {
+        Group(name: groupName, depth: self.depth + 1)
     }
     
     func findOrCreateSubGroup(named groupName: String) -> Group {
@@ -92,7 +98,7 @@ class Group: PlayableItem {
             return subGroup
         }
         
-        let newGroup = doCreateSubGroup(named: groupName, atDepth: 2)
+        let newGroup = doCreateSubGroup(named: groupName)
         newGroup.parentGroup = self
         subGroups[groupName] = newGroup
         

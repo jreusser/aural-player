@@ -17,6 +17,10 @@ fileprivate let groupSortByName: GroupSortFunction = {g1, g2 in
     g1.name < g2.name
 }
 
+fileprivate let artistsKeyFunction: KeyFunction = {track in
+    track.artist ?? "<Unknown>"
+}
+
 fileprivate let albumsKeyFunction: KeyFunction = {track in
     track.album ?? "<Unknown>"
 }
@@ -199,6 +203,18 @@ extension Grouping: Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
+    }
+}
+
+class ArtistsGrouping: Grouping {
+    
+    init() {
+        
+        super.init(name: "Artists",
+                   function: GroupingFunction.fromFunctions([(artistsKeyFunction, groupSortByName, trackAlbumDiscAndTrackNumberAscendingComparator),
+                                                             (albumsKeyFunction, groupSortByName, trackNumberAscendingComparator),
+                                                             (albumDiscsKeyFunction, groupSortByName, trackNumberAscendingComparator)]),
+                   rootGroup: AlbumsRootGroup(name: "Artists-Root", depth: 0))
     }
 }
 
