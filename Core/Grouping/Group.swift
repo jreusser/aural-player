@@ -35,7 +35,13 @@ class DecadesRootGroup: Group {
     }
 }
 
-class ArtistGroup: Group {}
+class ArtistGroup: Group {
+    
+    override func doCreateSubGroup(named groupName: String) -> Group {
+        AlbumGroup(name: groupName, depth: self.depth + 1)
+    }
+}
+
 class DecadeGroup: Group {}
 
 class Group: PlayableItem {

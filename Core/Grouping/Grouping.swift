@@ -214,7 +214,7 @@ class ArtistsGrouping: Grouping {
                    function: GroupingFunction.fromFunctions([(artistsKeyFunction, groupSortByName, trackAlbumDiscAndTrackNumberAscendingComparator),
                                                              (albumsKeyFunction, groupSortByName, trackNumberAscendingComparator),
                                                              (albumDiscsKeyFunction, groupSortByName, trackNumberAscendingComparator)]),
-                   rootGroup: AlbumsRootGroup(name: "Artists-Root", depth: 0))
+                   rootGroup: ArtistsRootGroup(name: "Artists-Root", depth: 0))
     }
 }
 

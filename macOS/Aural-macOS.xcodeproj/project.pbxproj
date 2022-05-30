@@ -453,6 +453,8 @@
 		3E871A6F26990D2C00C626DC /* FilterUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E871A6E26990D2C00C626DC /* FilterUnitTests.swift */; };
 		3E8C7918269C40FC005E78D1 /* UserInputMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C7917269C40FC005E78D1 /* UserInputMode.swift */; };
 		3E8C791E269C4196005E78D1 /* PlaylistViewSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C791D269C4196005E78D1 /* PlaylistViewSelector.swift */; };
+		3E8DD6412844988500FED49D /* LibraryArtists.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E8DD6402844988500FED49D /* LibraryArtists.xib */; };
+		3E8DD6432844998500FED49D /* LibraryArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8DD6422844998500FED49D /* LibraryArtistsViewController.swift */; };
 		3E8F31AA26AC9623009C58B5 /* AudioUnitsTableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F31A926AC9623009C58B5 /* AudioUnitsTableViews.swift */; };
 		3E8FF9D227F61A34009CEDDD /* PlayQueue+Sequencing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FF9D127F61A34009CEDDD /* PlayQueue+Sequencing.swift */; };
 		3E8FF9D427F61CEA009CEDDD /* PlayQueue+SearchAndSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FF9D327F61CEA009CEDDD /* PlayQueue+SearchAndSort.swift */; };
@@ -1910,6 +1912,8 @@
 		3E871A6E26990D2C00C626DC /* FilterUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUnitTests.swift; sourceTree = "<group>"; };
 		3E8C7917269C40FC005E78D1 /* UserInputMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputMode.swift; sourceTree = "<group>"; };
 		3E8C791D269C4196005E78D1 /* PlaylistViewSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewSelector.swift; sourceTree = "<group>"; };
+		3E8DD6402844988500FED49D /* LibraryArtists.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryArtists.xib; sourceTree = "<group>"; };
+		3E8DD6422844998500FED49D /* LibraryArtistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryArtistsViewController.swift; sourceTree = "<group>"; };
 		3E8F31A926AC9623009C58B5 /* AudioUnitsTableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitsTableViews.swift; sourceTree = "<group>"; };
 		3E8FF9D127F61A34009CEDDD /* PlayQueue+Sequencing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueue+Sequencing.swift"; sourceTree = "<group>"; };
 		3E8FF9D327F61CEA009CEDDD /* PlayQueue+SearchAndSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueue+SearchAndSort.swift"; sourceTree = "<group>"; };
@@ -3893,6 +3897,15 @@
 			path = "\U0010AudioGraph";
 			sourceTree = "<group>";
 		};
+		3E8DD63F2844985F00FED49D /* Artists */ = {
+			isa = PBXGroup;
+			children = (
+				3E8DD6402844988500FED49D /* LibraryArtists.xib */,
+				3E8DD6422844998500FED49D /* LibraryArtistsViewController.swift */,
+			);
+			path = Artists;
+			sourceTree = "<group>";
+		};
 		3E8FF9D827F62CA8009CEDDD /* Loader */ = {
 			isa = PBXGroup;
 			children = (
@@ -4602,6 +4615,7 @@
 				3EF84DA228362A4D004EF57B /* LibraryWindowController.swift */,
 				3EF84DA4283632D2004EF57B /* Sidebar */,
 				3EAE9CB92836ADE2004499FE /* Tracks */,
+				3E8DD63F2844985F00FED49D /* Artists */,
 				3E05FD40283A451F00EB7861 /* Albums */,
 				3E2ADED92843E4A0009586E7 /* Decades */,
 			);
@@ -5708,6 +5722,7 @@
 				3E25558725DE49EF00CD7938 /* Exo-Medium.ttf in Resources */,
 				3E6EFFA32815309500C813AC /* TextColorScheme.xib in Resources */,
 				3E25558525DE49E400CD7938 /* CarroisGothicSC-Regular.ttf in Resources */,
+				3E8DD6412844988500FED49D /* LibraryArtists.xib in Resources */,
 				3E25559125DE49FA00CD7938 /* monaco.ttf in Resources */,
 				3E53C41125E2E06C00B30A03 /* control-freak.regular.ttf in Resources */,
 				3E645A0A25E39337006C6981 /* coming-soon.regular.ttf in Resources */,
@@ -6520,6 +6535,7 @@
 				3EFE398D27864897006F8B8C /* Player.swift in Sources */,
 				3E6C12D125CEBE6700BF0D07 /* TimeStretchUnitViewController.swift in Sources */,
 				3EFE393527864897006F8B8C /* SystemUtils.swift in Sources */,
+				3E8DD6432844998500FED49D /* LibraryArtistsViewController.swift in Sources */,
 				3EFE38D727864896006F8B8C /* TimeStretchUnitDelegateProtocol.swift in Sources */,
 				3E6C129725CEBE2700BF0D07 /* TintedIconMenuItem.swift in Sources */,
 				3E6C128325CEBE1800BF0D07 /* TintedImageButton.swift in Sources */,

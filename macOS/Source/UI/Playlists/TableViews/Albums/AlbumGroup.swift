@@ -137,8 +137,8 @@ class AlbumGroup: Group {
         return .imgAlbumGroup
     }
     
-    override func doCreateSubGroup(named groupName: String, atDepth depth: Int) -> Group {
-        AlbumDiscGroup(name: groupName, depth: depth)
+    override func doCreateSubGroup(named groupName: String) -> Group {
+        AlbumDiscGroup(name: groupName, depth: self.depth + 1)
     }
 }
 

@@ -22,18 +22,22 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
 //                   withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])
         
         super.init(sortOrder: TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending),
-                   withGroupings: [AlbumsGrouping(), DecadesGrouping()])
+                   withGroupings: [ArtistsGrouping(), AlbumsGrouping(), DecadesGrouping()])
     }
     
     private lazy var loader: TrackLoader = TrackLoader(priority: .highest)
     private lazy var messenger = Messenger(for: self)
     
+    var artistsGrouping: ArtistsGrouping {
+        groupings[0] as! ArtistsGrouping
+    }
+    
     var albumsGrouping: AlbumsGrouping {
-        groupings[0] as! AlbumsGrouping
+        groupings[1] as! AlbumsGrouping
     }
     
     var decadesGrouping: DecadesGrouping {
-        groupings[1] as! DecadesGrouping
+        groupings[2] as! DecadesGrouping
     }
     
     func loadTracks(from files: [URL], atPosition position: Int?) {

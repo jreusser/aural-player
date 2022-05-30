@@ -173,7 +173,6 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         default:
             
             return nil
-            //        }
         }
         
         return nil
