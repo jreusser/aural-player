@@ -32,9 +32,9 @@ class LibraryWindowController: NSWindowController {
     
     private lazy var libraryTracksController: LibraryTracksViewController = LibraryTracksViewController()
     private lazy var libraryArtistsController: LibraryArtistsViewController = LibraryArtistsViewController()
-    private lazy var libraryAlbumsController: LibraryAlbumsViewController = LibraryAlbumsViewController()
-    private lazy var libraryGenresController: LibraryGenresViewController = LibraryGenresViewController()
-    private lazy var libraryDecadesController: LibraryDecadesViewController = LibraryDecadesViewController()
+//    private lazy var libraryAlbumsController: LibraryAlbumsViewController = LibraryAlbumsViewController()
+//    private lazy var libraryGenresController: LibraryGenresViewController = LibraryGenresViewController()
+//    private lazy var libraryDecadesController: LibraryDecadesViewController = LibraryDecadesViewController()
     
     private lazy var messenger: Messenger = Messenger(for: self)
     
@@ -50,17 +50,17 @@ class LibraryWindowController: NSWindowController {
         tabGroup.tabViewItem(at: 1).view?.addSubview(libraryArtistsView)
         libraryArtistsView.anchorToSuperview()
         
-        let libraryAlbumsView: NSView = libraryAlbumsController.view
-        tabGroup.tabViewItem(at: 2).view?.addSubview(libraryAlbumsView)
-        libraryAlbumsView.anchorToSuperview()
-        
-        let libraryGenresView: NSView = libraryGenresController.view
-        tabGroup.tabViewItem(at: 3).view?.addSubview(libraryGenresView)
-        libraryGenresView.anchorToSuperview()
-        
-        let libraryDecadesView: NSView = libraryDecadesController.view
-        tabGroup.tabViewItem(at: 4).view?.addSubview(libraryDecadesView)
-        libraryDecadesView.anchorToSuperview()
+//        let libraryAlbumsView: NSView = libraryAlbumsController.view
+//        tabGroup.tabViewItem(at: 2).view?.addSubview(libraryAlbumsView)
+//        libraryAlbumsView.anchorToSuperview()
+//
+//        let libraryGenresView: NSView = libraryGenresController.view
+//        tabGroup.tabViewItem(at: 3).view?.addSubview(libraryGenresView)
+//        libraryGenresView.anchorToSuperview()
+//
+//        let libraryDecadesView: NSView = libraryDecadesController.view
+//        tabGroup.tabViewItem(at: 4).view?.addSubview(libraryDecadesView)
+//        libraryDecadesView.anchorToSuperview()
         
         let sidebarView: NSView = sidebarController.view
         splitView.arrangedSubviews[0].addSubview(sidebarView)

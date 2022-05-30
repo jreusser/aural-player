@@ -16,7 +16,7 @@ class AlbumGroup: Group {
     private static let folderArtFileName: String = "Folder.jpg"
     
     var theTracks: [Track] {
-        hasSubGroups ? subGroups.values.flatMap {$0.tracks} : tracks
+        hasTracks ? tracks : subGroups.values.flatMap {$0.tracks}
     }
     
     private lazy var artists: Set<String> = {

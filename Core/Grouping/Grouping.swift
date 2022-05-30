@@ -87,16 +87,23 @@ class GroupingFunction {
         var childIndex: Int = functions.lastIndex
         var parentIndex: Int = childIndex - 1
         
-        var child: GroupingFunction
-        var parent: GroupingFunction
+        var child = GroupingFunction(keyFunction: functions[childIndex].keyFunction,
+                                 depth: childIndex + 1,
+                                 groupSortOrder: functions[childIndex].groupSortFunction,
+                                 trackSortOrder: functions[childIndex].trackSortFunction)
+        
+        var parent = GroupingFunction(keyFunction: functions[parentIndex].keyFunction,
+                                  depth: parentIndex + 1,
+                                  subGroupingFunction: child,
+                                  groupSortOrder: functions[parentIndex].groupSortFunction,
+                                  trackSortOrder: functions[parentIndex].trackSortFunction)
+        
+        parentIndex.decrement()
+        childIndex.decrement()
         
         repeat {
             
-            child = GroupingFunction(keyFunction: functions[childIndex].keyFunction,
-                                     depth: childIndex + 1,
-                                     groupSortOrder: functions[childIndex].groupSortFunction,
-                                     trackSortOrder: functions[childIndex].trackSortFunction)
-            
+            child = parent
             parent = GroupingFunction(keyFunction: functions[parentIndex].keyFunction,
                                       depth: parentIndex + 1,
                                       subGroupingFunction: child,
@@ -162,8 +169,8 @@ class Grouping {
         
         if let subGroupingFunction = function.subGroupingFunction {
             
-            for group in group.subGroups.values {
-                subGroupTracks(in: group, by: subGroupingFunction)
+            for subGroup in group.subGroups.values {
+                subGroupTracks(in: subGroup, by: subGroupingFunction)
             }
         }
     }

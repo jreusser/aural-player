@@ -97,11 +97,23 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
     
     func outlineViewItemDidExpand(_ notification: Notification) {
         
-        guard let artist = notification.userInfo?.values.first as? ArtistGroup,
-              artist.hasSubGroups else {return}
+        guard let group = notification.userInfo?.values.first as? Group,
+              group.hasSubGroups else {return}
         
-        for group in artist.subGroups.values {
-            outlineView.expandItem(group)
+        for subGroup in group.subGroups.values {
+            expand(subGroup)
+        }
+    }
+    
+    private func expand(_ group: Group) {
+        
+        outlineView.expandItem(group)
+        
+        if group.hasSubGroups {
+            
+            for subGroup in group.subGroups.values {
+                expand(subGroup)
+            }
         }
     }
     

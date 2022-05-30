@@ -25,7 +25,7 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
         super.viewDidLoad()
         
         categories.forEach {sidebarView.expandItem($0)}
-        sidebarView.selectRow(2)
+        sidebarView.selectRow(4)
         
         colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
     }

@@ -22,7 +22,7 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
 //                   withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])
         
         super.init(sortOrder: TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending),
-                   withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])
+                   withGroupings: [ArtistsGrouping()])
     }
     
     private lazy var loader: TrackLoader = TrackLoader(priority: .highest)
