@@ -196,13 +196,11 @@ class Group: PlayableItem {
     
     // Equatable conformance.
     static func == (lhs: Group, rhs: Group) -> Bool {
-        lhs.name == rhs.name && lhs.depth == rhs.depth
+        lhs.name == rhs.name
     }
     
     // Hashable conformance.
     func hash(into hasher: inout Hasher) {
-        
         hasher.combine(name)
-        hasher.combine(depth)
     }
 }

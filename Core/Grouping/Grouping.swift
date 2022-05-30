@@ -101,7 +101,7 @@ class GroupingFunction {
         parentIndex.decrement()
         childIndex.decrement()
         
-        repeat {
+        while parentIndex >= 0 {
             
             child = parent
             parent = GroupingFunction(keyFunction: functions[parentIndex].keyFunction,
@@ -112,8 +112,7 @@ class GroupingFunction {
             
             parentIndex.decrement()
             childIndex.decrement()
-            
-        } while parentIndex >= 0
+        }
         
         return parent
     }
