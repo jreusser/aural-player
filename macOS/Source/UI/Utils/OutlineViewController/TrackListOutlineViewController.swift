@@ -40,6 +40,8 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, N
         return rowCount > 1 && (1..<rowCount).contains(selectedRowCount)
     }
     
+    lazy var messenger: Messenger = Messenger(for: self)
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -131,4 +133,16 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, N
     
     /// Override this !
     func updateSummary() {}
+    
+    @IBAction func playNowAction(_ sender: AnyObject) {
+        
+        guard let item = outlineView.selectedItem else {return}
+        
+        if let track = item as? Track {
+            messenger.publish(EnqueueAndPlayNowCommand(tracks: [track], clearPlayQueue: false))
+            
+        } else if let group = item as? Group {
+            messenger.publish(EnqueueAndPlayNowCommand(tracks: group.tracks, clearPlayQueue: false))
+        }
+    }
 }

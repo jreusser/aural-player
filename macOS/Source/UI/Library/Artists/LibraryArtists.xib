@@ -86,10 +86,10 @@
                                                         <color key="borderColor" red="1" green="1" blue="1" alpha="0.15416647010000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </box>
                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0RG-pg-TSq" userLabel="Artist Icon" customClass="RoundedImageView" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="5" y="6" width="40" height="40"/>
+                                                        <rect key="frame" x="5" y="8" width="34" height="34"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="40" id="Q3k-Sb-0uz"/>
-                                                            <constraint firstAttribute="height" constant="40" id="YWC-zd-dCj"/>
+                                                            <constraint firstAttribute="width" constant="34" id="Q3k-Sb-0uz"/>
+                                                            <constraint firstAttribute="height" constant="34" id="YWC-zd-dCj"/>
                                                         </constraints>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="Kn0-2s-9RX"/>
                                                         <userDefinedRuntimeAttributes>
@@ -99,7 +99,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="l93-a9-33L" userLabel="Artist Name" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="58" y="8" width="450" height="35"/>
+                                                        <rect key="frame" x="52" y="8" width="456" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="SzK-Ic-Pep"/>
                                                         </constraints>
@@ -131,7 +131,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="tCj-Dt-eHu" secondAttribute="trailing" id="RIS-Bg-5cD"/>
                                                     <constraint firstItem="tCj-Dt-eHu" firstAttribute="leading" secondItem="bId-0E-iNJ" secondAttribute="leading" id="gws-Q7-Z1q"/>
                                                     <constraint firstAttribute="bottom" secondItem="Hlj-7V-a3s" secondAttribute="bottom" id="ogg-Yh-X4a"/>
-                                                    <constraint firstItem="Hlj-7V-a3s" firstAttribute="top" secondItem="0RG-pg-TSq" secondAttribute="bottom" constant="5" id="qc1-wh-weZ"/>
+                                                    <constraint firstItem="0RG-pg-TSq" firstAttribute="centerY" secondItem="bId-0E-iNJ" secondAttribute="centerY" id="wRf-aA-02Z"/>
                                                     <constraint firstAttribute="trailing" secondItem="l93-a9-33L" secondAttribute="trailing" id="wX1-24-ta3"/>
                                                 </constraints>
                                                 <connections>
@@ -523,6 +523,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <action trigger="doubleAction" selector="playNowAction:" target="-2" id="u4k-te-MeS"/>
                                     <outlet property="dataSource" destination="-2" id="E85-wD-L2z"/>
                                     <outlet property="delegate" destination="-2" id="dlL-ob-mU0"/>
                                 </connections>

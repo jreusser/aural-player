@@ -25,6 +25,10 @@ fileprivate let albumsKeyFunction: KeyFunction = {track in
     track.album ?? "<Unknown>"
 }
 
+fileprivate let genresKeyFunction: KeyFunction = {track in
+    track.genre ?? "<Unknown>"
+}
+
 fileprivate let decadesKeyFunction: KeyFunction = {track in
     
     guard let year = track.year else {return "<Unknown>"}
@@ -225,6 +229,18 @@ class AlbumsGrouping: Grouping {
         super.init(name: "Albums", function: GroupingFunction.fromFunctions([(albumsKeyFunction, groupSortByName, trackNumberAscendingComparator),
                                                                              (albumDiscsKeyFunction, groupSortByName, trackNumberAscendingComparator)]),
         rootGroup: AlbumsRootGroup(name: "Albums-Root", depth: 0))
+    }
+}
+
+class GenresGrouping: Grouping {
+    
+    init() {
+        
+        let trackComparator = TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending)
+        
+        super.init(name: "Genres", function: GroupingFunction.fromFunctions([(genresKeyFunction, groupSortByName, trackComparator.comparator),
+                                                                              (artistsKeyFunction, groupSortByName, trackAlbumDiscAndTrackNumberAscendingComparator)]),
+                   rootGroup: GenresRootGroup(name: "Genres-Root", depth: 0))
     }
 }
 

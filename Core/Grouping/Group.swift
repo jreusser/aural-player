@@ -28,6 +28,13 @@ class AlbumsRootGroup: Group {
     }
 }
 
+class GenresRootGroup: Group {
+    
+    override func doCreateSubGroup(named groupName: String) -> Group {
+        GenreGroup(name: groupName, depth: self.depth + 1)
+    }
+}
+
 class DecadesRootGroup: Group {
     
     override func doCreateSubGroup(named groupName: String) -> Group {
@@ -39,6 +46,13 @@ class ArtistGroup: Group {
     
     override func doCreateSubGroup(named groupName: String) -> Group {
         AlbumGroup(name: groupName, depth: self.depth + 1)
+    }
+}
+
+class GenreGroup: Group {
+    
+    override func doCreateSubGroup(named groupName: String) -> Group {
+        ArtistGroup(name: groupName, depth: self.depth + 1)
     }
 }
 

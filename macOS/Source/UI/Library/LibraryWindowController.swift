@@ -33,6 +33,7 @@ class LibraryWindowController: NSWindowController {
     private lazy var libraryTracksController: LibraryTracksViewController = LibraryTracksViewController()
     private lazy var libraryArtistsController: LibraryArtistsViewController = LibraryArtistsViewController()
     private lazy var libraryAlbumsController: LibraryAlbumsViewController = LibraryAlbumsViewController()
+    private lazy var libraryGenresController: LibraryGenresViewController = LibraryGenresViewController()
     private lazy var libraryDecadesController: LibraryDecadesViewController = LibraryDecadesViewController()
     
     private lazy var messenger: Messenger = Messenger(for: self)
@@ -53,6 +54,10 @@ class LibraryWindowController: NSWindowController {
         tabGroup.tabViewItem(at: 2).view?.addSubview(libraryAlbumsView)
         libraryAlbumsView.anchorToSuperview()
         
+        let libraryGenresView: NSView = libraryGenresController.view
+        tabGroup.tabViewItem(at: 3).view?.addSubview(libraryGenresView)
+        libraryGenresView.anchorToSuperview()
+        
         let libraryDecadesView: NSView = libraryDecadesController.view
         tabGroup.tabViewItem(at: 4).view?.addSubview(libraryDecadesView)
         libraryDecadesView.anchorToSuperview()
@@ -70,7 +75,7 @@ class LibraryWindowController: NSWindowController {
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
         
         // TODO: Temporary, remove this !!!
-        tabGroup.selectTabViewItem(at: 4)
+        tabGroup.selectTabViewItem(at: 3)
     }
     
     @IBAction func closeAction(_ sender: Any) {

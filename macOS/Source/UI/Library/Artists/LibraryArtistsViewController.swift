@@ -23,8 +23,6 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
     private lazy var artistsGrouping: ArtistsGrouping = library.artistsGrouping
     override var grouping: Grouping! {artistsGrouping}
     
-    lazy var messenger: Messenger = Messenger(for: self)
-    
     override var trackList: GroupedSortedTrackListProtocol! {
         libraryDelegate
     }

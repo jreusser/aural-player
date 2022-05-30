@@ -23,8 +23,6 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
     private lazy var decadesGrouping: DecadesGrouping = library.decadesGrouping
     override var grouping: Grouping! {decadesGrouping}
     
-    lazy var messenger: Messenger = Messenger(for: self)
-    
     override var trackList: GroupedSortedTrackListProtocol! {
         libraryDelegate
     }
@@ -52,11 +50,7 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
     
     override func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         
-        if item is DecadeGroup {
-            return 90
-        }
-        
-        if item is ArtistGroup {
+        if item is DecadeGroup || item is ArtistGroup {
             return 50
         }
 
@@ -225,18 +219,6 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
     override func notifyReloadTable() {
         messenger.publish(.library_reloadTable)
     }
-    
-    @IBAction func playNowAction(_ sender: AnyObject) {
-        
-        guard let item = outlineView.selectedItem else {return}
-        
-        if let track = item as? Track {
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: [track], clearPlayQueue: false))
-            
-        } else if let group = item as? Group {
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: group.tracks, clearPlayQueue: false))
-        }
-    }
 }
 
 class DecadeCellView: AuralTableCellView {
@@ -318,7 +300,6 @@ class DecadeTrackCellView: AuralTableCellView {
         }
     }
 }
-
 
 extension NSUserInterfaceItemIdentifier {
     
