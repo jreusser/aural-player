@@ -70,7 +70,7 @@ class LibraryWindowController: NSWindowController {
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
         
         // TODO: Temporary, remove this !!!
-        tabGroup.selectTabViewItem(at: 1)
+        tabGroup.selectTabViewItem(at: 4)
     }
     
     @IBAction func closeAction(_ sender: Any) {

@@ -56,6 +56,10 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
             return 90
         }
         
+        if item is ArtistGroup {
+            return 50
+        }
+
         return 30
     }
     
@@ -89,6 +93,16 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
         item is Group
     }
     
+    func outlineViewItemDidExpand(_ notification: Notification) {
+        
+        guard let decade = notification.userInfo?.values.first as? DecadeGroup,
+              decade.hasSubGroups else {return}
+        
+        for group in decade.subGroups.values {
+            outlineView.expandItem(group)
+        }
+    }
+    
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
         guard let columnId = tableColumn?.identifier else {return nil}
@@ -102,6 +116,15 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
                 
                 cell.update(forTrack: track)
                 cell.rowSelectionStateFunction = {[weak outlineView, weak track] in outlineView?.isItemSelected(track as Any) ?? false}
+                
+                return cell
+            }
+            
+            if let artist = item as? ArtistGroup,
+               let cell = outlineView.makeView(withIdentifier: .cid_ArtistName, owner: nil) as? ArtistCellView {
+                
+                cell.update(forGroup: artist)
+                cell.rowSelectionStateFunction = {[weak outlineView, weak artist] in outlineView?.isItemSelected(artist as Any) ?? false}
                 
                 return cell
             }
@@ -128,6 +151,15 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
                                forColumnWithId: .cid_TrackDuration, havingItem: track)
             }
             
+            if let artist = item as? ArtistGroup,
+               let cell = outlineView.makeView(withIdentifier: .cid_ArtistDuration, owner: nil) as? GroupSummaryCellView {
+                
+                cell.update(forArtistGroup: artist, showAlbumsCount: false)
+                cell.rowSelectionStateFunction = {[weak outlineView, weak artist] in outlineView?.isItemSelected(artist as Any) ?? false}
+                
+                return cell
+            }
+            
             if let decade = item as? DecadeGroup,
                let cell = outlineView.makeView(withIdentifier: .cid_DecadeDuration, owner: nil) as? GroupSummaryCellView {
                 
@@ -141,6 +173,8 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
             
             return nil
         }
+        
+        print("\nNo cell for item: \(item)")
         
         return nil
     }

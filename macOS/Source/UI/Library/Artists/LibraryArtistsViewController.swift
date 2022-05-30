@@ -131,8 +131,6 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
             if let artist = item as? ArtistGroup,
                let cell = outlineView.makeView(withIdentifier: .cid_ArtistName, owner: nil) as? ArtistCellView {
                 
-                print("\nCreating ArtistGroup")
-                
                 cell.update(forGroup: artist)
                 cell.rowSelectionStateFunction = {[weak outlineView, weak artist] in outlineView?.isItemSelected(artist as Any) ?? false}
                 
@@ -141,8 +139,6 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
             
             if let album = item as? AlbumGroup,
                let cell = outlineView.makeView(withIdentifier: .cid_AlbumName, owner: nil) as? ArtistAlbumCellView {
-                
-                print("\nCreating AlbumGroup")
                 
                 cell.update(forGroup: album)
                 cell.rowSelectionStateFunction = {[weak outlineView, weak album] in outlineView?.isItemSelected(album as Any) ?? false}
@@ -292,12 +288,17 @@ class ArtistAlbumCellView: AuralTableCellView {
 
 extension GroupSummaryCellView {
     
-    func update(forArtistGroup group: ArtistGroup) {
+    func update(forArtistGroup group: ArtistGroup, showAlbumsCount: Bool = true) {
         
         let trackCount = group.numberOfTracks
         let albumCount = group.numberOfSubGroups
         
-        lblTrackCount.stringValue = "\(albumCount) \(albumCount == 1 ? "album" : "albums"), \(trackCount) \(trackCount == 1 ? "track" : "tracks")"
+        if showAlbumsCount {
+            lblTrackCount.stringValue = "\(albumCount) \(albumCount == 1 ? "album" : "albums"), \(trackCount) \(trackCount == 1 ? "track" : "tracks")"
+        } else {
+            lblTrackCount.stringValue = "\(trackCount) \(trackCount == 1 ? "track" : "tracks")"
+        }
+        
         lblDuration.stringValue = ValueFormatter.formatSecondsToHMS(group.duration)
         
         lblTrackCount.font = systemFontScheme.playQueuePrimaryFont

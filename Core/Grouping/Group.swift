@@ -42,7 +42,12 @@ class ArtistGroup: Group {
     }
 }
 
-class DecadeGroup: Group {}
+class DecadeGroup: Group {
+    
+    override func doCreateSubGroup(named groupName: String) -> Group {
+        ArtistGroup(name: groupName, depth: self.depth + 1)
+    }
+}
 
 class Group: PlayableItem {
     
@@ -50,13 +55,19 @@ class Group: PlayableItem {
     let depth: Int
     
     var duration: Double {
-        _tracks.values.reduce(0.0, {(totalSoFar: Double, track: Track) -> Double in totalSoFar + track.duration})
+        
+        hasTracks ?
+        _tracks.values.reduce(0.0, {(totalSoFar: Double, track: Track) -> Double in totalSoFar + track.duration}) :
+        subGroups.values.reduce(0.0, {(totalSoFar: Double, subGroup: Group) -> Double in totalSoFar + subGroup.duration})
     }
     
     var _tracks: OrderedDictionary<URL, Track> = OrderedDictionary()
     var tracks: [Track] {Array(_tracks.values)}
     
-    var numberOfTracks: Int {_tracks.count}
+    var numberOfTracks: Int {
+        hasTracks ? _tracks.count : subGroups.values.reduce(0, {(totalSoFar: Int, subGroup: Group) -> Int in totalSoFar + subGroup.numberOfTracks})
+    }
+    
     var hasTracks: Bool {!_tracks.isEmpty}
     
     /// Safe array access.

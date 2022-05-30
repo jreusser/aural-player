@@ -234,7 +234,8 @@ class DecadesGrouping: Grouping {
         
         let trackComparator = TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending)
         
-        super.init(name: "Decades", function: GroupingFunction.fromFunctions([(decadesKeyFunction, groupSortByName, trackComparator.comparator)]),
+        super.init(name: "Decades", function: GroupingFunction.fromFunctions([(decadesKeyFunction, groupSortByName, trackComparator.comparator),
+                                                                              (artistsKeyFunction, groupSortByName, trackAlbumDiscAndTrackNumberAscendingComparator)]),
                    rootGroup: DecadesRootGroup(name: "Decades-Root", depth: 0))
     }
 }
