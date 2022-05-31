@@ -613,7 +613,7 @@
                     </textFieldCell>
                 </textField>
                 <button hidden="YES" toolTip="Import files / folders" translatesAutoresizingMaskIntoConstraints="NO" id="FbE-IV-y2j" userLabel="Import" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="131" y="10" width="17" height="17"/>
+                    <rect key="frame" x="126" y="10" width="17" height="17"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="11" id="YQq-bP-XCu"/>
                         <constraint firstAttribute="width" constant="16" id="zty-YK-Ykw"/>
@@ -624,7 +624,7 @@
                     </buttonCell>
                 </button>
                 <button hidden="YES" toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="a96-o6-wCi" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="169" y="9.5" width="16.5" height="17"/>
+                    <rect key="frame" x="164" y="9.5" width="16.5" height="17"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="SXv-gc-jYj"/>
                         <constraint firstAttribute="width" constant="16" id="WKD-40-1Tu"/>
@@ -635,7 +635,7 @@
                     </buttonCell>
                 </button>
                 <button hidden="YES" toolTip="Crop selected playlist tracks" translatesAutoresizingMaskIntoConstraints="NO" id="sIK-Y1-OxT" userLabel="Crop" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="190" y="9" width="16.5" height="18"/>
+                    <rect key="frame" x="185" y="9" width="16.5" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="Y6B-25-4pH"/>
                         <constraint firstAttribute="width" constant="16" id="bK5-vJ-SvI"/>
@@ -646,7 +646,7 @@
                     </buttonCell>
                 </button>
                 <button hidden="YES" toolTip="Remove all tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="F3g-cu-Ye9" userLabel="Remove All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="212" y="12" width="11.5" height="14"/>
+                    <rect key="frame" x="207" y="12" width="11.5" height="14"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="11" id="lMY-Qn-gfz"/>
                         <constraint firstAttribute="height" constant="6" id="wYh-eW-tmu"/>
@@ -657,7 +657,7 @@
                     </buttonCell>
                 </button>
                 <button hidden="YES" toolTip="Clear the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="MaW-3c-jQ0" userLabel="Clear Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="243" y="13" width="12" height="11"/>
+                    <rect key="frame" x="238" y="13" width="12" height="11"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="5" id="Viw-AB-5EW"/>
                         <constraint firstAttribute="width" constant="12" id="a8w-32-Uig"/>
@@ -668,7 +668,7 @@
                     </buttonCell>
                 </button>
                 <button hidden="YES" toolTip="Invert the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="ais-Qt-l5H" userLabel="Invert Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="259" y="12" width="11.5" height="13"/>
+                    <rect key="frame" x="254" y="12" width="11.5" height="13"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="5" id="GCe-xh-JxO"/>
                         <constraint firstAttribute="width" constant="11" id="NzA-U1-Ltz"/>
@@ -679,7 +679,7 @@
                     </buttonCell>
                 </button>
                 <button hidden="YES" toolTip="Search the play queue" translatesAutoresizingMaskIntoConstraints="NO" id="yhe-y7-ch9" userLabel="Search" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="290" y="11.5" width="13" height="14"/>
+                    <rect key="frame" x="285" y="11.5" width="13" height="14"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="13" id="8kT-Te-Kg9"/>
                         <constraint firstAttribute="height" constant="8" id="QCg-jM-Rxb"/>
@@ -690,7 +690,7 @@
                     </buttonCell>
                 </button>
                 <popUpButton hidden="YES" toolTip="Sort the play queue" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ght-GB-chu" userLabel="Sort">
-                    <rect key="frame" x="303" y="12" width="23" height="14"/>
+                    <rect key="frame" x="298" y="12" width="23" height="14"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="YeD-O3-rSd"/>
                         <constraint firstAttribute="width" constant="18" id="zfO-me-tpR"/>
@@ -736,7 +736,7 @@
                     </popUpButtonCell>
                 </popUpButton>
                 <button hidden="YES" toolTip="Export tracks to a playlist file" translatesAutoresizingMaskIntoConstraints="NO" id="wdg-0j-Tbt" userLabel="Export" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="338" y="12.5" width="13" height="12"/>
+                    <rect key="frame" x="333" y="12.5" width="13" height="12"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="5" id="3gd-Xj-OSS"/>
                         <constraint firstAttribute="width" constant="13" id="ldK-fU-Eg7"/>
@@ -747,7 +747,7 @@
                     </buttonCell>
                 </button>
                 <button hidden="YES" toolTip="Scroll one page up" translatesAutoresizingMaskIntoConstraints="NO" id="hSn-oY-7Ro" userLabel="Page Up" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="366" y="10.5" width="13.5" height="17"/>
+                    <rect key="frame" x="361" y="10.5" width="13.5" height="17"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="13" id="OB3-Lb-ztU"/>
                         <constraint firstAttribute="height" constant="13" id="z9r-35-eqb"/>
@@ -758,7 +758,7 @@
                     </buttonCell>
                 </button>
                 <button hidden="YES" toolTip="Scroll one page down" translatesAutoresizingMaskIntoConstraints="NO" id="1YW-bR-ABD" userLabel="Page Down" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="380" y="10.5" width="13.5" height="17"/>
+                    <rect key="frame" x="375" y="10.5" width="13.5" height="17"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="13" id="MWG-9F-QMt"/>
                         <constraint firstAttribute="height" constant="13" id="OQW-wo-3JL"/>
@@ -769,7 +769,7 @@
                     </buttonCell>
                 </button>
                 <button hidden="YES" toolTip="Scroll to the top" translatesAutoresizingMaskIntoConstraints="NO" id="nY7-0O-KPT" userLabel="Scroll to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="408" y="14" width="10" height="10"/>
+                    <rect key="frame" x="403" y="14" width="10" height="10"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="0cY-X9-k8g"/>
                         <constraint firstAttribute="width" constant="10" id="mTy-Ma-dc9"/>
@@ -780,7 +780,7 @@
                     </buttonCell>
                 </button>
                 <button hidden="YES" toolTip="Scroll to the bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Hj5-h0-lYy" userLabel="Scroll to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="424" y="14" width="10" height="10"/>
+                    <rect key="frame" x="419" y="14" width="10" height="10"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="FtV-Ir-8PV"/>
                         <constraint firstAttribute="width" constant="10" id="afj-oI-gzI"/>
@@ -791,7 +791,7 @@
                     </buttonCell>
                 </button>
                 <button hidden="YES" toolTip="Expand all groups" translatesAutoresizingMaskIntoConstraints="NO" id="hsJ-C3-q04" userLabel="Expand All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="449" y="10" width="20.5" height="20"/>
+                    <rect key="frame" x="444" y="10" width="20.5" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="FEK-H4-i2o"/>
                         <constraint firstAttribute="height" constant="13" id="ep7-Vx-9kF"/>
@@ -805,7 +805,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Collapse all groups" translatesAutoresizingMaskIntoConstraints="NO" id="b2P-bh-9Vs" userLabel="Collapse All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="473" y="10" width="20.5" height="20"/>
+                    <rect key="frame" x="468" y="10" width="20.5" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="13" id="rbs-It-MrN"/>
                         <constraint firstAttribute="width" constant="20" id="vqM-7u-jKY"/>
@@ -836,7 +836,7 @@
                 <constraint firstAttribute="bottom" secondItem="yhe-y7-ch9" secondAttribute="bottom" constant="14" id="JWE-X0-1xZ"/>
                 <constraint firstItem="ais-Qt-l5H" firstAttribute="leading" secondItem="MaW-3c-jQ0" secondAttribute="trailing" constant="4" id="MUS-Za-eky"/>
                 <constraint firstItem="1wf-0L-mfy" firstAttribute="top" secondItem="bh3-oH-vIR" secondAttribute="top" constant="3" id="Odu-ir-Mwn"/>
-                <constraint firstItem="Ght-GB-chu" firstAttribute="centerX" secondItem="bh3-oH-vIR" secondAttribute="centerX" id="P4G-1q-N4a"/>
+                <constraint firstItem="Ght-GB-chu" firstAttribute="centerX" secondItem="bh3-oH-vIR" secondAttribute="centerX" constant="-5" id="P4G-1q-N4a"/>
                 <constraint firstAttribute="trailing" secondItem="f7i-hj-Ajv" secondAttribute="trailing" constant="20" id="PuK-9h-b8D"/>
                 <constraint firstAttribute="bottom" secondItem="Ght-GB-chu" secondAttribute="bottom" constant="12" id="Q0W-Gi-7Ou"/>
                 <constraint firstAttribute="bottom" secondItem="hsJ-C3-q04" secondAttribute="bottom" constant="13" id="Q9a-Vz-qQ8"/>
