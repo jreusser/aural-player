@@ -49,12 +49,7 @@ class LibraryGenresViewController: TrackListOutlineViewController {
     }
     
     override func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        
-        if item is GenreGroup || item is ArtistGroup {
-            return 50
-        }
-
-        return 30
+        item is Group ? 60 : 30
     }
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
@@ -157,7 +152,7 @@ class LibraryGenresViewController: TrackListOutlineViewController {
             if let genre = item as? GenreGroup,
                let cell = outlineView.makeView(withIdentifier: .cid_GenreDuration, owner: nil) as? GroupSummaryCellView {
                 
-                cell.update(forGroup: genre)
+                cell.update(forGenreGroup: genre)
                 cell.rowSelectionStateFunction = {[weak outlineView, weak genre] in outlineView?.isItemSelected(genre as Any) ?? false}
                 
                 return cell

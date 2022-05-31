@@ -55,7 +55,7 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         }
         
         if item is AlbumDiscGroup {
-            return 40
+            return 60
         }
         
         return 30
@@ -164,8 +164,13 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
                 return cell
             }
             
-            if item is AlbumDiscGroup {
-                return outlineView.makeView(withIdentifier: .cid_DiscDuration, owner: nil) as? NSTableCellView
+            if let disc = item as? AlbumDiscGroup,
+               let cell = outlineView.makeView(withIdentifier: .cid_DiscDuration, owner: nil) as? GroupSummaryCellView {
+                
+                cell.update(forGroup: disc)
+                cell.rowSelectionStateFunction = {[weak outlineView, weak disc] in outlineView?.isItemSelected(disc as Any) ?? false}
+                
+                return cell
             }
             
         default:
@@ -339,6 +344,36 @@ class GroupSummaryCellView: AuralTableCellView {
             lblTrackCount.stringValue = "\(trackCount) \(trackCount == 1 ? "track" : "tracks")"
         }
         
+        lblDuration.stringValue = ValueFormatter.formatSecondsToHMS(group.duration)
+        
+        lblTrackCount.font = summaryFont
+        lblDuration.font = summaryFont
+        
+        lblTrackCount.textColor = systemColorScheme.secondaryTextColor
+        lblDuration.textColor = systemColorScheme.secondaryTextColor
+    }
+    
+    func update(forGenreGroup group: GenreGroup) {
+        
+        let trackCount = group.numberOfTracks
+        let artistsCount = group.numberOfSubGroups
+        
+        lblTrackCount.stringValue = "\(artistsCount) \(artistsCount == 1 ? "artist" : "artists"), \(trackCount) \(trackCount == 1 ? "track" : "tracks")"
+        lblDuration.stringValue = ValueFormatter.formatSecondsToHMS(group.duration)
+        
+        lblTrackCount.font = summaryFont
+        lblDuration.font = summaryFont
+        
+        lblTrackCount.textColor = systemColorScheme.secondaryTextColor
+        lblDuration.textColor = systemColorScheme.secondaryTextColor
+    }
+    
+    func update(forDecadeGroup group: DecadeGroup) {
+        
+        let trackCount = group.numberOfTracks
+        let artistsCount = group.numberOfSubGroups
+        
+        lblTrackCount.stringValue = "\(artistsCount) \(artistsCount == 1 ? "artist" : "artists"), \(trackCount) \(trackCount == 1 ? "track" : "tracks")"
         lblDuration.stringValue = ValueFormatter.formatSecondsToHMS(group.duration)
         
         lblTrackCount.font = summaryFont
