@@ -279,9 +279,9 @@
                                                         <color key="borderColor" red="1" green="1" blue="1" alpha="0.15416647010000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </box>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="E7d-KG-Upe" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="45" width="203" height="24"/>
+                                                        <rect key="frame" x="0.0" y="65" width="203" height="20"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="24" id="LyC-dT-wDo"/>
+                                                            <constraint firstAttribute="height" constant="20" id="LyC-dT-wDo"/>
                                                         </constraints>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Table View Cell" id="L3W-fS-XOf">
                                                             <font key="font" usesAppearanceFont="YES"/>
@@ -290,9 +290,9 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="trV-i0-aRk" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="21" width="203" height="24"/>
+                                                        <rect key="frame" x="0.0" y="5" width="203" height="20"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="24" id="uWf-ZC-jGW"/>
+                                                            <constraint firstAttribute="height" constant="20" id="uWf-ZC-jGW"/>
                                                         </constraints>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Table View Cell" id="aJz-9Q-I63">
                                                             <font key="font" usesAppearanceFont="YES"/>
@@ -316,13 +316,13 @@
                                                     <constraint firstItem="ZKf-wQ-8Vf" firstAttribute="leading" secondItem="Dgn-Ik-rCG" secondAttribute="leading" id="SrC-hl-Udv"/>
                                                     <constraint firstItem="trV-i0-aRk" firstAttribute="trailing" secondItem="E7d-KG-Upe" secondAttribute="trailing" id="UrP-bt-pF8"/>
                                                     <constraint firstItem="ZKf-wQ-8Vf" firstAttribute="top" secondItem="Dgn-Ik-rCG" secondAttribute="top" id="ZAo-oT-pgL"/>
-                                                    <constraint firstItem="E7d-KG-Upe" firstAttribute="top" secondItem="Dgn-Ik-rCG" secondAttribute="top" constant="21" id="eHF-F8-3kx"/>
+                                                    <constraint firstItem="E7d-KG-Upe" firstAttribute="top" secondItem="Dgn-Ik-rCG" secondAttribute="top" constant="5" id="eHF-F8-3kx"/>
                                                     <constraint firstItem="trV-i0-aRk" firstAttribute="leading" secondItem="Dgn-Ik-rCG" secondAttribute="leading" constant="2" id="f1K-sj-v1G"/>
                                                     <constraint firstAttribute="trailing" secondItem="E7d-KG-Upe" secondAttribute="trailing" constant="5" id="g8P-Ih-VMf"/>
                                                     <constraint firstAttribute="bottom" secondItem="GIJ-Ui-RQm" secondAttribute="bottom" id="hps-9b-Afl"/>
                                                     <constraint firstAttribute="trailing" secondItem="GIJ-Ui-RQm" secondAttribute="trailing" id="iuD-Kd-m7M"/>
                                                     <constraint firstItem="GIJ-Ui-RQm" firstAttribute="leading" secondItem="Dgn-Ik-rCG" secondAttribute="leading" id="jb8-MU-Gd9"/>
-                                                    <constraint firstAttribute="bottom" secondItem="trV-i0-aRk" secondAttribute="bottom" constant="21" id="nuZ-Ua-u9E"/>
+                                                    <constraint firstAttribute="bottom" secondItem="trV-i0-aRk" secondAttribute="bottom" constant="5" id="nuZ-Ua-u9E"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZKf-wQ-8Vf" secondAttribute="trailing" id="vcv-8l-NAq"/>
                                                     <constraint firstItem="E7d-KG-Upe" firstAttribute="leading" secondItem="Dgn-Ik-rCG" secondAttribute="leading" constant="2" id="wOE-BF-fWj"/>
                                                 </constraints>

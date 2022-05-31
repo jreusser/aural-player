@@ -212,7 +212,9 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
     override func updateSummary() {
         
         let numGroups = decadesGrouping.numberOfGroups
-        lblDecadesSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "decade" : "decades")"
+        let numTracks = library.size
+        
+        lblDecadesSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "decade" : "decades"), \(numTracks) \(numTracks == 1 ? "track" : "tracks")"
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(library.duration)
     }
     

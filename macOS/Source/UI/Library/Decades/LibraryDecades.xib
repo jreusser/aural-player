@@ -279,9 +279,9 @@
                                                         <color key="borderColor" red="1" green="1" blue="1" alpha="0.15416647010000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </box>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kqg-sg-e5i" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="45" width="203" height="24"/>
+                                                        <rect key="frame" x="0.0" y="65" width="203" height="20"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="24" id="L29-uf-4Gx"/>
+                                                            <constraint firstAttribute="height" constant="20" id="L29-uf-4Gx"/>
                                                         </constraints>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Table View Cell" id="9bb-02-BUs">
                                                             <font key="font" usesAppearanceFont="YES"/>
@@ -290,9 +290,9 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="L79-BT-rh2" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="21" width="203" height="24"/>
+                                                        <rect key="frame" x="0.0" y="5" width="203" height="20"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="24" id="p2P-0S-lUY"/>
+                                                            <constraint firstAttribute="height" constant="20" id="p2P-0S-lUY"/>
                                                         </constraints>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Table View Cell" id="u4D-XX-R7F">
                                                             <font key="font" usesAppearanceFont="YES"/>
@@ -322,8 +322,8 @@
                                                     <constraint firstAttribute="bottom" secondItem="oNH-z8-R5B" secondAttribute="bottom" id="pdC-SB-ZKs"/>
                                                     <constraint firstAttribute="trailing" secondItem="oNH-z8-R5B" secondAttribute="trailing" id="rt8-ys-rDb"/>
                                                     <constraint firstAttribute="trailing" secondItem="bE5-k4-XxF" secondAttribute="trailing" id="uzw-X7-rkl"/>
-                                                    <constraint firstItem="kqg-sg-e5i" firstAttribute="top" secondItem="c1S-vV-5cB" secondAttribute="top" constant="21" id="x5z-CR-XfT"/>
-                                                    <constraint firstAttribute="bottom" secondItem="L79-BT-rh2" secondAttribute="bottom" constant="21" id="xIU-ck-zhM"/>
+                                                    <constraint firstItem="kqg-sg-e5i" firstAttribute="top" secondItem="c1S-vV-5cB" secondAttribute="top" constant="5" id="x5z-CR-XfT"/>
+                                                    <constraint firstAttribute="bottom" secondItem="L79-BT-rh2" secondAttribute="bottom" constant="5" id="xIU-ck-zhM"/>
                                                     <constraint firstItem="bE5-k4-XxF" firstAttribute="top" secondItem="c1S-vV-5cB" secondAttribute="top" id="z3Z-eA-OA6"/>
                                                 </constraints>
                                                 <connections>

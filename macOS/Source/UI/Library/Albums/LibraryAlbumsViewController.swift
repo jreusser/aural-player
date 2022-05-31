@@ -215,7 +215,9 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
     override func updateSummary() {
         
         let numGroups = albumsGrouping.numberOfGroups
-        lblAlbumsSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "album" : "albums")"
+        let numTracks = library.size
+        
+        lblAlbumsSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "album" : "albums"), \(numTracks) \(numTracks == 1 ? "track" : "tracks")"
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(library.duration)
     }
     

@@ -212,7 +212,9 @@ class LibraryGenresViewController: TrackListOutlineViewController {
     override func updateSummary() {
         
         let numGroups = genresGrouping.numberOfGroups
-        lblGenresSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "genre" : "genres")"
+        let numTracks = library.size
+        
+        lblGenresSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "genre" : "genres"), \(numTracks) \(numTracks == 1 ? "track" : "tracks")"
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(library.duration)
     }
     
