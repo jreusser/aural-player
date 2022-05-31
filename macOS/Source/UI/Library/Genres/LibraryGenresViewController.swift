@@ -258,26 +258,7 @@ class GenreTrackCellView: AuralTableCellView {
 //            lblTrackNumber.stringValue = "\(trackNumber)"
 //        }
         
-//        lblTrackName.stringValue = track.displayName
-        
-        let titleAndArtist = track.titleAndArtist
-        
-        if let artist = titleAndArtist.artist {
-            
-//            return builder.withAttributedText(strings: [(text: artist + "  ", font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.secondaryTextColor),
-//                                                        (text: titleAndArtist.title, font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.primaryTextColor)],
-//                                              selectedTextColors: [systemColorScheme.secondarySelectedTextColor, systemColorScheme.primarySelectedTextColor],
-//                                              bottomYOffset: systemFontScheme.playQueueYOffset)
-            
-            let attStr: NSMutableAttributedString = (artist + "  ").attributed(font: systemFontScheme.playQueuePrimaryFont, color: systemColorScheme.secondaryTextColor)
-            let attStr2: NSMutableAttributedString = titleAndArtist.title.attributed(font: systemFontScheme.playQueuePrimaryFont, color: systemColorScheme.primaryTextColor)
-            
-            lblTrackName.attributedStringValue = attStr + attStr2
-            
-        } else {
-            
-            lblTrackName.attributedStringValue = titleAndArtist.title.attributed(font: systemFontScheme.playQueuePrimaryFont, color: systemColorScheme.primaryTextColor)
-        }
+        lblTrackName.stringValue = track.titleOrDefaultDisplayName
     }
     
     override var backgroundStyle: NSView.BackgroundStyle {

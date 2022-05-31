@@ -56,3 +56,9 @@ class LibraryTracksControlsContainer: ControlsContainerView {
                                               forProperty: \.buttonColor)
     }
 }
+
+class LibraryGroupedListControlsContainer: LibraryTracksControlsContainer {
+    
+    @IBOutlet weak var btnExpandAll: TintedImageButton!
+    @IBOutlet weak var btnCollapseAll: TintedImageButton!
+}
