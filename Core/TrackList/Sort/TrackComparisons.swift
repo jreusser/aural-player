@@ -17,11 +17,11 @@ let trackNameComparison: TrackComparison = {t1, t2 in
 }
 
 let trackArtistComparison: TrackComparison = {t1, t2 in
-    (t1.artist ?? "").compare(t2.artist ?? "")
+    (t1.artist ?? "zz").compare(t2.artist ?? "zz")
 }
 
 let trackAlbumComparison: TrackComparison = {t1, t2 in
-    (t1.album ?? "").compare(t2.album ?? "")
+    (t1.album ?? "zz").compare(t2.album ?? "zz")
 }
 
 let trackNumberComparison: TrackComparison = {t1, t2 in

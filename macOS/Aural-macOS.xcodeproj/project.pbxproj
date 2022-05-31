@@ -191,6 +191,7 @@
 		3E62979426A3C0F100C96AB8 /* SnappingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */; };
 		3E62979A26A3CD3800C96AB8 /* Destroyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979926A3CD3800C96AB8 /* Destroyable.swift */; };
 		3E62979D26A3CEBF00C96AB8 /* Restorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979C26A3CEBF00C96AB8 /* Restorable.swift */; };
+		3E634D73284698A9008A47EC /* TrackListOutlineViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E634D72284698A9008A47EC /* TrackListOutlineViewController+DataSource.swift */; };
 		3E63620026850AC5006F5A2A /* PlayerFontScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6361FF26850AC5006F5A2A /* PlayerFontScheme.swift */; };
 		3E63620226850AED006F5A2A /* PlaylistFontScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63620126850AED006F5A2A /* PlaylistFontScheme.swift */; };
 		3E63620426850B13006F5A2A /* EffectsFontScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63620326850B13006F5A2A /* EffectsFontScheme.swift */; };
@@ -1647,6 +1648,7 @@
 		3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappingWindowDelegate.swift; sourceTree = "<group>"; };
 		3E62979926A3CD3800C96AB8 /* Destroyable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destroyable.swift; sourceTree = "<group>"; };
 		3E62979C26A3CEBF00C96AB8 /* Restorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restorable.swift; sourceTree = "<group>"; };
+		3E634D72284698A9008A47EC /* TrackListOutlineViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackListOutlineViewController+DataSource.swift"; sourceTree = "<group>"; };
 		3E6361FF26850AC5006F5A2A /* PlayerFontScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFontScheme.swift; sourceTree = "<group>"; };
 		3E63620126850AED006F5A2A /* PlaylistFontScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistFontScheme.swift; sourceTree = "<group>"; };
 		3E63620326850B13006F5A2A /* EffectsFontScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsFontScheme.swift; sourceTree = "<group>"; };
@@ -4243,6 +4245,7 @@
 			isa = PBXGroup;
 			children = (
 				3EA8A90C28319B02006B48C6 /* TrackListOutlineViewController.swift */,
+				3E634D72284698A9008A47EC /* TrackListOutlineViewController+DataSource.swift */,
 			);
 			path = OutlineViewController;
 			sourceTree = "<group>";
@@ -6663,6 +6666,7 @@
 				3EFE3AF727864942006F8B8C /* FFmpegDecoder.swift in Sources */,
 				3E1741462801EA0A00772ED1 /* TableCellBuilder.swift in Sources */,
 				3E798F3528386009000CFAE8 /* SortedTrackList.swift in Sources */,
+				3E634D73284698A9008A47EC /* TrackListOutlineViewController+DataSource.swift in Sources */,
 				3EFE3A4D27864898006F8B8C /* ID3Spec.swift in Sources */,
 				3EFE39BF27864897006F8B8C /* FontSchemesPersistentState.swift in Sources */,
 				3E59A175262C9EDA006DF775 /* WindowLoader.swift in Sources */,

@@ -14,7 +14,20 @@ import OrderedCollections
 typealias KeyFunction = (Track) -> String
 
 fileprivate let groupSortByName: GroupSortFunction = {g1, g2 in
-    g1.name < g2.name
+    
+    let name1 = g1.name
+    let name2 = g2.name
+    
+    let unknown1 = name1.starts(with: "<Unknown ")
+    let unknown2 = name2.starts(with: "<Unknown ")
+    
+    if unknown1 && !unknown2 {
+        return false
+    } else if !unknown1 && unknown2 {
+        return true
+    }
+    
+    return name1 < name2
 }
 
 fileprivate let artistsKeyFunction: KeyFunction = {track in

@@ -10,7 +10,7 @@
 
 import Foundation
 
-protocol LibraryDelegateProtocol: TrackListProtocol, GroupedSortedTrackListProtocol {}
+protocol LibraryDelegateProtocol: GroupedSortedTrackListProtocol {}
 
 class LibraryDelegate: LibraryDelegateProtocol {
     

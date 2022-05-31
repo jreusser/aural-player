@@ -73,12 +73,13 @@ protocol AbstractTrackListProtocol {
     func exportToFile(_ file: URL)
 }
 
-protocol SortedTrackListProtocol: AbstractTrackListProtocol {
+protocol SortedAbstractTrackListProtocol: AbstractTrackListProtocol {
     
     var sortOrder: TrackListSort {get set}
 }
 
-protocol GroupedSortedTrackListProtocol: SortedTrackListProtocol {
+// TODO: Clean up the protocol hierarchy !!!
+protocol GroupedSortedAbstractTrackListProtocol: SortedAbstractTrackListProtocol {
     
     func remove(tracks: [GroupedTrack], andGroups groups: [Group], from grouping: Grouping) -> IndexSet
 }
@@ -94,3 +95,5 @@ extension TrackListProtocol {
         loadTracks(from: files, atPosition: nil)
     }
 }
+
+protocol GroupedSortedTrackListProtocol: GroupedSortedAbstractTrackListProtocol, TrackListProtocol {}

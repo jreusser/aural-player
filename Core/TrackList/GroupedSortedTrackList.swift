@@ -10,7 +10,7 @@
 
 import Foundation
 
-class GroupedSortedTrackList: SortedTrackList, GroupedSortedTrackListProtocol {
+class GroupedSortedTrackList: SortedTrackList, GroupedSortedAbstractTrackListProtocol {
     
     let groupings: [Grouping]
     

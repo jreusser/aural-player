@@ -10,7 +10,7 @@
 
 import Foundation
 
-class SortedTrackList: TrackList, SortedTrackListProtocol {
+class SortedTrackList: TrackList, SortedAbstractTrackListProtocol {
     
     var sortOrder: TrackListSort {
         

@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, NSOutlineViewDataSource {
+class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
     
     @IBOutlet weak var outlineView: NSOutlineView!
     
