@@ -18,20 +18,20 @@ fileprivate let groupSortByName: GroupSortFunction = {g1, g2 in
 }
 
 fileprivate let artistsKeyFunction: KeyFunction = {track in
-    track.artist ?? "<Unknown>"
+    track.artist ?? "<Unknown Artist>"
 }
 
 fileprivate let albumsKeyFunction: KeyFunction = {track in
-    track.album ?? "<Unknown>"
+    track.album ?? "<Unknown Album>"
 }
 
 fileprivate let genresKeyFunction: KeyFunction = {track in
-    track.genre ?? "<Unknown>"
+    track.genre ?? "<Unknown Genre>"
 }
 
 fileprivate let decadesKeyFunction: KeyFunction = {track in
     
-    guard let year = track.year else {return "<Unknown>"}
+    guard let year = track.year else {return "<Unknown Decade>"}
     
     let decade = year - (year % 10)
     return "\(decade)'s"

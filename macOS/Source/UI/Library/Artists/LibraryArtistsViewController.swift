@@ -49,20 +49,7 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
     }
     
     override func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        
-        if item is ArtistGroup {
-            return 50
-        }
-        
-        if item is AlbumGroup {
-            return 60
-        }
-        
-        if item is AlbumDiscGroup {
-            return 40
-        }
-        
-        return 30
+        item is Group ? 60 : 30
     }
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
@@ -198,8 +185,13 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
                 return cell
             }
             
-            if item is AlbumDiscGroup {
-                return outlineView.makeView(withIdentifier: .cid_DiscDuration, owner: nil) as? NSTableCellView
+            if let disc = item as? AlbumDiscGroup,
+               let cell = outlineView.makeView(withIdentifier: .cid_DiscDuration, owner: nil) as? GroupSummaryCellView {
+                
+                cell.update(forGroup: disc)
+                cell.rowSelectionStateFunction = {[weak outlineView, weak disc] in outlineView?.isItemSelected(disc as Any) ?? false}
+                
+                return cell
             }
             
         default:
@@ -313,8 +305,8 @@ extension GroupSummaryCellView {
         
         lblDuration.stringValue = ValueFormatter.formatSecondsToHMS(group.duration)
         
-        lblTrackCount.font = systemFontScheme.playQueuePrimaryFont
-        lblDuration.font = systemFontScheme.playQueuePrimaryFont
+        lblTrackCount.font = summaryFont
+        lblDuration.font = summaryFont
         
         lblTrackCount.textColor = systemColorScheme.secondaryTextColor
         lblDuration.textColor = systemColorScheme.secondaryTextColor

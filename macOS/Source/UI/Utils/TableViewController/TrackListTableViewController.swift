@@ -142,6 +142,8 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     
     func cropSelection() {
         
+        guard selectedRows.isNonEmpty else {return}
+        
         trackList.cropTracks(at: selectedRows)
         notifyReloadTable()
     }

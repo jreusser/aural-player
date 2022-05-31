@@ -311,6 +311,8 @@ class GroupSummaryCellView: AuralTableCellView {
     @IBOutlet weak var lblTrackCount: NSTextField!
     @IBOutlet weak var lblDuration: NSTextField!
     
+    lazy var summaryFont: NSFont = systemFontScheme.playQueuePrimaryFont
+    
     func update(forGroup group: Group) {
         
         let trackCount = group.numberOfTracks
@@ -318,8 +320,8 @@ class GroupSummaryCellView: AuralTableCellView {
         lblTrackCount.stringValue = "\(trackCount) \(trackCount == 1 ? "track" : "tracks")"
         lblDuration.stringValue = ValueFormatter.formatSecondsToHMS(group.duration)
         
-        lblTrackCount.font = systemFontScheme.playQueuePrimaryFont
-        lblDuration.font = systemFontScheme.playQueuePrimaryFont
+        lblTrackCount.font = summaryFont
+        lblDuration.font = summaryFont
         
         lblTrackCount.textColor = systemColorScheme.secondaryTextColor
         lblDuration.textColor = systemColorScheme.secondaryTextColor
@@ -339,8 +341,8 @@ class GroupSummaryCellView: AuralTableCellView {
         
         lblDuration.stringValue = ValueFormatter.formatSecondsToHMS(group.duration)
         
-        lblTrackCount.font = systemFontScheme.playQueuePrimaryFont
-        lblDuration.font = systemFontScheme.playQueuePrimaryFont
+        lblTrackCount.font = summaryFont
+        lblDuration.font = summaryFont
         
         lblTrackCount.textColor = systemColorScheme.secondaryTextColor
         lblDuration.textColor = systemColorScheme.secondaryTextColor
