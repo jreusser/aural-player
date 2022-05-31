@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -689,6 +690,56 @@
                         <action selector="collapseAllGroupsAction:" target="-2" id="hTn-sC-rJZ"/>
                     </connections>
                 </button>
+                <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="5hf-RK-4ub" userLabel="Controls Overlay" customClass="HoverControlsBox" customModule="Aural" customModuleProvider="target">
+                    <rect key="frame" x="228" y="177" width="120" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" id="TrV-Vi-fJr">
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2XO-u0-ANB" userLabel="Play Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                <rect key="frame" x="17" y="11" width="18" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" controlSize="small" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="M2U-fe-N4B">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="message" size="11"/>
+                                    <imageReference key="image" image="Play" symbolScale="large"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="playGroupAction:" target="5hf-RK-4ub" id="f33-fs-aJh"/>
+                                </connections>
+                            </button>
+                            <button toolTip="Repeat" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QFX-1J-67v" userLabel="Repeat Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                <rect key="frame" x="50" y="9.5" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="repeat" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Yxd-qa-jXB">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="repeatGroupAction:" target="5hf-RK-4ub" id="Cdr-b4-cix"/>
+                                </connections>
+                            </button>
+                            <button toolTip="Shuffle" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7cf-PE-cGy" userLabel="Shuffle Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                <rect key="frame" x="82" y="8.5" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="shuffle" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Pli-g1-RJD">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="shuffleGroupAction:" target="5hf-RK-4ub" id="dFS-0c-0Xe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <color key="fillColor" white="0.0" alpha="0.40094264023968962" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="btnPlay" destination="2XO-u0-ANB" id="SkY-jc-Rvw"/>
+                        <outlet property="btnRepeat" destination="QFX-1J-67v" id="pFC-80-jwH"/>
+                        <outlet property="btnShuffle" destination="7cf-PE-cGy" id="ZdW-lK-EZT"/>
+                    </connections>
+                </box>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="8wN-2x-AvL" secondAttribute="bottom" constant="12" id="1RM-Aa-lg1"/>
@@ -755,14 +806,17 @@
                 <outlet property="btnScrollToTop" destination="JqO-vD-fA9" id="z81-x1-QRH"/>
                 <outlet property="btnSearch" destination="0Q6-eE-N4M" id="wHp-nq-hni"/>
                 <outlet property="btnSort" destination="nTx-1n-HBP" id="gAf-yH-bBu"/>
+                <outlet property="hoverControls" destination="5hf-RK-4ub" id="Lfc-XE-Ihu"/>
                 <outlet property="lblDurationSummary" destination="Ccn-3i-iDN" id="X3n-W1-We5"/>
                 <outlet property="lblTracksSummary" destination="UeO-sY-4DM" id="cAe-Ad-ZeI"/>
+                <outlet property="outlineView" destination="t6n-uJ-ZQ6" id="Gd9-lT-2AG"/>
                 <outlet property="sortTintedIconMenuItem" destination="udR-XX-HTB" id="UhU-ED-T3Q"/>
             </connections>
             <point key="canvasLocation" x="139" y="154"/>
         </customView>
     </objects>
     <resources>
+        <image name="Play" width="40" height="40"/>
         <image name="ScrollToBottom" width="33" height="37"/>
         <image name="ScrollToTop" width="33" height="37"/>
         <image name="Sort" width="35" height="25"/>
@@ -774,7 +828,9 @@
         <image name="doc.text" catalog="system" width="14" height="16"/>
         <image name="magnifyingglass" catalog="system" width="15" height="15"/>
         <image name="plus.rectangle.on.folder" catalog="system" width="19" height="15"/>
+        <image name="repeat" catalog="system" width="17" height="14"/>
         <image name="scissors" catalog="system" width="20" height="15"/>
+        <image name="shuffle" catalog="system" width="18" height="14"/>
         <image name="square.slash" catalog="system" width="15" height="15"/>
         <image name="trash" catalog="system" width="15" height="17"/>
         <image name="xmark.bin" catalog="system" width="19" height="14"/>

@@ -39,9 +39,31 @@ class MouseTrackingView: NSView {
         if isTracking && self.trackingAreas.isEmpty {
         
             // Create a tracking area that covers the bounds of the view. It should respond whenever the mouse enters or exits.
-            addTrackingArea(NSTrackingArea(rect: self.bounds, options: [NSTrackingArea.Options.activeAlways, NSTrackingArea.Options.mouseEnteredAndExited], owner: self, userInfo: nil))
+            addTrackingArea(NSTrackingArea(rect: self.bounds, options: [.activeAlways, .mouseEnteredAndExited, .mouseMoved], owner: self, userInfo: nil))
             
             super.updateTrackingAreas()
         }
+    }
+}
+
+extension NSView {
+    
+    // Signals the view to start tracking mouse movements.
+    @objc func startTrackingBounds() {
+        
+        removeAllTrackingAreas()
+        
+        if trackingAreas.isEmpty {
+        
+            // Create a tracking area that covers the bounds of the view. It should respond whenever the mouse enters or exits.
+            addTrackingArea(NSTrackingArea(rect: bounds, options: [.activeAlways, .mouseEnteredAndExited], owner: self, userInfo: nil))
+            
+            updateTrackingAreas()
+        }
+    }
+    
+    // Signals the view to stop tracking mouse movements.
+    @objc func stopTrackingBounds() {
+        removeAllTrackingAreas()
     }
 }

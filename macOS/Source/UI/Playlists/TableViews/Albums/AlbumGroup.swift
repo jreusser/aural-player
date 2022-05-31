@@ -12,6 +12,10 @@ import Cocoa
 
 class AlbumGroup: Group {
     
+    override var groupType: String {
+        "album"
+    }
+    
     private static let albumArtFileName: String = "AlbumArtSmall.jpg"
     private static let folderArtFileName: String = "Folder.jpg"
     

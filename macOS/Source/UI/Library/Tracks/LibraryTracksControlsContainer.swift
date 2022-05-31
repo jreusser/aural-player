@@ -62,10 +62,49 @@ class LibraryGroupedListControlsContainer: LibraryTracksControlsContainer {
     @IBOutlet weak var btnExpandAll: TintedImageButton!
     @IBOutlet weak var btnCollapseAll: TintedImageButton!
     
+    @IBOutlet weak var outlineView: NSOutlineView!
+    @IBOutlet weak var hoverControls: HoverControlsBox!
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()
         
         viewsToShowOnMouseOver.append(contentsOf: [btnExpandAll, btnCollapseAll])
+        
+        colorSchemesManager.registerObservers([btnExpandAll, btnCollapseAll],
+                                              forProperty: \.buttonColor)
+    }
+    
+    override func mouseEntered(with event: NSEvent) {
+        
+        super.mouseEntered(with: event)
+        
+        
+    }
+    
+    override func mouseMoved(with event: NSEvent) {
+        
+        super.mouseMoved(with: event)
+        
+        guard let row = outlineView?.row(at: outlineView!.convert(event.locationInWindow, from: nil)),
+              let group = outlineView?.item(atRow: row) as? Group,
+              let rowView = outlineView?.view(atColumn: 0, row: row, makeIfNecessary: false) else {
+                  
+                  hoverControls?.hide()
+                  return
+              }
+        
+        hoverControls.group = group
+        
+        let boxHeight = hoverControls.height / 2
+        let rowHeight = rowView.height / 2
+        
+        hoverControls.setFrameOrigin(self.convert(NSMakePoint(rowView.frame.maxX - 70, rowView.frame.minY + rowHeight - boxHeight - 5), from: rowView))
+        hoverControls.show()
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        super.mouseExited(with: event)
+        hoverControls?.hide()
     }
 }
