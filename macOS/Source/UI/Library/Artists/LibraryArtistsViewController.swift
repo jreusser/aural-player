@@ -88,19 +88,7 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
               group.hasSubGroups else {return}
         
         for subGroup in group.subGroups.values {
-            expand(subGroup)
-        }
-    }
-    
-    private func expand(_ group: Group) {
-        
-        outlineView.expandItem(group)
-        
-        if group.hasSubGroups {
-            
-            for subGroup in group.subGroups.values {
-                expand(subGroup)
-            }
+            expandGroup(subGroup)
         }
     }
     

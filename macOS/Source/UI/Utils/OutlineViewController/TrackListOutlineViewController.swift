@@ -145,4 +145,46 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, N
             messenger.publish(EnqueueAndPlayNowCommand(tracks: group.tracks, clearPlayQueue: false))
         }
     }
+    
+    @IBAction func expandAllGroupsAction(_ sender: AnyObject) {
+        
+        grouping.rootGroup.subGroups.values.forEach {
+            expandGroup($0)
+        }
+    }
+    
+    func expandGroup(_ group: Group) {
+        
+        outlineView.expandItem(group)
+        
+        if group.hasSubGroups {
+            
+            for subGroup in group.subGroups.values {
+                
+                // Recursive call
+                expandGroup(subGroup)
+            }
+        }
+    }
+    
+    @IBAction func collapseAllGroupsAction(_ sender: AnyObject) {
+        
+        grouping.rootGroup.subGroups.values.forEach {
+            collapseGroup($0)
+        }
+    }
+    
+    func collapseGroup(_ group: Group) {
+        
+        outlineView.collapseItem(group)
+        
+        if group.hasSubGroups {
+            
+            for subGroup in group.subGroups.values {
+                
+                // Recursive call
+                collapseGroup(subGroup)
+            }
+        }
+    }
 }

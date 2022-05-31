@@ -61,4 +61,11 @@ class LibraryGroupedListControlsContainer: LibraryTracksControlsContainer {
     
     @IBOutlet weak var btnExpandAll: TintedImageButton!
     @IBOutlet weak var btnCollapseAll: TintedImageButton!
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        
+        viewsToShowOnMouseOver.append(contentsOf: [btnExpandAll, btnCollapseAll])
+    }
 }

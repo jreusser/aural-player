@@ -769,7 +769,7 @@
                     </buttonCell>
                 </button>
                 <button hidden="YES" toolTip="Scroll to the top" translatesAutoresizingMaskIntoConstraints="NO" id="nY7-0O-KPT" userLabel="Scroll to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="405" y="14" width="10" height="10"/>
+                    <rect key="frame" x="408" y="14" width="10" height="10"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="0cY-X9-k8g"/>
                         <constraint firstAttribute="width" constant="10" id="mTy-Ma-dc9"/>
@@ -780,7 +780,7 @@
                     </buttonCell>
                 </button>
                 <button hidden="YES" toolTip="Scroll to the bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Hj5-h0-lYy" userLabel="Scroll to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="421" y="14" width="10" height="10"/>
+                    <rect key="frame" x="424" y="14" width="10" height="10"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="FtV-Ir-8PV"/>
                         <constraint firstAttribute="width" constant="10" id="afj-oI-gzI"/>
@@ -789,6 +789,34 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                </button>
+                <button hidden="YES" toolTip="Expand all groups" translatesAutoresizingMaskIntoConstraints="NO" id="hsJ-C3-q04" userLabel="Expand All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <rect key="frame" x="449" y="10" width="20.5" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="FEK-H4-i2o"/>
+                        <constraint firstAttribute="height" constant="13" id="ep7-Vx-9kF"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.left.fill.and.line.vertical.and.arrowtriangle.right.fill" catalog="system" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="L8h-qh-tbj">
+                        <behavior key="behavior" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="expandAllGroupsAction:" target="-2" id="5w9-3B-O1F"/>
+                    </connections>
+                </button>
+                <button hidden="YES" toolTip="Collapse all groups" translatesAutoresizingMaskIntoConstraints="NO" id="b2P-bh-9Vs" userLabel="Collapse All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <rect key="frame" x="473" y="10" width="20.5" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="13" id="rbs-It-MrN"/>
+                        <constraint firstAttribute="width" constant="20" id="vqM-7u-jKY"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.right.fill.and.line.vertical.and.arrowtriangle.left.fill" catalog="system" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="xHo-hK-RTI">
+                        <behavior key="behavior" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="collapseAllGroupsAction:" target="-2" id="uvG-6O-aP7"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>
@@ -801,6 +829,7 @@
                 <constraint firstItem="a96-o6-wCi" firstAttribute="leading" secondItem="FbE-IV-y2j" secondAttribute="trailing" constant="22" id="8Xr-eQ-k1A"/>
                 <constraint firstAttribute="bottom" secondItem="sIK-Y1-OxT" secondAttribute="bottom" constant="12" id="9A0-li-0K4"/>
                 <constraint firstAttribute="bottom" secondItem="a96-o6-wCi" secondAttribute="bottom" constant="12" id="B3E-Lh-gbC"/>
+                <constraint firstItem="b2P-bh-9Vs" firstAttribute="leading" secondItem="hsJ-C3-q04" secondAttribute="trailing" constant="4" id="CMf-Vj-vQl"/>
                 <constraint firstItem="sIK-Y1-OxT" firstAttribute="leading" secondItem="a96-o6-wCi" secondAttribute="trailing" constant="5" id="G72-9b-Fuk"/>
                 <constraint firstItem="f7i-hj-Ajv" firstAttribute="baseline" secondItem="GLY-vI-fwh" secondAttribute="baseline" id="HhG-wO-Kye"/>
                 <constraint firstItem="n2m-De-cUL" firstAttribute="centerX" secondItem="bh3-oH-vIR" secondAttribute="centerX" id="IFx-YP-Yjf"/>
@@ -810,12 +839,15 @@
                 <constraint firstItem="Ght-GB-chu" firstAttribute="centerX" secondItem="bh3-oH-vIR" secondAttribute="centerX" id="P4G-1q-N4a"/>
                 <constraint firstAttribute="trailing" secondItem="f7i-hj-Ajv" secondAttribute="trailing" constant="20" id="PuK-9h-b8D"/>
                 <constraint firstAttribute="bottom" secondItem="Ght-GB-chu" secondAttribute="bottom" constant="12" id="Q0W-Gi-7Ou"/>
+                <constraint firstAttribute="bottom" secondItem="hsJ-C3-q04" secondAttribute="bottom" constant="13" id="Q9a-Vz-qQ8"/>
                 <constraint firstAttribute="bottom" secondItem="hSn-oY-7Ro" secondAttribute="bottom" constant="12" id="RAh-O8-tLi"/>
+                <constraint firstItem="b2P-bh-9Vs" firstAttribute="bottom" secondItem="hsJ-C3-q04" secondAttribute="bottom" id="TQb-4a-9wU"/>
+                <constraint firstItem="hsJ-C3-q04" firstAttribute="leading" secondItem="Hj5-h0-lYy" secondAttribute="trailing" constant="15" id="Td9-dF-xn1"/>
                 <constraint firstAttribute="bottom" secondItem="GLY-vI-fwh" secondAttribute="bottom" constant="10" id="UHz-Tn-jTD"/>
                 <constraint firstAttribute="bottom" secondItem="ais-Qt-l5H" secondAttribute="bottom" constant="16" id="Up4-kO-VCJ"/>
                 <constraint firstItem="hSn-oY-7Ro" firstAttribute="leading" secondItem="wdg-0j-Tbt" secondAttribute="trailing" constant="15" id="V9o-oD-OMZ"/>
                 <constraint firstItem="RfK-RF-0n3" firstAttribute="top" secondItem="bh3-oH-vIR" secondAttribute="top" id="Vd2-2e-7Tz"/>
-                <constraint firstItem="nY7-0O-KPT" firstAttribute="leading" secondItem="1YW-bR-ABD" secondAttribute="trailing" constant="12" id="YB9-6G-1ri"/>
+                <constraint firstItem="nY7-0O-KPT" firstAttribute="leading" secondItem="1YW-bR-ABD" secondAttribute="trailing" constant="15" id="YB9-6G-1ri"/>
                 <constraint firstItem="MaW-3c-jQ0" firstAttribute="leading" secondItem="F3g-cu-Ye9" secondAttribute="trailing" constant="20" id="YQG-IX-pep"/>
                 <constraint firstItem="RfK-RF-0n3" firstAttribute="leading" secondItem="bh3-oH-vIR" secondAttribute="leading" id="ZT0-iu-lTI"/>
                 <constraint firstItem="Hj5-h0-lYy" firstAttribute="leading" secondItem="nY7-0O-KPT" secondAttribute="trailing" constant="6" id="ZZh-22-gSk"/>
@@ -838,7 +870,9 @@
             </constraints>
             <connections>
                 <outlet property="btnClearSelection" destination="MaW-3c-jQ0" id="0pf-0k-HCP"/>
+                <outlet property="btnCollapseAll" destination="b2P-bh-9Vs" id="bf3-f1-fiw"/>
                 <outlet property="btnCropTracks" destination="sIK-Y1-OxT" id="wjz-nR-czb"/>
+                <outlet property="btnExpandAll" destination="hsJ-C3-q04" id="dbJ-EE-zh8"/>
                 <outlet property="btnExport" destination="wdg-0j-Tbt" id="2iB-pX-QNr"/>
                 <outlet property="btnImportTracks" destination="FbE-IV-y2j" id="4ge-Bn-qce"/>
                 <outlet property="btnInvertSelection" destination="ais-Qt-l5H" id="Vk4-gi-8rN"/>
@@ -863,6 +897,8 @@
         <image name="Sort" width="35" height="25"/>
         <image name="arrow.right.arrow.left" catalog="system" width="16" height="17"/>
         <image name="arrowtriangle.down" catalog="system" width="14" height="13"/>
+        <image name="arrowtriangle.left.fill.and.line.vertical.and.arrowtriangle.right.fill" catalog="system" width="22" height="16"/>
+        <image name="arrowtriangle.right.fill.and.line.vertical.and.arrowtriangle.left.fill" catalog="system" width="22" height="16"/>
         <image name="arrowtriangle.up" catalog="system" width="14" height="13"/>
         <image name="doc.text" catalog="system" width="14" height="16"/>
         <image name="magnifyingglass" catalog="system" width="15" height="15"/>
