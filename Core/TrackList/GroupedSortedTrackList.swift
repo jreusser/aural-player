@@ -46,7 +46,9 @@ class GroupedSortedTrackList: SortedTrackList, GroupedSortedAbstractTrackListPro
         
         let indices = super.removeTracks(tracksToRemove)
         
-        // TODO: Remove from groupings
+        groupings.forEach {
+            $0.removeTracks(tracksToRemove)
+        }
         
         return indices
     }

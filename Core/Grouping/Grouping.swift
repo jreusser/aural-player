@@ -187,7 +187,28 @@ class Grouping {
         }
     }
     
-    func removeTracks(_ newTracks: [Track]) {}
+    func findParent(forTrack track: Track) -> Group? {
+        
+        var function: GroupingFunction? = self.function
+        var parent: Group? = rootGroup
+        
+        while let theFunction = function, let theParent = parent, theFunction.canSubGroup(group: theParent) {
+            
+            let groupName = theFunction.keyFunction(track)
+            
+            parent = theParent.findSubGroup(named: groupName)
+            function = function?.subGroupingFunction
+        }
+        
+        return parent
+    }
+    
+    func removeTracks(_ tracksToRemove: [Track]) {
+        
+        for track in tracksToRemove {
+            findParent(forTrack: track)?.removeTracks([track])
+        }
+    }
     
     func remove(tracks tracksToRemove: [GroupedTrack], andGroups groupsToRemove: [Group]) {
         

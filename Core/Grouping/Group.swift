@@ -123,6 +123,10 @@ class Group: PlayableItem {
         Group(name: groupName, depth: self.depth + 1)
     }
     
+    func findSubGroup(named groupName: String) -> Group? {
+        subGroups[groupName]
+    }
+    
     func findOrCreateSubGroup(named groupName: String) -> Group {
         
         if let subGroup = subGroups[groupName] {
@@ -187,6 +191,10 @@ class Group: PlayableItem {
         
         for track in tracksToRemove {
             _tracks.removeValue(forKey: track.file)
+        }
+        
+        if !hasTracks {
+            removeFromParent()
         }
     }
     
