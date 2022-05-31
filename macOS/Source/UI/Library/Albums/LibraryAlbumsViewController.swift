@@ -61,50 +61,6 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         return 30
     }
     
-    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        
-        if item == nil {
-            return albumsGrouping.numberOfGroups
-        }
-        
-        if let group = item as? Group {
-            return group.hasSubGroups ? group.subGroups.count : group.numberOfTracks
-        }
-        
-        return 0
-    }
-    
-    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        
-        if item == nil {
-            return albumsGrouping.group(at: index)
-        }
-        
-        if let group = item as? Group {
-            return (group.hasSubGroups ? group.subGroups.values[index] : group[index]) as Any
-        }
-        
-        return ""
-    }
-    
-    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        item is Group
-    }
-    
-    func outlineViewItemDidExpand(_ notification: Notification) {
-        
-        guard let album = notification.userInfo?.values.first as? AlbumGroup,
-              album.hasSubGroups else {return}
-        
-        for group in album.subGroups.values {
-            outlineView.expandItem(group)
-        }
-    }
-    
-    func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
-        !(item is AlbumDiscGroup)
-    }
-    
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
         guard let columnId = tableColumn?.identifier else {return nil}
@@ -181,42 +137,6 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         return nil
     }
     
-    // Refreshes the playlist view in response to a new track being added to the playlist
-    func tracksAdded(_ notification: LibraryTracksAddedNotification) {
-        
-        let selectedItems = outlineView.selectedItems
-        
-        //        guard let results = notification.groupingResults[albumsGrouping] else {return}
-        //
-        //        var groupsToReload: Set<Group> = Set()
-        //
-        //        for result in results {
-        //
-        //            if result.groupCreated {
-        //
-        //                // Insert the new group
-        //                outlineView.insertItems(at: IndexSet(integer: result.track.groupIndex), inParent: nil, withAnimation: .effectFade)
-        //
-        //            } else {
-        //
-        //                // Insert the new track under its parent group, and reload the parent group
-        //                let group = result.track.group
-        //                groupsToReload.insert(group)
-        //
-        //                outlineView.insertItems(at: IndexSet(integer: result.track.trackIndex), inParent: group, withAnimation: .effectGap)
-        //            }
-        //        }
-        //
-        //        for group in groupsToReload {
-        //            outlineView.reloadItem(group, reloadChildren: true)
-        //        }
-        
-        outlineView.reloadData()
-        outlineView.selectItems(selectedItems)
-        
-        updateSummary()
-    }
-    
     override func updateSummary() {
         
         let numGroups = albumsGrouping.numberOfGroups
@@ -224,10 +144,6 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         
         lblAlbumsSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "album" : "albums"), \(numTracks) \(numTracks == 1 ? "track" : "tracks")"
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(library.duration)
-    }
-    
-    override func notifyReloadTable() {
-        messenger.publish(.library_reloadTable)
     }
 }
 
@@ -335,10 +251,17 @@ class GroupSummaryCellView: AuralTableCellView {
     func update(forAlbumGroup group: AlbumGroup) {
         
         let trackCount = group.numberOfTracks
+        let hasMoreThanOneDisc = group.hasMoreThanOneTotalDisc
+        let totalDiscs = group.totalDiscs
         let discCount = group.discCount
         
-        if discCount > 1 {
-            lblTrackCount.stringValue = "\(discCount) discs, \(trackCount) \(trackCount == 1 ? "track" : "tracks")"
+        if hasMoreThanOneDisc, let totalDiscs = totalDiscs {
+            
+            if discCount < totalDiscs {
+                lblTrackCount.stringValue = "\(discCount) / \(totalDiscs) discs, \(trackCount) \(trackCount == 1 ? "track" : "tracks")"
+            } else {
+                lblTrackCount.stringValue = "\(totalDiscs) discs, \(trackCount) \(trackCount == 1 ? "track" : "tracks")"
+            }
             
         } else {
             lblTrackCount.stringValue = "\(trackCount) \(trackCount == 1 ? "track" : "tracks")"

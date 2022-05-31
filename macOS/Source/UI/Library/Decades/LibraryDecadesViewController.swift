@@ -52,46 +52,6 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
         item is Group ? 60 : 30
     }
     
-    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        
-        if item == nil {
-            return decadesGrouping.numberOfGroups
-        }
-        
-        if let group = item as? Group {
-            return group.hasSubGroups ? group.subGroups.count : group.numberOfTracks
-        }
-        
-        return 0
-    }
-    
-    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        
-        if item == nil {
-            return decadesGrouping.group(at: index)
-        }
-        
-        if let group = item as? Group {
-            return (group.hasSubGroups ? group.subGroups.values[index] : group[index]) as Any
-        }
-        
-        return ""
-    }
-    
-    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        item is Group
-    }
-    
-    func outlineViewItemDidExpand(_ notification: Notification) {
-        
-        guard let decade = notification.userInfo?.values.first as? DecadeGroup,
-              decade.hasSubGroups else {return}
-        
-        for group in decade.subGroups.values {
-            outlineView.expandItem(group)
-        }
-    }
-    
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
         guard let columnId = tableColumn?.identifier else {return nil}
@@ -163,45 +123,7 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
             return nil
         }
         
-        print("\nNo cell for item: \(item)")
-        
         return nil
-    }
-    
-    // Refreshes the playlist view in response to a new track being added to the playlist
-    func tracksAdded(_ notification: LibraryTracksAddedNotification) {
-        
-        let selectedItems = outlineView.selectedItems
-        
-        //        guard let results = notification.groupingResults[decadesGrouping] else {return}
-        //
-        //        var groupsToReload: Set<Group> = Set()
-        //
-        //        for result in results {
-        //
-        //            if result.groupCreated {
-        //
-        //                // Insert the new group
-        //                outlineView.insertItems(at: IndexSet(integer: result.track.groupIndex), inParent: nil, withAnimation: .effectFade)
-        //
-        //            } else {
-        //
-        //                // Insert the new track under its parent group, and reload the parent group
-        //                let group = result.track.group
-        //                groupsToReload.insert(group)
-        //
-        //                outlineView.insertItems(at: IndexSet(integer: result.track.trackIndex), inParent: group, withAnimation: .effectGap)
-        //            }
-        //        }
-        //
-        //        for group in groupsToReload {
-        //            outlineView.reloadItem(group, reloadChildren: true)
-        //        }
-        
-        outlineView.reloadData()
-        outlineView.selectItems(selectedItems)
-        
-        updateSummary()
     }
     
     override func updateSummary() {
@@ -211,10 +133,6 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
         
         lblDecadesSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "decade" : "decades"), \(numTracks) \(numTracks == 1 ? "track" : "tracks")"
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(library.duration)
-    }
-    
-    override func notifyReloadTable() {
-        messenger.publish(.library_reloadTable)
     }
 }
 

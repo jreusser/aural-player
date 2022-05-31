@@ -42,6 +42,9 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
     
     lazy var messenger: Messenger = Messenger(for: self)
     
+    lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
+    lazy var saveDialog = DialogsAndAlerts.savePlaylistDialog
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -67,6 +70,50 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
     // Determines the height of a single row
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         item is Group ? 100 : 30
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
+        
+        if item == nil {
+            return grouping.numberOfGroups
+        }
+        
+        if let group = item as? Group {
+            return group.hasSubGroups ? group.subGroups.count : group.numberOfTracks
+        }
+        
+        return 0
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+        
+        if item == nil {
+            return grouping.group(at: index)
+        }
+        
+        if let group = item as? Group {
+            return (group.hasSubGroups ? group.subGroups.elements[index].value : group[index]) as Any
+        }
+        
+        return ""
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
+        !(item is AlbumDiscGroup)
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
+        item is Group
+    }
+    
+    func outlineViewItemDidExpand(_ notification: Notification) {
+        
+        guard let group = notification.userInfo?.values.first as? Group,
+              group.hasSubGroups else {return}
+        
+        for subGroup in group.subGroups.values {
+            expandGroup(subGroup)
+        }
     }
     
     // Enables type selection, allowing the user to conveniently and efficiently find a playlist track by typing its display name, which results in the track, if found, being selected within the playlist
@@ -111,7 +158,9 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
         _ = trackList.remove(tracks: groupedTracks, andGroups: Array(groups), from: grouping)
     }
     
-    func notifyReloadTable() {}
+    func notifyReloadTable() {
+        messenger.publish(.library_reloadTable)
+    }
     
     @IBAction func removeAllTracksAction(_ sender: NSButton) {
         removeAllTracks()
@@ -186,5 +235,53 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
                 collapseGroup(subGroup)
             }
         }
+    }
+    
+    @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {
+        importFilesAndFolders()
+    }
+    
+    // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
+    func importFilesAndFolders() {
+        
+        if !trackList.isBeingModified, fileOpenDialog.runModal() == .OK {
+            trackList.loadTracks(from: fileOpenDialog.urls)
+        }
+    }
+    
+    // Refreshes the playlist view in response to a new track being added to the playlist
+    func tracksAdded(_ notification: LibraryTracksAddedNotification) {
+        
+        let selectedItems = outlineView.selectedItems
+        
+        //        guard let results = notification.groupingResults[artistsGrouping] else {return}
+        //
+        //        var groupsToReload: Set<Group> = Set()
+        //
+        //        for result in results {
+        //
+        //            if result.groupCreated {
+        //
+        //                // Insert the new group
+        //                outlineView.insertItems(at: IndexSet(integer: result.track.groupIndex), inParent: nil, withAnimation: .effectFade)
+        //
+        //            } else {
+        //
+        //                // Insert the new track under its parent group, and reload the parent group
+        //                let group = result.track.group
+        //                groupsToReload.insert(group)
+        //
+        //                outlineView.insertItems(at: IndexSet(integer: result.track.trackIndex), inParent: group, withAnimation: .effectGap)
+        //            }
+        //        }
+        //
+        //        for group in groupsToReload {
+        //            outlineView.reloadItem(group, reloadChildren: true)
+        //        }
+        
+        outlineView.reloadData()
+        outlineView.selectItems(selectedItems)
+        
+        updateSummary()
     }
 }
