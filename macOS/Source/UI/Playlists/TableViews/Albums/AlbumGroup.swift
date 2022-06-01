@@ -12,8 +12,8 @@ import Cocoa
 
 class AlbumGroup: Group {
     
-    override var groupType: String {
-        "album"
+    override var displayName: String {
+        "album '\(name)'"
     }
     
     private static let albumArtFileName: String = "AlbumArtSmall.jpg"
@@ -147,4 +147,13 @@ class AlbumGroup: Group {
 }
 
 class AlbumDiscGroup: Group {
+    
+    override var displayName: String {
+        
+        if let album = parentGroup as? AlbumGroup {
+            return "\(name.lowercased()) from album '\(album.name)'"
+        } else {
+            return name
+        }
+    }
 }

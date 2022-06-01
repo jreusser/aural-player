@@ -98,8 +98,10 @@ class LibraryGroupedListControlsContainer: LibraryTracksControlsContainer {
         
         let boxHeight = hoverControls.height / 2
         let rowHeight = rowView.height / 2
+        let lastColumnWidth = outlineView!.tableColumns.last!.width
         
-        hoverControls.setFrameOrigin(self.convert(NSMakePoint(rowView.frame.maxX - 70, rowView.frame.minY + rowHeight - boxHeight - 5), from: rowView))
+        let conv = self.convert(NSMakePoint(rowView.frame.maxX, rowView.frame.minY + rowHeight - boxHeight - 5), from: rowView)
+        hoverControls.setFrameOrigin(NSMakePoint(outlineView.frame.maxX - lastColumnWidth - hoverControls.width, conv.y))
         hoverControls.show()
     }
     

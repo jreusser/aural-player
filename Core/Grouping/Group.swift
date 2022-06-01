@@ -44,8 +44,8 @@ class DecadesRootGroup: Group {
 
 class ArtistGroup: Group {
     
-    override var groupType: String {
-        "artist"
+    override var displayName: String {
+        "artist '\(name)'"
     }
     
     override func doCreateSubGroup(named groupName: String) -> Group {
@@ -55,8 +55,8 @@ class ArtistGroup: Group {
 
 class GenreGroup: Group {
     
-    override var groupType: String {
-        "genre"
+    override var displayName: String {
+        "genre '\(name)'"
     }
     
     override func doCreateSubGroup(named groupName: String) -> Group {
@@ -66,8 +66,8 @@ class GenreGroup: Group {
 
 class DecadeGroup: Group {
     
-    override var groupType: String {
-        "decade"
+    override var displayName: String {
+        "decade '\(name)'"
     }
     
     override func doCreateSubGroup(named groupName: String) -> Group {
@@ -80,8 +80,8 @@ class Group: PlayableItem {
     let name: String
     let depth: Int
     
-    var groupType: String {
-        "group"
+    var displayName: String {
+        "group '\(name)'"
     }
     
     var duration: Double {
@@ -94,7 +94,7 @@ class Group: PlayableItem {
     var _tracks: OrderedDictionary<URL, Track> = OrderedDictionary()
     
     var tracks: [Track] {
-        hasTracks ? Array(_tracks.values) : subGroups.values.flatMap {$0.tracks}
+        hasTracks ? _tracks.elements.map {$0.value} : subGroups.values.flatMap {$0.tracks}
     }
     
     var numberOfTracks: Int {

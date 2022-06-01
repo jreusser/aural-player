@@ -4287,7 +4287,6 @@
 			children = (
 				3EAE9CBA2836ADF6004499FE /* LibraryTracks.xib */,
 				3EAE9CBC2836AF00004499FE /* LibraryTracksViewController.swift */,
-				3E59656C283BF9CE00AF43FF /* LibraryTracksControlsContainer.swift */,
 			);
 			path = Tracks;
 			sourceTree = "<group>";
@@ -4426,6 +4425,14 @@
 				3EBF29282686947700D87021 /* FilterBandsTabButtonCell.swift */,
 			);
 			path = BandEditor;
+			sourceTree = "<group>";
+		};
+		3ED5090228472A35001A190A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3E59656C283BF9CE00AF43FF /* LibraryTracksControlsContainer.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		3ED8E74C2814A312002E313F /* General */ = {
@@ -4646,6 +4653,7 @@
 				3E05FD40283A451F00EB7861 /* Albums */,
 				3E8DD6442845631900FED49D /* Genres */,
 				3E2ADED92843E4A0009586E7 /* Decades */,
+				3ED5090228472A35001A190A /* Utils */,
 			);
 			path = Library;
 			sourceTree = "<group>";

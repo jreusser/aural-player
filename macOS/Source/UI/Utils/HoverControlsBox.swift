@@ -13,6 +13,7 @@ import Cocoa
 class HoverControlsBox: NSBox {
     
     @IBOutlet weak var btnPlay: TintedImageButton!
+    @IBOutlet weak var btnEnqueueAndPlay: TintedImageButton!
     @IBOutlet weak var btnRepeat: TintedImageButton!
     @IBOutlet weak var btnShuffle: TintedImageButton!
     
@@ -22,12 +23,12 @@ class HoverControlsBox: NSBox {
         
         didSet {
             
-            guard let groupName = group?.name,
-            let groupType = group?.groupType else {return}
+            guard let groupName = group?.displayName else {return}
             
-            btnPlay.toolTip = "Play \(groupType) '\(groupName)'"
-            btnRepeat.toolTip = "Repeat \(groupType) '\(groupName)'"
-            btnShuffle.toolTip = "Shuffle \(groupType) '\(groupName)'"
+            btnPlay.toolTip = "Play \(groupName)"
+            btnEnqueueAndPlay.toolTip = "Enqueue and play \(groupName)"
+            btnRepeat.toolTip = "Repeat \(groupName)"
+            btnShuffle.toolTip = "Shuffle \(groupName)"
         }
     }
     
@@ -35,12 +36,20 @@ class HoverControlsBox: NSBox {
         
         super.awakeFromNib()
         
-        colorSchemesManager.registerObservers([btnPlay, btnRepeat, btnShuffle],
+        colorSchemesManager.registerObservers([btnPlay, btnEnqueueAndPlay, btnRepeat, btnShuffle],
                                               forProperty: \.buttonColor)
     }
     
     @IBAction func playGroupAction(_ sender: NSButton) {
-        doPlay()
+        
+        messenger.publish(.player_setRepeatMode, payload: RepeatMode.off)
+        messenger.publish(.player_setShuffleMode, payload: ShuffleMode.off)
+        
+        doPlay(clearPlayQueue: true)
+    }
+    
+    @IBAction func enqueueAndPlayGroupAction(_ sender: NSButton) {
+        doPlay(clearPlayQueue: false)
     }
     
     @IBAction func repeatGroupAction(_ sender: NSButton) {
@@ -48,7 +57,7 @@ class HoverControlsBox: NSBox {
         messenger.publish(.player_setRepeatMode, payload: RepeatMode.all)
         messenger.publish(.player_setShuffleMode, payload: ShuffleMode.off)
         
-        doPlay()
+        doPlay(clearPlayQueue: true)
     }
     
     @IBAction func shuffleGroupAction(_ sender: NSButton) {
@@ -56,13 +65,13 @@ class HoverControlsBox: NSBox {
         messenger.publish(.player_setRepeatMode, payload: RepeatMode.off)
         messenger.publish(.player_setShuffleMode, payload: ShuffleMode.on)
         
-        doPlay()
+        doPlay(clearPlayQueue: true)
     }
     
-    private func doPlay() {
+    private func doPlay(clearPlayQueue: Bool) {
         
         if let group = self.group {
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: group.tracks, clearPlayQueue: false))
+            messenger.publish(EnqueueAndPlayNowCommand(tracks: group.tracks, clearPlayQueue: clearPlayQueue))
         }
     }
 }
