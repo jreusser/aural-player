@@ -285,7 +285,25 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
         updateSummary()
     }
     
-    func outlineView(_ outlineView: NSOutlineView, toolTipFor cell: NSCell, rect: NSRectPointer, tableColumn: NSTableColumn?, item: Any, mouseLocation: NSPoint) -> String {
-        "Muthusami !!!"
+    // MARK: Table view selection manipulation
+    
+    @IBAction func clearSelectionAction(_ sender: NSButton) {
+        clearSelection()
+    }
+    
+    @inlinable
+    @inline(__always)
+    func clearSelection() {
+        outlineView.clearSelection()
+    }
+    
+    @IBAction func invertSelectionAction(_ sender: NSButton) {
+        invertSelection()
+    }
+    
+    @inlinable
+    @inline(__always)
+    func invertSelection() {
+        outlineView.invertSelection()
     }
 }

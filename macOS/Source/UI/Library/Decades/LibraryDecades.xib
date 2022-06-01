@@ -464,7 +464,7 @@
                     </contentFilters>
                 </progressIndicator>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FDd-Ft-yB7" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="28" y="10" width="214" height="25"/>
+                    <rect key="frame" x="7" y="10" width="214" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="6PJ-m1-8cH"/>
                         <constraint firstAttribute="height" constant="25" id="rAQ-RE-mec"/>
@@ -476,7 +476,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dE6-QH-JKu" userLabel="Duration summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="386" y="10" width="204" height="25"/>
+                    <rect key="frame" x="401" y="10" width="204" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="Qqa-6p-PUM"/>
                         <constraint firstAttribute="width" constant="200" id="Vnz-3D-jj2"/>
@@ -784,8 +784,8 @@
                 <constraint firstAttribute="trailing" secondItem="w8K-Oq-0n1" secondAttribute="trailing" id="Ltr-1M-YAG"/>
                 <constraint firstAttribute="bottom" secondItem="aWi-ZQ-mhQ" secondAttribute="bottom" constant="12" id="NIW-so-63p"/>
                 <constraint firstAttribute="bottom" secondItem="dyZ-4f-mfi" secondAttribute="bottom" constant="16" id="OWL-1N-o5W"/>
-                <constraint firstAttribute="trailing" secondItem="dE6-QH-JKu" secondAttribute="trailing" constant="20" id="PXC-Rg-CYm"/>
-                <constraint firstItem="FDd-Ft-yB7" firstAttribute="leading" secondItem="bls-4I-gKm" secondAttribute="leading" constant="30" id="Pwv-lf-2sD"/>
+                <constraint firstAttribute="trailing" secondItem="dE6-QH-JKu" secondAttribute="trailing" constant="5" id="PXC-Rg-CYm"/>
+                <constraint firstItem="FDd-Ft-yB7" firstAttribute="leading" secondItem="bls-4I-gKm" secondAttribute="leading" constant="9" id="Pwv-lf-2sD"/>
                 <constraint firstAttribute="bottom" secondItem="FDd-Ft-yB7" secondAttribute="bottom" constant="10" id="Ruf-vm-mTq"/>
                 <constraint firstItem="dyZ-4f-mfi" firstAttribute="leading" secondItem="bsP-eT-NAT" secondAttribute="trailing" constant="12" id="TNq-eD-2TK"/>
                 <constraint firstItem="2MH-ak-Nsr" firstAttribute="leading" secondItem="Dtf-WJ-PYt" secondAttribute="trailing" constant="4" id="UEk-kR-V6V"/>

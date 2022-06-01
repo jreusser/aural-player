@@ -451,7 +451,7 @@
                     </contentFilters>
                 </progressIndicator>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UeO-sY-4DM" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="28" y="10" width="214" height="25"/>
+                    <rect key="frame" x="7" y="10" width="214" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="57k-h8-agC"/>
                         <constraint firstAttribute="height" constant="25" id="SYg-mE-yHH"/>
@@ -463,7 +463,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ccn-3i-iDN" userLabel="Duration summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="386" y="10" width="204" height="25"/>
+                    <rect key="frame" x="401" y="10" width="204" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="Y6o-7B-jgt"/>
                         <constraint firstAttribute="height" constant="25" id="zHf-SN-MOz"/>
@@ -781,7 +781,7 @@
                 <constraint firstAttribute="bottom" secondItem="nTx-1n-HBP" secondAttribute="bottom" constant="12" id="cDw-dG-eu3"/>
                 <constraint firstItem="zp8-kH-1ey" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="cLH-IQ-sb2"/>
                 <constraint firstItem="eYg-d5-YNi" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="3" id="dha-Ov-bqp"/>
-                <constraint firstItem="UeO-sY-4DM" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="30" id="dpN-Q9-d3K"/>
+                <constraint firstItem="UeO-sY-4DM" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="9" id="dpN-Q9-d3K"/>
                 <constraint firstItem="Ie6-Be-bvI" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="ei0-r3-Wdx"/>
                 <constraint firstItem="tfm-aU-B9c" firstAttribute="bottom" secondItem="PlK-G6-gaf" secondAttribute="bottom" id="fqN-yU-8sZ"/>
                 <constraint firstAttribute="bottom" secondItem="k1j-EW-6Rt" secondAttribute="bottom" constant="16" id="gfF-46-Evh"/>
@@ -789,7 +789,7 @@
                 <constraint firstAttribute="bottom" secondItem="jHP-bx-nGG" secondAttribute="bottom" constant="12" id="j2Z-fD-ym6"/>
                 <constraint firstAttribute="bottom" secondItem="zp8-kH-1ey" secondAttribute="bottom" constant="6" id="ldk-GP-p7f"/>
                 <constraint firstItem="pTe-90-XRn" firstAttribute="leading" secondItem="Zoi-43-oIe" secondAttribute="trailing" constant="6" id="m6n-Kl-sNo"/>
-                <constraint firstAttribute="trailing" secondItem="Ccn-3i-iDN" secondAttribute="trailing" constant="20" id="mhT-94-bgN"/>
+                <constraint firstAttribute="trailing" secondItem="Ccn-3i-iDN" secondAttribute="trailing" constant="5" id="mhT-94-bgN"/>
                 <constraint firstItem="aeO-5T-Ws4" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="mhc-77-RQQ"/>
                 <constraint firstItem="xqb-4J-JF7" firstAttribute="leading" secondItem="k1j-EW-6Rt" secondAttribute="trailing" constant="4" id="nu4-bj-syX"/>
                 <constraint firstItem="KxT-Kj-7dR" firstAttribute="leading" secondItem="jHP-bx-nGG" secondAttribute="trailing" constant="1" id="oj3-4a-rLb"/>

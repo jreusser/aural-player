@@ -661,6 +661,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="removeAllTracksAction:" target="-2" id="63q-QL-AHQ"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Clear the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="MaW-3c-jQ0" userLabel="Clear Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="225" y="13" width="12" height="11"/>
@@ -672,6 +675,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="clearSelectionAction:" target="-2" id="vBF-Fn-Dmy"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Invert the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="ais-Qt-l5H" userLabel="Invert Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="241" y="12" width="11.5" height="13"/>
@@ -683,6 +689,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="invertSelectionAction:" target="-2" id="vq0-IS-aTY"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Search the play queue" translatesAutoresizingMaskIntoConstraints="NO" id="yhe-y7-ch9" userLabel="Search" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="272" y="11.5" width="13" height="14"/>
@@ -824,7 +833,7 @@
                         <action selector="collapseAllGroupsAction:" target="-2" id="uvG-6O-aP7"/>
                     </connections>
                 </button>
-                <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-at-eQb" userLabel="Controls Overlay" customClass="HoverControlsBox" customModule="Aural" customModuleProvider="target">
+                <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-at-eQb" userLabel="Controls Overlay" customClass="HoverControlsBox" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="257" y="156" width="130" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="5US-5t-e4e">
@@ -879,7 +888,7 @@
                             </button>
                         </subviews>
                     </view>
-                    <color key="fillColor" white="0.0" alpha="0.40094264019999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="fillColor" white="0.0" alpha="0.70297511090312492" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="btnEnqueueAndPlay" destination="6d9-N0-YOl" id="v4t-my-lEt"/>
                         <outlet property="btnPlay" destination="TMh-UK-qpK" id="mUq-at-CgD"/>
