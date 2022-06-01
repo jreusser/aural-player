@@ -11,7 +11,7 @@
 ///
 /// An enumeration of fields that can be used as playlist sort criteria.
 ///
-enum SortField {
+enum TrackSortField {
     
     case name
     case duration
@@ -68,6 +68,40 @@ enum SortField {
         case .duration:
             
             return order == .ascending ? trackDurationAscendingComparator : trackDurationDescendingComparator
+        }
+    }
+}
+
+enum GroupSortField {
+    
+    case name
+    case duration
+    
+    var comparison: GroupComparison {
+        
+        switch self {
+            
+        case .name:
+            
+            return groupNameComparison
+            
+        case .duration:
+            
+            return groupDurationComparison
+        }
+    }
+    
+    func comparator(withOrder order: SortOrder) -> GroupComparator {
+        
+        switch self {
+            
+        case .name:
+            
+            return order == .ascending ? groupNameAscendingComparator : groupNameDescendingComparator
+            
+        case .duration:
+            
+            return order == .ascending ? groupDurationAscendingComparator : groupDurationDescendingComparator
         }
     }
 }

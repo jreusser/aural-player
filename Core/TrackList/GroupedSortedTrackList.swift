@@ -91,4 +91,8 @@ class GroupedSortedTrackList: SortedTrackList, GroupedSortedAbstractTrackListPro
             $0.cropTracks(tracksToKeep)
         }
     }
+    
+    func sort(grouping: Grouping, by sort: GroupedTrackListSort) {
+        grouping.sortOrder = sort
+    }
 }

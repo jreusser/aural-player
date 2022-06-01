@@ -11,9 +11,6 @@
 import Foundation
 import OrderedCollections
 
-typealias TrackSortFunction = (Track, Track) -> Bool
-typealias GroupSortFunction = (Group, Group) -> Bool
-
 class ArtistsRootGroup: Group {
     
     override func doCreateSubGroup(named groupName: String) -> Group {
@@ -192,14 +189,14 @@ class Group: PlayableItem {
         }
     }
     
-    func sortTracks(by comparator: @escaping TrackSortFunction) {
+    func sortTracks(by comparator: @escaping TrackComparator) {
         
         _tracks.sort(by: {kvPair1, kvPair2 in
             comparator(kvPair1.value, kvPair2.value)
         })
     }
     
-    func sortSubGroups(by comparator: @escaping GroupSortFunction) {
+    func sortSubGroups(by comparator: @escaping GroupComparator) {
         
         subGroups.sort(by: {kvPair1, kvPair2 in
             comparator(kvPair1.value, kvPair2.value)

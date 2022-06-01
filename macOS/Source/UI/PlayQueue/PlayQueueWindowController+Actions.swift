@@ -279,7 +279,7 @@ extension PlayQueueWindowController {
         doSort(by: [.duration])
     }
     
-    private func doSort(by fields: [SortField]) {
+    private func doSort(by fields: [TrackSortField]) {
         
         currentViewController.sort(by: fields, order: sortOrderMenuItemView.sortOrder)
         updateSummary()

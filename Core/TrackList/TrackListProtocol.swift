@@ -84,6 +84,8 @@ protocol SortedAbstractTrackListProtocol: AbstractTrackListProtocol {
 protocol GroupedSortedAbstractTrackListProtocol: SortedAbstractTrackListProtocol {
     
     func remove(tracks: [GroupedTrack], andGroups groups: [Group], from grouping: Grouping) -> IndexSet
+    
+    func sort(grouping: Grouping, by sort: GroupedTrackListSort)
 }
 
 protocol TrackListProtocol: AbstractTrackListProtocol {

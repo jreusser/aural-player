@@ -246,13 +246,13 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         doSort(by: [.duration])
     }
     
-    func doSort(by fields: [SortField]) {
+    func doSort(by fields: [TrackSortField]) {
         
         trackList.sort(TrackListSort(fields: fields, order: sortOrderMenuItemView.sortOrder))
         notifyReloadTable()
     }
     
-    func sort(by fields: [SortField], order: SortOrder) {
+    func sort(by fields: [TrackSortField], order: SortOrder) {
         
         trackList.sort(TrackListSort(fields: fields, order: order))
         notifyReloadTable()

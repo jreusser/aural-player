@@ -61,9 +61,34 @@ func chainTrackComparisons(_ c1: @escaping TrackComparison, _ c2: @escaping Trac
 }
 
 func chainTrackComparisonsToAscendingComparator(_ c1: @escaping TrackComparison, _ c2: @escaping TrackComparison) -> TrackComparator {
-    comparisonToAscendingComparator(chainTrackComparisons(c1, c2))
+    comparisonToAscendingTrackComparator(chainTrackComparisons(c1, c2))
 }
 
 func chainTrackComparisonsToDescendingComparator(_ c1: @escaping TrackComparison, _ c2: @escaping TrackComparison) -> TrackComparator {
-    comparisonToDescendingComparator(chainTrackComparisons(c1, c2))
+    comparisonToDescendingTrackComparator(chainTrackComparisons(c1, c2))
+}
+
+// MARK: Group comparison
+
+typealias GroupComparison = (Group, Group) -> ComparisonResult
+
+let groupNameComparison: GroupComparison = {g1, g2 in
+    (g1.name).compare(g2.name)
+}
+
+let groupDurationComparison: GroupComparison = {g1, g2 in
+    (g1.duration).compare(g2.duration)
+}
+
+
+func chainGroupComparisons(_ c1: @escaping GroupComparison, _ c2: @escaping GroupComparison) -> GroupComparison {
+
+    {g1, g2 in
+
+        if c1(g1, g2) == .orderedSame {
+            return c2(g1, g2)
+        } else {
+            return c1(g1, g2)
+        }
+    }
 }

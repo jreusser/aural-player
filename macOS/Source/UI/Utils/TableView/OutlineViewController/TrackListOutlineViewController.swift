@@ -333,4 +333,64 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
     func invertSelection() {
         outlineView.invertSelection()
     }
+    
+    @IBAction func exportToPlaylistAction(_ sender: NSButton) {
+        exportTrackList()
+    }
+    
+    // Invokes the Save file dialog, to allow the user to save all playlist items to a playlist file
+    func exportTrackList() {
+        
+        // Make sure there is at least one track to save.
+        guard trackList.size > 0, !checkIfTrackListIsBeingModified() else {return}
+
+        if saveDialog.runModal() == .OK, let playlistFile = saveDialog.url {
+            trackList.exportToFile(playlistFile)
+        }
+    }
+    
+    private func checkIfTrackListIsBeingModified() -> Bool {
+        
+        let trackListBeingModified = trackList.isBeingModified
+
+        if trackListBeingModified {
+
+            NSAlert.showError(withTitle: "\(trackList.displayName) was not modified",
+                              andText: "\(trackList.displayName) cannot be modified while tracks are being added. Please wait ...")
+        }
+
+        return trackListBeingModified
+    }
+    
+    @IBAction func pageUpAction(_ sender: NSButton) {
+        pageUp()
+    }
+    
+    @IBAction func pageDownAction(_ sender: NSButton) {
+        pageDown()
+    }
+    
+    @IBAction func scrollToTopAction(_ sender: NSButton) {
+        scrollToTop()
+    }
+    
+    @IBAction func scrollToBottomAction(_ sender: NSButton) {
+        scrollToBottom()
+    }
+    
+    func pageUp() {
+        outlineView.pageUp()
+    }
+    
+    func pageDown() {
+        outlineView.pageDown()
+    }
+    
+    func scrollToTop() {
+        outlineView.scrollToTop()
+    }
+    
+    func scrollToBottom() {
+        outlineView.scrollToBottom()
+    }
 }

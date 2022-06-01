@@ -131,6 +131,10 @@ class LibraryDelegate: LibraryDelegateProtocol {
     
     func sort(by comparator: (Track, Track) -> Bool) {}
     
+    func sort(grouping: Grouping, by sort: GroupedTrackListSort) {
+        library.sort(grouping: grouping, by: sort)
+    }
+    
     func exportToFile(_ file: URL) {
         library.exportToFile(file)
     }

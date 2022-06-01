@@ -12,11 +12,11 @@ import Foundation
 
 struct TrackListSort {
     
-    let fields: [SortField]
+    let fields: [TrackSortField]
     let order: SortOrder
     let comparator: TrackComparator
     
-    init(fields: [SortField], order: SortOrder) {
+    init(fields: [TrackSortField], order: SortOrder) {
         
         self.fields = fields
         self.order = order
@@ -32,8 +32,48 @@ struct TrackListSort {
         }
         
         self.comparator = order == .ascending ?
-        comparisonToAscendingComparator(compositeFunction) :
-        comparisonToDescendingComparator(compositeFunction)
+        comparisonToAscendingTrackComparator(compositeFunction) :
+        comparisonToDescendingTrackComparator(compositeFunction)
+    }
+}
+
+struct GroupSort {
+
+    let fields: [GroupSortField]
+    let order: SortOrder
+    
+    let comparator: GroupComparator
+    
+    init(fields: [GroupSortField], order: SortOrder) {
+        
+        self.fields = fields
+        self.order = order
+        
+        let comparisons = fields.map {$0.comparison}
+        var compositeFunction: GroupComparison = comparisons[0]
+        
+        if comparisons.count > 1 {
+            
+            for index in 1..<comparisons.count {
+                compositeFunction = chainGroupComparisons(compositeFunction, comparisons[index])
+            }
+        }
+        
+        self.comparator = order == .ascending ?
+        comparisonToAscendingGroupComparator(compositeFunction) :
+        comparisonToDescendingGroupComparator(compositeFunction)
+    }
+}
+
+struct GroupedTrackListSort {
+    
+    let groupSort: GroupSort?
+    let trackSort: TrackListSort?
+    
+    init(groupSort: GroupSort? = nil, trackSort: TrackListSort? = nil) {
+        
+        self.groupSort = groupSort
+        self.trackSort = trackSort
     }
 }
 
