@@ -237,6 +237,13 @@ class Grouping {
     func removeAllTracks() {
         rootGroup.removeAllSubGroups()
     }
+    
+    /// Tracks were cropped in this grouping.
+    func cropTracks(_ tracksToKeep: [Track]) {
+        
+        removeAllTracks()
+        addTracks(tracksToKeep)
+    }
 }
 
 extension Grouping: Hashable {

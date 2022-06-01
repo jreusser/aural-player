@@ -220,6 +220,9 @@ class Group: PlayableItem {
     func removeAllTracks() {
         _tracks.removeAll()
     }
+}
+    
+    extension Group: Hashable {
     
     // Equatable conformance.
     static func == (lhs: Group, rhs: Group) -> Bool {

@@ -82,4 +82,13 @@ class GroupedSortedTrackList: SortedTrackList, GroupedSortedAbstractTrackListPro
             $0.removeAllTracks()
         }
     }
+    
+    override func cropTracks(_ tracksToKeep: [Track]) {
+        
+        super.cropTracks(tracksToKeep)
+        
+        groupings.forEach {
+            $0.cropTracks(tracksToKeep)
+        }
+    }
 }

@@ -50,6 +50,8 @@ protocol AbstractTrackListProtocol {
     
     func cropTracks(at indices: IndexSet)
     
+    func cropTracks(_ tracks: [Track])
+    
     func removeAllTracks()
     
     // MARK: Reordering ------------------------------------------------------------------------

@@ -650,6 +650,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="cropTracksAction:" target="-2" id="xTq-yQ-yLr"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Remove all tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="F3g-cu-Ye9" userLabel="Remove All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="194" y="12" width="11.5" height="14"/>

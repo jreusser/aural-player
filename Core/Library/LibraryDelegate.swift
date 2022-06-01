@@ -107,6 +107,10 @@ class LibraryDelegate: LibraryDelegateProtocol {
         library.cropTracks(at: indices)
     }
     
+    func cropTracks(_ tracks: [Track]) {
+        library.cropTracks(tracks)
+    }
+    
     func removeAllTracks() {
         library.removeAllTracks()
     }

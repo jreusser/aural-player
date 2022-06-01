@@ -125,6 +125,10 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     func cropTracks(at indices: IndexSet) {
         playQueue.cropTracks(at: indices)
     }
+    
+    func cropTracks(_ tracks: [Track]) {
+        playQueue.cropTracks(tracks)
+    }
 
     func moveTracksUp(from indices: IndexSet) -> [TrackMoveResult] {
         playQueue.moveTracksUp(from: indices)

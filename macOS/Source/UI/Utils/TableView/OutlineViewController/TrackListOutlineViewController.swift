@@ -172,6 +172,33 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
         notifyReloadTable()
     }
     
+    @IBAction func cropTracksAction(_ sender: NSButton) {
+        cropTracks()
+    }
+    
+    func cropTracks() {
+        
+        let selectedItems = outlineView.selectedItems
+        
+        if selectedItems.isEmpty {return}
+        
+        // NOTE - We don't have to worry about duplicate tracks. The track list / groupings will eliminate duplicates.
+        var selTracks: [Track] = []
+
+        for item in selectedItems {
+            
+            if let group = item as? Group {
+                selTracks.append(contentsOf: group.tracks)
+                
+            } else if let track = item as? Track {
+                selTracks.append(track)
+            }
+        }
+        
+        trackList.cropTracks(selTracks)
+        notifyReloadTable()
+    }
+    
     @inlinable
     @inline(__always)
     func reloadTable() {

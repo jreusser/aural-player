@@ -168,10 +168,14 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     }
     
     func cropTracks(at indices: IndexSet) {
+        cropTracks(self[indices])
+    }
+    
+    func cropTracks(_ tracks: [Track]) {
         
-        let tracksToKeep = self[indices]
-        removeAllTracks()
-        _ = doAddTracks(tracksToKeep)
+        let tracksToKeep: Set<Track> = Set(tracks)
+        let tracksToRemove: [Track] = _tracks.values.filter {!tracksToKeep.contains($0)}
+        removeTracks(tracksToRemove)
     }
     
     @discardableResult func moveTracks(from sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
