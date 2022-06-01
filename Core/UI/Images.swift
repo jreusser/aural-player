@@ -67,7 +67,7 @@ extension PlatformImage {
     static let imgPlayedTrack: PlatformImage = PlatformImage(named: "PlayedTrack")!
     
     static let imgPlayerPreview: PlatformImage = PlatformImage(named: "PlayerPreview")!
-    static let imgPlaylistPreview: PlatformImage = PlatformImage(named: "PlaylistView-On")!
+    static let imgPlaylistPreview: PlatformImage = PlatformImage(named: "Playlist-Padded")!
     static let imgEffectsPreview: PlatformImage = PlatformImage(named: "EffectsView-On")!
     
     static let imgDisclosure_collapsed: PlatformImage = PlatformImage(named: "DisclosureTriangle-Collapsed")!

@@ -36,6 +36,8 @@ class LibraryWindowController: NSWindowController {
     private lazy var libraryGenresController: LibraryGenresViewController = LibraryGenresViewController()
     private lazy var libraryDecadesController: LibraryDecadesViewController = LibraryDecadesViewController()
     
+    private lazy var tuneBrowserViewController: TuneBrowserViewController = TuneBrowserViewController()
+    
     private lazy var playlistsViewController: PlaylistsViewController = PlaylistsViewController()
     
     private lazy var messenger: Messenger = Messenger(for: self)
@@ -63,6 +65,10 @@ class LibraryWindowController: NSWindowController {
         let libraryDecadesView: NSView = libraryDecadesController.view
         tabGroup.tabViewItem(at: 4).view?.addSubview(libraryDecadesView)
         libraryDecadesView.anchorToSuperview()
+        
+        let tuneBrowserView: NSView = tuneBrowserViewController.view
+        tabGroup.tabViewItem(at: 5).view?.addSubview(tuneBrowserView)
+        tuneBrowserView.anchorToSuperview()
         
         let playlistsView: NSView = playlistsViewController.view
         tabGroup.tabViewItem(at: 6).view?.addSubview(playlistsView)

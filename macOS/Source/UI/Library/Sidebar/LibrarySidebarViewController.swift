@@ -112,6 +112,17 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
             messenger.publish(.library_showBrowserTabForCategory, payload: selectedCategory)
         }
     }
+    
+    @IBAction func doubleClickAction(_ sender: NSOutlineView) {
+        
+        guard let sidebarItem = sidebarView.selectedItem as? LibrarySidebarItem else {return}
+        
+        if sidebarItem.browserTab == .playlists,
+            let playlist = playlistsManager.userDefinedObject(named: sidebarItem.displayName) {
+            
+            messenger.publish(EnqueueAndPlayNowCommand(tracks: playlist.tracks, clearPlayQueue: false))
+        }
+    }
 }
 
 class LibrarySidebarRowView: AuralTableRowView {

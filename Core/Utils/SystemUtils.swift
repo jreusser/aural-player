@@ -48,4 +48,21 @@ class SystemUtils {
             setrlimit(RLIMIT_NOFILE, &limit);
         }
     }
+    
+    static let primaryVolumeName: String? = {
+        
+        let url = URL(fileURLWithPath: "/Users")
+        
+        do {
+            return try url.resourceValues(forKeys: [.volumeNameKey]).allValues[.volumeNameKey] as? String
+        } catch {
+            return nil
+        }
+    }()
+    
+    static var secondaryVolumes: [URL] {
+        
+        FileManager.default.mountedVolumeURLs(includingResourceValuesForKeys: [URLResourceKey.volumeNameKey],
+                                      options: [])?.filter{$0.path.hasPrefix("/Volumes")} ?? []
+    }
 }

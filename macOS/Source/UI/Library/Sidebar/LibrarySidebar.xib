@@ -83,6 +83,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <action trigger="doubleAction" selector="doubleClickAction:" target="-2" id="EOd-wU-wct"/>
                                     <outlet property="dataSource" destination="-2" id="m6e-3R-hlz"/>
                                     <outlet property="delegate" destination="-2" id="iP9-52-0Mv"/>
                                 </connections>

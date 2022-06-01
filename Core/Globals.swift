@@ -22,6 +22,8 @@ let preferences: Preferences = Preferences(defaults: .standard)
 let appModeManager: AppModeManager = AppModeManager(persistentState: persistentState.ui,
                                                     preferences: preferences.viewPreferences)
 
+let fileSystem: FileSystem = FileSystem()
+
 #endif
 
 fileprivate let playQueue: PlayQueue = PlayQueue()
