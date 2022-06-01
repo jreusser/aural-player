@@ -52,7 +52,9 @@ class LibrarySortView: NSView {
     @IBAction func tracksSortOrderAction(_ sender: Any) {}
 }
 
-class LibraryArtistsSortView: LibrarySortView {
+class LibraryArtistsSortView: LibraryAlbumsSortView {}
+
+class LibraryAlbumsSortView: LibrarySortView {
     
     @IBOutlet weak var sortTracks_byDiscTrack: RadioButton!
     
