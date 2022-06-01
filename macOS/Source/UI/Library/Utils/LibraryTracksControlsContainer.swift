@@ -75,22 +75,19 @@ class LibraryGroupedListControlsContainer: LibraryTracksControlsContainer {
                                               forProperty: \.buttonColor)
     }
     
-    override func mouseEntered(with event: NSEvent) {
-        
-        super.mouseEntered(with: event)
-        
-        
-    }
-    
     override func mouseMoved(with event: NSEvent) {
         
         super.mouseMoved(with: event)
         
-        guard let row = outlineView?.row(at: outlineView!.convert(event.locationInWindow, from: nil)),
-              let group = outlineView?.item(atRow: row) as? Group,
-              let rowView = outlineView?.view(atColumn: 0, row: row, makeIfNecessary: false) else {
+        // Show hover controls box (overlay).
+        
+        let row = outlineView.row(at: outlineView.convert(event.locationInWindow, from: nil))
+        
+        guard row >= 0,
+              let group = outlineView.item(atRow: row) as? Group,
+              let rowView = outlineView.view(atColumn: 0, row: row, makeIfNecessary: false) else {
                   
-                  hoverControls?.hide()
+                  hoverControls.hide()
                   return
               }
         
@@ -101,12 +98,13 @@ class LibraryGroupedListControlsContainer: LibraryTracksControlsContainer {
         let lastColumnWidth = outlineView!.tableColumns.last!.width
         
         let conv = self.convert(NSMakePoint(rowView.frame.maxX, rowView.frame.minY + rowHeight - boxHeight - 5), from: rowView)
-        hoverControls.setFrameOrigin(NSMakePoint(outlineView.frame.maxX - lastColumnWidth - hoverControls.width, conv.y))
+        hoverControls.setFrameOrigin(NSMakePoint(outlineView.frame.maxX - lastColumnWidth - hoverControls.width - 20, conv.y))
         hoverControls.show()
     }
     
     override func mouseExited(with event: NSEvent) {
+        
         super.mouseExited(with: event)
-        hoverControls?.hide()
+        hoverControls.hide()
     }
 }
