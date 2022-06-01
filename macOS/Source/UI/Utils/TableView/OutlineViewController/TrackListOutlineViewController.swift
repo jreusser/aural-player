@@ -13,6 +13,9 @@ import Cocoa
 class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
     
     @IBOutlet weak var outlineView: NSOutlineView!
+
+    @IBOutlet weak var sortMenu: NSMenu!
+    @IBOutlet weak var sortView: LibrarySortView!
     
     /// Override this !
     var trackList: GroupedSortedTrackListProtocol! {nil}
@@ -332,6 +335,26 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
     @inline(__always)
     func invertSelection() {
         outlineView.invertSelection()
+    }
+    
+    @IBAction func sortAction(_ sender: NSButton) {
+        sort(by: sortView.sort)
+    }
+    
+    func sort(by sort: GroupedTrackListSort) {
+        
+        guard sort.groupSort != nil || sort.trackSort != nil else {return}
+        
+        library.sort(grouping: grouping, by: sort)
+        outlineView.reloadData()
+        
+        DispatchQueue.main.async {
+            self.sortMenu.cancelTracking()
+        }
+    }
+    
+    @IBAction func cancelSortAction(_ sender: NSButton) {
+        sortMenu.cancelTracking()
     }
     
     @IBAction func exportToPlaylistAction(_ sender: NSButton) {

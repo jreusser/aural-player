@@ -80,7 +80,6 @@ let groupDurationComparison: GroupComparison = {g1, g2 in
     (g1.duration).compare(g2.duration)
 }
 
-
 func chainGroupComparisons(_ c1: @escaping GroupComparison, _ c2: @escaping GroupComparison) -> GroupComparison {
 
     {g1, g2 in

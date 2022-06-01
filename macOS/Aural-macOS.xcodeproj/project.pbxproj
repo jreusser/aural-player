@@ -600,6 +600,8 @@
 		3EB3A62126A773350060487C /* FontSizeStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A62026A773350060487C /* FontSizeStepper.swift */; };
 		3EB3FFDC27DE3839009F7E2C /* ColorScheme+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3FFDB27DE3839009F7E2C /* ColorScheme+Presets.swift */; };
 		3EB3FFDD27DE3839009F7E2C /* ColorScheme+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3FFDB27DE3839009F7E2C /* ColorScheme+Presets.swift */; };
+		3EB462BF2847CCA7000E3F85 /* LibraryArtistsSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462BE2847CCA7000E3F85 /* LibraryArtistsSortView.swift */; };
+		3EB462C12847D276000E3F85 /* Grouping+Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462C02847D276000E3F85 /* Grouping+Support.swift */; };
 		3EB5108C25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */; };
 		3EB88E772629DA9500C8D230 /* ThemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */; };
 		3EBABCBE262C1A350015A73A /* MenuBarPlayerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBABCBD262C1A350015A73A /* MenuBarPlayerSettingsViewController.swift */; };
@@ -2113,6 +2115,8 @@
 		3EB3A61D26A76F450060487C /* NSScrollViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSScrollViewExtensions.swift; sourceTree = "<group>"; };
 		3EB3A62026A773350060487C /* FontSizeStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeStepper.swift; sourceTree = "<group>"; };
 		3EB3FFDB27DE3839009F7E2C /* ColorScheme+Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorScheme+Presets.swift"; sourceTree = "<group>"; };
+		3EB462BE2847CCA7000E3F85 /* LibraryArtistsSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryArtistsSortView.swift; sourceTree = "<group>"; };
+		3EB462C02847D276000E3F85 /* Grouping+Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Grouping+Support.swift"; sourceTree = "<group>"; };
 		3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemePopupMenuController.swift; sourceTree = "<group>"; };
 		3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePopupMenuController.swift; sourceTree = "<group>"; };
 		3EBABCBD262C1A350015A73A /* MenuBarPlayerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayerSettingsViewController.swift; sourceTree = "<group>"; };
@@ -3919,6 +3923,7 @@
 			children = (
 				3E8DD6402844988500FED49D /* LibraryArtists.xib */,
 				3E8DD6422844998500FED49D /* LibraryArtistsViewController.swift */,
+				3EB462BE2847CCA7000E3F85 /* LibraryArtistsSortView.swift */,
 			);
 			path = Artists;
 			sourceTree = "<group>";
@@ -4123,6 +4128,7 @@
 			isa = PBXGroup;
 			children = (
 				3E95C6DC28303B5300E59B91 /* Grouping.swift */,
+				3EB462C02847D276000E3F85 /* Grouping+Support.swift */,
 				3E95C6DE283040C900E59B91 /* Group.swift */,
 			);
 			path = Grouping;
@@ -6042,6 +6048,7 @@
 				3EFE3A3127864898006F8B8C /* SelectSearchResultCommandNotification.swift in Sources */,
 				3E43227F2687DE35009E8ADB /* ControlBarPlayerWindowController.swift in Sources */,
 				3EFE382527864896006F8B8C /* SearchQuery.swift in Sources */,
+				3EB462BF2847CCA7000E3F85 /* LibraryArtistsSortView.swift in Sources */,
 				3EF84D9C28360BEC004EF57B /* EonilFSEventStreamEvent.swift in Sources */,
 				3EABDDFA2694C561008066E8 /* TrackTimeDisplayType.swift in Sources */,
 				3EFE391B27864897006F8B8C /* EnumExtensions.swift in Sources */,
@@ -6281,6 +6288,7 @@
 				3E6C12BE25CEBE6700BF0D07 /* MasterUnitView.swift in Sources */,
 				3E6C12D425CEBE6700BF0D07 /* MasterUnitViewController.swift in Sources */,
 				3EFE38AF27864896006F8B8C /* FilterBand.swift in Sources */,
+				3EB462C12847D276000E3F85 /* Grouping+Support.swift in Sources */,
 				3E6C11B725CEBDA900BF0D07 /* MediaApplicationWatcher.swift in Sources */,
 				3E47214D282AE3820097F1AB /* TrackListTabButton.swift in Sources */,
 				3E59656B283BF91C00AF43FF /* ControlsContainerView.swift in Sources */,
