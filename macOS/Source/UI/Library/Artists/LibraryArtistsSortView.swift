@@ -32,33 +32,34 @@ class LibrarySortView: NSView {
     @IBOutlet weak var sortTracks_ascending: RadioButton!
     @IBOutlet weak var sortTracks_descending: RadioButton!
     
-    /// Override this !!!
-    var sort: GroupedTrackListSort {
-        GroupedTrackListSort()
-    }
-    
     // MARK: Actions for radio button groups
     
-    @IBAction func groupsSortToggleAction(_ sender: Any) {}
+    @IBAction func groupsSortToggleAction(_ sender: Any) {
+        
+        groupSortControls.forEach {
+            $0.enableIf(sortGroups.isOn)
+        }
+    }
     
     @IBAction func groupsSortFieldAction(_ sender: Any) {}
     
     @IBAction func groupsSortOrderAction(_ sender: Any) {}
     
-    @IBAction func tracksSortToggleAction(_ sender: Any) {}
+    @IBAction func tracksSortToggleAction(_ sender: Any) {
+        
+        trackSortControls.forEach {
+            $0.enableIf(sortTracks.isOn)
+        }
+    }
     
     @IBAction func tracksSortFieldAction(_ sender: Any) {}
     
     @IBAction func tracksSortOrderAction(_ sender: Any) {}
-}
-
-class LibraryArtistsSortView: LibraryAlbumsSortView {}
-
-class LibraryAlbumsSortView: LibrarySortView {
     
-    @IBOutlet weak var sortTracks_byDiscTrack: RadioButton!
+    fileprivate lazy var groupSortControls: [RadioButton] = [sortGroups_byName, sortGroups_byDuration, sortGroups_ascending, sortGroups_descending]
+    fileprivate lazy var trackSortControls: [RadioButton] = [sortTracks_byName, sortTracks_byDuration, sortTracks_ascending, sortTracks_descending]
     
-    override var sort: GroupedTrackListSort {
+    var sort: GroupedTrackListSort {
         
         var groupSort: GroupSort?
         
@@ -83,7 +84,29 @@ class LibraryAlbumsSortView: LibrarySortView {
         sortGroups_ascending.isOn ? .ascending : .descending
     }
     
+    /// Override this !!!
     var trackSortFields: [TrackSortField] {
+        [.name]
+    }
+    
+    var trackSortOrder: SortOrder {
+        sortTracks_ascending.isOn ? .ascending : .descending
+    }
+}
+
+class LibraryArtistsSortView: LibraryAlbumsSortView {}
+
+class LibraryAlbumsSortView: LibrarySortView {
+    
+    @IBOutlet weak var sortTracks_byDiscTrack: RadioButton!
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        trackSortControls.append(sortTracks_byDiscTrack)
+    }
+    
+    override var trackSortFields: [TrackSortField] {
         
         if sortTracks_byDiscTrack.isOn {
             return [.discNumberAndTrackNumber]
@@ -95,8 +118,34 @@ class LibraryAlbumsSortView: LibrarySortView {
             return [.duration]
         }
     }
+}
+
+class LibraryGenresSortView: LibrarySortView {
     
-    var trackSortOrder: SortOrder {
-        sortTracks_ascending.isOn ? .ascending : .descending
+    @IBOutlet weak var sortTracks_byAlbumAndDiscTrack: RadioButton!
+    @IBOutlet weak var sortTracks_byAlbumAndName: RadioButton!
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        trackSortControls.append(contentsOf: [sortTracks_byAlbumAndDiscTrack, sortTracks_byAlbumAndName])
+    }
+    
+    override var trackSortFields: [TrackSortField] {
+        
+        if sortTracks_byAlbumAndDiscTrack.isOn {
+            return [.album, .discNumberAndTrackNumber]
+            
+        } else if sortTracks_byAlbumAndName.isOn {
+            return [.album, .name]
+            
+        } else if sortTracks_byName.isOn {
+            return [.name]
+            
+        } else { // By duration
+            return [.duration]
+        }
     }
 }
+
+class LibraryDecadesSortView: LibraryGenresSortView {}
