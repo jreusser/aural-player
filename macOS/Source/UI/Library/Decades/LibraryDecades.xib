@@ -513,6 +513,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="removeSelectedItemsAction:" target="-2" id="DME-MX-HlG"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Crop selected playlist tracks" translatesAutoresizingMaskIntoConstraints="NO" id="K9B-3s-R5g" userLabel="Crop" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="172" y="9" width="16.5" height="18"/>
@@ -524,6 +527,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="cropTracksAction:" target="-2" id="2ZF-5i-Gf4"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Remove all tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="lG9-dL-1PE" userLabel="Remove All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="194" y="12" width="11.5" height="14"/>
@@ -535,6 +541,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="removeAllTracksAction:" target="-2" id="T3x-NZ-UuN"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Clear the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="lZh-6g-KYv" userLabel="Clear Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="225" y="13" width="12" height="11"/>
@@ -546,6 +555,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="clearSelectionAction:" target="-2" id="UdY-ye-U4k"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Invert the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="o4s-0y-CAS" userLabel="Invert Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="241" y="12" width="11.5" height="13"/>
@@ -557,6 +569,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="invertSelectionAction:" target="-2" id="Dnl-LD-W1M"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Search the play queue" translatesAutoresizingMaskIntoConstraints="NO" id="TIL-Tn-ox6" userLabel="Search" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="272" y="11.5" width="13" height="14"/>
@@ -606,6 +621,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="exportToPlaylistAction:" target="-2" id="0aa-80-gH3"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Scroll one page up" translatesAutoresizingMaskIntoConstraints="NO" id="aWi-ZQ-mhQ" userLabel="Page Up" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="348" y="10.5" width="13.5" height="17"/>
@@ -617,6 +635,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="pageUpAction:" target="-2" id="b8Y-JE-3SB"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Scroll one page down" translatesAutoresizingMaskIntoConstraints="NO" id="sRu-Fd-jVt" userLabel="Page Down" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="362" y="10.5" width="13.5" height="17"/>
@@ -628,6 +649,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="pageDownAction:" target="-2" id="UAI-nZ-gWx"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Scroll to the top" translatesAutoresizingMaskIntoConstraints="NO" id="h80-mT-D5x" userLabel="Scroll to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="387" y="14" width="10" height="10"/>
@@ -639,6 +663,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="scrollToTopAction:" target="-2" id="Idk-xC-aw8"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Scroll to the bottom" translatesAutoresizingMaskIntoConstraints="NO" id="vwg-zq-l0R" userLabel="Scroll to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="403" y="14" width="10" height="10"/>
@@ -650,6 +677,9 @@
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="scrollToBottomAction:" target="-2" id="zDD-KE-DF7"/>
+                    </connections>
                 </button>
                 <button hidden="YES" toolTip="Expand all groups" translatesAutoresizingMaskIntoConstraints="NO" id="Dtf-WJ-PYt" userLabel="Expand All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="428" y="10" width="20.5" height="20"/>
