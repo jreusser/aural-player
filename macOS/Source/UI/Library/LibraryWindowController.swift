@@ -92,13 +92,14 @@ class LibraryWindowController: NSWindowController {
     private func showBrowserTab(forItem item: LibrarySidebarItem) {
         
         let tab = item.browserTab
-        tabGroup.selectTabViewItem(at: tab.rawValue)
 
         if tab == .playlists,
            let playlist = playlistsManager.userDefinedObject(named: item.displayName) {
             
             playlistsViewController.playlist = playlist
         }
+        
+        tabGroup.selectTabViewItem(at: tab.rawValue)
     }
     
     private func showBrowserTab(forCategory category: LibrarySidebarCategory) {

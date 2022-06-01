@@ -1,5 +1,5 @@
 //
-//  PlaylistsContainer.swift
+//  PlaylistControlsContainer.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class PlaylistsContainer: NSView {
+class PlaylistControlsContainer: NSView {
     
     @IBOutlet weak var lblTracksSummary: NSTextField!
     @IBOutlet weak var lblDurationSummary: NSTextField!
@@ -54,12 +54,12 @@ class PlaylistsContainer: NSView {
         viewsToHideOnMouseOver = [lblTracksSummary, lblDurationSummary]
     }
     
-    override func viewDidEndLiveResize() {
+    override func setFrameSize(_ newSize: NSSize) {
         
-        super.viewDidEndLiveResize()
+        super.setFrameSize(newSize)
         
-        self.removeAllTrackingAreas()
-        self.updateTrackingAreas()
+        removeAllTrackingAreas()
+        updateTrackingAreas()
 
         viewsToShowOnMouseOver.forEach {$0.hide()}
         viewsToHideOnMouseOver.forEach {$0.show()}
@@ -107,8 +107,7 @@ class PlaylistsContainer: NSView {
         
         mouseOverView = true
         
-        guard playlistsUIState.isDisplayingAPlaylist,
-              !playlistsManager.isAnyPlaylistBeingModified else {return}
+        guard !playlistsManager.isAnyPlaylistBeingModified else {return}
         
         viewsToShowOnMouseOver.forEach {$0.show()}
         viewsToHideOnMouseOver.forEach {$0.hide()}

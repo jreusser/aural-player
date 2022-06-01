@@ -17,7 +17,7 @@ class PlaylistNamesTableViewController: NSViewController {
     @IBOutlet weak var playlistViewController: PlaylistContainerViewController!
     
     var tableViewController: PlaylistTracksViewController!
-    var controlsContainer: PlaylistsContainer!
+    var controlsContainer: PlaylistControlsContainer!
     
     var selectedRows: IndexSet {tableView.selectedRowIndexes}
     

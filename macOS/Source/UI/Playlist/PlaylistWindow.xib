@@ -49,7 +49,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="530" height="277"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="2Bk-G6-skT" userLabel="Root Container" customClass="PlaylistsContainer" customModule="Aural" customModuleProvider="target">
+                    <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="2Bk-G6-skT" userLabel="Root Container" customClass="PlaylistControlsContainer" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="530" height="277"/>
                         <view key="contentView" id="ew4-md-MxP">
                             <rect key="frame" x="0.0" y="0.0" width="530" height="277"/>

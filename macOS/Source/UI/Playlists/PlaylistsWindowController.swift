@@ -64,7 +64,7 @@ class PlaylistsWindowController: NSWindowController {
         doTabViewAction(tracksTabViewButton)
         
         playlistNamesViewController.tableViewController = tableViewController
-        playlistNamesViewController.controlsContainer = window?.contentView as? PlaylistsContainer
+        playlistNamesViewController.controlsContainer = window?.contentView as? PlaylistControlsContainer
         
         lblCaption.font = systemFontScheme.captionFont
         lblTracksSummary.font = systemFontScheme.playlist.summaryFont

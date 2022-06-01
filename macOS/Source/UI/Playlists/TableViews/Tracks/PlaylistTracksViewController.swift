@@ -40,11 +40,12 @@ class PlaylistTracksViewController: TrackListTableViewController, ColorSchemePro
                                                                     \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
         
         messenger.subscribeAsync(to: .playlist_tracksAdded, handler: tracksAdded(_:),
-                                 filter: {notif in playlistsUIState.displayedPlaylist?.name == notif.playlistName})
+                                 filter: {[weak self] notif in self?.playlist?.name == notif.playlistName})
         
         messenger.subscribe(to: .playlist_addChosenFiles, handler: addChosenTracks(_:))
         
         messenger.subscribe(to: .playlist_copyTracks, handler: copyTracks(_:))
+        messenger.subscribe(to: .playlist_refresh, handler: reloadTable)
     }
     
     override func view(forColumn column: NSUserInterfaceItemIdentifier, row: Int, track: Track) -> TableCellBuilder {
@@ -135,33 +136,13 @@ class PlaylistTracksViewController: TrackListTableViewController, ColorSchemePro
         messenger.publish(.playlists_updateSummary)
     }
     
+    override func notifyReloadTable() {
+        messenger.publish(.playlist_refresh)
+    }
+    
     // ---------------------------------------------------------------------------------------------------------
     
     // MARK: Actions (control buttons)
-    
-    @IBAction override func removeTracksAction(_ sender: NSButton) {
-        removeTracks()
-    }
-    
-    override func removeTracks() {
-        
-        super.removeTracks()
-        messenger.publish(.playlists_updateSummary)
-    }
-    
-    @IBAction func cropTracksAction(_ sender: NSButton) {
-//        cropSelection()
-    }
-    
-    @IBAction override func removeAllTracksAction(_ sender: NSButton) {
-        removeAllTracks()
-    }
-    
-    override func removeAllTracks() {
-        
-        super.removeAllTracks()
-        messenger.publish(.playlists_updateSummary)
-    }
     
     @IBAction func moveTracksUpAction(_ sender: NSButton) {
         moveTracksUp()

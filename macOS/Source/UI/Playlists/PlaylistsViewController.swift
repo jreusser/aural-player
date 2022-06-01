@@ -32,14 +32,18 @@ class PlaylistsViewController: NSViewController {
     // Spinner that shows progress when tracks are being added to any of the playlists.
     @IBOutlet weak var progressSpinner: NSProgressIndicator!
     
+    @IBOutlet weak var controlsContainer: PlaylistControlsContainer!
+    
     // The different playlist views
     @IBOutlet weak var tableViewController: PlaylistTracksViewController!
     
     unowned var playlist: Playlist! = nil {
         
         didSet {
+            
             tableViewController.playlist = playlist
             lblPlaylistName.stringValue = playlist?.name ?? ""
+            updateSummary()
         }
     }
     
@@ -64,6 +68,8 @@ class PlaylistsViewController: NSViewController {
         lblPlaylistName.font = systemFontScheme.captionFont
         lblTracksSummary.font = systemFontScheme.playlist.summaryFont
         lblDurationSummary.font = systemFontScheme.playlist.summaryFont
+        
+        controlsContainer.startTracking()
         
         messenger.subscribeAsync(to: .playlists_startedAddingTracks, handler: startedAddingTracks)
         messenger.subscribeAsync(to: .playlists_doneAddingTracks, handler: doneAddingTracks)
@@ -92,7 +98,7 @@ class PlaylistsViewController: NSViewController {
     
     private func updateSummary() {
         
-        guard let displayedPlaylist = playlistsUIState.displayedPlaylist else {
+        guard let displayedPlaylist = self.playlist else {
             
             lblTracksSummary.stringValue = "0 tracks"
             lblDurationSummary.stringValue = "0:00"
@@ -125,10 +131,10 @@ class PlaylistsViewController: NSViewController {
     // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
     func importFilesAndFolders() {
         
-        guard !playQueueDelegate.isBeingModified else {return}
+        guard let playlist = self.playlist, !playlist.isBeingModified else {return}
         
         if fileOpenDialog.runModal() == .OK {
-            playQueueDelegate.loadTracks(from: fileOpenDialog.urls)
+            playlist.loadTracks(from: fileOpenDialog.urls)
         }
     }
 }

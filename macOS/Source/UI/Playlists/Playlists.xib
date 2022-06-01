@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PlaylistsViewController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="controlsContainer" destination="dET-Qb-ycg" id="gof-Bi-mNp"/>
                 <outlet property="lblDurationSummary" destination="eur-oQ-9Hc" id="gbB-r6-rVn"/>
                 <outlet property="lblPlaylistName" destination="UL3-fE-hNw" id="oi9-zc-ovA"/>
                 <outlet property="lblTracksSummary" destination="azn-ZU-ZkF" id="0ur-dF-kwa"/>
@@ -30,7 +31,7 @@
         </customObject>
         <customObject id="uni-A1-Lee" customClass="PlaylistTracksViewController" customModule="Aural" customModuleProvider="target"/>
         <customObject id="gPe-2R-NWZ" customClass="PlaylistContainerViewController" customModule="Aural" customModuleProvider="target"/>
-        <view wantsLayer="YES" id="dET-Qb-ycg" customClass="PlaylistsContainer" customModule="Aural" customModuleProvider="target">
+        <view wantsLayer="YES" id="dET-Qb-ycg" customClass="PlaylistControlsContainer" customModule="Aural" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -216,7 +217,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="cropTracksAction:" target="uni-A1-Lee" id="rsw-DD-xBF"/>
+                        <action selector="cropSelectionAction:" target="uni-A1-Lee" id="fHV-F9-aqI"/>
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Remove all tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="7Mf-8C-Zp3" userLabel="Remove All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
