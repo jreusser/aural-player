@@ -37,9 +37,7 @@ class SortedTrackList: TrackList, SortedAbstractTrackListProtocol {
         let dedupedTracks = deDupeTracks(newTracks)
         guard dedupedTracks.isNonEmpty else {return .empty}
         
-        for track in dedupedTracks {
-            _tracks[track.file] = track
-        }
+        _ = doAddTracks(dedupedTracks)
         
         maintainSortOrder()
         

@@ -20,9 +20,11 @@ class GroupedSortedTrackList: SortedTrackList, GroupedSortedAbstractTrackListPro
         super.init(sortOrder: sortOrder)
     }
     
-    override func addTracks(_ newTracks: [Track]) -> IndexSet {
+    @inlinable
+    @inline(__always)
+    override func doAddTracks(_ newTracks: [Track]) -> IndexSet {
         
-        let indices = super.addTracks(newTracks)
+        let indices = super.doAddTracks(newTracks)
         
         groupings.forEach {
             $0.addTracks(newTracks)

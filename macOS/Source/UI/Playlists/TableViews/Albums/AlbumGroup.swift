@@ -23,25 +23,25 @@ class AlbumGroup: Group {
         hasTracks ? tracks : subGroups.values.flatMap {$0.tracks}
     }
     
-    private lazy var artists: Set<String> = {
+    private var artists: Set<String> {
         Set(theTracks.compactMap {$0.artist})
-    }()
+    }
     
-    private lazy var genres: Set<String> = {
+    private var genres: Set<String> {
         Set(theTracks.compactMap {$0.genre})
-    }()
+    }
     
-    private lazy var years: Set<Int> = {
+    private var years: Set<Int> {
         Set(theTracks.compactMap {$0.year})
-    }()
+    }
     
-    private lazy var discNumbers: Set<Int> = {
+    private var discNumbers: Set<Int> {
         Set(theTracks.compactMap {$0.discNumber})
-    }()
+    }
     
-    private lazy var totalDiscsCounts: Set<Int> = {
+    private var totalDiscsCounts: Set<Int> {
         Set(theTracks.compactMap {$0.totalDiscs})
-    }()
+    }
     
     var artistsString: String? {
         uniqueOrJoinedString(artists)
