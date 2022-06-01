@@ -12,5 +12,5 @@ import Cocoa
 
 enum WindowID: String, CaseIterable, Codable {
     
-    case main, playQueue, effects, chaptersList, library, playlists, visualizer, fileBrowser, trackInfo
+    case main, playQueue, effects, chaptersList, library, visualizer, trackInfo
 }

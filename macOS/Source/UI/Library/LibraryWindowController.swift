@@ -36,6 +36,8 @@ class LibraryWindowController: NSWindowController {
     private lazy var libraryGenresController: LibraryGenresViewController = LibraryGenresViewController()
     private lazy var libraryDecadesController: LibraryDecadesViewController = LibraryDecadesViewController()
     
+    private lazy var playlistsViewController: PlaylistsViewController = PlaylistsViewController()
+    
     private lazy var messenger: Messenger = Messenger(for: self)
     
     override func windowDidLoad() {
@@ -62,11 +64,16 @@ class LibraryWindowController: NSWindowController {
         tabGroup.tabViewItem(at: 4).view?.addSubview(libraryDecadesView)
         libraryDecadesView.anchorToSuperview()
         
+        let playlistsView: NSView = playlistsViewController.view
+        tabGroup.tabViewItem(at: 6).view?.addSubview(playlistsView)
+        playlistsView.anchorToSuperview()
+        
         let sidebarView: NSView = sidebarController.view
         splitView.arrangedSubviews[0].addSubview(sidebarView)
         sidebarView.anchorToSuperview()
         
-        messenger.subscribe(to: .library_showBrowserTab, handler: showBrowserTab(_:))
+        messenger.subscribe(to: .library_showBrowserTabForItem, handler: showBrowserTab(forItem:))
+        messenger.subscribe(to: .library_showBrowserTabForItem, handler: showBrowserTab(forItem:))
 
         colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
         colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
@@ -82,7 +89,25 @@ class LibraryWindowController: NSWindowController {
         windowLayoutsManager.toggleWindow(withId: .library)
     }
     
-    private func showBrowserTab(_ tab: LibraryBrowserTab) {
+    private func showBrowserTab(forItem item: LibrarySidebarItem) {
+        
+        let tab = item.browserTab
         tabGroup.selectTabViewItem(at: tab.rawValue)
+
+        if tab == .playlists,
+           let playlist = playlistsManager.userDefinedObject(named: item.displayName) {
+            
+            playlistsViewController.playlist = playlist
+        }
+    }
+    
+    private func showBrowserTab(forCategory category: LibrarySidebarCategory) {
+
+        let tab = category.browserTab
+        tabGroup.selectTabViewItem(at: tab.rawValue)
+//
+//        if tab == .playlists {
+//
+//        }
     }
 }

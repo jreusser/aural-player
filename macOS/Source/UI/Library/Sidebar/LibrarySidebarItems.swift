@@ -97,7 +97,7 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
             
         case .playlists:
             
-            return playlistsManager.playlistNames.map {LibrarySidebarItem(displayName: $0, browserTab: .playlist)}
+            return playlistsManager.playlistNames.map {LibrarySidebarItem(displayName: $0, browserTab: .playlists)}
             
         case .history:
             
@@ -165,8 +165,8 @@ enum LibraryBrowserTab: Int {
          libraryAlbums = 2,
          libraryGenres = 3,
          libraryDecades = 4,
-         playlist = 5,
-         fileSystem = 6,
+         fileSystem = 5,
+         playlists = 6,
          historyRecentlyPlayed = 7,
          historyMostPlayed = 8,
          historyRecentlyAdded = 9,

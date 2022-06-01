@@ -39,5 +39,8 @@ extension Notification.Name {
     static let library_reloadTable = Notification.Name("library_reloadTable")
     
     // Command to show a specific Library browser tab (specified in the payload).
-    static let library_showBrowserTab = Notification.Name("library_showBrowserTab")
+    static let library_showBrowserTabForItem = Notification.Name("library_showBrowserTabForItem")
+    
+    // Command to show a specific Library browser tab (specified in the payload).
+    static let library_showBrowserTabForCategory = Notification.Name("library_showBrowserTabForCategory")
 }

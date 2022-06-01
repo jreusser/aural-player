@@ -106,10 +106,10 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
         let item = outlineView.item(atRow: outlineView.selectedRow)
         
         if let selectedItem = item as? LibrarySidebarItem {
-            messenger.publish(.library_showBrowserTab, payload: selectedItem.browserTab)
+            messenger.publish(.library_showBrowserTabForItem, payload: selectedItem)
             
         } else if let selectedCategory = item as? LibrarySidebarCategory {
-            messenger.publish(.library_showBrowserTab, payload: selectedCategory.browserTab)
+            messenger.publish(.library_showBrowserTabForCategory, payload: selectedCategory)
         }
     }
 }

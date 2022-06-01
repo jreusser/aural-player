@@ -87,7 +87,7 @@ class PlaylistsWindowController: NSWindowController {
     }
     
     @IBAction func closeAction(_ sender: Any) {
-        windowLayoutsManager.toggleWindow(withId: .playlists)
+//        windowLayoutsManager.toggleWindow(withId: .playlists)
     }
     
     // MARK: Notification handling

@@ -62,7 +62,7 @@
                                 <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w60-lv-Hyh" userLabel="LeftRight SplitView">
                                     <rect key="frame" x="5" y="0.0" width="995" height="461"/>
                                     <subviews>
-                                        <customView id="shO-p5-YdO">
+                                        <customView id="shO-p5-YdO" userLabel="Sidebar View">
                                             <rect key="frame" x="0.0" y="0.0" width="234" height="461"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <constraints>
@@ -70,7 +70,7 @@
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="LDW-hw-XFX"/>
                                             </constraints>
                                         </customView>
-                                        <customView id="jRt-01-52h">
+                                        <customView id="jRt-01-52h" userLabel="Browser View">
                                             <rect key="frame" x="235" y="0.0" width="760" height="461"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -116,7 +116,7 @@
                                                         </tabViewItem>
                                                         <tabViewItem label="Playlists" identifier="" id="wtD-Ld-mJ1">
                                                             <view key="view" id="EzC-6o-AVt">
-                                                                <rect key="frame" x="0.0" y="0.0" width="760" height="451"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="740" height="461"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>

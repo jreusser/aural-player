@@ -40,7 +40,7 @@ class MainWindowController: NSWindowController {
                                                                                     ],
                                                                                     button: btnTogglePlayQueue)
     
-    private lazy var btnToggleLibraryStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingPlaylists,
+    private lazy var btnToggleLibraryStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingLibrary,
                                                                                     mappings: [
                                                                                         
                                                                                         ButtonStateMachine.StateMapping(state: true, image: .imgLibrary, colorProperty: \.buttonColor, toolTip: "Hide the Library"),

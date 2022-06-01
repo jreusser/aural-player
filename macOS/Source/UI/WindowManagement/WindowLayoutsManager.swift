@@ -52,9 +52,9 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
                 
                 windowLoaders.append(WindowLoader(windowID: .library, windowControllerType: LibraryWindowController.self))
                 
-            case .playlists:
-                
-                windowLoaders.append(WindowLoader(windowID: .playlists, windowControllerType: PlaylistsWindowController.self))
+//            case .playlists:
+//
+//                windowLoaders.append(WindowLoader(windowID: .playlists, windowControllerType: PlaylistsWindowController.self))
                 
             case .trackInfo:
                 
@@ -270,9 +270,9 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
         isShowingWindow(withId: .library)
     }
     
-    var isShowingPlaylists: Bool {
-        isShowingWindow(withId: .playlists)
-    }
+//    var isShowingPlaylists: Bool {
+//        isShowingWindow(withId: .playlists)
+//    }
     
     // MARK: Miscellaneous functions ------------------------------------
 
