@@ -85,6 +85,10 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         playQueue.loadTracks(from: files, atPosition: position)
     }
     
+    func loadTracks(from files: [URL], atPosition position: Int? = nil, autoplay: Bool = false) {
+        playQueue.loadTracks(from: files, atPosition: position, autoplay: autoplay)
+    }
+    
     func addTracks(_ newTracks: [Track]) -> IndexSet {
         
         let indices = playQueue.addTracks(newTracks)

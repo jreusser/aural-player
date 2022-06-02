@@ -98,6 +98,8 @@
 		3E39754E26892C890055887E /* ControlBarPlayerUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */; };
 		3E3A6F20280F398E00FF978A /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 3E3A6F1F280F398E00FF978A /* Collections */; };
 		3E3A6F22280F398E00FF978A /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 3E3A6F21280F398E00FF978A /* OrderedCollections */; };
+		3E3C1FED2849611200A023EC /* TuneBrowserUIPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C1FEC2849611200A023EC /* TuneBrowserUIPersistentState.swift */; };
+		3E3C1FEF2849631800A023EC /* NSTableColumnExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C1FEE2849631800A023EC /* NSTableColumnExtensions.swift */; };
 		3E3DFFCE260D9BBA0092F0BF /* MetadataPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3DFFCD260D9BBA0092F0BF /* MetadataPreferences.xib */; };
 		3E3DFFD2260DA0560092F0BF /* MetadataPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DFFD1260DA0560092F0BF /* MetadataPreferencesViewController.swift */; };
 		3E419B5D27B18C0600C2B965 /* HorizontalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E419B5C27B18C0600C2B965 /* HorizontalSlider.swift */; };
@@ -611,7 +613,7 @@
 		3EB462D72847FEC6000E3F85 /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462CC2847FEC6000E3F85 /* FileSystem.swift */; };
 		3EB462D82847FEC6000E3F85 /* FileSystemItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462CD2847FEC6000E3F85 /* FileSystemItem.swift */; };
 		3EB462D92847FEC6000E3F85 /* TuneBrowserHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462CE2847FEC6000E3F85 /* TuneBrowserHistory.swift */; };
-		3EB462DA2847FEC6000E3F85 /* TuneBrowserWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462CF2847FEC6000E3F85 /* TuneBrowserWindowController.swift */; };
+		3EB462DA2847FEC6000E3F85 /* TuneBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462CF2847FEC6000E3F85 /* TuneBrowserViewController.swift */; };
 		3EB462DB2847FEC6000E3F85 /* TuneBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB462D02847FEC6000E3F85 /* TuneBrowser.xib */; };
 		3EB462DC2847FEC6000E3F85 /* TuneBrowserViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462D12847FEC6000E3F85 /* TuneBrowserViewDelegate.swift */; };
 		3EB462DD2847FEC6000E3F85 /* TuneBrowserTableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */; };
@@ -1605,6 +1607,8 @@
 		3E3975452688894C0055887E /* ControlBarSeekSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarSeekSliderCell.swift; sourceTree = "<group>"; };
 		3E397547268900C60055887E /* ControlBarVolumeSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarVolumeSliderCell.swift; sourceTree = "<group>"; };
 		3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlayerUIState.swift; sourceTree = "<group>"; };
+		3E3C1FEC2849611200A023EC /* TuneBrowserUIPersistentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserUIPersistentState.swift; sourceTree = "<group>"; };
+		3E3C1FEE2849631800A023EC /* NSTableColumnExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTableColumnExtensions.swift; sourceTree = "<group>"; };
 		3E3DFFCD260D9BBA0092F0BF /* MetadataPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MetadataPreferences.xib; sourceTree = "<group>"; };
 		3E3DFFD1260DA0560092F0BF /* MetadataPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataPreferencesViewController.swift; sourceTree = "<group>"; };
 		3E419B5C27B18C0600C2B965 /* HorizontalSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSlider.swift; sourceTree = "<group>"; };
@@ -2139,7 +2143,7 @@
 		3EB462CC2847FEC6000E3F85 /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		3EB462CD2847FEC6000E3F85 /* FileSystemItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystemItem.swift; sourceTree = "<group>"; };
 		3EB462CE2847FEC6000E3F85 /* TuneBrowserHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserHistory.swift; sourceTree = "<group>"; };
-		3EB462CF2847FEC6000E3F85 /* TuneBrowserWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserWindowController.swift; sourceTree = "<group>"; };
+		3EB462CF2847FEC6000E3F85 /* TuneBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserViewController.swift; sourceTree = "<group>"; };
 		3EB462D02847FEC6000E3F85 /* TuneBrowser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TuneBrowser.xib; sourceTree = "<group>"; };
 		3EB462D12847FEC6000E3F85 /* TuneBrowserViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserViewDelegate.swift; sourceTree = "<group>"; };
 		3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserTableViews.swift; sourceTree = "<group>"; };
@@ -4351,6 +4355,7 @@
 				3EAFB604267FF1E700F0DC96 /* NSRectExtensions.swift */,
 				3EAFB618267FF68C00F0DC96 /* CGFloatExtensions.swift */,
 				3EE2CC3226811074002C1B29 /* NSTableViewExtensions.swift */,
+				3E3C1FEE2849631800A023EC /* NSTableColumnExtensions.swift */,
 				3E5F3DF026813F2400E826F0 /* NSEventExtensions.swift */,
 				3E7C978C268BB8BE00287158 /* NSLayoutConstraintExtensions.swift */,
 				3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */,
@@ -4398,12 +4403,12 @@
 			isa = PBXGroup;
 			children = (
 				3EB462D02847FEC6000E3F85 /* TuneBrowser.xib */,
+				3EB462CF2847FEC6000E3F85 /* TuneBrowserViewController.swift */,
 				3EB462CA2847FEC6000E3F85 /* TuneBrowserUIState.swift */,
 				3EB462CB2847FEC6000E3F85 /* TuneBrowserGlobals.swift */,
 				3EB462CC2847FEC6000E3F85 /* FileSystem.swift */,
 				3EB462CD2847FEC6000E3F85 /* FileSystemItem.swift */,
 				3EB462CE2847FEC6000E3F85 /* TuneBrowserHistory.swift */,
-				3EB462CF2847FEC6000E3F85 /* TuneBrowserWindowController.swift */,
 				3EB462D12847FEC6000E3F85 /* TuneBrowserViewDelegate.swift */,
 				3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */,
 				3EB462C72847FEC6000E3F85 /* Sidebar */,
@@ -4723,8 +4728,8 @@
 			isa = PBXGroup;
 			children = (
 				3EF84DA92836359B004EF57B /* LibrarySidebar.xib */,
-				3EF84DA5283632ED004EF57B /* LibrarySidebarItems.swift */,
 				3EF84DA72836332A004EF57B /* LibrarySidebarViewController.swift */,
+				3EF84DA5283632ED004EF57B /* LibrarySidebarItems.swift */,
 			);
 			path = Sidebar;
 			sourceTree = "<group>";
@@ -5317,6 +5322,7 @@
 				3EFE373327864895006F8B8C /* ControlBarPlayerUIPersistentState.swift */,
 				3EFE373427864895006F8B8C /* PlayerUIPersistentState.swift */,
 				3EDCC4B9282C2312002AF3AE /* PlayQueueUIPersistentState.swift */,
+				3E3C1FEC2849611200A023EC /* TuneBrowserUIPersistentState.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -5973,6 +5979,7 @@
 				3EFE397327864897006F8B8C /* StopPlaybackChain.swift in Sources */,
 				3E6C12AA25CEBE2700BF0D07 /* AboutDialogController.swift in Sources */,
 				3EF84D9B28360BEC004EF57B /* EonilFSEventStreamCreateFlags.swift in Sources */,
+				3E3C1FEF2849631800A023EC /* NSTableColumnExtensions.swift in Sources */,
 				3EFE390D27864897006F8B8C /* MirrorExtensions.swift in Sources */,
 				3EFE388D27864896006F8B8C /* TimeStretchPresets.swift in Sources */,
 				3E6C124F25CEBDF400BF0D07 /* AlbumsPlaylistSortViewController.swift in Sources */,
@@ -6138,6 +6145,7 @@
 				3EF0C3E7262AA1830042C720 /* CreateThemeDialogController.swift in Sources */,
 				3EFE392B27864897006F8B8C /* HTTPClient.swift in Sources */,
 				3EFE384D27864896006F8B8C /* SupportedTypes.swift in Sources */,
+				3E3C1FED2849611200A023EC /* TuneBrowserUIPersistentState.swift in Sources */,
 				3E6C126C25CEBE0600BF0D07 /* CustomPresetsManagerViews.swift in Sources */,
 				3EFE386727864896006F8B8C /* EQUnitProtocol.swift in Sources */,
 				3EB1A8132826FCE900866012 /* DevicesViewController+TableViewDelegate.swift in Sources */,
@@ -6603,7 +6611,7 @@
 				3EFE390B27864897006F8B8C /* StringExtensions.swift in Sources */,
 				3E045D0F281352370069DEFE /* SortOrderMenuItemView.swift in Sources */,
 				3E5F943725E571A6002DEF80 /* SpectrogramBar.swift in Sources */,
-				3EB462DA2847FEC6000E3F85 /* TuneBrowserWindowController.swift in Sources */,
+				3EB462DA2847FEC6000E3F85 /* TuneBrowserViewController.swift in Sources */,
 				3E5F942D25E57190002DEF80 /* SpectrogramFFTData.swift in Sources */,
 				3EFE383F27864896006F8B8C /* Playlist.swift in Sources */,
 				3E6C12A325CEBE2700BF0D07 /* StringInputPopoverViewController.swift in Sources */,

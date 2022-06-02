@@ -27,8 +27,32 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
 
     // MARK: Mutator functions ------------------------------------------------------------------------
     
+    private var autoplay: AtomicBool = AtomicBool(value: false)
+    
     func loadTracks(from files: [URL], atPosition position: Int?) {
         loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
+    }
+    
+    func loadTracks(from files: [URL], atPosition position: Int?, autoplay: Bool = false) {
+        
+        if autoplay {
+            self.autoplay.setValue(true)
+        }
+        
+        loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
+    }
+    
+    override func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet {
+        
+        let indices = super.acceptBatch(batch)
+        
+        if autoplay.value, let indexOfTrackToPlay = indices.min() {
+            
+            autoplay.setValue(false)
+            messenger.publish(TrackPlaybackCommandNotification(index: indexOfTrackToPlay))
+        }
+        
+        return indices
     }
     
     func enqueueTracks(_ newTracks: [Track]) -> IndexSet {
@@ -166,7 +190,11 @@ extension PlayQueue: TrackLoaderObserver {
     }
     
     func postTrackLoad() {
+        
         messenger.publish(.playQueue_doneAddingTracks)
+        
+        // Make sure this is reset after track load.
+        autoplay.setValue(false)
     }
     
     func postBatchLoad(indices: IndexSet) {

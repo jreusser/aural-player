@@ -88,7 +88,7 @@ class LibraryWindowController: NSWindowController {
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
         
         // TODO: Temporary, remove this !!!
-        tabGroup.selectTabViewItem(at: 1)
+        tabGroup.selectTabViewItem(at: 5)
     }
     
     @IBAction func closeAction(_ sender: Any) {
@@ -103,6 +103,11 @@ class LibraryWindowController: NSWindowController {
            let playlist = playlistsManager.userDefinedObject(named: item.displayName) {
             
             playlistsViewController.playlist = playlist
+            
+        } else if tab == .fileSystem,
+                  let folderURL = item.tuneBrowserURL {
+                
+            tuneBrowserViewController.showURL(folderURL)
         }
         
         tabGroup.selectTabViewItem(at: tab.rawValue)

@@ -8,6 +8,8 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol {
     
     // MARK: Mutating functions ---------------------------------------------------------------
     
+    func loadTracks(from files: [URL], atPosition position: Int?, autoplay: Bool)
+    
     // Adds tracks to the end of the queue, i.e. "Play Now" or "Play Later"
     func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> IndexSet
 
@@ -30,4 +32,11 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol {
     
     // Sets the shuffle mode to a specific value. Returns the new repeat and shuffle mode after performing the toggle operation.
     func setShuffleMode(_ shuffleMode: ShuffleMode) -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
+}
+
+extension PlayQueueDelegateProtocol {
+    
+    func loadTracks(from files: [URL], autoplay: Bool) {
+        loadTracks(from: files, atPosition: nil, autoplay: autoplay)
+    }
 }

@@ -29,7 +29,7 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
     ]
     
     case library = "Library"
-    case fileSystem = "File System"
+    case tuneBrowser = "File System"
     case playlists = "Playlists"
     case history = "History"
     case favorites = "Favorites"
@@ -63,10 +63,9 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
             
             return Self.libraryItems.count
             
-        case .fileSystem:
+        case .tuneBrowser:
             
-            // TODO:
-            return 1
+            return tuneBrowserUIState.sidebarUserFolders.count + 1
             
         case .playlists:
             
@@ -90,10 +89,12 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
             
             return Self.libraryItems
             
-        case .fileSystem:
+        case .tuneBrowser:
             
-            // TODO:
-            return [LibrarySidebarItem(displayName: "My Music", browserTab: .fileSystem)]
+            return [LibrarySidebarItem(displayName: "My Music", browserTab: .fileSystem, tuneBrowserURL: FilesAndPaths.musicDir)] +
+            tuneBrowserUIState.sidebarUserFolders.values.map {
+                LibrarySidebarItem(displayName: $0.url.lastPathComponent, browserTab: .fileSystem, tuneBrowserURL: $0.url)
+            }
             
         case .playlists:
             
@@ -121,7 +122,7 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
             
             return .imgLibrary
             
-        case .fileSystem:
+        case .tuneBrowser:
             
             return .imgFileSystem
             
@@ -149,11 +150,13 @@ struct LibrarySidebarItem {
     let displayName: String
     let browserTab: LibraryBrowserTab
     let image: PlatformImage?
+    let tuneBrowserURL: URL?
     
-    init(displayName: String, browserTab: LibraryBrowserTab, image: PlatformImage? = nil) {
+    init(displayName: String, browserTab: LibraryBrowserTab, tuneBrowserURL: URL? = nil, image: PlatformImage? = nil) {
         
         self.displayName = displayName
         self.browserTab = browserTab
+        self.tuneBrowserURL = tuneBrowserURL
         self.image = image
     }
 }

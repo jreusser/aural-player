@@ -122,6 +122,7 @@ let menuBarPlayerUIState: MenuBarPlayerUIState = MenuBarPlayerUIState(persistent
 let controlBarPlayerUIState: ControlBarPlayerUIState = ControlBarPlayerUIState(persistentState: persistentState.ui?.controlBarPlayer)
 let visualizerUIState: VisualizerUIState = VisualizerUIState(persistentState: persistentState.ui?.visualizer)
 let windowAppearanceState: WindowAppearanceState = WindowAppearanceState(persistentState: persistentState.ui?.windowAppearance)
+let tuneBrowserUIState: TuneBrowserUIState = TuneBrowserUIState(persistentState: persistentState.ui?.tuneBrowser)
 
 let mediaKeyHandler: MediaKeyHandler = MediaKeyHandler(preferences.controlsPreferences.mediaKeys)
 
@@ -156,6 +157,7 @@ var persistentStateOnExit: AppPersistentState {
                                            //                                               playlists: playlistUIState.persistentState,
                                            visualizer: visualizerUIState.persistentState,
                                            windowAppearance: windowAppearanceState.persistentState,
+                                           tuneBrowser: tuneBrowserUIState.persistentState,
                                            menuBarPlayer: menuBarPlayerUIState.persistentState,
                                            controlBarPlayer: controlBarPlayerUIState.persistentState)
     

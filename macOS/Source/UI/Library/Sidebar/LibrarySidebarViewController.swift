@@ -25,7 +25,9 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
         super.viewDidLoad()
         
         categories.forEach {sidebarView.expandItem($0)}
-        sidebarView.selectRow(2)
+        sidebarView.selectRow(7)
+        
+        messenger.subscribe(to: .librarySidebar_addFileSystemShortcut, handler: sidebarView.reloadDataMaintainingSelection)
         
         colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
     }

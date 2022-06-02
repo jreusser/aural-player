@@ -23,7 +23,7 @@ class WindowedModePlaybackViewController: PlaybackViewController {
         
         // MARK: Commands --------------------------------------------------------------
         
-        messenger.subscribe(to: .player_playTrack, handler: performTrackPlayback(_:))
+        messenger.subscribeAsync(to: .player_playTrack, handler: performTrackPlayback(_:))
         
         messenger.subscribe(to: .player_playOrPause, handler: playOrPause)
         messenger.subscribe(to: .player_stop, handler: stop)
