@@ -28,11 +28,13 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
     
     private lazy var messenger = Messenger(for: self)
     
+    let textFont: NSFont = standardFontSet.mainFont(size: 13)
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()
         
-        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
+        colorSchemesManager.registerObservers([rootContainer, browserView, pathControlWidget], forProperty: \.backgroundColor)
         
         fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
@@ -74,8 +76,10 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         selectMusicFolder()
         respondToSidebarSelectionChange = true
         
-        fileSystem.root = FileSystemItem.create(forURL: FilesAndPaths.musicDir)
-        pathControlWidget.url = tuneBrowserMusicFolderURL
+        let theSushiClub: URL = FilesAndPaths.musicDir.appendingPathComponent("Ambient").appendingPathComponent("The Sushi Club")
+        fileSystem.root = FileSystemItem.create(forURL: theSushiClub)
+//        pathControlWidget.url = tuneBrowserMusicFolderURL
+        pathControlWidget.url = theSushiClub
     }
     
     private func onAppExit() {
@@ -117,17 +121,8 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
     private func fileMetadataLoaded(_ file: FileSystemItem) {
         
         DispatchQueue.main.async {
-            
-            print("\n\n")
-            
-            NSLog("Reloaded item: \(file.path)")
             self.browserView.reloadItem(file)
-            
-            print("\n\n")
         }
-        
-        //        let itemIndex: Int = browserView.row(forItem: notif.file)
-//        browserView.reloadRows([itemIndex], columns: )
     }
         
     @IBAction func doubleClickAction(_ sender: Any) {
@@ -292,5 +287,12 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
 //        if let selItem = sidebarView.rightClickedItem as? TuneBrowserSidebarItem {
 //            selItem.url.showInFinder()
 //        }
+    }
+}
+
+extension NSPathControl: ColorSchemePropertyObserver {
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        backgroundColor = newColor
     }
 }

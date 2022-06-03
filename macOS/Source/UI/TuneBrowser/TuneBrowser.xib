@@ -243,10 +243,13 @@
                                                     <rect key="frame" x="11" y="1" width="309" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hxx-FN-Mfx">
+                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hxx-FN-Mfx">
                                                             <rect key="frame" x="5" y="5" width="20" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Uik-hf-zSd"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="20" id="AuB-VQ-aP0"/>
+                                                                <constraint firstAttribute="height" constant="20" id="Fy9-iK-qLR"/>
+                                                            </constraints>
+                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="Uik-hf-zSd"/>
                                                         </imageView>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ErL-og-g2v">
                                                             <rect key="frame" x="33" y="2" width="276" height="24"/>
@@ -258,6 +261,10 @@
                                                             </textFieldCell>
                                                         </textField>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="hxx-FN-Mfx" secondAttribute="bottom" constant="5" id="7av-p3-fY3"/>
+                                                        <constraint firstItem="hxx-FN-Mfx" firstAttribute="leading" secondItem="2AN-za-1XM" secondAttribute="leading" constant="5" id="soB-r5-Qvm"/>
+                                                    </constraints>
                                                     <connections>
                                                         <outlet property="icon" destination="hxx-FN-Mfx" id="oah-qk-OeB"/>
                                                         <outlet property="lblName" destination="ErL-og-g2v" id="cAx-Uq-TWZ"/>

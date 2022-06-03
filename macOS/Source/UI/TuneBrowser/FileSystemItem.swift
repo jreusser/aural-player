@@ -11,18 +11,35 @@ import Foundation
 
 class FileSystemItem {
     
-    private static var itemCache: ConcurrentMap<URL, FileSystemItem> = ConcurrentMap()
+    private static var itemCache: [URL: FileSystemItem] = [:]
+    private static let itemLock: ExclusiveAccessSemaphore = ExclusiveAccessSemaphore()
     
     static func create(forURL url: URL, loadChildren: Bool = false) -> FileSystemItem {
         
-        if let item = itemCache[url] {
+        itemLock.produceValueAfterWait {
+            
+            NSLog("*** Creating for URL: \(url.path.removingPercentEncoding!) ...")
+            
+            let isSakura = url.lastPathComponent.contains("09 - Sakura.mp3")
+            
+            if let item = itemCache[url] {
+                
+                if isSakura {
+                    print("FOUND Sakura")
+                }
+                
+                return item
+            }
+            
+            let item = FileSystemItem(url: url, loadChildren: loadChildren)
+            itemCache[url] = item
+            
+            if isSakura {
+                print("CREATED Sakura for URL: \(url) in thread: \(Thread.current)")
+            }
+            
             return item
         }
-        
-        let item = FileSystemItem(url: url, loadChildren: loadChildren)
-        itemCache[url] = item
-        
-        return item
     }
     
     let url: URL
@@ -32,7 +49,7 @@ class FileSystemItem {
     let type: FileSystemItemType
     
     lazy var children: [FileSystemItem] = loadChildren(url)
-    var metadataLoadedForChildren: Bool = false
+    var metadataLoadedForChildren: AtomicBool = AtomicBool(value: false)
     
     var isDirectory: Bool {type == .folder}
     

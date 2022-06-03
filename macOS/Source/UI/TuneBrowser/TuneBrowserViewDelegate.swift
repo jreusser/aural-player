@@ -9,30 +9,16 @@
 //
 import Cocoa
 
-class TuneBrowserViewDelegate: NSObject, NSOutlineViewDelegate, NSOutlineViewDataSource {
-    
-    let textFont: NSFont = standardFontSet.mainFont(size: 13)
-    
-    @IBOutlet weak var browserView: TuneBrowserOutlineView!
-    
-    func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        return 30
-    }
-    
-    func outlineView(_ outlineView: NSOutlineView, typeSelectStringFor tableColumn: NSTableColumn?, item: Any) -> String? {
-        
-        guard tableColumn?.identifier == .cid_tuneBrowserName, let fsItem = item as? FileSystemItem else {return nil}
-        return fsItem.name
-    }
+extension TuneBrowserViewController: NSOutlineViewDataSource {
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
         if item == nil {
-
+            
             return fileSystem.root.children.count
-
+            
         } else if let fsItem = item as? FileSystemItem {
-
+            
             return fsItem.children.count
         }
         
@@ -52,6 +38,19 @@ class TuneBrowserViewDelegate: NSObject, NSOutlineViewDelegate, NSOutlineViewDat
         
         return ""
     }
+}
+
+extension TuneBrowserViewController: NSOutlineViewDelegate {
+    
+    func outlineView(_ outlineView: NSOutlineView, typeSelectStringFor tableColumn: NSTableColumn?, item: Any) -> String? {
+        
+        guard tableColumn?.identifier == .cid_tuneBrowserName, let fsItem = item as? FileSystemItem else {return nil}
+        return fsItem.name
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
+        return 30
+    }
     
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         return (item as? FileSystemItem)?.isDirectory ?? false
@@ -61,8 +60,12 @@ class TuneBrowserViewDelegate: NSObject, NSOutlineViewDelegate, NSOutlineViewDat
         
         guard let colID = tableColumn?.identifier, let fsItem = item as? FileSystemItem else {return nil}
         
-        switch colID {
+        if fsItem.path.contains("09") {
+            print("\nReloading Sakura ..., metadata = \(fsItem.metadata)")
+        }
         
+        switch colID {
+            
         case .cid_tuneBrowserName:      return createNameCell(outlineView, fsItem)
             
         case .cid_tuneBrowserType:      return createTypeCell(outlineView, fsItem)
@@ -93,7 +96,7 @@ class TuneBrowserViewDelegate: NSObject, NSOutlineViewDelegate, NSOutlineViewDat
     private func createNameCell(_ outlineView: NSOutlineView, _ item: FileSystemItem) -> TuneBrowserItemNameCell? {
         
         guard let cell = outlineView.makeView(withIdentifier: .cid_tuneBrowserName, owner: nil)
-            as? TuneBrowserItemNameCell else {return nil}
+                as? TuneBrowserItemNameCell else {return nil}
         
         cell.initializeForFile(item)
         cell.lblName.font = textFont
@@ -104,7 +107,7 @@ class TuneBrowserViewDelegate: NSObject, NSOutlineViewDelegate, NSOutlineViewDat
     private func createTypeCell(_ outlineView: NSOutlineView, _ item: FileSystemItem) -> TuneBrowserItemTypeCell? {
         
         guard let cell = outlineView.makeView(withIdentifier: .cid_tuneBrowserType, owner: nil)
-            as? TuneBrowserItemTypeCell else {return nil}
+                as? TuneBrowserItemTypeCell else {return nil}
         
         cell.initializeForFile(item)
         cell.textFont = textFont
@@ -241,11 +244,11 @@ class TuneBrowserViewDelegate: NSObject, NSOutlineViewDelegate, NSOutlineViewDat
         let ascending = sortDescriptor.ascending
         
         switch key {
-        
+            
         case "name":
             
             fileSystem.sort(by: .name, ascending: ascending)
-        
+            
         case "title":
             
             fileSystem.sort(by: .title, ascending: ascending)
@@ -273,7 +276,7 @@ class TuneBrowserViewDelegate: NSObject, NSOutlineViewDelegate, NSOutlineViewDat
         default: return
             
         }
-
+        
         outlineView.reloadData()
     }
 }

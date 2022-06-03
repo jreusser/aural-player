@@ -14,7 +14,7 @@ class FileSystem {
     private let opQueue: OperationQueue = OperationQueue()
     private let concurrentOpCount = (Double(SystemUtils.numberOfActiveCores) * 1.5).roundedInt
     
-    var root: FileSystemItem = FileSystemItem.create(forURL: FilesAndPaths.musicDir) {
+    var root: FileSystemItem = FileSystemItem.create(forURL: FilesAndPaths.musicDir.appendingPathComponent("Ambient").appendingPathComponent("The Sushi Club")) {
         
         didSet {
             loadMetadata(forChildrenOf: root)
@@ -38,41 +38,27 @@ class FileSystem {
     
     func loadMetadata(forChildrenOf item: FileSystemItem) {
         
-        if item.metadataLoadedForChildren {
+        if item.metadataLoadedForChildren.value {
+            print("\nALREADY LOADED metadata for children of: \(item.url.path) ...")
             return
         }
         
+        print("\nLoading metadata for children of: \(item.url.path) ...")
+        
         DispatchQueue.global(qos: .userInitiated).async {
 
-            item.metadataLoadedForChildren = true
+            item.metadataLoadedForChildren.setValue(true)
 
             // We need to load metadata only for supported tracks (ignore folders, playlists, or unsupported files).
             for child in item.children.filter({$0.isTrack}) {
 
                 if let cachedMetadata = metadataRegistry[child.url] {
+                    
+                    print("\nFOUND CACHED metadata for: \(child.url.path) !")
 
                     var metadata = FileMetadata()
+                    metadata.primary = cachedMetadata
                     child.metadata = metadata
-
-                    var playlistMetadata = PrimaryMetadata()
-
-                    playlistMetadata.title = cachedMetadata.title
-
-                    playlistMetadata.artist = cachedMetadata.artist
-                    playlistMetadata.albumArtist = cachedMetadata.albumArtist
-//                    playlistMetadata.performer = track.performer
-
-                    playlistMetadata.album = cachedMetadata.album
-                    playlistMetadata.genre = cachedMetadata.genre
-
-                    playlistMetadata.duration = cachedMetadata.duration
-
-                    playlistMetadata.trackNumber = cachedMetadata.trackNumber
-                    playlistMetadata.totalTracks = cachedMetadata.totalTracks
-                    playlistMetadata.discNumber = cachedMetadata.discNumber
-                    playlistMetadata.totalDiscs = cachedMetadata.totalDiscs
-
-                    metadata.primary = playlistMetadata
 
                     // Bool return value indicates whether any metadata was loaded.
                     var concurrentAsyncOps: [() -> Bool] = []
@@ -80,22 +66,24 @@ class FileSystem {
                     concurrentAsyncOps.append {[weak child] in
                         
                         guard let theChild = child else {return false}
-                        metadata.auxiliary = fileReader.getAuxiliaryMetadata(for: theChild.url)
+                        theChild.metadata?.auxiliary = fileReader.getAuxiliaryMetadata(for: theChild.url)
                         return true
                     }
                     
                     concurrentAsyncOps.append {[weak child] in
                         
                         guard let theChild = child else {return false}
-                        metadata.coverArt = fileReader.getArt(for: theChild.url)?.image
+                        theChild.metadata?.coverArt = fileReader.getArt(for: theChild.url)?.image
                         return metadata.coverArt != nil
                     }
 
                     if concurrentAsyncOps.isNonEmpty {
 
                         self.opQueue.addOperation {[weak child] in
-
+                            
                             guard let theChild = child else {return}
+                            
+                            print("\nNOW LOADING metadata for: \(theChild.url.path) ...")
 
                             var needToNotify: Bool = false
 
@@ -104,7 +92,10 @@ class FileSystem {
                             }
 
                             if needToNotify {
+                                print("\nLOADED metadata for: \(child!.url.path), NOW NOTIFYING ...")
                                 self.messenger.publish(.fileSystem_fileMetadataLoaded, payload: theChild)
+                            } else {
+                                print("\nNO NEED TO NOTIFY FOR: \(theChild.url.lastPathComponent)")
                             }
                         }
 

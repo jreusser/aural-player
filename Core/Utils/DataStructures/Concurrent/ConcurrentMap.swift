@@ -27,7 +27,7 @@ class ConcurrentMap<T: Hashable, U: Any> {
             }
         }
         
-        set (newValue) {
+        set {
             
             lock.executeAfterWait {
                 
