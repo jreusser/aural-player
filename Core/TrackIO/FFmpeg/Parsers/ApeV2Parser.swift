@@ -25,6 +25,12 @@ fileprivate let key_originalAlbum = "original album"
 
 fileprivate let key_genre = "genre"
 
+fileprivate let key_composer = "composer"
+fileprivate let key_conductor = "conductor"
+fileprivate let key_lyricist = "lyricist"
+fileprivate let key_originalLyricist = "original lyricist"
+
+
 fileprivate let key_disc = "disc"
 fileprivate let key_track = "track"
 fileprivate let key_lyrics = "lyrics"
@@ -39,8 +45,9 @@ fileprivate let key_bpm: String = "bpm"
 ///
 class ApeV2Parser: FFmpegMetadataParser {
 
-    private let essentialKeys: Set<String> = Set([key_title, key_album, key_originalAlbum, key_genre,
-                                                  key_disc, key_track] + keys_artist)
+    private let essentialKeys: Set<String> = Set([key_title, key_album, key_originalAlbum, key_genre, key_composer, key_conductor, key_performer,
+                                                  key_lyricist, key_originalLyricist,
+                                                  key_disc, key_track, key_lyrics] + keys_artist + keys_year)
 
     private let key_language = "language"
     private let key_compilation = "compilation"
@@ -80,8 +87,28 @@ class ApeV2Parser: FFmpegMetadataParser {
         keys_artist.firstNonNilMappedValue({metadataMap.apeMetadata.essentialFields[$0]})
     }
     
+    func getAlbumArtist(_ meta: FFmpegMappedMetadata) -> String? {
+        meta.apeMetadata.essentialFields[key_albumArtist] ?? meta.apeMetadata.essentialFields[key_albumArtist2]
+    }
+    
     func getAlbum(_ metadataMap: FFmpegMappedMetadata) -> String? {
         metadataMap.apeMetadata.essentialFields[key_album] ?? metadataMap.apeMetadata.essentialFields[key_originalAlbum]
+    }
+    
+    func getComposer(_ meta: FFmpegMappedMetadata) -> String? {
+        meta.apeMetadata.essentialFields[key_composer]
+    }
+    
+    func getConductor(_ meta: FFmpegMappedMetadata) -> String? {
+        meta.apeMetadata.essentialFields[key_conductor]
+    }
+    
+    func getPerformer(_ meta: FFmpegMappedMetadata) -> String? {
+        meta.apeMetadata.essentialFields[key_performer]
+    }
+    
+    func getLyricist(_ meta: FFmpegMappedMetadata) -> String? {
+        meta.apeMetadata.essentialFields[key_lyricist] ?? meta.apeMetadata.essentialFields[key_originalLyricist]
     }
     
     func getGenre(_ metadataMap: FFmpegMappedMetadata) -> String? {

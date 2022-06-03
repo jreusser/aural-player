@@ -17,10 +17,12 @@ class ITunesParser: AVFMetadataParser {
     
     let keySpace: AVMetadataKeySpace = .iTunes
         
-    private let essentialFieldKeys: Set<String> = [ITunesSpec.key_title, ITunesSpec.key_artist, ITunesSpec.key_originalArtist, ITunesSpec.key_originalArtist2, ITunesSpec.key_performer, ITunesSpec.key_album, ITunesSpec.key_originalAlbum, ITunesSpec.key_genre, ITunesSpec.key_predefGenre, ITunesSpec.key_genreID, ITunesSpec.key_discNumber, ITunesSpec.key_discNumber2, ITunesSpec.key_trackNumber]
+    private let essentialFieldKeys: Set<String> = [ITunesSpec.key_title, ITunesSpec.key_artist, ITunesSpec.key_originalArtist, ITunesSpec.key_originalArtist2, ITunesSpec.key_performer, ITunesSpec.key_album, ITunesSpec.key_originalAlbum, ITunesSpec.key_composer, ITunesSpec.key_conductor, ITunesSpec.key_conductor2, ITunesSpec.key_genre, ITunesSpec.key_predefGenre, ITunesSpec.key_genreID, ITunesSpec.key_discNumber, ITunesSpec.key_discNumber2, ITunesSpec.key_trackNumber, ITunesSpec.key_releaseDate, ITunesSpec.key_releaseYear, ITunesSpec.key_lyrics, ITunesSpec.key_art]
         
     private let keys_artist: [String] = [ITunesSpec.key_artist, ITunesSpec.key_originalArtist, ITunesSpec.key_originalArtist2, ITunesSpec.key_albumArtist, ITunesSpec.key_performer]
     private let keys_album: [String] = [ITunesSpec.key_album, ITunesSpec.key_originalAlbum]
+    private let keys_conductor: [String] = [ITunesSpec.key_conductor, ITunesSpec.key_conductor2]
+    private let keys_lyricist: [String] = [ITunesSpec.key_lyricist, ITunesSpec.key_originalLyricist]
     private let keys_genre: [String] = [ITunesSpec.key_genre, ITunesSpec.key_predefGenre]
     
     private let keys_discNum: [String] = [ITunesSpec.key_discNumber, ITunesSpec.key_discNumber2]
@@ -48,8 +50,28 @@ class ITunesParser: AVFMetadataParser {
         (keys_artist.firstNonNilMappedValue {metadataMap.iTunes[$0]})?.stringValue
     }
     
+    func getAlbumArtist(_ metadataMap: AVFMappedMetadata) -> String? {
+        metadataMap.iTunes[ITunesSpec.key_albumArtist]?.stringValue
+    }
+    
     func getAlbum(_ metadataMap: AVFMappedMetadata) -> String? {
         (keys_album.firstNonNilMappedValue {metadataMap.iTunes[$0]})?.stringValue
+    }
+    
+    func getComposer(_ metadataMap: AVFMappedMetadata) -> String? {
+        metadataMap.iTunes[ITunesSpec.key_composer]?.stringValue
+    }
+    
+    func getConductor(_ metadataMap: AVFMappedMetadata) -> String? {
+        (keys_conductor.firstNonNilMappedValue {metadataMap.iTunes[$0]})?.stringValue
+    }
+    
+    func getPerformer(_ metadataMap: AVFMappedMetadata) -> String? {
+        metadataMap.iTunes[ITunesSpec.key_performer]?.stringValue
+    }
+    
+    func getLyricist(_ metadataMap: AVFMappedMetadata) -> String? {
+        (keys_lyricist.firstNonNilMappedValue {metadataMap.iTunes[$0]})?.stringValue
     }
     
     func getGenre(_ metadataMap: AVFMappedMetadata) -> String? {

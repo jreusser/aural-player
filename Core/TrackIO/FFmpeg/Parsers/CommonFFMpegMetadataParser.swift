@@ -38,7 +38,7 @@ fileprivate let key_date = "date"
 ///
 class CommonFFmpegMetadataParser: FFmpegMetadataParser {
     
-    private let essentialKeys: Set<String> = [key_title, key_artist, key_albumArtist, key_album, key_performer, key_genre, key_disc, key_track]
+    private let essentialKeys: Set<String> = [key_title, key_artist, key_albumArtist, key_album, key_performer, key_composer, key_genre, key_disc, key_track, key_date, key_lyrics, key_date]
     
     private let auxiliaryKeys: [String: String] = [
         
@@ -91,8 +91,20 @@ class CommonFFmpegMetadataParser: FFmpegMetadataParser {
             metadataMap.commonMetadata.essentialFields[key_performer]
     }
     
+    func getAlbumArtist(_ meta: FFmpegMappedMetadata) -> String? {
+        meta.commonMetadata.essentialFields[key_albumArtist]
+    }
+    
     func getAlbum(_ metadataMap: FFmpegMappedMetadata) -> String? {
         metadataMap.commonMetadata.essentialFields[key_album]
+    }
+    
+    func getComposer(_ meta: FFmpegMappedMetadata) -> String? {
+        meta.commonMetadata.essentialFields[key_composer]
+    }
+    
+    func getPerformer(_ meta: FFmpegMappedMetadata) -> String? {
+        meta.commonMetadata.essentialFields[key_performer]
     }
     
     func getGenre(_ metadataMap: FFmpegMappedMetadata) -> String? {

@@ -39,6 +39,16 @@ class ITunesSpec {
     static let key_album = AVMetadataKey.iTunesMetadataKeyAlbum.rawValue
     static let key_originalAlbum = "original album"
     
+    // @wrt
+    static let key_composer = AVMetadataKey.iTunesMetadataKeyComposer.rawValue
+    
+    // @con
+    static let key_conductor = AVMetadataKey.iTunesMetadataKeyConductor.rawValue
+    static let key_conductor2 = "conductor"
+    
+    static let key_lyricist = "lyricist"
+    static let key_originalLyricist = "original lyricist"
+    
     // @gen
     static let key_genre = AVMetadataKey.iTunesMetadataKeyUserGenre.rawValue
     

@@ -100,8 +100,24 @@ class ID3AVFParser: AVFMetadataParser {
         (keys_artist.firstNonNilMappedValue {metadataMap.id3[$0]})?.stringValue
     }
     
+    func getAlbumArtist(_  metadataMap: AVFMappedMetadata) -> String? {
+        (keys_albumArtist.firstNonNilMappedValue {metadataMap.id3[$0]})?.stringValue
+    }
+    
     func getAlbum(_ metadataMap: AVFMappedMetadata) -> String? {
         (keys_album.firstNonNilMappedValue {metadataMap.id3[$0]})?.stringValue
+    }
+    
+    func getComposer(_ metadataMap: AVFMappedMetadata) -> String? {
+        (keys_composer.firstNonNilMappedValue {metadataMap.id3[$0]})?.stringValue
+    }
+    
+    func getConductor(_ metadataMap: AVFMappedMetadata) -> String? {
+        (keys_conductor.firstNonNilMappedValue {metadataMap.id3[$0]})?.stringValue
+    }
+    
+    func getLyricist(_ metadataMap: AVFMappedMetadata) -> String? {
+        (keys_lyricist.firstNonNilMappedValue {metadataMap.id3[$0]})?.stringValue
     }
     
     func getGenre(_ metadataMap: AVFMappedMetadata) -> String? {

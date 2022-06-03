@@ -3932,6 +3932,19 @@
 			path = Text;
 			sourceTree = "<group>";
 		};
+		3E81BCD4284A954700927E4A /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				3EFE377827864895006F8B8C /* ID3FFmpegParser.swift */,
+				3EFE377A27864895006F8B8C /* DefaultFFMpegMetadataParser.swift */,
+				3EFE377B27864895006F8B8C /* CommonFFMpegMetadataParser.swift */,
+				3EFE377E27864895006F8B8C /* ApeV2Parser.swift */,
+				3EFE377F27864895006F8B8C /* WMParser.swift */,
+				3EFE378027864895006F8B8C /* VorbisCommentParser.swift */,
+			);
+			path = Parsers;
+			sourceTree = "<group>";
+		};
 		3E871A3B2698F10800C626DC /* AudioGraph */ = {
 			isa = PBXGroup;
 			children = (
@@ -5483,15 +5496,10 @@
 		3EFE377727864895006F8B8C /* FFmpeg */ = {
 			isa = PBXGroup;
 			children = (
-				3EFE377827864895006F8B8C /* ID3FFmpegParser.swift */,
-				3EFE377927864895006F8B8C /* FFmpegMetadataParser.swift */,
-				3EFE377A27864895006F8B8C /* DefaultFFMpegMetadataParser.swift */,
-				3EFE377B27864895006F8B8C /* CommonFFMpegMetadataParser.swift */,
-				3EFE377C27864895006F8B8C /* FFmpegMappedMetadata.swift */,
+				3E81BCD4284A954700927E4A /* Parsers */,
 				3EFE377D27864895006F8B8C /* FFmpegFileReader.swift */,
-				3EFE377E27864895006F8B8C /* ApeV2Parser.swift */,
-				3EFE377F27864895006F8B8C /* WMParser.swift */,
-				3EFE378027864895006F8B8C /* VorbisCommentParser.swift */,
+				3EFE377927864895006F8B8C /* FFmpegMetadataParser.swift */,
+				3EFE377C27864895006F8B8C /* FFmpegMappedMetadata.swift */,
 			);
 			path = FFmpeg;
 			sourceTree = "<group>";

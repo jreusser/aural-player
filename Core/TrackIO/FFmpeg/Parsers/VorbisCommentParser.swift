@@ -55,7 +55,7 @@ class VorbisCommentParser: FFmpegMetadataParser {
     private let key_compilation = "compilation"
     
     private let essentialKeys: Set<String> = Set([key_title, key_album, key_originalAlbum, key_genre, key_performer,
-    key_disc, key_totalDiscs, key_discTotal, key_track, key_trackTotal, key_totalTracks] + keys_artist)
+    key_disc, key_totalDiscs, key_discTotal, key_track, key_trackTotal, key_totalTracks] + keys_artist + keys_year)
     
     func mapMetadata(_ metadataMap: FFmpegMappedMetadata) {
         

@@ -20,7 +20,13 @@ class ID3FFmpegParser: FFmpegMetadataParser {
     
     private let keys_artist: [String] = [ID3_V24Spec.key_artist, ID3_V22Spec.key_artist, ID3_V1Spec.key_artist, ID3_V24Spec.key_originalArtist, ID3_V22Spec.key_originalArtist, ID3_V24Spec.key_albumArtist, ID3_V22Spec.key_albumArtist].map {$0.lowercased()}
     
+    private let keys_albumArtist: [String] = [ID3_V24Spec.key_albumArtist, ID3_V22Spec.key_albumArtist].map {$0.lowercased()}
+    
     private let keys_album: [String] = [ID3_V24Spec.key_album, ID3_V22Spec.key_album, ID3_V1Spec.key_album, ID3_V24Spec.key_originalAlbum, ID3_V22Spec.key_originalAlbum].map {$0.lowercased()}
+    
+    private let keys_composer: [String] = [ID3_V24Spec.key_composer, ID3_V22Spec.key_composer].map {$0.lowercased()}
+    private let keys_conductor: [String] = [ID3_V24Spec.key_conductor, ID3_V22Spec.key_conductor].map {$0.lowercased()}
+    private let keys_lyricist: [String] = [ID3_V24Spec.key_lyricist, ID3_V22Spec.key_lyricist, ID3_V24Spec.key_originalLyricist, ID3_V22Spec.key_originalLyricist].map {$0.lowercased()}
     
     private let keys_genre: [String] = [ID3_V24Spec.key_genre, ID3_V22Spec.key_genre, ID3_V1Spec.key_genre].map {$0.lowercased()}
     
@@ -81,7 +87,7 @@ class ID3FFmpegParser: FFmpegMetadataParser {
     }
     
     private func readableKey(_ key: String) -> String {
-        return auxiliaryFields[key] ?? key.capitalizingFirstLetter()
+        auxiliaryFields[key] ?? key.capitalizingFirstLetter()
     }
 
     func hasEssentialMetadataForTrack(_ metadataMap: FFmpegMappedMetadata) -> Bool {
@@ -99,9 +105,25 @@ class ID3FFmpegParser: FFmpegMetadataParser {
     func getArtist(_ metadataMap: FFmpegMappedMetadata) -> String? {
         keys_artist.firstNonNilMappedValue {metadataMap.id3Metadata.essentialFields[$0]}
     }
+    
+    func getAlbumArtist(_ meta: FFmpegMappedMetadata) -> String? {
+        keys_albumArtist.firstNonNilMappedValue {meta.id3Metadata.essentialFields[$0]}
+    }
 
     func getAlbum(_ metadataMap: FFmpegMappedMetadata) -> String? {
         keys_album.firstNonNilMappedValue {metadataMap.id3Metadata.essentialFields[$0]}
+    }
+    
+    func getComposer(_ meta: FFmpegMappedMetadata) -> String? {
+        keys_composer.firstNonNilMappedValue {meta.id3Metadata.essentialFields[$0]}
+    }
+
+    func getConductor(_ meta: FFmpegMappedMetadata) -> String? {
+        keys_conductor.firstNonNilMappedValue {meta.id3Metadata.essentialFields[$0]}
+    }
+
+    func getLyricist(_ meta: FFmpegMappedMetadata) -> String? {
+        keys_lyricist.firstNonNilMappedValue {meta.id3Metadata.essentialFields[$0]}
     }
 
     func getGenre(_ metadataMap: FFmpegMappedMetadata) -> String? {

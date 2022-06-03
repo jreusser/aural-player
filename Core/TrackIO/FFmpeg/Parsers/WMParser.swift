@@ -23,6 +23,12 @@ fileprivate let key_originalAlbum = "originalalbumtitle"
 fileprivate let key_genre = "genre"
 fileprivate let key_genreId = "genreid"
 
+fileprivate let key_composer = "composer"
+fileprivate let key_conductor = "conductor"
+
+fileprivate let key_lyricist = "originallyricist"
+fileprivate let key_writer = "writer"
+
 fileprivate let key_disc = "partofset"
 fileprivate let key_discTotal = "disctotal"
 
@@ -53,8 +59,8 @@ class WMParser: FFmpegMetadataParser {
     
     private let keyPrefix = "wm/"
     
-    private let essentialKeys: Set<String> = Set([key_title, key_album, key_originalAlbum, key_genre, key_genreId,
-        key_disc, key_discTotal, key_track, key_track_zeroBased, key_trackTotal, key_asfProtectionType] + keys_artist)
+    private let essentialKeys: Set<String> = Set([key_title, key_album, key_originalAlbum, key_composer, key_conductor, key_lyricist, key_writer, key_genre, key_genreId,
+        key_disc, key_discTotal, key_track, key_track_zeroBased, key_trackTotal, key_asfProtectionType, key_year, key_originalYear] + keys_artist)
     
     private let ignoredKeys: Set<String> = ["wmfsdkneeded"]
     
