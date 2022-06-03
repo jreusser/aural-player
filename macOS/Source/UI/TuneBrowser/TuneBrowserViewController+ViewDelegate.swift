@@ -282,6 +282,10 @@ extension TuneBrowserViewController: NSOutlineViewDelegate {
             
             fileSystem.sort(by: .type, ascending: ascending)
             
+        case "trackNum":
+            
+            fileSystem.sort(by: .trackNumber, ascending: ascending)
+            
         default: return
             
         }

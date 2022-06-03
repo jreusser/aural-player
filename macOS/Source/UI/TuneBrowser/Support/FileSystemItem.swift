@@ -163,6 +163,16 @@ class FileSystemItem {
                 return ascending ? year0 < year1 : year0 > year1
             } )
             
+        case .trackNumber:
+            
+            children.sortValues(by: {
+                
+                let trackNum0: Int = $0.metadata?.primary?.trackNumber ?? 0
+                let trackNum1: Int = $1.metadata?.primary?.trackNumber ?? 0
+                
+                return ascending ? trackNum0 < trackNum1 : trackNum0 > trackNum1
+            } )
+            
         case .type:
             
             children.sortValues(by: {ascending ? $0.type < $1.type : $0.type > $1.type})

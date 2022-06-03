@@ -27,7 +27,7 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
         categories.forEach {sidebarView.expandItem($0)}
         sidebarView.selectRow(7)
         
-        messenger.subscribe(to: .librarySidebar_addFileSystemShortcut, handler: sidebarView.reloadDataMaintainingSelection)
+        messenger.subscribe(to: .librarySidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
         
         colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
     }
@@ -100,10 +100,12 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         !(item is LibrarySidebarCategory) || (sidebarView.numberOfChildren(ofItem: item) == 0)
     }
+    
+    private var respondToSelectionChange: Bool = true
 
     func outlineViewSelectionDidChange(_ notification: Notification) {
         
-        guard let outlineView = notification.object as? NSOutlineView else {return}
+        guard respondToSelectionChange, let outlineView = notification.object as? NSOutlineView else {return}
         
         let item = outlineView.item(atRow: outlineView.selectedRow)
         
@@ -124,6 +126,13 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
             
             messenger.publish(EnqueueAndPlayNowCommand(tracks: playlist.tracks, clearPlayQueue: false))
         }
+    }
+    
+    private func addFileSystemShortcut() {
+        
+        respondToSelectionChange = false
+        sidebarView.reloadDataMaintainingSelection()
+        respondToSelectionChange = true
     }
 }
 

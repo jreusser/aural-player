@@ -88,5 +88,5 @@ class FileSystem {
 
 enum FileSystemSortField {
     
-    case name, title, artist, album, genre, format, duration, year, type
+    case name, title, artist, album, genre, format, duration, year, type, trackNumber
 }
