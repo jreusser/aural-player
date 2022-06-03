@@ -156,4 +156,11 @@ extension OrderedDictionary {
         
         return Dictionary(uniqueKeysWithValues: zip(sourceIndices.sortedAscending(), destinationIndices))
     }
+    
+    mutating func sortValues(by comparator: (Value, Value) -> Bool) {
+        
+        self.sort(by: {kv1, kv2 in
+            comparator(kv1.value, kv2.value)
+        })
+    }
 }

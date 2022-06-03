@@ -51,31 +51,31 @@ class FileSystem {
         }
     }
     
+    private let loadLock: ExclusiveAccessSemaphore = .init()
+    
     func loadChildren(of item: FileSystemItem) {
         
-        if item.childrenLoaded.value {
-            return
-        }
-        
-        item.childrenLoaded.setValue(true)
-        
-        DispatchQueue.global(qos: .utility).async {
+        loadLock.executeAfterWait {
             
-            item.setChildren(self.getChildren(of: item))
+            if item.childrenLoaded.value {
+                return
+            }
             
-            let tracks = item.children.values.filter {$0.isTrack}
+            item.childrenLoaded.setValue(true)
             
-            if tracks.isEmpty {
+            DispatchQueue.global(qos: .utility).async {
                 
-                print("\nTrackLoader finished loading children of: '\(item.name)'")
-                self.messenger.publish(TuneBrowserItemsAddedNotification(parentItem: item, childIndices: IndexSet(0..<item.children.count)))
+                item.setChildren(self.getChildren(of: item))
                 
-            } else {
+                let tracks = item.children.values.filter {$0.isTrack}
                 
-                self.trackLoader.loadMetadata(ofType: .primary, from: tracks.map {$0.url},
-                                         into: item, observer: item) {
+                if tracks.isEmpty {
+                    self.messenger.publish(TuneBrowserItemsAddedNotification(parentItem: item, childIndices: IndexSet(0..<item.children.count)))
                     
-                    print("\nTrackLoader finished loading children of: '\(item.name)'")
+                } else {
+                    
+                    self.trackLoader.loadMetadata(ofType: .primary, from: tracks.map {$0.url},
+                                             into: item, observer: item)
                 }
             }
         }

@@ -17,6 +17,7 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
     @IBOutlet weak var lblCaption: NSTextField!
     
     @IBOutlet weak var browserView: TuneBrowserOutlineView!
+    var resetBrowserView: Bool = false
     
     @IBOutlet weak var pathControlWidget: NSPathControl! {
         
@@ -76,10 +77,10 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         selectMusicFolder()
         respondToSidebarSelectionChange = true
         
-        let theSushiClub: URL = FilesAndPaths.musicDir.appendingPathComponent("Ambient").appendingPathComponent("The Sushi Club")
-        fileSystem.root = FileSystemItem.create(forURL: theSushiClub)
-//        pathControlWidget.url = tuneBrowserMusicFolderURL
-        pathControlWidget.url = theSushiClub
+//        let theSushiClub: URL = FilesAndPaths.musicDir.appendingPathComponent("Ambient").appendingPathComponent("The Sushi Club")
+        fileSystem.root = FileSystemItem.create(forURL: FilesAndPaths.musicDir)
+        pathControlWidget.url = tuneBrowserMusicFolderURL
+//        pathControlWidget.url = theSushiClub
     }
     
     private func onAppExit() {
@@ -128,11 +129,14 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
     private func childrenAdded(_ notif: TuneBrowserItemsAddedNotification) {
         
         let parent = notif.parentItem
-        let childIndices = notif.childIndices
         
-        print("\nChildIndices: \(childIndices.toArray())")
+//        if parent.url == fileSystem.rootURL {
+//            browserView.reloadData()
+//        } else {
+//            browserView.reloadItem(parent, reloadChildren: true)
+//        }
         
-        browserView.insertItems(at: childIndices,
+        browserView.insertItems(at: notif.childIndices,
                                 inParent: parent.url == fileSystem.rootURL ? nil : parent,
                                 withAnimation: .slideDown)
     }
@@ -159,9 +163,21 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
             pathControlWidget.url = item.url
         }
         
-        fileSystem.root = item
-        browserView.reloadData()
-        browserView.scrollRowToVisible(0)
+        if item.childrenLoaded.value {
+            
+            fileSystem.root = item
+            browserView.reloadData()
+            
+        } else {
+            
+            removeAllRows()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                fileSystem.root = item
+            }
+        }
+        
+        self.browserView.scrollRowToVisible(0)
         
 //        updateSidebarSelection()
     }
@@ -189,6 +205,8 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         
         if let item = pathControlWidget.clickedPathItem, let url = item.url, url != pathControlWidget.url {
             
+            removeAllRows()
+            
             var path = url.path
             
             if !path.hasPrefix("/Volumes"), let volumeName = SystemUtils.primaryVolumeName {
@@ -203,16 +221,23 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
                 path = path.replacingOccurrences(of: "/Volumes/\(volumeName)", with: "")
             }
             
-            if path.hasSuffix("/") {
-                fileSystem.rootURL = url
+            let rootURL: URL = path.hasSuffix("/") ? url : URL(fileURLWithPath: path + "/")
+            let fsRoot = FileSystemItem.create(forURL: rootURL)
+            
+            if fsRoot.childrenLoaded.value {
+                
+                fileSystem.root = fsRoot
+                browserView.reloadData()
                 
             } else {
                 
-                path += "/"
-                fileSystem.rootURL = URL(fileURLWithPath: path)
+                removeAllRows()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    fileSystem.root = fsRoot
+                }
             }
-            
-            browserView.reloadData()
+
             browserView.scrollRowToVisible(0)
             
             updateSidebarSelection()
@@ -231,9 +256,29 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
             pathControlWidget.url = url
         }
         
-        fileSystem.root = FileSystemItem.create(forURL: url)
-        browserView.reloadData()
+        let fsRoot = FileSystemItem.create(forURL: url)
+        
+        if fsRoot.childrenLoaded.value {
+            
+            fileSystem.root = fsRoot
+            browserView.reloadData()
+            
+        } else {
+            
+            removeAllRows()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                fileSystem.root = fsRoot
+            }
+        }
+        
         browserView.scrollRowToVisible(0)
+    }
+    
+    @IBAction func playNowAction(_ sender: Any) {
+        
+        let tracks = browserView.selectedItems.compactMap {($0 as? FileSystemItem)?.toTrack()}
+        messenger.publish(EnqueueAndPlayNowCommand(tracks: tracks, clearPlayQueue: true))
     }
     
     @IBAction func enqueueBrowserItemsAction(_ sender: Any) {

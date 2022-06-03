@@ -67,7 +67,7 @@ class TrackLoader {
     
     // TODO: Allow the caller to specify a "sort order" for the files, eg. by file path ???
     func loadMetadata(ofType type: MetadataType, from files: [URL], into trackReceiver: TrackLoaderReceiver, at insertionIndex: Int? = nil,
-                      observer: TrackLoaderObserver, completionHandler: VoidFunction?) {
+                      observer: TrackLoaderObserver, completionHandler: VoidFunction? = nil) {
         
         observer.preTrackLoad()
         

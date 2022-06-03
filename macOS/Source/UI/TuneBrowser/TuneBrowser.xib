@@ -21,6 +21,9 @@
             <items>
                 <menuItem title="Play now" id="wB1-oM-Hcr">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="playNowAction:" target="-2" id="e2n-Fd-ySh"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="Enqueue and play now" id="Y6q-rw-EFb">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -125,7 +128,7 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7cL-0X-ZiE" userLabel="Title">
-                        <rect key="frame" x="1" y="438" width="124" height="22"/>
+                        <rect key="frame" x="1" y="410" width="124" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="0bS-r1-2mF"/>
                             <constraint firstAttribute="height" constant="22" id="FWb-AD-r0Z"/>
@@ -137,7 +140,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton toolTip="Playlist View" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hDu-SS-U8T" userLabel="Settings Menu">
-                        <rect key="frame" x="665" y="448" width="30" height="8"/>
+                        <rect key="frame" x="665" y="420" width="30" height="8"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="kPt-Jn-JnQ"/>
                             <constraint firstAttribute="width" constant="25" id="vax-9L-ZeO"/>
@@ -175,7 +178,7 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jTW-xB-lKp">
-                        <rect key="frame" x="3" y="406" width="692" height="22"/>
+                        <rect key="frame" x="3" y="378" width="692" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="ce5-UB-er0"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="uI4-do-fff"/>
@@ -190,13 +193,13 @@
                         </connections>
                     </pathControl>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U24-9d-uRM" userLabel="FileSystemBrowser">
-                        <rect key="frame" x="3" y="0.0" width="692" height="406"/>
+                        <rect key="frame" x="3" y="0.0" width="692" height="378"/>
                         <clipView key="contentView" id="JxV-7x-wTQ">
-                            <rect key="frame" x="0.0" y="0.0" width="692" height="406"/>
+                            <rect key="frame" x="0.0" y="0.0" width="692" height="378"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowHeight="30" rowSizeStyle="automatic" headerView="eGL-lw-kpG" viewBased="YES" indentationPerLevel="16" outlineTableColumn="wQR-x7-Rh4" id="aWI-Z6-ODA" customClass="TuneBrowserOutlineView" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="692" height="378"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="692" height="350"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
