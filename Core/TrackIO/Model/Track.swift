@@ -115,11 +115,22 @@ class Track: Hashable, PlaylistItem, PlayableItem {
         
         self.theArtist = metadata.artist
         self.albumArtist = metadata.albumArtist
-//        self.performer = metadata.performer
+        self.performer = metadata.performer
         
         self.album = metadata.album
         self.genre = metadata.genre
         self.year = metadata.year
+        
+        self.composer = metadata.composer
+        self.conductor = metadata.conductor
+        self.lyricist = metadata.lyricist
+        
+        self.auxiliaryMetadata = metadata.auxiliaryMetadata
+        
+        self.bpm = metadata.bpm
+        self.year = metadata.year
+
+        self.lyrics = metadata.lyrics
 
         self.trackNumber = metadata.trackNumber
         self.totalTracks = metadata.totalTracks
@@ -137,18 +148,7 @@ class Track: Hashable, PlaylistItem, PlayableItem {
     
     func setAuxiliaryMetadata(_ metadata: AuxiliaryMetadata) {
         
-        self.composer = metadata.composer
-        self.conductor = metadata.conductor
-        self.lyricist = metadata.lyricist
-        
-        self.bpm = metadata.bpm
-        self.year = metadata.year
-
-        self.lyrics = metadata.lyrics
-        self.auxiliaryMetadata = metadata.auxiliaryMetadata
-        
         self.audioInfo = metadata.audioInfo
-        
         self.auxMetadataLoaded = true
     }
     

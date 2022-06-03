@@ -36,6 +36,8 @@ protocol AVFMetadataParser {
     ///
     func getArtist(_ metadataMap: AVFMappedMetadata) -> String?
     
+    func getAlbumArtist(_ metadataMap: AVFMappedMetadata) -> String?
+    
     ///
     /// Read track album from the given metadata map. Returns nil if not present.
     ///
@@ -45,6 +47,16 @@ protocol AVFMetadataParser {
     /// Read track genre from the given metadata map. Returns nil if not present.
     ///
     func getGenre(_ metadataMap: AVFMappedMetadata) -> String?
+    
+    func getComposer(_ metadataMap: AVFMappedMetadata) -> String?
+    
+    func getConductor(_ metadataMap: AVFMappedMetadata) -> String?
+    
+    func getPerformer(_ metadataMap: AVFMappedMetadata) -> String?
+    
+    func getLyricist(_ metadataMap: AVFMappedMetadata) -> String?
+    
+    func getBPM(_ metadataMap: AVFMappedMetadata) -> Int?
     
     ///
     /// Read track lyrics from the given metadata map. Returns nil if not present.
@@ -89,9 +101,21 @@ extension AVFMetadataParser {
     
     func getArtist(_ metadataMap: AVFMappedMetadata) -> String? {nil}
     
+    func getAlbumArtist(_ metadataMap: AVFMappedMetadata) -> String? {nil}
+    
     func getAlbum(_ metadataMap: AVFMappedMetadata) -> String? {nil}
     
     func getGenre(_ metadataMap: AVFMappedMetadata) -> String? {nil}
+    
+    func getComposer(_ metadataMap: AVFMappedMetadata) -> String? {nil}
+    
+    func getConductor(_ metadataMap: AVFMappedMetadata) -> String? {nil}
+    
+    func getPerformer(_ metadataMap: AVFMappedMetadata) -> String? {nil}
+    
+    func getLyricist(_ metadataMap: AVFMappedMetadata) -> String? {nil}
+    
+    func getBPM(_ metadataMap: AVFMappedMetadata) -> Int? {nil}
     
     func getDuration(_ metadataMap: AVFMappedMetadata) -> Double? {nil}
     

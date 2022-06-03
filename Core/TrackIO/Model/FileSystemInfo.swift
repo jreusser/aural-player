@@ -18,13 +18,15 @@ class FileSystemInfo {
     let file: URL
     let fileName: String
     
+    // TODO: Should these be recomputed every time ? File attributes (eg. last opened) can change over the course of an app run.
+    
     private lazy var attributes = file.attributes
     
-    var kindOfFile: String? {attributes.kindOfFile}
-    var size: FileSize?  {attributes.size}
-    var creationDate: Date? {attributes.creationDate}
-    var lastModified: Date? {attributes.lastModified}
-    var lastOpened: Date? {attributes.lastOpened}
+    lazy var kindOfFile: String? = attributes.kindOfFile
+    lazy var size: FileSize? = attributes.size
+    lazy var creationDate: Date? = attributes.creationDate
+    lazy var lastModified: Date? = attributes.lastModified
+    lazy var lastOpened: Date? = attributes.lastOpened
     
     init(file: URL, fileName: String) {
         

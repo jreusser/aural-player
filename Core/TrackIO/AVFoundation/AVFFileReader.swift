@@ -84,6 +84,20 @@ class AVFFileReader: FileReaderProtocol {
         
         metadata.art = getArt(for: file)
         
+        metadata.year = parsers.firstNonNilMappedValue {$0.getYear(metadataMap)}
+        metadata.lyrics = cleanUpString(parsers.firstNonNilMappedValue {$0.getLyrics(metadataMap)})
+        
+        var auxiliaryMetadata: [String: MetadataEntry] = [:]
+        
+        // Obtain auxiliary metadata from each of the parsers, and put it in the
+        // auxiliaryMetadata dictionary.
+        
+        for parser in allParsers {
+            parser.getAuxiliaryMetadata(metadataMap).forEach {(k,v) in auxiliaryMetadata[k] = v}
+        }
+        
+        metadata.auxiliaryMetadata = auxiliaryMetadata
+        
         return metadata
     }
     
@@ -118,20 +132,6 @@ class AVFFileReader: FileReaderProtocol {
         let parsers = metadataMap.keySpaces.compactMap {parsersMap[$0]}
         
         var metadata = AuxiliaryMetadata()
-        
-        metadata.year = parsers.firstNonNilMappedValue {$0.getYear(metadataMap)}
-        metadata.lyrics = cleanUpString(parsers.firstNonNilMappedValue {$0.getLyrics(metadataMap)})
-        
-        var auxiliaryMetadata: [String: MetadataEntry] = [:]
-        
-        // Obtain auxiliary metadata from each of the parsers, and put it in the
-        // auxiliaryMetadata dictionary.
-        
-        for parser in allParsers {
-            parser.getAuxiliaryMetadata(metadataMap).forEach {(k,v) in auxiliaryMetadata[k] = v}
-        }
-        
-        metadata.auxiliaryMetadata = auxiliaryMetadata
         
         // Load audio info for the track.
         

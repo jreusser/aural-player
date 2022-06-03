@@ -207,7 +207,7 @@ extension TuneBrowserViewController: NSOutlineViewDelegate {
         
         guard item.isTrack,
               let cell = outlineView.makeView(withIdentifier: .cid_tuneBrowserYear, owner: nil) as? TuneBrowserItemTextCell,
-              let year = item.metadata?.auxiliary?.year else {return nil}
+              let year = item.metadata?.primary?.year else {return nil}
         
         cell.text = "\(year)"
         cell.textFont = textFont

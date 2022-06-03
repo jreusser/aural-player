@@ -28,10 +28,10 @@ struct PrimaryMetadata {
     var genre: String?
     var year: Int?
     
-//    var composer: String?
-//    var conductor: String?
-//    var performer: String?
-//    var lyricist: String?
+    var composer: String?
+    var conductor: String?
+    var performer: String?
+    var lyricist: String?
     
     var trackNumber: Int?
     var totalTracks: Int?
@@ -39,14 +39,18 @@ struct PrimaryMetadata {
     var discNumber: Int?
     var totalDiscs: Int?
     
-//    var bpm: Int?
-    
     var duration: Double = 0
     var durationIsAccurate: Bool = false
     
     var isProtected: Bool?
     
     var chapters: [Chapter] = []
+    
+    var bpm: Int?
+    
+    var lyrics: String?
+    
+    var auxiliaryMetadata: [String: MetadataEntry] = [:]
     
     var art: CoverArt?
     

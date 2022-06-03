@@ -17,9 +17,9 @@ struct FileMetadata {
     var primary: PrimaryMetadata?
     var playback: PlaybackContextProtocol?
     
-    var isPlayable: Bool {validationError == nil}
-    var validationError: DisplayableError?
-    
     var coverArt: PlatformImage?
     var auxiliary: AuxiliaryMetadata?
+    
+    var isPlayable: Bool {validationError == nil}
+    var validationError: DisplayableError?
 }

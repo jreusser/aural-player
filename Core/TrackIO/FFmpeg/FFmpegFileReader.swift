@@ -128,7 +128,22 @@ class FFmpegFileReader: FileReaderProtocol {
         metadata.duration = metadataMap.fileCtx.duration
         metadata.durationIsAccurate = metadata.duration > 0 && metadataMap.fileCtx.estimatedDurationIsAccurate
         
-//        metadata.chapters = fctx.chapters.map {Chapter($0)}
+        metadata.chapters = metadataMap.fileCtx.chapters.map {Chapter($0)}
+        
+        metadata.year = relevantParsers.firstNonNilMappedValue {$0.getYear(metadataMap)}
+        metadata.lyrics = cleanUp(relevantParsers.firstNonNilMappedValue {$0.getLyrics(metadataMap)})
+        
+        var auxiliaryMetadata: [String: MetadataEntry] = [:]
+        
+        for parser in relevantParsers {
+            parser.getAuxiliaryMetadata(metadataMap).forEach {(k,v) in auxiliaryMetadata[k] = v}
+        }
+        
+        metadata.auxiliaryMetadata = auxiliaryMetadata
+        
+        if let imageData = metadataMap.fileCtx.bestImageStream?.attachedPic.data {
+            metadata.art = CoverArt(imageData: imageData)
+        }
         
         return metadata
     }
@@ -176,17 +191,6 @@ class FFmpegFileReader: FileReaderProtocol {
     private func doGetAuxiliaryMetadata(for file: URL, fromCtx fctx: FFmpegFileContext, andMap metadataMap: FFmpegMappedMetadata, loadingAudioInfoFrom playbackContext: PlaybackContextProtocol? = nil, usingParsers relevantParsers: [FFmpegMetadataParser]) -> AuxiliaryMetadata {
         
         var metadata = AuxiliaryMetadata()
-        
-        metadata.year = relevantParsers.firstNonNilMappedValue {$0.getYear(metadataMap)}
-        metadata.lyrics = cleanUp(relevantParsers.firstNonNilMappedValue {$0.getLyrics(metadataMap)})
-        
-        var auxiliaryMetadata: [String: MetadataEntry] = [:]
-        
-        for parser in relevantParsers {
-            parser.getAuxiliaryMetadata(metadataMap).forEach {(k,v) in auxiliaryMetadata[k] = v}
-        }
-        
-        metadata.auxiliaryMetadata = auxiliaryMetadata
         
         // Load audio metadata.
         

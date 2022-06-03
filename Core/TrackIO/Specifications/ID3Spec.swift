@@ -48,6 +48,10 @@ struct ID3_V22Spec {
     
     static let key_album = "TAL"
     static let key_originalAlbum = "TOT"
+    static let key_composer = "TCM"
+    static let key_conductor = "TP3"
+    static let key_lyricist = "TXT"
+    static let key_originalLyricist = "TOL"
     
     static let key_genre = "TCO"
     
@@ -180,6 +184,18 @@ struct ID3_V24Spec {
     
     // TOPE
     static let key_originalArtist = AVMetadataKey.id3MetadataKeyOriginalArtist.rawValue
+    
+    // TCOM
+    static let key_composer = AVMetadataKey.id3MetadataKeyComposer.rawValue
+    
+    // TPE3
+    static let key_conductor = AVMetadataKey.id3MetadataKeyConductor.rawValue
+    
+    // TEXT
+    static let key_lyricist = AVMetadataKey.id3MetadataKeyLyricist.rawValue
+    
+    // TOLY
+    static let key_originalLyricist = AVMetadataKey.id3MetadataKeyOriginalLyricist.rawValue
     
     // TALB
     static let key_album = AVMetadataKey.id3MetadataKeyAlbumTitle.rawValue
