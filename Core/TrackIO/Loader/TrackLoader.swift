@@ -66,12 +66,12 @@ class TrackLoader {
     }
     
     // TODO: Allow the caller to specify a "sort order" for the files, eg. by file path ???
-    func loadMetadata(ofType type: MetadataType, from files: [URL], into trackList: TrackLoaderReceiver, at insertionIndex: Int?,
+    func loadMetadata(ofType type: MetadataType, from files: [URL], into trackReceiver: TrackLoaderReceiver, at insertionIndex: Int? = nil,
                       observer: TrackLoaderObserver, completionHandler: VoidFunction?) {
         
         observer.preTrackLoad()
         
-        session = FileReadSession(metadataType: type, trackList: trackList, insertionIndex: insertionIndex, observer: observer)
+        session = FileReadSession(metadataType: type, trackList: trackReceiver, insertionIndex: insertionIndex, observer: observer)
         batch = FileMetadataBatch(ofSize: queue.maxConcurrentOperationCount, insertionIndex: insertionIndex)
         blockOpFunction = blockOp(metadataType: type)
         

@@ -3945,6 +3945,18 @@
 			path = Parsers;
 			sourceTree = "<group>";
 		};
+		3E81BCD5284AA7FD00927E4A /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				3EB462CA2847FEC6000E3F85 /* TuneBrowserUIState.swift */,
+				3EB462CB2847FEC6000E3F85 /* TuneBrowserGlobals.swift */,
+				3EB462CC2847FEC6000E3F85 /* FileSystem.swift */,
+				3EB462CD2847FEC6000E3F85 /* FileSystemItem.swift */,
+				3EB462CE2847FEC6000E3F85 /* TuneBrowserHistory.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		3E871A3B2698F10800C626DC /* AudioGraph */ = {
 			isa = PBXGroup;
 			children = (
@@ -4417,14 +4429,10 @@
 			children = (
 				3EB462D02847FEC6000E3F85 /* TuneBrowser.xib */,
 				3EB462CF2847FEC6000E3F85 /* TuneBrowserViewController.swift */,
-				3EB462CA2847FEC6000E3F85 /* TuneBrowserUIState.swift */,
-				3EB462CB2847FEC6000E3F85 /* TuneBrowserGlobals.swift */,
-				3EB462CC2847FEC6000E3F85 /* FileSystem.swift */,
-				3EB462CD2847FEC6000E3F85 /* FileSystemItem.swift */,
-				3EB462CE2847FEC6000E3F85 /* TuneBrowserHistory.swift */,
 				3EB462D12847FEC6000E3F85 /* TuneBrowserViewController+ViewDelegate.swift */,
 				3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */,
 				3EB462C72847FEC6000E3F85 /* Sidebar */,
+				3E81BCD5284AA7FD00927E4A /* Support */,
 			);
 			path = TuneBrowser;
 			sourceTree = "<group>";

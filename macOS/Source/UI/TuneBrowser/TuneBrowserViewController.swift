@@ -66,6 +66,7 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         super.viewDidLoad()
         
         messenger.subscribeAsync(to: .fileSystem_fileMetadataLoaded, handler: fileMetadataLoaded(_:))
+        messenger.subscribeAsync(to: .fileSystem_childrenAddedToItem, handler: childrenAdded(to:))
         
         messenger.subscribe(to: .application_willExit, handler: onAppExit)
         
@@ -121,6 +122,15 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         
         DispatchQueue.main.async {
             self.browserView.reloadItem(file)
+        }
+    }
+    
+    private func childrenAdded(to item: FileSystemItem) {
+        
+        if item.url == fileSystem.rootURL {
+            browserView.reloadData()
+        } else {
+            browserView.reloadItem(item)
         }
     }
         

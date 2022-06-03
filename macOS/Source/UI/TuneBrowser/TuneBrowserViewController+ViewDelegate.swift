@@ -66,7 +66,7 @@ extension TuneBrowserViewController: NSOutlineViewDelegate {
             return
         }
         
-        fileSystem.loadMetadata(forChildrenOf: fsItem)
+        fileSystem.loadChildren(of: fsItem)
     }
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {

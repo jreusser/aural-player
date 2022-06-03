@@ -16,5 +16,7 @@ extension Notification.Name {
     
     static let fileSystem_fileMetadataLoaded = Notification.Name("fileSystem_fileMetadataLoaded")
     
+    static let fileSystem_childrenAddedToItem = Notification.Name("fileSystem_childrenAddedToItem")
+    
     static let tuneBrowser_sidebarSelectionChanged = Notification.Name("tuneBrowser_sidebarSelectionChanged")
 }
