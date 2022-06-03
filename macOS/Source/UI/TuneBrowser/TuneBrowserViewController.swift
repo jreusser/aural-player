@@ -66,7 +66,7 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         super.viewDidLoad()
         
         messenger.subscribeAsync(to: .fileSystem_fileMetadataLoaded, handler: fileMetadataLoaded(_:))
-        messenger.subscribeAsync(to: .fileSystem_childrenAddedToItem, handler: childrenAdded(to:))
+        messenger.subscribeAsync(to: .fileSystem_childrenAddedToItem, handler: childrenAdded(_:))
         
         messenger.subscribe(to: .application_willExit, handler: onAppExit)
         
@@ -125,13 +125,16 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         }
     }
     
-    private func childrenAdded(to item: FileSystemItem) {
+    private func childrenAdded(_ notif: TuneBrowserItemsAddedNotification) {
         
-        if item.url == fileSystem.rootURL {
-            browserView.reloadData()
-        } else {
-            browserView.reloadItem(item)
-        }
+        let parent = notif.parentItem
+        let childIndices = notif.childIndices
+        
+        print("\ChildIndices: \(childIndices.toArray())")
+        
+        browserView.insertItems(at: childIndices,
+                                inParent: parent.url == fileSystem.rootURL ? nil : parent,
+                                withAnimation: .slideDown)
     }
         
     @IBAction func doubleClickAction(_ sender: Any) {

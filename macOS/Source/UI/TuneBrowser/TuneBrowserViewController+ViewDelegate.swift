@@ -19,10 +19,6 @@ extension TuneBrowserViewController: NSOutlineViewDataSource {
             
         } else if let fsItem = item as? FileSystemItem {
             
-            if fsItem.name == "Sakura" {
-                print("\nRequested children of Sakura")
-            }
-            
             return fsItem.children.count
         }
         
@@ -33,11 +29,11 @@ extension TuneBrowserViewController: NSOutlineViewDataSource {
         
         if item == nil {
             
-            return fileSystem.root.children[index]
+            return fileSystem.root.children.elements[index].value
             
         } else if let fsItem = item as? FileSystemItem {
             
-            return fsItem.children[index]
+            return fsItem.children.elements[index].value
         }
         
         return ""
@@ -57,7 +53,9 @@ extension TuneBrowserViewController: NSOutlineViewDelegate {
     }
     
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        return (item as? FileSystemItem)?.isDirectory ?? false
+        
+        guard let fsItem = item as? FileSystemItem else {return false}
+        return fsItem.type.equalsOneOf(.folder, .playlist)
     }
     
     func outlineViewItemWillExpand(_ notification: Notification) {

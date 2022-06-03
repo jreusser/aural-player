@@ -63,7 +63,7 @@ class TuneBrowserItemNameCell: NSTableCellView {
             icon.image = .imgGroup
             
         } else if file.isTrack {
-            icon.image = file.metadata?.coverArt ?? .imgPlayingArt
+            icon.image = file.metadata?.primary?.art?.image ?? file.metadata?.coverArt ?? .imgPlayingArt
             
         } else if file.isPlaylist {
             icon.image = .imgPlaylistPreview

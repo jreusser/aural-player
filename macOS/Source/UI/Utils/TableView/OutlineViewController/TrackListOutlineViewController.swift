@@ -114,9 +114,7 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
         guard let group = notification.userInfo?.values.first as? Group,
               group.hasSubGroups else {return}
         
-        for subGroup in group.subGroups.values {
-            expandGroup(subGroup)
-        }
+        outlineView.expandItem(group, expandChildren: true)
     }
     
     // Enables type selection, allowing the user to conveniently and efficiently find a playlist track by typing its display name, which results in the track, if found, being selected within the playlist
@@ -226,45 +224,11 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
     }
     
     @IBAction func expandAllGroupsAction(_ sender: AnyObject) {
-        
-        grouping.rootGroup.subGroups.values.forEach {
-            expandGroup($0)
-        }
-    }
-    
-    func expandGroup(_ group: Group) {
-        
-        outlineView.expandItem(group)
-        
-        if group.hasSubGroups {
-            
-            for subGroup in group.subGroups.values {
-                
-                // Recursive call
-                expandGroup(subGroup)
-            }
-        }
+        outlineView.expandItem(nil, expandChildren: true)
     }
     
     @IBAction func collapseAllGroupsAction(_ sender: AnyObject) {
-        
-        grouping.rootGroup.subGroups.values.forEach {
-            collapseGroup($0)
-        }
-    }
-    
-    func collapseGroup(_ group: Group) {
-        
-        outlineView.collapseItem(group)
-        
-        if group.hasSubGroups {
-            
-            for subGroup in group.subGroups.values {
-                
-                // Recursive call
-                collapseGroup(subGroup)
-            }
-        }
+        outlineView.collapseItem(nil, collapseChildren: true)
     }
     
     @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {

@@ -7,7 +7,9 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
+
 import Foundation
+import OrderedCollections
 
 class FileSystemItem {
     
@@ -35,8 +37,15 @@ class FileSystemItem {
     let fileExtension: String
     let type: FileSystemItemType
     
-    var children: [FileSystemItem] = []
+    var children: OrderedDictionary<URL, FileSystemItem> = OrderedDictionary()
     var childrenLoaded: AtomicBool = AtomicBool(value: false)
+    
+    func setChildren(_ children: [FileSystemItem]) {
+        
+        for child in children {
+            self.children[child.url] = child
+        }
+    }
     
     var isDirectory: Bool {type == .folder}
     
@@ -45,6 +54,8 @@ class FileSystemItem {
     var isTrack: Bool {type == .track}
     
     var metadata: FileMetadata?
+    
+    var lastChildLoaded: Int = -1
     
     fileprivate lazy var messenger = Messenger(for: self)
     
@@ -73,89 +84,89 @@ class FileSystemItem {
     
     func sortChildren(by sortField: FileSystemSortField, ascending: Bool) {
         
-        switch sortField {
-        
-        case .name:
-            
-            children.sort(by: ascending ? {$0.name < $1.name} : {$0.name > $1.name})
-            
-        case .title:
-            
-            children.sort(by: {
-                
-                let title0: String = $0.metadata?.primary?.title ?? ""
-                let title1: String = $1.metadata?.primary?.title ?? ""
-                
-                return ascending ? title0 < title1 : title0 > title1
-            })
-            
-        case .artist:
-            
-            children.sort(by: {
-                
-                let artist0: String = $0.metadata?.primary?.artist ?? ""
-                let artist1: String = $1.metadata?.primary?.artist ?? ""
-                
-                return ascending ? artist0 < artist1 : artist0 > artist1
-            })
-            
-        case .album:
-            
-            children.sort(by: {
-                
-                let album0: String = $0.metadata?.primary?.album ?? ""
-                let album1: String = $1.metadata?.primary?.album ?? ""
-                
-                return ascending ? album0 < album1 : album0 > album1
-            })
-            
-        case .genre:
-            
-            children.sort(by: {
-                
-                let genre0: String = $0.metadata?.primary?.genre ?? ""
-                let genre1: String = $1.metadata?.primary?.genre ?? ""
-                
-                return ascending ? genre0 < genre1 : genre0 > genre1
-            })
-            
-        case .format:
-            
-            children.sort(by: {
-                
-                let metadata0: AudioInfo? = $0.metadata?.auxiliary?.audioInfo
-                let metadata1: AudioInfo? = $1.metadata?.auxiliary?.audioInfo
-                
-                let format0: String = metadata0?.codec ?? metadata0?.format ?? ""
-                let format1: String = metadata1?.codec ?? metadata1?.format ?? ""
-                
-                return ascending ? format0 < format1 : format0 > format1
-            })
-            
-        case .duration:
-            
-            children.sort(by:   {
-                
-                let duration0: Double = $0.metadata?.primary?.duration ?? 0
-                let duration1: Double = $1.metadata?.primary?.duration ?? 0
-                
-                return ascending ? duration0 < duration1 : duration0 > duration1
-            } )
-            
-        case .year:
-            
-            children.sort(by:   {
-                
-                let year0: Int = $0.metadata?.primary?.year ?? 0
-                let year1: Int = $1.metadata?.primary?.year ?? 0
-                
-                return ascending ? year0 < year1 : year0 > year1
-            } )
-            
-        case .type:
-            
-            children.sort(by: {ascending ? $0.type < $1.type : $0.type > $1.type})
-        }
+//        switch sortField {
+//
+//        case .name:
+//
+//            children.sort(by: ascending ? {$0.name < $1.name} : {$0.name > $1.name})
+//
+//        case .title:
+//
+//            children.sort(by: {
+//
+//                let title0: String = $0.metadata?.primary?.title ?? ""
+//                let title1: String = $1.metadata?.primary?.title ?? ""
+//
+//                return ascending ? title0 < title1 : title0 > title1
+//            })
+//
+//        case .artist:
+//
+//            children.sort(by: {
+//
+//                let artist0: String = $0.metadata?.primary?.artist ?? ""
+//                let artist1: String = $1.metadata?.primary?.artist ?? ""
+//
+//                return ascending ? artist0 < artist1 : artist0 > artist1
+//            })
+//
+//        case .album:
+//
+//            children.sort(by: {
+//
+//                let album0: String = $0.metadata?.primary?.album ?? ""
+//                let album1: String = $1.metadata?.primary?.album ?? ""
+//
+//                return ascending ? album0 < album1 : album0 > album1
+//            })
+//
+//        case .genre:
+//
+//            children.sort(by: {
+//
+//                let genre0: String = $0.metadata?.primary?.genre ?? ""
+//                let genre1: String = $1.metadata?.primary?.genre ?? ""
+//
+//                return ascending ? genre0 < genre1 : genre0 > genre1
+//            })
+//
+//        case .format:
+//
+//            children.sort(by: {
+//
+//                let metadata0: AudioInfo? = $0.metadata?.auxiliary?.audioInfo
+//                let metadata1: AudioInfo? = $1.metadata?.auxiliary?.audioInfo
+//
+//                let format0: String = metadata0?.codec ?? metadata0?.format ?? ""
+//                let format1: String = metadata1?.codec ?? metadata1?.format ?? ""
+//
+//                return ascending ? format0 < format1 : format0 > format1
+//            })
+//
+//        case .duration:
+//
+//            children.sort(by:   {
+//
+//                let duration0: Double = $0.metadata?.primary?.duration ?? 0
+//                let duration1: Double = $1.metadata?.primary?.duration ?? 0
+//
+//                return ascending ? duration0 < duration1 : duration0 > duration1
+//            } )
+//
+//        case .year:
+//
+//            children.sort(by:   {
+//
+//                let year0: Int = $0.metadata?.primary?.year ?? 0
+//                let year1: Int = $1.metadata?.primary?.year ?? 0
+//
+//                return ascending ? year0 < year1 : year0 > year1
+//            } )
+//
+//        case .type:
+//
+//            children.sort(by: {ascending ? $0.type < $1.type : $0.type > $1.type})
+//        }
     }
 }
 
@@ -167,15 +178,26 @@ extension FileSystemItem: TrackLoaderReceiver {
     
     func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet {
         
-        let children = batch.orderedMetadata.map {(file, metadata) -> FileSystemItem in
-            FileSystemItem(url: file, metadata: metadata)
+        var maxIndex: Int = -1
+        
+        for (file, metadata) in batch.metadata.map {
+            
+            children[file]?.metadata = metadata
+            
+            let index = children.index(forKey: file) ?? -1
+            
+            if index > maxIndex {
+                maxIndex = index
+            }
         }
         
-        self.children.append(contentsOf: children)
+        let minIndex = lastChildLoaded + 1
         
         // TODO: Sorting ??? To maintain a user-specified sort order.
         
-        return .empty
+        self.lastChildLoaded = maxIndex
+        
+        return IndexSet(minIndex...maxIndex)
     }
 }
 
@@ -187,10 +209,11 @@ extension FileSystemItem: TrackLoaderObserver {
     
     func postTrackLoad() {
 //        messenger.publish(.playQueue_doneAddingTracks)
+        lastChildLoaded = -1
     }
     
     func postBatchLoad(indices: IndexSet) {
-        messenger.publish(.fileSystem_childrenAddedToItem, payload: self)
+        messenger.publish(TuneBrowserItemsAddedNotification(parentItem: self, childIndices: indices))
     }
 }
 
