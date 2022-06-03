@@ -208,6 +208,11 @@ extension FileSystemItem: TrackLoaderObserver {
     }
     
     func postTrackLoad() {
+        
+        if lastChildLoaded < children.lastIndex {
+            messenger.publish(TuneBrowserItemsAddedNotification(parentItem: self, childIndices: IndexSet((lastChildLoaded + 1)...children.lastIndex)))
+        }
+        
 //        messenger.publish(.playQueue_doneAddingTracks)
         lastChildLoaded = -1
     }

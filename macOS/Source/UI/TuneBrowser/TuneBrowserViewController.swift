@@ -130,7 +130,7 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         let parent = notif.parentItem
         let childIndices = notif.childIndices
         
-        print("\ChildIndices: \(childIndices.toArray())")
+        print("\nChildIndices: \(childIndices.toArray())")
         
         browserView.insertItems(at: childIndices,
                                 inParent: parent.url == fileSystem.rootURL ? nil : parent,
