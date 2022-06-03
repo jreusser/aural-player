@@ -17,7 +17,6 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
     @IBOutlet weak var lblCaption: NSTextField!
     
     @IBOutlet weak var browserView: TuneBrowserOutlineView!
-    @IBOutlet weak var browserViewDelegate: TuneBrowserViewDelegate!
     
     @IBOutlet weak var pathControlWidget: NSPathControl! {
         

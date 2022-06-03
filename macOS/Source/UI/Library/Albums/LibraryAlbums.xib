@@ -194,7 +194,6 @@
                                                     <constraint firstAttribute="trailing" secondItem="tV8-Ul-E2e" secondAttribute="trailing" id="vbl-aG-0SL"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="lblTrackNumber" destination="O02-j2-XNN" id="cPF-h0-UGg"/>
                                                     <outlet property="textField" destination="O02-j2-XNN" id="nAa-bp-m49"/>
                                                 </connections>
                                             </tableCellView>

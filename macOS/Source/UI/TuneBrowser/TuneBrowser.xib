@@ -9,7 +9,6 @@
         <customObject id="-2" userLabel="File's Owner" customClass="TuneBrowserViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="browserView" destination="aWI-Z6-ODA" id="4hv-Fv-sgb"/>
-                <outlet property="browserViewDelegate" destination="rxi-DG-5sh" id="bZv-5O-Xg9"/>
                 <outlet property="lblCaption" destination="7cL-0X-ZiE" id="9EQ-b9-XN0"/>
                 <outlet property="pathControlWidget" destination="jTW-xB-lKp" id="KGs-mn-iGt"/>
                 <outlet property="rootContainer" destination="fke-7G-0dx" id="QTH-4S-6Z7"/>
@@ -18,12 +17,6 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="rxi-DG-5sh" customClass="TuneBrowserViewDelegate" customModule="Aural" customModuleProvider="target">
-            <connections>
-                <outlet property="browserView" destination="aWI-Z6-ODA" id="Y8J-kI-LeL"/>
-            </connections>
-        </customObject>
-        <customObject id="2tz-J9-WoP" customClass="TuneBrowserSidebarViewController" customModule="Aural" customModuleProvider="target"/>
         <menu id="Jl5-On-Z38" userLabel="Browser Item Context Menu">
             <items>
                 <menuItem title="Play now" id="wB1-oM-Hcr">
@@ -55,23 +48,6 @@
                 </menuItem>
             </items>
             <point key="canvasLocation" x="-228" y="-240"/>
-        </menu>
-        <menu id="kzq-Fa-YpU" userLabel="Sidebar Context Menu">
-            <items>
-                <menuItem title="Show in Finder" id="usA-20-r8n">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="showSidebarShortcutInFinderAction:" target="-2" id="X0M-Hj-nLB"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Remove shortcut" id="hvj-5F-baf" userLabel="Remove shortcut">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="removeSidebarShortcutAction:" target="-2" id="cXy-tt-iq7"/>
-                    </connections>
-                </menuItem>
-            </items>
-            <point key="canvasLocation" x="114" y="-281"/>
         </menu>
         <menu id="bs8-bP-8Hb" userLabel="Browser Column Selection Menu">
             <items>
@@ -141,15 +117,15 @@
             </connections>
             <point key="canvasLocation" x="-147" y="-1180"/>
         </menu>
-        <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" id="fke-7G-0dx" userLabel="Root Container">
-            <rect key="frame" x="0.0" y="0.0" width="700" height="500"/>
+        <box focusRingType="none" misplaced="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" id="fke-7G-0dx" userLabel="Root Container">
+            <rect key="frame" x="0.0" y="0.0" width="700" height="472"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" id="tdp-f1-awf">
-                <rect key="frame" x="0.0" y="0.0" width="700" height="500"/>
+                <rect key="frame" x="0.0" y="0.0" width="700" height="472"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7cL-0X-ZiE" userLabel="Title">
-                        <rect key="frame" x="1" y="466" width="124" height="22"/>
+                        <rect key="frame" x="1" y="438" width="124" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="0bS-r1-2mF"/>
                             <constraint firstAttribute="height" constant="22" id="FWb-AD-r0Z"/>
@@ -161,7 +137,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton toolTip="Playlist View" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hDu-SS-U8T" userLabel="Settings Menu">
-                        <rect key="frame" x="665" y="476" width="30" height="8"/>
+                        <rect key="frame" x="665" y="448" width="30" height="8"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="kPt-Jn-JnQ"/>
                             <constraint firstAttribute="width" constant="25" id="vax-9L-ZeO"/>
@@ -199,7 +175,7 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jTW-xB-lKp">
-                        <rect key="frame" x="3" y="434" width="692" height="22"/>
+                        <rect key="frame" x="3" y="406" width="692" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="ce5-UB-er0"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="uI4-do-fff"/>
@@ -214,13 +190,13 @@
                         </connections>
                     </pathControl>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U24-9d-uRM" userLabel="FileSystemBrowser">
-                        <rect key="frame" x="3" y="0.0" width="692" height="434"/>
+                        <rect key="frame" x="3" y="0.0" width="692" height="406"/>
                         <clipView key="contentView" id="JxV-7x-wTQ">
-                            <rect key="frame" x="0.0" y="0.0" width="692" height="434"/>
+                            <rect key="frame" x="0.0" y="0.0" width="692" height="406"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowHeight="30" rowSizeStyle="automatic" headerView="eGL-lw-kpG" viewBased="YES" indentationPerLevel="16" outlineTableColumn="wQR-x7-Rh4" id="aWI-Z6-ODA" customClass="TuneBrowserOutlineView" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="692" height="406"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="692" height="378"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -606,8 +582,8 @@
                                     </tableColumns>
                                     <connections>
                                         <action trigger="doubleAction" selector="doubleClickAction:" target="-2" id="HZI-aB-aL8"/>
-                                        <outlet property="dataSource" destination="rxi-DG-5sh" id="gHF-BV-CUt"/>
-                                        <outlet property="delegate" destination="rxi-DG-5sh" id="rWn-ni-SjI"/>
+                                        <outlet property="dataSource" destination="-2" id="kYd-F7-OHs"/>
+                                        <outlet property="delegate" destination="-2" id="tbN-g2-Nj5"/>
                                         <outlet property="menu" destination="Jl5-On-Z38" id="K2G-5X-4gm"/>
                                     </connections>
                                 </outlineView>

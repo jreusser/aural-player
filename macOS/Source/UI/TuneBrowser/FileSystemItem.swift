@@ -18,25 +18,12 @@ class FileSystemItem {
         
         itemLock.produceValueAfterWait {
             
-            NSLog("*** Creating for URL: \(url.path.removingPercentEncoding!) ...")
-            
-            let isSakura = url.lastPathComponent.contains("09 - Sakura.mp3")
-            
             if let item = itemCache[url] {
-                
-                if isSakura {
-                    print("FOUND Sakura")
-                }
-                
                 return item
             }
             
             let item = FileSystemItem(url: url, loadChildren: loadChildren)
             itemCache[url] = item
-            
-            if isSakura {
-                print("CREATED Sakura for URL: \(url) in thread: \(Thread.current)")
-            }
             
             return item
         }

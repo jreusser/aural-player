@@ -39,11 +39,12 @@ class FileSystem {
     func loadMetadata(forChildrenOf item: FileSystemItem) {
         
         if item.metadataLoadedForChildren.value {
-            print("\nALREADY LOADED metadata for children of: \(item.url.path) ...")
             return
         }
         
-        print("\nLoading metadata for children of: \(item.url.path) ...")
+        if item.name == "Sakura" {
+            print("\nLoading META for Sakura ...")
+        }
         
         DispatchQueue.global(qos: .userInitiated).async {
 
@@ -54,8 +55,6 @@ class FileSystem {
 
                 if let cachedMetadata = metadataRegistry[child.url] {
                     
-                    print("\nFOUND CACHED metadata for: \(child.url.path) !")
-
                     var metadata = FileMetadata()
                     metadata.primary = cachedMetadata
                     child.metadata = metadata
@@ -83,8 +82,6 @@ class FileSystem {
                             
                             guard let theChild = child else {return}
                             
-                            print("\nNOW LOADING metadata for: \(theChild.url.path) ...")
-
                             var needToNotify: Bool = false
 
                             for op in concurrentAsyncOps {
@@ -92,10 +89,7 @@ class FileSystem {
                             }
 
                             if needToNotify {
-                                print("\nLOADED metadata for: \(child!.url.path), NOW NOTIFYING ...")
                                 self.messenger.publish(.fileSystem_fileMetadataLoaded, payload: theChild)
-                            } else {
-                                print("\nNO NEED TO NOTIFY FOR: \(theChild.url.lastPathComponent)")
                             }
                         }
 

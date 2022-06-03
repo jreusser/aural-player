@@ -1,5 +1,5 @@
 //
-//  TuneBrowserViewDelegate.swift
+//  TuneBrowserViewController+ViewDelegate.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -18,6 +18,10 @@ extension TuneBrowserViewController: NSOutlineViewDataSource {
             return fileSystem.root.children.count
             
         } else if let fsItem = item as? FileSystemItem {
+            
+            if fsItem.name == "Sakura" {
+                print("\nRequested children of Sakura")
+            }
             
             return fsItem.children.count
         }
@@ -56,13 +60,18 @@ extension TuneBrowserViewController: NSOutlineViewDelegate {
         return (item as? FileSystemItem)?.isDirectory ?? false
     }
     
+    func outlineViewItemWillExpand(_ notification: Notification) {
+        
+        guard let fsItem = notification.userInfo?["NSObject"] as? FileSystemItem else {
+            return
+        }
+        
+        fileSystem.loadMetadata(forChildrenOf: fsItem)
+    }
+    
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
         guard let colID = tableColumn?.identifier, let fsItem = item as? FileSystemItem else {return nil}
-        
-        if fsItem.path.contains("09") {
-            print("\nReloading Sakura ..., metadata = \(fsItem.metadata)")
-        }
         
         switch colID {
             
@@ -227,15 +236,6 @@ extension TuneBrowserViewController: NSOutlineViewDelegate {
         cell.textFont = textFont
         
         return cell
-    }
-    
-    func outlineViewItemWillExpand(_ notification: Notification) {
-        
-        guard let userInfo = notification.userInfo, let fsItem = userInfo["NSObject"] as? FileSystemItem else {
-            return
-        }
-        
-        fileSystem.loadMetadata(forChildrenOf: fsItem)
     }
     
     func outlineView(_ outlineView: NSOutlineView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {

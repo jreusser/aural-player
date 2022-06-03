@@ -615,7 +615,7 @@
 		3EB462D92847FEC6000E3F85 /* TuneBrowserHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462CE2847FEC6000E3F85 /* TuneBrowserHistory.swift */; };
 		3EB462DA2847FEC6000E3F85 /* TuneBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462CF2847FEC6000E3F85 /* TuneBrowserViewController.swift */; };
 		3EB462DB2847FEC6000E3F85 /* TuneBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB462D02847FEC6000E3F85 /* TuneBrowser.xib */; };
-		3EB462DC2847FEC6000E3F85 /* TuneBrowserViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462D12847FEC6000E3F85 /* TuneBrowserViewDelegate.swift */; };
+		3EB462DC2847FEC6000E3F85 /* TuneBrowserViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462D12847FEC6000E3F85 /* TuneBrowserViewController+ViewDelegate.swift */; };
 		3EB462DD2847FEC6000E3F85 /* TuneBrowserTableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */; };
 		3EB5108C25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */; };
 		3EB88E772629DA9500C8D230 /* ThemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */; };
@@ -2145,7 +2145,7 @@
 		3EB462CE2847FEC6000E3F85 /* TuneBrowserHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserHistory.swift; sourceTree = "<group>"; };
 		3EB462CF2847FEC6000E3F85 /* TuneBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserViewController.swift; sourceTree = "<group>"; };
 		3EB462D02847FEC6000E3F85 /* TuneBrowser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TuneBrowser.xib; sourceTree = "<group>"; };
-		3EB462D12847FEC6000E3F85 /* TuneBrowserViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserViewDelegate.swift; sourceTree = "<group>"; };
+		3EB462D12847FEC6000E3F85 /* TuneBrowserViewController+ViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TuneBrowserViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
 		3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserTableViews.swift; sourceTree = "<group>"; };
 		3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemePopupMenuController.swift; sourceTree = "<group>"; };
 		3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePopupMenuController.swift; sourceTree = "<group>"; };
@@ -4409,7 +4409,7 @@
 				3EB462CC2847FEC6000E3F85 /* FileSystem.swift */,
 				3EB462CD2847FEC6000E3F85 /* FileSystemItem.swift */,
 				3EB462CE2847FEC6000E3F85 /* TuneBrowserHistory.swift */,
-				3EB462D12847FEC6000E3F85 /* TuneBrowserViewDelegate.swift */,
+				3EB462D12847FEC6000E3F85 /* TuneBrowserViewController+ViewDelegate.swift */,
 				3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */,
 				3EB462C72847FEC6000E3F85 /* Sidebar */,
 			);
@@ -6622,7 +6622,7 @@
 				3EFE3A9527864898006F8B8C /* FileReaderProtocol.swift in Sources */,
 				3E6C12BA25CEBE5800BF0D07 /* SupportMenuController.swift in Sources */,
 				3E6C128725CEBE1800BF0D07 /* TabGroupButtonCells.swift in Sources */,
-				3EB462DC2847FEC6000E3F85 /* TuneBrowserViewDelegate.swift in Sources */,
+				3EB462DC2847FEC6000E3F85 /* TuneBrowserViewController+ViewDelegate.swift in Sources */,
 				3EFE38DF27864897006F8B8C /* EQUnitDelegateProtocol.swift in Sources */,
 				3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */,
 				3E36BD4E26A6AA5A00B6E28B /* TableViewRepresentations.swift in Sources */,
