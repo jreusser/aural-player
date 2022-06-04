@@ -79,7 +79,7 @@ class LibraryWindowController: NSWindowController {
         sidebarView.anchorToSuperview()
         
         messenger.subscribe(to: .library_showBrowserTabForItem, handler: showBrowserTab(forItem:))
-        messenger.subscribe(to: .library_showBrowserTabForItem, handler: showBrowserTab(forItem:))
+        messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
 
         colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
         colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
@@ -121,5 +121,9 @@ class LibraryWindowController: NSWindowController {
 //        if tab == .playlists {
 //
 //        }
+    }
+    
+    private func changeWindowCornerRadius(_ radius: CGFloat) {
+        rootContainer.cornerRadius = radius
     }
 }

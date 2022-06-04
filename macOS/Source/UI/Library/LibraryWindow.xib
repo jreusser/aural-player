@@ -18,8 +18,8 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window identifier="library" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titleVisibility="hidden" id="QvC-M9-y7g" customClass="SnappingWindow" customModule="Aural" customModuleProvider="target">
-            <windowStyleMask key="styleMask" resizable="YES"/>
+        <window identifier="library" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titleVisibility="hidden" id="QvC-M9-y7g" customClass="SnappingWindow" customModule="Aural" customModuleProvider="target">
+            <windowStyleMask key="styleMask" resizable="YES" texturedBackground="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="1000" height="500"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
@@ -59,11 +59,11 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w60-lv-Hyh" userLabel="LeftRight SplitView">
-                                    <rect key="frame" x="5" y="0.0" width="995" height="461"/>
+                                <splitView dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w60-lv-Hyh" userLabel="LeftRight SplitView">
+                                    <rect key="frame" x="15" y="15" width="970" height="446"/>
                                     <subviews>
                                         <customView id="shO-p5-YdO" userLabel="Sidebar View">
-                                            <rect key="frame" x="0.0" y="0.0" width="234" height="461"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="234" height="446"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="B9w-Lk-cBw"/>
@@ -71,16 +71,16 @@
                                             </constraints>
                                         </customView>
                                         <customView id="jRt-01-52h" userLabel="Browser View">
-                                            <rect key="frame" x="235" y="0.0" width="760" height="461"/>
+                                            <rect key="frame" x="244" y="0.0" width="726" height="446"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="kDh-fQ-j7J" userLabel="BrowserTabView">
-                                                    <rect key="frame" x="10" y="0.0" width="740" height="461"/>
+                                                    <rect key="frame" x="10" y="0.0" width="716" height="446"/>
                                                     <font key="font" metaFont="system"/>
                                                     <tabViewItems>
                                                         <tabViewItem label="Library-Tracks" identifier="" id="HRv-Jn-Es0">
                                                             <view key="view" id="Ght-pd-CkO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="740" height="461"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="716" height="446"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>
@@ -156,7 +156,7 @@
                                             <constraints>
                                                 <constraint firstItem="kDh-fQ-j7J" firstAttribute="leading" secondItem="jRt-01-52h" secondAttribute="leading" constant="10" id="E1y-xI-NuG"/>
                                                 <constraint firstAttribute="bottom" secondItem="kDh-fQ-j7J" secondAttribute="bottom" id="Q3a-dW-swU"/>
-                                                <constraint firstAttribute="trailing" secondItem="kDh-fQ-j7J" secondAttribute="trailing" constant="10" id="juZ-9R-CGh"/>
+                                                <constraint firstAttribute="trailing" secondItem="kDh-fQ-j7J" secondAttribute="trailing" id="juZ-9R-CGh"/>
                                                 <constraint firstItem="kDh-fQ-j7J" firstAttribute="top" secondItem="jRt-01-52h" secondAttribute="top" id="xvP-Kl-55M"/>
                                             </constraints>
                                         </customView>
@@ -169,13 +169,13 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="bV3-BU-lI2" firstAttribute="top" secondItem="TSk-Ua-HlI" secondAttribute="top" constant="4" id="F5r-Ol-47D"/>
-                                <constraint firstAttribute="trailing" secondItem="w60-lv-Hyh" secondAttribute="trailing" id="Xv6-32-EQG"/>
-                                <constraint firstItem="w60-lv-Hyh" firstAttribute="leading" secondItem="TSk-Ua-HlI" secondAttribute="leading" constant="5" id="cu6-x2-Be9"/>
+                                <constraint firstAttribute="trailing" secondItem="w60-lv-Hyh" secondAttribute="trailing" constant="15" id="Xv6-32-EQG"/>
+                                <constraint firstItem="w60-lv-Hyh" firstAttribute="leading" secondItem="TSk-Ua-HlI" secondAttribute="leading" constant="15" id="cu6-x2-Be9"/>
                                 <constraint firstItem="w60-lv-Hyh" firstAttribute="top" secondItem="bV3-BU-lI2" secondAttribute="bottom" constant="10" id="edv-mh-3zd"/>
                                 <constraint firstItem="8J0-bC-5HZ" firstAttribute="top" secondItem="TSk-Ua-HlI" secondAttribute="top" constant="16" id="j1f-ik-zJ4"/>
                                 <constraint firstItem="bV3-BU-lI2" firstAttribute="leading" secondItem="8J0-bC-5HZ" secondAttribute="trailing" constant="21" id="l9q-yN-Cdz"/>
                                 <constraint firstItem="8J0-bC-5HZ" firstAttribute="leading" secondItem="TSk-Ua-HlI" secondAttribute="leading" constant="10" id="nVc-Ht-Du0"/>
-                                <constraint firstAttribute="bottom" secondItem="w60-lv-Hyh" secondAttribute="bottom" id="pVz-JG-cQz"/>
+                                <constraint firstAttribute="bottom" secondItem="w60-lv-Hyh" secondAttribute="bottom" constant="15" id="pVz-JG-cQz"/>
                             </constraints>
                         </view>
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -189,6 +189,11 @@
                     <constraint firstItem="seh-25-6bz" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="cgb-6h-3u3"/>
                 </constraints>
             </view>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="139" y="144"/>
         </window>
         <customObject id="e2v-J5-220" customClass="LibraryTracksViewController" customModule="Aural" customModuleProvider="target"/>

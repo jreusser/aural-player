@@ -121,14 +121,14 @@
             <point key="canvasLocation" x="-147" y="-1180"/>
         </menu>
         <box focusRingType="none" misplaced="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" id="fke-7G-0dx" userLabel="Root Container">
-            <rect key="frame" x="0.0" y="0.0" width="700" height="360"/>
+            <rect key="frame" x="0.0" y="0.0" width="700" height="248"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" id="tdp-f1-awf">
-                <rect key="frame" x="0.0" y="0.0" width="700" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="700" height="248"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7cL-0X-ZiE" userLabel="Title">
-                        <rect key="frame" x="1" y="326" width="124" height="22"/>
+                        <rect key="frame" x="1" y="68" width="124" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="0bS-r1-2mF"/>
                             <constraint firstAttribute="height" constant="22" id="FWb-AD-r0Z"/>
@@ -140,10 +140,10 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton toolTip="Playlist View" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hDu-SS-U8T" userLabel="Settings Menu">
-                        <rect key="frame" x="665" y="336" width="30" height="8"/>
+                        <rect key="frame" x="675" y="74" width="25" height="8"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="kPt-Jn-JnQ"/>
-                            <constraint firstAttribute="width" constant="25" id="vax-9L-ZeO"/>
+                            <constraint firstAttribute="width" constant="20" id="vax-9L-ZeO"/>
                         </constraints>
                         <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="pdo-9D-x2u" id="jgX-6S-K6n">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -178,7 +178,7 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jTW-xB-lKp">
-                        <rect key="frame" x="3" y="294" width="692" height="22"/>
+                        <rect key="frame" x="0.0" y="32" width="700" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="ce5-UB-er0"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="uI4-do-fff"/>
@@ -193,13 +193,13 @@
                         </connections>
                     </pathControl>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U24-9d-uRM" userLabel="FileSystemBrowser">
-                        <rect key="frame" x="3" y="0.0" width="692" height="294"/>
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="32"/>
                         <clipView key="contentView" id="JxV-7x-wTQ">
-                            <rect key="frame" x="0.0" y="0.0" width="692" height="294"/>
+                            <rect key="frame" x="0.0" y="0.0" width="700" height="32"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowHeight="30" rowSizeStyle="automatic" headerView="eGL-lw-kpG" viewBased="YES" indentationPerLevel="16" outlineTableColumn="wQR-x7-Rh4" id="aWI-Z6-ODA" customClass="TuneBrowserOutlineView" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="692" height="266"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="700" height="32"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -596,12 +596,12 @@
                             <rect key="frame" x="0.0" y="302" width="500" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="CPl-ZX-sKk">
+                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="CPl-ZX-sKk">
                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" wantsLayer="YES" id="eGL-lw-kpG">
-                            <rect key="frame" x="0.0" y="0.0" width="692" height="28"/>
+                            <rect key="frame" x="0.0" y="0.0" width="700" height="28"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <connections>
                                 <outlet property="menu" destination="bs8-bP-8Hb" id="qqJ-sD-TcA"/>
@@ -612,16 +612,15 @@
                 <constraints>
                     <constraint firstItem="hDu-SS-U8T" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="16" id="650-Ql-AHm"/>
                     <constraint firstItem="jTW-xB-lKp" firstAttribute="top" secondItem="hDu-SS-U8T" secondAttribute="bottom" constant="20" id="7pz-Fq-WVM"/>
-                    <constraint firstItem="U24-9d-uRM" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" constant="3" id="GGR-Zm-4eh"/>
+                    <constraint firstItem="U24-9d-uRM" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" id="GGR-Zm-4eh"/>
                     <constraint firstItem="U24-9d-uRM" firstAttribute="top" secondItem="jTW-xB-lKp" secondAttribute="bottom" id="KkQ-Lv-WIo"/>
-                    <constraint firstAttribute="trailing" secondItem="hDu-SS-U8T" secondAttribute="trailing" constant="5" id="OL1-aG-W1S"/>
+                    <constraint firstAttribute="trailing" secondItem="hDu-SS-U8T" secondAttribute="trailing" id="OL1-aG-W1S"/>
                     <constraint firstItem="U24-9d-uRM" firstAttribute="trailing" secondItem="jTW-xB-lKp" secondAttribute="trailing" id="SMi-S9-KPR"/>
                     <constraint firstAttribute="bottom" secondItem="U24-9d-uRM" secondAttribute="bottom" id="Snq-Rm-Tsv"/>
                     <constraint firstItem="U24-9d-uRM" firstAttribute="leading" secondItem="jTW-xB-lKp" secondAttribute="leading" id="Wfs-j7-lGp"/>
-                    <constraint firstItem="7cL-0X-ZiE" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="12" id="jDS-7F-aff"/>
+                    <constraint firstItem="7cL-0X-ZiE" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="8" id="jDS-7F-aff"/>
                     <constraint firstItem="7cL-0X-ZiE" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" constant="3" id="lEF-cN-UX0"/>
-                    <constraint firstItem="7cL-0X-ZiE" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="12" id="lQt-lj-fOS"/>
-                    <constraint firstAttribute="trailing" secondItem="U24-9d-uRM" secondAttribute="trailing" constant="5" id="zkT-PS-GzT"/>
+                    <constraint firstAttribute="trailing" secondItem="U24-9d-uRM" secondAttribute="trailing" id="zkT-PS-GzT"/>
                 </constraints>
             </view>
             <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
