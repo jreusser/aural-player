@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="browserView" destination="aWI-Z6-ODA" id="4hv-Fv-sgb"/>
                 <outlet property="lblCaption" destination="7cL-0X-ZiE" id="9EQ-b9-XN0"/>
+                <outlet property="lblSummary" destination="hmw-dW-XPU" id="tfv-Wc-M9Z"/>
                 <outlet property="pathControlWidget" destination="jTW-xB-lKp" id="KGs-mn-iGt"/>
                 <outlet property="rootContainer" destination="fke-7G-0dx" id="QTH-4S-6Z7"/>
                 <outlet property="view" destination="fke-7G-0dx" id="kDU-DE-sRJ"/>
@@ -121,14 +122,14 @@
             <point key="canvasLocation" x="-147" y="-1180"/>
         </menu>
         <box focusRingType="none" misplaced="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" id="fke-7G-0dx" userLabel="Root Container">
-            <rect key="frame" x="0.0" y="0.0" width="700" height="248"/>
+            <rect key="frame" x="0.0" y="0.0" width="700" height="222"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" id="tdp-f1-awf">
-                <rect key="frame" x="0.0" y="0.0" width="700" height="248"/>
+                <rect key="frame" x="0.0" y="0.0" width="700" height="222"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7cL-0X-ZiE" userLabel="Title">
-                        <rect key="frame" x="1" y="68" width="124" height="22"/>
+                        <rect key="frame" x="1" y="108" width="124" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="0bS-r1-2mF"/>
                             <constraint firstAttribute="height" constant="22" id="FWb-AD-r0Z"/>
@@ -140,7 +141,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton toolTip="Playlist View" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hDu-SS-U8T" userLabel="Settings Menu">
-                        <rect key="frame" x="675" y="74" width="25" height="8"/>
+                        <rect key="frame" x="675" y="114" width="25" height="8"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="kPt-Jn-JnQ"/>
                             <constraint firstAttribute="width" constant="20" id="vax-9L-ZeO"/>
@@ -178,7 +179,7 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jTW-xB-lKp">
-                        <rect key="frame" x="0.0" y="32" width="700" height="22"/>
+                        <rect key="frame" x="0.0" y="72" width="700" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="ce5-UB-er0"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="uI4-do-fff"/>
@@ -192,9 +193,9 @@
                             <action selector="pathControlAction:" target="-2" id="yA1-Go-nXB"/>
                         </connections>
                     </pathControl>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U24-9d-uRM" userLabel="FileSystemBrowser">
-                        <rect key="frame" x="0.0" y="0.0" width="700" height="32"/>
-                        <clipView key="contentView" id="JxV-7x-wTQ">
+                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U24-9d-uRM" userLabel="FileSystemBrowser">
+                        <rect key="frame" x="0.0" y="40" width="700" height="32"/>
+                        <clipView key="contentView" copiesOnScroll="NO" id="JxV-7x-wTQ">
                             <rect key="frame" x="0.0" y="0.0" width="700" height="32"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -205,7 +206,7 @@
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="tuneBrowser_name" editable="NO" width="300" minWidth="40" maxWidth="1000" id="wQR-x7-Rh4" userLabel="Name">
+                                        <tableColumn identifier="tuneBrowser_name" editable="NO" width="668" minWidth="40" maxWidth="1000" id="wQR-x7-Rh4" userLabel="Name">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Name">
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -219,7 +220,7 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView identifier="tuneBrowser_name" id="2AN-za-1XM" customClass="TuneBrowserItemNameCell" customModule="Aural" customModuleProvider="target">
-                                                    <rect key="frame" x="11" y="1" width="309" height="30"/>
+                                                    <rect key="frame" x="11" y="1" width="677" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hxx-FN-Mfx">
@@ -231,7 +232,7 @@
                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="Uik-hf-zSd"/>
                                                         </imageView>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ErL-og-g2v">
-                                                            <rect key="frame" x="33" y="2" width="276" height="24"/>
+                                                            <rect key="frame" x="33" y="2" width="644" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="WSD-Fw-aJF">
                                                                 <font key="font" metaFont="system"/>
@@ -593,11 +594,11 @@
                             </subviews>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="uow-qM-2s5">
-                            <rect key="frame" x="0.0" y="302" width="500" height="16"/>
+                            <rect key="frame" x="-100" y="-100" width="500" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="CPl-ZX-sKk">
-                            <rect key="frame" x="224" y="17" width="15" height="102"/>
+                            <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" wantsLayer="YES" id="eGL-lw-kpG">
@@ -608,18 +609,32 @@
                             </connections>
                         </tableHeaderView>
                     </scrollView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hmw-dW-XPU" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                        <rect key="frame" x="26" y="5" width="454" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="450" id="KFl-Fp-raM"/>
+                            <constraint firstAttribute="height" constant="25" id="pji-Ww-S2S"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="0 tracks" id="XkK-Ew-uAb" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" white="0.70157877599999996" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="hDu-SS-U8T" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="16" id="650-Ql-AHm"/>
                     <constraint firstItem="jTW-xB-lKp" firstAttribute="top" secondItem="hDu-SS-U8T" secondAttribute="bottom" constant="20" id="7pz-Fq-WVM"/>
                     <constraint firstItem="U24-9d-uRM" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" id="GGR-Zm-4eh"/>
                     <constraint firstItem="U24-9d-uRM" firstAttribute="top" secondItem="jTW-xB-lKp" secondAttribute="bottom" id="KkQ-Lv-WIo"/>
+                    <constraint firstAttribute="bottom" secondItem="hmw-dW-XPU" secondAttribute="bottom" constant="5" id="MjJ-VF-gGk"/>
                     <constraint firstAttribute="trailing" secondItem="hDu-SS-U8T" secondAttribute="trailing" id="OL1-aG-W1S"/>
                     <constraint firstItem="U24-9d-uRM" firstAttribute="trailing" secondItem="jTW-xB-lKp" secondAttribute="trailing" id="SMi-S9-KPR"/>
-                    <constraint firstAttribute="bottom" secondItem="U24-9d-uRM" secondAttribute="bottom" id="Snq-Rm-Tsv"/>
+                    <constraint firstAttribute="bottom" secondItem="U24-9d-uRM" secondAttribute="bottom" constant="40" id="Snq-Rm-Tsv"/>
                     <constraint firstItem="U24-9d-uRM" firstAttribute="leading" secondItem="jTW-xB-lKp" secondAttribute="leading" id="Wfs-j7-lGp"/>
                     <constraint firstItem="7cL-0X-ZiE" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="8" id="jDS-7F-aff"/>
                     <constraint firstItem="7cL-0X-ZiE" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" constant="3" id="lEF-cN-UX0"/>
+                    <constraint firstItem="hmw-dW-XPU" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" constant="28" id="wXd-No-Em0"/>
                     <constraint firstAttribute="trailing" secondItem="U24-9d-uRM" secondAttribute="trailing" id="zkT-PS-GzT"/>
                 </constraints>
             </view>

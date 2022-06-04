@@ -17,6 +17,8 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
     @IBOutlet weak var lblCaption: NSTextField!
     
     @IBOutlet weak var browserView: TuneBrowserOutlineView!
+    @IBOutlet weak var lblSummary: NSTextField!
+    
     var resetBrowserView: Bool = false
     
     @IBOutlet weak var pathControlWidget: NSPathControl! {
@@ -39,7 +41,10 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         colorSchemesManager.registerObservers([rootContainer, browserView, pathControlWidget], forProperty: \.backgroundColor)
         
         fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+        fontSchemesManager.registerObserver(lblSummary, forProperty: \.playQueuePrimaryFont)
+        
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+        colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
         
         var displayedColumnIds: [String] = tuneBrowserUIState.displayedColumns.compactMap {$0.id}
 
@@ -141,6 +146,8 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         browserView.insertItems(at: notif.childIndices,
                                 inParent: parent.url == fileSystem.rootURL ? nil : parent,
                                 withAnimation: .slideDown)
+        
+        updateSummary()
     }
         
     @IBAction func doubleClickAction(_ sender: Any) {
@@ -176,18 +183,20 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
             fileSystem.root = item
             browserView.reloadData()
             
+            self.browserView.scrollRowToVisible(0)
+            updateSummary()
+            
         } else {
             
             removeAllRows()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                
                 fileSystem.root = item
+                self.browserView.scrollRowToVisible(0)
+                self.updateSummary()
             }
         }
-        
-        self.browserView.scrollRowToVisible(0)
-        
-//        updateSidebarSelection()
     }
     
     // If the folder currently shown by the browser corresponds to one of the folder shortcuts in the sidebar, select that
@@ -207,6 +216,35 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         }
         
         respondToSidebarSelectionChange = true
+    }
+    
+    private func updateSummary() {
+        
+        var numFolders = 0
+        var numTracks = 0
+        var numPlaylists = 0
+        
+        for child in fileSystem.root.children.values {
+            
+            if child.isTrack {
+                numTracks.increment()
+                
+            } else if child.isDirectory {
+                numFolders.increment()
+                
+            } else if child.isPlaylist {
+                numPlaylists.increment()
+            }
+        }
+
+        let foldersString = numFolders > 0 ? "\(numFolders) \(numFolders == 1 ? "folder" : "folders")" : ""
+        let tracksString = numTracks > 0 ? "\(numTracks) \(numTracks == 1 ? "track" : "tracks")" : ""
+        let playlistsString = numPlaylists > 0 ? "\(numPlaylists) \(numPlaylists == 1 ? "playlist" : "playlists")" : ""
+        
+        let allStrings = [foldersString, tracksString, playlistsString].filter {!$0.isEmpty}
+        let summaryString = allStrings.joined(separator: ", ")
+        
+        lblSummary.stringValue = summaryString.isEmpty ? "0 tracks" : summaryString
     }
     
     @IBAction func pathControlAction(_ sender: Any) {
@@ -249,6 +287,7 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
             browserView.scrollRowToVisible(0)
             
             updateSidebarSelection()
+            updateSummary()
         }
     }
     
@@ -281,6 +320,7 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         }
         
         browserView.scrollRowToVisible(0)
+        updateSummary()
     }
     
     @IBAction func playNowAction(_ sender: Any) {
