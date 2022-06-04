@@ -68,9 +68,11 @@ extension LibrarySidebarViewController: NSTableViewDataSource {
     // Performs the drop
     func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
         
+        TableDragDropContext.reset()
+        
         // TODO: Allow 1 - drag from playlists into another playlist, 2 - drag from playlists into library, 3 - favorites -> library / playlist
         
         // TODO: Remove this dummy code
-        false
+        return false
     }
 }

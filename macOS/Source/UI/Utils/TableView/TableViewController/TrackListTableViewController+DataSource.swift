@@ -85,24 +85,7 @@ extension TrackListTableViewController: NSTableViewDataSource {
             // Import from Tune Browser folders (shortcuts) and playlist names table.
             if let sidebarItems = TableDragDropContext.data as? [LibrarySidebarItem] {
                 
-                // Tune Browser folders (shortcuts).
-                let fileSystemItems = sidebarItems.filter {$0.browserTab == .fileSystem}
-                
-                if fileSystemItems.isNonEmpty {
-                 
-                    let folders: [URL] = fileSystemItems.compactMap {$0.tuneBrowserURL}
-                    importFiles(folders, to: row)
-                }
-                
-                // Playlist names.
-                let playlistItems = sidebarItems.filter {$0.browserTab == .playlists}
-                
-                if playlistItems.isNonEmpty {
-                 
-                    let playlistNames = playlistItems.map {$0.displayName}
-                    importPlaylists(playlistNames.compactMap {playlistsManager.userDefinedObject(named: $0)}, to: row)
-                }
-                
+                importFromLibrarySidebarItems(sidebarItems)
                 return true
             }
             
@@ -157,6 +140,27 @@ extension TrackListTableViewController: NSTableViewDataSource {
     
     func importFiles(_ files: [URL], to destRow: Int) {
         trackList.loadTracks(from: files, atPosition: destRow)
+    }
+    
+    private func importFromLibrarySidebarItems(_ sidebarItems: [LibrarySidebarItem], to destRow: Int) {
+        
+        // Tune Browser folders (shortcuts).
+        let fileSystemItems = sidebarItems.filter {$0.browserTab == .fileSystem}
+        
+        if fileSystemItems.isNonEmpty {
+         
+            let folders: [URL] = fileSystemItems.compactMap {$0.tuneBrowserURL}
+            importFiles(folders, to: destRow)
+        }
+        
+        // Playlist names.
+        let playlistItems = sidebarItems.filter {$0.browserTab == .playlists}
+        
+        if playlistItems.isNonEmpty {
+         
+            let playlistNames = playlistItems.map {$0.displayName}
+            importPlaylists(playlistNames.compactMap {playlistsManager.userDefinedObject(named: $0)}, to: destRow)
+        }
     }
 }
 
