@@ -25,8 +25,23 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="160"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moJ-jS-aMf" userLabel="Bypass button" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
+                    <rect key="frame" x="15" y="133" width="15" height="15"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="QrC-Ov-AOd">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="offStateTooltip" value="Enable effects"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="onStateTooltip" value="Disable effects"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="bypassAction:" target="-2" id="g97-7Q-Taq"/>
+                    </connections>
+                </button>
                 <popUpButton toolTip="Presets" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uqP-oj-xNY" userLabel="Presets Menu">
-                    <rect key="frame" x="12" y="101" width="20" height="18"/>
+                    <rect key="frame" x="12" y="105" width="19" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="Tg0-YE-4cH">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -56,19 +71,16 @@
                         </menu>
                     </popUpButtonCell>
                 </popUpButton>
-                <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moJ-jS-aMf" userLabel="Bypass button" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="15" y="133" width="16" height="16"/>
+                <button toolTip="Remember all sound settings for this track" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-Sk-jsP" userLabel="Remember Settings Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                    <rect key="frame" x="-50" y="80" width="17" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="QrC-Ov-AOd">
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="clock.arrow.2.circlepath" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="X5A-LV-v56">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="offStateTooltip" value="Enable effects"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="onStateTooltip" value="Disable effects"/>
-                    </userDefinedRuntimeAttributes>
+                    <color key="contentTintColor" white="0.23582202404529065" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
-                        <action selector="bypassAction:" target="-2" id="g97-7Q-Taq"/>
+                        <action selector="rememberSettingsAction:" target="-2" id="psj-cQ-h5y"/>
                     </connections>
                 </button>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fzh-MR-f13" userLabel="EQ img" customClass="EffectsUnitTriStateBypassImage" customModule="Aural" customModuleProvider="target">
@@ -336,18 +348,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <button toolTip="Remember all sound settings for this track" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-Sk-jsP" userLabel="Remember Settings Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="-50" y="72" width="18" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="clock.arrow.2.circlepath" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="X5A-LV-v56">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <color key="contentTintColor" white="0.23582202404529065" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <connections>
-                        <action selector="rememberSettingsAction:" target="-2" id="psj-cQ-h5y"/>
-                    </connections>
-                </button>
             </subviews>
             <connections>
                 <outlet property="btnDelayBypass" destination="t99-9E-imb" id="y24-le-FeZ"/>
