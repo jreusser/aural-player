@@ -151,12 +151,6 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
             actualWindow.setFrame(window.frame, display: true)
             actualWindow.show()
         }
-        
-        layoutChanged()
-    }
-    
-    private func layoutChanged() {
-        messenger.publish(.windowManager_layoutChanged)
     }
     
     var currentWindowLayout: WindowLayout {
@@ -215,22 +209,16 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
             window.show()
             window.orderFront(self)
         }
-        
-        layoutChanged()
     }
     
     func showWindow(withId id: WindowID) {
-        
         getWindow(forId: id).show()
-        layoutChanged()
     }
     
     func hideWindow(withId id: WindowID) {
         
         if isShowingWindow(withId: id) {
-            
             getWindow(forId: id).hide()
-            layoutChanged()
         }
     }
     
@@ -285,7 +273,7 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
         let userLayouts = userDefinedObjects.map {WindowLayoutPersistentState(layout: $0)}
         let currentAppMode = appModeManager.currentMode
         
-        if currentAppMode == .windowed {
+        if currentAppMode == .modular {
             
             let systemLayout = WindowLayoutPersistentState(layout: currentWindowLayout)
             return WindowLayoutsPersistentState(systemLayout: systemLayout, userLayouts: userLayouts)

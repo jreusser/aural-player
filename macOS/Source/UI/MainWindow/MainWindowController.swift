@@ -24,37 +24,7 @@ class MainWindowController: NSWindowController {
     
     @IBOutlet weak var btnQuit: TintedImageButton!
     @IBOutlet weak var btnMinimize: TintedImageButton!
-    @IBOutlet weak var btnMenuBarMode: TintedImageButton!
-    @IBOutlet weak var btnControlBarMode: TintedImageButton!
-    
-    // Buttons to toggle the play queue/effects views
-    @IBOutlet weak var btnTogglePlayQueue: TintedImageButton!
-    @IBOutlet weak var btnToggleEffects: TintedImageButton!
-    @IBOutlet weak var btnToggleLibrary: TintedImageButton!
-    
-    private lazy var btnTogglePlayQueueStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingPlayQueue,
-                                                                                    mappings: [
-                                                                                        
-                                                                                        ButtonStateMachine.StateMapping(state: true, image: .imgPlayQueue, colorProperty: \.buttonColor, toolTip: "Hide the Play Queue"),
-                                                                                        ButtonStateMachine.StateMapping(state: false, image: .imgPlayQueue, colorProperty: \.inactiveControlColor, toolTip: "Show the Play Queue")
-                                                                                    ],
-                                                                                    button: btnTogglePlayQueue)
-    
-    private lazy var btnToggleLibraryStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingLibrary,
-                                                                                    mappings: [
-                                                                                        
-                                                                                        ButtonStateMachine.StateMapping(state: true, image: .imgLibrary, colorProperty: \.buttonColor, toolTip: "Hide the Library"),
-                                                                                        ButtonStateMachine.StateMapping(state: false, image: .imgLibrary, colorProperty: \.inactiveControlColor, toolTip: "Show the Library")
-                                                                                    ],
-                                                                                    button: btnToggleLibrary)
-    
-    private lazy var btnToggleEffectsStateMachine: ButtonStateMachine<Bool> = .init(initialState: windowLayoutsManager.isShowingEffects,
-                                                                                    mappings: [
-                                                                                        
-                                                                                        ButtonStateMachine.StateMapping(state: true, image: .imgEffects, colorProperty: \.buttonColor, toolTip: "Hide the Effects panel"),
-                                                                                        ButtonStateMachine.StateMapping(state: false, image: .imgEffects, colorProperty: \.inactiveControlColor, toolTip: "Show the Effects panel")
-                                                                                    ],
-                                                                                    button: btnToggleEffects)
+    @IBOutlet weak var presentationModeMenuItem: TintedIconMenuItem!
     
     @IBOutlet weak var btnSettingsMenu: NSPopUpButton!
     
@@ -97,15 +67,10 @@ class MainWindowController: NSWindowController {
         
         containerBox.addSubview(playerViewController.view)
 
-        windowLayoutChanged()
-        
-        btnToggleEffects.weight = .black
-        btnTogglePlayQueue.weight = .black
-        
         colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
         colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
         
-        colorSchemesManager.registerObservers([btnQuit, btnMinimize, btnMenuBarMode, btnControlBarMode, settingsMenuIconItem],
+        colorSchemesManager.registerObservers([btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem],
                                               forProperty: \.buttonColor)
         
         applyTheme()
@@ -114,9 +79,6 @@ class MainWindowController: NSWindowController {
     private func initSubscriptions() {
         
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
-
-        messenger.subscribe(to: .windowManager_layoutChanged, handler: windowLayoutChanged)
-        
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
     }
     
@@ -147,21 +109,6 @@ class MainWindowController: NSWindowController {
     
     // MARK: Actions -----------------------------------------------------------
     
-    // Shows/hides the play queue window (by delegating)
-    @IBAction func togglePlayQueueAction(_ sender: AnyObject) {
-        windowLayoutsManager.toggleWindow(withId: .playQueue)
-    }
-    
-    // Shows/hides the effects panel on the main window
-    @IBAction func toggleEffectsAction(_ sender: AnyObject) {
-        windowLayoutsManager.toggleWindow(withId: .effects)
-    }
-    
-    // Shows/hides the library window (by delegating)
-    @IBAction func toggleLibraryAction(_ sender: AnyObject) {
-        windowLayoutsManager.toggleWindow(withId: .library)
-    }
-    
     // Quits the app
     @IBAction func quitAction(_ sender: AnyObject) {
         NSApp.terminate(self)
@@ -170,6 +117,10 @@ class MainWindowController: NSWindowController {
     // Minimizes the window (and any child windows)
     @IBAction func minimizeAction(_ sender: AnyObject) {
         theWindow.miniaturize(self)
+    }
+    
+    @IBAction func unifiedModeAction(_ sender: AnyObject) {
+        messenger.publish(.application_switchMode, payload: AppMode.unified)
     }
     
     @IBAction func menuBarModeAction(_ sender: AnyObject) {
@@ -184,13 +135,6 @@ class MainWindowController: NSWindowController {
     
     private func applyTheme() {
         changeWindowCornerRadius(windowAppearanceState.cornerRadius)
-    }
-    
-    func windowLayoutChanged() {
-
-        btnTogglePlayQueueStateMachine.setState(windowLayoutsManager.isShowingPlayQueue)
-        btnToggleLibraryStateMachine.setState(windowLayoutsManager.isShowingLibrary)
-        btnToggleEffectsStateMachine.setState(windowLayoutsManager.isShowingEffects)
     }
     
     func changeWindowCornerRadius(_ radius: CGFloat) {

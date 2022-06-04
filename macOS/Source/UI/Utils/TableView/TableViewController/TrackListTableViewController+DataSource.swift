@@ -85,7 +85,7 @@ extension TrackListTableViewController: NSTableViewDataSource {
             // Import from Tune Browser folders (shortcuts) and playlist names table.
             if let sidebarItems = TableDragDropContext.data as? [LibrarySidebarItem] {
                 
-                importFromLibrarySidebarItems(sidebarItems)
+                importFromLibrarySidebarItems(sidebarItems, to: row)
                 return true
             }
             

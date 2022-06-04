@@ -14,9 +14,10 @@ import Foundation
 ///
 enum AppMode: String, CaseIterable, Codable {
     
-    static let defaultMode: AppMode = .windowed
+    static let defaultMode: AppMode = .modular
     
-    case windowed
+    case modular
+    case unified
     case menuBar
     case controlBar
 }

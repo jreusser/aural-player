@@ -35,7 +35,7 @@ class ViewPreferencesViewController: NSViewController, PreferencesViewProtocol {
     
     override func viewDidLoad() {
         
-        windowedAppModeMenuItem.representedObject = AppMode.windowed
+        windowedAppModeMenuItem.representedObject = AppMode.modular
         menuBarAppModeMenuItem.representedObject = AppMode.menuBar
         controlBarAppModeMenuItem.representedObject = AppMode.controlBar
     }
@@ -52,7 +52,7 @@ class ViewPreferencesViewController: NSViewController, PreferencesViewProtocol {
         
         switch viewPrefs.appModeOnStartup.modeName {
         
-        case AppMode.windowed.rawValue:
+        case AppMode.modular.rawValue:
             
             appModeMenu.select(windowedAppModeMenuItem)
             

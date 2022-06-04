@@ -56,9 +56,14 @@ class AppModeManager {
         
         switch newMode {
         
-        case .windowed:
+        case .modular:
             
             windowedMode.presentMode(transitioningFromMode: currentMode)
+            
+        case .unified:
+            
+            // TODO: Implement !!!
+            return
         
         case .menuBar:
             
@@ -78,7 +83,10 @@ class AppModeManager {
         
         switch currentMode {
             
-        case .windowed:  windowedMode.dismissMode()
+        case .modular:  windowedMode.dismissMode()
+            
+        // TODO: Implement !!!
+        case .unified:  return
             
         case .menuBar: menuBarMode.dismissMode()
             

@@ -15,7 +15,4 @@ import Foundation
 extension Notification.Name {
     
     // MARK: Notifications published by the window manager.
-    
-    // Signifies that the window layout has just been changed, i.e. windows have been shown/hidden and/or rearranged.
-    static let windowManager_layoutChanged = Notification.Name("windowManager_layoutChanged")
 }

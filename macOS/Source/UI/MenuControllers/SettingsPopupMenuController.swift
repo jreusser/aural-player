@@ -14,6 +14,10 @@ import Cocoa
  */
 class SettingsPopupMenuController: NSObject, NSMenuDelegate {
     
+    @IBOutlet weak var showPlayQueueMenuItem: NSMenuItem!
+    @IBOutlet weak var showLibraryMenuItem: NSMenuItem!
+    @IBOutlet weak var showEffectsMenuItem: NSMenuItem!
+    
     @IBOutlet weak var applyThemeMenuItem: NSMenuItem!
     @IBOutlet weak var saveThemeMenuItem: NSMenuItem!
     @IBOutlet weak var createThemeMenuItem: NSMenuItem!
@@ -33,11 +37,30 @@ class SettingsPopupMenuController: NSObject, NSMenuDelegate {
         
         menu.font = .menuFont
         
+        showPlayQueueMenuItem.onIf(windowLayoutsManager.isShowingPlayQueue)
+        showLibraryMenuItem.onIf(windowLayoutsManager.isShowingLibrary)
+        showEffectsMenuItem.onIf(windowLayoutsManager.isShowingEffects)
+        
         // These items should be enabled only if there is no modal component currently shown.
         let isShowingModalComponent: Bool = windowLayoutsManager.isShowingModalComponent
         [applyThemeMenuItem, saveThemeMenuItem, createThemeMenuItem, applyFontSchemeMenuItem, saveFontSchemeMenuItem, applyColorSchemeMenuItem, saveColorSchemeMenuItem].forEach {$0.enableIf(!isShowingModalComponent)}
         
         cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
         lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue) px"
+    }
+    
+    // Shows/hides the play queue window (by delegating)
+    @IBAction func togglePlayQueueAction(_ sender: AnyObject) {
+        windowLayoutsManager.toggleWindow(withId: .playQueue)
+    }
+    
+    // Shows/hides the effects panel on the main window
+    @IBAction func toggleEffectsAction(_ sender: AnyObject) {
+        windowLayoutsManager.toggleWindow(withId: .effects)
+    }
+    
+    // Shows/hides the library window (by delegating)
+    @IBAction func toggleLibraryAction(_ sender: AnyObject) {
+        windowLayoutsManager.toggleWindow(withId: .library)
     }
 }

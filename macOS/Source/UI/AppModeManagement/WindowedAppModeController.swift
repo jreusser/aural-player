@@ -21,7 +21,7 @@ import Cocoa
 ///
 class WindowedAppModeController: AppModeController {
     
-    var mode: AppMode {.windowed}
+    var mode: AppMode {.modular}
     
     private let manager: WindowLayoutsManager = windowLayoutsManager
     
@@ -32,7 +32,7 @@ class WindowedAppModeController: AppModeController {
         manager.restore()
         
         // If this is not a transition from a different app mode, we don't need to execute the hack below.
-        if previousMode == nil || previousMode == .windowed {return}
+        if previousMode == nil || previousMode == .modular {return}
         
         // HACK - Because of an Apple bug, the main menu will not be usable until the app loses and then regains focus.
         // The following code simulates the user action of activating another app and then activating this app after a
