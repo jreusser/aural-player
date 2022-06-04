@@ -60,6 +60,13 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
         }
     }
     
+    override func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> IndexSet {
+        
+        let indices = super.insertTracks(newTracks, at: insertionIndex)
+        messenger.publish(PlaylistTracksAddedNotification(playlistName: name, trackIndices: indices))
+        return indices
+    }
+    
     func loadTracks(from files: [URL], atPosition position: Int? = nil) {
         loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
     }

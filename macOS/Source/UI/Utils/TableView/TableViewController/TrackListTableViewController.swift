@@ -55,6 +55,16 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         colorSchemesManager.registerObserver(tableView, forProperty: \.backgroundColor)
     }
     
+    // ---------------- NSTableViewDataSource --------------------
+    
+    func importTracks(_ sourceTracks: [Track], to destRow: Int) {
+        _ = trackList.insertTracks(sourceTracks, at: destRow)
+    }
+    
+    func importPlaylists(_ sourcePlaylists: [Playlist], to destRow: Int) {
+        importTracks(sourcePlaylists.flatMap {$0.tracks}, to: destRow)
+    }
+    
     // ---------------- NSTableViewDelegate --------------------
     
     var rowHeight: CGFloat {25}

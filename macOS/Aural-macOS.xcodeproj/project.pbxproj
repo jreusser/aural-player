@@ -638,6 +638,7 @@
 		3EC29A5F27865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
 		3EC29A6027865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
 		3EC530E3284B95A50036207C /* TuneBrowserViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E2284B95A50036207C /* TuneBrowserViewController+DataSource.swift */; };
+		3EC530E5284BB69C0036207C /* TableDragDropContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E4284BB69C0036207C /* TableDragDropContext.swift */; };
 		3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */; };
 		3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
@@ -2168,6 +2169,7 @@
 		3EC29A5827865BC900B29551 /* MenuItemMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemMappable.swift; sourceTree = "<group>"; };
 		3EC29A5E27865CB500B29551 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		3EC530E2284B95A50036207C /* TuneBrowserViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuneBrowserViewController+DataSource.swift"; sourceTree = "<group>"; };
+		3EC530E4284BB69C0036207C /* TableDragDropContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDragDropContext.swift; sourceTree = "<group>"; };
 		3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
 		3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTracksToPlaylistCommand.swift; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
@@ -3050,6 +3052,7 @@
 				3E25B65727F78BED00D10A5F /* TableViewController */,
 				3EA8A90B28319AD3006B48C6 /* OutlineViewController */,
 				3E634D752846B8B9008A47EC /* MouseTrackingOutlineView.swift */,
+				3EC530E4284BB69C0036207C /* TableDragDropContext.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -6127,6 +6130,7 @@
 				3E2A2A062809B68A000F0539 /* PlaylistNamesTableViewController.swift in Sources */,
 				3E08AC13281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift in Sources */,
 				3EFE3B0527864943006F8B8C /* FFmpegMetadataReader.swift in Sources */,
+				3EC530E5284BB69C0036207C /* TableDragDropContext.swift in Sources */,
 				3EFE3A9127864898006F8B8C /* AuxiliaryMetadata.swift in Sources */,
 				3EEFF59027DE84A3002CB0FE /* PlayableItem.swift in Sources */,
 				3EFE396D27864897006F8B8C /* PlaybackDelegate.swift in Sources */,

@@ -49,8 +49,8 @@ extension TuneBrowserViewController: NSOutlineViewDataSource {
     // Writes source information to the pasteboard
     func outlineView(_ outlineView: NSOutlineView, writeItems items: [Any], to pasteboard: NSPasteboard) -> Bool {
         
-        let files: [URL] = items.compactMap {($0 as? FileSystemItem)?.url}
-        pasteboard.data = files
+        let fsItems = items.compactMap {$0 as? FileSystemItem}
+        TableDragDropContext.setData(fsItems, from: browserView, pasteboard: pasteboard)
         
         return true
     }
@@ -62,6 +62,8 @@ extension TuneBrowserViewController: NSOutlineViewDataSource {
     
     /// Cannot drop into the Tune Browser.
     func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
-        false
+        
+        TableDragDropContext.reset()
+        return false
     }
 }

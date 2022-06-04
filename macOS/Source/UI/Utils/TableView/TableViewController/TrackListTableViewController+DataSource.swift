@@ -19,10 +19,8 @@ extension TrackListTableViewController: NSTableViewDataSource {
     
     // Writes source information to the pasteboard
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pasteboard: NSPasteboard) -> Bool {
-        
-        if isTrackListBeingModified {return false}
-        pasteboard.sourceIndexes = rowIndexes
-        
+
+        TableDragDropContext.setIndicesAndData(rowIndexes, trackList[rowIndexes], from: tableView, pasteboard: pasteboard)
         return true
     }
     
@@ -33,7 +31,7 @@ extension TrackListTableViewController: NSTableViewDataSource {
         
         // If the source is the same tableView, that means tracks are being reordered.
         if let sourceTable = info.draggingSource as? NSTableView,
-           sourceTable === self.tableView, let sourceIndexSet = info.sourceIndexes {
+           sourceTable === self.tableView, let sourceIndexSet = TableDragDropContext.indices {
             
             // Reordering of tracks
             return validateReorderOperation(tableView, sourceIndexSet, row, dropOperation) ? .move : .invalidDragOperation
@@ -56,29 +54,39 @@ extension TrackListTableViewController: NSTableViewDataSource {
     // Performs the drop
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
+        defer {TableDragDropContext.reset()}
+        
         if isTrackListBeingModified {return false}
         
         if let sourceTable = info.draggingSource as? NSTableView {
             
-            if let sourceIndices = info.sourceIndexes {
+            // Re-order tracks within the same table.
+            if sourceTable === self.tableView,
+               let sourceIndices = TableDragDropContext.indices {
                 
-                if sourceTable === self.tableView {
-                    
-                    // Move tracks within the same table.
-                    moveTracks(from: sourceIndices, to: row)
-                    return true
-                    
-                } else {
-                    
-                    // Import tracks from another table.
-                    importTracks(from: sourceTable, sourceIndices: sourceIndices, to: row)
-                    return true
-                }
+                moveTracks(from: sourceIndices, to: row)
+                return true
+            }
+            
+            // Import tracks from another TrackList.
+            if let sourceTracks = TableDragDropContext.data as? [Track] {
                 
-            } else if let files = info.data as? [URL] {
+                importTracks(sourceTracks, to: row)
+                return true
+            }
+
+            // Import files from the Tune Browser.
+            if let fsItems = TableDragDropContext.data as? [FileSystemItem] {
                 
-                // Import files from the Tune Browser.
-                importTracks(from: sourceTable, files: files, to: row)
+                importFiles(fileSystemItems: fsItems, to: row)
+                return true
+            }
+            
+            // Import from playlist names table.
+            if let playlistNames = TableDragDropContext.data as? [String] {
+                
+                importPlaylists(playlistNames.compactMap {playlistsManager.userDefinedObject(named: $0)}, to: row)
+                return true
             }
             
         } else if let files = info.urls {
@@ -124,13 +132,10 @@ extension TrackListTableViewController: NSTableViewDataSource {
     @objc func tracksMovedByDragDrop(minReloadIndex: Int, maxReloadIndex: Int) {
         // Overriden by subclasses
     }
-    
-    @objc func importTracks(from otherTable: NSTableView, sourceIndices: IndexSet, to destRow: Int) {
-        // Overriden by subclasses
-    }
-    
-    @objc func importTracks(from otherTable: NSTableView, files: [URL], to destRow: Int) {
-        // Overriden by subclasses
+
+    /// Import tracks from the file system (Tune Browser).
+    func importFiles(fileSystemItems: [FileSystemItem], to destRow: Int) {
+        trackList.loadTracks(from: fileSystemItems.map {$0.url}, atPosition: destRow)
     }
 }
 

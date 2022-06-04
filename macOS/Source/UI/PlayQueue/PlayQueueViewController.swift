@@ -72,50 +72,6 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         messenger.publish(.playQueue_refresh)
     }
     
-    // Drag / drop
-    override func importTracks(from otherTable: NSTableView, sourceIndices: IndexSet, to destRow: Int) {
-        
-        guard let otherTableId = otherTable.identifier else {return}
-        
-        switch otherTableId {
-            
-        case .tableId_playlist:
-            
-            importTracksFromPlaylist(sourceIndices: sourceIndices, to: destRow)
-            
-        case .tableId_playlistNames:
-            
-            importEntirePlaylist(sourceIndices: sourceIndices, to: destRow)
-            
-        default:
-            
-            return
-        }
-    }
-    
-    /// Import tracks from the file system (Tune Browser).
-    override func importTracks(from otherTable: NSTableView, files: [URL], to destRow: Int) {
-        trackList.loadTracks(from: files, atPosition: destRow)
-    }
-    
-    // Import selected tracks from a single playlist.
-    private func importTracksFromPlaylist(sourceIndices: IndexSet, to destRow: Int) {
-        
-        guard let displayedPlaylist = playlistsUIState.displayedPlaylist else {return}
-        
-        let tracks: [Track] = displayedPlaylist[sourceIndices]
-        _ = trackList.insertTracks(tracks, at: destRow)
-    }
-    
-    // Import entire (selected) playlists.
-    private func importEntirePlaylist(sourceIndices: IndexSet, to destRow: Int) {
-        
-        let draggedPlaylists = sourceIndices.map {playlistsManager.userDefinedObjects[$0]}
-        let tracks: [Track] = draggedPlaylists.flatMap {$0.tracks}
-        
-        _ = trackList.insertTracks(tracks, at: destRow)
-    }
-    
     // MARK: Commands --------------------------------------------------------------------------------------------------------
     
     @IBAction func playSelectedTrackAction(_ sender: Any) {

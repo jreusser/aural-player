@@ -98,54 +98,6 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
         }
     }
     
-    // Drag / drop
-    override func importTracks(from otherTable: NSTableView, sourceIndices: IndexSet, to destRow: Int) {
-        
-//        // Cannot import tracks into a playlist already being modified.
-//        guard let otherTableId = otherTable.identifier else {return}
-//
-//        switch otherTableId {
-//
-//        case .tableId_playlistNames:
-//
-//            // Import entire playlists into this playlist.
-//
-//            // Don't import this playlist into itself (will have no effect).
-//            let draggedPlaylists: [Playlist] = sourceIndices.map {playlistsManager.userDefinedObjects[$0]}.filter {$0 != playlist}
-//            guard draggedPlaylists.isNonEmpty else {return}
-//
-//            importEntirePlaylists(draggedPlaylists, to: destRow)
-//
-//        case .tableId_compactPlayQueue:
-//
-//            // Import selected tracks from the Play Queue into this playlist.
-//            importTracksFromPlayQueue(sourceIndices: sourceIndices, to: destRow)
-//
-//        default:
-//
-//            return
-//        }
-    }
-    
-    private func importEntirePlaylists(_ sourcePlaylists: [Playlist], to destRow: Int) {
-        importTracks(sourcePlaylists.flatMap {$0.tracks}, to: destRow)
-    }
-    
-    private func importTracksFromPlayQueue(sourceIndices: IndexSet, to destRow: Int) {
-        importTracks(sourceIndices.compactMap {playQueueDelegate[$0]}, to: destRow)
-    }
-    
-    private func importTracks(_ tracks: [Track], to destRow: Int) {
-        
-//        let newTrackIndices = playlist.insertTracks(tracks, at: destRow)
-//        guard let minTrackIndex = newTrackIndices.min() else {return}
-//
-//        tableView.noteNumberOfRowsChanged()
-//        tableView.reloadRows(minTrackIndex...lastRow)
-//
-//        messenger.publish(.playlists_updateSummary)
-    }
-    
     override func notifyReloadTable() {
         messenger.publish(.library_reloadTable)
     }
