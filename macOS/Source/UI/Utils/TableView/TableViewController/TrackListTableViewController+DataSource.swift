@@ -82,10 +82,27 @@ extension TrackListTableViewController: NSTableViewDataSource {
                 return true
             }
             
-            // Import from playlist names table.
-            if let playlistNames = TableDragDropContext.data as? [String] {
+            // Import from Tune Browser folders (shortcuts) and playlist names table.
+            if let sidebarItems = TableDragDropContext.data as? [LibrarySidebarItem] {
                 
-                importPlaylists(playlistNames.compactMap {playlistsManager.userDefinedObject(named: $0)}, to: row)
+                // Tune Browser folders (shortcuts).
+                let fileSystemItems = sidebarItems.filter {$0.browserTab == .fileSystem}
+                
+                if fileSystemItems.isNonEmpty {
+                 
+                    let folders: [URL] = fileSystemItems.compactMap {$0.tuneBrowserURL}
+                    importFiles(folders, to: row)
+                }
+                
+                // Playlist names.
+                let playlistItems = sidebarItems.filter {$0.browserTab == .playlists}
+                
+                if playlistItems.isNonEmpty {
+                 
+                    let playlistNames = playlistItems.map {$0.displayName}
+                    importPlaylists(playlistNames.compactMap {playlistsManager.userDefinedObject(named: $0)}, to: row)
+                }
+                
                 return true
             }
             
@@ -136,6 +153,10 @@ extension TrackListTableViewController: NSTableViewDataSource {
     /// Import tracks from the file system (Tune Browser).
     func importFiles(fileSystemItems: [FileSystemItem], to destRow: Int) {
         trackList.loadTracks(from: fileSystemItems.map {$0.url}, atPosition: destRow)
+    }
+    
+    func importFiles(_ files: [URL], to destRow: Int) {
+        trackList.loadTracks(from: files, atPosition: destRow)
     }
 }
 

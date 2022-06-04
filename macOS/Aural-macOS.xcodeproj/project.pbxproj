@@ -639,6 +639,8 @@
 		3EC29A6027865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
 		3EC530E3284B95A50036207C /* TuneBrowserViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E2284B95A50036207C /* TuneBrowserViewController+DataSource.swift */; };
 		3EC530E5284BB69C0036207C /* TableDragDropContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E4284BB69C0036207C /* TableDragDropContext.swift */; };
+		3EC530E7284BC5410036207C /* LibrarySidebarViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E6284BC5410036207C /* LibrarySidebarViewController+ViewDelegate.swift */; };
+		3EC530E9284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E8284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift */; };
 		3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */; };
 		3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
@@ -2170,6 +2172,8 @@
 		3EC29A5E27865CB500B29551 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		3EC530E2284B95A50036207C /* TuneBrowserViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuneBrowserViewController+DataSource.swift"; sourceTree = "<group>"; };
 		3EC530E4284BB69C0036207C /* TableDragDropContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDragDropContext.swift; sourceTree = "<group>"; };
+		3EC530E6284BC5410036207C /* LibrarySidebarViewController+ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibrarySidebarViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
+		3EC530E8284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibrarySidebarViewController+DataSource.swift"; sourceTree = "<group>"; };
 		3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
 		3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTracksToPlaylistCommand.swift; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
@@ -4758,6 +4762,8 @@
 			children = (
 				3EF84DA92836359B004EF57B /* LibrarySidebar.xib */,
 				3EF84DA72836332A004EF57B /* LibrarySidebarViewController.swift */,
+				3EC530E8284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift */,
+				3EC530E6284BC5410036207C /* LibrarySidebarViewController+ViewDelegate.swift */,
 				3EF84DA5283632ED004EF57B /* LibrarySidebarItems.swift */,
 			);
 			path = Sidebar;
@@ -6216,6 +6222,7 @@
 				3E6EFFA42815309500C813AC /* TextColorSchemeViewController.swift in Sources */,
 				3EFE3A1727864898006F8B8C /* AppearanceNotifications.swift in Sources */,
 				3EFE38D327864896006F8B8C /* MasterUnitDelegate.swift in Sources */,
+				3EC530E7284BC5410036207C /* LibrarySidebarViewController+ViewDelegate.swift in Sources */,
 				3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */,
 				3EAFB617267FF4C200F0DC96 /* EffectsSliderPreviewCell.swift in Sources */,
 				3EBF29332686979700D87021 /* EffectsTextButtonCell.swift in Sources */,
@@ -6738,6 +6745,7 @@
 				3EFE3AEF27864942006F8B8C /* FFmpegPacket.swift in Sources */,
 				3EFE39DF27864897006F8B8C /* AudioUnitPersistentState.swift in Sources */,
 				3EAD41912829D4AE00763A12 /* PlayQueueListViewController.swift in Sources */,
+				3EC530E9284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift in Sources */,
 				3EFE37E727864896006F8B8C /* HistoryPreferences.swift in Sources */,
 				3EEFF58A27DE842C002CB0FE /* PlayQueueDelegate.swift in Sources */,
 				3EFE393927864897006F8B8C /* BookmarksDelegateProtocol.swift in Sources */,
