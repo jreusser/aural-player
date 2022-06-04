@@ -15,9 +15,20 @@ extension NSPasteboard {
     var sourceIndexes: IndexSet? {
         
         get {
+            data as? IndexSet
+        }
+        
+        set {
+            data = newValue
+        }
+    }
+    
+    var data: Any? {
+        
+        get {
             
             if let data = pasteboardItems?.first?.data(forType: .data) {
-                return NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet
+                return NSKeyedUnarchiver.unarchiveObject(with: data)
             }
             
             return nil
@@ -25,9 +36,9 @@ extension NSPasteboard {
         
         set {
             
-            guard let indexSet = newValue else {return}
+            guard let theData = newValue else {return}
             
-            let data = NSKeyedArchiver.archivedData(withRootObject: indexSet)
+            let data = NSKeyedArchiver.archivedData(withRootObject: theData)
             let item = NSPasteboardItem()
             item.setData(data, forType: .data)
             writeObjects([item])
@@ -40,6 +51,10 @@ extension NSDraggingInfo {
     // Helper to set / retrieve source indexes to / from the NSDraggingInfo pasteboard.
     var sourceIndexes: IndexSet? {
         draggingPasteboard.sourceIndexes
+    }
+    
+    var data: Any? {
+        draggingPasteboard.data
     }
     
     var urls: [URL]? {

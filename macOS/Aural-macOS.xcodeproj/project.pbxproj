@@ -637,6 +637,7 @@
 		3EC29A5A27865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
 		3EC29A5F27865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
 		3EC29A6027865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
+		3EC530E3284B95A50036207C /* TuneBrowserViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E2284B95A50036207C /* TuneBrowserViewController+DataSource.swift */; };
 		3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */; };
 		3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
@@ -2166,6 +2167,7 @@
 		3EC2975927864CD400B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EC29A5827865BC900B29551 /* MenuItemMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemMappable.swift; sourceTree = "<group>"; };
 		3EC29A5E27865CB500B29551 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		3EC530E2284B95A50036207C /* TuneBrowserViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuneBrowserViewController+DataSource.swift"; sourceTree = "<group>"; };
 		3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
 		3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTracksToPlaylistCommand.swift; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
@@ -4431,6 +4433,7 @@
 			children = (
 				3EB462D02847FEC6000E3F85 /* TuneBrowser.xib */,
 				3EB462CF2847FEC6000E3F85 /* TuneBrowserViewController.swift */,
+				3EC530E2284B95A50036207C /* TuneBrowserViewController+DataSource.swift */,
 				3EB462D12847FEC6000E3F85 /* TuneBrowserViewController+ViewDelegate.swift */,
 				3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */,
 				3EB462C72847FEC6000E3F85 /* Sidebar */,
@@ -6707,6 +6710,7 @@
 				3E6C121925CEBDE600BF0D07 /* TracksPlaylistViewController.swift in Sources */,
 				3EFE3A7D27864898006F8B8C /* MetadataFormat.swift in Sources */,
 				3E6C122425CEBDE600BF0D07 /* TracksPlaylistViewController+TableViewDataSource.swift in Sources */,
+				3EC530E3284B95A50036207C /* TuneBrowserViewController+DataSource.swift in Sources */,
 				3E6C122D25CEBDE600BF0D07 /* TracksPlaylistViewController+TableViewDelegate.swift in Sources */,
 				3E6C12A825CEBE2700BF0D07 /* TriStateLabel.swift in Sources */,
 				3EBF0F69280C73E4000455D6 /* MetadataPersistentState.swift in Sources */,

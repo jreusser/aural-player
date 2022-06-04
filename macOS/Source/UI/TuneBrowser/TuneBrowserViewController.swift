@@ -34,6 +34,8 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         
         super.awakeFromNib()
         
+        browserView.enableDragDrop()
+        
         colorSchemesManager.registerObservers([rootContainer, browserView, pathControlWidget], forProperty: \.backgroundColor)
         
         fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)

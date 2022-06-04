@@ -9,41 +9,6 @@
 //
 import Cocoa
 
-extension TuneBrowserViewController: NSOutlineViewDataSource {
-    
-    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        
-        guard !resetBrowserView else {return 0}
-        
-        if item == nil {
-            
-            return fileSystem.root.children.count
-            
-        } else if let fsItem = item as? FileSystemItem {
-            
-            return fsItem.children.count
-        }
-        
-        return 0
-    }
-    
-    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        
-        guard !resetBrowserView else {return ""}
-        
-        if item == nil {
-            
-            return fileSystem.root.children.elements[index].value
-            
-        } else if let fsItem = item as? FileSystemItem {
-            
-            return fsItem.children.elements[index].value
-        }
-        
-        return ""
-    }
-}
-
 extension TuneBrowserViewController: NSOutlineViewDelegate {
     
     func outlineView(_ outlineView: NSOutlineView, typeSelectStringFor tableColumn: NSTableColumn?, item: Any) -> String? {

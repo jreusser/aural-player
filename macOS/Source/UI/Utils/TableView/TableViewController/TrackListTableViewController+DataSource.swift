@@ -33,7 +33,7 @@ extension TrackListTableViewController: NSTableViewDataSource {
         
         // If the source is the same tableView, that means tracks are being reordered.
         if let sourceTable = info.draggingSource as? NSTableView,
-           sourceTable == self.tableView, let sourceIndexSet = info.sourceIndexes {
+           sourceTable === self.tableView, let sourceIndexSet = info.sourceIndexes {
             
             // Reordering of tracks
             return validateReorderOperation(tableView, sourceIndexSet, row, dropOperation) ? .move : .invalidDragOperation
@@ -58,19 +58,27 @@ extension TrackListTableViewController: NSTableViewDataSource {
         
         if isTrackListBeingModified {return false}
         
-        if let sourceTable = info.draggingSource as? NSTableView, let sourceIndices = info.sourceIndexes {
+        if let sourceTable = info.draggingSource as? NSTableView {
             
-            if sourceTable == self.tableView {
+            if let sourceIndices = info.sourceIndexes {
                 
-                // Move tracks within the same table.
-                moveTracks(from: sourceIndices, to: row)
-                return true
+                if sourceTable === self.tableView {
+                    
+                    // Move tracks within the same table.
+                    moveTracks(from: sourceIndices, to: row)
+                    return true
+                    
+                } else {
+                    
+                    // Import tracks from another table.
+                    importTracks(from: sourceTable, sourceIndices: sourceIndices, to: row)
+                    return true
+                }
                 
-            } else {
+            } else if let files = info.data as? [URL] {
                 
-                // Import tracks from another table.
-                importTracks(from: sourceTable, sourceIndices: sourceIndices, to: row)
-                return true
+                // Import files from the Tune Browser.
+                importTracks(from: sourceTable, files: files, to: row)
             }
             
         } else if let files = info.urls {
@@ -118,6 +126,10 @@ extension TrackListTableViewController: NSTableViewDataSource {
     }
     
     @objc func importTracks(from otherTable: NSTableView, sourceIndices: IndexSet, to destRow: Int) {
+        // Overriden by subclasses
+    }
+    
+    @objc func importTracks(from otherTable: NSTableView, files: [URL], to destRow: Int) {
         // Overriden by subclasses
     }
 }

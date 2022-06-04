@@ -12,6 +12,32 @@ import Cocoa
 
 extension TrackListOutlineViewController: NSOutlineViewDataSource {
     
+    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
+        
+        if item == nil {
+            return grouping.numberOfGroups
+        }
+        
+        if let group = item as? Group {
+            return group.hasSubGroups ? group.subGroups.count : group.numberOfTracks
+        }
+        
+        return 0
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+        
+        if item == nil {
+            return grouping.group(at: index)
+        }
+        
+        if let group = item as? Group {
+            return (group.hasSubGroups ? group.subGroups.elements[index].value : group[index]) as Any
+        }
+        
+        return ""
+    }
+    
     // MARK: Drag n Drop
     
     // Writes source information to the pasteboard
