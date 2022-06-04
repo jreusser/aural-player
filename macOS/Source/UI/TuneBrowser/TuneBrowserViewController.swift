@@ -145,10 +145,16 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
         
         if let item = browserView.item(atRow: browserView.selectedRow), let fsItem = item as? FileSystemItem {
             
-            if fsItem.isDirectory {
-                openFolder(item: fsItem)
+            if fsItem.isTrack {
+                
+                if let track = fsItem.toTrack() {
+                    messenger.publish(EnqueueAndPlayNowCommand(tracks: [track], clearPlayQueue: false))
+                }
+                
             } else {
-                doAddBrowserItemsToPlayQueue(indexes: browserView.selectedRowIndexes, beginPlayback: true)
+                
+                // TODO: Playlist !!!
+                openFolder(item: fsItem)
             }
         }
     }
@@ -277,8 +283,8 @@ class TuneBrowserViewController: NSViewController, NSMenuDelegate, Destroyable {
     
     @IBAction func playNowAction(_ sender: Any) {
         
-        let tracks = browserView.selectedItems.compactMap {($0 as? FileSystemItem)?.toTrack()}
-        messenger.publish(EnqueueAndPlayNowCommand(tracks: tracks, clearPlayQueue: true))
+        let files = browserView.selectedItems.compactMap {($0 as? FileSystemItem)?.url}
+        messenger.publish(LoadAndPlayNowCommand(files: files, clearPlayQueue: true))
     }
     
     @IBAction func enqueueBrowserItemsAction(_ sender: Any) {

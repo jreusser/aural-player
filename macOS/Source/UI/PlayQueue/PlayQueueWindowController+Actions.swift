@@ -334,15 +334,32 @@ extension PlayQueueWindowController {
         
         let indices = playQueueDelegate.enqueueTracks(command.tracks, clearQueue: command.clearPlayQueue)
         
-        if indices.isNonEmpty {
+        if indices.isNonEmpty, !command.clearPlayQueue {
             
             controllers.forEach {
                 $0.noteNumberOfRowsChanged()
+            }
+            
+        } else {
+            
+            controllers.forEach {
+                $0.reloadTable()
             }
         }
         
         if let firstTrack = command.tracks.first {
             messenger.publish(TrackPlaybackCommandNotification(track: firstTrack))
+        }
+    }
+    
+    func loadAndPlayNow(_ command: LoadAndPlayNowCommand) {
+        
+        playQueueDelegate.loadTracks(from: command.files, clearQueue: command.clearPlayQueue, autoplay: true)
+        
+        controllers.forEach {
+            
+            $0.reloadTable()
+            $0.updateSummary()
         }
     }
     

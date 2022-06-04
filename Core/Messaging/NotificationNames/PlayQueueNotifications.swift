@@ -45,6 +45,8 @@ extension Notification.Name {
     // Commands the play queue to enqueue the given tracks and begin playing the first one immediately.
     static let playQueue_enqueueAndPlayNow = Notification.Name("playQueue_enqueueAndPlayNow")
     
+    static let playQueue_loadAndPlayNow = Notification.Name("playQueue_loadAndPlayNow")
+    
     // Commands the play queue to enqueue the given tracks so that they begin playing after the currently playing track.
     static let playQueue_enqueueAndPlayNext = Notification.Name("playQueue_enqueueAndPlayNext")
     

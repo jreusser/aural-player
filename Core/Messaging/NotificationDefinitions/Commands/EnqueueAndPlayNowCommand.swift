@@ -16,3 +16,10 @@ struct EnqueueAndPlayNowCommand: NotificationPayload {
     let tracks: [Track]
     let clearPlayQueue: Bool
 }
+
+struct LoadAndPlayNowCommand: NotificationPayload {
+    
+    let notificationName: Notification.Name = .playQueue_loadAndPlayNow
+    let files: [URL]
+    let clearPlayQueue: Bool
+}

@@ -8,7 +8,7 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol {
     
     // MARK: Mutating functions ---------------------------------------------------------------
     
-    func loadTracks(from files: [URL], atPosition position: Int?, autoplay: Bool)
+    func loadTracks(from files: [URL], atPosition position: Int?, clearQueue: Bool, autoplay: Bool)
     
     // Adds tracks to the end of the queue, i.e. "Play Now" or "Play Later"
     func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> IndexSet
@@ -37,6 +37,10 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol {
 extension PlayQueueDelegateProtocol {
     
     func loadTracks(from files: [URL], autoplay: Bool) {
-        loadTracks(from: files, atPosition: nil, autoplay: autoplay)
+        loadTracks(from: files, atPosition: nil, clearQueue: false, autoplay: autoplay)
+    }
+    
+    func loadTracks(from files: [URL], clearQueue: Bool, autoplay: Bool) {
+        loadTracks(from: files, atPosition: nil, clearQueue: clearQueue, autoplay: autoplay)
     }
 }

@@ -33,7 +33,11 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
         loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
     }
     
-    func loadTracks(from files: [URL], atPosition position: Int?, autoplay: Bool = false) {
+    func loadTracks(from files: [URL], atPosition position: Int?, clearQueue: Bool = false, autoplay: Bool = false) {
+        
+        if clearQueue {
+            removeAllTracks()
+        }
         
         if autoplay {
             self.autoplay.setValue(true)
