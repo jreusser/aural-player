@@ -24,11 +24,11 @@ class Stack<T: Any> {
     }
     
     func pop() -> T? {
-        return array.popLast()
+        array.popLast()
     }
     
     func peek() -> T? {
-        return array.last
+        array.last
     }
     
     func clear() {

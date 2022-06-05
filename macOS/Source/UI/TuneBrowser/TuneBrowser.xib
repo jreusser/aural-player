@@ -3,11 +3,14 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TuneBrowserViewController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="btnBack" destination="bwx-2C-Eg4" id="cNk-pH-qmO"/>
+                <outlet property="btnForward" destination="jmd-Wq-WNc" id="Ggv-tP-71e"/>
                 <outlet property="lblCaption" destination="7cL-0X-ZiE" id="pqy-0t-qqL"/>
                 <outlet property="pathControlWidget" destination="jTW-xB-lKp" id="pf4-wK-1gG"/>
                 <outlet property="rootContainer" destination="fke-7G-0dx" id="QGR-2V-3vK"/>
@@ -151,19 +154,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="700" height="285"/>
                         <font key="font" metaFont="system"/>
                     </tabView>
+                    <button toolTip="Back" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bwx-2C-Eg4" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                        <rect key="frame" x="619" y="316.5" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="4PZ-xL-FzP"/>
+                            <constraint firstAttribute="width" constant="18" id="WUV-5g-vIP"/>
+                        </constraints>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" controlSize="small" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="Vqa-qe-ymV">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="message" size="11"/>
+                            <imageReference key="image" image="arrow.backward" catalog="system" symbolScale="large"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="goBackAction:" target="-2" id="FbL-JN-6Zf"/>
+                        </connections>
+                    </button>
+                    <button toolTip="Forward" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jmd-Wq-WNc" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                        <rect key="frame" x="644" y="316.5" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="18" id="Rms-yY-3pN"/>
+                            <constraint firstAttribute="height" constant="13" id="w0E-oO-HIb"/>
+                        </constraints>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" controlSize="small" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="llN-vi-1Kv">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="message" size="11"/>
+                            <imageReference key="image" image="arrow.forward" catalog="system" symbolScale="large"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="goForwardAction:" target="-2" id="4rY-Mm-oZF"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="jmd-Wq-WNc" firstAttribute="bottom" secondItem="bwx-2C-Eg4" secondAttribute="bottom" id="3eQ-RR-HUa"/>
+                    <constraint firstItem="hDu-SS-U8T" firstAttribute="leading" secondItem="jmd-Wq-WNc" secondAttribute="trailing" constant="18" id="4kg-Vr-ETO"/>
                     <constraint firstItem="hDu-SS-U8T" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="16" id="650-Ql-AHm"/>
                     <constraint firstItem="jTW-xB-lKp" firstAttribute="top" secondItem="hDu-SS-U8T" secondAttribute="bottom" constant="20" id="7pz-Fq-WVM"/>
                     <constraint firstAttribute="trailing" secondItem="jTW-xB-lKp" secondAttribute="trailing" id="7uo-xX-t4s"/>
                     <constraint firstItem="jTW-xB-lKp" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" id="Hc4-fZ-VEg"/>
                     <constraint firstAttribute="trailing" secondItem="hDu-SS-U8T" secondAttribute="trailing" id="OL1-aG-W1S"/>
                     <constraint firstItem="YpR-Qx-Ish" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" id="aeg-De-D5A"/>
+                    <constraint firstItem="jmd-Wq-WNc" firstAttribute="leading" secondItem="bwx-2C-Eg4" secondAttribute="trailing" constant="7" id="fHc-Ww-fvV"/>
                     <constraint firstItem="7cL-0X-ZiE" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="8" id="jDS-7F-aff"/>
                     <constraint firstItem="7cL-0X-ZiE" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" constant="3" id="lEF-cN-UX0"/>
                     <constraint firstAttribute="trailing" secondItem="YpR-Qx-Ish" secondAttribute="trailing" id="pdg-Sn-LW4"/>
                     <constraint firstAttribute="bottom" secondItem="YpR-Qx-Ish" secondAttribute="bottom" id="rfA-KS-U2w"/>
                     <constraint firstItem="YpR-Qx-Ish" firstAttribute="top" secondItem="jTW-xB-lKp" secondAttribute="bottom" id="vJa-hU-jXB"/>
+                    <constraint firstItem="jTW-xB-lKp" firstAttribute="top" secondItem="jmd-Wq-WNc" secondAttribute="bottom" constant="12" id="wEz-8i-D6f"/>
                 </constraints>
             </view>
             <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -173,5 +210,7 @@
     </objects>
     <resources>
         <image name="Settings" width="10" height="7"/>
+        <image name="arrow.backward" catalog="system" width="19" height="15"/>
+        <image name="arrow.forward" catalog="system" width="19" height="15"/>
     </resources>
 </document>

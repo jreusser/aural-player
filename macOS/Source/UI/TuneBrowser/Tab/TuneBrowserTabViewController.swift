@@ -192,7 +192,11 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         }
     }
     
-    func showURL(_ url: URL, updatePathWidget: Bool = true) {
+    private func showURL(_ url: URL, updatePathWidget: Bool = true) {
+        
+        if let currentURL = fileSystem.rootURL {
+            messenger.publish(.tuneBrowser_notePreviousLocation, payload: currentURL)
+        }
         
         let path = url.path
         

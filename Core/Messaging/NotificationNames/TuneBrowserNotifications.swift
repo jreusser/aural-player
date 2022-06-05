@@ -19,4 +19,6 @@ extension Notification.Name {
     static let fileSystem_childrenAddedToItem = Notification.Name("fileSystem_childrenAddedToItem")
     
     static let tuneBrowser_sidebarSelectionChanged = Notification.Name("tuneBrowser_sidebarSelectionChanged")
+    
+    static let tuneBrowser_notePreviousLocation = Notification.Name("tuneBrowser_notePreviousLocation")
 }

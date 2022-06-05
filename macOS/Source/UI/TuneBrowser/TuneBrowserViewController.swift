@@ -20,12 +20,12 @@ class TuneBrowserViewController: NSViewController {
     
     @IBOutlet weak var lblCaption: NSTextField!
     
-    @IBOutlet weak var pathControlWidget: NSPathControl! {
-        
-        didSet {
-            pathControlWidget.url = FilesAndPaths.musicDir
-        }
-    }
+    @IBOutlet weak var btnBack: TintedImageButton!
+    @IBOutlet weak var btnForward: TintedImageButton!
+    
+    @IBOutlet weak var pathControlWidget: NSPathControl!
+    
+    private let history: TuneBrowserHistory = TuneBrowserHistory()
     
     private lazy var messenger = Messenger(for: self)
     
@@ -36,6 +36,7 @@ class TuneBrowserViewController: NSViewController {
         super.awakeFromNib()
         
         colorSchemesManager.registerObservers([rootContainer, pathControlWidget], forProperty: \.backgroundColor)
+        colorSchemesManager.registerObservers([btnBack, btnForward], forProperty: \.buttonColor)
         
         fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
@@ -67,8 +68,7 @@ class TuneBrowserViewController: NSViewController {
         
         super.viewDidLoad()
         
-        showURL(FilesAndPaths.musicDir)
-        
+        messenger.subscribe(to: .tuneBrowser_notePreviousLocation, handler: notePreviousLocation(_:))
         messenger.subscribe(to: .application_willExit, handler: onAppExit)
         
 //        TuneBrowserSidebarCategory.allCases.forEach {sidebarView.expandItem($0)}
@@ -77,9 +77,8 @@ class TuneBrowserViewController: NSViewController {
         selectMusicFolder()
         respondToSidebarSelectionChange = true
 
-        if let url = pathControlWidget.url {
-            showURL(url)
-        }
+        pathControlWidget.url = nil
+        showURL(FilesAndPaths.musicDir)
     }
     
     private func onAppExit() {
@@ -135,7 +134,11 @@ class TuneBrowserViewController: NSViewController {
     
     private var respondToSidebarSelectionChange: Bool = true
     
-    func showURL(_ url: URL) {
+    func showURL(_ url: URL, updateHistory: Bool = true) {
+        
+        if updateHistory, let currentURL = pathControlWidget.url {
+            history.notePreviousLocation(currentURL)
+        }
         
         pathControlWidget.url = url
 
@@ -161,6 +164,38 @@ class TuneBrowserViewController: NSViewController {
         newController.view.anchorToSuperview()
         
         tabView.showLastTab()
+        
+        updateNavButtons()
+    }
+    
+    private func notePreviousLocation(_ location: URL) {
+        
+        history.notePreviousLocation(location)
+        updateNavButtons()
+    }
+    
+    private func updateNavButtons() {
+        
+        btnBack.enableIf(history.canGoBack)
+        btnForward.enableIf(history.canGoForward)
+    }
+    
+    @IBAction func goBackAction(_ sender: Any) {
+        
+        guard let currentURL = pathControlWidget.url,
+              let newURL = history.back(from: currentURL) else {return}
+            
+        showURL(newURL, updateHistory: false)
+        updateNavButtons()
+    }
+    
+    @IBAction func goForwardAction(_ sender: Any) {
+        
+        guard let currentURL = pathControlWidget.url,
+              let newURL = history.forward(from: currentURL) else {return}
+            
+        showURL(newURL, updateHistory: false)
+        updateNavButtons()
     }
     
     @IBAction func removeSidebarShortcutAction(_ sender: Any) {

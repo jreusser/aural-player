@@ -11,14 +11,16 @@ import Foundation
 
 class TuneBrowserHistory {
     
-    var backStack: Stack<URL> = Stack()
-    var forwardStack: Stack<URL> = Stack()
+    private var backStack: Stack<URL> = Stack()
+    private var forwardStack: Stack<URL> = Stack()
     
     func notePreviousLocation(_ location: URL) {
         
         if backStack.peek() != location {
             backStack.push(location)
         }
+        
+        forwardStack.clear()
     }
     
     func back(from currentLocation: URL) -> URL? {
