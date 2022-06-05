@@ -38,20 +38,29 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
         
         guard let sidebarItem = sidebarView.selectedItem as? LibrarySidebarItem else {return}
         
-        if sidebarItem.browserTab == .playlists,
-            let playlist = playlistsManager.userDefinedObject(named: sidebarItem.displayName) {
+        switch sidebarItem.browserTab {
             
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: playlist.tracks, clearPlayQueue: false))
+        case .fileSystem:
+            
+            if let folder = sidebarItem.tuneBrowserURL {
+                messenger.publish(LoadAndPlayNowCommand(files: [folder], clearPlayQueue: false))
+            }
+            
+        case .playlists:
+            
+            if let playlist = playlistsManager.userDefinedObject(named: sidebarItem.displayName) {
+                messenger.publish(EnqueueAndPlayNowCommand(tracks: playlist.tracks, clearPlayQueue: false))
+            }
+            
+        default:
+            
+            return
         }
     }
     
     private func addFileSystemShortcut() {
         
-        respondToSelectionChange = false
-        
         sidebarView.insertItems(at: IndexSet(integer: tuneBrowserUIState.sidebarUserFolders.count),
                                 inParent: LibrarySidebarCategory.tuneBrowser, withAnimation: .slideDown)
-        
-        respondToSelectionChange = true
     }
 }

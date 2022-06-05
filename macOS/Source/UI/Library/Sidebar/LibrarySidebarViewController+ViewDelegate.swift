@@ -54,7 +54,12 @@ extension LibrarySidebarViewController: NSTableViewDelegate {
     }
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        !(item is LibrarySidebarCategory) || (sidebarView.numberOfChildren(ofItem: item) == 0)
+        
+        if let category = item as? LibrarySidebarCategory {
+            return category.equalsOneOf(.favorites, .bookmarks)
+        }
+        
+        return true
     }
     
     func outlineViewSelectionDidChange(_ notification: Notification) {
