@@ -13,21 +13,41 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
     
     override var nibName: String? {"TuneBrowserTab"}
     
-    @IBOutlet weak var rootContainer: NSBox!
-    @IBOutlet weak var lblCaption: NSTextField!
-    
+    var pathControlWidget: NSPathControl!
     @IBOutlet weak var browserView: TuneBrowserOutlineView!
     @IBOutlet weak var lblSummary: NSTextField!
     
-    var resetBrowserView: Bool = false
+    let fileSystem: FileSystem = FileSystem()
     
-    var fileSystem: FileSystem! = nil
+    var isAvailable: Bool {
+        fileSystem.root == nil
+    }
     
-    @IBOutlet weak var pathControlWidget: NSPathControl! {
+    var rootURL: URL? {
+        fileSystem.rootURL
+    }
+    
+    func reset() {
         
-        didSet {
-            pathControlWidget.url = fileSystem.rootURL
+        fileSystem.root = nil
+        browserView.reloadData()
+    }
+    
+    func setRoot(_ rootURL: URL) {
+        
+        if fileSystem.rootURL == rootURL {return}
+
+        fileSystem.rootURL = rootURL
+        
+        if fileSystem.root?.childrenLoaded.value ?? false {
+            
+            browserView.reloadData()
+            updateSummary()
         }
+    }
+    
+    func scrollToTop(){
+        browserView.scrollToTop()
     }
     
     private lazy var messenger = Messenger(for: self)
@@ -40,12 +60,8 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
         
         browserView.enableDragDrop()
         
-        colorSchemesManager.registerObservers([rootContainer, browserView, pathControlWidget], forProperty: \.backgroundColor)
-        
-        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+        colorSchemesManager.registerObserver(browserView, forProperty: \.backgroundColor)
         fontSchemesManager.registerObserver(lblSummary, forProperty: \.playQueuePrimaryFont)
-        
-        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
         colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
         
         var displayedColumnIds: [String] = tuneBrowserUIState.displayedColumns.compactMap {$0.id}
@@ -77,25 +93,6 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
         
         messenger.subscribeAsync(to: .fileSystem_fileMetadataLoaded, handler: fileMetadataLoaded(_:))
         messenger.subscribeAsync(to: .fileSystem_childrenAddedToItem, handler: childrenAdded(_:))
-        
-        messenger.subscribe(to: .application_willExit, handler: onAppExit)
-        
-//        TuneBrowserSidebarCategory.allCases.forEach {sidebarView.expandItem($0)}
-        
-        respondToSidebarSelectionChange = false
-        selectMusicFolder()
-        respondToSidebarSelectionChange = true
-        
-//        let theSushiClub: URL = FilesAndPaths.musicDir.appendingPathComponent("Ambient").appendingPathComponent("The Sushi Club")
-        fileSystem.root = FileSystemItem.create(forURL: FilesAndPaths.musicDir)
-        pathControlWidget.url = tuneBrowserMusicFolderURL
-//        pathControlWidget.url = theSushiClub
-    }
-    
-    private func onAppExit() {
-        
-        tuneBrowserUIState.displayedColumns = browserView.tableColumns.filter {$0.isShown}
-        .map {TuneBrowserTableColumn(id: $0.identifier.rawValue, width: $0.width)}
     }
     
     func menuWillOpen(_ menu: NSMenu) {
@@ -117,13 +114,6 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
         }
     }
     
-    private func selectMusicFolder() {
-        
-//        let foldersRow = sidebarView.row(forItem: TuneBrowserSidebarCategory.folders)
-//        let musicFolderRow = foldersRow + 1
-//        sidebarView.selectRow(musicFolderRow)
-    }
-    
     func destroy() {
         messenger.unsubscribeFromAll()
     }
@@ -139,85 +129,11 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
         
         let parent = notif.parentItem
         
-//        if parent.url == fileSystem.rootURL {
-//            browserView.reloadData()
-//        } else {
-//            browserView.reloadItem(parent, reloadChildren: true)
-//        }
-        
         browserView.insertItems(at: notif.childIndices,
                                 inParent: parent.url == fileSystem.rootURL ? nil : parent,
                                 withAnimation: .slideDown)
         
         updateSummary()
-    }
-        
-    @IBAction func doubleClickAction(_ sender: Any) {
-        
-        if let item = browserView.item(atRow: browserView.selectedRow), let fsItem = item as? FileSystemItem {
-            
-            if fsItem.isTrack {
-                
-                if let track = fsItem.toTrack() {
-                    messenger.publish(EnqueueAndPlayNowCommand(tracks: [track], clearPlayQueue: false))
-                }
-                
-            } else {
-                
-                // TODO: Playlist !!!
-                openFolder(item: fsItem)
-            }
-        }
-    }
-    
-    func openFolder(item: FileSystemItem) {
-        
-        let path = item.url.path
-        
-        if !path.hasPrefix("/Volumes"), let volumeName = SystemUtils.primaryVolumeName {
-            pathControlWidget.url = URL(fileURLWithPath: "/Volumes/\(volumeName)\(path)")
-        } else {
-            pathControlWidget.url = item.url
-        }
-        
-        if item.childrenLoaded.value {
-            
-            fileSystem.root = item
-            browserView.reloadData()
-            
-            self.browserView.scrollRowToVisible(0)
-            updateSummary()
-            
-        } else {
-            
-            removeAllRows()
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                
-                self.fileSystem.root = item
-                self.browserView.scrollRowToVisible(0)
-                self.updateSummary()
-            }
-        }
-    }
-    
-    // If the folder currently shown by the browser corresponds to one of the folder shortcuts in the sidebar, select that
-    // item in the sidebar.
-    func updateSidebarSelection() {
-        
-        respondToSidebarSelectionChange = false
-        
-        if let folder = tuneBrowserUIState.userFolder(forURL: fileSystem.rootURL) {
-//            sidebarView.selectRow(sidebarView.row(forItem: folder))
-
-        } else if fileSystem.rootURL.equalsOneOf(FilesAndPaths.musicDir, tuneBrowserMusicFolderURL) {
-            selectMusicFolder()
-            
-        } else {
-//            sidebarView.clearSelection()
-        }
-        
-        respondToSidebarSelectionChange = true
     }
     
     private func updateSummary() {
@@ -226,16 +142,19 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
         var numTracks = 0
         var numPlaylists = 0
         
-        for child in fileSystem.root.children.values {
+        if let root = fileSystem.root {
             
-            if child.isTrack {
-                numTracks.increment()
+            for child in root.children.values {
                 
-            } else if child.isDirectory {
-                numFolders.increment()
-                
-            } else if child.isPlaylist {
-                numPlaylists.increment()
+                if child.isTrack {
+                    numTracks.increment()
+                    
+                } else if child.isDirectory {
+                    numFolders.increment()
+                    
+                } else if child.isPlaylist {
+                    numPlaylists.increment()
+                }
             }
         }
 
@@ -248,81 +167,70 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
         
         lblSummary.stringValue = summaryString.isEmpty ? "0 tracks" : summaryString
     }
-    
-    @IBAction func pathControlAction(_ sender: Any) {
         
-        if let item = pathControlWidget.clickedPathItem, let url = item.url, url != pathControlWidget.url {
+    @IBAction func doubleClickAction(_ sender: Any) {
+        
+        guard let item = browserView.item(atRow: browserView.selectedRow),
+              let fsItem = item as? FileSystemItem else {return}
+        
+        if fsItem.isTrack {
             
-            removeAllRows()
+            if let track = fsItem.toTrack() {
+                messenger.publish(EnqueueAndPlayNowCommand(tracks: [track], clearPlayQueue: false))
+            }
             
-            var path = url.path
+        } else if fsItem.isPlaylist {
+            
+            let tracks = fsItem.children.values.compactMap {$0.toTrack()}
+            messenger.publish(EnqueueAndPlayNowCommand(tracks: tracks, clearPlayQueue: false))
+            
+        } else {
+            
+            // Folder
+            openFolder(fsItem)
+        }
+    }
+    
+    func showURL(_ url: URL, updatePathWidget: Bool = true) {
+        
+        reset()
+        
+        let path = url.path
+        
+        if updatePathWidget {
             
             if !path.hasPrefix("/Volumes"), let volumeName = SystemUtils.primaryVolumeName {
                 pathControlWidget.url = URL(fileURLWithPath: "/Volumes/\(volumeName)\(path)")
             } else {
                 pathControlWidget.url = url
             }
-            
-            // Remove /Volumes from URL before setting fileSystem.rootURL
-            
-            if let volumeName = SystemUtils.primaryVolumeName, path.hasPrefix("/Volumes/\(volumeName)") {
-                path = path.replacingOccurrences(of: "/Volumes/\(volumeName)", with: "")
-            }
-            
-            let rootURL: URL = path.hasSuffix("/") ? url : URL(fileURLWithPath: path + "/")
-            let fsRoot = FileSystemItem.create(forURL: rootURL)
-            
-            if fsRoot.childrenLoaded.value {
-                
-                fileSystem.root = fsRoot
-                browserView.reloadData()
-                
-            } else {
-                
-                removeAllRows()
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    self.fileSystem.root = fsRoot
-                }
-            }
-
-            browserView.scrollRowToVisible(0)
-            
-            updateSidebarSelection()
-            updateSummary()
-        }
-    }
-    
-    private var respondToSidebarSelectionChange: Bool = true
-    
-    func showURL(_ url: URL) {
-        
-        let path = url.path
-        
-        if !path.hasPrefix("/Volumes"), let volumeName = SystemUtils.primaryVolumeName {
-            pathControlWidget.url = URL(fileURLWithPath: "/Volumes/\(volumeName)\(path)")
-        } else {
-            pathControlWidget.url = url
         }
         
         let fsRoot = FileSystemItem.create(forURL: url)
         
+        // TODO: WARNING - If the root's children are partially loaded, we
+        // may have duplicates because we will reload and also receive
+        // notifications.
+        
+        // If the children have already been loaded, just reload the browser.
         if fsRoot.childrenLoaded.value {
             
             fileSystem.root = fsRoot
             browserView.reloadData()
+            updateSummary()
             
         } else {
             
-            removeAllRows()
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            // Children not loaded yet, just set the root. No need to reload
+            // the browser coz we will receive notifications.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.fileSystem.root = fsRoot
             }
         }
-        
-        browserView.scrollRowToVisible(0)
-        updateSummary()
+    }
+    
+    private func openFolder(_ item: FileSystemItem) {
+        showURL(item.url, updatePathWidget: true)
     }
     
     @IBAction func playNowAction(_ sender: Any) {
@@ -353,11 +261,7 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
         if let clickedItem: FileSystemItem = browserView.rightClickedItem as? FileSystemItem {
 
             tuneBrowserUIState.addUserFolder(forURL: clickedItem.url)
-            
             messenger.publish(.librarySidebar_addFileSystemShortcut, payload: clickedItem.url)
-
-//            sidebarView.insertItems(at: IndexSet(integer: tuneBrowserUIState.sidebarUserFolders.count),
-//                                    inParent: TuneBrowserSidebarCategory.folders, withAnimation: .slideDown)
         }
     }
     
@@ -387,19 +291,5 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
         if let selItem = browserView.rightClickedItem as? FileSystemItem {
             selItem.url.showInFinder()
         }
-    }
-    
-    @IBAction func showSidebarShortcutInFinderAction(_ sender: Any) {
-        
-//        if let selItem = sidebarView.rightClickedItem as? TuneBrowserSidebarItem {
-//            selItem.url.showInFinder()
-//        }
-    }
-}
-
-extension NSPathControl: ColorSchemePropertyObserver {
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        backgroundColor = newColor
     }
 }

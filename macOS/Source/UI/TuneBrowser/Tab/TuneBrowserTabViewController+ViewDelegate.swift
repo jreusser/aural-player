@@ -69,13 +69,6 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
         }
     }
     
-    func removeAllRows() {
-        
-        resetBrowserView = true
-        browserView.reloadData()
-        resetBrowserView = false
-    }
-    
     private func createNameCell(_ outlineView: NSOutlineView, _ item: FileSystemItem) -> TuneBrowserItemNameCell? {
         
         guard let cell = outlineView.makeView(withIdentifier: .cid_tuneBrowserName, owner: nil)

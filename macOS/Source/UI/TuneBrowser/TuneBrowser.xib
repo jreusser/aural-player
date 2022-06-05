@@ -9,7 +9,6 @@
         <customObject id="-2" userLabel="File's Owner" customClass="TuneBrowserViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="lblCaption" destination="7cL-0X-ZiE" id="pqy-0t-qqL"/>
-                <outlet property="lblSummary" destination="hmw-dW-XPU" id="tpH-6R-POL"/>
                 <outlet property="pathControlWidget" destination="jTW-xB-lKp" id="pf4-wK-1gG"/>
                 <outlet property="rootContainer" destination="fke-7G-0dx" id="QGR-2V-3vK"/>
                 <outlet property="tabView" destination="YpR-Qx-Ish" id="vHc-3M-wV6"/>
@@ -148,41 +147,9 @@
                             <action selector="pathControlAction:" target="-2" id="Hde-it-w4M"/>
                         </connections>
                     </pathControl>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hmw-dW-XPU" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="26" y="5" width="454" height="25"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="450" id="KFl-Fp-raM"/>
-                            <constraint firstAttribute="height" constant="25" id="pji-Ww-S2S"/>
-                        </constraints>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="0 tracks" id="XkK-Ew-uAb" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" white="0.70157877599999996" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </textFieldCell>
-                    </textField>
                     <tabView type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="YpR-Qx-Ish" userLabel="Tab View">
-                        <rect key="frame" x="0.0" y="35" width="700" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="285"/>
                         <font key="font" metaFont="system"/>
-                        <tabViewItems>
-                            <tabViewItem label="Tab" identifier="" id="s2P-Pk-1oI" userLabel="Tab1">
-                                <view key="view" id="BPY-h1-Ifj">
-                                    <rect key="frame" x="0.0" y="0.0" width="700" height="250"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </tabViewItem>
-                            <tabViewItem label="View" identifier="" id="Jwm-aC-bA3" userLabel="Tab2">
-                                <view key="view" id="uep-vQ-ihi">
-                                    <rect key="frame" x="0.0" y="0.0" width="700" height="250"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </tabViewItem>
-                            <tabViewItem label="Item 2" identifier="" id="O0w-qE-Drk" userLabel="Tab3">
-                                <view key="view" id="6dE-8B-nQW">
-                                    <rect key="frame" x="0.0" y="0.0" width="700" height="250"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </tabViewItem>
-                        </tabViewItems>
                     </tabView>
                 </subviews>
                 <constraints>
@@ -190,15 +157,13 @@
                     <constraint firstItem="jTW-xB-lKp" firstAttribute="top" secondItem="hDu-SS-U8T" secondAttribute="bottom" constant="20" id="7pz-Fq-WVM"/>
                     <constraint firstAttribute="trailing" secondItem="jTW-xB-lKp" secondAttribute="trailing" id="7uo-xX-t4s"/>
                     <constraint firstItem="jTW-xB-lKp" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" id="Hc4-fZ-VEg"/>
-                    <constraint firstAttribute="bottom" secondItem="hmw-dW-XPU" secondAttribute="bottom" constant="5" id="MjJ-VF-gGk"/>
                     <constraint firstAttribute="trailing" secondItem="hDu-SS-U8T" secondAttribute="trailing" id="OL1-aG-W1S"/>
                     <constraint firstItem="YpR-Qx-Ish" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" id="aeg-De-D5A"/>
                     <constraint firstItem="7cL-0X-ZiE" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="8" id="jDS-7F-aff"/>
-                    <constraint firstItem="hmw-dW-XPU" firstAttribute="top" secondItem="YpR-Qx-Ish" secondAttribute="bottom" constant="5" id="jOh-dW-xeB"/>
                     <constraint firstItem="7cL-0X-ZiE" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" constant="3" id="lEF-cN-UX0"/>
                     <constraint firstAttribute="trailing" secondItem="YpR-Qx-Ish" secondAttribute="trailing" id="pdg-Sn-LW4"/>
+                    <constraint firstAttribute="bottom" secondItem="YpR-Qx-Ish" secondAttribute="bottom" id="rfA-KS-U2w"/>
                     <constraint firstItem="YpR-Qx-Ish" firstAttribute="top" secondItem="jTW-xB-lKp" secondAttribute="bottom" id="vJa-hU-jXB"/>
-                    <constraint firstItem="hmw-dW-XPU" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" constant="28" id="wXd-No-Em0"/>
                 </constraints>
             </view>
             <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

@@ -14,11 +14,11 @@ extension TuneBrowserTabViewController: NSOutlineViewDataSource {
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
-        guard !resetBrowserView else {return 0}
+        guard let root = fileSystem.root else {return 0}
         
         if item == nil {
             
-            return fileSystem.root.children.count
+            return root.children.count
             
         } else if let fsItem = item as? FileSystemItem {
             
@@ -30,11 +30,11 @@ extension TuneBrowserTabViewController: NSOutlineViewDataSource {
     
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
-        guard !resetBrowserView else {return ""}
+        guard let root = fileSystem.root else {return ""}
         
         if item == nil {
             
-            return fileSystem.root.children.elements[index].value
+            return root.children.elements[index].value
             
         } else if let fsItem = item as? FileSystemItem {
             

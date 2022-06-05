@@ -48,7 +48,10 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
     private func addFileSystemShortcut() {
         
         respondToSelectionChange = false
-        sidebarView.reloadDataMaintainingSelection()
+        
+        sidebarView.insertItems(at: IndexSet(integer: tuneBrowserUIState.sidebarUserFolders.count),
+                                inParent: LibrarySidebarCategory.tuneBrowser, withAnimation: .slideDown)
+        
         respondToSelectionChange = true
     }
 }

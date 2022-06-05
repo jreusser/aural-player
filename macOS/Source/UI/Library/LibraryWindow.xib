@@ -61,27 +61,27 @@
                                     </textFieldCell>
                                 </textField>
                                 <splitView dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w60-lv-Hyh" userLabel="LeftRight SplitView">
-                                    <rect key="frame" x="15" y="15" width="970" height="446"/>
+                                    <rect key="frame" x="15" y="10" width="970" height="451"/>
                                     <subviews>
-                                        <customView id="shO-p5-YdO" userLabel="Sidebar View">
-                                            <rect key="frame" x="0.0" y="0.0" width="234" height="446"/>
+                                        <customView misplaced="YES" id="shO-p5-YdO" userLabel="Sidebar View">
+                                            <rect key="frame" x="0.0" y="0.0" width="234" height="451"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="B9w-Lk-cBw"/>
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="LDW-hw-XFX"/>
                                             </constraints>
                                         </customView>
-                                        <customView id="jRt-01-52h" userLabel="Browser View">
-                                            <rect key="frame" x="244" y="0.0" width="726" height="446"/>
+                                        <customView misplaced="YES" id="jRt-01-52h" userLabel="Browser View">
+                                            <rect key="frame" x="244" y="0.0" width="726" height="451"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="kDh-fQ-j7J" userLabel="BrowserTabView">
-                                                    <rect key="frame" x="10" y="0.0" width="716" height="446"/>
+                                                    <rect key="frame" x="10" y="-5" width="716" height="451"/>
                                                     <font key="font" metaFont="system"/>
                                                     <tabViewItems>
                                                         <tabViewItem label="Library-Tracks" identifier="" id="HRv-Jn-Es0">
                                                             <view key="view" id="Ght-pd-CkO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="716" height="446"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="716" height="451"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>
@@ -176,7 +176,7 @@
                                 <constraint firstItem="8J0-bC-5HZ" firstAttribute="top" secondItem="TSk-Ua-HlI" secondAttribute="top" constant="16" id="j1f-ik-zJ4"/>
                                 <constraint firstItem="bV3-BU-lI2" firstAttribute="leading" secondItem="8J0-bC-5HZ" secondAttribute="trailing" constant="21" id="l9q-yN-Cdz"/>
                                 <constraint firstItem="8J0-bC-5HZ" firstAttribute="leading" secondItem="TSk-Ua-HlI" secondAttribute="leading" constant="10" id="nVc-Ht-Du0"/>
-                                <constraint firstAttribute="bottom" secondItem="w60-lv-Hyh" secondAttribute="bottom" constant="15" id="pVz-JG-cQz"/>
+                                <constraint firstAttribute="bottom" secondItem="w60-lv-Hyh" secondAttribute="bottom" constant="10" id="pVz-JG-cQz"/>
                             </constraints>
                         </view>
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

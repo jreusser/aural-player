@@ -9,6 +9,7 @@
 //  
 
 import Cocoa
+import OrderedCollections
 
 class TuneBrowserViewController: NSViewController {
     
@@ -18,16 +19,11 @@ class TuneBrowserViewController: NSViewController {
     @IBOutlet weak var tabView: NSTabView!
     
     @IBOutlet weak var lblCaption: NSTextField!
-    @IBOutlet weak var lblSummary: NSTextField!
-    
-    var resetBrowserView: Bool = false
-    
-    var fileSystem: FileSystem! = nil
     
     @IBOutlet weak var pathControlWidget: NSPathControl! {
         
         didSet {
-//            pathControlWidget.url = FilesAndPaths.musicDir.resolvingAlias()
+            pathControlWidget.url = FilesAndPaths.musicDir
         }
     }
     
@@ -42,10 +38,7 @@ class TuneBrowserViewController: NSViewController {
         colorSchemesManager.registerObservers([rootContainer, pathControlWidget], forProperty: \.backgroundColor)
         
         fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-        fontSchemesManager.registerObserver(lblSummary, forProperty: \.playQueuePrimaryFont)
-        
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
-        colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
         
         var displayedColumnIds: [String] = tuneBrowserUIState.displayedColumns.compactMap {$0.id}
 
@@ -74,6 +67,8 @@ class TuneBrowserViewController: NSViewController {
         
         super.viewDidLoad()
         
+        showURL(FilesAndPaths.musicDir)
+        
         messenger.subscribe(to: .application_willExit, handler: onAppExit)
         
 //        TuneBrowserSidebarCategory.allCases.forEach {sidebarView.expandItem($0)}
@@ -81,10 +76,10 @@ class TuneBrowserViewController: NSViewController {
         respondToSidebarSelectionChange = false
         selectMusicFolder()
         respondToSidebarSelectionChange = true
-        
-//        let theSushiClub: URL = FilesAndPaths.musicDir.appendingPathComponent("Ambient").appendingPathComponent("The Sushi Club")
-        pathControlWidget.url = FilesAndPaths.musicDir
-//        pathControlWidget.url = theSushiClub
+
+        if let url = pathControlWidget.url {
+            showURL(url)
+        }
     }
     
     private func onAppExit() {
@@ -104,124 +99,37 @@ class TuneBrowserViewController: NSViewController {
         messenger.unsubscribeFromAll()
     }
     
-    func openFolder(item: FileSystemItem) {
-        
-//        let path = item.url.path
-//
-//        if !path.hasPrefix("/Volumes"), let volumeName = SystemUtils.primaryVolumeName {
-//            pathControlWidget.url = URL(fileURLWithPath: "/Volumes/\(volumeName)\(path)")
-//        } else {
-//            pathControlWidget.url = item.url
-//        }
-//
-//        if item.childrenLoaded.value {
-//
-//            fileSystem.root = item
-//            browserView.reloadData()
-//
-//            self.browserView.scrollRowToVisible(0)
-//            updateSummary()
-//
-//        } else {
-//
-//            removeAllRows()
-//
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//
-//                self.fileSystem.root = item
-//                self.browserView.scrollRowToVisible(0)
-//                self.updateSummary()
-//            }
-//        }
-    }
-    
     // If the folder currently shown by the browser corresponds to one of the folder shortcuts in the sidebar, select that
     // item in the sidebar.
     func updateSidebarSelection() {
         
-        respondToSidebarSelectionChange = false
-        
-        if let folder = tuneBrowserUIState.userFolder(forURL: fileSystem.rootURL) {
-//            sidebarView.selectRow(sidebarView.row(forItem: folder))
-
-        } else if fileSystem.rootURL.equalsOneOf(FilesAndPaths.musicDir, tuneBrowserMusicFolderURL) {
-            selectMusicFolder()
-            
-        } else {
-//            sidebarView.clearSelection()
-        }
-        
-        respondToSidebarSelectionChange = true
-    }
-    
-    private func updateSummary() {
-        
-        var numFolders = 0
-        var numTracks = 0
-        var numPlaylists = 0
-        
-        for child in fileSystem.root.children.values {
-            
-            if child.isTrack {
-                numTracks.increment()
-                
-            } else if child.isDirectory {
-                numFolders.increment()
-                
-            } else if child.isPlaylist {
-                numPlaylists.increment()
-            }
-        }
-
-        let foldersString = numFolders > 0 ? "\(numFolders) \(numFolders == 1 ? "folder" : "folders")" : ""
-        let tracksString = numTracks > 0 ? "\(numTracks) \(numTracks == 1 ? "track" : "tracks")" : ""
-        let playlistsString = numPlaylists > 0 ? "\(numPlaylists) \(numPlaylists == 1 ? "playlist" : "playlists")" : ""
-        
-        let allStrings = [foldersString, tracksString, playlistsString].filter {!$0.isEmpty}
-        let summaryString = allStrings.joined(separator: ", ")
-        
-        lblSummary.stringValue = summaryString.isEmpty ? "0 tracks" : summaryString
+//        respondToSidebarSelectionChange = false
+//
+//        if let folder = tuneBrowserUIState.userFolder(forURL: fileSystem.rootURL) {
+////            sidebarView.selectRow(sidebarView.row(forItem: folder))
+//
+//        } else if fileSystem.rootURL.equalsOneOf(FilesAndPaths.musicDir, tuneBrowserMusicFolderURL) {
+//            selectMusicFolder()
+//
+//        } else {
+////            sidebarView.clearSelection()
+//        }
+//
+//        respondToSidebarSelectionChange = true
     }
     
     @IBAction func pathControlAction(_ sender: Any) {
         
         if let item = pathControlWidget.clickedPathItem, let url = item.url, url != pathControlWidget.url {
             
-            var path = url.path
-            
-            if !path.hasPrefix("/Volumes"), let volumeName = SystemUtils.primaryVolumeName {
-                pathControlWidget.url = URL(fileURLWithPath: "/Volumes/\(volumeName)\(path)")
-            } else {
-                pathControlWidget.url = url
-            }
-            
             // Remove /Volumes from URL before setting fileSystem.rootURL
+            var path = url.path
             
             if let volumeName = SystemUtils.primaryVolumeName, path.hasPrefix("/Volumes/\(volumeName)") {
                 path = path.replacingOccurrences(of: "/Volumes/\(volumeName)", with: "")
             }
             
-            let rootURL: URL = path.hasSuffix("/") ? url : URL(fileURLWithPath: path + "/")
-            let fsRoot = FileSystemItem.create(forURL: rootURL)
-            
-//            if fsRoot.childrenLoaded.value {
-//
-//                fileSystem.root = fsRoot
-//                browserView.reloadData()
-//
-//            } else {
-//
-//                removeAllRows()
-//
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//                    self.fileSystem.root = fsRoot
-//                }
-//            }
-//
-//            browserView.scrollRowToVisible(0)
-            
-            updateSidebarSelection()
-            updateSummary()
+            showURL(URL(fileURLWithPath: path))
         }
     }
     
@@ -229,32 +137,30 @@ class TuneBrowserViewController: NSViewController {
     
     func showURL(_ url: URL) {
         
-        let path = url.path
-        
-        if !path.hasPrefix("/Volumes"), let volumeName = SystemUtils.primaryVolumeName {
-            pathControlWidget.url = URL(fileURLWithPath: "/Volumes/\(volumeName)\(path)")
-        } else {
-            pathControlWidget.url = url
+        pathControlWidget.url = url
+
+        // Check if any existing tab is already showing the target URL.
+        for tab in tabView.tabViewItems {
+            
+            if let tabVC = tab.viewController as? TuneBrowserTabViewController,
+               tabVC.rootURL == url {
+                
+                tabVC.scrollToTop()
+                tabView.selectTabViewItem(tab)
+                return
+            }
         }
         
-        let fsRoot = FileSystemItem.create(forURL: url)
+        let newController = TuneBrowserTabViewController()
+        newController.forceLoadingOfView()
+        newController.pathControlWidget = self.pathControlWidget
         
-//        if fsRoot.childrenLoaded.value {
-//
-//            fileSystem.root = fsRoot
-//            browserView.reloadData()
-//
-//        } else {
-//
-//            removeAllRows()
-//
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-//                self.fileSystem.root = fsRoot
-//            }
-//        }
-//
-//        browserView.scrollRowToVisible(0)
-        updateSummary()
+        newController.setRoot(url)
+        
+        tabView.addTabViewItem(NSTabViewItem(viewController: newController))
+        newController.view.anchorToSuperview()
+        
+        tabView.showLastTab()
     }
     
     @IBAction func removeSidebarShortcutAction(_ sender: Any) {
@@ -276,5 +182,22 @@ class TuneBrowserViewController: NSViewController {
 //                sidebarView.selectRow(musicFolderRow)
 //            }
 //        }
+    }
+}
+
+extension NSPathControl: ColorSchemePropertyObserver {
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        backgroundColor = newColor
+    }
+}
+
+extension NSTabView {
+    
+    func showLastTab() {
+        
+        if tabViewItems.isNonEmpty {
+            selectTabViewItem(at: numberOfTabViewItems - 1)
+        }
     }
 }

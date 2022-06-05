@@ -13,17 +13,26 @@ class FileSystem {
     
     private let metadataLoader: FileSystemLoader = FileSystemLoader(priority: .medium)
     
-    var root: FileSystemItem = FileSystemItem.create(forURL: FilesAndPaths.musicDir.appendingPathComponent("Ambient").appendingPathComponent("The Sushi Club")) {
+    var root: FileSystemItem? = nil {
         
         didSet {
-            loadChildren(of: root)
+            
+            if let theRoot = root {
+                loadChildren(of: theRoot)
+            }
         }
     }
     
-    var rootURL: URL {
+    var rootURL: URL? {
         
-        get {root.url}
-        set(newURL) {root = FileSystemItem.create(forURL: newURL)}
+        get {root?.url}
+        
+        set(newURL) {
+            
+            if let theURL = newURL {
+                root = FileSystemItem.create(forURL: theURL)
+            }
+        }
     }
     
     private lazy var messenger = Messenger(for: self)
@@ -57,9 +66,7 @@ class FileSystem {
         
         loadLock.executeAfterWait {
             
-            if item.childrenLoaded.value {
-                return
-            }
+            if item.childrenLoaded.value {return}
             
             item.childrenLoaded.setValue(true)
             
@@ -76,7 +83,7 @@ class FileSystem {
     }
     
     func sort(by sortField: FileSystemSortField, ascending: Bool) {
-        root.sortChildren(by: sortField, ascending: ascending)
+        root?.sortChildren(by: sortField, ascending: ascending)
     }
 }
 
