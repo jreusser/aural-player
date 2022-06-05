@@ -129,6 +129,8 @@
 		3E495B8B28108DF800D4766A /* PlayQueueContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E495B8928108DF800D4766A /* PlayQueueContainer.swift */; };
 		3E498E21284D1F7D00BF4157 /* FileSystemLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E498E20284D1F7D00BF4157 /* FileSystemLoader.swift */; };
 		3E498E23284D200B00BF4157 /* FileSystemLoaderSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E498E22284D200B00BF4157 /* FileSystemLoaderSupport.swift */; };
+		3E498E26284D2DA400BF4157 /* TuneBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E498E25284D2DA400BF4157 /* TuneBrowser.xib */; };
+		3E498E28284D2E4800BF4157 /* TuneBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E498E27284D2E4800BF4157 /* TuneBrowserViewController.swift */; };
 		3E4A90FE27F79AFA003A6C80 /* WindowID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A90FD27F79AFA003A6C80 /* WindowID.swift */; };
 		3E4A90FF27F79AFA003A6C80 /* WindowID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A90FD27F79AFA003A6C80 /* WindowID.swift */; };
 		3E4CC362261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */; };
@@ -616,9 +618,9 @@
 		3EB462D72847FEC6000E3F85 /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462CC2847FEC6000E3F85 /* FileSystem.swift */; };
 		3EB462D82847FEC6000E3F85 /* FileSystemItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462CD2847FEC6000E3F85 /* FileSystemItem.swift */; };
 		3EB462D92847FEC6000E3F85 /* TuneBrowserHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462CE2847FEC6000E3F85 /* TuneBrowserHistory.swift */; };
-		3EB462DA2847FEC6000E3F85 /* TuneBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462CF2847FEC6000E3F85 /* TuneBrowserViewController.swift */; };
-		3EB462DB2847FEC6000E3F85 /* TuneBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB462D02847FEC6000E3F85 /* TuneBrowser.xib */; };
-		3EB462DC2847FEC6000E3F85 /* TuneBrowserViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462D12847FEC6000E3F85 /* TuneBrowserViewController+ViewDelegate.swift */; };
+		3EB462DA2847FEC6000E3F85 /* TuneBrowserTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462CF2847FEC6000E3F85 /* TuneBrowserTabViewController.swift */; };
+		3EB462DB2847FEC6000E3F85 /* TuneBrowserTab.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB462D02847FEC6000E3F85 /* TuneBrowserTab.xib */; };
+		3EB462DC2847FEC6000E3F85 /* TuneBrowserTabViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462D12847FEC6000E3F85 /* TuneBrowserTabViewController+ViewDelegate.swift */; };
 		3EB462DD2847FEC6000E3F85 /* TuneBrowserTableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */; };
 		3EB5108C25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */; };
 		3EB88E772629DA9500C8D230 /* ThemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */; };
@@ -639,7 +641,7 @@
 		3EC29A5A27865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
 		3EC29A5F27865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
 		3EC29A6027865CB500B29551 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5E27865CB500B29551 /* Images.swift */; };
-		3EC530E3284B95A50036207C /* TuneBrowserViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E2284B95A50036207C /* TuneBrowserViewController+DataSource.swift */; };
+		3EC530E3284B95A50036207C /* TuneBrowserTabViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E2284B95A50036207C /* TuneBrowserTabViewController+DataSource.swift */; };
 		3EC530E5284BB69C0036207C /* TableDragDropContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E4284BB69C0036207C /* TableDragDropContext.swift */; };
 		3EC530E7284BC5410036207C /* LibrarySidebarViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E6284BC5410036207C /* LibrarySidebarViewController+ViewDelegate.swift */; };
 		3EC530E9284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E8284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift */; };
@@ -1645,6 +1647,8 @@
 		3E495B8928108DF800D4766A /* PlayQueueContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueContainer.swift; sourceTree = "<group>"; };
 		3E498E20284D1F7D00BF4157 /* FileSystemLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemLoader.swift; sourceTree = "<group>"; };
 		3E498E22284D200B00BF4157 /* FileSystemLoaderSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemLoaderSupport.swift; sourceTree = "<group>"; };
+		3E498E25284D2DA400BF4157 /* TuneBrowser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TuneBrowser.xib; sourceTree = "<group>"; };
+		3E498E27284D2E4800BF4157 /* TuneBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneBrowserViewController.swift; sourceTree = "<group>"; };
 		3E4A90FD27F79AFA003A6C80 /* WindowID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowID.swift; sourceTree = "<group>"; };
 		3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterUnitViewController+AUTableViewDelegate.swift"; sourceTree = "<group>"; };
 		3E50D23127BADAAF0056F63A /* AuralSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuralSlider.swift; sourceTree = "<group>"; };
@@ -2153,9 +2157,9 @@
 		3EB462CC2847FEC6000E3F85 /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		3EB462CD2847FEC6000E3F85 /* FileSystemItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystemItem.swift; sourceTree = "<group>"; };
 		3EB462CE2847FEC6000E3F85 /* TuneBrowserHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserHistory.swift; sourceTree = "<group>"; };
-		3EB462CF2847FEC6000E3F85 /* TuneBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserViewController.swift; sourceTree = "<group>"; };
-		3EB462D02847FEC6000E3F85 /* TuneBrowser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TuneBrowser.xib; sourceTree = "<group>"; };
-		3EB462D12847FEC6000E3F85 /* TuneBrowserViewController+ViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TuneBrowserViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
+		3EB462CF2847FEC6000E3F85 /* TuneBrowserTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserTabViewController.swift; sourceTree = "<group>"; };
+		3EB462D02847FEC6000E3F85 /* TuneBrowserTab.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TuneBrowserTab.xib; sourceTree = "<group>"; };
+		3EB462D12847FEC6000E3F85 /* TuneBrowserTabViewController+ViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TuneBrowserTabViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
 		3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserTableViews.swift; sourceTree = "<group>"; };
 		3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemePopupMenuController.swift; sourceTree = "<group>"; };
 		3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePopupMenuController.swift; sourceTree = "<group>"; };
@@ -2174,7 +2178,7 @@
 		3EC2975927864CD400B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EC29A5827865BC900B29551 /* MenuItemMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemMappable.swift; sourceTree = "<group>"; };
 		3EC29A5E27865CB500B29551 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
-		3EC530E2284B95A50036207C /* TuneBrowserViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuneBrowserViewController+DataSource.swift"; sourceTree = "<group>"; };
+		3EC530E2284B95A50036207C /* TuneBrowserTabViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuneBrowserTabViewController+DataSource.swift"; sourceTree = "<group>"; };
 		3EC530E4284BB69C0036207C /* TableDragDropContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDragDropContext.swift; sourceTree = "<group>"; };
 		3EC530E6284BC5410036207C /* LibrarySidebarViewController+ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibrarySidebarViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
 		3EC530E8284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibrarySidebarViewController+DataSource.swift"; sourceTree = "<group>"; };
@@ -2997,6 +3001,18 @@
 				3E498E22284D200B00BF4157 /* FileSystemLoaderSupport.swift */,
 			);
 			path = FileSystemIO;
+			sourceTree = "<group>";
+		};
+		3E498E24284D2D4E00BF4157 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				3EB462D02847FEC6000E3F85 /* TuneBrowserTab.xib */,
+				3EB462CF2847FEC6000E3F85 /* TuneBrowserTabViewController.swift */,
+				3EC530E2284B95A50036207C /* TuneBrowserTabViewController+DataSource.swift */,
+				3EB462D12847FEC6000E3F85 /* TuneBrowserTabViewController+ViewDelegate.swift */,
+				3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */,
+			);
+			path = Tab;
 			sourceTree = "<group>";
 		};
 		3E4A90FC27F79AAB003A6C80 /* Model */ = {
@@ -4451,11 +4467,9 @@
 		3EB462C62847FEC6000E3F85 /* TuneBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				3EB462D02847FEC6000E3F85 /* TuneBrowser.xib */,
-				3EB462CF2847FEC6000E3F85 /* TuneBrowserViewController.swift */,
-				3EC530E2284B95A50036207C /* TuneBrowserViewController+DataSource.swift */,
-				3EB462D12847FEC6000E3F85 /* TuneBrowserViewController+ViewDelegate.swift */,
-				3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */,
+				3E498E25284D2DA400BF4157 /* TuneBrowser.xib */,
+				3E498E27284D2E4800BF4157 /* TuneBrowserViewController.swift */,
+				3E498E24284D2D4E00BF4157 /* Tab */,
 				3EB462C72847FEC6000E3F85 /* Sidebar */,
 				3E81BCD5284AA7FD00927E4A /* Support */,
 			);
@@ -5880,7 +5894,7 @@
 				3E57AF8C262B2C8100678C16 /* ChicagoFLF.ttf in Resources */,
 				3ECB54F025E559E7002259C4 /* roundornoncommercial.regular.otf in Resources */,
 				3ECB54EA25E552AC002259C4 /* shufen.regular.ttf in Resources */,
-				3EB462DB2847FEC6000E3F85 /* TuneBrowser.xib in Resources */,
+				3EB462DB2847FEC6000E3F85 /* TuneBrowserTab.xib in Resources */,
 				3ECB54E825E552A9002259C4 /* ragingredlotus-bb.regular.ttf in Resources */,
 				3EF84DA128362753004EF57B /* LibraryWindow.xib in Resources */,
 				3EA3CE7025E420DE00BC7D07 /* Papyrus.ttf in Resources */,
@@ -5950,6 +5964,7 @@
 				3E25B65627F7875700D10A5F /* PlayQueueTableView.xib in Resources */,
 				3E6C12ED25CEBE8100BF0D07 /* DelayUnit.xib in Resources */,
 				3E51F346262AFDCA0048452F /* ThemesManager.xib in Resources */,
+				3E498E26284D2DA400BF4157 /* TuneBrowser.xib in Resources */,
 				3E6C124225CEBDF400BF0D07 /* ArtistsPlaylistSort.xib in Resources */,
 				3E6C125425CEBE0600BF0D07 /* ColorSchemesManager.xib in Resources */,
 				3EF84DAA2836359B004EF57B /* LibrarySidebar.xib in Resources */,
@@ -6146,6 +6161,7 @@
 				3E8FF9D227F61A34009CEDDD /* PlayQueue+Sequencing.swift in Sources */,
 				3EBF3F2A28037B1A00035D18 /* PlayQueuePersistentState.swift in Sources */,
 				3E045D0B281341110069DEFE /* TrackComparators.swift in Sources */,
+				3E498E28284D2E4800BF4157 /* TuneBrowserViewController.swift in Sources */,
 				3E39754E26892C890055887E /* ControlBarPlayerUIState.swift in Sources */,
 				3E2A2A062809B68A000F0539 /* PlaylistNamesTableViewController.swift in Sources */,
 				3E08AC13281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift in Sources */,
@@ -6659,7 +6675,7 @@
 				3EFE390B27864897006F8B8C /* StringExtensions.swift in Sources */,
 				3E045D0F281352370069DEFE /* SortOrderMenuItemView.swift in Sources */,
 				3E5F943725E571A6002DEF80 /* SpectrogramBar.swift in Sources */,
-				3EB462DA2847FEC6000E3F85 /* TuneBrowserViewController.swift in Sources */,
+				3EB462DA2847FEC6000E3F85 /* TuneBrowserTabViewController.swift in Sources */,
 				3E5F942D25E57190002DEF80 /* SpectrogramFFTData.swift in Sources */,
 				3EFE383F27864896006F8B8C /* Playlist.swift in Sources */,
 				3E6C12A325CEBE2700BF0D07 /* StringInputPopoverViewController.swift in Sources */,
@@ -6671,7 +6687,7 @@
 				3EFE3A9527864898006F8B8C /* FileReaderProtocol.swift in Sources */,
 				3E6C12BA25CEBE5800BF0D07 /* SupportMenuController.swift in Sources */,
 				3E6C128725CEBE1800BF0D07 /* TabGroupButtonCells.swift in Sources */,
-				3EB462DC2847FEC6000E3F85 /* TuneBrowserViewController+ViewDelegate.swift in Sources */,
+				3EB462DC2847FEC6000E3F85 /* TuneBrowserTabViewController+ViewDelegate.swift in Sources */,
 				3EFE38DF27864897006F8B8C /* EQUnitDelegateProtocol.swift in Sources */,
 				3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */,
 				3E36BD4E26A6AA5A00B6E28B /* TableViewRepresentations.swift in Sources */,
@@ -6737,7 +6753,7 @@
 				3E6C121925CEBDE600BF0D07 /* TracksPlaylistViewController.swift in Sources */,
 				3EFE3A7D27864898006F8B8C /* MetadataFormat.swift in Sources */,
 				3E6C122425CEBDE600BF0D07 /* TracksPlaylistViewController+TableViewDataSource.swift in Sources */,
-				3EC530E3284B95A50036207C /* TuneBrowserViewController+DataSource.swift in Sources */,
+				3EC530E3284B95A50036207C /* TuneBrowserTabViewController+DataSource.swift in Sources */,
 				3E6C122D25CEBDE600BF0D07 /* TracksPlaylistViewController+TableViewDelegate.swift in Sources */,
 				3E6C12A825CEBE2700BF0D07 /* TriStateLabel.swift in Sources */,
 				3EBF0F69280C73E4000455D6 /* MetadataPersistentState.swift in Sources */,
