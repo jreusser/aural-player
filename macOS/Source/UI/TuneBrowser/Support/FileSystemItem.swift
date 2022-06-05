@@ -196,19 +196,6 @@ extension FileSystemItem: FileSystemLoaderReceiver {
     }
 }
 
-extension FileSystemItem: FileSystemLoaderObserver {
-    
-    func preTrackLoad() {
-    }
-    
-    func postTrackLoad() {
-    }
-    
-    func postBatchLoad(indices: IndexSet) {
-        messenger.publish(TuneBrowserItemsAddedNotification(parentItem: self, childIndices: indices))
-    }
-}
-
 enum FileSystemItemType: Int, Comparable {
     
     case folder = 1

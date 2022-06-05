@@ -9,9 +9,21 @@
 //
 import Cocoa
 
+protocol FileSystemUIObserver {
+    
+    func itemsAdded(to item: FileSystemItem, at indices: IndexSet)
+}
+
 class FileSystem {
     
     private let metadataLoader: FileSystemLoader = FileSystemLoader(priority: .medium)
+    
+    let observer: FileSystemUIObserver
+    var observedItem: FileSystemItem!
+    
+    init(observer: FileSystemUIObserver) {
+        self.observer = observer
+    }
     
     var root: FileSystemItem? = nil {
         
@@ -34,8 +46,6 @@ class FileSystem {
             }
         }
     }
-    
-    private lazy var messenger = Messenger(for: self)
     
     private func getChildren(of item: FileSystemItem) -> [FileSystemItem] {
         
@@ -76,14 +86,34 @@ class FileSystem {
                 
                 if item.children.isEmpty {return}
                 
+                self.observedItem = item
+                
                 self.metadataLoader.loadMetadata(from: item.children.keys.elements,
-                                                 into: item, observer: item)
+                                                 into: item, observer: self)
             }
         }
     }
     
     func sort(by sortField: FileSystemSortField, ascending: Bool) {
         root?.sortChildren(by: sortField, ascending: ascending)
+    }
+}
+
+extension FileSystem: FileSystemLoaderObserver {
+    
+    func preTrackLoad() {
+    }
+    
+    func postTrackLoad() {
+    }
+    
+    func postBatchLoad(indices: IndexSet) {
+        
+        DispatchQueue.main.async {
+            
+            NSLog("Publishing items added at \(indices.toArray()) ...")
+            self.observer.itemsAdded(to: self.observedItem, at: indices)
+        }
     }
 }
 

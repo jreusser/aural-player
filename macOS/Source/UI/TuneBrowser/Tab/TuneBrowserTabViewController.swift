@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyable {
+class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystemUIObserver, Destroyable {
     
     override var nibName: String? {"TuneBrowserTab"}
     
@@ -17,7 +17,7 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
     @IBOutlet weak var browserView: TuneBrowserOutlineView!
     @IBOutlet weak var lblSummary: NSTextField!
     
-    let fileSystem: FileSystem = FileSystem()
+    lazy var fileSystem: FileSystem = FileSystem(observer: self)
     
     var isAvailable: Bool {
         fileSystem.root == nil
@@ -92,7 +92,6 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
         super.viewDidLoad()
         
         messenger.subscribeAsync(to: .fileSystem_fileMetadataLoaded, handler: fileMetadataLoaded(_:))
-        messenger.subscribeAsync(to: .fileSystem_childrenAddedToItem, handler: childrenAdded(_:))
     }
     
     func menuWillOpen(_ menu: NSMenu) {
@@ -125,13 +124,15 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
         }
     }
     
-    private func childrenAdded(_ notif: TuneBrowserItemsAddedNotification) {
+    func itemsAdded(to item: FileSystemItem, at indices: IndexSet) {
         
-        let parent = notif.parentItem
+        // TODO: To solve the potential duplicates issue (reloadData() and insertItems
+        // happening simultaneously, maybe for each index, check if view(forRow, column)
+        // is nil. If nil, go ahead and insert, otherwise skip the update.
         
-        browserView.insertItems(at: notif.childIndices,
-                                inParent: parent.url == fileSystem.rootURL ? nil : parent,
-                                withAnimation: .slideDown)
+        NSLog("Inserting new items at \(indices.toArray()) ...")
+        browserView.insertItems(at: indices,
+                                inParent: item.url == fileSystem.rootURL ? nil : item)
         
         updateSummary()
     }
@@ -193,8 +194,6 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
     
     func showURL(_ url: URL, updatePathWidget: Bool = true) {
         
-        reset()
-        
         let path = url.path
         
         if updatePathWidget {
@@ -220,6 +219,8 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, Destroyabl
             updateSummary()
             
         } else {
+            
+            reset()
             
             // Children not loaded yet, just set the root. No need to reload
             // the browser coz we will receive notifications.

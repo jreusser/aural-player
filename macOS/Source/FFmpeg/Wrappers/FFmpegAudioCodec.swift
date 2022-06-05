@@ -19,7 +19,7 @@ class FFmpegAudioCodec: FFmpegCodec {
     ///
     /// This should equal the number of physical CPU cores in the system.
     ///
-    static let threadCount: Int32 = Int32(SystemUtils.numberOfPhysicalCores)
+    static let threadCount: Int32 = Int32(System.physicalCores)
     
     ///
     /// The type of multithreading used by **FFmpeg** when decoding.

@@ -16,7 +16,7 @@ enum FileLoaderPriority: Int, CaseIterable {
     
     private static let opCounts: [FileLoaderPriority: Int] = {
         
-        let physicalCores: Int = SystemUtils.numberOfPhysicalCores
+        let physicalCores: Int = System.physicalCores
         let activeCores: Int = SystemUtils.numberOfActiveCores
         
         return [
