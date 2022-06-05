@@ -11,7 +11,7 @@ import Cocoa
 
 class FileSystem {
     
-    private let trackLoader: TrackLoader = TrackLoader(priority: .medium)
+    private let metadataLoader: FileSystemLoader = FileSystemLoader(priority: .medium)
     
     var root: FileSystemItem = FileSystemItem.create(forURL: FilesAndPaths.musicDir.appendingPathComponent("Ambient").appendingPathComponent("The Sushi Club")) {
         
@@ -63,20 +63,14 @@ class FileSystem {
             
             item.childrenLoaded.setValue(true)
             
-            DispatchQueue.global(qos: .utility).async {
+            DispatchQueue.global(qos: .userInteractive).async {
                 
                 item.setChildren(self.getChildren(of: item))
                 
-                let tracks = item.children.values.filter {$0.isTrack}
+                if item.children.isEmpty {return}
                 
-                if tracks.isEmpty {
-                    self.messenger.publish(TuneBrowserItemsAddedNotification(parentItem: item, childIndices: IndexSet(0..<item.children.count)))
-                    
-                } else {
-                    
-                    self.trackLoader.loadMetadata(ofType: .primary, from: tracks.map {$0.url},
-                                             into: item, observer: item)
-                }
+                self.metadataLoader.loadMetadata(from: item.children.keys.elements,
+                                                 into: item, observer: item)
             }
         }
     }

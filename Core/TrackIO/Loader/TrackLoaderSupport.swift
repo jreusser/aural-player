@@ -77,7 +77,7 @@ class FileMetadataBatch {
             return startIndex...(startIndex + files.count - 1)
         }
         
-        return 0...1
+        return 0...files.lastIndex
     }
     
     var orderedMetadata: [(file: URL, metadata: FileMetadata)] {files.map {(file: $0, metadata: self.metadata[$0]!)}}
@@ -102,11 +102,11 @@ class FileMetadataBatch {
     
     func clear() {
         
-        files.removeAll()
-        metadata.removeAll()
-        
         if let index = self.insertionIndex {
             self.insertionIndex = index + files.count
         }
+        
+        files.removeAll()
+        metadata.removeAll()
     }
 }

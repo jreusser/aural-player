@@ -55,8 +55,6 @@ class FileSystemItem {
     
     var metadata: FileMetadata?
     
-    var lastChildLoaded: Int = -1
-    
     fileprivate lazy var messenger = Messenger(for: self)
     
     private init(url: URL, metadata: FileMetadata? = nil) {
@@ -184,51 +182,26 @@ class FileSystemItem {
     }
 }
 
-extension FileSystemItem: TrackLoaderReceiver {
-    
-    func hasTrack(forFile file: URL) -> Bool {
-        false
-    }
-    
-    func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet {
-        
-        var maxIndex: Int = -1
+extension FileSystemItem: FileSystemLoaderReceiver {
+
+    func acceptBatch(_ batch: FileSystemMetadataBatch) -> IndexSet {
         
         for (file, metadata) in batch.metadata.map {
-            
             children[file]?.metadata = metadata
-            
-            let index = children.index(forKey: file) ?? -1
-            
-            if index > maxIndex {
-                maxIndex = index
-            }
         }
-        
-        let minIndex = lastChildLoaded + 1
         
         // TODO: Sorting ??? To maintain a user-specified sort order.
         
-        self.lastChildLoaded = maxIndex
-        
-        return IndexSet(minIndex...maxIndex)
+        return batch.indices
     }
 }
 
-extension FileSystemItem: TrackLoaderObserver {
+extension FileSystemItem: FileSystemLoaderObserver {
     
     func preTrackLoad() {
-//        messenger.publish(.playQueue_startedAddingTracks)
     }
     
     func postTrackLoad() {
-        
-        if lastChildLoaded < children.lastIndex {
-            messenger.publish(TuneBrowserItemsAddedNotification(parentItem: self, childIndices: IndexSet((lastChildLoaded + 1)...children.lastIndex)))
-        }
-        
-//        messenger.publish(.playQueue_doneAddingTracks)
-        lastChildLoaded = -1
     }
     
     func postBatchLoad(indices: IndexSet) {

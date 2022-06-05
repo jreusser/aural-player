@@ -12,9 +12,9 @@ import Foundation
 
 typealias VoidFunction = () -> Void
 
-enum TrackLoaderPriority: Int, CaseIterable {
+enum FileLoaderPriority: Int, CaseIterable {
     
-    private static let opCounts: [TrackLoaderPriority: Int] = {
+    private static let opCounts: [FileLoaderPriority: Int] = {
         
         let physicalCores: Int = SystemUtils.numberOfPhysicalCores
         let activeCores: Int = SystemUtils.numberOfActiveCores
@@ -48,7 +48,7 @@ enum TrackLoaderPriority: Int, CaseIterable {
 // How to deal with 2 simultaneous sessions on startup ? Play queue / Library / Custom playlists ? Adjust batch size accordingly ?
 class TrackLoader {
     
-    let priority: TrackLoaderPriority
+    let priority: FileLoaderPriority
     
     private var session: FileReadSession!
     private var batch: FileMetadataBatch!
@@ -56,7 +56,7 @@ class TrackLoader {
     
     private let queue: OperationQueue = OperationQueue()
     
-    init(priority: TrackLoaderPriority) {
+    init(priority: FileLoaderPriority) {
         
         self.priority = priority
         
