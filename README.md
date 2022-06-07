@@ -7,7 +7,11 @@
 As of May 21, 2022, Aural Player version 4.0 is in active development, and aims to take the app to the next level, bringing improvements such as:
 
 - A new "Unified" (single window) app presentation mode. NOTE - The existing modular UI mode will remain.
-- The playlist becomes the "play queue" and the user can now save multiple playlists.
+- A new full-fledged library for music organization that includes a convenient file system browser and lets the user create and save multiple playlists.
+- The old "playlist" becomes the new "play queue".
+- The ability to easily copy tracks across modules with drag / drop. Example - from a playlist to the play queue, or from the library to a playlist.
+- The ability to easily create new playlists from different places. Example - from a file system folder or from a library album.
+- Enhanced history that keeps track of play counts for tracks, playlists, folders, albums, artists, etc.
 - Nicer user interface aesthetics (look and feel)
 - More compact player and FX panel windows (area reduced by 20%)
 - A new app setup screen on first app launch
@@ -18,7 +22,7 @@ As of May 21, 2022, Aural Player version 4.0 is in active development, and aims 
 - Cleaner source code and use of newer APIs
 - Possibly an app version for iPadOS
 - Possibly online streaming
-- Possibly a file browser with advanced search capabilities
+- Advanced search capabilities (including file system search).
 - Better support for multi-screen setups (window layouts)
 - Plug-in architecture for visualizations (enabling developers to use / share custom visualizations) ? ... TBD
 
