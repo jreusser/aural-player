@@ -263,7 +263,6 @@
                                                     <constraint firstItem="tIQ-kC-yqi" firstAttribute="centerY" secondItem="7YQ-hh-eci" secondAttribute="centerY" id="rVr-MU-Aeq"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="lblTrackNumber" destination="tIQ-kC-yqi" id="jV0-ex-CMU"/>
                                                     <outlet property="textField" destination="tIQ-kC-yqi" id="nNj-My-Tq4"/>
                                                 </connections>
                                             </tableCellView>

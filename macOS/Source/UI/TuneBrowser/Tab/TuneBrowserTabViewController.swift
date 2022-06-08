@@ -130,7 +130,6 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         // happening simultaneously, maybe for each index, check if view(forRow, column)
         // is nil. If nil, go ahead and insert, otherwise skip the update.
         
-        NSLog("Inserting new items at \(indices.toArray()) ...")
         browserView.insertItems(at: indices,
                                 inParent: item.url == fileSystem.rootURL ? nil : item)
         

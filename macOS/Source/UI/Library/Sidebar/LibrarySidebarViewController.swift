@@ -58,6 +58,43 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
         }
     }
     
+    @IBAction func createEmptyPlaylistAction(_ sender: Any) {
+        
+        _ = playlistsManager.createNewPlaylist(named: uniquePlaylistName)
+        sidebarView.reloadData()
+        sidebarView.expandItem(LibrarySidebarCategory.playlists)
+        
+        let playlistCategoryIndex = sidebarView.row(forItem: LibrarySidebarCategory.playlists)
+        let numPlaylists = playlistsManager.numberOfUserDefinedObjects
+        let indexOfNewPlaylist = playlistCategoryIndex + numPlaylists
+        
+        sidebarView.selectRow(indexOfNewPlaylist)
+        editTextField(inRow: indexOfNewPlaylist)
+    }
+    
+    private func editTextField(inRow row: Int) {
+        
+        let rowView = sidebarView.rowView(atRow: row, makeIfNecessary: true)
+        
+        if let editedTextField = (rowView?.view(atColumn: 0) as? NSTableCellView)?.textField {
+            view.window?.makeFirstResponder(editedTextField)
+        }
+    }
+    
+    private var uniquePlaylistName: String {
+        
+        var newPlaylistName: String = "New Playlist"
+        var ctr: Int = 1
+        
+        while playlistsManager.userDefinedObjectExists(named: newPlaylistName) {
+            
+            ctr.increment()
+            newPlaylistName = "New Playlist \(ctr)"
+        }
+        
+        return newPlaylistName
+    }
+    
     private func addFileSystemShortcut() {
         
         sidebarView.insertItems(at: IndexSet(integer: tuneBrowserUIState.sidebarUserFolders.count),

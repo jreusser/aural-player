@@ -23,6 +23,9 @@ class TuneBrowserViewController: NSViewController {
     @IBOutlet weak var btnBack: TintedImageButton!
     @IBOutlet weak var btnForward: TintedImageButton!
     
+    @IBOutlet weak var backHistoryMenu: NSMenu!
+    @IBOutlet weak var forwardHistoryMenu: NSMenu!
+    
     @IBOutlet weak var pathControlWidget: NSPathControl!
     
     private let history: TuneBrowserHistory = TuneBrowserHistory()
@@ -178,6 +181,44 @@ class TuneBrowserViewController: NSViewController {
         
         btnBack.enableIf(history.canGoBack)
         btnForward.enableIf(history.canGoForward)
+        
+        backHistoryMenu.removeAllItems()
+        forwardHistoryMenu.removeAllItems()
+        
+        if history.canGoBack {
+            
+            for url in history.backStack.underlyingArray.reversed() {
+                
+                let item = TuneBrowserHistoryMenuItem(title: url.lastPathComponent, action: #selector(backHistoryMenuAction(_:)))
+                item.url = url
+                item.target = self
+                
+                backHistoryMenu.addItem(item)
+            }
+        }
+        
+        if history.canGoForward {
+            
+            for url in history.forwardStack.underlyingArray.reversed() {
+                
+                let item = TuneBrowserHistoryMenuItem(title: url.lastPathComponent, action: #selector(forwardHistoryMenuAction(_:)))
+                item.url = url
+                item.target = self
+                
+                forwardHistoryMenu.addItem(item)
+            }
+        }
+    }
+    
+    @IBAction func backHistoryMenuAction(_ sender: TuneBrowserHistoryMenuItem) {
+        
+        history.back(to: sender.url)
+        showURL(sender.url, updateHistory: false)
+        updateNavButtons()
+    }
+    
+    @IBAction func forwardHistoryMenuAction(_ sender: TuneBrowserHistoryMenuItem) {
+        showURL(sender.url)
     }
     
     @IBAction func goBackAction(_ sender: Any) {
@@ -235,4 +276,9 @@ extension NSTabView {
             selectTabViewItem(at: numberOfTabViewItems - 1)
         }
     }
+}
+
+class TuneBrowserHistoryMenuItem: NSMenuItem {
+    
+    var url: URL!
 }

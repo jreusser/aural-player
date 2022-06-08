@@ -27,9 +27,18 @@ extension LibrarySidebarViewController: NSTableViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
         if let category = item as? LibrarySidebarCategory {
-            return createNameCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image)
+            
+            return category == .playlists ?
+            createPlaylistCategoryCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image) :
+            createNameCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image)
             
         } else if let sidebarItem = item as? LibrarySidebarItem {
+            
+            if sidebarItem.browserTab == .playlists {
+                
+                return createPlaylistNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
+            }
+            
             return createNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
         }
         
@@ -41,12 +50,42 @@ extension LibrarySidebarViewController: NSTableViewDelegate {
         guard let cell = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("name"), owner: nil)
             as? NSTableCellView else {return nil}
         
-        cell.imageView?.image = nil
-
         cell.text = text
         cell.textFont = font
         cell.textColor = textColor
         
+        cell.image = image
+        cell.imageColor = textColor
+        
+        return cell
+    }
+    
+    private func createPlaylistCategoryCell(_ outlineView: NSOutlineView, _ text: String, font: NSFont, textColor: NSColor, image: NSImage? = nil) -> NSTableCellView? {
+        
+        guard let cell = outlineView.makeView(withIdentifier: .cid_SidebarPlaylistCategory, owner: nil)
+            as? PlaylistSidebarCategoryCell else {return nil}
+        
+        cell.text = text
+        cell.textFont = font
+        cell.textColor = textColor
+        
+        cell.image = image
+        cell.imageColor = textColor
+        
+        cell.updateAddButton(withAction: #selector(createEmptyPlaylistAction(_:)), onTarget: self)
+        
+        return cell
+    }
+    
+    private func createPlaylistNameCell(_ outlineView: NSOutlineView, _ text: String, font: NSFont, textColor: NSColor, image: NSImage? = nil) -> NSTableCellView? {
+        
+        guard let cell = outlineView.makeView(withIdentifier: .cid_SidebarPlaylistName, owner: nil)
+            as? NSTableCellView else {return nil}
+        
+        cell.text = text
+        cell.textFont = font
+        cell.textColor = textColor
+
         cell.image = image
         cell.imageColor = textColor
         
@@ -93,4 +132,22 @@ class LibrarySidebarRowView: AuralTableRowView {
 
         super.didAddSubview(subview)
     }
+}
+
+class PlaylistSidebarCategoryCell: NSTableCellView {
+    
+    @IBOutlet weak var btnAddPlaylist: NSButton!
+    
+    func updateAddButton(withAction action: Selector, onTarget target: NSViewController) {
+        
+        btnAddPlaylist.contentTintColor = systemColorScheme.secondaryTextColor
+        btnAddPlaylist.action = action
+        btnAddPlaylist.target = target
+    }
+}
+
+extension NSUserInterfaceItemIdentifier {
+    
+    static let cid_SidebarPlaylistCategory: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_SidebarPlaylistCategory")
+    static let cid_SidebarPlaylistName: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_SidebarPlaylistName")
 }

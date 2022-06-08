@@ -19,6 +19,8 @@ class Stack<T: Any> {
     // Backing array
     private var array: [T] = []
     
+    var underlyingArray: [T] {array}
+    
     func push(_ elm: T) {
         array.append(elm)
     }

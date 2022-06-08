@@ -110,8 +110,6 @@ extension FileSystem: FileSystemLoaderObserver {
     func postBatchLoad(indices: IndexSet) {
         
         DispatchQueue.main.async {
-            
-            NSLog("Publishing items added at \(indices.toArray()) ...")
             self.observer.itemsAdded(to: self.observedItem, at: indices)
         }
     }
