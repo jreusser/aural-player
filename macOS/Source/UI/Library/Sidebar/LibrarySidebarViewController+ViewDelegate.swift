@@ -89,6 +89,8 @@ extension LibrarySidebarViewController: NSTableViewDelegate {
         cell.image = image
         cell.imageColor = textColor
         
+        cell.textField?.delegate = self
+        
         return cell
     }
     

@@ -133,7 +133,7 @@
                                                 <rect key="frame" x="8" y="48" width="183" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Yyi-ag-sBe" userLabel="Playlists" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Yyi-ag-sBe" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="3" y="0.0" width="177" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="1ih-Om-sqE"/>
@@ -143,6 +143,9 @@
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="-2" id="YfX-eo-MEg"/>
+                                                        </connections>
                                                     </textField>
                                                     <button hidden="YES" toolTip="Create a new playlist" translatesAutoresizingMaskIntoConstraints="NO" id="vG2-Q6-kkV" userLabel="Add Playlist Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="166" y="5.5" width="12.5" height="14"/>

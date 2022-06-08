@@ -104,7 +104,7 @@
                                 <tabViewItems>
                                     <tabViewItem label="Table" identifier="1" id="JmL-ym-Bc9" userLabel="Table View">
                                         <view key="view" id="lCD-8O-Upd">
-                                            <rect key="frame" x="0.0" y="0.0" width="770" height="304"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="790" height="314"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                     </tabViewItem>

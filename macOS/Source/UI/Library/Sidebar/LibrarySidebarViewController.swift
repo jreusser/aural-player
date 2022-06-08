@@ -27,7 +27,7 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
         super.viewDidLoad()
         
         categories.forEach {sidebarView.expandItem($0)}
-        sidebarView.selectRow(7)
+        sidebarView.selectRow(1)
         
         messenger.subscribe(to: .librarySidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
         
@@ -99,5 +99,45 @@ class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSO
         
         sidebarView.insertItems(at: IndexSet(integer: tuneBrowserUIState.sidebarUserFolders.count),
                                 inParent: LibrarySidebarCategory.tuneBrowser, withAnimation: .slideDown)
+    }
+}
+
+extension LibrarySidebarViewController: NSTextFieldDelegate {
+    
+    func controlTextDidEndEditing(_ obj: Notification) {
+        
+        let playlistCategoryRow = sidebarView.row(forItem: LibrarySidebarCategory.playlists)
+        let rowOfPlaylist = sidebarView.selectedRow
+        let indexOfPlaylist = rowOfPlaylist - playlistCategoryRow - 1
+        
+        guard let editedTextField = obj.object as? NSTextField else {return}
+        
+        let playlist = playlistsManager.userDefinedObjects[indexOfPlaylist]
+        let oldPlaylistName = playlist.name
+        let newPlaylistName = editedTextField.stringValue
+        
+        // No change in playlist name. Nothing to be done.
+        if newPlaylistName == oldPlaylistName {return}
+        
+        editedTextField.textColor = .defaultSelectedLightTextColor
+        
+        // If new name is empty or a playlist with the new name exists, revert to old value.
+        if newPlaylistName.isEmptyAfterTrimming {
+            
+            editedTextField.stringValue = playlist.name
+            
+            _ = DialogsAndAlerts.genericErrorAlert("Can't rename playlist", "Playlist name must have at least one non-whitespace character.", "Please type a valid name.").showModal()
+            
+        } else if playlistsManager.userDefinedObjectExists(named: newPlaylistName) {
+            
+            editedTextField.stringValue = playlist.name
+            
+            _ = DialogsAndAlerts.genericErrorAlert("Can't rename playlist", "Another playlist with that name already exists.", "Please type a unique name.").showModal()
+            
+        } else {
+            
+            playlistsManager.renameObject(named: oldPlaylistName, to: newPlaylistName)
+//            playlistViewController.playlist = playlist
+        }
     }
 }

@@ -63,7 +63,7 @@
                                 <splitView dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w60-lv-Hyh" userLabel="LeftRight SplitView">
                                     <rect key="frame" x="15" y="10" width="970" height="451"/>
                                     <subviews>
-                                        <customView misplaced="YES" id="shO-p5-YdO" userLabel="Sidebar View">
+                                        <customView id="shO-p5-YdO" userLabel="Sidebar View">
                                             <rect key="frame" x="0.0" y="0.0" width="234" height="451"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <constraints>
@@ -71,12 +71,12 @@
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="LDW-hw-XFX"/>
                                             </constraints>
                                         </customView>
-                                        <customView misplaced="YES" id="jRt-01-52h" userLabel="Browser View">
+                                        <customView id="jRt-01-52h" userLabel="Browser View">
                                             <rect key="frame" x="244" y="0.0" width="726" height="451"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="kDh-fQ-j7J" userLabel="BrowserTabView">
-                                                    <rect key="frame" x="10" y="-5" width="716" height="451"/>
+                                                    <rect key="frame" x="10" y="0.0" width="716" height="451"/>
                                                     <font key="font" metaFont="system"/>
                                                     <tabViewItems>
                                                         <tabViewItem label="Library-Tracks" identifier="" id="HRv-Jn-Es0">
@@ -197,7 +197,6 @@
             </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="139" y="144"/>
         </window>
-        <customObject id="e2v-J5-220" customClass="LibraryTracksViewController" customModule="Aural" customModuleProvider="target"/>
     </objects>
     <resources>
         <image name="xmark" catalog="system" width="14" height="13"/>
