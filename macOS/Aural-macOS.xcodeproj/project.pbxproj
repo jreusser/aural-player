@@ -641,6 +641,8 @@
 		3EC530E5284BB69C0036207C /* TableDragDropContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E4284BB69C0036207C /* TableDragDropContext.swift */; };
 		3EC530E7284BC5410036207C /* LibrarySidebarViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E6284BC5410036207C /* LibrarySidebarViewController+ViewDelegate.swift */; };
 		3EC530E9284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E8284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift */; };
+		3EC62B6628512F0600995264 /* Playlists.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC62B6528512F0600995264 /* Playlists.xib */; };
+		3EC62B6828512F2400995264 /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC62B6728512F2400995264 /* PlaylistsViewController.swift */; };
 		3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */; };
 		3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
@@ -2174,6 +2176,8 @@
 		3EC530E4284BB69C0036207C /* TableDragDropContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDragDropContext.swift; sourceTree = "<group>"; };
 		3EC530E6284BC5410036207C /* LibrarySidebarViewController+ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibrarySidebarViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
 		3EC530E8284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibrarySidebarViewController+DataSource.swift"; sourceTree = "<group>"; };
+		3EC62B6528512F0600995264 /* Playlists.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Playlists.xib; sourceTree = "<group>"; };
+		3EC62B6728512F2400995264 /* PlaylistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
 		3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
 		3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTracksToPlaylistCommand.swift; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
@@ -2816,6 +2820,8 @@
 		3E2A2A00280909D2000F0539 /* Playlists */ = {
 			isa = PBXGroup;
 			children = (
+				3EC62B6528512F0600995264 /* Playlists.xib */,
+				3EC62B6728512F2400995264 /* PlaylistsViewController.swift */,
 				3EC62B6428512EBA00995264 /* SinglePlaylist */,
 				3E2A2A09280A030A000F0539 /* TableViews */,
 				3E16BE0B280DB48E00CE9FE9 /* PlaylistsUIState.swift */,
@@ -5959,6 +5965,7 @@
 				3E6C12ED25CEBE8100BF0D07 /* DelayUnit.xib in Resources */,
 				3E51F346262AFDCA0048452F /* ThemesManager.xib in Resources */,
 				3E498E26284D2DA400BF4157 /* TuneBrowser.xib in Resources */,
+				3EC62B6628512F0600995264 /* Playlists.xib in Resources */,
 				3E6C124225CEBDF400BF0D07 /* ArtistsPlaylistSort.xib in Resources */,
 				3E6C125425CEBE0600BF0D07 /* ColorSchemesManager.xib in Resources */,
 				3EF84DAA2836359B004EF57B /* LibrarySidebar.xib in Resources */,
@@ -6836,6 +6843,7 @@
 				3E798F3528386009000CFAE8 /* SortedTrackList.swift in Sources */,
 				3E634D73284698A9008A47EC /* TrackListOutlineViewController+DataSource.swift in Sources */,
 				3EFE3A4D27864898006F8B8C /* ID3Spec.swift in Sources */,
+				3EC62B6828512F2400995264 /* PlaylistsViewController.swift in Sources */,
 				3EFE39BF27864897006F8B8C /* FontSchemesPersistentState.swift in Sources */,
 				3E59A175262C9EDA006DF775 /* WindowLoader.swift in Sources */,
 				3EFE3AF527864942006F8B8C /* FFmpegSampleConverter.swift in Sources */,

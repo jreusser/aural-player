@@ -99,10 +99,8 @@ class LibraryWindowController: NSWindowController {
         
         let tab = item.browserTab
 
-        if tab == .playlists,
-           let playlist = playlistsManager.userDefinedObject(named: item.displayName) {
-            
-            playlistsViewController.playlist = playlist
+        if tab == .playlists {
+            messenger.publish(.playlists_showPlaylist, payload: item.displayName)
             
         } else if tab == .fileSystem,
                   let folderURL = item.tuneBrowserURL {

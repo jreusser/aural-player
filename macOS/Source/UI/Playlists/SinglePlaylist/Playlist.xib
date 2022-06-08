@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="PlaylistsViewController" customModule="Aural" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="PlaylistViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="controlsContainer" destination="dET-Qb-ycg" id="gof-Bi-mNp"/>
                 <outlet property="lblDurationSummary" destination="eur-oQ-9Hc" id="gbB-r6-rVn"/>

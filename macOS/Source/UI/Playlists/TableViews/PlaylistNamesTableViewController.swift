@@ -14,7 +14,7 @@ import AppKit
 class PlaylistNamesTableViewController: NSViewController {
     
     @IBOutlet weak var tableView: NSTableView!
-    @IBOutlet weak var playlistViewController: PlaylistContainerViewController!
+//    @IBOutlet weak var playlistViewController: PlaylistContainerViewController!
     
     var tableViewController: PlaylistTracksViewController!
     var controlsContainer: PlaylistControlsContainer!
@@ -43,7 +43,7 @@ class PlaylistNamesTableViewController: NSViewController {
         
         tableView.enableDragDrop()
         
-        playlistViewController.playlist = nil
+//        playlistViewController.playlist = nil
         
         messenger.subscribe(to: .playlists_createPlaylistFromTracks, handler: createPlaylistFromTracks(_:))
         colorSchemesManager.registerObserver(tableView, forProperty: \.backgroundColor)
@@ -109,7 +109,7 @@ class PlaylistNamesTableViewController: NSViewController {
             playlistsManager.deleteObject(atIndex: row)
         }
         
-        playlistViewController.playlist = nil
+//        playlistViewController.playlist = nil
         tableView.reloadData()
     }
     

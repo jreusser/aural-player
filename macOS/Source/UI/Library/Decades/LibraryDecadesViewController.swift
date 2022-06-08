@@ -200,6 +200,9 @@ class DecadeTrackCellView: AuralTableCellView {
 extension NSUserInterfaceItemIdentifier {
     
     // Outline view column identifiers
+    static let cid_Name: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_Name")
+    static let cid_Duration: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_Duration")
+    
     static let cid_DecadeName: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_DecadeName")
     static let cid_DecadeDuration: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_DecadeDuration")
 }

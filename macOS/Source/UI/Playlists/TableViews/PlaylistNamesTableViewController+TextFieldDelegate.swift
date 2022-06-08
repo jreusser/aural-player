@@ -43,7 +43,7 @@ extension PlaylistNamesTableViewController: NSTextFieldDelegate {
         } else {
             
             playlistsManager.renameObject(named: oldPlaylistName, to: newPlaylistName)
-            playlistViewController.playlist = playlist
+//            playlistViewController.playlist = playlist
         }
     }
 }

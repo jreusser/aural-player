@@ -52,13 +52,13 @@ extension PlaylistNamesTableViewController: NSTableViewDelegate {
         
         guard selectedRowCount == 1, let row = selectedRows.first else {
             
-            playlistViewController.playlist = nil
+//            playlistViewController.playlist = nil
             controlsContainer.hideControls()
             return
         }
         
         let playlist = playlistsManager.userDefinedObjects[row]
-        playlistViewController.playlist = playlist
+//        playlistViewController.playlist = playlist
         tableViewController.playlist = playlist
         
         controlsContainer.showControls()

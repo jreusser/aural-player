@@ -1,5 +1,5 @@
 //
-//  PlaylistsViewController.swift
+//  PlaylistViewController.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class PlaylistsViewController: NSViewController {
+class PlaylistViewController: NSViewController {
     
     override var nibName: String? {"Playlist"}
     
