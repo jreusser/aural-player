@@ -12,7 +12,7 @@ import Cocoa
 
 class PlaylistsViewController: NSViewController {
     
-    override var nibName: String? {"Playlists"}
+    override var nibName: String? {"Playlist"}
     
     @IBOutlet weak var rootContainer: NSBox!
     @IBOutlet weak var tabButtonsBox: NSBox!
