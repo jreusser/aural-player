@@ -133,8 +133,8 @@
                                                 <rect key="frame" x="8" y="48" width="183" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Yyi-ag-sBe" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="3" y="0.0" width="177" height="24"/>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Yyi-ag-sBe" userLabel="Playlist Name" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="0.0" width="160" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="1ih-Om-sqE"/>
                                                         </constraints>
@@ -163,7 +163,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="Yyi-ag-sBe" secondAttribute="trailing" constant="5" id="026-Ay-YwU"/>
                                                     <constraint firstAttribute="trailing" secondItem="vG2-Q6-kkV" secondAttribute="trailing" constant="5" id="6Gv-hk-ico"/>
                                                     <constraint firstItem="Yyi-ag-sBe" firstAttribute="centerY" secondItem="8pl-xe-PuZ" secondAttribute="centerY" id="TYm-Ed-prj"/>
-                                                    <constraint firstItem="Yyi-ag-sBe" firstAttribute="leading" secondItem="8pl-xe-PuZ" secondAttribute="leading" constant="5" id="yIc-cv-DlA"/>
+                                                    <constraint firstItem="Yyi-ag-sBe" firstAttribute="leading" secondItem="8pl-xe-PuZ" secondAttribute="leading" constant="22" id="yIc-cv-DlA"/>
                                                     <constraint firstItem="vG2-Q6-kkV" firstAttribute="centerY" secondItem="8pl-xe-PuZ" secondAttribute="centerY" id="zmf-M6-bVg"/>
                                                 </constraints>
                                                 <connections>
