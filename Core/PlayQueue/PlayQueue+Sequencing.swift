@@ -48,7 +48,7 @@ extension PlayQueue {
 
     func subsequent() -> Track? {
         
-        currentTrackIndex = indexOfSubsequent
+        currentTrackIndex = shuffleMode == .on ? shuffleSequence.next(repeatMode: repeatMode) : indexOfSubsequent
         return currentTrack
     }
     
@@ -98,13 +98,20 @@ extension PlayQueue {
     func next() -> Track? {
 
         // If there is no previous track, don't change the playingTrack variable, because the playing track will continue playing
-        if let nextIndex = indexOfNext, let nextTrack = self[nextIndex] {
-
-            currentTrackIndex = nextIndex
-            return nextTrack
+        guard let nextIndex = indexOfNext else {return nil}
+        
+        let computedValue = shuffleMode == .on ? shuffleSequence.next(repeatMode: repeatMode) : nextIndex
+        
+        // Update the cursor only with a non-nil value.
+        if let nonNilComputedValue = computedValue {
+            
+            currentTrackIndex = nonNilComputedValue
+            return currentTrack
+            
+        } else {
+            
+            return nil
         }
-
-        return nil
     }
     
     // Peeks at (without selecting for playback) the next track in the sequence
@@ -124,13 +131,20 @@ extension PlayQueue {
     func previous() -> Track? {
 
         // If there is no previous track, don't change the playingTrack variable, because the playing track will continue playing
-        if let previousIndex = indexOfPrevious, let previousTrack = self[previousIndex] {
-
-            currentTrackIndex = previousIndex
-            return previousTrack
+        guard let previousIndex = indexOfPrevious else {return nil}
+        
+        let computedValue = shuffleMode == .on ? shuffleSequence.previous() : previousIndex
+        
+        // Update the cursor only with a non-nil value.
+        if let nonNilComputedValue = computedValue {
+            
+            currentTrackIndex = nonNilComputedValue
+            return currentTrack
+            
+        } else {
+            
+            return nil
         }
-
-        return nil
     }
     
     // Peeks at (without selecting for playback) the previous track in the sequence
@@ -187,7 +201,7 @@ extension PlayQueue {
     func setShuffleMode(_ shuffleMode: ShuffleMode) -> RepeatAndShuffleModes {
         
         // Execute this method only if the desired shuffle mode is different from the current shuffle mode.
-        guard shuffleMode != self.shuffleMode else {return (repeatMode, shuffleMode)}
+        guard shuffleMode != self.shuffleMode else {return repeatAndShuffleModes}
         
         self.shuffleMode = shuffleMode
         
@@ -198,10 +212,7 @@ extension PlayQueue {
                 repeatMode = .off
             }
             
-            // No need to do this if no track is currently playing.
-            if let theCurTrackIndex = self.currentTrackIndex {
-                shuffleSequence.resizeAndReshuffle(size: size, startWith: theCurTrackIndex)
-            }
+            shuffleSequence.resizeAndReshuffle(size: size, startWith: currentTrackIndex)
             
         } // Shuffle mode is off
         else {

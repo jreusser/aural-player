@@ -136,7 +136,7 @@ extension ColorScheme {
                                                 secondarySelectedTextColor: .white80Percent,
                                                 tertiarySelectedTextColor: .white60Percent,
                                                 
-                                                textSelectionColor: .black,
+                                                textSelectionColor: PlatformColor(red: 0.55, green: 0.38, blue: 0.39),
                                                 
                                                 activeControlColor: .black,
                                                 inactiveControlColor: .white50Percent,
