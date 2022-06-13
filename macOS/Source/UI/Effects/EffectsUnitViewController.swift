@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class EffectsUnitViewController: NSViewController, Destroyable {
+class EffectsUnitViewController: NSViewController {
     
     // ------------------------------------------------------------------------
     
@@ -104,7 +104,7 @@ class EffectsUnitViewController: NSViewController, Destroyable {
         }
     }
     
-    func destroy() {
+    override func destroy() {
         messenger.unsubscribeFromAll()
     }
     

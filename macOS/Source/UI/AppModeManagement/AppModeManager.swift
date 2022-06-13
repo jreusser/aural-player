@@ -18,6 +18,8 @@ class AppModeManager {
     
     private lazy var windowedMode: WindowedAppModeController = WindowedAppModeController()
     
+    private lazy var unifiedMode: UnifiedAppModeController = UnifiedAppModeController()
+    
     private lazy var menuBarMode: MenuBarAppModeController = MenuBarAppModeController()
     
     private lazy var controlBarMode: ControlBarAppModeController = ControlBarAppModeController()
@@ -39,15 +41,16 @@ class AppModeManager {
         
         if preferences.appModeOnStartup.option == .specific,
            let appMode = preferences.appModeOnStartup.mode {
-            
+
             // Present a specific app mode.
             presentMode(appMode)
-            
+
         } else {
-            
+
             // Remember app mode from last app launch.
             presentMode(lastPresentedAppMode ?? .defaultMode)
         }
+//        presentMode(.unified)
     }
     
     func presentMode(_ newMode: AppMode) {
@@ -62,8 +65,7 @@ class AppModeManager {
             
         case .unified:
             
-            // TODO: Implement !!!
-            return
+            unifiedMode.presentMode(transitioningFromMode: currentMode)
         
         case .menuBar:
             
@@ -85,8 +87,7 @@ class AppModeManager {
             
         case .modular:  windowedMode.dismissMode()
             
-        // TODO: Implement !!!
-        case .unified:  return
+        case .unified:  unifiedMode.dismissMode()
             
         case .menuBar: menuBarMode.dismissMode()
             

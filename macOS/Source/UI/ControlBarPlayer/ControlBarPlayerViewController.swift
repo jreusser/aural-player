@@ -9,7 +9,7 @@
 //  
 import Cocoa
 
-class ControlBarPlayerViewController: NSViewController, NSMenuDelegate, Destroyable {
+class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
     
     @IBOutlet weak var containerBox: NSBox!
 
@@ -283,10 +283,10 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate, Destroya
     
     // MARK: Tear down ------------------------------------------
     
-    func destroy() {
+    override func destroy() {
         
         [playbackViewController, audioViewController, sequencingViewController].forEach {
-            ($0 as? Destroyable)?.destroy()
+            $0?.destroy()
         }
         
         messenger.unsubscribeFromAll()

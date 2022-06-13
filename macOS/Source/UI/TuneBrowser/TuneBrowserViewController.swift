@@ -97,7 +97,7 @@ class TuneBrowserViewController: NSViewController {
 //        sidebarView.selectRow(musicFolderRow)
     }
     
-    func destroy() {
+    override func destroy() {
         messenger.unsubscribeFromAll()
     }
     

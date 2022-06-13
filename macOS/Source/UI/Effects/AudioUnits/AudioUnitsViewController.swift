@@ -13,7 +13,7 @@ import AVFoundation
 /*
     View controller for the Audio Units view.
  */
-class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, FontSchemePropertyObserver, Destroyable {
+class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, FontSchemePropertyObserver {
     
     override var nibName: String? {"AudioUnits"}
     
@@ -70,7 +70,7 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, F
 //        messenger.subscribe(to: .playlist_changeTrackNameSelectedTextColor, handler: changeAURowSelectedTextColor(_:))
     }
     
-    func destroy() {
+    override func destroy() {
         messenger.unsubscribeFromAll()
     }
     

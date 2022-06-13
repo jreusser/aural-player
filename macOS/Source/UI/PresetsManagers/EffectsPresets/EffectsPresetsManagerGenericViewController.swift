@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class EffectsPresetsManagerGenericViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSTextFieldDelegate, Destroyable {
+class EffectsPresetsManagerGenericViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSTextFieldDelegate {
     
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var previewBox: NSBox!
@@ -38,7 +38,7 @@ class EffectsPresetsManagerGenericViewController: NSViewController, NSTableViewD
                             filter: unitTypeFilter)
     }
     
-    func destroy() {
+    override func destroy() {
         messenger.unsubscribeFromAll()
     }
     

@@ -27,7 +27,7 @@ class TrackInfoWindowController: NSWindowController {
     }
 }
     
-class TrackInfoViewController: NSViewController, NSMenuDelegate, Destroyable {
+class TrackInfoViewController: NSViewController, NSMenuDelegate {
     
     @IBOutlet weak var tabView: AuralTabView!
     
@@ -86,7 +86,7 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, Destroyable {
         lblTabCaption.textColor = systemColorScheme.captionTextColor
     }
     
-    func destroy() {
+    override func destroy() {
         messenger.unsubscribeFromAll()
     }
 

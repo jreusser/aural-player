@@ -12,7 +12,7 @@
  */
 import Cocoa
 
-class StringInputPopoverViewController: NSViewController, ModalComponentProtocol, Destroyable {
+class StringInputPopoverViewController: NSViewController, ModalComponentProtocol {
     
     // The actual popover that is shown
     private var popover: NSPopover!

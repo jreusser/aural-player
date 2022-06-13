@@ -13,7 +13,7 @@ import Cocoa
     View controller for playback sequencing controls (repeat/shuffle).
     Also handles sequencing requests from app menus.
  */
-class PlayerSequencingViewController: NSViewController, Destroyable {
+class PlayerSequencingViewController: NSViewController {
 
     @IBOutlet weak var btnRepeat: TintedImageButton!
     @IBOutlet weak var btnShuffle: TintedImageButton!
@@ -45,7 +45,7 @@ class PlayerSequencingViewController: NSViewController, Destroyable {
     
     func initSubscriptions() {}
     
-    func destroy() {
+    override func destroy() {
         messenger.unsubscribeFromAll()
     }
     

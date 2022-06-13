@@ -12,7 +12,7 @@ import Cocoa
 /*
     View controller for player volume and pan
  */
-class PlayerAudioViewController: NSViewController, Destroyable {
+class PlayerAudioViewController: NSViewController {
     
     var showsPanControl: Bool {true}
     
@@ -60,7 +60,7 @@ class PlayerAudioViewController: NSViewController, Destroyable {
     
     func initSubscriptions() {}
     
-    func destroy() {
+    override func destroy() {
         messenger.unsubscribeFromAll()
     }
     

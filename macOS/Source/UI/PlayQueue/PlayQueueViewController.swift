@@ -72,6 +72,10 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         messenger.publish(.playQueue_refresh)
     }
     
+    override func destroy() {
+        messenger.unsubscribeFromAll()
+    }
+    
     // MARK: Commands --------------------------------------------------------------------------------------------------------
     
     @IBAction func playSelectedTrackAction(_ sender: Any) {

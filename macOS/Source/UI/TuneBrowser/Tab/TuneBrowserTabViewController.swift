@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystemUIObserver, Destroyable {
+class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystemUIObserver {
     
     override var nibName: String? {"TuneBrowserTab"}
     
@@ -113,7 +113,7 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         }
     }
     
-    func destroy() {
+    override func destroy() {
         messenger.unsubscribeFromAll()
     }
     

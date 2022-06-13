@@ -13,7 +13,7 @@ import Cocoa
      View controller for the Chapters list.
      Displays the chapters list in a tabular format, and provides chapter search and playback functions.
  */
-class ChaptersListViewController: NSViewController, Destroyable {
+class ChaptersListViewController: NSViewController {
     
     @IBOutlet weak var chaptersListView: NSTableView!
     @IBOutlet weak var scrollView: NSScrollView!
@@ -104,7 +104,7 @@ class ChaptersListViewController: NSViewController, Destroyable {
 //        messenger.subscribe(to: .playlist_changeSummaryInfoColor, handler: changeSummaryInfoColor(_:))
     }
     
-    func destroy() {
+    override func destroy() {
         messenger.unsubscribeFromAll()
     }
     

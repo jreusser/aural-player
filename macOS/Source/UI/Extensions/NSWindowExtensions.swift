@@ -84,6 +84,10 @@ extension NSWindow {
     }
 }
 
+extension NSViewController: Destroyable {
+    @objc func destroy() {}
+}
+
 extension NSWindowController: Destroyable {
     
     var theWindow: NSWindow {self.window!}

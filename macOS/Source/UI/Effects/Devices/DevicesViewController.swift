@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class DevicesViewController: NSViewController, FontSchemePropertyObserver, ColorSchemeObserver, Destroyable {
+class DevicesViewController: NSViewController, FontSchemePropertyObserver, ColorSchemeObserver {
     
     override var nibName: String? {"Devices"}
     

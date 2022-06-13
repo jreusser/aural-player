@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class EffectsPresetsManagerViewController: NSViewController, Destroyable {
+class EffectsPresetsManagerViewController: NSViewController {
     
     private let masterPresetsManagerViewController: MasterPresetsManagerViewController = MasterPresetsManagerViewController()
     private let eqPresetsManagerViewController: EQPresetsManagerViewController = EQPresetsManagerViewController()
@@ -51,7 +51,7 @@ class EffectsPresetsManagerViewController: NSViewController, Destroyable {
         messenger.subscribe(to: .presetsManager_selectionChanged, handler: managerSelectionChanged(_:))
     }
     
-    func destroy() {
+    override func destroy() {
         
         (viewControllers as? [Destroyable])?.forEach {$0.destroy()}
         messenger.unsubscribeFromAll()

@@ -16,7 +16,7 @@ import Cocoa
 /// For an example of how this class is used:
 /// - SeeAlso: `InfoPopupViewController`
 ///
-class SingletonPopoverViewController: NSViewController, Destroyable {
+class SingletonPopoverViewController: NSViewController {
     
     private static var instances: [String: SingletonPopoverViewController] = [:]
     
@@ -46,7 +46,7 @@ class SingletonPopoverViewController: NSViewController, Destroyable {
         instances.removeAll()
     }
     
-    func destroy() {
+    override func destroy() {
         
         close()
         

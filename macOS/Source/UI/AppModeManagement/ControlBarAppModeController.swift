@@ -19,7 +19,7 @@ import Cocoa
 /// The control bar app mode allows the user access to essential player functions and is intended for a
 /// low level of user interaction. It will typically be used when running the application in the "background".
 ///
-class ControlBarAppModeController: NSObject, AppModeController, NSMenuDelegate {
+class ControlBarAppModeController: AppModeController {
 
     var mode: AppMode {.controlBar}
 

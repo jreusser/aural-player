@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class MenuBarPlayerViewController: NSViewController, Destroyable {
+class MenuBarPlayerViewController: NSViewController {
 
     override var nibName: String? {"MenuBarPlayer"}
     
@@ -54,10 +54,10 @@ class MenuBarPlayerViewController: NSViewController, Destroyable {
         messenger.subscribeAsync(to: .player_trackNotPlayed, handler: trackNotPlayed(_:))
     }
     
-    func destroy() {
+    override func destroy() {
         
         [playbackViewController, audioViewController, sequencingViewController].forEach {
-            ($0 as? Destroyable)?.destroy()
+            $0?.destroy()
         }
         
         messenger.unsubscribeFromAll()

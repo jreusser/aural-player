@@ -22,7 +22,7 @@ import Cocoa
  
         - Functions toolbar (detailed track info / favorite / bookmark, etc)
  */
-class PlayerViewController: NSViewController, Destroyable {
+class PlayerViewController: NSViewController {
     
     override var nibName: String? {"Player"}
 
@@ -76,7 +76,7 @@ class PlayerViewController: NSViewController, Destroyable {
 //        messenger.subscribe(to: .player_changeTrackInfoTertiaryTextColor, handler: infoView.changeTertiaryTextColor(_:))
     }
     
-    func destroy() {
+    override func destroy() {
         
         [playbackViewController, playerAudioViewController, playerSequencingViewController,
           playingTrackFunctionsViewController].forEach {($0 as? Destroyable)?.destroy()}

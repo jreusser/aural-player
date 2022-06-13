@@ -13,7 +13,7 @@ import Cocoa
     View controller for all playback-related controls (play/pause, prev/next track, seeking, segment looping).
     Also handles playback requests from app menus.
  */
-class PlaybackViewController: NSViewController, Destroyable {
+class PlaybackViewController: NSViewController {
     
     @IBOutlet weak var playbackView: PlaybackView!
     
@@ -34,7 +34,7 @@ class PlaybackViewController: NSViewController, Destroyable {
     
     func initSubscriptions() {}
     
-    func destroy() {
+    override func destroy() {
         messenger.unsubscribeFromAll()
     }
     

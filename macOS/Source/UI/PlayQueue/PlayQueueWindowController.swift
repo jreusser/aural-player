@@ -202,7 +202,9 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
     }
     
     override func destroy() {
-        // TODO: 
+        
+        close()
+        messenger.unsubscribeFromAll()
     }
     
     private func changeWindowCornerRadius(_ radius: CGFloat) {
