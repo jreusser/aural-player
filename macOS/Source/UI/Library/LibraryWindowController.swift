@@ -46,6 +46,10 @@ class LibraryWindowController: NSWindowController {
         
         super.windowDidLoad()
         
+        let sidebarView: NSView = sidebarController.view
+        splitView.arrangedSubviews[0].addSubview(sidebarView)
+        sidebarView.anchorToSuperview()
+        
         let libraryTracksView: NSView = libraryTracksController.view
         tabGroup.tabViewItem(at: 0).view?.addSubview(libraryTracksView)
         libraryTracksView.anchorToSuperview()
@@ -73,10 +77,6 @@ class LibraryWindowController: NSWindowController {
         let playlistsView: NSView = playlistsViewController.view
         tabGroup.tabViewItem(at: 6).view?.addSubview(playlistsView)
         playlistsView.anchorToSuperview()
-        
-        let sidebarView: NSView = sidebarController.view
-        splitView.arrangedSubviews[0].addSubview(sidebarView)
-        sidebarView.anchorToSuperview()
         
         messenger.subscribe(to: .library_showBrowserTabForItem, handler: showBrowserTab(forItem:))
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))

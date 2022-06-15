@@ -22,6 +22,21 @@ class UnifiedPlayerWindowController: NSWindowController {
     @IBOutlet weak var presentationModeMenuItem: TintedIconMenuItem!
     @IBOutlet weak var settingsMenuIconItem: TintedIconMenuItem!
     
+    // The tab group that switches between the 4 playlist views
+    @IBOutlet weak var tabGroup: NSTabView!
+    
+    private lazy var playQueueTableController: PlayQueueTableViewController = PlayQueueTableViewController()
+    
+    private lazy var libraryTracksController: LibraryTracksViewController = LibraryTracksViewController()
+    private lazy var libraryArtistsController: LibraryArtistsViewController = LibraryArtistsViewController()
+    private lazy var libraryAlbumsController: LibraryAlbumsViewController = LibraryAlbumsViewController()
+    private lazy var libraryGenresController: LibraryGenresViewController = LibraryGenresViewController()
+    private lazy var libraryDecadesController: LibraryDecadesViewController = LibraryDecadesViewController()
+    
+    private lazy var tuneBrowserViewController: TuneBrowserViewController = TuneBrowserViewController()
+    
+    private lazy var playlistsViewController: PlaylistsViewController = PlaylistsViewController()
+    
     private lazy var messenger: Messenger = Messenger(for: self)
     
     // One-time setup
@@ -36,6 +51,20 @@ class UnifiedPlayerWindowController: NSWindowController {
         initSubscriptions()
         
         super.windowDidLoad()
+        
+        tabGroup.addAndAnchorSubView(forController: playQueueTableController)
+        
+        tabGroup.addAndAnchorSubView(forController: libraryTracksController)
+        tabGroup.addAndAnchorSubView(forController: libraryArtistsController)
+        tabGroup.addAndAnchorSubView(forController: libraryAlbumsController)
+        tabGroup.addAndAnchorSubView(forController: libraryGenresController)
+        tabGroup.addAndAnchorSubView(forController: libraryDecadesController)
+        
+        tabGroup.addAndAnchorSubView(forController: tuneBrowserViewController)
+        
+        tabGroup.addAndAnchorSubView(forController: playlistsViewController)
+        
+        tabGroup.selectTabViewItem(at: 1)
     }
     
     // Set window properties
@@ -99,5 +128,14 @@ class UnifiedPlayerWindowController: NSWindowController {
     
     func changeWindowCornerRadius(_ radius: CGFloat) {
         rootContainerBox.cornerRadius = radius
+    }
+}
+
+extension NSTabView {
+    
+    func addAndAnchorSubView(forController controller: NSViewController) {
+        
+        addTabViewItem(NSTabViewItem(viewController: controller))
+        controller.view.anchorToSuperview()
     }
 }
