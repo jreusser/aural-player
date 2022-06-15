@@ -19,14 +19,12 @@ class PlayerAudioViewController: NSViewController {
     // Volume/pan controls
     @IBOutlet weak var btnVolume: TintedImageButton!
     @IBOutlet weak var volumeSlider: NSSlider!
-    @IBOutlet weak var panSlider: NSSlider!
     
     // These are feedback labels that are shown briefly and automatically hidden
     @IBOutlet weak var lblVolume: VALabel!
     
     // Wrappers around the feedback labels that automatically hide them after showing them for a brief interval
     var autoHidingVolumeLabel: AutoHidingView!
-    var autoHidingPanLabel: AutoHidingView!
     
     // Delegate that conveys all volume/pan adjustments to the audio graph
     var audioGraph: AudioGraphDelegateProtocol = audioGraphDelegate

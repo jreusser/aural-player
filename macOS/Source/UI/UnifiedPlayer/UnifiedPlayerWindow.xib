@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="UnifiedPlayerWindowController" customModule="Aural" customModuleProvider="target">
+            <connections>
+                <outlet property="btnMinimize" destination="uqs-37-cFW" id="PS8-Qa-j26"/>
+                <outlet property="btnQuit" destination="eoQ-Xe-ODi" id="9a8-0J-rjm"/>
+                <outlet property="logoImage" destination="Qgw-qr-6uY" id="Sk4-8w-7d9"/>
+                <outlet property="presentationModeMenuItem" destination="zFw-j4-cIv" id="0sq-To-Mh6"/>
+                <outlet property="rootContainerBox" destination="aim-2G-bxd" id="ZCy-0k-M3p"/>
+                <outlet property="rootSplitView" destination="zSX-rs-0Aq" id="50R-nu-d5j"/>
+                <outlet property="settingsMenuIconItem" destination="Jhn-9J-38J" id="wPh-4Y-G2H"/>
+                <outlet property="tabGroup" destination="3Ep-XV-pMg" id="FQa-gV-OtK"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="pIs-zT-Usq"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g" customClass="SnappingWindow" customModule="Aural" customModuleProvider="target">
+            <windowStyleMask key="styleMask" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="800" height="500"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
+            <value key="minSize" type="size" width="640" height="400"/>
+            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="aim-2G-bxd" userLabel="Root Container">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
+                        <view key="contentView" id="Tvl-Bw-Gle">
+                            <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                        <color key="fillColor" white="0.076477904419798945" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </box>
+                    <box boxType="custom" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="qQ2-PJ-W1D" userLabel="Divider Line">
+                        <rect key="frame" x="0.0" y="455" width="800" height="1"/>
+                        <view key="contentView" id="ogn-QH-VpQ">
+                            <rect key="frame" x="1" y="1" width="798" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                        <color key="borderColor" white="0.076477904420000006" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="fillColor" white="0.076477904420000006" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </box>
+                    <splitView arrangesAllSubviews="NO" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="zSX-rs-0Aq" userLabel="Root Split View" customClass="UnifiedPlayerSplitView" customModule="Aural" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="455"/>
+                        <subviews>
+                            <customView misplaced="YES" id="t3V-ob-vQ4" userLabel="Now Playing View">
+                                <rect key="frame" x="0.0" y="0.0" width="800" height="62"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="aJ1-DK-cFV"/>
+                                </constraints>
+                            </customView>
+                            <customView misplaced="YES" id="sBp-Ce-vQS" userLabel="Browser View">
+                                <rect key="frame" x="0.0" y="63" width="800" height="329"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ExY-pd-fXH" userLabel="Browser Split View">
+                                        <rect key="frame" x="0.0" y="0.0" width="800" height="327"/>
+                                        <subviews>
+                                            <customView misplaced="YES" id="ogN-Y4-Drt" userLabel="Sidebar View">
+                                                <rect key="frame" x="0.0" y="0.0" width="146" height="327"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="cL1-Gv-wfN"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="lWR-5d-s6k"/>
+                                                </constraints>
+                                            </customView>
+                                            <customView misplaced="YES" id="uue-3o-CCX" userLabel="Detail View">
+                                                <rect key="frame" x="147" y="0.0" width="653" height="327"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <subviews>
+                                                    <tabView type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="3Ep-XV-pMg" userLabel="Tab View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="649" height="327"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </tabView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="3Ep-XV-pMg" secondAttribute="trailing" id="CJl-Li-co8"/>
+                                                    <constraint firstItem="3Ep-XV-pMg" firstAttribute="leading" secondItem="uue-3o-CCX" secondAttribute="leading" id="F91-pE-ekp"/>
+                                                    <constraint firstAttribute="bottom" secondItem="3Ep-XV-pMg" secondAttribute="bottom" id="XSg-bL-SNZ"/>
+                                                    <constraint firstItem="3Ep-XV-pMg" firstAttribute="top" secondItem="uue-3o-CCX" secondAttribute="top" id="qFh-Ub-8xi"/>
+                                                </constraints>
+                                            </customView>
+                                        </subviews>
+                                        <holdingPriorities>
+                                            <real value="250"/>
+                                            <real value="250"/>
+                                        </holdingPriorities>
+                                    </splitView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ExY-pd-fXH" secondAttribute="trailing" id="1yW-oI-drZ"/>
+                                    <constraint firstItem="ExY-pd-fXH" firstAttribute="leading" secondItem="sBp-Ce-vQS" secondAttribute="leading" id="5hu-O4-jhX"/>
+                                    <constraint firstAttribute="bottom" secondItem="ExY-pd-fXH" secondAttribute="bottom" id="UYy-rP-aID"/>
+                                    <constraint firstItem="ExY-pd-fXH" firstAttribute="top" secondItem="sBp-Ce-vQS" secondAttribute="top" id="dUx-GW-XXo"/>
+                                </constraints>
+                            </customView>
+                            <customView misplaced="YES" id="M3K-e4-Xb3" userLabel="Player View">
+                                <rect key="frame" x="0.0" y="393" width="800" height="62"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ifM-Gx-24O"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <holdingPriorities>
+                            <real value="250"/>
+                            <real value="250"/>
+                            <real value="250"/>
+                        </holdingPriorities>
+                    </splitView>
+                    <button toolTip="Quit application" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eoQ-Xe-ODi" userLabel="Quit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                        <rect key="frame" x="10" y="475.5" width="11.5" height="10"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="XAk-yv-dCy">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="quitAction:" target="-2" id="KPW-Ts-AgP"/>
+                        </connections>
+                    </button>
+                    <button toolTip="Minimize" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uqs-37-cFW" userLabel="Minimize Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                        <rect key="frame" x="41" y="475" width="14.5" height="10"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="minus" catalog="system" imagePosition="only" alignment="center" imageScaling="axesIndependently" inset="2" id="FZZ-ZR-WgY">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="minimizeAction:" target="-2" id="Lhn-ID-Ack"/>
+                        </connections>
+                    </button>
+                    <popUpButton toolTip="Change presentation mode" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NqW-hK-ujf" userLabel="Presentation Mode Menu">
+                        <rect key="frame" x="23" y="472" width="16" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="zFw-j4-cIv" id="Rd4-S7-rXd">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="12" name="Play-Regular"/>
+                            <menu key="menu" autoenablesItems="NO" id="yxx-jU-mtZ">
+                                <items>
+                                    <menuItem hidden="YES" id="zFw-j4-cIv" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                        <imageReference key="image" image="WindowLayout" symbolScale="medium"/>
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="WindowLayout"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </menuItem>
+                                    <menuItem title="Modular (multiple windows)" id="vqB-R3-eER">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="modularModeAction:" target="-2" id="iT6-Ba-laz"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Menu Bar (macOS menu bar)" id="qUd-g2-853">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="menuBarModeAction:" target="-2" id="u0o-yT-Bnx"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Control Bar (floating widget)" id="KMl-dm-ab8">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="controlBarModeAction:" target="-2" id="aOF-Kh-twD"/>
+                                        </connections>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qgw-qr-6uY" userLabel="Title view" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
+                        <rect key="frame" x="373" y="472" width="54" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="54" id="MGX-3i-3Lk"/>
+                            <constraint firstAttribute="height" constant="15" id="y4r-Qg-0av"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppTitle" id="HdP-Q9-02D"/>
+                    </imageView>
+                    <popUpButton toolTip="Options" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jbr-GM-SIl" userLabel="Settings Menu">
+                        <rect key="frame" x="777" y="469" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="13" id="Ltd-V3-6hM"/>
+                            <constraint firstAttribute="height" constant="18" id="dr4-21-qam"/>
+                        </constraints>
+                        <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="Jhn-9J-38J" id="J1C-Fv-lVe">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="12" name="Play-Regular"/>
+                            <menu key="menu" autoenablesItems="NO" id="UKQ-Rf-slz">
+                                <items>
+                                    <menuItem hidden="YES" id="Jhn-9J-38J" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                        <imageReference key="image" image="Hamburger" symbolScale="medium"/>
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Hamburger"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </menuItem>
+                                    <menuItem title="Show Play Queue" id="uij-dR-Yax">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem title="Show Library" id="h1e-da-OWt">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem title="Show Effects panel" id="cfN-34-RZz">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="2eb-F7-fTq"/>
+                                    <menuItem title="Player view" id="nxC-5g-nzT" userLabel="Player View">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menu key="submenu" title="Player view" id="cr7-88-Hs4">
+                                            <items>
+                                                <menuItem title="Album art" id="kXs-09-e6U">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Artist" id="hdo-kt-e6G">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Album" id="Qdo-xq-c7y">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Current chapter title" id="pW9-Mx-qQV">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem isSeparatorItem="YES" id="DUJ-s4-yo3"/>
+                                                <menuItem title="Main controls" id="qSR-sp-gnB" userLabel="View Player Main Controls">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Track position" id="aIX-8L-qwL">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem isSeparatorItem="YES" id="ZzB-pd-ECO"/>
+                                                <menuItem title="Track position display" id="TcD-H5-cSX">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menu key="submenu" title="Track position display" id="zTt-WO-CyX">
+                                                        <items>
+                                                            <menuItem title="Time elapsed" id="Krp-MA-bqH">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Time remaining" tag="1" id="g4g-pK-yJY">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Track duration" tag="2" id="jNo-13-SkY">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                        </items>
+                                                    </menu>
+                                                </menuItem>
+                                            </items>
+                                        </menu>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="sml-la-nfz"/>
+                                    <menuItem title="Theme" id="q7f-fo-8jo" userLabel="Theme">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menu key="submenu" title="Theme" showsStateColumn="NO" id="yLK-MT-XB7">
+                                            <items>
+                                                <menuItem isSeparatorItem="YES" id="yTU-9b-RNV"/>
+                                                <menuItem title="Poolside.fm" state="mixed" indentationLevel="1" id="keJ-9L-6gA">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                            </items>
+                                        </menu>
+                                    </menuItem>
+                                    <menuItem title="Create new theme" id="HTU-8t-SGs" userLabel="Create new theme">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem title="Save current theme" id="KPO-h1-wIS" userLabel="Save current theme">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="hya-Xo-0bq"/>
+                                    <menuItem title="Font scheme" id="SEX-Jr-fyq">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menu key="submenu" title="Font scheme" showsStateColumn="NO" id="cip-ie-VZN">
+                                            <items>
+                                                <menuItem isSeparatorItem="YES" id="uyD-Jx-OQa"/>
+                                                <menuItem title="Standard" indentationLevel="1" id="tQl-HA-kl0">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Rounded" indentationLevel="1" id="Pgc-Nm-H0E">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Programmer" indentationLevel="1" id="XgR-gk-baE">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Futuristic" indentationLevel="1" id="kSV-Pe-q0W">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Novelist" indentationLevel="1" id="93a-tP-7IZ">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Soy Sauce" indentationLevel="1" id="1cq-EM-N7o">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Gothic" indentationLevel="1" id="JJJ-re-q3B">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Papyrus" indentationLevel="1" id="luy-Of-vQo">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Poolside.fm" indentationLevel="1" id="84G-Gd-Vgb">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem isSeparatorItem="YES" id="XlA-Ry-fAL"/>
+                                                <menuItem title="Customize ..." indentationLevel="1" id="THi-72-qI6">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                            </items>
+                                        </menu>
+                                    </menuItem>
+                                    <menuItem title="Save current scheme" id="LI5-T0-hxi" userLabel="Save current scheme">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="xap-wV-9um"/>
+                                    <menuItem title="Color scheme" id="Hrq-Fc-prt" userLabel="Color scheme">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menu key="submenu" title="Color scheme" showsStateColumn="NO" id="Wgb-fp-9D8">
+                                            <items>
+                                                <menuItem isSeparatorItem="YES" id="He6-2e-g3z"/>
+                                                <menuItem title="Lava (default)" indentationLevel="1" id="dqJ-yU-6Eg">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Black &amp; aqua" indentationLevel="1" id="PPQ-7e-1Rx" userLabel="Black &amp; aqua">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Black &amp; green" indentationLevel="1" id="OZP-km-3gI">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="White blight" indentationLevel="1" id="5J4-kh-0xh">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Gloomy day" indentationLevel="1" id="6vx-sh-9VK">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Brownie" indentationLevel="1" id="Qg6-5R-Bmd">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="The blues" indentationLevel="1" id="TZa-VH-e2Z">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Poolside.fm" indentationLevel="1" id="eZy-Ci-Duj">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem isSeparatorItem="YES" id="9Xe-tq-vRD"/>
+                                                <menuItem title="Customize ..." indentationLevel="1" id="KLB-UA-bsn">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                            </items>
+                                        </menu>
+                                    </menuItem>
+                                    <menuItem title="Save current scheme" id="w9s-Ms-fPX" userLabel="Save current scheme">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="VeD-JE-tB7"/>
+                                    <menuItem title="Window corner radius" id="CRM-ss-4tg">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="DRR-U8-9rR"/>
+                                    <menuItem title="Window layout" id="dhd-d9-VyD">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menu key="submenu" title="Window layout" id="a7f-4r-kM8">
+                                            <items>
+                                                <menuItem isSeparatorItem="YES" id="0pT-Am-7x6"/>
+                                                <menuItem title="Vertical full stack" image="WindowLayout-VerticalStack" id="iHX-Ee-Aqt">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Horizontal full stack" image="WindowLayout-HorizontalStack" id="Sk4-wY-PWT">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Big bottom play queue" image="WindowLayout-BigBottomPlaylist" id="IlW-ys-hq3">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Big right play queue" image="WindowLayout-BigRightPlaylist" id="Nsd-ta-Po9">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Big left play queue" image="WindowLayout-BigLeftPlaylist" id="1am-bn-BN1">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Vertical player and play queue" image="WindowLayout-VerticalPlayerAndPlaylist" id="WDZ-f5-Dq3">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Horizontal player and play queue" image="WindowLayout-HorizontalPlayerAndPlaylist" id="jdD-zT-Vl0">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Compact cornered" image="WindowLayout-CompactCornered" id="7o7-Px-TiP">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                            </items>
+                                        </menu>
+                                    </menuItem>
+                                    <menuItem title="Save current layout" id="W4B-7f-W2b" userLabel="Save current layout">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="zSX-rs-0Aq" firstAttribute="top" secondItem="Jbr-GM-SIl" secondAttribute="bottom" constant="14" id="4s4-sy-I89"/>
+                    <constraint firstItem="qQ2-PJ-W1D" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="5ta-nV-uhG"/>
+                    <constraint firstItem="aim-2G-bxd" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="7Zb-hT-M6Z"/>
+                    <constraint firstAttribute="trailing" secondItem="qQ2-PJ-W1D" secondAttribute="trailing" id="Avo-Wi-aXA"/>
+                    <constraint firstItem="zSX-rs-0Aq" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="BjK-fc-HpW"/>
+                    <constraint firstItem="zSX-rs-0Aq" firstAttribute="top" secondItem="qQ2-PJ-W1D" secondAttribute="bottom" id="EaF-kr-g9U"/>
+                    <constraint firstAttribute="trailing" secondItem="aim-2G-bxd" secondAttribute="trailing" id="IMa-kj-s2m"/>
+                    <constraint firstItem="aim-2G-bxd" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="O6g-f9-cVb"/>
+                    <constraint firstAttribute="bottom" secondItem="zSX-rs-0Aq" secondAttribute="bottom" id="Pq5-M4-kV6"/>
+                    <constraint firstItem="Qgw-qr-6uY" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="WiJ-Qr-p5N"/>
+                    <constraint firstItem="Jbr-GM-SIl" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="13" id="ZWW-sf-fWL"/>
+                    <constraint firstItem="Qgw-qr-6uY" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="13" id="dJO-BH-B8R"/>
+                    <constraint firstAttribute="bottom" secondItem="aim-2G-bxd" secondAttribute="bottom" id="mAH-5T-VIR"/>
+                    <constraint firstAttribute="trailing" secondItem="Jbr-GM-SIl" secondAttribute="trailing" constant="5" id="pPn-dB-10v"/>
+                    <constraint firstItem="qQ2-PJ-W1D" firstAttribute="top" secondItem="Jbr-GM-SIl" secondAttribute="bottom" constant="13" id="wmi-x6-0Nj"/>
+                    <constraint firstAttribute="trailing" secondItem="zSX-rs-0Aq" secondAttribute="trailing" id="zPw-5I-DkB"/>
+                </constraints>
+            </view>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="381" y="365"/>
+        </window>
+    </objects>
+    <resources>
+        <image name="AppTitle" width="117" height="32"/>
+        <image name="Hamburger" width="10" height="7"/>
+        <image name="WindowLayout" width="20" height="20"/>
+        <image name="WindowLayout-BigBottomPlaylist" width="30" height="20"/>
+        <image name="WindowLayout-BigLeftPlaylist" width="30" height="20"/>
+        <image name="WindowLayout-BigRightPlaylist" width="30" height="20"/>
+        <image name="WindowLayout-CompactCornered" width="30" height="20"/>
+        <image name="WindowLayout-HorizontalPlayerAndPlaylist" width="30" height="20"/>
+        <image name="WindowLayout-HorizontalStack" width="30" height="20"/>
+        <image name="WindowLayout-VerticalPlayerAndPlaylist" width="30" height="20"/>
+        <image name="WindowLayout-VerticalStack" width="30" height="20"/>
+        <image name="minus" catalog="system" width="14" height="4"/>
+        <image name="xmark" catalog="system" width="14" height="13"/>
+    </resources>
+</document>

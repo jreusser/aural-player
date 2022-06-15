@@ -12,7 +12,7 @@ import Cocoa
 
 class UnifiedPlayerWindowController: NSWindowController {
     
-    override var windowNibName: String? {"UnifiedPlayer"}
+    override var windowNibName: String? {"UnifiedPlayerWindow"}
     
     @IBOutlet weak var logoImage: TintedImageView!
     @IBOutlet weak var rootContainerBox: NSBox!
@@ -28,6 +28,7 @@ class UnifiedPlayerWindowController: NSWindowController {
     @IBOutlet weak var tabGroup: NSTabView!
     
     private lazy var nowPlayingController: NowPlayingViewController = NowPlayingViewController()
+    private lazy var playerController: UnifiedPlayerViewController = UnifiedPlayerViewController()
     
     private lazy var playQueueTableController: PlayQueueTableViewController = PlayQueueTableViewController()
     
@@ -56,9 +57,8 @@ class UnifiedPlayerWindowController: NSWindowController {
         
         super.windowDidLoad()
         
-        let nowPlayingView: NSView = nowPlayingController.view
-        rootSplitView.arrangedSubviews[0].addSubview(nowPlayingView)
-        nowPlayingView.anchorToSuperview()
+        rootSplitView.addAndAnchorSubView(nowPlayingController.view, underArrangedSubviewAt: 0)
+        rootSplitView.addAndAnchorSubView(playerController.view, underArrangedSubviewAt: 2)
         
         tabGroup.addAndAnchorSubView(forController: playQueueTableController)
         
@@ -145,5 +145,21 @@ extension NSTabView {
         
         addTabViewItem(NSTabViewItem(viewController: controller))
         controller.view.anchorToSuperview()
+    }
+}
+
+extension NSSplitView {
+    
+    func addAndAnchorSubView(_ subView: NSView, underArrangedSubviewAt index: Int) {
+        
+        arrangedSubviews[index].addSubview(subView)
+        subView.anchorToSuperview()
+    }
+}
+
+class UnifiedPlayerSplitView: NSSplitView {
+    
+    override func resetCursorRects() {
+        // Do nothing
     }
 }
