@@ -56,7 +56,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="aJ1-DK-cFV"/>
+                                    <constraint firstAttribute="height" constant="75" id="aJ1-DK-cFV"/>
                                 </constraints>
                             </customView>
                             <customView misplaced="YES" id="sBp-Ce-vQS" userLabel="Browser View">
@@ -64,10 +64,10 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ExY-pd-fXH" userLabel="Browser Split View">
-                                        <rect key="frame" x="0.0" y="0.0" width="800" height="327"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="800" height="318"/>
                                         <subviews>
                                             <customView misplaced="YES" id="ogN-Y4-Drt" userLabel="Sidebar View">
-                                                <rect key="frame" x="0.0" y="0.0" width="146" height="327"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="146" height="318"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="cL1-Gv-wfN"/>
@@ -75,11 +75,11 @@
                                                 </constraints>
                                             </customView>
                                             <customView misplaced="YES" id="uue-3o-CCX" userLabel="Detail View">
-                                                <rect key="frame" x="147" y="0.0" width="653" height="327"/>
+                                                <rect key="frame" x="147" y="0.0" width="653" height="318"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tabView type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="3Ep-XV-pMg" userLabel="Tab View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="649" height="327"/>
+                                                        <rect key="frame" x="0.0" y="-9" width="649" height="318"/>
                                                         <font key="font" metaFont="system"/>
                                                     </tabView>
                                                 </subviews>

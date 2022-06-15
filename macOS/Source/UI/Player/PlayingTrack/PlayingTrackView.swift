@@ -50,8 +50,8 @@ class PlayingTrackView: MouseTrackingView {
         
         repositionInfoBox()
 
-        controlsBox.showIf(trackInfo == nil || uiState.showControls)
-        controlsBox.bringToFront()
+        controlsBox?.showIf(trackInfo == nil || uiState.showControls)
+        controlsBox?.bringToFront()
         
         startTracking()
         
@@ -77,14 +77,14 @@ class PlayingTrackView: MouseTrackingView {
         textView.trackInfo = self.trackInfo
         artView.image = trackInfo?.art ?? .imgPlayingArt
         
-        controlsBox.showIf(trackInfo == nil || uiState.showControls)
-        controlsBox.bringToFront()
+        controlsBox?.showIf(trackInfo == nil || uiState.showControls)
+        controlsBox?.bringToFront()
     }
     
     private func moveInfoBoxTo(_ point: NSPoint) {
         
-        infoBox.setFrameOrigin(point)
-        artView.frame.origin.y = infoBox.frame.origin.y + 2 // 5 is half the difference in height between infoBox and artView
+//        infoBox.setFrameOrigin(point)
+//        artView.frame.origin.y = infoBox.frame.origin.y + 2 // 5 is half the difference in height between infoBox and artView
     }
     
     func showOrHideAlbumArt() {
@@ -107,7 +107,7 @@ class PlayingTrackView: MouseTrackingView {
     
     func showOrHideMainControls() {
         
-        controlsBox.showIf(uiState.showControls)
+        controlsBox?.showIf(uiState.showControls)
         
         // Re-position the info box, art view, and functions box
         
@@ -153,14 +153,14 @@ class PlayingTrackView: MouseTrackingView {
     private func autoHideControls_show() {
         
         // Show controls
-        controlsBox.show()
+        controlsBox?.show()
         moveInfoBoxTo(uiState.showAlbumArt ? infoBoxDefaultPosition : infoBoxDefaultPosition_noArt)
     }
     
     private func autoHideControls_hide() {
         
         // Hide controls
-        controlsBox.hide()
+        controlsBox?.hide()
         moveInfoBoxTo(uiState.showAlbumArt ? infoBoxCenteredPosition : infoBoxCenteredPosition_noArt)
     }
     
@@ -182,10 +182,5 @@ class PlayingTrackView: MouseTrackingView {
         }
         
         textView.resized()
-    }
-    
-    // MARK: Appearance functions
-    
-    func applyTheme() {
     }
 }

@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class UnifiedPlayerViewController: NSViewController {
+class UnifiedPlayerViewController: PlayerViewController {
     
     override var nibName: String? {"UnifiedPlayer"}
     

@@ -13,7 +13,7 @@
                 <outlet property="playbackViewController" destination="W5O-7l-xTa" id="TMN-Fg-D5p"/>
                 <outlet property="playerAudioViewController" destination="bbe-2a-cSz" id="Rfv-yV-Hba"/>
                 <outlet property="playerSequencingViewController" destination="BqW-FI-x6I" id="qB2-gn-r5p"/>
-                <outlet property="playingTrackFunctionsViewController" destination="DlG-hJ-3cs" id="eka-UM-pyy"/>
+                <outlet property="playingTrackFunctionsMenuDelegate" destination="DlG-hJ-3cs" id="eka-UM-pyy"/>
                 <outlet property="view" destination="ywj-Sd-BS4" id="jKH-HR-Rfs"/>
             </connections>
         </customObject>

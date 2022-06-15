@@ -29,7 +29,7 @@ class PlayerViewController: NSViewController {
     @IBOutlet weak var playbackViewController: PlaybackViewController!
     @IBOutlet weak var playerSequencingViewController: PlayerSequencingViewController!
     @IBOutlet weak var playerAudioViewController: PlayerAudioViewController!
-    @IBOutlet weak var playingTrackFunctionsViewController: PlayingTrackFunctionsMenuDelegate!
+    @IBOutlet weak var playingTrackFunctionsMenuDelegate: PlayingTrackFunctionsMenuDelegate!
     
     @IBOutlet weak var infoView: PlayingTrackView!
     
@@ -68,7 +68,6 @@ class PlayerViewController: NSViewController {
         messenger.subscribe(to: .player_showOrHideCurrentChapter, handler: infoView.showOrHideCurrentChapter)
         messenger.subscribe(to: .player_showOrHideMainControls, handler: infoView.showOrHideMainControls)
         
-        messenger.subscribe(to: .applyTheme, handler: infoView.applyTheme)
 //        messenger.subscribe(to: .changeBackgroundColor, handler: infoView.changeBackgroundColor(_:))
         
 //        messenger.subscribe(to: .player_changeTrackInfoPrimaryTextColor, handler: infoView.changePrimaryTextColor(_:))
@@ -79,7 +78,7 @@ class PlayerViewController: NSViewController {
     override func destroy() {
         
         [playbackViewController, playerAudioViewController, playerSequencingViewController,
-          playingTrackFunctionsViewController].forEach {($0 as? Destroyable)?.destroy()}
+          playingTrackFunctionsMenuDelegate].forEach {($0 as? Destroyable)?.destroy()}
         
         messenger.unsubscribeFromAll()
     }

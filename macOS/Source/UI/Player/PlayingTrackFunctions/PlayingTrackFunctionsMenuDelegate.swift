@@ -15,7 +15,7 @@ import Cocoa
  
     Also handles such requests from app menus.
  */
-class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate {
+class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
     
     @IBOutlet weak var iconMenuItem: TintedIconMenuItem!
     
