@@ -606,6 +606,8 @@
 		3EB3A62126A773350060487C /* FontSizeStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A62026A773350060487C /* FontSizeStepper.swift */; };
 		3EB3FFDC27DE3839009F7E2C /* ColorScheme+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3FFDB27DE3839009F7E2C /* ColorScheme+Presets.swift */; };
 		3EB3FFDD27DE3839009F7E2C /* ColorScheme+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3FFDB27DE3839009F7E2C /* ColorScheme+Presets.swift */; };
+		3EB42027285A5E9E007159CC /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB42025285A5E9E007159CC /* NowPlayingViewController.swift */; };
+		3EB42028285A5E9E007159CC /* NowPlaying.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB42026285A5E9E007159CC /* NowPlaying.xib */; };
 		3EB462BF2847CCA7000E3F85 /* LibraryArtistsSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462BE2847CCA7000E3F85 /* LibraryArtistsSortView.swift */; };
 		3EB462C12847D276000E3F85 /* Grouping+Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462C02847D276000E3F85 /* Grouping+Support.swift */; };
 		3EB462C32847E528000E3F85 /* Playlist.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB462C22847E527000E3F85 /* Playlist.xib */; };
@@ -2146,6 +2148,8 @@
 		3EB3A61D26A76F450060487C /* NSScrollViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSScrollViewExtensions.swift; sourceTree = "<group>"; };
 		3EB3A62026A773350060487C /* FontSizeStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeStepper.swift; sourceTree = "<group>"; };
 		3EB3FFDB27DE3839009F7E2C /* ColorScheme+Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorScheme+Presets.swift"; sourceTree = "<group>"; };
+		3EB42025285A5E9E007159CC /* NowPlayingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
+		3EB42026285A5E9E007159CC /* NowPlaying.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NowPlaying.xib; sourceTree = "<group>"; };
 		3EB462BE2847CCA7000E3F85 /* LibraryArtistsSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryArtistsSortView.swift; sourceTree = "<group>"; };
 		3EB462C02847D276000E3F85 /* Grouping+Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Grouping+Support.swift"; sourceTree = "<group>"; };
 		3EB462C22847E527000E3F85 /* Playlist.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Playlist.xib; sourceTree = "<group>"; };
@@ -3983,6 +3987,7 @@
 		3E7638A92857D7F800461F4D /* UnifiedPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				3EB42024285A5E83007159CC /* NowPlaying */,
 				3E7638AA2857D88B00461F4D /* UnifiedPlayer.xib */,
 				3E7638AC2857D9F600461F4D /* UnifiedPlayerWindowController.swift */,
 			);
@@ -4470,6 +4475,15 @@
 				3EAFB5FF267FF0D400F0DC96 /* NoTitleBarWindow.swift */,
 			);
 			path = Windows;
+			sourceTree = "<group>";
+		};
+		3EB42024285A5E83007159CC /* NowPlaying */ = {
+			isa = PBXGroup;
+			children = (
+				3EB42026285A5E9E007159CC /* NowPlaying.xib */,
+				3EB42025285A5E9E007159CC /* NowPlayingViewController.swift */,
+			);
+			path = NowPlaying;
 			sourceTree = "<group>";
 		};
 		3EB462C62847FEC6000E3F85 /* TuneBrowser */ = {
@@ -6004,6 +6018,7 @@
 				3E45C03325E1264C00C1519C /* PlayerFontScheme.xib in Resources */,
 				3E6C12A725CEBE2700BF0D07 /* Alerts.xib in Resources */,
 				3E6C124A25CEBDF400BF0D07 /* AlbumsPlaylistSort.xib in Resources */,
+				3EB42028285A5E9E007159CC /* NowPlaying.xib in Resources */,
 				3E25B65027F7818900D10A5F /* PlayQueueWindow.xib in Resources */,
 				3E91932925E0CF5D00F30F81 /* GeneralFontScheme.xib in Resources */,
 				3E2000BF267CDFFF008BAB70 /* MediaKeysPreferences.xib in Resources */,
@@ -6213,6 +6228,7 @@
 				3EFFEB8327D9CEF8006A333B /* KVOTokens.swift in Sources */,
 				3EFE3A1327864898006F8B8C /* BookmarksNotifications.swift in Sources */,
 				3EFE3A7327864898006F8B8C /* CommonAVAssetParser.swift in Sources */,
+				3EB42027285A5E9E007159CC /* NowPlayingViewController.swift in Sources */,
 				3EFE3A0F27864898006F8B8C /* FavoritesListNotifications.swift in Sources */,
 				3EFE382727864896006F8B8C /* LRUArray.swift in Sources */,
 				3EFE3AF327864942006F8B8C /* FFmpegCodec.swift in Sources */,

@@ -14,6 +14,7 @@
                 <outlet property="logoImage" destination="Qgw-qr-6uY" id="Sk4-8w-7d9"/>
                 <outlet property="presentationModeMenuItem" destination="zFw-j4-cIv" id="0sq-To-Mh6"/>
                 <outlet property="rootContainerBox" destination="aim-2G-bxd" id="ZCy-0k-M3p"/>
+                <outlet property="rootSplitView" destination="zSX-rs-0Aq" id="50R-nu-d5j"/>
                 <outlet property="settingsMenuIconItem" destination="Jhn-9J-38J" id="wPh-4Y-G2H"/>
                 <outlet property="tabGroup" destination="3Ep-XV-pMg" id="FQa-gV-OtK"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="pIs-zT-Usq"/>
@@ -39,6 +40,15 @@
                         </view>
                         <color key="fillColor" white="0.076477904419798945" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </box>
+                    <box boxType="custom" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="qQ2-PJ-W1D" userLabel="Divider Line">
+                        <rect key="frame" x="0.0" y="455" width="800" height="1"/>
+                        <view key="contentView" id="ogn-QH-VpQ">
+                            <rect key="frame" x="1" y="1" width="798" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </view>
+                        <color key="borderColor" white="0.076477904420000006" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="fillColor" white="0.076477904420000006" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </box>
                     <splitView arrangesAllSubviews="NO" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="zSX-rs-0Aq" userLabel="Root Split View">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="455"/>
                         <subviews>
@@ -46,7 +56,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="aJ1-DK-cFV"/>
+                                    <constraint firstAttribute="height" constant="66" id="aJ1-DK-cFV"/>
                                 </constraints>
                             </customView>
                             <customView misplaced="YES" id="sBp-Ce-vQS" userLabel="Browser View">
@@ -54,22 +64,22 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ExY-pd-fXH" userLabel="Browser Split View">
-                                        <rect key="frame" x="0.0" y="0.0" width="800" height="333"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="800" height="327"/>
                                         <subviews>
                                             <customView misplaced="YES" id="ogN-Y4-Drt" userLabel="Sidebar View">
-                                                <rect key="frame" x="0.0" y="0.0" width="184" height="333"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="146" height="327"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="cL1-Gv-wfN"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="cL1-Gv-wfN"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="lWR-5d-s6k"/>
                                                 </constraints>
                                             </customView>
                                             <customView misplaced="YES" id="uue-3o-CCX" userLabel="Detail View">
-                                                <rect key="frame" x="185" y="0.0" width="615" height="333"/>
+                                                <rect key="frame" x="147" y="0.0" width="653" height="327"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tabView type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="3Ep-XV-pMg" userLabel="Tab View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="599" height="333"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="649" height="327"/>
                                                         <font key="font" metaFont="system"/>
                                                     </tabView>
                                                 </subviews>
@@ -394,8 +404,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="zSX-rs-0Aq" firstAttribute="top" secondItem="Jbr-GM-SIl" secondAttribute="bottom" constant="14" id="4s4-sy-I89"/>
+                    <constraint firstItem="qQ2-PJ-W1D" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="5ta-nV-uhG"/>
                     <constraint firstItem="aim-2G-bxd" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="7Zb-hT-M6Z"/>
+                    <constraint firstAttribute="trailing" secondItem="qQ2-PJ-W1D" secondAttribute="trailing" id="Avo-Wi-aXA"/>
                     <constraint firstItem="zSX-rs-0Aq" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="BjK-fc-HpW"/>
+                    <constraint firstItem="zSX-rs-0Aq" firstAttribute="top" secondItem="qQ2-PJ-W1D" secondAttribute="bottom" id="EaF-kr-g9U"/>
                     <constraint firstAttribute="trailing" secondItem="aim-2G-bxd" secondAttribute="trailing" id="IMa-kj-s2m"/>
                     <constraint firstItem="aim-2G-bxd" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="O6g-f9-cVb"/>
                     <constraint firstAttribute="bottom" secondItem="zSX-rs-0Aq" secondAttribute="bottom" id="Pq5-M4-kV6"/>
@@ -404,6 +417,7 @@
                     <constraint firstItem="Qgw-qr-6uY" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="13" id="dJO-BH-B8R"/>
                     <constraint firstAttribute="bottom" secondItem="aim-2G-bxd" secondAttribute="bottom" id="mAH-5T-VIR"/>
                     <constraint firstAttribute="trailing" secondItem="Jbr-GM-SIl" secondAttribute="trailing" constant="5" id="pPn-dB-10v"/>
+                    <constraint firstItem="qQ2-PJ-W1D" firstAttribute="top" secondItem="Jbr-GM-SIl" secondAttribute="bottom" constant="13" id="wmi-x6-0Nj"/>
                     <constraint firstAttribute="trailing" secondItem="zSX-rs-0Aq" secondAttribute="trailing" id="zPw-5I-DkB"/>
                 </constraints>
             </view>
