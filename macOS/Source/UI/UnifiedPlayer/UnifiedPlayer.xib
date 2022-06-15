@@ -38,6 +38,63 @@
                         </view>
                         <color key="fillColor" white="0.076477904419798945" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </box>
+                    <splitView arrangesAllSubviews="NO" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="zSX-rs-0Aq" userLabel="Root Split View">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="455"/>
+                        <subviews>
+                            <customView misplaced="YES" id="t3V-ob-vQ4" userLabel="Now Playing View">
+                                <rect key="frame" x="0.0" y="0.0" width="800" height="62"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="aJ1-DK-cFV"/>
+                                </constraints>
+                            </customView>
+                            <customView misplaced="YES" id="sBp-Ce-vQS" userLabel="Browser View">
+                                <rect key="frame" x="0.0" y="63" width="800" height="329"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ExY-pd-fXH" userLabel="Browser Split View">
+                                        <rect key="frame" x="0.0" y="0.0" width="800" height="333"/>
+                                        <subviews>
+                                            <customView misplaced="YES" id="ogN-Y4-Drt" userLabel="Sidebar View">
+                                                <rect key="frame" x="0.0" y="0.0" width="184" height="333"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="cL1-Gv-wfN"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="lWR-5d-s6k"/>
+                                                </constraints>
+                                            </customView>
+                                            <customView fixedFrame="YES" id="uue-3o-CCX" userLabel="Detail View">
+                                                <rect key="frame" x="185" y="0.0" width="615" height="333"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </customView>
+                                        </subviews>
+                                        <holdingPriorities>
+                                            <real value="250"/>
+                                            <real value="250"/>
+                                        </holdingPriorities>
+                                    </splitView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ExY-pd-fXH" secondAttribute="trailing" id="1yW-oI-drZ"/>
+                                    <constraint firstItem="ExY-pd-fXH" firstAttribute="leading" secondItem="sBp-Ce-vQS" secondAttribute="leading" id="5hu-O4-jhX"/>
+                                    <constraint firstAttribute="bottom" secondItem="ExY-pd-fXH" secondAttribute="bottom" id="UYy-rP-aID"/>
+                                    <constraint firstItem="ExY-pd-fXH" firstAttribute="top" secondItem="sBp-Ce-vQS" secondAttribute="top" id="dUx-GW-XXo"/>
+                                </constraints>
+                            </customView>
+                            <customView misplaced="YES" id="M3K-e4-Xb3" userLabel="Player View">
+                                <rect key="frame" x="0.0" y="393" width="800" height="62"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ifM-Gx-24O"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <holdingPriorities>
+                            <real value="250"/>
+                            <real value="250"/>
+                            <real value="250"/>
+                        </holdingPriorities>
+                    </splitView>
                     <button toolTip="Quit application" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eoQ-Xe-ODi" userLabel="Quit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="10" y="475.5" width="11.5" height="10"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -323,14 +380,18 @@
                     </popUpButton>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="zSX-rs-0Aq" firstAttribute="top" secondItem="Jbr-GM-SIl" secondAttribute="bottom" constant="14" id="4s4-sy-I89"/>
                     <constraint firstItem="aim-2G-bxd" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="7Zb-hT-M6Z"/>
+                    <constraint firstItem="zSX-rs-0Aq" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="BjK-fc-HpW"/>
                     <constraint firstAttribute="trailing" secondItem="aim-2G-bxd" secondAttribute="trailing" id="IMa-kj-s2m"/>
                     <constraint firstItem="aim-2G-bxd" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="O6g-f9-cVb"/>
+                    <constraint firstAttribute="bottom" secondItem="zSX-rs-0Aq" secondAttribute="bottom" id="Pq5-M4-kV6"/>
                     <constraint firstItem="Qgw-qr-6uY" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="WiJ-Qr-p5N"/>
                     <constraint firstItem="Jbr-GM-SIl" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="13" id="ZWW-sf-fWL"/>
                     <constraint firstItem="Qgw-qr-6uY" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="13" id="dJO-BH-B8R"/>
                     <constraint firstAttribute="bottom" secondItem="aim-2G-bxd" secondAttribute="bottom" id="mAH-5T-VIR"/>
                     <constraint firstAttribute="trailing" secondItem="Jbr-GM-SIl" secondAttribute="trailing" constant="5" id="pPn-dB-10v"/>
+                    <constraint firstAttribute="trailing" secondItem="zSX-rs-0Aq" secondAttribute="trailing" id="zPw-5I-DkB"/>
                 </constraints>
             </view>
             <userDefinedRuntimeAttributes>

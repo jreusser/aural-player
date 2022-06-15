@@ -12,7 +12,9 @@ import Cocoa
 class NoTitleBarWindow: NSWindow {
     
     override func awakeFromNib() {
-        self.titlebarAppearsTransparent = true
+        
+        titlebarAppearsTransparent = true
+        styleMask = styleMask.union(.miniaturizable)
     }
     
     override var canBecomeKey: Bool {true}
