@@ -52,22 +52,22 @@
                     <splitView arrangesAllSubviews="NO" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="zSX-rs-0Aq" userLabel="Root Split View" customClass="UnifiedPlayerSplitView" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="455"/>
                         <subviews>
-                            <customView misplaced="YES" id="t3V-ob-vQ4" userLabel="Now Playing View">
-                                <rect key="frame" x="0.0" y="0.0" width="800" height="62"/>
+                            <customView id="t3V-ob-vQ4" userLabel="Now Playing View">
+                                <rect key="frame" x="0.0" y="0.0" width="800" height="188"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="aJ1-DK-cFV"/>
+                                    <constraint firstAttribute="height" constant="125" id="aJ1-DK-cFV"/>
                                 </constraints>
                             </customView>
                             <customView misplaced="YES" id="sBp-Ce-vQS" userLabel="Browser View">
-                                <rect key="frame" x="0.0" y="63" width="800" height="329"/>
+                                <rect key="frame" x="0.0" y="189" width="800" height="266"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ExY-pd-fXH" userLabel="Browser Split View">
-                                        <rect key="frame" x="0.0" y="0.0" width="800" height="318"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="800" height="329"/>
                                         <subviews>
                                             <customView misplaced="YES" id="ogN-Y4-Drt" userLabel="Sidebar View">
-                                                <rect key="frame" x="0.0" y="0.0" width="146" height="318"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="146" height="329"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="cL1-Gv-wfN"/>
@@ -75,11 +75,11 @@
                                                 </constraints>
                                             </customView>
                                             <customView misplaced="YES" id="uue-3o-CCX" userLabel="Detail View">
-                                                <rect key="frame" x="147" y="0.0" width="653" height="318"/>
+                                                <rect key="frame" x="147" y="0.0" width="653" height="329"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tabView type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="3Ep-XV-pMg" userLabel="Tab View">
-                                                        <rect key="frame" x="0.0" y="-9" width="649" height="318"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="649" height="329"/>
                                                         <font key="font" metaFont="system"/>
                                                     </tabView>
                                                 </subviews>
@@ -104,16 +104,8 @@
                                     <constraint firstItem="ExY-pd-fXH" firstAttribute="top" secondItem="sBp-Ce-vQS" secondAttribute="top" id="dUx-GW-XXo"/>
                                 </constraints>
                             </customView>
-                            <customView misplaced="YES" id="M3K-e4-Xb3" userLabel="Player View">
-                                <rect key="frame" x="0.0" y="393" width="800" height="62"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="ifM-Gx-24O"/>
-                                </constraints>
-                            </customView>
                         </subviews>
                         <holdingPriorities>
-                            <real value="250"/>
                             <real value="250"/>
                             <real value="250"/>
                         </holdingPriorities>

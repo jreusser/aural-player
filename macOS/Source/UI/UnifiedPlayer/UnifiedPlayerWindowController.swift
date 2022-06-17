@@ -59,8 +59,7 @@ class UnifiedPlayerWindowController: NSWindowController {
         
         playerController.forceLoadingOfView()
         
-        rootSplitView.addAndAnchorSubView(playerController.infoView, underArrangedSubviewAt: 0)
-        rootSplitView.addAndAnchorSubView(playerController.playbackViewController.view, underArrangedSubviewAt: 2)
+        rootSplitView.addAndAnchorSubView(playerController.view, underArrangedSubviewAt: 0)
         
         tabGroup.addAndAnchorSubView(forController: playQueueTableController)
         
