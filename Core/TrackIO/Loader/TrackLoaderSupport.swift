@@ -9,6 +9,7 @@
 //  
 
 import Foundation
+import OrderedCollections
 
 typealias FileReadSessionCompletionHandler = ([URL]) -> Void
 
@@ -31,7 +32,7 @@ protocol TrackLoaderObserver {
 class FileReadSession {
 
     let metadataType: MetadataType
-    var files: [URL] = []
+    var files: OrderedSet<URL> = OrderedSet()
     let trackList: TrackLoaderReceiver
     let insertionIndex: Int?
     let observer: TrackLoaderObserver
@@ -59,7 +60,7 @@ class FileReadSession {
         errors.append(error)
     }
     
-    func batchCompleted(_ batchFiles: [URL]) {
+    func batchCompleted(_ batchFiles: OrderedSet<URL>) {
         files.append(contentsOf: batchFiles)
     }
 }
@@ -67,7 +68,7 @@ class FileReadSession {
 class FileMetadataBatch {
     
     let size: Int
-    var files: [URL] = []
+    var files: OrderedSet<URL> = OrderedSet()
     var metadata: ConcurrentMap<URL, FileMetadata> = ConcurrentMap()
     var insertionIndex: Int?
     
@@ -77,7 +78,7 @@ class FileMetadataBatch {
             return startIndex...(startIndex + files.count - 1)
         }
         
-        return 0...files.lastIndex
+        return 0...(files.count - 1)
     }
     
     var orderedMetadata: [(file: URL, metadata: FileMetadata)] {files.map {(file: $0, metadata: self.metadata[$0]!)}}

@@ -237,6 +237,9 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         }
         
         if let insertionIndex = batch.insertionIndex {
+            
+            print("\nInserting: \(batch.files.count) tracks at: \(insertionIndex)")
+            
             return insertTracks(tracks, at: insertionIndex)
             
         } else {
