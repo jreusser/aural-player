@@ -133,6 +133,11 @@
 		3E4A90FF27F79AFA003A6C80 /* WindowID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A90FD27F79AFA003A6C80 /* WindowID.swift */; };
 		3E4CC362261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */; };
 		3E50D23227BADAAF0056F63A /* AuralSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50D23127BADAAF0056F63A /* AuralSlider.swift */; };
+		3E51CCF0285E8986002CBEF2 /* UnifiedPlayerSidebar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E51CCEF285E8986002CBEF2 /* UnifiedPlayerSidebar.xib */; };
+		3E51CCF2285E899E002CBEF2 /* UnifiedPlayerSidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51CCF1285E899E002CBEF2 /* UnifiedPlayerSidebarViewController.swift */; };
+		3E51CCF4285E8A45002CBEF2 /* UnifiedPlayerSidebarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51CCF3285E8A45002CBEF2 /* UnifiedPlayerSidebarItems.swift */; };
+		3E51CCF6285E8CBB002CBEF2 /* UnifiedPlayerSidebarViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51CCF5285E8CBB002CBEF2 /* UnifiedPlayerSidebarViewController+DataSource.swift */; };
+		3E51CCF8285E8D10002CBEF2 /* UnifiedPlayerSidebarViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51CCF7285E8D10002CBEF2 /* UnifiedPlayerSidebarViewController+ViewDelegate.swift */; };
 		3E51F346262AFDCA0048452F /* ThemesManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E51F345262AFDCA0048452F /* ThemesManager.xib */; };
 		3E51F348262AFDF80048452F /* ThemePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51F347262AFDF80048452F /* ThemePreviewView.swift */; };
 		3E51F34A262AFF310048452F /* ThemesManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51F349262AFF300048452F /* ThemesManagerViewController.swift */; };
@@ -1655,6 +1660,11 @@
 		3E4A90FD27F79AFA003A6C80 /* WindowID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowID.swift; sourceTree = "<group>"; };
 		3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterUnitViewController+AUTableViewDelegate.swift"; sourceTree = "<group>"; };
 		3E50D23127BADAAF0056F63A /* AuralSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuralSlider.swift; sourceTree = "<group>"; };
+		3E51CCEF285E8986002CBEF2 /* UnifiedPlayerSidebar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnifiedPlayerSidebar.xib; sourceTree = "<group>"; };
+		3E51CCF1285E899E002CBEF2 /* UnifiedPlayerSidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayerSidebarViewController.swift; sourceTree = "<group>"; };
+		3E51CCF3285E8A45002CBEF2 /* UnifiedPlayerSidebarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayerSidebarItems.swift; sourceTree = "<group>"; };
+		3E51CCF5285E8CBB002CBEF2 /* UnifiedPlayerSidebarViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnifiedPlayerSidebarViewController+DataSource.swift"; sourceTree = "<group>"; };
+		3E51CCF7285E8D10002CBEF2 /* UnifiedPlayerSidebarViewController+ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnifiedPlayerSidebarViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
 		3E51F345262AFDCA0048452F /* ThemesManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemesManager.xib; sourceTree = "<group>"; };
 		3E51F347262AFDF80048452F /* ThemePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreviewView.swift; sourceTree = "<group>"; };
 		3E51F349262AFF300048452F /* ThemesManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesManagerViewController.swift; sourceTree = "<group>"; };
@@ -3041,6 +3051,18 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3E51CCEE285E896B002CBEF2 /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				3E51CCEF285E8986002CBEF2 /* UnifiedPlayerSidebar.xib */,
+				3E51CCF1285E899E002CBEF2 /* UnifiedPlayerSidebarViewController.swift */,
+				3E51CCF5285E8CBB002CBEF2 /* UnifiedPlayerSidebarViewController+DataSource.swift */,
+				3E51CCF7285E8D10002CBEF2 /* UnifiedPlayerSidebarViewController+ViewDelegate.swift */,
+				3E51CCF3285E8A45002CBEF2 /* UnifiedPlayerSidebarItems.swift */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
 		3E51F344262AFDAF0048452F /* Themes */ = {
 			isa = PBXGroup;
 			children = (
@@ -3993,6 +4015,7 @@
 			children = (
 				3E7638AA2857D88B00461F4D /* UnifiedPlayerWindow.xib */,
 				3E7638AC2857D9F600461F4D /* UnifiedPlayerWindowController.swift */,
+				3E51CCEE285E896B002CBEF2 /* Sidebar */,
 				3EB42029285A627C007159CC /* Player */,
 				3EB42024285A5E83007159CC /* NowPlaying */,
 			);
@@ -5981,6 +6004,7 @@
 				3E6C126125CEBE0600BF0D07 /* LayoutsManager.xib in Resources */,
 				3E6C123525CEBDF400BF0D07 /* ChaptersList.xib in Resources */,
 				3EF0C3E5262A9EF30042C720 /* CreateTheme.xib in Resources */,
+				3E51CCF0285E8986002CBEF2 /* UnifiedPlayerSidebar.xib in Resources */,
 				3EFB9ECF26A689D800EA8440 /* MetadataTrackInfo.xib in Resources */,
 				3E6C125E25CEBE0600BF0D07 /* ReverbPresetsManager.xib in Resources */,
 				3E6C12A425CEBE2700BF0D07 /* AboutDialog.xib in Resources */,
@@ -6250,6 +6274,7 @@
 				3E1741482801FDE500772ED1 /* TrackListTableViewController+DataSource.swift in Sources */,
 				3EFE392727864897006F8B8C /* ExclusiveAccessSemaphore.swift in Sources */,
 				3EFE3A5F27864898006F8B8C /* MusicBrainzArtist.swift in Sources */,
+				3E51CCF4285E8A45002CBEF2 /* UnifiedPlayerSidebarItems.swift in Sources */,
 				3EFE38C327864896006F8B8C /* MasterUnitDelegateProtocol.swift in Sources */,
 				3E6C122725CEBDE600BF0D07 /* ControlsPreferencesViewController.swift in Sources */,
 				3E36BD3A26A68FDB00B6E28B /* CoverArtTrackInfoViewController.swift in Sources */,
@@ -6392,6 +6417,7 @@
 				3E419B5F27B18C6500C2B965 /* CALayerExtensions.swift in Sources */,
 				3E91932F25E0DA9C00F30F81 /* FontSchemesWindowController.swift in Sources */,
 				3ECF275C26A5567000974120 /* FontSet.swift in Sources */,
+				3E51CCF6285E8CBB002CBEF2 /* UnifiedPlayerSidebarViewController+DataSource.swift in Sources */,
 				3ED8E74A281482C9002E313F /* TableImageCell.swift in Sources */,
 				3EFE389527864896006F8B8C /* PitchShiftPresets.swift in Sources */,
 				3EFE3A3D27864898006F8B8C /* DefaultFFMpegMetadataParser.swift in Sources */,
@@ -6706,6 +6732,7 @@
 				3EB462D92847FEC6000E3F85 /* TuneBrowserHistory.swift in Sources */,
 				3EB3A60B26A7425C0060487C /* SingletonWindowController.swift in Sources */,
 				3EEBC6EE27C16CF700880DFD /* EffectsUnitStateObserverRegistry.swift in Sources */,
+				3E51CCF2285E899E002CBEF2 /* UnifiedPlayerSidebarViewController.swift in Sources */,
 				3E6C12A225CEBE2700BF0D07 /* SnappingWindow.swift in Sources */,
 				3EFE387127864896006F8B8C /* HostedAudioUnitProtocol.swift in Sources */,
 				3E62979426A3C0F100C96AB8 /* SnappingWindowDelegate.swift in Sources */,
@@ -6898,6 +6925,7 @@
 				3EC62B6828512F2400995264 /* PlaylistsViewController.swift in Sources */,
 				3EFE39BF27864897006F8B8C /* FontSchemesPersistentState.swift in Sources */,
 				3E59A175262C9EDA006DF775 /* WindowLoader.swift in Sources */,
+				3E51CCF8285E8D10002CBEF2 /* UnifiedPlayerSidebarViewController+ViewDelegate.swift in Sources */,
 				3EFE3AF527864942006F8B8C /* FFmpegSampleConverter.swift in Sources */,
 				3EF84D8A2835E6FE004EF57B /* FolderMonitor.swift in Sources */,
 			);

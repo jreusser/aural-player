@@ -10,7 +10,7 @@
 
 import Cocoa
 
-extension LibrarySidebarViewController: NSTableViewDelegate {
+extension LibrarySidebarViewController: NSOutlineViewDelegate {
     
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         item is LibrarySidebarCategory ? 31: 27

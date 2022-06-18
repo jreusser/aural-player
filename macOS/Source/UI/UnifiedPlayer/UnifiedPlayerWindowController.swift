@@ -23,12 +23,15 @@ class UnifiedPlayerWindowController: NSWindowController {
     @IBOutlet weak var settingsMenuIconItem: TintedIconMenuItem!
     
     @IBOutlet weak var rootSplitView: NSSplitView!
+    @IBOutlet weak var browserSplitView: NSSplitView!
     
     // The tab group that switches between the 4 playlist views
     @IBOutlet weak var tabGroup: NSTabView!
     
     private lazy var nowPlayingController: NowPlayingViewController = NowPlayingViewController()
     private lazy var playerController: UnifiedPlayerViewController = UnifiedPlayerViewController()
+    
+    private lazy var sidebarController: UnifiedPlayerSidebarViewController = UnifiedPlayerSidebarViewController()
     
     private lazy var playQueueTableController: PlayQueueTableViewController = PlayQueueTableViewController()
     
@@ -60,6 +63,7 @@ class UnifiedPlayerWindowController: NSWindowController {
         playerController.forceLoadingOfView()
         
         rootSplitView.addAndAnchorSubView(playerController.view, underArrangedSubviewAt: 0)
+        browserSplitView.addAndAnchorSubView(sidebarController.view, underArrangedSubviewAt: 0)
         
         tabGroup.addAndAnchorSubView(forController: playQueueTableController)
         

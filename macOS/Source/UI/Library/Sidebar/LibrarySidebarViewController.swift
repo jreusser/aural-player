@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class LibrarySidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineViewDataSource {
+class LibrarySidebarViewController: NSViewController {
     
     override var nibName: String? {"LibrarySidebar"}
     

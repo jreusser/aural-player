@@ -9,6 +9,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="UnifiedPlayerWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="browserSplitView" destination="ExY-pd-fXH" id="EzR-RH-Jge"/>
                 <outlet property="btnMinimize" destination="uqs-37-cFW" id="PS8-Qa-j26"/>
                 <outlet property="btnQuit" destination="eoQ-Xe-ODi" id="9a8-0J-rjm"/>
                 <outlet property="logoImage" destination="Qgw-qr-6uY" id="Sk4-8w-7d9"/>
@@ -52,7 +53,7 @@
                     <splitView arrangesAllSubviews="NO" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="zSX-rs-0Aq" userLabel="Root Split View" customClass="UnifiedPlayerSplitView" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="455"/>
                         <subviews>
-                            <customView id="t3V-ob-vQ4" userLabel="Now Playing View">
+                            <customView misplaced="YES" id="t3V-ob-vQ4" userLabel="Now Playing View">
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="188"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <constraints>

@@ -10,7 +10,7 @@
 
 import Cocoa
 
-extension LibrarySidebarViewController: NSTableViewDataSource {
+extension LibrarySidebarViewController: NSOutlineViewDataSource {
 
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
