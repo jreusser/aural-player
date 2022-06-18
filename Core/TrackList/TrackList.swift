@@ -20,10 +20,10 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     
     typealias Iterator = TrackListIterator
     
-    // Meant to be overriden
+    /// Meant to be overriden
     var displayName: String {"Track List"}
     
-    // A map to quickly look up tracks by (absolute) file path (used when adding tracks, to prevent duplicates)
+    /// A map to quickly look up tracks by (absolute) file path (used when adding tracks, to prevent duplicates)
     var _tracks: OrderedDictionary<URL, Track> = OrderedDictionary()
     
     var tracks: [Track] {
@@ -237,9 +237,6 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         }
         
         if let insertionIndex = batch.insertionIndex {
-            
-            print("\nInserting: \(batch.files.count) tracks at: \(insertionIndex)")
-            
             return insertTracks(tracks, at: insertionIndex)
             
         } else {

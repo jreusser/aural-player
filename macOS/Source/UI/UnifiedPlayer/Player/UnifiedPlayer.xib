@@ -22,33 +22,38 @@
             <rect key="frame" x="0.0" y="0.0" width="866" height="125"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I3Y-0e-Nm0" userLabel="ArtView">
-                    <rect key="frame" x="0.0" y="50" width="75" height="75"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I3Y-0e-Nm0" userLabel="ArtView" customClass="RoundedImageView" customModule="Aural" customModuleProvider="target">
+                    <rect key="frame" x="15" y="50" width="75" height="75"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="75" id="EX3-Td-ADT"/>
                         <constraint firstAttribute="height" constant="75" id="OFB-wx-N0e"/>
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="SampleArt" id="O3e-Zm-Lis"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="roundingRadius">
+                            <real key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </imageView>
                 <box wantsLayer="YES" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="7BY-ME-fle" userLabel="Playing Track Info Box">
-                    <rect key="frame" x="90" y="55" width="763" height="70"/>
+                    <rect key="frame" x="100" y="55" width="766" height="70"/>
                     <view key="contentView" id="T0r-Cf-1AZ" customClass="PlayingTrackTextView" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="763" height="70"/>
+                        <rect key="frame" x="0.0" y="0.0" width="766" height="70"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="bNd-u7-Wc9">
-                                <rect key="frame" x="0.0" y="0.0" width="678" height="70"/>
+                                <rect key="frame" x="0.0" y="0.0" width="669" height="70"/>
                                 <clipView key="contentView" copiesOnScroll="NO" id="RdT-fa-WIX">
-                                    <rect key="frame" x="0.0" y="0.0" width="678" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="669" height="70"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView focusRingType="none" editable="NO" selectable="NO" horizontallyResizable="YES" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" spellingCorrection="YES" id="I8f-EI-P2l">
-                                            <rect key="frame" x="0.0" y="0.0" width="678" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="669" height="70"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="678" height="70"/>
-                                            <size key="maxSize" width="687" height="120"/>
+                                            <size key="minSize" width="669" height="70"/>
+                                            <size key="maxSize" width="691" height="120"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
@@ -68,7 +73,7 @@
                                 </scroller>
                             </scrollView>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4S-AL-UJd" userLabel="Lbl Time Elapsed" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="694" y="23" width="70" height="24"/>
+                                <rect key="frame" x="685" y="23" width="70" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="66" id="Gf6-Pc-z8E"/>
                                     <constraint firstAttribute="height" constant="24" id="Zr6-tt-rn1"/>
@@ -83,7 +88,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Glt-fW-V9p" userLabel="Functions Menu">
-                                <rect key="frame" x="747" y="10" width="16" height="10"/>
+                                <rect key="frame" x="750" y="10" width="16" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="11" id="bM6-2p-0h9"/>
                                     <constraint firstAttribute="height" constant="10" id="olb-js-EWh"/>
@@ -143,7 +148,7 @@
                             </popUpButton>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="i4S-AL-UJd" secondAttribute="trailing" constant="1" id="CXm-6U-cqG"/>
+                            <constraint firstAttribute="trailing" secondItem="i4S-AL-UJd" secondAttribute="trailing" constant="13" id="CXm-6U-cqG"/>
                             <constraint firstItem="i4S-AL-UJd" firstAttribute="leading" secondItem="bNd-u7-Wc9" secondAttribute="trailing" constant="18" id="F1N-vK-2Cd"/>
                             <constraint firstItem="i4S-AL-UJd" firstAttribute="top" secondItem="T0r-Cf-1AZ" secondAttribute="top" constant="23" id="Qh6-NP-DWk"/>
                             <constraint firstItem="Glt-fW-V9p" firstAttribute="top" secondItem="i4S-AL-UJd" secondAttribute="bottom" constant="3" id="Skv-z9-ByT"/>
@@ -161,7 +166,7 @@
                     <color key="fillColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </box>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="5pM-GQ-4Cs" userLabel="SeekSliderView" customClass="WindowedModeSeekSliderView" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="80" y="38" width="786" height="15"/>
+                    <rect key="frame" x="105" y="38" width="746" height="15"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iet-di-Oy3" userLabel="SeekPositionMarker">
                             <rect key="frame" x="430" y="6" width="6" height="4"/>
@@ -173,7 +178,7 @@
                             </textFieldCell>
                         </textField>
                         <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vy6-fP-yZR" userLabel="Seek Slider">
-                            <rect key="frame" x="-2" y="7" width="790" height="15"/>
+                            <rect key="frame" x="-2" y="7" width="750" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="11" id="yCT-OM-PqY"/>
                             </constraints>
@@ -274,7 +279,7 @@
                             </connections>
                         </button>
                         <button toolTip="Mute / Unmute" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ky9-I0-As0" userLabel="Volume Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="759" y="15.5" width="27" height="20"/>
+                            <rect key="frame" x="753" y="15.5" width="27" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="27" id="R2x-H1-XHq"/>
                                 <constraint firstAttribute="height" constant="11" id="m9z-mY-A2l"/>
@@ -289,7 +294,7 @@
                             </connections>
                         </button>
                         <slider toolTip="Volume" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ty7-YX-csv" userLabel="Volume Slider">
-                            <rect key="frame" x="785" y="18" width="74" height="15"/>
+                            <rect key="frame" x="779" y="18" width="74" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="11" id="6XI-CD-0ZD"/>
                                 <constraint firstAttribute="width" constant="70" id="P8o-ig-rcj"/>
@@ -354,7 +359,7 @@
                             </connections>
                         </button>
                         <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g7T-dA-7YQ" userLabel="Volume Value Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="808" y="32" width="50" height="20"/>
+                            <rect key="frame" x="802" y="32" width="50" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="46" id="84Z-t3-1wd"/>
                                 <constraint firstAttribute="height" constant="20" id="VVR-Ah-geH"/>
@@ -380,11 +385,11 @@
                         <constraint firstItem="lDv-Mk-n4T" firstAttribute="leading" secondItem="Mwt-ld-sqn" secondAttribute="trailing" constant="3" id="Omn-Q7-pYe"/>
                         <constraint firstItem="5rA-mK-Ihh" firstAttribute="leading" secondItem="pIl-Qj-Bbe" secondAttribute="trailing" constant="11" id="PUl-3e-GGR"/>
                         <constraint firstItem="Mwt-ld-sqn" firstAttribute="centerY" secondItem="rZu-pg-YVP" secondAttribute="centerY" id="Qdb-GM-WAa"/>
-                        <constraint firstAttribute="trailing" secondItem="Ty7-YX-csv" secondAttribute="trailing" constant="9" id="R3P-er-2wp"/>
+                        <constraint firstAttribute="trailing" secondItem="Ty7-YX-csv" secondAttribute="trailing" constant="15" id="R3P-er-2wp"/>
                         <constraint firstItem="lDv-Mk-n4T" firstAttribute="centerY" secondItem="rZu-pg-YVP" secondAttribute="centerY" id="RKH-St-ubv"/>
                         <constraint firstItem="RWZ-DI-dyv" firstAttribute="leading" secondItem="5rA-mK-Ihh" secondAttribute="trailing" constant="10" symbolic="YES" id="WIS-Iq-yFQ"/>
                         <constraint firstItem="Ty7-YX-csv" firstAttribute="centerY" secondItem="ky9-I0-As0" secondAttribute="centerY" id="Xwi-7K-R4I"/>
-                        <constraint firstAttribute="trailing" secondItem="g7T-dA-7YQ" secondAttribute="trailing" constant="10" id="YRM-5u-sMK"/>
+                        <constraint firstAttribute="trailing" secondItem="g7T-dA-7YQ" secondAttribute="trailing" constant="16" id="YRM-5u-sMK"/>
                         <constraint firstItem="5rA-mK-Ihh" firstAttribute="centerX" secondItem="nHq-7V-BR9" secondAttribute="centerX" id="aBF-gY-7of"/>
                         <constraint firstItem="pIl-Qj-Bbe" firstAttribute="centerY" secondItem="Ks7-Qi-6r9" secondAttribute="centerY" id="aj6-7o-GQu"/>
                         <constraint firstAttribute="bottom" secondItem="g7T-dA-7YQ" secondAttribute="bottom" constant="32" id="bxQ-l5-f1v"/>
@@ -404,17 +409,17 @@
                 </customView>
             </subviews>
             <constraints>
-                <constraint firstItem="I3Y-0e-Nm0" firstAttribute="leading" secondItem="aXk-ne-Q1U" secondAttribute="leading" id="4N0-nC-mEH"/>
-                <constraint firstItem="7BY-ME-fle" firstAttribute="leading" secondItem="I3Y-0e-Nm0" secondAttribute="trailing" constant="15" id="4Oe-BI-eKL"/>
+                <constraint firstItem="Ty7-YX-csv" firstAttribute="trailing" secondItem="5pM-GQ-4Cs" secondAttribute="trailing" id="2AJ-Vs-zT6"/>
+                <constraint firstItem="I3Y-0e-Nm0" firstAttribute="leading" secondItem="aXk-ne-Q1U" secondAttribute="leading" constant="15" id="4N0-nC-mEH"/>
+                <constraint firstItem="7BY-ME-fle" firstAttribute="leading" secondItem="I3Y-0e-Nm0" secondAttribute="trailing" constant="10" id="4Oe-BI-eKL"/>
                 <constraint firstItem="I3Y-0e-Nm0" firstAttribute="top" secondItem="aXk-ne-Q1U" secondAttribute="top" id="5bE-vl-pnd"/>
                 <constraint firstItem="7BY-ME-fle" firstAttribute="top" secondItem="aXk-ne-Q1U" secondAttribute="top" id="Iyp-u3-v2g"/>
-                <constraint firstAttribute="trailing" secondItem="7BY-ME-fle" secondAttribute="trailing" constant="13" id="Jzb-zL-InQ"/>
-                <constraint firstAttribute="trailing" secondItem="5pM-GQ-4Cs" secondAttribute="trailing" id="Y7S-pT-Tmj"/>
+                <constraint firstAttribute="trailing" secondItem="7BY-ME-fle" secondAttribute="trailing" id="Jzb-zL-InQ"/>
+                <constraint firstItem="5pM-GQ-4Cs" firstAttribute="leading" secondItem="7BY-ME-fle" secondAttribute="leading" constant="5" id="Sav-y4-6pd"/>
                 <constraint firstAttribute="trailing" secondItem="nHq-7V-BR9" secondAttribute="trailing" id="Yvd-Jf-tJA"/>
                 <constraint firstItem="nHq-7V-BR9" firstAttribute="leading" secondItem="aXk-ne-Q1U" secondAttribute="leading" id="c9a-bS-nLa"/>
                 <constraint firstItem="7BY-ME-fle" firstAttribute="bottom" secondItem="5pM-GQ-4Cs" secondAttribute="bottom" constant="-17" id="d9U-CB-7zQ"/>
                 <constraint firstAttribute="bottom" secondItem="nHq-7V-BR9" secondAttribute="bottom" id="eeY-fh-cb8"/>
-                <constraint firstItem="5pM-GQ-4Cs" firstAttribute="leading" secondItem="I3Y-0e-Nm0" secondAttribute="trailing" constant="5" id="pbd-6E-2gC"/>
             </constraints>
             <connections>
                 <outlet property="artView" destination="I3Y-0e-Nm0" id="pjf-r5-loq"/>
