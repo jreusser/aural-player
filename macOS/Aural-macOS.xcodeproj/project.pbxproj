@@ -454,6 +454,9 @@
 		3E82A2C826ACB7790013AB8E /* FontConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF28DA72694DDC8005D5B43 /* FontConstants.swift */; };
 		3E82A2CA26ACB7A30013AB8E /* FontSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF275B26A5567000974120 /* FontSet.swift */; };
 		3E82A2CF26ACC8670013AB8E /* MockAudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E82A2CE26ACC8670013AB8E /* MockAudioEngine.swift */; };
+		3E836E332868964D009371D4 /* UnifiedPlayQueue.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E836E322868964D009371D4 /* UnifiedPlayQueue.xib */; };
+		3E836E3528689AF5009371D4 /* UnifiedPlayQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E836E3428689AF5009371D4 /* UnifiedPlayQueueViewController.swift */; };
+		3E836E3728689C54009371D4 /* UnifiedPlayQueueViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E836E3628689C54009371D4 /* UnifiedPlayQueueViewController+Actions.swift */; };
 		3E84AFF626B5CA5F00B5F0B7 /* GroupingPlaylistTests+GroupCountAndAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84AFF526B5CA5F00B5F0B7 /* GroupingPlaylistTests+GroupCountAndAccess.swift */; };
 		3E84AFFA26B5DC5B00B5F0B7 /* GroupingPlaylistTests+TrackInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84AFF926B5DC5B00B5F0B7 /* GroupingPlaylistTests+TrackInfo.swift */; };
 		3E84AFFC26B5E9C300B5F0B7 /* GroupingPlaylistTests+SearchByArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84AFFB26B5E9C300B5F0B7 /* GroupingPlaylistTests+SearchByArtist.swift */; };
@@ -1951,6 +1954,9 @@
 		3E824A4225DB74840089F217 /* MenuBarPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarPlayerViewController.swift; sourceTree = "<group>"; };
 		3E82A2CE26ACC8670013AB8E /* MockAudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAudioEngine.swift; sourceTree = "<group>"; };
 		3E836B5225DD3ABC00B9E303 /* monaco.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = monaco.ttf; sourceTree = "<group>"; };
+		3E836E322868964D009371D4 /* UnifiedPlayQueue.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnifiedPlayQueue.xib; sourceTree = "<group>"; };
+		3E836E3428689AF5009371D4 /* UnifiedPlayQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayQueueViewController.swift; sourceTree = "<group>"; };
+		3E836E3628689C54009371D4 /* UnifiedPlayQueueViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnifiedPlayQueueViewController+Actions.swift"; sourceTree = "<group>"; };
 		3E84AFF526B5CA5F00B5F0B7 /* GroupingPlaylistTests+GroupCountAndAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupingPlaylistTests+GroupCountAndAccess.swift"; sourceTree = "<group>"; };
 		3E84AFF726B5D8C400B5F0B7 /* AllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllTests.xctestplan; sourceTree = "<group>"; };
 		3E84AFF826B5D97700B5F0B7 /* GroupingPlaylist.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GroupingPlaylist.xctestplan; sourceTree = "<group>"; };
@@ -4017,6 +4023,7 @@
 				3E7638AC2857D9F600461F4D /* UnifiedPlayerWindowController.swift */,
 				3E51CCEE285E896B002CBEF2 /* Sidebar */,
 				3EB42029285A627C007159CC /* Player */,
+				3E836E3128689637009371D4 /* PlayQueue */,
 				3EB42024285A5E83007159CC /* NowPlaying */,
 			);
 			path = UnifiedPlayer;
@@ -4045,6 +4052,16 @@
 				3EB462CE2847FEC6000E3F85 /* TuneBrowserHistory.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		3E836E3128689637009371D4 /* PlayQueue */ = {
+			isa = PBXGroup;
+			children = (
+				3E836E322868964D009371D4 /* UnifiedPlayQueue.xib */,
+				3E836E3428689AF5009371D4 /* UnifiedPlayQueueViewController.swift */,
+				3E836E3628689C54009371D4 /* UnifiedPlayQueueViewController+Actions.swift */,
+			);
+			path = PlayQueue;
 			sourceTree = "<group>";
 		};
 		3E871A3B2698F10800C626DC /* AudioGraph */ = {
@@ -5970,6 +5987,7 @@
 				3EA3CE7025E420DE00BC7D07 /* Papyrus.ttf in Resources */,
 				3E7BDD742822E93200EC5BC6 /* neo-latina-withNums.ttf in Resources */,
 				3EA3CE7325E420EC00BC7D07 /* AnironRegular.ttf in Resources */,
+				3E836E332868964D009371D4 /* UnifiedPlayQueue.xib in Resources */,
 				3E25558B25DE49F300CD7938 /* Metamorphous-Regular.ttf in Resources */,
 				3ECD7DEE25DFE23500A61753 /* AlmendraSC-Regular.ttf in Resources */,
 				3EDE74E425DE9190007F16A5 /* Play-Regular.ttf in Resources */,
@@ -6802,6 +6820,7 @@
 				3E6C12D125CEBE6700BF0D07 /* TimeStretchUnitViewController.swift in Sources */,
 				3EFE393527864897006F8B8C /* SystemUtils.swift in Sources */,
 				3E8DD6432844998500FED49D /* LibraryArtistsViewController.swift in Sources */,
+				3E836E3728689C54009371D4 /* UnifiedPlayQueueViewController+Actions.swift in Sources */,
 				3EFE38D727864896006F8B8C /* TimeStretchUnitDelegateProtocol.swift in Sources */,
 				3E6C129725CEBE2700BF0D07 /* TintedIconMenuItem.swift in Sources */,
 				3E6C128325CEBE1800BF0D07 /* TintedImageButton.swift in Sources */,
@@ -6856,6 +6875,7 @@
 				3EFE39DF27864897006F8B8C /* AudioUnitPersistentState.swift in Sources */,
 				3EAD41912829D4AE00763A12 /* PlayQueueListViewController.swift in Sources */,
 				3EC530E9284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift in Sources */,
+				3E836E3528689AF5009371D4 /* UnifiedPlayQueueViewController.swift in Sources */,
 				3EFE37E727864896006F8B8C /* HistoryPreferences.swift in Sources */,
 				3EEFF58A27DE842C002CB0FE /* PlayQueueDelegate.swift in Sources */,
 				3EFE393927864897006F8B8C /* BookmarksDelegateProtocol.swift in Sources */,

@@ -88,7 +88,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Glt-fW-V9p" userLabel="Functions Menu">
-                                <rect key="frame" x="750" y="10" width="16" height="10"/>
+                                <rect key="frame" x="737" y="10" width="16" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="11" id="bM6-2p-0h9"/>
                                     <constraint firstAttribute="height" constant="10" id="olb-js-EWh"/>
@@ -152,10 +152,10 @@
                             <constraint firstItem="i4S-AL-UJd" firstAttribute="leading" secondItem="bNd-u7-Wc9" secondAttribute="trailing" constant="18" id="F1N-vK-2Cd"/>
                             <constraint firstItem="i4S-AL-UJd" firstAttribute="top" secondItem="T0r-Cf-1AZ" secondAttribute="top" constant="23" id="Qh6-NP-DWk"/>
                             <constraint firstItem="Glt-fW-V9p" firstAttribute="top" secondItem="i4S-AL-UJd" secondAttribute="bottom" constant="3" id="Skv-z9-ByT"/>
-                            <constraint firstAttribute="trailing" secondItem="Glt-fW-V9p" secondAttribute="trailing" id="W5M-68-gr2"/>
                             <constraint firstItem="bNd-u7-Wc9" firstAttribute="leading" secondItem="T0r-Cf-1AZ" secondAttribute="leading" id="i43-wM-6P7"/>
                             <constraint firstItem="bNd-u7-Wc9" firstAttribute="top" secondItem="T0r-Cf-1AZ" secondAttribute="top" id="lpx-b3-cnd"/>
                             <constraint firstAttribute="bottom" secondItem="bNd-u7-Wc9" secondAttribute="bottom" id="oHH-Rk-sDu"/>
+                            <constraint firstItem="Glt-fW-V9p" firstAttribute="trailing" secondItem="i4S-AL-UJd" secondAttribute="trailing" id="vtg-Oe-jcV"/>
                         </constraints>
                         <connections>
                             <outlet property="clipView" destination="RdT-fa-WIX" id="qCE-P9-BGj"/>

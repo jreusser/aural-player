@@ -28,12 +28,12 @@ class UnifiedPlayerWindowController: NSWindowController {
     // The tab group that switches between the 4 playlist views
     @IBOutlet weak var tabGroup: NSTabView!
     
-    private lazy var nowPlayingController: NowPlayingViewController = NowPlayingViewController()
+//    private lazy var nowPlayingController: NowPlayingViewController = NowPlayingViewController()
     private lazy var playerController: UnifiedPlayerViewController = UnifiedPlayerViewController()
     
     private lazy var sidebarController: UnifiedPlayerSidebarViewController = UnifiedPlayerSidebarViewController()
     
-    private lazy var playQueueTableController: PlayQueueTableViewController = PlayQueueTableViewController()
+    private lazy var playQueueController: UnifiedPlayQueueViewController = UnifiedPlayQueueViewController()
     
     private lazy var libraryTracksController: LibraryTracksViewController = LibraryTracksViewController()
     private lazy var libraryArtistsController: LibraryArtistsViewController = LibraryArtistsViewController()
@@ -65,7 +65,7 @@ class UnifiedPlayerWindowController: NSWindowController {
         rootSplitView.addAndAnchorSubView(playerController.view, underArrangedSubviewAt: 0)
         browserSplitView.addAndAnchorSubView(sidebarController.view, underArrangedSubviewAt: 0)
         
-        tabGroup.addAndAnchorSubView(forController: playQueueTableController)
+        tabGroup.addAndAnchorSubView(forController: playQueueController)
         
         tabGroup.addAndAnchorSubView(forController: libraryTracksController)
         tabGroup.addAndAnchorSubView(forController: libraryArtistsController)
