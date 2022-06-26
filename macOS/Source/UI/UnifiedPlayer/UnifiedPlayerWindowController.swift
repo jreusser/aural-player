@@ -28,8 +28,7 @@ class UnifiedPlayerWindowController: NSWindowController {
     // The tab group that switches between the 4 playlist views
     @IBOutlet weak var tabGroup: NSTabView!
     
-//    private lazy var nowPlayingController: NowPlayingViewController = NowPlayingViewController()
-    private lazy var playerController: UnifiedPlayerViewController = UnifiedPlayerViewController()
+    lazy var playerController: UnifiedPlayerViewController = UnifiedPlayerViewController()
     
     private lazy var sidebarController: UnifiedPlayerSidebarViewController = UnifiedPlayerSidebarViewController()
     
@@ -45,7 +44,11 @@ class UnifiedPlayerWindowController: NSWindowController {
     
     private lazy var playlistsViewController: PlaylistsViewController = PlaylistsViewController()
     
-    private lazy var messenger: Messenger = Messenger(for: self)
+    lazy var messenger: Messenger = Messenger(for: self)
+    
+    var eventMonitor: EventMonitor! = EventMonitor()
+    
+    var gesturesPreferences: GesturesControlsPreferences {preferences.controlsPreferences.gestures}
     
     // One-time setup
     override func windowDidLoad() {
@@ -55,7 +58,7 @@ class UnifiedPlayerWindowController: NSWindowController {
         initWindow()
         theWindow.setIsVisible(false)
         
-//        setUpEventHandling()
+        setUpEventHandling()
         initSubscriptions()
         
         super.windowDidLoad()
