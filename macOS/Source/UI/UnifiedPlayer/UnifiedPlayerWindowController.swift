@@ -78,6 +78,9 @@ class UnifiedPlayerWindowController: NSWindowController {
         tabGroup.addAndAnchorSubView(forController: playlistsViewController)
         
         tabGroup.selectTabViewItem(at: 0)
+        
+        messenger.subscribe(to: .unifiedPlayer_showBrowserTabForItem, handler: showBrowserTab(forItem:))
+        messenger.subscribe(to: .unifiedPlayer_showBrowserTabForCategory, handler: showBrowserTab(forCategory:))
     }
     
     // Set window properties
@@ -141,6 +144,32 @@ class UnifiedPlayerWindowController: NSWindowController {
     
     func changeWindowCornerRadius(_ radius: CGFloat) {
         rootContainerBox.cornerRadius = radius
+    }
+    
+    private func showBrowserTab(forItem item: UnifiedPlayerSidebarItem) {
+        
+        let tab = item.browserTab
+
+        if tab == .playlists {
+            messenger.publish(.playlists_showPlaylist, payload: item.displayName)
+            
+        } else if tab == .fileSystem,
+                  let folderURL = item.tuneBrowserURL {
+                
+            tuneBrowserViewController.showURL(folderURL)
+        }
+        
+        tabGroup.selectTabViewItem(at: tab.rawValue)
+    }
+    
+    private func showBrowserTab(forCategory category: UnifiedPlayerSidebarCategory) {
+
+        let tab = category.browserTab
+        tabGroup.selectTabViewItem(at: tab.rawValue)
+//
+//        if tab == .playlists {
+//
+//        }
     }
 }
 

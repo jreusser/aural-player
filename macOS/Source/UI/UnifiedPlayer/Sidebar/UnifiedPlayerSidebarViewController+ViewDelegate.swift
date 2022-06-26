@@ -97,7 +97,7 @@ extension UnifiedPlayerSidebarViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         
         if let category = item as? UnifiedPlayerSidebarCategory {
-            return category.equalsOneOf(.favorites, .bookmarks)
+            return category.equalsOneOf(.playQueue, .favorites, .bookmarks)
         }
         
         return true
@@ -110,10 +110,10 @@ extension UnifiedPlayerSidebarViewController: NSOutlineViewDelegate {
         let item = outlineView.item(atRow: outlineView.selectedRow)
         
         if let selectedItem = item as? UnifiedPlayerSidebarItem {
-            messenger.publish(.library_showBrowserTabForItem, payload: selectedItem)
+            messenger.publish(.unifiedPlayer_showBrowserTabForItem, payload: selectedItem)
             
         } else if let selectedCategory = item as? UnifiedPlayerSidebarCategory {
-            messenger.publish(.library_showBrowserTabForCategory, payload: selectedCategory)
+            messenger.publish(.unifiedPlayer_showBrowserTabForCategory, payload: selectedCategory)
         }
     }
 }

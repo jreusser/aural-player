@@ -26,10 +26,10 @@ class UnifiedPlayerSidebarViewController: NSViewController {
         
         super.viewDidLoad()
         
-        categories.forEach {sidebarView.expandItem($0)}
-        sidebarView.selectRow(1)
+        categories.forEach {sidebarView.collapseItem($0)}
+        sidebarView.selectRow(0)
         
-        messenger.subscribe(to: .librarySidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
+        messenger.subscribe(to: .sidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
         
         colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
     }

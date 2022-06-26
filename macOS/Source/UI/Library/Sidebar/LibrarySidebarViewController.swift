@@ -29,7 +29,7 @@ class LibrarySidebarViewController: NSViewController {
         categories.forEach {sidebarView.expandItem($0)}
         sidebarView.selectRow(1)
         
-        messenger.subscribe(to: .librarySidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
+        messenger.subscribe(to: .sidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
         
         colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
     }

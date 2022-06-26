@@ -457,6 +457,7 @@
 		3E836E332868964D009371D4 /* UnifiedPlayQueue.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E836E322868964D009371D4 /* UnifiedPlayQueue.xib */; };
 		3E836E3528689AF5009371D4 /* UnifiedPlayQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E836E3428689AF5009371D4 /* UnifiedPlayQueueViewController.swift */; };
 		3E836E3728689C54009371D4 /* UnifiedPlayQueueViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E836E3628689C54009371D4 /* UnifiedPlayQueueViewController+Actions.swift */; };
+		3E836E392868A36F009371D4 /* UnifiedPlayerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E836E382868A36F009371D4 /* UnifiedPlayerNotifications.swift */; };
 		3E84AFF626B5CA5F00B5F0B7 /* GroupingPlaylistTests+GroupCountAndAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84AFF526B5CA5F00B5F0B7 /* GroupingPlaylistTests+GroupCountAndAccess.swift */; };
 		3E84AFFA26B5DC5B00B5F0B7 /* GroupingPlaylistTests+TrackInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84AFF926B5DC5B00B5F0B7 /* GroupingPlaylistTests+TrackInfo.swift */; };
 		3E84AFFC26B5E9C300B5F0B7 /* GroupingPlaylistTests+SearchByArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84AFFB26B5E9C300B5F0B7 /* GroupingPlaylistTests+SearchByArtist.swift */; };
@@ -1957,6 +1958,7 @@
 		3E836E322868964D009371D4 /* UnifiedPlayQueue.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnifiedPlayQueue.xib; sourceTree = "<group>"; };
 		3E836E3428689AF5009371D4 /* UnifiedPlayQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayQueueViewController.swift; sourceTree = "<group>"; };
 		3E836E3628689C54009371D4 /* UnifiedPlayQueueViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnifiedPlayQueueViewController+Actions.swift"; sourceTree = "<group>"; };
+		3E836E382868A36F009371D4 /* UnifiedPlayerNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayerNotifications.swift; sourceTree = "<group>"; };
 		3E84AFF526B5CA5F00B5F0B7 /* GroupingPlaylistTests+GroupCountAndAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupingPlaylistTests+GroupCountAndAccess.swift"; sourceTree = "<group>"; };
 		3E84AFF726B5D8C400B5F0B7 /* AllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllTests.xctestplan; sourceTree = "<group>"; };
 		3E84AFF826B5D97700B5F0B7 /* GroupingPlaylist.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GroupingPlaylist.xctestplan; sourceTree = "<group>"; };
@@ -5563,6 +5565,7 @@
 				3EFE375A27864895006F8B8C /* AudioGraphNotifications.swift */,
 				3E8FF9DF27F63D9B009CEDDD /* PlayQueueNotifications.swift */,
 				3EAE9CC12836DBF5004499FE /* LibraryNotifications.swift */,
+				3E836E382868A36F009371D4 /* UnifiedPlayerNotifications.swift */,
 				3EFE375B27864895006F8B8C /* EffectsNotifications.swift */,
 				3EFE375C27864895006F8B8C /* TuneBrowserNotifications.swift */,
 				3EFE375D27864895006F8B8C /* VisualizerNotifications.swift */,
@@ -6201,6 +6204,7 @@
 				3E6C123F25CEBDF400BF0D07 /* ChaptersListViewController+TableViewDelegate.swift in Sources */,
 				3E6C123A25CEBDF400BF0D07 /* ChaptersListWindowController.swift in Sources */,
 				3EF84D9E28360BEC004EF57B /* EonilFSEventStream.swift in Sources */,
+				3E836E392868A36F009371D4 /* UnifiedPlayerNotifications.swift in Sources */,
 				3EFE3B0327864943006F8B8C /* FFmpegChannelLayoutsMapper.swift in Sources */,
 				3EFE397F27864897006F8B8C /* ApplyPlaybackProfileAction.swift in Sources */,
 				3E6C128F25CEBE1800BF0D07 /* CheckRadioButtonCell.swift in Sources */,

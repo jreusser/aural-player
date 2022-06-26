@@ -265,7 +265,7 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         if let clickedItem: FileSystemItem = browserView.rightClickedItem as? FileSystemItem {
 
             tuneBrowserUIState.addUserFolder(forURL: clickedItem.url)
-            messenger.publish(.librarySidebar_addFileSystemShortcut, payload: clickedItem.url)
+            messenger.publish(.sidebar_addFileSystemShortcut, payload: clickedItem.url)
         }
     }
     

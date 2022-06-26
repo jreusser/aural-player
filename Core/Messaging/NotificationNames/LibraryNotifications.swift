@@ -45,5 +45,5 @@ extension Notification.Name {
     static let library_showBrowserTabForCategory = Notification.Name("library_showBrowserTabForCategory")
     
     // Command to show a specific Library browser tab (specified in the payload).
-    static let librarySidebar_addFileSystemShortcut = Notification.Name("librarySidebar_addFileSystemShortcut")
+    static let sidebar_addFileSystemShortcut = Notification.Name("sidebar_addFileSystemShortcut")
 }
