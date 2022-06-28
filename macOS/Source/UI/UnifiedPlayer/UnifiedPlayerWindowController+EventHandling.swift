@@ -42,7 +42,8 @@ extension UnifiedPlayerWindowController {
     
     func handleVolumeControl(_ event: NSEvent, _ scrollDirection: GestureDirection) {
         
-        if gesturesPreferences.allowVolumeControl && ScrollSession.validateEvent(timestamp: event.timestamp, eventDirection: scrollDirection) {
+        if gesturesPreferences.allowVolumeControl,
+           ScrollSession.validateEvent(timestamp: event.timestamp, eventDirection: scrollDirection) {
         
             // Scroll up = increase volume, scroll down = decrease volume
             messenger.publish(scrollDirection == .up ?.player_increaseVolume : .player_decreaseVolume, payload: UserInputMode.continuous)

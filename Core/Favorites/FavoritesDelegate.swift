@@ -84,10 +84,10 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
 //        do {
         
             // First, add the given track to the play queue.
-            playQueueDelegate.addTracks([favorite.track])
-            
-            // Play it.
-            player.play(favorite.track)
+//            playQueueDelegate.addTracks([favorite.track])
+//            
+//            // Play it.
+//            player.play(favorite.track)
             
 //        } catch {
 //
