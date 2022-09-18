@@ -83,8 +83,8 @@ class PlayingTrackView: MouseTrackingView {
     
     private func moveInfoBoxTo(_ point: NSPoint) {
         
-//        infoBox.setFrameOrigin(point)
-//        artView.frame.origin.y = infoBox.frame.origin.y + 2 // 5 is half the difference in height between infoBox and artView
+        infoBox.setFrameOrigin(point)
+        artView.frame.origin.y = infoBox.frame.origin.y + 2 // 5 is half the difference in height between infoBox and artView
     }
     
     func showOrHideAlbumArt() {
