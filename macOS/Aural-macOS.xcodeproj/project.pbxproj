@@ -2924,6 +2924,47 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		3E10179128D791ED002C0D8E /* ModularPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				3E6C104F25CEB98600BF0D07 /* WindowManagement */,
+				3E6C0F1D25CEB98500BF0D07 /* MainWindow */,
+				3E10179328D7929D002C0D8E /* PlayQueue */,
+				3E10179228D79203002C0D8E /* Library */,
+				3E10179428D793B1002C0D8E /* Effects */,
+			);
+			path = ModularPlayer;
+			sourceTree = "<group>";
+		};
+		3E10179228D79203002C0D8E /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				3EF84DA028362753004EF57B /* LibraryWindow.xib */,
+				3EF84DA228362A4D004EF57B /* LibraryWindowController.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		3E10179328D7929D002C0D8E /* PlayQueue */ = {
+			isa = PBXGroup;
+			children = (
+				3E25B64F27F7818900D10A5F /* PlayQueueWindow.xib */,
+				3E25B65327F7865900D10A5F /* PlayQueueWindowController.swift */,
+				3EDCC4BB282C37D8002AF3AE /* PlayQueueWindowController+Actions.swift */,
+			);
+			path = PlayQueue;
+			sourceTree = "<group>";
+		};
+		3E10179428D793B1002C0D8E /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				3E6C100925CEB98600BF0D07 /* EffectsWindow.xib */,
+				3E6C0FF325CEB98600BF0D07 /* EffectsWindowController.swift */,
+				3E758B05281DDA5900BBE872 /* EffectsWindowRootView.swift */,
+			);
+			path = Effects;
+			sourceTree = "<group>";
+		};
 		3E2000BB267CDF7E008BAB70 /* MediaKeys */ = {
 			isa = PBXGroup;
 			children = (
@@ -2954,9 +2995,6 @@
 		3E25B64C27F7812500D10A5F /* PlayQueue */ = {
 			isa = PBXGroup;
 			children = (
-				3E25B64F27F7818900D10A5F /* PlayQueueWindow.xib */,
-				3E25B65327F7865900D10A5F /* PlayQueueWindowController.swift */,
-				3EDCC4BB282C37D8002AF3AE /* PlayQueueWindowController+Actions.swift */,
 				3E495B8928108DF800D4766A /* PlayQueueContainer.swift */,
 				3EDCC4BD282C3912002AF3AE /* PlayQueueViewController.swift */,
 				3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */,
@@ -3380,7 +3418,6 @@
 				3E6C112C25CEB98700BF0D07 /* MediaKeyHandling */,
 				3EF84D882835E6E9004EF57B /* FolderMonitor */,
 				3E6C0F1A25CEB98500BF0D07 /* UI */,
-				3EEBC6ED27C16CF700880DFD /* EffectsUnitStateObserverRegistry.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -3390,36 +3427,28 @@
 			children = (
 				3E6C0FE125CEB98600BF0D07 /* Application.xib */,
 				3E9E58FC25DB6B150064EB5F /* AppModeManagement */,
-				3E6C104F25CEB98600BF0D07 /* WindowManagement */,
 				3E6C0FDD25CEB98600BF0D07 /* MenuControllers */,
-				3E6C0F1D25CEB98500BF0D07 /* MainWindow */,
+				3E10179128D791ED002C0D8E /* ModularPlayer */,
+				3E7638A92857D7F800461F4D /* UnifiedPlayer */,
+				3E4322792687D519009E8ADB /* ControlBarPlayer */,
+				3E9E590225DB6B150064EB5F /* MenuBarPlayer */,
 				3E6C101A25CEB98600BF0D07 /* Player */,
 				3E6C103625CEB98600BF0D07 /* TrackInfo */,
 				3E25B64C27F7812500D10A5F /* PlayQueue */,
 				3EF84D9F283623D3004EF57B /* Library */,
-				3E2A2A00280909D2000F0539 /* Playlists */,
 				3E6C0F3B25CEB98600BF0D07 /* Playlist */,
 				3E6C0FED25CEB98600BF0D07 /* Effects */,
-				3EB462C62847FEC6000E3F85 /* TuneBrowser */,
 				3E6C0F6925CEB98600BF0D07 /* PresetsManagers */,
 				3E5F941525E570A9002DEF80 /* Visualizer */,
 				3E6C0F2425CEB98500BF0D07 /* Preferences */,
 				3E9C120F2622204F00D90EA4 /* Themes */,
 				3E2ED4A325DBAD6200732E79 /* FontSchemes */,
 				3E6C0F9925CEB98600BF0D07 /* ColorSchemes */,
-				3E7638A92857D7F800461F4D /* UnifiedPlayer */,
-				3E9E590225DB6B150064EB5F /* MenuBarPlayer */,
-				3E4322792687D519009E8ADB /* ControlBarPlayer */,
 				3E6C0FDA25CEB98600BF0D07 /* AboutDialog */,
 				3E308D19268A333D00B0FD60 /* UpdatesDialog */,
 				3E6C103225CEB98600BF0D07 /* InfoPopup */,
 				3E6C0FB125CEB98600BF0D07 /* CustomViews */,
 				3EA89D952699F00C0021CDB9 /* Utils */,
-				3EAFB5EA267FEC4500F0DC96 /* Extensions */,
-				3E6C0F9825CEB98600BF0D07 /* Fonts.swift */,
-				3E6C0FEC25CEB98600BF0D07 /* Colors.swift */,
-				3EABDE192694CFD4008066E8 /* ColorConstants.swift */,
-				3EF28DA72694DDC8005D5B43 /* FontConstants.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -3891,9 +3920,6 @@
 		3E6C0FED25CEB98600BF0D07 /* Effects */ = {
 			isa = PBXGroup;
 			children = (
-				3E6C100925CEB98600BF0D07 /* EffectsWindow.xib */,
-				3E6C0FF325CEB98600BF0D07 /* EffectsWindowController.swift */,
-				3E758B05281DDA5900BBE872 /* EffectsWindowRootView.swift */,
 				3E3633E12685FB2C006A88ED /* EffectsUnitViewController.swift */,
 				3E6C100525CEB98600BF0D07 /* Master */,
 				3E6C0FF725CEB98600BF0D07 /* EQ */,
@@ -4533,6 +4559,12 @@
 		3EA89D952699F00C0021CDB9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3EEBC6ED27C16CF700880DFD /* EffectsUnitStateObserverRegistry.swift */,
+				3E6C0F9825CEB98600BF0D07 /* Fonts.swift */,
+				3E6C0FEC25CEB98600BF0D07 /* Colors.swift */,
+				3EABDE192694CFD4008066E8 /* ColorConstants.swift */,
+				3EF28DA72694DDC8005D5B43 /* FontConstants.swift */,
+				3EAFB5EA267FEC4500F0DC96 /* Extensions */,
 				3E634D742846B895008A47EC /* TableView */,
 				3EA89D962699F0240021CDB9 /* EventMonitor.swift */,
 				3EA89D9A2699F50C0021CDB9 /* ScrollSession.swift */,
@@ -4980,14 +5012,14 @@
 		3EF84D9F283623D3004EF57B /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				3EF84DA028362753004EF57B /* LibraryWindow.xib */,
-				3EF84DA228362A4D004EF57B /* LibraryWindowController.swift */,
 				3EF84DA4283632D2004EF57B /* Sidebar */,
 				3EAE9CB92836ADE2004499FE /* Tracks */,
 				3E8DD63F2844985F00FED49D /* Artists */,
 				3E05FD40283A451F00EB7861 /* Albums */,
 				3E8DD6442845631900FED49D /* Genres */,
 				3E2ADED92843E4A0009586E7 /* Decades */,
+				3E2A2A00280909D2000F0539 /* Playlists */,
+				3EB462C62847FEC6000E3F85 /* TuneBrowser */,
 				3ED5090228472A35001A190A /* Utils */,
 			);
 			path = Library;
