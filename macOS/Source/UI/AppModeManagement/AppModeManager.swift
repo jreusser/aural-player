@@ -33,8 +33,6 @@ class AppModeManager {
         
         self.lastPresentedAppMode = persistentState?.appMode
         self.preferences = preferences
-        
-        messenger.subscribe(to: .application_switchMode, handler: presentMode(_:))
     }
     
     func presentApp() {
@@ -50,7 +48,7 @@ class AppModeManager {
 //            // Remember app mode from last app launch.
 //            presentMode(lastPresentedAppMode ?? .defaultMode)
 //        }
-        presentMode(.unified)
+        presentMode(.modular)
     }
     
     func presentMode(_ newMode: AppMode) {

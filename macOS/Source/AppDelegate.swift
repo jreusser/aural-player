@@ -97,13 +97,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         _ = mediaKeyHandler
         
-    #endif
-        
-        _ = remoteControlManager
-        
         DispatchQueue.global(qos: .background).async {
             self.cleanUpLegacyFolders()
         }
+        
+    #endif
+        
+        _ = remoteControlManager
     }
     
     ///

@@ -120,15 +120,15 @@ class MainWindowController: NSWindowController {
     }
     
     @IBAction func unifiedModeAction(_ sender: AnyObject) {
-        messenger.publish(.application_switchMode, payload: AppMode.unified)
+        appModeManager.presentMode(.unified)
     }
     
     @IBAction func menuBarModeAction(_ sender: AnyObject) {
-        messenger.publish(.application_switchMode, payload: AppMode.menuBar)
+        appModeManager.presentMode(.menuBar)
     }
     
     @IBAction func controlBarModeAction(_ sender: AnyObject) {
-        messenger.publish(.application_switchMode, payload: AppMode.controlBar)
+        appModeManager.presentMode(.controlBar)
     }
     
     // MARK: Message handling -----------------------------------------------------------

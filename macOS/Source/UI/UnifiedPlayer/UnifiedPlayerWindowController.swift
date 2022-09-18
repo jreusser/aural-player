@@ -128,15 +128,15 @@ class UnifiedPlayerWindowController: NSWindowController {
     }
     
     @IBAction func modularModeAction(_ sender: AnyObject) {
-        messenger.publish(.application_switchMode, payload: AppMode.modular)
+        appModeManager.presentMode(.modular)
     }
     
     @IBAction func menuBarModeAction(_ sender: AnyObject) {
-        messenger.publish(.application_switchMode, payload: AppMode.menuBar)
+        appModeManager.presentMode(.menuBar)
     }
     
     @IBAction func controlBarModeAction(_ sender: AnyObject) {
-        messenger.publish(.application_switchMode, payload: AppMode.controlBar)
+        appModeManager.presentMode(.controlBar)
     }
     
     // MARK: Message handling -----------------------------------------------------------

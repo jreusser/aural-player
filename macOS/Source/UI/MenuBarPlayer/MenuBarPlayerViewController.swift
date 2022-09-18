@@ -169,11 +169,11 @@ class MenuBarPlayerViewController: NSViewController {
     }
     
     @IBAction func windowedModeAction(_ sender: AnyObject) {
-        messenger.publish(.application_switchMode, payload: AppMode.modular)
+        appModeManager.presentMode(.modular)
     }
     
     @IBAction func controlBarModeAction(_ sender: AnyObject) {
-        messenger.publish(.application_switchMode, payload: AppMode.controlBar)
+        appModeManager.presentMode(.controlBar)
     }
 
     @IBAction func quitAction(_ sender: AnyObject) {
