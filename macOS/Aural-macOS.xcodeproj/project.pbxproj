@@ -51,6 +51,7 @@
 		3E10178C28D7713B002C0D8E /* FFmpegPacketFrames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10177728D7713B002C0D8E /* FFmpegPacketFrames.swift */; };
 		3E10178D28D7713B002C0D8E /* FFmpegChannelLayoutsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10177828D7713B002C0D8E /* FFmpegChannelLayoutsMapper.swift */; };
 		3E10178E28D7713B002C0D8E /* FFmpegMetadataReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10177928D7713B002C0D8E /* FFmpegMetadataReader.swift */; };
+		3E10179028D7722B002C0D8E /* EffectsUnitToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10178F28D7722B002C0D8E /* EffectsUnitToggle.swift */; };
 		3E16BE0C280DB48E00CE9FE9 /* PlaylistsUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16BE0B280DB48E00CE9FE9 /* PlaylistsUIState.swift */; };
 		3E16BE0E280DC73800CE9FE9 /* PlaylistNamesTableViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16BE0D280DC73800CE9FE9 /* PlaylistNamesTableViewController+DataSource.swift */; };
 		3E16BE10280DCF7300CE9FE9 /* PlaylistNamesTableViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16BE0F280DCF7300CE9FE9 /* PlaylistNamesTableViewController+ViewDelegate.swift */; };
@@ -1621,6 +1622,7 @@
 		3E10177728D7713B002C0D8E /* FFmpegPacketFrames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegPacketFrames.swift; sourceTree = "<group>"; };
 		3E10177828D7713B002C0D8E /* FFmpegChannelLayoutsMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegChannelLayoutsMapper.swift; sourceTree = "<group>"; };
 		3E10177928D7713B002C0D8E /* FFmpegMetadataReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegMetadataReader.swift; sourceTree = "<group>"; };
+		3E10178F28D7722B002C0D8E /* EffectsUnitToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsUnitToggle.swift; sourceTree = "<group>"; };
 		3E16BE0B280DB48E00CE9FE9 /* PlaylistsUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsUIState.swift; sourceTree = "<group>"; };
 		3E16BE0D280DC73800CE9FE9 /* PlaylistNamesTableViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaylistNamesTableViewController+DataSource.swift"; sourceTree = "<group>"; };
 		3E16BE0F280DCF7300CE9FE9 /* PlaylistNamesTableViewController+ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaylistNamesTableViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
@@ -3803,6 +3805,7 @@
 				3E6C0FBB25CEB98600BF0D07 /* CheckRadioButtonCell.swift */,
 				3E6C0FBC25CEB98600BF0D07 /* TintedImageButton.swift */,
 				3EB1A8102826D14F00866012 /* ThemablePopupButton.swift */,
+				3E10178F28D7722B002C0D8E /* EffectsUnitToggle.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -6836,6 +6839,7 @@
 				3EFE37DF27864896006F8B8C /* PlaybackPreferences.swift in Sources */,
 				3EFE39C927864897006F8B8C /* AppPersistentState.swift in Sources */,
 				3EBF2931268696FA00D87021 /* TrackInfoPopoverTabButtonCell.swift in Sources */,
+				3E10179028D7722B002C0D8E /* EffectsUnitToggle.swift in Sources */,
 				3EFE39A127864897006F8B8C /* PlaylistUIPersistentState.swift in Sources */,
 				3EFB9ED326A68A2400EA8440 /* TrackInfoViewDelegate.swift in Sources */,
 				3EFE3A5B27864898006F8B8C /* MusicBrainzRecording.swift in Sources */,

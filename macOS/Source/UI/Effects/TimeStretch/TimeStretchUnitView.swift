@@ -17,16 +17,9 @@ class TimeStretchUnitView: NSView, ColorSchemePropertyObserver {
     
     @IBOutlet weak var timeSlider: TimeStretchSlider!
     
-    @IBOutlet weak var btnShiftPitch: TintedImageButton!
+    @IBOutlet weak var btnShiftPitch: EffectsUnitToggle!
     
     @IBOutlet weak var lblTimeStretchRateValue: NSTextField!
-    
-    private lazy var btnShiftPitchStateMachine: ButtonStateMachine<Bool> = ButtonStateMachine(initialState: audioGraphDelegate.timeStretchUnit.shiftPitch,
-                                                                                              mappings: [
-                                                                                                ButtonStateMachine.StateMapping(state: true, image: .imgChecked, colorProperty: \.buttonColor, toolTip: "Disable Pitch Shift"),
-                                                                                                ButtonStateMachine.StateMapping(state: false, image: .imgNotChecked, colorProperty: \.buttonColor, toolTip: "Enable Pitch Shift"),
-                                                                                              ],
-                                                                                              button: btnShiftPitch)
     
     // ------------------------------------------------------------------------
     
@@ -36,17 +29,12 @@ class TimeStretchUnitView: NSView, ColorSchemePropertyObserver {
         timeSlider.rate
     }
     
-    var shiftPitch: Bool {
-        
-        get {btnShiftPitchStateMachine.state}
-        
-        set {btnShiftPitchStateMachine.setState(newValue)}
-    }
-    
     override func awakeFromNib() {
         
         super.awakeFromNib()
-        colorSchemesManager.registerObserver(self, forProperty: \.buttonColor)
+        
+        fxUnitStateObserverRegistry.registerObserver(btnShiftPitch, forFXUnit: audioGraphDelegate.timeStretchUnit)
+        colorSchemesManager.registerObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor, \.suppressedControlColor])
     }
     
     // ------------------------------------------------------------------------
@@ -71,27 +59,37 @@ class TimeStretchUnitView: NSView, ColorSchemePropertyObserver {
     
     func applyPreset(_ preset: TimeStretchPreset) {
         
-        btnShiftPitchStateMachine.setState(preset.shiftPitch)
+        btnShiftPitch.onIf(preset.shiftPitch)
         
         timeSlider.rate = preset.rate
         lblTimeStretchRateValue.stringValue = ValueFormatter.formatTimeStretchRate(preset.rate)
     }
     
-    // ------------------------------------------------------------------------
-    
-    // MARK: Theming
-    
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
+        let timeStretchUnit = audioGraphDelegate.timeStretchUnit
+     
         switch property {
             
-        case \.buttonColor:
+        case \.activeControlColor:
             
-            btnShiftPitch.image = btnShiftPitch.image?.tintedWithColor(newColor)
-            btnShiftPitch.alternateImage = btnShiftPitch.alternateImage?.tintedWithColor(newColor)
+            if timeStretchUnit.isActive {
+                btnShiftPitch.redraw(forState: .active)
+            }
+            
+        case \.inactiveControlColor:
+            
+            if timeStretchUnit.state == .bypassed {
+                btnShiftPitch.redraw(forState: .bypassed)
+            }
+            
+        case \.suppressedControlColor:
+            
+            if timeStretchUnit.state == .suppressed {
+                btnShiftPitch.redraw(forState: .suppressed)
+            }
             
         default:
-            
             return
         }
     }

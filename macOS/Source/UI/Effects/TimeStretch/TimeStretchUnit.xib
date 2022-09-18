@@ -157,20 +157,20 @@
                                 <action selector="increaseRateByHundredthAction:" target="-2" id="Qy5-H5-OqN"/>
                             </connections>
                         </button>
-                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dTa-gP-aeh" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="117" y="24" width="30" height="24"/>
+                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SUA-Sk-H5c" customClass="EffectsUnitToggle" customModule="Aural" customModuleProvider="target">
+                            <rect key="frame" x="120" y="24" width="24" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Checked" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="JI3-Pc-sg8">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
+                            <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NotChecked" imagePosition="left" alignment="left" alternateImage="Checked" controlSize="small" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="RR3-i1-TI8">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="smallSystem"/>
                             </buttonCell>
                             <connections>
-                                <action selector="shiftPitchAction:" target="-2" id="lck-Tq-bsH"/>
+                                <action selector="shiftPitchAction:" target="-2" id="GUP-j9-Wop"/>
                             </connections>
                         </button>
                     </subviews>
                     <connections>
-                        <outlet property="btnShiftPitch" destination="dTa-gP-aeh" id="YlF-LB-0Zv"/>
+                        <outlet property="btnShiftPitch" destination="SUA-Sk-H5c" id="mrz-BQ-cdW"/>
                         <outlet property="lblTimeStretchRateValue" destination="9IV-G1-qdp" id="oyI-aL-B59"/>
                         <outlet property="timeSlider" destination="ZrQ-re-04h" id="220-SK-88J"/>
                     </connections>
@@ -253,6 +253,7 @@
     </objects>
     <resources>
         <image name="Checked" width="200" height="200"/>
+        <image name="NotChecked" width="200" height="200"/>
         <image name="SavedSettings" width="47" height="47"/>
         <image name="minus" catalog="system" width="17" height="4"/>
         <image name="plus" catalog="system" width="17" height="16"/>
