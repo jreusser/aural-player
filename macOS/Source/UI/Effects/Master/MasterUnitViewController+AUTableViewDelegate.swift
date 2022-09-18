@@ -91,21 +91,7 @@ extension MasterUnitViewController: NSTableViewDelegate {
         cell.text = audioUnit.name
         cell.textFont = systemFontScheme.effectsPrimaryFont
         cell.realignText(yOffset: effectsFontScheme.auRowTextYOffset)
-        
-        switch audioUnit.state {
-        
-        case .active:
-            
-            cell.textColor = systemColorScheme.activeControlColor
-            
-        case .bypassed:
-            
-            cell.textColor = systemColorScheme.inactiveControlColor
-            
-        case .suppressed:
-            
-            cell.textColor = systemColorScheme.suppressedControlColor
-        }
+        cell.textColor = systemColorScheme.colorForEffectsUnitState(audioUnit.state)
         
         return cell
     }

@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class TimeStretchUnitView: NSView, ColorSchemePropertyObserver {
+class TimeStretchUnitView: NSView, ColorSchemeObserver {
     
     // ------------------------------------------------------------------------
     
@@ -34,7 +34,7 @@ class TimeStretchUnitView: NSView, ColorSchemePropertyObserver {
         super.awakeFromNib()
         
         fxUnitStateObserverRegistry.registerObserver(btnShiftPitch, forFXUnit: audioGraphDelegate.timeStretchUnit)
-        colorSchemesManager.registerObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor, \.suppressedControlColor])
+        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor, \.suppressedControlColor])
     }
     
     // ------------------------------------------------------------------------
@@ -63,6 +63,10 @@ class TimeStretchUnitView: NSView, ColorSchemePropertyObserver {
         
         timeSlider.rate = preset.rate
         lblTimeStretchRateValue.stringValue = ValueFormatter.formatTimeStretchRate(preset.rate)
+    }
+    
+    func colorSchemeChanged() {
+        btnShiftPitch.redraw(forState: audioGraphDelegate.timeStretchUnit.state)
     }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {

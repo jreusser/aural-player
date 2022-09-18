@@ -213,18 +213,7 @@ protocol TintableFXUnitStateObserver: FXUnitStateObserver {
 extension TintableFXUnitStateObserver {
     
     func unitStateChanged(to newState: EffectsUnitState) {
-        
-        switch newState {
-            
-        case .active:
-            contentTintColor = systemColorScheme.activeControlColor
-            
-        case .bypassed:
-            contentTintColor = systemColorScheme.inactiveControlColor
-            
-        case .suppressed:
-            contentTintColor = systemColorScheme.suppressedControlColor
-        }
+        contentTintColor = systemColorScheme.colorForEffectsUnitState(newState)
     }
     
     func colorForCurrentStateChanged(to newColor: PlatformColor) {
@@ -240,18 +229,7 @@ protocol TextualFXUnitStateObserver: FXUnitStateObserver {
 extension TextualFXUnitStateObserver {
     
     func unitStateChanged(to newState: EffectsUnitState) {
-        
-        switch newState {
-            
-        case .active:
-            textColor = systemColorScheme.activeControlColor
-            
-        case .bypassed:
-            textColor = systemColorScheme.inactiveControlColor
-            
-        case .suppressed:
-            textColor = systemColorScheme.suppressedControlColor
-        }
+        textColor = systemColorScheme.colorForEffectsUnitState(newState)
     }
     
     func colorForCurrentStateChanged(to newColor: PlatformColor) {

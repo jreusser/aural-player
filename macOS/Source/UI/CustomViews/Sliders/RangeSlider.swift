@@ -187,16 +187,7 @@ class RangeSlider: NSControl, FXUnitStateObserver {
     var knobColor: NSColor {.white50Percent}
     
     var controlStateColor: NSColor {
-        
-        switch fxUnitStateObserverRegistry.currentState(forObserver: self) {
-            
-        case .active:       return systemColorScheme.activeControlColor
-            
-        case .bypassed:     return systemColorScheme.inactiveControlColor
-            
-        case .suppressed:   return systemColorScheme.suppressedControlColor
-            
-        }
+        systemColorScheme.colorForEffectsUnitState(fxUnitStateObserverRegistry.currentState(forObserver: self))
     }
     
     var barFillColor: NSColor {

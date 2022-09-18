@@ -18,23 +18,10 @@ class EffectsUnitToggle: NSButton, FXUnitStateObserver {
     
     func redraw(forState newState: EffectsUnitState) {
         
-        switch newState {
-
-        case .bypassed:
-            
-            image = image?.tintedWithColor(systemColorScheme.inactiveControlColor)
-            alternateImage = alternateImage?.tintedWithColor(systemColorScheme.inactiveControlColor)
-
-        case .active:
-
-            image = image?.tintedWithColor(systemColorScheme.activeControlColor)
-            alternateImage = alternateImage?.tintedWithColor(systemColorScheme.activeControlColor)
-
-        case .suppressed:
-
-            image = image?.tintedWithColor(systemColorScheme.suppressedControlColor)
-            alternateImage = alternateImage?.tintedWithColor(systemColorScheme.suppressedControlColor)
-        }
+        let tintColor = systemColorScheme.colorForEffectsUnitState(newState)
+        
+        image = image?.tintedWithColor(tintColor)
+        alternateImage = alternateImage?.tintedWithColor(tintColor)
     }
     
     func unitStateChanged(to newState: EffectsUnitState) {

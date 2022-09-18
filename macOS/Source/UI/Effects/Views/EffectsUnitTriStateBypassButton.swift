@@ -36,21 +36,17 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton, TintableFXUnitStateObse
     
     func unitStateChanged(to newState: EffectsUnitState) {
         
+        contentTintColor = systemColorScheme.colorForEffectsUnitState(newState)
+        
         switch newState {
             
         case .active:
-            
-            contentTintColor = systemColorScheme.activeControlColor
             toolTip = onStateTooltip
             
         case .bypassed:
-            
-            contentTintColor = systemColorScheme.inactiveControlColor
             toolTip = offStateTooltip
             
         case .suppressed:
-            
-            contentTintColor = systemColorScheme.suppressedControlColor
             toolTip = mixedStateTooltip
         }
     }

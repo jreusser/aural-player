@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class ReverbUnitView: NSView {
+class ReverbUnitView: NSView, ColorSchemeObserver {
     
     // ------------------------------------------------------------------------
     
@@ -28,7 +28,13 @@ class ReverbUnitView: NSView {
         super.awakeFromNib()
         
         fontSchemesManager.registerObserver(reverbSpaceMenu, forProperties: [\.effectsPrimaryFont])
-        colorSchemesManager.registerSchemeObserver(reverbSpaceMenu, forProperties: [\.buttonColor, \.primaryTextColor])
+//        colorSchemesManager.registerSchemeObserver(reverbSpaceMenu, forProperties: [\.buttonColor, \.primaryTextColor])
+        
+        if let popupMenuCell = reverbSpaceMenu.cell as? EffectsUnitPopupMenuCell {
+            fxUnitStateObserverRegistry.registerObserver(popupMenuCell, forFXUnit: audioGraphDelegate.reverbUnit)
+        }
+        
+        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor, \.suppressedControlColor])
     }
     
     // ------------------------------------------------------------------------
@@ -67,5 +73,42 @@ class ReverbUnitView: NSView {
         
         setSpace(preset.space.description)
         setAmount(preset.amount, amountString: ValueFormatter.formatReverbAmount(preset.amount))
+    }
+    
+    func colorSchemeChanged() {
+        
+        if let popupMenuCell = reverbSpaceMenu.cell as? EffectsUnitPopupMenuCell {
+            popupMenuCell.tintColor = systemColorScheme.colorForEffectsUnitState(audioGraphDelegate.reverbUnit.state)
+        }
+    }
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        guard let popupMenuCell = reverbSpaceMenu.cell as? EffectsUnitPopupMenuCell else {return}
+        let reverbUnit = audioGraphDelegate.reverbUnit
+        
+        switch property {
+            
+        case \.activeControlColor:
+            
+            if reverbUnit.isActive {
+                popupMenuCell.tintColor = systemColorScheme.activeControlColor
+            }
+            
+        case \.inactiveControlColor:
+            
+            if reverbUnit.state == .bypassed {
+                popupMenuCell.tintColor = systemColorScheme.inactiveControlColor
+            }
+            
+        case \.suppressedControlColor:
+            
+            if reverbUnit.state == .suppressed {
+                popupMenuCell.tintColor = systemColorScheme.suppressedControlColor
+            }
+            
+        default:
+            return
+        }
     }
 }

@@ -266,6 +266,19 @@ class ColorScheme: NSObject, UserManagedObject {
     var persistentState: ColorSchemePersistentState {
         ColorSchemePersistentState(self)
     }
+    
+    func colorForEffectsUnitState(_ state: EffectsUnitState) -> PlatformColor {
+        
+        switch state {
+            
+        case .active:       return activeControlColor
+            
+        case .bypassed:     return inactiveControlColor
+            
+        case .suppressed:   return suppressedControlColor
+            
+        }
+    }
 }
 
 /*

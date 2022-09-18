@@ -30,16 +30,7 @@ class EffectsUnitTabButtonCell: NSButtonCell {
     }
     
     var imageColor: NSColor {
-        
-        switch fxUnitStateObserverRegistry.currentState(forObserver: observingButton) {
-            
-        case .active:       return systemColorScheme.activeControlColor
-            
-        case .bypassed:     return systemColorScheme.inactiveControlColor
-            
-        case .suppressed:   return systemColorScheme.suppressedControlColor
-            
-        }
+        systemColorScheme.colorForEffectsUnitState(fxUnitStateObserverRegistry.currentState(forObserver: observingButton))
     }
     
     override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {

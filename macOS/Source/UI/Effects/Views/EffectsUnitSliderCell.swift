@@ -34,15 +34,6 @@ class EffectsUnitSliderCell: HorizontalSliderCell {
     }
     
     override var controlStateColor: NSColor {
-        
-        switch fxUnitStateObserverRegistry.currentState(forObserver: observingSlider) {
-            
-        case .active:       return systemColorScheme.activeControlColor
-            
-        case .bypassed:     return systemColorScheme.inactiveControlColor
-            
-        case .suppressed:   return systemColorScheme.suppressedControlColor
-            
-        }
+        systemColorScheme.colorForEffectsUnitState(fxUnitStateObserverRegistry.currentState(forObserver: observingSlider))
     }
 }
