@@ -62,6 +62,12 @@ class FilterBandTriStateBypassButton: NSButton, TintableFXUnitStateObserver {
     
     var bandIndex: Int!
     
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        image = .imgSwitch.withSymbolConfiguration(.init(pointSize: 12, weight: .heavy))
+    }
+    
     private var filterUnit: FilterUnitDelegateProtocol {
         audioGraphDelegate.filterUnit
     }
