@@ -143,7 +143,7 @@ Gw
                             <constraint firstAttribute="width" constant="15" id="I0K-ha-gSJ"/>
                             <constraint firstAttribute="height" constant="15" id="z0O-2a-F6v"/>
                         </constraints>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="SaveEQPreset" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="VDp-oI-5Sy">
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Save" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="VDp-oI-5Sy">
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -190,7 +190,7 @@ Gw
     </objects>
     <resources>
         <image name="Resize" width="16" height="16"/>
-        <image name="SaveEQPreset" width="15" height="15"/>
+        <image name="Save" width="26" height="26"/>
         <image name="menuItem:aKj-xg-HMj:image" width="15" height="15">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05T
