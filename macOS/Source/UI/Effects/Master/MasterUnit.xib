@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -26,7 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moJ-jS-aMf" userLabel="Bypass button" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="15" y="133" width="15" height="15"/>
+                    <rect key="frame" x="15" y="133" width="14" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="QrC-Ov-AOd">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -41,17 +42,20 @@
                     </connections>
                 </button>
                 <popUpButton toolTip="Presets" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uqP-oj-xNY" userLabel="Presets Menu">
-                    <rect key="frame" x="12" y="105" width="19" height="17"/>
+                    <rect key="frame" x="12" y="110" width="19" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="Tg0-YE-4cH">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" showsStateColumn="NO" id="wAk-l0-VwJ">
                             <items>
-                                <menuItem image="SavedSettings" hidden="YES" id="bE8-u7-FFo" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                <menuItem hidden="YES" id="bE8-u7-FFo" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                    <imageReference key="image" image="SavedSettings" symbolScale="default" renderingMode="original"/>
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="SavedSettings"/>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage">
+                                            <imageReference key="value" image="SavedSettings" symbolScale="default" renderingMode="original"/>
+                                        </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
                                 <menuItem title="Load preset" id="3Rk-uS-j0Z">
@@ -72,7 +76,7 @@
                     </popUpButtonCell>
                 </popUpButton>
                 <button toolTip="Remember all sound settings for this track" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-Sk-jsP" userLabel="Remember Settings Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="-50" y="80" width="17" height="17"/>
+                    <rect key="frame" x="-50" y="89" width="17" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="clock.arrow.2.circlepath" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="X5A-LV-v56">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -381,7 +385,7 @@
         <image name="FilterTab" width="26" height="26"/>
         <image name="PitchTab" width="32" height="26"/>
         <image name="ReverbTab" width="25" height="25"/>
-        <image name="SavedSettings" width="16" height="16"/>
+        <image name="SavedSettings" width="47" height="47"/>
         <image name="TimeTab" width="32" height="32"/>
         <image name="clock.arrow.2.circlepath" catalog="system" width="18" height="15"/>
     </resources>

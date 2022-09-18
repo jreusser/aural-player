@@ -195,7 +195,7 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
             }
 
             // HACK: To make the tool tip appear (without hiding / showing)
-            btnRememberSettings.moveX(to: 14)
+            btnRememberSettings.moveX(to: 13)
             
         } else {
             
