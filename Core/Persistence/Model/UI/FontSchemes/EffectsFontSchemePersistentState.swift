@@ -9,6 +9,10 @@
 //
 import Foundation
 
+#if os(iOS)
+import UIKit
+#endif
+
 ///
 /// Persistent state for the effects component of a single font scheme.
 ///
@@ -18,10 +22,14 @@ struct EffectsFontSchemePersistentState: Codable {
 
     let filterChartSize: CGFloat?
     let auRowTextYOffset: CGFloat?
+    
+#if os(macOS)
 
     init(_ scheme: EffectsFontScheme) {
 
         self.filterChartSize = scheme.filterChartFont.pointSize
         self.auRowTextYOffset = scheme.auRowTextYOffset
     }
+    
+#endif
 }

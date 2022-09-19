@@ -225,7 +225,10 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
         
         let delegate = HostedAudioUnitDelegate(for: audioUnit)
         audioUnits.append(delegate)
+        
+#if os(macOS)
         fxUnitStateObserverRegistry.observeAU(delegate)
+#endif
         
         return (audioUnit: delegate, index: index)
     }
@@ -234,7 +237,9 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
         
         graph.removeAudioUnits(at: indices)
         
+#if os(macOS)
         defer {fxUnitStateObserverRegistry.compositeAUStateUpdated()}
+#endif
         
         let descendingIndices = indices.sortedDescending()
         return descendingIndices.map {audioUnits.remove(at: $0)}

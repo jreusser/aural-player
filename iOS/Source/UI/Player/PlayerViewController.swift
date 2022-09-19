@@ -25,15 +25,12 @@ class PlayerViewController: UIViewController {
     // Timer that periodically updates the seek position slider and label
     var seekTimer: RepeatingTaskExecutor?
     
-    let player = objectGraph.playbackDelegate
-    var audioGraph = objectGraph.audioGraphDelegate
-    
     private lazy var messenger: Messenger = Messenger(for: self, asyncNotificationQueue: .main)
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        volumeSlider.value = audioGraph.volume
+        volumeSlider.value = audioGraphDelegate.volume
         
         imgArt.layer.cornerRadius = 4
         [lblTitle, lblArtistAlbum, lblTitleOnly, lblTimeElapsed, lblTimeRemaining].forEach {$0?.isHidden = true}
@@ -49,13 +46,13 @@ class PlayerViewController: UIViewController {
     
     @IBAction func playPauseAction(_ sender: Any) {
         
-        player.togglePlayPause()
+        playbackDelegate.togglePlayPause()
         updatePlayPauseButton()
     }
     
     private func updatePlayPauseButton() {
         
-        if player.state == .playing {
+        if playbackDelegate.state == .playing {
             btnPlay.setBackgroundImage(PlatformImage(systemName: "pause"), for: .normal)
         } else {
             btnPlay.setBackgroundImage(PlatformImage(systemName: "play"), for: .normal)
@@ -63,15 +60,15 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func previousTrackAction(_ sender: Any) {
-        player.previousTrack()
+        playbackDelegate.previousTrack()
     }
     
     @IBAction func nextTrackAction(_ sender: Any) {
-        player.nextTrack()
+        playbackDelegate.nextTrack()
     }
     
     @IBAction func volumeAction(_ sender: Any) {
-        audioGraph.volume = volumeSlider.value
+        audioGraphDelegate.volume = volumeSlider.value
     }
     
     @IBAction func seekBackwardAction(_ sender: Any) {
@@ -82,16 +79,16 @@ class PlayerViewController: UIViewController {
     
     @IBAction func seekAction(_ sender: Any) {
         
-        player.seekToPercentage(Double(seekSlider.value))
+        playbackDelegate.seekToPercentage(Double(seekSlider.value))
         updateSeekPosition()
     }
     
     func updateSeekPosition() {
         
-        let seekPosn = player.seekPosition
+        let seekPosn = playbackDelegate.seekPosition
         seekSlider.value = Float(seekPosn.percentageElapsed)
         
-        let trackTimes = ValueFormatter.formatTrackTimes(seekPosn.timeElapsed, seekPosn.trackDuration, seekPosn.percentageElapsed, .formatted, .formatted)
+        let trackTimes = ValueFormatter.formatTrackTimes(seekPosn.timeElapsed, seekPosn.trackDuration, seekPosn.percentageElapsed)
         
         lblTimeElapsed.text = trackTimes.elapsed
         lblTimeRemaining.text = trackTimes.remaining
@@ -102,7 +99,7 @@ class PlayerViewController: UIViewController {
     private func trackTransitioned(_ notif: TrackTransitionNotification) {
         
         updatePlayPauseButton()
-        volumeSlider.value = audioGraph.volume
+        volumeSlider.value = audioGraphDelegate.volume
         
         guard let newTrack = notif.endTrack else {
             
@@ -168,7 +165,7 @@ class PlayerViewController: UIViewController {
     
     private func trackInfoUpdated(_ notif: TrackInfoUpdatedNotification) {
         
-        if notif.updatedTrack == player.playingTrack {
+        if notif.updatedTrack == playbackDelegate.playingTrack {
             imgArt.image = notif.updatedTrack.art?.image
         }
     }

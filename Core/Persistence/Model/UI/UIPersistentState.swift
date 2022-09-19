@@ -9,22 +9,26 @@
 //
 import Foundation
 
+#if os(macOS)
+
 ///
 /// Encapsulates all persistent state for the application UI.
 ///
 struct UIPersistentState: Codable {
     
-    #if os(macOS)
     let appMode: AppMode?
-    #endif
+    
+    let player: PlayerUIPersistentState?
+    let playQueue: PlayQueueUIPersistentState?
+//    let playlist: PlaylistUIPersistentState?
+    
+
     
     let windowLayout: WindowLayoutsPersistentState?
     let themes: ThemesPersistentState?
     let fontSchemes: FontSchemesPersistentState?
     let colorSchemes: ColorSchemesPersistentState?
-    let player: PlayerUIPersistentState?
-    let playQueue: PlayQueueUIPersistentState?
-//    let playlist: PlaylistUIPersistentState?
+    
     let visualizer: VisualizerUIPersistentState?
     let windowAppearance: WindowAppearancePersistentState?
     let tuneBrowser: TuneBrowserUIPersistentState?
@@ -32,3 +36,5 @@ struct UIPersistentState: Codable {
     let menuBarPlayer: MenuBarPlayerUIPersistentState?
     let controlBarPlayer: ControlBarPlayerUIPersistentState?
 }
+
+#endif

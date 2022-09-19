@@ -9,10 +9,13 @@
 //
 import Foundation
 
+#if os(macOS)
+
 ///
 /// Persistent state for all Visualizer settings.
 ///
 /// - SeeAlso: `VisualizerUIState`
+///
 ///
 struct VisualizerUIPersistentState: Codable {
     
@@ -30,3 +33,5 @@ struct VisualizerOptionsPersistentState: Codable {
     let lowAmplitudeColor: ColorPersistentState?
     let highAmplitudeColor: ColorPersistentState?
 }
+
+#endif

@@ -8,9 +8,12 @@
 //  See the file "LICENSE" in the project root directory for license terms.
 //  
 
-import AppKit
+#if os(macOS)
 
+import AppKit
 let appVersion: String = NSApp.appVersion
+
+#endif
 
 let persistenceManager: PersistenceManager = PersistenceManager(persistentStateFile: FilesAndPaths.persistentStateFile)
 let persistentState: AppPersistentState = persistenceManager.load(type: AppPersistentState.self) ?? .defaults

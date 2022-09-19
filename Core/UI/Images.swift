@@ -10,6 +10,9 @@
 /*
     Container for images used by the UI
 */
+
+import Foundation
+
 extension PlatformImage {
     
     static let imgPlayQueueTableView: PlatformImage = PlatformImage(systemSymbolName: "list.dash", accessibilityDescription: nil)!
@@ -98,4 +101,19 @@ extension PlatformImage {
 //    static let imgDecadeGroup: PlatformImage = PlatformImage(systemSymbolName: "calendar", accessibilityDescription: nil)!
     static let imgDecadeGroup: PlatformImage = PlatformImage(named: "Calendar")!
     static let imgFileSystem: PlatformImage = PlatformImage(systemSymbolName: "folder", accessibilityDescription: nil)!
+    
+    #if os(iOS)
+    
+    ///
+    /// Convenience initializer to match the signature of the equivalent initializer on iOS.
+    ///
+    convenience init?(systemSymbolName name: String, accessibilityDescription: String?) {
+        self.init(systemName: name)
+    }
+    
+    convenience init?(contentsOf file: URL) {
+        self.init(contentsOfFile: file.path)
+    }
+    
+    #endif
 }

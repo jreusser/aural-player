@@ -7,7 +7,12 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
+
 import Foundation
+
+#if os(iOS)
+import UIKit
+#endif
 
 ///
 /// Persistent state for the playlist component of a single font scheme.
@@ -28,6 +33,8 @@ struct PlaylistFontSchemePersistentState: Codable {
     let chaptersListHeaderSize: CGFloat?
     let chaptersListSearchSize: CGFloat?
     let chaptersListCaptionSize: CGFloat?
+    
+    #if os(macOS)
 
     init(_ scheme: PlaylistFontScheme) {
 
@@ -44,4 +51,6 @@ struct PlaylistFontSchemePersistentState: Codable {
         self.chaptersListCaptionSize = scheme.chaptersListCaptionFont.pointSize
         self.chaptersListSearchSize = scheme.chaptersListSearchFont.pointSize
     }
+    
+    #endif
 }

@@ -9,6 +9,8 @@
 //  
 import Foundation
 
+#if os(macOS)
+
 ///
 /// A persistent representation of an **NSRect** object.
 ///
@@ -16,6 +18,9 @@ struct NSRectPersistentState: Codable {
 
     let origin: NSPointPersistentState?
     let size: NSSizePersistentState?
+    
+    
+#if os(macOS)
     
     init(rect: NSRect) {
         
@@ -28,4 +33,8 @@ struct NSRectPersistentState: Codable {
         guard let origin = self.origin?.toNSPoint(), let size = self.size?.toNSSize() else {return nil}
         return NSRect(origin: origin, size: size)
     }
+    
+    #endif
 }
+
+#endif

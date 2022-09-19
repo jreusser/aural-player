@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JLj-oc-Dfp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JLj-oc-Dfp">
     <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -283,6 +284,7 @@
                                 <state key="normal" backgroundImage="info.circle" catalog="system"/>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="gc3-EN-pcx"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WmF-4I-71y" firstAttribute="centerY" secondItem="Yj8-f2-ap9" secondAttribute="centerY" id="088-yL-Poe"/>
@@ -346,20 +348,20 @@
             </objects>
             <point key="canvasLocation" x="1736.6906474820146" y="346.73366834170855"/>
         </scene>
-        <!--Playlist View Controller-->
+        <!--Play Queue View Controller-->
         <scene sceneID="Yr2-Xx-e2Y">
             <objects>
-                <viewController id="lDO-EB-y3Y" customClass="PlaylistViewController" customModule="Aural_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lDO-EB-y3Y" customClass="PlayQueueViewController" customModule="Aural_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LvC-d8-0GE">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YPa-vh-xbb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YPa-vh-xbb" userLabel="PlayQueue View">
                                 <rect key="frame" x="20" y="24" width="794" height="776"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaylistCell" rowHeight="65" id="7Uw-e0-QkI" customClass="PlaylistCell" customModule="Aural_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="794" height="65"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayQueueCell" rowHeight="65" id="7Uw-e0-QkI" userLabel="PlayQueueCell" customClass="PlayQueueCell" customModule="Aural_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="794" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Uw-e0-QkI" id="8vS-03-WnI">
                                             <rect key="frame" x="0.0" y="0.0" width="794" height="65"/>
@@ -401,6 +403,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="bNL-Ub-1Ad"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="YPa-vh-xbb" firstAttribute="trailing" secondItem="LvC-d8-0GE" secondAttribute="trailingMargin" id="Alj-dE-BTA"/>
@@ -410,7 +413,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="playlistView" destination="YPa-vh-xbb" id="rrV-36-4JU"/>
+                        <outlet property="playQueueView" destination="YPa-vh-xbb" id="Me8-zJ-ww8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="unT-iq-HcU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -419,19 +422,19 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Loop" width="42" height="15"/>
+        <image name="Loop" width="270" height="210"/>
         <image name="backward.end" catalog="system" width="128" height="120"/>
-        <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="bookmark" catalog="system" width="110" height="128"/>
         <image name="forward.end" catalog="system" width="128" height="120"/>
-        <image name="gear" catalog="system" width="128" height="119"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
-        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="gear" catalog="system" width="128" height="122"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="music.note.list" catalog="system" width="128" height="115"/>
-        <image name="play" catalog="system" width="120" height="128"/>
+        <image name="play" catalog="system" width="117" height="128"/>
         <image name="repeat" catalog="system" width="128" height="98"/>
         <image name="shuffle" catalog="system" width="128" height="95"/>
-        <image name="slider.vertical.3" catalog="system" width="128" height="111"/>
-        <image name="volume.2" catalog="system" width="128" height="90"/>
+        <image name="slider.vertical.3" catalog="system" width="128" height="110"/>
+        <image name="volume.2" catalog="system" width="128" height="88"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

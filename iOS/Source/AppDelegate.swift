@@ -11,19 +11,25 @@ import AVFoundation
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    let player = objectGraph.playbackDelegate
-    let playlist = objectGraph.playlistDelegate
-
     let userDocumentsDirectory: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//    let userDocumentsDirectory: URL = URL(fileURLWithPath: "/var/mobile/Music")
     lazy var file = userDocumentsDirectory.appendingPathComponent("Here.mp3")
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
         
-        print("\nUser Docs Dir: \(userDocumentsDirectory)")
+        print("\nUser Docs Dir: \(userDocumentsDirectory.exists)")
         
-        playlist.addFiles(userDocumentsDirectory.children ?? [])
+//        do {
+//            try FileManager.default.copyItem(at: , to: dstURL)
+//        } catch {}
+        
+        for child in userDocumentsDirectory.children ?? [] {
+            print("\nChild: \(child.lastPathComponent)")
+        }
+        
+        playQueueDelegate.loadTracks(from: userDocumentsDirectory.children ?? [], autoplay: false)
         
         return true
     }
@@ -46,5 +52,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 let appVersion: String = Bundle.main.infoDictionary!["CFBundleShortVersionString", String.self]!
-
-let objectGraph: ObjectGraph = .instance

@@ -9,6 +9,8 @@
 //
 import Foundation
 
+#if os(macOS)
+
 ///
 /// Persistent state for window appearance settings.
 ///
@@ -18,3 +20,5 @@ struct WindowAppearancePersistentState: Codable {
     
     let cornerRadius: CGFloat?
 }
+
+#endif

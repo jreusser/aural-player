@@ -7,7 +7,12 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
+
 import Foundation
+
+#if os(iOS)
+import UIKit
+#endif
 
 ///
 /// Encapsulates all persistent state for application font schemes.
@@ -49,6 +54,8 @@ struct FontSchemePersistentState: Codable {
 
     let playlist: PlaylistFontSchemePersistentState?
     let effects: EffectsFontSchemePersistentState?
+    
+#if os(macOS)
 
     // When saving app state to disk
     init(_ scheme: FontScheme) {
@@ -76,4 +83,6 @@ struct FontSchemePersistentState: Codable {
         self.playlist = PlaylistFontSchemePersistentState(scheme.playlist)
         self.effects = EffectsFontSchemePersistentState(scheme.effects)
     }
+    
+#endif
 }

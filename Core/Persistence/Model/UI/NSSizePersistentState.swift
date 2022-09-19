@@ -9,6 +9,11 @@
 //  
 import Foundation
 
+#if os(iOS)
+import UIKit
+#endif
+
+#if os(macOS)
 ///
 /// A persistent representation of an **NSSize** object.
 ///
@@ -29,3 +34,5 @@ struct NSSizePersistentState: Codable {
         return NSMakeSize(width, height)
     }
 }
+
+#endif
