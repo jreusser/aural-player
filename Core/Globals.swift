@@ -141,12 +141,12 @@ var persistentStateOnExit: AppPersistentState {
 #if os(macOS)
     
     persistentState.ui = UIPersistentState(appMode: appModeManager.currentMode,
+                                           player: playerUIState.persistentState,
+                                           playQueue: playQueueUIState.persistentState,
                                            windowLayout: windowLayoutsManager.persistentState,
                                            themes: themesManager.persistentState,
                                            fontSchemes: fontSchemesManager.persistentState,
                                            colorSchemes: colorSchemesManager.persistentState,
-                                           player: playerUIState.persistentState,
-                                           playQueue: playQueueUIState.persistentState,
                                            //                                               playlists: playlistUIState.persistentState,
                                            visualizer: visualizerUIState.persistentState,
                                            windowAppearance: windowAppearanceState.persistentState,

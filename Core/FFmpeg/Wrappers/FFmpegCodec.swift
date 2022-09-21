@@ -18,7 +18,7 @@ class FFmpegCodec {
     ///
     /// A pointer to the encapsulated AVCodec object.
     ///
-    var pointer: UnsafePointer<AVCodec>!
+    var pointer: UnsafeMutablePointer<AVCodec>!
     
     ///
     /// The encapsulated AVCodec object.
