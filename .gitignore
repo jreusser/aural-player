@@ -4,6 +4,7 @@ Icons/
 TODO.txt
 iOS/Resources
 iOS/Frameworks
+macOS/Frameworks
 Resources/ffmpeg/sharedLibs
 Resources/ffmpeg/ffmpeg-4.3.1
 *.zip
@@ -21,3 +22,7 @@ UserGuide.pdf
 *.umdx
 unusedFiles.sh
 iOS/Resources/ffmpeg/build-iOS.sh
+macOS/Frameworks/libswresample.3.dylib
+macOS/Frameworks/libavutil.56.dylib
+macOS/Frameworks/libavformat.58.dylib
+macOS/Frameworks/libavcodec.58.dylib
