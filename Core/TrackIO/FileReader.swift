@@ -22,14 +22,10 @@ class FileReader: FileReaderProtocol {
     ///
     let avfReader: AVFFileReader = AVFFileReader()
     
-#if os(macOS)
-    
     ///
     /// The actual file reader for non-native tracks. Uses FFmpeg.
     ///
     let ffmpegReader: FFmpegFileReader = FFmpegFileReader()
-    
-#endif
     
     func getPrimaryMetadata(for file: URL) throws -> PrimaryMetadata {
         
@@ -38,8 +34,6 @@ class FileReader: FileReaderProtocol {
 //            return cachedMetadata
 //        }
         
-#if os(macOS)
-        
         let metadata = file.isNativelySupported ?
             try avfReader.getPrimaryMetadata(for: file) :
             try ffmpegReader.getPrimaryMetadata(for: file)
@@ -47,40 +41,20 @@ class FileReader: FileReaderProtocol {
 //        metadataRegistry[file] = metadata
         return metadata
         
-        #elseif os(iOS)
-        
-        try avfReader.getPrimaryMetadata(for: file)
-        
-        #endif
     }
     
     func computeAccurateDuration(for file: URL) -> Double? {
         
-#if os(macOS)
-        
         return file.isNativelySupported ?
             avfReader.computeAccurateDuration(for: file) :
             ffmpegReader.computeAccurateDuration(for: file)
-        
-#elseif os(iOS)
-        avfReader.computeAccurateDuration(for: file)
-#endif
     }
     
     func getPlaybackMetadata(for file: URL) throws -> PlaybackContextProtocol {
         
-#if os(macOS)
-        
         return file.isNativelySupported ?
             try avfReader.getPlaybackMetadata(for: file) :
             try ffmpegReader.getPlaybackMetadata(for: file)
-        
-#elseif os(iOS)
-        
-        try avfReader.getPlaybackMetadata(for: file)
-        
-#endif
-        
     }
     
     func getArt(for file: URL) -> CoverArt? {
@@ -90,18 +64,10 @@ class FileReader: FileReaderProtocol {
             return cachedArt.art
         }
         
-#if os(macOS)
-        
         // Cover art was not found in the cache, load it from the appropriate file reader.
         let art: CoverArt? = file.isNativelySupported ?
             avfReader.getArt(for: file) :
             ffmpegReader.getArt(for: file)
-        
-#elseif os(iOS)
-        
-        let art: CoverArt? = avfReader.getArt(for: file)
-        
-#endif
         
         // Update the cache with the newly loaded cover art.
         CoverArtCache.addEntry(file, art)
@@ -113,26 +79,14 @@ class FileReader: FileReaderProtocol {
         
         // Load aux metadata for the track.
         
-#if os(macOS)
-        
         let actualFileReader: FileReaderProtocol = file.isNativelySupported ? avfReader : ffmpegReader
         return actualFileReader.getAuxiliaryMetadata(for: file, loadingAudioInfoFrom: playbackContext)
-        
-#elseif os(iOS)
-        avfReader.getAuxiliaryMetadata(for: file, loadingAudioInfoFrom: playbackContext)
-#endif
     }
     
     func getAllMetadata(for file: URL) -> FileMetadata {
         
-#if os(macOS)
-        
         return file.isNativelySupported ?
             avfReader.getAllMetadata(for: file) :
             ffmpegReader.getAllMetadata(for: file)
-        
-#elseif os(iOS)
-        avfReader.getAllMetadata(for: file)
-#endif
     }
 }

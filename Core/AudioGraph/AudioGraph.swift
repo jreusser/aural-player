@@ -132,12 +132,12 @@ let audioSession: AVAudioSession = .sharedInstance()
         audioEngine.start()
     }
     
+#if os(iOS)
+    
     ///
     /// Sets preferred buffer size, sample rate, and other parameters for the audio session.
     ///
     func setUpAudioSession() {
-        
-        #if os(iOS)
         
         do {
             
@@ -148,9 +148,9 @@ let audioSession: AVAudioSession = .sharedInstance()
         } catch {
             fatalError("Could not set Audio Session active error: \(error.localizedDescription).")
         }
-        
-        #endif
     }
+    
+#endif
     
     // MARK: Audio engine functions ----------------------------------
     

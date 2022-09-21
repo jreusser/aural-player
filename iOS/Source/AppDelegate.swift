@@ -18,21 +18,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
-        
-        print("\nUser Docs Dir: \(userDocumentsDirectory.exists)")
-        
-//        do {
-//            try FileManager.default.copyItem(at: , to: dstURL)
-//        } catch {}
-        
-        for child in userDocumentsDirectory.children ?? [] {
-            print("\nChild: \(child.lastPathComponent)")
-        }
-        
         playQueueDelegate.loadTracks(from: userDocumentsDirectory.children ?? [], autoplay: false)
+//        fftest()
         
         return true
     }
+    
+//    func fftest() {
+//
+//        let file: URL = userDocumentsDirectory.appendingPathComponent("PerfectWorld.wma")
+//
+//        print("\nTHE FILE IS: \(file.path)\n")
+//
+//        var pointer: UnsafeMutablePointer<AVFormatContext>! = avformat_alloc_context()
+//
+//        // Try to open the audio file so that it can be read.
+//        var resultCode: Int32 = avformat_open_input(&pointer, file.path, nil, nil)
+//
+//        print("\nResult: \(resultCode)\n")
+//
+////        // MARK: Read the streams ----------------------------------------------------------------------------------
+////
+////        // Try to read information about the streams contained in this file.
+//        resultCode = avformat_find_stream_info(pointer, nil)
+//
+//        guard let avStreamsArrayPointer = pointer.pointee.streams else {
+//            print("\nERROR")
+//            return
+//        }
+//
+//        print("\nHERE Result: \(resultCode)\n")
+//
+//        self.avStreamPointers = (0..<pointer.pointee.nb_streams).compactMap {avStreamsArrayPointer.advanced(by: Int($0)).pointee}
+//
+//        let streamIndex = av_find_best_stream(pointer, AVMEDIA_TYPE_AUDIO, -1, -1, nil, 0)
+//        let audioStream = avStreamPointers[Int(streamIndex)]
+//
+//        let duration = Double(audioStream.pointee.duration) * audioStream.pointee.time_base.ratio
+//        print("\nDuration of the file is: \(duration)")
+//
+//        let avContext = pointer.pointee
+//        let metadataPtr = avContext.metadata
+//
+//        var metadata: [String: String] = [:]
+//        var tagPtr: UnsafeMutablePointer<AVDictionaryEntry>?
+//
+//        while let tag = av_dict_get(metadataPtr, "", tagPtr, AV_DICT_IGNORE_SUFFIX) {
+//
+//            metadata[String(cString: tag.pointee.key)] = String(cString: tag.pointee.value)
+//            tagPtr = tag
+//        }
+//
+//        print("\nMetadata for file:\n\(metadata)\n")
+//    }
     
     // MARK: UISceneSession Lifecycle
 

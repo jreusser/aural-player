@@ -49,20 +49,12 @@ let audioGraph: AudioGraph = AudioGraph(audioEngine: audioEngine, audioUnitsMana
 var audioGraphDelegate: AudioGraphDelegateProtocol = AudioGraphDelegate(graph: audioGraph, persistentState: persistentState.audioGraph,
                                                                         player: playbackDelegate, preferences: preferences.soundPreferences)
 
-#if os(macOS)
 let player: PlayerProtocol = Player(graph: audioGraph, avfScheduler: avfScheduler, ffmpegScheduler: ffmpegScheduler)
-#elseif os(iOS)
-let player: PlayerProtocol = Player(graph: audioGraph, avfScheduler: avfScheduler, ffmpegScheduler: avfScheduler)
-#endif
 
 fileprivate let avfScheduler: PlaybackSchedulerProtocol = AVFScheduler(audioGraph.playerNode)
 
-#if os(macOS)
-
 fileprivate let ffmpegScheduler: PlaybackSchedulerProtocol = FFmpegScheduler(playerNode: audioGraph.playerNode,
                                                                              sampleConverter: FFmpegSampleConverter())
-
-#endif
 
 let playbackDelegate: PlaybackDelegateProtocol = {
     

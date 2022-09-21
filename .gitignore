@@ -2,6 +2,8 @@
 _Ignored
 Icons/
 TODO.txt
+iOS/Resources
+iOS/Frameworks
 Resources/ffmpeg/sharedLibs
 Resources/ffmpeg/ffmpeg-4.3.1
 *.zip
@@ -18,3 +20,4 @@ Resources/xml-copyright.sh
 UserGuide.pdf
 *.umdx
 unusedFiles.sh
+iOS/Resources/ffmpeg/build-iOS.sh
