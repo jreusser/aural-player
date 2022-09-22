@@ -36,7 +36,7 @@ function createXCFrameworkForLib {
     xcrun xcodebuild -create-xcframework \
         -library "dylibs/macOS/${lib}" -headers "headers/macOS/${libName}" \
         ${iOSLibraries} \
-        -output "xcframeworks//${libName}.xcframework"
+        -output "xcframeworks/${libName}.xcframework"
 }
 
 function runMacOSBuild {
