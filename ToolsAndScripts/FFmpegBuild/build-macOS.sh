@@ -30,7 +30,6 @@ function createXCFrameworkForLib {
 }
 
 source ./macOS.sh
-source ./build.sh
 
 runBuild
 createXCFrameworks

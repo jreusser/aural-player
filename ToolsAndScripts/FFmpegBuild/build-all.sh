@@ -19,8 +19,6 @@
 # related to the use of this script.
 #
 
-source ./build.sh
-
 function createXCFrameworkForLib {
 
     # Source architectures list from iOS config.

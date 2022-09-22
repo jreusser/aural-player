@@ -55,6 +55,19 @@ export srcDirName="ffmpeg-${ffmpegVersion}"
 
 # MARK: Functions -------------------------------------------------------------------------------------
 
+function runBuild {
+
+    cleanXCFrameworksDir
+    buildFFmpeg
+    
+    if [[ "$createFatLibs" == "true" ]]
+    then
+    createFatLibs
+    fi
+    
+    copyHeaders
+}
+
 function cleanXCFrameworksDir {
 
     if [ -d "xcframeworks" ]; then

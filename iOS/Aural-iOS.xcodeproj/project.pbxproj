@@ -445,13 +445,7 @@
 		3E1D1E0728DD0EB800E79674 /* build-macOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-macOS.sh"; sourceTree = "<group>"; };
 		3E1D1E0828DD0EB800E79674 /* iOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = iOS.sh; sourceTree = "<group>"; };
 		3E1D1E0928DD0EB800E79674 /* build-all.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-all.sh"; sourceTree = "<group>"; };
-		3E1D1E0A28DD0EB800E79674 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
-		3E1D1E0B28DD0EB800E79674 /* ffmpeg-4.4.tar.bz2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ffmpeg-4.4.tar.bz2"; sourceTree = "<group>"; };
 		3E1D1E0C28DD0EB800E79674 /* macOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = macOS.sh; sourceTree = "<group>"; };
-		3E1D1E0E28DD0EB800E79674 /* libavformat.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavformat.xcframework; sourceTree = "<group>"; };
-		3E1D1E0F28DD0EB800E79674 /* libavutil.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavutil.xcframework; sourceTree = "<group>"; };
-		3E1D1E1028DD0EB800E79674 /* libavcodec.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavcodec.xcframework; sourceTree = "<group>"; };
-		3E1D1E1128DD0EB800E79674 /* libswresample.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libswresample.xcframework; sourceTree = "<group>"; };
 		3E1D1E1228DD0EB800E79674 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		3E1D1E1328DD0EB800E79674 /* build-iOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-iOS.sh"; sourceTree = "<group>"; };
 		3E1D1E1528DD0EB800E79674 /* build-bundle.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-bundle.sh"; sourceTree = "<group>"; };
@@ -911,27 +905,13 @@
 			children = (
 				3E1D1E0628DD0EB800E79674 /* common.sh */,
 				3E1D1E0728DD0EB800E79674 /* build-macOS.sh */,
-				3E1D1E0828DD0EB800E79674 /* iOS.sh */,
-				3E1D1E0928DD0EB800E79674 /* build-all.sh */,
-				3E1D1E0A28DD0EB800E79674 /* build.sh */,
-				3E1D1E0B28DD0EB800E79674 /* ffmpeg-4.4.tar.bz2 */,
-				3E1D1E0C28DD0EB800E79674 /* macOS.sh */,
-				3E1D1E0D28DD0EB800E79674 /* xcframeworks */,
-				3E1D1E1228DD0EB800E79674 /* README.txt */,
 				3E1D1E1328DD0EB800E79674 /* build-iOS.sh */,
+				3E1D1E0928DD0EB800E79674 /* build-all.sh */,
+				3E1D1E0C28DD0EB800E79674 /* macOS.sh */,
+				3E1D1E0828DD0EB800E79674 /* iOS.sh */,
+				3E1D1E1228DD0EB800E79674 /* README.txt */,
 			);
 			path = FFmpegBuild;
-			sourceTree = "<group>";
-		};
-		3E1D1E0D28DD0EB800E79674 /* xcframeworks */ = {
-			isa = PBXGroup;
-			children = (
-				3E1D1E0E28DD0EB800E79674 /* libavformat.xcframework */,
-				3E1D1E0F28DD0EB800E79674 /* libavutil.xcframework */,
-				3E1D1E1028DD0EB800E79674 /* libavcodec.xcframework */,
-				3E1D1E1128DD0EB800E79674 /* libswresample.xcframework */,
-			);
-			path = xcframeworks;
 			sourceTree = "<group>";
 		};
 		3E1D1E1428DD0EB800E79674 /* AppBundle */ = {

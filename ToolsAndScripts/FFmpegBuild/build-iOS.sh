@@ -36,7 +36,6 @@ function createXCFrameworkForLib {
 }
 
 source ./iOS.sh
-source ./build.sh
 
 runBuild
 createXCFrameworks

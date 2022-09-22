@@ -1585,7 +1585,6 @@
 		3E1B5C0826B6E2C70084FBA4 /* GroupingPlaylistTests+SortArtistsPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupingPlaylistTests+SortArtistsPlaylist.swift"; sourceTree = "<group>"; };
 		3E1B5C0A26B6FD370084FBA4 /* GroupingPlaylistTests+SortAlbumsPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupingPlaylistTests+SortAlbumsPlaylist.swift"; sourceTree = "<group>"; };
 		3E1C2A5E26972D47005E7E12 /* FlatPlaylistTests+MoveTracksUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlatPlaylistTests+MoveTracksUp.swift"; sourceTree = "<group>"; };
-		3E1D1DDC28DCEEC100E79674 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		3E1D1DDD28DCEEC100E79674 /* build-iOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-iOS.sh"; sourceTree = "<group>"; };
 		3E1D1DDE28DCEEC100E79674 /* build-macOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-macOS.sh"; sourceTree = "<group>"; };
 		3E1D1DDF28DD016900E79674 /* macOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = macOS.sh; sourceTree = "<group>"; };
@@ -4870,7 +4869,6 @@
 				3EF30D3F28DC796400CB09EA /* common.sh */,
 				3E1D1DDF28DD016900E79674 /* macOS.sh */,
 				3E1D1DE028DD016900E79674 /* iOS.sh */,
-				3E1D1DDC28DCEEC100E79674 /* build.sh */,
 				3E1D1DDD28DCEEC100E79674 /* build-iOS.sh */,
 				3E1D1DDE28DCEEC100E79674 /* build-macOS.sh */,
 				3E1D1DE128DD016900E79674 /* build-all.sh */,
