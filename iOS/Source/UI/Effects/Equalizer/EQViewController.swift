@@ -12,6 +12,8 @@ class EQViewController: UIViewController {
     /// The sliders corresponding to all the bands of the equalizer.
     private var bandSliders: [UISlider] = []
     
+    @IBOutlet weak var btnBypass: UIButton!
+    
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
@@ -32,16 +34,19 @@ class EQViewController: UIViewController {
         // Discover the EQ band sliders among this view's subviews.
         // The band sliders have a tag value that is >= 0.
         // Perform filtering to exclude the global gain slider.
-        bandSliders = view.subviews.compactMap {$0 as? UISlider}.filter {$0.tag >= 0}.sorted(by: {$0.tag < $1.tag})
+        let allSliders = view.subviews.compactMap {$0 as? UISlider}
+        bandSliders = allSliders.filter {$0.tag >= 0}.sorted(by: {$0.tag < $1.tag})
         
         navigationItem.title = "Equalizer Settings"
         
         // Rotate the sliders by 90 degrees counter-clockwise (to make them vertical).
-        bandSliders.forEach {
+        allSliders.forEach {
             $0.transform = $0.transform.rotated(by: CGFloat(3 * Float.pi / 2))
         }
         
         rotated = true
+        
+        btnBypass.tintColor = eqUnit.isActive ? .blue : .gray
         
 //        player.eqBypass ? bypassSwitch.off() : bypassSwitch.on()
 //        lblBypassState.text = bypassSwitch.isOn ? "Active" : "Bypassed"
@@ -52,6 +57,16 @@ class EQViewController: UIViewController {
 //        for (index, band) in player.eqBands.enumerated() {
 //            bandSliders[index].floatValue = band
 //        }
+    }
+    
+    @IBAction func eqBypassAction(_ sender: UISlider) {
+        
+        _ = eqUnit.toggleState()
+        btnBypass.tintColor = eqUnit.isActive ? .blue : .gray
+    }
+    
+    @IBAction func eqGlobalGainAction(_ sender: UISlider) {
+        eqUnit.globalGain = sender.value
     }
     
     @IBAction func eqBandAction(_ sender: UISlider) {
