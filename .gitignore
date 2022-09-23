@@ -5,6 +5,7 @@ TODO.txt
 iOS/Resources
 iOS/Frameworks
 macOS/Frameworks
+ToolsAndScripts/FFmpegBuild/xcframeworks
 Resources/ffmpeg/sharedLibs
 Resources/ffmpeg/ffmpeg-4.3.1
 *.zip
@@ -26,3 +27,4 @@ macOS/Frameworks/libswresample.3.dylib
 macOS/Frameworks/libavutil.56.dylib
 macOS/Frameworks/libavformat.58.dylib
 macOS/Frameworks/libavcodec.58.dylib
+ToolsAndScripts/FFmpegBuild/xcframeworks/libavcodec.xcframework/Info.plist

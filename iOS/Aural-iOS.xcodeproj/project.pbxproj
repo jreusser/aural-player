@@ -16,6 +16,11 @@
 		3E1D1E0128DD078800E79674 /* libavutil.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1D1DF528DD077900E79674 /* libavutil.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3E1D1E0228DD078A00E79674 /* libswresample.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1D1DF728DD077900E79674 /* libswresample.xcframework */; };
 		3E1D1E0328DD078A00E79674 /* libswresample.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1D1DF728DD077900E79674 /* libswresample.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3E1E009928DDF9A0005DFF50 /* Player.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1E009828DDF9A0005DFF50 /* Player.storyboard */; };
+		3E1E009B28DDFDF0005DFF50 /* PlayQueue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1E009A28DDFDF0005DFF50 /* PlayQueue.storyboard */; };
+		3E1E009E28DE0093005DFF50 /* Effects.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1E009D28DE0093005DFF50 /* Effects.storyboard */; };
+		3E1E00A028DE02BC005DFF50 /* EffectsTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E009F28DE02BC005DFF50 /* EffectsTabBarController.swift */; };
+		3E1E00A228DE057F005DFF50 /* EQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E00A128DE057F005DFF50 /* EQViewController.swift */; };
 		3E528E3027879BEB0086FD66 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E528E2F27879BEB0086FD66 /* PlayerViewController.swift */; };
 		3E528E3627879F650086FD66 /* PlayQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E528E3527879F650086FD66 /* PlayQueueViewController.swift */; };
 		3E5EDF6228D9091A00E71B1A /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5EDF6128D9091A00E71B1A /* Globals.swift */; };
@@ -456,6 +461,11 @@
 		3E1D1E1D28DD0EB800E79674 /* copyright.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = copyright.txt; sourceTree = "<group>"; };
 		3E1D1E1E28DD0EB800E79674 /* xml-copyright.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "xml-copyright.sh"; sourceTree = "<group>"; };
 		3E1D1E1F28DD0EB800E79674 /* copyright.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = copyright.sh; sourceTree = "<group>"; };
+		3E1E009828DDF9A0005DFF50 /* Player.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Player.storyboard; sourceTree = "<group>"; };
+		3E1E009A28DDFDF0005DFF50 /* PlayQueue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlayQueue.storyboard; sourceTree = "<group>"; };
+		3E1E009D28DE0093005DFF50 /* Effects.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Effects.storyboard; sourceTree = "<group>"; };
+		3E1E009F28DE02BC005DFF50 /* EffectsTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsTabBarController.swift; sourceTree = "<group>"; };
+		3E1E00A128DE057F005DFF50 /* EQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EQViewController.swift; sourceTree = "<group>"; };
 		3E528E2F27879BEB0086FD66 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		3E528E3527879F650086FD66 /* PlayQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueViewController.swift; sourceTree = "<group>"; };
 		3E5EDF6128D9091A00E71B1A /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
@@ -952,14 +962,34 @@
 			path = Copyright;
 			sourceTree = "<group>";
 		};
+		3E1E009728DDF943005DFF50 /* Equalizer */ = {
+			isa = PBXGroup;
+			children = (
+				3E1E00A128DE057F005DFF50 /* EQViewController.swift */,
+			);
+			path = Equalizer;
+			sourceTree = "<group>";
+		};
+		3E1E009C28DE0078005DFF50 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				3E1E009D28DE0093005DFF50 /* Effects.storyboard */,
+				3E1E009F28DE02BC005DFF50 /* EffectsTabBarController.swift */,
+				3E1E009728DDF943005DFF50 /* Equalizer */,
+			);
+			path = Effects;
+			sourceTree = "<group>";
+		};
 		3E528E2E27879B7A0086FD66 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				3EA198AC278640E00069C814 /* Main.storyboard */,
+				3EA198AA278640E00069C814 /* MainViewController.swift */,
 				3EA198AF278640E10069C814 /* Assets.xcassets */,
 				3EA198B1278640E10069C814 /* LaunchScreen.storyboard */,
 				3E528E3127879D360086FD66 /* Player */,
 				3E528E3427879F540086FD66 /* PlayQueue */,
+				3E1E009C28DE0078005DFF50 /* Effects */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -967,6 +997,7 @@
 		3E528E3127879D360086FD66 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				3E1E009828DDF9A0005DFF50 /* Player.storyboard */,
 				3E528E2F27879BEB0086FD66 /* PlayerViewController.swift */,
 			);
 			path = Player;
@@ -975,6 +1006,7 @@
 		3E528E3427879F540086FD66 /* PlayQueue */ = {
 			isa = PBXGroup;
 			children = (
+				3E1E009A28DDFDF0005DFF50 /* PlayQueue.storyboard */,
 				3E528E3527879F650086FD66 /* PlayQueueViewController.swift */,
 			);
 			path = PlayQueue;
@@ -1998,7 +2030,6 @@
 			children = (
 				3EA198A6278640E00069C814 /* AppDelegate.swift */,
 				3EA198A8278640E00069C814 /* SceneDelegate.swift */,
-				3EA198AA278640E00069C814 /* MainViewController.swift */,
 				3EFE35D32786464B006F8B8C /* TypeAliases.swift */,
 				3E528E2E27879B7A0086FD66 /* UI */,
 			);
@@ -2201,6 +2232,9 @@
 			files = (
 				3EA198B3278640E10069C814 /* LaunchScreen.storyboard in Resources */,
 				3E5EE25E28D90B7000E71B1A /* Aural.xcassets in Resources */,
+				3E1E009B28DDFDF0005DFF50 /* PlayQueue.storyboard in Resources */,
+				3E1E009928DDF9A0005DFF50 /* Player.storyboard in Resources */,
+				3E1E009E28DE0093005DFF50 /* Effects.storyboard in Resources */,
 				3EA198B0278640E10069C814 /* Assets.xcassets in Resources */,
 				3EA198AE278640E00069C814 /* Main.storyboard in Resources */,
 			);
@@ -2223,6 +2257,7 @@
 				3E5EE16A28D90B6F00E71B1A /* PlaybackChain.swift in Sources */,
 				3E5EE23128D90B7000E71B1A /* MusicBrainzRecording.swift in Sources */,
 				3E5EE27928D90B7000E71B1A /* GroupingPlaylistProtocol.swift in Sources */,
+				3E1E00A028DE02BC005DFF50 /* EffectsTabBarController.swift in Sources */,
 				3E5EE1DF28D90B6F00E71B1A /* TimeStretchUnitProtocol.swift in Sources */,
 				3E5EE24A28D90B7000E71B1A /* FileSystemInfo.swift in Sources */,
 				3E5EE31F28D9113900E71B1A /* AudioUnitPersistentState.swift in Sources */,
@@ -2449,6 +2484,7 @@
 				3E5EE16728D90B6F00E71B1A /* AudioFilePreparationAction.swift in Sources */,
 				3E5EE25828D90B7000E71B1A /* HistoryItem.swift in Sources */,
 				3E5EE21A28D90B7000E71B1A /* HostedAudioUnitDelegateProtocol.swift in Sources */,
+				3E1E00A228DE057F005DFF50 /* EQViewController.swift in Sources */,
 				3E5EE2FE28D9113900E71B1A /* PersistenceManager.swift in Sources */,
 				3E5EE18828D90B6F00E71B1A /* NSImageExtensions.swift in Sources */,
 				3E5EE32628D9113900E71B1A /* BookmarkPersistentState.swift in Sources */,
