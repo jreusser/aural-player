@@ -419,6 +419,10 @@
 		3EB0278428DBBE4B002DBB6F /* FFmpegLoopScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0278228DBBE4B002DBB6F /* FFmpegLoopScheduling.swift */; };
 		3EB0278528DBBE4B002DBB6F /* FFmpegScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0278328DBBE4B002DBB6F /* FFmpegScheduler.swift */; };
 		3EB0278728DBBE58002DBB6F /* FFmpegPlaybackContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0278628DBBE58002DBB6F /* FFmpegPlaybackContext.swift */; };
+		3EB1F24328DEF52900CB231F /* TimeStretchUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1F24228DEF52900CB231F /* TimeStretchUnitViewController.swift */; };
+		3EB1F26528DF047600CB231F /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F26428DF047600CB231F /* Entitlements.plist */; };
+		3EB1F26728DF135500CB231F /* EQUnit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F26628DF135500CB231F /* EQUnit.storyboard */; };
+		3EB1F26928DF141900CB231F /* TimeStretchUnit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F26828DF141900CB231F /* TimeStretchUnit.storyboard */; };
 		3EFE35D42786464C006F8B8C /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE35D32786464B006F8B8C /* TypeAliases.swift */; };
 /* End PBXBuildFile section */
 
@@ -863,6 +867,10 @@
 		3EB0278228DBBE4B002DBB6F /* FFmpegLoopScheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegLoopScheduling.swift; sourceTree = "<group>"; };
 		3EB0278328DBBE4B002DBB6F /* FFmpegScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegScheduler.swift; sourceTree = "<group>"; };
 		3EB0278628DBBE58002DBB6F /* FFmpegPlaybackContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegPlaybackContext.swift; sourceTree = "<group>"; };
+		3EB1F24228DEF52900CB231F /* TimeStretchUnitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStretchUnitViewController.swift; sourceTree = "<group>"; };
+		3EB1F26428DF047600CB231F /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		3EB1F26628DF135500CB231F /* EQUnit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EQUnit.storyboard; sourceTree = "<group>"; };
+		3EB1F26828DF141900CB231F /* TimeStretchUnit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeStretchUnit.storyboard; sourceTree = "<group>"; };
 		3EC2985E2786586F00B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EF30CDA28DC441900CB09EA /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		3EF30CDB28DC441900CB09EA /* build-iOS.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "build-iOS.sh"; sourceTree = "<group>"; };
@@ -965,6 +973,7 @@
 		3E1E009728DDF943005DFF50 /* Equalizer */ = {
 			isa = PBXGroup;
 			children = (
+				3EB1F26628DF135500CB231F /* EQUnit.storyboard */,
 				3E1E00A128DE057F005DFF50 /* EQViewController.swift */,
 			);
 			path = Equalizer;
@@ -976,6 +985,7 @@
 				3E1E009D28DE0093005DFF50 /* Effects.storyboard */,
 				3E1E009F28DE02BC005DFF50 /* EffectsTabBarController.swift */,
 				3E1E009728DDF943005DFF50 /* Equalizer */,
+				3EB1F24128DEF50400CB231F /* TimeStretch */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -2007,6 +2017,7 @@
 		3EA1989A278640E00069C814 = {
 			isa = PBXGroup;
 			children = (
+				3EB1F26428DF047600CB231F /* Entitlements.plist */,
 				3EA198B4278640E10069C814 /* Info.plist */,
 				3EC2975D2786586F00B29551 /* Core */,
 				3EA198A5278640E00069C814 /* Source */,
@@ -2113,6 +2124,15 @@
 				3EB0278328DBBE4B002DBB6F /* FFmpegScheduler.swift */,
 			);
 			path = FFmpeg;
+			sourceTree = "<group>";
+		};
+		3EB1F24128DEF50400CB231F /* TimeStretch */ = {
+			isa = PBXGroup;
+			children = (
+				3EB1F26828DF141900CB231F /* TimeStretchUnit.storyboard */,
+				3EB1F24228DEF52900CB231F /* TimeStretchUnitViewController.swift */,
+			);
+			path = TimeStretch;
 			sourceTree = "<group>";
 		};
 		3EC2975D2786586F00B29551 /* Core */ = {
@@ -2230,9 +2250,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EB1F26528DF047600CB231F /* Entitlements.plist in Resources */,
 				3EA198B3278640E10069C814 /* LaunchScreen.storyboard in Resources */,
 				3E5EE25E28D90B7000E71B1A /* Aural.xcassets in Resources */,
+				3EB1F26928DF141900CB231F /* TimeStretchUnit.storyboard in Resources */,
 				3E1E009B28DDFDF0005DFF50 /* PlayQueue.storyboard in Resources */,
+				3EB1F26728DF135500CB231F /* EQUnit.storyboard in Resources */,
 				3E1E009928DDF9A0005DFF50 /* Player.storyboard in Resources */,
 				3E1E009E28DE0093005DFF50 /* Effects.storyboard in Resources */,
 				3EA198B0278640E10069C814 /* Assets.xcassets in Resources */,
@@ -2304,6 +2327,7 @@
 				3E5EE14B28D90B6F00E71B1A /* PlaybackSequence.swift in Sources */,
 				3E5EE19428D90B6F00E71B1A /* BookmarksNotifications.swift in Sources */,
 				3E5EE24B28D90B7000E71B1A /* GroupedTrack.swift in Sources */,
+				3EB1F24328DEF52900CB231F /* TimeStretchUnitViewController.swift in Sources */,
 				3E5EE24028D90B7000E71B1A /* AVFMappedMetadata.swift in Sources */,
 				3E5EE1FF28D90B6F00E71B1A /* AUExtensions.swift in Sources */,
 				3E5EE1F828D90B6F00E71B1A /* ReverbSpaces.swift in Sources */,
@@ -2788,6 +2812,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "${PROJECT_DIR}/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2797,6 +2822,7 @@
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/../ThirdParty/FFmpeg/Headers/**";
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2824,6 +2850,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "${PROJECT_DIR}/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2833,6 +2860,7 @@
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/../ThirdParty/FFmpeg/Headers/**";
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

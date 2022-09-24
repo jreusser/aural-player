@@ -85,8 +85,8 @@ let audioSession: AVAudioSession = .sharedInstance()
 #endif
         
         eqUnit = EQUnit(persistentState: persistentState?.eqUnit)
-        pitchShiftUnit = PitchShiftUnit(persistentState: persistentState?.pitchUnit)
-        timeStretchUnit = TimeStretchUnit(persistentState: persistentState?.timeUnit)
+        pitchShiftUnit = PitchShiftUnit(persistentState: persistentState?.pitchShiftUnit)
+        timeStretchUnit = TimeStretchUnit(persistentState: persistentState?.timeStretchUnit)
         reverbUnit = ReverbUnit(persistentState: persistentState?.reverbUnit)
         delayUnit = DelayUnit(persistentState: persistentState?.delayUnit)
         filterUnit = FilterUnit(persistentState: persistentState?.filterUnit)
@@ -303,8 +303,8 @@ let audioSession: AVAudioSession = .sharedInstance()
                                   pan: pan,
                                   masterUnit: masterUnit.persistentState,
                                   eqUnit: eqUnit.persistentState,
-                                  pitchUnit: pitchShiftUnit.persistentState,
-                                  timeUnit: timeStretchUnit.persistentState,
+                                  pitchShiftUnit: pitchShiftUnit.persistentState,
+                                  timeStretchUnit: timeStretchUnit.persistentState,
                                   reverbUnit: reverbUnit.persistentState,
                                   delayUnit: delayUnit.persistentState,
                                   filterUnit: filterUnit.persistentState,

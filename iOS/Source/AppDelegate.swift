@@ -11,17 +11,54 @@ import AVFoundation
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    let userDocumentsDirectory: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//    let userDocumentsDirectory: URL = URL(fileURLWithPath: "/var/mobile/Music")
-    lazy var file = userDocumentsDirectory.appendingPathComponent("Here.mp3")
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        print("\nHome Dir is: \(NSHomeDirectory()), User Docs Dir is: \(FilesAndPaths.userDocumentsDirectory.path)\n")
+        
+        let dir = URL(fileURLWithPath: NSHomeDirectory())
+
+        for child in dir.children ?? [] {
+            print("Child: \(child.lastPathComponent)")
+        }
+        
         // Override point for customization after application launch.
-        playQueueDelegate.loadTracks(from: userDocumentsDirectory.children ?? [], autoplay: false)
+        playQueueDelegate.loadTracks(from: FilesAndPaths.userDocumentsDirectory.children ?? [], autoplay: false)
 //        fftest()
         
         return true
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        tearDown()
+    }
+    
+    private lazy var tearDownOpQueue: OperationQueue = OperationQueue(opCount: 2, qos: .userInteractive)
+    
+    // Called when app exits
+    private func tearDown() {
+        
+        print("\nTearing down app ...\n")
+        
+        // App state persistence and shutting down the audio engine can be performed concurrently
+        // on two background threads to save some time when exiting the app.
+        
+        let _persistentStateOnExit = persistentStateOnExit
+        
+        tearDownOpQueue.addOperations([
+            
+            // Persist app state to disk.
+            BlockOperation {
+                persistenceManager.save(_persistentStateOnExit)
+            },
+            
+            // Tear down the player and audio engine.
+            BlockOperation {
+                player.tearDown()
+                audioGraph.tearDown()
+            }
+            
+        ], waitUntilFinished: true)
     }
     
 //    func fftest() {

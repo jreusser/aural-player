@@ -24,7 +24,7 @@ protocol EQUnitDelegateProtocol: EffectsUnitDelegateProtocol {
     
     var bands: [Float] {get set}
     
-    // Sets the gain value of a single equalizer band identified by index (the lowest frequency band has an index of 0).
+    // Gets / sets the gain value of a single equalizer band identified by index (the lowest frequency band has an index of 0).
     subscript(_ index: Int) -> Float {get set}
     
     // Increases the equalizer bass band gains by a small increment, activating and resetting the EQ unit if it is inactive. Returns all EQ band gain values, mapped by index.

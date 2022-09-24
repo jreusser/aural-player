@@ -15,9 +15,18 @@ import Foundation
 ///
 struct FilesAndPaths {
     
+    static let homeDir: URL = URL(fileURLWithPath: NSHomeDirectory())
+    
     // Default user's music directory (default place to look in, when opening/saving files)
-    static let musicDir: URL = URL(fileURLWithPath: NSHomeDirectory() + "/Music").resolvedURL
+    static let musicDir: URL = homeDir.appendingPathComponent("/Music", isDirectory: true).resolvedURL
+    
+    #if os(macOS)
     static let baseDir: URL = musicDir.appendingPathComponent("aural4", isDirectory: true)
+    #elseif os(iOS)
+    static let baseDir: URL = userDocumentsDirectory
+    #endif
+    
+    static let userDocumentsDirectory: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     
     // App state/log files
     static let persistentStateFileName = "state.json"

@@ -14,22 +14,18 @@ class EQViewController: UIViewController {
     
     @IBOutlet weak var btnBypass: UIButton!
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        super.viewWillAppear(animated)
-        doViewWillAppear()
-    }
-    
-    private var rotated: Bool = false
-    
     private var eqUnit: EQUnitDelegateProtocol = audioGraphDelegate.eqUnit
+    
+    private var initialized: Bool = false
     
     ///
     /// Sets the state of the controls based on the current state of the equalizer.
     ///
-    private func doViewWillAppear() {
+    override func viewWillAppear(_ animated: Bool) {
         
-        if rotated {return}
+        super.viewWillAppear(animated)
+        
+        if initialized {return}
         
         // Discover the EQ band sliders among this view's subviews.
         // The band sliders have a tag value that is >= 0.
@@ -44,22 +40,16 @@ class EQViewController: UIViewController {
             $0.transform = $0.transform.rotated(by: CGFloat(3 * Float.pi / 2))
         }
         
-        rotated = true
-        
         btnBypass.tintColor = eqUnit.isActive ? .blue : .gray
         
-//        player.eqBypass ? bypassSwitch.off() : bypassSwitch.on()
-//        lblBypassState.text = bypassSwitch.isOn ? "Active" : "Bypassed"
-//
-//        globalGainSlider.floatValue = player.eqGlobalGain
-//
-//        // Set the band sliders' values based on the gain value of the corresponding equalizer band.
-//        for (index, band) in player.eqBands.enumerated() {
-//            bandSliders[index].floatValue = band
-//        }
+        bandSliders.forEach {
+            $0.value = eqUnit[$0.tag]
+        }
+        
+        initialized = true
     }
     
-    @IBAction func eqBypassAction(_ sender: UISlider) {
+    @IBAction func eqBypassAction(_ sender: UIButton) {
         
         _ = eqUnit.toggleState()
         btnBypass.tintColor = eqUnit.isActive ? .blue : .gray

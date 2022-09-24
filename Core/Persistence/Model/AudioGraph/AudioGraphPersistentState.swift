@@ -26,8 +26,8 @@ struct AudioGraphPersistentState: Codable {
     
     let masterUnit: MasterUnitPersistentState?
     let eqUnit: EQUnitPersistentState?
-    let pitchUnit: PitchShiftUnitPersistentState?
-    let timeUnit: TimeStretchUnitPersistentState?
+    let pitchShiftUnit: PitchShiftUnitPersistentState?
+    let timeStretchUnit: TimeStretchUnitPersistentState?
     let reverbUnit: ReverbUnitPersistentState?
     let delayUnit: DelayUnitPersistentState?
     let filterUnit: FilterUnitPersistentState?
