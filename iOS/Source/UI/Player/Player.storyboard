@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="control-freak.regular.ttf">
+            <string>ControlFreak</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Player View Controller-->
         <scene sceneID="s0d-6b-0kx">
@@ -85,6 +89,9 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="volume.2" catalog="system"/>
+                                <connections>
+                                    <action selector="muteOrUnmuteAction:" destination="Y6W-OH-hqX" eventType="touchDown" id="G8G-pi-1Gs"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uax-Zk-mNM">
                                 <rect key="frame" x="20" y="778.5" width="80" height="80"/>
@@ -98,13 +105,13 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="bQ5-CA-Hxg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="27"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Only" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQV-NB-XnU">
-                                <rect key="frame" x="118" y="76" width="431" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <rect key="frame" x="118" y="76" width="431" height="27"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="27"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -113,7 +120,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="7b2-ov-MVQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="23"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -125,7 +132,7 @@
                                     <constraint firstAttribute="width" constant="85" id="NWc-EI-Y03"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="85" id="ShT-gz-8YQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -135,7 +142,7 @@
                                     <constraint firstAttribute="height" constant="30" id="nSs-ez-fWW"/>
                                     <constraint firstAttribute="width" constant="85" id="yb1-qX-xo6"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -186,11 +193,11 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="shuffle" catalog="system"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1s-iC-N9O">
-                                <rect key="frame" x="123" y="964.5" width="74" height="28"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1s-iC-N9O" userLabel="Segment Loop">
+                                <rect key="frame" x="123" y="964.5" width="36" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="Vzw-aa-64L"/>
-                                    <constraint firstAttribute="width" constant="74" id="jNe-Tr-qu5"/>
+                                    <constraint firstAttribute="width" constant="36" id="jNe-Tr-qu5"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -257,6 +264,7 @@
                     </view>
                     <connections>
                         <outlet property="btnPlay" destination="4s6-Kb-FeZ" id="tMh-wh-vQk"/>
+                        <outlet property="btnVolume" destination="0Te-Gs-miY" id="B5n-3a-5Ev"/>
                         <outlet property="imgArt" destination="Uax-Zk-mNM" id="ZKB-5L-15h"/>
                         <outlet property="lblArtistAlbum" destination="O9s-h2-7uN" id="DH1-ca-3Ir"/>
                         <outlet property="lblTimeElapsed" destination="Lhz-nD-TIv" id="HpK-4r-qmE"/>
@@ -275,13 +283,13 @@
     <resources>
         <image name="Loop" width="270" height="210"/>
         <image name="backward.end" catalog="system" width="128" height="120"/>
-        <image name="bookmark" catalog="system" width="110" height="128"/>
+        <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="forward.end" catalog="system" width="128" height="120"/>
-        <image name="heart" catalog="system" width="128" height="107"/>
-        <image name="info.circle" catalog="system" width="128" height="123"/>
-        <image name="play" catalog="system" width="117" height="128"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="play" catalog="system" width="120" height="128"/>
         <image name="repeat" catalog="system" width="128" height="98"/>
         <image name="shuffle" catalog="system" width="128" height="95"/>
-        <image name="volume.2" catalog="system" width="128" height="88"/>
+        <image name="volume.2" catalog="system" width="128" height="90"/>
     </resources>
 </document>

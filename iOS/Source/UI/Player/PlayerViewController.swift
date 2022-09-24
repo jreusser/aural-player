@@ -10,6 +10,7 @@ import UIKit
 class PlayerViewController: UIViewController {
     
     @IBOutlet weak var btnPlay: UIButton!
+    @IBOutlet weak var btnVolume: UIButton!
     
     @IBOutlet weak var volumeSlider: UISlider!
     @IBOutlet weak var seekSlider: UISlider!
@@ -30,7 +31,9 @@ class PlayerViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         volumeSlider.value = audioGraphDelegate.volume
+        updateVolumeMuteButtonImage()
         
         imgArt.layer.cornerRadius = 4
         [lblTitle, lblArtistAlbum, lblTitleOnly, lblTimeElapsed, lblTimeRemaining].forEach {$0?.isHidden = true}
@@ -68,7 +71,56 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func volumeAction(_ sender: Any) {
+        
         audioGraphDelegate.volume = volumeSlider.value
+        updateVolumeMuteButtonImage()
+    }
+    
+    // Mutes or unmutes the player
+    @IBAction func muteOrUnmuteAction(_ sender: AnyObject) {
+        muteOrUnmute()
+    }
+    
+    func muteOrUnmute() {
+        
+        audioGraphDelegate.muted.toggle()
+        updateVolumeMuteButtonImage()
+    }
+    
+    // Numerical ranges
+    let highVolumeRange: ClosedRange<Float> = 200.0/3...100
+    let mediumVolumeRange: Range<Float> = 100.0/3..<200.0/3
+    let lowVolumeRange: Range<Float> = 1..<100.0/3
+    
+    func updateVolumeMuteButtonImage() {
+
+        if audioGraphDelegate.muted {
+            
+            btnVolume.setBackgroundImage(.imgMute, for: .normal)
+            
+        } else {
+
+            // Zero / Low / Medium / High (different images)
+            
+            switch audioGraphDelegate.volume {
+                
+            case highVolumeRange:
+                
+                btnVolume.setBackgroundImage(.imgVolumeHigh, for: .normal)
+                
+            case mediumVolumeRange:
+                
+                btnVolume.setBackgroundImage(.imgVolumeMedium, for: .normal)
+                
+            case lowVolumeRange:
+                
+                btnVolume.setBackgroundImage(.imgVolumeLow, for: .normal)
+                
+            default:
+                
+                btnVolume.setBackgroundImage(.imgVolumeZero, for: .normal)
+            }
+        }
     }
     
     @IBAction func seekBackwardAction(_ sender: Any) {

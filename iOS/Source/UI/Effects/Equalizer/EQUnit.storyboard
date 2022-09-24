@@ -7,6 +7,14 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="control-freak.regular.ttf">
+            <string>ControlFreak</string>
+        </array>
+        <array key="neo-latina-demo-FFP.ttf">
+            <string>neo-latina</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Equalizer-->
         <scene sceneID="nCV-Y3-fdc">
@@ -22,7 +30,7 @@
                                     <constraint firstAttribute="width" constant="35" id="5bs-pn-OKN"/>
                                     <constraint firstAttribute="height" constant="30" id="hho-av-d1g"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -32,7 +40,7 @@
                                     <constraint firstAttribute="width" constant="35" id="6lV-pV-HnK"/>
                                     <constraint firstAttribute="height" constant="30" id="YVv-4d-vWT"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -54,7 +62,7 @@
                                     <constraint firstAttribute="width" constant="35" id="Vwc-eu-JV1"/>
                                     <constraint firstAttribute="height" constant="30" id="cEE-eC-CPn"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -64,7 +72,7 @@
                                     <constraint firstAttribute="width" constant="35" id="3cg-6l-f2f"/>
                                     <constraint firstAttribute="height" constant="30" id="Bov-YM-rL2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -74,7 +82,7 @@
                                     <constraint firstAttribute="height" constant="30" id="ikY-yf-bWg"/>
                                     <constraint firstAttribute="width" constant="35" id="jFm-Q5-ACH"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -84,7 +92,7 @@
                                     <constraint firstAttribute="height" constant="30" id="LW2-N2-pFy"/>
                                     <constraint firstAttribute="width" constant="35" id="oZa-3y-bIn"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -94,7 +102,7 @@
                                     <constraint firstAttribute="width" constant="35" id="UHN-XG-Lpq"/>
                                     <constraint firstAttribute="height" constant="30" id="g8z-du-w67"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -104,7 +112,7 @@
                                     <constraint firstAttribute="width" constant="35" id="3VH-ZA-iKN"/>
                                     <constraint firstAttribute="height" constant="30" id="cob-Qc-wCE"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -114,7 +122,7 @@
                                     <constraint firstAttribute="width" constant="35" id="3lI-a4-GYZ"/>
                                     <constraint firstAttribute="height" constant="30" id="dsI-wc-Iju"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -124,7 +132,7 @@
                                     <constraint firstAttribute="height" constant="30" id="KIl-b3-iRP"/>
                                     <constraint firstAttribute="width" constant="35" id="Nlw-pp-Zl8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -134,7 +142,7 @@
                                     <constraint firstAttribute="width" constant="35" id="UJI-hg-P5T"/>
                                     <constraint firstAttribute="height" constant="30" id="dQ4-hZ-dkK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -144,7 +152,7 @@
                                     <constraint firstAttribute="width" constant="35" id="sLu-bQ-ldY"/>
                                     <constraint firstAttribute="height" constant="30" id="zIX-6u-T6A"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -283,7 +291,7 @@
                                     <constraint firstAttribute="height" constant="56" id="Cuu-6V-XB9"/>
                                     <constraint firstAttribute="width" constant="176" id="dfY-nz-emo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="neo-latina" family="neo latina" pointSize="32"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>

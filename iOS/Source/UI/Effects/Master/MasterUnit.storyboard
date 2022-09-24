@@ -6,6 +6,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="neo-latina-demo-FFP.ttf">
+            <string>neo-latina</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Master Controls-->
         <scene sceneID="2TT-1p-1hX">
@@ -33,7 +38,7 @@
                                     <constraint firstAttribute="width" constant="220" id="RBD-75-GPS"/>
                                     <constraint firstAttribute="height" constant="56" id="iBY-mi-1tr"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="neo-latina" family="neo latina" pointSize="32"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -62,7 +67,7 @@
                                     <constraint firstAttribute="width" constant="180" id="AbD-Q3-LEw"/>
                                     <constraint firstAttribute="height" constant="34" id="qgb-PZ-92Q"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="neo-latina" family="neo latina" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -91,7 +96,7 @@
                                     <constraint firstAttribute="width" constant="180" id="EKH-DY-sPD"/>
                                     <constraint firstAttribute="height" constant="34" id="ojr-Zc-JEq"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="neo-latina" family="neo latina" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -120,7 +125,7 @@
                                     <constraint firstAttribute="width" constant="180" id="dD4-Xz-jlc"/>
                                     <constraint firstAttribute="height" constant="34" id="dj2-t5-ugn"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="neo-latina" family="neo latina" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>

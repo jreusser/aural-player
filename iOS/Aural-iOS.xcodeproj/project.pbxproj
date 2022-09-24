@@ -428,6 +428,25 @@
 		3EB1F27128DF4AFA00CB231F /* MasterUnit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F27028DF4AFA00CB231F /* MasterUnit.storyboard */; };
 		3EB1F27328DF4E7C00CB231F /* MasterUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1F27228DF4E7C00CB231F /* MasterUnitViewController.swift */; };
 		3EB1F27728DF885D00CB231F /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1F27628DF885D00CB231F /* UIViewControllerExtensions.swift */; };
+		3EB1F28C28DF8D1400CB231F /* Exo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F27928DF8D1400CB231F /* Exo-Medium.ttf */; };
+		3EB1F28D28DF8D1400CB231F /* futura light bt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F27A28DF8D1400CB231F /* futura light bt.ttf */; };
+		3EB1F28E28DF8D1400CB231F /* roundornoncommercial.regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F27B28DF8D1400CB231F /* roundornoncommercial.regular.otf */; };
+		3EB1F28F28DF8D1400CB231F /* AnironRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F27C28DF8D1400CB231F /* AnironRegular.ttf */; };
+		3EB1F29028DF8D1400CB231F /* shufen.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F27D28DF8D1400CB231F /* shufen.regular.ttf */; };
+		3EB1F29128DF8D1400CB231F /* AlegreyaSansSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F27E28DF8D1400CB231F /* AlegreyaSansSC-Regular.ttf */; };
+		3EB1F29228DF8D1400CB231F /* neo-latina-demo-FFP.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F27F28DF8D1400CB231F /* neo-latina-demo-FFP.ttf */; };
+		3EB1F29328DF8D1400CB231F /* AlmendraSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28028DF8D1400CB231F /* AlmendraSC-Regular.ttf */; };
+		3EB1F29428DF8D1400CB231F /* ChicagoFLF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28128DF8D1400CB231F /* ChicagoFLF.ttf */; };
+		3EB1F29528DF8D1400CB231F /* ragingredlotus-bb.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28228DF8D1400CB231F /* ragingredlotus-bb.regular.ttf */; };
+		3EB1F29628DF8D1400CB231F /* Play-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28328DF8D1400CB231F /* Play-Regular.ttf */; };
+		3EB1F29728DF8D1400CB231F /* monaco.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28428DF8D1400CB231F /* monaco.ttf */; };
+		3EB1F29828DF8D1400CB231F /* neo-latina-withNums.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28528DF8D1400CB231F /* neo-latina-withNums.ttf */; };
+		3EB1F29928DF8D1400CB231F /* Metamorphous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28628DF8D1400CB231F /* Metamorphous-Regular.ttf */; };
+		3EB1F29A28DF8D1400CB231F /* control-freak.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28728DF8D1400CB231F /* control-freak.regular.ttf */; };
+		3EB1F29B28DF8D1400CB231F /* Papyrus.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28828DF8D1400CB231F /* Papyrus.ttf */; };
+		3EB1F29C28DF8D1400CB231F /* coming-soon.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28928DF8D1400CB231F /* coming-soon.regular.ttf */; };
+		3EB1F29D28DF8D1400CB231F /* WalterTurncoat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28A28DF8D1400CB231F /* WalterTurncoat.ttf */; };
+		3EB1F29E28DF8D1400CB231F /* CarroisGothicSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28B28DF8D1400CB231F /* CarroisGothicSC-Regular.ttf */; };
 		3EFE35D42786464C006F8B8C /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE35D32786464B006F8B8C /* TypeAliases.swift */; };
 /* End PBXBuildFile section */
 
@@ -881,9 +900,26 @@
 		3EB1F27028DF4AFA00CB231F /* MasterUnit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MasterUnit.storyboard; sourceTree = "<group>"; };
 		3EB1F27228DF4E7C00CB231F /* MasterUnitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterUnitViewController.swift; sourceTree = "<group>"; };
 		3EB1F27628DF885D00CB231F /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		3EB1F27928DF8D1400CB231F /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
+		3EB1F27A28DF8D1400CB231F /* futura light bt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "futura light bt.ttf"; sourceTree = "<group>"; };
+		3EB1F27B28DF8D1400CB231F /* roundornoncommercial.regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roundornoncommercial.regular.otf; sourceTree = "<group>"; };
+		3EB1F27C28DF8D1400CB231F /* AnironRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AnironRegular.ttf; sourceTree = "<group>"; };
+		3EB1F27D28DF8D1400CB231F /* shufen.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shufen.regular.ttf; sourceTree = "<group>"; };
+		3EB1F27E28DF8D1400CB231F /* AlegreyaSansSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlegreyaSansSC-Regular.ttf"; sourceTree = "<group>"; };
+		3EB1F27F28DF8D1400CB231F /* neo-latina-demo-FFP.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "neo-latina-demo-FFP.ttf"; sourceTree = "<group>"; };
+		3EB1F28028DF8D1400CB231F /* AlmendraSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AlmendraSC-Regular.ttf"; sourceTree = "<group>"; };
+		3EB1F28128DF8D1400CB231F /* ChicagoFLF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChicagoFLF.ttf; sourceTree = "<group>"; };
+		3EB1F28228DF8D1400CB231F /* ragingredlotus-bb.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ragingredlotus-bb.regular.ttf"; sourceTree = "<group>"; };
+		3EB1F28328DF8D1400CB231F /* Play-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Play-Regular.ttf"; sourceTree = "<group>"; };
+		3EB1F28428DF8D1400CB231F /* monaco.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = monaco.ttf; sourceTree = "<group>"; };
+		3EB1F28528DF8D1400CB231F /* neo-latina-withNums.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "neo-latina-withNums.ttf"; sourceTree = "<group>"; };
+		3EB1F28628DF8D1400CB231F /* Metamorphous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metamorphous-Regular.ttf"; sourceTree = "<group>"; };
+		3EB1F28728DF8D1400CB231F /* control-freak.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "control-freak.regular.ttf"; sourceTree = "<group>"; };
+		3EB1F28828DF8D1400CB231F /* Papyrus.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Papyrus.ttf; sourceTree = "<group>"; };
+		3EB1F28928DF8D1400CB231F /* coming-soon.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "coming-soon.regular.ttf"; sourceTree = "<group>"; };
+		3EB1F28A28DF8D1400CB231F /* WalterTurncoat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalterTurncoat.ttf; sourceTree = "<group>"; };
+		3EB1F28B28DF8D1400CB231F /* CarroisGothicSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CarroisGothicSC-Regular.ttf"; sourceTree = "<group>"; };
 		3EC2985E2786586F00B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
-		3EF30CDA28DC441900CB09EA /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		3EF30CDB28DC441900CB09EA /* build-iOS.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "build-iOS.sh"; sourceTree = "<group>"; };
 		3EFE35D32786464B006F8B8C /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2030,11 +2066,12 @@
 		3EA1989A278640E00069C814 = {
 			isa = PBXGroup;
 			children = (
-				3EB1F26428DF047600CB231F /* Entitlements.plist */,
 				3EA198B4278640E10069C814 /* Info.plist */,
+				3EB1F26428DF047600CB231F /* Entitlements.plist */,
 				3EC2975D2786586F00B29551 /* Core */,
 				3EA198A5278640E00069C814 /* Source */,
 				3E1D1DF328DD077900E79674 /* Frameworks */,
+				3EB1F27828DF8D1400CB231F /* Fonts */,
 				3EF30CD228DC441900CB09EA /* Resources */,
 				3E1D1E0428DD0EB800E79674 /* ToolsAndScripts */,
 				3EA198A4278640E00069C814 /* Products */,
@@ -2182,6 +2219,33 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		3EB1F27828DF8D1400CB231F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3EB1F27928DF8D1400CB231F /* Exo-Medium.ttf */,
+				3EB1F27A28DF8D1400CB231F /* futura light bt.ttf */,
+				3EB1F27B28DF8D1400CB231F /* roundornoncommercial.regular.otf */,
+				3EB1F27C28DF8D1400CB231F /* AnironRegular.ttf */,
+				3EB1F27D28DF8D1400CB231F /* shufen.regular.ttf */,
+				3EB1F27E28DF8D1400CB231F /* AlegreyaSansSC-Regular.ttf */,
+				3EB1F27F28DF8D1400CB231F /* neo-latina-demo-FFP.ttf */,
+				3EB1F28028DF8D1400CB231F /* AlmendraSC-Regular.ttf */,
+				3EB1F28128DF8D1400CB231F /* ChicagoFLF.ttf */,
+				3EB1F28228DF8D1400CB231F /* ragingredlotus-bb.regular.ttf */,
+				3EB1F28328DF8D1400CB231F /* Play-Regular.ttf */,
+				3EB1F28428DF8D1400CB231F /* monaco.ttf */,
+				3EB1F28528DF8D1400CB231F /* neo-latina-withNums.ttf */,
+				3EB1F28628DF8D1400CB231F /* Metamorphous-Regular.ttf */,
+				3EB1F28728DF8D1400CB231F /* control-freak.regular.ttf */,
+				3EB1F28828DF8D1400CB231F /* Papyrus.ttf */,
+				3EB1F28928DF8D1400CB231F /* coming-soon.regular.ttf */,
+				3EB1F28A28DF8D1400CB231F /* WalterTurncoat.ttf */,
+				3EB1F28B28DF8D1400CB231F /* CarroisGothicSC-Regular.ttf */,
+			);
+			name = Fonts;
+			path = ../Fonts;
+			sourceTree = "<group>";
+		};
 		3EC2975D2786586F00B29551 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -2216,18 +2280,8 @@
 		3EF30CD228DC441900CB09EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3EF30CD328DC441900CB09EA /* ffmpeg */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		3EF30CD328DC441900CB09EA /* ffmpeg */ = {
-			isa = PBXGroup;
-			children = (
-				3EF30CDA28DC441900CB09EA /* README.txt */,
-				3EF30CDB28DC441900CB09EA /* build-iOS.sh */,
-			);
-			path = ffmpeg;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2297,18 +2351,37 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EB1F29C28DF8D1400CB231F /* coming-soon.regular.ttf in Resources */,
 				3EB1F26528DF047600CB231F /* Entitlements.plist in Resources */,
 				3EA198B3278640E10069C814 /* LaunchScreen.storyboard in Resources */,
+				3EB1F29428DF8D1400CB231F /* ChicagoFLF.ttf in Resources */,
+				3EB1F29E28DF8D1400CB231F /* CarroisGothicSC-Regular.ttf in Resources */,
 				3E5EE25E28D90B7000E71B1A /* Aural.xcassets in Resources */,
 				3EB1F26928DF141900CB231F /* TimeStretchUnit.storyboard in Resources */,
 				3EB1F27128DF4AFA00CB231F /* MasterUnit.storyboard in Resources */,
+				3EB1F29228DF8D1400CB231F /* neo-latina-demo-FFP.ttf in Resources */,
+				3EB1F29928DF8D1400CB231F /* Metamorphous-Regular.ttf in Resources */,
+				3EB1F29028DF8D1400CB231F /* shufen.regular.ttf in Resources */,
 				3E1E009B28DDFDF0005DFF50 /* PlayQueue.storyboard in Resources */,
+				3EB1F28F28DF8D1400CB231F /* AnironRegular.ttf in Resources */,
+				3EB1F29B28DF8D1400CB231F /* Papyrus.ttf in Resources */,
 				3EB1F26728DF135500CB231F /* EQUnit.storyboard in Resources */,
+				3EB1F29728DF8D1400CB231F /* monaco.ttf in Resources */,
+				3EB1F29D28DF8D1400CB231F /* WalterTurncoat.ttf in Resources */,
 				3EB1F26C28DF162C00CB231F /* PitchShiftUnit.storyboard in Resources */,
 				3E1E009928DDF9A0005DFF50 /* Player.storyboard in Resources */,
 				3E1E009E28DE0093005DFF50 /* Effects.storyboard in Resources */,
+				3EB1F29528DF8D1400CB231F /* ragingredlotus-bb.regular.ttf in Resources */,
+				3EB1F29A28DF8D1400CB231F /* control-freak.regular.ttf in Resources */,
+				3EB1F29128DF8D1400CB231F /* AlegreyaSansSC-Regular.ttf in Resources */,
+				3EB1F28D28DF8D1400CB231F /* futura light bt.ttf in Resources */,
+				3EB1F29628DF8D1400CB231F /* Play-Regular.ttf in Resources */,
+				3EB1F28E28DF8D1400CB231F /* roundornoncommercial.regular.otf in Resources */,
+				3EB1F28C28DF8D1400CB231F /* Exo-Medium.ttf in Resources */,
+				3EB1F29828DF8D1400CB231F /* neo-latina-withNums.ttf in Resources */,
 				3EA198B0278640E10069C814 /* Assets.xcassets in Resources */,
 				3EA198AE278640E00069C814 /* Main.storyboard in Resources */,
+				3EB1F29328DF8D1400CB231F /* AlmendraSC-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

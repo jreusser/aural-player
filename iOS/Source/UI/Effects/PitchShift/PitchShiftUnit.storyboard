@@ -7,6 +7,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="control-freak.regular.ttf">
+            <string>ControlFreak</string>
+        </array>
+        <array key="neo-latina-demo-FFP.ttf">
+            <string>neo-latina</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Pitch Shift-->
         <scene sceneID="dUj-K2-Hed">
@@ -34,7 +42,7 @@
                                     <constraint firstAttribute="height" constant="56" id="7LT-t8-RQi"/>
                                     <constraint firstAttribute="width" constant="220" id="qag-2A-Y6i"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="neo-latina" family="neo latina" pointSize="32"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -54,7 +62,7 @@
                                     <constraint firstAttribute="height" constant="34" id="bJ3-Vt-ap1"/>
                                     <constraint firstAttribute="width" constant="70" id="mxC-jU-1Yw"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -64,7 +72,7 @@
                                     <constraint firstAttribute="height" constant="34" id="7ph-Ol-d20"/>
                                     <constraint firstAttribute="width" constant="75" id="CIK-hh-did"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -74,7 +82,7 @@
                                     <constraint firstAttribute="width" constant="100" id="FsU-Q3-6hM"/>
                                     <constraint firstAttribute="height" constant="34" id="GP9-kv-lDK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -115,7 +123,7 @@
                                     <constraint firstAttribute="width" constant="100" id="14e-Tr-nFq"/>
                                     <constraint firstAttribute="height" constant="34" id="HFV-kf-9cK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -125,7 +133,7 @@
                                     <constraint firstAttribute="width" constant="100" id="B6e-td-owU"/>
                                     <constraint firstAttribute="height" constant="34" id="XJz-5H-vBU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -188,7 +196,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="AYp-59-PtM"/>
                                     <constraint firstAttribute="height" constant="34" id="WfM-2b-y80"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -199,7 +207,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="Gel-Ab-oU8"/>
                                     <constraint firstAttribute="width" constant="65" id="mdr-V5-2ZS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -210,7 +218,7 @@
                                     <constraint firstAttribute="width" constant="65" id="RRz-Id-G5t"/>
                                     <constraint firstAttribute="height" constant="34" id="Zga-IR-8eZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ControlFreak" family="Control Freak" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
