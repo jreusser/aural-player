@@ -42,7 +42,7 @@
                             <rect key="frame" x="10" y="39" width="70" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Space" id="5J3-aq-YnZ">
-                                <font key="font" size="11" name="Play-Regular"/>
+                                <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" white="0.3992788109" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -52,7 +52,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <popUpButtonCell key="cell" type="push" title="Placeholder" bezelStyle="rounded" alignment="center" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" inset="2" altersStateOfSelectedItem="NO" selectedItem="6Ce-dA-PGI" id="tol-Pp-L9a" customClass="EffectsUnitPopupMenuCell" customModule="Aural" customModuleProvider="target">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" size="11" name="Play-Regular"/>
+                                <font key="font" metaFont="smallSystem"/>
                                 <menu key="menu" id="k9O-pb-pdf">
                                     <items>
                                         <menuItem title="Placeholder" hidden="YES" enabled="NO" id="6Ce-dA-PGI" userLabel="Placeholder">
@@ -104,7 +104,7 @@
                             <rect key="frame" x="10" y="-5" width="70" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Amount" id="DNt-HO-7aB">
-                                <font key="font" size="11" name="Play-Regular"/>
+                                <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" white="0.3992788109" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -113,7 +113,7 @@
                             <rect key="frame" x="72" y="-5" width="38" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Dry" id="KLz-0H-Fd0">
-                                <font key="font" size="11" name="Play-Regular"/>
+                                <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" white="0.3992788109" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -122,7 +122,7 @@
                             <rect key="frame" x="265" y="-5" width="40" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Wet" id="rPE-D2-IdC">
-                                <font key="font" size="11" name="Play-Regular"/>
+                                <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" white="0.3992788109" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -131,7 +131,7 @@
                             <rect key="frame" x="285" y="-5" width="68" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="100% wet" id="Z4x-02-2zl">
-                                <font key="font" size="11" name="Play-Regular"/>
+                                <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" white="0.3992788109" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>

@@ -447,6 +447,8 @@
 		3EB1F29C28DF8D1400CB231F /* coming-soon.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28928DF8D1400CB231F /* coming-soon.regular.ttf */; };
 		3EB1F29D28DF8D1400CB231F /* WalterTurncoat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28A28DF8D1400CB231F /* WalterTurncoat.ttf */; };
 		3EB1F29E28DF8D1400CB231F /* CarroisGothicSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F28B28DF8D1400CB231F /* CarroisGothicSC-Regular.ttf */; };
+		3EB1F2A128DF987B00CB231F /* ReverbUnit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F2A028DF987B00CB231F /* ReverbUnit.storyboard */; };
+		3EB1F2A328DF988500CB231F /* ReverbUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1F2A228DF988500CB231F /* ReverbUnitViewController.swift */; };
 		3EFE35D42786464C006F8B8C /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE35D32786464B006F8B8C /* TypeAliases.swift */; };
 /* End PBXBuildFile section */
 
@@ -919,6 +921,8 @@
 		3EB1F28928DF8D1400CB231F /* coming-soon.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "coming-soon.regular.ttf"; sourceTree = "<group>"; };
 		3EB1F28A28DF8D1400CB231F /* WalterTurncoat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = WalterTurncoat.ttf; sourceTree = "<group>"; };
 		3EB1F28B28DF8D1400CB231F /* CarroisGothicSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CarroisGothicSC-Regular.ttf"; sourceTree = "<group>"; };
+		3EB1F2A028DF987B00CB231F /* ReverbUnit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReverbUnit.storyboard; sourceTree = "<group>"; };
+		3EB1F2A228DF988500CB231F /* ReverbUnitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverbUnitViewController.swift; sourceTree = "<group>"; };
 		3EC2985E2786586F00B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EFE35D32786464B006F8B8C /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1034,6 +1038,7 @@
 				3E1E009728DDF943005DFF50 /* Equalizer */,
 				3EB1F26A28DF15F800CB231F /* PitchShift */,
 				3EB1F24128DEF50400CB231F /* TimeStretch */,
+				3EB1F29F28DF986800CB231F /* Reverb */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -2246,6 +2251,15 @@
 			path = ../Fonts;
 			sourceTree = "<group>";
 		};
+		3EB1F29F28DF986800CB231F /* Reverb */ = {
+			isa = PBXGroup;
+			children = (
+				3EB1F2A028DF987B00CB231F /* ReverbUnit.storyboard */,
+				3EB1F2A228DF988500CB231F /* ReverbUnitViewController.swift */,
+			);
+			path = Reverb;
+			sourceTree = "<group>";
+		};
 		3EC2975D2786586F00B29551 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -2369,6 +2383,7 @@
 				3EB1F29728DF8D1400CB231F /* monaco.ttf in Resources */,
 				3EB1F29D28DF8D1400CB231F /* WalterTurncoat.ttf in Resources */,
 				3EB1F26C28DF162C00CB231F /* PitchShiftUnit.storyboard in Resources */,
+				3EB1F2A128DF987B00CB231F /* ReverbUnit.storyboard in Resources */,
 				3E1E009928DDF9A0005DFF50 /* Player.storyboard in Resources */,
 				3E1E009E28DE0093005DFF50 /* Effects.storyboard in Resources */,
 				3EB1F29528DF8D1400CB231F /* ragingredlotus-bb.regular.ttf in Resources */,
@@ -2438,6 +2453,7 @@
 				3E5EE22F28D90B7000E71B1A /* MusicBrainzCoverArtReader.swift in Sources */,
 				3E5EE1EC28D90B6F00E71B1A /* ReverbUnit.swift in Sources */,
 				3E5EE2B728D90B7000E71B1A /* TimeIntervalFormatter.swift in Sources */,
+				3EB1F2A328DF988500CB231F /* ReverbUnitViewController.swift in Sources */,
 				3E5EE16C28D90B6F00E71B1A /* PlaybackProfiles.swift in Sources */,
 				3E5EE17B28D90B6F00E71B1A /* MetadataPreferences.swift in Sources */,
 				3E5EE20928D90B7000E71B1A /* AudioGraphDefaults.swift in Sources */,
