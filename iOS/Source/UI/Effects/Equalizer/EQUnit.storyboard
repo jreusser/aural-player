@@ -11,7 +11,7 @@
         <!--Equalizer-->
         <scene sceneID="nCV-Y3-fdc">
             <objects>
-                <viewController storyboardIdentifier="EQViewController" id="S5h-Rz-lG3" userLabel="Equalizer" customClass="EQViewController" customModule="Aural_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EQViewController" id="S5h-Rz-lG3" userLabel="Equalizer" customClass="EQUnitViewController" customModule="Aural_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vcQ-t3-hNo">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

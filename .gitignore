@@ -28,3 +28,4 @@ macOS/Frameworks/libavutil.56.dylib
 macOS/Frameworks/libavformat.58.dylib
 macOS/Frameworks/libavcodec.58.dylib
 ToolsAndScripts/FFmpegBuild/xcframeworks/libavcodec.xcframework/Info.plist
+macOS/Aural-macOS.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
