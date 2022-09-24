@@ -9,10 +9,13 @@ import UIKit
 
 class EQUnitViewController: UIViewController {
     
+    @IBOutlet weak var globalGainSlider: UISlider!
+    
     /// The sliders corresponding to all the bands of the equalizer.
     private var bandSliders: [UISlider] = []
     
     @IBOutlet weak var btnBypass: UIButton!
+    @IBOutlet weak var btnPresets: UIButton!
     
     private var eqUnit: EQUnitDelegateProtocol = audioGraphDelegate.eqUnit
     
@@ -43,10 +46,66 @@ class EQUnitViewController: UIViewController {
             rotated = true
         }
         
+        updateControls()
+        createPresetsMenu()
+    }
+    
+    private func updateControls() {
+        
         btnBypass.tintColor = eqUnit.isActive ? .blue : .gray
+        
+        globalGainSlider.value = eqUnit.globalGain
         
         bandSliders.forEach {
             $0.value = eqUnit[$0.tag]
+        }
+    }
+    
+    private func createPresetsMenu() {
+        
+        let presets = eqUnit.presets
+        
+        func actionForPreset(_ preset: EQPreset) -> UIAction {
+            
+            UIAction(title: preset.name, image: nil) {[weak self] _ in
+                
+                self?.eqUnit.applyPreset(named: preset.name)
+                self?.updateControls()
+            }
+        }
+        
+        let systemDefinedPresetItems = presets.systemDefinedObjects.map(actionForPreset(_:))
+        let systemDefinedPresetsMenu = UIMenu(title: "System-defined presets", image: nil, identifier: nil, options: [], children: systemDefinedPresetItems)
+        
+        var allMenus: [UIMenuElement] = [systemDefinedPresetsMenu]
+        
+        if presets.numberOfUserDefinedObjects > 0 {
+            
+            let userDefinedPresetItems = presets.userDefinedObjects.map(actionForPreset(_:))
+            let userDefinedPresetsMenu = UIMenu(title: "User-defined presets", image: nil, identifier: nil, options: [], children: userDefinedPresetItems)
+            allMenus.append(userDefinedPresetsMenu)
+        }
+        
+        // TODO: Create an action for "Save preset".
+        let savePresetAction = UIAction(title: "Save preset", image: .imgSave) {[weak self] _ in
+            self?.promptForNewPresetName()
+        }
+        
+        allMenus.append(savePresetAction)
+        
+        let menu = UIMenu(title: "Presets", image: nil, identifier: nil, options: .displayInline,
+                          children: allMenus)
+        btnPresets.menu = menu
+        btnPresets.showsMenuAsPrimaryAction = true
+    }
+    
+    private func promptForNewPresetName() {
+        
+        presentPrompt(withTitle: "Save EQ Preset", message: "Name the new preset",
+                      placeholderText: "New EQ Preset") {[weak self] newPresetName in
+            
+            self?.eqUnit.savePreset(named: newPresetName)
+            self?.createPresetsMenu()
         }
     }
     

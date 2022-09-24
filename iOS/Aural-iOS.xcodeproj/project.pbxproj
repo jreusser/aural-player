@@ -427,6 +427,7 @@
 		3EB1F26E28DF165200CB231F /* PitchShiftUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1F26D28DF165200CB231F /* PitchShiftUnitViewController.swift */; };
 		3EB1F27128DF4AFA00CB231F /* MasterUnit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F27028DF4AFA00CB231F /* MasterUnit.storyboard */; };
 		3EB1F27328DF4E7C00CB231F /* MasterUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1F27228DF4E7C00CB231F /* MasterUnitViewController.swift */; };
+		3EB1F27728DF885D00CB231F /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1F27628DF885D00CB231F /* UIViewControllerExtensions.swift */; };
 		3EFE35D42786464C006F8B8C /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE35D32786464B006F8B8C /* TypeAliases.swift */; };
 /* End PBXBuildFile section */
 
@@ -879,6 +880,7 @@
 		3EB1F26D28DF165200CB231F /* PitchShiftUnitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchShiftUnitViewController.swift; sourceTree = "<group>"; };
 		3EB1F27028DF4AFA00CB231F /* MasterUnit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MasterUnit.storyboard; sourceTree = "<group>"; };
 		3EB1F27228DF4E7C00CB231F /* MasterUnitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterUnitViewController.swift; sourceTree = "<group>"; };
+		3EB1F27628DF885D00CB231F /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		3EC2985E2786586F00B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EF30CDA28DC441900CB09EA /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		3EF30CDB28DC441900CB09EA /* build-iOS.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "build-iOS.sh"; sourceTree = "<group>"; };
@@ -994,7 +996,7 @@
 				3E1E009F28DE02BC005DFF50 /* EffectsTabBarController.swift */,
 				3EB1F26F28DF228400CB231F /* Master */,
 				3E1E009728DDF943005DFF50 /* Equalizer */,
-				3EB1F26A28DF15F800CB231F /* Pitch Shift */,
+				3EB1F26A28DF15F800CB231F /* PitchShift */,
 				3EB1F24128DEF50400CB231F /* TimeStretch */,
 			);
 			path = Effects;
@@ -1010,6 +1012,7 @@
 				3E528E3127879D360086FD66 /* Player */,
 				3E528E3427879F540086FD66 /* PlayQueue */,
 				3E1E009C28DE0078005DFF50 /* Effects */,
+				3EB1F27428DF884100CB231F /* Utils */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2145,13 +2148,13 @@
 			path = TimeStretch;
 			sourceTree = "<group>";
 		};
-		3EB1F26A28DF15F800CB231F /* Pitch Shift */ = {
+		3EB1F26A28DF15F800CB231F /* PitchShift */ = {
 			isa = PBXGroup;
 			children = (
 				3EB1F26B28DF162C00CB231F /* PitchShiftUnit.storyboard */,
 				3EB1F26D28DF165200CB231F /* PitchShiftUnitViewController.swift */,
 			);
-			path = "Pitch Shift";
+			path = PitchShift;
 			sourceTree = "<group>";
 		};
 		3EB1F26F28DF228400CB231F /* Master */ = {
@@ -2161,6 +2164,22 @@
 				3EB1F27228DF4E7C00CB231F /* MasterUnitViewController.swift */,
 			);
 			path = Master;
+			sourceTree = "<group>";
+		};
+		3EB1F27428DF884100CB231F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3EB1F27528DF884C00CB231F /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		3EB1F27528DF884C00CB231F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3EB1F27628DF885D00CB231F /* UIViewControllerExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		3EC2975D2786586F00B29551 /* Core */ = {
@@ -2316,6 +2335,7 @@
 				3E5EE31F28D9113900E71B1A /* AudioUnitPersistentState.swift in Sources */,
 				3E5EE29128D90B7000E71B1A /* TrackKeyedMap.swift in Sources */,
 				3EB0274B28DBBB53002DBB6F /* FFmpegChannelLayoutsMapper.swift in Sources */,
+				3EB1F27728DF885D00CB231F /* UIViewControllerExtensions.swift in Sources */,
 				3E5EE20228D90B6F00E71B1A /* InternalDeviceList.swift in Sources */,
 				3E5EE17928D90B6F00E71B1A /* PreferencesDefaults.swift in Sources */,
 				3E5EE24C28D90B7000E71B1A /* AudioInfo.swift in Sources */,

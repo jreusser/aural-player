@@ -33,6 +33,8 @@ extension PlatformImage {
     
     static let imgPlayingArt: PlatformImage = PlatformImage(systemSymbolName: "music.quarternote.3", accessibilityDescription: nil)!
     
+    static let imgSave: PlatformImage = PlatformImage(named: "Save")!
+    
     static let imgFavorite: PlatformImage = PlatformImage(systemSymbolName: "heart", accessibilityDescription: nil)!
     static let imgBookmark: PlatformImage = PlatformImage(systemSymbolName: "bookmark", accessibilityDescription: nil)!
     

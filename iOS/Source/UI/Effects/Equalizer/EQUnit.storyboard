@@ -287,6 +287,15 @@
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6i-7C-gLi">
+                                <rect key="frame" x="714" y="107" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="49u-cV-k82"/>
+                                    <constraint firstAttribute="height" constant="40" id="541-iu-vdU"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="gear"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7ux-kg-k8L"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -312,6 +321,7 @@
                             <constraint firstItem="ThN-uw-fuo" firstAttribute="centerY" secondItem="WzF-85-paO" secondAttribute="centerY" id="IY9-Py-EQU"/>
                             <constraint firstItem="uyD-ep-dv9" firstAttribute="leading" secondItem="CqV-j1-ys7" secondAttribute="trailing" constant="55" id="Ibi-He-czJ"/>
                             <constraint firstItem="WzF-85-paO" firstAttribute="top" secondItem="7ux-kg-k8L" secondAttribute="top" constant="80" id="LqF-RG-Mgl"/>
+                            <constraint firstItem="7ux-kg-k8L" firstAttribute="trailing" secondItem="f6i-7C-gLi" secondAttribute="trailing" constant="80" id="MLA-Kt-mJe"/>
                             <constraint firstItem="4pZ-YQ-5uT" firstAttribute="leading" secondItem="FUr-s5-1DS" secondAttribute="leading" id="RWF-Kl-q8L"/>
                             <constraint firstItem="Hvo-bO-8pu" firstAttribute="top" secondItem="YV7-eo-Fvq" secondAttribute="bottom" constant="76" id="Ssf-5G-c84"/>
                             <constraint firstItem="fty-6r-vwO" firstAttribute="centerX" secondItem="vcQ-t3-hNo" secondAttribute="centerX" constant="40" id="Sxi-GO-7Fk"/>
@@ -322,6 +332,7 @@
                             <constraint firstItem="zWY-dc-cKn" firstAttribute="top" secondItem="DWj-1c-dsL" secondAttribute="bottom" constant="75" id="X4v-y8-DgM"/>
                             <constraint firstItem="rwY-gw-ome" firstAttribute="top" secondItem="DWj-1c-dsL" secondAttribute="bottom" constant="75" id="YMs-60-DJ3"/>
                             <constraint firstItem="X27-ea-Vil" firstAttribute="leading" secondItem="CiA-OC-jbJ" secondAttribute="trailing" constant="55" id="Yma-xJ-B1l"/>
+                            <constraint firstItem="f6i-7C-gLi" firstAttribute="centerY" secondItem="WzF-85-paO" secondAttribute="centerY" id="ZeH-b7-CeI"/>
                             <constraint firstItem="ThN-uw-fuo" firstAttribute="leading" secondItem="WzF-85-paO" secondAttribute="trailing" constant="64" id="a6L-OK-hQx"/>
                             <constraint firstItem="zWY-dc-cKn" firstAttribute="leading" secondItem="7Kw-mk-P0K" secondAttribute="trailing" constant="13" id="aYr-79-bSM"/>
                             <constraint firstItem="Det-Xh-QUh" firstAttribute="leading" secondItem="4pZ-YQ-5uT" secondAttribute="leading" constant="-8" id="bDk-J0-WMa"/>
@@ -353,6 +364,8 @@
                     <tabBarItem key="tabBarItem" title="EQ" image="slider.vertical.3" catalog="system" id="LoY-0T-U6p"/>
                     <connections>
                         <outlet property="btnBypass" destination="WzF-85-paO" id="rMk-Z9-yXf"/>
+                        <outlet property="btnPresets" destination="f6i-7C-gLi" id="qTa-oG-C4g"/>
+                        <outlet property="globalGainSlider" destination="7Kw-mk-P0K" id="gpd-u9-Oa5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ybV-OC-qsu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -361,6 +374,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gear" width="47" height="47"/>
         <image name="power" catalog="system" width="128" height="124"/>
         <image name="slider.vertical.3" catalog="system" width="128" height="111"/>
         <systemColor name="secondaryLabelColor">
