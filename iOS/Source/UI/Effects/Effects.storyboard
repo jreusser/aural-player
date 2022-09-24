@@ -16,28 +16,39 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="nC7-Op-xEP" kind="relationship" relationship="viewControllers" id="nI4-Si-Qaa"/>
-                        <segue destination="IQw-fk-N1h" kind="relationship" relationship="viewControllers" id="JSG-Jy-9pF"/>
+                        <segue destination="nC7-Op-xEP" kind="relationship" relationship="viewControllers" id="DOg-po-YdM"/>
+                        <segue destination="faE-Zb-62y" kind="relationship" relationship="viewControllers" id="CSX-dN-gEF"/>
+                        <segue destination="IQw-fk-N1h" kind="relationship" relationship="viewControllers" id="G76-eI-di6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elk-Lc-o2l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-730" y="-647"/>
         </scene>
-        <!--EQViewController-->
+        <!--Equalizer Unit-->
         <scene sceneID="l54-NM-eF3">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="EQViewController" storyboardName="EQUnit" referencedIdentifier="EQViewController" id="nC7-Op-xEP" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="EQViewController" storyboardName="EQUnit" referencedIdentifier="EQViewController" id="nC7-Op-xEP" userLabel="Equalizer Unit" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="J8Y-4P-TWK"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhj-am-z7J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-959" y="-253"/>
         </scene>
-        <!--TimeStretchUnitViewController-->
+        <!--Pitch Shift Unit-->
+        <scene sceneID="s21-K9-DT6">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="PitchShiftUnitViewController" storyboardName="PitchShiftUnit" referencedIdentifier="PitchShiftUnitViewController" id="faE-Zb-62y" userLabel="Pitch Shift Unit" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="a4k-Ol-WPu"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yr3-Ve-Ca4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-723" y="-247"/>
+        </scene>
+        <!--Time Stretch Unit-->
         <scene sceneID="NXO-7a-8a0">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="TimeStretchUnitViewController" storyboardName="TimeStretchUnit" referencedIdentifier="TimeStretchUnitViewController" id="IQw-fk-N1h" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="TimeStretchUnitViewController" storyboardName="TimeStretchUnit" referencedIdentifier="TimeStretchUnitViewController" id="IQw-fk-N1h" userLabel="Time Stretch Unit" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="iEr-E3-fY9"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Cv-id-reg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

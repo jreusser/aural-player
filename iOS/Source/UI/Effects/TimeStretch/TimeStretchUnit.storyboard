@@ -214,8 +214,8 @@
                     <tabBarItem key="tabBarItem" title="Time Stretch" image="speedometer" catalog="system" id="ruf-6i-kZa"/>
                     <connections>
                         <outlet property="btnBypass" destination="O1W-vw-CNO" id="7Vr-jl-BKN"/>
+                        <outlet property="lblRate" destination="kqD-HQ-GUU" id="KR1-nP-CH6"/>
                         <outlet property="pitchShiftSwitch" destination="h8Q-UR-hiV" id="YKt-Ns-DO9"/>
-                        <outlet property="rateLabel" destination="kqD-HQ-GUU" id="KR1-nP-CH6"/>
                         <outlet property="rateSlider" destination="9qt-de-C5y" id="OX4-7C-cGa"/>
                     </connections>
                 </viewController>

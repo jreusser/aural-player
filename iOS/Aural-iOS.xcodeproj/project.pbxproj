@@ -423,6 +423,8 @@
 		3EB1F26528DF047600CB231F /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F26428DF047600CB231F /* Entitlements.plist */; };
 		3EB1F26728DF135500CB231F /* EQUnit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F26628DF135500CB231F /* EQUnit.storyboard */; };
 		3EB1F26928DF141900CB231F /* TimeStretchUnit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F26828DF141900CB231F /* TimeStretchUnit.storyboard */; };
+		3EB1F26C28DF162C00CB231F /* PitchShiftUnit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB1F26B28DF162C00CB231F /* PitchShiftUnit.storyboard */; };
+		3EB1F26E28DF165200CB231F /* PitchShiftUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1F26D28DF165200CB231F /* PitchShiftUnitViewController.swift */; };
 		3EFE35D42786464C006F8B8C /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE35D32786464B006F8B8C /* TypeAliases.swift */; };
 /* End PBXBuildFile section */
 
@@ -871,6 +873,8 @@
 		3EB1F26428DF047600CB231F /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3EB1F26628DF135500CB231F /* EQUnit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EQUnit.storyboard; sourceTree = "<group>"; };
 		3EB1F26828DF141900CB231F /* TimeStretchUnit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeStretchUnit.storyboard; sourceTree = "<group>"; };
+		3EB1F26B28DF162C00CB231F /* PitchShiftUnit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PitchShiftUnit.storyboard; sourceTree = "<group>"; };
+		3EB1F26D28DF165200CB231F /* PitchShiftUnitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchShiftUnitViewController.swift; sourceTree = "<group>"; };
 		3EC2985E2786586F00B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EF30CDA28DC441900CB09EA /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		3EF30CDB28DC441900CB09EA /* build-iOS.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "build-iOS.sh"; sourceTree = "<group>"; };
@@ -985,6 +989,7 @@
 				3E1E009D28DE0093005DFF50 /* Effects.storyboard */,
 				3E1E009F28DE02BC005DFF50 /* EffectsTabBarController.swift */,
 				3E1E009728DDF943005DFF50 /* Equalizer */,
+				3EB1F26A28DF15F800CB231F /* Pitch Shift */,
 				3EB1F24128DEF50400CB231F /* TimeStretch */,
 			);
 			path = Effects;
@@ -2135,6 +2140,15 @@
 			path = TimeStretch;
 			sourceTree = "<group>";
 		};
+		3EB1F26A28DF15F800CB231F /* Pitch Shift */ = {
+			isa = PBXGroup;
+			children = (
+				3EB1F26B28DF162C00CB231F /* PitchShiftUnit.storyboard */,
+				3EB1F26D28DF165200CB231F /* PitchShiftUnitViewController.swift */,
+			);
+			path = "Pitch Shift";
+			sourceTree = "<group>";
+		};
 		3EC2975D2786586F00B29551 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -2256,6 +2270,7 @@
 				3EB1F26928DF141900CB231F /* TimeStretchUnit.storyboard in Resources */,
 				3E1E009B28DDFDF0005DFF50 /* PlayQueue.storyboard in Resources */,
 				3EB1F26728DF135500CB231F /* EQUnit.storyboard in Resources */,
+				3EB1F26C28DF162C00CB231F /* PitchShiftUnit.storyboard in Resources */,
 				3E1E009928DDF9A0005DFF50 /* Player.storyboard in Resources */,
 				3E1E009E28DE0093005DFF50 /* Effects.storyboard in Resources */,
 				3EA198B0278640E10069C814 /* Assets.xcassets in Resources */,
@@ -2637,6 +2652,7 @@
 				3E5EE1DB28D90B6F00E71B1A /* SupportedTypes.swift in Sources */,
 				3E5EE1FC28D90B6F00E71B1A /* ReverbPresets.swift in Sources */,
 				3E5EE17E28D90B6F00E71B1A /* MusicBrainzPreferences.swift in Sources */,
+				3EB1F26E28DF165200CB231F /* PitchShiftUnitViewController.swift in Sources */,
 				3EB0278528DBBE4B002DBB6F /* FFmpegScheduler.swift in Sources */,
 				3E5EE2A028D90B7000E71B1A /* NSApplicationExtensions.swift in Sources */,
 				3EB0273828DBBB53002DBB6F /* FFmpegAudioStream.swift in Sources */,

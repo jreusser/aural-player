@@ -12,7 +12,7 @@ class TimeStretchUnitViewController: UIViewController {
     @IBOutlet weak var btnBypass: UIButton!
     
     @IBOutlet weak var rateSlider: TimeStretchSlider!
-    @IBOutlet weak var rateLabel: UILabel!
+    @IBOutlet weak var lblRate: UILabel!
     
     @IBOutlet weak var pitchShiftSwitch: UISwitch!
  
@@ -21,7 +21,7 @@ class TimeStretchUnitViewController: UIViewController {
     var timeStretchUnit: TimeStretchUnitDelegateProtocol = audioGraphDelegate.timeStretchUnit
     
     ///
-    /// Sets the state of the controls based on the current state of the equalizer.
+    /// Sets the state of the controls based on the current state of the FX unit.
     ///
     override func viewWillAppear(_ animated: Bool) {
         
@@ -31,7 +31,7 @@ class TimeStretchUnitViewController: UIViewController {
         
         btnBypass.tintColor = timeStretchUnit.isActive ? .blue : .gray
         rateSlider.rate = timeStretchUnit.rate
-        rateLabel.text = timeStretchUnit.formattedRate
+        lblRate.text = timeStretchUnit.formattedRate
         pitchShiftSwitch.setOn(timeStretchUnit.shiftPitch, animated: true)
     }
 
@@ -50,7 +50,7 @@ class TimeStretchUnitViewController: UIViewController {
     @IBAction func timeStretchAction(_ sender: TimeStretchSlider) {
         
         timeStretchUnit.rate = rateSlider.rate
-        rateLabel.text = timeStretchUnit.formattedRate
+        lblRate.text = timeStretchUnit.formattedRate
     }
 
     private static let oneTenth: Float = 1.0 / 10.0
@@ -60,28 +60,28 @@ class TimeStretchUnitViewController: UIViewController {
         
         _ = timeStretchUnit.increaseRate(by: Self.oneTenth)
         rateSlider.rate = timeStretchUnit.rate
-        rateLabel.text = timeStretchUnit.formattedRate
+        lblRate.text = timeStretchUnit.formattedRate
     }
 
     @IBAction func increaseRateByHundredthAction(_ sender: UIButton) {
         
         _ = timeStretchUnit.increaseRate(by: Self.oneHundredth)
         rateSlider.rate = timeStretchUnit.rate
-        rateLabel.text = timeStretchUnit.formattedRate
+        lblRate.text = timeStretchUnit.formattedRate
     }
 
     @IBAction func decreaseRateByTenthAction(_ sender: UIButton) {
         
         _ = timeStretchUnit.decreaseRate(by: Self.oneTenth)
         rateSlider.rate = timeStretchUnit.rate
-        rateLabel.text = timeStretchUnit.formattedRate
+        lblRate.text = timeStretchUnit.formattedRate
     }
 
     @IBAction func decreaseRateByHundredthAction(_ sender: UIButton) {
         
         _ = timeStretchUnit.decreaseRate(by: Self.oneHundredth)
         rateSlider.rate = timeStretchUnit.rate
-        rateLabel.text = timeStretchUnit.formattedRate
+        lblRate.text = timeStretchUnit.formattedRate
     }
 
     // Toggles the "Shift pitch" option of the Time stretch effects unit

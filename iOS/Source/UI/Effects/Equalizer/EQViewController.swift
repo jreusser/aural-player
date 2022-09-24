@@ -19,7 +19,7 @@ class EQViewController: UIViewController {
     private var initialized: Bool = false
     
     ///
-    /// Sets the state of the controls based on the current state of the equalizer.
+    /// Sets the state of the controls based on the current state of the FX unit.
     ///
     override func viewWillAppear(_ animated: Bool) {
         
