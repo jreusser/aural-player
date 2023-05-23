@@ -2,7 +2,7 @@
 //  FFmpegFrameBuffer.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -36,17 +36,6 @@ class FFmpegFrameBuffer {
     /// ```
     ///
     var sampleCount: Int32 = 0
-    
-    ///
-    /// Computes the maximum of the sample counts of all the contained frames.
-    ///
-    /// ```
-    /// This value is useful when allocating reusable memory space for
-    /// a sample format conversion, i.e. space large enough to accomodate
-    /// any of the frames contained in this buffer.
-    /// ```
-    ///
-    var maxFrameSampleCount: Int32 {frames.map{$0.sampleCount}.max() ?? 0}
     
     ///
     /// Whether or not samples in this buffer require conversion before they can be fed into AVAudioEngine for playback.
@@ -114,81 +103,5 @@ class FFmpegFrameBuffer {
             self.sampleCount += frame.sampleCount
             self.frames.append(frame)
         }
-    }
-    
-    ///
-    /// Copies this buffer's samples, as non-interleaved (aka planar) 32-bit floats, to a given (playable) audio buffer.
-    ///
-    /// - Parameter audioBuffer: The playable audio buffer that will hold the samples contained in this buffer.
-    ///
-    /// # Note #
-    ///
-    /// The caller of this function must first verify that this buffer's samples are indeed of the required (playable) standard
-    /// Core Audio format. In other words, this function does not do any kind of sample format conversion. It copies
-    /// the samples as is.
-    ///
-    func copySamples(to audioBuffer: AVAudioPCMBuffer) {
-        
-        // The audio buffer will always be filled to capacity.
-        audioBuffer.frameLength = audioBuffer.frameCapacity
-        
-        // Get pointers to the audio buffer's internal Float data buffers.
-        guard let audioBufferChannels = audioBuffer.floatChannelData else {return}
-        
-        let channelCount: Int = Int(audioFormat.channelCount)
-        
-        // Keeps track of how many samples have been copied over so far.
-        // This will be used as an offset when performing each copy operation.
-        var sampleCountSoFar: Int = 0
-        
-        for frame in frames {
-            
-            let intSampleCount: Int = Int(frame.sampleCount)
-            let intFirstSampleIndex: Int = Int(frame.firstSampleIndex)
-            
-            for channelIndex in 0..<channelCount {
-                
-                // Get the pointers to the source and destination buffers for the copy operation.
-                guard let srcBytesForChannel = frame.dataPointers[channelIndex] else {break}
-                let destFloatsForChannel = audioBufferChannels[channelIndex]
-                
-                // Re-bind this frame's bytes to Float for the copy operation.
-                srcBytesForChannel.withMemoryRebound(to: Float.self, capacity: intSampleCount) {
-                    
-                    (srcFloatsForChannel: UnsafeMutablePointer<Float>) in
-                    
-                    // Use Accelerate to perform the copy optimally, starting at the given offset.
-                    cblas_scopy(frame.sampleCount, srcFloatsForChannel.advanced(by: intFirstSampleIndex), 1, destFloatsForChannel.advanced(by: sampleCountSoFar), 1)
-                }
-            }
-            
-            // Update the sample counter.
-            sampleCountSoFar += intSampleCount
-        }
-    }
-    
-    /// Indicates whether or not this object has already been destroyed.
-    private var destroyed: Bool = false
-    
-    ///
-    /// Performs cleanup (deallocation of allocated memory space) when
-    /// this object is about to be deinitialized or is no longer needed.
-    ///
-    func destroy() {
-        
-        // This check ensures that the deallocation happens
-        // only once. Otherwise, a fatal error will be
-        // thrown.
-        if destroyed {return}
-        
-        // Destroy each of the individual frames.
-        frames.forEach {$0.destroy()}
-        
-        destroyed = true
-    }
-    
-    /// When this object is deinitialized, make sure that its allocated memory space is deallocated.
-    deinit {
-        destroy()
     }
 }

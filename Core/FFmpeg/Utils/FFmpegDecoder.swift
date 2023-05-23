@@ -2,12 +2,13 @@
 //  FFmpegDecoder.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
 import Foundation
+import AVFAudio
 
 ///
 /// Uses an ffmpeg codec to decode a non-native track. Used by the ffmpeg scheduler in regular intervals
@@ -48,6 +49,10 @@ class FFmpegDecoder {
     var eof: Bool {_eof.value}
     
     var _eof: AtomicBool = AtomicBool()
+    
+    var fatalError: Bool {_fatalError.value}
+    
+    var _fatalError: AtomicBool = AtomicBool()
 
     ///
     /// Indicates whether or not we have reached the end of the loop when scheduling buffers for the current loop (analogous to EOF for file scheduling).
@@ -69,7 +74,15 @@ class FFmpegDecoder {
     /// During a decoding loop, in the event that a FrameBuffer fills up, this queue will hold the overflow (excess) frames that can be passed off to the next
     /// FrameBuffer in the next decoding loop.
     ///
-    var frameQueue: Queue<FFmpegFrame> = Queue<FFmpegFrame>()
+    let frameQueue: Queue<FFmpegFrame> = Queue<FFmpegFrame>()
+    
+    let resampleCtx: FFmpegAVAEResamplingContext?
+    
+    private(set) lazy var audioFormat: FFmpegAudioFormat = FFmpegAudioFormat(sampleRate: codec.sampleRate, channelCount: codec.channelCount, channelLayout: codec.channelLayout, sampleFormat: codec.sampleFormat)
+    
+    private(set) lazy var channelCount: Int = Int(audioFormat.channelCount)
+    
+    private(set) lazy var sampleRateDouble: Double = Double(codec.sampleRate)
     
     ///
     /// Given ffmpeg context for a file, initializes an appropriate codec to perform decoding.
@@ -86,13 +99,30 @@ class FFmpegDecoder {
         self.fileCtx = fileContext
         
         guard let theAudioStream = fileContext.bestAudioStream else {
-            throw FormatContextInitializationError(description: "\nUnable to find audio stream in file: '\(fileContext.file.path)'")
+            throw FormatContextInitializationError(description: "\nUnable to find audio stream in file: '\(fileContext.filePath)'")
         }
         
         self.stream = theAudioStream
         self.codec = try FFmpegAudioCodec(fromParameters: stream.avStream.codecpar)
         try codec.open()
+        
+        if codec.sampleFormat.needsFormatConversion {
+            
+            guard let resampleCtx = FFmpegAVAEResamplingContext(channelLayout: codec.channelLayout.id,
+                                                                sampleRate: Int64(codec.sampleRate),
+                                                                inputSampleFormat: codec.sampleFormat.avFormat) else {
+                
+                throw ResamplerInitializationError(description: "Unable to create a resampling context. Cannot decode file: '\(fileContext.filePath)'")
+            }
+            
+            self.resampleCtx = resampleCtx
+            
+        } else {
+            self.resampleCtx = nil
+        }
     }
+    
+    private var recurringPacketReadErrorCount: Int = 0
     
     ///
     /// Decodes the currently playing file's audio stream to produce a given (maximum) number of samples, in a loop, and returns a frame buffer
@@ -107,9 +137,7 @@ class FFmpegDecoder {
     /// because upon reaching EOF, the decoder will drain the codec's internal buffers which may result in a few additional samples that will be
     /// allowed as this is the terminal buffer.
     ///
-    func decode(maxSampleCount: Int32) -> FFmpegFrameBuffer {
-        
-        let audioFormat: FFmpegAudioFormat = FFmpegAudioFormat(sampleRate: codec.sampleRate, channelCount: codec.channelCount, channelLayout: codec.channelLayout, sampleFormat: codec.sampleFormat)
+    func decode(maxSampleCount: Int32, intoFormat outputFormat: AVAudioFormat) -> AVAudioPCMBuffer? {
         
         // Create a frame buffer with the specified maximum sample count and the codec's sample format for this file.
         let buffer: FFmpegFrameBuffer = FFmpegFrameBuffer(audioFormat: audioFormat, maxSampleCount: maxSampleCount)
@@ -121,6 +149,9 @@ class FFmpegDecoder {
 
                 // Try to obtain a single decoded frame.
                 let frame = try nextFrame()
+                
+                // Reset the counter because packet read succeeded.
+                recurringPacketReadErrorCount = 0
                 
                 // Try appending the frame to the frame buffer.
                 // The frame buffer may reject the new frame if appending it would
@@ -136,18 +167,25 @@ class FFmpegDecoder {
                     break
                 }
                 
-            } catch let packetReadError as PacketReadError {
-                
-                // If the error signals EOF, suppress it, and simply set the EOF flag.
-                self._eof.setValue(packetReadError.isEOF)
-                
-                // If the error is something other than EOF, it either indicates a real problem or simply that there was one bad packet. Log the error.
-                if !eof {NSLog("Packet read error while reading track \(fileCtx.filePath) : \(packetReadError)")}
-                
             } catch {
                 
-                // This either indicates a real problem or simply that there was one bad packet. Log the error.
-                NSLog("Decoder error while reading track \(fileCtx.filePath) : \(error)")
+                if let packetReadError = error as? PacketReadError {
+                    
+                    // If the error signals EOF, suppress it, and simply set the EOF flag.
+                    self._eof.setValue(packetReadError.isEOF)
+                }
+                
+                if !eof {
+                    
+                    NSLog("Decoder error while reading track \(fileCtx.filePath) : \(error)")
+                    recurringPacketReadErrorCount.increment()
+                    
+                    if recurringPacketReadErrorCount == 5 {
+                        
+                        _fatalError.setTrue()
+                        return buffer.sampleCount > 0 ? transferSamplesToPCMBuffer(from: buffer, outputFormat: outputFormat) : nil
+                    }
+                }
             }
         }
         
@@ -163,9 +201,7 @@ class FFmpegDecoder {
             var terminalFrames: [FFmpegFrame] = frameQueue.dequeueAll()
             
             do {
-                
-                let drainFrames = try codec.drain()
-                terminalFrames.append(contentsOf: drainFrames.frames)
+                terminalFrames.append(contentsOf: try codec.drain().frames)
                 
             } catch {
                 NSLog("Decoder drain error while reading track \(fileCtx.filePath): \(error)")
@@ -175,7 +211,44 @@ class FFmpegDecoder {
             buffer.appendTerminalFrames(terminalFrames)
         }
         
-        return buffer
+        return transferSamplesToPCMBuffer(from: buffer, outputFormat: outputFormat)
+    }
+    
+    ///
+    /// Decodes the next available packet in the stream, if required, to produce a single frame.
+    ///
+    /// - returns:  A single frame containing PCM samples.
+    ///
+    /// - throws:   A **PacketReadError** if the next packet in the stream cannot be read, OR
+    ///             A **DecoderError** if a packet was read but unable to be decoded by the codec.
+    ///
+    /// # Notes #
+    ///
+    /// 1. If there are already frames in the frame queue, that were produced by a previous call to this function, no
+    /// packets will be read / decoded. The first frame from the queue will simply be returned.
+    ///
+    /// 2. If more than one frame is produced by the decoding of a packet, the first such frame will be returned, and any
+    /// excess frames will remain in the frame queue to be consumed by the next call to this function.
+    ///
+    /// 3. The returned frame will not be dequeued (removed from the queue) by this function. It is the responsibility of the caller
+    /// to do so, upon consuming the frame.
+    ///
+    func nextFrame() throws -> FFmpegFrame {
+        
+        while frameQueue.isEmpty {
+        
+            guard let packet = try fileCtx.readPacket(from: stream) else {continue}
+            
+            let frames = try codec.decode(packet: packet).frames
+            
+            if framesNeedTimestamps.value {
+                setTimestampsInFrames(frames)
+            }
+            
+            frames.forEach {frameQueue.enqueue($0)}
+        }
+        
+        return frameQueue.peek()!
     }
     
     ///
@@ -218,7 +291,7 @@ class FFmpegDecoder {
                     
                     if let packet = try fileCtx.readPacket(from: stream) {
                         
-                        lastReadPacketTimestamp = Double(packet.pts) * stream.timeBase.ratio
+                        lastReadPacketTimestamp = Double(packet.pts) * stream.timeBaseRatio
                         packetsRead.append((packet, lastReadPacketTimestamp))
                     }
                 }
@@ -271,7 +344,7 @@ class FFmpegDecoder {
             }
             
             // If the seek succeeds, we have not reached EOF.
-            self._eof.setValue(false)
+            self._eof.setFalse()
             
         } catch let seekError as SeekError {
             
@@ -294,69 +367,24 @@ class FFmpegDecoder {
         
         if frames.isEmpty {return}
         
-        let sampleRate = codec.sampleRate
-        
         // The timestamp of the first frame will serve as a base timestamp
-        let frame0PTS: Double = Double(frames[0].pts) * stream.timeBase.ratio
-        frames[0].startTimestampSeconds = frame0PTS
-        frames[0].endTimestampSeconds = frame0PTS + (Double(frames[0].actualSampleCount) / Double(sampleRate))
+        let frame0 = frames[0]
+        let frame0PTS: Double = Double(frame0.pts) * stream.timeBaseRatio
+        frame0.startTimestampSeconds = frame0PTS
+        frame0.endTimestampSeconds = frame0PTS + (Double(frame0.actualSampleCount) / sampleRateDouble)
         
         // More than 1 frame in packet
-        if frames.count > 1 {
-
-            // Use sample count and sample rate to calculate timestamps
-            // for each of the subsequent (after the first) frames.
+        guard frames.count > 1 else {return}
+        
+        // Use sample count and sample rate to calculate timestamps
+        // for each of the subsequent (after the first) frames.
+        
+        for index in (1..<frames.count) {
             
-            var currentSampleCount: Int32 = frames[0].sampleCount
-            
-            for index in (1..<frames.count) {
-                
-                let frame = frames[index]
-                
-                frame.startTimestampSeconds = frames[index - 1].endTimestampSeconds
-                frame.endTimestampSeconds = frame.startTimestampSeconds + (Double(frame.actualSampleCount) / Double(sampleRate))
-                
-                currentSampleCount += frame.actualSampleCount
-            }
+            let frame = frames[index]
+            frame.startTimestampSeconds = frames[index - 1].endTimestampSeconds
+            frame.endTimestampSeconds = frame.startTimestampSeconds + (Double(frame.actualSampleCount) / sampleRateDouble)
         }
-    }
-    
-    ///
-    /// Decodes the next available packet in the stream, if required, to produce a single frame.
-    ///
-    /// - returns:  A single frame containing PCM samples.
-    ///
-    /// - throws:   A **PacketReadError** if the next packet in the stream cannot be read, OR
-    ///             A **DecoderError** if a packet was read but unable to be decoded by the codec.
-    ///
-    /// # Notes #
-    ///
-    /// 1. If there are already frames in the frame queue, that were produced by a previous call to this function, no
-    /// packets will be read / decoded. The first frame from the queue will simply be returned.
-    ///
-    /// 2. If more than one frame is produced by the decoding of a packet, the first such frame will be returned, and any
-    /// excess frames will remain in the frame queue to be consumed by the next call to this function.
-    ///
-    /// 3. The returned frame will not be dequeued (removed from the queue) by this function. It is the responsibility of the caller
-    /// to do so, upon consuming the frame.
-    ///
-    func nextFrame() throws -> FFmpegFrame {
-        
-        while frameQueue.isEmpty {
-        
-            if let packet = try fileCtx.readPacket(from: stream) {
-                
-                let frames = try codec.decode(packet: packet).frames
-                
-                if framesNeedTimestamps.value {
-                    setTimestampsInFrames(frames)
-                }
-                
-                frames.forEach {frameQueue.enqueue($0)}
-            }
-        }
-        
-        return frameQueue.peek()!
     }
     
     ///
@@ -364,30 +392,5 @@ class FFmpegDecoder {
     ///
     func stop() {
         frameQueue.clear()
-    }
-    
-    /// Indicates whether or not this object has already been destroyed.
-    private var destroyed: Bool = false
-    
-    ///
-    /// Performs cleanup (deallocation of allocated memory space) when
-    /// this object is about to be deinitialized or is no longer needed.
-    ///
-    func destroy() {
-
-        // This check ensures that the deallocation happens
-        // only once. Otherwise, a fatal error will be
-        // thrown.
-        if destroyed {return}
-
-        codec.destroy()
-        fileCtx.destroy()
-        
-        destroyed = true
-    }
-
-    /// When this object is deinitialized, make sure that its allocated memory space is deallocated.
-    deinit {
-        destroy()
     }
 }

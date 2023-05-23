@@ -2,7 +2,7 @@
 //  FFmpegErrors.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -10,6 +10,7 @@
 import Foundation
 
 typealias ResultCode = Int32
+typealias BytePointer = UnsafeMutablePointer<UInt8>
 
 ///
 /// Helper functions and properties for convenience in error handling and logging.
@@ -23,10 +24,8 @@ extension ResultCode {
             
         } else {
             
-            let errorStringPointer = UnsafeMutablePointer<Int8>.allocate(capacity: 100)
-            defer {errorStringPointer.deallocate()}
-            
-            return av_strerror(self, errorStringPointer, 100).isZero ? String(cString: errorStringPointer) : "Unknown error"
+            let errorString = FFmpegString(size: 100)
+            return av_strerror(self, errorString.pointer, errorString.size).isZero ? errorString.string : "Unknown error"
         }
     }
     
@@ -40,6 +39,8 @@ extension ResultCode {
     
     var isZero: Bool {self == 0}
     var isNonZero: Bool {self != 0}
+    
+    var isEOF: Bool {self == ERROR_EOF}
 }
 
 ///
@@ -86,14 +87,6 @@ class SeekError: CodedError {}
 ///
 class DecoderInitializationError: CodedError {}
 
-///
-/// Helper function to check if the given result code indicates end of file (EOF).
-///
-func isEOF(code: ResultCode) -> Bool {
-    code == ERROR_EOF
-}
-
-///
 class FormatContextInitializationError: Error {
     
     let description: String
@@ -104,6 +97,15 @@ class FormatContextInitializationError: Error {
 }
 
 class CodecInitializationError: Error {
+    
+    let description: String
+    
+    init(description: String) {
+        self.description = description
+    }
+}
+
+class ResamplerInitializationError: Error {
     
     let description: String
     

@@ -2,12 +2,13 @@
 //  FFmpegLoopDecoding.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
 import Foundation
+import AVFoundation
 
 ///
 /// Handles decoding for segment loop playback of non-native tracks.
@@ -23,9 +24,7 @@ extension FFmpegDecoder {
     ///
     /// - returns: a frame buffer containing the decoded samples, ready to be scheduled for playback.
     ///
-    func decodeLoop(maxSampleCount: Int32, loopEndTime: Double) -> FFmpegFrameBuffer {
-        
-        let audioFormat: FFmpegAudioFormat = FFmpegAudioFormat(sampleRate: codec.sampleRate, channelCount: codec.channelCount, channelLayout: codec.channelLayout, sampleFormat: codec.sampleFormat)
+    func decodeLoop(maxSampleCount: Int32, loopEndTime: Double, intoFormat outputFormat: AVAudioFormat) -> AVAudioPCMBuffer? {
         
         // Create a frame buffer with the specified maximum sample count and the codec's sample format for this file.
         let buffer: FFmpegFrameBuffer = FFmpegFrameBuffer(audioFormat: audioFormat, maxSampleCount: maxSampleCount)
@@ -42,14 +41,21 @@ extension FFmpegDecoder {
                     
                     // Have reached the end of the loop, need to truncate this frame so that
                     // no samples after loopEndTime are scheduled.
-                    let sampleRate = Double(codec.sampleRate)
-                    let truncatedSampleCount = Int32((loopEndTime - frame.startTimestampSeconds) * sampleRate)
+                    let truncatedSampleCount = Int32((loopEndTime - frame.startTimestampSeconds) * sampleRateDouble)
                     
                     // Truncate frame, append it to the frame buffer, and break from loop
                     frame.keepFirstNSamples(sampleCount: truncatedSampleCount)
                     buffer.appendTerminalFrames([frame])
                     
-                    self._endOfLoop.setValue(true)
+                    // TODO: Can we cache all the loop frames ?!!! Just play the same frames again and again !!!
+                    // TODO: If not the samples (could be very large - many hours, potentially with high sample rate / channel count), at least
+                    // TODO: cache some metadata ?
+                    // TODO:
+                    // TODO: Conditionally cache all the samples ? Examine loop duration + sample rate + channel count
+                    // TODO: If less than some max threshold, cache all samples ?
+                    // TODO:
+                    // TODO:
+                    self._endOfLoop.setTrue()
                     
                     break
                 }
@@ -92,7 +98,7 @@ extension FFmpegDecoder {
         
         if eof {
             
-            self._endOfLoop.setValue(true)
+            self._endOfLoop.setTrue()
             
             var terminalFrames: [FFmpegFrame] = frameQueue.dequeueAll()
             
@@ -109,13 +115,13 @@ extension FFmpegDecoder {
             buffer.appendTerminalFrames(terminalFrames)
         }
         
-        return buffer
+        return transferSamplesToPCMBuffer(from: buffer, outputFormat: outputFormat)
     }
     
     ///
     /// Resets all loop-related state, in response to a loop either being completed or being removed.
     ///
     func loopCompleted() {
-        self._endOfLoop.setValue(false)
+        self._endOfLoop.setFalse()
     }
 }

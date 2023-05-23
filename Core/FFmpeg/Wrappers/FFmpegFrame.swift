@@ -2,7 +2,7 @@
 //  FFmpegFrame.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -25,17 +25,14 @@ class FFmpegFrame {
     ///
     /// A pointer to the encapsulated AVFrame object.
     ///
-    var pointer: UnsafeMutablePointer<AVFrame>!
-    
-    ///
-    /// Describes the number and physical / spatial arrangement of the channels. (e.g. "5.1 surround" or "stereo")
-    ///
-    var channelLayout: UInt64 {avFrame.channel_layout}
+    private var pointer: UnsafeMutablePointer<AVFrame>!
     
     ///
     /// Number of channels of audio data.
     ///
     var channelCount: Int32 {avFrame.channels}
+    
+    lazy var intChannelCount: Int = Int(channelCount)
 
     ///
     /// PCM format of the samples.
@@ -56,6 +53,8 @@ class FFmpegFrame {
     /// See member **truncatedSampleCount** for an explanation of frame truncation.
     ///
     var sampleCount: Int32 {truncatedSampleCount ?? avFrame.nb_samples}
+    
+    lazy var intSampleCount: Int = Int(sampleCount)
     
     var actualSampleCount: Int32 {avFrame.nb_samples}
     
@@ -163,7 +162,7 @@ class FFmpegFrame {
     ///
     /// Pointers to the raw data (unsigned bytes) constituting this frame's samples.
     ///
-    var dataPointers: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>! {avFrame.extended_data}
+    var dataPointers: UnsafeMutablePointer<BytePointer?>! {avFrame.extended_data}
     
     ///
     /// Instantiates a Frame, reading an AVFrame from the given codec context, and sets its sample format.
@@ -185,7 +184,11 @@ class FFmpegFrame {
         }
         
         // Receive the frame from the codec context.
-        guard avcodec_receive_frame(codecCtx, pointer).isNonNegative else {return nil}
+        guard avcodec_receive_frame(codecCtx, pointer).isNonNegative else {
+            
+            av_frame_free(&pointer)
+            return nil
+        }
         
         self.sampleFormat = sampleFormat
         self.firstSampleIndex = 0
@@ -231,29 +234,8 @@ class FFmpegFrame {
         }
     }
     
-    /// Indicates whether or not this object has already been destroyed.
-    private var destroyed: Bool = false
-    
-    ///
-    /// Performs cleanup (deallocation of allocated memory space) when
-    /// this object is about to be deinitialized or is no longer needed.
-    ///
-    func destroy() {
-
-        // This check ensures that the deallocation happens
-        // only once. Otherwise, a fatal error will be
-        // thrown.
-        if destroyed {return}
-        
-        // Free up the space allocated to this frame.
-        av_frame_unref(pointer)
-        av_freep(pointer)
-        
-        destroyed = true
-    }
-    
     /// When this object is deinitialized, make sure that its allocated memory space is deallocated.
     deinit {
-        destroy()
+        av_frame_free(&pointer)
     }
 }

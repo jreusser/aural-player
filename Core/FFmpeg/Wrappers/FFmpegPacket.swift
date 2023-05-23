@@ -2,7 +2,7 @@
 //  FFmpegPacket.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -20,11 +20,6 @@ class FFmpegPacket {
     /// The encapsulated AVPacket object.
     ///
     var avPacket: AVPacket
-    
-    ///
-    /// A pointer to the encapsulated AVPacket object.
-    ///
-    var pointer: UnsafeMutablePointer<AVPacket>!
     
     ///
     /// Index of the stream from which this packet was read.
@@ -54,19 +49,19 @@ class FFmpegPacket {
     ///
     /// Pointer to the raw data (unsigned bytes) contained in this packet.
     ///
-    var rawDataPointer: UnsafeMutablePointer<UInt8>! {avPacket.data}
+    var rawDataPointer: BytePointer! {avPacket.data}
     
     ///
     /// The raw data encapsulated in a byte buffer, if there is any raw data. Nil if there is no raw data.
     ///
-    var data: Data? {
+    private(set) lazy var data: Data? = {
         
         if let theData = rawDataPointer, size > 0 {
             return Data(bytes: theData, count: Int(size))
         }
         
         return nil
-    }
+    }()
     
     ///
     /// Instantiates a Packet from a format context (container), if it can be read. Returns nil otherwise.
@@ -78,16 +73,16 @@ class FFmpegPacket {
     init(readingFromFormat formatCtx: UnsafeMutablePointer<AVFormatContext>?) throws {
         
         self.avPacket = AVPacket()
-        self.pointer = withUnsafeMutablePointer(to: &avPacket, {(ptr: UnsafeMutablePointer<AVPacket>) in ptr})
+        self.needToDealloc = true
         
         // Try to read a packet.
-        let readResult: Int32 = av_read_frame(formatCtx, pointer)
+        let readResult: Int32 = av_read_frame(formatCtx, &avPacket)
         
         // If the read fails, log a message and throw an error.
         guard readResult >= 0 else {
             
             // No need to log a message for EOF as it is considered harmless.
-            if !isEOF(code: readResult) {
+            if !readResult.isEOF {
                 NSLog("Unable to read packet. Error: \(readResult) (\(readResult.errorDescription)))")
             }
             
@@ -102,39 +97,30 @@ class FFmpegPacket {
     ///
     init(encapsulating pointer: UnsafeMutablePointer<AVPacket>) {
         
-        self.pointer = pointer
         self.avPacket = pointer.pointee
         
         // Since this avPacket was not allocated by this object, we
         // cannot deallocate it here. It is the caller's responsibility
         // to ensure that avPacket is destroyed.
         //
-        // So, set the destroyed flag, to prevent deallocation.
-        destroyed = true
+        // So, set the needToDealloc flag, to prevent deallocation.
+        needToDealloc = false
     }
-
-    /// Indicates whether or not this object has already been destroyed.
-    private var destroyed: Bool = false
     
-    ///
-    /// Performs cleanup (deallocation of allocated memory space) when
-    /// this object is about to be deinitialized or is no longer needed.
-    ///
-    func destroy() {
-
-        // This check ensures that the deallocation happens
-        // only once. Otherwise, a fatal error will be
-        // thrown.
-        if destroyed {return}
-        
-        av_packet_unref(&avPacket)
-        av_freep(&avPacket)
-        
-        destroyed = true
+    func sendToCodec(withContext contextPointer: UnsafeMutablePointer<AVCodecContext>!) -> ResultCode {
+        avcodec_send_packet(contextPointer, &avPacket)
     }
+
+    /// Indicates whether or not this object needs to free up used memory space.
+    private let needToDealloc: Bool
     
     /// When this object is deinitialized, make sure that its allocated memory space is deallocated.
     deinit {
-        destroy()
+        
+        if needToDealloc {
+            
+            av_packet_unref(&avPacket)
+            av_freep(&avPacket)
+        }
     }
 }

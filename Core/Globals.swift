@@ -53,8 +53,7 @@ let player: PlayerProtocol = Player(graph: audioGraph, avfScheduler: avfSchedule
 
 fileprivate let avfScheduler: PlaybackSchedulerProtocol = AVFScheduler(audioGraph.playerNode)
 
-fileprivate let ffmpegScheduler: PlaybackSchedulerProtocol = FFmpegScheduler(playerNode: audioGraph.playerNode,
-                                                                             sampleConverter: FFmpegSampleConverter())
+fileprivate let ffmpegScheduler: PlaybackSchedulerProtocol = FFmpegScheduler(playerNode: audioGraph.playerNode)
 
 let playbackDelegate: PlaybackDelegateProtocol = {
     

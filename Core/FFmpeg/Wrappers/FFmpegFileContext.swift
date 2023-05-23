@@ -2,7 +2,7 @@
 //  FFmpegFileContext.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -181,7 +181,7 @@ class FFmpegFileContext {
         }
         
         // Try to open the audio file so that it can be read.
-        var resultCode: ResultCode = avformat_open_input(&pointer, file.path, nil, nil)
+        var resultCode: ResultCode = avformat_open_input(&pointer, filePath, nil, nil)
         
         // If the file open failed, log a message and return nil.
         guard resultCode.isNonNegative, pointer?.pointee != nil else {
@@ -195,7 +195,7 @@ class FFmpegFileContext {
         
         // If the read failed, log a message and return nil.
         guard resultCode.isNonNegative, let avStreamsArrayPointer = pointer.pointee.streams else {
-            throw FormatContextInitializationError(description: "Unable to find stream info for file '\(file.path)'. Error: \(resultCode.errorDescription)")
+            throw FormatContextInitializationError(description: "Unable to find stream info for file '\(filePath)'. Error: \(resultCode.errorDescription)")
         }
         
         self.avStreamPointers = (0..<pointer.pointee.nb_streams).compactMap {avStreamsArrayPointer.advanced(by: Int($0)).pointee}
@@ -208,70 +208,18 @@ class FFmpegFileContext {
         if self.bitRate == 0 {self.bitRate = duration == 0 ? 0 : Int64(round(Double(fileSize) / duration))}
     }
     
-    ///
-    /// Copy constructor.
-    ///
-    /// - Parameter fileContext: The file context whose copy is to be made.
-    ///
-    /// Fails (returns nil) if:
-    ///
-    /// - An error occurs while opening the file or reading (demuxing) its streams.
-    /// - No audio stream is found in the file.
-    ///
-    init(copying fileContext: FFmpegFileContext) throws {
-        
-        self.file = fileContext.file
-        self.filePath = file.path
-        
-        // MARK: Open the file ----------------------------------------------------------------------------------
-        
-        // Allocate memory for this format context.
-        self.pointer = avformat_alloc_context()
-        
-        guard self.pointer != nil else {
-            throw FormatContextInitializationError(description: "Unable to allocate memory for format context for file '\(filePath)'.")
-        }
-        
-        // Try to open the audio file so that it can be read.
-        var resultCode: ResultCode = avformat_open_input(&pointer, file.path, nil, nil)
-        
-        // If the file open failed, log a message and return nil.
-        guard resultCode.isNonNegative, pointer?.pointee != nil else {
-            throw FormatContextInitializationError(description: "Unable to open file '\(filePath)'. Error: \(resultCode.errorDescription)")
-        }
-        
-        // MARK: Read the streams ----------------------------------------------------------------------------------
-        
-        // Try to read information about the streams contained in this file.
-        resultCode = avformat_find_stream_info(pointer, nil)
-        
-        // If the read failed, log a message and return nil.
-        guard resultCode.isNonNegative, let avStreamsArrayPointer = pointer.pointee.streams else {
-            throw FormatContextInitializationError(description: "Unable to find stream info for file '\(file.path)'. Error: \(resultCode.errorDescription)")
-        }
-        
-        self.avStreamPointers = (0..<pointer.pointee.nb_streams).compactMap {avStreamsArrayPointer.advanced(by: Int($0)).pointee}
-        
-        // Compute the duration of the audio stream, trying various methods. See documentation of **duration**
-        // for a detailed description.
-        
-        self.bitRate = fileContext.bitRate
-        self.duration = fileContext.duration
-
-        self.bestAudioStream = fileContext.bestAudioStream
-        self.packetTable = fileContext.packetTable
-    }
-    
     func findBestStream(ofType mediaType: AVMediaType) -> FFmpegStreamProtocol? {
         
         let streamIndex = av_find_best_stream(pointer, mediaType, -1, -1, nil, 0)
         guard streamIndex.isNonNegative, streamIndex < streamCount else {return nil}
         
+        let streamPointer = avStreamPointers[Int(streamIndex)]
+        
         switch mediaType {
         
-        case AVMEDIA_TYPE_AUDIO: return FFmpegAudioStream(encapsulating: avStreamPointers[Int(streamIndex)])
+        case AVMEDIA_TYPE_AUDIO: return FFmpegAudioStream(encapsulating: streamPointer)
         
-        case AVMEDIA_TYPE_VIDEO: return FFmpegImageStream(encapsulating: avStreamPointers[Int(streamIndex)])
+        case AVMEDIA_TYPE_VIDEO: return FFmpegImageStream(encapsulating: streamPointer)
         
         default: return nil
             
@@ -304,14 +252,9 @@ class FFmpegFileContext {
     func seek(within stream: FFmpegAudioStream, to time: Double) throws {
         
         // Represents the target seek position that the format context understands.
-        var timestamp: Int64 = 0
-        
-        // Describes the seeking mode to use (seek by frame, seek by byte, etc)
-        var flags: Int32 = 0
-        
         // We need to determine a target frame, given the seek position in seconds,
         // duration, and frame count.
-        timestamp = Int64(time * Double(stream.timeBase.reciprocalRatio))
+        let timestamp = Int64(time * stream.timeBaseReciprocalRatio)
         
         // Validate the target frame (cannot exceed the total frame count)
         if stream.timeBaseDuration > 0, timestamp >= stream.timeBaseDuration {throw SeekError(ERROR_EOF)}
@@ -322,10 +265,9 @@ class FFmpegFileContext {
         // having a smaller timestamp than the one you are seeking."
         //
         // Source - https://stackoverflow.com/questions/20734814/ffmpeg-av-seek-frame-with-avseek-flag-any-causes-grey-screen
-        flags = AVSEEK_FLAG_BACKWARD
         
         // Attempt the seek and capture the result code.
-        let seekResult: ResultCode = av_seek_frame(pointer, stream.index, timestamp, flags)
+        let seekResult: ResultCode = av_seek_frame(pointer, stream.index, timestamp, AVSEEK_FLAG_BACKWARD)
         
         // If the seek failed, log a message and throw an error.
         guard seekResult.isNonNegative else {
@@ -334,32 +276,14 @@ class FFmpegFileContext {
             throw SeekError(seekResult)
         }
     }
-    
-    /// Indicates whether or not this object has already been destroyed.
-    private var destroyed: Bool = false
-    
-    ///
-    /// Performs cleanup (deallocation of allocated memory space) when
-    /// this object is about to be deinitialized or is no longer needed.
-    ///
-    func destroy() {
 
-        // This check ensures that the deallocation happens
-        // only once. Otherwise, a fatal error will be
-        // thrown.
-        if destroyed {return}
-
+    /// When this object is deinitialized, make sure that its allocated memory space is deallocated.
+    deinit {
+        
         // Close the context.
         avformat_close_input(&pointer)
         
         // Free the context and all its streams.
         avformat_free_context(pointer)
-        
-        destroyed = true
-    }
-
-    /// When this object is deinitialized, make sure that its allocated memory space is deallocated.
-    deinit {
-        destroy()
     }
 }

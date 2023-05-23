@@ -2,7 +2,7 @@
 //  FFmpegImageStream.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -25,7 +25,7 @@ class FFmpegImageStream: FFmpegStreamProtocol {
     ///
     /// The encapsulated AVStream object.
     ///
-    var avStream: AVStream {pointer.pointee}
+    lazy var avStream: AVStream = pointer.pointee
     
     ///
     /// The media type of data contained within this stream (e.g. audio, video, etc)
@@ -41,16 +41,12 @@ class FFmpegImageStream: FFmpegStreamProtocol {
     /// The packet (optionally) containing an attached picture.
     /// This can be used to read cover art.
     ///
-    lazy var attachedPic: FFmpegPacket = {
-        
-        var attachedPicPacket = avStream.attached_pic
-        return FFmpegPacket(encapsulating: &attachedPicPacket)
-    }()
+    private(set) lazy var attachedPic: FFmpegPacket = FFmpegPacket(encapsulating: &avStream.attached_pic)
     
     ///
     /// All metadata key / value pairs available for this stream.
     ///
-    lazy var metadata: [String: String] = FFmpegMetadataReader.read(from: avStream.metadata)
+    private(set) lazy var metadata: [String: String] = FFmpegMetadataReader.read(from: avStream.metadata)
     
     ///
     /// Instantiates this stream object and its associated codec and codec context.
@@ -64,6 +60,8 @@ class FFmpegImageStream: FFmpegStreamProtocol {
         self.pointer = pointer
         self.index = pointer.pointee.index
     }
+    
+#if DEBUG
     
     ///
     /// Print some stream info to the console.
@@ -79,4 +77,7 @@ class FFmpegImageStream: FFmpegStreamProtocol {
         
         print("---------------------------------\n")
     }
+    
+#endif
+    
 }

@@ -2,7 +2,7 @@
 //  FFmpegAudioStream.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -66,6 +66,10 @@ class FFmpegAudioStream: FFmpegStreamProtocol {
     ///
     var timeBase: AVRational {avStream.time_base}
     
+    private(set) lazy var timeBaseRatio: Double = timeBase.ratio
+    
+    private(set) lazy var timeBaseReciprocalRatio: Double = timeBase.reciprocalRatio
+    
     ///
     /// The duration of this stream, in time base units.
     ///
@@ -80,7 +84,7 @@ class FFmpegAudioStream: FFmpegStreamProtocol {
     
     var channelCount: Int32 {codecParams.channels}
     
-    var channelLayout: UInt64 {codecParams.channel_layout}
+    lazy var channelLayout: FFmpegChannelLayout = FFmpegChannelLayout(id: codecParams.channel_layout, channelCount: channelCount)
     
     ///
     /// All metadata key / value pairs available for this stream.
@@ -98,8 +102,10 @@ class FFmpegAudioStream: FFmpegStreamProtocol {
         
         self.pointer = pointer
         self.index = pointer.pointee.index
-        self.duration = pointer.pointee.duration > 0 ? Double(pointer.pointee.duration) * pointer.pointee.time_base.ratio : nil
+        self.duration = timeBaseDuration > 0 ? Double(timeBaseDuration) * timeBaseRatio : nil
     }
+    
+#if DEBUG
     
     ///
     /// Print some stream info to the console.
@@ -117,4 +123,7 @@ class FFmpegAudioStream: FFmpegStreamProtocol {
         
         print("---------------------------------\n")
     }
+    
+#endif
+    
 }

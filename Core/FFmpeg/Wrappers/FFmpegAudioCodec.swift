@@ -2,7 +2,7 @@
 //  FFmpegAudioCodec.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -19,7 +19,7 @@ class FFmpegAudioCodec: FFmpegCodec {
     ///
     /// This should equal the number of physical CPU cores in the system.
     ///
-    static let threadCount: Int32 = Int32(System.physicalCores)
+    static let threadCount: Int32 = Int32(max(2, System.physicalCores / 2))
     
     ///
     /// The type of multithreading used by **FFmpeg** when decoding.
@@ -52,7 +52,7 @@ class FFmpegAudioCodec: FFmpegCodec {
     ///
     /// Describes the number and physical / spatial arrangement of the channels. (e.g. "5.1 surround" or "stereo")
     ///
-    var channelLayout: Int64 = 0
+    var channelLayout: FFmpegChannelLayout = .zero
     
     ///
     /// Instantiates an AudioCodec object, given a pointer to its parameters.
@@ -68,7 +68,7 @@ class FFmpegAudioCodec: FFmpegCodec {
         
         // Correct channel layout if necessary.
         // NOTE - This is necessary for some files like WAV files that don't specify a channel layout.
-        self.channelLayout = context.channel_layout != 0 ? Int64(context.channel_layout) : av_get_default_channel_layout(context.channels)
+        self.channelLayout = FFmpegChannelLayout(id: context.channel_layout, channelCount: context.channels)
         
         // Use multithreading to speed up decoding.
         self.contextPointer.pointee.thread_count = Self.threadCount
@@ -83,7 +83,7 @@ class FFmpegAudioCodec: FFmpegCodec {
         // Some streams may contain the wrong header information. So, recompute these
         // values after opening the codec.
         
-        self.channelLayout = context.channel_layout != 0 ? Int64(context.channel_layout) : av_get_default_channel_layout(context.channels)
+        self.channelLayout = FFmpegChannelLayout(id: context.channel_layout, channelCount: context.channels)
         self.sampleFormat = FFmpegSampleFormat(encapsulating: context.sample_fmt)
     }
     
@@ -99,7 +99,7 @@ class FFmpegAudioCodec: FFmpegCodec {
     func decode(packet: FFmpegPacket) throws -> FFmpegPacketFrames {
         
         // Send the packet to the decoder for decoding.
-        let resultCode: ResultCode = avcodec_send_packet(contextPointer, packet.pointer)
+        let resultCode: ResultCode = packet.sendToCodec(withContext: contextPointer)
         
         // If the packet send failed, log a message and throw an error.
         if resultCode.isNegative {
@@ -132,7 +132,7 @@ class FFmpegAudioCodec: FFmpegCodec {
     func decodeAndDrop(packet: FFmpegPacket) {
         
         // Send the packet to the decoder for decoding.
-        var resultCode: ResultCode = avcodec_send_packet(contextPointer, packet.pointer)
+        var resultCode: ResultCode = packet.sendToCodec(withContext: contextPointer)
         if resultCode.isNegative {return}
         
         var avFrame: AVFrame = AVFrame()
@@ -182,6 +182,8 @@ class FFmpegAudioCodec: FFmpegCodec {
         avcodec_flush_buffers(contextPointer)
     }
     
+#if DEBUG
+    
     ///
     /// Print some codec info to the console.
     /// May be used to verify that the codec was properly read / initialized.
@@ -200,4 +202,7 @@ class FFmpegAudioCodec: FFmpegCodec {
         
         print("---------------------------------\n")
     }
+    
+#endif
+    
 }

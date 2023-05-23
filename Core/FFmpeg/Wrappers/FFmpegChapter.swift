@@ -2,7 +2,7 @@
 //  FFmpegChapter.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -29,7 +29,7 @@ struct FFmpegChapter {
     init(encapsulating chapter: AVChapter, atIndex index: Int) {
         
         // Ratio used to convert from the chapter's time base units to seconds.
-        let conversionFactor: Double = Double(chapter.time_base.num) / Double(chapter.time_base.den)
+        let conversionFactor: Double = chapter.time_base.ratio
         
         self.startTime = Double(chapter.start) * conversionFactor
         self.endTime = Double(chapter.end) * conversionFactor
@@ -45,7 +45,7 @@ struct FFmpegChapter {
 
 extension Chapter {
     
-    init(_ ffmpegChapter: FFmpegChapter) {
+    convenience init(_ ffmpegChapter: FFmpegChapter) {
         
         self.init(title: ffmpegChapter.title, startTime: ffmpegChapter.startTime, endTime: ffmpegChapter.endTime,
                   duration: max(ffmpegChapter.endTime - ffmpegChapter.startTime, 0))

@@ -12,15 +12,15 @@ import Foundation
 ///
 /// Represents a single chapter marking within a track.
 ///
-struct Chapter {
+class Chapter {
     
     // Title may be changed / corrected after chapter object is created
     var title: String
     
     // Time bounds of this chapter
     let startTime: Double
-    let endTime: Double
-    let duration: Double
+    var endTime: Double
+    var duration: Double
     
     init(title: String, startTime: Double, endTime: Double, duration: Double? = nil) {
         
@@ -51,6 +51,16 @@ struct Chapter {
     
     // Convenience function to determine if a given track position lies within this chapter's time bounds
     func containsTimePosition(_ seconds: Double) -> Bool {
-        return seconds >= startTime && seconds <= endTime
+        seconds >= startTime && seconds <= endTime
+    }
+    
+    func correctEndTimeAndDuration(endTime: Double) {
+        
+        self.endTime = endTime
+        self.duration = max(endTime - startTime, 0)
+    }
+   
+    var description: String {
+        "Title: \(title), startTime: \(startTime), endTime: \(endTime), duration: \(duration)"
     }
 }
