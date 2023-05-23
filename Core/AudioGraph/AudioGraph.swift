@@ -243,21 +243,18 @@ let audioSession: AVAudioSession = .sharedInstance()
     
     func addAudioUnit(ofType type: OSType, andSubType subType: OSType) -> (audioUnit: HostedAudioUnit, index: Int)? {
         
-        if let auComponent = audioUnitsManager.audioUnit(ofType: type, andSubType: subType) {
-            
-            let newUnit: HostedAudioUnit = HostedAudioUnit(forComponent: auComponent)
-            audioUnits.append(newUnit)
-            masterUnit.addAudioUnit(newUnit)
-            
-            let context = AudioGraphChangeContext()
-            messenger.publish(PreAudioGraphChangeNotification(context: context))
-            audioEngine.insertNode(newUnit.avNodes[0])
-            messenger.publish(AudioGraphChangedNotification(context: context))
-            
-            return (audioUnit: newUnit, index: audioUnits.lastIndex)
-        }
+        guard let auComponent = audioUnitsManager.audioUnit(ofType: type, andSubType: subType) else {return nil}
         
-        return nil
+        let newUnit: HostedAudioUnit = HostedAudioUnit(forComponent: auComponent)
+        audioUnits.append(newUnit)
+        masterUnit.addAudioUnit(newUnit)
+        
+        let context = AudioGraphChangeContext()
+        messenger.publish(PreAudioGraphChangeNotification(context: context))
+        audioEngine.insertNode(newUnit.avNodes[0])
+        messenger.publish(AudioGraphChangedNotification(context: context))
+        
+        return (audioUnit: newUnit, index: audioUnits.lastIndex)
     }
     
     func removeAudioUnits(at indices: IndexSet) {

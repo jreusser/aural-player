@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -68,7 +68,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="66m-mO-xRo">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" size="12" name="Play-Regular"/>
+                                        <font key="font" metaFont="cellTitle"/>
                                         <menu key="menu" autoenablesItems="NO" id="uwk-Ja-XSI">
                                             <items>
                                                 <menuItem hidden="YES" id="gWg-It-t7n" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
@@ -113,7 +113,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="QX7-Ug-p4q">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" size="12" name="Play-Regular"/>
+                                        <font key="font" metaFont="cellTitle"/>
                                         <menu key="menu" autoenablesItems="NO" id="drC-pX-0Rs">
                                             <items>
                                                 <menuItem hidden="YES" id="HM2-5O-u4Z" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
@@ -1953,13 +1953,13 @@ CA
         <image name="WindowLayout-VerticalPlayerAndPlaylist" width="30" height="20"/>
         <image name="WindowLayout-VerticalStack" width="30" height="20"/>
         <image name="arrow.down" catalog="system" width="13" height="14"/>
-        <image name="arrow.down.to.line.alt" catalog="system" width="13" height="16"/>
+        <image name="arrow.down.to.line.alt" catalog="system" width="13" height="14"/>
         <image name="arrow.right.arrow.left" catalog="system" width="16" height="17"/>
         <image name="arrow.right.doc.on.clipboard" catalog="system" width="16" height="18"/>
         <image name="arrow.up" catalog="system" width="13" height="14"/>
         <image name="arrow.up.arrow.down" catalog="system" width="18" height="15"/>
-        <image name="arrow.up.to.line.alt" catalog="system" width="13" height="16"/>
-        <image name="magnifyingglass" catalog="system" width="15" height="15"/>
+        <image name="arrow.up.to.line.alt" catalog="system" width="13" height="14"/>
+        <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="minus" catalog="system" width="14" height="4"/>
         <image name="music.note.list" catalog="system" width="16" height="15"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>

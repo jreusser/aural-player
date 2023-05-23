@@ -34,11 +34,6 @@ export crossCompileOption="--enable-cross-compile"
 # Deployment target for Aural Player.
 export deploymentTarget="15.0"
 
-export installNamePrefix="@rpath"
-
-# Determine compiler / linker flags based on architecture.
-export audiotoolboxOption="--disable-audiotoolbox"
-
 export createFatLibs="false"
 
 # MARK: Functions -------------------------------------------------------------------------------------

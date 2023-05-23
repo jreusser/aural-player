@@ -35,33 +35,25 @@ export deploymentTarget="11.0"
 # Points to the latest MacOS SDK installed.
 export sdk="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
 
-export installNamePrefix="@loader_path/../Frameworks"
-
-# Determine compiler / linker flags based on architecture.
-# TODO: Take into account host machine architecture.
-
-export audiotoolboxOption="--enable-audiotoolbox"
-
 export createFatLibs="true"
 
 # MARK: Functions -------------------------------------------------------------------------------------
 
+# Determine compiler / linker flags based on architecture.
 function setCompilerAndLinkerFlags {
 
     arch=$1
     
     export compiler="/usr/bin/clang"
-    export assemblerOption=""
     
-    if [[ "$arch" == "arm64" ]]
+    # Architecture of the host machine running this build.
+    hostArchitecture=$(uname -m)
+    
+    if [[ "$arch" != "$hostArchitecture" ]]
     then
-        archInFlags="-arch arm64 "
+        archInFlags="-arch ${arch} "
         export crossCompileOption="--enable-cross-compile"
-        export archOption="--arch=arm64"
-    else
-        archInFlags=""
-        export crossCompileOption=""
-        export archOption=""
+        export archOption="--arch=${arch}"
     fi
     
     export extraCompilerFlags="${archInFlags}-mmacosx-version-min=${deploymentTarget} -isysroot ${sdk}"

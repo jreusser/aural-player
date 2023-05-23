@@ -27,7 +27,7 @@
                         <rect key="frame" x="20" y="265" width="457" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" usesSingleLineMode="YES" bezelStyle="round" maximumRecents="10" id="Ye3-ve-NN6">
-                            <font key="font" size="12" name="Play-Regular"/>
+                            <font key="font" metaFont="cellTitle"/>
                             <color key="textColor" white="0.70217628970000001" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="backgroundColor" white="0.48200924299999998" alpha="1" colorSpace="calibratedWhite"/>
                         </searchFieldCell>
@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="h8X-ne-U93">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" size="12" name="Play-Regular"/>
+                            <font key="font" metaFont="cellTitle"/>
                             <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
@@ -75,7 +75,7 @@ Gw
                         <rect key="frame" x="25" y="85" width="450" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" id="Rgj-p7-at0">
-                            <font key="font" size="13" name="Play-Regular"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" white="0.69999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -84,7 +84,7 @@ Gw
                         <rect key="frame" x="25" y="60" width="450" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" id="uJB-hk-hq2">
-                            <font key="font" size="13" name="Play-Regular"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" white="0.69999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -93,7 +93,7 @@ Gw
                         <rect key="frame" x="57" y="110" width="384" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="No results" id="Ob0-Xz-1mT">
-                            <font key="font" size="13" name="Play-Regular"/>
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" white="0.69999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -102,7 +102,7 @@ Gw
                         <rect key="frame" x="24" y="229" width="86" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search by:" id="ZDD-6S-arT">
-                            <font key="font" size="11" name="Play-Regular"/>
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" white="0.70339626740000005" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -112,7 +112,7 @@ Gw
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Name / filename" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="DCU-ra-xlI">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" size="11" name="Play-Regular"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="searchFieldsChangedAction:" target="-2" id="FSD-7b-o3G"/>
@@ -123,7 +123,7 @@ Gw
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Artist (if available)" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="2G3-r1-iZZ">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" size="11" name="Play-Regular"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="searchFieldsChangedAction:" target="-2" id="Bnh-aN-jBw"/>
@@ -134,7 +134,7 @@ Gw
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Title (if available)" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="Yfp-yE-Epy">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" size="11" name="Play-Regular"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="searchFieldsChangedAction:" target="-2" id="SPz-bg-UQC"/>
@@ -145,7 +145,7 @@ Gw
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Album (if available)" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="b52-k7-Sp2">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" size="11" name="Play-Regular"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="searchFieldsChangedAction:" target="-2" id="okc-u6-KUE"/>
@@ -155,7 +155,7 @@ Gw
                         <rect key="frame" x="199" y="229" width="94" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Comparison type:" id="g2W-71-fMp">
-                            <font key="font" size="11" name="Play-Regular"/>
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" white="0.70339626740000005" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -165,7 +165,7 @@ Gw
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="radio" title="Contains" bezelStyle="regularSquare" imagePosition="left" controlSize="mini" state="on" inset="2" id="cPQ-cM-JGH">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" size="11" name="Play-Regular"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="searchTypeChangedAction:" target="-2" id="cXn-N3-yLZ"/>
@@ -176,7 +176,7 @@ Gw
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="radio" title="Equals" bezelStyle="regularSquare" imagePosition="left" controlSize="mini" inset="2" id="qBm-ys-4GE">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" size="11" name="Play-Regular"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="searchTypeChangedAction:" target="-2" id="Qvj-Yt-pCp"/>
@@ -187,7 +187,7 @@ Gw
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="radio" title="Begins with" bezelStyle="regularSquare" imagePosition="left" controlSize="mini" inset="2" id="bIq-77-Ime">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" size="11" name="Play-Regular"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="searchTypeChangedAction:" target="-2" id="BhF-Gc-mLS"/>
@@ -198,7 +198,7 @@ Gw
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="radio" title="Ends with" bezelStyle="regularSquare" imagePosition="left" controlSize="mini" inset="2" id="Pbi-AX-7Fg">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" size="11" name="Play-Regular"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="searchTypeChangedAction:" target="-2" id="Pja-ey-k7C"/>
@@ -208,7 +208,7 @@ Gw
                         <rect key="frame" x="376" y="229" width="62" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Options:" id="4vq-bG-rGL">
-                            <font key="font" size="11" name="Play-Regular"/>
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" white="0.70339626740000005" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -218,7 +218,7 @@ Gw
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Case sensitive" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="itA-U1-eGH">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" size="11" name="Play-Regular"/>
+                            <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
                             <action selector="searchOptionsChangedAction:" target="-2" id="ZaV-C9-7Mo"/>

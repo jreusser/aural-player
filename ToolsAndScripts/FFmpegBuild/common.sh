@@ -10,9 +10,6 @@
 
 # MARK: Constants -------------------------------------------------------------------------------------
 
-# Architectures
-export architectures=("x86_64" "arm64")
-
 # FFmpeg release version
 export ffmpegVersion="4.4"
 
@@ -121,7 +118,7 @@ function configureFFmpeg {
     # Configure FFmpeg
     ./configure \
     --target-os=darwin \
-    --arch=${arch} \
+    ${archOption} \
     --cc="${compiler}" \
     --as="${assembler}" \
     --extra-cflags="${extraCompilerFlags}" \
@@ -136,14 +133,15 @@ function configureFFmpeg {
     --enable-pthreads \
     --disable-doc \
     --disable-debug \
+    --disable-network \
     --disable-all \
     --enable-avcodec \
     --enable-avformat \
     --enable-swresample \
-    --enable-avfoundation \
-    ${audiotoolboxOption} \
-    --enable-coreimage \
-    --enable-zlib \
+    --disable-avfoundation \
+    --disable-audiotoolbox \
+    --disable-coreimage \
+    --disable-zlib \
     --disable-everything \
     --disable-appkit \
     --disable-iconv \
@@ -192,19 +190,19 @@ function fixInstallNames {
     
     cd "dylibs/${platform}/${arch}"
 
-    install_name_tool -id ${installNamePrefix}/${avcodecLib} ${avcodecLib}
-    install_name_tool -change /usr/local/lib/${swresampleLib} ${installNamePrefix}/${swresampleLib} ${avcodecLib}
-    install_name_tool -change /usr/local/lib/${avutilLib} ${installNamePrefix}/${avutilLib} ${avcodecLib}
+    install_name_tool -id @rpath/${avcodecLib} ${avcodecLib}
+    install_name_tool -change /usr/local/lib/${swresampleLib} @rpath/${swresampleLib} ${avcodecLib}
+    install_name_tool -change /usr/local/lib/${avutilLib} @rpath/${avutilLib} ${avcodecLib}
 
-    install_name_tool -id ${installNamePrefix}/${avformatLib} ${avformatLib}
-    install_name_tool -change /usr/local/lib/${avcodecLib} ${installNamePrefix}/${avcodecLib} ${avformatLib}
-    install_name_tool -change /usr/local/lib/${swresampleLib} ${installNamePrefix}/${swresampleLib} ${avformatLib}
-    install_name_tool -change /usr/local/lib/${avutilLib} ${installNamePrefix}/${avutilLib} ${avformatLib}
+    install_name_tool -id @rpath/${avformatLib} ${avformatLib}
+    install_name_tool -change /usr/local/lib/${avcodecLib} @rpath/${avcodecLib} ${avformatLib}
+    install_name_tool -change /usr/local/lib/${swresampleLib} @rpath/${swresampleLib} ${avformatLib}
+    install_name_tool -change /usr/local/lib/${avutilLib} @rpath/${avutilLib} ${avformatLib}
 
-    install_name_tool -id ${installNamePrefix}/${avutilLib} ${avutilLib}
+    install_name_tool -id @rpath/${avutilLib} ${avutilLib}
 
-    install_name_tool -id ${installNamePrefix}/${swresampleLib} ${swresampleLib}
-    install_name_tool -change /usr/local/lib/${avutilLib} ${installNamePrefix}/${avutilLib} ${swresampleLib}
+    install_name_tool -id @rpath/${swresampleLib} ${swresampleLib}
+    install_name_tool -change /usr/local/lib/${avutilLib} @rpath/${avutilLib} ${swresampleLib}
 
     cd ../../..
 }
