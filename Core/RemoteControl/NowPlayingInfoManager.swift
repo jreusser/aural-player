@@ -99,7 +99,7 @@ class NowPlayingInfoManager: NSObject {
         
         // Metadata
         
-        nowPlayingInfo[MPMediaItemPropertyTitle] = playingTrack?.title
+        nowPlayingInfo[MPMediaItemPropertyTitle] = playingTrack?.title ?? playingTrack?.defaultDisplayName
         nowPlayingInfo[MPMediaItemPropertyArtist] = playingTrack?.artist
         nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = playingTrack?.album
         nowPlayingInfo[MPMediaItemPropertyGenre] = playingTrack?.genre
