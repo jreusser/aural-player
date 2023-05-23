@@ -32,8 +32,8 @@ protocol HistoryDelegateProtocol {
     // Adds a given item (file/folder) to the playlist
     func addItem(_ item: URL) throws
     
-    // Plays a given item track. The "playlistType" parameter is used to initialize the new playback sequence, based on the current playlist view.
-//    func playItem(_ item: URL, _ playlistType: PlaylistType) throws
+    // Plays a given item track.
+    func playItem(_ item: URL, fromPosition startPosition: Double?) throws
     
     func resizeLists(_ recentlyAddedListSize: Int, _ recentlyPlayedListSize: Int)
     
@@ -42,4 +42,19 @@ protocol HistoryDelegateProtocol {
     func deleteItem(_ item: PlayedItem)
 
     func deleteItem(_ item: AddedItem)
+    
+    func markLastPlaybackPosition(_ position: Double)
+    
+    var lastPlaybackPosition: Double {get}
+    
+    var lastPlayedItem: PlayedItem? {get}
+    
+    func resumeLastPlayedTrack() throws
+}
+
+extension HistoryDelegateProtocol {
+    
+    func playItem(_ item: URL) throws {
+        try playItem(item, fromPosition: nil)
+    }
 }

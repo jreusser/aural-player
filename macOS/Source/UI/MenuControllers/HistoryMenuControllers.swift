@@ -14,10 +14,42 @@ let menuItemCoverArtImageSize: NSSize = NSSize(width: 22, height: 22)
 /*
     Manages and provides actions for the History menu that displays historical information about the usage of the app.
  */
-class HistoryMenuController: NSObject {
+class HistoryMenuController: NSObject, NSMenuDelegate {
+    
+    // Sub-menu that displays recently added files/folders. Clicking on any of these items will result in the item being added to the playlist if not already present.
+    @IBOutlet weak var recentlyAddedMenu: NSMenu!
+    
+    @IBOutlet weak var resumeLastPlayedTrackItem: NSMenuItem!
 
     // Delegate that performs CRUD on the history model
     private let history: HistoryDelegateProtocol = historyDelegate
+    
+    private let player: PlaybackDelegateProtocol = playbackDelegate
+    
+    func menuWillOpen(_ menu: NSMenu) {
+        resumeLastPlayedTrackItem.enableIf(player.state == .stopped && history.lastPlaybackPosition > 0)
+    }
+    
+    @IBAction fileprivate func resumeLastPlayedTrackAction(_ sender: NSMenuItem) {
+        
+        do {
+            
+            try history.resumeLastPlayedTrack()
+            
+        } catch {
+            
+            if let lastPlayedItem = history.lastPlayedItem, let fnfError = error as? FileNotFoundError {
+                
+                // This needs to be done async. Otherwise, other open dialogs could hang.
+                DispatchQueue.main.async {
+                    
+                    // Position and display an alert with error info
+                    _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove item").showModal()
+                    self.history.deleteItem(lastPlayedItem)
+                }
+            }
+        }
+    }
     
     @IBAction fileprivate func clearHistoryAction(_ sender: NSMenuItem) {
         history.clearAllHistory()

@@ -529,6 +529,8 @@
 		3E9E590F25DB6B150064EB5F /* AppModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E590025DB6B150064EB5F /* AppModeManager.swift */; };
 		3E9E591025DB6B150064EB5F /* WindowedAppModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E590125DB6B150064EB5F /* WindowedAppModeController.swift */; };
 		3E9F692226B9CE26001FAFA3 /* PlaylistControlsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9F692126B9CE26001FAFA3 /* PlaylistControlsContainer.swift */; };
+		3E9FD0FC2A1D58EB0038AF04 /* MarkLastPlaybackPositionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9FD0FB2A1D58EB0038AF04 /* MarkLastPlaybackPositionAction.swift */; };
+		3E9FD0FD2A1D58EB0038AF04 /* MarkLastPlaybackPositionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9FD0FB2A1D58EB0038AF04 /* MarkLastPlaybackPositionAction.swift */; };
 		3EA0102925E2725900A80DAC /* FontSchemeHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0102825E2725900A80DAC /* FontSchemeHistory.swift */; };
 		3EA0102D25E28C4C00A80DAC /* FontSchemeChangeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0102C25E28C4C00A80DAC /* FontSchemeChangeContext.swift */; };
 		3EA1BDE0268F4F5900A5D81B /* Messenger_UnsubscribeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E902605268E830900C5A1C5 /* Messenger_UnsubscribeTests.swift */; };
@@ -2085,6 +2087,7 @@
 		3E9E590025DB6B150064EB5F /* AppModeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppModeManager.swift; sourceTree = "<group>"; };
 		3E9E590125DB6B150064EB5F /* WindowedAppModeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowedAppModeController.swift; sourceTree = "<group>"; };
 		3E9F692126B9CE26001FAFA3 /* PlaylistControlsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistControlsContainer.swift; sourceTree = "<group>"; };
+		3E9FD0FB2A1D58EB0038AF04 /* MarkLastPlaybackPositionAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkLastPlaybackPositionAction.swift; sourceTree = "<group>"; };
 		3EA0102825E2725900A80DAC /* FontSchemeHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemeHistory.swift; sourceTree = "<group>"; };
 		3EA0102C25E28C4C00A80DAC /* FontSchemeChangeContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemeChangeContext.swift; sourceTree = "<group>"; };
 		3EA3ADAE26921E3E0066A918 /* MasterUnitPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterUnitPersistenceTests.swift; sourceTree = "<group>"; };
@@ -5462,6 +5465,7 @@
 				3EFE370427864895006F8B8C /* StopPlaybackChain.swift */,
 				3EFE370527864895006F8B8C /* EndPlaybackSequenceAction.swift */,
 				3EFE370627864895006F8B8C /* CloseFileHandlesAction.swift */,
+				3E9FD0FB2A1D58EB0038AF04 /* MarkLastPlaybackPositionAction.swift */,
 			);
 			path = StopPlaybackChain;
 			sourceTree = "<group>";
@@ -6373,6 +6377,7 @@
 				3EFE38B127864896006F8B8C /* FilterBandType.swift in Sources */,
 				3E91932C25E0D96A00F30F81 /* GeneralFontSchemeViewController.swift in Sources */,
 				3E3579D026835A6A009522A0 /* GenericPresetPopupMenuController.swift in Sources */,
+				3E9FD0FC2A1D58EB0038AF04 /* MarkLastPlaybackPositionAction.swift in Sources */,
 				3E6C124B25CEBDF400BF0D07 /* GenresPlaylistSortViewController.swift in Sources */,
 				3E8FF9E027F63D9B009CEDDD /* PlayQueueNotifications.swift in Sources */,
 				3EFE37EF27864896006F8B8C /* RemoteControlPreferences.swift in Sources */,
@@ -7324,6 +7329,7 @@
 				3EFE397C27864897006F8B8C /* SavePlaybackProfileAction.swift in Sources */,
 				3EABDDE82694BC30008066E8 /* VisualizerViewOptions.swift in Sources */,
 				3EFE39CC27864897006F8B8C /* PitchShiftUnitPersistentState.swift in Sources */,
+				3E9FD0FD2A1D58EB0038AF04 /* MarkLastPlaybackPositionAction.swift in Sources */,
 				3EFE385A27864896006F8B8C /* FavoritesDelegate.swift in Sources */,
 				3EFE381A27864896006F8B8C /* SearchFields.swift in Sources */,
 				3EFE389A27864896006F8B8C /* DelayPresets.swift in Sources */,

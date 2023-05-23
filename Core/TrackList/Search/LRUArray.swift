@@ -42,6 +42,14 @@ class LRUArray<T: Equatable> {
         let arrayCopy = array
         return arrayCopy
     }
+    
+    var first: T? {
+        array.first
+    }
+    
+    var last: T? {
+        array.last
+    }
  
     // Checks if the array contains a particular element.
     func contains(_ element: T) -> Bool {

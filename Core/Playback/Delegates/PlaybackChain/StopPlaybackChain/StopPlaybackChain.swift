@@ -22,8 +22,9 @@ class StopPlaybackChain: PlaybackChain {
         super.init()
         
         _ = self.withAction(SavePlaybackProfileAction(profiles, preferences))
-        .withAction(HaltPlaybackAction(player))
-        .withAction(EndPlaybackSequenceAction(playQueue))
-//        .withAction(CloseFileHandlesAction(playlist: playlist))
+            .withAction(MarkLastPlaybackPositionAction())
+            .withAction(HaltPlaybackAction(player))
+            .withAction(EndPlaybackSequenceAction(playQueue))
+        //        .withAction(CloseFileHandlesAction(playlist: playlist))
     }
 }
