@@ -18,7 +18,7 @@ class AudioUnitsManager {
     
     let audioUnits: [AVAudioUnitComponent]
     
-    private static let componentsBlackList: Set<String> = ["AUNewPitch", "AURoundTripAAC", "AUNetSend"]
+    private static let componentsBlackList: Set<String> = ["AURoundTripAAC", "AUNetSend"]
     private static let acceptedComponentTypes: Set<OSType> = [kAudioUnitType_Effect, kAudioUnitType_MusicEffect, kAudioUnitType_Panner]
     
     init() {
@@ -28,7 +28,6 @@ class AudioUnitsManager {
         self.audioUnits = componentManager.components {component, _ in
             
             Self.acceptedComponentTypes.contains(component.componentType) &&
-                component.hasCustomView &&
                 !Self.componentsBlackList.contains(component.name)
             
         }.sorted(by: {$0.name < $1.name})
@@ -37,7 +36,7 @@ class AudioUnitsManager {
         
         self.audioUnits = []
         
-#endif
+        #endif
     }
     
     func audioUnit(ofType type: OSType, andSubType subType: OSType) -> AVAudioUnitComponent? {

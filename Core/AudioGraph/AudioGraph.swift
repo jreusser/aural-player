@@ -51,6 +51,8 @@ class AudioGraph: AudioGraphProtocol, PersistentModelObject {
     
     var soundProfiles: SoundProfiles
     
+    var audioUnitPresets: AudioUnitPresetsMap
+    
     private lazy var messenger = Messenger(for: self)
     
     let visualizationAnalysisBufferSize: Int = 2048
@@ -93,6 +95,7 @@ let audioSession: AVAudioSession = .sharedInstance()
         
         self.audioUnitsManager = audioUnitsManager
         audioUnits = []
+        audioUnitPresets = AudioUnitPresetsMap(persistentState: persistentState?.audioUnitPresets)
         
         for auState in persistentState?.audioUnits ?? [] {
             
@@ -101,7 +104,8 @@ let audioSession: AVAudioSession = .sharedInstance()
                   let component = audioUnitsManager.audioUnit(ofType: componentType,
                                                               andSubType: componentSubType) else {continue}
             
-            audioUnits.append(HostedAudioUnit(forComponent: component, persistentState: auState))
+            let presets = audioUnitPresets.getPresetsForAU(componentType: componentType, componentSubType: componentSubType)
+            audioUnits.append(HostedAudioUnit(forComponent: component, persistentState: auState, presets: presets))
         }
         
         let nativeSlaveUnits = [eqUnit, pitchShiftUnit, timeStretchUnit, reverbUnit, delayUnit, filterUnit]
@@ -245,7 +249,9 @@ let audioSession: AVAudioSession = .sharedInstance()
         
         guard let auComponent = audioUnitsManager.audioUnit(ofType: type, andSubType: subType) else {return nil}
         
-        let newUnit: HostedAudioUnit = HostedAudioUnit(forComponent: auComponent)
+        let newUnit: HostedAudioUnit = HostedAudioUnit(forComponent: auComponent,
+                                                       presets: audioUnitPresets.getPresetsForAU(componentType: type, componentSubType: subType))
+        
         audioUnits.append(newUnit)
         masterUnit.addAudioUnit(newUnit)
         
@@ -291,7 +297,8 @@ let audioSession: AVAudioSession = .sharedInstance()
                                   delayUnit: delayUnit.persistentState,
                                   filterUnit: filterUnit.persistentState,
                                   audioUnits: audioUnits.map {$0.persistentState},
-                                  soundProfiles: soundProfiles.persistentState)
+                                  soundProfiles: soundProfiles.persistentState,
+                                  audioUnitPresets: audioUnitPresets.persistentState)
         
         #elseif os(iOS)
         

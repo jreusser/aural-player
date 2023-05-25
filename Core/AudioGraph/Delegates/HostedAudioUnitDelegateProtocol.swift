@@ -2,12 +2,13 @@
 //  HostedAudioUnitDelegateProtocol.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
 
+import Cocoa
 import AVFoundation
 
 ///
@@ -29,8 +30,12 @@ protocol HostedAudioUnitDelegateProtocol: EffectsUnitDelegateProtocol {
     var componentType: OSType {get}
     var componentSubType: OSType {get}
     
-    var params: [AUParameterAddress: Float] {get}
-
+    var hasCustomView: Bool {get}
+    
+    var parameterValues: [AUParameterAddress: Float] {get}
+    var parameterTree: AUParameterTree? {get}
+    func setValue(_ value: Float, forParameterWithAddress address: AUParameterAddress)
+    
     var presets: AudioUnitPresets {get}
     var supportsUserPresets: Bool {get}
     
@@ -38,5 +43,7 @@ protocol HostedAudioUnitDelegateProtocol: EffectsUnitDelegateProtocol {
     
     func applyFactoryPreset(named presetName: String)
     
-    func presentView(_ handler: @escaping (PlatformView) -> Void)
+    func presentView(_ handler: @escaping (NSView) -> Void)
+    
+    func forceViewRedraw()
 }

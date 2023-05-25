@@ -2,17 +2,17 @@
 //  HostedAUNode.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
 import AVFoundation
 import CoreAudioKit
-import Foundation
+import Cocoa
 
 ///
-/// A specialized subclass of **AVAudioUnitEffect** that represents an Audio Units (AU) plug-in.
+/// A specialized subclass of **AVAudioUnitEffect** that represents an Audio Unit (AU) plug-in.
 ///
 /// Provides convenient access to various properties / functions of the plug-in (eg. name, version, manufacturer).
 ///
@@ -27,10 +27,12 @@ class HostedAUNode: AVAudioUnitEffect {
     var componentVersion: String {avComponent.versionString}
     var componentManufacturerName: String {avComponent.manufacturerName}
     
+    var hasCustomView: Bool {avComponent.hasCustomView}
+    
     var parameterTree: AUParameterTree? {auAudioUnit.parameterTree}
     private var bypassStateObservers: [AUNodeBypassStateObserver] = []
     
-    var params: [AUParameterAddress: Float] {
+    var parameterValues: [AUParameterAddress: Float] {
         
         get {
             
@@ -51,20 +53,20 @@ class HostedAUNode: AVAudioUnitEffect {
         }
     }
     
-    private let bypassPropertyKey: String = "shouldBypassEffect"
+    private static let bypassPropertyKey: String = "shouldBypassEffect"
     
     convenience init(forComponent component: AVAudioUnitComponent) {
         
         self.init(audioComponentDescription: component.audioComponentDescription)
         self.avComponent = component
 
-        auAudioUnit.addObserver(self, forKeyPath: bypassPropertyKey, options: .init(), context: nil)
+        auAudioUnit.addObserver(self, forKeyPath: Self.bypassPropertyKey, options: .init(), context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?,
                                change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        if keyPath == bypassPropertyKey {
+        if keyPath == Self.bypassPropertyKey {
             bypassStateObservers.forEach {$0.nodeBypassStateChanged(auAudioUnit.shouldBypassEffect)}
         }
     }
@@ -104,6 +106,10 @@ class HostedAUNode: AVAudioUnitEffect {
             
             auAudioUnit.currentPreset = preset
         }
+    }
+    
+    func setValue(_ value: Float, forParameterWithAddress address: AUParameterAddress) {
+        parameterTree?.parameter(withAddress: address)?.value = value
     }
 }
 

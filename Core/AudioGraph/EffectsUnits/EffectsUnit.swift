@@ -37,6 +37,8 @@ class EffectsUnit: NSObject {
     
     lazy var messenger = Messenger(for: self)
     
+    var unitInitialized: Bool = false
+    
     init(unitType: EffectsUnitType, unitState: EffectsUnitState) {
         
         self.unitType = unitType

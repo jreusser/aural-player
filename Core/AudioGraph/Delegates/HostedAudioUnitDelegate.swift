@@ -2,11 +2,12 @@
 //  HostedAudioUnitDelegate.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2022 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
+import Cocoa
 import AVFoundation
 import CoreAudioKit
 import AudioToolbox
@@ -22,7 +23,7 @@ import CoreAudio
 /// - SeeAlso: `HostedAudioUnitDelegateProtocol`
 ///
 class HostedAudioUnitDelegate: EffectsUnitDelegate<HostedAudioUnit>, HostedAudioUnitDelegateProtocol {
-    
+
     var id: String
     
     var name: String {unit.name}
@@ -32,14 +33,19 @@ class HostedAudioUnitDelegate: EffectsUnitDelegate<HostedAudioUnit>, HostedAudio
     var componentType: OSType {unit.componentType}
     var componentSubType: OSType {unit.componentSubType}
     
-    var params: [AUParameterAddress: Float] {unit.params}
+    var hasCustomView: Bool {unit.hasCustomView}
+    
+    var parameterValues: [AUParameterAddress: Float] {unit.parameterValues}
+    var parameterTree: AUParameterTree? {unit.parameterTree}
     
     var presets: AudioUnitPresets {unit.presets}
     var supportsUserPresets: Bool {unit.supportsUserPresets}
     
     var factoryPresets: [AudioUnitFactoryPreset] {unit.factoryPresets}
     
-    private var viewController: PlatformViewController?
+    private var viewController: NSViewController?
+    
+    private var generatedView: NSView?
     
     override init(for unit: HostedAudioUnit) {
         
@@ -48,10 +54,25 @@ class HostedAudioUnitDelegate: EffectsUnitDelegate<HostedAudioUnit>, HostedAudio
     }
     
     func applyFactoryPreset(named presetName: String) {
+        
         unit.applyFactoryPreset(named: presetName)
+        (viewController as? AUControlViewController)?.refreshControls()
     }
     
-    func presentView(_ handler: @escaping (PlatformView) -> Void) {
+    func presentView(_ handler: @escaping (NSView) -> Void) {
+        
+        if !hasCustomView {
+            
+            if let theGeneratedView = generatedView {
+                handler(theGeneratedView)
+            }
+            
+            let generatedView = generateView()
+            self.generatedView = generatedView
+            handler(generatedView)
+            
+            return
+        }
         
         if let viewController = self.viewController {
             
@@ -67,5 +88,22 @@ class HostedAudioUnitDelegate: EffectsUnitDelegate<HostedAudioUnit>, HostedAudio
                 handler(theViewController.view)
             }
         })
+    }
+    
+    private func generateView() -> NSView {
+        
+        let viewController = AUControlViewController()
+        viewController.audioUnit = self
+        self.viewController = viewController
+        
+        return viewController.view
+    }
+    
+    func forceViewRedraw() {
+        (viewController as? AUControlViewController)?.refreshControls()
+    }
+    
+    func setValue(_ value: Float, forParameterWithAddress address: AUParameterAddress) {
+        unit.setValue(value, forParameterWithAddress: address)
     }
 }

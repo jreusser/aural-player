@@ -27,6 +27,10 @@ class VALabel: NSTextField {
         super.awakeFromNib()
         
         // Hand off cell properties to the new cell
+        forceAlignment()
+    }
+    
+    func forceAlignment() {
         
         if let cell = self.cell as? VALabelCell {
             cell.vAlign = self.vAlign
