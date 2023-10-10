@@ -17,7 +17,7 @@ class EQPresets: EffectsUnitPresets<EQPreset> {
     #if os(macOS)
     
     /// Default EQ preset.
-    fileprivate static let flatPreset: EQPreset = EQPreset(name: "Flat", state: .active, bands: [Float](repeating: 0, count: 15),
+    static let flatPreset: EQPreset = EQPreset(name: "Flat", state: .active, bands: [Float](repeating: 0, count: 15),
                                                            globalGain: 0, systemDefined: true)
     
     fileprivate static let systemDefinedPresets: [EQPreset] = [

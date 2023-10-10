@@ -251,5 +251,13 @@ extension EffectsUnitViewController: NSMenuDelegate {
         loadPresetsMenuItem?.enable()
         presetsMenu.recreateMenu(insertingItemsAt: 0, fromItems: presetsWrapper.userDefinedPresets,
                                  action: #selector(presetsAction(_:)), target: self)
+        
+        presetsMenu.items.forEach {$0.state = .off}
+        
+        if let currentPresetName = effectsUnit.nameOfCurrentPreset,
+           let itemForCurrentPreset = presetsMenu.item(withTitle: currentPresetName) {
+            
+            itemForCurrentPreset.state = .on
+        }
     }
 }

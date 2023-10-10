@@ -156,6 +156,26 @@ let audioSession: AVAudioSession = .sharedInstance()
     
 #endif
     
+    func applySoundProfile(_ profile: SoundProfile) {
+        
+        self.volume = profile.volume
+        self.pan = profile.pan
+        masterUnit.applyPreset(profile.effects)
+    }
+    
+    func captureSystemSoundProfile() {
+        soundProfiles.systemProfile = SoundProfile(file: URL(fileURLWithPath: "system"), volume: volume, pan: pan, effects: settingsAsMasterPreset)
+    }
+    
+    func restoreSystemSoundProfile() {
+        
+        guard let systemSoundProfile = soundProfiles.systemProfile else {return}
+        
+        self.volume = systemSoundProfile.volume
+        self.pan = systemSoundProfile.pan
+        masterUnit.applyPreset(systemSoundProfile.effects)
+    }
+    
     // MARK: Audio engine functions ----------------------------------
     
     func reconnectPlayerNode(withFormat format: AVAudioFormat) {
