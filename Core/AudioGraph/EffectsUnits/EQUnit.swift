@@ -30,7 +30,7 @@ class EQUnit: EffectsUnit, EQUnitProtocol {
         #endif
         
         presets = EQPresets(persistentState: persistentState)
-        super.init(unitType: .eq, unitState: persistentState?.state ?? AudioGraphDefaults.eqState)
+        super.init(unitType: .eq, unitState: persistentState?.state ?? AudioGraphDefaults.eqState, renderQuality: persistentState?.renderQuality)
 
         // TODO: Validate persistent bands array ... if not 10 or 15 values, fix it.
         bands = persistentState?.bands ?? AudioGraphDefaults.eqBands
@@ -112,6 +112,7 @@ class EQUnit: EffectsUnit, EQUnitProtocol {
 
         EQUnitPersistentState(state: state,
                               userPresets: presets.userDefinedObjects.map {EQPresetPersistentState(preset: $0)},
+                              renderQuality: renderQualityPersistentState,
                               globalGain: globalGain,
                               bands: bands)
     }

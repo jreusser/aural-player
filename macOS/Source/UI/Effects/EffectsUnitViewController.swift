@@ -24,6 +24,9 @@ class EffectsUnitViewController: NSViewController {
     @IBOutlet weak var presetsMenu: NSMenu!
     lazy var userPresetsPopover: StringInputPopoverViewController = .create(self)
     
+    @IBOutlet weak var renderQualityMenu: NSMenu!
+    lazy var renderQualityMenuViewController: RenderQualityMenuViewController = RenderQualityMenuViewController()
+    
     // Labels
     var functionLabels: [NSTextField] = []
     var functionCaptionLabels: [NSTextField] = []
@@ -66,6 +69,13 @@ class EffectsUnitViewController: NSViewController {
             
             $0.action = presetsMenuButton.action
             $0.target = presetsMenuButton.target
+        }
+        
+        if let theRenderQualityMenu = renderQualityMenu {
+            
+            renderQualityMenuViewController.effectsUnit = effectsUnit
+            theRenderQualityMenu.items.first?.view = renderQualityMenuViewController.view
+            theRenderQualityMenu.delegate = renderQualityMenuViewController
         }
         
         initSubscriptions()

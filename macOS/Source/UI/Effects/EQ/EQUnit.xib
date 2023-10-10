@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,9 +11,11 @@
             <connections>
                 <outlet property="btnBypass" destination="lmp-7m-bHA" id="tRO-Zi-hU6"/>
                 <outlet property="eqUnitView" destination="zTt-IY-Dad" id="Tq0-ny-AWA"/>
+                <outlet property="loadPresetsMenuItem" destination="ZUZ-sN-HFg" id="m6T-KP-FyY"/>
                 <outlet property="presetsMenu" destination="ZTW-al-XWb" id="NvE-sD-sgB"/>
                 <outlet property="presetsMenuButton" destination="Q15-iZ-G8V" id="eHx-yd-zRG"/>
                 <outlet property="presetsMenuIconItem" destination="ZUZ-sN-HFg" id="j2j-i6-XU7"/>
+                <outlet property="renderQualityMenu" destination="SyB-yZ-xre" id="3wC-F0-fbv"/>
                 <outlet property="view" destination="zTt-IY-Dad" id="2gC-LH-eIR"/>
             </connections>
         </customObject>
@@ -23,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="160"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button wantsLayer="YES" fixedFrame="YES" tag="373" translatesAutoresizingMaskIntoConstraints="NO" id="lmp-7m-bHA" userLabel="Bypass button" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
+                <button wantsLayer="YES" tag="373" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lmp-7m-bHA" userLabel="Bypass button" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="15" y="133" width="14" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="fO0-0Q-ndW">
@@ -117,7 +119,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-20" maxValue="20" tickMarkPosition="left" numberOfTickMarks="1" sliderType="linear" id="u89-ae-QYF" customClass="EQSliderCell" customModule="Aural" customModuleProvider="target"/>
                 </slider>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I5Z-6W-IMo" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I5Z-6W-IMo" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="69" y="131" width="34" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="+20" id="MIs-Hc-hch">
@@ -126,7 +128,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fE-bU-3Rz" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1fE-bU-3Rz" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="69" y="11" width="34" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="-20" id="8UQ-C1-fwo">
@@ -135,7 +137,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dzh-e8-dIe" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dzh-e8-dIe" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="95" y="71" width="24" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="0" id="INz-49-pkF">
@@ -144,7 +146,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jqj-vg-8ln" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jqj-vg-8ln" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="285" y="11" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="1.6k" id="jrv-or-SZn">
@@ -153,7 +155,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Od-uc-BUx" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Od-uc-BUx" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="225" y="131" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="400" id="HEf-da-rRm">
@@ -162,7 +164,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z2m-eW-QRM" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z2m-eW-QRM" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="205" y="11" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="250" id="vGY-QJ-c3p">
@@ -171,7 +173,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eAy-SU-ass" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eAy-SU-ass" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="185" y="131" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="160" id="Kwc-UC-vm6">
@@ -180,7 +182,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xx1-a8-m1Z" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xx1-a8-m1Z" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="105" y="131" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="25" id="prU-Li-xBV">
@@ -189,7 +191,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JW0-V6-Gdu" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JW0-V6-Gdu" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="165" y="11" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="100" id="Mlx-va-fNO">
@@ -198,7 +200,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RSh-RV-DdX" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RSh-RV-DdX" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="125" y="11" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="40" id="MW7-ZX-2iS">
@@ -207,7 +209,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yLB-bY-OaD" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yLB-bY-OaD" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="245" y="11" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="630" id="z9r-Sr-M4W">
@@ -216,7 +218,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xnX-Nz-QwJ" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xnX-Nz-QwJ" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="145" y="131" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="63" id="exf-Tt-6Aw">
@@ -225,7 +227,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dOY-4m-0M5" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dOY-4m-0M5" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="265" y="131" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="1k" id="bhm-yV-IVv">
@@ -234,7 +236,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vtr-pS-K7N" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vtr-pS-K7N" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="386" y="131" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="16k" id="WxJ-v7-4ha">
@@ -243,7 +245,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LAX-wP-Ljz" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LAX-wP-Ljz" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="326" y="11" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="4k" id="NrH-4J-WBR">
@@ -252,7 +254,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A4s-Up-IWu" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A4s-Up-IWu" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="305" y="131" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="2.5k" id="lYu-pd-JVO">
@@ -261,7 +263,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fai-iE-jXe" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fai-iE-jXe" userLabel="Frequencies" customClass="BottomTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="346" y="131" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="6.3k" id="4oO-Ie-DIp">
@@ -270,7 +272,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pjM-bL-Ssf" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pjM-bL-Ssf" userLabel="Frequencies" customClass="TopTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="365" y="11" width="41" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="10k" id="nwd-rV-UyO">
@@ -280,7 +282,7 @@
                     </textFieldCell>
                 </textField>
                 <popUpButton toolTip="Presets" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q15-iZ-G8V" userLabel="Presets Menu">
-                    <rect key="frame" x="12" y="110" width="19" height="17"/>
+                    <rect key="frame" x="15" y="115" width="15" height="13"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="WlN-df-qI3">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -288,11 +290,11 @@
                         <menu key="menu" showsStateColumn="NO" id="VbO-RY-QUI">
                             <items>
                                 <menuItem hidden="YES" id="ZUZ-sN-HFg" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
-                                    <imageReference key="image" image="SavedSettings" symbolScale="default"/>
+                                    <imageReference key="image" image="Settings" symbolScale="default"/>
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="image" keyPath="baseImage">
-                                            <imageReference key="value" image="SavedSettings" symbolScale="medium"/>
+                                            <imageReference key="value" image="Settings" symbolScale="medium"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
@@ -357,6 +359,20 @@
                                         <action selector="savePresetAction:" target="-2" id="C1i-te-WbX"/>
                                     </connections>
                                 </menuItem>
+                                <menuItem isSeparatorItem="YES" id="qTe-XP-XUt"/>
+                                <menuItem title="Render Quality" id="RCj-Jm-sk4" userLabel="Render Quality">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                    <menu key="submenu" title="Render Quality" id="SyB-yZ-xre">
+                                        <items>
+                                            <menuItem title="Render Quality" id="3Bi-ni-Ty5" userLabel="Render Quality">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                <connections>
+                                                    <action selector="savePresetAction:" target="-2" id="aXo-eZ-ykw"/>
+                                                </connections>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
+                                </menuItem>
                             </items>
                             <connections>
                                 <outlet property="delegate" destination="-2" id="9QW-sQ-46I"/>
@@ -375,6 +391,6 @@
         </view>
     </objects>
     <resources>
-        <image name="SavedSettings" width="47" height="47"/>
+        <image name="Settings" width="10" height="7"/>
     </resources>
 </document>

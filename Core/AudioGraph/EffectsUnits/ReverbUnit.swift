@@ -33,7 +33,7 @@ class ReverbUnit: EffectsUnit, ReverbUnitProtocol {
         
         #endif
         
-        super.init(unitType: .reverb, unitState: persistentState?.state ?? AudioGraphDefaults.reverbState)
+        super.init(unitType: .reverb, unitState: persistentState?.state ?? AudioGraphDefaults.reverbState, renderQuality: persistentState?.renderQuality)
         
         #if os(macOS)
         amount = persistentState?.amount ?? AudioGraphDefaults.reverbAmount
@@ -118,6 +118,7 @@ class ReverbUnit: EffectsUnit, ReverbUnitProtocol {
         
         ReverbUnitPersistentState(state: state,
                                   userPresets: presets.userDefinedObjects.map {ReverbPresetPersistentState(preset: $0)},
+                                  renderQuality: renderQualityPersistentState,
                                   space: space,
                                   amount: amount)
     }

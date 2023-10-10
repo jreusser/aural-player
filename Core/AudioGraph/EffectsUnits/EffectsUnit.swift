@@ -33,19 +33,37 @@ class EffectsUnit: NSObject {
     // Intended to be overriden by subclasses.
     var avNodes: [AVAudioNode] {[]}
     
+    var renderQuality: Int {
+        
+        get {avNodes.first?.auAudioUnit.renderQuality ?? 0}
+        
+        set {
+            
+            avNodes.compactMap {$0.auAudioUnit}.forEach {
+                $0.renderQuality = newValue
+            }
+        }
+    }
+    
+    var renderQualityPersistentState: Int? {
+        self.renderQuality
+    }
+    
     var isActive: Bool {state == .active}
     
     lazy var messenger = Messenger(for: self)
     
     var unitInitialized: Bool = false
     
-    init(unitType: EffectsUnitType, unitState: EffectsUnitState) {
+    init(unitType: EffectsUnitType, unitState: EffectsUnitState, renderQuality: Int? = nil) {
         
         self.unitType = unitType
         self.state = unitState
         
         super.init()
         stateChanged()
+        
+        self.renderQuality = renderQuality ?? AudioGraphDefaults.renderQuality
     }
     
     func stateChanged() {

@@ -33,6 +33,8 @@ protocol EffectsUnitDelegateProtocol {
     
     func ensureActive()
     
+    var renderQuality: Int {get set}
+    
     func savePreset(named presetName: String)
     
     func applyPreset(named presetName: String)

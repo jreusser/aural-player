@@ -18,6 +18,7 @@ struct EQUnitPersistentState: Codable {
     
     let state: EffectsUnitState?
     let userPresets: [EQPresetPersistentState]?
+    let renderQuality: Int?
     
     let globalGain: Float?
     let bands: [Float]?

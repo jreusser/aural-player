@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,6 +13,7 @@
                 <outlet property="presetsMenu" destination="YDW-db-oFd" id="fLG-1N-vp1"/>
                 <outlet property="presetsMenuButton" destination="rrE-w8-gig" id="ZBc-UX-iGA"/>
                 <outlet property="presetsMenuIconItem" destination="8v4-M7-RfA" id="8c9-6g-DWY"/>
+                <outlet property="renderQualityMenu" destination="WEb-bW-Dg2" id="p9H-bh-qAN"/>
                 <outlet property="reverbUnitView" destination="elw-qF-nCD" id="MWM-Tn-dx8"/>
                 <outlet property="view" destination="txu-mA-r9M" id="g6V-BI-hnN"/>
             </connections>
@@ -38,7 +39,7 @@
                     <rect key="frame" x="63" y="83" width="384" height="74"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cnv-IQ-PKn" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cnv-IQ-PKn" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="10" y="39" width="70" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Space" id="5J3-aq-YnZ">
@@ -100,7 +101,7 @@
                                 <action selector="reverbAmountAction:" target="-2" id="R9O-Yg-pph"/>
                             </connections>
                         </slider>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CcZ-hi-Qeb" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CcZ-hi-Qeb" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="10" y="-5" width="70" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Amount" id="DNt-HO-7aB">
@@ -109,7 +110,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="021-vo-3aU" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="021-vo-3aU" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="72" y="-5" width="38" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Dry" id="KLz-0H-Fd0">
@@ -118,7 +119,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Pq-Zb-3y9" userLabel="Wet" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Pq-Zb-3y9" userLabel="Wet" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="265" y="-5" width="40" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Wet" id="rPE-D2-IdC">
@@ -127,7 +128,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iGc-Z1-9PZ" userLabel="Lbl Reverb Value" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iGc-Z1-9PZ" userLabel="Lbl Reverb Value" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="285" y="-5" width="68" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="100% wet" id="Z4x-02-2zl">
@@ -144,17 +145,17 @@
                     </connections>
                 </view>
                 <popUpButton toolTip="Presets" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rrE-w8-gig" userLabel="Presets Menu">
-                    <rect key="frame" x="12" y="110" width="19" height="17"/>
+                    <rect key="frame" x="15" y="115" width="15" height="13"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="aYW-ES-T3J">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" showsStateColumn="NO" id="osr-0j-Bhu">
                             <items>
-                                <menuItem image="SavedSettings" hidden="YES" id="8v4-M7-RfA" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                <menuItem image="Settings" hidden="YES" id="8v4-M7-RfA" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="SavedSettings"/>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Settings"/>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
                                 <menuItem title="Load preset" id="LVL-nD-43p">
@@ -166,6 +167,17 @@
                                     <connections>
                                         <action selector="savePresetAction:" target="-2" id="N3e-ch-Sf3"/>
                                     </connections>
+                                </menuItem>
+                                <menuItem isSeparatorItem="YES" id="Xdv-rp-FP9"/>
+                                <menuItem title="Render Quality" id="o2K-sb-Y0P" userLabel="Render Quality">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                    <menu key="submenu" title="Render Quality" id="WEb-bW-Dg2">
+                                        <items>
+                                            <menuItem title="Render Quality" id="lLJ-BD-GWO" userLabel="Render Quality">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
                                 </menuItem>
                             </items>
                             <connections>
@@ -182,6 +194,6 @@
         </view>
     </objects>
     <resources>
-        <image name="SavedSettings" width="47" height="47"/>
+        <image name="Settings" width="10" height="7"/>
     </resources>
 </document>

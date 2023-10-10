@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +14,7 @@
                 <outlet property="presetsMenu" destination="H4F-YF-hmn" id="OYO-0R-YpX"/>
                 <outlet property="presetsMenuButton" destination="kLM-JQ-Lj4" id="gK0-FV-36c"/>
                 <outlet property="presetsMenuIconItem" destination="Oa1-cy-CFz" id="zQi-12-DxR"/>
+                <outlet property="renderQualityMenu" destination="Whg-n1-s6A" id="gMe-AA-5Wa"/>
                 <outlet property="view" destination="rBN-FU-dcW" id="36W-5X-XyO"/>
             </connections>
         </customObject>
@@ -27,7 +28,7 @@
                     <rect key="frame" x="53" y="22" width="388" height="138"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8W-3u-TUd" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C8W-3u-TUd" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="150" y="67" width="80" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Octaves" id="ccj-ek-B5n">
@@ -36,7 +37,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dsq-4t-anT" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dsq-4t-anT" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="150" y="40" width="80" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Semitones" id="l5k-0f-YzF">
@@ -45,7 +46,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fHA-1m-41d" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fHA-1m-41d" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="150" y="13" width="80" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Cents" id="yd6-Pp-dee">
@@ -54,7 +55,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xCr-wj-fUa" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xCr-wj-fUa" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="301" y="67" width="60" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="0" id="4zb-Xj-6u4">
@@ -71,7 +72,7 @@
                                 <action selector="pitchAction:" target="-2" id="toU-eQ-b1i"/>
                             </connections>
                         </slider>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xkz-6n-cjQ" userLabel="-2 Octaves" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xkz-6n-cjQ" userLabel="-2 Octaves" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="7" y="103" width="52" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="-2 8ve" id="Laf-OX-IEl">
@@ -80,7 +81,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HTM-gJ-2FR" userLabel="2 Octaves" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HTM-gJ-2FR" userLabel="2 Octaves" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="321" y="103" width="49" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="+2 8ve" id="8rv-bU-QXa">
@@ -123,7 +124,7 @@
                             </connections>
                         </button>
                         <button toolTip="Increase pitch by one octave" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mv3-7U-JqJ" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="235" y="69" width="12.5" height="19"/>
+                            <rect key="frame" x="235" y="69.5" width="12.5" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="5zE-RY-Y6d">
                                 <behavior key="behavior" lightByContents="YES"/>
@@ -135,7 +136,7 @@
                             </connections>
                         </button>
                         <button toolTip="Increase pitch by one semitone" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tNi-4E-OGo" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="235" y="42" width="12.5" height="19"/>
+                            <rect key="frame" x="235" y="42.5" width="12.5" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="uze-Pk-Abo">
                                 <behavior key="behavior" lightByContents="YES"/>
@@ -147,7 +148,7 @@
                             </connections>
                         </button>
                         <button toolTip="Increase pitch by one cent" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hjS-Te-fwb" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="235" y="15" width="12.5" height="19"/>
+                            <rect key="frame" x="235" y="15.5" width="12.5" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="hAr-89-XfT">
                                 <behavior key="behavior" lightByContents="YES"/>
@@ -158,7 +159,7 @@
                                 <action selector="increasePitchByCentAction:" target="-2" id="d6q-RP-eal"/>
                             </connections>
                         </button>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x2g-QP-TBH" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x2g-QP-TBH" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="301" y="40" width="60" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="0" id="pSP-Qf-Uhu">
@@ -167,7 +168,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NUl-Dd-8pD" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NUl-Dd-8pD" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="301" y="13" width="60" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="0" id="Uwb-gM-sUd">
@@ -196,17 +197,17 @@
                     </connections>
                 </button>
                 <popUpButton toolTip="Presets" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kLM-JQ-Lj4" userLabel="Presets Menu">
-                    <rect key="frame" x="12" y="110" width="19" height="17"/>
+                    <rect key="frame" x="15" y="115" width="15" height="13"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="19F-y9-jY9">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" showsStateColumn="NO" id="weh-zq-90u">
                             <items>
-                                <menuItem image="SavedSettings" hidden="YES" id="Oa1-cy-CFz" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                <menuItem image="Settings" hidden="YES" id="Oa1-cy-CFz" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="SavedSettings"/>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Settings"/>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
                                 <menuItem title="Load preset" id="4DL-vP-sNz">
@@ -251,6 +252,17 @@
                                         <action selector="savePresetAction:" target="-2" id="7Kp-kb-GJu"/>
                                     </connections>
                                 </menuItem>
+                                <menuItem isSeparatorItem="YES" id="bLG-AO-6ms"/>
+                                <menuItem title="Render Quality" id="sMs-Sf-XaT" userLabel="Render Quality">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                    <menu key="submenu" title="Render Quality" id="Whg-n1-s6A">
+                                        <items>
+                                            <menuItem title="Render Quality" id="gg2-Fn-gez" userLabel="Render Quality">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
+                                </menuItem>
                             </items>
                             <connections>
                                 <outlet property="delegate" destination="-2" id="GCn-oJ-TBP"/>
@@ -266,8 +278,8 @@
         </view>
     </objects>
     <resources>
-        <image name="SavedSettings" width="47" height="47"/>
+        <image name="Settings" width="10" height="7"/>
         <image name="minus" catalog="system" width="14" height="4"/>
-        <image name="plus" catalog="system" width="17" height="16"/>
+        <image name="plus" catalog="system" width="18" height="17"/>
     </resources>
 </document>
