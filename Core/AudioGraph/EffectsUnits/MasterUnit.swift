@@ -22,6 +22,7 @@ protocol MasterUnitProtocol: EffectsUnitProtocol {}
 class MasterUnit: EffectsUnit, MasterUnitProtocol {
     
     let presets: MasterPresets
+    var currentPreset: MasterPreset? = nil
     
     var eqUnit: EQUnit
     var pitchShiftUnit: PitchShiftUnit
@@ -50,6 +51,16 @@ class MasterUnit: EffectsUnit, MasterUnitProtocol {
         super.init(unitType: .master, unitState: persistentState?.state ?? AudioGraphDefaults.masterState)
         
         messenger.subscribe(to: .effects_unitActivated, handler: ensureActive)
+        
+        if let currentPresetName = persistentState?.currentPresetName,
+            let matchingPreset = presets.object(named: currentPresetName) {
+            
+            currentPreset = matchingPreset
+        }
+        
+        presets.registerPresetDeletionCallback(presetsDeleted(_:))
+        
+        unitInitialized = true
     }
     
     override func toggleState() -> EffectsUnitState {
@@ -77,30 +88,20 @@ class MasterUnit: EffectsUnit, MasterUnitProtocol {
     
     override func savePreset(named presetName: String) {
         
-        let eqPreset = eqUnit.settingsAsPreset
-        eqPreset.name = "EQ settings for Master preset: '\(presetName)'"
+        let masterPreset = settingsAsPreset
+        masterPreset.nameOfCurrentMasterPreset = nil    // This field is only used with sound profiles
         
-        let pitchPreset = pitchShiftUnit.settingsAsPreset
-        pitchPreset.name = "Pitch settings for Master preset: '\(presetName)'"
-        
-        let timePreset = timeStretchUnit.settingsAsPreset
-        timePreset.name = "Time settings for Master preset: '\(presetName)'"
-        
-        let reverbPreset = reverbUnit.settingsAsPreset
-        reverbPreset.name = "Reverb settings for Master preset: '\(presetName)'"
-        
-        let delayPreset = delayUnit.settingsAsPreset
-        delayPreset.name = "Delay settings for Master preset: '\(presetName)'"
-        
-        let filterPreset = filterUnit.settingsAsPreset
-        filterPreset.name = "Filter settings for Master preset: '\(presetName)'"
+        masterPreset.name = presetName
+        masterPreset.eq.name = "EQ settings for Master preset: '\(presetName)'"
+        masterPreset.pitch.name = "Pitch settings for Master preset: '\(presetName)'"
+        masterPreset.time.name = "Time settings for Master preset: '\(presetName)'"
+        masterPreset.reverb.name = "Reverb settings for Master preset: '\(presetName)'"
+        masterPreset.delay.name = "Delay settings for Master preset: '\(presetName)'"
+        masterPreset.filter.name = "Filter settings for Master preset: '\(presetName)'"
         
         // Save the new preset
-        let masterPreset = MasterPreset(name: presetName, eq: eqPreset, pitch: pitchPreset,
-                                        time: timePreset, reverb: reverbPreset, delay: delayPreset,
-                                        filter: filterPreset, systemDefined: false)
-        
         presets.addObject(masterPreset)
+        currentPreset = masterPreset
     }
     
     var settingsAsPreset: MasterPreset {
@@ -114,13 +115,23 @@ class MasterUnit: EffectsUnit, MasterUnitProtocol {
         
         return MasterPreset(name: "masterSettings", eq: eqPreset, pitch: pitchPreset,
                             time: timePreset, reverb: reverbPreset, delay: delayPreset,
-                            filter: filterPreset, systemDefined: false)
+                            filter: filterPreset,
+                            nameOfCurrentMasterPreset: currentPreset?.name,
+                            nameOfCurrentEQPreset: eqUnit.currentPreset?.name,
+                            nameOfCurrentPitchShiftPreset: pitchShiftUnit.currentPreset?.name,
+                            nameOfCurrentTimeStretchPreset: timeStretchUnit.currentPreset?.name,
+                            nameOfCurrentReverbPreset: reverbUnit.currentPreset?.name,
+                            nameOfCurrentDelayPreset: delayUnit.currentPreset?.name,
+                            nameOfCurrentFilterPreset: filterUnit.currentPreset?.name,
+                            systemDefined: false)
     }
     
     override func applyPreset(named presetName: String) {
         
         if let preset = presets.object(named: presetName) {
+            
             applyPreset(preset)
+            currentPreset = preset
         }
     }
     
@@ -129,20 +140,99 @@ class MasterUnit: EffectsUnit, MasterUnitProtocol {
         eqUnit.applyPreset(preset.eq)
         eqUnit.state = preset.eq.state
         
+        if let nameOfCurrentEQPreset = preset.nameOfCurrentEQPreset {
+            eqUnit.setCurrentPreset(byName: nameOfCurrentEQPreset)
+        }
+        
         pitchShiftUnit.applyPreset(preset.pitch)
         pitchShiftUnit.state = preset.pitch.state
+        
+        if let nameOfCurrentPitchShiftPreset = preset.nameOfCurrentPitchShiftPreset {
+            pitchShiftUnit.setCurrentPreset(byName: nameOfCurrentPitchShiftPreset)
+        }
         
         timeStretchUnit.applyPreset(preset.time)
         timeStretchUnit.state = preset.time.state
         
+        if let nameOfCurrentTimeStretchPreset = preset.nameOfCurrentTimeStretchPreset {
+            timeStretchUnit.setCurrentPreset(byName: nameOfCurrentTimeStretchPreset)
+        }
+        
         reverbUnit.applyPreset(preset.reverb)
         reverbUnit.state = preset.reverb.state
+        
+        if let nameOfCurrentReverbPreset = preset.nameOfCurrentReverbPreset {
+            reverbUnit.setCurrentPreset(byName: nameOfCurrentReverbPreset)
+        }
         
         delayUnit.applyPreset(preset.delay)
         delayUnit.state = preset.delay.state
         
+        if let nameOfCurrentDelayPreset = preset.nameOfCurrentDelayPreset {
+            delayUnit.setCurrentPreset(byName: nameOfCurrentDelayPreset)
+        }
+        
         filterUnit.applyPreset(preset.filter)
         filterUnit.state = preset.filter.state
+        
+        if let nameOfCurrentFilterPreset = preset.nameOfCurrentFilterPreset {
+            filterUnit.setCurrentPreset(byName: nameOfCurrentFilterPreset)
+        }
+        
+        if let nameOfCurrentMasterPreset = preset.nameOfCurrentMasterPreset {
+            self.setCurrentPreset(byName: nameOfCurrentMasterPreset)
+        } else {
+            currentPreset = nil
+        }
+    }
+    
+    func setCurrentPreset(byName presetName: String) {
+        
+        guard let matchingPreset = presets.object(named: presetName) else {return}
+        
+        if (matchingPreset.eq.state != eqUnit.state) ||
+            (matchingPreset.pitch.state != pitchShiftUnit.state) ||
+            (matchingPreset.time.state != timeStretchUnit.state) ||
+            (matchingPreset.reverb.state != reverbUnit.state) ||
+            (matchingPreset.delay.state != delayUnit.state) ||
+            (matchingPreset.filter.state != filterUnit.state) {
+            
+            return
+        }
+        
+        if !matchingPreset.eq.equalToOtherPreset(globalGain: eqUnit.globalGain, bands: eqUnit.bands) {
+            return
+        }
+        
+        if !matchingPreset.pitch.equalToOtherPreset(pitch: pitchShiftUnit.pitch) {
+            return
+        }
+        
+        if !matchingPreset.time.equalToOtherPreset(rate: timeStretchUnit.rate, shiftPitch: timeStretchUnit.shiftPitch) {
+            return
+        }
+        
+        if !matchingPreset.reverb.equalToOtherPreset(space: reverbUnit.space, amount: reverbUnit.amount) {
+            return
+        }
+        
+        if !matchingPreset.delay.equalToOtherPreset(amount: delayUnit.amount, time: delayUnit.time,
+                                                    feedback: delayUnit.feedback, lowPassCutoff: delayUnit.lowPassCutoff) {
+            return
+        }
+        
+        if !matchingPreset.filter.equalToOtherPreset(bands: filterUnit.bands) {
+            return
+        }
+        
+        self.currentPreset = matchingPreset
+    }
+    
+    private func presetsDeleted(_ presetNames: [String]) {
+        
+        if let theCurrentPreset = currentPreset, theCurrentPreset.userDefined, presetNames.contains(theCurrentPreset.name) {
+            currentPreset = nil
+        }
     }
     
     func addAudioUnit(_ unit: HostedAudioUnit) {
@@ -156,6 +246,7 @@ class MasterUnit: EffectsUnit, MasterUnitProtocol {
     var persistentState: MasterUnitPersistentState {
 
         MasterUnitPersistentState(state: state,
-                                  userPresets: presets.userDefinedObjects.map {MasterPresetPersistentState(preset: $0)})
+                                  userPresets: presets.userDefinedObjects.map {MasterPresetPersistentState(preset: $0)},
+                                  currentPresetName: currentPreset?.name)
     }
 }

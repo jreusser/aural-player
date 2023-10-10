@@ -1,5 +1,5 @@
 //
-//  ReverbSpaces.swift
+//  ReverbSpace.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -13,7 +13,7 @@ import AVFoundation
 ///
 /// An enumeration of presets that represent simulated spaces that can be applied to the Reverb effects unit.
 ///
-enum ReverbSpaces: String, CaseIterable, Codable {
+enum ReverbSpace: String, CaseIterable, Codable {
     
     case smallRoom
     
@@ -55,7 +55,7 @@ enum ReverbSpaces: String, CaseIterable, Codable {
     }
     
     // Maps a AVAudioUnitReverbPreset to a ReverbPresets
-    static func mapFromAVPreset(_ preset: AVAudioUnitReverbPreset) -> ReverbSpaces {
+    static func mapFromAVPreset(_ preset: AVAudioUnitReverbPreset) -> ReverbSpace {
         
         switch preset {
             
@@ -73,7 +73,7 @@ enum ReverbSpaces: String, CaseIterable, Codable {
         case .plate: return .plate
             
         // This should never happen
-        default: return ReverbSpaces.smallRoom
+        default: return ReverbSpace.smallRoom
             
         }
     }
@@ -84,7 +84,7 @@ enum ReverbSpaces: String, CaseIterable, Codable {
     }
  
     // Constructs a ReverPresets object from a description string
-    static func fromDescription(_ description: String) -> ReverbSpaces {
-        return ReverbSpaces(rawValue: description.camelCased()) ?? AudioGraphDefaults.reverbSpace
+    static func fromDescription(_ description: String) -> ReverbSpace {
+        return ReverbSpace(rawValue: description.camelCased()) ?? AudioGraphDefaults.reverbSpace
     }
 }

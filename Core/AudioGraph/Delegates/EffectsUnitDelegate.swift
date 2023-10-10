@@ -21,7 +21,7 @@ import Foundation
 /// - SeeAlso: `EffectsUnitDelegateProtocol`
 /// - SeeAlso: `EffectsUnit`
 ///
-class EffectsUnitDelegate<T: EffectsUnit>: EffectsUnitDelegateProtocol {
+class EffectsUnitDelegate<T: EffectsUnitProtocol>: EffectsUnitDelegateProtocol {
     
     var unit: T
     
@@ -72,7 +72,7 @@ class EffectsUnitDelegate<T: EffectsUnit>: EffectsUnitDelegateProtocol {
     
     func observeState(handler: @escaping EffectsUnitStateChangeHandler) -> NSKeyValueObservation {
         
-        let newToken = unit.observe(\.state, options: [.initial, .new]) {unit,_ in
+        let newToken = (unit as! EffectsUnit).observe(\.state, options: [.initial, .new]) {unit,_ in
             handler(unit.state)
         }
         
@@ -82,5 +82,9 @@ class EffectsUnitDelegate<T: EffectsUnit>: EffectsUnitDelegateProtocol {
     
     func removeObserver(_ observer: NSKeyValueObservation) {
         kvoTokens.remove(observer)?.invalidate()
+    }
+    
+    var nameOfCurrentPreset: String? {
+        unit.currentPreset?.name
     }
 }

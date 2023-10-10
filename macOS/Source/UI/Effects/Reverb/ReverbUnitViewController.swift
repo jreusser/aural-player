@@ -55,7 +55,7 @@ class ReverbUnitViewController: EffectsUnitViewController {
 
     // Updates the Reverb preset
     @IBAction func reverbSpaceAction(_ sender: AnyObject) {
-        reverbUnit.space = ReverbSpaces.fromDescription(reverbUnitView.spaceString)
+        reverbUnit.space = ReverbSpace.fromDescription(reverbUnitView.spaceString)
     }
 
     // Updates the Reverb amount parameter

@@ -21,6 +21,12 @@ protocol EffectsUnitProtocol {
     // Toggles the state of the effects unit, and returns its new state
     func toggleState() -> EffectsUnitState
     
+    func ensureActive()
+    
+    var isActive: Bool {get}
+    
+    var stateFunction: EffectsUnitStateFunction {get}
+    
     func suppress()
     
     func unsuppress()
@@ -41,4 +47,8 @@ protocol EffectsUnitProtocol {
     func applyPreset(_ preset: PresetType)
     
     var settingsAsPreset: PresetType {get}
+    
+    var currentPreset: PresetType? {get}
+    
+    func setCurrentPreset(byName presetName: String)
 }

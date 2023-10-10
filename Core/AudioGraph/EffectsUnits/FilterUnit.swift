@@ -19,6 +19,7 @@ class FilterUnit: EffectsUnit, FilterUnitProtocol {
     
     let node: FlexibleFilterNode = FlexibleFilterNode()
     let presets: FilterPresets
+    var currentPreset: FilterPreset? = nil
     
     override var avNodes: [AVAudioNode] {[node]}
     
@@ -28,12 +29,27 @@ class FilterUnit: EffectsUnit, FilterUnitProtocol {
         super.init(unitType: .filter, unitState: persistentState?.state ?? AudioGraphDefaults.filterState, renderQuality: persistentState?.renderQuality)
         
         node.addBands((persistentState?.bands ?? []).compactMap {FilterBand(persistentState: $0)})
+        
+        if let currentPresetName = persistentState?.currentPresetName,
+            let matchingPreset = presets.object(named: currentPresetName) {
+            
+            currentPreset = matchingPreset
+        }
+        
+        presets.registerPresetDeletionCallback(presetsDeleted(_:))
+        
+        unitInitialized = true
     }
     
     var bands: [FilterBand] {
         
         get {node.activeBands}
-        set(newBands) {node.activeBands = newBands}
+        
+        set(newBands) {
+            
+            node.activeBands = newBands
+            invalidateCurrentPreset()
+        }
     }
     
     override func stateChanged() {
@@ -45,28 +61,41 @@ class FilterUnit: EffectsUnit, FilterUnitProtocol {
     subscript(_ index: Int) -> FilterBand {
         
         get {node[index]}
-        set(newBand) {node[index] = newBand}
+        
+        set(newBand) {
+            
+            node[index] = newBand
+            invalidateCurrentPreset()
+        }
     }
     
     func addBand(_ band: FilterBand) -> Int {
+        
+        invalidateCurrentPreset()
         return node.addBand(band)
     }
     
     func removeBands(at indices: IndexSet) {
+        
         node.removeBands(atIndices: indices)
+        invalidateCurrentPreset()
     }
     
     override func savePreset(named presetName: String) {
         
         // Need to clone the filter's bands to create separate identical copies so that changes to the current filter bands don't modify the preset's bands
         let presetBands: [FilterBand] = bands.map {$0.clone()}
-        presets.addObject(FilterPreset(name: presetName, state: .active, bands: presetBands, systemDefined: false))
+        let newPreset = FilterPreset(name: presetName, state: .active, bands: presetBands, systemDefined: false)
+        presets.addObject(newPreset)
+        currentPreset = newPreset
     }
     
     override func applyPreset(named presetName: String) {
         
         if let preset = presets.object(named: presetName) {
+            
             applyPreset(preset)
+            currentPreset = preset
         }
     }
     
@@ -80,10 +109,35 @@ class FilterUnit: EffectsUnit, FilterUnitProtocol {
         FilterPreset(name: "filterSettings", state: state, bands: bands, systemDefined: false)
     }
     
+    private func invalidateCurrentPreset() {
+        
+        guard unitInitialized else {return}
+        
+        currentPreset = nil
+        masterUnit.currentPreset = nil
+    }
+    
+    private func presetsDeleted(_ presetNames: [String]) {
+        
+        if let theCurrentPreset = currentPreset, theCurrentPreset.userDefined, presetNames.contains(theCurrentPreset.name) {
+            currentPreset = nil
+        }
+    }
+    
+    func setCurrentPreset(byName presetName: String) {
+        
+        guard let matchingPreset = presets.object(named: presetName) else {return}
+        
+        if matchingPreset.equalToOtherPreset(bands: self.bands) {
+            self.currentPreset = matchingPreset
+        }
+    }
+    
     var persistentState: FilterUnitPersistentState {
         
         FilterUnitPersistentState(state: state,
                                   userPresets: presets.userDefinedObjects.map {FilterPresetPersistentState(preset: $0)},
+                                  currentPresetName: currentPreset?.name,
                                   renderQuality: renderQualityPersistentState,
                                   bands: bands.map {FilterBandPersistentState(band: $0)})
     }

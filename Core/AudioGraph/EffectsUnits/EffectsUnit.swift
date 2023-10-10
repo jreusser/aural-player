@@ -20,6 +20,10 @@ class EffectsUnit: NSObject {
     
     var unitType: EffectsUnitType
     
+    var masterUnit: MasterUnit {
+        audioGraph.masterUnit
+    }
+    
     @objc dynamic var state: EffectsUnitState {
         didSet {stateChanged()}
     }
