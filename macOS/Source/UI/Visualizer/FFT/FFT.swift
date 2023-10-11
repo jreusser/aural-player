@@ -2,7 +2,7 @@
 //  FFT.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2023 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -85,11 +85,11 @@ class FFT: Destroyable {
         windowSize = bufferSizePOT
         windowSize_vDSPLength = vDSP_Length(windowSize)
         
-        transferBuffer = UnsafeMutablePointer<Float>.allocate(capacity: windowSize)
+        transferBuffer = .allocate(capacity: windowSize)
         window = [Float](repeating: 0, count: windowSize)
         
         magnitudes = [Float](repeating: 0, count: halfBufferSize)
-        normalizedMagnitudes = UnsafeMutablePointer<Float>.allocate(capacity: halfBufferSize)
+        normalizedMagnitudes = .allocate(capacity: halfBufferSize)
     }
     
     func analyze(buffer: AudioBufferList) {

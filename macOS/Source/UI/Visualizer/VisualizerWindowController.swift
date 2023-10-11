@@ -2,7 +2,7 @@
 //  VisualizerWindowController.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2023 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -37,11 +37,22 @@ class VisualizerWindowController: NSWindowController, NSWindowDelegate {
     
     private lazy var visualizer: Visualizer = Visualizer(renderCallback: updateCurrentView)
     
+    private lazy var player: PlaybackInfoDelegateProtocol = playbackInfoDelegate
+    
     private lazy var uiState: VisualizerUIState = visualizerUIState
+    
+    private(set) lazy var messenger = Messenger(for: self)
+    
+    override func windowDidLoad() {
+        
+        super.windowDidLoad()
+        
+        theWindow.isMovableByWindowBackground = true
+        messenger.subscribeAsync(to: .audioGraph_outputDeviceChanged, handler: audioOutputDeviceChanged)
+    }
     
     override func awakeFromNib() {
         
-        window?.delegate = self
         window?.aspectRatio = NSSize(width: 3.0, height: 2.0)
         
         [spectrogram, supernova, discoBall].forEach {$0?.anchorToSuperview()}
@@ -55,22 +66,28 @@ class VisualizerWindowController: NSWindowController, NSWindowDelegate {
     
     override func destroy() {
         
+        super.destroy()
+        
         close()
         visualizer.destroy()
+        messenger.unsubscribeFromAll()
     }
     
     override func showWindow(_ sender: Any?) {
         
         super.showWindow(sender)
-     
+        
         containerBox.startTracking()
         
         initUI(type: uiState.type, lowAmplitudeColor: uiState.options.lowAmplitudeColor,
                highAmplitudeColor: uiState.options.highAmplitudeColor)
         
         visualizer.startAnalysis()
+        playbackStateChanged()
         
         window?.orderFront(self)
+        
+        messenger.subscribeAsync(to: .player_playbackStateChanged, handler: playbackStateChanged)
     }
     
     private func initUI(type: VisualizationType, lowAmplitudeColor: NSColor, highAmplitudeColor: NSColor) {
@@ -102,15 +119,15 @@ class VisualizerWindowController: NSWindowController, NSWindowDelegate {
         
         switch type {
 
-        case .spectrogram:      spectrogram.presentView(with: visualizer.fft)
+        case .spectrogram:      spectrogram.presentView(with: fft)
                                 currentView = spectrogram
                                 tabView.selectTabViewItem(at: 0)
 
-        case .supernova:        supernova.presentView(with: visualizer.fft)
+        case .supernova:        supernova.presentView(with: fft)
                                 currentView = supernova
                                 tabView.selectTabViewItem(at: 1)
 
-        case .discoBall:        discoBall.presentView(with: visualizer.fft)
+        case .discoBall:        discoBall.presentView(with: fft)
                                 currentView = discoBall
                                 tabView.selectTabViewItem(at: 2)
         }
@@ -122,7 +139,7 @@ class VisualizerWindowController: NSWindowController, NSWindowDelegate {
         guard let theCurrentView = currentView else {return}
         
         DispatchQueue.main.async {
-            theCurrentView.update(with: self.visualizer.fft)
+            theCurrentView.update(with: fft)
         }
     }
     
@@ -149,6 +166,31 @@ class VisualizerWindowController: NSWindowController, NSWindowDelegate {
         }
     }
     
+    // When the audio output device changes, restart the audio engine and continue playback as before.
+    func audioOutputDeviceChanged() {
+        
+        allViews.forEach {
+            $0.setUp(with: fft)
+        }
+    }
+    
+    func playbackStateChanged() {
+        
+        switch player.state {
+            
+        case .playing:
+            visualizer.resumeAnalysis()
+            
+        case .paused:
+            visualizer.pauseAnalysis()
+            
+        case .stopped:
+            
+            visualizer.pauseAnalysis()
+            allViews.forEach {$0.reset()}
+        }
+    }
+    
     @IBAction func closeWindowAction(_ sender: Any) {
         close()
     }
@@ -164,5 +206,7 @@ class VisualizerWindowController: NSWindowController, NSWindowDelegate {
         optionsBox.hide()
         
         allViews.forEach {$0.dismissView()}
+        
+        messenger.unsubscribe(from: .player_playbackStateChanged)
     }
 }

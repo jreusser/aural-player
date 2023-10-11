@@ -2,7 +2,7 @@
 //  Spectrogram3D.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2023 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -128,7 +128,7 @@
 ////        SCNTransaction.animationDuration = 0
 ////
 ////        for i in 0..<numberOfBands {
-////            bars[i].magnitude = CGFloat(FrequencyData.bands[i].maxVal).clamped(to: magnitudeRange)
+////            bars[i].magnitude = CGFloat(FrequencyData.bands[i].maxVal).clamp(to: magnitudeRange)
 ////        }
 ////
 ////        SCNTransaction.commit()

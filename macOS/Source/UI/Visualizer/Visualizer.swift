@@ -2,7 +2,7 @@
 //  Visualizer.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2023 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -17,10 +17,6 @@ typealias VisualizerRenderCallback = () -> Void
 ///
 class Visualizer: AudioGraphRenderObserverProtocol, Destroyable {
     
-    // Fast Fourier Transform
-    let fft: FFT = FFT()
-    
-    private var audioGraph: AudioGraphDelegateProtocol = audioGraphDelegate
     private var normalDeviceBufferSize: Int = 0
     
     private let renderCallback: VisualizerRenderCallback
@@ -46,8 +42,16 @@ class Visualizer: AudioGraphRenderObserverProtocol, Destroyable {
         audioGraph.registerRenderObserver(self)
     }
     
+    func pauseAnalysis() {
+        audioGraphDelegate.pauseRenderObserver(self)
+    }
+    
+    func resumeAnalysis() {
+        audioGraphDelegate.resumeRenderObserver(self)
+    }
+    
     func stopAnalysis() {
-        
+
         audioGraph.removeRenderObserver(self)
         audioGraph.outputDeviceBufferSize = normalDeviceBufferSize
     }
@@ -65,7 +69,11 @@ class Visualizer: AudioGraphRenderObserverProtocol, Destroyable {
         normalDeviceBufferSize = newDeviceBufferSize
         
         if newDeviceBufferSize != audioGraph.visualizationAnalysisBufferSize {
+            
             audioGraph.outputDeviceBufferSize = audioGraph.visualizationAnalysisBufferSize
+            
+            fft.setUp(sampleRate: Float(audioGraph.outputDeviceSampleRate),
+                      bufferSize: audioGraph.outputDeviceBufferSize)
         }
     }
     

@@ -94,6 +94,9 @@ protocol AudioGraphDelegateProtocol {
     func registerRenderObserver(_ observer: AudioGraphRenderObserverProtocol)
     func removeRenderObserver(_ observer: AudioGraphRenderObserverProtocol)
     
+    func pauseRenderObserver(_ observer: AudioGraphRenderObserverProtocol)
+    func resumeRenderObserver(_ observer: AudioGraphRenderObserverProtocol)
+    
 #endif
     
     var visualizationAnalysisBufferSize: Int {get}

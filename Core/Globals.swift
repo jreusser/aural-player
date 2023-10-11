@@ -94,6 +94,9 @@ let musicBrainzCoverArtReader: MusicBrainzCoverArtReader = MusicBrainzCoverArtRe
 let musicBrainzCache: MusicBrainzCache = MusicBrainzCache(state: persistentState.musicBrainzCache,
                                                           preferences: preferences.metadataPreferences.musicBrainz)
 
+// Fast Fourier Transform
+let fft: FFT = FFT()
+
 #if os(macOS)
 
 let windowLayoutsManager: WindowLayoutsManager = WindowLayoutsManager(persistentState: persistentState.ui?.windowLayout,

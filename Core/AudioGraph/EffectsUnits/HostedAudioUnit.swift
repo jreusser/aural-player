@@ -30,12 +30,7 @@ class HostedAudioUnit: EffectsUnit, HostedAudioUnitProtocol, AUNodeBypassStateOb
     var hasCustomView: Bool {node.hasCustomView}
     
     var supportsUserPresets: Bool {
-        
-        if #available(OSX 10.15, *) {
-            return auAudioUnit.supportsUserPresets
-        }
-        
-        return false
+        auAudioUnit.supportsUserPresets
     }
     
     let factoryPresets: [AudioUnitFactoryPreset]

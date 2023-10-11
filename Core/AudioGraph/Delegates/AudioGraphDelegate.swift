@@ -257,6 +257,14 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
         graph.removeRenderObserver(observer)
     }
     
+    func pauseRenderObserver(_ observer: AudioGraphRenderObserverProtocol) {
+        graph.pauseRenderObserver(observer)
+    }
+    
+    func resumeRenderObserver(_ observer: AudioGraphRenderObserverProtocol) {
+        graph.resumeRenderObserver(observer)
+    }
+    
 #endif
     
     // MARK: Message handling

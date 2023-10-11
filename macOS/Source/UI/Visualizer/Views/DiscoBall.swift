@@ -2,7 +2,7 @@
 //  DiscoBall.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2023 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -39,6 +39,10 @@ class DiscoBall: AuralSCNView, VisualizerViewProtocol {
     var floor: SCNFloor!
     
     let textureImage: NSImage = NSImage(named: "DiscoBall")!
+    
+    func setUp(with fft: FFT) {
+        data.setUp(for: fft)
+    }
     
     func presentView(with fft: FFT) {
         
@@ -178,11 +182,19 @@ class DiscoBall: AuralSCNView, VisualizerViewProtocol {
         if ball == nil {return}
         
         data.update(with: fft)
+        updateForMagnitude(CGFloat(data.peakBassMagnitude))
+    }
+    
+    func reset() {
+        updateForMagnitude(0)
+    }
+    
+    private func updateForMagnitude(_ magnitude: CGFloat) {
+        
+        if self.scene == nil {return}
         
         SCNTransaction.begin()
         SCNTransaction.animationDuration = animationDuration
-        
-        let magnitude = CGFloat(data.peakBassMagnitude)
         
         ball.radius = 1 + (magnitude * maxRadiusIncreaseFactor)
         node.position = nodePosition

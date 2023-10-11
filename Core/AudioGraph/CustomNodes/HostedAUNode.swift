@@ -77,7 +77,7 @@ class HostedAUNode: AVAudioUnitEffect {
     
     func savePreset(named presetName: String) -> AUAudioUnitPreset? {
         
-        guard #available(OSX 10.15, *), auAudioUnit.supportsUserPresets else {
+        guard auAudioUnit.supportsUserPresets else {
             
             NSLog("User presets not supported for audio unit: \(name)")
             return nil
@@ -101,9 +101,7 @@ class HostedAUNode: AVAudioUnitEffect {
     
     func applyPreset(number: Int) {
         
-        if #available(OSX 10.15, *),
-           let preset = auAudioUnit.userPresets.first(where: {$0.number == number}) {
-            
+        if let preset = auAudioUnit.userPresets.first(where: {$0.number == number}) {
             auAudioUnit.currentPreset = preset
         }
     }

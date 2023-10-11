@@ -2,7 +2,7 @@
 //  SpectrogramFFTData.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2023 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -27,9 +27,17 @@ class SpectrogramFFTData {
     
     func update(with fft: FFT) {
         
-        for band in bands {
+        let alternateLogicForBand0: Bool = fft.bufferSize < audioGraph.visualizationAnalysisBufferSize
+        
+        for (index, band) in bands.enumerated() {
             
-            vDSP_maxv(fft.normalizedMagnitudes.advanced(by: band.minIndex), 1, &maxVal, band.indexCount)
+            if alternateLogicForBand0, index == 0 {
+                maxVal = (fft.normalizedMagnitudes[0] + fft.normalizedMagnitudes[1]) / 2
+                
+            } else {
+                vDSP_maxv(fft.normalizedMagnitudes.advanced(by: band.minIndex), 1, &maxVal, band.indexCount)
+            }
+            
             band.maxVal = maxVal.clamped(to: fft.magnitudeRange)
         }
     }

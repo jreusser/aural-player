@@ -2,7 +2,7 @@
 //  Spectrogram.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2023 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -52,6 +52,10 @@ class Spectrogram: SKView, VisualizerViewProtocol {
         }
     }
     
+    func setUp(with fft: FFT) {
+        data.setUp(fft: fft, numberOfBands: numberOfBands)
+    }
+    
     func presentView(with fft: FFT) {
         
         data.setUp(fft: fft, numberOfBands: numberOfBands)
@@ -79,6 +83,16 @@ class Spectrogram: SKView, VisualizerViewProtocol {
         }
 
         isPaused = false
+    }
+    
+    func reset() {
+        
+        updateSemaphore.executeAfterWait {
+            
+            for bar in bars {
+                bar.magnitude = 0
+            }
+        }
     }
     
     func dismissView() {
