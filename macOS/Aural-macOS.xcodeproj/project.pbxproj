@@ -29,18 +29,10 @@
 		3E10175F28D741E7002C0D8E /* EonilFSEventStreamEventFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10175228D741E7002C0D8E /* EonilFSEventStreamEventFlags.swift */; };
 		3E10176028D741E7002C0D8E /* EonilFSEventStreamEventID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10175328D741E7002C0D8E /* EonilFSEventStreamEventID.swift */; };
 		3E10176128D741E7002C0D8E /* EonilFSEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10175428D741E7002C0D8E /* EonilFSEvents.swift */; };
-		3E10177A28D7713B002C0D8E /* FFmpegAudioStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10176428D7713B002C0D8E /* FFmpegAudioStream.swift */; };
-		3E10177B28D7713B002C0D8E /* FFmpegFileContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10176528D7713B002C0D8E /* FFmpegFileContext.swift */; };
 		3E10177C28D7713B002C0D8E /* FFmpegAudioFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10176628D7713B002C0D8E /* FFmpegAudioFormat.swift */; };
-		3E10177D28D7713B002C0D8E /* FFmpegFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10176728D7713B002C0D8E /* FFmpegFrame.swift */; };
 		3E10177E28D7713B002C0D8E /* FFmpegResamplingContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10176828D7713B002C0D8E /* FFmpegResamplingContext.swift */; };
 		3E10177F28D7713B002C0D8E /* FFmpegSampleFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10176928D7713B002C0D8E /* FFmpegSampleFormat.swift */; };
-		3E10178028D7713B002C0D8E /* FFmpegAudioCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10176A28D7713B002C0D8E /* FFmpegAudioCodec.swift */; };
-		3E10178128D7713B002C0D8E /* FFmpegImageStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10176B28D7713B002C0D8E /* FFmpegImageStream.swift */; };
 		3E10178228D7713B002C0D8E /* FFmpegChapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10176C28D7713B002C0D8E /* FFmpegChapter.swift */; };
-		3E10178328D7713B002C0D8E /* FFmpegPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10176D28D7713B002C0D8E /* FFmpegPacket.swift */; };
-		3E10178428D7713B002C0D8E /* FFmpegStreamProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10176E28D7713B002C0D8E /* FFmpegStreamProtocol.swift */; };
-		3E10178528D7713B002C0D8E /* FFmpegCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10176F28D7713B002C0D8E /* FFmpegCodec.swift */; };
 		3E10178728D7713B002C0D8E /* FFmpegDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10177228D7713B002C0D8E /* FFmpegDecoder.swift */; };
 		3E10178828D7713B002C0D8E /* FFmpegPacketTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10177328D7713B002C0D8E /* FFmpegPacketTable.swift */; };
 		3E10178A28D7713B002C0D8E /* FFmpegFrameBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10177528D7713B002C0D8E /* FFmpegFrameBuffer.swift */; };
@@ -58,14 +50,6 @@
 		3E1B5C0926B6E2C70084FBA4 /* GroupingPlaylistTests+SortArtistsPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1B5C0826B6E2C70084FBA4 /* GroupingPlaylistTests+SortArtistsPlaylist.swift */; };
 		3E1B5C0B26B6FD370084FBA4 /* GroupingPlaylistTests+SortAlbumsPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1B5C0A26B6FD370084FBA4 /* GroupingPlaylistTests+SortAlbumsPlaylist.swift */; };
 		3E1C2A5F26972D47005E7E12 /* FlatPlaylistTests+MoveTracksUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1C2A5E26972D47005E7E12 /* FlatPlaylistTests+MoveTracksUp.swift */; };
-		3E1D1DEB28DD068C00E79674 /* libavcodec.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1D1DE528DD068000E79674 /* libavcodec.xcframework */; };
-		3E1D1DEC28DD068C00E79674 /* libavcodec.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3E1D1DE528DD068000E79674 /* libavcodec.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3E1D1DED28DD068E00E79674 /* libavformat.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1D1DE328DD068000E79674 /* libavformat.xcframework */; };
-		3E1D1DEE28DD068E00E79674 /* libavformat.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3E1D1DE328DD068000E79674 /* libavformat.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3E1D1DEF28DD068F00E79674 /* libavutil.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1D1DE428DD068000E79674 /* libavutil.xcframework */; };
-		3E1D1DF028DD068F00E79674 /* libavutil.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3E1D1DE428DD068000E79674 /* libavutil.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3E1D1DF128DD069100E79674 /* libswresample.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1D1DE628DD068000E79674 /* libswresample.xcframework */; };
-		3E1D1DF228DD069100E79674 /* libswresample.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3E1D1DE628DD068000E79674 /* libswresample.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3E2000BF267CDFFF008BAB70 /* MediaKeysPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2000BE267CDFFF008BAB70 /* MediaKeysPreferences.xib */; };
 		3E2000C1267CE00E008BAB70 /* GesturesPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2000C0267CE00E008BAB70 /* GesturesPreferences.xib */; };
 		3E2000C3267CE019008BAB70 /* RemoteControlPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2000C2267CE019008BAB70 /* RemoteControlPreferences.xib */; };
@@ -575,6 +559,27 @@
 		3EA62F502693D86A004A780A /* PlaybackProfilesPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA62F4F2693D86A004A780A /* PlaybackProfilesPersistenceTests.swift */; };
 		3EA62F572693DAF9004A780A /* HistoryPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA62F562693DAF9004A780A /* HistoryPersistenceTests.swift */; };
 		3EA62F5E2693E180004A780A /* FavoritesPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA62F5D2693E180004A780A /* FavoritesPersistenceTests.swift */; };
+		3EA6C6292AD6AAA100B75166 /* FFmpegCodecContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA6C61E2AD6AAA100B75166 /* FFmpegCodecContext.swift */; };
+		3EA6C62A2AD6AAA100B75166 /* FFmpegFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA6C61F2AD6AAA100B75166 /* FFmpegFrame.swift */; };
+		3EA6C62B2AD6AAA100B75166 /* FFmpegCodecParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA6C6202AD6AAA100B75166 /* FFmpegCodecParameters.swift */; };
+		3EA6C62C2AD6AAA100B75166 /* FFmpegAudioCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA6C6212AD6AAA100B75166 /* FFmpegAudioCodec.swift */; };
+		3EA6C62D2AD6AAA100B75166 /* FFmpegCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA6C6222AD6AAA100B75166 /* FFmpegCodec.swift */; };
+		3EA6C62E2AD6AAA100B75166 /* FFmpegAudioStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA6C6242AD6AAA100B75166 /* FFmpegAudioStream.swift */; };
+		3EA6C62F2AD6AAA100B75166 /* FFmpegFileContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA6C6252AD6AAA100B75166 /* FFmpegFileContext.swift */; };
+		3EA6C6302AD6AAA100B75166 /* FFmpegImageStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA6C6262AD6AAA100B75166 /* FFmpegImageStream.swift */; };
+		3EA6C6312AD6AAA100B75166 /* FFmpegPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA6C6272AD6AAA100B75166 /* FFmpegPacket.swift */; };
+		3EA6C6322AD6AAA100B75166 /* FFmpegStreamProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA6C6282AD6AAA100B75166 /* FFmpegStreamProtocol.swift */; };
+		3EA6C6642AD6AFDE00B75166 /* libopenmpt.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA6C65F2AD6AFDE00B75166 /* libopenmpt.0.dylib */; };
+		3EA6C6692AD6AFE900B75166 /* libavcodec.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA6C6622AD6AFDE00B75166 /* libavcodec.xcframework */; };
+		3EA6C66A2AD6AFE900B75166 /* libavcodec.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EA6C6622AD6AFDE00B75166 /* libavcodec.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3EA6C66B2AD6AFEB00B75166 /* libavformat.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA6C6602AD6AFDE00B75166 /* libavformat.xcframework */; };
+		3EA6C66C2AD6AFEB00B75166 /* libavformat.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EA6C6602AD6AFDE00B75166 /* libavformat.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3EA6C66D2AD6AFEC00B75166 /* libavutil.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA6C6612AD6AFDE00B75166 /* libavutil.xcframework */; };
+		3EA6C66E2AD6AFEC00B75166 /* libavutil.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EA6C6612AD6AFDE00B75166 /* libavutil.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3EA6C66F2AD6AFED00B75166 /* libopenmpt.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EA6C65F2AD6AFDE00B75166 /* libopenmpt.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		3EA6C6702AD6AFEE00B75166 /* libswresample.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA6C6632AD6AFDE00B75166 /* libswresample.xcframework */; };
+		3EA6C6712AD6AFEE00B75166 /* libswresample.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EA6C6632AD6AFDE00B75166 /* libswresample.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3EA6C6732AD6B00400B75166 /* libopenmpt.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3EA6C65F2AD6AFDE00B75166 /* libopenmpt.0.dylib */; };
 		3EA89D972699F0240021CDB9 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA89D962699F0240021CDB9 /* EventMonitor.swift */; };
 		3EA89D9B2699F50C0021CDB9 /* ScrollSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA89D9A2699F50C0021CDB9 /* ScrollSession.swift */; };
 		3EA89D9E2699F5270021CDB9 /* GestureDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA89D9D2699F5270021CDB9 /* GestureDirection.swift */; };
@@ -1532,16 +1537,36 @@
 			name = "Embed libraries";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EA6C6472AD6AC6A00B75166 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EA6C6722AD6AFFA00B75166 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				3EA6C6732AD6B00400B75166 /* libopenmpt.0.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3EDB340725E8AEB3004DF7DE /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3E1D1DEC28DD068C00E79674 /* libavcodec.xcframework in Embed Libraries */,
-				3E1D1DF028DD068F00E79674 /* libavutil.xcframework in Embed Libraries */,
-				3E1D1DF228DD069100E79674 /* libswresample.xcframework in Embed Libraries */,
-				3E1D1DEE28DD068E00E79674 /* libavformat.xcframework in Embed Libraries */,
+				3EA6C66F2AD6AFED00B75166 /* libopenmpt.0.dylib in Embed Libraries */,
+				3EA6C6712AD6AFEE00B75166 /* libswresample.xcframework in Embed Libraries */,
+				3EA6C66A2AD6AFE900B75166 /* libavcodec.xcframework in Embed Libraries */,
+				3EA6C66E2AD6AFEC00B75166 /* libavutil.xcframework in Embed Libraries */,
+				3EA6C66C2AD6AFEB00B75166 /* libavformat.xcframework in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1571,18 +1596,10 @@
 		3E10175228D741E7002C0D8E /* EonilFSEventStreamEventFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamEventFlags.swift; sourceTree = "<group>"; };
 		3E10175328D741E7002C0D8E /* EonilFSEventStreamEventID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamEventID.swift; sourceTree = "<group>"; };
 		3E10175428D741E7002C0D8E /* EonilFSEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEvents.swift; sourceTree = "<group>"; };
-		3E10176428D7713B002C0D8E /* FFmpegAudioStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegAudioStream.swift; sourceTree = "<group>"; };
-		3E10176528D7713B002C0D8E /* FFmpegFileContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegFileContext.swift; sourceTree = "<group>"; };
 		3E10176628D7713B002C0D8E /* FFmpegAudioFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegAudioFormat.swift; sourceTree = "<group>"; };
-		3E10176728D7713B002C0D8E /* FFmpegFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegFrame.swift; sourceTree = "<group>"; };
 		3E10176828D7713B002C0D8E /* FFmpegResamplingContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegResamplingContext.swift; sourceTree = "<group>"; };
 		3E10176928D7713B002C0D8E /* FFmpegSampleFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegSampleFormat.swift; sourceTree = "<group>"; };
-		3E10176A28D7713B002C0D8E /* FFmpegAudioCodec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegAudioCodec.swift; sourceTree = "<group>"; };
-		3E10176B28D7713B002C0D8E /* FFmpegImageStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegImageStream.swift; sourceTree = "<group>"; };
 		3E10176C28D7713B002C0D8E /* FFmpegChapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegChapter.swift; sourceTree = "<group>"; };
-		3E10176D28D7713B002C0D8E /* FFmpegPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegPacket.swift; sourceTree = "<group>"; };
-		3E10176E28D7713B002C0D8E /* FFmpegStreamProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegStreamProtocol.swift; sourceTree = "<group>"; };
-		3E10176F28D7713B002C0D8E /* FFmpegCodec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegCodec.swift; sourceTree = "<group>"; };
 		3E10177228D7713B002C0D8E /* FFmpegDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegDecoder.swift; sourceTree = "<group>"; };
 		3E10177328D7713B002C0D8E /* FFmpegPacketTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegPacketTable.swift; sourceTree = "<group>"; };
 		3E10177528D7713B002C0D8E /* FFmpegFrameBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegFrameBuffer.swift; sourceTree = "<group>"; };
@@ -1605,10 +1622,6 @@
 		3E1D1DDF28DD016900E79674 /* macOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = macOS.sh; sourceTree = "<group>"; };
 		3E1D1DE028DD016900E79674 /* iOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = iOS.sh; sourceTree = "<group>"; };
 		3E1D1DE128DD016900E79674 /* build-all.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-all.sh"; sourceTree = "<group>"; };
-		3E1D1DE328DD068000E79674 /* libavformat.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavformat.xcframework; sourceTree = "<group>"; };
-		3E1D1DE428DD068000E79674 /* libavutil.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavutil.xcframework; sourceTree = "<group>"; };
-		3E1D1DE528DD068000E79674 /* libavcodec.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavcodec.xcframework; sourceTree = "<group>"; };
-		3E1D1DE628DD068000E79674 /* libswresample.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libswresample.xcframework; sourceTree = "<group>"; };
 		3E2000BE267CDFFF008BAB70 /* MediaKeysPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaKeysPreferences.xib; sourceTree = "<group>"; };
 		3E2000C0267CE00E008BAB70 /* GesturesPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GesturesPreferences.xib; sourceTree = "<group>"; };
 		3E2000C2267CE019008BAB70 /* RemoteControlPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RemoteControlPreferences.xib; sourceTree = "<group>"; };
@@ -2124,6 +2137,21 @@
 		3EA62F4F2693D86A004A780A /* PlaybackProfilesPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProfilesPersistenceTests.swift; sourceTree = "<group>"; };
 		3EA62F562693DAF9004A780A /* HistoryPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPersistenceTests.swift; sourceTree = "<group>"; };
 		3EA62F5D2693E180004A780A /* FavoritesPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPersistenceTests.swift; sourceTree = "<group>"; };
+		3EA6C61E2AD6AAA100B75166 /* FFmpegCodecContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegCodecContext.swift; sourceTree = "<group>"; };
+		3EA6C61F2AD6AAA100B75166 /* FFmpegFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegFrame.swift; sourceTree = "<group>"; };
+		3EA6C6202AD6AAA100B75166 /* FFmpegCodecParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegCodecParameters.swift; sourceTree = "<group>"; };
+		3EA6C6212AD6AAA100B75166 /* FFmpegAudioCodec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegAudioCodec.swift; sourceTree = "<group>"; };
+		3EA6C6222AD6AAA100B75166 /* FFmpegCodec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegCodec.swift; sourceTree = "<group>"; };
+		3EA6C6242AD6AAA100B75166 /* FFmpegAudioStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegAudioStream.swift; sourceTree = "<group>"; };
+		3EA6C6252AD6AAA100B75166 /* FFmpegFileContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegFileContext.swift; sourceTree = "<group>"; };
+		3EA6C6262AD6AAA100B75166 /* FFmpegImageStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegImageStream.swift; sourceTree = "<group>"; };
+		3EA6C6272AD6AAA100B75166 /* FFmpegPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegPacket.swift; sourceTree = "<group>"; };
+		3EA6C6282AD6AAA100B75166 /* FFmpegStreamProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegStreamProtocol.swift; sourceTree = "<group>"; };
+		3EA6C65F2AD6AFDE00B75166 /* libopenmpt.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopenmpt.0.dylib; sourceTree = "<group>"; };
+		3EA6C6602AD6AFDE00B75166 /* libavformat.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavformat.xcframework; sourceTree = "<group>"; };
+		3EA6C6612AD6AFDE00B75166 /* libavutil.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavutil.xcframework; sourceTree = "<group>"; };
+		3EA6C6622AD6AFDE00B75166 /* libavcodec.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavcodec.xcframework; sourceTree = "<group>"; };
+		3EA6C6632AD6AFDE00B75166 /* libswresample.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libswresample.xcframework; sourceTree = "<group>"; };
 		3EA89D962699F0240021CDB9 /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		3EA89D9A2699F50C0021CDB9 /* ScrollSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollSession.swift; sourceTree = "<group>"; };
 		3EA89D9D2699F5270021CDB9 /* GestureDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureDirection.swift; sourceTree = "<group>"; };
@@ -2707,13 +2735,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EA6C66D2AD6AFEC00B75166 /* libavutil.xcframework in Frameworks */,
+				3EA6C6642AD6AFDE00B75166 /* libopenmpt.0.dylib in Frameworks */,
+				3EA6C6702AD6AFEE00B75166 /* libswresample.xcframework in Frameworks */,
+				3EA6C6692AD6AFE900B75166 /* libavcodec.xcframework in Frameworks */,
 				3EF30D0B28DC6FE900CB09EA /* Collections in Frameworks */,
-				3E1D1DED28DD068E00E79674 /* libavformat.xcframework in Frameworks */,
-				3E1D1DEB28DD068C00E79674 /* libavcodec.xcframework in Frameworks */,
 				3EF30D0F28DC6FE900CB09EA /* OrderedCollections in Frameworks */,
+				3EA6C66B2AD6AFEB00B75166 /* libavformat.xcframework in Frameworks */,
 				3EF30D0D28DC6FE900CB09EA /* DequeModule in Frameworks */,
-				3E1D1DEF28DD068F00E79674 /* libavutil.xcframework in Frameworks */,
-				3E1D1DF128DD069100E79674 /* libswresample.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2797,18 +2826,12 @@
 		3E10176328D7713B002C0D8E /* Wrappers */ = {
 			isa = PBXGroup;
 			children = (
-				3E10176428D7713B002C0D8E /* FFmpegAudioStream.swift */,
-				3E10176528D7713B002C0D8E /* FFmpegFileContext.swift */,
+				3EA6C6232AD6AAA100B75166 /* Demuxing */,
+				3EA6C61D2AD6AAA100B75166 /* Decoding */,
 				3E10176628D7713B002C0D8E /* FFmpegAudioFormat.swift */,
-				3E10176728D7713B002C0D8E /* FFmpegFrame.swift */,
 				3E10176828D7713B002C0D8E /* FFmpegResamplingContext.swift */,
 				3E10176928D7713B002C0D8E /* FFmpegSampleFormat.swift */,
-				3E10176A28D7713B002C0D8E /* FFmpegAudioCodec.swift */,
-				3E10176B28D7713B002C0D8E /* FFmpegImageStream.swift */,
 				3E10176C28D7713B002C0D8E /* FFmpegChapter.swift */,
-				3E10176D28D7713B002C0D8E /* FFmpegPacket.swift */,
-				3E10176E28D7713B002C0D8E /* FFmpegStreamProtocol.swift */,
-				3E10176F28D7713B002C0D8E /* FFmpegCodec.swift */,
 				3E9FD1042A1D5CAA0038AF04 /* FFmpegChannelLayout.swift */,
 			);
 			path = Wrappers;
@@ -2870,18 +2893,6 @@
 				3E758B05281DDA5900BBE872 /* EffectsWindowRootView.swift */,
 			);
 			path = Effects;
-			sourceTree = "<group>";
-		};
-		3E1D1DE228DD068000E79674 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3E1D1DE328DD068000E79674 /* libavformat.xcframework */,
-				3E1D1DE428DD068000E79674 /* libavutil.xcframework */,
-				3E1D1DE528DD068000E79674 /* libavcodec.xcframework */,
-				3E1D1DE628DD068000E79674 /* libswresample.xcframework */,
-			);
-			name = Frameworks;
-			path = ../Frameworks;
 			sourceTree = "<group>";
 		};
 		3E2000BB267CDF7E008BAB70 /* MediaKeys */ = {
@@ -3290,8 +3301,8 @@
 				3EFE35D527864895006F8B8C /* Core */,
 				3E6C0EC125CEB3ED00BF0D07 /* Source */,
 				3E10171B28D741E7002C0D8E /* ThirdParty */,
+				3EA6C65E2AD6AFDE00B75166 /* Frameworks */,
 				3E6C114C25CEB9C100BF0D07 /* Resources */,
-				3E1D1DE228DD068000E79674 /* Frameworks */,
 				3EAF96D928DCE1B6008561A7 /* Fonts */,
 				3E9025AB268E830800C5A1C5 /* Tests */,
 				3E6C0EC025CEB3ED00BF0D07 /* Products */,
@@ -4422,6 +4433,43 @@
 				3EA62F422693BE25004A780A /* AudioGraphPersistenceTests.swift */,
 			);
 			path = AudioGraph;
+			sourceTree = "<group>";
+		};
+		3EA6C61D2AD6AAA100B75166 /* Decoding */ = {
+			isa = PBXGroup;
+			children = (
+				3EA6C6222AD6AAA100B75166 /* FFmpegCodec.swift */,
+				3EA6C6212AD6AAA100B75166 /* FFmpegAudioCodec.swift */,
+				3EA6C61E2AD6AAA100B75166 /* FFmpegCodecContext.swift */,
+				3EA6C6202AD6AAA100B75166 /* FFmpegCodecParameters.swift */,
+				3EA6C61F2AD6AAA100B75166 /* FFmpegFrame.swift */,
+			);
+			path = Decoding;
+			sourceTree = "<group>";
+		};
+		3EA6C6232AD6AAA100B75166 /* Demuxing */ = {
+			isa = PBXGroup;
+			children = (
+				3EA6C6252AD6AAA100B75166 /* FFmpegFileContext.swift */,
+				3EA6C6282AD6AAA100B75166 /* FFmpegStreamProtocol.swift */,
+				3EA6C6242AD6AAA100B75166 /* FFmpegAudioStream.swift */,
+				3EA6C6262AD6AAA100B75166 /* FFmpegImageStream.swift */,
+				3EA6C6272AD6AAA100B75166 /* FFmpegPacket.swift */,
+			);
+			path = Demuxing;
+			sourceTree = "<group>";
+		};
+		3EA6C65E2AD6AFDE00B75166 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3EA6C65F2AD6AFDE00B75166 /* libopenmpt.0.dylib */,
+				3EA6C6602AD6AFDE00B75166 /* libavformat.xcframework */,
+				3EA6C6612AD6AFDE00B75166 /* libavutil.xcframework */,
+				3EA6C6622AD6AFDE00B75166 /* libavcodec.xcframework */,
+				3EA6C6632AD6AFDE00B75166 /* libswresample.xcframework */,
+			);
+			name = Frameworks;
+			path = ../Frameworks;
 			sourceTree = "<group>";
 		};
 		3EA89D952699F00C0021CDB9 /* Utils */ = {
@@ -5876,6 +5924,7 @@
 				3E6C0EBC25CEB3ED00BF0D07 /* Frameworks */,
 				3E6C0EBD25CEB3ED00BF0D07 /* Resources */,
 				3EDB340725E8AEB3004DF7DE /* Embed Libraries */,
+				3EA6C6722AD6AFFA00B75166 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -5899,6 +5948,7 @@
 				3E90260D268ED91B00C5A1C5 /* Frameworks */,
 				3E90260E268ED91B00C5A1C5 /* Resources */,
 				3E60CA1326B085B300D9404C /* Embed libraries */,
+				3EA6C6472AD6AC6A00B75166 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -6181,8 +6231,6 @@
 				3E6C128C25CEBE1800BF0D07 /* ColorClipboard.swift in Sources */,
 				3E10177F28D7713B002C0D8E /* FFmpegSampleFormat.swift in Sources */,
 				3EABDE1C2694D002008066E8 /* ColorConstants.swift in Sources */,
-				3E10177D28D7713B002C0D8E /* FFmpegFrame.swift in Sources */,
-				3E10177A28D7713B002C0D8E /* FFmpegAudioStream.swift in Sources */,
 				3EF1A0C027E4E18700E64F37 /* TrackListIterator.swift in Sources */,
 				3EFE38D127864896006F8B8C /* FilterUnitDelegate.swift in Sources */,
 				3EFE3A8D27864898006F8B8C /* PrimaryMetadata.swift in Sources */,
@@ -6196,7 +6244,6 @@
 				3EFE38C927864896006F8B8C /* ReverbUnitDelegate.swift in Sources */,
 				3EFE39BD27864897006F8B8C /* PlaylistFontSchemePersistentState.swift in Sources */,
 				3EFE381B27864896006F8B8C /* SearchResultLocation.swift in Sources */,
-				3E10177B28D7713B002C0D8E /* FFmpegFileContext.swift in Sources */,
 				3E6C125525CEBE0600BF0D07 /* ColorSchemePreviewView.swift in Sources */,
 				3E6C127725CEBE1800BF0D07 /* ColorSchemesManager.swift in Sources */,
 				3EFFEB8027D9CB25006A333B /* ColorSchemesManager+Observer.swift in Sources */,
@@ -6219,6 +6266,7 @@
 				3E4322832687E138009E8ADB /* ControlBarPlaybackViewController.swift in Sources */,
 				3E4322872687E24A009E8ADB /* ControlBarPlayerAudioViewController.swift in Sources */,
 				3EFE38D527864896006F8B8C /* FilterUnitDelegateProtocol.swift in Sources */,
+				3EA6C6302AD6AAA100B75166 /* FFmpegImageStream.swift in Sources */,
 				3E4322852687E1C2009E8ADB /* ControlBarPlayerSequencingViewController.swift in Sources */,
 				3EDC157C27C2ACB100B91157 /* HorizontalSymmetricSliderCell.swift in Sources */,
 				3E10178228D7713B002C0D8E /* FFmpegChapter.swift in Sources */,
@@ -6246,6 +6294,7 @@
 				3EFE3A0927864898006F8B8C /* TuneBrowserNotifications.swift in Sources */,
 				3E3975462688894C0055887E /* ControlBarSeekSliderCell.swift in Sources */,
 				3E7638AF2857DA3F00461F4D /* UnifiedAppModeController.swift in Sources */,
+				3EA6C62F2AD6AAA100B75166 /* FFmpegFileContext.swift in Sources */,
 				3EFE37E327864896006F8B8C /* Preferences.swift in Sources */,
 				3E43228B2687E313009E8ADB /* ControlBarSeekSliderView.swift in Sources */,
 				3EFE3A5727864898006F8B8C /* MusicBrainzCoverArtReader.swift in Sources */,
@@ -6529,6 +6578,7 @@
 				3EFE3A5527864898006F8B8C /* MusicBrainzRESTClient.swift in Sources */,
 				3EFE3A9727864898006F8B8C /* TrackReader.swift in Sources */,
 				3E824A4425DB74850089F217 /* MenuBarPlayerViewController.swift in Sources */,
+				3EA6C62C2AD6AAA100B75166 /* FFmpegAudioCodec.swift in Sources */,
 				3EFE394F27864897006F8B8C /* ShuffleMode.swift in Sources */,
 				3EEFF58B27DE842C002CB0FE /* PlayQueue.swift in Sources */,
 				3EAFB611267FF3FE00F0DC96 /* MenuBarSeekSliderCell.swift in Sources */,
@@ -6554,7 +6604,6 @@
 				3E5F3DF326814C9700E826F0 /* NSAlertExtensions.swift in Sources */,
 				3EFE39D727864897006F8B8C /* DelayUnitPersistentState.swift in Sources */,
 				3EFE3A0127864898006F8B8C /* Messenger.swift in Sources */,
-				3E10178328D7713B002C0D8E /* FFmpegPacket.swift in Sources */,
 				3EAFB5F8267FEEC700F0DC96 /* NSBezierPathExtensions.swift in Sources */,
 				3EAFB5EE267FECEE00F0DC96 /* NSButtonExtensions.swift in Sources */,
 				3EAFB5FC267FEF1C00F0DC96 /* NSColorExtensions.swift in Sources */,
@@ -6616,13 +6665,16 @@
 				3E6C130D25CEBE8F00BF0D07 /* PlayerSequencingViewController.swift in Sources */,
 				3EDCC4B8282C2223002AF3AE /* PlayQueueUIState.swift in Sources */,
 				3E6C12D725CEBE8100BF0D07 /* PlayerUIState.swift in Sources */,
+				3EA6C62E2AD6AAA100B75166 /* FFmpegAudioStream.swift in Sources */,
 				3EFE3A5327864898006F8B8C /* GenreMap.swift in Sources */,
 				3E7C35FE26AADD2A00B3552D /* FilterPresetView.swift in Sources */,
 				3E6C12FA25CEBE8F00BF0D07 /* PlayerViewController.swift in Sources */,
 				3E6C12FF25CEBE8F00BF0D07 /* PlayerViewPopupMenuController.swift in Sources */,
+				3EA6C62A2AD6AAA100B75166 /* FFmpegFrame.swift in Sources */,
 				3E25B65927F78C0B00D10A5F /* TrackListTableViewController.swift in Sources */,
 				3E6C12E925CEBE8100BF0D07 /* PlayingTrackFunctionsMenuDelegate.swift in Sources */,
 				3E98E5F8262D51AF00A65BCE /* PlayingTrackInfo.swift in Sources */,
+				3EA6C6292AD6AAA100B75166 /* FFmpegCodecContext.swift in Sources */,
 				3EFE39DD27864897006F8B8C /* EQUnitPersistentState.swift in Sources */,
 				3EFE380727864896006F8B8C /* SortField.swift in Sources */,
 				3E6C12DF25CEBE8100BF0D07 /* PlayingTrackTextView.swift in Sources */,
@@ -6646,6 +6698,7 @@
 				3E6C124D25CEBDF400BF0D07 /* PlaylistSearchWindowController.swift in Sources */,
 				3E6C122025CEBDE600BF0D07 /* PlaylistSortWindowController.swift in Sources */,
 				3EB3FFDC27DE3839009F7E2C /* ColorScheme+Presets.swift in Sources */,
+				3EA6C6322AD6AAA100B75166 /* FFmpegStreamProtocol.swift in Sources */,
 				3E6C125125CEBDF400BF0D07 /* PlaylistUIState.swift in Sources */,
 				3EFE38B327864896006F8B8C /* FlexibleFilterNode.swift in Sources */,
 				3EFE382327864896006F8B8C /* SearchType.swift in Sources */,
@@ -6694,7 +6747,6 @@
 				3E6C12CE25CEBE6700BF0D07 /* ReverbUnitView.swift in Sources */,
 				3E6C12C525CEBE6700BF0D07 /* ReverbUnitViewController.swift in Sources */,
 				3E752744267F32A60092BB89 /* RoundedImageView.swift in Sources */,
-				3E10178428D7713B002C0D8E /* FFmpegStreamProtocol.swift in Sources */,
 				3E10177E28D7713B002C0D8E /* FFmpegResamplingContext.swift in Sources */,
 				3E43227B2687D531009E8ADB /* ScrollingTrackInfoView.swift in Sources */,
 				3EA89D9B2699F50C0021CDB9 /* ScrollSession.swift in Sources */,
@@ -6722,12 +6774,14 @@
 				3EB3A60E26A744C80060487C /* SingletonPopoverViewController.swift in Sources */,
 				3E10178E28D7713B002C0D8E /* FFmpegMetadataReader.swift in Sources */,
 				3E4A90FE27F79AFA003A6C80 /* WindowID.swift in Sources */,
+				3EA6C62B2AD6AAA100B75166 /* FFmpegCodecParameters.swift in Sources */,
 				3EFE385B27864896006F8B8C /* TimeStretchUnitProtocol.swift in Sources */,
 				3EB462D92847FEC6000E3F85 /* TuneBrowserHistory.swift in Sources */,
 				3EB3A60B26A7425C0060487C /* SingletonWindowController.swift in Sources */,
 				3EEBC6EE27C16CF700880DFD /* EffectsUnitStateObserverRegistry.swift in Sources */,
 				3E51CCF2285E899E002CBEF2 /* UnifiedPlayerSidebarViewController.swift in Sources */,
 				3E6C12A225CEBE2700BF0D07 /* SnappingWindow.swift in Sources */,
+				3EA6C6312AD6AAA100B75166 /* FFmpegPacket.swift in Sources */,
 				3EFE387127864896006F8B8C /* HostedAudioUnitProtocol.swift in Sources */,
 				3E10175D28D741E7002C0D8E /* EonilFSEventStream.swift in Sources */,
 				3E62979426A3C0F100C96AB8 /* SnappingWindowDelegate.swift in Sources */,
@@ -6750,6 +6804,7 @@
 				3E045D0F281352370069DEFE /* SortOrderMenuItemView.swift in Sources */,
 				3E5F943725E571A6002DEF80 /* SpectrogramBar.swift in Sources */,
 				3EB462DA2847FEC6000E3F85 /* TuneBrowserTabViewController.swift in Sources */,
+				3EA6C62D2AD6AAA100B75166 /* FFmpegCodec.swift in Sources */,
 				3E5F942D25E57190002DEF80 /* SpectrogramFFTData.swift in Sources */,
 				3EFE383F27864896006F8B8C /* Playlist.swift in Sources */,
 				3E6C12A325CEBE2700BF0D07 /* StringInputPopoverViewController.swift in Sources */,
@@ -6842,7 +6897,6 @@
 				3EDCC4BE282C3912002AF3AE /* PlayQueueViewController.swift in Sources */,
 				3EFE393127864897006F8B8C /* FileSize.swift in Sources */,
 				3EFE384927864896006F8B8C /* PlaylistDelegateProtocol.swift in Sources */,
-				3E10178028D7713B002C0D8E /* FFmpegAudioCodec.swift in Sources */,
 				3EFE383927864896006F8B8C /* GroupedTracksRemovalResult.swift in Sources */,
 				3E6C12AB25CEBE2700BF0D07 /* ValidatedLabelCell.swift in Sources */,
 				3EFE3A6B27864898006F8B8C /* ParserUtils.swift in Sources */,
@@ -6890,7 +6944,6 @@
 				3EEC04212687AB45004478CE /* WindowedModePlaybackView.swift in Sources */,
 				3EFE39D527864897006F8B8C /* AudioGraphPersistentState.swift in Sources */,
 				3E045D092813407D0069DEFE /* TrackListSort.swift in Sources */,
-				3E10178128D7713B002C0D8E /* FFmpegImageStream.swift in Sources */,
 				3EEC04152687A940004478CE /* WindowedModePlaybackViewController.swift in Sources */,
 				3EFE387327864896006F8B8C /* EffectsUnitType.swift in Sources */,
 				3EFE38A127864896006F8B8C /* AudioDevice.swift in Sources */,
@@ -6929,7 +6982,6 @@
 				3E59A175262C9EDA006DF775 /* WindowLoader.swift in Sources */,
 				3E51CCF8285E8D10002CBEF2 /* UnifiedPlayerSidebarViewController+ViewDelegate.swift in Sources */,
 				3EF84D8A2835E6FE004EF57B /* FolderMonitor.swift in Sources */,
-				3E10178528D7713B002C0D8E /* FFmpegCodec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7628,14 +7680,14 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 4.0.0;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Frameworks";
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/../**";
 				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kv.Aural;
@@ -7659,14 +7711,14 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 4.0.0;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Frameworks";
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/../**";
 				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kv.Aural;
@@ -7682,12 +7734,13 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/**";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7707,12 +7760,13 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/**";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

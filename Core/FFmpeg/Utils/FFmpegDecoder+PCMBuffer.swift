@@ -2,7 +2,7 @@
 //  FFmpegSampleConverter.swift
 //  Aural
 //
-//  Copyright © 2022 Kartik Venugopal. All rights reserved.
+//  Copyright © 2023 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -57,14 +57,13 @@ extension FFmpegDecoder {
             // Temporarily bind the input sample buffers as floating point numbers, and perform the copy.
             frame.dataPointers.withMemoryRebound(to: UnsafeMutablePointer<Float>.self, capacity: channelCount) {srcPointers in
                 
-                let sampleCount = frame.sampleCount
                 let firstSampleIndex = Int(frame.firstSampleIndex)
 
                 // Iterate through all the channels.
                 for channelIndex in 0..<channelCount {
 
                     // Use Accelerate to perform the copy optimally, starting at the given offset.
-                    cblas_scopy(sampleCount,
+                    cblas_scopy(frame.sampleCount,
                                 srcPointers[channelIndex].advanced(by: firstSampleIndex), 1,
                                 destPointers[channelIndex].advanced(by: sampleCountSoFar), 1)
                 }
