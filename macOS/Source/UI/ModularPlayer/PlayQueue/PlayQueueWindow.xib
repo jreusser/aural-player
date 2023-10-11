@@ -26,7 +26,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window identifier="playQueue" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingIdentifier="playQueue" titleVisibility="hidden" id="QvC-M9-y7g" customClass="SnappingWindow" customModule="Aural" customModuleProvider="target">
+        <window identifier="wid_playQueue" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingIdentifier="playQueue" titleVisibility="hidden" id="QvC-M9-y7g" customClass="SnappingWindow" customModule="Aural" customModuleProvider="target">
             <windowStyleMask key="styleMask" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="277"/>
@@ -53,7 +53,7 @@
                                         <action selector="closeAction:" target="-2" id="Ujo-pe-oP9"/>
                                     </connections>
                                 </button>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HUl-8T-ZjG" userLabel="Play Queue Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HUl-8T-ZjG" userLabel="Play Queue Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="35" y="249" width="214" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Play  Queue" id="KL4-Mx-oeR">
@@ -62,7 +62,7 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cBa-S3-IRH" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cBa-S3-IRH" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="21" y="14" width="214" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="Vge-dj-5cc"/>
@@ -74,7 +74,7 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kiu-sG-iy1" userLabel="Duration summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kiu-sG-iy1" userLabel="Duration summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="257" y="14" width="204" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="P7g-XK-OwL"/>
@@ -585,7 +585,7 @@
                         <action selector="changeSortOrderAction:" target="lxO-Xj-vxb" id="S0y-Wf-gw6"/>
                     </connections>
                 </button>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Da5-Be-5Rv">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Da5-Be-5Rv">
                     <rect key="frame" x="11" y="1" width="86" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Sort order:" id="9r3-S0-ngB">

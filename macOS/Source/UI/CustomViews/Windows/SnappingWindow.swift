@@ -10,6 +10,7 @@
 import Cocoa
 
 fileprivate let viewPreferences: ViewPreferences = preferences.viewPreferences
+fileprivate var computedVisibleFrame: NSRect {NSScreen.main!.visibleFrame}
 
 @IBDesignable
 class SnappingWindow: NoTitleBarWindow {
@@ -25,13 +26,12 @@ class SnappingWindow: NoTitleBarWindow {
     
     private var snapProximity: CGFloat {Self.snapProximity}
     
-    private lazy var theDelegate: SnappingWindowDelegate = SnappingWindowDelegate(window: self)
+    fileprivate lazy var theDelegate: SnappingWindowDelegate = SnappingWindowDelegate(window: self)
+    
+    lazy var isTheMainWindow: Bool = (identifier?.rawValue ?? "") == "wid_main"
     
     override func awakeFromNib() {
-        
-        super.awakeFromNib()
         self.delegate = theDelegate
-        isMovableByWindowBackground = true
     }
 
     override func mouseUp(with event: NSEvent) {
@@ -60,46 +60,32 @@ class SnappingWindow: NoTitleBarWindow {
     
     func checkForSnap(to mate: NSWindow) -> Bool {
         
-//        let gap = viewPreferences.windowGap
-        let gap: Float = 1
+        let gap = viewPreferences.windowGap
+        var snap: SnapToWindowType = .none
         
-        var snap: SnapToWindowType = checkForSnap_bottom(to: mate)
-        
-        if snap.isValidSnap() {
+        func checkForValidSnap() -> Bool {
             
-            self.snapLocation = snap.getLocation(self, mate, gap)
-            self.snapped = true
-            return true
+            if snap.isValidSnap() {
+                
+                self.snapLocation = snap.getLocation(self, mate, gap)
+                self.snapped = true
+                return true
+            }
+            
+            return false
         }
+        
+        snap = checkForSnap_bottom(to: mate)
+        if checkForValidSnap() {return true}
         
         snap = checkForSnap_top(to: mate)
+        if checkForValidSnap() {return true}
         
-        if snap.isValidSnap() {
-            
-            self.snapLocation = snap.getLocation(self, mate, gap)
-            self.snapped = true
-            return true
-        }
-            
         snap = checkForSnap_right(to: mate)
-        
-        if snap.isValidSnap() {
-            
-            self.snapLocation = snap.getLocation(self, mate, gap)
-            self.snapped = true
-            return true
-        }
+        if checkForValidSnap() {return true}
         
         snap = checkForSnap_left(to: mate)
-        
-        if snap.isValidSnap() {
-            
-            self.snapLocation = snap.getLocation(self, mate, gap)
-            self.snapped = true
-            return true
-        }
-        
-        return false
+        return checkForValidSnap()
     }
     
     // Top edge of Effects vs Bottom edge of main (i.e. below main window)
@@ -216,79 +202,43 @@ class SnappingWindow: NoTitleBarWindow {
     
     func checkForSnapToVisibleFrame() {
         
-        var snap: SnapToVisibleFrameType = checkForSnapToVisibleFrame_topLeftCorner()
+        var snap: SnapToVisibleFrameType = .none
         
-        if snap.isValidSnap() {
+        func checkForValidSnap() -> Bool {
             
-            snapLocation = snap.getLocation(self)
-            snapped = true
-            return
+            if snap.isValidSnap() {
+                
+                snapLocation = snap.getLocation(self)
+                snapped = true
+                return true
+            }
+            
+            return false
         }
+        
+        snap = checkForSnapToVisibleFrame_topLeftCorner()
+        if checkForValidSnap() {return}
         
         snap = checkForSnapToVisibleFrame_topRightCorner()
-        
-        if snap.isValidSnap() {
-            
-            snapLocation = snap.getLocation(self)
-            snapped = true
-            return
-        }
+        if checkForValidSnap() {return}
         
         snap = checkForSnapToVisibleFrame_bottomRightCorner()
-        
-        if snap.isValidSnap() {
-            
-            // Snap on the right
-            snapLocation = snap.getLocation(self)
-            snapped = true
-            return
-        }
+        if checkForValidSnap() {return}
         
         snap = checkForSnapToVisibleFrame_bottomLeftCorner()
-        
-        if snap.isValidSnap() {
-            
-            // Snap on the right
-            snapLocation = snap.getLocation(self)
-            snapped = true
-            return
-        }
+        if checkForValidSnap() {return}
         
         snap = checkForSnapToVisibleFrame_leftEdge()
-        
-        if snap.isValidSnap() {
-            
-            snapLocation = snap.getLocation(self)
-            snapped = true
-            return
-        }
+        if checkForValidSnap() {return}
         
         snap = checkForSnapToVisibleFrame_rightEdge()
-        
-        if snap.isValidSnap() {
-            
-            snapLocation = snap.getLocation(self)
-            snapped = true
-            return
-        }
+        if checkForValidSnap() {return}
         
         snap = checkForSnapToVisibleFrame_topEdge()
-        
-        if snap.isValidSnap() {
-            
-            snapLocation = snap.getLocation(self)
-            snapped = true
-            return
-        }
+        if checkForValidSnap() {return}
         
         snap = checkForSnapToVisibleFrame_bottomEdge()
-        
-        if snap.isValidSnap() {
-            
-            snapLocation = snap.getLocation(self)
-            snapped = true
-            return
-        }
+        _ = checkForValidSnap()
     }
     
     private func checkForSnapToVisibleFrame_topLeftCorner() -> SnapToVisibleFrameType {
@@ -580,11 +530,10 @@ enum SnapToVisibleFrameType {
         case .bottomLeftCorner:
             
             return NSPoint(x: visibleFrame.minX, y: visibleFrame.minY)
+             
+        default:
             
-        default:    return NSPoint.zero     // Impossible
-            
+            return .zero     // Impossible
         }
     }
 }
-
-fileprivate var computedVisibleFrame: NSRect {NSScreen.main!.visibleFrame}
