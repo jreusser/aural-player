@@ -52,6 +52,11 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         super.viewDidLoad()
         
         tableView.enableDragDrop()
+        
+        tableView.enclosingScrollView?.scrollerStyle = .legacy
+        tableView.enclosingScrollView?.autohidesScrollers = false
+        tableView.enclosingScrollView?.hasVerticalScroller = true
+        
         colorSchemesManager.registerObserver(tableView, forProperty: \.backgroundColor)
     }
     

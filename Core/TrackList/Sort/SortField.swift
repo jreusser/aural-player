@@ -18,6 +18,7 @@ enum TrackSortField {
     case artist
     case album
     case discNumberAndTrackNumber
+    case fileLastModifiedTime
     
     var comparison: TrackComparison {
         
@@ -42,6 +43,10 @@ enum TrackSortField {
         case .duration:
             
             return trackDurationComparison
+            
+        case .fileLastModifiedTime:
+            
+            return trackLastModifiedTimeComparison
         }
     }
     
@@ -68,6 +73,10 @@ enum TrackSortField {
         case .duration:
             
             return order == .ascending ? trackDurationAscendingComparator : trackDurationDescendingComparator
+            
+        case .fileLastModifiedTime:
+            
+            return order == .ascending ? trackLastModifiedTimeAscendingComparator : trackLastModifiedTimeDescendingComparator
         }
     }
 }

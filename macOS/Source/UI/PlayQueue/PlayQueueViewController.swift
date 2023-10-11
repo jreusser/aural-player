@@ -48,6 +48,7 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         
         messenger.subscribe(to: .playQueue_refresh, handler: tableView.reloadData)
         
+        messenger.subscribe(to: .playQueue_selectAllItems, handler: tableView.selectAllItems)
         messenger.subscribe(to: .playQueue_clearSelection, handler: tableView.clearSelection)
         messenger.subscribe(to: .playQueue_invertSelection, handler: tableView.invertSelection)
         

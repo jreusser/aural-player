@@ -19,7 +19,6 @@ class RemoteControlPreferencesViewController: NSViewController, PreferencesViewP
     @IBOutlet weak var btnShowTrackChangeControls: NSButton!
     @IBOutlet weak var btnShowSeekingControls: NSButton!
     
-    @available(OSX 10.12.2, *)
     private var remoteControlManager: RemoteControlManager {remoteControlManager}
     
     override var nibName: String? {"RemoteControlPreferences"}

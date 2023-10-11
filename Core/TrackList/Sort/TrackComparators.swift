@@ -78,6 +78,14 @@ let trackDurationDescendingComparator: TrackComparator = {t1, t2 in
     trackDurationComparison(t1, t2) == .orderedDescending
 }
 
+let trackLastModifiedTimeAscendingComparator: TrackComparator = {t1, t2 in
+    trackLastModifiedTimeComparison(t1, t2) == .orderedAscending
+}
+
+let trackLastModifiedTimeDescendingComparator: TrackComparator = {t1, t2 in
+    trackLastModifiedTimeComparison(t1, t2) == .orderedDescending
+}
+
 func comparisonToAscendingTrackComparator(_ comparison: @escaping TrackComparison) -> TrackComparator {
     
     {t1, t2 in

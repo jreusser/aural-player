@@ -279,6 +279,10 @@ extension PlayQueueWindowController {
         doSort(by: [.duration])
     }
     
+    @IBAction func sortByFileLastModifiedTimeAction(_ sender: NSMenuItem) {
+        doSort(by: [.fileLastModifiedTime])
+    }
+    
     private func doSort(by fields: [TrackSortField]) {
         
         currentViewController.sort(by: fields, order: sortOrderMenuItemView.sortOrder)
@@ -309,7 +313,7 @@ extension PlayQueueWindowController {
         let selectedTrackAbovePlayingTrack: Bool = selectedTrackIndex < indexOfPlayingTrack
         let destRow = indexOfPlayingTrack + (selectedTrackAbovePlayingTrack ? 0 : 1)
         
-        playQueueDelegate.moveTracks(from: IndexSet([selectedTrackIndex]), to: destRow)
+        _ = playQueueDelegate.moveTracks(from: IndexSet([selectedTrackIndex]), to: destRow)
         
         let minRow = min(selectedTrackIndex, destRow)
         let maxRow = max(selectedTrackIndex, destRow)

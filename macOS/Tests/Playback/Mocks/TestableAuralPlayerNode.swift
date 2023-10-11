@@ -67,7 +67,6 @@ class TestableAuralPlayerNode: AuralPlayerNode {
         scheduleSegment_frameCount = numberFrames
     }
     
-    @available(OSX 10.13, *)
     override func scheduleSegment(_ file: AVAudioFile, startingFrame startFrame: AVAudioFramePosition, frameCount numberFrames: AVAudioFrameCount, at when: AVAudioTime?, completionCallbackType callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler: AVAudioPlayerNodeCompletionHandler? = nil) {
         
         scheduleSegment_callCount += 1

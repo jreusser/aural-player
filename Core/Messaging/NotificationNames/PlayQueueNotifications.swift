@@ -75,6 +75,8 @@ extension Notification.Name {
     static let playQueue_moveTracksToTop = Notification.Name("playQueue_moveTracksToTop")
     static let playQueue_moveTracksToBottom = Notification.Name("playQueue_moveTracksToBottom")
     
+    // Commands the currently displayed Play Queue view to select all its items.
+    static let playQueue_selectAllItems = Notification.Name("playQueue_selectAllItems")
     static let playQueue_clearSelection = Notification.Name("playQueue_clearSelection")
     static let playQueue_cropSelection = Notification.Name("playQueue_cropSelection")
     static let playQueue_invertSelection = Notification.Name("playQueue_invertSelection")

@@ -2,11 +2,11 @@
 //  TrackInfoViewDelegate.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2023 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
-//  
+//
 import Cocoa
 
 typealias KeyValuePair = (key: String, value: String)
@@ -26,6 +26,9 @@ class TrackInfoViewDelegate: NSObject, NSTableViewDataSource, NSTableViewDelegat
     // Container for the key-value pairs of info displayed
     var keyValuePairs: [KeyValuePair] = []
     
+    // Cached playing track instance (to avoid reloading the same data)
+    var displayedTrack: Track?
+    
     // Constants used to calculate row height
     
     // Values used to determine the row height of table rows in the detailed track info popover view
@@ -39,7 +42,7 @@ class TrackInfoViewDelegate: NSObject, NSTableViewDataSource, NSTableViewDelegat
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        if let track = TrackInfoViewContext.displayedTrack {
+        if let track = self.displayedTrack {
             
             // A track is playing, add its info to the info array, as key-value pairs
             keyValuePairs = infoForTrack(track)
@@ -89,11 +92,24 @@ class TrackInfoViewDelegate: NSObject, NSTableViewDataSource, NSTableViewDelegat
         return max(keyHeight, valueHeight) + 5
     }
     
-    // Completely disable row selection.
-    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {false}
+    ///
+    /// Disables drawing of the row selection marker.
+    ///
+    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+        TrackInfoRowView()
+    }
     
     // Should be overriden by subclasses.
     func infoForTrack(_ track: Track) -> [KeyValuePair] {[]}
+}
+
+///
+/// Custom view for a NSTableView row that displays a single row of track info (eg. metadata). Customizes the selection look and feel.
+///
+class TrackInfoRowView: NSTableRowView {
+    
+    /// Draws nothing (i.e. disables drawing of the row selection marker).
+    override func drawSelection(in dirtyRect: NSRect) {}
 }
 
 extension NSUserInterfaceItemIdentifier {

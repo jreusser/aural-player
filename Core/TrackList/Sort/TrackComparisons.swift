@@ -48,6 +48,26 @@ let trackDurationComparison: TrackComparison = {t1, t2 in
     (t1.duration).compare(t2.duration)
 }
 
+let trackLastModifiedTimeComparison: TrackComparison = {t1, t2 in
+    
+    let time1 = t1.file.lastModifiedTime
+    let time2 = t2.file.lastModifiedTime
+    
+    if let theTime1 = time1, let theTime2 = time2 {
+        return theTime1.compare(theTime2)
+    }
+    
+    if time1 == nil && time2 == nil {
+        return .orderedSame
+    }
+    
+    if time1 == nil {
+        return .orderedAscending
+    }
+    
+    return .orderedDescending
+}
+
 func chainTrackComparisons(_ c1: @escaping TrackComparison, _ c2: @escaping TrackComparison) -> TrackComparison {
 
     {t1, t2 in

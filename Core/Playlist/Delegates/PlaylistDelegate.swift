@@ -472,23 +472,27 @@ import Foundation
 /// Encapsulates all autoplay options.
 ///
 class AutoplayOptions {
-
+    
     // Whether or not autoplay is requested
     var autoplay: Bool
-
+    
     // Whether or not existing track playback should be interrupted, to perform autoplay
     var interruptPlayback: Bool
-
+    
     // Whether or not the first added track should be selected for playback.
     // If false, the first track in the playlist will play.
     var autoplayType: AutoplayCommandType
-
-    init(_ autoplay: Bool,
-         _ autoplayType: AutoplayCommandType = .beginPlayback,
-         _ interruptPlayback: Bool = true) {
-
+    
+    var fileToPlay: URL?
+    
+    init(autoplay: Bool,
+         autoplayType: AutoplayCommandType = .beginPlayback,
+         fileToPlay: URL? = nil,
+         interruptPlayback: Bool = true) {
+        
         self.autoplay = autoplay
         self.autoplayType = autoplayType
+        self.fileToPlay = fileToPlay
         self.interruptPlayback = interruptPlayback
     }
 }

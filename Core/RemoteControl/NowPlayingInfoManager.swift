@@ -13,7 +13,6 @@ import MediaPlayer
 /// Provides the macOS Now Playing Info Center with updated information about the current state of the player,
 /// i.e. playback state, playback rate, track info, etc.
 ///
-@available(OSX 10.12.2, *)
 class NowPlayingInfoManager: NSObject {
 
     /// The underlying Now Playing Info Center.
@@ -204,7 +203,6 @@ class NowPlayingInfoManager: NSObject {
     }
 }
 
-@available(OSX 10.12.2, *)
 extension MPNowPlayingPlaybackState {
 
     ///

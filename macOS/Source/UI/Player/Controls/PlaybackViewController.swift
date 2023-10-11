@@ -157,13 +157,12 @@ class PlaybackViewController: NSViewController {
     
     func toggleLoop() {
         
-        if player.state.isPlayingOrPaused {
-            
-            _ = player.toggleLoop()
-            playbackLoopChanged()
-            
-            messenger.publish(.player_playbackLoopChanged)
-        }
+        guard player.state.isPlayingOrPaused else {return}
+        
+        _ = player.toggleLoop()
+        playbackLoopChanged()
+        
+        messenger.publish(.player_playbackLoopChanged)
     }
     
     // When the playback loop for the current playing track is changed, the seek slider needs to be updated (redrawn) to show the current loop state

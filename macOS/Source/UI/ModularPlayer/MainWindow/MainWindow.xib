@@ -859,10 +859,15 @@ CA
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="Fv7-3m-8Q1"/>
-                            <menuItem title=" Clear selection" image="square.slash" catalog="system" id="NMF-Bq-MjN" userLabel="Clear selection">
+                            <menuItem title=" Select all items" keyEquivalent="a" indentationLevel="2" id="NMF-Bq-MjN">
+                                <connections>
+                                    <action selector="selectAllItemsAction:" target="qFA-s7-21q" id="lyK-pV-dZY"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title=" Clear selection" image="square.slash" catalog="system" id="q1G-iQ-9xR" userLabel="Clear selection">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="clearSelection:" target="qFA-s7-21q" id="kkh-j0-WIE"/>
+                                    <action selector="clearSelection:" target="qFA-s7-21q" id="Q3A-km-h09"/>
                                 </connections>
                             </menuItem>
                             <menuItem title=" Invert selection" image="arrow.right.arrow.left" catalog="system" id="Rzy-jG-Ooe" userLabel="Invert selection">

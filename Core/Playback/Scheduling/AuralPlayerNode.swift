@@ -33,7 +33,7 @@ class AuralPlayerNode: AVAudioPlayerNode {
     // This property will have no effect on macOS 10.12 or older systems.
     var completionCallbackType: AVAudioPlayerNodeCompletionCallbackType = .dataPlayedBack
     
-    var completionCallbackQueue: DispatchQueue = DispatchQueue.global(qos: .userInteractive)
+    var completionCallbackQueue: DispatchQueue = .global(qos: .userInteractive)
     
     // The start frame for the current playback session (used to calculate seek position). Represents the point in the track at which playback began.
     var startFrame: AVAudioFramePosition = 0

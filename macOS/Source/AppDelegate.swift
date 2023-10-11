@@ -29,6 +29,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let fileOpenNotificationWindow_seconds: Double = 3
     
     private lazy var tearDownOpQueue: OperationQueue = OperationQueue(opCount: 2, qos: .userInteractive)
+    private lazy var recurringPersistenceOpQueue: OperationQueue = OperationQueue(opCount: 1, qos: .background)
+    
+    /// Measured in seconds
+    private static let persistenceTaskInterval: Int = 60
+    
+    private lazy var persistenceTaskExecutor = RepeatingTaskExecutor(intervalMillis: Self.persistenceTaskInterval * 1000,
+                                                                     task: savePersistentState,
+                                                                     queue: .global(qos: .background))
     
     private lazy var messenger = Messenger(for: self)
     
@@ -87,6 +95,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Tell app components that the app has finished launching, and pass along any launch parameters (set of files to open)
         messenger.publish(.application_launched, payload: filesToOpen)
+        
+        beginPeriodicPersistence()
     }
     
     private func initialize() {
@@ -177,15 +187,52 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             // Persist app state to disk.
             BlockOperation {
-                persistenceManager.save(_persistentStateOnExit)
+                
+                if self.recurringPersistenceOpQueue.operationCount == 0 {
+                    
+                    // If the recurring persistence task is not running, save state normally.
+                    persistenceManager.save(_persistentStateOnExit)
+                    
+                } else {
+                    
+                    // If the recurring persistence task is running, just wait for it to finish.
+                    self.recurringPersistenceOpQueue.waitUntilAllOperationsAreFinished()
+                }
             },
             
             // Tear down the player and audio engine.
             BlockOperation {
+                
                 player.tearDown()
                 audioGraph.tearDown()
             }
             
         ], waitUntilFinished: true)
+    }
+    
+    func beginPeriodicPersistence() {
+        
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + Double(Self.persistenceTaskInterval)) {
+            self.persistenceTaskExecutor.startOrResume()
+        }
+    }
+    
+    private func savePersistentState() {
+        
+        // TODO: Store Window frames in memory from Window delegates (onMove and onResize) so this can be done totally from a background thread.
+        
+        let _persistentStateOnExit = persistentStateOnExit
+        
+        // Wait a bit for the main thread task to finish.
+        DispatchQueue.global(qos: .background).async {
+            
+            // Make sure app is not tearing down ! If it is, do nothing here.
+            if self.tearDownOpQueue.operationCount == 0 {
+                
+                self.recurringPersistenceOpQueue.addOperation {
+                    persistenceManager.save(_persistentStateOnExit)
+                }
+            }
+        }
     }
 }

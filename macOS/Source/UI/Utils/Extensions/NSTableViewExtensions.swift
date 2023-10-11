@@ -63,6 +63,10 @@ extension NSTableView {
         selectRowIndexes(IndexSet(rows), byExtendingSelection: false)
     }
     
+    func selectAllItems() {
+        selectRowIndexes(allRowIndices, byExtendingSelection: false)
+    }
+    
     func clearSelection() {
         selectRowIndexes(IndexSet([]), byExtendingSelection: false)
     }
@@ -120,59 +124,44 @@ extension NSTableView {
     
     func pageUp() {
         
-        // Determine if the first row currently displayed has been truncated so it is not fully visible
-        let visibleRect = visibleRect
+        guard self.numberOfRows > 3 else {return}
         
-        let firstRowShown = rows(in: visibleRect).lowerBound
-        let firstRowShownRect = rect(ofRow: firstRowShown)
+        // Determine if the last row currently displayed has been truncated so it is not fully visible
+        let visibleRect = self.visibleRect
+        let visibleRows = self.rows(in: visibleRect)
+        let numVisibleRows = Int(visibleRect.height / heightOfARow)
         
-        let truncationAmount =  visibleRect.minY - firstRowShownRect.minY
-        let truncationRatio = truncationAmount / firstRowShownRect.height
+        let firstRowShown = visibleRows.lowerBound
+        let firstRowShownRect = self.rect(ofRow: firstRowShown)
+        let firstRowShownFully = CGRectContainsRect(visibleRect, firstRowShownRect)
         
         // If the first row currently displayed has been truncated more than 10%, show it again in the next page
-        
-        let lastRowToShow = truncationRatio > 0.1 ? firstRowShown : firstRowShown - 1
-        let lastRowToShowRect = rect(ofRow: lastRowToShow)
-        
-        // Calculate the scroll amount, as a function of the last row to show next, using the visible rect origin (i.e. the top of the first row in the playlist) as the stopping point
-        
-        let scrollAmount = min(visibleRect.origin.y, visibleRect.maxY - lastRowToShowRect.maxY)
-        
-        if scrollAmount > 0 {
-            
-            let up = visibleRect.origin.applying(CGAffineTransform.init(translationX: 0, y: -scrollAmount))
-            enclosingScrollView?.contentView.scroll(to: up)
-        }
+
+        let lastRowToShow = firstRowShownFully ? firstRowShown - 1 : firstRowShown
+        let scrollRow = max(lastRowToShow - numVisibleRows + 1, 0)
+
+        scrollRowToVisible(scrollRow)
     }
+    
+    var heightOfARow: CGFloat {self.rect(ofRow: 0).height}
     
     func pageDown() {
         
+        guard self.numberOfRows > 3 else {return}
+        
         // Determine if the last row currently displayed has been truncated so it is not fully visible
-        let visibleRect = visibleRect
-        let visibleRows = rows(in: visibleRect)
+        let visibleRect = self.visibleRect
+        let visibleRows = self.rows(in: visibleRect)
+        let numVisibleRows = Int(visibleRect.height / heightOfARow)
         
         let lastRowShown = visibleRows.lowerBound + visibleRows.length - 1
-        let lastRowShownRect = rect(ofRow: lastRowShown)
+        let lastRowShownRect = self.rect(ofRow: lastRowShown)
+        let lastRowShownFully = CGRectContainsRect(visibleRect, lastRowShownRect)
         
-        let lastRowInPlaylistRect = rect(ofRow: numberOfRows - 1)
+        let firstRowToShow = lastRowShownFully ? lastRowShown + 1 : lastRowShown
+        let scrollRow = min(firstRowToShow + numVisibleRows - 1, self.numberOfRows - 1)
         
-        // If the first row currently displayed has been truncated more than 10%, show it again in the next page
-        
-        let truncationAmount = lastRowShownRect.maxY - visibleRect.maxY
-        let truncationRatio = truncationAmount / lastRowShownRect.height
-        
-        let firstRowToShow = truncationRatio > 0.1 ? lastRowShown : lastRowShown + 1
-        let firstRowToShowRect = rect(ofRow: firstRowToShow)
-        
-        // Calculate the scroll amount, as a function of the first row to show next, using the visible rect maxY (i.e. the bottom of the last row in the playlist) as the stopping point
-
-        let scrollAmount = min(firstRowToShowRect.origin.y - visibleRect.origin.y, lastRowInPlaylistRect.maxY - visibleRect.maxY)
-        
-        if scrollAmount > 0 {
-            
-            let down = visibleRect.origin.applying(CGAffineTransform.init(translationX: 0, y: scrollAmount))
-            enclosingScrollView?.contentView.scroll(to: down)
-        }
+        scrollRowToVisible(scrollRow)
     }
     
     // Scrolls the playlist view to the very top
