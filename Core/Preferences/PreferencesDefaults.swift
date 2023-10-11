@@ -2,12 +2,12 @@
 //  PreferencesDefaults.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2023 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
-import Foundation
+import Cocoa
 
 ///
 /// An enumeration of default values for user preferences.
@@ -28,9 +28,12 @@ struct PreferencesDefaults {
         static let secondarySeekLengthPercentage: Int = 10
         
         static let autoplayOnStartup: Bool = false
-        static let autoplayAfterAddingTracks: Bool = false
         
+        static let autoplayAfterAddingTracks: Bool = false
         static let autoplayAfterAddingOption: AutoplayAfterAddingOptions = .ifNotPlaying
+        
+        static let autoplayAfterOpeningTracks: Bool = true
+        static let autoplayAfterOpeningOption: AutoplayAfterOpeningOptions = .always
         
         static let rememberLastPositionOption: RememberSettingsForTrackOptions = .individualTracks
     }
@@ -72,9 +75,10 @@ struct PreferencesDefaults {
         
         static let showNewTrackInPlaylist: Bool = true
         static let showChaptersList: Bool = true
+        
+        static let dragDropAddMode: PlaylistTracksAddMode = .append
+        static let openWithAddMode: PlaylistTracksAddMode = .append
     }
-    
-#if os(macOS)
     
     ///
     /// An enumeration of default values for UI / view preferences.
@@ -87,8 +91,6 @@ struct PreferencesDefaults {
         static let snapToScreen: Bool = true
         static let windowGap: Float = 0
     }
-    
-#endif
     
     ///
     /// An enumeration of default values for history preferences.

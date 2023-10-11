@@ -77,7 +77,7 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
         if command.type == .beginPlayback && state == .stopped {
             beginPlayback()
             
-        } else if command.type == .playSpecificTrack, let track = command.candidateTrack {
+        } else if command.type.equalsOneOf(.playFirstAddedTrack, .playSpecificTrack), let track = command.candidateTrack {
             play(track, PlaybackParams().withInterruptPlayback(command.interruptPlayback))
         }
     }
