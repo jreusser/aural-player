@@ -4,7 +4,7 @@
 #  Aural-macOS
 #
 #  Created by Kartik Venugopal on 22/09/22.
-#  Copyright © 2022 Kartik Venugopal. All rights reserved.
+#  Copyright © 2023 Kartik Venugopal. All rights reserved.
 
 # Common variables and functions used across the ffmpeg build scripts.
 
