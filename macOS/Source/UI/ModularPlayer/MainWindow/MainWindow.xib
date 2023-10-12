@@ -23,8 +23,8 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window identifier="wid_main" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingIdentifier="main" titleVisibility="hidden" id="7ng-jb-SCK" userLabel="Main Window" customClass="SnappingWindow" customModule="Aural" customModuleProvider="target">
-            <windowStyleMask key="styleMask" texturedBackground="YES" fullSizeContentView="YES"/>
+        <window identifier="main" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingIdentifier="main" titleVisibility="hidden" id="7ng-jb-SCK" userLabel="Main Window" customClass="SnappingWindow" customModule="Aural" customModuleProvider="target">
+            <windowStyleMask key="styleMask" fullSizeContentView="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
             <rect key="contentRect" x="335" y="100" width="480" height="200"/>
@@ -700,7 +700,7 @@
             <rect key="frame" x="0.0" y="0.0" width="220" height="25"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6t-rx-7Nq">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6t-rx-7Nq">
                     <rect key="frame" x="9" y="5" width="156" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="    Window corner radius" id="Al9-jB-rjO">
@@ -709,7 +709,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ycf-6F-230">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ycf-6F-230">
                     <rect key="frame" x="151" y="5" width="39" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="3px" id="LUv-IU-Zr7">
@@ -738,7 +738,7 @@
             <rect key="frame" x="0.0" y="0.0" width="260" height="28"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cGH-xg-46p">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cGH-xg-46p">
                     <rect key="frame" x="46" y="2" width="156" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Window corner radius" id="JF4-09-NXt">
@@ -747,7 +747,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nSP-eL-OR4">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nSP-eL-OR4">
                     <rect key="frame" x="188" y="2" width="39" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="3px" id="4cf-1c-qbL">
@@ -870,7 +870,7 @@ CA
                                     <action selector="clearSelection:" target="qFA-s7-21q" id="Q3A-km-h09"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title=" Invert selection" image="arrow.right.arrow.left" catalog="system" id="Rzy-jG-Ooe" userLabel="Invert selection">
+                            <menuItem title=" Invert selection" image="arrow.left.arrow.right" catalog="system" id="Rzy-jG-Ooe" userLabel="Invert selection">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="invertSelection:" target="qFA-s7-21q" id="57y-b3-N56"/>
@@ -883,7 +883,7 @@ CA
                                     <action selector="moveTracksUpAction:" target="qFA-s7-21q" id="7a2-gk-xbk"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title=" Move selected tracks to top" image="arrow.up.to.line.alt" catalog="system" keyEquivalent="" id="ucz-M7-hlk" userLabel="Move selected tracks to top">
+                            <menuItem title=" Move selected tracks to top" image="arrow.up.to.line" catalog="system" keyEquivalent="" id="ucz-M7-hlk" userLabel="Move selected tracks to top">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES" option="YES"/>
                                 <connections>
                                     <action selector="moveTracksToTopAction:" target="qFA-s7-21q" id="grQ-pi-6gV"/>
@@ -895,7 +895,7 @@ CA
                                     <action selector="moveTracksDownAction:" target="qFA-s7-21q" id="fZt-bE-dKZ"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title=" Move selected tracks to bottom" image="arrow.down.to.line.alt" catalog="system" keyEquivalent="" id="piM-q0-Fre" userLabel="Move selected tracks to bottom">
+                            <menuItem title=" Move selected tracks to bottom" image="arrow.down.to.line" catalog="system" keyEquivalent="" id="piM-q0-Fre" userLabel="Move selected tracks to bottom">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES" option="YES"/>
                                 <connections>
                                     <action selector="moveTracksToBottomAction:" target="qFA-s7-21q" id="548-JS-aSf"/>
@@ -919,13 +919,13 @@ CA
                                     <action selector="pageDownAction:" target="qFA-s7-21q" id="vxY-xK-0Pc"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title=" Scroll to top" image="arrow.up.to.line.alt" catalog="system" keyEquivalent="" id="EtT-GU-7hC">
+                            <menuItem title=" Scroll to top" image="arrow.up.to.line" catalog="system" keyEquivalent="" id="EtT-GU-7hC">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                 <connections>
                                     <action selector="scrollToTopAction:" target="qFA-s7-21q" id="ltI-dP-EDM"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title=" Scroll to bottom" image="arrow.down.to.line.alt" catalog="system" keyEquivalent="" id="cP3-M4-Tzw" userLabel="Scroll to bottom of playlist">
+                            <menuItem title=" Scroll to bottom" image="arrow.down.to.line" catalog="system" keyEquivalent="" id="cP3-M4-Tzw" userLabel="Scroll to bottom of playlist">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                 <connections>
                                     <action selector="scrollToBottomAction:" target="qFA-s7-21q" id="N6K-Cl-9dk"/>
@@ -1968,12 +1968,12 @@ CA
         <image name="WindowLayout-VerticalPlayerAndPlaylist" width="30" height="20"/>
         <image name="WindowLayout-VerticalStack" width="30" height="20"/>
         <image name="arrow.down" catalog="system" width="13" height="14"/>
-        <image name="arrow.down.to.line.alt" catalog="system" width="13" height="14"/>
-        <image name="arrow.right.arrow.left" catalog="system" width="16" height="17"/>
+        <image name="arrow.down.to.line" catalog="system" width="13" height="16"/>
+        <image name="arrow.left.arrow.right" catalog="system" width="16" height="17"/>
         <image name="arrow.right.doc.on.clipboard" catalog="system" width="16" height="18"/>
         <image name="arrow.up" catalog="system" width="13" height="14"/>
         <image name="arrow.up.arrow.down" catalog="system" width="18" height="15"/>
-        <image name="arrow.up.to.line.alt" catalog="system" width="13" height="14"/>
+        <image name="arrow.up.to.line" catalog="system" width="13" height="16"/>
         <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="minus" catalog="system" width="14" height="4"/>
         <image name="music.note.list" catalog="system" width="16" height="15"/>

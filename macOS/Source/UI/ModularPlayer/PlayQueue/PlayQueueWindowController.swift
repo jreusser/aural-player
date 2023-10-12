@@ -56,6 +56,8 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
         
         super.windowDidLoad()
         
+        theWindow.isMovableByWindowBackground = true
+        
         let compactView = tableViewController.view
         let prettyView = listViewController.view
         

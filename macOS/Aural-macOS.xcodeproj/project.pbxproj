@@ -152,6 +152,9 @@
 		3E498E2B284D525900BF4157 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E498E2A284D525900BF4157 /* System.swift */; };
 		3E4A90FE27F79AFA003A6C80 /* WindowID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A90FD27F79AFA003A6C80 /* WindowID.swift */; };
 		3E4A90FF27F79AFA003A6C80 /* WindowID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A90FD27F79AFA003A6C80 /* WindowID.swift */; };
+		3E4C763B2AD7713400DDED45 /* AppSetupWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E4C763A2AD7713400DDED45 /* AppSetupWindow.xib */; };
+		3E4C763D2AD774DA00DDED45 /* AppSetupWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4C763C2AD774DA00DDED45 /* AppSetupWindowController.swift */; };
+		3E4C763F2AD7797600DDED45 /* AppSetupNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4C763E2AD7797600DDED45 /* AppSetupNotifications.swift */; };
 		3E4CC362261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */; };
 		3E50D23227BADAAF0056F63A /* AuralSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50D23127BADAAF0056F63A /* AuralSlider.swift */; };
 		3E51CCF0285E8986002CBEF2 /* UnifiedPlayerSidebar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E51CCEF285E8986002CBEF2 /* UnifiedPlayerSidebar.xib */; };
@@ -1701,6 +1704,9 @@
 		3E498E27284D2E4800BF4157 /* TuneBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneBrowserViewController.swift; sourceTree = "<group>"; };
 		3E498E2A284D525900BF4157 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		3E4A90FD27F79AFA003A6C80 /* WindowID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowID.swift; sourceTree = "<group>"; };
+		3E4C763A2AD7713400DDED45 /* AppSetupWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSetupWindow.xib; sourceTree = "<group>"; };
+		3E4C763C2AD774DA00DDED45 /* AppSetupWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetupWindowController.swift; sourceTree = "<group>"; };
+		3E4C763E2AD7797600DDED45 /* AppSetupNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetupNotifications.swift; sourceTree = "<group>"; };
 		3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterUnitViewController+AUTableViewDelegate.swift"; sourceTree = "<group>"; };
 		3E50D23127BADAAF0056F63A /* AuralSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuralSlider.swift; sourceTree = "<group>"; };
 		3E51CCEF285E8986002CBEF2 /* UnifiedPlayerSidebar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnifiedPlayerSidebar.xib; sourceTree = "<group>"; };
@@ -3164,6 +3170,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3E4C76392AD7701300DDED45 /* AppSetup */ = {
+			isa = PBXGroup;
+			children = (
+				3E4C763A2AD7713400DDED45 /* AppSetupWindow.xib */,
+				3E4C763C2AD774DA00DDED45 /* AppSetupWindowController.swift */,
+			);
+			path = AppSetup;
+			sourceTree = "<group>";
+		};
 		3E51CCEE285E896B002CBEF2 /* Sidebar */ = {
 			isa = PBXGroup;
 			children = (
@@ -3336,6 +3351,7 @@
 		3E6C0F1A25CEB98500BF0D07 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3E4C76392AD7701300DDED45 /* AppSetup */,
 				3E6C0FE125CEB98600BF0D07 /* Application.xib */,
 				3E9E58FC25DB6B150064EB5F /* AppModeManagement */,
 				3E6C0FDD25CEB98600BF0D07 /* MenuControllers */,
@@ -5733,6 +5749,7 @@
 				3EFE376427864895006F8B8C /* ApplicationNotifications.swift */,
 				3EFE376527864895006F8B8C /* HistoryNotifications.swift */,
 				3EFE376627864895006F8B8C /* WindowManagerNotifications.swift */,
+				3E4C763E2AD7797600DDED45 /* AppSetupNotifications.swift */,
 			);
 			path = NotificationNames;
 			sourceTree = "<group>";
@@ -5923,8 +5940,8 @@
 				3E6C0EBB25CEB3ED00BF0D07 /* Sources */,
 				3E6C0EBC25CEB3ED00BF0D07 /* Frameworks */,
 				3E6C0EBD25CEB3ED00BF0D07 /* Resources */,
-				3EDB340725E8AEB3004DF7DE /* Embed Libraries */,
 				3EA6C6722AD6AFFA00B75166 /* CopyFiles */,
+				3EDB340725E8AEB3004DF7DE /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -6039,6 +6056,7 @@
 				3EAF96F228DCE1B6008561A7 /* AlegreyaSansSC-Regular.ttf in Resources */,
 				3E6C12F725CEBE8F00BF0D07 /* InfoPopup.xib in Resources */,
 				3EE2AD042A1FF71300D7BA7D /* AUParameterControl.xib in Resources */,
+				3E4C763B2AD7713400DDED45 /* AppSetupWindow.xib in Resources */,
 				3E6C12C825CEBE6700BF0D07 /* ReverbUnit.xib in Resources */,
 				3E045D06281322450069DEFE /* TrackInfoWindow.xib in Resources */,
 				3ED8E7502814A312002E313F /* GeneralColorScheme.xib in Resources */,
@@ -6177,6 +6195,7 @@
 				3E6C123C25CEBDF400BF0D07 /* ArtistsPlaylistSortViewController.swift in Sources */,
 				3E6C124125CEBDF400BF0D07 /* ArtistsPlaylistViewController.swift in Sources */,
 				3E36BD3D26A6902F00B6E28B /* AudioTrackInfoViewController.swift in Sources */,
+				3E4C763D2AD774DA00DDED45 /* AppSetupWindowController.swift in Sources */,
 				3EFE389F27864896006F8B8C /* AUExtensions.swift in Sources */,
 				3E6C131425CEBE8F00BF0D07 /* AudioTrackInfoViewDelegate.swift in Sources */,
 				3EFE399127864897006F8B8C /* PlaybackLoop.swift in Sources */,
@@ -6307,6 +6326,7 @@
 				3EFFEB8327D9CEF8006A333B /* KVOTokens.swift in Sources */,
 				3EFE3A1327864898006F8B8C /* BookmarksNotifications.swift in Sources */,
 				3EFE3A7327864898006F8B8C /* CommonAVAssetParser.swift in Sources */,
+				3E4C763F2AD7797600DDED45 /* AppSetupNotifications.swift in Sources */,
 				3EB42027285A5E9E007159CC /* NowPlayingViewController.swift in Sources */,
 				3EFE3A0F27864898006F8B8C /* FavoritesListNotifications.swift in Sources */,
 				3EFE382727864896006F8B8C /* LRUArray.swift in Sources */,

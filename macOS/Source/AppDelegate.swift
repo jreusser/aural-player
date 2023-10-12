@@ -40,6 +40,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private lazy var messenger = Messenger(for: self)
     
+    private lazy var appSetupWindowController: AppSetupWindowController = .init()
+    
     override init() {
         
         super.init()
@@ -84,11 +86,43 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //        }
         
         initialize()
-        appModeManager.presentApp()
+        
+        print("App launched for the first time ? \(!persistenceManager.persistentStateFileExists)")
+        
+//        if !persistenceManager.persistentStateFileExists {
+        
+            messenger.subscribe(to: .appSetup_completed, handler: postLaunch)
+            appSetupWindowController.showWindow(self)
+//
+//        } else {
+//            postLaunch()
+//        }
         
         // TODO: Put 'startObserving()' in some kind of protocol ???
         colorSchemesManager.startObserving()
         fontSchemesManager.startObserving()
+        
+//        let root = URL(fileURLWithPath: "/Users/kven/Music")
+//        var time = measureExecutionTime {
+//            checkDir(root)
+//        }
+//        
+//        print("Took \(time) msec to analyze Music dir. Counted \(ctr) supported files.")
+//        
+//        time = measureExecutionTime {
+//            
+//            readDir(root)
+//            q.waitUntilAllOperationsAreFinished()
+//        }
+//        
+//        print("Took \(time) msec to read all file metadata.")
+//        
+//        try? str.write(to: root.appendingPathComponent("all_meta_\(Date().timeIntervalSince1970).txt"), atomically: true, encoding: .utf8)
+    }
+    
+    private func postLaunch() {
+        
+        appModeManager.presentApp()
         
         // Update the appLaunched flag
         appLaunched = true
@@ -98,6 +132,49 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         beginPeriodicPersistence()
     }
+    
+//    var ctr: Int = 0
+//    let exts = SupportedTypes.allAudioExtensions + SupportedTypes.playlistExtensions
+//    private func checkDir(_ dir: URL) {
+//        
+//        for child in dir.children ?? [] {
+//            
+////            if child.isDirectory {
+////                checkDir(child)
+//                
+//            if !child.isDirectory, exts.contains(child.pathExtension) {
+//                ctr.increment()
+//            }
+//        }
+//    }
+//    
+//    var str: String = ""
+//    
+//    let q = OperationQueue(opCount: 6, qos: .background)
+//    private func readDir(_ dir: URL) {
+//        
+//        for child in dir.children ?? [] {
+//            
+//            if child.isDirectory {
+//                readDir(child)
+//                
+//            } else if SupportedTypes.allAudioExtensions.contains(child.pathExtension) {
+//                
+//                q.addOperation {
+//                    
+//                    let meta = try? fileReader.getPrimaryMetadata(for: child)
+//                    
+//                    let title = meta?.title ?? "<None>"
+//                    let artist = meta?.artist ?? "<None>"
+//                    let album = meta?.album ?? "<None>"
+//                    let genre = meta?.genre ?? "<None>"
+//                    let year = meta?.year ?? -1
+//                    
+//                    self.str += "\(title) | \(artist) | \(album) | \(genre) | \(year) \n"
+//                }
+//            }
+//        }
+//    }
     
     private func initialize() {
         

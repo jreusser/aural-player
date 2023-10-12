@@ -15,6 +15,10 @@ import Foundation
 class PersistenceManager {
     
     let persistentStateFile: URL
+    
+    var persistentStateFileExists: Bool {
+        persistentStateFile.exists
+    }
 
     private let decoder: JSONDecoder = JSONDecoder()
     

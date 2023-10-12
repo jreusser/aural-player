@@ -49,6 +49,8 @@ class MainWindowController: NSWindowController {
     // One-time setup
     override func windowDidLoad() {
         
+        theWindow.isMovableByWindowBackground = true
+        
         // TODO: Clean this up
         theWindow.setIsVisible(false)
         initWindow()

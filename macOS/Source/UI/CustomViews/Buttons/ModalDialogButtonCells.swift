@@ -24,7 +24,7 @@ class ModalDialogButtonCell: NSButtonCell {
     var textColor: NSColor {systemColorScheme.primaryTextColor}
 //    var textColor_disabled: NSColor {systemColorScheme.primaryTextColor}
     
-    var textFont: NSFont {systemFontScheme.effectsSecondaryFont}
+    var textFont: NSFont {.modalDialogButtonFont}
     
     var yOffset: CGFloat {2}
     
