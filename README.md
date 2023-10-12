@@ -4,7 +4,7 @@
 
 ## The v4.0 goals
 
-As of May 21, 2022, Aural Player version 4.0 is in active development, and aims to take the app to the next level, bringing improvements such as:
+As of Oct 12, 2023, Aural Player version 4.0 is in active development, and aims to take the app to the next level, bringing improvements such as:
 
 - A new "Unified" (single window) app presentation mode. NOTE - The existing modular UI mode will remain.
 - A new full-fledged library for music organization that includes a convenient file system browser and lets the user create and save multiple playlists.
