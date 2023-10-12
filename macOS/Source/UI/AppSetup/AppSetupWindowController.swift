@@ -2,7 +2,7 @@
 //  AppSetupWindowController.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2023 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -14,9 +14,9 @@ class AppSetupWindowController: NSWindowController {
     
     override var windowNibName: String? {"AppSetupWindow"}
     
-//    @IBOutlet weak var tabView: AuralTabView!
+    @IBOutlet weak var tabView: NSTabView!
     
-//    private let playlistPrefsView: PreferencesViewProtocol = PlaylistPreferencesViewController()
+    private let presentationModeSetupViewController: PresentationModeSetupViewController = .init()
 //    private let playbackPrefsView: PreferencesViewProtocol = PlaybackPreferencesViewController()
 //    private let soundPrefsView: PreferencesViewProtocol = SoundPreferencesViewController()
 //    private let viewPrefsView: PreferencesViewProtocol = ViewPreferencesViewController()
@@ -36,6 +36,7 @@ class AppSetupWindowController: NSWindowController {
         
 //        subViews = [playlistPrefsView, playbackPrefsView, soundPrefsView, viewPrefsView, historyPrefsView, controlsPrefsView, metadataPrefsView]
 //        tabView.addViewsForTabs(subViews.map {$0.preferencesView})
+        tabView.tabViewItem(at: 0).view?.addSubview(presentationModeSetupViewController.view)
     }
     
     @IBAction func skipSetupAction(_ sender: Any) {

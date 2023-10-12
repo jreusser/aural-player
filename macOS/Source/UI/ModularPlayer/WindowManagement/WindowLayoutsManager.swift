@@ -77,7 +77,7 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     }
     
     var defaultLayout: WindowLayout {
-        systemDefinedObject(named: WindowLayoutPresets.verticalFullStack.name)!
+        systemDefinedObject(named: WindowLayoutPresets.defaultLayout.name)!
     }
     
     func recomputeSystemDefinedLayouts() {

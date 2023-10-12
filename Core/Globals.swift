@@ -12,6 +12,7 @@
 
 import AppKit
 let appVersion: String = NSApp.appVersion
+let appSetup: AppSetup = .shared
 
 #endif
 

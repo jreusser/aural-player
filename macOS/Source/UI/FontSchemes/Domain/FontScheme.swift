@@ -60,6 +60,8 @@ class FontScheme: NSObject, UserManagedObject {
         self.name = persistentState?.name ?? ""
         self.systemDefined = systemDefined
         
+        let defaultSchemePreset = FontSchemePreset.defaultScheme
+        
         self.captionFont = FontSchemePreset.standard.captionFont
         
         self.playerPrimaryFont = FontSchemePreset.standard.primaryFont
@@ -78,11 +80,17 @@ class FontScheme: NSObject, UserManagedObject {
         self.playlist = PlaylistFontScheme(persistentState)
         self.effects = EffectsFontScheme(persistentState)
         
-        if let captionFontName = persistentState?.headingFontName, let captionSize = persistentState?.captionSize,
-            let captionFont = NSFont(name: captionFontName, size: captionSize) {
+        func fontFromNameAndSize(name: String?, size: CGFloat?) -> NSFont? {
             
-            self.captionFont = captionFont
+            if let captionFontName = persistentState?.headingFontName, let captionSize = persistentState?.captionSize {
+                return NSFont(name: captionFontName, size: captionSize)
+            }
+            
+            return nil
         }
+        
+        self.captionFont = fontFromNameAndSize(name: persistentState?.headingFontName, size: persistentState?.captionSize) ?? defaultSchemePreset.captionFont
+//        self.playerPrimaryFont = fontFromNameAndSize(name: persistentState?.textFontName, size: persistentState?.playerPrimarySize) ?? defaultSchemePreset.primaryFont
         
         guard let textFontName = persistentState?.textFontName else {
             return

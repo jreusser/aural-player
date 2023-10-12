@@ -28,6 +28,8 @@ enum WindowLayoutPresets: String, CaseIterable {
     case verticalPlayerAndPlayQueue
     case horizontalPlayerAndPlayQueue
     
+    static let defaultLayout: WindowLayoutPresets = .verticalFullStack
+    
     static let minPlayQueueWidth: CGFloat = 480
     
     // Main window size (never changes)
@@ -59,17 +61,7 @@ enum WindowLayoutPresets: String, CaseIterable {
     }
     
     var showEffects: Bool {
-        
-        switch self {
-        
-        case .compactCornered, .verticalPlayerAndPlayQueue, .horizontalPlayerAndPlayQueue:
-            
-            return false
-            
-        default:
-            
-            return true
-        }
+        !self.equalsOneOf(.compactCornered, .verticalPlayerAndPlayQueue, .horizontalPlayerAndPlayQueue)
     }
     
     func layout(gap: CGFloat) -> WindowLayout {

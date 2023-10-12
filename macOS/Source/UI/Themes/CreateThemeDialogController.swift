@@ -78,7 +78,7 @@ class CreateThemeDialogController: SingletonWindowController, StringInputReceive
             fontSchemesMenu.item(at: index)?.showIf(showDescriptors)
         }
         
-        btnFontSchemesMenu.selectItem(withTitle: FontSchemePreset.standard.name)
+        btnFontSchemesMenu.selectItem(withTitle: FontSchemePreset.defaultScheme.name)
     }
     
     private func initColorSchemesMenu() {
