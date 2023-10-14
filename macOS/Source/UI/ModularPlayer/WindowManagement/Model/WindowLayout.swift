@@ -17,6 +17,24 @@ class WindowLayout {
     var mainWindowFrame: NSRect
     var displayedWindows: [LayoutWindow]
     
+    var effectsWindowFrame: NSRect? {
+        
+        if let effectsWindow = displayedWindows.first(where: { $0.id == .effects }) {
+            return effectsWindow.frame
+        }
+        
+        return nil
+    }
+    
+    var playQueueWindowFrame: NSRect? {
+        
+        if let playQueueWindow = displayedWindows.first(where: { $0.id == .playQueue }) {
+            return playQueueWindow.frame
+        }
+        
+        return nil
+    }
+    
     init(name: String, systemDefined: Bool, mainWindowFrame: NSRect, displayedWindows: [LayoutWindow]) {
         
         self.name = name

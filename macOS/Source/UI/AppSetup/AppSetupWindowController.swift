@@ -16,13 +16,15 @@ class AppSetupWindowController: NSWindowController {
     
     @IBOutlet weak var tabView: NSTabView!
     
+    @IBOutlet weak var btnNext: NSButton!
+    @IBOutlet weak var btnPrevious: NSButton!
+    
+    private var indexOfLastTabViewItem: Int {
+        tabView.numberOfTabViewItems - 1
+    }
+    
     private let presentationModeSetupViewController: PresentationModeSetupViewController = .init()
-//    private let playbackPrefsView: PreferencesViewProtocol = PlaybackPreferencesViewController()
-//    private let soundPrefsView: PreferencesViewProtocol = SoundPreferencesViewController()
-//    private let viewPrefsView: PreferencesViewProtocol = ViewPreferencesViewController()
-//    private let historyPrefsView: PreferencesViewProtocol = HistoryPreferencesViewController()
-//    private let controlsPrefsView: PreferencesViewProtocol = ControlsPreferencesViewController()
-//    private let metadataPrefsView: PreferencesViewProtocol = MetadataPreferencesViewController()
+    private let windowLayoutSetupViewController: WindowLayoutSetupViewController = .init()
     
 //    private var subViews: [PreferencesViewProtocol] = []
     private lazy var messenger: Messenger = Messenger(for: self)
@@ -34,9 +36,41 @@ class AppSetupWindowController: NSWindowController {
         window?.isMovableByWindowBackground = true
         window?.center()
         
-//        subViews = [playlistPrefsView, playbackPrefsView, soundPrefsView, viewPrefsView, historyPrefsView, controlsPrefsView, metadataPrefsView]
-//        tabView.addViewsForTabs(subViews.map {$0.preferencesView})
         tabView.tabViewItem(at: 0).view?.addSubview(presentationModeSetupViewController.view)
+        tabView.tabViewItem(at: 1).view?.addSubview(windowLayoutSetupViewController.view)
+    }
+    
+    @IBAction func nextStepAction(_ sender: Any) {
+        
+        if tabView.selectedIndex == indexOfLastTabViewItem {
+            
+            // Last step, done with setup
+            close()
+            messenger.publish(.appSetup_completed, payload: appSetup)
+            
+        } else {
+            
+            tabView.selectNextTabViewItem(self)
+            
+            if tabView.selectedIndex == indexOfLastTabViewItem {
+                btnNext.title = "Done"
+            }
+            
+            btnPrevious.enable()
+        }
+    }
+    
+    @IBAction func previousStepAction(_ sender: Any) {
+        
+        guard tabView.selectedIndex > 0 else {return}
+        
+        tabView.selectPreviousTabViewItem(self)
+        
+        if tabView.selectedIndex == 0 {
+            btnPrevious.disable()
+        }
+        
+        btnNext.title = "Next"
     }
     
     @IBAction func skipSetupAction(_ sender: Any) {

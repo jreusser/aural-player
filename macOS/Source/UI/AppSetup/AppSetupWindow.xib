@@ -8,6 +8,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AppSetupWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="btnNext" destination="wBi-Mf-Zd1" id="Qla-hm-HVQ"/>
+                <outlet property="btnPrevious" destination="rMF-ho-NPk" id="DKe-eq-Xc2"/>
                 <outlet property="tabView" destination="9xf-4j-eJW" id="WEW-Uy-gVA"/>
                 <outlet property="window" destination="ybt-jW-z2M" id="kd9-mF-Q5q"/>
             </connections>
@@ -138,6 +140,9 @@
 DQ
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="nextStepAction:" target="-2" id="5VY-qe-GNZ"/>
+                        </connections>
                     </button>
                     <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YSm-LZ-KtU" userLabel="Skip setup Button">
                         <rect key="frame" x="5" y="5" width="100" height="32"/>
@@ -156,10 +161,13 @@ Gw
                     <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rMF-ho-NPk" userLabel="Previous Button">
                         <rect key="frame" x="566" y="5" width="82" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Previous" bezelStyle="rounded" alignment="center" refusesFirstResponder="YES" state="on" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="qMM-Wy-awE">
+                        <buttonCell key="cell" type="push" title="Previous" bezelStyle="rounded" alignment="center" enabled="NO" refusesFirstResponder="YES" state="on" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="qMM-Wy-awE">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="previousStepAction:" target="-2" id="EQT-S4-qBW"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>

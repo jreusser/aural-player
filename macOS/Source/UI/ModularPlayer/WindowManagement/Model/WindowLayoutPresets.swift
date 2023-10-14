@@ -10,7 +10,7 @@
 import Cocoa
 
 fileprivate var screenVisibleFrame: NSRect {
-    return NSScreen.main!.visibleFrame
+    NSScreen.main!.visibleFrame
 }
 
 fileprivate let playQueueHeight_verticalFullStack: CGFloat = 340
@@ -19,8 +19,8 @@ fileprivate let playQueueHeight_bigBottomPlayQueue: CGFloat = 500
 
 enum WindowLayoutPresets: String, CaseIterable {
     
-    case verticalFullStack
-    case horizontalFullStack
+    case verticalStack
+    case horizontalStack
     case compactCornered
     case bigBottomPlayQueue
     case bigLeftPlayQueue
@@ -28,7 +28,7 @@ enum WindowLayoutPresets: String, CaseIterable {
     case verticalPlayerAndPlayQueue
     case horizontalPlayerAndPlayQueue
     
-    static let defaultLayout: WindowLayoutPresets = .verticalFullStack
+    static let defaultLayout: WindowLayoutPresets = .verticalStack
     
     static let minPlayQueueWidth: CGFloat = 480
     
@@ -41,15 +41,15 @@ enum WindowLayoutPresets: String, CaseIterable {
     static let effectsWindowHeight: CGFloat = 200
     
     // Converts a user-friendly display name to an instance of PitchShiftPresets
-    static func fromDisplayName(_ displayName: String) -> WindowLayoutPresets {
-        return WindowLayoutPresets(rawValue: displayName.camelCased()) ?? .verticalFullStack
+    static func fromDisplayName(_ displayName: String) -> WindowLayoutPresets? {
+        WindowLayoutPresets(rawValue: displayName.camelCased())
     }
     
     // TODO: Should also check the screen and recompute when the screen changes
     // Recomputes the layout (useful when the window gap preference changes)
     static func recompute(layout: WindowLayout, gap: CGFloat) {
         
-        let preset = WindowLayoutPresets.fromDisplayName(layout.name)
+        guard let preset = WindowLayoutPresets.fromDisplayName(layout.name) else {return}
         let recomputedLayout = preset.layout(gap: gap)
         
         layout.mainWindowFrame = recomputedLayout.mainWindowFrame
@@ -58,6 +58,36 @@ enum WindowLayoutPresets: String, CaseIterable {
     
     var name: String {
         rawValue.splitAsCamelCaseWord(capitalizeEachWord: false)
+    }
+    
+    var description: String {
+        
+        switch self {
+            
+        case .verticalStack:
+            return "A vertical arrangement of all 3 core components:\nPlayer, Effects, and Play Queue"
+            
+        case .horizontalStack:
+            return "A horizontal arrangement of all 3 core components:\nPlayer, Effects, and Play Queue"
+            
+        case .compactCornered:
+            return "Only the Player positioned at the top-left corner"
+            
+        case .bigBottomPlayQueue:
+            return "The Play Queue positioned below a horizontal arrangement of the Player and Effects"
+            
+        case .bigRightPlayQueue:
+            return "The Play Queue positioned to the right of a vertical arrangement of the Player and Effects"
+            
+        case .bigLeftPlayQueue:
+            return "The Play Queue positioned to the left of a vertical arrangement of the Player and Effects"
+            
+        case .verticalPlayerAndPlayQueue:
+            return "A vertical arrangement of the Player and Play Queue"
+            
+        case .horizontalPlayerAndPlayQueue:
+            return "A horizontal arrangement of the Player and Play Queue"
+        }
     }
     
     var showEffects: Bool {
@@ -85,7 +115,7 @@ enum WindowLayoutPresets: String, CaseIterable {
             
             mainWindowOrigin = NSMakePoint(visibleFrame.minX, visibleFrame.maxY - Self.mainWindowHeight)
             
-        case .verticalFullStack:
+        case .verticalStack:
             
             playQueueHeight = min(playQueueHeight_verticalFullStack,
                                  visibleFrame.height - (Self.mainWindowHeight + Self.effectsWindowHeight + twoGaps))
@@ -103,7 +133,7 @@ enum WindowLayoutPresets: String, CaseIterable {
             
             playQueueWindowOrigin = NSMakePoint(mainWindowOrigin.x, effectsWindowOrigin!.y - gap - playQueueHeight)
             
-        case .horizontalFullStack:
+        case .horizontalStack:
             
             // Sometimes, xPadding is negative, never go to the left of minX
             playQueueWidth = max(visibleFrame.width - (Self.mainWindowWidth + Self.effectsWindowWidth + twoGaps), Self.minPlayQueueWidth)
