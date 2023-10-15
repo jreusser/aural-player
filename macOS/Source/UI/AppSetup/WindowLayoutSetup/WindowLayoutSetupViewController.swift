@@ -2,7 +2,7 @@
 //  WindowLayoutSetupViewController.swift
 //  Aural
 //
-//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//  Copyright © 2023 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -21,6 +21,8 @@ class WindowLayoutSetupViewController: NSViewController {
     
     override func viewDidLoad() {
         
+        super.viewDidLoad()
+        
         let defaultLayoutName = WindowLayoutPresets.defaultLayout.name
         
         lblName.stringValue = defaultLayoutName
@@ -32,10 +34,10 @@ class WindowLayoutSetupViewController: NSViewController {
     
     @IBAction func layoutSelectionAction(_ sender: Any) {
         
-        guard let selLayoutTitle = btnLayout.titleOfSelectedItem, 
-                let preset = WindowLayoutPresets.fromDisplayName(selLayoutTitle) else {return}
+        guard let selLayoutName = btnLayout.titleOfSelectedItem,
+              let preset = WindowLayoutPresets.fromDisplayName(selLayoutName) else {return}
         
-        lblName.stringValue = selLayoutTitle
+        lblName.stringValue = selLayoutName
         lblDescription.stringValue = preset.description
         
         previewView.drawPreviewForPreset(preset)

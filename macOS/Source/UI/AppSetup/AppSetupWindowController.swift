@@ -16,6 +16,13 @@ class AppSetupWindowController: NSWindowController {
     
     @IBOutlet weak var tabView: NSTabView!
     
+    @IBOutlet weak var btnPresentationMode: NSButton!
+    @IBOutlet weak var btnWindowLayout: NSButton!
+    @IBOutlet weak var btnColorScheme: NSButton!
+    @IBOutlet weak var btnFontScheme: NSButton!
+    @IBOutlet weak var btnLibraryHome: NSButton!
+    private lazy var tabButtons: [NSButton] = [btnPresentationMode, btnWindowLayout, btnColorScheme, btnFontScheme, btnLibraryHome]
+    
     @IBOutlet weak var btnNext: NSButton!
     @IBOutlet weak var btnPrevious: NSButton!
     
@@ -25,6 +32,7 @@ class AppSetupWindowController: NSWindowController {
     
     private let presentationModeSetupViewController: PresentationModeSetupViewController = .init()
     private let windowLayoutSetupViewController: WindowLayoutSetupViewController = .init()
+    private let colorSchemeSetupViewController: ColorSchemeSetupViewController = .init()
     
 //    private var subViews: [PreferencesViewProtocol] = []
     private lazy var messenger: Messenger = Messenger(for: self)
@@ -36,8 +44,9 @@ class AppSetupWindowController: NSWindowController {
         window?.isMovableByWindowBackground = true
         window?.center()
         
-        tabView.tabViewItem(at: 0).view?.addSubview(presentationModeSetupViewController.view)
-        tabView.tabViewItem(at: 1).view?.addSubview(windowLayoutSetupViewController.view)
+        for (index, controller) in [presentationModeSetupViewController, windowLayoutSetupViewController, colorSchemeSetupViewController].enumerated() {
+            tabView.tabViewItem(at: index).view?.addSubview(controller.view)
+        }
     }
     
     @IBAction func nextStepAction(_ sender: Any) {
@@ -58,6 +67,13 @@ class AppSetupWindowController: NSWindowController {
             
             btnPrevious.enable()
         }
+        
+        if tabView.selectedIndex > 0 {
+            
+            for index in 0..<tabView.selectedIndex {
+                tabButtons[index].contentTintColor = .systemBlue
+            }
+        }
     }
     
     @IBAction func previousStepAction(_ sender: Any) {
@@ -71,6 +87,13 @@ class AppSetupWindowController: NSWindowController {
         }
         
         btnNext.title = "Next"
+        
+        if tabView.selectedIndex < indexOfLastTabViewItem {
+            
+            for index in tabView.selectedIndex..<indexOfLastTabViewItem {
+                tabButtons[index].contentTintColor = .selectedTextColor
+            }
+        }
     }
     
     @IBAction func skipSetupAction(_ sender: Any) {

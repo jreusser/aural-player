@@ -38,7 +38,7 @@ enum ColorSchemePreset: String, CaseIterable {
     
     // The preset to be used as the default system scheme (eg. when a user loads the app for the very first time)
     // or when some color values in a scheme are missing.
-    static let defaultScheme: ColorSchemePreset = .blackAttack
+    static let defaultScheme: ColorSchemePreset = .lava
     
     // Maps a display name to a preset.
     static func presetByName(_ name: String) -> ColorSchemePreset? {

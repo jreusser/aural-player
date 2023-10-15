@@ -8,8 +8,13 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AppSetupWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="btnColorScheme" destination="eoz-q2-14f" id="e09-U0-exg"/>
+                <outlet property="btnFontScheme" destination="54X-AJ-OrQ" id="SYs-vg-kLB"/>
+                <outlet property="btnLibraryHome" destination="zTR-oI-Y87" id="LZc-Bl-5e5"/>
                 <outlet property="btnNext" destination="wBi-Mf-Zd1" id="Qla-hm-HVQ"/>
+                <outlet property="btnPresentationMode" destination="a1z-Ib-Etm" id="1yN-BV-fMP"/>
                 <outlet property="btnPrevious" destination="rMF-ho-NPk" id="DKe-eq-Xc2"/>
+                <outlet property="btnWindowLayout" destination="xnJ-6C-VuZ" id="ZFu-7L-3Gk"/>
                 <outlet property="tabView" destination="9xf-4j-eJW" id="WEW-Uy-gVA"/>
                 <outlet property="window" destination="ybt-jW-z2M" id="kd9-mF-Q5q"/>
             </connections>
@@ -38,7 +43,7 @@
                     <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a1z-Ib-Etm" userLabel="Presentation Mode Tab Button">
                         <rect key="frame" x="11" y="535" width="149" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" title="Presentation Mode    &gt;" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="SPv-gi-9F2" customClass="ModalDialogTabButtonCell" customModule="Aural" customModuleProvider="target">
+                        <buttonCell key="cell" type="square" title="Presentation Mode    &gt;" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="SPv-gi-9F2">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="Play-Regular"/>
                         </buttonCell>
@@ -46,7 +51,7 @@
                     <button focusRingType="none" tag="1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xnJ-6C-VuZ" userLabel="Window Layout Tab Button">
                         <rect key="frame" x="170" y="535" width="132" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" title="Window Layout    &gt;" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="VyV-YV-JEU" customClass="ModalDialogTabButtonCell" customModule="Aural" customModuleProvider="target">
+                        <buttonCell key="cell" type="square" title="Window Layout    &gt;" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="VyV-YV-JEU">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="Play-Regular"/>
                         </buttonCell>
@@ -54,7 +59,7 @@
                     <button focusRingType="none" tag="4" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eoz-q2-14f" userLabel="Color Scheme tab button">
                         <rect key="frame" x="306" y="535" width="116" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" title="Color Scheme    &gt;" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" tag="4" imageScaling="proportionallyDown" inset="2" id="6r1-Mj-ccy" customClass="ModalDialogTabButtonCell" customModule="Aural" customModuleProvider="target">
+                        <buttonCell key="cell" type="square" title="Color Scheme    &gt;" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" tag="4" imageScaling="proportionallyDown" inset="2" id="6r1-Mj-ccy">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="Play-Regular"/>
                         </buttonCell>
@@ -62,7 +67,7 @@
                     <button focusRingType="none" tag="5" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="54X-AJ-OrQ" userLabel="Font Scheme tab button">
                         <rect key="frame" x="427" y="535" width="147" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" title="Font Scheme    &gt;" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" tag="4" imageScaling="proportionallyDown" inset="2" id="jIo-8B-UT4" customClass="ModalDialogTabButtonCell" customModule="Aural" customModuleProvider="target">
+                        <buttonCell key="cell" type="square" title="Font Scheme    &gt;" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" tag="4" imageScaling="proportionallyDown" inset="2" id="jIo-8B-UT4">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="Play-Regular"/>
                         </buttonCell>
@@ -70,7 +75,7 @@
                     <button focusRingType="none" tag="5" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zTR-oI-Y87" userLabel="Library Home tab button">
                         <rect key="frame" x="550" y="535" width="137" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" title="Library Home" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" tag="4" imageScaling="proportionallyDown" inset="2" id="x6S-dT-yYp" customClass="ModalDialogTabButtonCell" customModule="Aural" customModuleProvider="target">
+                        <buttonCell key="cell" type="square" title="Library Home" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" tag="4" imageScaling="proportionallyDown" inset="2" id="x6S-dT-yYp">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="Play-Regular"/>
                         </buttonCell>
