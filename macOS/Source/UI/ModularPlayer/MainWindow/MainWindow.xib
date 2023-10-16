@@ -330,7 +330,7 @@
                                                     <menu key="submenu" title="Color scheme" showsStateColumn="NO" id="7oK-Kd-rX4">
                                                         <items>
                                                             <menuItem isSeparatorItem="YES" id="GtB-hU-uN6"/>
-                                                            <menuItem title="Lava (default)" indentationLevel="1" id="sNL-Wk-hye">
+                                                            <menuItem title="Lava" indentationLevel="1" id="sNL-Wk-hye">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
                                                                     <action selector="applyPresetAction:" target="df9-sN-idv" id="gtc-ve-7oa"/>
@@ -410,13 +410,13 @@
                                                     <menu key="submenu" title="Window layout" id="yiL-Aw-PVn">
                                                         <items>
                                                             <menuItem isSeparatorItem="YES" id="tGa-6w-I86"/>
-                                                            <menuItem title="Vertical full stack" image="WindowLayout-VerticalStack" id="KSu-L0-WGd">
+                                                            <menuItem title="Vertical stack" image="WindowLayout-VerticalStack" id="KSu-L0-WGd">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
                                                                     <action selector="applyPresetAction:" target="lwq-x3-5V8" id="2un-IE-T6a"/>
                                                                 </connections>
                                                             </menuItem>
-                                                            <menuItem title="Horizontal full stack" image="WindowLayout-HorizontalStack" id="ZAr-P0-9nl">
+                                                            <menuItem title="Horizontal stack" image="WindowLayout-HorizontalStack" id="ZAr-P0-9nl">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
                                                                     <action selector="applyPresetAction:" target="lwq-x3-5V8" id="HR0-Sn-XBw"/>

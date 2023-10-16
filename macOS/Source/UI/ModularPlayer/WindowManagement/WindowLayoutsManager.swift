@@ -156,6 +156,8 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
             actualWindow.setFrame(window.frame, display: true)
             actualWindow.show()
         }
+        
+        mainWindow.makeKeyAndOrderFront(self)
     }
     
     var currentWindowLayout: WindowLayout {
