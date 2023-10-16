@@ -582,17 +582,14 @@
 		3EA6C6302AD6AAA100B75166 /* FFmpegImageStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA6C6262AD6AAA100B75166 /* FFmpegImageStream.swift */; };
 		3EA6C6312AD6AAA100B75166 /* FFmpegPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA6C6272AD6AAA100B75166 /* FFmpegPacket.swift */; };
 		3EA6C6322AD6AAA100B75166 /* FFmpegStreamProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA6C6282AD6AAA100B75166 /* FFmpegStreamProtocol.swift */; };
-		3EA6C6642AD6AFDE00B75166 /* libopenmpt.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA6C65F2AD6AFDE00B75166 /* libopenmpt.0.dylib */; };
 		3EA6C6692AD6AFE900B75166 /* libavcodec.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA6C6622AD6AFDE00B75166 /* libavcodec.xcframework */; };
 		3EA6C66A2AD6AFE900B75166 /* libavcodec.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EA6C6622AD6AFDE00B75166 /* libavcodec.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3EA6C66B2AD6AFEB00B75166 /* libavformat.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA6C6602AD6AFDE00B75166 /* libavformat.xcframework */; };
 		3EA6C66C2AD6AFEB00B75166 /* libavformat.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EA6C6602AD6AFDE00B75166 /* libavformat.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3EA6C66D2AD6AFEC00B75166 /* libavutil.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA6C6612AD6AFDE00B75166 /* libavutil.xcframework */; };
 		3EA6C66E2AD6AFEC00B75166 /* libavutil.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EA6C6612AD6AFDE00B75166 /* libavutil.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3EA6C66F2AD6AFED00B75166 /* libopenmpt.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EA6C65F2AD6AFDE00B75166 /* libopenmpt.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		3EA6C6702AD6AFEE00B75166 /* libswresample.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA6C6632AD6AFDE00B75166 /* libswresample.xcframework */; };
 		3EA6C6712AD6AFEE00B75166 /* libswresample.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EA6C6632AD6AFDE00B75166 /* libswresample.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3EA6C6732AD6B00400B75166 /* libopenmpt.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3EA6C65F2AD6AFDE00B75166 /* libopenmpt.0.dylib */; };
 		3EA89D972699F0240021CDB9 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA89D962699F0240021CDB9 /* EventMonitor.swift */; };
 		3EA89D9B2699F50C0021CDB9 /* ScrollSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA89D9A2699F50C0021CDB9 /* ScrollSession.swift */; };
 		3EA89D9E2699F5270021CDB9 /* GestureDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA89D9D2699F5270021CDB9 /* GestureDirection.swift */; };
@@ -1561,23 +1558,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3EA6C6722AD6AFFA00B75166 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-				3EA6C6732AD6B00400B75166 /* libopenmpt.0.dylib in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3EDB340725E8AEB3004DF7DE /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3EA6C66F2AD6AFED00B75166 /* libopenmpt.0.dylib in Embed Libraries */,
 				3EA6C6712AD6AFEE00B75166 /* libswresample.xcframework in Embed Libraries */,
 				3EA6C66A2AD6AFE900B75166 /* libavcodec.xcframework in Embed Libraries */,
 				3EA6C66E2AD6AFEC00B75166 /* libavutil.xcframework in Embed Libraries */,
@@ -2175,7 +2161,6 @@
 		3EA6C6262AD6AAA100B75166 /* FFmpegImageStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegImageStream.swift; sourceTree = "<group>"; };
 		3EA6C6272AD6AAA100B75166 /* FFmpegPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegPacket.swift; sourceTree = "<group>"; };
 		3EA6C6282AD6AAA100B75166 /* FFmpegStreamProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFmpegStreamProtocol.swift; sourceTree = "<group>"; };
-		3EA6C65F2AD6AFDE00B75166 /* libopenmpt.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopenmpt.0.dylib; sourceTree = "<group>"; };
 		3EA6C6602AD6AFDE00B75166 /* libavformat.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavformat.xcframework; sourceTree = "<group>"; };
 		3EA6C6612AD6AFDE00B75166 /* libavutil.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavutil.xcframework; sourceTree = "<group>"; };
 		3EA6C6622AD6AFDE00B75166 /* libavcodec.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavcodec.xcframework; sourceTree = "<group>"; };
@@ -2766,7 +2751,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EA6C66D2AD6AFEC00B75166 /* libavutil.xcframework in Frameworks */,
-				3EA6C6642AD6AFDE00B75166 /* libopenmpt.0.dylib in Frameworks */,
 				3EA6C6702AD6AFEE00B75166 /* libswresample.xcframework in Frameworks */,
 				3EA6C6692AD6AFE900B75166 /* libavcodec.xcframework in Frameworks */,
 				3EF30D0B28DC6FE900CB09EA /* Collections in Frameworks */,
@@ -4545,7 +4529,6 @@
 		3EA6C65E2AD6AFDE00B75166 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3EA6C65F2AD6AFDE00B75166 /* libopenmpt.0.dylib */,
 				3EA6C6602AD6AFDE00B75166 /* libavformat.xcframework */,
 				3EA6C6612AD6AFDE00B75166 /* libavutil.xcframework */,
 				3EA6C6622AD6AFDE00B75166 /* libavcodec.xcframework */,
@@ -6016,7 +5999,6 @@
 				3E6C0EBB25CEB3ED00BF0D07 /* Sources */,
 				3E6C0EBC25CEB3ED00BF0D07 /* Frameworks */,
 				3E6C0EBD25CEB3ED00BF0D07 /* Resources */,
-				3EA6C6722AD6AFFA00B75166 /* CopyFiles */,
 				3EDB340725E8AEB3004DF7DE /* Embed Libraries */,
 			);
 			buildRules = (
