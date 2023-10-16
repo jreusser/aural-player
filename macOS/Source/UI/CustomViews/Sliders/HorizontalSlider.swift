@@ -34,8 +34,6 @@ class HorizontalSlider: AuralSlider {
     
     override var knobRect: NSRect {
         
-        print("\nValue: \(doubleValue), Prog= \(progress)")
-        
         let knobX = barRect.minX + (progress * knobTravelRange)
         return NSRect(x: knobX, y: knobY, width: knobWidth, height: knobHeight)
     }

@@ -56,24 +56,24 @@ class PlaybackView: NSView {
     
     override func awakeFromNib() {
         
-//        // Button tool tips
-//        btnPreviousTrack.toolTipFunction = {[weak self] in
-//
-//            if let prevTrack = self?.sequencer.peekPrevious() {
-//                return String(format: "Previous track: '%@'", prevTrack.displayName)
-//            }
-//
-//            return nil
-//        }
-//
-//        btnNextTrack.toolTipFunction = {[weak self] in
-//
-//            if let nextTrack = self?.sequencer.peekNext() {
-//                return String(format: "Next track: '%@'", nextTrack.displayName)
-//            }
-//
-//            return nil
-//        }
+        // Button tool tips
+        btnPreviousTrack.toolTipFunction = {
+
+            if let prevTrack = playQueueDelegate.peekPrevious() {
+                return String(format: "Previous track: '%@'", prevTrack.displayName)
+            }
+
+            return nil
+        }
+
+        btnNextTrack.toolTipFunction = {
+
+            if let nextTrack = playQueueDelegate.peekNext() {
+                return String(format: "Next track: '%@'", nextTrack.displayName)
+            }
+
+            return nil
+        }
 
         [btnPreviousTrack, btnNextTrack].forEach {$0?.updateTooltip()}
         

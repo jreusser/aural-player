@@ -1,6 +1,6 @@
 import Foundation
 
-protocol PlayQueueDelegateProtocol: TrackListProtocol {
+protocol PlayQueueDelegateProtocol: TrackListProtocol, SequencingProtocol {
     
     var currentTrack: Track? {get}
     

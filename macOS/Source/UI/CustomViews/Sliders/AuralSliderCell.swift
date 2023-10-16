@@ -115,7 +115,10 @@ class AuralSliderCell: NSSliderCell {
     }
     
     func drawProgress(inRect rect: NSRect) {
-        NSBezierPath.fillRoundedRect(rect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
+        
+        if rect.width > 0 {
+            NSBezierPath.fillRoundedRect(rect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
+        }
     }
     
     func drawBackground(inRect rect: NSRect) {

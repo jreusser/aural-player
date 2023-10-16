@@ -47,6 +47,12 @@ class SeekSliderCell: HorizontalSliderCell {
         self.loop = nil
     }
     
+    override func progressRect(forBarRect barRect: NSRect, andKnobRect knobRect: NSRect) -> NSRect {
+        
+        let progress = (doubleValue - minValue) / (maxValue - minValue)
+        return NSRect(x: barRect.minX, y: barRect.minY, width: CGFloat(progress) * barRect.width, height: barRect.height)
+    }
+    
     // Don't draw the knob.
     override func drawKnob() {}
     

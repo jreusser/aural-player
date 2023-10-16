@@ -41,7 +41,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="480" height="200"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <button toolTip="Quit application" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zFi-Se-R21" userLabel="Quit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                <button toolTip="Quit Aural" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zFi-Se-R21" userLabel="Quit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="10" y="175.5" width="11.5" height="10"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="8cf-gd-eOH">
@@ -718,10 +718,10 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qpG-S8-CX4" userLabel="Radius Stepper">
+                <stepper focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qpG-S8-CX4" userLabel="Radius Stepper">
                     <rect key="frame" x="193" y="0.0" width="15" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="20" doubleValue="3" id="n03-mo-5Zv"/>
+                    <stepperCell key="cell" controlSize="small" continuous="YES" refusesFirstResponder="YES" focusRingType="none" alignment="left" maxValue="20" doubleValue="3" id="n03-mo-5Zv"/>
                     <connections>
                         <action selector="cornerRadiusStepperAction:" target="f8G-sv-wa9" id="a0V-Yx-Ifq"/>
                     </connections>

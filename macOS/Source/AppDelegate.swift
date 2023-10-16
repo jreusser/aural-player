@@ -65,36 +65,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         print("App launched for the first time ? \(!persistenceManager.persistentStateFileExists)")
         
-//        if !persistenceManager.persistentStateFileExists {
-        
-        messenger.subscribe(to: .appSetup_completed, handler: postLaunch(appSetup:))
-        
-        appSetupWindowController.showWindow(self)
-//
-//        } else {
-//            postLaunch(appSetup: nil)
-//        }
+        if AppSetup.setupRequired {
+            
+            messenger.subscribe(to: .appSetup_completed, handler: postLaunch(appSetup:))
+            appSetupWindowController.showWindow(self)
+            
+        } else {
+            postLaunch(appSetup: nil)
+        }
         
         // TODO: Put 'startObserving()' in some kind of protocol ???
         colorSchemesManager.startObserving()
         fontSchemesManager.startObserving()
-        
-//        let root = URL(fileURLWithPath: "/Users/kven/Music")
-//        var time = measureExecutionTime {
-//            checkDir(root)
-//        }
-//        
-//        print("Took \(time) msec to analyze Music dir. Counted \(ctr) supported files.")
-//        
-//        time = measureExecutionTime {
-//            
-//            readDir(root)
-//            q.waitUntilAllOperationsAreFinished()
-//        }
-//        
-//        print("Took \(time) msec to read all file metadata.")
-//        
-//        try? str.write(to: root.appendingPathComponent("all_meta_\(Date().timeIntervalSince1970).txt"), atomically: true, encoding: .utf8)
     }
     
     private func postLaunch(appSetup: AppSetup?) {
@@ -103,9 +85,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             colorSchemesManager.applyScheme(named: theAppSetup.colorScheme.name)
             fontSchemesManager.applyScheme(named: theAppSetup.fontScheme.name)
+            
+//            library.homeFolder = theAppSetup.libraryHome
         }
-//
-////            library.homeFolder = theAppSetup.libraryHome
 
         appModeManager.presentApp()
         
@@ -144,49 +126,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //                }
         //        }
     }
-    
-//    var ctr: Int = 0
-//    let exts = SupportedTypes.allAudioExtensions + SupportedTypes.playlistExtensions
-//    private func checkDir(_ dir: URL) {
-//        
-//        for child in dir.children ?? [] {
-//            
-////            if child.isDirectory {
-////                checkDir(child)
-//                
-//            if !child.isDirectory, exts.contains(child.pathExtension) {
-//                ctr.increment()
-//            }
-//        }
-//    }
-//    
-//    var str: String = ""
-//    
-//    let q = OperationQueue(opCount: 6, qos: .background)
-//    private func readDir(_ dir: URL) {
-//        
-//        for child in dir.children ?? [] {
-//            
-//            if child.isDirectory {
-//                readDir(child)
-//                
-//            } else if SupportedTypes.allAudioExtensions.contains(child.pathExtension) {
-//                
-//                q.addOperation {
-//                    
-//                    let meta = try? fileReader.getPrimaryMetadata(for: child)
-//                    
-//                    let title = meta?.title ?? "<None>"
-//                    let artist = meta?.artist ?? "<None>"
-//                    let album = meta?.album ?? "<None>"
-//                    let genre = meta?.genre ?? "<None>"
-//                    let year = meta?.year ?? -1
-//                    
-//                    self.str += "\(title) | \(artist) | \(album) | \(genre) | \(year) \n"
-//                }
-//            }
-//        }
-//    }
     
     private func initialize() {
         

@@ -17,6 +17,19 @@ class AppSetup {
     /// Singleton
     static var shared: AppSetup = .init()
     
+    static var setupRequired: Bool {
+        
+        if !persistenceManager.persistentStateFileExists {
+            return true
+        }
+        
+        if let appVersion = persistentState.appVersion {
+            return !appVersion.starts(with: "4")
+        }
+        
+        return true
+    }
+    
     var performSetup: Bool = false
     
     var presentationMode: AppMode = .defaultMode

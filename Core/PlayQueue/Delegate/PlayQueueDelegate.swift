@@ -198,6 +198,46 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         playQueue.setShuffleMode(shuffleMode)
     }
     
+    func start() -> Track? {
+        playQueue.start()
+    }
+    
+    func stop() {
+        playQueue.stop()
+    }
+    
+    func subsequent() -> Track? {
+        playQueue.subsequent()
+    }
+    
+    func previous() -> Track? {
+        playQueue.previous()
+    }
+    
+    func next() -> Track? {
+        playQueue.next()
+    }
+    
+    func peekSubsequent() -> Track? {
+        playQueue.peekSubsequent()
+    }
+    
+    func peekPrevious() -> Track? {
+        playQueue.peekPrevious()
+    }
+    
+    func peekNext() -> Track? {
+        playQueue.peekNext()
+    }
+    
+    func select(trackAt index: Int) -> Track? {
+        playQueue.select(trackAt: index)
+    }
+    
+    func selectTrack(_ track: Track) -> Track? {
+        playQueue.selectTrack(track)
+    }
+    
     // MARK: Notification handling ---------------------------------------------------------------
     
     func appLaunched(_ filesToOpen: [URL]) {
