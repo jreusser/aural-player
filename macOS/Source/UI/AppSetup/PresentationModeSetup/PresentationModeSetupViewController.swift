@@ -17,12 +17,25 @@ class PresentationModeSetupViewController: NSViewController {
     @IBOutlet weak var btnModularMode: NSButton!
     @IBOutlet weak var btnUnifiedMode: NSButton!
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        if appSetup.presentationMode == .modular {
+            modularModeAction(self)
+        } else {
+            unifiedModeAction(self)
+        }
+    }
+    
     @IBAction func modularModeAction(_ sender: Any) {
         
         btnModularMode.state = .on
         btnUnifiedMode.state = .off
         
         appSetup.presentationMode = .modular
+        
+        print("Set presentation mode to: \(appSetup.presentationMode.rawValue)")
     }
     
     @IBAction func unifiedModeAction(_ sender: Any) {
@@ -31,5 +44,7 @@ class PresentationModeSetupViewController: NSViewController {
         btnModularMode.state = .off
         
         appSetup.presentationMode = .unified
+        
+        print("Set presentation mode to: \(appSetup.presentationMode.rawValue)")
     }
 }

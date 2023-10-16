@@ -33,8 +33,9 @@ class AppSetupWindowController: NSWindowController {
     private let presentationModeSetupViewController: PresentationModeSetupViewController = .init()
     private let windowLayoutSetupViewController: WindowLayoutSetupViewController = .init()
     private let colorSchemeSetupViewController: ColorSchemeSetupViewController = .init()
+    private let fontSchemeSetupViewController: FontSchemeSetupViewController = .init()
+    private let libraryHomeSetupViewController: LibraryHomeSetupViewController = .init()
     
-//    private var subViews: [PreferencesViewProtocol] = []
     private lazy var messenger: Messenger = Messenger(for: self)
     
     override func windowDidLoad() {
@@ -44,28 +45,31 @@ class AppSetupWindowController: NSWindowController {
         window?.isMovableByWindowBackground = true
         window?.center()
         
-        for (index, controller) in [presentationModeSetupViewController, windowLayoutSetupViewController, colorSchemeSetupViewController].enumerated() {
+        for (index, controller) in [presentationModeSetupViewController, windowLayoutSetupViewController, 
+                                    colorSchemeSetupViewController, fontSchemeSetupViewController,
+                                    libraryHomeSetupViewController].enumerated() {
+            
             tabView.tabViewItem(at: index).view?.addSubview(controller.view)
         }
     }
     
     @IBAction func nextStepAction(_ sender: Any) {
         
-        if tabView.selectedIndex == indexOfLastTabViewItem {
+        if tabView.selectedIndex == 0, appSetup.presentationMode == .unified {
+            
+            // Skip window layout
+            doNextTab()
+            doNextTab()
+            
+        } else if tabView.selectedIndex == indexOfLastTabViewItem {
             
             // Last step, done with setup
             close()
+            appSetup.performSetup = true
             messenger.publish(.appSetup_completed, payload: appSetup)
             
         } else {
-            
-            tabView.selectNextTabViewItem(self)
-            
-            if tabView.selectedIndex == indexOfLastTabViewItem {
-                btnNext.title = "Done"
-            }
-            
-            btnPrevious.enable()
+            doNextTab()
         }
         
         if tabView.selectedIndex > 0 {
@@ -74,6 +78,16 @@ class AppSetupWindowController: NSWindowController {
                 tabButtons[index].contentTintColor = .systemBlue
             }
         }
+        
+        if tabView.selectedIndex == indexOfLastTabViewItem {
+            btnNext.title = "Done"
+        }
+    }
+    
+    private func doNextTab() {
+        
+        tabView.selectNextTabViewItem(self)
+        btnPrevious.enable()
     }
     
     @IBAction func previousStepAction(_ sender: Any) {
@@ -99,6 +113,7 @@ class AppSetupWindowController: NSWindowController {
     @IBAction func skipSetupAction(_ sender: Any) {
         
         close()
+        appSetup.performSetup = false
         messenger.publish(.appSetup_completed)
     }
 }

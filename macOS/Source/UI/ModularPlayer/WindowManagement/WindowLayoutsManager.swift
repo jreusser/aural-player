@@ -118,7 +118,12 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     private func performInitialLayout() {
         
         // Remember from last app launch, reverting to default layout if app state is corrupted
-        applyLayout(savedLayout ?? defaultLayout)
+        if appSetup.performSetup {
+            applyLayout(appSetup.windowLayout.layout(gap: CGFloat(preferences.windowGap)))
+            
+        } else {
+            applyLayout(savedLayout ?? defaultLayout)
+        }
         
         (mainWindow as? SnappingWindow)?.ensureOnScreen()
         mainWindow.makeKeyAndOrderFront(self)

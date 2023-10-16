@@ -92,106 +92,45 @@ class ColorSchemePreviewView: NSView {
         
         didSet {
             
-            if let theScheme = scheme {
+            guard let theScheme = scheme else {return}
+            
+            // MARK: Player
                 
-//                backgroundColor = theScheme.backgroundColor
-//
-//                playerTitleColor = theScheme.player.trackInfoPrimaryTextColor
-//                playerArtistAlbumColor = theScheme.player.trackInfoSecondaryTextColor
-//
-//                seekSliderCell.foregroundStartColor = theScheme.player.sliderForegroundColor
-//
-//                switch theScheme.player.sliderForegroundGradientType {
-//
-//                case .none:
-//
-//                    seekSliderCell.foregroundEndColor = theScheme.player.sliderForegroundColor
-//
-//                case .darken:
-//
-//                    let amount = theScheme.player.sliderForegroundGradientAmount
-//                    seekSliderCell.foregroundEndColor = seekSliderCell.foregroundStartColor.darkened(CGFloat(amount))
-//
-//                case .brighten:
-//
-//                    let amount = theScheme.player.sliderForegroundGradientAmount
-//                    seekSliderCell.foregroundEndColor = seekSliderCell.foregroundStartColor.brightened(CGFloat(amount))
-//                }
-//
-//                let endColor = theScheme.player.inactiveControlColor
-//                seekSliderCell.backgroundEndColor = endColor
-//
-//                switch theScheme.player.sliderBackgroundGradientType {
-//
-//                case .none:
-//
-//                    seekSliderCell.backgroundStartColor = endColor
-//
-//                case .darken:
-//
-//                    let amount = theScheme.player.sliderBackgroundGradientAmount
-//                    seekSliderCell.backgroundStartColor = endColor.darkened(CGFloat(amount))
-//
-//                case .brighten:
-//
-//                    let amount = theScheme.player.sliderBackgroundGradientAmount
-//                    seekSliderCell.backgroundStartColor = endColor.brightened(CGFloat(amount))
-//                }
-//
-//                seekSliderCell._knobColor = theScheme.player.sliderKnobColorSameAsForeground ? theScheme.player.sliderForegroundColor : theScheme.player.sliderKnobColor
-//
-//                seekSlider.redraw()
-//                playerFunctionButtons.forEach {$0.reTint()}
-//
-//                eqSliderCells.forEach {
-//
-//                    $0.foregroundStartColor = theScheme.activeControlColor
-//
-//                    switch theScheme.effects.sliderForegroundGradientType {
-//
-//                    case .none:
-//
-//                        $0.foregroundEndColor = theScheme.activeControlColor
-//
-//                    case .darken:
-//
-//                        let amount = theScheme.effects.sliderForegroundGradientAmount
-//                        $0.foregroundEndColor = $0.foregroundStartColor.darkened(CGFloat(amount))
-//
-//                    case .brighten:
-//
-//                        let amount = theScheme.effects.sliderForegroundGradientAmount
-//                        $0.foregroundEndColor = $0.foregroundStartColor.brightened(CGFloat(amount))
-//                    }
-//
-//                    let endColor = theScheme.effects.inactiveControlColor
-//                    $0.backgroundEndColor = endColor
-//
-//                    switch theScheme.effects.sliderBackgroundGradientType {
-//
-//                    case .none:
-//
-//                        $0.backgroundStartColor = endColor
-//
-//                    case .darken:
-//
-//                        let amount = theScheme.effects.sliderBackgroundGradientAmount
-//                        $0.backgroundStartColor = endColor.darkened(CGFloat(amount))
-//
-//                    case .brighten:
-//
-//                        let amount = theScheme.effects.sliderBackgroundGradientAmount
-//                        $0.backgroundStartColor = endColor.brightened(CGFloat(amount))
-//                    }
-//
-//                    $0._knobColor = theScheme.effects.sliderKnobColorSameAsForeground ? theScheme.activeControlColor : theScheme.effects.sliderKnobColor
-//                }
-//
-//                eqSliders.forEach {$0.redraw()}
-//
-//                activeUnitColor = theScheme.activeControlColor
-//                effectsCaptionColor = theScheme.secondaryTextColor
-//
+                backgroundColor = theScheme.backgroundColor
+
+                playerTitleColor = theScheme.primaryTextColor
+                playerArtistAlbumColor = theScheme.secondaryTextColor
+
+                seekSliderCell.foregroundStartColor = theScheme.activeControlColor
+                seekSliderCell.foregroundEndColor = theScheme.activeControlGradientColor
+
+                seekSliderCell.backgroundStartColor = theScheme.inactiveControlColor
+                seekSliderCell.backgroundEndColor = theScheme.inactiveControlGradientColor
+
+                seekSlider.redraw()
+                playerFunctionButtons.forEach {$0.contentTintColor = theScheme.buttonColor}
+            
+            // MARK: Effects
+
+                eqSliderCells.forEach {
+
+                    $0.foregroundStartColor = theScheme.activeControlColor
+                    $0.foregroundEndColor = theScheme.activeControlGradientColor
+
+                    let endColor = theScheme.inactiveControlColor
+                    $0.backgroundStartColor = theScheme.inactiveControlColor
+                    $0.backgroundEndColor = theScheme.inactiveControlGradientColor
+
+                    $0._knobColor = theScheme.activeControlColor
+                }
+
+                eqSliders.forEach {$0.redraw()}
+
+                activeUnitColor = theScheme.activeControlColor
+                effectsCaptionColor = theScheme.secondaryTextColor
+            
+            // MARK: Play Queue
+
 //                playlistTrackTitleColor = theScheme.playlist.trackNameTextColor
 //                playlistTrackIndexDurationColor = theScheme.playlist.indexDurationTextColor
 //                playlistSelectedTrackTitleColor = theScheme.playlist.trackNameSelectedTextColor
@@ -207,7 +146,7 @@ class ColorSchemePreviewView: NSView {
 //                [playlistTabButton, playlistSelectedTabButton].forEach {$0?.redraw()}
 //
 //                [playlistBox, playerBox, effectsBox].forEach {$0.show()}
-            }
+//            }
         }
     }
     

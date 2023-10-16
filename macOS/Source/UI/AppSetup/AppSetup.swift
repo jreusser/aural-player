@@ -17,6 +17,8 @@ class AppSetup {
     /// Singleton
     static var shared: AppSetup = .init()
     
+    var performSetup: Bool = false
+    
     var presentationMode: AppMode = .defaultMode
     var windowLayout: WindowLayoutPresets = .defaultLayout
     var colorScheme: ColorSchemePreset = .defaultScheme

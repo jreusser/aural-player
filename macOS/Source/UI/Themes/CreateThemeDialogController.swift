@@ -92,7 +92,7 @@ class CreateThemeDialogController: SingletonWindowController, StringInputReceive
             colorSchemesMenu.item(at: index)?.showIf(showDescriptors)
         }
         
-        btnColorSchemesMenu.select(colorSchemesMenu.item(withTitle: ColorSchemePreset.blackAttack.name))
+        btnColorSchemesMenu.select(colorSchemesMenu.item(withTitle: ColorSchemePreset.blackAndGreen.name))
     }
     
     @IBAction func cornerRadiusStepperAction(_ sender: NSStepper) {

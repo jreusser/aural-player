@@ -61,41 +61,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Presents the application's user interface upon app startup.
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-//        try! EonilFSEvents.startWatching(
-//            paths: ["/Users/kven/Muthu"],
-//            for: ObjectIdentifier(self),
-//            onQueue: .global(qos: .utility)) {event in
-//                
-//                guard let flags = event.flag else {return}
-//                
-//                if flags.contains(.itemCreated) {
-//                    print("\nCreated: \(event.path)")
-//                }
-//                
-//                else if flags.contains(.itemRemoved) {
-//                    print("\nRemoved: \(event.path)")
-//                }
-//                
-//                else if flags.contains(.itemRenamed) {
-//                    print("\nRenamed: \(event.path)")
-//                }
-//                
-//                else {
-//                    print("\n\n??? UNKNOWN: \(event)")
-//                }
-//        }
-        
         initialize()
         
         print("App launched for the first time ? \(!persistenceManager.persistentStateFileExists)")
         
 //        if !persistenceManager.persistentStateFileExists {
         
-            messenger.subscribe(to: .appSetup_completed, handler: postLaunch)
-            appSetupWindowController.showWindow(self)
+        messenger.subscribe(to: .appSetup_completed, handler: postLaunch(appSetup:))
+        
+        appSetupWindowController.showWindow(self)
 //
 //        } else {
-//            postLaunch()
+//            postLaunch(appSetup: nil)
 //        }
         
         // TODO: Put 'startObserving()' in some kind of protocol ???
@@ -120,8 +97,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //        try? str.write(to: root.appendingPathComponent("all_meta_\(Date().timeIntervalSince1970).txt"), atomically: true, encoding: .utf8)
     }
     
-    private func postLaunch() {
+    private func postLaunch(appSetup: AppSetup?) {
         
+        if let theAppSetup = appSetup {
+            
+            colorSchemesManager.applyScheme(named: theAppSetup.colorScheme.name)
+            fontSchemesManager.applyScheme(named: theAppSetup.fontScheme.name)
+        }
+//
+////            library.homeFolder = theAppSetup.libraryHome
+
         appModeManager.presentApp()
         
         // Update the appLaunched flag
@@ -131,6 +116,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         messenger.publish(.application_launched, payload: filesToOpen)
         
         beginPeriodicPersistence()
+    }
+    
+    private func folderMonitoring() {
+        
+        //        try! EonilFSEvents.startWatching(
+        //            paths: ["/Users/kven/Muthu"],
+        //            for: ObjectIdentifier(self),
+        //            onQueue: .global(qos: .utility)) {event in
+        //
+        //                guard let flags = event.flag else {return}
+        //
+        //                if flags.contains(.itemCreated) {
+        //                    print("\nCreated: \(event.path)")
+        //                }
+        //
+        //                else if flags.contains(.itemRemoved) {
+        //                    print("\nRemoved: \(event.path)")
+        //                }
+        //
+        //                else if flags.contains(.itemRenamed) {
+        //                    print("\nRenamed: \(event.path)")
+        //                }
+        //
+        //                else {
+        //                    print("\n\n??? UNKNOWN: \(event)")
+        //                }
+        //        }
     }
     
 //    var ctr: Int = 0

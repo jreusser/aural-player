@@ -15,13 +15,13 @@ import Cocoa
 enum ColorSchemePreset: String, CaseIterable {
     
     // A dark scheme with a black background (the default scheme) and lighter foreground elements.
-    case blackAttack
+    case blackAndGreen
     
     // A light scheme with an off-white background and dark foreground elements.
     case whiteBlight
     
     // A dark scheme with a black background and aqua coloring of active sliders.
-    case blackAqua
+    case blackAndAqua
     
     case lava
     
@@ -45,9 +45,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch name {
             
-        case ColorSchemePreset.blackAttack.name:    return .blackAttack
+        case ColorSchemePreset.blackAndGreen.name:    return .blackAndGreen
             
-        case ColorSchemePreset.blackAqua.name:    return .blackAqua
+        case ColorSchemePreset.blackAndAqua.name:    return .blackAndAqua
             
         case ColorSchemePreset.lava.name:    return .lava
             
@@ -71,9 +71,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return "Black attack (default)"
+        case .blackAndGreen:  return "Black & green"
             
-        case .blackAqua:    return "Black & aqua"
+        case .blackAndAqua:    return "Black & aqua"
             
         case .lava:         return "Lava"
             
@@ -94,9 +94,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white50Percent
+        case .blackAndGreen:  return .white50Percent
             
-        case .blackAqua:  return .white50Percent
+        case .blackAndAqua:  return .white50Percent
             
         case .lava:     return .white50Percent
             
@@ -117,9 +117,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white8Percent
+        case .blackAndGreen:  return .white8Percent
             
-        case .blackAqua:  return .white8Percent
+        case .blackAndAqua:  return .white8Percent
             
         case .lava:     return NSColor(red: 0.144, green: 0.144, blue: 0.144)
             
@@ -140,9 +140,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white90Percent
+        case .blackAndGreen:  return .white90Percent
             
-        case .blackAqua:  return .white90Percent
+        case .blackAndAqua:  return .white90Percent
             
         case .lava:     return .white55Percent
             
@@ -163,9 +163,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white22Percent
+        case .blackAndGreen:  return .white22Percent
             
-        case .blackAqua:  return .white22Percent
+        case .blackAndAqua:  return .white22Percent
             
         case .lava:     return .white22Percent
             
@@ -186,9 +186,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white25Percent
+        case .blackAndGreen:  return .white25Percent
             
-        case .blackAqua:  return .white25Percent
+        case .blackAndAqua:  return .white25Percent
             
         case .lava:     return .white25Percent
             
@@ -209,9 +209,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white40Percent
+        case .blackAndGreen:  return .white40Percent
             
-        case .blackAqua:  return .white40Percent
+        case .blackAndAqua:  return .white40Percent
             
         case .lava:     return .white40Percent
             
@@ -232,9 +232,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white75Percent
+        case .blackAndGreen:  return .white75Percent
             
-        case .blackAqua:  return .white75Percent
+        case .blackAndAqua:  return .white75Percent
             
         case .lava:     return .white75Percent
             
@@ -255,9 +255,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white50Percent
+        case .blackAndGreen:  return .white50Percent
             
-        case .blackAqua:  return .white50Percent
+        case .blackAndAqua:  return .white50Percent
             
         case .lava:     return .white50Percent
             
@@ -278,9 +278,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white40Percent
+        case .blackAndGreen:  return .white40Percent
             
-        case .blackAqua:  return .white40Percent
+        case .blackAndAqua:  return .white40Percent
             
         case .lava:     return .white40Percent
             
@@ -301,9 +301,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white70Percent
+        case .blackAndGreen:  return .white70Percent
             
-        case .blackAqua:  return .white70Percent
+        case .blackAndAqua:  return .white70Percent
             
         case .lava:     return .white70Percent
             
@@ -326,9 +326,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
         
-        case .blackAttack:  return .white90Percent
+        case .blackAndGreen:  return .white90Percent
             
-        case .blackAqua:  return .white80Percent
+        case .blackAndAqua:  return .white80Percent
             
         case .lava:     return .white80Percent
             
@@ -349,9 +349,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white55Percent
+        case .blackAndGreen:  return .white55Percent
             
-        case .blackAqua:  return .white65Percent
+        case .blackAndAqua:  return .white65Percent
             
         case .lava:     return .white65Percent
             
@@ -372,9 +372,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white45Percent
+        case .blackAndGreen:  return .white45Percent
             
-        case .blackAqua:  return .white55Percent
+        case .blackAndAqua:  return .white55Percent
             
         case .lava:     return .white55Percent
             
@@ -395,9 +395,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white50Percent
+        case .blackAndGreen:  return .white50Percent
             
-        case .blackAqua:  return .white50Percent
+        case .blackAndAqua:  return .white50Percent
             
         case .lava:     return .white50Percent
             
@@ -418,9 +418,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .green75Percent
+        case .blackAndGreen:  return .green75Percent
             
-        case .blackAqua:  return .aqua
+        case .blackAndAqua:  return .aqua
             
         case .lava:     return .lava
             
@@ -441,9 +441,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .darken
+        case .blackAndGreen:  return .darken
             
-        case .blackAqua:  return .darken
+        case .blackAndAqua:  return .darken
             
         case .lava:     return .brighten
             
@@ -464,9 +464,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return 70
+        case .blackAndGreen:  return 70
             
-        case .blackAqua:  return 60
+        case .blackAndAqua:  return 60
             
         case .lava:     return 60
             
@@ -487,9 +487,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white20Percent
+        case .blackAndGreen:  return .white20Percent
             
-        case .blackAqua:  return .white20Percent
+        case .blackAndAqua:  return .white20Percent
             
         case .lava:     return NSColor(red: 0.326, green: 0.326, blue: 0.326)
             
@@ -510,9 +510,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .none
+        case .blackAndGreen:  return .none
             
-        case .blackAqua:  return .none
+        case .blackAndAqua:  return .none
             
         case .lava:     return .darken
             
@@ -544,9 +544,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .green75Percent
+        case .blackAndGreen:  return .green75Percent
             
-        case .blackAqua:  return .aqua
+        case .blackAndAqua:  return .aqua
             
         case .lava:     return .lava
             
@@ -571,9 +571,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white60Percent
+        case .blackAndGreen:  return .white60Percent
             
-        case .blackAqua:  return .white60Percent
+        case .blackAndAqua:  return .white60Percent
             
         case .lava:     return .white60Percent
             
@@ -596,9 +596,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white50Percent
+        case .blackAndGreen:  return .white50Percent
             
-        case .blackAqua:  return .white50Percent
+        case .blackAndAqua:  return .white50Percent
             
         case .lava:  return .white50Percent
             
@@ -619,9 +619,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white40Percent
+        case .blackAndGreen:  return .white40Percent
             
-        case .blackAqua:  return .white40Percent
+        case .blackAndAqua:  return .white40Percent
             
         case .lava:  return .white40Percent
             
@@ -642,9 +642,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white30Percent
+        case .blackAndGreen:  return .white30Percent
             
-        case .blackAqua:  return .white30Percent
+        case .blackAndAqua:  return .white30Percent
             
         case .lava:  return .white30Percent
             
@@ -665,9 +665,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white80Percent
+        case .blackAndGreen:  return .white80Percent
             
-        case .blackAqua:  return .white80Percent
+        case .blackAndAqua:  return .white80Percent
             
         case .lava:  return .white80Percent
             
@@ -688,9 +688,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white55Percent
+        case .blackAndGreen:  return .white55Percent
             
-        case .blackAqua:  return .white55Percent
+        case .blackAndAqua:  return .white55Percent
             
         case .lava:  return .white55Percent
             
@@ -711,9 +711,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white50Percent
+        case .blackAndGreen:  return .white50Percent
             
-        case .blackAqua:  return .white50Percent
+        case .blackAndAqua:  return .white50Percent
             
         case .lava:  return .white50Percent
             
@@ -734,9 +734,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white35Percent
+        case .blackAndGreen:  return .white35Percent
             
-        case .blackAqua:  return .white35Percent
+        case .blackAndAqua:  return .white35Percent
             
         case .lava:  return .white35Percent
             
@@ -757,9 +757,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white60Percent
+        case .blackAndGreen:  return .white60Percent
             
-        case .blackAqua:  return .white60Percent
+        case .blackAndAqua:  return .white60Percent
             
         case .lava:  return .white60Percent
             
@@ -780,9 +780,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white15Percent
+        case .blackAndGreen:  return .white15Percent
             
-        case .blackAqua:  return .white15Percent
+        case .blackAndAqua:  return .white15Percent
             
         case .lava:  return .black
             
@@ -803,9 +803,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .green75Percent
+        case .blackAndGreen:  return .green75Percent
             
-        case .blackAqua:  return .aqua
+        case .blackAndAqua:  return .aqua
             
         case .lava:     return .lava
             
@@ -826,9 +826,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white50Percent
+        case .blackAndGreen:  return .white50Percent
             
-        case .blackAqua:  return .white50Percent
+        case .blackAndAqua:  return .white50Percent
             
         case .lava:     return .white50Percent
             
@@ -851,9 +851,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white45Percent
+        case .blackAndGreen:  return .white45Percent
             
-        case .blackAqua:  return .white45Percent
+        case .blackAndAqua:  return .white45Percent
             
         case .lava:  return .white45Percent
             
@@ -874,9 +874,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white70Percent
+        case .blackAndGreen:  return .white70Percent
             
-        case .blackAqua:  return .white70Percent
+        case .blackAndAqua:  return .white70Percent
             
         case .lava:     return .white70Percent
             
@@ -897,9 +897,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white15Percent
+        case .blackAndGreen:  return .white15Percent
             
-        case .blackAqua:  return .white15Percent
+        case .blackAndAqua:  return .white15Percent
             
         case .lava:     return NSColor(red: 0.326, green: 0.326, blue: 0.326)
             
@@ -920,9 +920,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .brighten
+        case .blackAndGreen:  return .brighten
             
-        case .blackAqua:  return .brighten
+        case .blackAndAqua:  return .brighten
             
         case .lava:  return .darken
             
@@ -943,9 +943,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return 20
+        case .blackAndGreen:  return 20
             
-        case .blackAqua:  return 20
+        case .blackAndAqua:  return 20
             
         case .lava:     return 36
             
@@ -966,9 +966,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .green75Percent
+        case .blackAndGreen:  return .green75Percent
             
-        case .blackAqua:  return .aqua
+        case .blackAndAqua:  return .aqua
             
         case .lava:     return .lava
             
@@ -993,9 +993,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .black
+        case .blackAndGreen:  return .black
             
-        case .blackAqua:  return .black
+        case .blackAndAqua:  return .black
             
         case .lava:     return .black
             
@@ -1016,9 +1016,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .green75Percent
+        case .blackAndGreen:  return .green75Percent
             
-        case .blackAqua:  return .aqua
+        case .blackAndAqua:  return .aqua
             
         case .lava:     return .lava
             
@@ -1039,9 +1039,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .white60Percent
+        case .blackAndGreen:  return .white60Percent
             
-        case .blackAqua:  return .white60Percent
+        case .blackAndAqua:  return .white60Percent
             
         case .lava:  return .white60Percent
             
@@ -1062,9 +1062,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return NSColor(red: 0.76, green: 0.69, blue: 0)
+        case .blackAndGreen:  return NSColor(red: 0.76, green: 0.69, blue: 0)
             
-        case .blackAqua:  return NSColor(red: 0, green: 0.31, blue: 0.5)
+        case .blackAndAqua:  return NSColor(red: 0, green: 0.31, blue: 0.5)
             
         case .lava:  return NSColor(red: 0.5, green: 0.204, blue: 0.107)
         
@@ -1085,9 +1085,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return .darken
+        case .blackAndGreen:  return .darken
             
-        case .blackAqua:    return .darken
+        case .blackAndAqua:    return .darken
             
         case .lava:         return .brighten
             
@@ -1108,9 +1108,9 @@ enum ColorSchemePreset: String, CaseIterable {
         
         switch self {
             
-        case .blackAttack:  return 60
+        case .blackAndGreen:  return 60
             
-        case .blackAqua:    return 60
+        case .blackAndAqua:    return 60
             
         case .lava:         return 60
             

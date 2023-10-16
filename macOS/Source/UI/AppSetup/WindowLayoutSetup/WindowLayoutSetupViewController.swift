@@ -23,7 +23,7 @@ class WindowLayoutSetupViewController: NSViewController {
         
         super.viewDidLoad()
         
-        let defaultLayoutName = WindowLayoutPresets.defaultLayout.name
+        let defaultLayoutName = appSetup.windowLayout.name
         
         lblName.stringValue = defaultLayoutName
         lblDescription.stringValue = WindowLayoutPresets.defaultLayout.description
@@ -42,5 +42,7 @@ class WindowLayoutSetupViewController: NSViewController {
         
         previewView.drawPreviewForPreset(preset)
         appSetup.windowLayout = preset
+        
+        print("Set window layout to: \(appSetup.windowLayout.rawValue)")
     }
 }
