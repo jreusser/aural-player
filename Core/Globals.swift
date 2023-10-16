@@ -29,17 +29,16 @@ let appModeManager: AppModeManager = AppModeManager(persistentState: persistentS
 #endif
 
 fileprivate let playQueue: PlayQueue = PlayQueue()
+let playQueueDelegate: PlayQueueDelegateProtocol = PlayQueueDelegate(playQueue: playQueue,
+                                                                     persistentState: persistentState.playQueue)
 
-let library: Library = Library()
-let libraryDelegate: LibraryDelegateProtocol = LibraryDelegate(persistentState: persistentState.library)
+let library: Library = Library(persistentState: persistentState.library)
+let libraryDelegate: LibraryDelegateProtocol = LibraryDelegate()
 
 let playlistsManager: PlaylistsManager = PlaylistsManager(playlists: persistentState.playlists?.playlists?.compactMap {Playlist(persistentState: $0)} ?? [])
 
 //    let playlistDelegate: PlaylistDelegateProtocol = PlaylistDelegate(persistentState: persistentState.playlist, playlist,
 //                                                                           trackReader, preferences)
-
-let playQueueDelegate: PlayQueueDelegateProtocol = PlayQueueDelegate(playQueue: playQueue,
-                                                                     persistentState: persistentState.playQueue)
 
 let audioUnitsManager: AudioUnitsManager = AudioUnitsManager()
 fileprivate let audioEngine: AudioEngine = AudioEngine()

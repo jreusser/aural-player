@@ -10,13 +10,22 @@
 
 import Foundation
 
-protocol LibraryProtocol: TrackListProtocol {}
+protocol LibraryProtocol: TrackListProtocol {
+    
+    var homeFolder: URL {get set}
+    
+    func buildLibrary()
+}
 
 class Library: GroupedSortedTrackList, LibraryProtocol {
     
     override var displayName: String {"The Library"}
     
-    init() {
+    var homeFolder: URL
+    
+    init(persistentState: LibraryPersistentState?) {
+        
+        self.homeFolder = persistentState?.homeFolder ?? FilesAndPaths.musicDir
         
         super.init(sortOrder: TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending),
                    withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])
@@ -44,6 +53,12 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     func loadTracks(from files: [URL], atPosition position: Int?) {
         loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
     }
+    
+    func buildLibrary() {
+        
+        removeAllTracks()
+        loadTracks(from: [homeFolder])
+    }
 }
 
 extension Library: TrackLoaderObserver {
@@ -64,6 +79,6 @@ extension Library: TrackLoaderObserver {
 extension Library: PersistentModelObject {
     
     var persistentState: LibraryPersistentState {
-        .init(library: self)
+        .init(homeFolder: self.homeFolder)
     }
 }

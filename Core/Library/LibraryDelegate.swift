@@ -24,12 +24,8 @@ class LibraryDelegate: LibraryDelegateProtocol {
     
     private lazy var messenger: Messenger = .init(for: self)
     
-    private let persistentTracks: [URL]?
-    
-    init(persistentState: LibraryPersistentState?) {
+    init() {
 
-        self.persistentTracks = persistentState?.tracks
-        
         // Subscribe to notifications
         messenger.subscribe(to: .application_launched, handler: appLaunched(_:))
         messenger.subscribe(to: .application_reopened, handler: appReopened(_:))
@@ -143,32 +139,8 @@ class LibraryDelegate: LibraryDelegateProtocol {
     
     func appLaunched(_ filesToOpen: [URL]) {
         
-        // Check if any launch parameters were specified
-        if filesToOpen.isNonEmpty {
-            
-            // Launch parameters  specified, override playlist saved state and add file paths in params to playlist
-//            addTracks(from: filesToOpen, AutoplayOptions(true), userAction: false)
-            loadTracks(from: filesToOpen)
-
-        } else if let files = self.persistentTracks {
-
-            // No launch parameters specified, load playlist saved state if "Remember state from last launch" preference is selected
-//            addFiles_async(tracks, AutoplayOptions(playbackPreferences.autoplayOnStartup), userAction: false, reorderGroupingPlaylists: true)
-            loadTracks(from: files)
-        }
-        
+        library.buildLibrary()
         // TODO: Monitor a folder ? 'My Music' ???
-            
-//        } else if playlistPreferences.playlistOnStartup == .loadFile,
-//                  let playlistFile: URL = playlistPreferences.playlistFile {
-//
-//            addFiles_async([playlistFile], AutoplayOptions(playbackPreferences.autoplayOnStartup), userAction: false)
-//
-//        } else if playlistPreferences.playlistOnStartup == .loadFolder,
-//                  let folder: URL = playlistPreferences.tracksFolder {
-//
-//            addFiles_async([folder], AutoplayOptions(playbackPreferences.autoplayOnStartup), userAction: false)
-//        }
     }
     
     func appReopened(_ notification: AppReopenedNotification) {

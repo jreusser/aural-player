@@ -12,9 +12,7 @@ import Foundation
 
 struct LibraryPersistentState: Codable {
     
-    let tracks: [URL]?
+    let homeFolder: URL?
     
-    init(library: Library) {
-        self.tracks = library.tracks.map {$0.file}
-    }
+    // TODO: Sort order, custom groupings, etc
 }

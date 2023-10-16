@@ -87,6 +87,8 @@ class LibraryWindowController: NSWindowController {
         fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
         colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
         
+        applyTheme()
+        
         // TODO: Temporary, remove this !!!
         tabGroup.selectTabViewItem(at: 0)
     }
@@ -119,6 +121,12 @@ class LibraryWindowController: NSWindowController {
 //        if tab == .playlists {
 //
 //        }
+    }
+    
+    // MARK: Message handling -----------------------------------------------------------
+    
+    private func applyTheme() {
+        changeWindowCornerRadius(windowAppearanceState.cornerRadius)
     }
     
     private func changeWindowCornerRadius(_ radius: CGFloat) {
