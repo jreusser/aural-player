@@ -49,6 +49,7 @@ enum FileLoaderPriority: Int, CaseIterable {
 class TrackLoader {
     
     let priority: FileLoaderPriority
+    let qOS: DispatchQoS.QoSClass
     
     private var session: FileReadSession!
     private var batch: FileMetadataBatch!
@@ -56,12 +57,13 @@ class TrackLoader {
     
     private let queue: OperationQueue = OperationQueue()
     
-    init(priority: FileLoaderPriority) {
+    init(priority: FileLoaderPriority, qOS: DispatchQoS.QoSClass) {
         
         self.priority = priority
+        self.qOS = qOS
         
         queue.maxConcurrentOperationCount = priority.concurrentOpCount
-        queue.underlyingQueue = DispatchQueue.global(qos: .userInteractive)
+        queue.underlyingQueue = DispatchQueue.global(qos: qOS)
         queue.qualityOfService = .userInteractive
     }
     
@@ -76,7 +78,7 @@ class TrackLoader {
         blockOpFunction = blockOp(metadataType: type)
         
         // Move to a background thread to unblock the main thread.
-        DispatchQueue.global(qos: .userInteractive).async {
+        DispatchQueue.global(qos: qOS).async {
             
             defer {completionHandler?()}
             

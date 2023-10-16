@@ -33,7 +33,7 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
 
     let userDefined: Bool = true
     
-    private lazy var loader: TrackLoader = TrackLoader(priority: .medium)
+    private lazy var loader: TrackLoader = TrackLoader(priority: .medium, qOS: .utility)
     
     private lazy var messenger: Messenger = Messenger(for: self)
 

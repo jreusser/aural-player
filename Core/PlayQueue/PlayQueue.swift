@@ -21,7 +21,7 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
     // Contains a pre-computed shuffle sequence, when shuffleMode is .on
     lazy var shuffleSequence: ShuffleSequence = ShuffleSequence()
     
-    private lazy var loader: TrackLoader = TrackLoader(priority: .highest)
+    private lazy var loader: TrackLoader = TrackLoader(priority: .highest, qOS: .userInteractive)
     
     private lazy var messenger = Messenger(for: self)
 

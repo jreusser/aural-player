@@ -9,12 +9,18 @@
 //  
 
 import Foundation
+import OrderedCollections
 
 protocol LibraryProtocol: TrackListProtocol {
     
     var homeFolder: URL {get set}
     
     func buildLibrary()
+    
+    var buildProgress: Double {get}
+    
+    // TODO:
+    var playlists: [ImportedPlaylist] {get}
 }
 
 class Library: GroupedSortedTrackList, LibraryProtocol {
@@ -22,6 +28,14 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     override var displayName: String {"The Library"}
     
     var homeFolder: URL
+    
+    /// A map to quickly look up playlists by (absolute) file path (used when adding playlists, to prevent duplicates)
+    /// // TODO:
+    var _playlists: OrderedDictionary<URL, ImportedPlaylist> = OrderedDictionary()
+    
+    var playlists: [ImportedPlaylist] {
+        Array(_playlists.values)
+    }
     
     init(persistentState: LibraryPersistentState?) {
         
@@ -31,8 +45,13 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
                    withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])
     }
     
-    private lazy var loader: TrackLoader = TrackLoader(priority: .highest)
+//    private lazy var loader: TrackLoader = TrackLoader(priority: .high, qOS: .utility)
+    private lazy var loader: LibraryLoader = LibraryLoader()
     private lazy var messenger = Messenger(for: self)
+    
+    var buildProgress: Double {
+        loader.progress
+    }
     
     var artistsGrouping: ArtistsGrouping {
         groupings[0] as! ArtistsGrouping
@@ -51,13 +70,23 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     }
     
     func loadTracks(from files: [URL], atPosition position: Int?) {
-        loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
+//        loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
+        loader.loadMetadata(ofType: .primary, from: files)
     }
     
     func buildLibrary() {
         
         removeAllTracks()
         loadTracks(from: [homeFolder])
+    }
+    
+    override func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet {
+        
+        let tracks = batch.orderedMetadata.map {(file, metadata) -> Track in
+            Track(file, fileMetadata: metadata)
+        }
+        
+        return addTracks(tracks)
     }
 }
 

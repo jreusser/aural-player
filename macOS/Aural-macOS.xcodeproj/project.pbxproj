@@ -670,6 +670,10 @@
 		3EAFD75F269B6C2B009B904F /* ParserUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFD75E269B6C2B009B904F /* ParserUtilsTests.swift */; };
 		3EB1274A2ADD8E1E00745603 /* LibraryHomeSetup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB127492ADD8E1E00745603 /* LibraryHomeSetup.xib */; };
 		3EB1274C2ADD8E3C00745603 /* LibraryHomeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1274B2ADD8E3C00745603 /* LibraryHomeSetupViewController.swift */; };
+		3EB1274E2ADDCE1200745603 /* LibraryLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1274D2ADDCE1200745603 /* LibraryLoader.swift */; };
+		3EB127502ADDE4FD00745603 /* LibraryBuildProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1274F2ADDE4FD00745603 /* LibraryBuildProgressViewController.swift */; };
+		3EB127532ADDE53700745603 /* LibraryBuildProgress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB127522ADDE53700745603 /* LibraryBuildProgress.xib */; };
+		3EB127702ADDF63400745603 /* ProgressArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1276F2ADDF63400745603 /* ProgressArc.swift */; };
 		3EB1A8112826D14F00866012 /* ThemablePopupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1A8102826D14F00866012 /* ThemablePopupButton.swift */; };
 		3EB1A8132826FCE900866012 /* DevicesViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB1A8122826FCE900866012 /* DevicesViewController+TableViewDelegate.swift */; };
 		3EB3A60426A726EF0060487C /* NSTableCellViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3A60326A726EF0060487C /* NSTableCellViewExtensions.swift */; };
@@ -2236,6 +2240,10 @@
 		3EAFD75E269B6C2B009B904F /* ParserUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserUtilsTests.swift; sourceTree = "<group>"; };
 		3EB127492ADD8E1E00745603 /* LibraryHomeSetup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryHomeSetup.xib; sourceTree = "<group>"; };
 		3EB1274B2ADD8E3C00745603 /* LibraryHomeSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryHomeSetupViewController.swift; sourceTree = "<group>"; };
+		3EB1274D2ADDCE1200745603 /* LibraryLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryLoader.swift; sourceTree = "<group>"; };
+		3EB1274F2ADDE4FD00745603 /* LibraryBuildProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBuildProgressViewController.swift; sourceTree = "<group>"; };
+		3EB127522ADDE53700745603 /* LibraryBuildProgress.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryBuildProgress.xib; sourceTree = "<group>"; };
+		3EB1276F2ADDF63400745603 /* ProgressArc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressArc.swift; sourceTree = "<group>"; };
 		3EB1A8102826D14F00866012 /* ThemablePopupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemablePopupButton.swift; sourceTree = "<group>"; };
 		3EB1A8122826FCE900866012 /* DevicesViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DevicesViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		3EB3A60326A726EF0060487C /* NSTableCellViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTableCellViewExtensions.swift; sourceTree = "<group>"; };
@@ -2893,6 +2901,7 @@
 			isa = PBXGroup;
 			children = (
 				3EF84DA028362753004EF57B /* LibraryWindow.xib */,
+				3EB1276F2ADDF63400745603 /* ProgressArc.swift */,
 				3EF84DA228362A4D004EF57B /* LibraryWindowController.swift */,
 			);
 			path = Library;
@@ -4207,6 +4216,7 @@
 			children = (
 				3E8FF9DB27F634BE009CEDDD /* TrackLoader.swift */,
 				3E8FF9D927F62CB9009CEDDD /* TrackLoaderSupport.swift */,
+				3EB1274D2ADDCE1200745603 /* LibraryLoader.swift */,
 			);
 			path = Loader;
 			sourceTree = "<group>";
@@ -4711,6 +4721,15 @@
 			path = LibraryHomeSetup;
 			sourceTree = "<group>";
 		};
+		3EB127512ADDE52500745603 /* BuildProgress */ = {
+			isa = PBXGroup;
+			children = (
+				3EB127522ADDE53700745603 /* LibraryBuildProgress.xib */,
+				3EB1274F2ADDE4FD00745603 /* LibraryBuildProgressViewController.swift */,
+			);
+			path = BuildProgress;
+			sourceTree = "<group>";
+		};
 		3EB42024285A5E83007159CC /* NowPlaying */ = {
 			isa = PBXGroup;
 			children = (
@@ -5095,6 +5114,7 @@
 		3EF84D9F283623D3004EF57B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				3EB127512ADDE52500745603 /* BuildProgress */,
 				3EF84DA4283632D2004EF57B /* Sidebar */,
 				3EAE9CB92836ADE2004499FE /* Tracks */,
 				3E8DD63F2844985F00FED49D /* Artists */,
@@ -6088,6 +6108,7 @@
 				3EB4202B285A6295007159CC /* UnifiedPlayer.xib in Resources */,
 				3EF84DA128362753004EF57B /* LibraryWindow.xib in Resources */,
 				3E836E332868964D009371D4 /* UnifiedPlayQueue.xib in Resources */,
+				3EB127532ADDE53700745603 /* LibraryBuildProgress.xib in Resources */,
 				3EAF96FC28DCE1B6008561A7 /* Papyrus.ttf in Resources */,
 				3E6C115C25CEB9C200BF0D07 /* Assets.xcassets in Resources */,
 				3E6C136B25CEBFB900BF0D07 /* Application.xib in Resources */,
@@ -6442,6 +6463,7 @@
 				3E63620426850B13006F5A2A /* EffectsFontScheme.swift in Sources */,
 				3EB462C52847E7E6000E3F85 /* PlaylistViewController.swift in Sources */,
 				3EE7CB9F25E22D6C0075F1DD /* EffectsFontSchemeViewController.swift in Sources */,
+				3EB127702ADDF63400745603 /* ProgressArc.swift in Sources */,
 				3EFE37FD27864896006F8B8C /* PlaylistsManager.swift in Sources */,
 				3EFE399D27864897006F8B8C /* WindowAppearancePersistentState.swift in Sources */,
 				3E3633E02685FB10006A88ED /* EffectsPresetsManagerGenericViewController.swift in Sources */,
@@ -6737,12 +6759,14 @@
 				3EFE38E927864897006F8B8C /* TrackKeyedMap.swift in Sources */,
 				3E6C122525CEBDE600BF0D07 /* PlaybackPreferencesViewController.swift in Sources */,
 				3EFE383127864896006F8B8C /* ItemMoveResults.swift in Sources */,
+				3EB127502ADDE4FD00745603 /* LibraryBuildProgressViewController.swift in Sources */,
 				3E05FD44283A455300EB7861 /* LibraryAlbumsViewController.swift in Sources */,
 				3EFE393B27864897006F8B8C /* BookmarksDelegate.swift in Sources */,
 				3EFE385F27864896006F8B8C /* ReverbUnitProtocol.swift in Sources */,
 				3E6C12FE25CEBE8F00BF0D07 /* PlaybackView.swift in Sources */,
 				3E6C130425CEBE8F00BF0D07 /* PlaybackViewController.swift in Sources */,
 				3E6C12FD25CEBE8F00BF0D07 /* PlayerAudioViewController.swift in Sources */,
+				3EB1274E2ADDCE1200745603 /* LibraryLoader.swift in Sources */,
 				3EFE397D27864897006F8B8C /* HaltPlaybackAction.swift in Sources */,
 				3E63620026850AC5006F5A2A /* PlayerFontScheme.swift in Sources */,
 				3E45C03625E1269500C1519C /* PlayerFontSchemeViewController.swift in Sources */,

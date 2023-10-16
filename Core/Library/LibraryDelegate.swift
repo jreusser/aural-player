@@ -10,7 +10,10 @@
 
 import Foundation
 
-protocol LibraryDelegateProtocol: GroupedSortedTrackListProtocol {}
+protocol LibraryDelegateProtocol: GroupedSortedTrackListProtocol {
+    
+    var buildProgress: Double {get}
+}
 
 class LibraryDelegate: LibraryDelegateProtocol {
     
@@ -23,6 +26,10 @@ class LibraryDelegate: LibraryDelegateProtocol {
     var displayName: String {library.displayName}
     
     private lazy var messenger: Messenger = .init(for: self)
+    
+    var buildProgress: Double {
+        library.buildProgress
+    }
     
     init() {
 

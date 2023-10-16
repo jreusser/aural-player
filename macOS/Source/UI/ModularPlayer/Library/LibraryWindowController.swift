@@ -28,6 +28,9 @@ class LibraryWindowController: NSWindowController {
     // Spinner that shows progress when tracks are being added to any of the playlists.
     @IBOutlet weak var progressSpinner: NSProgressIndicator!
     
+    @IBOutlet weak var buildProgressView: NSBox!
+    @IBOutlet weak var buildProgressSpinner: ProgressArc!
+    
     private lazy var sidebarController: LibrarySidebarViewController = LibrarySidebarViewController()
     
     private lazy var libraryTracksController: LibraryTracksViewController = LibraryTracksViewController()
@@ -41,6 +44,8 @@ class LibraryWindowController: NSWindowController {
     private lazy var playlistsViewController: PlaylistsViewController = PlaylistsViewController()
     
     private lazy var messenger: Messenger = Messenger(for: self)
+    
+    private lazy var buildProgressUpdateTask: RepeatingTaskExecutor = .init(intervalMillis: 500, task: updateBuildProgress, queue: .main)
     
     override func windowDidLoad() {
         
@@ -78,6 +83,9 @@ class LibraryWindowController: NSWindowController {
         tabGroup.tabViewItem(at: 6).view?.addSubview(playlistsView)
         playlistsView.anchorToSuperview()
         
+        messenger.subscribeAsync(to: .library_startedAddingTracks, handler: startedAddingTracks)
+        messenger.subscribeAsync(to: .library_doneAddingTracks, handler: doneAddingTracks)
+        
         messenger.subscribe(to: .library_showBrowserTabForItem, handler: showBrowserTab(forItem:))
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
 
@@ -91,6 +99,13 @@ class LibraryWindowController: NSWindowController {
         
         // TODO: Temporary, remove this !!!
         tabGroup.selectTabViewItem(at: 0)
+        
+        sidebarController.sidebarView.disable()
+    }
+    
+    private func updateBuildProgress() {
+        print("Progress: \(libraryDelegate.buildProgress)%")
+        buildProgressSpinner.percentage = libraryDelegate.buildProgress
     }
     
     @IBAction func closeAction(_ sender: Any) {
@@ -125,11 +140,32 @@ class LibraryWindowController: NSWindowController {
     
     // MARK: Message handling -----------------------------------------------------------
     
+    private func startedAddingTracks() {
+        buildProgressUpdateTask.startOrResume()
+    }
+    
+    private func doneAddingTracks() {
+        
+        buildProgressUpdateTask.stop()
+        buildProgressView.hide()
+        
+        sidebarController.sidebarView.enable()
+    }
+    
     private func applyTheme() {
         changeWindowCornerRadius(windowAppearanceState.cornerRadius)
     }
     
     private func changeWindowCornerRadius(_ radius: CGFloat) {
         rootContainer.cornerRadius = radius
+    }
+}
+
+class ProgSpinner: NSProgressIndicator {
+    
+    override func draw(_ dirtyRect: NSRect) {
+        
+        super.draw(dirtyRect.shrink(3))
+        print("My size is: \(frame.size), but rect is: \(dirtyRect.size)")
     }
 }

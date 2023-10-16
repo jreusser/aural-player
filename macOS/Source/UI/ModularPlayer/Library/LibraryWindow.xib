@@ -9,6 +9,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="LibraryWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnClose" destination="8J0-bC-5HZ" id="Uo2-YD-5Pa"/>
+                <outlet property="buildProgressSpinner" destination="Xyo-Cp-9vG" id="t4M-Vf-Tm6"/>
+                <outlet property="buildProgressView" destination="H5D-96-Yzn" id="zY5-OB-Vrc"/>
                 <outlet property="lblCaption" destination="bV3-BU-lI2" id="oP1-vf-Y92"/>
                 <outlet property="rootContainer" destination="seh-25-6bz" id="WTP-4o-jl1"/>
                 <outlet property="splitView" destination="w60-lv-Hyh" id="ItC-QP-6wr"/>
@@ -167,16 +169,43 @@
                                         <real value="250"/>
                                     </holdingPriorities>
                                 </splitView>
+                                <box boxType="custom" borderType="none" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="H5D-96-Yzn" userLabel="Progress">
+                                    <rect key="frame" x="15" y="10" width="970" height="451"/>
+                                    <view key="contentView" id="66v-1T-8C9">
+                                        <rect key="frame" x="0.0" y="0.0" width="970" height="451"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XS0-nB-Lrf">
+                                                <rect key="frame" x="313" y="279" width="345" height="48"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" selectable="YES" alignment="center" title="Building Library ... please wait" id="fkM-PF-9MA">
+                                                    <font key="font" size="22" name="Play-Regular"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xyo-Cp-9vG" customClass="ProgressArc" customModule="Aural" customModuleProvider="target">
+                                                <rect key="frame" x="436" y="163" width="100" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            </customView>
+                                        </subviews>
+                                    </view>
+                                    <color key="fillColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </box>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="bV3-BU-lI2" firstAttribute="top" secondItem="TSk-Ua-HlI" secondAttribute="top" constant="4" id="F5r-Ol-47D"/>
+                                <constraint firstItem="w60-lv-Hyh" firstAttribute="trailing" secondItem="H5D-96-Yzn" secondAttribute="trailing" id="Ino-tp-fuo"/>
+                                <constraint firstItem="w60-lv-Hyh" firstAttribute="top" secondItem="H5D-96-Yzn" secondAttribute="top" id="RfT-u5-UrE"/>
                                 <constraint firstAttribute="trailing" secondItem="w60-lv-Hyh" secondAttribute="trailing" constant="15" id="Xv6-32-EQG"/>
                                 <constraint firstItem="w60-lv-Hyh" firstAttribute="leading" secondItem="TSk-Ua-HlI" secondAttribute="leading" constant="15" id="cu6-x2-Be9"/>
                                 <constraint firstItem="w60-lv-Hyh" firstAttribute="top" secondItem="bV3-BU-lI2" secondAttribute="bottom" constant="10" id="edv-mh-3zd"/>
                                 <constraint firstItem="8J0-bC-5HZ" firstAttribute="top" secondItem="TSk-Ua-HlI" secondAttribute="top" constant="16" id="j1f-ik-zJ4"/>
                                 <constraint firstItem="bV3-BU-lI2" firstAttribute="leading" secondItem="8J0-bC-5HZ" secondAttribute="trailing" constant="21" id="l9q-yN-Cdz"/>
                                 <constraint firstItem="8J0-bC-5HZ" firstAttribute="leading" secondItem="TSk-Ua-HlI" secondAttribute="leading" constant="10" id="nVc-Ht-Du0"/>
+                                <constraint firstItem="w60-lv-Hyh" firstAttribute="bottom" secondItem="H5D-96-Yzn" secondAttribute="bottom" id="oVX-IM-bHI"/>
                                 <constraint firstAttribute="bottom" secondItem="w60-lv-Hyh" secondAttribute="bottom" constant="10" id="pVz-JG-cQz"/>
+                                <constraint firstItem="w60-lv-Hyh" firstAttribute="leading" secondItem="H5D-96-Yzn" secondAttribute="leading" id="yep-Bo-1SJ"/>
                             </constraints>
                         </view>
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

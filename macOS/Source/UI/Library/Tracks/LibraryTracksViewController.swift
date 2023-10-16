@@ -150,14 +150,18 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
     
     private func tracksAdded(_ notif: LibraryTracksAddedNotification) {
         
-        tracksAdded(at: notif.trackIndices)
-        updateSummary()
+//        tracksAdded(at: notif.trackIndices)
+//        updateSummary()
     }
     
     private func tracksRemoved(_ notif: LibraryTracksRemovedNotification) {
         
         tracksRemoved(at: notif.trackIndices)
         updateSummary()
+    }
+    
+    func doneAddingTracks() {
+        tableView.reloadData()
     }
     
     override func updateSummary() {
