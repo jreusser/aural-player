@@ -12,6 +12,7 @@ As of Oct 12, 2023, Aural Player version 4.0 is in active development, and aims 
 - CUE Sheet support
 - The ability to easily copy tracks across modules with drag / drop. Example - from a playlist to the play queue, or from the library to a playlist.
 - The ability to easily create new playlists from different places. Example - from a file system folder or from a library album.
+- Enhanced Favorites list for tracks, playlists, folders, albums, artists, etc.
 - Enhanced history that keeps track of play counts for tracks, playlists, folders, albums, artists, etc.
 - Nicer user interface aesthetics (look and feel)
 - More compact player and FX panel windows (area reduced by 20%)
