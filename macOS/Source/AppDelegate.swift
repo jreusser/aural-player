@@ -57,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             freopen(logFileCString, "a+", stderr)
         }
     }
-
+    
     /// Presents the application's user interface upon app startup.
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         

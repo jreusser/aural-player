@@ -46,7 +46,7 @@ class M3UPlaylistIO: PlaylistIOProtocol {
     }
     
     // Load playlist from file into current playlist. Handles varying M3U formats.
-    static func loadPlaylist(fromFile playlistFile: URL) -> ImportedPlaylist? {
+    static func loadPlaylist(fromFile playlistFile: URL) -> FileSystemPlaylist? {
         
         guard let fileContents: String = PlaylistIO.readFileAsString(playlistFile) else {return nil}
         
@@ -94,11 +94,15 @@ class M3UPlaylistIO: PlaylistIOProtocol {
                         url = playlistFolder.appendingPathComponent(trackFilePath, isDirectory: false)
                     }
                     
-                    tracks.append(url)
+                    let resolvedURL = url.resolvedURL
+                    
+                    if resolvedURL.exists {
+                        tracks.append(resolvedURL)
+                    }
                 }
             }
         }
         
-        return ImportedPlaylist(file: playlistFile, tracks: tracks)
+        return FileSystemPlaylist(file: playlistFile, tracks: tracks)
     }
 }

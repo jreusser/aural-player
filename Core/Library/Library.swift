@@ -21,6 +21,8 @@ protocol LibraryProtocol: TrackListProtocol {
     
     // TODO:
     var playlists: [ImportedPlaylist] {get}
+    
+    func addPlaylists(_ playlists: [ImportedPlaylist])
 }
 
 class Library: GroupedSortedTrackList, LibraryProtocol {
@@ -37,9 +39,18 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
         Array(_playlists.values)
     }
     
+    func addPlaylists(_ playlists: [ImportedPlaylist]) {
+        
+        for playlist in playlists {
+            _playlists[playlist.file] = playlist
+        }
+    }
+    
     init(persistentState: LibraryPersistentState?) {
         
-        self.homeFolder = persistentState?.homeFolder ?? FilesAndPaths.musicDir
+//        self.homeFolder = FilesAndPaths.musicDir.appendingPathComponent("Timo", isDirectory: true).appendingPathComponent("Fury In The Slaughterhouse", isDirectory: true)
+//        self.homeFolder = persistentState?.homeFolder ?? FilesAndPaths.musicDir
+        self.homeFolder = FilesAndPaths.musicDir
         
         super.init(sortOrder: TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending),
                    withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])

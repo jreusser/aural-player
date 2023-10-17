@@ -26,6 +26,8 @@ class LibraryLoader {
     }
     
     var metadata: ConcurrentMap<URL, FileMetadata> = ConcurrentMap()
+    var playlists: ConcurrentMap<URL, FileSystemPlaylist> = ConcurrentMap()
+    var playlistFiles: [URL] = []
     
     var blockOpFunction: ((URL) -> BlockOperation)!
     
@@ -35,8 +37,8 @@ class LibraryLoader {
     
     init() {
         
-        self.priority = .medium
-        self.qOS = .utility
+        self.priority = .highest
+        self.qOS = .userInteractive
         
         queue.maxConcurrentOperationCount = priority.concurrentOpCount
         queue.underlyingQueue = DispatchQueue.global(qos: qOS)
@@ -54,9 +56,7 @@ class LibraryLoader {
             defer {completionHandler?()}
             
             self.readFiles(files)
-            self.messenger.publish(.library_startedAddingTracks)
-            
-            print("Detected \(self.totalFiles) files and \(self.totalPlaylists) playlists. Now reading ...")
+            self.messenger.publish(.library_startedAddingTracks, payload: LibraryBuildStats(filesToRead: self.totalFiles, playlistsToRead: self.totalPlaylists))
             
             self.queue.waitUntilAllOperationsAreFinished()
             
@@ -66,7 +66,8 @@ class LibraryLoader {
             }
             
             library.addTracks(tracks)
-//            library.sort(.init(fields: [TrackSortField.name], order: .ascending))
+            
+            self.readPlaylists()
             
             self.messenger.publish(.library_doneAddingTracks)
             
@@ -87,45 +88,62 @@ class LibraryLoader {
         
         for file in files {
             
-            // Playlists might contain broken file references
-//            guard file.exists else {
-//
-////                session.addError(FileNotFoundError(file))
-//                continue
-//            }
-
             // Always resolve sym links and aliases before reading the file
-//            let resolvedFile = file.resolvedURL
-//            let resolvedFile = file
+            let resolvedFile = file.resolvedURL
 
-            if file.isDirectory {
+            if resolvedFile.isDirectory {
 
                 // Directory
                 
-                if let dirContents = file.children {
-                    readFiles(dirContents.sorted(by: {$0.lastPathComponent < $1.lastPathComponent}), isRecursiveCall: true)
+                if let dirContents = resolvedFile.children {
+                    readFiles(dirContents, isRecursiveCall: true)
                 }
 
             } else {
 
                 // Single file - playlist or track
-                let fileExtension = file.pathExtension.lowercased()
+                let fileExtension = resolvedFile.pathExtension.lowercased()
 
                 if SupportedTypes.playlistExtensions.contains(fileExtension) {
                     
-//                    if let loadedPlaylist = PlaylistIO.loadPlaylist(fromFile: resolvedFile) {
-//                        readFiles(loadedPlaylist.tracks, isRecursiveCall: true)
-                        totalPlaylists.increment()
-//                    }
+                    totalPlaylists.increment()
+                    playlistFiles.append(resolvedFile)
                     
                 } else if SupportedTypes.allAudioExtensions.contains(fileExtension) {
                     
                     // True means batch is full and needs to be flushed.
                     totalFiles.increment()
-                    queue.addOperation(blockOpFunction(file))
+                    queue.addOperation(blockOpFunction(resolvedFile))
                 }
             }
         }
+    }
+    
+    private func readPlaylists() {
+        
+        // TODO: Read metadata in batches.
+        // Skip files that don't exist.
+        
+        for playlistFile in playlistFiles {
+            
+            queue.addOperation {
+                
+                if let loadedPlaylist = PlaylistIO.loadPlaylist(fromFile: playlistFile) {
+                    self.playlists[playlistFile] = loadedPlaylist
+                }
+                
+                self.playlistsRead.increment()
+            }
+        }
+        
+        queue.waitUntilAllOperationsAreFinished()
+        
+        var playlistsToAdd: [ImportedPlaylist] = []
+        for (_, plst) in self.playlists.map {
+            playlistsToAdd.append(ImportedPlaylist(fileSystemPlaylist: plst))
+        }
+        
+        library.addPlaylists(playlistsToAdd)
     }
     
     private func blockOp(metadataType: MetadataType) -> ((URL) -> BlockOperation) {
@@ -135,22 +153,7 @@ class LibraryLoader {
             var fileMetadata = FileMetadata()
 
             do {
-
-                switch metadataType {
-
-                case .primary:
-
-                    fileMetadata.primary = try fileReader.getPrimaryMetadata(for: file)
-
-                case .playback:
-
-                    fileMetadata.playback = try fileReader.getPlaybackMetadata(for: file)
-                    
-                default:
-                    
-                    return
-                }
-
+                fileMetadata.primary = try fileReader.getPrimaryMetadata(for: file)
             } catch {
                 fileMetadata.validationError = error as? DisplayableError
             }
@@ -159,15 +162,10 @@ class LibraryLoader {
             self.filesRead.increment()
         }}
     }
+}
+
+struct LibraryBuildStats {
     
-    func flushBatch() {
-        
-//        queue.addOperations(batch.files.map(blockOpFunction), waitUntilFinished: true)
-//        
-//        session.batchCompleted(batch.files)
-//        let newIndices = session.trackList.acceptBatch(batch)
-//        session.observer.postBatchLoad(indices: newIndices)
-//        
-//        batch.clear()
-    }
+    let filesToRead: Int
+    let playlistsToRead: Int
 }

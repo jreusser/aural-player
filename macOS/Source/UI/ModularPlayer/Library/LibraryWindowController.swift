@@ -29,7 +29,9 @@ class LibraryWindowController: NSWindowController {
     @IBOutlet weak var progressSpinner: NSProgressIndicator!
     
     @IBOutlet weak var buildProgressView: NSBox!
+    @IBOutlet weak var buildIndeterminateSpinner: NSImageView!
     @IBOutlet weak var buildProgressSpinner: ProgressArc!
+    @IBOutlet weak var lblBuildStats: NSTextField!
     
     private lazy var sidebarController: LibrarySidebarViewController = LibrarySidebarViewController()
     
@@ -83,7 +85,7 @@ class LibraryWindowController: NSWindowController {
         tabGroup.tabViewItem(at: 6).view?.addSubview(playlistsView)
         playlistsView.anchorToSuperview()
         
-        messenger.subscribeAsync(to: .library_startedAddingTracks, handler: startedAddingTracks)
+        messenger.subscribeAsync(to: .library_startedAddingTracks, handler: startedAddingTracks(stats:))
         messenger.subscribeAsync(to: .library_doneAddingTracks, handler: doneAddingTracks)
         
         messenger.subscribe(to: .library_showBrowserTabForItem, handler: showBrowserTab(forItem:))
@@ -101,6 +103,9 @@ class LibraryWindowController: NSWindowController {
         tabGroup.selectTabViewItem(at: 0)
         
         sidebarController.sidebarView.disable()
+        lblBuildStats.stringValue = "Reading home folder: '\(library.homeFolder.path)' ..."
+        buildIndeterminateSpinner.show()
+        buildProgressSpinner.hide()
     }
     
     private func updateBuildProgress() {
@@ -139,8 +144,13 @@ class LibraryWindowController: NSWindowController {
     
     // MARK: Message handling -----------------------------------------------------------
     
-    private func startedAddingTracks() {
+    private func startedAddingTracks(stats: LibraryBuildStats) {
+        
+        buildIndeterminateSpinner.hide()
+        buildProgressSpinner.show()
+        
         buildProgressUpdateTask.startOrResume()
+        lblBuildStats.stringValue = "Reading \(stats.filesToRead) tracks and \(stats.playlistsToRead) playlists ..."
     }
     
     private func doneAddingTracks() {
@@ -157,14 +167,5 @@ class LibraryWindowController: NSWindowController {
     
     private func changeWindowCornerRadius(_ radius: CGFloat) {
         rootContainer.cornerRadius = radius
-    }
-}
-
-class ProgSpinner: NSProgressIndicator {
-    
-    override func draw(_ dirtyRect: NSRect) {
-        
-        super.draw(dirtyRect.shrink(3))
-        print("My size is: \(frame.size), but rect is: \(dirtyRect.size)")
     }
 }

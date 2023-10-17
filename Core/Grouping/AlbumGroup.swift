@@ -106,41 +106,50 @@ class AlbumGroup: Group {
     var art: PlatformImage {
         
         var parentFolders: Set<URL> = Set()
+        var albumTrackFiles: Set<URL> = Set()
         
         for track in theTracks {
+            
             parentFolders.insert(track.file.parentDir)
+            albumTrackFiles.insert(track.file)
+        }
+        
+        // For albums where all tracks are contained in a single folder.
+        guard parentFolders.count == 1, let parentFolder = parentFolders.first else {
+            
+            // 3 - Default icon for an album.
+            return .imgAlbumGroup
+        }
+        
+        let children = parentFolder.children?.filter {SupportedTypes.allAudioExtensions.contains($0.pathExtension)} ?? []
+        for child in children {
+            
+            if !albumTrackFiles.contains(child) {
+                return .imgAlbumGroup
+            }
         }
         
         // 1 - Check for an image file in the album folder.
         
-        for parentDir in parentFolders {
-            
-            let albumArtFile = parentDir.appendingPathComponent(Self.albumArtFileName, isDirectory: false)
-            
-            #if os(macOS)
-            
-            if albumArtFile.exists, let image = PlatformImage(contentsOf: albumArtFile) {
-                return image
-            }
-            
-            let folderArtFile = parentDir.appendingPathComponent(Self.folderArtFileName, isDirectory: false)
-            
-            if folderArtFile.exists, let image = PlatformImage(contentsOf: folderArtFile) {
-                return image
-            }
-            
-            #endif
+        // The files in the folder correspond exactly to the album tracks. Use art, if present.
+        let albumArtFile = parentFolder.appendingPathComponent(Self.albumArtFileName, isDirectory: false)
+        if albumArtFile.exists, let image = PlatformImage(contentsOf: albumArtFile) {
+            return image
+        }
+        
+        let folderArtFile = parentFolder.appendingPathComponent(Self.folderArtFileName, isDirectory: false)
+        if folderArtFile.exists, let image = PlatformImage(contentsOf: folderArtFile) {
+            return image
         }
         
         // 2 - Check for an image file in any of the tracks.
-        
         for track in theTracks {
             
             if let art = track.art?.image {
                 return art
             }
         }
-
+        
         // 3 - Default icon for an album.
         return .imgAlbumGroup
     }

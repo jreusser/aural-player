@@ -19,4 +19,35 @@ class LibraryBuildProgressWindowController: NSWindowController {
     
 //    override var nibName: String? {"LibraryBuildProgress"}
     override var windowNibName: NSNib.Name? {"LibraryBuildProgress"}
+    
+    @IBOutlet weak var buildProgressSpinner: ProgressArc!
+    
+    // TODO: Weak self
+    private lazy var buildProgressUpdateTask: RepeatingTaskExecutor = .init(intervalMillis: 500, task: updateBuildProgress, queue: .main)
+    
+    private lazy var messenger: Messenger = .init(for: self)
+
+    override func windowDidLoad() {
+        
+        super.windowDidLoad()
+        
+        messenger.subscribeAsync(to: .library_startedAddingTracks, handler: startedAddingTracks)
+        messenger.subscribeAsync(to: .library_doneAddingTracks, handler: doneAddingTracks)
+    }
+    
+    // MARK: Message handling -----------------------------------------------------------
+    
+    private func updateBuildProgress() {
+        buildProgressSpinner.percentage = libraryDelegate.buildProgress
+    }
+    
+    private func startedAddingTracks() {
+        buildProgressUpdateTask.startOrResume()
+    }
+
+    private func doneAddingTracks() {
+        
+        buildProgressUpdateTask.stop()
+        window?.sheetParent?.endSheet(self.window!)
+    }
 }

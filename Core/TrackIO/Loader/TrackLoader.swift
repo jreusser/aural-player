@@ -140,16 +140,9 @@ class TrackLoader {
         
         for file in files {
             
-            // Playlists might contain broken file references
-            guard file.exists else {
-
-                session.addError(FileNotFoundError(file))
-                continue
-            }
-
             // Always resolve sym links and aliases before reading the file
             let resolvedFile = file.resolvedURL
-
+            
             if file.isDirectory {
 
                 // Directory
@@ -162,7 +155,7 @@ class TrackLoader {
             } else {
 
                 // Single file - playlist or track
-                let fileExtension = resolvedFile.pathExtension.lowercased()
+                let fileExtension = resolvedFile.lowerCasedExtension
 
                 if SupportedTypes.playlistExtensions.contains(fileExtension) {
                     
@@ -170,7 +163,7 @@ class TrackLoader {
                     if !isRecursiveCall {session.addHistoryItem(resolvedFile)}
                     
                     if let loadedPlaylist = PlaylistIO.loadPlaylist(fromFile: resolvedFile) {
-                        readFiles(loadedPlaylist.tracks, isRecursiveCall: true)
+                        readPlaylistFiles(loadedPlaylist.tracks)
                     }
                     
                 } else if SupportedTypes.allAudioExtensions.contains(fileExtension),
@@ -184,6 +177,32 @@ class TrackLoader {
                         flushBatch()
                     }
                 }
+            }
+        }
+    }
+    
+    private func readPlaylistFiles(_ files: [URL]) {
+        
+        for resolvedFile in files {
+            
+            // Assume this is a resolved file
+            
+            // Playlists might contain broken file references
+            guard resolvedFile.exists else {
+                
+                session.addError(FileNotFoundError(resolvedFile))
+                continue
+            }
+            
+            let fileExtension = resolvedFile.lowerCasedExtension
+            
+            if SupportedTypes.allAudioExtensions.contains(fileExtension),
+               !session.trackList.hasTrack(forFile: resolvedFile),
+               batch.append(file: resolvedFile) {
+                
+                // Track
+                // True means batch is full and needs to be flushed.
+                flushBatch()
             }
         }
     }
