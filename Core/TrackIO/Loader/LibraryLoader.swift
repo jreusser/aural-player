@@ -59,9 +59,16 @@ class LibraryLoader {
             print("Detected \(self.totalFiles) files and \(self.totalPlaylists) playlists. Now reading ...")
             
             self.queue.waitUntilAllOperationsAreFinished()
-            self.messenger.publish(.library_doneAddingTracks)
             
-            print("Finished reading.")
+            var tracks: [Track] = []
+            for (url, fileMetadata) in self.metadata.map {
+                tracks.append(Track(url, fileMetadata: fileMetadata))
+            }
+            
+            library.addTracks(tracks)
+//            library.sort(.init(fields: [TrackSortField.name], order: .ascending))
+            
+            self.messenger.publish(.library_doneAddingTracks)
             
             // Cleanup
             self.blockOpFunction = nil

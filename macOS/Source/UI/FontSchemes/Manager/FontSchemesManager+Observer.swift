@@ -24,19 +24,19 @@ extension FontSchemesManager {
     
     func startObserving() {
         
-//        for property in propertyObservers.keys {
-//            observeProperty(property)
-//        }
-//
-//        for property in schemeAndPropertyObservers.keys {
-//            observePropertyForSchemeObserver(property)
-//        }
-//
-//        for observer in schemeObservers {
-//            observer.fontSchemeChanged()
-//        }
-//
-//        isObserving = true
+        for property in propertyObservers.keys {
+            observeProperty(property)
+        }
+
+        for property in schemeAndPropertyObservers.keys {
+            observePropertyForSchemeObserver(property)
+        }
+
+        for observer in schemeObservers {
+            observer.fontSchemeChanged()
+        }
+
+        isObserving = true
     }
     
     // TODO: Call this from AppModeManager.dismissMode()

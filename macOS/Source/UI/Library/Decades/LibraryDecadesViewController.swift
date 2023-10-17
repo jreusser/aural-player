@@ -34,6 +34,8 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
         messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
         messenger.subscribeAsync(to: .library_tracksRemoved, handler: reloadTable)
         
+        messenger.subscribeAsync(to: .library_doneAddingTracks, handler: doneAddingTracks)
+        
         messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
         messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
         
@@ -45,6 +47,12 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
         fontSchemesManager.registerObservers([lblDecadesSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
         colorSchemesManager.registerObservers([lblDecadesSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
         
+        updateSummary()
+    }
+    
+    func doneAddingTracks() {
+        
+        outlineView.reloadData()
         updateSummary()
     }
     

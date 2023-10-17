@@ -34,6 +34,8 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
         messenger.subscribeAsync(to: .library_tracksRemoved, handler: reloadTable)
         
+        messenger.subscribeAsync(to: .library_doneAddingTracks, handler: doneAddingTracks)
+        
         messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
         messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
         
@@ -45,6 +47,12 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         fontSchemesManager.registerObservers([lblAlbumsSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
         colorSchemesManager.registerObservers([lblAlbumsSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
         
+        updateSummary()
+    }
+    
+    func doneAddingTracks() {
+        
+        outlineView.reloadData()
         updateSummary()
     }
     

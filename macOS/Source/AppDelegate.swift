@@ -63,8 +63,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         initialize()
         
-        print("App launched for the first time ? \(!persistenceManager.persistentStateFileExists)")
-        
         if AppSetup.setupRequired {
             
             messenger.subscribe(to: .appSetup_completed, handler: postLaunch(appSetup:))

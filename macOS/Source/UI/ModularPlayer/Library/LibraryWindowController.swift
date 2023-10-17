@@ -104,7 +104,6 @@ class LibraryWindowController: NSWindowController {
     }
     
     private func updateBuildProgress() {
-        print("Progress: \(libraryDelegate.buildProgress)%")
         buildProgressSpinner.percentage = libraryDelegate.buildProgress
     }
     
