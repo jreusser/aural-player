@@ -59,5 +59,5 @@ struct LayoutWindowPersistentState: Codable {
         self.frame = NSRectPersistentState(rect: window.frame)
     }
     
-    #endif
+#endif
 }

@@ -29,6 +29,8 @@ class PlayQueueWindowController: NSWindowController {
         
         window?.contentView?.addSubview(containerViewController.view)
         
+        containerViewController.view.anchorToSuperview()
+        
         // Bring the 'X' (Close) button to the front and constrain it.
         btnClose.bringToFront()
 

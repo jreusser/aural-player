@@ -94,7 +94,7 @@ class PlayerViewController: NSViewController {
     }
     
     func trackNotPlayed() {
-        self.trackChanged(nil as Track?)
+        trackChanged(nil as Track?)
     }
     
     // When track info for the playing track changes, display fields need to be updated
@@ -116,6 +116,8 @@ class PlayerViewController: NSViewController {
         trackChanged(notification.endTrack)
         
         // If the playlist window has not yet been loaded, we need to handle this notification on behalf of the playlist window.
+        // i.e. showing/hiding the Chapters List window when a track with chapters starts/stops playing.
+        
 //        guard !windowLayoutsManager.playlistWindowLoaded else {return}
 //        
 //        // New track has no chapters, or there is no new track

@@ -22,8 +22,6 @@ struct UIPersistentState: Codable {
     let playQueue: PlayQueueUIPersistentState?
 //    let playlist: PlaylistUIPersistentState?
     
-
-    
     let windowLayout: WindowLayoutsPersistentState?
     let themes: ThemesPersistentState?
     let fontSchemes: FontSchemesPersistentState?
@@ -33,6 +31,7 @@ struct UIPersistentState: Codable {
     let windowAppearance: WindowAppearancePersistentState?
     let tuneBrowser: TuneBrowserUIPersistentState?
     
+    let unifiedPlayer: UnifiedPlayerUIPersistentState?
     let menuBarPlayer: MenuBarPlayerUIPersistentState?
     let controlBarPlayer: ControlBarPlayerUIPersistentState?
 }

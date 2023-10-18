@@ -37,21 +37,21 @@ class AppModeManager {
     
     func presentApp() {
         
-//        if appSetup.performSetup {
-//            presentMode(appSetup.presentationMode)
-//            
-//        } else if preferences.appModeOnStartup.option == .specific,
-//           let appMode = preferences.appModeOnStartup.mode {
-//
-//            // Present a specific app mode.
-//            presentMode(appMode)
-//
-//        } else {
-//
-//            // Remember app mode from last app launch.
-//            presentMode(lastPresentedAppMode ?? .defaultMode)
-//        }
-        presentMode(.modular)
+        if appSetup.performSetup {
+            presentMode(appSetup.presentationMode)
+            
+        } else if preferences.appModeOnStartup.option == .specific,
+           let appMode = preferences.appModeOnStartup.mode {
+
+            // Present a specific app mode.
+            presentMode(appMode)
+
+        } else {
+
+            // Remember app mode from last app launch.
+            presentMode(lastPresentedAppMode ?? .defaultMode)
+        }
+//        presentMode(.modular)
     }
     
     func presentMode(_ newMode: AppMode) {
