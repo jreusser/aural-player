@@ -40,6 +40,8 @@ extension NSButton: ColorSchemePropertyObserver {
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
+        print("Color changed to: \(newColor.whiteComponent)")
+        
         if self is TintedImageButton {
             contentTintColor = newColor
         } else {

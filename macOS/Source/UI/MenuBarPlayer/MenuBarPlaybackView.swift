@@ -19,7 +19,8 @@ class MenuBarPlaybackView: PlaybackView {
     
     override func awakeFromNib() {
         
-        super.awakeFromNib()
+//        super.awakeFromNib()
+        btnPlayPause.image = btnPlayPause.image?.filledWithColor(.white90Percent)
         
 //        btnPlayPause.onStateTintFunction = {.white70Percent}
 //        [btnPreviousTrack, btnNextTrack, btnSeekBackward, btnSeekForward].forEach {$0?.tintFunction = {.white70Percent}}

@@ -15,8 +15,8 @@ class MenuBarPlayerViewController: NSViewController {
     
     @IBOutlet weak var appLogo: TintedImageView!
     @IBOutlet weak var btnQuit: TintedImageButton!
-    @IBOutlet weak var btnWindowedMode: TintedImageButton!
-    @IBOutlet weak var btnControlBarMode: TintedImageButton!
+    @IBOutlet weak var btnWindowedMode: NSButton!
+    @IBOutlet weak var btnControlBarMode: NSButton!
     
     @IBOutlet weak var infoBox: NSBox!
     @IBOutlet weak var trackInfoView: MenuBarPlayingTrackTextView!
@@ -26,7 +26,7 @@ class MenuBarPlayerViewController: NSViewController {
     @IBOutlet weak var playbackView: MenuBarPlaybackView!
     @IBOutlet weak var seekSliderView: MenuBarSeekSliderView!
     
-    @IBOutlet weak var btnSettings: TintedImageButton!
+    @IBOutlet weak var btnSettings: NSButton!
     @IBOutlet weak var settingsBox: NSBox!
     
     @IBOutlet weak var playbackViewController: MenuBarPlaybackViewController!
@@ -42,9 +42,17 @@ class MenuBarPlayerViewController: NSViewController {
     
     override func awakeFromNib() {
         
-//        [btnQuit, btnWindowedMode, btnControlBarMode, btnSettings].forEach {$0?.tintFunction = {.white70Percent}}
+        [btnWindowedMode, btnControlBarMode, btnSettings].forEach {
+            $0?.image = $0?.image?.filledWithColor(.white90Percent)
+        }
         
-//        appLogo.tintFunction = {.white70Percent}
+        colorSchemesManager.registerObservers([btnQuit],
+                                              forProperty: \.buttonColor)
+        
+//        btnQuit.image?.isTemplate = true
+//        btnQuit.contentTintColor = .white
+        
+        appLogo.contentTintColor = .white90Percent
 
         // MARK: Notification subscriptions
         

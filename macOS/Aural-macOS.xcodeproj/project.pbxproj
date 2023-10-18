@@ -465,7 +465,6 @@
 		3E7C360126AADFA000B3552D /* FilterBandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C360026AADFA000B3552D /* FilterBandView.swift */; };
 		3E7C978D268BB8BE00287158 /* NSLayoutConstraintExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C978C268BB8BE00287158 /* NSLayoutConstraintExtensions.swift */; };
 		3E81BCD7284AAB5100927E4A /* TuneBrowserItemsAddedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81BCD6284AAB5100927E4A /* TuneBrowserItemsAddedNotification.swift */; };
-		3E824A4325DB74850089F217 /* MenuBarPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E824A4125DB74840089F217 /* MenuBarPlayer.xib */; };
 		3E824A4425DB74850089F217 /* MenuBarPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E824A4225DB74840089F217 /* MenuBarPlayerViewController.swift */; };
 		3E82A27D26ACB10C0013AB8E /* NSMenuItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFB5EF267FEDD700F0DC96 /* NSMenuItemExtensions.swift */; };
 		3E82A2BA26ACB3130013AB8E /* PlaylistViewSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8C791D269C4196005E78D1 /* PlaylistViewSelector.swift */; };
@@ -562,6 +561,7 @@
 		3EA306282AD8A81E006692FE /* PresentationModeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA306272AD8A81E006692FE /* PresentationModeSetupViewController.swift */; };
 		3EA3062A2AD8A831006692FE /* PresentationModeSetup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA306292AD8A831006692FE /* PresentationModeSetup.xib */; };
 		3EA3062C2AD8B1C9006692FE /* AppSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA3062B2AD8B1C9006692FE /* AppSetup.swift */; };
+		3EA3335B2AE098620041B4FA /* MenuBarPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA3335A2AE098620041B4FA /* MenuBarPlayer.xib */; };
 		3EA3ADAF26921E3E0066A918 /* MasterUnitPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA3ADAE26921E3E0066A918 /* MasterUnitPersistenceTests.swift */; };
 		3EA3ADB5269221D00066A918 /* AudioGraphTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA3ADB4269221D00066A918 /* AudioGraphTestCase.swift */; };
 		3EA3CE6725E3FD9E00BC7D07 /* FontSchemesManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA3CE6625E3FD9E00BC7D07 /* FontSchemesManager.xib */; };
@@ -2000,7 +2000,6 @@
 		3E7C360026AADFA000B3552D /* FilterBandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBandView.swift; sourceTree = "<group>"; };
 		3E7C978C268BB8BE00287158 /* NSLayoutConstraintExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtensions.swift; sourceTree = "<group>"; };
 		3E81BCD6284AAB5100927E4A /* TuneBrowserItemsAddedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneBrowserItemsAddedNotification.swift; sourceTree = "<group>"; };
-		3E824A4125DB74840089F217 /* MenuBarPlayer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuBarPlayer.xib; sourceTree = "<group>"; };
 		3E824A4225DB74840089F217 /* MenuBarPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarPlayerViewController.swift; sourceTree = "<group>"; };
 		3E82A2CE26ACC8670013AB8E /* MockAudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAudioEngine.swift; sourceTree = "<group>"; };
 		3E836E322868964D009371D4 /* PlayQueueContainer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayQueueContainer.xib; sourceTree = "<group>"; };
@@ -2147,6 +2146,7 @@
 		3EA306272AD8A81E006692FE /* PresentationModeSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationModeSetupViewController.swift; sourceTree = "<group>"; };
 		3EA306292AD8A831006692FE /* PresentationModeSetup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresentationModeSetup.xib; sourceTree = "<group>"; };
 		3EA3062B2AD8B1C9006692FE /* AppSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetup.swift; sourceTree = "<group>"; };
+		3EA3335A2AE098620041B4FA /* MenuBarPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuBarPlayer.xib; sourceTree = "<group>"; };
 		3EA3ADAE26921E3E0066A918 /* MasterUnitPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterUnitPersistenceTests.swift; sourceTree = "<group>"; };
 		3EA3ADB4269221D00066A918 /* AudioGraphTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioGraphTestCase.swift; sourceTree = "<group>"; };
 		3EA3CE6625E3FD9E00BC7D07 /* FontSchemesManager.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FontSchemesManager.xib; sourceTree = "<group>"; };
@@ -4455,7 +4455,7 @@
 		3E9E590225DB6B150064EB5F /* MenuBarPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				3E824A4125DB74840089F217 /* MenuBarPlayer.xib */,
+				3EA3335A2AE098620041B4FA /* MenuBarPlayer.xib */,
 				3E824A4225DB74840089F217 /* MenuBarPlayerViewController.swift */,
 				3EBABCBD262C1A350015A73A /* MenuBarPlayerSettingsViewController.swift */,
 				3E987ECB2630088600E6836D /* MenuBarPlayerUIState.swift */,
@@ -6143,6 +6143,7 @@
 				3E7638AB2857D88B00461F4D /* UnifiedPlayerWindow.xib in Resources */,
 				3E6C121D25CEBDE600BF0D07 /* Preferences.xib in Resources */,
 				3E6C130225CEBE8F00BF0D07 /* TrackInfo.xib in Resources */,
+				3EA3335B2AE098620041B4FA /* MenuBarPlayer.xib in Resources */,
 				3EAF96FA28DCE1B6008561A7 /* Metamorphous-Regular.ttf in Resources */,
 				3ED2385928207E2C0048CF8E /* FilterBandEditorDialog.xib in Resources */,
 				3E6C121525CEBDE500BF0D07 /* ViewPreferences.xib in Resources */,
@@ -6168,7 +6169,6 @@
 				3E5F943425E571A6002DEF80 /* Visualizer.xib in Resources */,
 				3E2000C1267CE00E008BAB70 /* GesturesPreferences.xib in Resources */,
 				3E6C126D25CEBE0600BF0D07 /* FavoritesManager.xib in Resources */,
-				3E824A4325DB74850089F217 /* MenuBarPlayer.xib in Resources */,
 				3E6C12FC25CEBE8F00BF0D07 /* Player.xib in Resources */,
 				3EAF96FF28DCE1B6008561A7 /* CarroisGothicSC-Regular.ttf in Resources */,
 				3E6C12C225CEBE6700BF0D07 /* MasterUnit.xib in Resources */,
