@@ -153,6 +153,10 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     func moveTracks(from sourceIndices: IndexSet, to dropIndex: Int) -> [TrackMoveResult] {
         playQueue.moveTracks(from: sourceIndices, to: dropIndex)
     }
+    
+    func moveTracksToPlayNext(from indices: IndexSet) -> IndexSet {
+        playQueue.moveTracksAfterCurrentTrack(from: indices)
+    }
 
     func removeAllTracks() {
         

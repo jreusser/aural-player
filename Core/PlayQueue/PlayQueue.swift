@@ -85,11 +85,19 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
             if let sourceIndex = indexOfTrack(track) {
                 _tracks.removeAndInsertItem(sourceIndex, insertionIndex.getAndIncrement())
             } else {
-                insertTracks([track], at: insertionIndex.getAndIncrement())
+                _ = insertTracks([track], at: insertionIndex.getAndIncrement())
             }
         }
         
         return IndexSet(curTrackIndex...(insertionIndex - 1))
+    }
+    
+    func moveTracksAfterCurrentTrack(from indices: IndexSet) -> IndexSet {
+        
+        guard let currentTrackIndex = currentTrackIndex else {return .empty}
+        
+        let results = moveTracks(from: indices, to: currentTrackIndex + 1)
+        return IndexSet(results.map {$0.destinationIndex})
     }
     
     override func insertTracks(_ newTracks: [Track], at insertionIndex: Int) -> IndexSet {

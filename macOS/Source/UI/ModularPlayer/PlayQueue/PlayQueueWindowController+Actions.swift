@@ -307,23 +307,14 @@ extension PlayQueueWindowController {
     
     func playNext() {
         
-        guard let selectedTrackIndex = currentViewController.selectedRows.first,
-              let indexOfPlayingTrack = playQueueDelegate.currentTrackIndex else {return}
-        
-        let selectedTrackAbovePlayingTrack: Bool = selectedTrackIndex < indexOfPlayingTrack
-        let destRow = indexOfPlayingTrack + (selectedTrackAbovePlayingTrack ? 0 : 1)
-        
-        _ = playQueueDelegate.moveTracks(from: IndexSet([selectedTrackIndex]), to: destRow)
-        
-        let minRow = min(selectedTrackIndex, destRow)
-        let maxRow = max(selectedTrackIndex, destRow)
+        let destRows = playQueueDelegate.moveTracksToPlayNext(from: currentViewController.selectedRows)
         
         controllers.forEach {
-            $0.reloadTableRows(minRow...maxRow)
+            $0.tableView.reloadData()
         }
         
         // Re-select the track that was moved.
-        currentViewController.selectRows([destRow])
+        currentViewController.tableView.selectRows(destRows)
     }
     
     // TODO: what to do with tracks already in the PQ ???

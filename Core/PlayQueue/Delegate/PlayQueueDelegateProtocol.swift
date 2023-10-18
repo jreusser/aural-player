@@ -16,6 +16,9 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol, SequencingProtocol {
     // Inserts tracks immediately after the current track, i.e. "Play Next"
     func enqueueTracksToPlayNext(_ newTracks: [Track]) -> IndexSet
     
+    // Moves tracks immediately after the current track, i.e. "Play Next"
+    func moveTracksToPlayNext(from indices: IndexSet) -> IndexSet
+    
     // MARK: Sequencing functions ---------------------------------------------------------------
     
     // Returns the current repeat and shuffle modes

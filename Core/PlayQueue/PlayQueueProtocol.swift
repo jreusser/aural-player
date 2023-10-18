@@ -16,6 +16,9 @@ protocol PlayQueueProtocol: TrackListProtocol, SequencingProtocol {
     // Inserts tracks immediately after the current track, i.e. "Play Next"
     func enqueueTracksAfterCurrentTrack(_ newTracks: [Track]) -> IndexSet
     
+    // Moves tracks immediately after the current track, i.e. "Play Next"
+    func moveTracksAfterCurrentTrack(from indices: IndexSet) -> IndexSet
+    
     func loadTracks(from files: [URL], atPosition position: Int?, clearQueue: Bool, autoplay: Bool)
 }
 

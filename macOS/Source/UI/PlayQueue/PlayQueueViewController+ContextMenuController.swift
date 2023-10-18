@@ -14,14 +14,15 @@ extension PlayQueueViewController: NSMenuDelegate {
     
     func menuNeedsUpdate(_ menu: NSMenu) {
         
+        let atLeastOneRowSelected = selectedRowCount >= 1
         let oneRowSelected = selectedRowCount == 1
-        let playingTrackSelected = playQueueDelegate.currentTrackIndex == selectedRows.first
+        let playingTrackSelected = playQueueDelegate.currentTrackIndex != nil && selectedRows.contains(playQueueDelegate.currentTrackIndex!)
         
         [playNowMenuItem, favoritesMenuItem, infoMenuItem].forEach {
             $0.enableIf(oneRowSelected)
         }
         
-        playNextMenuItem.enableIf(oneRowSelected && playQueueDelegate.currentTrack != nil && !playingTrackSelected)
+        playNextMenuItem.enableIf(atLeastOneRowSelected && playQueueDelegate.currentTrack != nil && !playingTrackSelected)
         
         // TODO: playlist names menu should have a separate delegate so that the menu
         // is not unnecessarily updated until required.
