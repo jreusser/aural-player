@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class EQUnitView: NSView {
+class EQUnitView: NSView, Destroyable {
     
     // ------------------------------------------------------------------------
     
@@ -66,6 +66,12 @@ class EQUnitView: NSView {
             $0.action = sliderAction
             $0.target = sliderActionTarget
         }
+    }
+    
+    func destroy() {
+        
+        sliderAction = nil
+        sliderActionTarget = nil
     }
     
     // ------------------------------------------------------------------------

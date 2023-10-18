@@ -34,6 +34,12 @@ class UnifiedPlayerSidebarViewController: NSViewController {
         colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
     }
     
+    override func destroy() {
+        
+        super.destroy()
+        messenger.unsubscribeFromAll()
+    }
+    
     @IBAction func doubleClickAction(_ sender: NSOutlineView) {
         
         guard let sidebarItem = sidebarView.selectedItem as? UnifiedPlayerSidebarItem else {return}

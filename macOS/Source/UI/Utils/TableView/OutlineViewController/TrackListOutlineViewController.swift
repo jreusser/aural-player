@@ -56,6 +56,12 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
         colorSchemesManager.registerObserver(outlineView, forProperty: \.backgroundColor)
     }
     
+    override func destroy() {
+        
+        super.destroy()
+        messenger.unsubscribeFromAll()
+    }
+    
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
         if property == \.backgroundColor {

@@ -32,7 +32,7 @@ class UnifiedPlayerWindowController: NSWindowController {
     
     private lazy var sidebarController: UnifiedPlayerSidebarViewController = UnifiedPlayerSidebarViewController()
     
-    private lazy var playQueueController: UnifiedPlayQueueViewController = UnifiedPlayQueueViewController()
+    private lazy var playQueueController: PlayQueueContainerViewController = PlayQueueContainerViewController()
     
     private lazy var libraryTracksController: LibraryTracksViewController = LibraryTracksViewController()
     private lazy var libraryArtistsController: LibraryArtistsViewController = LibraryArtistsViewController()
@@ -111,7 +111,15 @@ class UnifiedPlayerWindowController: NSWindowController {
     override func destroy() {
         
         close()
-//        viewController.destroy()
+        
+        eventMonitor.stopMonitoring()
+        eventMonitor = nil
+        
+        [playerController, sidebarController, playQueueController, libraryTracksController, libraryArtistsController, libraryAlbumsController, libraryGenresController, libraryDecadesController, tuneBrowserViewController, playlistsViewController].forEach {$0.destroy()}
+        
+        colorSchemesManager.removeAllObservers()
+        fontSchemesManager.removeAllObservers()
+        
         messenger.unsubscribeFromAll()
     }
     

@@ -16,7 +16,7 @@ class AppModeManager {
     
     var currentMode: AppMode? = nil
     
-    private lazy var windowedMode: WindowedAppModeController = WindowedAppModeController()
+    private lazy var modularMode: ModularAppModeController = ModularAppModeController()
     
     private lazy var unifiedMode: UnifiedAppModeController = UnifiedAppModeController()
     
@@ -62,7 +62,7 @@ class AppModeManager {
         
         case .modular:
             
-            windowedMode.presentMode(transitioningFromMode: currentMode)
+            modularMode.presentMode(transitioningFromMode: currentMode)
             
         case .unified:
             
@@ -86,7 +86,7 @@ class AppModeManager {
         
         switch currentMode {
             
-        case .modular:  windowedMode.dismissMode()
+        case .modular:  modularMode.dismissMode()
             
         case .unified:  unifiedMode.dismissMode()
             

@@ -53,6 +53,12 @@ class EQUnitViewController: EffectsUnitViewController {
         eqUnitView.setState(bands: eqUnit.bands, globalGain: eqUnit.globalGain)
     }
     
+    override func destroy() {
+        
+        super.destroy()
+        eqUnitView.destroy()
+    }
+    
     // ------------------------------------------------------------------------
     
     // MARK: Actions

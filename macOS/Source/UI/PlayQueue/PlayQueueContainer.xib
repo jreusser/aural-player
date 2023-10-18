@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="UnifiedPlayQueueViewController" customModule="Aural" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="PlayQueueContainerViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnExpandedView" destination="oBz-bN-54e" id="OMb-2t-ihI"/>
                 <outlet property="btnSimpleView" destination="Mqv-5I-yxs" id="cbR-fM-Maa"/>
@@ -103,10 +103,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button toolTip="Table view" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mqv-5I-yxs" userLabel="Table View Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
+                            <button toolTip="Table view" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mqv-5I-yxs" userLabel="Table View Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="83" y="2" width="16" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="list.dash" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gAp-ZP-RdG" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="list.dash" catalog="system" imagePosition="overlaps" alignment="center" refusesFirstResponder="YES" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="gAp-ZP-RdG" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <userDefinedRuntimeAttributes>
@@ -122,10 +122,10 @@
                                     <action selector="tabViewAction:" target="-2" id="HnG-wz-3d8"/>
                                 </connections>
                             </button>
-                            <button toolTip="List view" tag="1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oBz-bN-54e" userLabel="List View Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
+                            <button toolTip="List view" focusRingType="none" tag="1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oBz-bN-54e" userLabel="List View Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="108" y="2" width="16" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="text.below.photo.rtl" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="f1T-uw-lMF" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="text.below.photo.rtl" catalog="system" imagePosition="overlaps" alignment="center" refusesFirstResponder="YES" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="f1T-uw-lMF" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -143,12 +143,12 @@
                     <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </box>
                 <tabView drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="OkT-Fu-DdS" userLabel="Play Queue Tab Group">
-                    <rect key="frame" x="15" y="46" width="450" height="184"/>
+                    <rect key="frame" x="15" y="46" width="460" height="184"/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
                         <tabViewItem label="Table View" identifier="" id="zbS-38-f2C">
                             <view key="view" id="Wj7-Vc-qtx">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="184"/>
+                                <rect key="frame" x="0.0" y="0.0" width="460" height="184"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
@@ -464,7 +464,7 @@
                 <constraint firstAttribute="trailing" secondItem="qOg-hL-ufq" secondAttribute="trailing" id="BOz-eE-4L7"/>
                 <constraint firstItem="0iC-Kr-Awj" firstAttribute="leading" secondItem="t6d-dO-Tjg" secondAttribute="trailing" constant="6" id="CCV-WS-UwA"/>
                 <constraint firstAttribute="bottom" secondItem="J7Y-d2-B86" secondAttribute="bottom" constant="12" id="CIA-fw-qeM"/>
-                <constraint firstAttribute="trailing" secondItem="OkT-Fu-DdS" secondAttribute="trailing" constant="15" id="Fom-0D-1E7"/>
+                <constraint firstAttribute="trailing" secondItem="OkT-Fu-DdS" secondAttribute="trailing" constant="5" id="Fom-0D-1E7"/>
                 <constraint firstItem="s9j-Si-mwF" firstAttribute="leading" secondItem="dKD-ej-8l7" secondAttribute="trailing" constant="1" id="G4X-6t-ylV"/>
                 <constraint firstAttribute="bottom" secondItem="qAh-tT-FUN" secondAttribute="bottom" constant="12" id="JP9-8B-C9A"/>
                 <constraint firstItem="gwX-l4-ioP" firstAttribute="leading" secondItem="jIR-8v-jiy" secondAttribute="trailing" constant="15" id="JlN-Bu-pUL"/>

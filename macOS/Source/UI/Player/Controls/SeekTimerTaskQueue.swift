@@ -16,7 +16,7 @@ typealias SeekTimerTask = () -> Void
  
     This is needed by any external view wishing to synchronize its updates with the seek timer (so as not to create another timer instance which is resource-intensive).
  */
-class SeekTimerTaskQueue {
+class SeekTimerTaskQueue: Destroyable {
     
     static let instance = SeekTimerTaskQueue()
     
@@ -38,5 +38,11 @@ class SeekTimerTaskQueue {
         
         tasksMap.removeValue(forKey: id)
         tasks = Array(tasksMap.values)
+    }
+    
+    func destroy() {
+        
+        tasksMap.removeAll()
+        tasks.removeAll()
     }
 }

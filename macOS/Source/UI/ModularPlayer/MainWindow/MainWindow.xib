@@ -41,13 +41,16 @@
                             <rect key="frame" x="0.0" y="0.0" width="480" height="200"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <button toolTip="Quit Aural" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zFi-Se-R21" userLabel="Quit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="10" y="175.5" width="11.5" height="10"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <button toolTip="Quit Aural" wantsLayer="YES" focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="zFi-Se-R21" userLabel="Quit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="10" y="173.5" width="11.5" height="14"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="8cf-gd-eOH">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="10" id="iUK-mW-Oyl"/>
+                                        <constraint firstAttribute="width" constant="11" id="qTJ-Cs-4Eo"/>
+                                    </constraints>
                                     <connections>
                                         <action selector="quitAction:" target="-2" id="te0-r8-B0U"/>
                                     </connections>
@@ -488,6 +491,10 @@
                                     <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </box>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="zFi-Se-R21" firstAttribute="top" secondItem="sdu-Lk-MLz" secondAttribute="top" constant="15" id="Ka6-wn-6ue"/>
+                                <constraint firstItem="zFi-Se-R21" firstAttribute="leading" secondItem="sdu-Lk-MLz" secondAttribute="leading" constant="10" id="cg3-zE-HG2"/>
+                            </constraints>
                         </view>
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

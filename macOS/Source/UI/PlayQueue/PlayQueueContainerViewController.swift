@@ -1,18 +1,18 @@
 //
-//  UnifiedPlayQueueViewController.swift
+//  PlayQueueContainerViewController.swift
 //  Aural
 //
-//  Copyright © 2023 Kartik Venugopal. All rights reserved.
+//  Copyright © 2021 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
-//  
+//
 
 import Cocoa
 
-class UnifiedPlayQueueViewController: NSViewController, FontSchemePropertyObserver, ColorSchemePropertyObserver {
+class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObserver, ColorSchemePropertyObserver {
     
-    override var nibName: String? {"UnifiedPlayQueue"}
+    override var nibName: String? {"PlayQueueContainer"}
     
     @IBOutlet weak var lblCaption: NSTextField!
     @IBOutlet weak var lblTracksSummary: NSTextField!
@@ -26,7 +26,7 @@ class UnifiedPlayQueueViewController: NSViewController, FontSchemePropertyObserv
     
     // The tab group that switches between the 4 playlist views
     @IBOutlet weak var tabGroup: NSTabView!
-
+    
     @IBOutlet weak var btnSimpleView: TrackListTabButton!
     @IBOutlet weak var btnExpandedView: TrackListTabButton!
     
@@ -157,7 +157,7 @@ class UnifiedPlayQueueViewController: NSViewController, FontSchemePropertyObserv
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         updateSummary()
     }
-
+    
     private func startedAddingTracks() {
         
         progressSpinner.startAnimation(nil)
@@ -178,7 +178,7 @@ class UnifiedPlayQueueViewController: NSViewController, FontSchemePropertyObserv
             
             let playIconAttStr = "▶".attributed(font: futuristicFontSet.mainFont(size: 12), color: systemColorScheme.secondaryTextColor)
             let tracksSummaryAttStr = "  \(playingTrackIndex + 1) / \(playQueueDelegate.size) \(tracksCardinalString)".attributed(font: systemFontScheme.playQueueSecondaryFont,
-                                                                                                                          color: systemColorScheme.secondaryTextColor)
+                                                                                                                                  color: systemColorScheme.secondaryTextColor)
             
             lblTracksSummary.attributedStringValue = playIconAttStr + tracksSummaryAttStr
             
@@ -195,6 +195,8 @@ class UnifiedPlayQueueViewController: NSViewController, FontSchemePropertyObserv
     }
     
     override func destroy() {
+        
+        controllers.forEach {$0.destroy()}
         messenger.unsubscribeFromAll()
     }
 }

@@ -10,45 +10,14 @@
 
 import Cocoa
 
-class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver, ColorSchemePropertyObserver {
+class PlayQueueWindowController: NSWindowController {
 
     override var windowNibName: String? {"PlayQueueWindow"}
     
     @IBOutlet weak var btnClose: TintedImageButton!
+    private lazy var btnCloseConstraints: LayoutConstraintsManager = LayoutConstraintsManager(for: btnClose)
     
-    @IBOutlet weak var lblCaption: NSTextField!
-    @IBOutlet weak var lblTracksSummary: NSTextField!
-    @IBOutlet weak var lblDurationSummary: NSTextField!
-    
-    // Spinner that shows progress when tracks are being added to the play queue.
-    @IBOutlet weak var progressSpinner: NSProgressIndicator!
-    
-    @IBOutlet weak var rootContainer: NSBox!
-    @IBOutlet weak var tabButtonsContainer: NSBox!
-    
-    // The tab group that switches between the 4 playlist views
-    @IBOutlet weak var tabGroup: NSTabView!
-    
-    @IBOutlet weak var btnExpandedView: TrackListTabButton!
-    @IBOutlet weak var btnSimpleView: TrackListTabButton!
-    
-    lazy var tabButtons: [TrackListTabButton] = [btnSimpleView, btnExpandedView]
-    
-    @IBOutlet weak var sortOrderMenuItemView: SortOrderMenuItemView!
-    
-    @IBOutlet weak var simpleViewController: PlayQueueSimpleViewController!
-    @IBOutlet weak var expandedViewController: PlayQueueExpandedViewController!
-    lazy var controllers: [PlayQueueViewController] = [simpleViewController, expandedViewController]
-    
-    lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
-    
-    lazy var alertDialog: AlertWindowController = .instance
-    
-    lazy var saveDialog = DialogsAndAlerts.savePlaylistDialog
-    
-    var currentViewController: PlayQueueViewController {
-        tabGroup.selectedIndex == 0 ? simpleViewController : expandedViewController
-    }
+    private lazy var containerViewController: PlayQueueContainerViewController = .init()
     
     lazy var messenger: Messenger = Messenger(for: self)
     
@@ -58,158 +27,40 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
         
         theWindow.isMovableByWindowBackground = true
         
-        let compactView = simpleViewController.view
-        let prettyView = expandedViewController.view
+        window?.contentView?.addSubview(containerViewController.view)
         
-        for (index, view) in [compactView, prettyView].enumerated() {
-            
-            tabGroup.tabViewItem(at: index).view?.addSubview(view)
-            view.anchorToSuperview()
-        }
+        // Bring the 'X' (Close) button to the front and constrain it.
+        btnClose.bringToFront()
+
+        btnCloseConstraints.setWidth(11.5)
+        btnCloseConstraints.setHeight(10)
+        btnCloseConstraints.setLeading(relatedToLeadingOf: btnClose.superview!, offset: 10)
+        btnCloseConstraints.setTop(relatedToTopOf: btnClose.superview!, offset: 15)
         
-        doSelectTab(at: playQueueUIState.currentView.rawValue)
-        
-        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-        fontSchemesManager.registerObserver(self, forProperty: \.playQueueSecondaryFont)
-        
-        colorSchemesManager.registerObservers([btnSimpleView, btnExpandedView], forProperties: [\.buttonColor, \.inactiveControlColor])
-        
-        colorSchemesManager.registerObservers([rootContainer, tabButtonsContainer], forProperty: \.backgroundColor)
-        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
-        
-        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
-        colorSchemesManager.registerObserver(self, forProperty: \.secondaryTextColor)
+        // Offset the caption to the right of the 'X' (Close) button.
+        containerViewController.lblCaption.moveRight(distance: 20)
         
         changeWindowCornerRadius(windowAppearanceState.cornerRadius)
-        
-        messenger.subscribe(to: .playQueue_addTracks, handler: importFilesAndFolders)
-        
-        messenger.subscribe(to: .playQueue_removeTracks, handler: removeTracks)
-        messenger.subscribe(to: .playQueue_cropSelection, handler: cropSelection)
-        messenger.subscribe(to: .playQueue_removeAllTracks, handler: removeAllTracks)
-        
-        messenger.subscribe(to: .playQueue_enqueueAndPlayNow, handler: enqueueAndPlayNow(_:))
-        messenger.subscribe(to: .playQueue_enqueueAndPlayNext, handler: enqueueAndPlayNext(_:))
-        messenger.subscribe(to: .playQueue_enqueueAndPlayLater, handler: enqueueAndPlayLater(_:))
-        
-        messenger.subscribe(to: .playQueue_loadAndPlayNow, handler: loadAndPlayNow(_:))
-        
-        messenger.subscribe(to: .playQueue_playNext, handler: playNext)
-        
-        messenger.subscribe(to: .playQueue_moveTracksUp, handler: moveTracksUp)
-        messenger.subscribe(to: .playQueue_moveTracksDown, handler: moveTracksDown)
-        messenger.subscribe(to: .playQueue_moveTracksToTop, handler: moveTracksToTop)
-        messenger.subscribe(to: .playQueue_moveTracksToBottom, handler: moveTracksToBottom)
-        
-        messenger.subscribe(to: .playQueue_exportAsPlaylistFile, handler: exportAsPlaylistFile)
-        
-        messenger.subscribeAsync(to: .playQueue_startedAddingTracks, handler: startedAddingTracks)
-        messenger.subscribeAsync(to: .playQueue_doneAddingTracks, handler: doneAddingTracks)
-        
-        messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
-        messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: updateSummary)
-        
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: updateSummary)
-        
-        messenger.subscribe(to: .playQueue_updateSummary, handler: updateSummary)
-        
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
-        
-        updateSummary()
     }
     
-    // TODO: REFACTORING - move this to a generic TableWindowController.
-    private func exportAsPlaylistFile() {
-        
-        // Make sure there is at least one track to save.
-        guard playQueueDelegate.size > 0, !checkIfPlayQueueIsBeingModified() else {return}
-        
-        let saveDialog = DialogsAndAlerts.savePlaylistDialog
-        
-        if saveDialog.runModal() == .OK,
-           let newFileURL = saveDialog.url {
-            
-            playQueueDelegate.exportToFile(newFileURL)
-        }
-    }
+    // MARK: Actions ----------------------------------------------------------------------------------
     
-    // Removes all items from the playlist
-    func removeAllTracks() {
-        
-        guard playQueueDelegate.size > 0, !checkIfPlayQueueIsBeingModified() else {return}
-        
-        playQueueDelegate.removeAllTracks()
-        
-        // Tell the play queue UI to refresh its views.
-        messenger.publish(.playQueue_refresh)
-        
-        updateSummary()
-    }
-    
-    private func checkIfPlayQueueIsBeingModified() -> Bool {
-        
-        let playQueueBeingModified = playQueueDelegate.isBeingModified
-        
-        if playQueueBeingModified {
-            alertDialog.showAlert(.error, "Play Queue not modified", "The Play Queue cannot be modified while tracks are being added", "Please wait till the Play Queue is done adding tracks ...")
-        }
-        
-        return playQueueBeingModified
+    @IBAction func closeAction(_ sender: NSButton) {
+        windowLayoutsManager.toggleWindow(withId: .playQueue)
     }
     
     // MARK: Notification handling ----------------------------------------------------------------------------------
     
-    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
-        updateSummary()
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        updateSummary()
-    }
-
-    private func startedAddingTracks() {
-        
-        progressSpinner.startAnimation(nil)
-        progressSpinner.show()
-    }
-    
-    private func doneAddingTracks() {
-        
-        progressSpinner.hide()
-        progressSpinner.stopAnimation(nil)
-    }
-    
-    func updateSummary() {
-        
-        let tracksCardinalString = playQueueDelegate.size == 1 ? "track" : "tracks"
-        
-        if let playingTrackIndex = playQueueDelegate.currentTrackIndex {
-            
-            let playIconAttStr = "▶".attributed(font: futuristicFontSet.mainFont(size: 12), color: systemColorScheme.secondaryTextColor)
-            let tracksSummaryAttStr = "  \(playingTrackIndex + 1) / \(playQueueDelegate.size) \(tracksCardinalString)".attributed(font: systemFontScheme.playQueueSecondaryFont,
-                                                                                                                          color: systemColorScheme.secondaryTextColor)
-            
-            lblTracksSummary.attributedStringValue = playIconAttStr + tracksSummaryAttStr
-            
-        } else {
-            
-            lblTracksSummary.stringValue = "\(playQueueDelegate.size) \(tracksCardinalString)"
-            lblTracksSummary.font = systemFontScheme.playQueueSecondaryFont
-            lblTracksSummary.textColor = systemColorScheme.secondaryTextColor
-        }
-        
-        lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(playQueueDelegate.duration)
-        lblDurationSummary.font = systemFontScheme.playQueueSecondaryFont
-        lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
+    private func changeWindowCornerRadius(_ radius: CGFloat) {
+        containerViewController.rootContainer.cornerRadius = radius
     }
     
     override func destroy() {
         
         close()
+        
+        containerViewController.destroy()
         messenger.unsubscribeFromAll()
-    }
-    
-    private func changeWindowCornerRadius(_ radius: CGFloat) {
-        rootContainer.cornerRadius = radius
     }
 }

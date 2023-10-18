@@ -12,7 +12,7 @@ import Cocoa
 /*
     View that encapsulates all playback-related controls (play/pause, prev/next track, seeking, segment looping).
 */
-class PlaybackView: NSView {
+class PlaybackView: NSView, Destroyable {
     
     // Fields that display/control seek position within the playing track
     @IBOutlet weak var sliderView: SeekSliderView!
@@ -84,6 +84,10 @@ class PlaybackView: NSView {
         
         colorSchemesManager.registerObservers([btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack],
                                                           forProperty: \.buttonColor)
+    }
+    
+    func destroy() {
+        sliderView.destroy()
     }
     
     // When the playback state changes (e.g. playing -> paused), fields may need to be updated

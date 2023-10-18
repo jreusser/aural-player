@@ -15,9 +15,8 @@ class WindowLoader: DestroyableAndRestorable {
     
     private let controllerFactory: () -> NSWindowController
     
-    private lazy var controller: NSWindowController! = createController()
-    
-    lazy var window: NSWindow = controller.window!
+    private var controller: NSWindowController!
+    var window: NSWindow!
     
     var isWindowLoaded: Bool = false
     
@@ -39,21 +38,19 @@ class WindowLoader: DestroyableAndRestorable {
     
     func destroy() {
         
-        if isWindowLoaded {
-            
-            controller.destroy()
-            controller = nil
-        }
-    }
-    
-    private func createController() -> NSWindowController {
+        guard isWindowLoaded else {return}
         
-        isWindowLoaded = true
-        return controllerFactory()
+        controller.destroy()
+        controller = nil
+        window = nil
+        isWindowLoaded = false
     }
     
     func restore() {
-        controller = createController()
+        
+        controller = controllerFactory()
+        window = controller.window
+        isWindowLoaded = true
     }
 }
 

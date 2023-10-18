@@ -1,8 +1,8 @@
 //
-//  PlayQueueWindowController+Actions.swift
+//  PlayQueueContainerViewController+Actions.swift
 //  Aural
 //
-//  Copyright © 2023 Kartik Venugopal. All rights reserved.
+//  Copyright © 2021 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -10,7 +10,7 @@
 
 import Cocoa
 
-extension PlayQueueWindowController {
+extension PlayQueueContainerViewController {
     
     // Switches the tab group to a particular tab
     @IBAction func tabViewAction(_ sender: TrackListTabButton) {
@@ -25,10 +25,6 @@ extension PlayQueueWindowController {
         // Button tag is the tab index
         tabGroup.selectTabViewItem(at: tabIndex)
         playQueueUIState.currentView = PlayQueueView(rawValue: tabIndex)!
-    }
-    
-    @IBAction func closeAction(_ sender: NSButton) {
-        windowLayoutsManager.toggleWindow(withId: .playQueue)
     }
     
     @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {
@@ -277,10 +273,6 @@ extension PlayQueueWindowController {
     
     @IBAction func sortByDurationAction(_ sender: NSMenuItem) {
         doSort(by: [.duration])
-    }
-    
-    @IBAction func sortByFileLastModifiedTimeAction(_ sender: NSMenuItem) {
-        doSort(by: [.fileLastModifiedTime])
     }
     
     private func doSort(by fields: [TrackSortField]) {

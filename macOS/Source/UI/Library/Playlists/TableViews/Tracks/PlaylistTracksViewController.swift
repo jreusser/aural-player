@@ -30,7 +30,7 @@ class PlaylistTracksViewController: TrackListTableViewController, ColorSchemePro
         playlist
     }
     
-    private lazy var messenger: Messenger = Messenger(for: self)
+    private lazy var messenger: Messenger = .init(for: self)
     
     override func viewDidLoad() {
         
@@ -97,6 +97,12 @@ class PlaylistTracksViewController: TrackListTableViewController, ColorSchemePro
     
     override func notifyReloadTable() {
         messenger.publish(.playlist_refresh)
+    }
+    
+    override func destroy() {
+        
+        super.destroy()
+        messenger.unsubscribeFromAll()
     }
     
     // ---------------------------------------------------------------------------------------------------------

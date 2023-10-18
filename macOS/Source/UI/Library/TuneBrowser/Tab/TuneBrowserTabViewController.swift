@@ -94,6 +94,14 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         messenger.subscribeAsync(to: .fileSystem_fileMetadataLoaded, handler: fileMetadataLoaded(_:))
     }
     
+    override func destroy() {
+        
+        super.destroy()
+        
+        fileSystem.destroy()
+        messenger.unsubscribeFromAll()
+    }
+    
     func menuWillOpen(_ menu: NSMenu) {
         
         for item in menu.items {
@@ -111,10 +119,6 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         if let id = sender.identifier {
             browserView.tableColumn(withIdentifier: id)?.isHidden.toggle()
         }
-    }
-    
-    override func destroy() {
-        messenger.unsubscribeFromAll()
     }
     
     private func fileMetadataLoaded(_ file: FileSystemItem) {

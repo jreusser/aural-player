@@ -64,6 +64,12 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
         deviceListUpdated()
     }
     
+    override func destroy() {
+        
+        super.destroy()
+        messenger.unsubscribeFromAll()
+    }
+    
     @IBAction func panAction(_ sender: Any) {
         
         audioGraph.pan = panSlider.floatValue

@@ -35,6 +35,8 @@ class PlaybackViewController: NSViewController {
     func initSubscriptions() {}
     
     override func destroy() {
+
+        playbackView.destroy()
         messenger.unsubscribeFromAll()
     }
     

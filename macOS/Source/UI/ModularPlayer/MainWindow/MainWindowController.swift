@@ -86,12 +86,16 @@ class MainWindowController: NSWindowController {
     
     override func destroy() {
         
+        close()
+        
         eventMonitor.stopMonitoring()
         eventMonitor = nil
         
         playerViewController.destroy()
         
-        close()
+        colorSchemesManager.removeAllObservers()
+        fontSchemesManager.removeAllObservers()
+        
         messenger.unsubscribeFromAll()
         
         SingletonPopoverViewController.destroy()

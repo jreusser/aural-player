@@ -12,8 +12,6 @@ import Cocoa
 
 class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver, ColorSchemeObserver {
 
-    lazy var messenger: Messenger = Messenger(for: self)
-    
     override var isTrackListBeingModified: Bool {playQueueDelegate.isBeingModified}
     
     override var trackList: TrackListProtocol! {playQueueDelegate}
@@ -30,6 +28,8 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
     
     // Popup view that displays a brief notification when a selected track is added/removed to/from the Favorites list
     lazy var infoPopup: InfoPopupViewController = .instance
+    
+    lazy var messenger: Messenger = .init(for: self)
     
     override func viewDidLoad() {
         
@@ -74,6 +74,8 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
     }
     
     override func destroy() {
+        
+        super.destroy()
         messenger.unsubscribeFromAll()
     }
     

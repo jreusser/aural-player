@@ -14,15 +14,19 @@ protocol FileSystemUIObserver {
     func itemsAdded(to item: FileSystemItem, at indices: IndexSet)
 }
 
-class FileSystem {
+class FileSystem: Destroyable {
     
     private let metadataLoader: FileSystemLoader = FileSystemLoader(priority: .medium)
     
-    let observer: FileSystemUIObserver
+    var observer: FileSystemUIObserver!
     var observedItem: FileSystemItem!
     
     init(observer: FileSystemUIObserver) {
         self.observer = observer
+    }
+    
+    func destroy() {
+        self.observer = nil
     }
     
     var root: FileSystemItem? = nil {
@@ -110,7 +114,7 @@ extension FileSystem: FileSystemLoaderObserver {
     func postBatchLoad(indices: IndexSet) {
         
         DispatchQueue.main.async {
-            self.observer.itemsAdded(to: self.observedItem, at: indices)
+            self.observer?.itemsAdded(to: self.observedItem, at: indices)
         }
     }
 }

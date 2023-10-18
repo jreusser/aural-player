@@ -133,6 +133,17 @@ extension ColorSchemesManager {
         reverseRegistry.removeValue(forKey: observerObject)
     }
     
+    func removeAllObservers() {
+        
+        propertyObservers.removeAll()
+        schemeAndPropertyObservers.removeAll()
+        schemeObservers.removeAll()
+        reverseRegistry.removeAll()
+        
+        propertyKVO.invalidate()
+        schemeKVO.invalidate()
+    }
+    
     // ----------------------------------------------------------------------------------------------------
     
     // MARK: Scheme observing

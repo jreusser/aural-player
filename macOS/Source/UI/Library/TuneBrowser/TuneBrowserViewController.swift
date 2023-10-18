@@ -98,6 +98,15 @@ class TuneBrowserViewController: NSViewController {
     }
     
     override func destroy() {
+        
+        // Check if any existing tab is already showing the target URL.
+        for tab in tabView.tabViewItems {
+            
+            if let tabVC = tab.viewController as? TuneBrowserTabViewController {
+                tabVC.destroy()
+            }
+        }
+        
         messenger.unsubscribeFromAll()
     }
     

@@ -23,7 +23,7 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     
     private var savedLayout: WindowLayout? = nil
     
-    lazy var mainWindow: NSWindow = loader(withID: .main).window
+    var mainWindow: NSWindow {loader(withID: .main).window}
 
     init(persistentState: WindowLayoutsPersistentState?, viewPreferences: ViewPreferences) {
         
@@ -99,7 +99,7 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
         
         // NOTE - No need to include main window loader here as that will be lazily loaded
         // through the 'mainWindow' reference in performInitialLayout().
-        let loaders = (layout.displayedWindows.map {$0.id}.map {loader(withID: $0)})
+        let loaders = (([WindowID.main] + layout.displayedWindows.map {$0.id}).map {loader(withID: $0)})
         
         loaders.forEach {$0.restore()}
         performInitialLayout()

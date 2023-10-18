@@ -1,5 +1,5 @@
 //
-//  WindowedAppModeController.swift
+//  ModularAppModeController.swift
 //  Aural
 //
 //  Copyright © 2023 Kartik Venugopal. All rights reserved.
@@ -10,16 +10,16 @@
 import Cocoa
 
 ///
-/// Controller responsible for presenting / dismissing the *Windowed* application user interface mode.
+/// Controller responsible for presenting / dismissing the *Modular* application user interface mode.
 ///
-/// The windowed app mode's interace consists of several windows representing different application
+/// The modular app mode's interace consists of several windows representing different application
 /// modules - player, playlist, effects, chapters list, and several dialogs and utilities panels.
 ///
-/// The windowed app mode is the default app mode and the one that will be presented upon the first
+/// The modular app mode is the default app mode and the one that will be presented upon the first
 /// app startup or when no prior app state is available. It allows the user access to all of the application's
 /// features and is intended for a high level of user interaction.
 ///
-class WindowedAppModeController: AppModeController {
+class ModularAppModeController: AppModeController {
     
     var mode: AppMode {.modular}
     

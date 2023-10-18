@@ -24,6 +24,12 @@ class PlaylistsViewController: NSViewController {
         messenger.subscribe(to: .playlists_showPlaylist, handler: showPlaylist(named:))
     }
     
+    override func destroy() {
+        
+        super.destroy()
+        messenger.unsubscribeFromAll()
+    }
+    
     private func showPlaylist(named playlistName: String) {
         
         guard let playlist = playlistsManager.object(named: playlistName) else {return}

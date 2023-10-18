@@ -12,7 +12,7 @@ import Cocoa
 /*
    View that encapsulates the seek slider and seek time labels.
 */
-class SeekSliderView: NSView {
+class SeekSliderView: NSView, Destroyable {
     
     // Fields that display/control seek position within the playing track
     @IBOutlet weak var lblTrackTime: VALabel!
@@ -53,6 +53,12 @@ class SeekSliderView: NSView {
         
         colorSchemesManager.registerSchemeObserver(seekSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
         fontSchemesManager.registerObserver(lblTrackTime, forProperty: \.playerSecondaryFont)
+    }
+    
+    func destroy() {
+        
+        seekTimer?.stop()
+        seekTimerTaskQueue.destroy()
     }
     
     func initSeekPositionLabels() {
