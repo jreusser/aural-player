@@ -1,5 +1,5 @@
 //
-//  PlayQueueTableViewController.swift
+//  PlayQueueSimpleViewController.swift
 //  Aural
 //
 //  Copyright © 2023 Kartik Venugopal. All rights reserved.
@@ -10,9 +10,9 @@
 
 import Cocoa
 
-class PlayQueueTableViewController: PlayQueueViewController {
+class PlayQueueSimpleViewController: PlayQueueViewController {
     
-    override var nibName: String? {"PlayQueueTableView"}
+    override var nibName: String? {"PlayQueueSimpleView"}
     
     override var rowHeight: CGFloat {30}
     

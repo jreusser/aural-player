@@ -1,5 +1,5 @@
 //
-//  PlayQueueListViewController.swift
+//  PlayQueueExpandedViewController.swift
 //  Aural
 //
 //  Copyright © 2023 Kartik Venugopal. All rights reserved.
@@ -10,9 +10,9 @@
 
 import Cocoa
 
-class PlayQueueListViewController: PlayQueueViewController {
+class PlayQueueExpandedViewController: PlayQueueViewController {
     
-    override var nibName: String? {"PlayQueueListView"}
+    override var nibName: String? {"PlayQueueExpandedView"}
     
     override var rowHeight: CGFloat {50}
     

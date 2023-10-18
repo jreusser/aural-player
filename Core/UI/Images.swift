@@ -16,7 +16,7 @@ import Foundation
 extension PlatformImage {
     
     static let imgPlayQueueTableView: PlatformImage = PlatformImage(systemSymbolName: "list.dash", accessibilityDescription: nil)!
-    static let imgPlayQueueListView: PlatformImage = PlatformImage(systemSymbolName: "text.below.photo.rtl", accessibilityDescription: nil)!
+    static let imgPlayQueueExpandedView: PlatformImage = PlatformImage(systemSymbolName: "text.below.photo.rtl", accessibilityDescription: nil)!
     
     static let imgPlayQueue: PlatformImage = PlatformImage(named: "PlayQueue")!
     static let imgEffects: PlatformImage = PlatformImage(systemSymbolName: "slider.vertical.3", accessibilityDescription: nil)!

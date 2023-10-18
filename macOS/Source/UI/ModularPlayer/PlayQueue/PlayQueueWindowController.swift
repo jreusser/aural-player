@@ -29,16 +29,16 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
     // The tab group that switches between the 4 playlist views
     @IBOutlet weak var tabGroup: NSTabView!
     
-    @IBOutlet weak var btnListView: TrackListTabButton!
-    @IBOutlet weak var btnTableView: TrackListTabButton!
+    @IBOutlet weak var btnExpandedView: TrackListTabButton!
+    @IBOutlet weak var btnSimpleView: TrackListTabButton!
     
-    lazy var tabButtons: [TrackListTabButton] = [btnTableView, btnListView]
+    lazy var tabButtons: [TrackListTabButton] = [btnSimpleView, btnExpandedView]
     
     @IBOutlet weak var sortOrderMenuItemView: SortOrderMenuItemView!
     
-    @IBOutlet weak var tableViewController: PlayQueueTableViewController!
-    @IBOutlet weak var listViewController: PlayQueueListViewController!
-    lazy var controllers: [PlayQueueViewController] = [tableViewController, listViewController]
+    @IBOutlet weak var simpleViewController: PlayQueueSimpleViewController!
+    @IBOutlet weak var expandedViewController: PlayQueueExpandedViewController!
+    lazy var controllers: [PlayQueueViewController] = [simpleViewController, expandedViewController]
     
     lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
     
@@ -47,7 +47,7 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
     lazy var saveDialog = DialogsAndAlerts.savePlaylistDialog
     
     var currentViewController: PlayQueueViewController {
-        tabGroup.selectedIndex == 0 ? tableViewController : listViewController
+        tabGroup.selectedIndex == 0 ? simpleViewController : expandedViewController
     }
     
     lazy var messenger: Messenger = Messenger(for: self)
@@ -58,8 +58,8 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
         
         theWindow.isMovableByWindowBackground = true
         
-        let compactView = tableViewController.view
-        let prettyView = listViewController.view
+        let compactView = simpleViewController.view
+        let prettyView = expandedViewController.view
         
         for (index, view) in [compactView, prettyView].enumerated() {
             
@@ -72,7 +72,7 @@ class PlayQueueWindowController: NSWindowController, FontSchemePropertyObserver,
         fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
         fontSchemesManager.registerObserver(self, forProperty: \.playQueueSecondaryFont)
         
-        colorSchemesManager.registerObservers([btnTableView, btnListView], forProperties: [\.buttonColor, \.inactiveControlColor])
+        colorSchemesManager.registerObservers([btnSimpleView, btnExpandedView], forProperties: [\.buttonColor, \.inactiveControlColor])
         
         colorSchemesManager.registerObservers([rootContainer, tabButtonsContainer], forProperty: \.backgroundColor)
         colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)

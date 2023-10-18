@@ -64,9 +64,9 @@
 		3E21ECAA268F484E00731E4C /* AuralTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025B4268E830800C5A1C5 /* AuralTestCase.swift */; };
 		3E25B65027F7818900D10A5F /* PlayQueueWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E25B64F27F7818900D10A5F /* PlayQueueWindow.xib */; };
 		3E25B65427F7865900D10A5F /* PlayQueueWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25B65327F7865900D10A5F /* PlayQueueWindowController.swift */; };
-		3E25B65627F7875700D10A5F /* PlayQueueTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E25B65527F7875700D10A5F /* PlayQueueTableView.xib */; };
+		3E25B65627F7875700D10A5F /* PlayQueueSimpleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E25B65527F7875700D10A5F /* PlayQueueSimpleView.xib */; };
 		3E25B65927F78C0B00D10A5F /* TrackListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25B65827F78C0B00D10A5F /* TrackListTableViewController.swift */; };
-		3E25B65B27F78EE100D10A5F /* PlayQueueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25B65A27F78EE100D10A5F /* PlayQueueTableViewController.swift */; };
+		3E25B65B27F78EE100D10A5F /* PlayQueueSimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25B65A27F78EE100D10A5F /* PlayQueueSimpleViewController.swift */; };
 		3E2779E226AEF21D00291244 /* HostedAudioUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2779E126AEF21D00291244 /* HostedAudioUnitTests.swift */; };
 		3E2779E526AF305C00291244 /* MockPlayerGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025BC268E830800C5A1C5 /* MockPlayerGraph.swift */; };
 		3E2779E726AF306200291244 /* MockPlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9025BB268E830800C5A1C5 /* MockPlayerNode.swift */; };
@@ -621,8 +621,8 @@
 		3EABDE052694C9A6008066E8 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C0FA825CEB98600BF0D07 /* ColorScheme.swift */; };
 		3EABDE1A2694CFD4008066E8 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDE192694CFD4008066E8 /* ColorConstants.swift */; };
 		3EABDE1C2694D002008066E8 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABDE192694CFD4008066E8 /* ColorConstants.swift */; };
-		3EAD418F2829D35900763A12 /* PlayQueueListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAD418E2829D35900763A12 /* PlayQueueListView.xib */; };
-		3EAD41912829D4AE00763A12 /* PlayQueueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAD41902829D4AE00763A12 /* PlayQueueListViewController.swift */; };
+		3EAD418F2829D35900763A12 /* PlayQueueExpandedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAD418E2829D35900763A12 /* PlayQueueExpandedView.xib */; };
+		3EAD41912829D4AE00763A12 /* PlayQueueExpandedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAD41902829D4AE00763A12 /* PlayQueueExpandedViewController.swift */; };
 		3EAE9CBB2836ADF6004499FE /* LibraryTracks.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAE9CBA2836ADF6004499FE /* LibraryTracks.xib */; };
 		3EAE9CBD2836AF00004499FE /* LibraryTracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAE9CBC2836AF00004499FE /* LibraryTracksViewController.swift */; };
 		3EAE9CC02836B139004499FE /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAE9CBF2836B139004499FE /* Library.swift */; };
@@ -1641,9 +1641,9 @@
 		3E2000C8267CEF83008BAB70 /* RemoteControlPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteControlPreferencesViewController.swift; sourceTree = "<group>"; };
 		3E25B64F27F7818900D10A5F /* PlayQueueWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayQueueWindow.xib; sourceTree = "<group>"; };
 		3E25B65327F7865900D10A5F /* PlayQueueWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueWindowController.swift; sourceTree = "<group>"; };
-		3E25B65527F7875700D10A5F /* PlayQueueTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayQueueTableView.xib; sourceTree = "<group>"; };
+		3E25B65527F7875700D10A5F /* PlayQueueSimpleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayQueueSimpleView.xib; sourceTree = "<group>"; };
 		3E25B65827F78C0B00D10A5F /* TrackListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTableViewController.swift; sourceTree = "<group>"; };
-		3E25B65A27F78EE100D10A5F /* PlayQueueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueTableViewController.swift; sourceTree = "<group>"; };
+		3E25B65A27F78EE100D10A5F /* PlayQueueSimpleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueSimpleViewController.swift; sourceTree = "<group>"; };
 		3E2779E126AEF21D00291244 /* HostedAudioUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostedAudioUnitTests.swift; sourceTree = "<group>"; };
 		3E2779F326AF33B100291244 /* MockAVFPlaybackContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAVFPlaybackContext.swift; sourceTree = "<group>"; };
 		3E2976122629473500459272 /* WindowCornerRadiusMenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowCornerRadiusMenuItemView.swift; sourceTree = "<group>"; };
@@ -2193,8 +2193,8 @@
 		3EABDDFC2694C57B008066E8 /* ControlBarPlayerUIPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlayerUIPersistenceTests.swift; sourceTree = "<group>"; };
 		3EABDE002694C98B008066E8 /* ColorSchemesPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemesPersistenceTests.swift; sourceTree = "<group>"; };
 		3EABDE192694CFD4008066E8 /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
-		3EAD418E2829D35900763A12 /* PlayQueueListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayQueueListView.xib; sourceTree = "<group>"; };
-		3EAD41902829D4AE00763A12 /* PlayQueueListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueListViewController.swift; sourceTree = "<group>"; };
+		3EAD418E2829D35900763A12 /* PlayQueueExpandedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayQueueExpandedView.xib; sourceTree = "<group>"; };
+		3EAD41902829D4AE00763A12 /* PlayQueueExpandedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueExpandedViewController.swift; sourceTree = "<group>"; };
 		3EAE9CBA2836ADF6004499FE /* LibraryTracks.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryTracks.xib; sourceTree = "<group>"; };
 		3EAE9CBC2836AF00004499FE /* LibraryTracksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTracksViewController.swift; sourceTree = "<group>"; };
 		3EAE9CBF2836B139004499FE /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
@@ -2964,30 +2964,30 @@
 				3E495B8928108DF800D4766A /* PlayQueueContainer.swift */,
 				3EDCC4BD282C3912002AF3AE /* PlayQueueViewController.swift */,
 				3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */,
-				3E25B65127F7859800D10A5F /* TableView */,
-				3E25B65227F785D800D10A5F /* ListView */,
+				3E25B65127F7859800D10A5F /* SimpleView */,
+				3E25B65227F785D800D10A5F /* ExpandedView */,
 				3E47214C282AE3820097F1AB /* TrackListTabButton.swift */,
 				3EDCC4B7282C2223002AF3AE /* PlayQueueUIState.swift */,
 			);
 			path = PlayQueue;
 			sourceTree = "<group>";
 		};
-		3E25B65127F7859800D10A5F /* TableView */ = {
+		3E25B65127F7859800D10A5F /* SimpleView */ = {
 			isa = PBXGroup;
 			children = (
-				3E25B65527F7875700D10A5F /* PlayQueueTableView.xib */,
-				3E25B65A27F78EE100D10A5F /* PlayQueueTableViewController.swift */,
+				3E25B65527F7875700D10A5F /* PlayQueueSimpleView.xib */,
+				3E25B65A27F78EE100D10A5F /* PlayQueueSimpleViewController.swift */,
 			);
-			path = TableView;
+			path = SimpleView;
 			sourceTree = "<group>";
 		};
-		3E25B65227F785D800D10A5F /* ListView */ = {
+		3E25B65227F785D800D10A5F /* ExpandedView */ = {
 			isa = PBXGroup;
 			children = (
-				3EAD418E2829D35900763A12 /* PlayQueueListView.xib */,
-				3EAD41902829D4AE00763A12 /* PlayQueueListViewController.swift */,
+				3EAD418E2829D35900763A12 /* PlayQueueExpandedView.xib */,
+				3EAD41902829D4AE00763A12 /* PlayQueueExpandedViewController.swift */,
 			);
-			path = ListView;
+			path = ExpandedView;
 			sourceTree = "<group>";
 		};
 		3E25B65727F78BED00D10A5F /* TableViewController */ = {
@@ -6125,7 +6125,7 @@
 				3E6C125025CEBDF400BF0D07 /* TracksPlaylistSort.xib in Resources */,
 				3E91932425E0CE2500F30F81 /* FontSchemes.xib in Resources */,
 				3E6C125A25CEBE0600BF0D07 /* EQPresetsManager.xib in Resources */,
-				3EAD418F2829D35900763A12 /* PlayQueueListView.xib in Resources */,
+				3EAD418F2829D35900763A12 /* PlayQueueExpandedView.xib in Resources */,
 				3E0EC2082ADC964A002FC7B4 /* FontSchemeSetup.xib in Resources */,
 				3E36BD3126A68E9800B6E28B /* LyricsTrackInfo.xib in Resources */,
 				3E8DD6462845633500FED49D /* LibraryGenres.xib in Resources */,
@@ -6192,7 +6192,7 @@
 				3E05FD42283A453D00EB7861 /* LibraryAlbums.xib in Resources */,
 				3EAF96F328DCE1B6008561A7 /* neo-latina-demo-FFP.ttf in Resources */,
 				3E6C123B25CEBDF400BF0D07 /* Genres.xib in Resources */,
-				3E25B65627F7875700D10A5F /* PlayQueueTableView.xib in Resources */,
+				3E25B65627F7875700D10A5F /* PlayQueueSimpleView.xib in Resources */,
 				3E6C12ED25CEBE8100BF0D07 /* DelayUnit.xib in Resources */,
 				3E6668B82ADB651500BBD119 /* ColorSchemeSetup.xib in Resources */,
 				3E51F346262AFDCA0048452F /* ThemesManager.xib in Resources */,
@@ -6526,7 +6526,7 @@
 				3EFE386127864896006F8B8C /* HostedAudioUnit.swift in Sources */,
 				3EFE380527864896006F8B8C /* Sort.swift in Sources */,
 				3EFE384127864896006F8B8C /* GroupingPlaylist.swift in Sources */,
-				3E25B65B27F78EE100D10A5F /* PlayQueueTableViewController.swift in Sources */,
+				3E25B65B27F78EE100D10A5F /* PlayQueueSimpleViewController.swift in Sources */,
 				3E6C12B325CEBE5800BF0D07 /* FavoritesMenuController.swift in Sources */,
 				3E5F942E25E57190002DEF80 /* FFT.swift in Sources */,
 				3EFE397527864897006F8B8C /* EndPlaybackSequenceAction.swift in Sources */,
@@ -7030,7 +7030,7 @@
 				3E6C129825CEBE2700BF0D07 /* VAlignedTextField.swift in Sources */,
 				3E10177C28D7713B002C0D8E /* FFmpegAudioFormat.swift in Sources */,
 				3EFE39DF27864897006F8B8C /* AudioUnitPersistentState.swift in Sources */,
-				3EAD41912829D4AE00763A12 /* PlayQueueListViewController.swift in Sources */,
+				3EAD41912829D4AE00763A12 /* PlayQueueExpandedViewController.swift in Sources */,
 				3EC530E9284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift in Sources */,
 				3E836E3528689AF5009371D4 /* UnifiedPlayQueueViewController.swift in Sources */,
 				3EFE37E727864896006F8B8C /* HistoryPreferences.swift in Sources */,
