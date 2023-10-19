@@ -87,7 +87,7 @@
                             </connections>
                         </button>
                         <button toolTip="Change presentation mode" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p2V-ob-9fc" userLabel="Presentation Modes Button" customClass="WhiteImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="22" y="150" width="10" height="10"/>
+                            <rect key="frame" x="23" y="150" width="10" height="10"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="WindowLayout" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="wnm-x2-A2p">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -101,7 +101,7 @@
                             </connections>
                         </button>
                         <button toolTip="Seek backward" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zl4-Us-EI0" userLabel="Repeat Button" customClass="FillableImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="12" y="12.5" width="15" height="15"/>
+                            <rect key="frame" x="12" y="11.5" width="16" height="16"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="backward" catalog="system" imagePosition="only" alignment="center" continuous="YES" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="jgg-OU-9XD">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -114,11 +114,11 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="seekBackwardAction:" target="AjS-bO-E7r" id="moJ-vq-PpD"/>
+                                <action selector="repeatAction:" target="CIt-5z-Hlz" id="MNm-3h-sJk"/>
                             </connections>
                         </button>
                         <button toolTip="Shuffle" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j2a-w0-Ha8" userLabel="Shuffle Button" customClass="FillableImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="30" y="12" width="15" height="15"/>
+                            <rect key="frame" x="32" y="12" width="16" height="16"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="shuffle" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="6oD-CU-7ol">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -130,9 +130,12 @@
                                     <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="shuffleAction:" target="CIt-5z-Hlz" id="in1-QA-hAh"/>
+                            </connections>
                         </button>
                         <button toolTip="A ⇋ B Segment loop" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cut-80-aL8" userLabel="Loop Button" customClass="FillableImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="44" y="13" width="26" height="13"/>
+                            <rect key="frame" x="49" y="13" width="26" height="13"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Loop" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="cSQ-A9-aeR">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -274,10 +277,10 @@
                             </connections>
                         </slider>
                         <box wantsLayer="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vrX-Nw-abT" userLabel="Playing Track Info Box">
-                            <rect key="frame" x="72" y="66" width="213" height="70"/>
+                            <rect key="frame" x="67" y="66" width="223" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <view key="contentView" wantsLayer="YES" id="RjK-18-fyJ" customClass="MenuBarPlayingTrackTextView" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="213" height="70"/>
+                                <rect key="frame" x="0.0" y="0.0" width="223" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <scrollView wantsLayer="YES" fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="Gpm-mc-bSS">
@@ -468,8 +471,8 @@ DQ
                         <outlet property="lblTrackTime" destination="WYU-tl-It4" id="JFe-12-k3E"/>
                         <outlet property="seekSlider" destination="cMO-ue-ceg" id="EYC-Ja-o7A"/>
                         <outlet property="seekSliderCell" destination="UsT-W0-Z4w" id="2Lc-p4-JOq"/>
-                        <outlet property="seekSliderClone" destination="1Kq-UT-L4a" id="Vrw-yd-aR5"/>
-                        <outlet property="seekSliderCloneCell" destination="zPk-jS-dUE" id="qZz-8A-Amp"/>
+                        <outlet property="seekSliderClone" destination="V3h-ls-lgV" id="NEk-07-xrf"/>
+                        <outlet property="seekSliderCloneCell" destination="fP6-NA-MpE" id="Fvo-qy-LNz"/>
                     </connections>
                 </view>
             </subviews>
@@ -484,12 +487,6 @@ DQ
             </connections>
             <point key="canvasLocation" x="49" y="48"/>
         </view>
-        <slider verticalHuggingPriority="750" id="1Kq-UT-L4a" userLabel="Seek Slider Clone">
-            <rect key="frame" x="0.0" y="0.0" width="282" height="15"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="zPk-jS-dUE" customClass="MenuBarSeekSliderCell" customModule="Aural" customModuleProvider="target"/>
-            <point key="canvasLocation" x="-2884" y="682"/>
-        </slider>
         <customObject id="k4h-E2-r6g" customClass="MenuBarPlayerSettingsViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnShowAlbum" destination="Nkl-3v-Cqb" id="RRE-db-EKb"/>
@@ -524,6 +521,15 @@ DQ
                 <outlet property="view" destination="A8P-gF-rZh" id="b3w-eF-hML"/>
             </connections>
         </customObject>
+        <slider hidden="YES" wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" id="V3h-ls-lgV" userLabel="Seek Slider clone">
+            <rect key="frame" x="0.0" y="0.0" width="210" height="15"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" refusesFirstResponder="YES" state="on" focusRingType="none" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="fP6-NA-MpE" customClass="MenuBarSeekSliderCell" customModule="Aural" customModuleProvider="target"/>
+            <connections>
+                <action selector="seekSliderAction:" target="AjS-bO-E7r" id="GQd-Z8-Z5t"/>
+            </connections>
+            <point key="canvasLocation" x="-140" y="-110"/>
+        </slider>
     </objects>
     <resources>
         <image name="AppTitle" width="117" height="32"/>

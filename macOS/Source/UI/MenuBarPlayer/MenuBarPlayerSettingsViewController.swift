@@ -20,8 +20,6 @@ class MenuBarPlayerSettingsViewController: NSViewController {
     @IBOutlet weak var trackInfoView: MenuBarPlayingTrackTextView!
     @IBOutlet weak var imgArt: NSImageView!
     
-    @IBOutlet weak var artOverlayBox: NSBox!
-    
     @IBOutlet weak var settingsBox: NSBox!
     
     // Delegate that conveys all playback requests to the player / playback sequencer
@@ -42,13 +40,9 @@ class MenuBarPlayerSettingsViewController: NSViewController {
     @IBAction func showOrHideAlbumArtAction(_ sender: NSButton) {
         
         uiState.showAlbumArt.toggle()
-        [imgArt, artOverlayBox].forEach {$0.showIf(uiState.showAlbumArt && player.state.isPlayingOrPaused)}
+        imgArt.showIf(uiState.showAlbumArt && player.state.isPlayingOrPaused)
 
         // Arrange the views in the following Z-order, with the settings box frontmost.
-        
-        if uiState.showAlbumArt {
-            artOverlayBox.bringToFront()
-        }
         
         infoBox.bringToFront()
         settingsBox.bringToFront()

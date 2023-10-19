@@ -7,17 +7,14 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //  
+import Cocoa
 
 class MenuBarSeekSliderView: SeekSliderView {
     
-    override func initSeekPositionLabels() {}
-    
-    override func updateSeekPositionLabels(_ seekPos: PlaybackPosition) {
+    override func initSeekPositionLabels() {
         
-        let trackTimes = ValueFormatter.formatTrackTimes(seekPos.timeElapsed, seekPos.trackDuration, seekPos.percentageElapsed)
-        
-        lblTrackTime?.stringValue = trackTimes.elapsed
-//        lblTimeRemaining?.stringValue = trackTimes.remaining
+        // Allow clicks on the seek time display labels to switch to different display formats.
+        lblTrackTime?.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(self.switchTrackTimeDisplayTypeAction)))
     }
     
     func stopUpdatingSeekPosition() {
