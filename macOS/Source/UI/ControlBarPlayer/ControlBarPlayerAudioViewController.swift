@@ -11,8 +11,6 @@ import Cocoa
 
 class ControlBarPlayerAudioViewController: PlayerAudioViewController {
     
-    override var showsPanControl: Bool {false}
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()

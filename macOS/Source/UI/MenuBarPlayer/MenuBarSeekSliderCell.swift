@@ -11,8 +11,10 @@ import Cocoa
 
 class MenuBarSeekSliderCell: SeekSliderCell {
     
+    private static let whiteGradient: NSGradient = NSGradient(starting: .white, ending: .white)!
+    
     override var foregroundGradient: NSGradient {
-        NSGradient(starting: .white, ending: .white)!
+        Self.whiteGradient
     }
     
 //    override var knobColor: NSColor {.white70Percent}

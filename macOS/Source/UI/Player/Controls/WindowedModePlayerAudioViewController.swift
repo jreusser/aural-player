@@ -11,8 +11,6 @@ import Cocoa
 
 class WindowedModePlayerAudioViewController: PlayerAudioViewController {
     
-    override var showsPanControl: Bool {true}
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()

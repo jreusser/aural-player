@@ -11,7 +11,6 @@ import Cocoa
 
 class MenuBarVolumeSliderCell: VolumeSliderCell {
     
-//    override var knobColor: NSColor {.white70Percent}
     override var barRadius: CGFloat {0}
     override var knobRadius: CGFloat {0}
     

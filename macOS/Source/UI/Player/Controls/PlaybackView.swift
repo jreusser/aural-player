@@ -117,14 +117,14 @@ class PlaybackView: NSView, Destroyable {
     // When the playback loop for the current playing track is changed, the seek slider needs to be updated (redrawn) to show the current loop state
     func playbackLoopChanged(_ playbackLoop: PlaybackLoop?, _ trackDuration: Double) {
 
-        btnLoopStateMachine.setState(player.playbackLoopState)
+        updateLoopButtonState(player.playbackLoopState)
         sliderView.playbackLoopChanged(playbackLoop, trackDuration)
     }
 
     func trackChanged(_ playbackState: PlaybackState, _ loop: PlaybackLoop?, _ newTrack: Track?) {
         
         updatePlayPauseButtonState(playbackState)
-        btnLoopStateMachine.setState(player.playbackLoopState)
+        updateLoopButtonState(player.playbackLoopState)
         updatePreviousTrackAndNextTrackButtonTooltips()
         
         sliderView.trackChanged(loop, newTrack)

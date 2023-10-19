@@ -14,10 +14,8 @@ import Cocoa
  */
 class PlayerAudioViewController: NSViewController {
     
-    var showsPanControl: Bool {true}
-    
     // Volume/pan controls
-    @IBOutlet weak var btnVolume: TintedImageButton!
+    @IBOutlet weak var btnVolume: NSButton!
     @IBOutlet weak var volumeSlider: NSSlider!
     
     // These are feedback labels that are shown briefly and automatically hidden
@@ -43,17 +41,23 @@ class PlayerAudioViewController: NSViewController {
     
     override func viewDidLoad() {
         
+        super.viewDidLoad()
+        
         autoHidingVolumeLabel = AutoHidingView(lblVolume, Self.feedbackLabelAutoHideIntervalSeconds)
         volumeSlider.floatValue = audioGraph.volume
         volumeChanged(audioGraph.volume, audioGraph.muted, true, false)
+        
+        setUpColorAndFontObservation()
+        initSubscriptions()
+    }
+    
+    func setUpColorAndFontObservation() {
         
         fontSchemesManager.registerObserver(lblVolume, forProperty: \.playerTertiaryFont)
         
         colorSchemesManager.registerObserver(btnVolume, forProperty: \.buttonColor)
         colorSchemesManager.registerSchemeObserver(volumeSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
         colorSchemesManager.registerObserver(lblVolume, forProperty: \.secondaryTextColor)
-        
-        initSubscriptions()
     }
     
     func initSubscriptions() {}
