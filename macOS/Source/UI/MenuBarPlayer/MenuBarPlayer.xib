@@ -40,7 +40,7 @@
                     <rect key="frame" x="0.0" y="-1" width="300" height="172"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <box hidden="YES" wantsLayer="YES" fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="8vy-W7-AMz" userLabel="Background Box">
+                        <box wantsLayer="YES" fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="8vy-W7-AMz" userLabel="Background Box">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="170"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <view key="contentView" id="Pcv-UO-T7Y">
@@ -111,35 +111,50 @@
                                 <action selector="showOrHidePresentationModesAction:" target="-2" id="sMc-d5-0V1"/>
                             </connections>
                         </button>
-                        <button toolTip="Repeat" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oIU-fy-2aj" userLabel="Repeat Button" customClass="MultiStateImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="13" y="16" width="12" height="17"/>
+                        <button toolTip="Seek backward" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zl4-Us-EI0" userLabel="Repeat Button" customClass="FillableImageButton" customModule="Aural" customModuleProvider="target">
+                            <rect key="frame" x="10" y="15.5" width="20" height="16"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="repeat" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="0Mq-Jc-mU8">
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="backward" catalog="system" imagePosition="only" alignment="center" continuous="YES" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="jgg-OU-9XD">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="repeat" catalog="system"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="repeatAction:" target="CIt-5z-Hlz" id="bda-jo-mpx"/>
+                                <action selector="seekBackwardAction:" target="AjS-bO-E7r" id="moJ-vq-PpD"/>
                             </connections>
                         </button>
-                        <button toolTip="Shuffle" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CGV-J4-5aK" userLabel="Shuffle Button" customClass="MultiStateImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="31" y="16" width="12" height="17"/>
+                        <button toolTip="Shuffle" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j2a-w0-Ha8" userLabel="Shuffle Button" customClass="FillableImageButton" customModule="Aural" customModuleProvider="target">
+                            <rect key="frame" x="31" y="16" width="17" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="shuffle" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="bjo-WW-06u">
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="shuffle" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="6oD-CU-7ol">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
-                            <connections>
-                                <action selector="shuffleAction:" target="CIt-5z-Hlz" id="9tJ-Dn-sHW"/>
-                            </connections>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="shuffle" catalog="system"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </button>
-                        <button toolTip="A ⇋ B Segment loop" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cut-80-aL8" userLabel="Loop Button" customClass="MultiStateImageButton" customModule="Aural" customModuleProvider="target">
+                        <button toolTip="A ⇋ B Segment loop" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cut-80-aL8" userLabel="Loop Button" customClass="FillableImageButton" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="48" y="19" width="32" height="10"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Loop" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="cSQ-A9-aeR">
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Loop" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="cSQ-A9-aeR">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Loop"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="toggleLoopAction:" target="AjS-bO-E7r" id="IR9-0P-dIR"/>
                             </connections>
@@ -495,8 +510,8 @@ DQ
         </customObject>
         <customObject id="CIt-5z-Hlz" customClass="MenuBarPlayerSequencingViewController" customModule="Aural" customModuleProvider="target">
             <connections>
-                <outlet property="btnRepeat" destination="oIU-fy-2aj" id="i2k-o2-Y4b"/>
-                <outlet property="btnShuffle" destination="CGV-J4-5aK" id="tNj-6p-0fI"/>
+                <outlet property="btnRepeat" destination="Zl4-Us-EI0" id="jIl-pc-Jvv"/>
+                <outlet property="btnShuffle" destination="j2a-w0-Ha8" id="VJj-Ym-SJD"/>
                 <outlet property="view" destination="A8P-gF-rZh" id="Gfk-6D-0gi"/>
             </connections>
         </customObject>

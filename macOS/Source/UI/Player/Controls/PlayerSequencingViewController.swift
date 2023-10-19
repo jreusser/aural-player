@@ -15,8 +15,8 @@ import Cocoa
  */
 class PlayerSequencingViewController: NSViewController {
 
-    @IBOutlet weak var btnRepeat: TintedImageButton!
-    @IBOutlet weak var btnShuffle: TintedImageButton!
+    @IBOutlet weak var btnRepeat: NSButton!
+    @IBOutlet weak var btnShuffle: NSButton!
     
     private lazy var btnRepeatStateMachine: ButtonStateMachine<RepeatMode> = ButtonStateMachine(initialState: playQueueDelegate.repeatAndShuffleModes.repeatMode,
                                                                                                 mappings: [

@@ -12,9 +12,7 @@ import Cocoa
 class MenuBarPlaybackView: PlaybackView {
     
     // Constant white color, no changes will be made.
-    override func setUpButtonColorObservation() {
-        [btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack].forEach {$0.image?.isTemplate = false}
-    }
+    override func setUpButtonColorObservation() {}
     
     override func setUpPreviousTrackAndNextTrackButtonTooltips() {
         
@@ -50,6 +48,7 @@ class MenuBarPlaybackView: PlaybackView {
     }
     
     override func updateLoopButtonState(_ loopState: PlaybackLoopState) {
+        
         
         
 //           ButtonStateMachine.StateMapping(state: .none, image: .imgLoop, colorProperty: \.inactiveControlColor, toolTip: "Initiate a segment loop"),

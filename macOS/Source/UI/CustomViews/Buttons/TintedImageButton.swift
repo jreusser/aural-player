@@ -39,6 +39,12 @@ class TintedImageButton: NSButton {
 @IBDesignable
 class WhiteImageButton: NSButton {
     
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        image?.isTemplate = false
+    }
+    
     // A base image that is used as an image template.
     @IBInspectable var baseImage: NSImage? {
         
@@ -47,25 +53,42 @@ class WhiteImageButton: NSButton {
             self.image = baseImage?.filledWithColor(.white)
         }
     }
+    
+    override var image: NSImage? {
+        
+        didSet {
+            image?.isTemplate = false
+        }
+    }
 }
 
 @IBDesignable
 class FillableImageButton: NSButton {
     
-    @IBInspectable var tintColor: NSColor! {
+    @IBInspectable var tintColor: NSColor!
+    
+    // A base image that is used as an image template.
+    @IBInspectable var baseImage: NSImage!
+    
+    override var image: NSImage? {
         
         didSet {
-            self.image = baseImage?.filledWithColor(tintColor ?? .white)
+            image?.isTemplate = false
         }
     }
     
-    // A base image that is used as an image template.
-    @IBInspectable var baseImage: PlatformImage? {
+    override func awakeFromNib() {
         
-        // Re-tint the image whenever the base image is updated.
-        didSet {
-            self.image = baseImage?.filledWithColor(tintColor ?? .white)
-        }
+        super.awakeFromNib()
+        fill(image: baseImage, withColor: tintColor)
+    }
+    
+    func fill(image baseImage: NSImage, withColor tintColor: NSColor) {
+        
+        self.baseImage = baseImage
+        self.tintColor = tintColor
+        
+        self.image = baseImage.filledWithColor(tintColor)
     }
 }
 
@@ -73,9 +96,7 @@ extension NSButton: ColorSchemePropertyObserver {
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
-        print("Color changed to: \(newColor.whiteComponent)")
-        
-        if self is TintedImageButton && !(self is WhiteImageButton) {
+        if self is TintedImageButton {
             contentTintColor = newColor
             
         } else {

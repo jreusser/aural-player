@@ -12,9 +12,26 @@ class MenuBarPlayerSequencingViewController: PlayerSequencingViewController {
     
     override func initSubscriptions() {}
     
-    // When the buttons are in an "Off" state, they should be tinted according to the system color scheme's off state button color.
-//    override var offStateTintFunction: TintFunction {{.white40Percent}}
-//    
-//    // When the buttons are in an "On" state, they should be tinted according to the system color scheme's function button color.
-//    override var onStateTintFunction: TintFunction {{.white70Percent}}
+    override func updateRepeatAndShuffleControls(_ modes: RepeatAndShuffleModes) {
+        
+        guard let btnRepeat = btnRepeat as? FillableImageButton,
+              let btnShuffle = btnShuffle as? FillableImageButton else {
+            
+            return
+        }
+        
+        switch modes.repeatMode {
+            
+        case .off:
+            btnRepeat.fill(image: .imgRepeat, withColor: .darkGray)
+            
+        case .all:
+            btnRepeat.fill(image: .imgRepeat, withColor: .white)
+            
+        case .one:
+            btnRepeat.fill(image: .imgRepeatOne, withColor: .white)
+        }
+        
+        btnShuffle.fill(image: .imgShuffle, withColor: modes.shuffleMode == .on ? .white : .darkGray)
+    }
 }
