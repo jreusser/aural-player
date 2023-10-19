@@ -48,6 +48,8 @@ class WindowLoader: DestroyableAndRestorable {
     
     func restore() {
         
+        guard !isWindowLoaded else {return}
+        
         controller = controllerFactory()
         window = controller.window
         isWindowLoaded = true

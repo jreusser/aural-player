@@ -8,12 +8,12 @@
 //  See the file "LICENSE" in the project root directory for license terms.
 //  
 
-import Foundation
+import Cocoa
 
 class ButtonStateMachine<E> where E: Hashable {
     
     var state: E
-    private let button: TintedImageButton
+    private let button: NSButton
     private(set) var mappings: [E: StateMapping] = [:]
     
     struct StateMapping {
@@ -24,7 +24,7 @@ class ButtonStateMachine<E> where E: Hashable {
         let toolTip: String?
     }
     
-    init(initialState: E, mappings: [StateMapping], button: TintedImageButton) {
+    init(initialState: E, mappings: [StateMapping], button: NSButton) {
         
         self.state = initialState
         self.button = button

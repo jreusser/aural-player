@@ -18,25 +18,27 @@ class PlaybackView: NSView, Destroyable {
     @IBOutlet weak var sliderView: SeekSliderView!
    
     // Toggle buttons (their images change)
-    @IBOutlet weak var btnPlayPause: TintedImageButton!
-    @IBOutlet weak var btnLoop: TintedImageButton!
+    @IBOutlet weak var btnPlayPause: NSButton!
+    @IBOutlet weak var btnLoop: NSButton!
     
     // Buttons whose tool tips may change
-    @IBOutlet weak var btnPreviousTrack: TrackPeekingButton!
-    @IBOutlet weak var btnNextTrack: TrackPeekingButton!
+    @IBOutlet weak var btnPreviousTrack: NSButton!
+    @IBOutlet weak var btnNextTrack: NSButton!
     
-    @IBOutlet weak var btnSeekBackward: TintedImageButton!
-    @IBOutlet weak var btnSeekForward: TintedImageButton!
+    @IBOutlet weak var btnSeekBackward: NSButton!
+    @IBOutlet weak var btnSeekForward: NSButton!
     
     private let player: PlaybackDelegateProtocol = playbackDelegate
     
-    private lazy var btnPlayPauseStateMachine: ButtonStateMachine<PlaybackState> = ButtonStateMachine(initialState: player.state,
-                                                                                                      mappings: [
-                                                                                                        ButtonStateMachine.StateMapping(state: .stopped, image: .imgPlay, colorProperty: \.buttonColor, toolTip: "Play"),
-                                                                                                        ButtonStateMachine.StateMapping(state: .playing, image: .imgPause, colorProperty: \.buttonColor, toolTip: "Pause"),
-                                                                                                        ButtonStateMachine.StateMapping(state: .paused, image: .imgPlay, colorProperty: \.buttonColor, toolTip: "Play")
-                                                                                                      ],
-                                                                                                      button: btnPlayPause)
+    private lazy var btnPlayPauseStateMachine: ButtonStateMachine<PlaybackState> =
+    
+    ButtonStateMachine(initialState: player.state,
+                       mappings: [
+                        ButtonStateMachine.StateMapping(state: .stopped, image: .imgPlay, colorProperty: \.buttonColor, toolTip: "Play"),
+                        ButtonStateMachine.StateMapping(state: .playing, image: .imgPause, colorProperty: \.buttonColor, toolTip: "Pause"),
+                        ButtonStateMachine.StateMapping(state: .paused, image: .imgPlay, colorProperty: \.buttonColor, toolTip: "Play")
+                       ],
+                       button: btnPlayPause)
     
     private lazy var btnLoopStateMachine: ButtonStateMachine<PlaybackLoopState> = ButtonStateMachine(initialState: player.playbackLoopState,
                                                                                                      mappings: [
@@ -55,6 +57,29 @@ class PlaybackView: NSView, Destroyable {
     var seekSliderValue: Double {sliderView.seekSliderValue}
     
     override func awakeFromNib() {
+        
+        setUpPreviousTrackAndNextTrackButtonTooltips()
+        
+        // MARK: Update controls based on current player state
+        
+        updatePlayPauseButtonState(player.state)
+        updateLoopButtonState(player.playbackLoopState)
+        
+        setUpButtonColorObservation()
+    }
+    
+    func setUpButtonColorObservation() {
+        
+        colorSchemesManager.registerObservers([btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack],
+                                                          forProperty: \.buttonColor)
+    }
+    
+    func setUpPreviousTrackAndNextTrackButtonTooltips() {
+        
+        guard let btnPreviousTrack = btnPreviousTrack as? TrackPeekingButton,
+              let btnNextTrack = btnNextTrack as? TrackPeekingButton else {
+                  return
+              }
         
         // Button tool tips
         btnPreviousTrack.toolTipFunction = {
@@ -76,14 +101,6 @@ class PlaybackView: NSView, Destroyable {
         }
 
         [btnPreviousTrack, btnNextTrack].forEach {$0?.updateTooltip()}
-        
-        // MARK: Update controls based on current player state
-        
-        btnPlayPauseStateMachine.setState(player.state)
-        btnLoopStateMachine.setState(player.playbackLoopState)
-        
-        colorSchemesManager.registerObservers([btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack],
-                                                          forProperty: \.buttonColor)
     }
     
     func destroy() {
@@ -93,7 +110,7 @@ class PlaybackView: NSView, Destroyable {
     // When the playback state changes (e.g. playing -> paused), fields may need to be updated
     func playbackStateChanged(_ newState: PlaybackState) {
         
-        btnPlayPauseStateMachine.setState(newState)
+        updatePlayPauseButtonState(newState)
         sliderView.playbackStateChanged(newState)
     }
 
@@ -106,11 +123,28 @@ class PlaybackView: NSView, Destroyable {
 
     func trackChanged(_ playbackState: PlaybackState, _ loop: PlaybackLoop?, _ newTrack: Track?) {
         
-        btnPlayPauseStateMachine.setState(playbackState)
+        updatePlayPauseButtonState(playbackState)
         btnLoopStateMachine.setState(player.playbackLoopState)
-        [btnPreviousTrack, btnNextTrack].forEach {$0?.updateTooltip()}
+        updatePreviousTrackAndNextTrackButtonTooltips()
         
         sliderView.trackChanged(loop, newTrack)
+    }
+    
+    func updatePlayPauseButtonState(_ newState: PlaybackState) {
+        btnPlayPauseStateMachine.setState(newState)
+    }
+    
+    func updateLoopButtonState(_ loopState: PlaybackLoopState) {
+        btnLoopStateMachine.setState(loopState)
+    }
+    
+    func updatePreviousTrackAndNextTrackButtonTooltips() {
+        
+        if let btnPreviousTrack = btnPreviousTrack as? TrackPeekingButton,
+           let btnNextTrack = btnNextTrack as? TrackPeekingButton {
+            
+            [btnPreviousTrack, btnNextTrack].forEach {$0?.updateTooltip()}
+        }
     }
     
     func showOrHideTimeElapsedRemaining() {

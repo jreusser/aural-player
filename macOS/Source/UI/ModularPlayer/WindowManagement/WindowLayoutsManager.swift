@@ -130,7 +130,10 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     }
     
     private func getWindow(forId id: WindowID) -> NSWindow {
-        (windowLoaders.first(where: {$0.windowID == id}))!.window
+        
+        let loader = (windowLoaders.first(where: {$0.windowID == id}))!
+        loader.restore()
+        return loader.window
     }
     
     func applyLayout(named name: String) {

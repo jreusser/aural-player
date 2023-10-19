@@ -7,22 +7,62 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //  
-import Foundation
+import Cocoa
 
 class MenuBarPlaybackView: PlaybackView {
     
-    // When the buttons are in an "Off" state, they should be tinted according to the system color scheme's off state button color.
-//    override var offStateTintFunction: TintFunction {{.white40Percent}}
-//
-//    // When the buttons are in an "On" state, they should be tinted according to the system color scheme's function button color.
-//    override var onStateTintFunction: TintFunction {{.white70Percent}}
+    // Constant white color, no changes will be made.
+    override func setUpButtonColorObservation() {
+        [btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack].forEach {$0.image?.isTemplate = false}
+    }
     
-    override func awakeFromNib() {
+    override func setUpPreviousTrackAndNextTrackButtonTooltips() {
         
-//        super.awakeFromNib()
-        btnPlayPause.image = btnPlayPause.image?.filledWithColor(.white90Percent)
+        guard let btnPreviousTrack = btnPreviousTrack as? WhiteTrackPeekingButton,
+              let btnNextTrack = btnNextTrack as? WhiteTrackPeekingButton else {
+                  return
+              }
         
-//        btnPlayPause.onStateTintFunction = {.white70Percent}
-//        [btnPreviousTrack, btnNextTrack, btnSeekBackward, btnSeekForward].forEach {$0?.tintFunction = {.white70Percent}}
+        // Button tool tips
+        btnPreviousTrack.toolTipFunction = {
+
+            if let prevTrack = playQueueDelegate.peekPrevious() {
+                return String(format: "Previous track: '%@'", prevTrack.displayName)
+            }
+
+            return nil
+        }
+
+        btnNextTrack.toolTipFunction = {
+
+            if let nextTrack = playQueueDelegate.peekNext() {
+                return String(format: "Next track: '%@'", nextTrack.displayName)
+            }
+
+            return nil
+        }
+
+        [btnPreviousTrack, btnNextTrack].forEach {$0?.updateTooltip()}
+    }
+
+    override func updatePlayPauseButtonState(_ newState: PlaybackState) {
+        (btnPlayPause as? WhiteImageButton)?.baseImage = newState == .playing ? .imgPause : .imgPlay
+    }
+    
+    override func updateLoopButtonState(_ loopState: PlaybackLoopState) {
+        
+        
+//           ButtonStateMachine.StateMapping(state: .none, image: .imgLoop, colorProperty: \.inactiveControlColor, toolTip: "Initiate a segment loop"),
+//           ButtonStateMachine.StateMapping(state: .started, image: .imgLoopStarted, colorProperty: \.activeControlColor, toolTip: "Complete the segment loop"),
+//           ButtonStateMachine.StateMapping(state: .complete, image: .imgLoop, colorProperty: \.activeControlColor, toolTip: "Remove the segment loop")
+    }
+    
+    override func updatePreviousTrackAndNextTrackButtonTooltips() {
+        
+        if let btnPreviousTrack = btnPreviousTrack as? TrackPeekingButton,
+           let btnNextTrack = btnNextTrack as? TrackPeekingButton {
+            
+            [btnPreviousTrack, btnNextTrack].forEach {$0?.updateTooltip()}
+        }
     }
 }

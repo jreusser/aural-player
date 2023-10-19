@@ -36,14 +36,48 @@ class TintedImageButton: NSButton {
     }
 }
 
+@IBDesignable
+class WhiteImageButton: NSButton {
+    
+    // A base image that is used as an image template.
+    @IBInspectable var baseImage: NSImage? {
+        
+        // Re-tint the image whenever the base image is updated.
+        didSet {
+            self.image = baseImage?.filledWithColor(.white)
+        }
+    }
+}
+
+@IBDesignable
+class FillableImageButton: NSButton {
+    
+    @IBInspectable var tintColor: NSColor! {
+        
+        didSet {
+            self.image = baseImage?.filledWithColor(tintColor ?? .white)
+        }
+    }
+    
+    // A base image that is used as an image template.
+    @IBInspectable var baseImage: PlatformImage? {
+        
+        // Re-tint the image whenever the base image is updated.
+        didSet {
+            self.image = baseImage?.filledWithColor(tintColor ?? .white)
+        }
+    }
+}
+
 extension NSButton: ColorSchemePropertyObserver {
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
         print("Color changed to: \(newColor.whiteComponent)")
         
-        if self is TintedImageButton {
+        if self is TintedImageButton && !(self is WhiteImageButton) {
             contentTintColor = newColor
+            
         } else {
             redraw()
         }

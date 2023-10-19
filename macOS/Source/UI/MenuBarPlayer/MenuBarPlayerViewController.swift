@@ -14,9 +14,14 @@ class MenuBarPlayerViewController: NSViewController {
     override var nibName: String? {"MenuBarPlayer"}
     
     @IBOutlet weak var appLogo: TintedImageView!
-    @IBOutlet weak var btnQuit: TintedImageButton!
-    @IBOutlet weak var btnWindowedMode: NSButton!
-    @IBOutlet weak var btnControlBarMode: NSButton!
+    @IBOutlet weak var btnQuit: WhiteImageButton!
+    
+    @IBOutlet weak var btnPresentationModes: WhiteImageButton!
+    @IBOutlet weak var presentationModesBox: NSBox!
+    
+    @IBOutlet weak var radioBtnModularMode: NSButton!
+    @IBOutlet weak var radioBtnUnifiedMode: NSButton!
+    @IBOutlet weak var radioBtnControlBarMode: NSButton!
     
     @IBOutlet weak var infoBox: NSBox!
     @IBOutlet weak var trackInfoView: MenuBarPlayingTrackTextView!
@@ -42,17 +47,18 @@ class MenuBarPlayerViewController: NSViewController {
     
     override func awakeFromNib() {
         
-        [btnWindowedMode, btnControlBarMode, btnSettings].forEach {
-            $0?.image = $0?.image?.filledWithColor(.white90Percent)
-        }
+//        colorSchemesManager.applyScheme(.blackAqua)
         
-        colorSchemesManager.registerObservers([btnQuit],
-                                              forProperty: \.buttonColor)
+//        [btnWindowedMode, btnControlBarMode, btnSettings].forEach {
+//            $0?.image = $0?.image?.filledWithColor(.white90Percent)
+//        }
         
-//        btnQuit.image?.isTemplate = true
-//        btnQuit.contentTintColor = .white
+//        colorSchemesManager.registerObservers([btnQuit],
+//                                              forProperty: \.buttonColor)
         
         appLogo.contentTintColor = .white90Percent
+        
+        print("Scheme color is: \(colorSchemesManager.systemScheme.buttonColor.whiteComponent)")
 
         // MARK: Notification subscriptions
         
@@ -80,6 +86,9 @@ class MenuBarPlayerViewController: NSViewController {
         if view.superview == nil {
             seekSliderView.stopUpdatingSeekPosition()
         }
+        
+        colorSchemesManager.registerObservers([btnQuit],
+                                              forProperty: \.buttonColor)
     }
     
     // MARK: Track playback actions/functions ------------------------------------------------------------
@@ -101,6 +110,10 @@ class MenuBarPlayerViewController: NSViewController {
         if settingsBox.isShown {
             settingsBox.bringToFront()
         }
+        
+        if presentationModesBox.isShown {
+            presentationModesBox.bringToFront()
+        }
     }
     
     @IBAction func showOrHideSettingsAction(_ sender: NSButton) {
@@ -117,11 +130,31 @@ class MenuBarPlayerViewController: NSViewController {
         }
     }
     
+    @IBAction func showOrHidePresentationModesAction(_ sender: NSButton) {
+        
+        if presentationModesBox.isHidden {
+
+            presentationModesBox.show()
+            presentationModesBox.bringToFront()
+
+        } else {
+            
+            presentationModesBox.hide()
+            infoBox.bringToFront()
+        }
+    }
+    
     func menuBarMenuOpened() {
         
         if settingsBox.isShown {
             
             settingsBox.hide()
+            infoBox.bringToFront()
+        }
+        
+        if presentationModesBox.isShown {
+
+            presentationModesBox.hide()
             infoBox.bringToFront()
         }
         
@@ -139,6 +172,12 @@ class MenuBarPlayerViewController: NSViewController {
         if settingsBox.isShown {
             
             settingsBox.hide()
+            infoBox.bringToFront()
+        }
+        
+        if presentationModesBox.isShown {
+
+            presentationModesBox.hide()
             infoBox.bringToFront()
         }
         
@@ -178,12 +217,23 @@ class MenuBarPlayerViewController: NSViewController {
         errorDialog.runModal()
     }
     
-    @IBAction func windowedModeAction(_ sender: AnyObject) {
-        appModeManager.presentMode(.modular)
+    @IBAction func presentationModesRadioButtonAction(_ sender: AnyObject) {}
+    
+    @IBAction func switchPresentationModeAction(_ sender: AnyObject) {
+        
+        if radioBtnModularMode.isOn {
+            appModeManager.presentMode(.modular)
+        } else if radioBtnUnifiedMode.isOn {
+            appModeManager.presentMode(.unified)
+        } else {
+            appModeManager.presentMode(.controlBar)
+        }
     }
     
-    @IBAction func controlBarModeAction(_ sender: AnyObject) {
-        appModeManager.presentMode(.controlBar)
+    @IBAction func cancelPresentationModeAction(_ sender: AnyObject) {
+        
+        presentationModesBox.hide()
+        infoBox.bringToFront()
     }
 
     @IBAction func quitAction(_ sender: AnyObject) {
