@@ -290,11 +290,11 @@ class MenuBarPlayingTrackTextView: PlayingTrackTextView {
     }
 
     override var artistAlbumColor: NSColor {
-        .white90Percent
+        .white70Percent
     }
 
     override var chapterTitleColor: NSColor {
-        .white80Percent
+        .white70Percent
     }
     
     override var shouldShowArtist: Bool {

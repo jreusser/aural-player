@@ -16,7 +16,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
     @IBOutlet weak var imgArt: NSImageView!
     
     @IBOutlet weak var textView: ScrollingTrackInfoView!
-    @IBOutlet weak var lblSeekPosition: CenterTextLabel!
+    @IBOutlet weak var lblTrackTime: CenterTextLabel!
     @IBOutlet weak var seekSlider: NSSlider!
     @IBOutlet weak var btnRepeat: NSButton!
     
@@ -48,7 +48,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
     private let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
     
     private var textViewConstraints: LayoutConstraintsManager!
-    private var lblSeekPositionConstraints: LayoutConstraintsManager!
+    private var lblTrackTimeConstraints: LayoutConstraintsManager!
     private var seekSliderConstraints: LayoutConstraintsManager!
     
     private let minWindowWidthToShowSeekPosition: CGFloat = 610
@@ -59,7 +59,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
     override func awakeFromNib() {
         
         // Constraint managers
-        lblSeekPositionConstraints = LayoutConstraintsManager(for: lblSeekPosition)
+        lblTrackTimeConstraints = LayoutConstraintsManager(for: lblTrackTime)
         seekSliderConstraints = LayoutConstraintsManager(for: seekSlider)
         textViewConstraints = LayoutConstraintsManager(for: textView)
         
@@ -75,8 +75,8 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
         textViewConstraints.setHeight(26)
         textViewConstraints.centerVerticallyInSuperview(offset: -2)
         
-        lblSeekPositionConstraints.setHeight(textView.height)
-        lblSeekPositionConstraints.centerVerticallyInSuperview(offset: -2)
+        lblTrackTimeConstraints.setHeight(textView.height)
+        lblTrackTimeConstraints.centerVerticallyInSuperview(offset: 0)
         
         layoutTextView()
         textView.scrollingEnabled = uiState.trackInfoScrollingEnabled
@@ -138,11 +138,11 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
         
         if showSeekPosition {
             
-            lblSeekPositionConstraints.removeAll(withAttributes: [.width, .trailing])
+            lblTrackTimeConstraints.removeAll(withAttributes: [.width, .trailing])
             labelWidth = widthForSeekPosLabel + 5 // Compute the required width and add some padding.
             
-            lblSeekPositionConstraints.setWidth(labelWidth)
-            lblSeekPositionConstraints.setTrailing(relatedToLeadingOf: btnRepeat, offset: -distanceBetweenControlsAndInfo)
+            lblTrackTimeConstraints.setWidth(labelWidth)
+            lblTrackTimeConstraints.setTrailing(relatedToLeadingOf: btnRepeat, offset: -distanceBetweenControlsAndInfo)
         }
         
         // Text view

@@ -36,6 +36,7 @@ class ScrollingTrackInfoView: NSView {
 
     /// Text to scroll
     private var text: NSString = ""
+    private var attrText: NSMutableAttributedString!
 
     /// Font for scrolling text
     var font: NSFont = standardFontSet.mainFont(size: 12) {
@@ -74,10 +75,11 @@ class ScrollingTrackInfoView: NSView {
     var speed: Double = 4 {
         didSet {updateTraits()}
     }
-
+    
     // MARK: - Private variables
     private var timer: Timer?
     private var point = NSPoint(x: 0, y: 0)
+    private var hasArtist: Bool = false
 
     private(set) var stringSize = NSSize(width: 0, height: 0) {
         didSet {point.x = 0}
@@ -130,11 +132,16 @@ class ScrollingTrackInfoView: NSView {
         
         self.artist = artist
         self.title = title
+        self.attrText = nil
+        
+        let font: NSFont = textFontAttributes[.font] as! NSFont
         
         if scrollingEnabled {
             
             if let theArtist = artist {
+                
                 self.text = String(format: "%@ - %@", theArtist, title) as NSString
+                self.attrText = (theArtist + "   ").attributed(font: font, color: .lightGray) + title.attributed(font: font, color: .white)
                 
             } else {
                 self.text = title as NSString
@@ -144,14 +151,15 @@ class ScrollingTrackInfoView: NSView {
             
         } else {
             
-            var truncatedString: String
-            
-            let font: NSFont = textFontAttributes[.font] as! NSFont
+            var truncatedString: String = ""
             
             if let theArtist = artist {
                 
                 let fullLengthString = String(format: "%@ - %@", theArtist, title)
-                truncatedString = String.truncateCompositeString(font, width, fullLengthString, theArtist, title, " - ")
+                let parts = String.truncateCompositeStringIntoParts(font, width, fullLengthString, theArtist, title, "   ")
+                truncatedString = parts[2]
+                
+                self.attrText = (parts[0] + "   ").attributed(font: font, color: .lightGray) + title.attributed(font: font, color: .white)
                 toolTip = fullLengthString
                 
             } else {
@@ -267,19 +275,32 @@ extension ScrollingTrackInfoView {
     
     override open func draw(_ dirtyRect: NSRect) {
         
-        guard !((text as String).isEmptyAfterTrimming) else {return}
+        if (text as String).isEmptyAfterTrimming && attrText == nil {
+            return
+        }
 
         if point.x + stringSize.width < 0 {
             point.x += stringSize.width + spacing
         }
 
-        text.draw(at: point, withAttributes: textFontAttributes)
+        if let attrText = self.attrText {
+            attrText.draw(at: point)
+            
+        } else {
+            text.draw(at: point, withAttributes: textFontAttributes)
+        }
 
         if point.x < 0 {
 
             var otherPoint = point
             otherPoint.x += stringSize.width + spacing
-            text.draw(at: otherPoint, withAttributes: textFontAttributes)
+            
+            if let attrText = self.attrText {
+                attrText.draw(at: otherPoint)
+                
+            } else {
+                text.draw(at: otherPoint, withAttributes: textFontAttributes)
+            }
         }
     }
 

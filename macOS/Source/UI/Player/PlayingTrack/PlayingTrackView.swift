@@ -36,7 +36,7 @@ class PlayingTrackView: MouseTrackingView {
     @IBOutlet weak var controlsBox: NSBox!
     @IBOutlet weak var functionsButton: NSPopUpButton!
     
-    @IBOutlet weak var lblTrackTime: NSTextField!
+    @IBOutlet weak var lblTrackTime: CenterTextLabel!
     
     private var autoHideFields_showing: Bool = false
     

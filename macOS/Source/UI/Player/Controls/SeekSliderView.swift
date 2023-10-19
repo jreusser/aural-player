@@ -15,7 +15,7 @@ import Cocoa
 class SeekSliderView: NSView, Destroyable {
     
     // Fields that display/control seek position within the playing track
-    @IBOutlet weak var lblTrackTime: VALabel!
+    @IBOutlet weak var lblTrackTime: NSTextField!
     
     // Shows the time elapsed for the currently playing track, and allows arbitrary seeking within the track
     @IBOutlet weak var seekSlider: NSSlider!

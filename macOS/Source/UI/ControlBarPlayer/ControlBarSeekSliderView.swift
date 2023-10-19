@@ -11,8 +11,6 @@ import Cocoa
 
 class ControlBarSeekSliderView: SeekSliderView {
     
-    @IBOutlet weak var lblSeekPosition: CenterTextLabel!
-    
     private let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
     
     var seekPositionDisplayType: TrackTimeDisplayType = .elapsed {
@@ -53,7 +51,7 @@ class ControlBarSeekSliderView: SeekSliderView {
     
     override func initSeekPositionLabels() {
         
-        lblSeekPosition?.addGestureRecognizer(NSClickGestureRecognizer(target: self,
+        lblTrackTime?.addGestureRecognizer(NSClickGestureRecognizer(target: self,
                                                                        action: #selector(self.switchSeekPositionDisplay)))
     }
     
@@ -63,40 +61,16 @@ class ControlBarSeekSliderView: SeekSliderView {
         updateSeekPositionLabels(player.seekPosition)
     }
     
-    override func initSeekTimer() {
-        super.initSeekTimer()
-    }
-    
     override func showSeekPositionLabels() {
         
-        lblSeekPosition.showIf(showSeekPosition)
+        lblTrackTime.showIf(showSeekPosition)
         setSeekTimerState(player.state == .playing)
     }
     
     override func hideSeekPositionLabels() {
         
-        lblSeekPosition.hide()
+        lblTrackTime.hide()
         setSeekTimerState(false)
-    }
-    
-    override func updateSeekPositionLabels(_ seekPos: PlaybackPosition) {
-        
-        switch seekPositionDisplayType {
-        
-        case .elapsed:
-            
-            lblSeekPosition.stringValue = ValueFormatter.formatSecondsToHMS(seekPos.timeElapsed)
-            
-        case .remaining:
-            
-            let trackTimes = ValueFormatter.formatTrackTimes(seekPos.timeElapsed, seekPos.trackDuration, seekPos.percentageElapsed)
-            
-            lblSeekPosition.stringValue = trackTimes.remaining
-            
-        case .duration:
-            
-            lblSeekPosition.stringValue = ValueFormatter.formatSecondsToHMS(seekPos.trackDuration)
-        }
     }
     
     override func playbackStateChanged(_ newState: PlaybackState) {

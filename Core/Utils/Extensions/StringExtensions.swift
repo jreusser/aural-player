@@ -343,6 +343,44 @@ extension String {
         }
     }
     
+    /*
+        Takes a formatted artist/album string like "Artist -- Album" and truncates it so that it fits horizontally within a text view.
+     */
+    static func truncateCompositeStringIntoParts(_ font: NSFont, _ maxWidth: CGFloat, _ fullLengthString: String,
+                                        _ s1: String, _ s2: String, _ separator: String) -> [String] {
+        
+        // Check if the full length string fits. If so, no need to truncate.
+        let origWidth = fullLengthString.size(withFont: font).width
+        
+        if origWidth <= maxWidth {
+            return [s1, s2, fullLengthString]
+        }
+        
+        // If fullLengthString doesn't fit, find out which is longer ... s1 or s2 ... truncate the longer one just enough to fit
+        let w1 = s1.size(withFont: font).width
+        let w2 = s2.size(withFont: font).width
+        
+        if w1 > w2 {
+            
+            // Reconstruct the composite string with the truncated s1
+            
+            let wRemainder1: CGFloat = origWidth - w1
+            
+            // Width available for s1 = maximum width - (original width - s1's width)
+            let max1: CGFloat = maxWidth - wRemainder1
+            
+            let t1 = s1.truncate(font: font, maxWidth: max1)
+            return [t1, s2, String(format: "%@%@%@", t1, separator, s2)]
+            
+        } else {
+            
+            // s2 is longer than s1, simply truncate the string as a whole
+            let fullString = fullLengthString.truncate(font: font, maxWidth: maxWidth)
+            let index = fullString.index(fullString.startIndex, offsetBy: s1.count + 3) // 3 spaces between s1 and s2
+            return [s1, fullString.substring(from: index), fullString]
+        }
+    }
+    
     #endif
 }
 
