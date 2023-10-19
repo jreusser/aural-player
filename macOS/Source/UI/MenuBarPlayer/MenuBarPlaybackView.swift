@@ -49,11 +49,19 @@ class MenuBarPlaybackView: PlaybackView {
     
     override func updateLoopButtonState(_ loopState: PlaybackLoopState) {
         
+        guard let btnLoop = btnLoop as? FillableImageButton else {return}
         
-        
-//           ButtonStateMachine.StateMapping(state: .none, image: .imgLoop, colorProperty: \.inactiveControlColor, toolTip: "Initiate a segment loop"),
-//           ButtonStateMachine.StateMapping(state: .started, image: .imgLoopStarted, colorProperty: \.activeControlColor, toolTip: "Complete the segment loop"),
-//           ButtonStateMachine.StateMapping(state: .complete, image: .imgLoop, colorProperty: \.activeControlColor, toolTip: "Remove the segment loop")
+        switch loopState {
+            
+        case .none:
+            btnLoop.fill(image: .imgLoop, withColor: .darkGray)
+            
+        case .started:
+            btnLoop.fill(image: .imgLoopStarted, withColor: .white)
+            
+        case .complete:
+            btnLoop.fill(image: .imgLoop, withColor: .white)
+        }
     }
     
     override func updatePreviousTrackAndNextTrackButtonTooltips() {

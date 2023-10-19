@@ -159,10 +159,10 @@
                                 <action selector="toggleLoopAction:" target="AjS-bO-E7r" id="IR9-0P-dIR"/>
                             </connections>
                         </button>
-                        <button toolTip="Mute / Unmute" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P5p-7u-pjj" userLabel="Volume Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                        <button toolTip="Mute / Unmute" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P5p-7u-pjj" userLabel="Volume Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="234" y="14" width="13.5" height="18"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="volume.2" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="nyI-Du-Rnm">
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="volume.2" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="nyI-Du-Rnm">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -249,10 +249,10 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </textFieldCell>
                         </textField>
-                        <slider toolTip="Volume" wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LQL-m8-1KN" userLabel="Volume Slider">
+                        <slider toolTip="Volume" wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LQL-m8-1KN" userLabel="Volume Slider">
                             <rect key="frame" x="250" y="15" width="42" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="gbw-fl-UMB" customClass="MenuBarVolumeSliderCell" customModule="Aural" customModuleProvider="target"/>
+                            <sliderCell key="cell" controlSize="small" continuous="YES" refusesFirstResponder="YES" state="on" focusRingType="none" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="gbw-fl-UMB" customClass="MenuBarVolumeSliderCell" customModule="Aural" customModuleProvider="target"/>
                             <connections>
                                 <action selector="volumeAction:" target="c56-oI-v2n" id="soM-tQ-XXe"/>
                             </connections>
@@ -269,10 +269,10 @@
                                 </allowedInputSourceLocales>
                             </textFieldCell>
                         </textField>
-                        <slider hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cMO-ue-ceg" userLabel="Seek Slider">
+                        <slider hidden="YES" wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cMO-ue-ceg" userLabel="Seek Slider">
                             <rect key="frame" x="9" y="39" width="210" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="UsT-W0-Z4w" customClass="MenuBarSeekSliderCell" customModule="Aural" customModuleProvider="target"/>
+                            <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" refusesFirstResponder="YES" state="on" focusRingType="none" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="UsT-W0-Z4w" customClass="MenuBarSeekSliderCell" customModule="Aural" customModuleProvider="target"/>
                             <connections>
                                 <action selector="seekSliderAction:" target="AjS-bO-E7r" id="j5y-Lx-QIb"/>
                             </connections>
