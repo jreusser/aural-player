@@ -17,10 +17,6 @@ class ControlBarVolumeSliderCell: VolumeSliderCell {
     override var barRadius: CGFloat {0}
     override var knobRadius: CGFloat {0}
     
-//    override var controlStateColor: NSColor {
-//        .white
-//    }
-    
     override internal func drawBar(inside aRect: NSRect, flipped: Bool) {
         
         let knobFrame = knobRect(flipped: false)

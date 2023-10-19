@@ -160,10 +160,16 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
         messenger.unsubscribeFromAll()
     }
     
-    @IBAction func windowedModeAction(_ sender: AnyObject) {
+    @IBAction func modularModeAction(_ sender: AnyObject) {
         
         transferViewState()
         appModeManager.presentMode(.modular)
+    }
+    
+    @IBAction func unifiedModeAction(_ sender: AnyObject) {
+        
+        transferViewState()
+        appModeManager.presentMode(.unified)
     }
     
     @IBAction func menuBarModeAction(_ sender: AnyObject) {
