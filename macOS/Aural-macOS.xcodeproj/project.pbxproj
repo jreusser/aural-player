@@ -745,6 +745,8 @@
 		3ECE4BF526961ECB0017DD25 /* MetadataPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECE4BF426961ECB0017DD25 /* MetadataPreferencesTests.swift */; };
 		3ECE4BF8269620F70017DD25 /* ControlsPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECE4BF7269620F70017DD25 /* ControlsPreferencesTests.swift */; };
 		3ECF275C26A5567000974120 /* FontSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF275B26A5567000974120 /* FontSet.swift */; };
+		3ECFA87D2AE1EB01001096DC /* EffectsContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ECFA87C2AE1EB01001096DC /* EffectsContainer.xib */; };
+		3ECFA87F2AE1EB29001096DC /* EffectsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECFA87E2AE1EB29001096DC /* EffectsContainerViewController.swift */; };
 		3ED0A4F027DD016200C7A438 /* ButtonStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A4EF27DD016200C7A438 /* ButtonStateMachine.swift */; };
 		3ED0A4F127DD016200C7A438 /* ButtonStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A4EF27DD016200C7A438 /* ButtonStateMachine.swift */; };
 		3ED23857282063330048CF8E /* FilterUnitViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED23856282063330048CF8E /* FilterUnitViewController+TableViewDelegate.swift */; };
@@ -2314,6 +2316,8 @@
 		3ECE4BF426961ECB0017DD25 /* MetadataPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataPreferencesTests.swift; sourceTree = "<group>"; };
 		3ECE4BF7269620F70017DD25 /* ControlsPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsPreferencesTests.swift; sourceTree = "<group>"; };
 		3ECF275B26A5567000974120 /* FontSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSet.swift; sourceTree = "<group>"; };
+		3ECFA87C2AE1EB01001096DC /* EffectsContainer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectsContainer.xib; sourceTree = "<group>"; };
+		3ECFA87E2AE1EB29001096DC /* EffectsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsContainerViewController.swift; sourceTree = "<group>"; };
 		3ED0A4EF27DD016200C7A438 /* ButtonStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStateMachine.swift; sourceTree = "<group>"; };
 		3ED23856282063330048CF8E /* FilterUnitViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilterUnitViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		3ED2385828207E2C0048CF8E /* FilterBandEditorDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterBandEditorDialog.xib; sourceTree = "<group>"; };
@@ -3907,6 +3911,7 @@
 				3E3633E12685FB2C006A88ED /* EffectsUnitViewController.swift */,
 				3E2D09DB2AD4C5430062D3C9 /* RenderQualityMenu.xib */,
 				3E2D09DA2AD4C5430062D3C9 /* RenderQualityMenuViewController.swift */,
+				3ECFA87B2AE1EAC9001096DC /* Container */,
 				3E6C100525CEB98600BF0D07 /* Master */,
 				3E6C0FF725CEB98600BF0D07 /* EQ */,
 				3E6C0FEE25CEB98600BF0D07 /* PitchShift */,
@@ -4827,6 +4832,15 @@
 				3ECE4BF426961ECB0017DD25 /* MetadataPreferencesTests.swift */,
 			);
 			path = Metadata;
+			sourceTree = "<group>";
+		};
+		3ECFA87B2AE1EAC9001096DC /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				3ECFA87C2AE1EB01001096DC /* EffectsContainer.xib */,
+				3ECFA87E2AE1EB29001096DC /* EffectsContainerViewController.swift */,
+			);
+			path = Container;
 			sourceTree = "<group>";
 		};
 		3ED2385A28207FAA0048CF8E /* BandEditor */ = {
@@ -6111,6 +6125,7 @@
 				3E6C115C25CEB9C200BF0D07 /* Assets.xcassets in Resources */,
 				3E6C136B25CEBFB900BF0D07 /* Application.xib in Resources */,
 				3E9CA7F2261A21E8006133B6 /* AudioUnitEditorDialog.xib in Resources */,
+				3ECFA87D2AE1EB01001096DC /* EffectsContainer.xib in Resources */,
 				3E36BD4726A6909800B6E28B /* AudioTrackInfo.xib in Resources */,
 				3EAE9CBB2836ADF6004499FE /* LibraryTracks.xib in Resources */,
 				3E3DFFCE260D9BBA0092F0BF /* MetadataPreferences.xib in Resources */,
@@ -6582,6 +6597,7 @@
 				3EFE3A1B27864898006F8B8C /* HistoryNotifications.swift in Sources */,
 				3EFE384B27864896006F8B8C /* PlaylistDelegate.swift in Sources */,
 				3EFE386527864896006F8B8C /* PitchShiftUnit.swift in Sources */,
+				3ECFA87F2AE1EB29001096DC /* EffectsContainerViewController.swift in Sources */,
 				3E10175E28D741E7002C0D8E /* EonilFSEventStreamCreateFlags.swift in Sources */,
 				3EFE38B127864896006F8B8C /* FilterBandType.swift in Sources */,
 				3E91932C25E0D96A00F30F81 /* GeneralFontSchemeViewController.swift in Sources */,
