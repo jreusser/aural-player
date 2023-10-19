@@ -33,6 +33,7 @@ class UnifiedPlayerWindowController: NSWindowController {
     private lazy var sidebarController: UnifiedPlayerSidebarViewController = UnifiedPlayerSidebarViewController()
     
     private lazy var playQueueController: PlayQueueContainerViewController = PlayQueueContainerViewController()
+    private lazy var effectsController: EffectsContainerViewController = .init()
     
     private lazy var libraryTracksController: LibraryTracksViewController = LibraryTracksViewController()
     private lazy var libraryArtistsController: LibraryArtistsViewController = LibraryArtistsViewController()
@@ -69,6 +70,7 @@ class UnifiedPlayerWindowController: NSWindowController {
         browserSplitView.addAndAnchorSubView(sidebarController.view, underArrangedSubviewAt: 0)
         
         tabGroup.addAndAnchorSubView(forController: playQueueController)
+        tabGroup.addAndHorizontallyCenterSubView(forController: effectsController)
         
         tabGroup.addAndAnchorSubView(forController: libraryTracksController)
         tabGroup.addAndAnchorSubView(forController: libraryArtistsController)
@@ -190,6 +192,20 @@ extension NSTabView {
         
         addTabViewItem(NSTabViewItem(viewController: controller))
         controller.view.anchorToSuperview()
+    }
+    
+    func addAndHorizontallyCenterSubView(forController controller: NSViewController) {
+        
+        let item = NSTabViewItem()
+        addTabViewItem(item)
+        item.view?.addSubview(controller.view)
+        
+        let cons = LayoutConstraintsManager(for: controller.view)
+        
+        cons.setWidth(480)
+        cons.setHeight(200)
+        cons.centerHorizontallyInSuperview()
+        cons.setTop(relatedToTopOf: controller.view.superview!, offset: 0)
     }
 }
 

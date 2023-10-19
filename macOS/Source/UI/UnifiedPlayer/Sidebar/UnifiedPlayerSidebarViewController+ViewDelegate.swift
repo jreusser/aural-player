@@ -97,7 +97,7 @@ extension UnifiedPlayerSidebarViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         
         if let category = item as? UnifiedPlayerSidebarCategory {
-            return category.equalsOneOf(.playQueue, .favorites, .bookmarks)
+            return category.equalsOneOf(.playQueue, .effects, .favorites, .bookmarks)
         }
         
         return true

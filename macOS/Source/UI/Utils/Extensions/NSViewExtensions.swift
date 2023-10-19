@@ -105,6 +105,19 @@ extension NSView {
         self.bottomAnchor.constraint(equalTo: otherView.bottomAnchor)])
     }
     
+    func anchorToViewTop(_ otherView: NSView) {
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([self.topAnchor.constraint(equalTo: otherView.topAnchor)])
+    }
+    
+    func anchorToSuperviewTop() {
+        
+        if let superView = self.superview {
+            anchorToViewTop(superView)
+        }
+    }
+    
     func moveUp(distance: CGFloat) {
         frame.origin.y += distance
     }
@@ -156,6 +169,10 @@ extension NSView {
         guard let superview = self.superview else {return}
             
         superview.constraints.filter {($0.firstItem === self && attributes?.contains($0.firstAttribute) ?? true) || ($0.secondItem === self && attributes?.contains($0.secondAttribute) ?? true)}.forEach {superview.deactivateAndRemoveConstraint($0)}
+    }
+    
+    func removeAllConstraintsFromSuperview() {
+        superview?.constraints.forEach {superview?.deactivateAndRemoveConstraint($0)}
     }
 }
 
