@@ -347,13 +347,13 @@
                                         <constraint firstAttribute="width" constant="66" id="Jse-nZ-XrD"/>
                                         <constraint firstAttribute="height" constant="24" id="NAa-Yp-eLP"/>
                                     </constraints>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" title="-956:67:67" id="3e8-F6-O4p" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
+                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="-956:67:67" id="3e8-F6-O4p" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
                                         <font key="font" usesAppearanceFont="YES"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <slider hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" id="oBR-SZ-2k2" userLabel="Seek Slider">
+                                <slider wantsLayer="YES" verticalHuggingPriority="750" id="oBR-SZ-2k2" userLabel="Seek Slider">
                                     <rect key="frame" x="66" y="-5" width="205" height="14"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <sliderCell key="cell" controlSize="mini" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="ovd-HG-pIx" customClass="ControlBarSeekSliderCell" customModule="Aural" customModuleProvider="target"/>

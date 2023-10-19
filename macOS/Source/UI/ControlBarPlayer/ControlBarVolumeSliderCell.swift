@@ -14,26 +14,26 @@ class ControlBarVolumeSliderCell: VolumeSliderCell {
     // Don't draw the knob.
     override internal func drawKnob(_ knobRect: NSRect) {}
     
+    override var barRadius: CGFloat {0}
+    override var knobRadius: CGFloat {0}
+    
+//    override var controlStateColor: NSColor {
+//        .white
+//    }
+    
     override internal func drawBar(inside aRect: NSRect, flipped: Bool) {
         
-        let scaledValue = CGFloat(floatValue / 100)
+        let knobFrame = knobRect(flipped: false)
+        let halfKnobWidth = knobFrame.width / 2
         
-        var leftRect: NSRect = .zero
+        let leftRect = NSRect(x: aRect.minX, y: aRect.minY,
+                              width: max(halfKnobWidth, knobFrame.minX + halfKnobWidth), height: aRect.height)
         
-        if scaledValue > 0 {
-            
-            leftRect = NSRect(x: aRect.minX, y: aRect.minY,
-                              width: max(1, scaledValue * aRect.width), height: aRect.height)
-            
-//            NSBezierPath.fillRoundedRect(leftRect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
-        }
+        leftRect.fill(withColor: controlStateColor)
         
-        if scaledValue < 100 {
-            
-            let rightRect = NSRect(x: leftRect.maxX, y: aRect.minY,
-                                   width: max(1, aRect.width - leftRect.width), height: aRect.height)
-            
-//            NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withGradient: backgroundGradient, angle: gradientDegrees)
-        }
+        let rightRect = NSRect(x: knobFrame.maxX - halfKnobWidth, y: aRect.minY,
+                               width: aRect.width - (knobFrame.maxX - halfKnobWidth), height: aRect.height)
+        
+        rightRect.fill(withColor: backgroundColor)
     }
 }
