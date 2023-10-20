@@ -305,7 +305,10 @@ extension PlayQueueContainerViewController {
             $0.tableView.reloadData()
         }
         
-        // Re-select the track that was moved.
+        // The current playing track index may have changed as a result of this operation.
+        updateSummary()
+        
+        // Re-select the tracks that were moved.
         currentViewController.tableView.selectRows(destRows)
     }
     

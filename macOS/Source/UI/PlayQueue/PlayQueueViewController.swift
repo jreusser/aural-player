@@ -154,4 +154,15 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
             self.tableView.reloadRows(refreshIndexes)
         }
     }
+    
+    // MARK: Data source functions
+    
+    @objc override func loadFinderTracks(from files: [URL], atPosition row: Int) {
+        
+        // TODO: Load these 2 values from user preferences
+        let clearQueue: Bool = false    // Append or replace ???
+        let autoplay: Bool = true       // Autoplay on add
+        
+        playQueueDelegate.loadTracks(from: files, atPosition: row, clearQueue: clearQueue, autoplay: autoplay)
+    }
 }

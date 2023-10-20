@@ -60,6 +60,9 @@ extension TrackListTableViewController: NSTableViewDataSource {
         
         if let sourceTable = info.draggingSource as? NSTableView {
             
+            // TODO: PQ can override the helper functions with options for 'clearQueue' and 'autoplay'.
+            // Figure out the user requirements / use cases.
+            
             // Re-order tracks within the same table.
             if sourceTable === self.tableView,
                let sourceIndices = TableDragDropContext.indices {
@@ -92,11 +95,15 @@ extension TrackListTableViewController: NSTableViewDataSource {
         } else if let files = info.urls {
             
             // Files added from Finder, add them to the playlist as URLs
-            trackList.loadTracks(from: files, atPosition: row)
+            loadFinderTracks(from: files, atPosition: row)
             return true
         }
         
         return false
+    }
+    
+    @objc func loadFinderTracks(from files: [URL], atPosition row: Int) {
+        trackList.loadTracks(from: files, atPosition: row)
     }
     
     @objc func moveTracks(from sourceIndices: IndexSet, to destRow: Int) {
