@@ -102,6 +102,7 @@ class FileMetadataBatch {
     let size: Int
     var files: OrderedDictionary<URL, FileRead> = OrderedDictionary()
     
+    // TODO: Are some errors harmless and should we ignore them ???
     var firstSuccessfullyLoadedFile: FileRead? {
         
         for fileRead in files.values {

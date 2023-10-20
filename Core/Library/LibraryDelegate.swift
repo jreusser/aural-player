@@ -12,7 +12,7 @@ import Foundation
 
 protocol LibraryDelegateProtocol: GroupedSortedTrackListProtocol {
     
-    var buildProgress: Double {get}
+    var buildProgress: LibraryBuildProgress {get}
 }
 
 class LibraryDelegate: LibraryDelegateProtocol {
@@ -27,7 +27,7 @@ class LibraryDelegate: LibraryDelegateProtocol {
     
     private lazy var messenger: Messenger = .init(for: self)
     
-    var buildProgress: Double {
+    var buildProgress: LibraryBuildProgress {
         library.buildProgress
     }
     
@@ -146,7 +146,7 @@ class LibraryDelegate: LibraryDelegateProtocol {
     
     func appLaunched(_ filesToOpen: [URL]) {
         
-//        library.buildLibrary()
+        library.buildLibrary()
         // TODO: Monitor a folder ? 'My Music' ???
     }
     

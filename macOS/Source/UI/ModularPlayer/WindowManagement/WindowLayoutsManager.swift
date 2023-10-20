@@ -157,7 +157,8 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
             
             mainWindow.addChildWindow(actualWindow, ordered: .below)
             actualWindow.setFrame(window.frame, display: true)
-            actualWindow.show()
+//            actualWindow.show()
+            loader(withID: window.id).showWindow()
         }
         
         mainWindow.makeKeyAndOrderFront(self)
@@ -216,7 +217,8 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
         } else {
             
             mainWindow.addChildWindow(window, ordered: .above)
-            window.show()
+//            window.show()
+            loader(withID: id).showWindow()
             window.orderFront(self)
         }
     }

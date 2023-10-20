@@ -20,9 +20,10 @@ class LibraryLoader {
     
     var filesRead: AtomicIntCounter = .init()
     var playlistsRead: AtomicIntCounter = .init()
+    var startedReadingFiles: Bool = false
     
-    var progress: Double {
-        Double(filesRead.value + playlistsRead.value) * 100 / Double(totalFiles + totalPlaylists)
+    var progress: LibraryBuildStats? {
+        startedReadingFiles ? .init(filesToRead: totalFiles, playlistsToRead: totalPlaylists, filesRead: filesRead.value, playlistsRead: playlistsRead.value) : nil
     }
     
     var metadata: ConcurrentMap<URL, FileMetadata> = ConcurrentMap()
@@ -48,15 +49,19 @@ class LibraryLoader {
     // TODO: Allow the caller to specify a "sort order" for the files, eg. by file path ???
     func loadMetadata(ofType type: MetadataType, from files: [URL], completionHandler: VoidFunction? = nil) {
         
-        blockOpFunction = blockOp(metadataType: type)
+        blockOpFunction = fileReadBlockOp(metadataType: type)
         
         // Move to a background thread to unblock the main thread.
         DispatchQueue.global(qos: qOS).async {
             
             defer {completionHandler?()}
             
+            self.messenger.publish(.library_startedReadingFileSystem)
+            
             self.readFiles(files)
-            self.messenger.publish(.library_startedAddingTracks, payload: LibraryBuildStats(filesToRead: self.totalFiles, playlistsToRead: self.totalPlaylists))
+            self.startedReadingFiles = true
+            
+            self.messenger.publish(.library_startedAddingTracks)
             
             self.queue.waitUntilAllOperationsAreFinished()
             
@@ -74,6 +79,7 @@ class LibraryLoader {
             // Cleanup
             self.blockOpFunction = nil
             self.metadata.removeAll()
+            self.startedReadingFiles = false
         }
     }
     
@@ -146,7 +152,7 @@ class LibraryLoader {
         library.addPlaylists(playlistsToAdd)
     }
     
-    private func blockOp(metadataType: MetadataType) -> ((URL) -> BlockOperation) {
+    private func fileReadBlockOp(metadataType: MetadataType) -> ((URL) -> BlockOperation) {
         
         return {file in BlockOperation {
             
@@ -162,10 +168,35 @@ class LibraryLoader {
             self.filesRead.increment()
         }}
     }
+    
+    // TODO: Implement this !
+    private func playlistReadBlockOp(metadataType: MetadataType) -> ((URL) -> BlockOperation) {
+        
+        return {file in BlockOperation {
+            
+            var fileMetadata = FileMetadata()
+
+            do {
+                fileMetadata.primary = try fileReader.getPrimaryMetadata(for: file)
+            } catch {
+                fileMetadata.validationError = error as? DisplayableError
+            }
+
+            self.metadata[file] = fileMetadata
+            self.playlistsRead.increment()
+        }}
+    }
 }
 
 struct LibraryBuildStats {
     
     let filesToRead: Int
     let playlistsToRead: Int
+    
+    let filesRead: Int
+    let playlistsRead: Int
+    
+    var progressPercentage: Double {
+        Double(filesRead + playlistsRead) * 100 / Double(filesToRead + playlistsToRead)
+    }
 }

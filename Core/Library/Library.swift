@@ -17,12 +17,19 @@ protocol LibraryProtocol: TrackListProtocol {
     
     func buildLibrary()
     
-    var buildProgress: Double {get}
+    var buildProgress: LibraryBuildProgress {get}
     
     // TODO:
     var playlists: [ImportedPlaylist] {get}
     
     func addPlaylists(_ playlists: [ImportedPlaylist])
+}
+
+struct LibraryBuildProgress {
+    
+    let isBeingModified: Bool
+    let startedReadingFiles: Bool
+    let buildStats: LibraryBuildStats?
 }
 
 class Library: GroupedSortedTrackList, LibraryProtocol {
@@ -60,8 +67,13 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     private lazy var loader: LibraryLoader = LibraryLoader()
     private lazy var messenger = Messenger(for: self)
     
-    var buildProgress: Double {
-        loader.progress
+    var buildProgress: LibraryBuildProgress {
+        
+        if !_isBeingModified.value {
+            return .init(isBeingModified: false, startedReadingFiles: false, buildStats: nil)
+        }
+        
+        return .init(isBeingModified: true, startedReadingFiles: loader.startedReadingFiles, buildStats: loader.progress)
     }
     
     var artistsGrouping: ArtistsGrouping {
@@ -81,14 +93,18 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     }
     
     func loadTracks(from files: [URL], atPosition position: Int?) {
-//        loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
-        loader.loadMetadata(ofType: .primary, from: files)
+        
+        _isBeingModified.setValue(true)
+        
+        loader.loadMetadata(ofType: .primary, from: files) {[weak self] in
+            self?._isBeingModified.setValue(false)
+        }
     }
     
     func buildLibrary() {
         
         removeAllTracks()
-        loadTracks(from: [homeFolder])
+        loadTracks(from: [homeFolder], atPosition: nil)
     }
     
     override func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet {

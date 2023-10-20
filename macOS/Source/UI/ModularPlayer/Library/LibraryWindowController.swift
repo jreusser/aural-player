@@ -85,8 +85,10 @@ class LibraryWindowController: NSWindowController {
         tabGroup.tabViewItem(at: 6).view?.addSubview(playlistsView)
         playlistsView.anchorToSuperview()
         
-        messenger.subscribeAsync(to: .library_startedAddingTracks, handler: startedAddingTracks(stats:))
-        messenger.subscribeAsync(to: .library_doneAddingTracks, handler: doneAddingTracks)
+        let windowShownFilter = {[weak self] in self?.theWindow.isVisible ?? false}
+        messenger.subscribeAsync(to: .library_startedReadingFileSystem, handler: startedReadingFileSystem, filter: windowShownFilter)
+        messenger.subscribeAsync(to: .library_startedAddingTracks, handler: startedAddingTracks, filter: windowShownFilter)
+        messenger.subscribeAsync(to: .library_doneAddingTracks, handler: doneAddingTracks, filter: windowShownFilter)
         
         messenger.subscribe(to: .library_showBrowserTabForItem, handler: showBrowserTab(forItem:))
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
@@ -102,18 +104,71 @@ class LibraryWindowController: NSWindowController {
         // TODO: Temporary, remove this !!!
         tabGroup.selectTabViewItem(at: 0)
         
+        displayBuildProgress()
+    }
+    
+    override func showWindow(_ sender: Any?) {
+        
+        super.showWindow(sender)
+        displayBuildProgress()
+    }
+    
+    private func displayBuildProgress() {
+        
+        let buildProgress = libraryDelegate.buildProgress
+        guard buildProgress.isBeingModified else {
+            
+            if buildProgressView.isShown {
+
+                buildProgressView.hide()
+                buildIndeterminateSpinner.animates = false
+                buildProgressUpdateTask.stop()
+            }
+            
+            sidebarController.sidebarView.enable()
+            
+            return
+        }
+        
+        if buildProgressView.isHidden {
+            buildProgressView.show()
+        }
+        
         sidebarController.sidebarView.disable()
-        lblBuildStats.stringValue = "Reading home folder: '\(library.homeFolder.path)' ..."
-        buildIndeterminateSpinner.show()
-        buildProgressSpinner.hide()
+        // TODO: Disable the rest of the window (mouse hover response and clicking on the right side details panel)
+        
+        if buildProgress.startedReadingFiles, let stats = buildProgress.buildStats {
+            
+            lblBuildStats.stringValue = "Reading \(stats.filesToRead) tracks and \(stats.playlistsToRead) playlists ..."
+            
+            buildIndeterminateSpinner.hide()
+            buildIndeterminateSpinner.animates = false
+            
+            buildProgressSpinner.show()
+            buildProgressUpdateTask.startOrResume()
+            
+        } else {
+            
+            lblBuildStats.stringValue = "Reading home folder: '\(library.homeFolder.path)' ..."
+            
+            buildIndeterminateSpinner.animates = true
+            buildIndeterminateSpinner.show()
+            
+            buildProgressSpinner.hide()
+        }
     }
     
     private func updateBuildProgress() {
-        buildProgressSpinner.percentage = libraryDelegate.buildProgress
+        
+        if let progressPercentage = libraryDelegate.buildProgress.buildStats?.progressPercentage {
+            buildProgressSpinner.percentage = progressPercentage
+        }
     }
     
     @IBAction func closeAction(_ sender: Any) {
+        
         windowLayoutsManager.toggleWindow(withId: .library)
+        buildProgressUpdateTask.pause()
     }
     
     private func showBrowserTab(forItem item: LibrarySidebarItem) {
@@ -144,13 +199,12 @@ class LibraryWindowController: NSWindowController {
     
     // MARK: Message handling -----------------------------------------------------------
     
-    private func startedAddingTracks(stats: LibraryBuildStats) {
-        
-        buildIndeterminateSpinner.hide()
-        buildProgressSpinner.show()
-        
-        buildProgressUpdateTask.startOrResume()
-        lblBuildStats.stringValue = "Reading \(stats.filesToRead) tracks and \(stats.playlistsToRead) playlists ..."
+    private func startedReadingFileSystem() {
+        displayBuildProgress()
+    }
+    
+    private func startedAddingTracks() {
+        displayBuildProgress()
     }
     
     private func doneAddingTracks() {

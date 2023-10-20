@@ -14,6 +14,10 @@ extension Notification.Name {
     
     // MARK: Notifications published by the library.
     
+    // Signifies that the library has begun reading the home folder in the file system, but has not yet started reading metadata
+    // from the individual files / playlists.
+    static let library_startedReadingFileSystem = Notification.Name("startedReadingFileSystem")
+    
     // Signifies that the library has begun adding a set of tracks.
     static let library_startedAddingTracks = Notification.Name("library_startedAddingTracks")
     

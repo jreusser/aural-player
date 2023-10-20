@@ -88,6 +88,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         appModeManager.presentApp()
+        initialize()
         
         // Update the appLaunched flag
         appLaunched = true
@@ -98,33 +99,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         beginPeriodicPersistence()
     }
     
-    private func folderMonitoring() {
-        
-        //        try! EonilFSEvents.startWatching(
-        //            paths: ["/Users/kven/Muthu"],
-        //            for: ObjectIdentifier(self),
-        //            onQueue: .global(qos: .utility)) {event in
-        //
-        //                guard let flags = event.flag else {return}
-        //
-        //                if flags.contains(.itemCreated) {
-        //                    print("\nCreated: \(event.path)")
-        //                }
-        //
-        //                else if flags.contains(.itemRemoved) {
-        //                    print("\nRemoved: \(event.path)")
-        //                }
-        //
-        //                else if flags.contains(.itemRenamed) {
-        //                    print("\nRenamed: \(event.path)")
-        //                }
-        //
-        //                else {
-        //                    print("\n\n??? UNKNOWN: \(event)")
-        //                }
-        //        }
-    }
-    
     private func initialize() {
         
         // Force initialization of objects that would not be initialized soon enough otherwise
@@ -132,6 +106,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     #if os(macOS)
         
+        _ = playQueueDelegate
+        _ = libraryDelegate
         _ = mediaKeyHandler
         
         DispatchQueue.global(qos: .background).async {
@@ -261,4 +237,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
+    
+    private func folderMonitoring() {
+        
+        //        try! EonilFSEvents.startWatching(
+        //            paths: ["/Users/kven/Muthu"],
+        //            for: ObjectIdentifier(self),
+        //            onQueue: .global(qos: .utility)) {event in
+        //
+        //                guard let flags = event.flag else {return}
+        //
+        //                if flags.contains(.itemCreated) {
+        //                    print("\nCreated: \(event.path)")
+        //                }
+        //
+        //                else if flags.contains(.itemRemoved) {
+        //                    print("\nRemoved: \(event.path)")
+        //                }
+        //
+        //                else if flags.contains(.itemRenamed) {
+        //                    print("\nRenamed: \(event.path)")
+        //                }
+        //
+        //                else {
+        //                    print("\n\n??? UNKNOWN: \(event)")
+        //                }
+        //        }
+    }
+    
 }

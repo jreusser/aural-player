@@ -171,7 +171,7 @@
                                         <real value="250"/>
                                     </holdingPriorities>
                                 </splitView>
-                                <box boxType="custom" borderType="none" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="H5D-96-Yzn" userLabel="Progress">
+                                <box hidden="YES" boxType="custom" borderType="none" cornerRadius="4" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="H5D-96-Yzn" userLabel="Progress">
                                     <rect key="frame" x="15" y="10" width="970" height="451"/>
                                     <view key="contentView" id="66v-1T-8C9">
                                         <rect key="frame" x="0.0" y="0.0" width="970" height="451"/>

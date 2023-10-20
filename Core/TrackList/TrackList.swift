@@ -30,7 +30,8 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         Array(_tracks.values)
     }
 
-    private var _isBeingModified: AtomicBool = AtomicBool(value: false)
+    // TODO: Expose this only to subclasses
+    var _isBeingModified: AtomicBool = AtomicBool(value: false)
     
     var isBeingModified: Bool {
         _isBeingModified.value
@@ -253,7 +254,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         
         for (index, _) in orderedMetadata.enumerated() {
             batchFiles[index].indexOfFileInTrackList = indicesArray[index]
-            print("File '\(batchFiles[index].file.lastPathComponent)' added to PQ at index: \(batchFiles[index].indexOfFileInTrackList ?? -1)")
+//            print("File '\(batchFiles[index].file.lastPathComponent)' added to PQ at index: \(batchFiles[index].indexOfFileInTrackList ?? -1)")
         }
         
         return indices
