@@ -46,17 +46,15 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
         loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
     }
     
-    override func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet {
+    override func firstFileLoaded(file: URL, atIndex index: Int) {
         
-        let indices = super.acceptBatch(batch)
-        
-        if autoplay.value, let indexOfTrackToPlay = indices.min() {
+        // Use for autoplay
+        if autoplay.value {
             
             autoplay.setValue(false)
-            messenger.publish(TrackPlaybackCommandNotification(index: indexOfTrackToPlay))
+            messenger.publish(TrackPlaybackCommandNotification(index: index))
+            print("Autoplaying first file: '\(file.lastPathComponent)' at index: \(index)")
         }
-        
-        return indices
     }
     
     func enqueueTracks(_ newTracks: [Track]) -> IndexSet {

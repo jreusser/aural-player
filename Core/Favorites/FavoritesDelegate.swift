@@ -84,11 +84,10 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
 //        do {
         
             // First, add the given track to the play queue.
-//            playQueueDelegate.addTracks([favorite.track])
-//            
-//            // Play it.
-//            player.play(favorite.track)
+            playQueueDelegate.loadTracks(from: [favorite.file], autoplay: true)
             
+            // TODO: What if the file no longer exists ??? Display an error !
+//
 //        } catch {
 //
 //            if let fnfError = error as? FileNotFoundError {

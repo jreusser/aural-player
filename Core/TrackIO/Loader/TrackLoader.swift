@@ -143,11 +143,15 @@ class TrackLoader {
             // Always resolve sym links and aliases before reading the file
             let resolvedFile = file.resolvedURL
             
+            // TODO: Check if file exists, pass a parm to determine whether or not to check (check only if coming
+            // from Favs, Bookms, or History.
+            
             if file.isDirectory {
 
                 // Directory
                 if !isRecursiveCall {session.addHistoryItem(resolvedFile)}
                 
+                // TODO: This is sorting by filename ... do we want this or something else ? User-configurable "add ordering" ?
                 if let dirContents = file.children {
                     readFiles(dirContents.sorted(by: {$0.lastPathComponent < $1.lastPathComponent}), isRecursiveCall: true)
                 }
@@ -166,14 +170,23 @@ class TrackLoader {
                         readPlaylistFiles(loadedPlaylist.tracks)
                     }
                     
-                } else if SupportedTypes.allAudioExtensions.contains(fileExtension),
-                          !session.trackList.hasTrack(forFile: resolvedFile) {
+                } else if SupportedTypes.allAudioExtensions.contains(fileExtension) {
+                    
+                    let indexOfTrackInList: Int? = session.trackList.indexOfTrack(forFile: resolvedFile)
                     
                     // Track
-                    if !isRecursiveCall {session.addHistoryItem(resolvedFile)}
+                    if (!isRecursiveCall) && (indexOfTrackInList == nil) {session.addHistoryItem(resolvedFile)}
+                    
+                    let fileRead: FileRead
+                    
+                    if let trackIndex = indexOfTrackInList {
+                        fileRead = FileRead(file: resolvedFile, result: .existsInTrackList, indexOfFileInTrackList: trackIndex)
+                    } else {
+                        fileRead = FileRead(file: resolvedFile, result: .addedToTrackList)
+                    }
                     
                     // True means batch is full and needs to be flushed.
-                    if batch.append(file: resolvedFile) {
+                    if batch.append(file: fileRead) {
                         flushBatch()
                     }
                 }
@@ -195,13 +208,18 @@ class TrackLoader {
             }
             
             let fileExtension = resolvedFile.lowerCasedExtension
+            guard SupportedTypes.allAudioExtensions.contains(fileExtension) else {continue}
             
-            if SupportedTypes.allAudioExtensions.contains(fileExtension),
-               !session.trackList.hasTrack(forFile: resolvedFile),
-               batch.append(file: resolvedFile) {
-                
-                // Track
-                // True means batch is full and needs to be flushed.
+            let fileRead: FileRead
+            
+            if let trackIndex = session.trackList.indexOfTrack(forFile: resolvedFile) {
+                fileRead = FileRead(file: resolvedFile, result: .existsInTrackList, indexOfFileInTrackList: trackIndex)
+            } else {
+                fileRead = FileRead(file: resolvedFile, result: .addedToTrackList)
+            }
+            
+            // True means batch is full and needs to be flushed.
+            if batch.append(file: fileRead) {
                 flushBatch()
             }
         }
@@ -209,11 +227,18 @@ class TrackLoader {
     
     func flushBatch() {
         
-        queue.addOperations(batch.files.map(blockOpFunction), waitUntilFinished: true)
+        let filesToRead = batch.filesToRead
+        
+        queue.addOperations(filesToRead.map(blockOpFunction), waitUntilFinished: true)
+        batch.markReadErrors()
         
         session.batchCompleted(batch.files)
         let newIndices = session.trackList.acceptBatch(batch)
         session.observer.postBatchLoad(indices: newIndices)
+        
+        if batch.counter == 0, let firstFileLoaded = batch.firstSuccessfullyLoadedFile, let indexOfTrack = firstFileLoaded.indexOfFileInTrackList {
+            session.trackList.firstFileLoaded(file: firstFileLoaded.file, atIndex: indexOfTrack)
+        }
         
         batch.clear()
     }

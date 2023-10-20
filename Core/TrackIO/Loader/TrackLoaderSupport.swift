@@ -13,13 +13,19 @@ import OrderedCollections
 
 typealias FileReadSessionCompletionHandler = ([URL]) -> Void
 
+/// The **TrackList** that accepts the loaded tracks.
 protocol TrackLoaderReceiver {
     
     func hasTrack(forFile file: URL) -> Bool
     
+    func indexOfTrack(forFile file: URL) -> Int?
+    
+    func firstFileLoaded(file: URL, atIndex index: Int)
+    
     func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet
 }
 
+/// Any observer that wants to know about the loaded tracks.
 protocol TrackLoaderObserver {
     
     func preTrackLoad()
@@ -29,10 +35,31 @@ protocol TrackLoaderObserver {
     func postBatchLoad(indices: IndexSet)
 }
 
+class FileRead {
+    
+    let file: URL
+    var result: FileReadResult
+    var indexOfFileInTrackList: Int?
+    
+    // TODO: Add a field for fileMetadata.validationError ???
+    
+    init(file: URL, result: FileReadResult, indexOfFileInTrackList: Int? = nil) {
+        
+        self.file = file
+        self.result = result
+        self.indexOfFileInTrackList = indexOfFileInTrackList
+    }
+}
+
+enum FileReadResult {
+    
+    case existsInTrackList, addedToTrackList, error
+}
+
 class FileReadSession {
 
     let metadataType: MetadataType
-    var files: OrderedSet<URL> = OrderedSet()
+    var files: OrderedDictionary<URL, FileRead> = OrderedDictionary()
     let trackList: TrackLoaderReceiver
     let insertionIndex: Int?
     let observer: TrackLoaderObserver
@@ -60,15 +87,37 @@ class FileReadSession {
         errors.append(error)
     }
     
-    func batchCompleted(_ batchFiles: OrderedSet<URL>) {
-        files.append(contentsOf: batchFiles)
+    func batchCompleted(_ batchFiles: OrderedDictionary<URL, FileRead>) {
+        
+        for (file, fileRead) in batchFiles {
+            self.files[file] = fileRead
+        }
     }
 }
 
 class FileMetadataBatch {
     
+    var counter: Int = 0
+    
     let size: Int
-    var files: OrderedSet<URL> = OrderedSet()
+    var files: OrderedDictionary<URL, FileRead> = OrderedDictionary()
+    
+    var firstSuccessfullyLoadedFile: FileRead? {
+        
+        for fileRead in files.values {
+            
+            if fileRead.result != .error {
+                return fileRead
+            }
+        }
+        
+        return nil
+    }
+    
+    var filesToRead: [URL] {
+        files.filter {$0.value.result != .existsInTrackList}.map {$0.key}
+    }
+    
     var metadata: ConcurrentMap<URL, FileMetadata> = ConcurrentMap()
     var insertionIndex: Int?
     
@@ -81,7 +130,11 @@ class FileMetadataBatch {
         return 0...(files.count - 1)
     }
     
-    var orderedMetadata: [(file: URL, metadata: FileMetadata)] {files.map {(file: $0, metadata: self.metadata[$0]!)}}
+    var orderedMetadata: [(file: URL, metadata: FileMetadata)] {files.keys.compactMap {(file) -> (URL, FileMetadata)? in
+        
+        guard let fileMetadata = self.metadata[file] else {return nil}
+        return (file: file, metadata: fileMetadata)
+    }}
     
     var fileCount: Int {files.count}
     
@@ -91,14 +144,24 @@ class FileMetadataBatch {
         self.insertionIndex = insertionIndex
     }
     
-    func append(file: URL) -> Bool {
+    func append(file: FileRead) -> Bool {
         
-        files.append(file)
+        files[file.file] = file
         return files.count == size
     }
     
     func setMetadata(_ metadata: FileMetadata, for file: URL) {
         self.metadata[file] = metadata
+    }
+    
+    func markReadErrors() {
+        
+        for (file, fileMetadata) in self.metadata.map {
+            
+            if fileMetadata.validationError != nil {
+                files[file]?.result = .error
+            }
+        }
     }
     
     func clear() {
@@ -109,5 +172,7 @@ class FileMetadataBatch {
         
         files.removeAll()
         metadata.removeAll()
+        
+        counter.increment()
     }
 }

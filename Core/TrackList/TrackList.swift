@@ -80,8 +80,12 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         _tracks.index(forKey: track.file)
     }
     
+    func indexOfTrack(forFile file: URL) -> Int? {
+        _tracks.index(forKey: file)
+    }
+    
     func hasTrack(_ track: Track) -> Bool {
-        tracks.contains(track)
+        _tracks[track.file] != nil
     }
     
     func hasTrack(forFile file: URL) -> Bool {
@@ -98,7 +102,7 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     @inlinable
     @inline(__always)
     func deDupeTracks(_ tracks: [Track]) -> [Track] {
-        OrderedSet<Track>(tracks).filter {!hasTrack($0)}
+        tracks.filter {_tracks[$0.file] == nil}
     }
     
     @discardableResult func addTracks(_ newTracks: [Track]) -> IndexSet {
@@ -213,19 +217,18 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     
     func loadTracks(from files: [URL], atPosition position: Int?, usingLoader loader: TrackLoader, observer: TrackLoaderObserver) {
         
-        let dedupedFiles = files.filter {_tracks[$0] == nil}
-        guard dedupedFiles.isNonEmpty else {return}
-        
         _isBeingModified.setValue(true)
         
-        loader.loadMetadata(ofType: .primary, from: dedupedFiles, into: self, at: position, observer: observer) {[weak self] in
+        loader.loadMetadata(ofType: .primary, from: files, into: self, at: position, observer: observer) {[weak self] in
             self?._isBeingModified.setValue(false)
         }
     }
 
     func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet {
         
-        let tracks = batch.orderedMetadata.map {(file, metadata) -> Track in
+        let orderedMetadata = batch.orderedMetadata
+        
+        let tracks = orderedMetadata.map {(file, metadata) -> Track in
             
             let track = Track(file, fileMetadata: metadata)
 
@@ -236,13 +239,28 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
             return track
         }
         
+        let indices: IndexSet
+        
         if let insertionIndex = batch.insertionIndex {
-            return insertTracks(tracks, at: insertionIndex)
+            indices = insertTracks(tracks, at: insertionIndex)
             
         } else {
-            return addTracks(tracks)
+            indices = addTracks(tracks)
         }
+        
+        let batchFiles = batch.files.elements.values
+        let indicesArray = indices.toArray()
+        
+        for (index, _) in orderedMetadata.enumerated() {
+            batchFiles[index].indexOfFileInTrackList = indicesArray[index]
+            print("File '\(batchFiles[index].file.lastPathComponent)' added to PQ at index: \(batchFiles[index].indexOfFileInTrackList ?? -1)")
+        }
+        
+        return indices
     }
+    
+    // Dummy impl - subclasses should override!
+    func firstFileLoaded(file: URL, atIndex index: Int) {}
 }
 
 extension IndexSet {

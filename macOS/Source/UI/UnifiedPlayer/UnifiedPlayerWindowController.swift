@@ -70,6 +70,7 @@ class UnifiedPlayerWindowController: NSWindowController {
         browserSplitView.addAndAnchorSubView(sidebarController.view, underArrangedSubviewAt: 0)
         
         tabGroup.addAndAnchorSubView(forController: playQueueController)
+//        tabGroup.addAndAnchorSubView(forController: effectsController)
         tabGroup.addAndHorizontallyCenterSubView(forController: effectsController)
         
         tabGroup.addAndAnchorSubView(forController: libraryTracksController)
@@ -129,6 +130,8 @@ class UnifiedPlayerWindowController: NSWindowController {
     
     // Quits the app
     @IBAction func quitAction(_ sender: AnyObject) {
+        
+        unifiedPlayerUIState.windowFrame = theWindow.frame
         NSApp.terminate(self)
     }
     
@@ -190,7 +193,10 @@ extension NSTabView {
     
     func addAndAnchorSubView(forController controller: NSViewController) {
         
-        addTabViewItem(NSTabViewItem(viewController: controller))
+        let item = NSTabViewItem()
+        addTabViewItem(item)
+        item.view?.addSubview(controller.view)
+        
         controller.view.anchorToSuperview()
     }
     

@@ -26,7 +26,7 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
     
     private lazy var managerWindowController: PresetsManagerWindowController = PresetsManagerWindowController.instance
     
-    private lazy var fileReader: FileReader = fileReader
+//    private lazy var fileReader: FileReader = fileReader
     
     private lazy var messenger = Messenger(for: self)
     
