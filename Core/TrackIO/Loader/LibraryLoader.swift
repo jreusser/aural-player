@@ -38,6 +38,9 @@ class LibraryLoader {
     
     init() {
         
+//        self.priority = .medium
+//        self.qOS = .utility
+        
         self.priority = .highest
         self.qOS = .userInteractive
         
@@ -49,7 +52,7 @@ class LibraryLoader {
     // TODO: Allow the caller to specify a "sort order" for the files, eg. by file path ???
     func loadMetadata(ofType type: MetadataType, from files: [URL], completionHandler: VoidFunction? = nil) {
         
-        blockOpFunction = fileReadBlockOp(metadataType: type)
+        blockOpFunction = fileReadBlockOp()
         
         // Move to a background thread to unblock the main thread.
         DispatchQueue.global(qos: qOS).async {
@@ -130,6 +133,8 @@ class LibraryLoader {
         // TODO: Read metadata in batches.
         // Skip files that don't exist.
         
+        // MARK: Step 1 - Load all playlist files ------------------------
+        
         for playlistFile in playlistFiles {
             
             queue.addOperation {
@@ -139,20 +144,56 @@ class LibraryLoader {
                 }
                 
                 self.playlistsRead.increment()
+                print("PlaylistsRead: \(self.playlistsRead.value)")
             }
         }
         
-        queue.waitUntilAllOperationsAreFinished()
+        if queue.operationCount > 0 {
+            queue.waitUntilAllOperationsAreFinished()
+        }
+        
+        // MARK: Step 2 - Load metadata for all files referenced by the playlists (if not already present as Tracks in Library) ------------------------
+        
+        self.metadata.removeAll()
+        
+        for plst in self.playlists.map.values {
+            
+            for file in plst.tracks {
+                
+                if !library.hasTrack(forFile: file) {
+                    queue.addOperation(fileReadBlockOp()(file))
+                }
+            }
+        }
+        
+        if queue.operationCount > 0 {
+            queue.waitUntilAllOperationsAreFinished()
+        }
+        
+        // MARK: Step 3 - Add all playlists to the Library ------------------------
         
         var playlistsToAdd: [ImportedPlaylist] = []
-        for (_, plst) in self.playlists.map {
-            playlistsToAdd.append(ImportedPlaylist(fileSystemPlaylist: plst))
+        for plst in self.playlists.map.values {
+            
+            var plstTracks: [Track] = []
+            
+            for file in plst.tracks {
+                
+                if let track = library.findTrack(forFile: file) {
+                    plstTracks.append(track)
+                    
+                } else {
+                    plstTracks.append(Track(file, fileMetadata: self.metadata[file]))
+                }
+            }
+            
+            playlistsToAdd.append(ImportedPlaylist(file: plst.file, tracks: plstTracks))
         }
         
         library.addPlaylists(playlistsToAdd)
     }
     
-    private func fileReadBlockOp(metadataType: MetadataType) -> ((URL) -> BlockOperation) {
+    private func fileReadBlockOp() -> ((URL) -> BlockOperation) {
         
         return {file in BlockOperation {
             
@@ -170,7 +211,7 @@ class LibraryLoader {
     }
     
     // TODO: Implement this !
-    private func playlistReadBlockOp(metadataType: MetadataType) -> ((URL) -> BlockOperation) {
+    private func playlistReadBlockOp() -> ((URL) -> BlockOperation) {
         
         return {file in BlockOperation {
             

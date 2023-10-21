@@ -22,7 +22,15 @@ protocol LibraryProtocol: TrackListProtocol {
     // TODO:
     var playlists: [ImportedPlaylist] {get}
     
+    var numberOfPlaylists: Int {get}
+    
+    var numberOfTracksInPlaylists: Int {get}
+    
+    var durationOfTracksInPlaylists: Double {get}
+    
     func addPlaylists(_ playlists: [ImportedPlaylist])
+    
+    func playlist(atIndex index: Int) -> ImportedPlaylist?
 }
 
 struct LibraryBuildProgress {
@@ -46,6 +54,18 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
         Array(_playlists.values)
     }
     
+    var numberOfPlaylists: Int {
+        _playlists.count
+    }
+    
+    var numberOfTracksInPlaylists: Int {
+        _playlists.values.reduce(0, {(totalSoFar: Int, playlist: ImportedPlaylist) -> Int in totalSoFar + playlist.size})
+    }
+    
+    var durationOfTracksInPlaylists: Double {
+        _playlists.values.reduce(0.0, {(totalSoFar: Double, playlist: ImportedPlaylist) -> Double in totalSoFar + playlist.duration})
+    }
+    
     func addPlaylists(_ playlists: [ImportedPlaylist]) {
         
         for playlist in playlists {
@@ -53,11 +73,17 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
         }
     }
     
+    func playlist(atIndex index: Int) -> ImportedPlaylist? {
+        
+        guard (0..._playlists.lastIndex).contains(index) else {return nil}
+        return _playlists.elements.values[index]
+    }
+    
     init(persistentState: LibraryPersistentState?) {
         
 //        self.homeFolder = FilesAndPaths.musicDir.appendingPathComponent("Timo", isDirectory: true).appendingPathComponent("Fury In The Slaughterhouse", isDirectory: true)
 //        self.homeFolder = persistentState?.homeFolder ?? FilesAndPaths.musicDir
-        self.homeFolder = FilesAndPaths.musicDir
+        self.homeFolder = FilesAndPaths.musicDir.appendingPathComponent("Timo", isDirectory: true)
         
         super.init(sortOrder: TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending),
                    withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])

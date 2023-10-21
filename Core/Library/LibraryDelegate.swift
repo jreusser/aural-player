@@ -13,6 +13,9 @@ import Foundation
 protocol LibraryDelegateProtocol: GroupedSortedTrackListProtocol {
     
     var buildProgress: LibraryBuildProgress {get}
+    
+    // TODO:
+    var playlists: [ImportedPlaylist] {get}
 }
 
 class LibraryDelegate: LibraryDelegateProtocol {
@@ -39,6 +42,8 @@ class LibraryDelegate: LibraryDelegateProtocol {
     }
     
     var tracks: [Track] {library.tracks}
+    
+    var playlists: [ImportedPlaylist] {library.playlists}
     
     var size: Int {library.size}
     

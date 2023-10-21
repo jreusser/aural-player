@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -55,7 +55,7 @@
                                                         </constraints>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="l5U-98-aqL" customClass="TableImageCell" customModule="Aural" customModuleProvider="target"/>
                                                     </imageView>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="cbx-P6-PoE" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="cbx-P6-PoE" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="0.0" width="165" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="coh-TP-Qyv"/>
@@ -91,7 +91,7 @@
                                                         </constraints>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="7At-0A-che" customClass="TableImageCell" customModule="Aural" customModuleProvider="target"/>
                                                     </imageView>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Z1G-df-ixl" userLabel="Playlists" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Z1G-df-ixl" userLabel="Playlists" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="0.0" width="165" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="KQo-OP-XDJ"/>
@@ -104,14 +104,14 @@
                                                     </textField>
                                                     <button toolTip="Create a new playlist" translatesAutoresizingMaskIntoConstraints="NO" id="Ac1-IU-CSd" userLabel="Add Playlist Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="166" y="5.5" width="12.5" height="14"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="12" id="aLP-3f-I0c"/>
-                                                            <constraint firstAttribute="height" constant="10" id="sYu-ks-yD9"/>
-                                                        </constraints>
                                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="plus" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="uzU-3f-SRy">
                                                             <behavior key="behavior" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="12" id="aLP-3f-I0c"/>
+                                                            <constraint firstAttribute="height" constant="10" id="sYu-ks-yD9"/>
+                                                        </constraints>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -133,7 +133,7 @@
                                                 <rect key="frame" x="8" y="48" width="183" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Yyi-ag-sBe" userLabel="Playlist Name" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Yyi-ag-sBe" userLabel="Playlist Name" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="0.0" width="160" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="1ih-Om-sqE"/>
@@ -149,14 +149,14 @@
                                                     </textField>
                                                     <button hidden="YES" toolTip="Create a new playlist" translatesAutoresizingMaskIntoConstraints="NO" id="vG2-Q6-kkV" userLabel="Add Playlist Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="166" y="5.5" width="12.5" height="14"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="12" id="4cp-Kh-6ht"/>
-                                                            <constraint firstAttribute="height" constant="10" id="dte-0E-jpp"/>
-                                                        </constraints>
                                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="plus" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="0Bk-2f-dqe">
                                                             <behavior key="behavior" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="12" id="4cp-Kh-6ht"/>
+                                                            <constraint firstAttribute="height" constant="10" id="dte-0E-jpp"/>
+                                                        </constraints>
                                                     </button>
                                                 </subviews>
                                                 <constraints>

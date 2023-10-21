@@ -40,6 +40,7 @@ class LibraryWindowController: NSWindowController {
     private lazy var libraryAlbumsController: LibraryAlbumsViewController = LibraryAlbumsViewController()
     private lazy var libraryGenresController: LibraryGenresViewController = LibraryGenresViewController()
     private lazy var libraryDecadesController: LibraryDecadesViewController = LibraryDecadesViewController()
+    private lazy var libraryImportedPlaylistsController: LibraryImportedPlaylistsViewController = .init()
     
     private lazy var tuneBrowserViewController: TuneBrowserViewController = TuneBrowserViewController()
     
@@ -47,7 +48,7 @@ class LibraryWindowController: NSWindowController {
     
     private lazy var messenger: Messenger = Messenger(for: self)
     
-    private lazy var buildProgressUpdateTask: RepeatingTaskExecutor = .init(intervalMillis: 500, task: updateBuildProgress, queue: .main)
+    private lazy var buildProgressUpdateTask: RepeatingTaskExecutor = .init(intervalMillis: 500, task: {[weak self] in self?.updateBuildProgress()}, queue: .main)
     
     override func windowDidLoad() {
         
@@ -77,12 +78,16 @@ class LibraryWindowController: NSWindowController {
         tabGroup.tabViewItem(at: 4).view?.addSubview(libraryDecadesView)
         libraryDecadesView.anchorToSuperview()
         
+        let libraryImportedPlaylistsView: NSView = libraryImportedPlaylistsController.view
+        tabGroup.tabViewItem(at: 5).view?.addSubview(libraryImportedPlaylistsView)
+        libraryImportedPlaylistsView.anchorToSuperview()
+        
         let tuneBrowserView: NSView = tuneBrowserViewController.view
-        tabGroup.tabViewItem(at: 5).view?.addSubview(tuneBrowserView)
+        tabGroup.tabViewItem(at: 6).view?.addSubview(tuneBrowserView)
         tuneBrowserView.anchorToSuperview()
         
         let playlistsView: NSView = playlistsViewController.view
-        tabGroup.tabViewItem(at: 6).view?.addSubview(playlistsView)
+        tabGroup.tabViewItem(at: 7).view?.addSubview(playlistsView)
         playlistsView.anchorToSuperview()
         
         let windowShownFilter = {[weak self] in self?.theWindow.isVisible ?? false}
@@ -105,6 +110,13 @@ class LibraryWindowController: NSWindowController {
         tabGroup.selectTabViewItem(at: 0)
         
         displayBuildProgress()
+    }
+    
+    override func destroy() {
+        
+        close()
+        buildProgressUpdateTask.pause()
+        messenger.unsubscribeFromAll()
     }
     
     override func showWindow(_ sender: Any?) {

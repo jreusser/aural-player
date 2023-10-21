@@ -23,38 +23,15 @@ class ImportedPlaylist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoa
 
     let userDefined: Bool = true
     
-    init(fileSystemPlaylist: FileSystemPlaylist) {
+    init(file: URL, tracks: [Track]) {
         
-        self.file = fileSystemPlaylist.file
-        self.name = fileSystemPlaylist.file.nameWithoutExtension
+        self.file = file
+        self.name = file.nameWithoutExtension
         
         super.init()
+        addTracks(tracks)
         
-        var tracksToAdd: [Track] = []
-        
-        for file in fileSystemPlaylist.tracks {
-            
-            if let track = library.findTrack(forFile: file) {
-                tracksToAdd.append(track)
-                
-            } else {
-                
-                print("No metadata for: \(file.absoluteString)\nPath: \(file.path)\n\n")
-                
-                var fileMetadata = FileMetadata()
-
-                do {
-                    fileMetadata.primary = try fileReader.getPrimaryMetadata(for: file)
-                } catch {
-                    fileMetadata.validationError = error as? DisplayableError
-                }
-                
-                let track = Track(file, fileMetadata: fileMetadata)
-                tracksToAdd.append(track)
-            }
-        }
-        
-        addTracks(tracksToAdd)
+        print("Read playlist: '\(name)' with \(self.size) tracks")
     }
     
     func loadTracks(from files: [URL], atPosition position: Int?) {}

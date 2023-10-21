@@ -26,7 +26,6 @@ class MenuBarPlayerViewController: NSViewController {
     @IBOutlet weak var infoBox: NSBox!
     @IBOutlet weak var trackInfoView: MenuBarPlayingTrackTextView!
     @IBOutlet weak var imgArt: NSImageView!
-    @IBOutlet weak var artOverlayBox: NSBox!
     
     @IBOutlet weak var playbackView: MenuBarPlaybackView!
     @IBOutlet weak var seekSliderView: MenuBarSeekSliderView!
@@ -45,21 +44,18 @@ class MenuBarPlayerViewController: NSViewController {
     
     private lazy var messenger = Messenger(for: self)
     
+    /// An image to display when the currently playing track does not have any associated cover art, resized to an optimal size for display in Control Center.
+    private lazy var defaultArtwork: PlatformImage = {
+        
+        var image = PlatformImage.imgPlayingArt.copy(ofSize: imgArt.size).filledWithColor(.white)
+        image.isTemplate = false
+        return image
+    }()
+    
     override func awakeFromNib() {
-        
-//        colorSchemesManager.applyScheme(.blackAqua)
-        
-//        [btnWindowedMode, btnControlBarMode, btnSettings].forEach {
-//            $0?.image = $0?.image?.filledWithColor(.white90Percent)
-//        }
-        
-//        colorSchemesManager.registerObservers([btnQuit],
-//                                              forProperty: \.buttonColor)
         
         appLogo.contentTintColor = .white90Percent
         
-        print("Scheme color is: \(colorSchemesManager.systemScheme.buttonColor.whiteComponent)")
-
         // MARK: Notification subscriptions
         
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
@@ -102,8 +98,8 @@ class MenuBarPlayerViewController: NSViewController {
             trackInfoView.trackInfo = nil
         }
         
-        imgArt.image = player.playingTrack?.art?.image
-        [imgArt, artOverlayBox].forEach {$0?.showIf(imgArt.image != nil && uiState.showAlbumArt)}
+        imgArt.image = player.playingTrack?.art?.image ?? defaultArtwork
+        imgArt.showIf(imgArt.image != nil && uiState.showAlbumArt)
         
         infoBox.bringToFront()
         

@@ -19,6 +19,7 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         LibrarySidebarItem(displayName: "Albums", browserTab: .libraryAlbums, image: .imgAlbumGroup),
         LibrarySidebarItem(displayName: "Genres", browserTab: .libraryGenres, image: .imgGenreGroup),
         LibrarySidebarItem(displayName: "Decades", browserTab: .libraryDecades, image: .imgDecadeGroup),
+        LibrarySidebarItem(displayName: "Playlist Files", browserTab: .libraryImportedPlaylists, image: .imgPlaylist)
     ]
     
     private static let historyItems: [LibrarySidebarItem] = [
@@ -168,11 +169,12 @@ enum LibraryBrowserTab: Int {
          libraryAlbums = 2,
          libraryGenres = 3,
          libraryDecades = 4,
-         fileSystem = 5,
-         playlists = 6,
-         historyRecentlyPlayed = 7,
-         historyMostPlayed = 8,
-         historyRecentlyAdded = 9,
-         favorites = 10,
-         bookmarks = 11
+         libraryImportedPlaylists = 5,
+         fileSystem = 6,
+         playlists = 7,
+         historyRecentlyPlayed = 8,
+         historyMostPlayed = 9,
+         historyRecentlyAdded = 10,
+         favorites = 11,
+         bookmarks = 12
 }

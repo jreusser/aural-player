@@ -449,6 +449,8 @@
 		3E6C39FC26AA169500AF5009 /* FilterPreviewChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C39FB26AA169500AF5009 /* FilterPreviewChart.swift */; };
 		3E6EFFA32815309500C813AC /* TextColorScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EFFA12815309500C813AC /* TextColorScheme.xib */; };
 		3E6EFFA42815309500C813AC /* TextColorSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EFFA22815309500C813AC /* TextColorSchemeViewController.swift */; };
+		3E71FBEC2AE34B3C00AB6C18 /* LibraryImportedPlaylists.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E71FBEB2AE34B3C00AB6C18 /* LibraryImportedPlaylists.xib */; };
+		3E71FBEE2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E71FBED2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift */; };
 		3E752744267F32A60092BB89 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E752743267F32A60092BB89 /* RoundedImageView.swift */; };
 		3E758B06281DDA5900BBE872 /* EffectsWindowRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E758B05281DDA5900BBE872 /* EffectsWindowRootView.swift */; };
 		3E7638AB2857D88B00461F4D /* UnifiedPlayerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7638AA2857D88B00461F4D /* UnifiedPlayerWindow.xib */; };
@@ -1986,6 +1988,8 @@
 		3E6C39FB26AA169500AF5009 /* FilterPreviewChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPreviewChart.swift; sourceTree = "<group>"; };
 		3E6EFFA12815309500C813AC /* TextColorScheme.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextColorScheme.xib; sourceTree = "<group>"; };
 		3E6EFFA22815309500C813AC /* TextColorSchemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextColorSchemeViewController.swift; sourceTree = "<group>"; };
+		3E71FBEB2AE34B3C00AB6C18 /* LibraryImportedPlaylists.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryImportedPlaylists.xib; sourceTree = "<group>"; };
+		3E71FBED2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryImportedPlaylistsViewController.swift; sourceTree = "<group>"; };
 		3E752743267F32A60092BB89 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		3E758B05281DDA5900BBE872 /* EffectsWindowRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsWindowRootView.swift; sourceTree = "<group>"; };
 		3E7638AA2857D88B00461F4D /* UnifiedPlayerWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnifiedPlayerWindow.xib; sourceTree = "<group>"; };
@@ -4136,6 +4140,15 @@
 			path = Text;
 			sourceTree = "<group>";
 		};
+		3E71FBEA2AE348ED00AB6C18 /* ImportedPlaylists */ = {
+			isa = PBXGroup;
+			children = (
+				3E71FBEB2AE34B3C00AB6C18 /* LibraryImportedPlaylists.xib */,
+				3E71FBED2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift */,
+			);
+			path = ImportedPlaylists;
+			sourceTree = "<group>";
+		};
 		3E7638A92857D7F800461F4D /* UnifiedPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -5131,6 +5144,7 @@
 				3E05FD40283A451F00EB7861 /* Albums */,
 				3E8DD6442845631900FED49D /* Genres */,
 				3E2ADED92843E4A0009586E7 /* Decades */,
+				3E71FBEA2AE348ED00AB6C18 /* ImportedPlaylists */,
 				3E2A2A00280909D2000F0539 /* Playlists */,
 				3EB462C62847FEC6000E3F85 /* TuneBrowser */,
 				3ED5090228472A35001A190A /* Utils */,
@@ -6232,6 +6246,7 @@
 				3EAF96F728DCE1B6008561A7 /* Play-Regular.ttf in Resources */,
 				3EAF96FB28DCE1B6008561A7 /* control-freak.regular.ttf in Resources */,
 				3E25B65027F7818900D10A5F /* PlayQueueWindow.xib in Resources */,
+				3E71FBEC2AE34B3C00AB6C18 /* LibraryImportedPlaylists.xib in Resources */,
 				3EB1274A2ADD8E1E00745603 /* LibraryHomeSetup.xib in Resources */,
 				3E91932925E0CF5D00F30F81 /* GeneralFontScheme.xib in Resources */,
 				3EAF96F628DCE1B6008561A7 /* ragingredlotus-bb.regular.ttf in Resources */,
@@ -6673,6 +6688,7 @@
 				3E2000C5267CEE53008BAB70 /* MediaKeysPreferencesViewController.swift in Sources */,
 				3EFE385127864896006F8B8C /* ValueConversions.swift in Sources */,
 				3EFE3A0B27864898006F8B8C /* VisualizerNotifications.swift in Sources */,
+				3E71FBEE2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift in Sources */,
 				3EFE38BD27864896006F8B8C /* AudioGraphDelegateProtocol.swift in Sources */,
 				3E9E590E25DB6B150064EB5F /* MenuBarAppModeController.swift in Sources */,
 				3EEC041F2687AB15004478CE /* MenuBarPlaybackView.swift in Sources */,

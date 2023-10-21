@@ -313,6 +313,20 @@ class GroupSummaryCellView: AuralTableCellView {
         lblTrackCount.textColor = systemColorScheme.secondaryTextColor
         lblDuration.textColor = systemColorScheme.secondaryTextColor
     }
+    
+    func update(forPlaylistGroup group: ImportedPlaylist) {
+        
+        let trackCount = group.size
+        
+        lblTrackCount.stringValue = "\(trackCount) \(trackCount == 1 ? "track" : "tracks")"
+        lblDuration.stringValue = ValueFormatter.formatSecondsToHMS(group.duration)
+        
+        lblTrackCount.font = summaryFont
+        lblDuration.font = summaryFont
+        
+        lblTrackCount.textColor = systemColorScheme.secondaryTextColor
+        lblDuration.textColor = systemColorScheme.secondaryTextColor
+    }
 }
 
 extension NSUserInterfaceItemIdentifier {
