@@ -34,6 +34,8 @@ class FavoritesManagerViewController: PresetsManagerViewController {
             
         } catch {
             
+            // TODO: Remove this
+            
             if let fnfError = error as? FileNotFoundError {
                 
                 // This needs to be done async. Otherwise, other open dialogs could hang.
@@ -41,7 +43,7 @@ class FavoritesManagerViewController: PresetsManagerViewController {
                     
                     // Position and display an alert with error info
                     _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove favorite").showModal()
-                    self.favorites.deleteFavoriteWithFile(fav.file)
+//                    self.favorites.deleteFavoriteWithFile(fav.file)
                     self.tableView.reloadData()
                 }
             }
@@ -58,7 +60,8 @@ class FavoritesManagerViewController: PresetsManagerViewController {
         let colID = column.identifier
         let favorite = favorites.getFavoriteAtIndex(row)
         
-        return createTextCell(tableView, column, row, colID == .cid_favoriteNameColumn ? favorite.name : favorite.file.path, false)
+        // TODO: favorite.file only applies to tracks, playlists, folders, not to groups.
+        return createTextCell(tableView, column, row, colID == .cid_favoriteNameColumn ? favorite.name : favorite.file!.path, false)
     }
 }
 

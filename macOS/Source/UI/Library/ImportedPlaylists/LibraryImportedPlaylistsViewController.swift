@@ -28,11 +28,7 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
         
         super.viewDidLoad()
         
-//        messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
-//        messenger.subscribeAsync(to: .library_tracksRemoved, handler: reloadTable)
-//        
         messenger.subscribeAsync(to: .library_doneAddingTracks, handler: doneAddingTracks)
-//        
 //        messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
         messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
         
@@ -53,16 +49,23 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
         updateSummary()
     }
     
+    // TODO: Implement the controls bar !!! Double-click action, sorting, etc
+    
+    func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
+        item is ImportedPlaylist
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
+        item is ImportedPlaylist
+    }
+    
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
         if item == nil {
-            print("HERE 1 - \(library.numberOfPlaylists)")
             return library.numberOfPlaylists
         }
         
         if let playlist = item as? ImportedPlaylist {
-            
-            print("HERE 2 - \(playlist.name) has \(playlist.size) tracks")
             return playlist.size
         }
         
@@ -72,14 +75,10 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
         if item == nil, let playlist = library.playlist(atIndex: index) {
-            
-            print("HERE 3 - \(playlist.name)")
             return playlist
         }
         
         if let playlist = item as? ImportedPlaylist, let track = playlist[index] {
-            
-            print("HERE 4 - \(track.displayName)")
             return track
         }
         
@@ -144,8 +143,6 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
             }
             
         default:
-            
-            print("HERE 5 - nil")
             return nil
         }
         

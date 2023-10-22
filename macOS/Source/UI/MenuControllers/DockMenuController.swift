@@ -183,6 +183,8 @@ class DockMenuController: NSObject, NSMenuDelegate {
             
         } catch {
             
+            // TODO: Give the user other options, DON'T always delete the item !
+            
             if let fnfError = error as? FileNotFoundError {
                 
                 // This needs to be done async. Otherwise, other open dialogs could hang.
@@ -190,7 +192,7 @@ class DockMenuController: NSObject, NSMenuDelegate {
                     
                     // Position and display an alert with error info
                     _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove favorite").showModal()
-                    self.favorites.deleteFavoriteWithFile(favorite.file)
+//                    self.favorites.deleteFavoriteWithFile(favorite.file)
                 }
             }
         }

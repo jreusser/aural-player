@@ -15,59 +15,84 @@ import Foundation
 class Favorite: UserManagedObject, Hashable {
     
     // The file of the track being favorited
-    let file: URL
+    var file: URL? {
+        type.equalsOneOf(.track, .playlist, .folder) ? URL(fileURLWithPath: _key) : nil
+    }
     
-    let type: FavoriteItemType
+    let type: PlayableItemType
     
     // Used by the UI (track.displayName)
     let name: String
     
     var key: String {
         
-        get {file.path}
+        get {_key}
         set {} // Do nothing
     }
+    
+    private var _key: String
     
     var userDefined: Bool {true}
     
     init(track: Track) {
         
-        self.file = track.file
+        self._key = track.file.path
         self.type = .track
         self.name = track.displayName
     }
     
     // Playlists and folders
-    init(file: URL, type: FavoriteItemType) {
+    init(file: URL, type: PlayableItemType) {
         
-        self.file = file
+        self._key = file.path
         self.type = type
         self.name = file.lastPathComponent
     }
     
+    // Artists, albums, genres, and decades
+    init(name: String, type: PlayableItemType) {
+        
+        self._key = name
+        self.type = type
+        self.name = name
+    }
+    
     init?(persistentState: FavoritePersistentState) {
         
-        guard let file = persistentState.file,
+        guard let key = persistentState.key,
         let type = persistentState.type else {return nil}
         
-        self.file = file
+        self._key = key
         self.type = type
-        self.name = persistentState.name ?? (type == .track ? file.nameWithoutExtension : file.lastPathComponent)
         
+        switch type {
+            
+        case .track, .playlist, .folder:
+            self.name = URL(fileURLWithPath: key).lastPathComponent
+            
+        default:
+            self.name = key
+        }
     }
     
     static func == (lhs: Favorite, rhs: Favorite) -> Bool {
-        lhs.file == rhs.file
+        lhs.key == rhs.key
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(file)
+        
+        hasher.combine(key)
+        hasher.combine(type)
     }
 }
 
-enum FavoriteItemType: String, Codable {
+enum PlayableItemType: String, Codable {
     
     case track
     case playlist
+    case artist
+    case album
+    case genre
+    case decade
     case folder
 }

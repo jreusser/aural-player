@@ -16,13 +16,13 @@ import Foundation
 ///
 struct FavoritePersistentState: Codable {
 
-    let file: URL?   // URL path
-    let type: FavoriteItemType?
+    let key: String?   // URL path
+    let type: PlayableItemType?
     let name: String?
     
     init(favorite: Favorite) {
         
-        self.file = favorite.file
+        self.key = favorite.key
         self.type = favorite.type
         self.name = favorite.name
     }

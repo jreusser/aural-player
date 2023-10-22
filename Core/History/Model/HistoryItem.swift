@@ -17,6 +17,9 @@ class HistoryItem: Equatable {
     // The filesystem location of the item
     var file: URL
     
+    // TODO: Accept this in init()
+    let type: PlayableItemType = .track
+    
     // A timestamp used in comparisons with other items, to maintain chronological order
     var time: Date
     
@@ -24,6 +27,8 @@ class HistoryItem: Equatable {
     private var _displayName: String
     
     var track: Track?
+    
+    var playCount: Int = 0
     
     var displayName: String {
         
@@ -39,6 +44,12 @@ class HistoryItem: Equatable {
         
         // Default the displayName to file name (intended to be replaced later)
         self._displayName = displayName
+    }
+    
+    func markAsPlayedNow() {
+        
+        time = Date()
+        playCount.increment()
     }
     
     static func == (lhs: HistoryItem, rhs: HistoryItem) -> Bool {

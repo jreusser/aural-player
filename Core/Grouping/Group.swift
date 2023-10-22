@@ -72,13 +72,6 @@ class DecadeGroup: Group {
     }
 }
 
-class PlaylistGroup: Group {
-    
-    override var displayName: String {
-        "playlist '\(name)'"
-    }
-}
-
 class Group: PlayableItem {
     
     let name: String

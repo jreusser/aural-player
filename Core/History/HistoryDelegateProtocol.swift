@@ -50,6 +50,8 @@ protocol HistoryDelegateProtocol {
     var lastPlayedItem: PlayedItem? {get}
     
     func resumeLastPlayedTrack() throws
+    
+    // TODO: getPlayStats(), getAddStats()
 }
 
 extension HistoryDelegateProtocol {
