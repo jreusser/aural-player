@@ -63,21 +63,19 @@ struct PreferencesDefaults {
     }
     
     ///
-    /// An enumeration of default values for playlist preferences.
+    /// An enumeration of default values for Play Queue preferences.
     ///
-    struct Playlist {
+    struct PlayQueue {
         
-        static let playlistOnStartup: PlaylistStartupOptions = .rememberFromLastAppLaunch
+        static let playQueueOnStartup: PlayQueueStartupOption = .rememberFromLastAppLaunch
         static let playlistFile: URL? = nil
         static let tracksFolder: URL? = nil
         
-        static let viewOnStartup: PlaylistViewOnStartup = PlaylistViewOnStartup.defaultInstance
-        
-        static let showNewTrackInPlaylist: Bool = true
+        static let showNewTrackInPlayQueue: Bool = true
         static let showChaptersList: Bool = true
         
-        static let dragDropAddMode: PlaylistTracksAddMode = .append
-        static let openWithAddMode: PlaylistTracksAddMode = .append
+        static let dragDropAddMode: PlayQueueTracksAddMode = .append
+        static let openWithAddMode: PlayQueueTracksAddMode = .append
     }
     
     ///

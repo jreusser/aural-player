@@ -36,7 +36,7 @@ class PlayerViewController: NSViewController {
     // Delegate that conveys all seek and playback info requests to the player
     private let player: PlaybackInfoDelegateProtocol = playbackInfoDelegate
     
-    private let playlistPreferences: PlaylistPreferences = preferences.playlistPreferences
+    private let playlistPreferences: PlayQueuePreferences = preferences.playlistPreferences
     
     private lazy var messenger = Messenger(for: self)
     

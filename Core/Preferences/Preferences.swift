@@ -22,7 +22,7 @@ class Preferences {
     
     // Preferences for different app components / features.
     
-    var playlistPreferences: PlaylistPreferences
+    var playlistPreferences: PlayQueuePreferences
     var playbackPreferences: PlaybackPreferences
     var soundPreferences: SoundPreferences
     
@@ -57,7 +57,7 @@ class Preferences {
         controlsPreferences = ControlsPreferences(defaultsDictionary)
         playbackPreferences = PlaybackPreferences(defaultsDictionary, controlsPreferences.gestures)
         soundPreferences = SoundPreferences(defaultsDictionary, controlsPreferences.gestures)
-        playlistPreferences = PlaylistPreferences(defaultsDictionary)
+        playlistPreferences = PlayQueuePreferences(defaultsDictionary)
         
 #if os(macOS)
         viewPreferences = ViewPreferences(defaultsDictionary)

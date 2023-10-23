@@ -100,7 +100,7 @@ class PlaylistPreferencesViewController: NSViewController, PreferencesViewProtoc
         viewMenu.enableIf(btnStartWithView.isOn)
         
         // Show new track
-        btnShowNewTrack.onIf(playlistPrefs.showNewTrackInPlaylist)
+        btnShowNewTrack.onIf(playlistPrefs.showNewTrackInPlayQueue)
         
         // Show chapters list window
         btnShowChaptersList.onIf(playlistPrefs.showChaptersList)
@@ -181,7 +181,7 @@ class PlaylistPreferencesViewController: NSViewController, PreferencesViewProtoc
     
     func save(_ preferences: Preferences) throws {
         
-        let prefs: PlaylistPreferences = preferences.playlistPreferences
+        let prefs: PlayQueuePreferences = preferences.playlistPreferences
         
         if btnEmptyPlaylist.isOn {
             
@@ -229,7 +229,7 @@ class PlaylistPreferencesViewController: NSViewController, PreferencesViewProtoc
         prefs.viewOnStartup.viewName = viewMenu.selectedItem!.title
         
         // Show new track
-        prefs.showNewTrackInPlaylist = btnShowNewTrack.isOn
+        prefs.showNewTrackInPlayQueue = btnShowNewTrack.isOn
         
         // Show chapters list window
         prefs.showChaptersList = btnShowChaptersList.isOn
