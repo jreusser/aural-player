@@ -3462,13 +3462,13 @@
 				3E6C0F2C25CEB98500BF0D07 /* Preferences.xib */,
 				3E6C0F2B25CEB98500BF0D07 /* PreferencesWindowController.swift */,
 				3EAFB60A267FF2B900F0DC96 /* PreferencesSliderCell.swift */,
-				3E3DFFCC260D9B950092F0BF /* Metadata */,
 				3E6C0F2525CEB98500BF0D07 /* Playlist */,
 				3E6C0F2D25CEB98500BF0D07 /* Playback */,
 				3E6C0F3825CEB98600BF0D07 /* Sound */,
 				3E6C0F3525CEB98600BF0D07 /* View */,
 				3E6C0F3225CEB98500BF0D07 /* History */,
 				3E6C0F2825CEB98500BF0D07 /* Controls */,
+				3E3DFFCC260D9B950092F0BF /* Metadata */,
 				3EBF293426869A1200D87021 /* PreferencesPopupMenuCell.swift */,
 			);
 			path = Preferences;
@@ -3565,9 +3565,9 @@
 		3E6C0F4125CEB98600BF0D07 /* Sort */ = {
 			isa = PBXGroup;
 			children = (
+				3E6C0F4C25CEB98600BF0D07 /* PlaylistSortDialog.xib */,
 				3E6C0F4225CEB98600BF0D07 /* PlaylistSortWindowController.swift */,
 				3E6C0F4325CEB98600BF0D07 /* Subviews */,
-				3E6C0F4C25CEB98600BF0D07 /* PlaylistSortDialog.xib */,
 			);
 			path = Sort;
 			sourceTree = "<group>";

@@ -10,12 +10,15 @@
 import Cocoa
 
 // Cell for sliders on the Preferences panel
-class PreferencesSliderCell: AuralSliderCell {
+class PreferencesSliderCell: HorizontalSliderCell {
     
-    override var barRadius: CGFloat {1.5}
-    
+//    override var knobHeightOutsideBar: CGFloat {4}
+//    
+//    override var barRadius: CGFloat {1.5}
+//    override var barInsetY: CGFloat {0.5}
+//    
 //    override var backgroundGradient: NSGradient {Colors.Effects.defaultSliderBackgroundGradient}
-//    override var foregroundGradient: NSGradient {Colors.Effects.defaultSliderBackgroundGradient}
+//    override var foregroundGradient: NSGradient {Colors.Effects.defaultSliderForegroundGradient}
 //    
 //    override var knobColor: NSColor {.white80Percent}
 }

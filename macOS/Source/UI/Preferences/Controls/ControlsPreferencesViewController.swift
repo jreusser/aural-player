@@ -11,7 +11,7 @@ import Cocoa
 
 class ControlsPreferencesViewController: NSViewController, PreferencesViewProtocol {
     
-    @IBOutlet weak var tabView: AuralTabView!
+    @IBOutlet weak var tabView: NSTabView!
     
     private let mediaKeysPreferencesView: PreferencesViewProtocol = MediaKeysPreferencesViewController()
     private let gesturesPreferencesView: PreferencesViewProtocol = GesturesPreferencesViewController()
@@ -26,10 +26,10 @@ class ControlsPreferencesViewController: NSViewController, PreferencesViewProtoc
         subViews = [mediaKeysPreferencesView, gesturesPreferencesView, remoteControlPreferencesView]
         
         let actualViews = subViews.map {$0.preferencesView}
-        tabView.addViewsForTabs(actualViews)
+//        tabView.addViewsForTabs(actualViews)
         
         // Select the Media Keys prefs tab
-        tabView.selectTabViewItem(at: 0)
+//        tabView.selectTabViewItem(at: 0)
     }
     
     override func viewDidAppear() {

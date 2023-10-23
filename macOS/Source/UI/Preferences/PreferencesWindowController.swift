@@ -14,7 +14,8 @@ import Cocoa
  */
 class PreferencesWindowController: NSWindowController, ModalDialogDelegate {
     
-    @IBOutlet weak var tabView: AuralTabView!
+    @IBOutlet weak var tabView: NSTabView!
+    @IBOutlet weak var toolbar: NSToolbar!
     
     // Sub views
     
@@ -34,12 +35,19 @@ class PreferencesWindowController: NSWindowController, ModalDialogDelegate {
     
     override func windowDidLoad() {
         
-        window?.isMovableByWindowBackground = true
+        super.windowDidLoad()
         
         subViews = [playlistPrefsView, playbackPrefsView, soundPrefsView, viewPrefsView, historyPrefsView, controlsPrefsView, metadataPrefsView]
-        tabView.addViewsForTabs(subViews.map {$0.preferencesView})
         
-        super.windowDidLoad()
+        for (index, viewController) in subViews.enumerated() {
+            tabView.tabViewItem(at: index).view?.addSubview(viewController.preferencesView)
+        }
+    }
+    
+    override func showWindow(_ sender: Any?) {
+        
+        toolbar.selectedItemIdentifier = NSToolbarItem.Identifier("PlayQueue")
+        super.showWindow(self)
     }
     
     var isModal: Bool {
@@ -51,10 +59,11 @@ class PreferencesWindowController: NSWindowController, ModalDialogDelegate {
         forceLoadingOfWindow()
         resetPreferencesFields()
         
-        // Select the playlist prefs tab
+        // Select the play queue prefs tab
         tabView.selectTabViewItem(at: 0)
         
-        window!.showCenteredOnScreen()
+        theWindow.center()
+        showWindow(self)
         
         return modalDialogResponse
     }
@@ -63,34 +72,42 @@ class PreferencesWindowController: NSWindowController, ModalDialogDelegate {
         subViews.forEach {$0.resetFields(preferences)}
     }
     
+    // --------------------------------------------------------------------------------
+    
+    // MARK: Actions
+    
+    @IBAction func switchToTabAction(_ sender: NSToolbarItem) {
+        tabView.selectTabViewItem(at: sender.tag)
+    }
+    
     @IBAction func previousTabAction(_ sender: Any) {
-        tabView.previousTab()
+//        tabView.previousTab()
     }
     
     @IBAction func nextTabAction(_ sender: Any) {
-        tabView.nextTab()
+//        tabView.nextTab()
     }
     
     @IBAction func savePreferencesAction(_ sender: Any) {
         
         var saveFailed: Bool = false
         
-        subViews.forEach({
+        for (index, view) in subViews.enumerated() {
             
             do {
                 
-                try $0.save(preferences)
+                try view.save(preferences)
                 
             } catch {
                 
                 saveFailed = true
                 
                 // Switch to the tab with the offending view
-                tabView.showView($0.preferencesView)
+                tabView.selectTabViewItem(at: index)
                 
                 return
             }
-        })
+        }
         
         if !saveFailed {
             

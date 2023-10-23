@@ -22,6 +22,27 @@ extension PlayQueueViewController: NSMenuDelegate {
             $0.enableIf(oneRowSelected)
         }
         
+        if let theClickedTrack = selectedTracks.first {
+            
+            if let artist = theClickedTrack.artist {
+                
+                addArtistToFavoritesMenuItem.title = "Artist '\(artist)'"
+                addArtistToFavoritesMenuItem.show()
+                
+            } else {
+                addArtistToFavoritesMenuItem.hide()
+            }
+            
+            if let album = theClickedTrack.album {
+                
+                addAlbumToFavoritesMenuItem.title = "Album '\(album)'"
+                addAlbumToFavoritesMenuItem.show()
+                
+            } else {
+                addAlbumToFavoritesMenuItem.hide()
+            }
+        }
+        
         playNextMenuItem.enableIf(atLeastOneRowSelected && playQueueDelegate.currentTrack != nil && !playingTrackSelected)
         
         // TODO: playlist names menu should have a separate delegate so that the menu
@@ -106,6 +127,11 @@ extension PlayQueueViewController: NSMenuDelegate {
         // If this isn't done, the app windows are hidden when the popover is displayed
         windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)
     }
+    
+    // Adds/removes the currently playing track, if there is one, to/from the "Favorites" list
+    @IBAction func addArtistToFavoritesAction(_ sender: NSMenuItem) {}
+    
+    @IBAction func addAlbumToFavoritesAction(_ sender: NSMenuItem) {}
     
     // Shows a popover with detailed information for the currently playing track, if there is one
     @IBAction func trackInfoAction(_ sender: AnyObject) {

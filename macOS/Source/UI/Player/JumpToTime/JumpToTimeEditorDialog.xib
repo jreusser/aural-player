@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,7 +34,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="503" height="262"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lFq-4b-uNc" userLabel="Track name label">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lFq-4b-uNc" userLabel="Track name label">
                         <rect key="frame" x="30" y="181" width="456" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="Track: " id="idv-Rd-amp">
@@ -43,7 +43,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AJ4-yg-yPi" userLabel="Track duration label">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AJ4-yg-yPi" userLabel="Track duration label">
                         <rect key="frame" x="30" y="156" width="423" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Duration: " id="fEB-aC-MFE">
@@ -93,7 +93,7 @@
                         </connections>
                     </textField>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CIM-bh-nWy">
-                        <rect key="frame" x="30" y="123.5" width="332" height="19.5"/>
+                        <rect key="frame" x="30" y="123.5" width="332" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="radio" title="Specify as hh : mm : ss" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="VVM-Lh-AVg">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -109,7 +109,7 @@
                         <datePickerCell key="cell" borderStyle="bezel" focusRingType="none" alignment="left" id="uIU-K7-56K">
                             <font key="font" metaFont="system"/>
                             <date key="date" timeIntervalSinceReferenceDate="-595929600">
-                                <!--1982-02-12 16:00:00 +0000-->
+                                <!--1982-02-12 4:00:00 PM +0000-->
                             </date>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -122,7 +122,7 @@
                         </userDefinedRuntimeAttributes>
                     </datePicker>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tjh-U3-OZ0" userLabel="Btn Seconds">
-                        <rect key="frame" x="30" y="92.5" width="332" height="19.5"/>
+                        <rect key="frame" x="30" y="92.5" width="332" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="radio" title="Specify as seconds" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="d11-HD-X6l">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -133,7 +133,7 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yfX-Kf-2CE" userLabel="Btn Percentage">
-                        <rect key="frame" x="30" y="61.5" width="302" height="19.5"/>
+                        <rect key="frame" x="30" y="61.5" width="302" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="radio" title="Specify as percentage of track duration" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="Xgq-UO-7Vg">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

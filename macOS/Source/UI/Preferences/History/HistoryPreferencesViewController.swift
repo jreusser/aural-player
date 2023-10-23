@@ -14,8 +14,6 @@ class HistoryPreferencesViewController: NSViewController, PreferencesViewProtoco
     @IBOutlet weak var recentlyAddedListSizeMenu: NSPopUpButton!
     @IBOutlet weak var recentlyPlayedListSizeMenu: NSPopUpButton!
     
-    private lazy var history: HistoryDelegateProtocol = historyDelegate
-    
     override var nibName: String? {"HistoryPreferences"}
     
     var preferencesView: NSView {
@@ -44,6 +42,6 @@ class HistoryPreferencesViewController: NSViewController, PreferencesViewProtoco
         historyPrefs.recentlyAddedListSize = recentlyAddedListSizeMenu.selectedTag()
         historyPrefs.recentlyPlayedListSize = recentlyPlayedListSizeMenu.selectedTag()
         
-        history.resizeLists(historyPrefs.recentlyAddedListSize, historyPrefs.recentlyPlayedListSize)
+        historyDelegate.resizeLists(historyPrefs.recentlyAddedListSize, historyPrefs.recentlyPlayedListSize)
     }
 }

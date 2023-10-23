@@ -14,7 +14,7 @@ class PlaybackPreferencesViewController: NSViewController, PreferencesViewProtoc
     @IBOutlet weak var btnPrimarySeekLengthConstant: NSButton!
     @IBOutlet weak var btnPrimarySeekLengthPerc: NSButton!
     
-    @IBOutlet weak var primarySeekLengthPicker: IntervalPicker!
+    @IBOutlet weak var primarySeekLengthPicker: NSStepper!
     @IBOutlet weak var lblPrimarySeekLength: FormattedIntervalLabel!
     
     @IBOutlet weak var primarySeekLengthPercStepper: NSStepper!
@@ -25,7 +25,7 @@ class PlaybackPreferencesViewController: NSViewController, PreferencesViewProtoc
     @IBOutlet weak var btnSecondarySeekLengthConstant: NSButton!
     @IBOutlet weak var btnSecondarySeekLengthPerc: NSButton!
     
-    @IBOutlet weak var secondarySeekLengthPicker: IntervalPicker!
+    @IBOutlet weak var secondarySeekLengthPicker: NSStepper!
     @IBOutlet weak var lblSecondarySeekLength: FormattedIntervalLabel!
     
     @IBOutlet weak var secondarySeekLengthPercStepper: NSStepper!
@@ -36,8 +36,12 @@ class PlaybackPreferencesViewController: NSViewController, PreferencesViewProtoc
     @IBOutlet weak var btnAutoplayOnStartup: NSButton!
     
     @IBOutlet weak var btnAutoplayAfterAddingTracks: NSButton!
-    @IBOutlet weak var btnAutoplayIfNotPlaying: NSButton!
-    @IBOutlet weak var btnAutoplayAlways: NSButton!
+    @IBOutlet weak var btnAutoplayAfterAdding_IfNotPlaying: NSButton!
+    @IBOutlet weak var btnAutoplayAfterAdding_Always: NSButton!
+    
+    @IBOutlet weak var btnAutoplayAfterOpeningTracks: NSButton!
+    @IBOutlet weak var btnAutoplayAfterOpening_IfNotPlaying: NSButton!
+    @IBOutlet weak var btnAutoplayAfterOpening_Always: NSButton!
     
     @IBOutlet weak var btnRememberPosition_allTracks: NSButton!
     @IBOutlet weak var btnRememberPosition_individualTracks: NSButton!
@@ -54,7 +58,7 @@ class PlaybackPreferencesViewController: NSViewController, PreferencesViewProtoc
     override var nibName: String? {"PlaybackPreferences"}
     
     var preferencesView: NSView {
-        return self.view
+        view
     }
     
     override func viewDidLoad() {
@@ -70,7 +74,7 @@ class PlaybackPreferencesViewController: NSViewController, PreferencesViewProtoc
         // Primary seek length
         
         let primarySeekLength = prefs.primarySeekLengthConstant
-        primarySeekLengthPicker.setInterval(Double(primarySeekLength))
+        primarySeekLengthPicker.integerValue = primarySeekLength
         primarySeekLengthAction(self)
         
         let primarySeekLengthPerc = prefs.primarySeekLengthPercentage
@@ -89,7 +93,7 @@ class PlaybackPreferencesViewController: NSViewController, PreferencesViewProtoc
         // Secondary seek length
         
         let secondarySeekLength = prefs.secondarySeekLengthConstant
-        secondarySeekLengthPicker.setInterval(Double(secondarySeekLength))
+        secondarySeekLengthPicker.integerValue = secondarySeekLength
         secondarySeekLengthAction(self)
         
         let secondarySeekLengthPerc = prefs.secondarySeekLengthPercentage
@@ -108,10 +112,14 @@ class PlaybackPreferencesViewController: NSViewController, PreferencesViewProtoc
         // Autoplay
         
         btnAutoplayOnStartup.onIf(prefs.autoplayOnStartup)
-        btnAutoplayAfterAddingTracks.onIf(prefs.autoplayAfterAddingTracks)
         
-        btnAutoplayIfNotPlaying.onIf(prefs.autoplayAfterAddingOption == .ifNotPlaying)
-        btnAutoplayAlways.onIf(prefs.autoplayAfterAddingOption == .always)
+        btnAutoplayAfterAddingTracks.onIf(prefs.autoplayAfterAddingTracks)
+        btnAutoplayAfterAdding_IfNotPlaying.onIf(prefs.autoplayAfterAddingOption == .ifNotPlaying)
+        btnAutoplayAfterAdding_Always.onIf(prefs.autoplayAfterAddingOption == .always)
+        
+        btnAutoplayAfterOpeningTracks.onIf(prefs.autoplayAfterOpeningTracks)
+        btnAutoplayAfterOpening_Always.onIf(prefs.autoplayAfterOpeningOption == .always)
+        btnAutoplayAfterOpening_IfNotPlaying.onIf(prefs.autoplayAfterOpeningOption == .ifNotPlaying)
         
         // Remember last track position
         
@@ -135,11 +143,11 @@ class PlaybackPreferencesViewController: NSViewController, PreferencesViewProtoc
     }
     
     @IBAction func primarySeekLengthAction(_ sender: Any) {
-        lblPrimarySeekLength.interval = primarySeekLengthPicker.interval
+        lblPrimarySeekLength.interval = primarySeekLengthPicker.doubleValue
     }
     
     @IBAction func secondarySeekLengthAction(_ sender: Any) {
-        lblSecondarySeekLength.interval = secondarySeekLengthPicker.interval
+        lblSecondarySeekLength.interval = secondarySeekLengthPicker.doubleValue
     }
     
     @IBAction func primarySeekLengthPercAction(_ sender: Any) {
@@ -154,7 +162,15 @@ class PlaybackPreferencesViewController: NSViewController, PreferencesViewProtoc
     @IBAction func autoplayAfterAddingAction(_ sender: Any) {
     }
     
+    // When the check box for "autoplay after opening tracks" is checked/unchecked, update the enabled state of the 2 option radio buttons
+    @IBAction func autoplayAfterOpeningAction(_ sender: Any) {
+    }
+    
     @IBAction func autoplayAfterAddingRadioButtonAction(_ sender: Any) {
+        // Needed for radio button group
+    }
+    
+    @IBAction func autoplayAfterOpeningRadioButtonAction(_ sender: Any) {
         // Needed for radio button group
     }
     
@@ -188,17 +204,20 @@ class PlaybackPreferencesViewController: NSViewController, PreferencesViewProtoc
         let oldPrimarySeekLengthConstant = prefs.primarySeekLengthConstant
         
         prefs.primarySeekLengthOption = btnPrimarySeekLengthConstant.isOn ? .constant : .percentage
-        prefs.primarySeekLengthConstant = primarySeekLengthPicker.interval.roundedInt
+        prefs.primarySeekLengthConstant = primarySeekLengthPicker.doubleValue.roundedInt
         prefs.primarySeekLengthPercentage = primarySeekLengthPercStepper.integerValue
         
         prefs.secondarySeekLengthOption = btnSecondarySeekLengthConstant.isOn ? .constant : .percentage
-        prefs.secondarySeekLengthConstant = secondarySeekLengthPicker.interval.roundedInt
+        prefs.secondarySeekLengthConstant = secondarySeekLengthPicker.doubleValue.roundedInt
         prefs.secondarySeekLengthPercentage = secondarySeekLengthPercStepper.integerValue
         
         prefs.autoplayOnStartup = btnAutoplayOnStartup.isOn
         
         prefs.autoplayAfterAddingTracks = btnAutoplayAfterAddingTracks.isOn
-        prefs.autoplayAfterAddingOption = btnAutoplayIfNotPlaying.isOn ? .ifNotPlaying : .always
+        prefs.autoplayAfterAddingOption = btnAutoplayAfterAdding_IfNotPlaying.isOn ? .ifNotPlaying : .always
+        
+        prefs.autoplayAfterOpeningTracks = btnAutoplayAfterOpeningTracks.isOn
+        prefs.autoplayAfterOpeningOption = btnAutoplayAfterOpening_IfNotPlaying.isOn ? .ifNotPlaying : .always
         
         // Playback profiles
         
@@ -233,7 +252,7 @@ class FormattedIntervalLabel: NSTextField {
     
     override func awakeFromNib() {
         
-        self.alignment = .left
+        self.alignment = .right
         self.font = standardFontSet.mainFont(size: 11)
         self.isBordered = false
         self.drawsBackground = false
