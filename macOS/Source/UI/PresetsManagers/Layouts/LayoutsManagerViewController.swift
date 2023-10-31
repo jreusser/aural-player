@@ -53,7 +53,7 @@ class LayoutsManagerViewController: PresetsManagerViewController {
         if prefLayout == name {
             
             preferences.viewPreferences.layoutOnStartup.layoutName = newName
-            preferences.persist()
+//            preferences.persist()
         }
     }
     

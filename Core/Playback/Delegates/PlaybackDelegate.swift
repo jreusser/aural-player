@@ -247,14 +247,14 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
         
         if inputMode == .discrete {
             
-            if preferences.primarySeekLengthOption == .constant {
+            if preferences.primarySeekLengthOption.value == .constant {
                 
-                return Double(preferences.primarySeekLengthConstant)
+                return Double(preferences.primarySeekLengthConstant.value)
                 
             } else if let trackDuration = playingTrack?.duration {
                 
                 // Percentage of track duration
-                let percentage = Double(preferences.primarySeekLengthPercentage)
+                let percentage = Double(preferences.primarySeekLengthPercentage.value)
                 return trackDuration * percentage / 100.0
             }
             
@@ -275,14 +275,14 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
     */
     private var secondarySeekLength: Double {
         
-        if preferences.secondarySeekLengthOption == .constant {
+        if preferences.secondarySeekLengthOption.value == .constant {
             
-            return Double(preferences.secondarySeekLengthConstant)
+            return Double(preferences.secondarySeekLengthConstant.value)
             
         } else if let trackDuration = playingTrack?.duration {
             
             // Percentage of track duration
-            let percentage = Double(preferences.secondarySeekLengthPercentage)
+            let percentage = Double(preferences.secondarySeekLengthPercentage.value)
             return trackDuration * percentage / 100.0
         }
         
@@ -365,7 +365,7 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
         
         // Save playback settings if the option either requires saving settings for all tracks, or if
         // the option has been set for this particular playing track.
-        if preferences.rememberLastPositionOption == .allTracks || profiles.hasFor(track) {
+        if preferences.rememberLastPositionOption.value == .allTracks || profiles.hasFor(track) {
             
             // Remember the current playback settings the next time this track plays.
             // Update the profile with the latest settings for this track.

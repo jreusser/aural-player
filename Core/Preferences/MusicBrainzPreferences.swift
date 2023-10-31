@@ -13,11 +13,11 @@ import Foundation
 /// Encapsulates all user preferences pertaining to the retrieval of track metadata
 /// from the **MusicBrainz** online music database.
 ///
-class MusicBrainzPreferences: PersistentPreferencesProtocol {
+class MusicBrainzPreferences {
 
-    var httpTimeout: Int
-    var enableCoverArtSearch: Bool
-    var enableOnDiskCoverArtCache: Bool
+    var httpTimeout: Int = 5
+    var enableCoverArtSearch: Bool = true
+    var enableOnDiskCoverArtCache: Bool = true
     
     private static let keyPrefix: String = "metadata.musicBrainz"
     
@@ -27,19 +27,6 @@ class MusicBrainzPreferences: PersistentPreferencesProtocol {
     
     private typealias Defaults = PreferencesDefaults.Metadata.MusicBrainz
     
-    required init(_ dict: [String : Any]) {
-        
-        httpTimeout = dict.intValue(forKey: Self.key_httpTimeout) ?? Defaults.httpTimeout
-        
-        enableCoverArtSearch = dict[Self.key_enableCoverArtSearch, Bool.self] ?? Defaults.enableCoverArtSearch
-        
-        enableOnDiskCoverArtCache = dict[Self.key_enableOnDiskCoverArtCache, Bool.self] ?? Defaults.enableOnDiskCoverArtCache
-    }
-    
-    func persist(to defaults: UserDefaults) {
-        
-        defaults[Self.key_httpTimeout] = httpTimeout
-        defaults[Self.key_enableCoverArtSearch] = enableCoverArtSearch
-        defaults[Self.key_enableOnDiskCoverArtCache] = enableOnDiskCoverArtCache
+    init() {
     }
 }

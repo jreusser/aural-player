@@ -14,15 +14,15 @@ import Foundation
 ///
 /// Encapsulates all user preferences pertaining to the user interface (view).
 ///
-class ViewPreferences: PersistentPreferencesProtocol {
+class ViewPreferences {
     
-    var appModeOnStartup: AppModeOnStartup
-    var layoutOnStartup: LayoutOnStartup
-    var snapToWindows: Bool
-    var snapToScreen: Bool
+    var appModeOnStartup: AppModeOnStartup = .defaultInstance
+    var layoutOnStartup: LayoutOnStartup = .defaultInstance
+    var snapToWindows: Bool = true
+    var snapToScreen: Bool = true
     
     // Only used when snapToWindows == true
-    var windowGap: Float
+    var windowGap: Float = 1
     
     private static let keyPrefix: String = "view"
     
@@ -37,52 +37,8 @@ class ViewPreferences: PersistentPreferencesProtocol {
     static let key_snapToScreen: String = "\(keyPrefix).snap.toScreen"
     
     private typealias Defaults = PreferencesDefaults.View
-    
-    internal required init(_ dict: [String: Any]) {
-        
-        appModeOnStartup = Defaults.appModeOnStartup
-        layoutOnStartup = Defaults.layoutOnStartup
-        
-        if let appModeOnStartupOption = dict.enumValue(forKey: Self.key_appModeOnStartup_option,
-                                                       ofType: AppModeStartupOptions.self) {
-            
-            appModeOnStartup.option = appModeOnStartupOption
-        }
-        
-        appModeOnStartup.modeName = dict[Self.key_appModeOnStartup_modeName, String.self]
-        
-        if let layoutOnStartupOption = dict.enumValue(forKey: Self.key_layoutOnStartup_option,
-                                                      ofType: WindowLayoutStartupOptions.self) {
-            
-            layoutOnStartup.option = layoutOnStartupOption
-        }
-        
-        layoutOnStartup.layoutName = dict[Self.key_layoutOnStartup_layoutName, String.self]
-        
-        snapToWindows = dict[Self.key_snapToWindows, Bool.self] ?? Defaults.snapToWindows
-        windowGap = dict.floatValue(forKey: Self.key_windowGap) ?? Defaults.windowGap
-        snapToScreen = dict[Self.key_snapToScreen, Bool.self] ?? Defaults.snapToScreen
-        
-        if appModeOnStartup.option == .specific && appModeOnStartup.modeName == nil {
-            appModeOnStartup.option = Defaults.appModeOnStartup.option
-        }
-        
-        if layoutOnStartup.option == .specific && layoutOnStartup.layoutName == nil {
-            layoutOnStartup.option = Defaults.layoutOnStartup.option
-        }
-    }
-    
-    func persist(to defaults: UserDefaults) {
-        
-        defaults[Self.key_appModeOnStartup_option] = appModeOnStartup.option.rawValue 
-        defaults[Self.key_appModeOnStartup_modeName] = appModeOnStartup.modeName 
-        
-        defaults[Self.key_layoutOnStartup_option] = layoutOnStartup.option.rawValue 
-        defaults[Self.key_layoutOnStartup_layoutName] = layoutOnStartup.layoutName 
-        
-        defaults[Self.key_snapToWindows] = snapToWindows 
-        defaults[Self.key_windowGap] = windowGap 
-        defaults[Self.key_snapToScreen] = snapToScreen 
+
+    init() {
     }
 }
 

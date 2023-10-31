@@ -158,7 +158,7 @@ class MasterPresetsManagerViewController: EffectsPresetsManagerGenericViewContro
         if preferences.soundPreferences.masterPresetOnStartup_name == name {
             
             preferences.soundPreferences.masterPresetOnStartup_name = newName
-            preferences.persist()
+//            preferences.persist()
         }
     }
 }

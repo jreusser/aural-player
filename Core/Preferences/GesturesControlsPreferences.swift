@@ -12,17 +12,17 @@ import Foundation
 ///
 /// Encapsulates all user preferences pertaining to the use of trackpad / mouse gestures with this application.
 ///
-class GesturesControlsPreferences: PersistentPreferencesProtocol {
+class GesturesControlsPreferences {
     
-    var allowVolumeControl: Bool
-    var allowSeeking: Bool
-    var allowTrackChange: Bool
+    var allowVolumeControl: Bool = true
+    var allowSeeking: Bool = true
+    var allowTrackChange: Bool = true
     
-    var allowPlaylistNavigation: Bool
-    var allowPlaylistTabToggle: Bool
+    var allowPlaylistNavigation: Bool = true
+    var allowPlaylistTabToggle: Bool = true
     
-    var volumeControlSensitivity: ScrollSensitivity
-    var seekSensitivity: ScrollSensitivity
+    var volumeControlSensitivity: ScrollSensitivity = .high
+    var seekSensitivity: ScrollSensitivity = .low
     
     private static let keyPrefix: String = "controls.gestures"
     
@@ -38,34 +38,21 @@ class GesturesControlsPreferences: PersistentPreferencesProtocol {
     
     private typealias Defaults = PreferencesDefaults.Controls.Gestures
     
-    internal required init(_ dict: [String: Any]) {
+    init() {
         
-        allowVolumeControl = dict[Self.key_allowVolumeControl, Bool.self] ?? Defaults.allowVolumeControl
-        
-        allowSeeking = dict[Self.key_allowSeeking, Bool.self] ?? Defaults.allowSeeking
-        
-        allowTrackChange = dict[Self.key_allowTrackChange, Bool.self] ?? Defaults.allowTrackChange
-        
-        allowPlaylistNavigation = dict[Self.key_allowPlaylistNavigation, Bool.self] ?? Defaults.allowPlaylistNavigation
-        
-        allowPlaylistTabToggle = dict[Self.key_allowPlaylistTabToggle, Bool.self] ?? Defaults.allowPlaylistTabToggle
-        
-        volumeControlSensitivity = dict.enumValue(forKey: Self.key_volumeControlSensitivity, ofType: ScrollSensitivity.self) ??  Defaults.volumeControlSensitivity
-        
-        seekSensitivity = dict.enumValue(forKey: Self.key_seekSensitivity, ofType: ScrollSensitivity.self) ?? Defaults.seekSensitivity
-    }
-    
-    func persist(to defaults: UserDefaults) {
-        
-        defaults[Self.key_allowVolumeControl] = allowVolumeControl 
-        defaults[Self.key_allowSeeking] = allowSeeking 
-        defaults[Self.key_allowTrackChange] = allowTrackChange 
-        
-        defaults[Self.key_allowPlaylistNavigation] = allowPlaylistNavigation 
-        defaults[Self.key_allowPlaylistTabToggle] = allowPlaylistTabToggle 
-        
-        defaults[Self.key_volumeControlSensitivity] = volumeControlSensitivity.rawValue 
-        defaults[Self.key_seekSensitivity] = seekSensitivity.rawValue 
+//        allowVolumeControl = dict[Self.key_allowVolumeControl, Bool.self] ?? Defaults.allowVolumeControl
+//        
+//        allowSeeking = dict[Self.key_allowSeeking, Bool.self] ?? Defaults.allowSeeking
+//        
+//        allowTrackChange = dict[Self.key_allowTrackChange, Bool.self] ?? Defaults.allowTrackChange
+//        
+//        allowPlaylistNavigation = dict[Self.key_allowPlaylistNavigation, Bool.self] ?? Defaults.allowPlaylistNavigation
+//        
+//        allowPlaylistTabToggle = dict[Self.key_allowPlaylistTabToggle, Bool.self] ?? Defaults.allowPlaylistTabToggle
+//        
+//        volumeControlSensitivity = dict.enumValue(forKey: Self.key_volumeControlSensitivity, ofType: ScrollSensitivity.self) ??  Defaults.volumeControlSensitivity
+//        
+//        seekSensitivity = dict.enumValue(forKey: Self.key_seekSensitivity, ofType: ScrollSensitivity.self) ?? Defaults.seekSensitivity
     }
 }
 

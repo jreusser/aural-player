@@ -12,11 +12,11 @@ import Foundation
 ///
 /// Encapsulates all user preferences pertaining to the use of media keys with this application.
 ///
-class MediaKeysControlsPreferences: PersistentPreferencesProtocol {
+class MediaKeysControlsPreferences {
     
-    var enabled: Bool
-    var skipKeyBehavior: SkipKeyBehavior
-    var repeatSpeed: SkipKeyRepeatSpeed
+    var enabled: Bool = true
+    var skipKeyBehavior: SkipKeyBehavior = .hybrid
+    var repeatSpeed: SkipKeyRepeatSpeed = .fast
     
     private static let keyPrefix: String = "controls.mediaKeys"
     
@@ -25,20 +25,6 @@ class MediaKeysControlsPreferences: PersistentPreferencesProtocol {
     static let key_repeatSpeed: String = "\(keyPrefix).repeatSpeed"
     
     private typealias Defaults = PreferencesDefaults.Controls.MediaKeys
-    
-    required init(_ dict: [String: Any]) {
-        
-        enabled = dict[Self.key_enabled, Bool.self] ?? Defaults.enabled
-        skipKeyBehavior = dict.enumValue(forKey: Self.key_skipKeyBehavior, ofType: SkipKeyBehavior.self) ?? Defaults.skipKeyBehavior
-        repeatSpeed = dict.enumValue(forKey: Self.key_repeatSpeed, ofType: SkipKeyRepeatSpeed.self) ?? Defaults.repeatSpeed
-    }
-    
-    func persist(to defaults: UserDefaults) {
-        
-        defaults[Self.key_enabled] = enabled
-        defaults[Self.key_skipKeyBehavior] = skipKeyBehavior.rawValue
-        defaults[Self.key_repeatSpeed] = repeatSpeed.rawValue
-    }
 }
 
 enum SkipKeyBehavior: String, CaseIterable {

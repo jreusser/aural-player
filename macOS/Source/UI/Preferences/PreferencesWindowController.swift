@@ -111,7 +111,7 @@ class PreferencesWindowController: NSWindowController, ModalDialogDelegate {
         
         if !saveFailed {
             
-            preferences.persist()
+//            preferences.persist()
             modalDialogResponse = .ok
             theWindow.close()
         }

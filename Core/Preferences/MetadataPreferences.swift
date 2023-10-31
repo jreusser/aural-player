@@ -12,15 +12,11 @@ import Foundation
 ///
 /// Encapsulates all user preferences pertaining to the retrieval of track metadata from the internet.
 ///
-class MetadataPreferences: PersistentPreferencesProtocol {
+class MetadataPreferences {
     
     var musicBrainz: MusicBrainzPreferences
     
-    required init(_ dict: [String : Any]) {
-        musicBrainz = MusicBrainzPreferences(dict)
-    }
-    
-    func persist(to defaults: UserDefaults) {
-        musicBrainz.persist(to: defaults)
+    init() {
+        musicBrainz = MusicBrainzPreferences()
     }
 }

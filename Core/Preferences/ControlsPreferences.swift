@@ -12,23 +12,16 @@ import Foundation
 ///
 /// Encapsulates all user preferences pertaining to usability (i.e. how the app is controlled).
 ///
-class ControlsPreferences: PersistentPreferencesProtocol {
+class ControlsPreferences {
     
     var mediaKeys: MediaKeysControlsPreferences
     var gestures: GesturesControlsPreferences
     var remoteControl: RemoteControlPreferences
     
-    internal required init(_ dict: [String: Any]) {
+    init() {
         
-        mediaKeys = MediaKeysControlsPreferences(dict)
-        gestures = GesturesControlsPreferences(dict)
-        remoteControl = RemoteControlPreferences(dict)
-    }
-    
-    func persist(to defaults: UserDefaults) {
-        
-        mediaKeys.persist(to: defaults)
-        gestures.persist(to: defaults)
-        remoteControl.persist(to: defaults)
+        mediaKeys = MediaKeysControlsPreferences()
+        gestures = GesturesControlsPreferences()
+        remoteControl = RemoteControlPreferences()
     }
 }

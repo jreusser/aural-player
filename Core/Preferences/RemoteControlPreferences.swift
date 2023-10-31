@@ -13,10 +13,10 @@ import Foundation
 /// Encapsulates all user preferences pertaining to the **Remote Control** feature, i.e. the ability
 /// to control the app from outside it.
 ///
-class RemoteControlPreferences: PersistentPreferencesProtocol {
+class RemoteControlPreferences {
     
-    var enabled: Bool
-    var trackChangeOrSeekingOption: TrackChangeOrSeekingOptions
+    var enabled: Bool = true
+    var trackChangeOrSeekingOption: TrackChangeOrSeekingOptions = .trackChange
     
     private static let keyPrefix: String = "controls.remoteControl"
     
@@ -25,18 +25,7 @@ class RemoteControlPreferences: PersistentPreferencesProtocol {
     
     private typealias Defaults = PreferencesDefaults.Controls.RemoteControl
     
-    internal required init(_ dict: [String: Any]) {
-        
-        enabled = dict[Self.key_enabled, Bool.self] ?? Defaults.enabled
-        
-        trackChangeOrSeekingOption = dict.enumValue(forKey: Self.key_trackChangeOrSeekingOption,
-                                                    ofType: TrackChangeOrSeekingOptions.self) ?? Defaults.trackChangeOrSeekingOption
-    }
-    
-    func persist(to defaults: UserDefaults) {
-        
-        defaults[Self.key_enabled] = enabled 
-        defaults[Self.key_trackChangeOrSeekingOption] = trackChangeOrSeekingOption.rawValue 
+    init() {
     }
 }
 

@@ -38,20 +38,16 @@ class Preferences {
         
         self.defaults = defaults
         
-        controlsPreferences = ControlsPreferences(defaultsDictionary)
-        playbackPreferences = PlaybackPreferences(defaultsDictionary, controlsPreferences.gestures)
-        soundPreferences = SoundPreferences(defaultsDictionary, controlsPreferences.gestures)
+        controlsPreferences = ControlsPreferences()
+        playbackPreferences = PlaybackPreferences(controlsPreferences: controlsPreferences.gestures)
+        soundPreferences = SoundPreferences(controlsPreferences: controlsPreferences.gestures)
         playQueuePreferences = PlayQueuePreferences()
         
 #if os(macOS)
-        viewPreferences = ViewPreferences(defaultsDictionary)
+        viewPreferences = ViewPreferences()
 #endif
         
-        historyPreferences = HistoryPreferences(defaultsDictionary)
-        metadataPreferences = MetadataPreferences(defaultsDictionary)
-    }
-    
-    func persist() {
-        allPreferences.forEach {$0.persist(to: defaults)}
+        historyPreferences = HistoryPreferences()
+        metadataPreferences = MetadataPreferences()
     }
 }
