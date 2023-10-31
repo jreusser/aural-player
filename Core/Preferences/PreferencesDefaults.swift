@@ -19,23 +19,23 @@ struct PreferencesDefaults {
     ///
     struct Playback {
         
-        static let primarySeekLengthOption: SeekLengthOptions = .constant
+        static let primarySeekLengthOption: SeekLengthOption = .constant
         static let primarySeekLengthConstant: Int = 5
         static let primarySeekLengthPercentage: Int = 2
         
-        static let secondarySeekLengthOption: SeekLengthOptions = .constant
+        static let secondarySeekLengthOption: SeekLengthOption = .constant
         static let secondarySeekLengthConstant: Int = 30
         static let secondarySeekLengthPercentage: Int = 10
         
         static let autoplayOnStartup: Bool = false
         
         static let autoplayAfterAddingTracks: Bool = false
-        static let autoplayAfterAddingOption: AutoplayAfterAddingOptions = .ifNotPlaying
+        static let autoplayAfterAddingOption: AutoplayAfterAddingOption = .ifNotPlaying
         
         static let autoplayAfterOpeningTracks: Bool = true
-        static let autoplayAfterOpeningOption: AutoplayAfterOpeningOptions = .always
+        static let autoplayAfterOpeningOption: AutoplayAfterOpeningOption = .always
         
-        static let rememberLastPositionOption: RememberSettingsForTrackOptions = .individualTracks
+        static let rememberLastPositionOption: RememberSettingsForTrackOption = .individualTracks
     }
     
     ///
@@ -59,7 +59,7 @@ struct PreferencesDefaults {
         static let effectsSettingsOnStartupOption: EffectsSettingsStartupOptions = .rememberFromLastAppLaunch
         static let masterPresetOnStartup_name: String? = nil
         
-        static let rememberEffectsSettingsOption: RememberSettingsForTrackOptions = .individualTracks
+        static let rememberEffectsSettingsOption: RememberSettingsForTrackOption = .individualTracks
     }
     
     ///
@@ -68,8 +68,6 @@ struct PreferencesDefaults {
     struct PlayQueue {
         
         static let playQueueOnStartup: PlayQueueStartupOption = .rememberFromLastAppLaunch
-        static let playlistFile: URL? = nil
-        static let tracksFolder: URL? = nil
         
         static let showNewTrackInPlayQueue: Bool = true
         static let showChaptersList: Bool = true

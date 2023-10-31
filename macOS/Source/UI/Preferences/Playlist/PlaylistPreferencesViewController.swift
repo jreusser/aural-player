@@ -51,119 +51,119 @@ class PlaylistPreferencesViewController: NSViewController, PreferencesViewProtoc
     
     func resetFields(_ preferences: Preferences) {
         
-        let playlistPrefs = preferences.playlistPreferences
-        
-        switch playlistPrefs.playlistOnStartup {
-            
-        case .empty:
-            btnEmptyPlaylist.on()
-            
-        case .rememberFromLastAppLaunch:
-            btnRememberPlaylist.on()
-            
-        case .loadFile:
-            btnLoadPlaylistFromFile.on()
-            
-        case .loadFolder:
-            btnLoadTracksFromFolder.on()
-            
-        }
-        
-        [btnBrowseFile, lblPlaylistFile].forEach({
-            $0!.enableIf(btnLoadPlaylistFromFile.isOn)
-        })
-        
-        [btnBrowseFolder, lblFolder].forEach({
-            $0!.enableIf(btnLoadTracksFromFolder.isOn)
-        })
-        
-        hideError_playlistFile()
-        hideError_tracksFolder()
-        
-        lblPlaylistFile.stringValue = preferences.playlistPreferences.playlistFile?.path ?? ""
-        lblFolder.stringValue = preferences.playlistPreferences.tracksFolder?.path ?? ""
-        
-        // View on startup
-        
-        if playlistPrefs.viewOnStartup.option == .specific {
-            btnStartWithView.on()
-        } else {
-            btnRememberView.on()
-        }
-        
-        if let item = viewMenu.item(withTitle: playlistPrefs.viewOnStartup.viewName) {
-            viewMenu.select(item)
-        } else {
-            // Default
-            viewMenu.select(viewMenu.item(withTitle: "Tracks"))
-        }
-        viewMenu.enableIf(btnStartWithView.isOn)
-        
-        // Show new track
-        btnShowNewTrack.onIf(playlistPrefs.showNewTrackInPlayQueue)
-        
-        // Show chapters list window
-        btnShowChaptersList.onIf(playlistPrefs.showChaptersList)
-        
-        switch playlistPrefs.dragDropAddMode {
-            
-        case .append:
-            
-            btnDragDropAppend.on()
-            
-        case .replace:
-            
-            btnDragDropReplace.on()
-            
-        case .hybrid:
-            
-            btnDragDropHybrid.on()
-        }
-        
-        if playlistPrefs.openWithAddMode == .append {
-            btnOpenWithAppend.on()
-        } else {
-            btnOpenWithReplace.on()
-        }
+        let pqPrefs = preferences.playQueuePreferences
+//        
+//        switch playlistPrefs.playQueueOnStartup {
+//
+//        case .empty:
+//            btnEmptyPlaylist.on()
+//            
+//        case .rememberFromLastAppLaunch:
+//            btnRememberPlaylist.on()
+//            
+//        case .loadFile:
+//            btnLoadPlaylistFromFile.on()
+//            
+//        case .loadFolder:
+//            btnLoadTracksFromFolder.on()
+//            
+//        }
+//        
+//        [btnBrowseFile, lblPlaylistFile].forEach({
+//            $0!.enableIf(btnLoadPlaylistFromFile.isOn)
+//        })
+//        
+//        [btnBrowseFolder, lblFolder].forEach({
+//            $0!.enableIf(btnLoadTracksFromFolder.isOn)
+//        })
+//        
+//        hideError_playlistFile()
+//        hideError_tracksFolder()
+//        
+//        lblPlaylistFile.stringValue = preferences.playlistPreferences.playlistFile?.path ?? ""
+//        lblFolder.stringValue = preferences.playlistPreferences.tracksFolder?.path ?? ""
+//        
+//        // View on startup
+//        
+//        if playlistPrefs.viewOnStartup.option == .specific {
+//            btnStartWithView.on()
+//        } else {
+//            btnRememberView.on()
+//        }
+//        
+//        if let item = viewMenu.item(withTitle: playlistPrefs.viewOnStartup.viewName) {
+//            viewMenu.select(item)
+//        } else {
+//            // Default
+//            viewMenu.select(viewMenu.item(withTitle: "Tracks"))
+//        }
+//        viewMenu.enableIf(btnStartWithView.isOn)
+//        
+//        // Show new track
+//        btnShowNewTrack.onIf(playlistPrefs.showNewTrackInPlayQueue)
+//        
+//        // Show chapters list window
+//        btnShowChaptersList.onIf(playlistPrefs.showChaptersList)
+//        
+//        switch playlistPrefs.dragDropAddMode {
+//            
+//        case .append:
+//            
+//            btnDragDropAppend.on()
+//            
+//        case .replace:
+//            
+//            btnDragDropReplace.on()
+//            
+//        case .hybrid:
+//            
+//            btnDragDropHybrid.on()
+//        }
+//        
+//        if playlistPrefs.openWithAddMode == .append {
+//            btnOpenWithAppend.on()
+//        } else {
+//            btnOpenWithReplace.on()
+//        }
     }
     
     @IBAction func startupPlaylistPrefAction(_ sender: Any) {
         
         // Needed for radio button group
         
-        [btnBrowseFile, lblPlaylistFile].forEach({
-            $0!.enableIf(btnLoadPlaylistFromFile.isOn)
-        })
-        
-        [btnBrowseFolder, lblFolder].forEach({
-            $0!.enableIf(btnLoadTracksFromFolder.isOn)
-        })
-        
-        if btnLoadPlaylistFromFile.isOff {
-            
-            if errorIcon_1.isShown {
-                hideError_playlistFile()
-            }
-            
-            lblPlaylistFile.stringValue = ""
-        }
-        
-        if btnLoadTracksFromFolder.isOff {
-            
-            if errorIcon_2.isShown {
-                hideError_tracksFolder()
-            }
-            
-            lblFolder.stringValue = ""
-        }
-    
-        if btnLoadPlaylistFromFile.isOn && String.isEmpty(lblPlaylistFile.stringValue) {
-            choosePlaylistFileAction(sender)
-        }
-        
-        if btnLoadTracksFromFolder.isOn && String.isEmpty(lblFolder.stringValue) {
-            chooseTracksFolderAction(sender)
-        }
+//        [btnBrowseFile, lblPlaylistFile].forEach({
+//            $0!.enableIf(btnLoadPlaylistFromFile.isOn)
+//        })
+//        
+//        [btnBrowseFolder, lblFolder].forEach({
+//            $0!.enableIf(btnLoadTracksFromFolder.isOn)
+//        })
+//        
+//        if btnLoadPlaylistFromFile.isOff {
+//            
+//            if errorIcon_1.isShown {
+//                hideError_playlistFile()
+//            }
+//            
+//            lblPlaylistFile.stringValue = ""
+//        }
+//        
+//        if btnLoadTracksFromFolder.isOff {
+//            
+//            if errorIcon_2.isShown {
+//                hideError_tracksFolder()
+//            }
+//            
+//            lblFolder.stringValue = ""
+//        }
+//    
+//        if btnLoadPlaylistFromFile.isOn && String.isEmpty(lblPlaylistFile.stringValue) {
+//            choosePlaylistFileAction(sender)
+//        }
+//        
+//        if btnLoadTracksFromFolder.isOn && String.isEmpty(lblFolder.stringValue) {
+//            chooseTracksFolderAction(sender)
+//        }
     }
     
     @IBAction func startupPlaylistViewPrefAction(_ sender: Any) {
@@ -181,70 +181,70 @@ class PlaylistPreferencesViewController: NSViewController, PreferencesViewProtoc
     
     func save(_ preferences: Preferences) throws {
         
-        let prefs: PlayQueuePreferences = preferences.playlistPreferences
-        
-        if btnEmptyPlaylist.isOn {
-            
-            prefs.playlistOnStartup = .empty
-            
-        } else if btnRememberPlaylist.isOn {
-            
-            prefs.playlistOnStartup = .rememberFromLastAppLaunch
-            
-        } else if btnLoadPlaylistFromFile.isOn {
-            
-            // Make sure 1 - label is not empty, and 2 - no previous error message is shown
-            if !String.isEmpty(lblPlaylistFile.stringValue) && errorIcon_1.isHidden {
-                
-                prefs.playlistOnStartup = .loadFile
-                prefs.playlistFile = URL(fileURLWithPath: lblPlaylistFile.stringValue)
-                
-            } else {
-                
-                // Error
-                showError_playlistFile()
-                throw PlaylistFileNotSpecifiedError("No playlist file specified for loading upon app startup")
-            }
-            
-        } else {
-            
-            // Load tracks from folder
-            
-            // Make sure 1 - label is not empty, and 2 - no previous error message is shown
-            if !String.isEmpty(lblFolder.stringValue) && errorIcon_2.isHidden {
-            
-                prefs.playlistOnStartup = .loadFolder
-                prefs.tracksFolder = URL(fileURLWithPath: lblFolder.stringValue)
-                
-            } else {
-                
-                // Error
-                showError_tracksFolder()
-                throw PlaylistFileNotSpecifiedError("No tracks folder specified for loading tracks upon app startup")
-            }
-        }
-        
-        // View on startup
-        prefs.viewOnStartup.option = btnStartWithView.isOn ? .specific : .rememberFromLastAppLaunch
-        prefs.viewOnStartup.viewName = viewMenu.selectedItem!.title
-        
-        // Show new track
-        prefs.showNewTrackInPlayQueue = btnShowNewTrack.isOn
-        
-        // Show chapters list window
-        prefs.showChaptersList = btnShowChaptersList.isOn
-        
-        if btnDragDropAppend.isOn {
-            prefs.dragDropAddMode = .append
-            
-        } else if btnDragDropReplace.isOn {
-            prefs.dragDropAddMode = .replace
-            
-        } else {
-            prefs.dragDropAddMode = .hybrid
-        }
-        
-        prefs.openWithAddMode = btnOpenWithAppend.isOn ? .append : .replace
+//        let prefs: PlayQueuePreferences = preferences.playlistPreferences
+//        
+//        if btnEmptyPlaylist.isOn {
+//            
+//            prefs.playlistOnStartup = .empty
+//            
+//        } else if btnRememberPlaylist.isOn {
+//            
+//            prefs.playlistOnStartup = .rememberFromLastAppLaunch
+//            
+//        } else if btnLoadPlaylistFromFile.isOn {
+//            
+//            // Make sure 1 - label is not empty, and 2 - no previous error message is shown
+//            if !String.isEmpty(lblPlaylistFile.stringValue) && errorIcon_1.isHidden {
+//                
+//                prefs.playlistOnStartup = .loadFile
+//                prefs.playlistFile = URL(fileURLWithPath: lblPlaylistFile.stringValue)
+//                
+//            } else {
+//                
+//                // Error
+//                showError_playlistFile()
+//                throw PlaylistFileNotSpecifiedError("No playlist file specified for loading upon app startup")
+//            }
+//            
+//        } else {
+//            
+//            // Load tracks from folder
+//            
+//            // Make sure 1 - label is not empty, and 2 - no previous error message is shown
+//            if !String.isEmpty(lblFolder.stringValue) && errorIcon_2.isHidden {
+//            
+//                prefs.playlistOnStartup = .loadFolder
+//                prefs.tracksFolder = URL(fileURLWithPath: lblFolder.stringValue)
+//                
+//            } else {
+//                
+//                // Error
+//                showError_tracksFolder()
+//                throw PlaylistFileNotSpecifiedError("No tracks folder specified for loading tracks upon app startup")
+//            }
+//        }
+//        
+//        // View on startup
+//        prefs.viewOnStartup.option = btnStartWithView.isOn ? .specific : .rememberFromLastAppLaunch
+//        prefs.viewOnStartup.viewName = viewMenu.selectedItem!.title
+//        
+//        // Show new track
+//        prefs.showNewTrackInPlayQueue = btnShowNewTrack.isOn
+//        
+//        // Show chapters list window
+//        prefs.showChaptersList = btnShowChaptersList.isOn
+//        
+//        if btnDragDropAppend.isOn {
+//            prefs.dragDropAddMode = .append
+//            
+//        } else if btnDragDropReplace.isOn {
+//            prefs.dragDropAddMode = .replace
+//            
+//        } else {
+//            prefs.dragDropAddMode = .hybrid
+//        }
+//        
+//        prefs.openWithAddMode = btnOpenWithAppend.isOn ? .append : .replace
     }
     
     @IBAction func choosePlaylistFileAction(_ sender: Any) {

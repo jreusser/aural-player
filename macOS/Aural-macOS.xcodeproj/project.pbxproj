@@ -123,6 +123,8 @@
 		3E3975462688894C0055887E /* ControlBarSeekSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3975452688894C0055887E /* ControlBarSeekSliderCell.swift */; };
 		3E397548268900C60055887E /* ControlBarVolumeSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E397547268900C60055887E /* ControlBarVolumeSliderCell.swift */; };
 		3E39754E26892C890055887E /* ControlBarPlayerUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */; };
+		3E3BCFF42AF18F9E00FD893A /* DefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3BCFF32AF18F9E00FD893A /* DefaultsExtensions.swift */; };
+		3E3BCFF62AF1BB0000FD893A /* UserPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3BCFF52AF1BB0000FD893A /* UserPreference.swift */; };
 		3E3C1FED2849611200A023EC /* TuneBrowserUIPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C1FEC2849611200A023EC /* TuneBrowserUIPersistentState.swift */; };
 		3E3C1FEF2849631800A023EC /* NSTableColumnExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C1FEE2849631800A023EC /* NSTableColumnExtensions.swift */; };
 		3E3DFFCE260D9BBA0092F0BF /* MetadataPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3DFFCD260D9BBA0092F0BF /* MetadataPreferences.xib */; };
@@ -874,8 +876,6 @@
 		3EFE37E827864896006F8B8C /* HistoryPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE361E27864895006F8B8C /* HistoryPreferences.swift */; };
 		3EFE37E927864896006F8B8C /* PreferencesDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE361F27864895006F8B8C /* PreferencesDefaults.swift */; };
 		3EFE37EA27864896006F8B8C /* PreferencesDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE361F27864895006F8B8C /* PreferencesDefaults.swift */; };
-		3EFE37EB27864896006F8B8C /* PersistentPreferencesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE362027864895006F8B8C /* PersistentPreferencesProtocol.swift */; };
-		3EFE37EC27864896006F8B8C /* PersistentPreferencesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE362027864895006F8B8C /* PersistentPreferencesProtocol.swift */; };
 		3EFE37ED27864896006F8B8C /* MetadataPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE362127864895006F8B8C /* MetadataPreferences.swift */; };
 		3EFE37EE27864896006F8B8C /* MetadataPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE362127864895006F8B8C /* MetadataPreferences.swift */; };
 		3EFE37EF27864896006F8B8C /* RemoteControlPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE362227864895006F8B8C /* RemoteControlPreferences.swift */; };
@@ -1686,6 +1686,8 @@
 		3E3975452688894C0055887E /* ControlBarSeekSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarSeekSliderCell.swift; sourceTree = "<group>"; };
 		3E397547268900C60055887E /* ControlBarVolumeSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarVolumeSliderCell.swift; sourceTree = "<group>"; };
 		3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlayerUIState.swift; sourceTree = "<group>"; };
+		3E3BCFF32AF18F9E00FD893A /* DefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsExtensions.swift; sourceTree = "<group>"; };
+		3E3BCFF52AF1BB0000FD893A /* UserPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreference.swift; sourceTree = "<group>"; };
 		3E3C1FEC2849611200A023EC /* TuneBrowserUIPersistentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserUIPersistentState.swift; sourceTree = "<group>"; };
 		3E3C1FEE2849631800A023EC /* NSTableColumnExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTableColumnExtensions.swift; sourceTree = "<group>"; };
 		3E3DFFCD260D9BBA0092F0BF /* MetadataPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MetadataPreferences.xib; sourceTree = "<group>"; };
@@ -2431,7 +2433,6 @@
 		3EFE361D27864895006F8B8C /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		3EFE361E27864895006F8B8C /* HistoryPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryPreferences.swift; sourceTree = "<group>"; };
 		3EFE361F27864895006F8B8C /* PreferencesDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesDefaults.swift; sourceTree = "<group>"; };
-		3EFE362027864895006F8B8C /* PersistentPreferencesProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentPreferencesProtocol.swift; sourceTree = "<group>"; };
 		3EFE362127864895006F8B8C /* MetadataPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataPreferences.swift; sourceTree = "<group>"; };
 		3EFE362227864895006F8B8C /* RemoteControlPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControlPreferences.swift; sourceTree = "<group>"; };
 		3EFE362327864895006F8B8C /* PlayQueuePreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayQueuePreferences.swift; sourceTree = "<group>"; };
@@ -5225,12 +5226,12 @@
 				3EFE361D27864895006F8B8C /* UserDefaultsExtensions.swift */,
 				3EFE361E27864895006F8B8C /* HistoryPreferences.swift */,
 				3EFE361F27864895006F8B8C /* PreferencesDefaults.swift */,
-				3EFE362027864895006F8B8C /* PersistentPreferencesProtocol.swift */,
 				3EFE362127864895006F8B8C /* MetadataPreferences.swift */,
 				3EFE362227864895006F8B8C /* RemoteControlPreferences.swift */,
 				3EFE362427864895006F8B8C /* MusicBrainzPreferences.swift */,
 				3EFE362527864895006F8B8C /* ControlsPreferences.swift */,
 				3EFE362727864895006F8B8C /* GesturesControlsPreferences.swift */,
+				3E3BCFF52AF1BB0000FD893A /* UserPreference.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -5549,6 +5550,7 @@
 				3EFE36D127864895006F8B8C /* AVFExtensions.swift */,
 				3EAE9CC32836E7BA004499FE /* OrderedSetExtensions.swift */,
 				3EFE735B283EAD9900AC0A38 /* OrderedDictionaryExtensions.swift */,
+				3E3BCFF32AF18F9E00FD893A /* DefaultsExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -6713,7 +6715,6 @@
 				3EFE390527864897006F8B8C /* NSApplicationExtensions.swift in Sources */,
 				3EFE388927864896006F8B8C /* EQPresets.swift in Sources */,
 				3EFE391727864897006F8B8C /* IntExtensions.swift in Sources */,
-				3EFE37EB27864896006F8B8C /* PersistentPreferencesProtocol.swift in Sources */,
 				3EEFF58E27DE842C002CB0FE /* PlayQueueProtocol.swift in Sources */,
 				3E6668B32ADB515600BBD119 /* PresetLayoutPreviewView.swift in Sources */,
 				3E987ECC2630088600E6836D /* MenuBarPlayerUIState.swift in Sources */,
@@ -6855,6 +6856,7 @@
 				3E6C130E25CEBE8F00BF0D07 /* PopoverContentView.swift in Sources */,
 				3E6C12A125CEBE2700BF0D07 /* PopupMenuCells.swift in Sources */,
 				3EE2AD072A1FF71300D7BA7D /* AUControlViewController.swift in Sources */,
+				3E3BCFF62AF1BB0000FD893A /* UserPreference.swift in Sources */,
 				3E95C6DD28303B5300E59B91 /* Grouping.swift in Sources */,
 				3EBF293526869A1200D87021 /* PreferencesPopupMenuCell.swift in Sources */,
 				3EBF0F67280C7317000455D6 /* MetadataRegistry.swift in Sources */,
@@ -7035,6 +7037,7 @@
 				3E6C122D25CEBDE600BF0D07 /* TracksPlaylistViewController+TableViewDelegate.swift in Sources */,
 				3E10175F28D741E7002C0D8E /* EonilFSEventStreamEventFlags.swift in Sources */,
 				3E6C12A825CEBE2700BF0D07 /* TriStateLabel.swift in Sources */,
+				3E3BCFF42AF18F9E00FD893A /* DefaultsExtensions.swift in Sources */,
 				3EBF0F69280C73E4000455D6 /* MetadataPersistentState.swift in Sources */,
 				3EFE39D927864897006F8B8C /* ReverbUnitPersistentState.swift in Sources */,
 				3E308D1D268A356300B0FD60 /* UpdatesDialogController.swift in Sources */,
@@ -7177,7 +7180,6 @@
 				3EFE38E827864897006F8B8C /* FileSizeUnit.swift in Sources */,
 				3EA1BE15268F60DA00A5D81B /* ShuffleSequenceIterationTests.swift in Sources */,
 				3E9FD1032A1D5C740038AF04 /* FFmpegDecoder+SegmentLoop.swift in Sources */,
-				3EFE37EC27864896006F8B8C /* PersistentPreferencesProtocol.swift in Sources */,
 				3ED6D905269268D6007DA433 /* MockTrack.swift in Sources */,
 				3EFE3A1027864898006F8B8C /* FavoritesListNotifications.swift in Sources */,
 				3EFE38B427864896006F8B8C /* FlexibleFilterNode.swift in Sources */,

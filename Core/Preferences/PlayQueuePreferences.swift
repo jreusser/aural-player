@@ -12,84 +12,37 @@ import Cocoa
 ///
 /// Encapsulates all user preferences pertaining to the Play Queue.
 ///
-class PlayQueuePreferences: PersistentPreferencesProtocol {
+class PlayQueuePreferences {
     
-    var playQueueOnStartup: PlayQueueStartupOption
-    
-    // This will be used only when playQueueOnStartup == PlayQueueStartupOption.loadFile
-    var playlistFile: URL?
-    
-    // This will be used only when playQueueOnStartup == PlayQueueStartupOption.loadFolder
-    var tracksFolder: URL?
-    
-    var showNewTrackInPlayQueue: Bool
-    var showChaptersList: Bool
-    
-    var dragDropAddMode: PlayQueueTracksAddMode
-    var openWithAddMode: PlayQueueTracksAddMode
+    private typealias Defaults = PreferencesDefaults.PlayQueue
     
     // ------ MARK: Property keys ---------
     
     private static let keyPrefix: String = "playQueue"
     
-    static let key_playQueueOnStartup: String = "\(keyPrefix).playQueueOnStartup"
-    static let key_playlistFile: String = "\(keyPrefix).playQueueOnStartup.playlistFile"
-    static let key_tracksFolder: String = "\(keyPrefix).playQueueOnStartup.tracksFolder"
+    lazy var playQueueOnStartup: UserPreference<PlayQueueStartupOption> = .init(defaultsKey: "\(Self.keyPrefix).playQueueOnStartup",
+                                                                                defaultValue: Defaults.playQueueOnStartup)
     
-    static let key_showNewTrackInPlayQueue: String = "\(keyPrefix).showNewTrackInPlayQueue"
-    static let key_showChaptersList: String = "\(keyPrefix).showChaptersList"
+    // This will be used only when playQueueOnStartup == PlayQueueStartupOption.loadFile
+    lazy var playlistFile: OptionalUserPreference<URL> = .init(defaultsKey: "\(Self.keyPrefix).playQueueOnStartup.playlistFile")
     
-    static let key_dragDropAddMode: String = "\(keyPrefix).dragDropAddMode"
-    static let key_openWithAddMode: String = "\(keyPrefix).openWithAddMode"
+    lazy var tracksFolder: OptionalUserPreference<URL> = .init(defaultsKey: "\(Self.keyPrefix).playQueueOnStartup.tracksFolder")
     
-    private typealias Defaults = PreferencesDefaults.PlayQueue
+    lazy var showNewTrackInPlayQueue: UserPreference<Bool> = .init(defaultsKey: "\(Self.keyPrefix).showNewTrackInPlayQueue",
+                                                                   defaultValue: Defaults.showNewTrackInPlayQueue)
     
-    internal required init(_ dict: [String: Any]) {
-        
-        playQueueOnStartup = dict.enumValue(forKey: Self.key_playQueueOnStartup, ofType: PlayQueueStartupOption.self) ?? Defaults.playQueueOnStartup
-        
-        playlistFile = dict.urlValue(forKey: Self.key_playlistFile) ?? Defaults.playlistFile
-        
-        showNewTrackInPlayQueue = dict[Self.key_showNewTrackInPlayQueue, Bool.self] ?? Defaults.showNewTrackInPlayQueue
-        
-        showChaptersList = dict[Self.key_showChaptersList, Bool.self] ?? Defaults.showChaptersList
-        
-        // If .loadFile selected but no file available to load from, revert back to dict
-        if playQueueOnStartup == .loadFile && playlistFile == nil {
-            
-            playQueueOnStartup = Defaults.playQueueOnStartup
-            playlistFile = Defaults.playlistFile
-        }
-        
-        tracksFolder = dict.urlValue(forKey: Self.key_tracksFolder) ?? Defaults.tracksFolder
-        
-        // If .loadFolder selected but no folder available to load from, revert back to dict
-        if playQueueOnStartup == .loadFolder && tracksFolder == nil {
-            
-            playQueueOnStartup = Defaults.playQueueOnStartup
-            tracksFolder = Defaults.tracksFolder
-        }
-        
-        dragDropAddMode = dict.enumValue(forKey: Self.key_dragDropAddMode, ofType: PlayQueueTracksAddMode.self) ?? Defaults.dragDropAddMode
-        openWithAddMode = dict.enumValue(forKey: Self.key_openWithAddMode, ofType: PlayQueueTracksAddMode.self) ?? Defaults.openWithAddMode
-    }
+    lazy var showChaptersList: UserPreference<Bool> = .init(defaultsKey: "\(Self.keyPrefix).showChaptersList",
+                                                            defaultValue: Defaults.showChaptersList)
     
-    func persist(to defaults: UserDefaults) {
-        
-        defaults[Self.key_playQueueOnStartup] = playQueueOnStartup.rawValue
-        defaults[Self.key_playlistFile] = playlistFile?.path
-        defaults[Self.key_tracksFolder] = tracksFolder?.path
-        
-        defaults[Self.key_showNewTrackInPlayQueue] = showNewTrackInPlayQueue
-        defaults[Self.key_showChaptersList] = showChaptersList
-        
-        defaults[Self.key_dragDropAddMode] = dragDropAddMode.rawValue
-        defaults[Self.key_openWithAddMode] = openWithAddMode.rawValue
-    }
+    lazy var dragDropAddMode: UserPreference<PlayQueueTracksAddMode> = .init(defaultsKey: "\(Self.keyPrefix).dragDropAddMode",
+                                                                             defaultValue: Defaults.dragDropAddMode)
+    
+    lazy var openWithAddMode: UserPreference<PlayQueueTracksAddMode> = .init(defaultsKey: "\(Self.keyPrefix).openWithAddMode",
+                                                                             defaultValue: Defaults.openWithAddMode)
 }
 
 // All options for the Play Queue at startup
-enum PlayQueueStartupOption: String, CaseIterable {
+enum PlayQueueStartupOption: String, CaseIterable, Codable {
     
     case empty
     case rememberFromLastAppLaunch
@@ -97,7 +50,7 @@ enum PlayQueueStartupOption: String, CaseIterable {
     case loadFolder
 }
 
-enum PlayQueueTracksAddMode: String, CaseIterable {
+enum PlayQueueTracksAddMode: String, CaseIterable, Codable {
     
     case append
     case replace

@@ -12,136 +12,93 @@ import Cocoa
 ///
 /// Encapsulates all user preferences pertaining to track playback.
 ///
-class PlaybackPreferences: PersistentPreferencesProtocol {
-    
-    // General preferences
-    
-    var primarySeekLengthOption: SeekLengthOptions
-    var primarySeekLengthConstant: Int
-    var primarySeekLengthPercentage: Int
-    
-    var secondarySeekLengthOption: SeekLengthOptions
-    var secondarySeekLengthConstant: Int
-    var secondarySeekLengthPercentage: Int
-    
-    private let scrollSensitiveSeekLengths: [ScrollSensitivity: Double] = [.low: 2.5, .medium: 5, .high: 10]
-    var seekLength_continuous: Double {
-        return scrollSensitiveSeekLengths[controlsPreferences.seekSensitivity]!
-    }
-    
-    private var controlsPreferences: GesturesControlsPreferences!
-    
-    var autoplayOnStartup: Bool
-    
-    var autoplayAfterAddingTracks: Bool
-    var autoplayAfterAddingOption: AutoplayAfterAddingOptions
-    
-    var autoplayAfterOpeningTracks: Bool
-    var autoplayAfterOpeningOption: AutoplayAfterOpeningOptions
-    
-    var rememberLastPositionOption: RememberSettingsForTrackOptions
+class PlaybackPreferences {
     
     private static let keyPrefix: String = "playback"
     
-    static let key_primarySeekLengthOption: String = "\(keyPrefix).seekLength.primary.option"
-    static let key_primarySeekLengthConstant: String = "\(keyPrefix).seekLength.primary.constant"
-    static let key_primarySeekLengthPercentage: String = "\(keyPrefix).seekLength.primary.percentage"
+    private typealias Defaults = PreferencesDefaults.Playback
     
-    static let key_secondarySeekLengthOption: String = "\(keyPrefix).seekLength.secondary.option"
-    static let key_secondarySeekLengthConstant: String = "\(keyPrefix).seekLength.secondary.constant"
-    static let key_secondarySeekLengthPercentage: String = "\(keyPrefix).seekLength.secondary.percentage"
+    private let controlsPreferences: GesturesControlsPreferences
     
-    static let key_autoplayOnStartup: String = "\(keyPrefix).autoplayOnStartup"
-    
-    static let key_autoplayAfterAddingTracks: String = "\(keyPrefix).autoplayAfterAddingTracks"
-    static let key_autoplayAfterAddingOption: String = "\(keyPrefix).autoplayAfterAddingTracks.option"
-    
-    static let key_autoplayAfterOpeningTracks: String = "\(keyPrefix).autoplayAfterOpeningTracks"
-    static let key_autoplayAfterOpeningOption: String = "\(keyPrefix).autoplayAfterOpeningTracks.option"
-    
-    static let key_rememberLastPositionOption: String = "\(keyPrefix).rememberLastPosition.option"
-    
-    convenience init(_ dict: [String: Any], _ controlsPreferences: GesturesControlsPreferences) {
-        
-        self.init(dict)
+    init(controlsPreferences: GesturesControlsPreferences) {
         self.controlsPreferences = controlsPreferences
     }
     
-    private typealias Defaults = PreferencesDefaults.Playback
+    // General preferences
     
-    internal required init(_ dict: [String: Any]) {
+    lazy var primarySeekLengthOption: UserPreference<SeekLengthOption> = .init(defaultsKey: "\(Self.keyPrefix).seekLength.primary.option",
+                                                                               defaultValue: Defaults.primarySeekLengthOption)
+    
+    lazy var primarySeekLengthConstant: UserPreference<Int> = .init(defaultsKey: "\(Self.keyPrefix).seekLength.primary.constant",
+                                                                    defaultValue: Defaults.primarySeekLengthConstant)
+    
+    lazy var primarySeekLengthPercentage: UserPreference<Int> = .init(defaultsKey: "\(Self.keyPrefix).seekLength.primary.percentage",
+                                                                      defaultValue: Defaults.primarySeekLengthPercentage)
+    
+    lazy var secondarySeekLengthOption: UserPreference<SeekLengthOption> = .init(defaultsKey: "\(Self.keyPrefix).seekLength.secondary.option",
+                                                                                 defaultValue: Defaults.secondarySeekLengthOption)
+    
+    lazy var secondarySeekLengthConstant: UserPreference<Int> = .init(defaultsKey: "\(Self.keyPrefix).seekLength.secondary.constant",
+                                                                      defaultValue: Defaults.secondarySeekLengthConstant)
+    
+    lazy var secondarySeekLengthPercentage: UserPreference<Int> = .init(defaultsKey: "\(Self.keyPrefix).seekLength.secondary.percentage",
+                                                                        defaultValue: Defaults.secondarySeekLengthConstant)
+    
+    var seekLength_continuous: Double {
         
-        primarySeekLengthOption = dict.enumValue(forKey: Self.key_primarySeekLengthOption,
-                                                 ofType: SeekLengthOptions.self) ?? Defaults.primarySeekLengthOption
-        
-        primarySeekLengthConstant = dict.intValue(forKey: Self.key_primarySeekLengthConstant) ?? Defaults.primarySeekLengthConstant
-        primarySeekLengthPercentage = dict.intValue(forKey: Self.key_primarySeekLengthPercentage) ?? Defaults.primarySeekLengthPercentage
-        
-        secondarySeekLengthOption = dict.enumValue(forKey: Self.key_secondarySeekLengthOption,
-                                                   ofType: SeekLengthOptions.self) ?? Defaults.secondarySeekLengthOption
-        
-        secondarySeekLengthConstant = dict.intValue(forKey: Self.key_secondarySeekLengthConstant) ?? Defaults.secondarySeekLengthConstant
-        secondarySeekLengthPercentage = dict.intValue(forKey: Self.key_secondarySeekLengthPercentage) ?? Defaults.secondarySeekLengthPercentage
-        
-        autoplayOnStartup = dict[Self.key_autoplayOnStartup, Bool.self] ?? Defaults.autoplayOnStartup
-        
-        autoplayAfterAddingTracks = dict[Self.key_autoplayAfterAddingTracks, Bool.self] ?? Defaults.autoplayAfterAddingTracks
-        
-        autoplayAfterAddingOption = dict.enumValue(forKey: Self.key_autoplayAfterAddingOption,
-                                                   ofType: AutoplayAfterAddingOptions.self) ?? Defaults.autoplayAfterAddingOption
-        
-        autoplayAfterOpeningTracks = dict[Self.key_autoplayAfterOpeningTracks, Bool.self] ?? Defaults.autoplayAfterOpeningTracks
-
-        autoplayAfterOpeningOption = dict.enumValue(forKey: Self.key_autoplayAfterOpeningOption,
-                                                   ofType: AutoplayAfterOpeningOptions.self) ?? Defaults.autoplayAfterOpeningOption
-        
-        rememberLastPositionOption = dict.enumValue(forKey: Self.key_rememberLastPositionOption,
-                                                    ofType: RememberSettingsForTrackOptions.self) ?? Defaults.rememberLastPositionOption
+        switch controlsPreferences.seekSensitivity {
+            
+        case .low:
+            return 2.5
+            
+        case .medium:
+            return 5
+            
+        case .high:
+            return 10
+        }
     }
     
-    func persist(to defaults: UserDefaults) {
-        
-        defaults[Self.key_primarySeekLengthOption] = primarySeekLengthOption.rawValue
-        defaults[Self.key_primarySeekLengthConstant] = primarySeekLengthConstant
-        defaults[Self.key_primarySeekLengthPercentage] = primarySeekLengthPercentage
-        
-        defaults[Self.key_secondarySeekLengthOption] = secondarySeekLengthOption.rawValue
-        defaults[Self.key_secondarySeekLengthConstant] = secondarySeekLengthConstant
-        defaults[Self.key_secondarySeekLengthPercentage] = secondarySeekLengthPercentage
-        
-        defaults[Self.key_autoplayOnStartup] = autoplayOnStartup
-        
-        defaults[Self.key_autoplayAfterAddingTracks] = autoplayAfterAddingTracks
-        defaults[Self.key_autoplayAfterAddingOption] = autoplayAfterAddingOption.rawValue
-        
-        defaults[Self.key_autoplayAfterOpeningTracks] = autoplayAfterOpeningTracks
-        defaults[Self.key_autoplayAfterOpeningOption] = autoplayAfterOpeningOption.rawValue
-        
-        defaults[Self.key_rememberLastPositionOption] = rememberLastPositionOption.rawValue
-    }
+    lazy var autoplayOnStartup: UserPreference<Bool> = .init(defaultsKey: "\(Self.keyPrefix).autoplayOnStartup",
+                                                             defaultValue: Defaults.autoplayOnStartup)
+    
+    lazy var autoplayAfterAddingTracks: UserPreference<Bool> = .init(defaultsKey: "\(Self.keyPrefix).autoplayAfterAddingTracks",
+                                                                     defaultValue: Defaults.autoplayAfterAddingTracks)
+    
+    lazy var autoplayAfterAddingOption: UserPreference<AutoplayAfterAddingOption> = .init(defaultsKey: "\(Self.keyPrefix).autoplayAfterAddingTracks.option",
+                                                                                          defaultValue: Defaults.autoplayAfterAddingOption)
+    
+    lazy var autoplayAfterOpeningTracks: UserPreference<Bool> = .init(defaultsKey: "\(Self.keyPrefix).autoplayAfterOpeningTracks",
+                                                                      defaultValue: Defaults.autoplayAfterOpeningTracks)
+    
+    lazy var autoplayAfterOpeningOption: UserPreference<AutoplayAfterOpeningOption> = .init(defaultsKey: "\(Self.keyPrefix).autoplayAfterOpeningTracks.option",
+                                                                                            defaultValue: Defaults.autoplayAfterOpeningOption)
+    
+    lazy var rememberLastPositionOption: UserPreference<RememberSettingsForTrackOption> = .init(defaultsKey: "\(Self.keyPrefix).rememberLastPosition.option",
+                                                                                                defaultValue: Defaults.rememberLastPositionOption)
 }
 
-enum SeekLengthOptions: String, CaseIterable {
+enum SeekLengthOption: String, CaseIterable {
     
     case constant
     case percentage
 }
 
 // Possible options for the "autoplay afer adding tracks" user preference
-enum AutoplayAfterAddingOptions: String, CaseIterable {
+enum AutoplayAfterAddingOption: String, CaseIterable {
     
     case ifNotPlaying
     case always
 }
 
 // Possible options for the "autoplay afer 'Open With'" user preference
-enum AutoplayAfterOpeningOptions: String, CaseIterable {
+enum AutoplayAfterOpeningOption: String, CaseIterable {
 
     case ifNotPlaying
     case always
 }
 
-enum RememberSettingsForTrackOptions: String, CaseIterable {
+enum RememberSettingsForTrackOption: String, CaseIterable {
     
     case allTracks
     case individualTracks

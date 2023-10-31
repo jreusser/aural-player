@@ -19,7 +19,8 @@ let appSetup: AppSetup = .shared
 let persistenceManager: PersistenceManager = PersistenceManager(persistentStateFile: FilesAndPaths.persistentStateFile)
 let persistentState: AppPersistentState = persistenceManager.load(type: AppPersistentState.self) ?? .defaults
 
-let preferences: Preferences = Preferences(defaults: .standard)
+let userDefaults: UserDefaults = .standard
+let preferences: Preferences = Preferences(defaults: userDefaults)
 
 #if os(macOS)
 

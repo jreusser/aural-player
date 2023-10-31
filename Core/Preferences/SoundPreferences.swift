@@ -36,7 +36,7 @@ class SoundPreferences: PersistentPreferencesProtocol {
     var effectsSettingsOnStartupOption: EffectsSettingsStartupOptions
     var masterPresetOnStartup_name: String?
     
-    var rememberEffectsSettingsOption: RememberSettingsForTrackOptions
+    var rememberEffectsSettingsOption: RememberSettingsForTrackOption
     
     private var controlsPreferences: GesturesControlsPreferences!
     
@@ -102,7 +102,7 @@ class SoundPreferences: PersistentPreferencesProtocol {
         
         masterPresetOnStartup_name = dict[Self.key_effectsSettingsOnStartup_masterPreset, String.self] ?? Defaults.masterPresetOnStartup_name
         
-        rememberEffectsSettingsOption = dict.enumValue(forKey: Self.key_rememberEffectsSettingsOption, ofType: RememberSettingsForTrackOptions.self) ?? Defaults.rememberEffectsSettingsOption
+        rememberEffectsSettingsOption = dict.enumValue(forKey: Self.key_rememberEffectsSettingsOption, ofType: RememberSettingsForTrackOption.self) ?? Defaults.rememberEffectsSettingsOption
         
         // Revert to default if data is invalid (missing preferred device name or UID)
         if outputDeviceOnStartup.option == .specific &&

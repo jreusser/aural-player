@@ -22,7 +22,7 @@ class Preferences {
     
     // Preferences for different app components / features.
     
-    var playlistPreferences: PlayQueuePreferences
+    var playQueuePreferences: PlayQueuePreferences
     var playbackPreferences: PlaybackPreferences
     var soundPreferences: SoundPreferences
     
@@ -34,30 +34,14 @@ class Preferences {
     var controlsPreferences: ControlsPreferences
     var metadataPreferences: MetadataPreferences
     
-    var allPreferences: [PersistentPreferencesProtocol] {
-        
-#if os(macOS)
-        
-        [playbackPreferences, soundPreferences, playlistPreferences, viewPreferences,
-                          historyPreferences, controlsPreferences, metadataPreferences]
-        
-        #elseif os(iOS)
-        
-        [playbackPreferences, soundPreferences, playlistPreferences,
-                          historyPreferences, controlsPreferences, metadataPreferences]
-        
-        #endif
-    }
-    
     init(defaults: UserDefaults) {
         
         self.defaults = defaults
-        let defaultsDictionary = defaults.dictionaryRepresentation()
         
         controlsPreferences = ControlsPreferences(defaultsDictionary)
         playbackPreferences = PlaybackPreferences(defaultsDictionary, controlsPreferences.gestures)
         soundPreferences = SoundPreferences(defaultsDictionary, controlsPreferences.gestures)
-        playlistPreferences = PlayQueuePreferences(defaultsDictionary)
+        playQueuePreferences = PlayQueuePreferences()
         
 #if os(macOS)
         viewPreferences = ViewPreferences(defaultsDictionary)
