@@ -29,24 +29,24 @@ class MediaKeysPreferencesViewController: NSViewController, PreferencesViewProto
     
     func resetFields() {
         
-        let controlsPrefs = preferences.controlsPreferences.mediaKeys
-        
-        btnRespondToMediaKeys.onIf(controlsPrefs.enabled)
-        mediaKeyResponseAction(self)
-        
-        [btnHybrid, btnTrackChangesOnly, btnSeekingOnly].forEach {$0?.off()}
-        
-        switch controlsPrefs.skipKeyBehavior {
-            
-        case .hybrid:   btnHybrid.on()
-            
-        case .trackChangesOnly:     btnTrackChangesOnly.on()
-            
-        case .seekingOnly:          btnSeekingOnly.on()
-            
-        }
-        
-        repeatSpeedMenu.selectItem(withTitle: controlsPrefs.repeatSpeed.rawValue.capitalized)
+//        let controlsPrefs = preferences.controlsPreferences.mediaKeys
+//        
+//        btnRespondToMediaKeys.onIf(controlsPrefs.enabled)
+//        mediaKeyResponseAction(self)
+//        
+//        [btnHybrid, btnTrackChangesOnly, btnSeekingOnly].forEach {$0?.off()}
+//        
+//        switch controlsPrefs.skipKeyBehavior {
+//            
+//        case .hybrid:   btnHybrid.on()
+//            
+//        case .trackChangesOnly:     btnTrackChangesOnly.on()
+//            
+//        case .seekingOnly:          btnSeekingOnly.on()
+//            
+//        }
+//        
+//        repeatSpeedMenu.selectItem(withTitle: controlsPrefs.repeatSpeed.rawValue.capitalized)
     }
     
     @IBAction func mediaKeyResponseAction(_ sender: Any) {

@@ -22,13 +22,13 @@ class HistoryPreferencesViewController: NSViewController, PreferencesViewProtoco
     
     func resetFields() {
         
-        let historyPrefs = preferences.historyPreferences
-        
-        let recentlyAddedListSize = historyPrefs.recentlyAddedListSize
-        let recentlyPlayedListSize = historyPrefs.recentlyPlayedListSize
-        
-        selectItemWithTag(recentlyAddedListSizeMenu, recentlyAddedListSize)
-        selectItemWithTag(recentlyPlayedListSizeMenu, recentlyPlayedListSize)
+//        let historyPrefs = preferences.historyPreferences
+//        
+//        let recentlyAddedListSize = historyPrefs.recentlyAddedListSize
+//        let recentlyPlayedListSize = historyPrefs.recentlyPlayedListSize
+//        
+//        selectItemWithTag(recentlyAddedListSizeMenu, recentlyAddedListSize)
+//        selectItemWithTag(recentlyPlayedListSizeMenu, recentlyPlayedListSize)
     }
     
     private func selectItemWithTag(_ list: NSPopUpButton, _ tag: Int) {

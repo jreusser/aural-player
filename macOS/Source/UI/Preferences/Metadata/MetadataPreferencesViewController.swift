@@ -27,18 +27,18 @@ class MetadataPreferencesViewController: NSViewController, PreferencesViewProtoc
     
     func resetFields() {
         
-        let musicBrainzPrefs = preferences.metadataPreferences.musicBrainz
-        
-        timeoutStepper.integerValue = musicBrainzPrefs.httpTimeout
-        lblTimeout.stringValue = "\(timeoutStepper.integerValue) sec"
-       
-        btnEnableMusicBrainzCoverArtSearch.onIf(musicBrainzPrefs.enableCoverArtSearch)
-        
-        if musicBrainzPrefs.enableOnDiskCoverArtCache {
-            btnEnableMusicBrainzOnDiskCoverArtCache.on()
-        } else {
-            btnDisableMusicBrainzOnDiskCoverArtCache.on()
-        }
+//        let musicBrainzPrefs = preferences.metadataPreferences.musicBrainz
+//        
+//        timeoutStepper.integerValue = musicBrainzPrefs.httpTimeout
+//        lblTimeout.stringValue = "\(timeoutStepper.integerValue) sec"
+//       
+//        btnEnableMusicBrainzCoverArtSearch.onIf(musicBrainzPrefs.enableCoverArtSearch)
+//        
+//        if musicBrainzPrefs.enableOnDiskCoverArtCache {
+//            btnEnableMusicBrainzOnDiskCoverArtCache.on()
+//        } else {
+//            btnDisableMusicBrainzOnDiskCoverArtCache.on()
+//        }
     }
     
     @IBAction func musicBrainzTimeoutStepperAction(_ sender: NSStepper) {

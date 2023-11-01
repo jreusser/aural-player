@@ -33,11 +33,11 @@ class RemoteControlPreferencesViewController: NSViewController, PreferencesViewP
     
     func resetFields() {
         
-        let controlsPrefs = preferences.controlsPreferences.remoteControl
-        
-        btnEnableRemoteControl.onIf(controlsPrefs.enabled)
-        btnShowTrackChangeControls.onIf(controlsPrefs.trackChangeOrSeekingOption == .trackChange)
-        btnShowSeekingControls.onIf(controlsPrefs.trackChangeOrSeekingOption == .seeking)
+//        let controlsPrefs = preferences.controlsPreferences.remoteControl
+//        
+//        btnEnableRemoteControl.onIf(controlsPrefs.enabled)
+//        btnShowTrackChangeControls.onIf(controlsPrefs.trackChangeOrSeekingOption == .trackChange)
+//        btnShowSeekingControls.onIf(controlsPrefs.trackChangeOrSeekingOption == .seeking)
     }
     
     @IBAction func trackChangeOrSeekingOptionsAction(_ sender: Any) {

@@ -246,18 +246,21 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     
     func appLaunched(_ filesToOpen: [URL]) {
         
+        lazy var playQueuePreferences = preferences.playQueuePreferences
+        lazy var playbackPreferences = preferences.playbackPreferences
+        
         // Check if any launch parameters were specified
         if filesToOpen.isNonEmpty {
             
             // Launch parameters  specified, override playlist saved state and add file paths in params to playlist
 //            addTracks(from: filesToOpen, AutoplayOptions(true), userAction: false)
-            loadTracks(from: filesToOpen)
+            loadTracks(from: filesToOpen, autoplay: playbackPreferences.autoplayAfterOpeningTracks.value)
 
-        } else if let files = self.persistentTracks {
+        } else if playQueuePreferences.playQueueOnStartup.value == .rememberFromLastAppLaunch, let files = self.persistentTracks {
 
             // No launch parameters specified, load playlist saved state if "Remember state from last launch" preference is selected
 //            addFiles_async(tracks, AutoplayOptions(playbackPreferences.autoplayOnStartup), userAction: false, reorderGroupingPlaylists: true)
-            loadTracks(from: files)
+            loadTracks(from: files, autoplay: playbackPreferences.autoplayOnStartup.value)
         }
             
 //        } else if playlistPreferences.playlistOnStartup == .loadFile,

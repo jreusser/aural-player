@@ -25,7 +25,7 @@ class ControlsPreferencesViewController: NSViewController, PreferencesViewProtoc
         
         subViews = [mediaKeysPreferencesView, gesturesPreferencesView, remoteControlPreferencesView]
         
-        let actualViews = subViews.map {$0.preferencesView}
+//        let actualViews = subViews.map {$0.preferencesView}
 //        tabView.addViewsForTabs(actualViews)
         
         // Select the Media Keys prefs tab

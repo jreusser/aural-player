@@ -42,57 +42,57 @@ class ViewPreferencesViewController: NSViewController, PreferencesViewProtocol {
     
     func resetFields() {
         
-        let viewPrefs = preferences.viewPreferences
-        
-        if viewPrefs.appModeOnStartup.option == .specific {
-            btnStartWithAppMode.on()
-        } else {
-            btnRememberAppMode.on()
-        }
-        
-        switch viewPrefs.appModeOnStartup.modeName {
-        
-        case AppMode.modular.rawValue:
-            
-            appModeMenu.select(windowedAppModeMenuItem)
-            
-        case AppMode.menuBar.rawValue:
-            
-            appModeMenu.select(menuBarAppModeMenuItem)
-            
-        case AppMode.controlBar.rawValue:
-            
-            appModeMenu.select(controlBarAppModeMenuItem)
-            
-        default:
-            
-            appModeMenu.select(windowedAppModeMenuItem)
-        }
-        
-        appModeMenu.enableIf(btnStartWithAppMode.isOn)
-     
-        if viewPrefs.layoutOnStartup.option == .specific {
-            btnStartWithLayout.on()
-        } else {
-            btnRememberLayout.on()
-        }
-        
-        updateLayoutMenu()
-        
-        if let layoutName = viewPrefs.layoutOnStartup.layoutName, let item = layoutMenu.item(withTitle: layoutName) {
-            layoutMenu.select(item)
-        } else {
-            // Default
-            layoutMenu.select(layoutMenu.item(withTitle: windowLayoutsManager.defaultLayout.name))
-        }
-        layoutMenu.enableIf(btnStartWithLayout.isOn)
-        
-        btnSnapToWindows.onIf(viewPrefs.snapToWindows)
-        gapStepper.floatValue = viewPrefs.windowGap
-        lblWindowGap.stringValue = ValueFormatter.formatPixels(gapStepper.floatValue)
-        [lblWindowGap, gapStepper].forEach {$0!.enableIf(btnSnapToWindows.isOn)}
-        
-        btnSnapToScreen.onIf(viewPrefs.snapToScreen)
+//        let viewPrefs = preferences.viewPreferences
+//        
+//        if viewPrefs.appModeOnStartup.option == .specific {
+//            btnStartWithAppMode.on()
+//        } else {
+//            btnRememberAppMode.on()
+//        }
+//        
+//        switch viewPrefs.appModeOnStartup.modeName {
+//        
+//        case AppMode.modular.rawValue:
+//            
+//            appModeMenu.select(windowedAppModeMenuItem)
+//            
+//        case AppMode.menuBar.rawValue:
+//            
+//            appModeMenu.select(menuBarAppModeMenuItem)
+//            
+//        case AppMode.controlBar.rawValue:
+//            
+//            appModeMenu.select(controlBarAppModeMenuItem)
+//            
+//        default:
+//            
+//            appModeMenu.select(windowedAppModeMenuItem)
+//        }
+//        
+//        appModeMenu.enableIf(btnStartWithAppMode.isOn)
+//     
+//        if viewPrefs.layoutOnStartup.option == .specific {
+//            btnStartWithLayout.on()
+//        } else {
+//            btnRememberLayout.on()
+//        }
+//        
+//        updateLayoutMenu()
+//        
+//        if let layoutName = viewPrefs.layoutOnStartup.layoutName, let item = layoutMenu.item(withTitle: layoutName) {
+//            layoutMenu.select(item)
+//        } else {
+//            // Default
+//            layoutMenu.select(layoutMenu.item(withTitle: windowLayoutsManager.defaultLayout.name))
+//        }
+//        layoutMenu.enableIf(btnStartWithLayout.isOn)
+//        
+//        btnSnapToWindows.onIf(viewPrefs.snapToWindows)
+//        gapStepper.floatValue = viewPrefs.windowGap
+//        lblWindowGap.stringValue = ValueFormatter.formatPixels(gapStepper.floatValue)
+//        [lblWindowGap, gapStepper].forEach {$0!.enableIf(btnSnapToWindows.isOn)}
+//        
+//        btnSnapToScreen.onIf(viewPrefs.snapToScreen)
     }
     
     // Update the layout menu with custom layouts

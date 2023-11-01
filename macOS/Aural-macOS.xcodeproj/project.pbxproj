@@ -124,6 +124,10 @@
 		3E397548268900C60055887E /* ControlBarVolumeSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E397547268900C60055887E /* ControlBarVolumeSliderCell.swift */; };
 		3E39754E26892C890055887E /* ControlBarPlayerUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */; };
 		3E3BCFF62AF1BB0000FD893A /* UserPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3BCFF52AF1BB0000FD893A /* UserPreference.swift */; };
+		3E3BCFF92AF1DBF100FD893A /* GeneralSoundPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3BCFF82AF1DBF100FD893A /* GeneralSoundPreferences.xib */; };
+		3E3BCFFB2AF1DC0300FD893A /* GeneralSoundPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3BCFFA2AF1DC0300FD893A /* GeneralSoundPreferencesViewController.swift */; };
+		3E3BCFFE2AF1DDD000FD893A /* SoundAdjustmentPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3BCFFD2AF1DDD000FD893A /* SoundAdjustmentPreferences.xib */; };
+		3E3BD0002AF1DDDB00FD893A /* SoundAdjustmentPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3BCFFF2AF1DDDB00FD893A /* SoundAdjustmentPreferencesViewController.swift */; };
 		3E3C1FED2849611200A023EC /* TuneBrowserUIPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C1FEC2849611200A023EC /* TuneBrowserUIPersistentState.swift */; };
 		3E3C1FEF2849631800A023EC /* NSTableColumnExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C1FEE2849631800A023EC /* NSTableColumnExtensions.swift */; };
 		3E3DFFCE260D9BBA0092F0BF /* MetadataPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3DFFCD260D9BBA0092F0BF /* MetadataPreferences.xib */; };
@@ -1686,6 +1690,10 @@
 		3E397547268900C60055887E /* ControlBarVolumeSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarVolumeSliderCell.swift; sourceTree = "<group>"; };
 		3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlayerUIState.swift; sourceTree = "<group>"; };
 		3E3BCFF52AF1BB0000FD893A /* UserPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreference.swift; sourceTree = "<group>"; };
+		3E3BCFF82AF1DBF100FD893A /* GeneralSoundPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralSoundPreferences.xib; sourceTree = "<group>"; };
+		3E3BCFFA2AF1DC0300FD893A /* GeneralSoundPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSoundPreferencesViewController.swift; sourceTree = "<group>"; };
+		3E3BCFFD2AF1DDD000FD893A /* SoundAdjustmentPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoundAdjustmentPreferences.xib; sourceTree = "<group>"; };
+		3E3BCFFF2AF1DDDB00FD893A /* SoundAdjustmentPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundAdjustmentPreferencesViewController.swift; sourceTree = "<group>"; };
 		3E3C1FEC2849611200A023EC /* TuneBrowserUIPersistentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserUIPersistentState.swift; sourceTree = "<group>"; };
 		3E3C1FEE2849631800A023EC /* NSTableColumnExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTableColumnExtensions.swift; sourceTree = "<group>"; };
 		3E3DFFCD260D9BBA0092F0BF /* MetadataPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MetadataPreferences.xib; sourceTree = "<group>"; };
@@ -3122,6 +3130,24 @@
 			path = FileSystem;
 			sourceTree = "<group>";
 		};
+		3E3BCFF72AF1DBCB00FD893A /* General */ = {
+			isa = PBXGroup;
+			children = (
+				3E3BCFF82AF1DBF100FD893A /* GeneralSoundPreferences.xib */,
+				3E3BCFFA2AF1DC0300FD893A /* GeneralSoundPreferencesViewController.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		3E3BCFFC2AF1DDB800FD893A /* Adjustment */ = {
+			isa = PBXGroup;
+			children = (
+				3E3BCFFD2AF1DDD000FD893A /* SoundAdjustmentPreferences.xib */,
+				3E3BCFFF2AF1DDDB00FD893A /* SoundAdjustmentPreferencesViewController.swift */,
+			);
+			path = Adjustment;
+			sourceTree = "<group>";
+		};
 		3E3DFFCC260D9B950092F0BF /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
@@ -3526,6 +3552,8 @@
 			children = (
 				3E6C0F3925CEB98600BF0D07 /* SoundPreferences.xib */,
 				3E6C0F3A25CEB98600BF0D07 /* SoundPreferencesViewController.swift */,
+				3E3BCFF72AF1DBCB00FD893A /* General */,
+				3E3BCFFC2AF1DDB800FD893A /* Adjustment */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -6185,6 +6213,7 @@
 				3E6C12A425CEBE2700BF0D07 /* AboutDialog.xib in Resources */,
 				3E6C126025CEBE0600BF0D07 /* PresetsManagerWindow.xib in Resources */,
 				3E2ADEDB2843E4B7009586E7 /* LibraryDecades.xib in Resources */,
+				3E3BCFFE2AF1DDD000FD893A /* SoundAdjustmentPreferences.xib in Resources */,
 				3E6C12D925CEBE8100BF0D07 /* FilterUnit.xib in Resources */,
 				3E36BD4426A6908200B6E28B /* CoverArtTrackInfo.xib in Resources */,
 				3E6C127A25CEBE1800BF0D07 /* ColorSchemes.xib in Resources */,
@@ -6200,6 +6229,7 @@
 				3E6C12FC25CEBE8F00BF0D07 /* Player.xib in Resources */,
 				3EAF96FF28DCE1B6008561A7 /* CarroisGothicSC-Regular.ttf in Resources */,
 				3E6C12C225CEBE6700BF0D07 /* MasterUnit.xib in Resources */,
+				3E3BCFF92AF1DBF100FD893A /* GeneralSoundPreferences.xib in Resources */,
 				3EAF96F528DCE1B6008561A7 /* ChicagoFLF.ttf in Resources */,
 				3E6C12FB25CEBE8F00BF0D07 /* JumpToTimeEditorDialog.xib in Resources */,
 				3E6C127125CEBE0600BF0D07 /* FilterPresetsManager.xib in Resources */,
@@ -6538,6 +6568,7 @@
 				3E852ED62788B5410066CE83 /* EQSlider.swift in Sources */,
 				3EFE38BB27864896006F8B8C /* PitchShiftUnitDelegate.swift in Sources */,
 				3E6C12C425CEBE6700BF0D07 /* EQUnitView.swift in Sources */,
+				3E3BCFFB2AF1DC0300FD893A /* GeneralSoundPreferencesViewController.swift in Sources */,
 				3E6C12BF25CEBE6700BF0D07 /* EQUnitViewController.swift in Sources */,
 				3EFE39C727864897006F8B8C /* GroupingPlaylistPersistentState.swift in Sources */,
 				3EA89D972699F0240021CDB9 /* EventMonitor.swift in Sources */,
@@ -7094,6 +7125,7 @@
 				3E8FF9E227F63E30009CEDDD /* PlayQueueTracksAddedNotifications.swift in Sources */,
 				3EFE386327864896006F8B8C /* FilterUnitProtocol.swift in Sources */,
 				3EEC041D2687AAAD004478CE /* WindowedModePlayerAudioViewController.swift in Sources */,
+				3E3BD0002AF1DDDB00FD893A /* SoundAdjustmentPreferencesViewController.swift in Sources */,
 				3E10178B28D7713B002C0D8E /* FFmpegErrors.swift in Sources */,
 				3EFE39EB27864898006F8B8C /* FavoritePersistentState.swift in Sources */,
 				3E495B8728105BAD00D4766A /* EnqueueAndPlayNowCommand.swift in Sources */,

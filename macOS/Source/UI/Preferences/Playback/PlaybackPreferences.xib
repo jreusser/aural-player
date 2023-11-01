@@ -45,7 +45,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="On app startup (if at least 1 track available)" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="jXy-KE-2ZN">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                     </buttonCell>
                 </button>
                 <button toolTip="What is this ?" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pLg-Zx-z1o" userLabel="Info - Seek length primary">
@@ -80,7 +80,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="After adding tracks, play first added track" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="5Kd-qp-PiC">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="autoplayAfterAddingAction:" target="-2" id="BJ7-8q-qYW"/>
@@ -100,7 +100,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="For individual tracks that I apply this option to (Playback menu)" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="hzV-ZU-muz">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="rememberLastPositionRadioButtonAction:" target="-2" id="vw2-qW-dzS"/>
@@ -120,7 +120,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="Constant" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="ugR-d0-Khh">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="secondarySeekLengthRadioButtonAction:" target="-2" id="mLg-Ad-g49"/>
@@ -131,7 +131,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="For all tracks" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="Jw4-k0-1Eu">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="rememberLastPositionRadioButtonAction:" target="-2" id="raM-sC-lgC"/>
@@ -145,7 +145,7 @@
                             <real key="minimum" value="3"/>
                             <real key="maximum" value="30"/>
                         </numberFormatter>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                         <color key="textColor" white="0.70467122400000004" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -155,7 +155,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="Always" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="B13-O8-QKf">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="autoplayAfterAddingRadioButtonAction:" target="-2" id="eg1-OH-HV7"/>
@@ -175,7 +175,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="If no track is currently playing" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="fim-2o-tXZ">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="autoplayAfterAddingRadioButtonAction:" target="-2" id="50Q-NE-F1L"/>
@@ -197,7 +197,7 @@
                             <real key="minimum" value="3"/>
                             <real key="maximum" value="30"/>
                         </numberFormatter>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                         <color key="textColor" white="0.70467122400000004" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -216,7 +216,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="% of track duration" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="BnS-LI-CQ0">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="secondarySeekLengthRadioButtonAction:" target="-2" id="bbh-IU-bTR"/>
@@ -227,7 +227,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="Constant" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="J9V-g3-Kko">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="primarySeekLengthRadioButtonAction:" target="-2" id="TWY-Ai-UQ5"/>
@@ -241,7 +241,7 @@
                             <real key="minimum" value="3"/>
                             <real key="maximum" value="300"/>
                         </numberFormatter>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                         <color key="textColor" white="0.70467122400000004" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -267,7 +267,7 @@
                             <real key="minimum" value="3"/>
                             <real key="maximum" value="300"/>
                         </numberFormatter>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                         <color key="textColor" white="0.70467122400000004" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -293,7 +293,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="% of track duration" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="LeU-LN-XSF">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="primarySeekLengthRadioButtonAction:" target="-2" id="RTn-Dl-4G0"/>
@@ -304,7 +304,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="After opening tracks with &quot;Open With&quot; (or double-click), play first opened track" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="dCl-cX-3hy">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="autoplayAfterOpeningAction:" target="-2" id="Wnw-EI-yMs"/>
@@ -315,7 +315,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="Always" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="7wi-vx-hNk">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="autoplayAfterOpeningRadioButtonAction:" target="-2" id="eC1-57-8Rh"/>
@@ -326,7 +326,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="If no track is currently playing" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="YaO-su-d70">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="11" name="Play-Regular"/>
+                        <font key="font" size="13" name="Play-Regular"/>
                     </buttonCell>
                     <connections>
                         <action selector="autoplayAfterOpeningRadioButtonAction:" target="-2" id="9Nd-cu-88R"/>

@@ -38,20 +38,20 @@ class GesturesPreferencesViewController: NSViewController, PreferencesViewProtoc
     
     func resetFields() {
         
-        let controlsPrefs = preferences.controlsPreferences.gestures
-        
-        btnAllowVolumeControl.onIf(controlsPrefs.allowVolumeControl)
-        volumeControlSensitivityMenu.enableIf(btnAllowVolumeControl.isOn)
-        volumeControlSensitivityMenu.selectItem(withTitle: controlsPrefs.volumeControlSensitivity.rawValue.capitalized)
-        
-        btnAllowSeeking.onIf(controlsPrefs.allowSeeking)
-        seekSensitivityMenu.enableIf(btnAllowSeeking.isOn)
-        seekSensitivityMenu.selectItem(withTitle: controlsPrefs.seekSensitivity.rawValue.capitalized)
-        
-        btnAllowTrackChange.onIf(controlsPrefs.allowTrackChange)
-        
-        btnAllowPlaylistNavigation.onIf(controlsPrefs.allowPlaylistNavigation)
-        btnAllowPlaylistTabToggle.onIf(controlsPrefs.allowPlaylistTabToggle)
+//        let controlsPrefs = preferences.controlsPreferences.gestures
+//        
+//        btnAllowVolumeControl.onIf(controlsPrefs.allowVolumeControl)
+//        volumeControlSensitivityMenu.enableIf(btnAllowVolumeControl.isOn)
+//        volumeControlSensitivityMenu.selectItem(withTitle: controlsPrefs.volumeControlSensitivity.rawValue.capitalized)
+//        
+//        btnAllowSeeking.onIf(controlsPrefs.allowSeeking)
+//        seekSensitivityMenu.enableIf(btnAllowSeeking.isOn)
+//        seekSensitivityMenu.selectItem(withTitle: controlsPrefs.seekSensitivity.rawValue.capitalized)
+//        
+//        btnAllowTrackChange.onIf(controlsPrefs.allowTrackChange)
+//        
+//        btnAllowPlaylistNavigation.onIf(controlsPrefs.allowPlaylistNavigation)
+//        btnAllowPlaylistTabToggle.onIf(controlsPrefs.allowPlaylistTabToggle)
     }
 
     @IBAction func allowVolumeControlAction(_ sender: Any) {
