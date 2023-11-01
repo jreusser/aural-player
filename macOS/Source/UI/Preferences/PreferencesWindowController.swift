@@ -19,7 +19,7 @@ class PreferencesWindowController: NSWindowController, ModalDialogDelegate {
     
     // Sub views
     
-    private let playlistPrefsView: PreferencesViewProtocol = PlaylistPreferencesViewController()
+    private let playQueuePrefsView: PreferencesViewProtocol = PlayQueuePreferencesViewController()
     private let playbackPrefsView: PreferencesViewProtocol = PlaybackPreferencesViewController()
     private let soundPrefsView: PreferencesViewProtocol = SoundPreferencesViewController()
     private let viewPrefsView: PreferencesViewProtocol = ViewPreferencesViewController()
@@ -37,7 +37,7 @@ class PreferencesWindowController: NSWindowController, ModalDialogDelegate {
         
         super.windowDidLoad()
         
-        subViews = [playlistPrefsView, playbackPrefsView, soundPrefsView, viewPrefsView, historyPrefsView, controlsPrefsView, metadataPrefsView]
+        subViews = [playQueuePrefsView, playbackPrefsView, soundPrefsView, viewPrefsView, historyPrefsView, controlsPrefsView, metadataPrefsView]
         
         for (index, viewController) in subViews.enumerated() {
             tabView.tabViewItem(at: index).view?.addSubview(viewController.preferencesView)
@@ -69,7 +69,7 @@ class PreferencesWindowController: NSWindowController, ModalDialogDelegate {
     }
     
     private func resetPreferencesFields() {
-        subViews.forEach {$0.resetFields(preferences)}
+        subViews.forEach {$0.resetFields()}
     }
     
     // --------------------------------------------------------------------------------
@@ -96,7 +96,7 @@ class PreferencesWindowController: NSWindowController, ModalDialogDelegate {
             
             do {
                 
-                try view.save(preferences)
+                try view.save()
                 
             } catch {
                 
@@ -112,6 +112,8 @@ class PreferencesWindowController: NSWindowController, ModalDialogDelegate {
         if !saveFailed {
             
 //            preferences.persist()
+            userDefaults.synchronize()
+            
             modalDialogResponse = .ok
             theWindow.close()
         }
@@ -128,8 +130,8 @@ protocol PreferencesViewProtocol {
     
     var preferencesView: NSView {get}
     
-    func resetFields(_ preferences: Preferences)
+    func resetFields()
     
     // Throws an exception if the input provided is invalid
-    func save(_ preferences: Preferences) throws
+    func save() throws
 }

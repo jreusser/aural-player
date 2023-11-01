@@ -129,6 +129,17 @@ Gw
                             <action selector="nextTabAction:" target="-2" id="F8a-W0-sEr"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oyV-Tw-wt7" userLabel="Save button">
+                        <rect key="frame" x="12" y="3" width="138" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Reset to defaults" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gf2-bf-ORi">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="savePreferencesAction:" target="-2" id="JEC-Sn-j4n"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <toolbar key="toolbar" implicitIdentifier="B5AF642E-BCD1-4D4C-979F-5414ED6139A4" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="sOD-ln-7jl">

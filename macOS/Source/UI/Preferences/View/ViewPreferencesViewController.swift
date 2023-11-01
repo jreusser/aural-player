@@ -40,7 +40,7 @@ class ViewPreferencesViewController: NSViewController, PreferencesViewProtocol {
         controlBarAppModeMenuItem.representedObject = AppMode.controlBar
     }
     
-    func resetFields(_ preferences: Preferences) {
+    func resetFields() {
         
         let viewPrefs = preferences.viewPreferences
         
@@ -132,28 +132,28 @@ class ViewPreferencesViewController: NSViewController, PreferencesViewProtocol {
         lblWindowGap.stringValue = ValueFormatter.formatPixels(gapStepper.floatValue)
     }
 
-    func save(_ preferences: Preferences) throws {
+    func save() throws {
         
-        let viewPrefs = preferences.viewPreferences
-        
-        viewPrefs.appModeOnStartup.option = btnStartWithAppMode.isOn ? .specific : .rememberFromLastAppLaunch
-        viewPrefs.appModeOnStartup.modeName = (appModeMenu.selectedItem?.representedObject as? AppMode)?.rawValue ?? AppMode.defaultMode.rawValue
-        
-        viewPrefs.layoutOnStartup.option = btnStartWithLayout.isOn ? .specific : .rememberFromLastAppLaunch
-        viewPrefs.layoutOnStartup.layoutName = layoutMenu.selectedItem!.title
-        
-        viewPrefs.snapToWindows = btnSnapToWindows.isOn
-        
-        let oldWindowGap = viewPrefs.windowGap
-        viewPrefs.windowGap = gapStepper.floatValue
-        
-        // Check if window gap was changed
-        if viewPrefs.windowGap != oldWindowGap {
-            
-            // Recompute system-defined layouts based on new gap between windows
-            windowLayoutsManager.recomputeSystemDefinedLayouts()
-        }
-        
-        viewPrefs.snapToScreen = btnSnapToScreen.isOn
+//        let viewPrefs = preferences.viewPreferences
+//        
+//        viewPrefs.appModeOnStartup.option = btnStartWithAppMode.isOn ? .specific : .rememberFromLastAppLaunch
+//        viewPrefs.appModeOnStartup.modeName = (appModeMenu.selectedItem?.representedObject as? AppMode)?.rawValue ?? AppMode.defaultMode.rawValue
+//        
+//        viewPrefs.layoutOnStartup.option = btnStartWithLayout.isOn ? .specific : .rememberFromLastAppLaunch
+//        viewPrefs.layoutOnStartup.layoutName = layoutMenu.selectedItem!.title
+//        
+//        viewPrefs.snapToWindows = btnSnapToWindows.isOn
+//        
+//        let oldWindowGap = viewPrefs.windowGap
+//        viewPrefs.windowGap = gapStepper.floatValue
+//        
+//        // Check if window gap was changed
+//        if viewPrefs.windowGap != oldWindowGap {
+//            
+//            // Recompute system-defined layouts based on new gap between windows
+//            windowLayoutsManager.recomputeSystemDefinedLayouts()
+//        }
+//        
+//        viewPrefs.snapToScreen = btnSnapToScreen.isOn
     }
 }

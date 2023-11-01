@@ -42,14 +42,14 @@ class ControlsPreferencesViewController: NSViewController, PreferencesViewProtoc
         return self.view
     }
     
-    func resetFields(_ preferences: Preferences) {
-        subViews.forEach {$0.resetFields(preferences)}
+    func resetFields() {
+        subViews.forEach {$0.resetFields()}
     }
     
-    func save(_ preferences: Preferences) throws {
+    func save() throws {
         
-        for subView in subViews {
-            try subView.save(preferences)
-        }
+//        for subView in subViews {
+//            try subView.save()
+//        }
     }
 }

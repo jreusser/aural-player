@@ -20,7 +20,7 @@ class HistoryPreferencesViewController: NSViewController, PreferencesViewProtoco
         return self.view
     }
     
-    func resetFields(_ preferences: Preferences) {
+    func resetFields() {
         
         let historyPrefs = preferences.historyPreferences
         
@@ -35,13 +35,13 @@ class HistoryPreferencesViewController: NSViewController, PreferencesViewProtoco
         list.selectItem(withTag: tag)
     }
     
-    func save(_ preferences: Preferences) throws {
+    func save() throws {
         
-        let historyPrefs = preferences.historyPreferences
-        
-        historyPrefs.recentlyAddedListSize = recentlyAddedListSizeMenu.selectedTag()
-        historyPrefs.recentlyPlayedListSize = recentlyPlayedListSizeMenu.selectedTag()
-        
-        historyDelegate.resizeLists(historyPrefs.recentlyAddedListSize, historyPrefs.recentlyPlayedListSize)
+//        let historyPrefs = preferences.historyPreferences
+//        
+//        historyPrefs.recentlyAddedListSize = recentlyAddedListSizeMenu.selectedTag()
+//        historyPrefs.recentlyPlayedListSize = recentlyPlayedListSizeMenu.selectedTag()
+//        
+//        historyDelegate.resizeLists(historyPrefs.recentlyAddedListSize, historyPrefs.recentlyPlayedListSize)
     }
 }

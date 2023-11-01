@@ -36,7 +36,7 @@ class GesturesPreferencesViewController: NSViewController, PreferencesViewProtoc
         return self.view
     }
     
-    func resetFields(_ preferences: Preferences) {
+    func resetFields() {
         
         let controlsPrefs = preferences.controlsPreferences.gestures
         
@@ -72,7 +72,7 @@ class GesturesPreferencesViewController: NSViewController, PreferencesViewProtoc
         [volumeControlSensitivityMenu, seekSensitivityMenu].forEach {$0.disable()}
     }
     
-    func save(_ preferences: Preferences) throws {
+    func save() throws {
         
         let controlsPrefs = preferences.controlsPreferences.gestures
         

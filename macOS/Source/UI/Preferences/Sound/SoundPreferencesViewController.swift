@@ -53,7 +53,7 @@ class SoundPreferencesViewController: NSViewController, PreferencesViewProtocol 
         return self.view
     }
     
-    func resetFields(_ preferences: Preferences) {
+    func resetFields() {
         
         let soundPrefs = preferences.soundPreferences
         
@@ -216,47 +216,47 @@ class SoundPreferencesViewController: NSViewController, PreferencesViewProtocol 
         // Needed for radio button group
     }
     
-    func save(_ preferences: Preferences) throws {
+    func save() throws {
         
-        let soundPrefs = preferences.soundPreferences
-        
-        if (btnSystemDeviceOnStartup.isOn) {
-            soundPrefs.outputDeviceOnStartup.option = .system
-        } else if (btnRememberDeviceOnStartup.isOn) {
-            soundPrefs.outputDeviceOnStartup.option = .rememberFromLastAppLaunch
-        } else {
-            soundPrefs.outputDeviceOnStartup.option = .specific
-        }
-        
-        if let prefDevice: PreferredDevice = preferredDevicesMenu.selectedItem?.representedObject as? PreferredDevice {
-            soundPrefs.outputDeviceOnStartup.preferredDeviceName = prefDevice.name
-            soundPrefs.outputDeviceOnStartup.preferredDeviceUID = prefDevice.uid
-        }
-        
-        soundPrefs.volumeDelta = volumeDeltaStepper.floatValue * ValueConversions.volume_UIToAudioGraph
-        
-        soundPrefs.volumeOnStartupOption = btnRememberVolume.isOn ? .rememberFromLastAppLaunch : .specific
-        soundPrefs.startupVolumeValue = Float(startupVolumeSlider.integerValue) * ValueConversions.volume_UIToAudioGraph
-        
-        soundPrefs.panDelta = panDeltaStepper.floatValue * ValueConversions.pan_UIToAudioGraph
-        
-        soundPrefs.eqDelta = eqDeltaStepper.floatValue
-        soundPrefs.pitchDelta = pitchDeltaStepper.integerValue
-        soundPrefs.timeDelta = timeDeltaStepper.floatValue
-        
-        soundPrefs.effectsSettingsOnStartupOption = btnRememberEffectsOnStartup.isOn ? .rememberFromLastAppLaunch : .applyMasterPreset
-        
-        soundPrefs.masterPresetOnStartup_name = masterPresetsMenu.titleOfSelectedItem ?? ""
-        
-        let wasAllTracks: Bool = soundPrefs.rememberEffectsSettingsOption == .allTracks
-        
-        soundPrefs.rememberEffectsSettingsOption = btnRememberSettings_individualTracks.isOn ? .individualTracks : .allTracks
-        
-        let isNowIndividualTracks: Bool = soundPrefs.rememberEffectsSettingsOption == .individualTracks
-        
-        if wasAllTracks && isNowIndividualTracks {
-            soundProfiles.removeAll()
-        }
+//        let soundPrefs = preferences.soundPreferences
+//        
+//        if (btnSystemDeviceOnStartup.isOn) {
+//            soundPrefs.outputDeviceOnStartup.option = .system
+//        } else if (btnRememberDeviceOnStartup.isOn) {
+//            soundPrefs.outputDeviceOnStartup.option = .rememberFromLastAppLaunch
+//        } else {
+//            soundPrefs.outputDeviceOnStartup.option = .specific
+//        }
+//        
+//        if let prefDevice: PreferredDevice = preferredDevicesMenu.selectedItem?.representedObject as? PreferredDevice {
+//            soundPrefs.outputDeviceOnStartup.preferredDeviceName = prefDevice.name
+//            soundPrefs.outputDeviceOnStartup.preferredDeviceUID = prefDevice.uid
+//        }
+//        
+//        soundPrefs.volumeDelta = volumeDeltaStepper.floatValue * ValueConversions.volume_UIToAudioGraph
+//        
+//        soundPrefs.volumeOnStartupOption = btnRememberVolume.isOn ? .rememberFromLastAppLaunch : .specific
+//        soundPrefs.startupVolumeValue = Float(startupVolumeSlider.integerValue) * ValueConversions.volume_UIToAudioGraph
+//        
+//        soundPrefs.panDelta = panDeltaStepper.floatValue * ValueConversions.pan_UIToAudioGraph
+//        
+//        soundPrefs.eqDelta = eqDeltaStepper.floatValue
+//        soundPrefs.pitchDelta = pitchDeltaStepper.integerValue
+//        soundPrefs.timeDelta = timeDeltaStepper.floatValue
+//        
+//        soundPrefs.effectsSettingsOnStartupOption = btnRememberEffectsOnStartup.isOn ? .rememberFromLastAppLaunch : .applyMasterPreset
+//        
+//        soundPrefs.masterPresetOnStartup_name = masterPresetsMenu.titleOfSelectedItem ?? ""
+//        
+//        let wasAllTracks: Bool = soundPrefs.rememberEffectsSettingsOption == .allTracks
+//        
+//        soundPrefs.rememberEffectsSettingsOption = btnRememberSettings_individualTracks.isOn ? .individualTracks : .allTracks
+//        
+//        let isNowIndividualTracks: Bool = soundPrefs.rememberEffectsSettingsOption == .individualTracks
+//        
+//        if wasAllTracks && isNowIndividualTracks {
+//            soundProfiles.removeAll()
+//        }
     }
 }
 

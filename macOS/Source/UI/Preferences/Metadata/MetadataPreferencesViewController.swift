@@ -25,7 +25,7 @@ class MetadataPreferencesViewController: NSViewController, PreferencesViewProtoc
         return self.view
     }
     
-    func resetFields(_ preferences: Preferences) {
+    func resetFields() {
         
         let musicBrainzPrefs = preferences.metadataPreferences.musicBrainz
         
@@ -48,7 +48,7 @@ class MetadataPreferencesViewController: NSViewController, PreferencesViewProtoc
     // Needed for radio button group
     @IBAction func musicBrainzOnDiskCacheCoverArtAction(_ sender: NSButton) {}
     
-    func save(_ preferences: Preferences) throws {
+    func save() throws {
         
         let prefs: MusicBrainzPreferences = preferences.metadataPreferences.musicBrainz
         

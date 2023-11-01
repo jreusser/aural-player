@@ -31,7 +31,7 @@ class RemoteControlPreferencesViewController: NSViewController, PreferencesViewP
         return self.view
     }
     
-    func resetFields(_ preferences: Preferences) {
+    func resetFields() {
         
         let controlsPrefs = preferences.controlsPreferences.remoteControl
         
@@ -44,7 +44,7 @@ class RemoteControlPreferencesViewController: NSViewController, PreferencesViewP
         // Needed for radio button group.
     }
     
-    func save(_ preferences: Preferences) throws {
+    func save() throws {
         
         let controlsPrefs = preferences.controlsPreferences.remoteControl
         
