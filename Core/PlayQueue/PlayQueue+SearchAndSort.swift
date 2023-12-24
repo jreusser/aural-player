@@ -12,39 +12,49 @@ import Foundation
 
 extension PlayQueue {
     
-//    func search(_ searchQuery: SearchQuery) -> SearchResults {
-//
-////        return SearchResults(tracks.compactMap {executeQuery($0, searchQuery)}.map {
-////
-////            SearchResult(location: SearchResultLocation(trackIndex: -1, track: $0.track),
-////                         match: ($0.matchedField, $0.matchedFieldValue))
-////        })
-//        SearchResults([])
-//    }
-
-    private func executeQuery(_ track: Track, _ query: SearchQuery) -> [Track] {
+    func executeQuery(index: Int, track: Track, _ query: SearchQuery) -> SearchResult? {
 
         // Check both the filename and the display name
-//        if query.fields.name {
-//
-////            let filename = track.fileSystemInfo.fileName
-////            if query.compare(filename) {
-////                return SearchQueryMatch(track: track, matchedField: "filename", matchedFieldValue: filename)
-////            }
-//
-//            let displayName = track.defaultDisplayName
-//            if query.compare(displayName) {
-//                return SearchQueryMatch(track: track, matchedField: "name", matchedFieldValue: displayName)
-//            }
-//        }
-//
-//        // Compare title field if included in search
-//        if query.fields.title, let theTitle = track.title, query.compare(theTitle) {
-//            return SearchQueryMatch(track: track, matchedField: "title", matchedFieldValue: theTitle)
-//        }
+        if query.fields.contains(.name) {
+            
+            let displayName = track.displayName
+            if query.compare(displayName) {
+                
+                return SearchResult(location: PlayQueueSearchResultLocation(scope: .playQueue, track: track, index: index),
+                                    match: SearchResultMatch(fieldKey: "name", fieldValue: displayName))
+            }
+            
+            let filename = track.fileSystemInfo.fileName
+            if query.compare(filename) {
 
+                return SearchResult(location: PlayQueueSearchResultLocation(scope: .playQueue, track: track, index: index),
+                                    match: SearchResultMatch(fieldKey: "filename", fieldValue: filename))
+            }
+        }
+        
+        // Compare title field if included in search
+        if query.fields.contains(.title), let title = track.title, query.compare(title) {
+
+            return SearchResult(location: PlayQueueSearchResultLocation(scope: .playQueue, track: track, index: index),
+                                match: SearchResultMatch(fieldKey: "title", fieldValue: title))
+        }
+        
+        // Compare artist field if included in search
+        if query.fields.contains(.artist), let artist = track.artist, query.compare(artist) {
+
+            return SearchResult(location: PlayQueueSearchResultLocation(scope: .playQueue, track: track, index: index),
+                                match: SearchResultMatch(fieldKey: "artist", fieldValue: artist))
+        }
+        
+        // Compare album field if included in search
+        if query.fields.contains(.album), let album = track.album, query.compare(album) {
+
+            return SearchResult(location: PlayQueueSearchResultLocation(scope: .playQueue, track: track, index: index),
+                                match: SearchResultMatch(fieldKey: "album", fieldValue: album))
+        }
+        
         // Didn't match
-        return []
+        return nil
     }
 
 //    func sort(_ sort: Sort) -> SortResults {

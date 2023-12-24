@@ -148,6 +148,7 @@ class Track: Hashable, PlaylistItem, PlayableItem {
     
     func setAuxiliaryMetadata(_ metadata: AuxiliaryMetadata) {
         
+//        self.auxiliaryMetadata = metadata
         self.audioInfo = metadata.audioInfo
         self.auxMetadataLoaded = true
     }

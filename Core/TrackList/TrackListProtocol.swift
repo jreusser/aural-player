@@ -37,7 +37,7 @@ protocol AbstractTrackListProtocol {
     
     var summary: (size: Int, totalDuration: Double) {get}
     
-//    func search(_ searchQuery: SearchQuery) -> SearchResults
+    func search(_ searchQuery: SearchQuery) -> SearchResults
     
     // MARK: Add and remove ------------------------------------------------------------------------
     

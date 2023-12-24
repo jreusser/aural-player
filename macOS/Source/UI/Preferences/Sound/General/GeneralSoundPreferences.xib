@@ -31,7 +31,7 @@
                     </popUpButtonCell>
                 </popUpButton>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xM4-NR-MZG" customClass="DialogCheckRadioButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="30" y="346" width="195" height="16"/>
+                    <rect key="frame" x="30" y="346" width="271" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="radio" title="Use preferred device (if available)" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="H7R-LS-quc">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

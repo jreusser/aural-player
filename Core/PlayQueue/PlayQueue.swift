@@ -24,7 +24,11 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
     private lazy var loader: TrackLoader = TrackLoader(priority: .highest, qOS: .userInteractive)
     
     private lazy var messenger = Messenger(for: self)
-
+    
+    override func search(_ searchQuery: SearchQuery) -> SearchResults {
+        SearchResults(scope: .playQueue, tracks.enumerated().compactMap {executeQuery(index: $0, track: $1, searchQuery)})
+    }
+    
     // MARK: Mutator functions ------------------------------------------------------------------------
     
     private var autoplay: AtomicBool = AtomicBool(value: false)

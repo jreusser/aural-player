@@ -208,7 +208,7 @@ class ParserUtils {
             return validYearRange.contains(year) ? year : nil
         }
         
-        if yearString.matches(mmddyyRegex) {
+        if yearString.matches(regex: mmddyyRegex) {
             
             let tokens = yearString.split(separator: "-")
             if tokens.count == 3, let year = Int(tokens[2]) {
@@ -285,7 +285,7 @@ class ParserUtils {
             return durationSecs > 0 ? durationSecs : nil
         }
         
-        if durString.matches(hmsRegex) {
+        if durString.matches(regex: hmsRegex) {
             
             let tokens = durString.split(separator: ":")
             if tokens.count == 3, let hours = Double(tokens[0]), let mins = Double(tokens[1]), let secs = Double(tokens[2]) {

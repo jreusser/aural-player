@@ -77,9 +77,9 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         playQueue[indices]
     }
 
-//    func search(_ searchQuery: SearchQuery) -> SearchResults {
-//        return playQueue.search(searchQuery)
-//    }
+    func search(_ searchQuery: SearchQuery) -> SearchResults {
+        playQueue.search(searchQuery)
+    }
     
     func loadTracks(from files: [URL], atPosition position: Int? = nil) {
         playQueue.loadTracks(from: files, atPosition: position)

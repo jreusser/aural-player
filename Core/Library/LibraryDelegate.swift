@@ -83,6 +83,10 @@ class LibraryDelegate: LibraryDelegateProtocol {
         library.loadTracks(from: files, atPosition: position)
     }
     
+    func search(_ searchQuery: SearchQuery) -> SearchResults {
+        SearchResults(scope: .library, [])
+    }
+    
     func addTracks(_ newTracks: [Track]) -> IndexSet {
         
         let indices = library.addTracks(newTracks)

@@ -8,14 +8,25 @@
 //  See the file "LICENSE" in the project root directory for license terms.
 //  
 
-/////
-///// Encapsulates information used to locate a single search result within a playlist view.
-/////
-//struct SearchResultLocation: Equatable {
-//    
-//    // The track whose location is being described.
-//    let track: Track
-//    
+///
+/// Encapsulates information used to locate a single search result within a playlist view.
+///
+class SearchResultLocation: Equatable {
+    
+    let scope: SearchScope
+    
+    // The track whose location is being described.
+    var track: Track
+    
+    fileprivate init(scope: SearchScope, track: Track) {
+        self.scope = scope
+        self.track = track
+    }
+    
+    static func == (lhs: SearchResultLocation, rhs: SearchResultLocation) -> Bool {
+        lhs.scope == rhs.scope && lhs.track == rhs.track
+    }
+    
 //    // Only for flat playlists.
 //    var trackIndex: Int?
 //    
@@ -26,4 +37,15 @@
 //    public static func ==(lhs: SearchResultLocation, rhs: SearchResultLocation) -> Bool {
 //        return lhs.track == rhs.track
 //    }
-//}
+}
+
+class PlayQueueSearchResultLocation: SearchResultLocation {
+    
+    let index: Int
+    
+    init(scope: SearchScope, track: Track, index: Int) {
+        
+        self.index = index
+        super.init(scope: scope, track: track)
+    }
+}

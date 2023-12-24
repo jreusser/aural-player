@@ -187,11 +187,11 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
         _tracks.dragAndDropItems(sourceIndices, dropIndex).map {TrackMoveResult($0.key, $0.value)}
     }
     
-//    // TODO:
-//    func search(_ searchQuery: SearchQuery) -> SearchResults {
-//        SearchResults([])
-//    }
-//
+    // TODO:
+    func search(_ searchQuery: SearchQuery) -> SearchResults {
+        SearchResults(scope: .all, [])
+    }
+
     func sort(_ sort: TrackListSort) {
         
         _tracks.sort(by: {m1, m2 in

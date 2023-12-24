@@ -11,17 +11,19 @@
 ///
 /// An enumeration of different types of text comparison when performing a playlist search.
 ///
-enum SearchType {
+enum SearchType: String {
     
     // Will return results for which field values contain, as a substring, the search query text
-    case contains
+    case contains = "Contains"
     
     // Will return results for which field values begin with the search query text
-    case beginsWith
+    case beginsWith = "Begins With"
     
     // Will return results for which field values end with the search query text
-    case endsWith
+    case endsWith = "Ends With"
     
     // Will return results for which field values exactly match the search query text
-    case equals
+    case equals = "Equals"
+    
+    case matchesRegex = "Matches Regex"
 }

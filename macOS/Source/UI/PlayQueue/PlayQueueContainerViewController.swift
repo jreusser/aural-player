@@ -38,6 +38,8 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
     @IBOutlet weak var expandedViewController: PlayQueueExpandedViewController!
     lazy var controllers: [PlayQueueViewController] = [simpleViewController, expandedViewController]
     
+    lazy var searchWindowController: SearchWindowController = .shared
+    
     lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
     
     lazy var alertDialog: AlertWindowController = .instance

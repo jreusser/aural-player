@@ -247,7 +247,7 @@ extension String {
         return score
     }
     
-    func matches(_ regex: String) -> Bool {
+    func matches(regex: String) -> Bool {
         return self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
     }
     

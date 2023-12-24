@@ -15,6 +15,7 @@ import Foundation
 class SearchQuery {
     
     var text: String = ""
+    var scope: SearchScope = .playQueue
     var type: SearchType = .contains
     var fields: SearchFields = .all
     var options: SearchOptions = .none
@@ -41,6 +42,8 @@ class SearchQuery {
         case .equals: return compared == queryText
             
         case .contains: return compared.contains(queryText)
+            
+        case .matchesRegex: return compared.matches(regex: queryText)
             
         }
     }
