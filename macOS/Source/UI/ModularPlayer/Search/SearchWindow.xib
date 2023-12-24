@@ -16,20 +16,23 @@
         <window identifier="search" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingIdentifier="playQueue" titleVisibility="hidden" id="lHb-bS-FWN" customClass="SnappingWindow" customModule="Aural" customModuleProvider="target">
             <windowStyleMask key="styleMask" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="277"/>
+            <rect key="contentRect" x="196" y="240" width="500" height="330"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
-            <value key="minSize" type="size" width="480" height="200"/>
+            <value key="minSize" type="size" width="500" height="330"/>
             <view key="contentView" wantsLayer="YES" id="AgQ-Ve-PlR">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="277"/>
+                <rect key="frame" x="0.0" y="0.0" width="500" height="330"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <button toolTip="Hide the effects panel" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qay-w3-I5h" userLabel="Quit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="10" y="252.5" width="13.5" height="10"/>
+                        <rect key="frame" x="10" y="305.5" width="13.5" height="10"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="hGs-Ca-QW4">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="closeActionWithSender:" target="-2" id="F5X-mx-3MQ"/>
+                        </connections>
                     </button>
                 </subviews>
                 <userDefinedRuntimeAttributes>

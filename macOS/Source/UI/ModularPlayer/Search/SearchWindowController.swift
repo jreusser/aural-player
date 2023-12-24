@@ -28,4 +28,8 @@ class SearchWindowController: NSWindowController {
         
         theWindow.center()
     }
+    
+    @IBAction func closeAction(sender: NSButton) {
+        close()
+    }
 }

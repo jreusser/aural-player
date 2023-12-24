@@ -16,13 +16,12 @@ class SearchViewController: NSViewController {
     
     @IBOutlet weak var searchField: NSSearchField!
     
-    //    @IBOutlet weak var lblSummary: NSTextField!
     //    @IBOutlet weak var lblMatchFieldName: NSTextField!
     //    @IBOutlet weak var lblMatchFieldValue: NSTextField!
-    //
-    //    @IBOutlet weak var btnNextSearch: NSButton!
-    //    @IBOutlet weak var btnPreviousSearch: NSButton!
-    //
+    
+    @IBOutlet weak var btnNextSearch: NSButton!
+    @IBOutlet weak var btnPreviousSearch: NSButton!
+    
     @IBOutlet weak var btnSearchByName: NSButton!
     @IBOutlet weak var btnSearchByArtist: NSButton!
     @IBOutlet weak var btnSearchByTitle: NSButton!
@@ -31,6 +30,8 @@ class SearchViewController: NSViewController {
     @IBOutlet weak var btnComparisonType: NSPopUpButton!
     
     @IBOutlet weak var btnSearchCaseSensitive: NSButton!
+    
+    @IBOutlet weak var lblSummary: NSTextField!
     
     private var searchQuery: SearchQuery = SearchQuery()
     
@@ -71,11 +72,15 @@ class SearchViewController: NSViewController {
             
             if !searchResults.hasResults {
                 
+                lblSummary.stringValue = "0 results"
                 print("No Results for Query: '\(searchQuery.text)'")
                 return
             }
             
+            NSView.showViews(btnPreviousSearch, btnNextSearch)
+            
             print("Results for Query: '\(searchQuery.text)' ...")
+            lblSummary.stringValue = "\(searchResults.count) \(searchResults.count == 1 ? "result" : "results") found in Play Queue"
             
             for (index, res) in searchResults.results.enumerated() {
                 print("\t\(index + 1): '\(res.location.track.displayName)' at: \((res.location as! PlayQueueSearchResultLocation).index)")
@@ -175,10 +180,8 @@ class SearchViewController: NSViewController {
     //        messenger.publish(SelectSearchResultCommandNotification(searchResult: searchResult,
     //                                                                viewSelector: uiState.currentViewSelector))
     //    }
-    //
-    //    @IBAction func searchDoneAction(_ sender: Any) {
-    //
-    //        modalDialogResponse = .ok
-    //        theWindow.close()
-    //    }
+    
+    @IBAction func searchDoneAction(_ sender: Any) {
+        view.window?.close()
+    }
 }
