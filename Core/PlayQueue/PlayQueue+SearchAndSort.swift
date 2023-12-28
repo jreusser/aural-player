@@ -21,14 +21,14 @@ extension PlayQueue {
             if query.compare(displayName) {
                 
                 return SearchResult(location: PlayQueueSearchResultLocation(scope: .playQueue, track: track, index: index),
-                                    match: SearchResultMatch(fieldKey: "name", fieldValue: displayName))
+                                    match: SearchResultMatch(fieldKey: "Name", fieldValue: displayName))
             }
             
             let filename = track.fileSystemInfo.fileName
             if query.compare(filename) {
 
                 return SearchResult(location: PlayQueueSearchResultLocation(scope: .playQueue, track: track, index: index),
-                                    match: SearchResultMatch(fieldKey: "filename", fieldValue: filename))
+                                    match: SearchResultMatch(fieldKey: "Filename", fieldValue: filename))
             }
         }
         
@@ -36,21 +36,21 @@ extension PlayQueue {
         if query.fields.contains(.title), let title = track.title, query.compare(title) {
 
             return SearchResult(location: PlayQueueSearchResultLocation(scope: .playQueue, track: track, index: index),
-                                match: SearchResultMatch(fieldKey: "title", fieldValue: title))
+                                match: SearchResultMatch(fieldKey: "Title", fieldValue: title))
         }
         
         // Compare artist field if included in search
         if query.fields.contains(.artist), let artist = track.artist, query.compare(artist) {
 
             return SearchResult(location: PlayQueueSearchResultLocation(scope: .playQueue, track: track, index: index),
-                                match: SearchResultMatch(fieldKey: "artist", fieldValue: artist))
+                                match: SearchResultMatch(fieldKey: "Artist", fieldValue: artist))
         }
         
         // Compare album field if included in search
         if query.fields.contains(.album), let album = track.album, query.compare(album) {
 
             return SearchResult(location: PlayQueueSearchResultLocation(scope: .playQueue, track: track, index: index),
-                                match: SearchResultMatch(fieldKey: "album", fieldValue: album))
+                                match: SearchResultMatch(fieldKey: "Album", fieldValue: album))
         }
         
         // Didn't match

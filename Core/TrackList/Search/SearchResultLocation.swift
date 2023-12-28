@@ -18,6 +18,10 @@ class SearchResultLocation: Equatable {
     // The track whose location is being described.
     var track: Track
     
+    var description: String {
+        ""
+    }
+    
     fileprivate init(scope: SearchScope, track: Track) {
         self.scope = scope
         self.track = track
@@ -47,5 +51,9 @@ class PlayQueueSearchResultLocation: SearchResultLocation {
         
         self.index = index
         super.init(scope: scope, track: track)
+    }
+    
+    override var description: String {
+        "Play Queue: #\(index + 1)"
     }
 }

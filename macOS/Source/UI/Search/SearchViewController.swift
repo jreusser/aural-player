@@ -32,11 +32,12 @@ class SearchViewController: NSViewController {
     @IBOutlet weak var btnSearchCaseSensitive: NSButton!
     
     @IBOutlet weak var lblSummary: NSTextField!
+    @IBOutlet weak var resultsTable: NSTableView!
     
     private var searchQuery: SearchQuery = SearchQuery()
     
     // Current search results
-    private var searchResults: SearchResults!
+    private(set) var searchResults: SearchResults!
     
     //    private var modalDialogResponse: ModalDialogResponse = .ok
     //
@@ -108,7 +109,9 @@ class SearchViewController: NSViewController {
     
     // If no fields to compare or no search text, don't do the search
     private func redoSearchIfPossible() {
+        
         searchQuery.queryPossible ? updateSearch() : noResultsFound()
+        resultsTable.reloadData()
     }
     
     @IBAction func searchTextChangeAction(_ sender: Any) {
