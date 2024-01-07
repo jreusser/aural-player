@@ -160,6 +160,6 @@ class Track: Hashable, PlaylistItem, PlayableItem {
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(file.path)
+        hasher.combine(file)
     }
 }

@@ -28,16 +28,16 @@ extension LibrarySidebarViewController: NSOutlineViewDelegate {
         
         if let category = item as? LibrarySidebarCategory {
             
-            return category == .playlists ?
-            createPlaylistCategoryCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image) :
-            createNameCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image)
+//            return category == .playlists ?
+//            createPlaylistCategoryCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image) :
+            return createNameCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image)
             
         } else if let sidebarItem = item as? LibrarySidebarItem {
             
-            if sidebarItem.browserTab == .playlists {
-                
-                return createPlaylistNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
-            }
+//            if sidebarItem.browserTab == .playlists {
+//                
+//                return createPlaylistNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
+//            }
             
             return createNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
         }
@@ -95,12 +95,7 @@ extension LibrarySidebarViewController: NSOutlineViewDelegate {
     }
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        
-        if let category = item as? LibrarySidebarCategory {
-            return category.equalsOneOf(.favorites, .bookmarks)
-        }
-        
-        return true
+        return !(item is LibrarySidebarCategory)
     }
     
     func outlineViewSelectionDidChange(_ notification: Notification) {

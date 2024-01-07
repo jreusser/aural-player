@@ -187,10 +187,7 @@ class LibraryWindowController: NSWindowController {
         
         let tab = item.browserTab
 
-        if tab == .playlists {
-            messenger.publish(.playlists_showPlaylist, payload: item.displayName)
-            
-        } else if tab == .fileSystem,
+        if tab == .fileSystem,
                   let folderURL = item.tuneBrowserURL {
                 
             tuneBrowserViewController.showURL(folderURL)

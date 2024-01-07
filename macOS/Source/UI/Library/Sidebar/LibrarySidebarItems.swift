@@ -22,36 +22,11 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         LibrarySidebarItem(displayName: "Playlist Files", browserTab: .libraryImportedPlaylists, image: .imgPlaylist)
     ]
     
-    private static let historyItems: [LibrarySidebarItem] = [
-        
-        LibrarySidebarItem(displayName: "Recently Played", browserTab: .historyRecentlyPlayed),
-        LibrarySidebarItem(displayName: "Most Played", browserTab: .historyMostPlayed),
-        LibrarySidebarItem(displayName: "Recently Added", browserTab: .historyRecentlyAdded)
-    ]
-    
     case library = "Library"
     case tuneBrowser = "File System"
-    case playlists = "Playlists"
-    case history = "History"
-    case favorites = "Favorites"
-    case bookmarks = "Bookmarks"
     
     var browserTab: LibraryBrowserTab {
-        
-        switch self {
-            
-        case .favorites:
-            
-            return .favorites
-            
-        case .bookmarks:
-            
-            return .favorites
-            
-        default:
-            
-            return .libraryTracks
-        }
+        return .libraryTracks
     }
     
     var description: String {rawValue}
@@ -67,18 +42,6 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         case .tuneBrowser:
             
             return tuneBrowserUIState.sidebarUserFolders.count + 1
-            
-        case .playlists:
-            
-            return playlistsManager.numberOfUserDefinedObjects
-            
-        case .history:
-            
-            return Self.historyItems.count
-            
-        case .favorites, .bookmarks:
-            
-            return 0
         }
     }
     
@@ -96,22 +59,6 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
             tuneBrowserUIState.sidebarUserFolders.values.map {
                 LibrarySidebarItem(displayName: $0.url.lastPathComponent, browserTab: .fileSystem, tuneBrowserURL: $0.url)
             }
-            
-        case .playlists:
-            
-            return playlistsManager.playlistNames.map {LibrarySidebarItem(displayName: $0, browserTab: .playlists)}
-            
-        case .history:
-            
-            return Self.historyItems
-            
-        case .favorites:
-            
-            return []
-            
-        case .bookmarks:
-            
-            return []
         }
     }
     
@@ -126,22 +73,6 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         case .tuneBrowser:
             
             return .imgFileSystem
-            
-        case .playlists:
-            
-            return .imgPlaylist
-            
-        case .history:
-            
-            return .imgHistory
-            
-        case .favorites:
-            
-            return .imgFavorite
-            
-        case .bookmarks:
-            
-            return .imgBookmark
         }
     }
 }
@@ -170,11 +101,5 @@ enum LibraryBrowserTab: Int {
          libraryGenres = 3,
          libraryDecades = 4,
          libraryImportedPlaylists = 5,
-         fileSystem = 6,
-         playlists = 7,
-         historyRecentlyPlayed = 8,
-         historyMostPlayed = 9,
-         historyRecentlyAdded = 10,
-         favorites = 11,
-         bookmarks = 12
+         fileSystem = 6
 }

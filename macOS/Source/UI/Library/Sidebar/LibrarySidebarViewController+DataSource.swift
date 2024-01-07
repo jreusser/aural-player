@@ -44,7 +44,7 @@ extension LibrarySidebarViewController: NSOutlineViewDataSource {
         guard let sidebarItems = items as? [LibrarySidebarItem] else {return false}
         
         // We can only copy file system folders and playlists.
-        let filteredItems = sidebarItems.filter {$0.browserTab.equalsOneOf(.fileSystem, .playlists)}
+        let filteredItems = sidebarItems.filter {$0.browserTab == .fileSystem}
         guard filteredItems.isNonEmpty else {return false}
         
         TableDragDropContext.setData(filteredItems, from: sidebarView, pasteboard: pasteboard)

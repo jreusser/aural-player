@@ -161,13 +161,13 @@ extension TrackListTableViewController: NSTableViewDataSource {
         }
         
         // Playlist names.
-        let playlistItems = sidebarItems.filter {$0.browserTab == .playlists}
-        
-        if playlistItems.isNonEmpty {
-         
-            let playlistNames = playlistItems.map {$0.displayName}
-            importPlaylists(playlistNames.compactMap {playlistsManager.userDefinedObject(named: $0)}, to: destRow)
-        }
+//        let playlistItems = sidebarItems.filter {$0.browserTab == .playlists}
+//        
+//        if playlistItems.isNonEmpty {
+//         
+//            let playlistNames = playlistItems.map {$0.displayName}
+//            importPlaylists(playlistNames.compactMap {playlistsManager.userDefinedObject(named: $0)}, to: destRow)
+//        }
     }
 }
 
