@@ -879,6 +879,8 @@
 		3EFE0A932B4B378600C9B121 /* FolderHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE0A912B4B378600C9B121 /* FolderHistoryItem.swift */; };
 		3EFE0A952B4B37B400C9B121 /* GroupHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE0A942B4B37B400C9B121 /* GroupHistoryItem.swift */; };
 		3EFE0A962B4B37B400C9B121 /* GroupHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE0A942B4B37B400C9B121 /* GroupHistoryItem.swift */; };
+		3EFE0A982B4B5A6700C9B121 /* LibraryGroupPlayedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE0A972B4B5A6700C9B121 /* LibraryGroupPlayedNotification.swift */; };
+		3EFE0A992B4B5A6700C9B121 /* LibraryGroupPlayedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE0A972B4B5A6700C9B121 /* LibraryGroupPlayedNotification.swift */; };
 		3EFE37DD27864896006F8B8C /* MediaKeysControlsPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE361927864895006F8B8C /* MediaKeysControlsPreferences.swift */; };
 		3EFE37DE27864896006F8B8C /* MediaKeysControlsPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE361927864895006F8B8C /* MediaKeysControlsPreferences.swift */; };
 		3EFE37DF27864896006F8B8C /* PlaybackPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE361A27864895006F8B8C /* PlaybackPreferences.swift */; };
@@ -2454,6 +2456,7 @@
 		3EFE0A8E2B4B373B00C9B121 /* PlaylistFileHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistFileHistoryItem.swift; sourceTree = "<group>"; };
 		3EFE0A912B4B378600C9B121 /* FolderHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderHistoryItem.swift; sourceTree = "<group>"; };
 		3EFE0A942B4B37B400C9B121 /* GroupHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHistoryItem.swift; sourceTree = "<group>"; };
+		3EFE0A972B4B5A6700C9B121 /* LibraryGroupPlayedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryGroupPlayedNotification.swift; sourceTree = "<group>"; };
 		3EFE361927864895006F8B8C /* MediaKeysControlsPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeysControlsPreferences.swift; sourceTree = "<group>"; };
 		3EFE361A27864895006F8B8C /* PlaybackPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackPreferences.swift; sourceTree = "<group>"; };
 		3EFE361B27864895006F8B8C /* ViewPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPreferences.swift; sourceTree = "<group>"; };
@@ -5947,6 +5950,7 @@
 				3EFE377527864895006F8B8C /* ChapterChangedNotification.swift */,
 				3E8FF9E127F63E30009CEDDD /* PlayQueueTracksAddedNotifications.swift */,
 				3E81BCD6284AAB5100927E4A /* TuneBrowserItemsAddedNotification.swift */,
+				3EFE0A972B4B5A6700C9B121 /* LibraryGroupPlayedNotification.swift */,
 			);
 			path = NotificationDefinitions;
 			sourceTree = "<group>";
@@ -6775,6 +6779,7 @@
 				3EEC041F2687AB15004478CE /* MenuBarPlaybackView.swift in Sources */,
 				3EEC04132687A8E1004478CE /* MenuBarPlaybackViewController.swift in Sources */,
 				3E2A2A0B280A032F000F0539 /* PlaylistTracksViewController.swift in Sources */,
+				3EFE0A982B4B5A6700C9B121 /* LibraryGroupPlayedNotification.swift in Sources */,
 				3EEC041B2687AA36004478CE /* MenuBarPlayerAudioViewController.swift in Sources */,
 				3E7979E4282EEEBD005AB91E /* ImageTabButtonCell.swift in Sources */,
 				3EEC04172687A982004478CE /* MenuBarPlayerSequencingViewController.swift in Sources */,
@@ -7348,6 +7353,7 @@
 				3EFE393A27864897006F8B8C /* BookmarksDelegateProtocol.swift in Sources */,
 				3EFE384827864896006F8B8C /* GroupingPlaylistProtocol.swift in Sources */,
 				3EFE38AC27864896006F8B8C /* ParametricEQNode.swift in Sources */,
+				3EFE0A992B4B5A6700C9B121 /* LibraryGroupPlayedNotification.swift in Sources */,
 				3EFE392E27864897006F8B8C /* HTTPErrors.swift in Sources */,
 				3EFE383227864896006F8B8C /* ItemMoveResults.swift in Sources */,
 				3EFE393027864897006F8B8C /* TimeIntervalFormatter.swift in Sources */,

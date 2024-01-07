@@ -16,10 +16,12 @@ protocol LibraryDelegateProtocol: GroupedSortedTrackListProtocol {
     
     // TODO:
     var playlists: [ImportedPlaylist] {get}
+    
+    func findGroup(named groupName: String, ofType groupType: GroupType) -> Group?
 }
 
 class LibraryDelegate: LibraryDelegateProtocol {
-    
+
     var sortOrder: TrackListSort {
         
         get {library.sortOrder}
@@ -145,6 +147,10 @@ class LibraryDelegate: LibraryDelegateProtocol {
     
     func sort(grouping: Grouping, by sort: GroupedTrackListSort) {
         library.sort(grouping: grouping, by: sort)
+    }
+    
+    func findGroup(named groupName: String, ofType groupType: GroupType) -> Group? {
+        library.findGroup(named: groupName, ofType: groupType)
     }
     
     func exportToFile(_ file: URL) {

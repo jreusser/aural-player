@@ -57,6 +57,16 @@ class HistoryDelegate: HistoryDelegateProtocol {
         
         // Restore the history model object from persistent state.
         
+        // Move to a background thread to unblock the main thread.
+        DispatchQueue.global(qos: .utility).async {
+            
+            let recentlyPlayed = persistentState?.recentlyPlayed?.compactMap {self.itemFromPersistentState($0)} ?? []
+            
+            for item in recentlyPlayed.reversed() {
+                self.recentlyPlayedItems[item.key] = item
+            }
+        }
+        
 //        persistentState?.recentlyAdded?.reversed().forEach {item in
 //            
 //            if let file = item.file, let date = item.time {
@@ -78,7 +88,50 @@ class HistoryDelegate: HistoryDelegateProtocol {
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackPlayed(_:),
                                  filter: {msg in msg.playbackStarted})
         
+        messenger.subscribeAsync(to: .library_groupPlayed, handler: groupPlayed(_:))
+        
         messenger.subscribe(to: .application_willExit, handler: appWillExit)
+    }
+    
+    private func itemFromPersistentState(_ state: HistoryItemPersistentState) -> HistoryItem? {
+        
+        guard let itemType = state.itemType, let lastEventTime = state.lastEventTime, let eventCount = state.eventCount else {return nil}
+        
+        switch itemType {
+            
+        case .track:
+            
+            if let trackFile = state.trackFile {
+                
+                do {
+                    
+                    var fileMetadata = FileMetadata()
+                    fileMetadata.primary = try fileReader.getPrimaryMetadata(for: trackFile)
+                    
+                    let track = Track(trackFile, fileMetadata: fileMetadata)
+                    return TrackHistoryItem(track: track, lastEventTime: lastEventTime, eventCount: eventCount)
+                    
+                } catch {}
+            }
+            
+            //        case .playlistFile:
+            //
+            //        case .folder:
+            //
+            
+        case .group:
+            
+            if let groupName = state.groupName, let groupType = state.groupType {
+                return GroupHistoryItem(groupName: groupName, groupType: groupType, lastEventTime: lastEventTime, eventCount: eventCount)
+            }
+            
+            
+        default:
+            return nil
+            
+        }
+        
+        return nil
     }
     
     func allRecentlyAddedItems() -> [HistoryItem] {
@@ -105,13 +158,29 @@ class HistoryDelegate: HistoryDelegateProtocol {
     
     func playItem(_ item: HistoryItem) throws {
         
-        guard let trackHistoryItem = item as? TrackHistoryItem else {return}
-
+        if let trackHistoryItem = item as? TrackHistoryItem {
+            try playTrackItem(trackHistoryItem)
+            
+        } else if let groupHistoryItem = item as? GroupHistoryItem {
+            playGroupItem(groupHistoryItem)
+        }
+    }
+    
+    private func playTrackItem(_ trackHistoryItem: TrackHistoryItem) throws {
+        
         // Add it to the PQ
         playQueue.addTracks([trackHistoryItem.track])
 
         // Play it
         player.play(trackHistoryItem.track)
+    }
+    
+    private func playGroupItem(_ groupHistoryItem: GroupHistoryItem) {
+        
+        guard let group = libraryDelegate.findGroup(named: groupHistoryItem.groupName, ofType: groupHistoryItem.groupType) else {return}
+        
+        doGroupPlayed(group)
+        messenger.publish(EnqueueAndPlayNowCommand(tracks: group.tracks, clearPlayQueue: false))
     }
     
     func deleteItem(_ item: HistoryItem) {
@@ -159,17 +228,21 @@ class HistoryDelegate: HistoryDelegateProtocol {
     // Whenever a track is played by the player, add an entry in the "Recently played" list
     func trackPlayed(_ notification: TrackTransitionNotification) {
         
-        if let newTrack = notification.endTrack {
+        guard let newTrack = notification.endTrack else {return}
+        
+        if let existingHistoryItem: TrackHistoryItem = recentlyPlayedItems[newTrack.file.absoluteString] as? TrackHistoryItem {
             
-            if let existingHistoryItem: TrackHistoryItem = recentlyPlayedItems[newTrack.file.absoluteString] as? TrackHistoryItem {
-                existingHistoryItem.markEvent()
-                
-            } else {
-                recentlyPlayedItems[newTrack.file.absoluteString] = TrackHistoryItem(track: newTrack, lastEventTime: Date())
-            }
+            existingHistoryItem.markEvent()
             
-            messenger.publish(.history_updated)
+            // Move to bottom (i.e. most recent)
+            recentlyPlayedItems.removeValue(forKey: existingHistoryItem.key)
+            recentlyPlayedItems[existingHistoryItem.key] = existingHistoryItem
+            
+        } else {
+            recentlyPlayedItems[newTrack.file.absoluteString] = TrackHistoryItem(track: newTrack, lastEventTime: Date())
         }
+        
+        messenger.publish(.history_updated)
     }
     
     // Whenever items are added to the playlist, add entries to the "Recently added" list
@@ -190,6 +263,29 @@ class HistoryDelegate: HistoryDelegateProtocol {
 ////                recentlyAddedItems.add(AddedItem(file, now))
 ////            }
 //        }
+        
+        messenger.publish(.history_updated)
+    }
+    
+    func groupPlayed(_ notif: LibraryGroupPlayedNotification) {
+        doGroupPlayed(notif.group)
+    }
+    
+    private func doGroupPlayed(_ group: Group) {
+        
+        let groupKey = "\(group.type)_\(group.name)"
+        
+        if let existingHistoryItem: GroupHistoryItem = recentlyPlayedItems[groupKey] as? GroupHistoryItem {
+            
+            existingHistoryItem.markEvent()
+            
+            // Move to bottom (i.e. most recent)
+            recentlyPlayedItems.removeValue(forKey: existingHistoryItem.key)
+            recentlyPlayedItems[existingHistoryItem.key] = existingHistoryItem
+            
+        } else {
+            recentlyPlayedItems[groupKey] = GroupHistoryItem(groupName: group.name, groupType: group.type, lastEventTime: Date())
+        }
         
         messenger.publish(.history_updated)
     }

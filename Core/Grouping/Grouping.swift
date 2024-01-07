@@ -40,6 +40,10 @@ class Grouping {
         rootGroup.subGroup(at: index)
     }
     
+    func group(named name: String) -> Group? {
+        rootGroup.findSubGroup(named: name)
+    }
+    
     func addTracks(_ newTracks: [Track]) {
         
         rootGroup.addTracks(newTracks)

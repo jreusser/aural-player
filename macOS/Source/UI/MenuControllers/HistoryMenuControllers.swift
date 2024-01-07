@@ -110,7 +110,13 @@ fileprivate func createHistoryMenuItem(_ item: HistoryItem, _ actionTarget: AnyO
     let menuItem = HistoryMenuItem(title: "  " + item.displayName, action: action)
     menuItem.target = actionTarget
     
-    menuItem.image = .imgPlayedTrack
+    if item is TrackHistoryItem {
+        menuItem.image = .imgPlayedTrack
+        
+    } else if item is GroupHistoryItem {
+        menuItem.image = .imgGroup_menu
+    }
+    
     menuItem.image?.size = menuItemCoverArtImageSize
     
 //    let queue = item is AddedItem ? addedItemsArtLoadingQueue : playedItemsArtLoadingQueue

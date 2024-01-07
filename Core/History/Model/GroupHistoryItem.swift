@@ -19,7 +19,11 @@ class GroupHistoryItem: HistoryItem {
         groupName
     }
     
-    init(groupName: String, groupType: GroupType, lastEventTime: Date, eventCount: Int) {
+    override var key: String {
+        "\(groupType.rawValue)_\(groupName)"
+    }
+    
+    init(groupName: String, groupType: GroupType, lastEventTime: Date, eventCount: Int = 1) {
         
         self.groupName = groupName
         self.groupType = groupType

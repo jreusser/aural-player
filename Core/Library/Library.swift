@@ -31,6 +31,8 @@ protocol LibraryProtocol: TrackListProtocol {
     func addPlaylists(_ playlists: [ImportedPlaylist])
     
     func playlist(atIndex index: Int) -> ImportedPlaylist?
+    
+    func findGroup(named groupName: String, ofType groupType: GroupType) -> Group?
 }
 
 struct LibraryBuildProgress {
@@ -140,6 +142,27 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
         }
         
         return addTracks(tracks)
+    }
+    
+    func findGroup(named groupName: String, ofType groupType: GroupType) -> Group? {
+        
+        switch groupType {
+            
+        case .artist:
+            return artistsGrouping.group(named: groupName)
+            
+        case .album:
+            return albumsGrouping.group(named: groupName)
+            
+        case .genre:
+            return genresGrouping.group(named: groupName)
+            
+        case .decade:
+            return decadesGrouping.group(named: groupName)
+            
+        default:
+            return nil
+        }
     }
 }
 
