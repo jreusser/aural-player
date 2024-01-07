@@ -92,4 +92,6 @@ extension Notification.Name {
 
     // Commands the playQueue to scroll one page down within its list view.
     static let playQueue_pageDown = Notification.Name("playQueue_pageDown")
+    
+    static let playQueue_search = Notification.Name("playQueue_search")
 }

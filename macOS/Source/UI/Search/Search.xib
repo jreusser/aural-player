@@ -304,6 +304,7 @@ Gw
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <action trigger="doubleAction" selector="playSearchResultAction:" target="-2" id="4ZQ-2L-iiq"/>
                                     <outlet property="dataSource" destination="-2" id="NKU-17-IUe"/>
                                     <outlet property="delegate" destination="-2" id="cBF-0l-YgX"/>
                                 </connections>

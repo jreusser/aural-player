@@ -121,6 +121,10 @@ class PlayQueueMenuController: NSObject, NSMenuDelegate {
         messenger.publish(.playQueue_pageDown)
     }
     
+    @IBAction func searchAction(_ sender: Any) {
+        messenger.publish(.playQueue_search)
+    }
+    
     private func checkIfPlayQueueIsBeingModified() -> Bool {
         
         let playQueueBeingModified = playQueue.isBeingModified

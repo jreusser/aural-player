@@ -520,7 +520,12 @@
         </window>
         <customObject id="dFu-9T-Cey" customClass="AuralMenuController" customModule="Aural" customModuleProvider="target"/>
         <customObject id="qFA-s7-21q" customClass="PlayQueueMenuController" customModule="Aural" customModuleProvider="target"/>
-        <customObject id="pHc-NF-AW0" customClass="HistoryMenuController" customModule="Aural" customModuleProvider="target"/>
+        <customObject id="pHc-NF-AW0" customClass="HistoryMenuController" customModule="Aural" customModuleProvider="target">
+            <connections>
+                <outlet property="recentlyAddedMenu" destination="jR3-hM-et5" id="CQP-Nc-ohK"/>
+                <outlet property="resumeLastPlayedTrackItem" destination="wwm-RB-lya" id="x7N-J3-prB"/>
+            </connections>
+        </customObject>
         <customObject id="T4A-WO-uwg" userLabel="Played Items Menu Controller" customClass="RecentlyPlayedMenuController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="recentlyPlayedMenu" destination="6Gf-Zr-6SR" id="pq6-TE-nmk"/>
@@ -909,7 +914,11 @@ CA
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="bU4-lV-awo"/>
-                            <menuItem title=" Search play queue" image="magnifyingglass" catalog="system" keyEquivalent="f" id="2pX-xK-lve"/>
+                            <menuItem title=" Search play queue" image="magnifyingglass" catalog="system" keyEquivalent="f" id="2pX-xK-lve">
+                                <connections>
+                                    <action selector="searchAction:" target="qFA-s7-21q" id="TMN-fL-Qf5"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title=" Sort play queue" image="arrow.up.arrow.down" catalog="system" keyEquivalent="s" id="I5M-kY-Va8" userLabel="Sort playlist">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                             </menuItem>

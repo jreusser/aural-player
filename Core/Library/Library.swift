@@ -83,7 +83,7 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
         
 //        self.homeFolder = FilesAndPaths.musicDir.appendingPathComponent("Timo", isDirectory: true).appendingPathComponent("Fury In The Slaughterhouse", isDirectory: true)
 //        self.homeFolder = persistentState?.homeFolder ?? FilesAndPaths.musicDir
-        self.homeFolder = FilesAndPaths.musicDir.appendingPathComponent("Timo", isDirectory: true)
+        self.homeFolder = URL(fileURLWithPath: "/Volumes/Ext-SSD-4TB/Projects/Aural-Test/Aural-Music")
         
         super.init(sortOrder: TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending),
                    withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])

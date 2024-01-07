@@ -184,6 +184,15 @@ class SearchViewController: NSViewController {
     //                                                                viewSelector: uiState.currentViewSelector))
     //    }
     
+    @IBAction func playSearchResultAction(_ sender: Any) {
+        
+        if resultsTable.selectedRow >= 0, let results = self.searchResults,
+            let pqLocation = results.results[resultsTable.selectedRow].location as? PlayQueueSearchResultLocation {
+            
+            messenger.publish(TrackPlaybackCommandNotification(index: pqLocation.index))
+        }
+    }
+    
     @IBAction func searchDoneAction(_ sender: Any) {
         view.window?.close()
     }

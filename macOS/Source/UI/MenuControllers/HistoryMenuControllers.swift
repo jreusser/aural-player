@@ -113,19 +113,19 @@ fileprivate func createHistoryMenuItem(_ item: HistoryItem, _ actionTarget: AnyO
     menuItem.image = .imgPlayedTrack
     menuItem.image?.size = menuItemCoverArtImageSize
     
-    let queue = item is AddedItem ? addedItemsArtLoadingQueue : playedItemsArtLoadingQueue
-    
-    queue.addOperation {
-        
-        if let art = artForFile(item.file) {
-            
-            art.size = menuItemCoverArtImageSize
-            
-            DispatchQueue.main.async {
-                menuItem.image = art
-            }
-        }
-    }
+//    let queue = item is AddedItem ? addedItemsArtLoadingQueue : playedItemsArtLoadingQueue
+//    
+//    queue.addOperation {
+//        
+//        if let art = artForFile(item.file) {
+//            
+//            art.size = menuItemCoverArtImageSize
+//            
+//            DispatchQueue.main.async {
+//                menuItem.image = art
+//            }
+//        }
+//    }
     
     menuItem.historyItem = item
     
@@ -138,12 +138,12 @@ fileprivate func createChronologicalMenu(_ items: [HistoryItem], _ menu: NSMenu,
     // Keeps track of which time categories have already been created
     var timeCategories = Set<TimeElapsed>()
     
-    items.forEach({
+    for item in items {
         
-        let menuItem = createHistoryMenuItem($0, actionTarget, action)
+        let menuItem = createHistoryMenuItem(item, actionTarget, action)
         
         // Figure out how old this item is
-        let timeElapsed = Date.timeElapsedSince($0.time)
+        let timeElapsed = Date.timeElapsedSince(item.lastEventTime)
         
         // If this category doesn't already exist, create it
         if !timeCategories.contains(timeElapsed) {
@@ -158,7 +158,7 @@ fileprivate func createChronologicalMenu(_ items: [HistoryItem], _ menu: NSMenu,
         
         // Add the history menu item to the menu
         menu.addItem(menuItem)
-    })
+    }
 }
 
 class RecentlyAddedMenuController: NSObject, NSMenuDelegate {
@@ -185,25 +185,27 @@ class RecentlyAddedMenuController: NSObject, NSMenuDelegate {
     // When a "Recently added" menu item is clicked, the item is added to the playlist
     @IBAction fileprivate func addSelectedItemAction(_ sender: HistoryMenuItem) {
         
-        if let item = sender.historyItem as? AddedItem {
-            
-            do {
-                try history.addItem(item.file)
-                
-            } catch {
-                
-                if let fnfError = error as? FileNotFoundError {
-                    
-                    // This needs to be done async. Otherwise, other open dialogs could hang.
-                    DispatchQueue.main.async {
-                        
-                        // Position and display an alert with error info
-                        _ = DialogsAndAlerts.historyItemNotAddedAlertWithError(fnfError, "Remove item from history").showModal()
-                        self.history.deleteItem(item)
-                    }
-                }
-            }
-        }
+        // TODO: Different behavior based on type of item (track, folder, artist, etc)
+        
+//        if let item = sender.historyItem as? HistoryItem {
+//            
+//            do {
+//                try history.addItem(item.file)
+//                
+//            } catch {
+//                
+//                if let fnfError = error as? FileNotFoundError {
+//                    
+//                    // This needs to be done async. Otherwise, other open dialogs could hang.
+//                    DispatchQueue.main.async {
+//                        
+//                        // Position and display an alert with error info
+//                        _ = DialogsAndAlerts.historyItemNotAddedAlertWithError(fnfError, "Remove item from history").showModal()
+//                        self.history.deleteItem(item)
+//                    }
+//                }
+//            }
+//        }
     }
 }
 
@@ -231,25 +233,23 @@ class RecentlyPlayedMenuController: NSObject, NSMenuDelegate {
     // When a "Recently played" or "Favorites" menu item is clicked, the item is played
     @IBAction fileprivate func playSelectedItemAction(_ sender: HistoryMenuItem) {
         
-//        if let item = sender.historyItem as? PlayedItem {
-//
-//            do {
-//
-//                try history.playItem(item.file, playlistUIState.currentView)
-//
-//            } catch {
-//
-//                if let fnfError = error as? FileNotFoundError {
-//
-//                    // This needs to be done async. Otherwise, other open dialogs could hang.
-//                    DispatchQueue.main.async {
-//
-//                        // Position and display an alert with error info
-//                        _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove item").showModal()
-//                        self.history.deleteItem(item)
-//                    }
-//                }
-//            }
-//        }
+        guard let item = sender.historyItem else {return}
+        
+        do {
+            try history.playItem(item)
+            
+        } catch {
+            
+            if let fnfError = error as? FileNotFoundError {
+                
+                // This needs to be done async. Otherwise, other open dialogs could hang.
+                DispatchQueue.main.async {
+                    
+                    // Position and display an alert with error info
+                    _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove item").showModal()
+                    self.history.deleteItem(item)
+                }
+            }
+        }
     }
 }

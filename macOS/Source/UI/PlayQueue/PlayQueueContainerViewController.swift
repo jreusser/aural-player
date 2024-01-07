@@ -96,6 +96,8 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
         messenger.subscribe(to: .playQueue_moveTracksToTop, handler: moveTracksToTop)
         messenger.subscribe(to: .playQueue_moveTracksToBottom, handler: moveTracksToBottom)
         
+        messenger.subscribe(to: .playQueue_search, handler: search)
+        
         messenger.subscribe(to: .playQueue_exportAsPlaylistFile, handler: exportAsPlaylistFile)
         
         messenger.subscribeAsync(to: .playQueue_startedAddingTracks, handler: startedAddingTracks)
@@ -194,6 +196,10 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(playQueueDelegate.duration)
         lblDurationSummary.font = systemFontScheme.playQueueSecondaryFont
         lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
+    }
+    
+    func search() {
+        searchWindowController.showWindow(self)
     }
     
     override func destroy() {

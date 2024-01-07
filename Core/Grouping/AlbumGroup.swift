@@ -12,6 +12,10 @@ import Foundation
 
 class AlbumGroup: Group {
     
+    init(name: String, depth: Int, tracks: [Track] = []) {
+        super.init(type: .album, name: name, depth: depth, tracks: tracks)
+    }
+    
     override var displayName: String {
         "album '\(name)'"
     }
@@ -105,6 +109,11 @@ class AlbumGroup: Group {
     
     var art: PlatformImage {
         
+        // There's only 1 Track in the Album, just use its art.
+        if tracks.count == 1, let theTrack = tracks.first, let theArt = theTrack.art?.image {
+            return theArt
+        }
+        
         var parentFolders: Set<URL> = Set()
         var albumTrackFiles: Set<URL> = Set()
         
@@ -160,6 +169,10 @@ class AlbumGroup: Group {
 }
 
 class AlbumDiscGroup: Group {
+    
+    init(name: String, depth: Int, tracks: [Track] = []) {
+        super.init(type: .albumDisc, name: name, depth: depth, tracks: tracks)
+    }
     
     override var displayName: String {
         

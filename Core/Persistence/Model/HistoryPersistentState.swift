@@ -23,6 +23,14 @@ struct HistoryPersistentState: Codable {
     let lastPlaybackPosition: Double?
 }
 
+enum HistoryPersistentItemType: String, Codable {
+    
+    case track
+    case playlistFile
+    case folder
+    case group
+}
+
 ///
 /// Persistent state for a single item in the **History** lists
 /// (recently added and recently played).
@@ -32,14 +40,58 @@ struct HistoryPersistentState: Codable {
 ///
 struct HistoryItemPersistentState: Codable {
     
-    let file: URL?
-    let name: String?
-    let time: Date?
+    let itemType: HistoryPersistentItemType?
+    let lastEventTime: Date?
+    let eventCount: Int?
     
-    init(item: HistoryItem) {
+    var trackFile: URL? = nil
+    
+    var playlistFile: URL? = nil
+    
+    var folder: URL? = nil
+    
+    var groupName: String? = nil
+    var groupType: GroupType? = nil
+    
+    
+    init?(item: HistoryItem) {
         
-        self.file = item.file
-        self.name = item.displayName
-        self.time = item.time
+        self.lastEventTime = item.lastEventTime
+        self.eventCount = item.eventCount
+        
+        if let trackHistoryItem = item as? TrackHistoryItem {
+            
+            self.itemType = .track
+            self.trackFile = trackHistoryItem.track.file
+            
+            return
+        }
+        
+        if let playlistFileHistoryItem = item as? PlaylistFileHistoryItem {
+            
+            self.itemType = .playlistFile
+            self.playlistFile = playlistFileHistoryItem.playlistFile
+            
+            return
+        }
+        
+        if let folderHistoryItem = item as? FolderHistoryItem {
+            
+            self.itemType = .folder
+            self.folder = folderHistoryItem.folder
+            
+            return
+        }
+        
+        if let groupHistoryItem = item as? GroupHistoryItem {
+            
+            self.itemType = .group
+            self.groupName = groupHistoryItem.groupName
+            self.groupType = groupHistoryItem.groupType
+            
+            return
+        }
+        
+        return nil
     }
 }

@@ -13,12 +13,20 @@ import OrderedCollections
 
 class ArtistsRootGroup: Group {
     
+    init(name: String, depth: Int, tracks: [Track] = []) {
+        super.init(type: .root, name: name, depth: depth, tracks: tracks)
+    }
+    
     override func doCreateSubGroup(named groupName: String) -> Group {
         ArtistGroup(name: groupName, depth: self.depth + 1)
     }
 }
 
 class AlbumsRootGroup: Group {
+    
+    init(name: String, depth: Int, tracks: [Track] = []) {
+        super.init(type: .root, name: name, depth: depth, tracks: tracks)
+    }
     
     override func doCreateSubGroup(named groupName: String) -> Group {
         AlbumGroup(name: groupName, depth: self.depth + 1)
@@ -27,6 +35,10 @@ class AlbumsRootGroup: Group {
 
 class GenresRootGroup: Group {
     
+    init(name: String, depth: Int, tracks: [Track] = []) {
+        super.init(type: .root, name: name, depth: depth, tracks: tracks)
+    }
+    
     override func doCreateSubGroup(named groupName: String) -> Group {
         GenreGroup(name: groupName, depth: self.depth + 1)
     }
@@ -34,12 +46,20 @@ class GenresRootGroup: Group {
 
 class DecadesRootGroup: Group {
     
+    init(name: String, depth: Int, tracks: [Track] = []) {
+        super.init(type: .root, name: name, depth: depth, tracks: tracks)
+    }
+    
     override func doCreateSubGroup(named groupName: String) -> Group {
         DecadeGroup(name: groupName, depth: self.depth + 1)
     }
 }
 
 class ArtistGroup: Group {
+    
+    init(name: String, depth: Int, tracks: [Track] = []) {
+        super.init(type: .artist, name: name, depth: depth, tracks: tracks)
+    }
     
     override var displayName: String {
         "artist '\(name)'"
@@ -52,6 +72,10 @@ class ArtistGroup: Group {
 
 class GenreGroup: Group {
     
+    init(name: String, depth: Int, tracks: [Track] = []) {
+        super.init(type: .genre, name: name, depth: depth, tracks: tracks)
+    }
+    
     override var displayName: String {
         "genre '\(name)'"
     }
@@ -63,6 +87,10 @@ class GenreGroup: Group {
 
 class DecadeGroup: Group {
     
+    init(name: String, depth: Int, tracks: [Track] = []) {
+        super.init(type: .decade, name: name, depth: depth, tracks: tracks)
+    }
+    
     override var displayName: String {
         "decade '\(name)'"
     }
@@ -72,10 +100,24 @@ class DecadeGroup: Group {
     }
 }
 
+enum GroupType: String, CaseIterable, Codable {
+    
+    // Special group type
+    case root
+    
+    case artist
+    case album
+    case genre
+    case decade
+    
+    case albumDisc
+}
+
 class Group: PlayableItem {
     
     let name: String
     let depth: Int
+    let type: GroupType
     
     var displayName: String {
         "group '\(name)'"
@@ -116,8 +158,9 @@ class Group: PlayableItem {
     var numberOfSubGroups: Int {subGroups.count}
     var hasSubGroups: Bool {!subGroups.isEmpty}
     
-    init(name: String, depth: Int, tracks: [Track] = []) {
+    init(type: GroupType, name: String, depth: Int, tracks: [Track] = []) {
         
+        self.type = type
         self.name = name
         self.depth = depth
         
@@ -136,7 +179,7 @@ class Group: PlayableItem {
 //    }
     
     func doCreateSubGroup(named groupName: String) -> Group {
-        Group(name: groupName, depth: self.depth + 1)
+        Group(type: .artist, name: groupName, depth: self.depth + 1)
     }
     
     func findSubGroup(named groupName: String) -> Group? {

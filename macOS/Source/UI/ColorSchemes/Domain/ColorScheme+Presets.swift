@@ -117,7 +117,7 @@ extension ColorScheme {
                                               textSelectionColor: .black,
                                               
                                               activeControlColor: .white70Percent,
-                                              inactiveControlColor: .white30Percent,
+                                              inactiveControlColor: .white35Percent,
                                               suppressedControlColor: .white50Percent)
     
     static let poolsideFM: ColorScheme = .init(name: "Poolside.fm", systemDefined: true,

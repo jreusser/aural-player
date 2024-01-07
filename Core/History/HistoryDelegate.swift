@@ -8,6 +8,7 @@
 //  See the file "LICENSE" in the project root directory for license terms.
 //
 import Foundation
+import OrderedCollections
 
 ///
 /// A delegate allowing access to the chronologically ordered track lists:
@@ -24,15 +25,15 @@ import Foundation
 class HistoryDelegate: HistoryDelegateProtocol {
     
     // Recently added items
-    var recentlyAddedItems: FixedSizeLRUArray<AddedItem>
+    var recentlyAddedItems: OrderedDictionary<String, HistoryItem>
     
     // Recently played items
-    var recentlyPlayedItems: FixedSizeLRUArray<PlayedItem>
+    var recentlyPlayedItems: OrderedDictionary<String, HistoryItem>
     
     var lastPlaybackPosition: Double = 0
     
-    var lastPlayedItem: PlayedItem? {
-        recentlyPlayedItems.last
+    var lastPlayedItem: HistoryItem? {
+        recentlyPlayedItems.values.last
     }
     
     // Delegate used to perform playback
@@ -47,8 +48,8 @@ class HistoryDelegate: HistoryDelegateProtocol {
     init(persistentState: HistoryPersistentState?, _ preferences: HistoryPreferences,
          _ playQueue: PlayQueueDelegateProtocol, _ player: PlaybackDelegateProtocol) {
         
-        recentlyAddedItems = FixedSizeLRUArray<AddedItem>(size: preferences.recentlyAddedListSize)
-        recentlyPlayedItems = FixedSizeLRUArray<PlayedItem>(size: preferences.recentlyPlayedListSize)
+        recentlyAddedItems = OrderedDictionary()
+        recentlyPlayedItems = OrderedDictionary()
         lastPlaybackPosition = persistentState?.lastPlaybackPosition ?? 0
         
         self.playQueue = playQueue
@@ -56,19 +57,19 @@ class HistoryDelegate: HistoryDelegateProtocol {
         
         // Restore the history model object from persistent state.
         
-        persistentState?.recentlyAdded?.reversed().forEach {item in
-            
-            if let file = item.file, let date = item.time {
-                recentlyAddedItems.add(AddedItem(file, item.name ?? file.lastPathComponent, date))
-            }
-        }
-        
-        persistentState?.recentlyPlayed?.reversed().forEach {item in
-            
-            if let file = item.file, let date = item.time {
-                recentlyPlayedItems.add(PlayedItem(file, item.name ?? file.lastPathComponent, date))
-            }
-        }
+//        persistentState?.recentlyAdded?.reversed().forEach {item in
+//            
+//            if let file = item.file, let date = item.time {
+//                recentlyAddedItems.add(HistoryItem(file, item.name ?? file.lastPathComponent, date))
+//            }
+//        }
+//        
+//        persistentState?.recentlyPlayed?.reversed().forEach {item in
+//            
+//            if let file = item.file, let date = item.time {
+//                recentlyPlayedItems.add(HistoryItem(file, item.name ?? file.lastPathComponent, date))
+//            }
+//        }
         
         messenger.publish(.history_updated)
         
@@ -80,16 +81,17 @@ class HistoryDelegate: HistoryDelegateProtocol {
         messenger.subscribe(to: .application_willExit, handler: appWillExit)
     }
     
-    func allRecentlyAddedItems() -> [AddedItem] {
+    func allRecentlyAddedItems() -> [HistoryItem] {
         
         // Reverse the array for chronological order (most recent items first).
-        recentlyAddedItems.toArray().reversed()
+//        recentlyAddedItems.toArray().reversed()
+        []
     }
     
-    func allRecentlyPlayedItems() -> [PlayedItem] {
+    func allRecentlyPlayedItems() -> [HistoryItem] {
         
         // Reverse the array for chronological order (most recent items first)
-        recentlyPlayedItems.toArray().reversed()
+        recentlyPlayedItems.values.reversed()
     }
     
     func addItem(_ item: URL) throws {
@@ -101,40 +103,33 @@ class HistoryDelegate: HistoryDelegateProtocol {
 //        playlist.addFiles([item])
     }
     
-    func playItem(_ item: URL, fromPosition startPosition: Double? = nil) throws {
+    func playItem(_ item: HistoryItem) throws {
         
-        // First, find or add the given file
-        playQueue.loadTracks(from: [item])
-        guard let newTrack = playQueue.findTrack(forFile: item) else {return}
-        
+        guard let trackHistoryItem = item as? TrackHistoryItem else {return}
+
+        // Add it to the PQ
+        playQueue.addTracks([trackHistoryItem.track])
+
         // Play it
-        if let startPosition = startPosition {
-            player.play(newTrack, PlaybackParams.defaultParams().withStartAndEndPosition(startPosition))
-        } else {
-            player.play(newTrack)
-        }
+        player.play(trackHistoryItem.track)
     }
     
-    func deleteItem(_ item: AddedItem) {
-        recentlyAddedItems.remove(item)
-    }
-    
-    func deleteItem(_ item: PlayedItem) {
-        recentlyPlayedItems.remove(item)
+    func deleteItem(_ item: HistoryItem) {
+//        recentlyPlayedItems.remove(item)
     }
     
     func resizeLists(_ recentlyAddedListSize: Int, _ recentlyPlayedListSize: Int) {
         
-        recentlyAddedItems.resize(recentlyAddedListSize)
-        recentlyPlayedItems.resize(recentlyPlayedListSize)
-        
-        messenger.publish(.history_updated)
+//        recentlyAddedItems.resize(recentlyAddedListSize)
+//        recentlyPlayedItems.resize(recentlyPlayedListSize)
+//        
+//        messenger.publish(.history_updated)
     }
     
     func clearAllHistory() {
         
-        recentlyAddedItems.clear()
-        recentlyPlayedItems.clear()
+        recentlyAddedItems.removeAll()
+        recentlyPlayedItems.removeAll()
     }
     
     func markLastPlaybackPosition(_ position: Double) {
@@ -156,17 +151,23 @@ class HistoryDelegate: HistoryDelegateProtocol {
     
     func resumeLastPlayedTrack() throws {
         
-        if let lastPlayedItem = lastPlayedItem, lastPlaybackPosition > 0 {
-            try playItem(lastPlayedItem.file, fromPosition: lastPlaybackPosition)
-        }
+//        if let lastPlayedItem = lastPlayedItem, lastPlaybackPosition > 0 {
+//            try playItem(lastPlayedItem.file, fromPosition: lastPlaybackPosition)
+//        }
     }
     
     // Whenever a track is played by the player, add an entry in the "Recently played" list
     func trackPlayed(_ notification: TrackTransitionNotification) {
         
         if let newTrack = notification.endTrack {
-        
-            recentlyPlayedItems.add(PlayedItem(newTrack.file, newTrack.displayName, Date()))
+            
+            if let existingHistoryItem: TrackHistoryItem = recentlyPlayedItems[newTrack.file.absoluteString] as? TrackHistoryItem {
+                existingHistoryItem.markEvent()
+                
+            } else {
+                recentlyPlayedItems[newTrack.file.absoluteString] = TrackHistoryItem(track: newTrack, lastEventTime: Date())
+            }
+            
             messenger.publish(.history_updated)
         }
     }
@@ -195,8 +196,8 @@ class HistoryDelegate: HistoryDelegateProtocol {
     
     var persistentState: HistoryPersistentState {
         
-        let recentlyAdded = allRecentlyAddedItems().map {HistoryItemPersistentState(item: $0)}
-        let recentlyPlayed = allRecentlyPlayedItems().map {HistoryItemPersistentState(item: $0)}
+        let recentlyAdded = allRecentlyAddedItems().compactMap {HistoryItemPersistentState(item: $0)}
+        let recentlyPlayed = allRecentlyPlayedItems().compactMap {HistoryItemPersistentState(item: $0)}
         
         return HistoryPersistentState(recentlyAdded: recentlyAdded, recentlyPlayed: recentlyPlayed, lastPlaybackPosition: lastPlaybackPosition)
     }

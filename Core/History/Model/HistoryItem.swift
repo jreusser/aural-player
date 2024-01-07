@@ -6,53 +6,48 @@
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
-//
+//  
 import Foundation
 
 ///
-/// An abstract base class for all history items.
+/// Represents an item that was played in the past, i.e. a track.
 ///
-class HistoryItem: Equatable {
+class HistoryItem {
     
-    // The filesystem location of the item
-    var file: URL
+    var lastEventTime: Date
+    var eventCount: Int
     
-    // TODO: Accept this in init()
-    let type: PlayableItemType = .track
-    
-    // A timestamp used in comparisons with other items, to maintain chronological order
-    var time: Date
-    
-    // Display information used in menu items
-    private var _displayName: String
-    
-    var track: Track?
-    
-    var playCount: Int = 0
-    
+    // Override this!
     var displayName: String {
-        
-        get {track?.displayName ?? _displayName}
-        set {_displayName = newValue}
+        "HistoryItem"
     }
     
-    // Used for tracks
-    init(_ file: URL, _ displayName: String, _ time: Date) {
-        
-        self.file = file
-        self.time = time
-        
-        // Default the displayName to file name (intended to be replaced later)
-        self._displayName = displayName
+    // Override this!
+    var key: String {
+        "HistoryItem"
     }
     
-    func markAsPlayedNow() {
+    init(lastEventTime: Date, eventCount: Int) {
         
-        time = Date()
-        playCount.increment()
+        self.lastEventTime = lastEventTime
+        self.eventCount = eventCount
     }
     
+    func markEvent() {
+        
+        lastEventTime = Date()
+        eventCount.increment()
+    }
+    
+    func equals(other: HistoryItem) -> Bool {
+        true
+    }
+}
+
+extension HistoryItem: Equatable {
+    
+    // Dummy implementation: Override this!
     static func == (lhs: HistoryItem, rhs: HistoryItem) -> Bool {
-        lhs.file == rhs.file
+        lhs.equals(other: rhs)
     }
 }

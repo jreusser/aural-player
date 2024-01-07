@@ -24,39 +24,30 @@ import Foundation
 protocol HistoryDelegateProtocol {
     
     // Retrieves all items from the Recently added list, in chronological order
-    func allRecentlyAddedItems() -> [AddedItem]
+    func allRecentlyAddedItems() -> [HistoryItem]
     
     // Retrieves all recently played items
-    func allRecentlyPlayedItems() -> [PlayedItem]
+    func allRecentlyPlayedItems() -> [HistoryItem]
     
     // Adds a given item (file/folder) to the playlist
     func addItem(_ item: URL) throws
     
-    // Plays a given item track.
-    func playItem(_ item: URL, fromPosition startPosition: Double?) throws
+    // Plays a given item.
+    func playItem(_ item: HistoryItem) throws
     
     func resizeLists(_ recentlyAddedListSize: Int, _ recentlyPlayedListSize: Int)
     
     func clearAllHistory()
     
-    func deleteItem(_ item: PlayedItem)
-
-    func deleteItem(_ item: AddedItem)
+    func deleteItem(_ item: HistoryItem)
     
     func markLastPlaybackPosition(_ position: Double)
     
     var lastPlaybackPosition: Double {get}
     
-    var lastPlayedItem: PlayedItem? {get}
+    var lastPlayedItem: HistoryItem? {get}
     
     func resumeLastPlayedTrack() throws
     
     // TODO: getPlayStats(), getAddStats()
-}
-
-extension HistoryDelegateProtocol {
-    
-    func playItem(_ item: URL) throws {
-        try playItem(item, fromPosition: nil)
-    }
 }

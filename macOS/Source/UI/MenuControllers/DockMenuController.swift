@@ -151,23 +151,21 @@ class DockMenuController: NSObject, NSMenuDelegate {
     // When a "Recently played" or "Favorites" menu item is clicked, the item is played
     @IBAction func playSelectedHistoryItemAction(_ sender: HistoryMenuItem) {
         
-        if let item = sender.historyItem as? PlayedItem {
-
-            do {
-
-                try history.playItem(item.file)
-
-            } catch {
-
-                if let fnfError = error as? FileNotFoundError {
-
-                    // This needs to be done async. Otherwise, other open dialogs could hang.
-                    DispatchQueue.main.async {
-
-                        // Position and display an alert with error info
-                        _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove item").showModal()
-                        self.history.deleteItem(item)
-                    }
+        guard let item = sender.historyItem else {return}
+        
+        do {
+            try history.playItem(item)
+            
+        } catch {
+            
+            if let fnfError = error as? FileNotFoundError {
+                
+                // This needs to be done async. Otherwise, other open dialogs could hang.
+                DispatchQueue.main.async {
+                    
+                    // Position and display an alert with error info
+                    _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove item").showModal()
+                    self.history.deleteItem(item)
                 }
             }
         }

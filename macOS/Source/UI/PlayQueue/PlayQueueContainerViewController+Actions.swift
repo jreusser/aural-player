@@ -248,7 +248,7 @@ extension PlayQueueContainerViewController {
     }
     
     @IBAction func searchAction(_ sender: NSButton) {
-        searchWindowController.showWindow(self)
+        search()
     }
     
     @IBAction func sortByTrackNameAction(_ sender: NSMenuItem) {
