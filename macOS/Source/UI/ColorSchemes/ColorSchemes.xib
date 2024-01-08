@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,7 +22,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Customize color scheme" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g" customClass="NSPanel">
+        <window title="Customize color scheme" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" toolbarStyle="preference" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" fullSizeContentView="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -164,26 +165,26 @@ Gw
                             <action selector="doneAction:" target="-2" id="uon-Uy-VqO"/>
                         </connections>
                     </button>
-                    <tabView fixedFrame="YES" drawsBackground="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoW-as-iiX" userLabel="Tab Group">
-                        <rect key="frame" x="10" y="67" width="485" height="307"/>
+                    <tabView focusRingType="none" fixedFrame="YES" drawsBackground="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoW-as-iiX" userLabel="Tab Group">
+                        <rect key="frame" x="10" y="52" width="485" height="281"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="General" identifier="" id="h8r-Me-aJ5">
                                 <view key="view" id="Nzr-Uf-4ng">
-                                    <rect key="frame" x="10" y="33" width="465" height="261"/>
+                                    <rect key="frame" x="10" y="33" width="465" height="235"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Text" identifier="" id="eRy-ia-DBE">
                                 <view key="view" id="iqw-TM-gAQ">
-                                    <rect key="frame" x="10" y="33" width="465" height="261"/>
+                                    <rect key="frame" x="10" y="33" width="465" height="235"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Control States" identifier="" id="TTI-dm-IrN" userLabel="Control States">
                                 <view key="view" id="wdV-d8-NcF">
-                                    <rect key="frame" x="10" y="33" width="465" height="261"/>
+                                    <rect key="frame" x="10" y="33" width="465" height="235"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
@@ -206,11 +207,11 @@ Gw
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="doc.on.clipboard" catalog="system" id="iMM-ga-hYe"/>
                     </imageView>
                     <colorWell fixedFrame="YES" bordered="NO" continuous="NO" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbt-wD-yHi" userLabel="Clipboard color well">
-                        <rect key="frame" x="40" y="36" width="16" height="16"/>
+                        <rect key="frame" x="40" y="36" width="19" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="color" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </colorWell>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WPS-An-ex3" userLabel="Undo Last Label">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WPS-An-ex3" userLabel="Undo Last Label">
                         <rect key="frame" x="241" y="16" width="25" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Last" id="qBH-8Y-Q95">
@@ -219,7 +220,7 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k46-rc-nNz" userLabel="Undo All Label">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k46-rc-nNz" userLabel="Undo All Label">
                         <rect key="frame" x="277" y="16" width="17" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="All" id="WwP-BQ-e0K">
@@ -228,7 +229,7 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ags-L4-euA" userLabel="Redo All Label">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ags-L4-euA" userLabel="Redo All Label">
                         <rect key="frame" x="340" y="16" width="17" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="All" id="1oI-Vg-5cj">
@@ -237,7 +238,7 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G2N-FC-Dcz" userLabel="Redo Last Label">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G2N-FC-Dcz" userLabel="Redo Last Label">
                         <rect key="frame" x="305" y="16" width="25" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Last" id="RJn-L6-JVa">
@@ -248,7 +249,50 @@ Gw
                     </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-355" y="-81"/>
+            <toolbar key="toolbar" implicitIdentifier="9FEB7C10-F5A6-4867-BE27-FCE6F758DCC7" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="kPe-mH-3Wd">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="14B74D24-51AF-4935-898E-CC414F49EB48" label="Undo" paletteLabel="Undo" id="zYu-t5-gT3">
+                        <imageReference key="image" image="arrow.counterclockwise" catalog="system" symbolScale="medium"/>
+                        <size key="minSize" width="33.5" height="29"/>
+                        <size key="maxSize" width="33.5" height="29"/>
+                        <connections>
+                            <action selector="undoLastChangeAction:" target="-2" id="MID-p7-OyR"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="F678ED64-5872-48F6-BA81-F1851C835BB1" label="Undo All" paletteLabel="Undo All" id="uqt-V3-F7b">
+                        <imageReference key="image" image="arrow.counterclockwise" catalog="system" symbolScale="medium"/>
+                        <size key="minSize" width="33.5" height="29"/>
+                        <size key="maxSize" width="33.5" height="29"/>
+                        <connections>
+                            <action selector="undoAllChangesAction:" target="-2" id="TTs-bQ-CyA"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="71723B92-88D8-4923-929B-C0329939F01A" label="Redo" paletteLabel="Redo" tag="2" id="ivV-Cw-Wf6">
+                        <imageReference key="image" image="arrow.clockwise" catalog="system" symbolScale="medium"/>
+                        <size key="minSize" width="33.5" height="29"/>
+                        <size key="maxSize" width="33.5" height="29"/>
+                        <connections>
+                            <action selector="redoLastChangeAction:" target="-2" id="J8n-fQ-xLV"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="2961C779-D4EB-41A2-890E-B53376053699" label="Redo All" paletteLabel="Redo All" tag="3" id="epb-Ge-GyK">
+                        <imageReference key="image" image="arrow.clockwise" catalog="system" symbolScale="medium"/>
+                        <size key="minSize" width="33.5" height="29"/>
+                        <size key="maxSize" width="33.5" height="29"/>
+                        <connections>
+                            <action selector="redoAllChangesAction:" target="-2" id="Dic-Sd-CGG"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="02r-ft-ufK"/>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="zYu-t5-gT3"/>
+                    <toolbarItem reference="uqt-V3-F7b"/>
+                    <toolbarItem reference="ivV-Cw-Wf6"/>
+                    <toolbarItem reference="epb-Ge-GyK"/>
+                </defaultToolbarItems>
+            </toolbar>
+            <point key="canvasLocation" x="-355.5" y="-81"/>
         </window>
     </objects>
     <resources>
