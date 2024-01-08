@@ -70,7 +70,7 @@ struct DialogsAndAlerts {
         
         openPanel.canCreateDirectories = false
         openPanel.resolvesAliases = true;
-        openPanel.directoryURL = FilesAndPaths.musicDir
+        openPanel.directoryURL = FilesAndPaths.theRealMusicDir
     }
     
     // MARK: NSSavePanel ------------------------------------------
@@ -108,7 +108,7 @@ struct DialogsAndAlerts {
             savePanel.nameFieldStringValue = theNameField
         }
         
-        savePanel.directoryURL = FilesAndPaths.musicDir
+        savePanel.directoryURL = FilesAndPaths.theRealMusicDir
     }
     
     // MARK: NSAlert ------------------------------------------

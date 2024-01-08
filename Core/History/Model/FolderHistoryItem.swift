@@ -15,10 +15,14 @@ class FolderHistoryItem: HistoryItem {
     let folder: URL
     
     override var displayName: String {
-        folder.lastPathComponents(count: 4)
+        folder.lastPathComponents(count: 2)
     }
     
-    init(folder: URL, lastEventTime: Date, eventCount: Int) {
+    override var key: String {
+        folder.path
+    }
+    
+    init(folder: URL, lastEventTime: Date, eventCount: Int = 1) {
         
         self.folder = folder
         super.init(lastEventTime: lastEventTime, eventCount: eventCount)

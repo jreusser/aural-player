@@ -15,10 +15,14 @@ class PlaylistFileHistoryItem: HistoryItem {
     let playlistFile: URL
     
     override var displayName: String {
-        playlistFile.lastPathComponents(count: 4)
+        playlistFile.lastPathComponents(count: 2)
     }
     
-    init(playlistFile: URL, lastEventTime: Date, eventCount: Int) {
+    override var key: String {
+        playlistFile.path
+    }
+    
+    init(playlistFile: URL, lastEventTime: Date, eventCount: Int = 1) {
         
         self.playlistFile = playlistFile
         super.init(lastEventTime: lastEventTime, eventCount: eventCount)

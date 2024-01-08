@@ -19,7 +19,7 @@ class TrackHistoryItem: HistoryItem {
     }
     
     override var key: String {
-        track.file.absoluteString
+        track.file.path
     }
     
     init(track: Track, lastEventTime: Date, eventCount: Int = 1) {

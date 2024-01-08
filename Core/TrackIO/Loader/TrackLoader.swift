@@ -159,9 +159,7 @@ class TrackLoader {
             } else {
 
                 // Single file - playlist or track
-                let fileExtension = resolvedFile.lowerCasedExtension
-
-                if SupportedTypes.playlistExtensions.contains(fileExtension) {
+                if resolvedFile.isSupportedPlaylistFile {
                     
                     // Playlist
                     if !isRecursiveCall {session.addHistoryItem(resolvedFile)}
@@ -170,7 +168,7 @@ class TrackLoader {
                         readPlaylistFiles(loadedPlaylist.tracks)
                     }
                     
-                } else if SupportedTypes.allAudioExtensions.contains(fileExtension) {
+                } else if resolvedFile.isSupportedAudioFile {
                     
                     let indexOfTrackInList: Int? = session.trackList.indexOfTrack(forFile: resolvedFile)
                     
@@ -207,8 +205,7 @@ class TrackLoader {
                 continue
             }
             
-            let fileExtension = resolvedFile.lowerCasedExtension
-            guard SupportedTypes.allAudioExtensions.contains(fileExtension) else {continue}
+            guard resolvedFile.isSupportedAudioFile else {continue}
             
             let fileRead: FileRead
             

@@ -45,7 +45,7 @@ protocol HistoryDelegateProtocol {
     
     var lastPlaybackPosition: Double {get}
     
-    var lastPlayedItem: HistoryItem? {get}
+    var lastPlayedItem: TrackHistoryItem? {get}
     
     func resumeLastPlayedTrack() throws
     

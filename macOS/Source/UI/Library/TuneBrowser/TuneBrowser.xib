@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,26 +22,6 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <menu id="Jl5-On-Z38" userLabel="Browser Item Context Menu">
-            <items>
-                <menuItem title="Play now" id="wB1-oM-Hcr">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Enqueue and play now" id="Y6q-rw-EFb">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Play later" id="RHu-WN-dZs">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Add shortcut to sidebar" id="P2D-Pp-0FW">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Show in Finder" id="SH7-mR-JYm">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-            </items>
-            <point key="canvasLocation" x="-228" y="-240"/>
-        </menu>
         <menu id="bs8-bP-8Hb" userLabel="Browser Column Selection Menu">
             <items>
                 <menuItem title="Type" identifier="tuneBrowser_type" id="p2L-Ud-0fZ">
@@ -87,7 +67,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="700" height="351"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7cL-0X-ZiE" userLabel="Title">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7cL-0X-ZiE" userLabel="Title">
                         <rect key="frame" x="1" y="321" width="124" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="0bS-r1-2mF"/>
@@ -101,10 +81,6 @@
                     </textField>
                     <popUpButton toolTip="Playlist View" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hDu-SS-U8T" userLabel="Settings Menu">
                         <rect key="frame" x="675" y="327" width="25" height="8"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="8" id="kPt-Jn-JnQ"/>
-                            <constraint firstAttribute="width" constant="20" id="vax-9L-ZeO"/>
-                        </constraints>
                         <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="pdo-9D-x2u" id="jgX-6S-K6n">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="11" name="Play-Regular"/>
@@ -136,6 +112,10 @@
                                 </items>
                             </menu>
                         </popUpButtonCell>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="8" id="kPt-Jn-JnQ"/>
+                            <constraint firstAttribute="width" constant="20" id="vax-9L-ZeO"/>
+                        </constraints>
                     </popUpButton>
                     <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jTW-xB-lKp">
                         <rect key="frame" x="0.0" y="285" width="700" height="22"/>
@@ -157,32 +137,32 @@
                         <font key="font" metaFont="system"/>
                     </tabView>
                     <button toolTip="Back" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bwx-2C-Eg4" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="619" y="316.5" width="18" height="18"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="13" id="4PZ-xL-FzP"/>
-                            <constraint firstAttribute="width" constant="18" id="WUV-5g-vIP"/>
-                        </constraints>
+                        <rect key="frame" x="619" y="316" width="18.5" height="20"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" controlSize="small" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="Vqa-qe-ymV">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="message" size="11"/>
                             <imageReference key="image" image="arrow.backward" catalog="system" symbolScale="large"/>
                         </buttonCell>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="4PZ-xL-FzP"/>
+                            <constraint firstAttribute="width" constant="18" id="WUV-5g-vIP"/>
+                        </constraints>
                         <connections>
                             <action selector="goBackAction:" target="-2" id="FbL-JN-6Zf"/>
                             <outlet property="menu" destination="PBx-07-kog" id="Gxy-RO-ezD"/>
                         </connections>
                     </button>
                     <button toolTip="Forward" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jmd-Wq-WNc" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="644" y="316.5" width="18" height="18"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="18" id="Rms-yY-3pN"/>
-                            <constraint firstAttribute="height" constant="13" id="w0E-oO-HIb"/>
-                        </constraints>
+                        <rect key="frame" x="644" y="316" width="18.5" height="20"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" controlSize="small" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="llN-vi-1Kv">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="message" size="11"/>
                             <imageReference key="image" image="arrow.forward" catalog="system" symbolScale="large"/>
                         </buttonCell>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="18" id="Rms-yY-3pN"/>
+                            <constraint firstAttribute="height" constant="13" id="w0E-oO-HIb"/>
+                        </constraints>
                         <connections>
                             <action selector="goForwardAction:" target="-2" id="4rY-Mm-oZF"/>
                             <outlet property="menu" destination="ftf-ek-twl" id="hnL-7K-fNw"/>
@@ -230,7 +210,7 @@
     </objects>
     <resources>
         <image name="Settings" width="10" height="7"/>
-        <image name="arrow.backward" catalog="system" width="19" height="15"/>
-        <image name="arrow.forward" catalog="system" width="19" height="15"/>
+        <image name="arrow.backward" catalog="system" width="20" height="16"/>
+        <image name="arrow.forward" catalog="system" width="20" height="16"/>
     </resources>
 </document>

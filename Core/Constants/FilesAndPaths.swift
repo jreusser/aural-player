@@ -18,10 +18,13 @@ struct FilesAndPaths {
     static let homeDir: URL = URL(fileURLWithPath: NSHomeDirectory())
     
     // Default user's music directory (default place to look in, when opening/saving files)
-    static let musicDir: URL = homeDir.appendingPathComponent("/Music", isDirectory: true).resolvedURL
+//    static let musicDir: URL = homeDir.appendingPathComponent("/Music", isDirectory: true).resolvedURL
+    static let musicDir: URL = URL(fileURLWithPath: "/Volumes/Ext-SSD-4TB/Projects/Aural-Test/Aural-Music")
+    
+    static let theRealMusicDir: URL = homeDir.appendingPathComponent("/Music", isDirectory: true).resolvedURL
     
     #if os(macOS)
-    static let baseDir: URL = musicDir.appendingPathComponent("aural4", isDirectory: true)
+    static let baseDir: URL = theRealMusicDir.appendingPathComponent("aural4", isDirectory: true)
     #elseif os(iOS)
     static let baseDir: URL = userDocumentsDirectory
     #endif

@@ -244,6 +244,12 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
     @IBAction func playNowAction(_ sender: Any) {
         
         let files = browserView.selectedItems.compactMap {($0 as? FileSystemItem)?.url}
+        let folders = files.filter {$0.isDirectory}
+        let playlistFiles = files.filter {$0.isSupportedPlaylistFile}
+        
+        // TODO: Folder B should not be contained within folder A
+        messenger.publish(LibraryPlaylistFilesPlayedNotification(playlistFiles: playlistFiles))
+        messenger.publish(LibraryFoldersPlayedNotification(folders: folders))
         messenger.publish(LoadAndPlayNowCommand(files: files, clearPlayQueue: true))
     }
     

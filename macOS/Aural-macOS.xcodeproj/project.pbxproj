@@ -753,6 +753,8 @@
 		3ECBF3082619D58E00AD5C30 /* AudioUnits.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ECBF3072619D58E00AD5C30 /* AudioUnits.xib */; };
 		3ECBF30A2619DF7200AD5C30 /* AudioUnitsViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBF3092619DF7200AD5C30 /* AudioUnitsViewController+TableViewDelegate.swift */; };
 		3ECC310F26908A08001A5CA7 /* PersistenceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECC310E26908A08001A5CA7 /* PersistenceTestCase.swift */; };
+		3ECDCA4C2B4C7043003BB67E /* LibraryFoldersPlayedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECDCA4B2B4C7043003BB67E /* LibraryFoldersPlayedNotification.swift */; };
+		3ECDCA4E2B4C84CD003BB67E /* LibraryPlaylistFilesPlayedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECDCA4D2B4C84CD003BB67E /* LibraryPlaylistFilesPlayedNotification.swift */; };
 		3ECE4BEE26960A140017DD25 /* ViewPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECE4BED26960A140017DD25 /* ViewPreferencesTests.swift */; };
 		3ECE4BF1269613D10017DD25 /* GesturesControlsPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECE4BF0269613D10017DD25 /* GesturesControlsPreferencesTests.swift */; };
 		3ECE4BF526961ECB0017DD25 /* MetadataPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECE4BF426961ECB0017DD25 /* MetadataPreferencesTests.swift */; };
@@ -2343,6 +2345,8 @@
 		3ECBF3072619D58E00AD5C30 /* AudioUnits.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioUnits.xib; sourceTree = "<group>"; };
 		3ECBF3092619DF7200AD5C30 /* AudioUnitsViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioUnitsViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		3ECC310E26908A08001A5CA7 /* PersistenceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTestCase.swift; sourceTree = "<group>"; };
+		3ECDCA4B2B4C7043003BB67E /* LibraryFoldersPlayedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryFoldersPlayedNotification.swift; sourceTree = "<group>"; };
+		3ECDCA4D2B4C84CD003BB67E /* LibraryPlaylistFilesPlayedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPlaylistFilesPlayedNotification.swift; sourceTree = "<group>"; };
 		3ECE4BED26960A140017DD25 /* ViewPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPreferencesTests.swift; sourceTree = "<group>"; };
 		3ECE4BF0269613D10017DD25 /* GesturesControlsPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturesControlsPreferencesTests.swift; sourceTree = "<group>"; };
 		3ECE4BF426961ECB0017DD25 /* MetadataPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataPreferencesTests.swift; sourceTree = "<group>"; };
@@ -5951,6 +5955,8 @@
 				3E8FF9E127F63E30009CEDDD /* PlayQueueTracksAddedNotifications.swift */,
 				3E81BCD6284AAB5100927E4A /* TuneBrowserItemsAddedNotification.swift */,
 				3EFE0A972B4B5A6700C9B121 /* LibraryGroupPlayedNotification.swift */,
+				3ECDCA4B2B4C7043003BB67E /* LibraryFoldersPlayedNotification.swift */,
+				3ECDCA4D2B4C84CD003BB67E /* LibraryPlaylistFilesPlayedNotification.swift */,
 			);
 			path = NotificationDefinitions;
 			sourceTree = "<group>";
@@ -6901,6 +6907,7 @@
 				3E7C35FE26AADD2A00B3552D /* FilterPresetView.swift in Sources */,
 				3E6C12FA25CEBE8F00BF0D07 /* PlayerViewController.swift in Sources */,
 				3E6C12FF25CEBE8F00BF0D07 /* PlayerViewPopupMenuController.swift in Sources */,
+				3ECDCA4C2B4C7043003BB67E /* LibraryFoldersPlayedNotification.swift in Sources */,
 				3EA6C62A2AD6AAA100B75166 /* FFmpegFrame.swift in Sources */,
 				3E25B65927F78C0B00D10A5F /* TrackListTableViewController.swift in Sources */,
 				3E6C12E925CEBE8100BF0D07 /* PlayingTrackFunctionsMenuDelegate.swift in Sources */,
@@ -7020,6 +7027,7 @@
 				3E10175D28D741E7002C0D8E /* EonilFSEventStream.swift in Sources */,
 				3E62979426A3C0F100C96AB8 /* SnappingWindowDelegate.swift in Sources */,
 				3EFE381D27864896006F8B8C /* SearchResultMatch.swift in Sources */,
+				3ECDCA4E2B4C84CD003BB67E /* LibraryPlaylistFilesPlayedNotification.swift in Sources */,
 				3EFE3A8927864898006F8B8C /* GroupedTrack.swift in Sources */,
 				3EFE383727864896006F8B8C /* TrackAddResult.swift in Sources */,
 				3EFE3A1127864898006F8B8C /* PresetsManagerNotifications.swift in Sources */,
