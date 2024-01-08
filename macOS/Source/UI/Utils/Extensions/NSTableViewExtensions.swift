@@ -227,7 +227,11 @@ extension NSOutlineView {
         selectedRowIndexes.compactMap {item(atRow: $0)}
     }
     
+    var selectedFileSystemItemURLs: [URL] {
+        selectedItems.compactMap {($0 as? FileSystemItem)?.url}
+    }
+    
     func selectItems(_ items: [Any]) {
-        self.selectRows(items.map {row(forItem: $0)})
+        selectRows(items.map {row(forItem: $0)})
     }
 }

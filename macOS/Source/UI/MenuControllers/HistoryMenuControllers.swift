@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-let menuItemCoverArtImageSize: NSSize = NSSize(width: 22, height: 22)
+let menuItemCoverArtImageSize: NSSize = NSSize(width: 25, height: 25)
 
 /*
     Manages and provides actions for the History menu that displays historical information about the usage of the app.

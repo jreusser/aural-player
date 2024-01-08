@@ -1,5 +1,5 @@
 //
-//  LibraryPlaylistFilesPlayedNotification.swift
+//  LibraryFileSystemItemsPlayedNotification.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -10,8 +10,8 @@
 
 import Foundation
 
-struct LibraryPlaylistFilesPlayedNotification: NotificationPayload {
+struct LibraryFileSystemItemsPlayedNotification: NotificationPayload {
     
-    let notificationName: Notification.Name = .library_playlistFilesPlayed
-    let playlistFiles: [URL]
+    let notificationName: Notification.Name = .library_fileSystemItemsPlayed
+    let filesAndFolders: [URL]
 }

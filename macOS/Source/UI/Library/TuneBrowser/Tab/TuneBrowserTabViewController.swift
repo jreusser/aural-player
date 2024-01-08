@@ -243,31 +243,33 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
     
     @IBAction func playNowAction(_ sender: Any) {
         
-        let files = browserView.selectedItems.compactMap {($0 as? FileSystemItem)?.url}
-        let folders = files.filter {$0.isDirectory}
-        let playlistFiles = files.filter {$0.isSupportedPlaylistFile}
+        let files = browserView.selectedFileSystemItemURLs
         
         // TODO: Folder B should not be contained within folder A
-        messenger.publish(LibraryPlaylistFilesPlayedNotification(playlistFiles: playlistFiles))
-        messenger.publish(LibraryFoldersPlayedNotification(folders: folders))
+        
+        messenger.publish(LibraryFileSystemItemsPlayedNotification(filesAndFolders: files))
         messenger.publish(LoadAndPlayNowCommand(files: files, clearPlayQueue: true))
     }
     
+    /// Play Later
     @IBAction func enqueueBrowserItemsAction(_ sender: Any) {
-        doAddBrowserItemsToPlayQueue(indexes: browserView.selectedRowIndexes)
+        doAddBrowserItemsToPlayQueue(urls: browserView.selectedFileSystemItemURLs)
     }
     
     // TODO: Clarify this use case (which items qualify for this) ?
     @IBAction func enqueueAndPlayBrowserItemsAction(_ sender: Any) {
-        doAddBrowserItemsToPlayQueue(indexes: browserView.selectedRowIndexes, beginPlayback: true)
+        doAddBrowserItemsToPlayQueue(urls: browserView.selectedFileSystemItemURLs, beginPlayback: true)
     }
     
     // TODO: If some of these items already exist, playback won't begin.
     // Need to modify playlist to always play the first item.
-    private func doAddBrowserItemsToPlayQueue(indexes: IndexSet, beginPlayback: Bool = false) {
+    private func doAddBrowserItemsToPlayQueue(urls: [URL], beginPlayback: Bool = false) {
         
-        let selItemURLs = indexes.compactMap {[weak browserView] in browserView?.item(atRow: $0) as? FileSystemItem}.map {$0.url}
-        playQueueDelegate.loadTracks(from: selItemURLs, autoplay: beginPlayback)
+        if beginPlayback {
+            messenger.publish(LibraryFileSystemItemsPlayedNotification(filesAndFolders: urls))
+        }
+        
+        playQueueDelegate.loadTracks(from: urls, autoplay: beginPlayback)
     }
     
     @IBAction func addSidebarShortcutAction(_ sender: Any) {

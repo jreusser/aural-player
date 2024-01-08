@@ -88,8 +88,7 @@ class HistoryDelegate: HistoryDelegateProtocol {
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackPlayed(_:),
                                  filter: {msg in msg.playbackStarted})
         
-        messenger.subscribeAsync(to: .library_playlistFilesPlayed, handler: playlistFilesPlayed(_:))
-        messenger.subscribeAsync(to: .library_foldersPlayed, handler: foldersPlayed(_:))
+        messenger.subscribeAsync(to: .library_fileSystemItemsPlayed, handler: fileSystemItemsPlayed(_:))
         messenger.subscribeAsync(to: .library_groupPlayed, handler: groupPlayed(_:))
         
         messenger.subscribe(to: .application_willExit, handler: appWillExit)
@@ -270,10 +269,16 @@ class HistoryDelegate: HistoryDelegateProtocol {
         messenger.publish(.history_updated)
     }
     
-    func playlistFilesPlayed(_ notification: LibraryPlaylistFilesPlayedNotification) {
+    func fileSystemItemsPlayed(_ notification: LibraryFileSystemItemsPlayedNotification) {
         
-        for playlistFile in notification.playlistFiles {
-            doPlaylistFilePlayed(playlistFile)
+        for url in notification.filesAndFolders {
+            
+            if url.isSupportedPlaylistFile {
+                doPlaylistFilePlayed(url)
+                
+            } else if url.isDirectory {
+                doFolderPlayed(url)
+            }
         }
         
         messenger.publish(.history_updated)
@@ -293,15 +298,6 @@ class HistoryDelegate: HistoryDelegateProtocol {
     
     func groupPlayed(_ notif: LibraryGroupPlayedNotification) {
         doGroupPlayed(notif.group)
-    }
-    
-    func foldersPlayed(_ notif: LibraryFoldersPlayedNotification) {
-        
-        for folder in notif.folders {
-            doFolderPlayed(folder)
-        }
-        
-        messenger.publish(.history_updated)
     }
     
     private func doGroupPlayed(_ group: Group) {
