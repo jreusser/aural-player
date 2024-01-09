@@ -33,7 +33,7 @@ class ColorSchemeViewController: NSViewController, NSMenuDelegate, ColorSchemesV
     var activeColorPicker: AuralColorPicker?
     
     private var controlClassNames: Set<String> = [AuralColorPicker.className(), NSButton.className(),
-                                                  NSStepper.className(), GradientOptionsRadioButtonGroup.className()]
+                                                  NSStepper.className()]
     
     override func viewDidLoad() {
         
@@ -86,15 +86,6 @@ class ColorSchemeViewController: NSViewController, NSMenuDelegate, ColorSchemesV
         } else if let btnToggle = controlsMap[lastChange.tag, NSButton.self], let boolVal = lastChange.undoValue as? Bool {
             
             btnToggle.onIf(boolVal)
-            
-        } else if let btnGroup = controlsMap[lastChange.tag, GradientOptionsRadioButtonGroup.self],
-                  let gradientType = lastChange.undoValue as? ColorSchemeGradientType {
-            
-            btnGroup.gradientType = gradientType
-            
-        } else if let stepper = controlsMap[lastChange.tag, NSStepper.self], let intVal = lastChange.undoValue as? Int {
-            
-            stepper.integerValue = intVal
         }
         
         // Perform the system update and notification action
@@ -129,14 +120,6 @@ class ColorSchemeViewController: NSViewController, NSMenuDelegate, ColorSchemesV
             
             btnToggle.onIf(boolVal)
             
-        } else if let btnGroup = controlsMap[lastChange.tag, GradientOptionsRadioButtonGroup.self],
-                  let gradientType = lastChange.redoValue as? ColorSchemeGradientType {
-            
-            btnGroup.gradientType = gradientType
-            
-        } else if let stepper = controlsMap[lastChange.tag, NSStepper.self], let intVal = lastChange.redoValue as? Int {
-            
-            stepper.integerValue = intVal
         }
         
         // Perform the system update and notification action

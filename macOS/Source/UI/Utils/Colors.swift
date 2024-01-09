@@ -17,8 +17,8 @@ struct Colors {
     
     private static let colorSchemesManager: ColorSchemesManager = colorSchemesManager
     
-    static var defaultSliderForegroundGradient: NSGradient {
-        NSGradient(starting: .white80Percent, ending: .white60Percent)!
+    static var defaultSliderForegroundColor: NSColor {
+        .white70Percent
     }
     
 //    static var windowBackgroundColor: NSColor {

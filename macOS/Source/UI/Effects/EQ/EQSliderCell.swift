@@ -16,19 +16,6 @@ class EQSliderCell: AuralSliderCell {
     
     lazy var observingSlider: EffectsUnitSlider = controlView as! EffectsUnitSlider
     
-    override var foregroundGradient: NSGradient {
-        
-        switch fxUnitStateObserverRegistry.currentState(forObserver: observingSlider) {
-            
-        case .active:       return systemColorScheme.activeControlGradient
-            
-        case .bypassed:     return systemColorScheme.inactiveControlGradient
-            
-        case .suppressed:   return systemColorScheme.suppressedControlGradient
-            
-        }
-    }
-    
     override var controlStateColor: NSColor {
         systemColorScheme.colorForEffectsUnitState(fxUnitStateObserverRegistry.currentState(forObserver: observingSlider))
     }
@@ -88,7 +75,7 @@ class EQSliderCell: AuralSliderCell {
         GraphicsUtils.drawLine(systemColorScheme.inactiveControlColor, pt1: startPoint, pt2: endPoint, width: 1)
         
         // Progress rect
-        NSBezierPath.fillRoundedRect(progressRect, radius: barRadius, withGradient: foregroundGradient, angle: .verticalGradientDegrees)
+        NSBezierPath.fillRoundedRect(progressRect, radius: barRadius, withColor: controlStateColor)
         
         // Draw one tick across the center of the bar (marking 0dB)
         let tickMinX = drawRect.minX + tickInset

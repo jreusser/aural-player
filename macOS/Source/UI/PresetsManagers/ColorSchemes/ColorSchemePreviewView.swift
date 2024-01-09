@@ -101,11 +101,8 @@ class ColorSchemePreviewView: NSView {
                 playerTitleColor = theScheme.primaryTextColor
                 playerArtistAlbumColor = theScheme.secondaryTextColor
 
-                seekSliderCell.foregroundStartColor = theScheme.activeControlColor
-                seekSliderCell.foregroundEndColor = theScheme.activeControlGradientColor
-
-                seekSliderCell.backgroundStartColor = theScheme.inactiveControlColor
-                seekSliderCell.backgroundEndColor = theScheme.inactiveControlGradientColor
+                seekSliderCell._foregroundColor = theScheme.activeControlColor
+                seekSliderCell._backgroundColor = theScheme.inactiveControlColor
 
                 seekSlider.redraw()
                 playerFunctionButtons.forEach {$0.contentTintColor = theScheme.buttonColor}
@@ -114,13 +111,8 @@ class ColorSchemePreviewView: NSView {
 
                 eqSliderCells.forEach {
 
-                    $0.foregroundStartColor = theScheme.activeControlColor
-                    $0.foregroundEndColor = theScheme.activeControlGradientColor
-
-                    let endColor = theScheme.inactiveControlColor
-                    $0.backgroundStartColor = theScheme.inactiveControlColor
-                    $0.backgroundEndColor = theScheme.inactiveControlGradientColor
-
+                    $0._foregroundColor = theScheme.activeControlColor
+                    $0._backgroundColor = theScheme.inactiveControlColor
                     $0._knobColor = theScheme.activeControlColor
                 }
 
@@ -234,12 +226,8 @@ class ColorSchemePreviewView: NSView {
 
 class SeekSliderPreviewCell: SeekSliderCell {
     
-    var foregroundStartColor: NSColor = NSColor.white
-    var foregroundEndColor: NSColor = NSColor.white
-    
-    var backgroundStartColor: NSColor = NSColor.gray
-    var backgroundEndColor: NSColor = NSColor.gray
-    
+    var _foregroundColor: NSColor = NSColor.white
+    var _backgroundColor: NSColor = NSColor.gray
     var _knobColor: NSColor = NSColor.white
     
 //    override var backgroundGradient: NSGradient {NSGradient(starting: backgroundStartColor, ending: backgroundEndColor)!}
@@ -249,12 +237,8 @@ class SeekSliderPreviewCell: SeekSliderCell {
 
 class EQSliderPreviewCell: EQSliderCell {
     
-    var foregroundStartColor: NSColor = NSColor.white
-    var foregroundEndColor: NSColor = NSColor.white
-    
-    var backgroundStartColor: NSColor = NSColor.gray
-    var backgroundEndColor: NSColor = NSColor.gray
-    
+    var _foregroundColor: NSColor = NSColor.white
+    var _backgroundColor: NSColor = NSColor.gray
     var _knobColor: NSColor = NSColor.white
     
 //    override var foregroundGradient: NSGradient {

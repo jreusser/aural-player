@@ -20,9 +20,6 @@ class AuralSliderCell: NSSliderCell {
     
     var knobPhysicalTravelRange: CGFloat {0}
     
-    var gradientDegrees: CGFloat {.horizontalGradientDegrees}
-//    var gradientDegrees: CGFloat {.verticalGradientDegrees}
-    
     // ----------------------------------------------------
     
     // MARK: Bar
@@ -49,10 +46,6 @@ class AuralSliderCell: NSSliderCell {
     
     var backgroundColor: NSColor {systemColorScheme.inactiveControlColor}
     
-    var foregroundGradient: NSGradient {
-        systemColorScheme.activeControlGradient
-    }
-    
     var controlStateColor: NSColor {
         systemColorScheme.activeControlColor
     }
@@ -71,7 +64,7 @@ class AuralSliderCell: NSSliderCell {
     
     func setUpKVO() {
         
-        kvoTokens.append(systemColorScheme.observe(\.activeControlGradientColor, options: [.initial, .new]) {[weak self] _, _ in
+        kvoTokens.append(systemColorScheme.observe(\.activeControlColor, options: [.initial, .new]) {[weak self] _, _ in
             self?.controlView?.redraw()
         })
         
@@ -117,7 +110,7 @@ class AuralSliderCell: NSSliderCell {
     func drawProgress(inRect rect: NSRect) {
         
         if rect.width > 0 {
-            NSBezierPath.fillRoundedRect(rect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
+            NSBezierPath.fillRoundedRect(rect, radius: barRadius, withColor: controlStateColor)
         }
     }
     

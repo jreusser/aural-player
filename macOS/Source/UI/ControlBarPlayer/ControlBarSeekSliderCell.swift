@@ -45,52 +45,52 @@ class ControlBarSeekSliderCell: SeekSliderCell {
         return NSMakeRect(superRect.minX, 6, superRect.width, superRect.height)
     }
     
-    override func drawBar(inside aRect: NSRect, flipped: Bool) {
-        
-        let scaledValue = CGFloat(doubleValue / 100)
-        
-        var leftRect: NSRect = .zero
-        
-        if scaledValue > 0 {
-            
-            leftRect = NSRect(x: aRect.minX, y: aRect.minY,
-                                  width: max(1, scaledValue * aRect.width), height: aRect.height)
-            
-            NSBezierPath.fillRoundedRect(leftRect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
-        }
-        
-        if scaledValue < 100 {
-            
-            let rightRect = NSRect(x: leftRect.maxX, y: aRect.minY,
-                                   width: max(1, aRect.width - leftRect.width), height: aRect.height)
-            
-            NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withColor: backgroundColor)
-        }
-        
-        // Render segment playback loop, if one is defined
-        if let loop = self.loop {
-            
-            // Current seek position
-            let curSeekPos = (aRect.minX + halfLoopMarkerWidth + (scaledValue * (aRect.width - loopMarkerWidth)))
-            
-            // Start and end points for the loop
-            let startX = aRect.minX + (loop.start * aRect.width / 100)
-            let endX: CGFloat
-            
-            if let loopEndPerc = loop.end {
-                endX = aRect.minX + (loopEndPerc * aRect.width / 100)
-            } else {
-                endX = curSeekPos + halfLoopMarkerWidth
-            }
-            
-            // Loop bar
-            let loopRect = NSRect(x: startX, y: aRect.minY, width: max(1, endX - startX), height: aRect.height)
-//            NSBezierPath.fillRoundedRect(loopRect, radius: barRadius, withColor: loopColor)
-            
-            // Current position marker
-            let markerStartX = max(aRect.minX, curSeekPos - halfLoopMarkerWidth)
-            let markerRect = NSMakeRect(markerStartX, aRect.minY, loopMarkerWidth, aRect.height)
-//            NSBezierPath.fillRoundedRect(markerRect, radius: knobRadius, withGradient: foregroundGradient, angle: gradientDegrees)
-        }
-    }
+//    override func drawBar(inside aRect: NSRect, flipped: Bool) {
+//        
+//        let scaledValue = CGFloat(doubleValue / 100)
+//        
+//        var leftRect: NSRect = .zero
+//        
+//        if scaledValue > 0 {
+//            
+//            leftRect = NSRect(x: aRect.minX, y: aRect.minY,
+//                                  width: max(1, scaledValue * aRect.width), height: aRect.height)
+//            
+//            NSBezierPath.fillRoundedRect(leftRect, radius: barRadius, withGradient: foregroundGradient, angle: gradientDegrees)
+//        }
+//        
+//        if scaledValue < 100 {
+//            
+//            let rightRect = NSRect(x: leftRect.maxX, y: aRect.minY,
+//                                   width: max(1, aRect.width - leftRect.width), height: aRect.height)
+//            
+//            NSBezierPath.fillRoundedRect(rightRect, radius: barRadius, withColor: backgroundColor)
+//        }
+//        
+//        // Render segment playback loop, if one is defined
+//        if let loop = self.loop {
+//            
+//            // Current seek position
+//            let curSeekPos = (aRect.minX + halfLoopMarkerWidth + (scaledValue * (aRect.width - loopMarkerWidth)))
+//            
+//            // Start and end points for the loop
+//            let startX = aRect.minX + (loop.start * aRect.width / 100)
+//            let endX: CGFloat
+//            
+//            if let loopEndPerc = loop.end {
+//                endX = aRect.minX + (loopEndPerc * aRect.width / 100)
+//            } else {
+//                endX = curSeekPos + halfLoopMarkerWidth
+//            }
+//            
+//            // Loop bar
+//            let loopRect = NSRect(x: startX, y: aRect.minY, width: max(1, endX - startX), height: aRect.height)
+////            NSBezierPath.fillRoundedRect(loopRect, radius: barRadius, withColor: loopColor)
+//            
+//            // Current position marker
+//            let markerStartX = max(aRect.minX, curSeekPos - halfLoopMarkerWidth)
+//            let markerRect = NSMakeRect(markerStartX, aRect.minY, loopMarkerWidth, aRect.height)
+////            NSBezierPath.fillRoundedRect(markerRect, radius: knobRadius, withGradient: foregroundGradient, angle: gradientDegrees)
+//        }
+//    }
 }

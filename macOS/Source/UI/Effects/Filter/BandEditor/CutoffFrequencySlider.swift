@@ -55,18 +55,6 @@ class FilterCutoffFrequencySliderCell: CutoffFrequencySliderCell {
         }
     }
     
-    override var foregroundGradient: NSGradient {
-        
-        let unitState = filterUnit.state
-
-        if filterUnit[bandIndex].bypass {
-            return systemColorScheme.inactiveControlGradient
-            
-        } else {
-            return unitState == .active ? systemColorScheme.activeControlGradient : systemColorScheme.suppressedControlGradient
-        }
-    }
-    
     override func progressRect(forBarRect barRect: NSRect, andKnobRect knobRect: NSRect) -> NSRect {
         
         filterType == .lowPass ?

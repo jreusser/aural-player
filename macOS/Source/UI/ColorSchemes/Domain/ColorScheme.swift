@@ -52,43 +52,10 @@ class ColorScheme: NSObject, UserManagedObject {
     // MARK: Control state colors ----------------------------------------------------------------------------------------
     
     @objc dynamic var activeControlColor: NSColor
-    @objc dynamic var activeControlGradientColor: NSColor!
-    @objc dynamic var activeControlGradient: NSGradient!
-    
-    private func computeActiveControlGradientColor() -> NSColor {
-        // TODO: This is fine if the active color is a bright color (make it brighter)
-        // What is it's a dark color ? Then darken it.
-        // Write a var NSColor.isDarkColor
-        activeControlColor.brightened(0)
-    }
-    
-    private func computeActiveControlGradient() -> NSGradient {
-        NSGradient(starting: activeControlColor, ending: activeControlGradientColor)!
-    }
     
     @objc dynamic var inactiveControlColor: NSColor
-    @objc dynamic var inactiveControlGradientColor: NSColor!
-    @objc dynamic var inactiveControlGradient: NSGradient!
-    
-    private func computeInactiveControlGradientColor() -> NSColor {
-        inactiveControlColor.darkened(25)
-    }
-    
-    private func computeInactiveControlGradient() -> NSGradient {
-        NSGradient(starting: inactiveControlColor, ending: inactiveControlGradientColor)!
-    }
     
     @objc dynamic var suppressedControlColor: NSColor
-    @objc dynamic var suppressedControlGradientColor: NSColor!
-    @objc dynamic var suppressedControlGradient: NSGradient!
-    
-    private func computeSuppressedControlGradientColor() -> NSColor {
-        suppressedControlColor.darkened(25)
-    }
-    
-    private func computeSuppressedControlGradient() -> NSGradient {
-        NSGradient(starting: suppressedControlColor, ending: suppressedControlGradientColor)!
-    }
     
     // MARK: Miscellaneous colors ----------------------------------------------------------------------------------------
     
@@ -128,9 +95,6 @@ class ColorScheme: NSObject, UserManagedObject {
         self.textSelectionColor = textSelectionColor
         
         super.init()
-        
-        computeGradients()
-        setUpKVO()
     }
     
     // Copy constructor ... creates a copy of the given scheme (used when creating a user-defined preset)
@@ -160,9 +124,6 @@ class ColorScheme: NSObject, UserManagedObject {
         suppressedControlColor = scheme.suppressedControlColor
         
         super.init()
-        
-        computeGradients()
-        setUpKVO()
     }
     
     // Used when loading app state on startup
@@ -192,21 +153,6 @@ class ColorScheme: NSObject, UserManagedObject {
         textSelectionColor = persistentState?.textSelectionColor?.toColor() ?? Self.defaultScheme.textSelectionColor
         
         super.init()
-        
-        computeGradients()
-        setUpKVO()
-    }
-    
-    private func computeGradients() {
-        
-        self.activeControlGradientColor = computeActiveControlGradientColor()
-        self.activeControlGradient = computeActiveControlGradient()
-        
-        self.inactiveControlGradientColor = computeInactiveControlGradientColor()
-        self.inactiveControlGradient = computeInactiveControlGradient()
-        
-        self.suppressedControlGradientColor = computeSuppressedControlGradientColor()
-        self.suppressedControlGradient = computeSuppressedControlGradient()
     }
     
     deinit {
@@ -214,27 +160,6 @@ class ColorScheme: NSObject, UserManagedObject {
     }
     
     private var kvoTokens: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
-    
-    private func setUpKVO() {
-        
-        kvoTokens.addObserver(forObject: self, keyPath: \.activeControlColor) {strongSelf, _ in
-            
-            strongSelf.activeControlGradientColor = strongSelf.computeActiveControlGradientColor()
-            strongSelf.activeControlGradient = strongSelf.computeActiveControlGradient()
-        }
-        
-        kvoTokens.addObserver(forObject: self, keyPath: \.inactiveControlColor) {strongSelf, _ in
-            
-            strongSelf.inactiveControlGradientColor = strongSelf.computeInactiveControlGradientColor()
-            strongSelf.inactiveControlGradient = strongSelf.computeInactiveControlGradient()
-        }
-        
-        kvoTokens.addObserver(forObject: self, keyPath: \.suppressedControlColor) {strongSelf, _ in
-            
-            strongSelf.suppressedControlGradientColor = strongSelf.computeSuppressedControlGradientColor()
-            strongSelf.suppressedControlGradient = strongSelf.computeSuppressedControlGradient()
-        }
-    }
     
     // Applies another color scheme to this scheme.
     func applyScheme(_ scheme: ColorScheme) {
@@ -282,14 +207,4 @@ class ColorScheme: NSObject, UserManagedObject {
             
         }
     }
-}
-
-/*
-    Enumerates all different types of gradients that can be applied to colors in a color scheme.
- */
-enum ColorSchemeGradientType: String, CaseIterable, Codable {
-    
-    case none
-    case darken
-    case brighten
 }

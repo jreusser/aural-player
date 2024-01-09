@@ -26,7 +26,7 @@ extension NSSlider {
     }
 }
 
-class EffectsUnitSlider: AuralSlider, FXUnitStateObserver {
+class EffectsUnitSlider: NSSlider, FXUnitStateObserver {
     
     override var isFlipped: Bool {false}
 }

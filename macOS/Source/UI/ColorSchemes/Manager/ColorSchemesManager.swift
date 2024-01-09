@@ -55,7 +55,6 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
     private func systemSchemeChanged() {
         
         // Update color / gradient caches whenever the system scheme changes.
-//        Colors.Player.updateSliderColors()
 //        AuralPlaylistOutlineView.updateCachedImages()
         
         schemeObservers.forEach {

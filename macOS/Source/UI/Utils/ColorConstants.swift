@@ -57,6 +57,8 @@ extension NSColor {
     // Color of the arrow drawn on popup menus
     static let popupMenuArrowColor: NSColor = .white10Percent
     
+    static let popupMenuColor: NSColor = .white50Percent
+    
     // A lighter version of popupMenuArrowColor
     static let lightPopupMenuArrowColor: NSColor = .white80Percent
     

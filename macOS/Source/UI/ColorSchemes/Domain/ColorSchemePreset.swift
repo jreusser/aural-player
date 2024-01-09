@@ -437,52 +437,6 @@ enum ColorSchemePreset: String, CaseIterable {
         }
     }
     
-    var playerSliderForegroundGradientType: ColorSchemeGradientType {
-        
-        switch self {
-            
-        case .blackAndGreen:  return .darken
-            
-        case .blackAndAqua:  return .darken
-            
-        case .lava:     return .brighten
-            
-        case .whiteBlight:  return .none
-            
-        case .gloomyDay:    return .darken
-            
-        case .brownie:    return .darken
-            
-        case .theBlues:     return .darken
-            
-        case .poolsideFM:   return .none
-            
-        }
-    }
-    
-    var playerSliderForegroundGradientAmount: Int {
-        
-        switch self {
-            
-        case .blackAndGreen:  return 70
-            
-        case .blackAndAqua:  return 60
-            
-        case .lava:     return 60
-            
-        case .whiteBlight:  return 20
-            
-        case .gloomyDay:    return 50
-            
-        case .brownie:    return 50
-            
-        case .theBlues:     return 40
-            
-        case .poolsideFM:   return 20
-            
-        }
-    }
-    
     var playerSliderBackgroundColor: NSColor {
         
         switch self {
@@ -505,41 +459,7 @@ enum ColorSchemePreset: String, CaseIterable {
             
         }
     }
-    
-    var playerSliderBackgroundGradientType: ColorSchemeGradientType {
-        
-        switch self {
-            
-        case .blackAndGreen:  return .none
-            
-        case .blackAndAqua:  return .none
-            
-        case .lava:     return .darken
-            
-        case .whiteBlight:  return .none
-            
-        case .gloomyDay:    return .none
-            
-        case .brownie:         return .none
-            
-        case .theBlues:     return .none
-            
-        case .poolsideFM:   return .none
-            
-        }
-    }
-    
-    var playerSliderBackgroundGradientAmount: Int {
-        
-        switch self {
-        
-        case .lava:     return 36
-            
-        default:        return 20
-            
-        }
-    }
-    
+
     var playerSliderKnobColor: NSColor {
         
         switch self {
@@ -916,52 +836,6 @@ enum ColorSchemePreset: String, CaseIterable {
         }
     }
   
-    var effectsSliderBackgroundGradientType: ColorSchemeGradientType {
-        
-        switch self {
-            
-        case .blackAndGreen:  return .brighten
-            
-        case .blackAndAqua:  return .brighten
-            
-        case .lava:  return .darken
-            
-        case .whiteBlight:  return .none
-            
-        case .gloomyDay:    return .brighten
-            
-        case .brownie:    return .darken
-            
-        case .theBlues:     return .darken
-            
-        case .poolsideFM:   return .none
-            
-        }
-    }
-    
-    var effectsSliderBackgroundGradientAmount: Int {
-        
-        switch self {
-            
-        case .blackAndGreen:  return 20
-            
-        case .blackAndAqua:  return 20
-            
-        case .lava:     return 36
-            
-        case .whiteBlight:  return 0
-            
-        case .gloomyDay:    return 15
-            
-        case .brownie:    return 50
-            
-        case .theBlues:     return 40
-            
-        case .poolsideFM:   return 0
-            
-        }
-    }
-    
     var effectsSliderKnobColor: NSColor {
         
         switch self {
@@ -1077,52 +951,6 @@ enum ColorSchemePreset: String, CaseIterable {
         case .theBlues:     return NSColor(red: 0, green: 0.4, blue: 0.65)
             
         case .poolsideFM:   return .white25Percent
-            
-        }
-    }
-    
-    var effectsSliderForegroundGradientType: ColorSchemeGradientType {
-        
-        switch self {
-            
-        case .blackAndGreen:  return .darken
-            
-        case .blackAndAqua:    return .darken
-            
-        case .lava:         return .brighten
-            
-        case .whiteBlight:  return .brighten
-            
-        case .gloomyDay:    return .darken
-            
-        case .brownie:      return .darken
-            
-        case .theBlues:     return .darken
-            
-        case .poolsideFM:   return .none
-            
-        }
-    }
-    
-    var effectsSliderForegroundGradientAmount: Int {
-        
-        switch self {
-            
-        case .blackAndGreen:  return 60
-            
-        case .blackAndAqua:    return 60
-            
-        case .lava:         return 60
-            
-        case .whiteBlight:  return 30
-            
-        case .gloomyDay:    return 60
-            
-        case .brownie:      return 50
-        
-        case .theBlues:     return 45
-            
-        case .poolsideFM:   return 0
             
         }
     }

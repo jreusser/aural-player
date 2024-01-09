@@ -29,7 +29,7 @@ class SeekSliderCell: HorizontalSliderCell {
     
     // Returns the center of the current knob frame
     var knobCenter: CGFloat {
-        return knobRect(flipped: false).centerX
+        knobRect(flipped: false).centerX
     }
     
     // Marks the rendering start point for a segment playback loop. The start argument is the X co-ordinate of the center of the knob frame at the loop start point
@@ -64,21 +64,19 @@ class SeekSliderCell: HorizontalSliderCell {
             return
         }
         
-        drawBackground(inRect: aRect)
-        
-        // Render segment playback loop, if one is defined
-        
-        let knobFrame = knobRect(flipped: false)
-        
-        // Start and end points for the loop
-        let startX = loop.start
-        let endX = loop.end ?? max(startX + 1, knobFrame.minX + halfKnobWidth)
-        
-        // Loop
-        
-        NSBezierPath.fillRoundedRect(NSRect(x: startX, y: aRect.minY, width: (endX - startX + 1), height: aRect.height),
-                                     radius: barRadius,
-                                     withGradient: foregroundGradient,
-                                     angle: gradientDegrees)
+//        drawBackground(inRect: aRect)
+//        
+//        // Render segment playback loop, if one is defined
+//        
+//        let knobFrame = knobRect(flipped: false)
+//        
+//        // Start and end points for the loop
+//        let startX = loop.start
+//        let endX = loop.end ?? max(startX + 1, knobFrame.minX + halfKnobWidth)
+//        
+//        // TODO: Loop
+//        
+//        let barRect = NSRect(x: startX, y: aRect.minY, width: (endX - startX + 1), height: aRect.height)
+//        NSBezierPath.fillRoundedRect(barRect, radius: barRadius, withColor: controlStateColor)
     }
 }

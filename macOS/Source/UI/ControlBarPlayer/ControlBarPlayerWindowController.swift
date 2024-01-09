@@ -9,7 +9,7 @@
 //  
 import Cocoa
 
-class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NSMenuDelegate {
+class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NSMenuDelegate, ColorSchemeObserver {
     
     @IBOutlet weak var rootContainerBox: NSBox!
     @IBOutlet weak var viewController: ControlBarPlayerViewController!
@@ -61,6 +61,8 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
         
         snappingWindow.ensureOnScreen()
+        
+        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.buttonColor])
     }
     
     func applyTheme() {
@@ -194,5 +196,13 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
         
         cornerRadiusStepper.integerValue = rootContainerBox.cornerRadius.roundedInt
         lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
+    }
+    
+    func colorSchemeChanged() {
+        btnQuit.contentTintColor = systemColorScheme.buttonColor
+    }
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        btnQuit.contentTintColor = systemColorScheme.buttonColor
     }
 }

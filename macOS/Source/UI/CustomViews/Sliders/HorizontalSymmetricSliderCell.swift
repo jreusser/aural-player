@@ -14,10 +14,6 @@ class HorizontalSymmetricSliderCell: HorizontalSliderCell {
     
     override var knobHeightOutsideBar: CGFloat {3.5}
     
-    override var foregroundGradient: NSGradient {
-        progress > 0.5 ? super.foregroundGradient : super.foregroundGradient.reversed()
-    }
-    
     override func progressRect(forBarRect barRect: NSRect, andKnobRect knobRect: NSRect) -> NSRect {
         
         // Draw rect between knob and center, to show panning
@@ -52,23 +48,6 @@ class HorizontalSymmetricSliderCell: HorizontalSliderCell {
 class SymmetricEffectsUnitSliderCell: HorizontalSymmetricSliderCell {
     
     lazy var observingSlider: EffectsUnitSlider = controlView as! EffectsUnitSlider
-    
-    override var foregroundGradient: NSGradient {
-        progress > 0.5 ? baseForegroundGradient : baseForegroundGradient.reversed()
-    }
-    
-    var baseForegroundGradient: NSGradient {
-        
-        switch fxUnitStateObserverRegistry.currentState(forObserver: observingSlider) {
-            
-        case .active:       return systemColorScheme.activeControlGradient
-            
-        case .bypassed:     return systemColorScheme.inactiveControlGradient
-            
-        case .suppressed:   return systemColorScheme.suppressedControlGradient
-            
-        }
-    }
     
     override var controlStateColor: NSColor {
         systemColorScheme.colorForEffectsUnitState(fxUnitStateObserverRegistry.currentState(forObserver: observingSlider))

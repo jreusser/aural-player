@@ -50,11 +50,6 @@ enum ColorSchemeChangeType {
     changeColor,
     
     /*
-        The gradient for a single color scheme element has changed (eg. seek slider foreground).
-     */
-    changeGradient,
-    
-    /*
         An entire color scheme has been applied to the system color scheme.
      */
     applyScheme,
@@ -62,12 +57,7 @@ enum ColorSchemeChangeType {
     /*
         A boolean field has been toggled (eg. enable/disable slider foreground gradient)
      */
-    toggle,
-    
-    /*
-        An Int value field has been changed. (eg. gradient amount)
-     */
-    setIntValue
+    toggle
 }
 
 // An action that is performed as part of an undo/redo operation.

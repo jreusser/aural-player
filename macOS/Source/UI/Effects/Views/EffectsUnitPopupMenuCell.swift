@@ -15,7 +15,6 @@ class EffectsUnitPopupMenuCell: NicerPopupMenuCell {
     override var rectRadius: CGFloat {2}
     override var arrowXMargin: CGFloat {10}
     override var arrowYMargin: CGFloat {7}
-//    override var arrowColor: NSColor {Colors.buttonMenuTextColor}
     
     var tintColor: PlatformColor = systemColorScheme.buttonColor {
         
@@ -27,8 +26,6 @@ class EffectsUnitPopupMenuCell: NicerPopupMenuCell {
     override var arrowWidth: CGFloat {3}
     override var arrowHeight: CGFloat {4}
     override var arrowLineWidth: CGFloat {1}
-    
-//    override var menuGradient: NSGradient {Colors.textButtonMenuGradient}
     
     override var titleFont: NSFont {systemFontScheme.effectsPrimaryFont}
 //    override var titleColor: NSColor {Colors.buttonMenuTextColor}

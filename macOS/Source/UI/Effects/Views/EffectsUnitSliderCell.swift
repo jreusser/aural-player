@@ -20,19 +20,6 @@ class EffectsUnitSliderCell: HorizontalSliderCell {
     
     lazy var observingSlider: EffectsUnitSlider = controlView as! EffectsUnitSlider
     
-    override var foregroundGradient: NSGradient {
-        
-        switch fxUnitStateObserverRegistry.currentState(forObserver: observingSlider) {
-            
-        case .active:       return systemColorScheme.activeControlGradient
-            
-        case .bypassed:     return systemColorScheme.inactiveControlGradient
-            
-        case .suppressed:   return systemColorScheme.suppressedControlGradient
-            
-        }
-    }
-    
     override var controlStateColor: NSColor {
         systemColorScheme.colorForEffectsUnitState(fxUnitStateObserverRegistry.currentState(forObserver: observingSlider))
     }

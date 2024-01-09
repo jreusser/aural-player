@@ -19,7 +19,7 @@ class PopupMenuCell: NSPopUpButtonCell {
     var cellInsetX: CGFloat {0}
     var cellInsetY: CGFloat {0}
     var rectRadius: CGFloat {1}
-    var menuGradient: NSGradient {.sliderBarGradient}
+    var menuColor: NSColor {.popupMenuColor}
     
     var titleFont: NSFont {.popupMenuFont}
 //    var titleColor: NSColor {Colors.Effects.defaultPopupMenuTextColor}
@@ -37,7 +37,7 @@ class PopupMenuCell: NSPopUpButtonCell {
     override internal func drawBorderAndBackground(withFrame cellFrame: NSRect, in controlView: NSView) {
         
         let drawRect = cellFrame.insetBy(dx: cellInsetX, dy: cellInsetY)
-        NSBezierPath.fillRoundedRect(drawRect, radius: rectRadius, withGradient: menuGradient, angle: -.verticalGradientDegrees)
+        NSBezierPath.fillRoundedRect(drawRect, radius: rectRadius, withColor: menuColor)
         
         // Draw arrow
         let x = drawRect.maxX - arrowXMargin, y = drawRect.maxY - arrowYMargin
@@ -71,9 +71,6 @@ class FontsPopupMenuCell: PopupMenuCell {
     override var arrowYMargin: CGFloat {6}
     override var arrowHeight: CGFloat {6}
     override var arrowColor: NSColor {.lightPopupMenuArrowColor}
-    
-    override var menuGradient: NSGradient {.popupMenuGradient}
-    
     override var textOffsetY: CGFloat {3}
 }
 
