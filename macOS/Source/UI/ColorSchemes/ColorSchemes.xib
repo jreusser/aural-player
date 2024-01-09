@@ -9,11 +9,11 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ColorSchemesWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
-                <outlet property="btnRedo" destination="63Z-HH-Hrj" id="utr-r7-ioo"/>
-                <outlet property="btnRedoAll" destination="GOE-V5-FTX" id="sUY-d1-hmb"/>
+                <outlet property="btnRedo" destination="ivV-Cw-Wf6" id="cHL-hh-OMU"/>
+                <outlet property="btnRedoAll" destination="epb-Ge-GyK" id="YUC-CG-KWq"/>
                 <outlet property="btnSave" destination="MUl-jB-2L2" id="Sxn-8P-aXB"/>
-                <outlet property="btnUndo" destination="wMK-VB-9mI" id="Vay-wV-r3E"/>
-                <outlet property="btnUndoAll" destination="c1x-IR-t1N" id="gjM-DS-WQw"/>
+                <outlet property="btnUndo" destination="zYu-t5-gT3" id="XEE-HM-tY1"/>
+                <outlet property="btnUndoAll" destination="uqt-V3-F7b" id="XvD-gK-TXw"/>
                 <outlet property="clipboardColorViewer" destination="Vbt-wD-yHi" id="dQ8-0g-Gia"/>
                 <outlet property="clipboardIcon" destination="fIx-Ln-dOF" id="XgV-Kl-RXo"/>
                 <outlet property="tabView" destination="RoW-as-iiX" id="Ojx-ql-h92"/>
@@ -32,58 +32,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="505" height="412"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button toolTip="Redo last change" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="63Z-HH-Hrj" userLabel="Redo Last Button">
-                        <rect key="frame" x="309" y="33.5" width="18.5" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrow.clockwise" catalog="system" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="OhN-CX-YqV">
-                            <behavior key="behavior" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent">Z</string>
-                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="redoLastChangeAction:" target="-2" id="Kwf-8Y-vRN"/>
-                        </connections>
-                    </button>
-                    <button toolTip="Undo last change" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wMK-VB-9mI" userLabel="Undo All Button">
-                        <rect key="frame" x="277" y="33.5" width="18.5" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrow.counterclockwise" catalog="system" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="zA2-Uf-3q5">
-                            <behavior key="behavior" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent">z</string>
-                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="undoAllChangesAction:" target="-2" id="xvS-jh-8S0"/>
-                        </connections>
-                    </button>
-                    <button toolTip="Undo all changes" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c1x-IR-t1N" userLabel="Undo Last Button">
-                        <rect key="frame" x="245" y="33.5" width="18.5" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrow.counterclockwise" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Ysx-Ap-Vho">
-                            <behavior key="behavior" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent">z</string>
-                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="undoLastChangeAction:" target="-2" id="Xx6-HM-3Q1"/>
-                        </connections>
-                    </button>
-                    <button toolTip="Redo all changes" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GOE-V5-FTX" userLabel="Redo All Button">
-                        <rect key="frame" x="340" y="33.5" width="18.5" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrow.clockwise" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="W0H-qy-Bfq">
-                            <behavior key="behavior" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent">Z</string>
-                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="redoAllChangesAction:" target="-2" id="65M-rJ-qj0"/>
-                        </connections>
-                    </button>
                     <popUpButton toolTip="Load color scheme" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3N-y5-Sxg" userLabel="Presets Menu">
                         <rect key="frame" x="138" y="35" width="35" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -152,11 +100,11 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vto-5b-gSA" userLabel="Done button">
-                        <rect key="frame" x="428" y="10" width="60" height="19"/>
+                        <rect key="frame" x="428" y="10" width="60" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VIL-LC-wPz">
+                        <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VIL-LC-wPz">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" size="12" name="Play-Regular"/>
+                            <font key="font" metaFont="system"/>
                             <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
@@ -211,42 +159,6 @@ Gw
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="color" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </colorWell>
-                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WPS-An-ex3" userLabel="Undo Last Label">
-                        <rect key="frame" x="241" y="16" width="25" height="13"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Last" id="qBH-8Y-Q95">
-                            <font key="font" metaFont="system" size="10"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k46-rc-nNz" userLabel="Undo All Label">
-                        <rect key="frame" x="277" y="16" width="17" height="13"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="All" id="WwP-BQ-e0K">
-                            <font key="font" metaFont="system" size="10"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ags-L4-euA" userLabel="Redo All Label">
-                        <rect key="frame" x="340" y="16" width="17" height="13"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="All" id="1oI-Vg-5cj">
-                            <font key="font" metaFont="system" size="10"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G2N-FC-Dcz" userLabel="Redo Last Label">
-                        <rect key="frame" x="305" y="16" width="25" height="13"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Last" id="RJn-L6-JVa">
-                            <font key="font" metaFont="system" size="10"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
             </view>
             <toolbar key="toolbar" implicitIdentifier="9FEB7C10-F5A6-4867-BE27-FCE6F758DCC7" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="kPe-mH-3Wd">

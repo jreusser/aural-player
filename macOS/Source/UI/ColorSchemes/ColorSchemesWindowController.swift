@@ -20,11 +20,11 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
     
     @IBOutlet weak var btnSave: NSButton!
     
-    @IBOutlet weak var btnUndo: NSButton!
-    @IBOutlet weak var btnUndoAll: NSButton!
+    @IBOutlet weak var btnUndo: NSToolbarItem!
+    @IBOutlet weak var btnUndoAll: NSToolbarItem!
     
-    @IBOutlet weak var btnRedo: NSButton!
-    @IBOutlet weak var btnRedoAll: NSButton!
+    @IBOutlet weak var btnRedo: NSToolbarItem!
+    @IBOutlet weak var btnRedoAll: NSToolbarItem!
     
     // UI elements that display the current clipboard color
     @IBOutlet weak var clipboardIcon: NSImageView!
@@ -288,5 +288,26 @@ extension ColorSchemesWindowController: StringInputReceiver {
         // Copy the current system scheme into the new scheme, and name it with the user's given scheme name
         let newScheme: ColorScheme = ColorScheme(string, false, systemColorScheme)
         colorSchemesManager.addObject(newScheme)
+    }
+}
+
+extension NSToolbarItem {
+    
+    var isDisabled: Bool {!isEnabled}
+    
+    @objc func enable() {
+        self.isEnabled = true
+    }
+    
+    @objc func disable() {
+        self.isEnabled = false
+    }
+    
+    @objc func enableIf(_ condition: Bool) {
+        self.isEnabled = condition
+    }
+    
+    @objc func disableIf(_ condition: Bool) {
+        self.isEnabled = !condition
     }
 }

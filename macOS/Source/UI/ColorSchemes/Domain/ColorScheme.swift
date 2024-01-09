@@ -59,7 +59,7 @@ class ColorScheme: NSObject, UserManagedObject {
         // TODO: This is fine if the active color is a bright color (make it brighter)
         // What is it's a dark color ? Then darken it.
         // Write a var NSColor.isDarkColor
-        activeControlColor.brightened(25)
+        activeControlColor.brightened(0)
     }
     
     private func computeActiveControlGradient() -> NSGradient {
