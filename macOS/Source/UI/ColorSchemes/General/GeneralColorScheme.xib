@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -35,7 +35,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="460" height="260"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6hn-iC-tsI" userLabel="Background">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6hn-iC-tsI" userLabel="Background">
                                         <rect key="frame" x="20" y="213" width="183" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Window background" id="Dns-ys-DTv" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
@@ -44,15 +44,15 @@
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </textFieldCell>
                                     </textField>
-                                    <colorWell fixedFrame="YES" tag="102" translatesAutoresizingMaskIntoConstraints="NO" id="mfG-Aq-Mc0" userLabel="Control button color" customClass="AuralColorPicker" customModule="Aural" customModuleProvider="target">
-                                        <rect key="frame" x="410" y="172" width="25" height="25"/>
+                                    <colorWell fixedFrame="YES" tag="102" wellStyle="expanded" translatesAutoresizingMaskIntoConstraints="NO" id="mfG-Aq-Mc0" userLabel="Control button color" customClass="AuralColorPicker" customModule="Aural" customModuleProvider="target">
+                                        <rect key="frame" x="375" y="172" width="64" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="iconColorAction:" target="-2" id="uso-EX-6Gd"/>
                                         </connections>
                                     </colorWell>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w0j-TL-nSr" userLabel="Control buttons">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w0j-TL-nSr" userLabel="Control buttons">
                                         <rect key="frame" x="20" y="173" width="183" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Icons" id="dSf-n3-WNd" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
@@ -61,23 +61,23 @@
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </textFieldCell>
                                     </textField>
-                                    <colorWell fixedFrame="YES" tag="101" translatesAutoresizingMaskIntoConstraints="NO" id="1Tg-2i-CV0" userLabel="Background color" customClass="AuralColorPicker" customModule="Aural" customModuleProvider="target">
-                                        <rect key="frame" x="410" y="212" width="25" height="25"/>
+                                    <colorWell fixedFrame="YES" tag="101" wellStyle="expanded" translatesAutoresizingMaskIntoConstraints="NO" id="1Tg-2i-CV0" userLabel="Background color" customClass="AuralColorPicker" customModule="Aural" customModuleProvider="target">
+                                        <rect key="frame" x="375" y="212" width="64" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="backgroundColorAction:" target="-2" id="z2V-yK-ON9"/>
                                         </connections>
                                     </colorWell>
-                                    <colorWell fixedFrame="YES" tag="401" translatesAutoresizingMaskIntoConstraints="NO" id="A1q-KK-1dz" userLabel="Background color" customClass="AuralColorPicker" customModule="Aural" customModuleProvider="target">
-                                        <rect key="frame" x="410" y="132" width="25" height="25"/>
+                                    <colorWell fixedFrame="YES" tag="401" wellStyle="expanded" translatesAutoresizingMaskIntoConstraints="NO" id="A1q-KK-1dz" userLabel="Background color" customClass="AuralColorPicker" customModule="Aural" customModuleProvider="target">
+                                        <rect key="frame" x="375" y="132" width="64" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="buttonColorAction:" target="-2" id="5zW-2y-8hw"/>
                                         </connections>
                                     </colorWell>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B2V-9a-fhs" userLabel="Primary text" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B2V-9a-fhs" userLabel="Primary text" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="20" y="135" width="164" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Buttons" id="d0c-a7-cJH" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">

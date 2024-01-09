@@ -163,7 +163,7 @@ Gw
             </view>
             <toolbar key="toolbar" implicitIdentifier="9FEB7C10-F5A6-4867-BE27-FCE6F758DCC7" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="kPe-mH-3Wd">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="14B74D24-51AF-4935-898E-CC414F49EB48" label="Undo" paletteLabel="Undo" id="zYu-t5-gT3">
+                    <toolbarItem implicitItemIdentifier="14B74D24-51AF-4935-898E-CC414F49EB48" explicitItemIdentifier="undo" label="Undo" paletteLabel="Undo" id="zYu-t5-gT3">
                         <imageReference key="image" image="arrow.counterclockwise" catalog="system" symbolScale="medium"/>
                         <size key="minSize" width="33.5" height="29"/>
                         <size key="maxSize" width="33.5" height="29"/>
@@ -171,7 +171,7 @@ Gw
                             <action selector="undoLastChangeAction:" target="-2" id="MID-p7-OyR"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="F678ED64-5872-48F6-BA81-F1851C835BB1" label="Undo All" paletteLabel="Undo All" id="uqt-V3-F7b">
+                    <toolbarItem implicitItemIdentifier="F678ED64-5872-48F6-BA81-F1851C835BB1" explicitItemIdentifier="undoAll" label="Undo All" paletteLabel="Undo All" id="uqt-V3-F7b">
                         <imageReference key="image" image="arrow.counterclockwise" catalog="system" symbolScale="medium"/>
                         <size key="minSize" width="33.5" height="29"/>
                         <size key="maxSize" width="33.5" height="29"/>
@@ -179,7 +179,7 @@ Gw
                             <action selector="undoAllChangesAction:" target="-2" id="TTs-bQ-CyA"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="71723B92-88D8-4923-929B-C0329939F01A" label="Redo" paletteLabel="Redo" tag="2" id="ivV-Cw-Wf6">
+                    <toolbarItem implicitItemIdentifier="71723B92-88D8-4923-929B-C0329939F01A" explicitItemIdentifier="redo" label="Redo" paletteLabel="Redo" tag="2" id="ivV-Cw-Wf6">
                         <imageReference key="image" image="arrow.clockwise" catalog="system" symbolScale="medium"/>
                         <size key="minSize" width="33.5" height="29"/>
                         <size key="maxSize" width="33.5" height="29"/>
@@ -187,7 +187,7 @@ Gw
                             <action selector="redoLastChangeAction:" target="-2" id="J8n-fQ-xLV"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="2961C779-D4EB-41A2-890E-B53376053699" label="Redo All" paletteLabel="Redo All" tag="3" id="epb-Ge-GyK">
+                    <toolbarItem implicitItemIdentifier="2961C779-D4EB-41A2-890E-B53376053699" explicitItemIdentifier="redoAll" label="Redo All" paletteLabel="Redo All" tag="3" id="epb-Ge-GyK">
                         <imageReference key="image" image="arrow.clockwise" catalog="system" symbolScale="medium"/>
                         <size key="minSize" width="33.5" height="29"/>
                         <size key="maxSize" width="33.5" height="29"/>

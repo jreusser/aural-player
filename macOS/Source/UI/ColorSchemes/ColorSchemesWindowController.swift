@@ -12,7 +12,7 @@ import Cocoa
 /*
     Controller for the color scheme editor panel that allows the current system color scheme to be edited.
  */
-class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, ModalDialogDelegate {
+class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, ModalDialogDelegate, NSToolbarItemValidation {
     
     override var windowNibName: NSNib.Name? {"ColorSchemes"}
     
@@ -66,11 +66,6 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
         // Disable color transparency in the color chooser panel (for now)
         NSColorPanel.shared.showsAlpha = false
         
-        // Register an observer that updates undo/redo button states whenever the history changes.
-        history.changeListener = {[weak self] in
-            self?.updateButtonStates()
-        }
-        
         // Set up an observer that responds whenever the clipboard color is changed (so that the UI can be updated accordingly)
         clipboard.colorChangeCallback = {[weak self] in
             
@@ -99,9 +94,6 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
         // Reset the subviews according to the current system color scheme, and show the first tab
         subViews.forEach {$0.resetFields(systemColorScheme, history, clipboard)}
         tabView.selectTabViewItem(at: 0)
-        
-        // Enable/disable function buttons
-        updateButtonStates()
         
         theWindow.showCenteredOnScreen()
         
@@ -159,9 +151,7 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
     
     // Notify UI components of a scheme update
     private func schemeUpdated(_ scheme: ColorScheme) {
-        
         subViews.forEach {$0.resetFields(scheme, history, clipboard)}
-        updateButtonStates()
     }
     
     // Undoes the (single) last change made to the system color scheme.
@@ -183,10 +173,11 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
             
             // Only one subview will perform the undo operation, i.e. the subview containing the
             // color field that was previously changed.
-            if subViews.contains(where: {$0.undoChange(lastChange)}) {
+            for subView in subViews {
                 
-                // Undo successful ... update undo/redo button states and exit the loop.
-                updateButtonStates()
+                if subView.undoChange(lastChange) {
+                    break
+                }
             }
         }
     }
@@ -210,23 +201,19 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
             
             // Only one subview will perform the redo operation, i.e. the subview containing the color field
             // that was previously changed and then undone.
-            if subViews.contains(where: {$0.redoChange(lastChange)}) {
+            for subView in subViews {
                 
-                // Redo successful ... update undo/redo button states and exit the loop.
-                updateButtonStates()
+                if subView.redoChange(lastChange) {
+                    break
+                }
             }
         }
     }
     
     // Updates the undo/redo function button states according to the current state of the change history,
     // i.e. depending on whether or not there are any changes to undo/redo.
-    private func updateButtonStates() {
-        
-        btnUndo.enableIf(history.canUndo)
-        btnUndoAll.enableIf(history.canUndo)
-        
-        btnRedo.enableIf(history.canRedo)
-        btnRedoAll.enableIf(history.canRedo)
+    func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
+        item.itemIdentifier.rawValue.hasPrefix("undo") ? history.canUndo : history.canRedo
     }
     
     // Dismisses the panel when the user is done making changes
