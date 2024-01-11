@@ -27,10 +27,4 @@ class TrackHistoryItem: HistoryItem {
         self.track = track
         super.init(lastEventTime: lastEventTime, eventCount: eventCount)
     }
-    
-    override func equals(other: HistoryItem) -> Bool {
-        
-        guard let otherTrack = other as? TrackHistoryItem else {return false}
-        return self.track.file == otherTrack.track.file
-    }
 }

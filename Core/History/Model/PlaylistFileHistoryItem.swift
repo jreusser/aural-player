@@ -27,10 +27,4 @@ class PlaylistFileHistoryItem: HistoryItem {
         self.playlistFile = playlistFile
         super.init(lastEventTime: lastEventTime, eventCount: eventCount)
     }
-    
-    override func equals(other: HistoryItem) -> Bool {
-        
-        guard let otherPlaylistFile = other as? PlaylistFileHistoryItem else {return false}
-        return self.playlistFile == otherPlaylistFile.playlistFile
-    }
 }

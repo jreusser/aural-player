@@ -19,7 +19,19 @@ import Foundation
 ///
 protocol FavoritesDelegateProtocol {
     
-    func addFavorite(_ track: Track) -> Favorite
+    func addFavorite(track: Track) -> Favorite
+    
+    func addFavorite(artist: String) -> Favorite
+//    
+    func addFavorite(album: String) -> Favorite
+//    
+//    func addFavorite(genre: String) -> Favorite
+//    
+//    func addFavorite(decade: String) -> Favorite
+//    
+//    func addFavorite(playlist: Playlist) -> Favorite
+//    
+//    func addFavorite(playlistFile: ImportedPlaylist) -> Favorite
     
     var allFavorites: [Favorite] {get}
     
@@ -33,7 +45,11 @@ protocol FavoritesDelegateProtocol {
     
     func deleteFavoriteWithFile(_ file: URL)
     
-    func favoriteWithFileExists(_ file: URL) -> Bool
+    func favoriteTrackExists(_ track: Track) -> Bool
+    
+    func favoriteArtistExists(_ artist: String) -> Bool
+    
+    func favoriteAlbumExists(_ album: String) -> Bool
     
     func playFavorite(_ favorite: Favorite) throws
 }

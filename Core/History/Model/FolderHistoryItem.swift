@@ -27,10 +27,4 @@ class FolderHistoryItem: HistoryItem {
         self.folder = folder
         super.init(lastEventTime: lastEventTime, eventCount: eventCount)
     }
-    
-    override func equals(other: HistoryItem) -> Bool {
-        
-        guard let otherFolder = other as? FolderHistoryItem else {return false}
-        return self.folder == otherFolder.folder
-    }
 }

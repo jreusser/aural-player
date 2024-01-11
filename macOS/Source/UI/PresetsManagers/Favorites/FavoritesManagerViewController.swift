@@ -61,7 +61,7 @@ class FavoritesManagerViewController: PresetsManagerViewController {
         let favorite = favorites.getFavoriteAtIndex(row)
         
         // TODO: favorite.file only applies to tracks, playlists, folders, not to groups.
-        return createTextCell(tableView, column, row, colID == .cid_favoriteNameColumn ? favorite.name : favorite.file!.path, false)
+        return createTextCell(tableView, column, row, colID == .cid_favoriteNameColumn ? favorite.name : "", false)
     }
 }
 

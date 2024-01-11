@@ -30,7 +30,7 @@ struct AppPersistentState: Codable {
     var playbackProfiles: [PlaybackProfilePersistentState]?
     
     var history: HistoryPersistentState?
-    var favorites: [FavoritePersistentState]?
+    var favorites: FavoritesPersistentState?
     var bookmarks: [BookmarkPersistentState]?
     
     var musicBrainzCache: MusicBrainzCachePersistentState?

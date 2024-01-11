@@ -50,8 +50,8 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
 
     func menuWillOpen(_ menu: NSMenu) {
         
-        if let playingTrackFile = playbackInfo.playingTrack?.file {
-            addRemoveFavoritesMenuItem.onIf(favorites.favoriteWithFileExists(playingTrackFile))
+        if let playingTrack = playbackInfo.playingTrack {
+            addRemoveFavoritesMenuItem.onIf(favorites.favoriteTrackExists(playingTrack))
         } else {
             addRemoveFavoritesMenuItem.off()
         }
@@ -78,22 +78,37 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
         let menuItem = FavoritesMenuItem(title: "  " + item.name, action: action)
         menuItem.target = self
         
-        menuItem.image = .imgPlayedTrack
-        menuItem.image?.size = menuItemCoverArtImageSize
-        
-        artLoadingQueue.addOperation {[weak self] in
+        if let trackItem = item as? FavoriteTrack {
+            menuItem.image = trackItem.track.art?.image
             
-//            if let theImage = self?.playlist.findFile(item.file)?.art?.image ?? self?.fileReader.getArt(for: item.file)?.image,
-//               let imgCopy = theImage.copy() as? NSImage {
-//
-//                imgCopy.size = menuItemCoverArtImageSize
-//
-//                DispatchQueue.main.async {
-//                    menuItem.image = imgCopy
-//                }
-//            }
+        } else if let groupItem = item as? FavoriteGroup {
+            
+            switch groupItem.groupType {
+                
+            case .artist:
+                menuItem.image = .imgArtistGroup_menu
+                
+            case .album:
+                menuItem.image = .imgAlbumGroup_menu
+                
+            case .genre:
+                menuItem.image = .imgGenreGroup
+
+            case .decade:
+                menuItem.image = .imgDecadeGroup
+
+            case .albumDisc:
+                menuItem.image = .imgAlbumGroup_menu
+                
+            default:
+                break
+            }
+            
+        } else {
+            menuItem.image = .imgPlayedTrack
         }
         
+        menuItem.image?.size = menuItemCoverArtImageSize
         menuItem.favorite = item
         
         return menuItem

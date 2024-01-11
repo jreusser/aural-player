@@ -58,7 +58,7 @@ class DockMenuController: NSObject, NSMenuDelegate {
         
         favoritesMenuItem.off()
         
-        messenger.subscribeAsync(to: .favoritesList_trackAdded, handler: trackAddedToFavorites(_:))
+        messenger.subscribeAsync(to: .favoritesList_itemAdded, handler: trackAddedToFavorites(_:))
         messenger.subscribeAsync(to: .favoritesList_tracksRemoved, handler: tracksRemovedFromFavorites(_:))
         
         messenger.subscribeAsync(to: .bookmarksList_trackAdded, handler: trackAddedToBookmarks(_:))
@@ -112,9 +112,9 @@ class DockMenuController: NSObject, NSMenuDelegate {
         favoritesMenu.insertItem(item, at: 0)
         
         // Update the toggle menu item
-        if let plTrack = playbackInfo.playingTrack, plTrack.file == favorite.file {
-            favoritesMenuItem.on()
-        }
+//        if let plTrack = playbackInfo.playingTrack, plTrack.file == favorite.file {
+//            favoritesMenuItem.on()
+//        }
     }
     
     // Responds to a notification that a track has been removed from the Favorites list, by updating the Favorites menu.
@@ -124,10 +124,10 @@ class DockMenuController: NSObject, NSMenuDelegate {
         itemsToRemove.forEach {favoritesMenu.removeItem($0)}
         
         // Update the toggle menu item
-        let removedFavoritesFiles = Set(removedFavorites.map {$0.file})
-        if let plTrack = playbackInfo.playingTrack, removedFavoritesFiles.contains(plTrack.file) {
-            favoritesMenuItem.off()
-        }
+//        let removedFavoritesFiles = Set(removedFavorites.map {$0.file})
+//        if let plTrack = playbackInfo.playingTrack, removedFavoritesFiles.contains(plTrack.file) {
+//            favoritesMenuItem.off()
+//        }
     }
     
     // Responds to a notification that a track has been added to the Bookmarks list, by updating the Bookmarks menu.
@@ -344,10 +344,10 @@ class DockMenuController: NSObject, NSMenuDelegate {
     
     func trackTransitioned(_ notification: TrackTransitionNotification) {
         
-        if let trackFile = notification.endTrack?.file {
+        if let track = notification.endTrack {
             
             favoritesMenuItem.enable()
-            favoritesMenuItem.onIf(favorites.favoriteWithFileExists(trackFile))
+            favoritesMenuItem.onIf(favorites.favoriteTrackExists(track))
             
         } else {
             

@@ -30,10 +30,4 @@ class GroupHistoryItem: HistoryItem {
         
         super.init(lastEventTime: lastEventTime, eventCount: eventCount)
     }
-    
-    override func equals(other: HistoryItem) -> Bool {
-        
-        guard let otherGroup = other as? GroupHistoryItem else {return false}
-        return self.groupType == otherGroup.groupType && self.groupName == otherGroup.groupName
-    }
 }

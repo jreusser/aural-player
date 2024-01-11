@@ -38,16 +38,4 @@ class HistoryItem {
         lastEventTime = Date()
         eventCount.increment()
     }
-    
-    func equals(other: HistoryItem) -> Bool {
-        true
-    }
-}
-
-extension HistoryItem: Equatable {
-    
-    // Dummy implementation: Override this!
-    static func == (lhs: HistoryItem, rhs: HistoryItem) -> Bool {
-        lhs.equals(other: rhs)
-    }
 }

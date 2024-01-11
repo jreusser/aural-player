@@ -104,6 +104,9 @@ extension PlatformImage {
     static let imgDecadeGroup: PlatformImage = PlatformImage(named: "Calendar")!
     static let imgFileSystem: PlatformImage = PlatformImage(systemSymbolName: "folder", accessibilityDescription: nil)!
     
+    static let imgArtistGroup_menu: PlatformImage = PlatformImage(named: "Artists_Menu")!
+    static let imgAlbumGroup_menu: PlatformImage = PlatformImage(named: "Albums_Menu")!
+    
     #if os(iOS)
     
     ///

@@ -9,9 +9,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PlayQueueSimpleViewController" customModule="Aural" customModuleProvider="target">
             <connections>
-                <outlet property="addAlbumToFavoritesMenuItem" destination="dUj-RN-2bC" id="iHT-2w-RHN"/>
-                <outlet property="addArtistToFavoritesMenuItem" destination="Zkc-sz-hXW" id="bzd-aR-6Rq"/>
-                <outlet property="favoritesMenuItem" destination="ccr-O5-bNr" id="GrD-P9-yNO"/>
+                <outlet property="favoriteAlbumMenuItem" destination="dUj-RN-2bC" id="tc1-do-MXk"/>
+                <outlet property="favoriteArtistMenuItem" destination="Zkc-sz-hXW" id="GcU-D7-8QU"/>
+                <outlet property="favoriteTrackMenuItem" destination="VJw-JZ-VDn" id="QUe-KJ-C9C"/>
                 <outlet property="infoMenuItem" destination="E94-FX-PuM" id="c4A-Qo-w0t"/>
                 <outlet property="playNextMenuItem" destination="557-bs-7lR" id="dPM-ac-JTC"/>
                 <outlet property="playNowMenuItem" destination="jTl-IJ-icl" id="ZTv-GE-qXI"/>
@@ -282,13 +282,13 @@
                                     <action selector="favoritesAction:" target="-2" id="Jdf-RU-Pju"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Artist ''" image="Artists" id="Zkc-sz-hXW">
+                            <menuItem title="Artist ''" image="Artists_Menu" id="Zkc-sz-hXW">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="addArtistToFavoritesAction:" target="-2" id="mrE-Ze-H7k"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Album ''" image="Albums" id="dUj-RN-2bC">
+                            <menuItem title="Album ''" image="Albums_Menu" id="dUj-RN-2bC">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="addAlbumToFavoritesAction:" target="-2" id="dTP-3x-Rxt"/>
@@ -330,8 +330,8 @@
         </menu>
     </objects>
     <resources>
-        <image name="Albums" width="32" height="32"/>
-        <image name="Artists" width="32" height="32"/>
+        <image name="Albums_Menu" width="20" height="20"/>
+        <image name="Artists_Menu" width="20" height="20"/>
         <image name="ShowInFinder" width="15" height="15"/>
         <image name="arrow.down" catalog="system" width="13" height="14"/>
         <image name="arrow.down.to.line.alt" catalog="system" width="13" height="14"/>

@@ -18,7 +18,7 @@ extension PlayQueueViewController: NSMenuDelegate {
         let oneRowSelected = selectedRowCount == 1
         let playingTrackSelected = playQueueDelegate.currentTrackIndex != nil && selectedRows.contains(playQueueDelegate.currentTrackIndex!)
         
-        [playNowMenuItem, favoritesMenuItem, infoMenuItem].forEach {
+        [playNowMenuItem, favoriteTrackMenuItem, infoMenuItem].forEach {
             $0.enableIf(oneRowSelected)
         }
         
@@ -26,20 +26,20 @@ extension PlayQueueViewController: NSMenuDelegate {
             
             if let artist = theClickedTrack.artist {
                 
-                addArtistToFavoritesMenuItem.title = "Artist '\(artist)'"
-                addArtistToFavoritesMenuItem.show()
+                favoriteArtistMenuItem.title = "Artist '\(artist)'"
+                favoriteArtistMenuItem.show()
                 
             } else {
-                addArtistToFavoritesMenuItem.hide()
+                favoriteArtistMenuItem.hide()
             }
             
             if let album = theClickedTrack.album {
                 
-                addAlbumToFavoritesMenuItem.title = "Album '\(album)'"
-                addAlbumToFavoritesMenuItem.show()
+                favoriteAlbumMenuItem.title = "Album '\(album)'"
+                favoriteAlbumMenuItem.show()
                 
             } else {
-                addAlbumToFavoritesMenuItem.hide()
+                favoriteAlbumMenuItem.hide()
             }
         }
         
@@ -56,7 +56,16 @@ extension PlayQueueViewController: NSMenuDelegate {
         
         // Update the state of the favorites menu item (based on if the clicked track is already in the favorites list or not)
         if let theClickedTrack = selectedTracks.first {
-            favoritesMenuItem.onIf(favoritesDelegate.favoriteWithFileExists(theClickedTrack.file))
+            
+            favoriteTrackMenuItem.onIf(favoritesDelegate.favoriteTrackExists(theClickedTrack))
+            
+            if let artist = theClickedTrack.artist {
+                favoriteArtistMenuItem.onIf(favoritesDelegate.favoriteArtistExists(artist))
+            }
+            
+            if let album = theClickedTrack.album {
+                favoriteAlbumMenuItem.onIf(favoritesDelegate.favoriteAlbumExists(album))
+            }
         }
     }
     
@@ -105,7 +114,7 @@ extension PlayQueueViewController: NSMenuDelegate {
         
         guard let theClickedTrack = selectedTracks.first else {return}
 
-        if favoritesMenuItem.isOn {
+        if favoriteTrackMenuItem.isOn {
 
             // Remove from Favorites list and display notification
             favoritesDelegate.deleteFavoriteWithFile(theClickedTrack.file)
@@ -117,7 +126,7 @@ extension PlayQueueViewController: NSMenuDelegate {
         } else {
 
             // Add to Favorites list and display notification
-            _ = favoritesDelegate.addFavorite(theClickedTrack)
+            _ = favoritesDelegate.addFavorite(track: theClickedTrack)
 
             if let rowView = selectedRowView {
                 infoPopup.showMessage("Track added to Favorites !", rowView, .maxX)
@@ -129,9 +138,61 @@ extension PlayQueueViewController: NSMenuDelegate {
     }
     
     // Adds/removes the currently playing track, if there is one, to/from the "Favorites" list
-    @IBAction func addArtistToFavoritesAction(_ sender: NSMenuItem) {}
+    @IBAction func addArtistToFavoritesAction(_ sender: NSMenuItem) {
+        
+        guard let theClickedTrack = selectedTracks.first,
+        let artist = theClickedTrack.artist else {return}
+
+        if favoriteArtistMenuItem.isOn {
+
+//            // Remove from Favorites list and display notification
+//            favoritesDelegate.deleteFavoriteWithFile(theClickedTrack.file)
+//
+//            if let rowView = selectedRowView {
+//                infoPopup.showMessage("Artist removed from Favorites !", rowView, .maxX)
+//            }
+
+        } else {
+
+            // Add to Favorites list and display notification
+            _ = favoritesDelegate.addFavorite(artist: artist)
+
+            if let rowView = selectedRowView {
+                infoPopup.showMessage("Artist added to Favorites !", rowView, .maxX)
+            }
+        }
+        
+        // If this isn't done, the app windows are hidden when the popover is displayed
+        windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)
+    }
     
-    @IBAction func addAlbumToFavoritesAction(_ sender: NSMenuItem) {}
+    @IBAction func addAlbumToFavoritesAction(_ sender: NSMenuItem) {
+        
+        guard let theClickedTrack = selectedTracks.first,
+        let album = theClickedTrack.album else {return}
+
+        if favoriteAlbumMenuItem.isOn {
+
+//            // Remove from Favorites list and display notification
+//            favoritesDelegate.deleteFavoriteWithFile(theClickedTrack.file)
+//
+//            if let rowView = selectedRowView {
+//                infoPopup.showMessage("Album removed from Favorites !", rowView, .maxX)
+//            }
+
+        } else {
+
+            // Add to Favorites list and display notification
+            _ = favoritesDelegate.addFavorite(album: album)
+
+            if let rowView = selectedRowView {
+                infoPopup.showMessage("Album added to Favorites !", rowView, .maxX)
+            }
+        }
+        
+        // If this isn't done, the app windows are hidden when the popover is displayed
+        windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)
+    }
     
     // Shows a popover with detailed information for the currently playing track, if there is one
     @IBAction func trackInfoAction(_ sender: AnyObject) {

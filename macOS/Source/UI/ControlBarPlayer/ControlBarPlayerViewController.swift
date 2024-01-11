@@ -204,15 +204,13 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
     // Required for dock menu function "Add/Remove playing track to/from Favorites".
     private func addOrRemoveFavorite() {
         
-        if let playingTrack = player.playingTrack {
+        guard let playingTrack = player.playingTrack else {return}
+        
+        if favorites.favoriteTrackExists(playingTrack) {
+            favorites.deleteFavoriteWithFile(playingTrack.file)
             
-            let file = playingTrack.file
-            
-            if favorites.favoriteWithFileExists(file) {
-                favorites.deleteFavoriteWithFile(file)
-            } else {
-                _ = favorites.addFavorite(playingTrack)
-            }
+        } else {
+            _ = favorites.addFavorite(track: playingTrack)
         }
     }
     

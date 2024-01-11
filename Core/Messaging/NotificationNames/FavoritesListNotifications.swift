@@ -15,7 +15,7 @@ import Foundation
 extension Notification.Name {
     
     // Signifies that a track has been added to the favorites list.
-    static let favoritesList_trackAdded = Notification.Name("favoritesList_trackAdded")
+    static let favoritesList_itemAdded = Notification.Name("favoritesList_itemAdded")
     
     // Signifies that tracks have been removed from the favorites list.
     static let favoritesList_tracksRemoved = Notification.Name("favoritesList_tracksRemoved")

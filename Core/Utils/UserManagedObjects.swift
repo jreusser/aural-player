@@ -7,7 +7,9 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //
+
 import Foundation
+import OrderedCollections
 
 ///
 /// A contract for a generic user-managed object (eg. preset / playlist) that can be mapped to a key.
@@ -27,33 +29,33 @@ protocol UserManagedObject: MenuItemMappable {
 ///
 class UserManagedObjects<O: UserManagedObject> {
     
-    private let userDefinedObjectsMap: UserManagedObjectsMap<O> = UserManagedObjectsMap()
-    private let systemDefinedObjectsMap: UserManagedObjectsMap<O> = UserManagedObjectsMap()
+    private var userDefinedObjectsMap: OrderedDictionary<String, O> = OrderedDictionary()
+    private var systemDefinedObjectsMap: OrderedDictionary<String, O> = OrderedDictionary()
     
-    var userDefinedObjects: [O] {userDefinedObjectsMap.allObjects}
-    var systemDefinedObjects: [O] {systemDefinedObjectsMap.allObjects}
+    var userDefinedObjects: [O] {Array(userDefinedObjectsMap.values)}
+    var systemDefinedObjects: [O] {Array(systemDefinedObjectsMap.values)}
     
     var defaultPreset: O? {nil}
     
     init(systemDefinedObjects: [O], userDefinedObjects: [O]) {
         
         systemDefinedObjects.forEach {
-            self.systemDefinedObjectsMap.addObject($0)
+            self.systemDefinedObjectsMap[$0.key] = $0
         }
         
         userDefinedObjects.forEach {
-            self.userDefinedObjectsMap.addObject($0)
+            self.userDefinedObjectsMap[$0.key] = $0
         }
     }
     
     func addObject(_ object: O) {
-        userDefinedObjectsMap.addObject(object)
+        userDefinedObjectsMap[object.key] = object
     }
     
     func object(named name: String) -> O? {
         systemDefinedObjectsMap[name] ?? userDefinedObjectsMap[name]
     }
-
+    
     var numberOfUserDefinedObjects: Int {userDefinedObjectsMap.count}
     
     func userDefinedObject(named name: String) -> O? {
@@ -65,18 +67,18 @@ class UserManagedObjects<O: UserManagedObject> {
     }
     
     @discardableResult func deleteObject(atIndex index: Int) -> O {
-        return userDefinedObjectsMap.removeObjectAtIndex(index)
+        return userDefinedObjectsMap.remove(at: index).value
     }
     
     @discardableResult func deleteObjects(atIndices indices: IndexSet) -> [O] {
         
         return indices.sortedDescending().map {
-            userDefinedObjectsMap.removeObjectAtIndex($0)
+            userDefinedObjectsMap.remove(at: $0).value
         }
     }
     
     @discardableResult func deleteObject(named name: String) -> O? {
-        return userDefinedObjectsMap.removeObject(withKey: name)
+        return userDefinedObjectsMap.removeValue(forKey: name)
     }
     
     @discardableResult func deleteObjects(named objectNames: [String]) -> [O] {
@@ -87,82 +89,23 @@ class UserManagedObjects<O: UserManagedObject> {
     }
     
     func renameObject(named oldName: String, to newName: String) {
-        userDefinedObjectsMap.reMap(objectWithKey: oldName, toKey: newName)
-    }
-    
-    func objectExists(named name: String) -> Bool {
-        userDefinedObjectsMap.objectWithKeyExists(name) || systemDefinedObjectsMap.objectWithKeyExists(name)
-    }
-    
-    func userDefinedObjectExists(named name: String) -> Bool {
-        userDefinedObjectsMap.objectWithKeyExists(name)
-    }
-    
-    func sortUserDefinedObjects(by sortFunction: (O, O) -> Bool) {
-        userDefinedObjectsMap.sortObjects(by: sortFunction)
-    }
-}
-
-///
-/// A specialized collection that functions as both an array and dictionary for **UserManagedObject** objects
-/// so that the objects can be accessed efficiently both by index and key.
-///
-fileprivate class UserManagedObjectsMap<O: UserManagedObject> {
-    
-    private var array: [O] = []
-    private var map: [String: O] = [:]
-    
-    subscript(_ index: Int) -> O {
-        array[index]
-    }
-    
-    subscript(_ key: String) -> O? {
-        map[key]
-    }
-    
-    func addObject(_ object: O) {
         
-        array.append(object)
-        map[object.key] = object
-    }
-    
-    func removeObject(withKey key: String) -> O? {
-        
-        guard let index = array.firstIndex(where: {$0.key == key}) else {return nil}
-        
-        map.removeValue(forKey: key)
-        return array.remove(at: index)
-    }
-    
-    func reMap(objectWithKey oldKey: String, toKey newKey: String) {
-        
-        if var object = map[oldKey] {
-
-            // Modify the key within the object
-            object.key = newKey
+        if var object = userDefinedObjectsMap.removeValue(forKey: oldName) {
             
-            // Re-map the object to the new key
-            map.removeValue(forKey: oldKey)
-            map[newKey] = object
+            object.key = newName
+            userDefinedObjectsMap[newName] = object
         }
     }
     
-    func removeObjectAtIndex(_ index: Int) -> O {
-        
-        let object = array[index]
-        map.removeValue(forKey: object.key)
-        return array.remove(at: index)
+    func objectExists(named name: String) -> Bool {
+        userDefinedObjectsMap[name] != nil || systemDefinedObjectsMap[name] != nil
     }
     
-    func objectWithKeyExists(_ key: String) -> Bool {
-        map[key] != nil
+    func userDefinedObjectExists(named name: String) -> Bool {
+        userDefinedObjectsMap[name] != nil
     }
     
-    func sortObjects(by sortFunction: (O, O) -> Bool) {
-        array.sort(by: sortFunction)
+    func sortUserDefinedObjects(by sortFunction: (O, O) -> Bool) {
+        userDefinedObjectsMap.sort(by: {(key1AndObject1, key2AndObject2) in sortFunction(key1AndObject1.1, key2AndObject2.1)})
     }
-    
-    var count: Int {array.count}
-    
-    var allObjects: [O] {array}
 }

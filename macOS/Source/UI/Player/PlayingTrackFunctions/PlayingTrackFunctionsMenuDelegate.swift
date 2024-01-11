@@ -47,7 +47,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
         
         // Subscribe to various notifications
         
-        messenger.subscribe(to: .favoritesList_trackAdded, handler: trackAddedToFavorites(_:))
+        messenger.subscribe(to: .favoritesList_itemAdded, handler: trackAddedToFavorites(_:))
         messenger.subscribe(to: .favoritesList_tracksRemoved, handler: tracksRemovedFromFavorites(_:))
         
         messenger.subscribe(to: .player_moreInfo, handler: moreInfo)
@@ -63,7 +63,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
     private func updateFavoriteButtonState() {
         
         if let playingTrack = playbackInfoDelegate.playingTrack {
-            favoritesMenuItem.onIf(favorites.favoriteWithFileExists(playingTrack.file))
+            favoritesMenuItem.onIf(favorites.favoriteTrackExists(playingTrack))
         }
     }
     
@@ -103,11 +103,11 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
         guard let playingTrack = playbackInfoDelegate.playingTrack else {return}
 
         // Toggle the button state
-        if favorites.favoriteWithFileExists(playingTrack.file) {
+        if favorites.favoriteTrackExists(playingTrack) {
             favorites.deleteFavoriteWithFile(playingTrack.file)
             
         } else {
-            _ = favorites.addFavorite(playingTrack)
+            _ = favorites.addFavorite(track: playingTrack)
         }
     }
     
