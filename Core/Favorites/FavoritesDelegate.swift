@@ -180,25 +180,18 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     }
     
     func playFavorite(_ favorite: Favorite) throws {
-        
-//        do {
-        
-            // First, add the given track to the play queue.
-//        if favorite.type == .track, let file = favorite.file {
-//            playQueueDelegate.loadTracks(from: [file], autoplay: true)
-//        }
+
+        if let favTrack = favorite as? FavoriteTrack {
             
-            // TODO: What if the file no longer exists ??? Display an error !
-//
-//        } catch {
-//
-//            if let fnfError = error as? FileNotFoundError {
-//
-//                // Log and rethrow error
-//                NSLog("Unable to play Favorites item. Details: %@", fnfError.message)
-//                throw fnfError
-//            }
-//        }
+            playQueue.addTracks([favTrack.track])
+            playbackDelegate.play(favTrack.track)
+            
+        } else if let favGroup = favorite as? FavoriteGroup,
+                  let group = libraryDelegate.findGroup(named: favGroup.groupName, ofType: favGroup.groupType) {
+         
+            messenger.publish(LibraryGroupPlayedNotification(group: group))
+            messenger.publish(EnqueueAndPlayNowCommand(tracks: group.tracks, clearPlayQueue: false))
+        }
     }
     
     var persistentState: FavoritesPersistentState {
