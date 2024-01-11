@@ -93,7 +93,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         return nil
     }
     
-    func addFavorite(track: Track) -> Favorite {
+    @discardableResult func addFavorite(track: Track) -> Favorite {
         
         let favorite = FavoriteTrack(track: track)
         favorites.addObject(favorite)
@@ -104,7 +104,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         return favorite
     }
     
-    func addFavorite(artist: String) -> Favorite {
+    @discardableResult func addFavorite(artist: String) -> Favorite {
         
         let favorite = FavoriteGroup(groupName: artist, groupType: .artist)
         favorites.addObject(favorite)
@@ -115,7 +115,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         return favorite
     }
     
-    func addFavorite(album: String) -> Favorite {
+    @discardableResult func addFavorite(album: String) -> Favorite {
         
         let favorite = FavoriteGroup(groupName: album, groupType: .album)
         favorites.addObject(favorite)

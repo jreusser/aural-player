@@ -16,6 +16,7 @@ class HoverControlsBox: NSBox {
     @IBOutlet weak var btnEnqueueAndPlay: TintedImageButton!
     @IBOutlet weak var btnRepeat: TintedImageButton!
     @IBOutlet weak var btnShuffle: TintedImageButton!
+    @IBOutlet weak var btnFavorite: TintedImageButton!
     
     private lazy var messenger: Messenger = Messenger(for: self)
     
@@ -23,12 +24,27 @@ class HoverControlsBox: NSBox {
         
         didSet {
             
-            guard let groupName = group?.displayName else {return}
+            guard let groupName = group?.name else {return}
             
-            btnPlay.toolTip = "Play \(groupName)"
-            btnEnqueueAndPlay.toolTip = "Enqueue and play \(groupName)"
-            btnRepeat.toolTip = "Repeat \(groupName)"
-            btnShuffle.toolTip = "Shuffle \(groupName)"
+            btnPlay.toolTip = "Play '\(groupName)'"
+            btnEnqueueAndPlay.toolTip = "Enqueue and play '\(groupName)'"
+            btnRepeat.toolTip = "Repeat '\(groupName)'"
+            btnShuffle.toolTip = "Shuffle '\(groupName)'"
+            btnFavorite.toolTip = "Add '\(groupName)' to Favorites"   // TODO: Toggle between Add / Remove
+        }
+    }
+    
+    var playlist: ImportedPlaylist? {
+        
+        didSet {
+            
+            guard let playlistName = playlist?.displayName else {return}
+            
+            btnPlay.toolTip = "Play '\(playlistName)'"
+            btnEnqueueAndPlay.toolTip = "Enqueue and play '\(playlistName)'"
+            btnRepeat.toolTip = "Repeat '\(playlistName)'"
+            btnShuffle.toolTip = "Shuffle '\(playlistName)'"
+            btnFavorite.toolTip = "Add '\(playlistName)' to Favorites"   // TODO: Toggle between Add / Remove
         }
     }
     
@@ -68,12 +84,44 @@ class HoverControlsBox: NSBox {
         doPlay(clearPlayQueue: true)
     }
     
+    @IBAction func addToFavoritesAction(_ sender: NSButton) {
+        
+        if let group = self.group {
+            
+            switch group.type {
+                
+            case .artist:
+                favoritesDelegate.addFavorite(artist: group.name)
+                
+            case .album:
+                favoritesDelegate.addFavorite(album: group.name)
+                
+//            case .genre:
+//            case .decade:
+//            case .albumDisc:
+                
+            default:
+                break
+            }
+            
+            return
+        }
+        
+//        if let playlistFile
+    }
+    
     private func doPlay(clearPlayQueue: Bool) {
         
         if let group = self.group {
             
             messenger.publish(LibraryGroupPlayedNotification(group: group))
             messenger.publish(EnqueueAndPlayNowCommand(tracks: group.tracks, clearPlayQueue: clearPlayQueue))
+        }
+        
+        if let playlist = self.playlist {
+            
+//            messenger.publish(LibraryGroupPlayedNotification(group: group))
+            messenger.publish(EnqueueAndPlayNowCommand(tracks: playlist.tracks, clearPlayQueue: clearPlayQueue))
         }
     }
 }

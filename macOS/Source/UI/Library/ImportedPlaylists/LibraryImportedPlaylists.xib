@@ -527,10 +527,10 @@
                     </constraints>
                 </button>
                 <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="M6p-EU-B2h" userLabel="Controls Overlay" customClass="HoverControlsBox" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="252" y="144" width="130" height="30"/>
+                    <rect key="frame" x="252" y="144" width="160" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="bLg-DK-M1I">
-                        <rect key="frame" x="0.0" y="0.0" width="130" height="30"/>
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ep-HX-Qhn" userLabel="Play Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -579,11 +579,23 @@
                                     <action selector="shuffleGroupAction:" target="M6p-EU-B2h" id="f5d-HX-czJ"/>
                                 </connections>
                             </button>
+                            <button toolTip="Shuffle" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1u3-3V-6dx" userLabel="Favorites Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                <rect key="frame" x="130" y="6.5" width="18" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="heart" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="bN6-IY-fYQ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addToFavoritesAction:" target="M6p-EU-B2h" id="4Hk-N9-Bcu"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <color key="fillColor" white="0.0" alpha="0.40094264019999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="btnEnqueueAndPlay" destination="Q9x-gj-pI7" id="wSB-jU-VTn"/>
+                        <outlet property="btnFavorite" destination="1u3-3V-6dx" id="X5Z-fS-Yg9"/>
                         <outlet property="btnPlay" destination="8ep-HX-Qhn" id="wJx-ku-Bge"/>
                         <outlet property="btnRepeat" destination="JVz-AA-DbF" id="fTa-6P-b86"/>
                         <outlet property="btnShuffle" destination="Fel-MI-Rki" id="HN8-gZ-GCE"/>
@@ -675,6 +687,7 @@
         <image name="arrowtriangle.right.fill.and.line.vertical.and.arrowtriangle.left.fill" catalog="system" width="22" height="16"/>
         <image name="arrowtriangle.up" catalog="system" width="14" height="13"/>
         <image name="doc.text" catalog="system" width="14" height="16"/>
+        <image name="heart" catalog="system" width="16" height="14"/>
         <image name="list.triangle" catalog="system" width="21" height="16"/>
         <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="plus.rectangle.on.folder" catalog="system" width="19" height="15"/>

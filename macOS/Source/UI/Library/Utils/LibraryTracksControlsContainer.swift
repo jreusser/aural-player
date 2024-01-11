@@ -84,14 +84,18 @@ class LibraryGroupedListControlsContainer: LibraryTracksControlsContainer {
         let row = outlineView.row(at: outlineView.convert(event.locationInWindow, from: nil))
         
         guard row >= 0,
-              let group = outlineView.item(atRow: row) as? Group,
               let rowView = outlineView.view(atColumn: 0, row: row, makeIfNecessary: false) else {
-                  
-                  hoverControls.hide()
-                  return
-              }
-        
-        hoverControls.group = group
+            
+            hoverControls.hide()
+            return
+        }
+
+        if let group = outlineView.item(atRow: row) as? Group {
+            hoverControls.group = group
+            
+        } else if let playlist = outlineView.item(atRow: row) as? ImportedPlaylist {
+            hoverControls.playlist = playlist
+        }
         
         let boxHeight = hoverControls.height / 2
         let rowHeight = rowView.height / 2

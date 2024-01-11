@@ -19,12 +19,12 @@ import Foundation
 ///
 protocol FavoritesDelegateProtocol {
     
-    func addFavorite(track: Track) -> Favorite
+    @discardableResult func addFavorite(track: Track) -> Favorite
     
-    func addFavorite(artist: String) -> Favorite
-//    
-    func addFavorite(album: String) -> Favorite
-//    
+    @discardableResult func addFavorite(artist: String) -> Favorite
+//
+    @discardableResult func addFavorite(album: String) -> Favorite
+//
 //    func addFavorite(genre: String) -> Favorite
 //    
 //    func addFavorite(decade: String) -> Favorite

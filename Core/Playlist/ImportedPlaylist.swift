@@ -15,6 +15,10 @@ class ImportedPlaylist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoa
     var file: URL
     var name: String
     
+    override var displayName: String {
+        name
+    }
+    
     var key: String {
 
         get {name}
