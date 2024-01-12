@@ -43,11 +43,7 @@ let genresKeyFunction: KeyFunction = {track in
 }
 
 let decadesKeyFunction: KeyFunction = {track in
-    
-    guard let year = track.year else {return "<Unknown Decade>"}
-    
-    let decade = year - (year % 10)
-    return "\(decade)'s"
+    track.decade ?? "<Unknown Decade>"
 }
 
 let albumDiscsKeyFunction: KeyFunction = {track in

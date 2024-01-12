@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,7 +34,7 @@
                     <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </box>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="E1h-JL-nZa" userLabel="Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="E1h-JL-nZa" userLabel="Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="3" y="290" width="214" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="MzH-Fx-5jW"/>
@@ -101,7 +101,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ai3-7a-ZVe" userLabel="Genre Name" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ai3-7a-ZVe" userLabel="Genre Name" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="52" y="13" width="428" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="63P-ZJ-42y"/>
@@ -170,7 +170,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZNR-yq-8Oi" userLabel="Artist Name" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZNR-yq-8Oi" userLabel="Artist Name" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="52" y="13" width="428" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="5gk-7H-emw"/>
@@ -215,7 +215,7 @@
                                                 <rect key="frame" x="0.0" y="145" width="478" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YxL-do-upv" userLabel="Track Number" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                    <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YxL-do-upv" userLabel="Track Number" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="-2" y="3" width="44" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="DKc-Rz-XTh"/>
@@ -227,7 +227,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xE8-oz-nxm" userLabel="Track Name" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xE8-oz-nxm" userLabel="Track Name" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="40" y="3" width="435" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="f9g-Hb-8jj"/>
@@ -281,7 +281,7 @@
                                                         </constraints>
                                                         <color key="borderColor" red="1" green="1" blue="1" alpha="0.15416647010000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </box>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="E7d-KG-Upe" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="E7d-KG-Upe" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="32" width="122" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="LyC-dT-wDo"/>
@@ -292,7 +292,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="trV-i0-aRk" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="trV-i0-aRk" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="8" width="122" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="uWf-ZC-jGW"/>
@@ -350,7 +350,7 @@
                                                         </constraints>
                                                         <color key="borderColor" red="1" green="1" blue="1" alpha="0.15416647010000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </box>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="JLw-G9-oaq" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="JLw-G9-oaq" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="32" width="122" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="N8a-tv-nj0"/>
@@ -361,7 +361,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="qRO-Kn-4W6" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="qRO-Kn-4W6" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="8" width="122" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="H2Z-sQ-6uz"/>
@@ -408,7 +408,7 @@
                                                 <rect key="frame" x="478" y="145" width="130" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jo0-8n-QS7" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jo0-8n-QS7" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="3" width="122" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="CYY-AJ-GYk"/>
@@ -465,7 +465,7 @@
                         </ciFilter>
                     </contentFilters>
                 </progressIndicator>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tVZ-Lj-EWM" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tVZ-Lj-EWM" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="7" y="10" width="214" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="NeS-IU-8oQ"/>
@@ -477,7 +477,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xNE-7T-Idg" userLabel="Duration summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xNE-7T-Idg" userLabel="Duration summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="401" y="10" width="204" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="wz6-2Y-3rs"/>
@@ -491,105 +491,101 @@
                 </textField>
                 <button hidden="YES" toolTip="Import files / folders" translatesAutoresizingMaskIntoConstraints="NO" id="lYt-ZN-R8s" userLabel="Import" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="113" y="10" width="17" height="17"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="11" id="hTT-3W-LWk"/>
-                        <constraint firstAttribute="width" constant="16" id="il2-3V-czC"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="plus.rectangle.on.folder" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="IUk-wg-P6p">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="11" id="hTT-3W-LWk"/>
+                        <constraint firstAttribute="width" constant="16" id="il2-3V-czC"/>
+                    </constraints>
                     <connections>
                         <action selector="importFilesAndFoldersAction:" target="-2" id="3RQ-t3-VRI"/>
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Remove selected tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="yiY-Bq-aNg" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="151" y="9.5" width="16.5" height="17"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="12" id="Erh-4Q-RPn"/>
-                        <constraint firstAttribute="width" constant="16" id="b9m-3L-Dnk"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark.bin" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="B2k-iz-TTq">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="12" id="Erh-4Q-RPn"/>
+                        <constraint firstAttribute="width" constant="16" id="b9m-3L-Dnk"/>
+                    </constraints>
                     <connections>
                         <action selector="removeSelectedItemsAction:" target="-2" id="30c-Ly-pfN"/>
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Crop selected playlist tracks" translatesAutoresizingMaskIntoConstraints="NO" id="xjn-dK-5BZ" userLabel="Crop" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="172" y="9" width="16.5" height="18"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="16" id="Uia-Rb-P4W"/>
-                        <constraint firstAttribute="height" constant="12" id="dIB-Lq-o3B"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="scissors" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="A7u-ez-7A9">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="Uia-Rb-P4W"/>
+                        <constraint firstAttribute="height" constant="12" id="dIB-Lq-o3B"/>
+                    </constraints>
                     <connections>
                         <action selector="cropTracksAction:" target="-2" id="K5G-bY-wa3"/>
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Remove all tracks from playlist" translatesAutoresizingMaskIntoConstraints="NO" id="Bht-iD-Wx0" userLabel="Remove All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="194" y="12" width="11.5" height="14"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="11" id="bAI-7t-Qr4"/>
-                        <constraint firstAttribute="height" constant="6" id="xEY-uB-mPV"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="trash" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="bea-2f-6Cb">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="11" id="bAI-7t-Qr4"/>
+                        <constraint firstAttribute="height" constant="6" id="xEY-uB-mPV"/>
+                    </constraints>
                     <connections>
                         <action selector="removeAllTracksAction:" target="-2" id="ngY-v4-K3B"/>
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Clear the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="Mmu-a7-vSh" userLabel="Clear Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="225" y="13" width="12" height="11"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="12" id="ozg-07-KXZ"/>
-                        <constraint firstAttribute="height" constant="5" id="qxA-XB-EJV"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="square.slash" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="hpG-qE-Ygt">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="12" id="ozg-07-KXZ"/>
+                        <constraint firstAttribute="height" constant="5" id="qxA-XB-EJV"/>
+                    </constraints>
                     <connections>
                         <action selector="clearSelectionAction:" target="-2" id="bUF-a7-NFu"/>
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Invert the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="373-CX-r9G" userLabel="Invert Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="241" y="12" width="11.5" height="13"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="11" id="8ef-gm-qgO"/>
-                        <constraint firstAttribute="height" constant="5" id="QRK-mM-1fr"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrow.right.arrow.left" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="xd2-4T-Yiy">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="11" id="8ef-gm-qgO"/>
+                        <constraint firstAttribute="height" constant="5" id="QRK-mM-1fr"/>
+                    </constraints>
                     <connections>
                         <action selector="invertSelectionAction:" target="-2" id="xGV-PV-saf"/>
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Search the play queue" translatesAutoresizingMaskIntoConstraints="NO" id="wKl-be-Xdm" userLabel="Search" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="272" y="11.5" width="13" height="14"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="8" id="3fZ-ho-npU"/>
-                        <constraint firstAttribute="width" constant="13" id="yz3-Pe-XbZ"/>
-                    </constraints>
+                    <rect key="frame" x="272" y="11.5" width="13.5" height="14"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="magnifyingglass" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="3OO-4k-Tq6">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="3fZ-ho-npU"/>
+                        <constraint firstAttribute="width" constant="13" id="yz3-Pe-XbZ"/>
+                    </constraints>
                 </button>
                 <popUpButton hidden="YES" toolTip="Sort the play queue" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ehM-nx-hzl" userLabel="Sort">
                     <rect key="frame" x="285" y="12" width="23" height="14"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="18" id="5mI-Nt-HMc"/>
-                        <constraint firstAttribute="height" constant="14" id="aVv-Ow-oLU"/>
-                    </constraints>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" imageScaling="axesIndependently" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="yCe-9e-avc">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -610,110 +606,114 @@
                             </items>
                         </menu>
                     </popUpButtonCell>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="18" id="5mI-Nt-HMc"/>
+                        <constraint firstAttribute="height" constant="14" id="aVv-Ow-oLU"/>
+                    </constraints>
                 </popUpButton>
                 <button hidden="YES" toolTip="Export tracks to a playlist file" translatesAutoresizingMaskIntoConstraints="NO" id="ACN-ek-UpT" userLabel="Export" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="320" y="12.5" width="13" height="12"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="13" id="IF5-6x-EbX"/>
-                        <constraint firstAttribute="height" constant="5" id="sK9-OL-ePc"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="doc.text" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="sXe-TP-GGC">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="13" id="IF5-6x-EbX"/>
+                        <constraint firstAttribute="height" constant="5" id="sK9-OL-ePc"/>
+                    </constraints>
                     <connections>
                         <action selector="exportToPlaylistAction:" target="-2" id="ejs-zU-bCc"/>
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Scroll one page up" translatesAutoresizingMaskIntoConstraints="NO" id="kpz-6w-TeO" userLabel="Page Up" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="348" y="10.5" width="13.5" height="17"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="13" id="Ibz-uV-EOT"/>
-                        <constraint firstAttribute="width" constant="13" id="Jqr-G1-7gN"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.up" catalog="system" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="3OE-Qf-WL5">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="13" id="Ibz-uV-EOT"/>
+                        <constraint firstAttribute="width" constant="13" id="Jqr-G1-7gN"/>
+                    </constraints>
                     <connections>
                         <action selector="pageUpAction:" target="-2" id="zGu-Er-zkY"/>
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Scroll one page down" translatesAutoresizingMaskIntoConstraints="NO" id="rWf-4N-rSK" userLabel="Page Down" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="362" y="10.5" width="13.5" height="17"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="13" id="Lg6-DD-xJX"/>
-                        <constraint firstAttribute="height" constant="13" id="T2l-bJ-mFn"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.down" catalog="system" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="qDu-QN-oAm">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="13" id="Lg6-DD-xJX"/>
+                        <constraint firstAttribute="height" constant="13" id="T2l-bJ-mFn"/>
+                    </constraints>
                     <connections>
                         <action selector="pageDownAction:" target="-2" id="a63-RM-QjP"/>
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Scroll to the top" translatesAutoresizingMaskIntoConstraints="NO" id="3Km-ey-E5f" userLabel="Scroll to Top" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="387" y="14" width="10" height="10"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="10" id="kMp-S6-ZcN"/>
-                        <constraint firstAttribute="width" constant="10" id="mTm-8y-DpK"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ScrollToTop" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="FPX-tB-ZkP">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="kMp-S6-ZcN"/>
+                        <constraint firstAttribute="width" constant="10" id="mTm-8y-DpK"/>
+                    </constraints>
                     <connections>
                         <action selector="scrollToTopAction:" target="-2" id="rOJ-bg-IQD"/>
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Scroll to the bottom" translatesAutoresizingMaskIntoConstraints="NO" id="w8z-qU-wa2" userLabel="Scroll to Bottom" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="403" y="14" width="10" height="10"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="10" id="57x-qc-uAY"/>
-                        <constraint firstAttribute="height" constant="10" id="wHY-1g-Nui"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ScrollToBottom" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="M6A-0b-WnU">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="10" id="57x-qc-uAY"/>
+                        <constraint firstAttribute="height" constant="10" id="wHY-1g-Nui"/>
+                    </constraints>
                     <connections>
                         <action selector="scrollToBottomAction:" target="-2" id="INB-Ji-Nod"/>
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Expand all groups" translatesAutoresizingMaskIntoConstraints="NO" id="gWr-hL-3cU" userLabel="Expand All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="428" y="10" width="20.5" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="13" id="NLP-ws-2B8"/>
-                        <constraint firstAttribute="width" constant="20" id="aor-qc-UXN"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.left.fill.and.line.vertical.and.arrowtriangle.right.fill" catalog="system" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="W7L-kF-Vud">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="13" id="NLP-ws-2B8"/>
+                        <constraint firstAttribute="width" constant="20" id="aor-qc-UXN"/>
+                    </constraints>
                     <connections>
                         <action selector="expandAllGroupsAction:" target="-2" id="RzV-2d-1v8"/>
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Collapse all groups" translatesAutoresizingMaskIntoConstraints="NO" id="815-fG-nkP" userLabel="Collapse All" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="452" y="10" width="20.5" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="20" id="G8M-qM-xhd"/>
-                        <constraint firstAttribute="height" constant="13" id="kfv-Ec-rbE"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrowtriangle.right.fill.and.line.vertical.and.arrowtriangle.left.fill" catalog="system" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="sa9-FC-K67">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="G8M-qM-xhd"/>
+                        <constraint firstAttribute="height" constant="13" id="kfv-Ec-rbE"/>
+                    </constraints>
                     <connections>
                         <action selector="collapseAllGroupsAction:" target="-2" id="rj2-lh-o0h"/>
                     </connections>
                 </button>
                 <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="G0z-Vl-PZB" userLabel="Controls Overlay" customClass="HoverControlsBox" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="252" y="144" width="130" height="30"/>
+                    <rect key="frame" x="252" y="144" width="160" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="hHO-JN-XyP">
-                        <rect key="frame" x="0.0" y="0.0" width="130" height="30"/>
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8se-XU-ppA" userLabel="Play Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -729,7 +729,7 @@
                                 </connections>
                             </button>
                             <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wgA-6L-xC4" userLabel="Enqueue And Play Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="43" y="5.5" width="14" height="19"/>
+                                <rect key="frame" x="43" y="6" width="13.5" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" controlSize="small" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="1Ii-Vb-KlC">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -741,7 +741,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Repeat" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VRY-zf-Uec" userLabel="Repeat Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="71" y="6.5" width="18" height="18"/>
+                                <rect key="frame" x="71" y="7" width="18" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="repeat" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="mss-tW-2EI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -752,7 +752,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Shuffle" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="erI-Iz-E4y" userLabel="Shuffle Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="100" y="6.5" width="18" height="18"/>
+                                <rect key="frame" x="100" y="7" width="18" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="shuffle" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="g7R-Kk-RM2">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -762,11 +762,23 @@
                                     <action selector="shuffleGroupAction:" target="G0z-Vl-PZB" id="1E7-HP-pvU"/>
                                 </connections>
                             </button>
+                            <button toolTip="Shuffle" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="czb-OL-fOE" userLabel="Favorites Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                <rect key="frame" x="130" y="6.5" width="18" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="heart" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Vsj-lm-Zwx">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addToFavoritesAction:" target="G0z-Vl-PZB" id="jjb-G3-yom"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <color key="fillColor" white="0.0" alpha="0.40094264019999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="btnEnqueueAndPlay" destination="wgA-6L-xC4" id="sbJ-r1-Roz"/>
+                        <outlet property="btnFavorite" destination="czb-OL-fOE" id="rZO-Zn-MbD"/>
                         <outlet property="btnPlay" destination="8se-XU-ppA" id="IKp-bc-MSI"/>
                         <outlet property="btnRepeat" destination="VRY-zf-Uec" id="cJc-ev-DPi"/>
                         <outlet property="btnShuffle" destination="erI-Iz-E4y" id="3gH-FN-h0s"/>
@@ -861,7 +873,7 @@
                         <action selector="groupsSortOrderAction:" target="0he-ZK-J6d" id="iBX-qZ-M8a"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wv1-sz-p0P">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wv1-sz-p0P">
                     <rect key="frame" x="253" y="240" width="86" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Sort order:" id="nJx-2o-Zg0">
@@ -958,7 +970,7 @@
                         <action selector="tracksSortOrderAction:" target="0he-ZK-J6d" id="hZR-Il-YLf"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xfq-tU-7cu">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xfq-tU-7cu">
                     <rect key="frame" x="253" y="148" width="86" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Sort order:" id="G8a-lp-7eP">
@@ -1054,8 +1066,9 @@ Gw
         <image name="arrowtriangle.right.fill.and.line.vertical.and.arrowtriangle.left.fill" catalog="system" width="22" height="16"/>
         <image name="arrowtriangle.up" catalog="system" width="14" height="13"/>
         <image name="doc.text" catalog="system" width="14" height="16"/>
-        <image name="list.triangle" catalog="system" width="20" height="15"/>
-        <image name="magnifyingglass" catalog="system" width="15" height="15"/>
+        <image name="heart" catalog="system" width="16" height="14"/>
+        <image name="list.triangle" catalog="system" width="21" height="16"/>
+        <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="plus.rectangle.on.folder" catalog="system" width="19" height="15"/>
         <image name="repeat" catalog="system" width="17" height="14"/>
         <image name="scissors" catalog="system" width="20" height="15"/>

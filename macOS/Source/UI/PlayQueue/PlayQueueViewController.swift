@@ -24,6 +24,8 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
     @IBOutlet weak var favoriteTrackMenuItem: NSMenuItem!
     @IBOutlet weak var favoriteArtistMenuItem: NSMenuItem!
     @IBOutlet weak var favoriteAlbumMenuItem: NSMenuItem!
+    @IBOutlet weak var favoriteGenreMenuItem: NSMenuItem!
+    @IBOutlet weak var favoriteDecadeMenuItem: NSMenuItem!
     
     @IBOutlet weak var infoMenuItem: NSMenuItem!
     

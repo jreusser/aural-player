@@ -11,6 +11,8 @@
             <connections>
                 <outlet property="favoriteAlbumMenuItem" destination="U4I-4j-jIJ" id="dv0-c0-NU0"/>
                 <outlet property="favoriteArtistMenuItem" destination="OP4-8V-TAP" id="Xb0-EK-tLg"/>
+                <outlet property="favoriteDecadeMenuItem" destination="jff-Up-h7O" id="527-Bt-TTk"/>
+                <outlet property="favoriteGenreMenuItem" destination="gvw-tO-p8o" id="tBs-uO-MC4"/>
                 <outlet property="favoriteTrackMenuItem" destination="E1w-0j-ZjQ" id="5MU-oe-Zw6"/>
                 <outlet property="infoMenuItem" destination="E94-FX-PuM" id="c4A-Qo-w0t"/>
                 <outlet property="playNextMenuItem" destination="557-bs-7lR" id="dPM-ac-JTC"/>
@@ -320,10 +322,22 @@
                                     <action selector="favoriteArtistAction:" target="-2" id="PpB-wJ-l75"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Album ''" image="Albums_Menu" id="U4I-4j-jIJ">
+                            <menuItem title="Album ''" image="opticaldisc" catalog="system" id="U4I-4j-jIJ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="favoriteAlbumAction:" target="-2" id="N0P-HU-PH0"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Genre ''" image="Genres_Menu" id="gvw-tO-p8o" userLabel="Genre ''">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="favoriteGenreAction:" target="-2" id="Db2-mm-cx8"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Decade ''" image="calendar" catalog="system" id="jff-Up-h7O">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="favoriteDecadeAction:" target="-2" id="2aK-my-kdx"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -350,18 +364,20 @@
         </menu>
     </objects>
     <resources>
-        <image name="Albums_Menu" width="20" height="20"/>
         <image name="Artists_Menu" width="20" height="20"/>
+        <image name="Genres_Menu" width="20" height="20"/>
         <image name="ShowInFinder" width="15" height="15"/>
         <image name="arrow.down" catalog="system" width="13" height="14"/>
         <image name="arrow.down.to.line.alt" catalog="system" width="13" height="14"/>
         <image name="arrow.up" catalog="system" width="13" height="14"/>
         <image name="arrow.up.to.line.alt" catalog="system" width="13" height="14"/>
+        <image name="calendar" catalog="system" width="16" height="14"/>
         <image name="doc.on.clipboard" catalog="system" width="16" height="18"/>
         <image name="heart" catalog="system" width="16" height="14"/>
         <image name="info" catalog="system" width="11" height="16"/>
         <image name="list.dash" catalog="system" width="16" height="11"/>
         <image name="music.note" catalog="system" width="11" height="15"/>
+        <image name="opticaldisc" catalog="system" width="15" height="15"/>
         <image name="play" catalog="system" width="12" height="13"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>
         <image name="scissors" catalog="system" width="20" height="15"/>

@@ -47,6 +47,8 @@ class Grouping {
     func addTracks(_ newTracks: [Track]) {
         
         rootGroup.addTracks(newTracks)
+        rootGroup.sortTracks(by: function.trackSortOrder)
+        
         subGroupTracks(in: rootGroup, by: self.function)
     }
     

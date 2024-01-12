@@ -146,7 +146,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     func addFavorite(decade: String) {
         
         let favorite = FavoriteGroup(groupName: decade, groupType: .decade)
-        favoriteGenres[decade] = favorite
+        favoriteDecades[decade] = favorite
         messenger.publish(.favoritesList_itemAdded, payload: favorite)
         
         print("Added fav decade: '\(decade)'")

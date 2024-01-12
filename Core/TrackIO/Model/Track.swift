@@ -78,6 +78,13 @@ class Track: Hashable, PlaylistItem, PlayableItem {
     
     var year: Int?
     
+    var decade: String? {
+        
+        guard let year = self.year else {return nil}
+        let firstYearOfDecade = year - (year % 10)
+        return "\(firstYearOfDecade)'s"
+    }
+    
     var bpm: Int?
     
     var lyrics: String?
