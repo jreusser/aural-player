@@ -348,7 +348,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 </customView>
                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iv0-Qr-jOE" userLabel="Seek Position" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="203" y="3" width="70" height="24"/>
+                                    <rect key="frame" x="194" y="3" width="70" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="66" id="Jse-nZ-XrD"/>
                                         <constraint firstAttribute="height" constant="24" id="NAa-Yp-eLP"/>
@@ -368,7 +368,7 @@
                                     </connections>
                                 </slider>
                                 <button toolTip="Seek forward" wantsLayer="YES" focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="KtZ-rZ-MnJ" userLabel="Seek Fwd Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="462" y="12.5" width="15" height="15"/>
+                                    <rect key="frame" x="453" y="12.5" width="15" height="15"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="forward" catalog="system" imagePosition="only" alignment="center" continuous="YES" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="g8z-N6-MM4">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -382,7 +382,7 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Next track" wantsLayer="YES" focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="iaY-fV-voY" userLabel="NextTrack Button" customClass="TrackPeekingButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="444" y="13.5" width="13" height="14"/>
+                                    <rect key="frame" x="435" y="13.5" width="13" height="14"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="forward.end" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="DPM-rC-GE6">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -400,7 +400,7 @@
                                     </connections>
                                 </button>
                                 <button wantsLayer="YES" focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="sFw-RL-2ra" customClass="OnOffImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="422" y="12" width="16" height="16"/>
+                                    <rect key="frame" x="413" y="12" width="16" height="16"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Play" imagePosition="overlaps" alignment="center" controlSize="small" refusesFirstResponder="YES" state="on" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="PhX-3d-3Pa">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="message" size="11"/>
@@ -420,7 +420,7 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Previous track" wantsLayer="YES" focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="8py-2V-iWJ" userLabel="PrevTrack Button" customClass="TrackPeekingButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="401" y="13.5" width="13" height="14"/>
+                                    <rect key="frame" x="392" y="13.5" width="13" height="14"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="backward.end" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="Jmr-Xb-im2">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -438,7 +438,7 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Seek backward" wantsLayer="YES" focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="rMK-zd-YvE" userLabel="Seek Bwd Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="381" y="12.5" width="15" height="15"/>
+                                    <rect key="frame" x="372" y="12.5" width="15" height="15"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="backward" catalog="system" imagePosition="only" alignment="center" continuous="YES" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="kCE-Fr-eDh">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -452,13 +452,13 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Mute / Unmute" wantsLayer="YES" focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="cQe-K3-rAJ" userLabel="Volume Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="505" y="11" width="13.5" height="18"/>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="speaker.wave.2" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="DMc-l7-m6m">
+                                    <rect key="frame" x="496" y="11" width="22.5" height="18"/>
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="speaker.wave.2" catalog="system" imagePosition="left" alignment="center" refusesFirstResponder="YES" focusRingType="none" inset="2" id="DMc-l7-m6m">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="13" id="FIj-Vt-sk0"/>
+                                        <constraint firstAttribute="width" constant="22" id="FIj-Vt-sk0"/>
                                         <constraint firstAttribute="height" constant="13" id="sUR-kR-zEq"/>
                                     </constraints>
                                     <connections>
@@ -477,7 +477,7 @@
                                     </connections>
                                 </slider>
                                 <button toolTip="Repeat" wantsLayer="YES" focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="4qN-q5-DoC" userLabel="Repeat Button" customClass="MultiStateImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="288" y="10" width="14" height="19"/>
+                                    <rect key="frame" x="279" y="10" width="14" height="19"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="repeat" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="2gi-bY-1f7">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -491,7 +491,7 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Shuffle" wantsLayer="YES" focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="Hat-OP-WNr" userLabel="Shuffle Button" customClass="MultiStateImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="308" y="10" width="14" height="19"/>
+                                    <rect key="frame" x="299" y="10" width="14" height="19"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="shuffle" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="saS-rv-Llg">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -505,7 +505,7 @@
                                     </connections>
                                 </button>
                                 <button toolTip="A ⇋ B Segment loop" wantsLayer="YES" focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="8tt-Ju-N8p" userLabel="Loop Button" customClass="MultiStateImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="327" y="14" width="26" height="12"/>
+                                    <rect key="frame" x="318" y="14" width="26" height="12"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Loop" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="yEv-IC-0ff">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>

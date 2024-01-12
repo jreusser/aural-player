@@ -9,7 +9,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PlayQueueExpandedViewController" customModule="Aural" customModuleProvider="target">
             <connections>
-                <outlet property="favoritesMenuItem" destination="ccr-O5-bNr" id="GrD-P9-yNO"/>
                 <outlet property="infoMenuItem" destination="E94-FX-PuM" id="c4A-Qo-w0t"/>
                 <outlet property="playNextMenuItem" destination="557-bs-7lR" id="dPM-ac-JTC"/>
                 <outlet property="playNowMenuItem" destination="jTl-IJ-icl" id="ZTv-GE-qXI"/>
