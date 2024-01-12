@@ -1545,6 +1545,7 @@
 		3EFFEB8427D9CEF8006A333B /* KVOTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFFEB8227D9CEF8006A333B /* KVOTokens.swift */; };
 		3EFFEB8727D9D33D006A333B /* FontSchemesManager+Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFFEB8627D9D33D006A333B /* FontSchemesManager+Observer.swift */; };
 		3EFFEB8827D9D33D006A333B /* FontSchemesManager+Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFFEB8627D9D33D006A333B /* FontSchemesManager+Observer.swift */; };
+		6C1EFB712B51CC7C005E67D9 /* LibraryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1EFB702B51CC7C005E67D9 /* LibraryMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2778,6 +2779,7 @@
 		3EFFEB7F27D9CB25006A333B /* ColorSchemesManager+Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorSchemesManager+Observer.swift"; sourceTree = "<group>"; };
 		3EFFEB8227D9CEF8006A333B /* KVOTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVOTokens.swift; sourceTree = "<group>"; };
 		3EFFEB8627D9D33D006A333B /* FontSchemesManager+Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontSchemesManager+Observer.swift"; sourceTree = "<group>"; };
+		6C1EFB702B51CC7C005E67D9 /* LibraryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3464,7 +3466,7 @@
 				3E6C0EC225CEB3ED00BF0D07 /* AppDelegate.swift */,
 				3EFE3B0927864958006F8B8C /* TypeAliases.swift */,
 				3E6C112C25CEB98700BF0D07 /* MediaKeyHandling */,
-				3EF84D882835E6E9004EF57B /* FolderMonitor */,
+				3EF84D882835E6E9004EF57B /* LibraryMonitoring */,
 				3E6C0F1A25CEB98500BF0D07 /* UI */,
 			);
 			path = Source;
@@ -5181,12 +5183,13 @@
 			path = Copyright;
 			sourceTree = "<group>";
 		};
-		3EF84D882835E6E9004EF57B /* FolderMonitor */ = {
+		3EF84D882835E6E9004EF57B /* LibraryMonitoring */ = {
 			isa = PBXGroup;
 			children = (
 				3EF84D892835E6FE004EF57B /* FolderMonitor.swift */,
+				6C1EFB702B51CC7C005E67D9 /* LibraryMonitor.swift */,
 			);
-			path = FolderMonitor;
+			path = LibraryMonitoring;
 			sourceTree = "<group>";
 		};
 		3EF84D9F283623D3004EF57B /* Library */ = {
@@ -6926,6 +6929,7 @@
 				3EFE399727864897006F8B8C /* PersistenceManager.swift in Sources */,
 				3EAFB60B267FF2B900F0DC96 /* PreferencesSliderCell.swift in Sources */,
 				3EEFF58C27DE842C002CB0FE /* PlayQueueGrouping.swift in Sources */,
+				6C1EFB712B51CC7C005E67D9 /* LibraryMonitor.swift in Sources */,
 				3E6C121825CEBDE500BF0D07 /* PreferencesWindowController.swift in Sources */,
 				3E3579D226837D3D009522A0 /* PresetsManagerViewController.swift in Sources */,
 				3EFE38F527864897006F8B8C /* Queue.swift in Sources */,

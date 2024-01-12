@@ -12,7 +12,7 @@ import Foundation
 
 struct LibraryPersistentState: Codable {
     
-    let homeFolder: URL?
+    let sourceFolders: [URL]?
     
     // TODO: Sort order, custom groupings, etc
 }

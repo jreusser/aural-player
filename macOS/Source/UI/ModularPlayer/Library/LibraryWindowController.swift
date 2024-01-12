@@ -161,7 +161,7 @@ class LibraryWindowController: NSWindowController {
             
         } else {
             
-            lblBuildStats.stringValue = "Reading home folder: '\(library.homeFolder.path)' ..."
+            lblBuildStats.stringValue = "Reading source folders: '\(library.sourceFolders.map {$0.path})' ..."
             
             buildIndeterminateSpinner.animates = true
             buildIndeterminateSpinner.show()

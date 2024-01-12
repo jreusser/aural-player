@@ -28,4 +28,3 @@ class TrackListTabButton: NSButton {
         isSelected = false
     }
 }
-

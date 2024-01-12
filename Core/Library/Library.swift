@@ -13,7 +13,11 @@ import OrderedCollections
 
 protocol LibraryProtocol: TrackListProtocol {
     
-    var homeFolder: URL {get set}
+    var sourceFolders: OrderedSet<URL> {get}
+    
+    func addSourceFolder(url: URL)
+    
+    func removeSourceFolder(url: URL)
     
     func buildLibrary()
     
@@ -46,7 +50,15 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     
     override var displayName: String {"The Library"}
     
-    var homeFolder: URL
+    var sourceFolders: OrderedSet<URL>
+    
+    func addSourceFolder(url: URL) {
+        sourceFolders.append(url)
+    }
+    
+    func removeSourceFolder(url: URL) {
+        sourceFolders.remove(url)
+    }
     
     /// A map to quickly look up playlists by (absolute) file path (used when adding playlists, to prevent duplicates)
     /// // TODO:
@@ -84,7 +96,7 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     init(persistentState: LibraryPersistentState?) {
         
 //        self.homeFolder = FilesAndPaths.musicDir.appendingPathComponent("Timo", isDirectory: true).appendingPathComponent("Fury In The Slaughterhouse", isDirectory: true)
-        self.homeFolder = persistentState?.homeFolder ?? FilesAndPaths.musicDir
+        self.sourceFolders = OrderedSet(persistentState?.sourceFolders ?? [FilesAndPaths.musicDir])
         
         super.init(sortOrder: TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending),
                    withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])
@@ -131,7 +143,7 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     func buildLibrary() {
         
         removeAllTracks()
-        loadTracks(from: [homeFolder], atPosition: nil)
+        loadTracks(from: Array(sourceFolders), atPosition: nil)
     }
     
     override func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet {
@@ -183,6 +195,6 @@ extension Library: TrackLoaderObserver {
 extension Library: PersistentModelObject {
     
     var persistentState: LibraryPersistentState {
-        .init(homeFolder: self.homeFolder)
+        .init(sourceFolders: Array(self.sourceFolders))
     }
 }
