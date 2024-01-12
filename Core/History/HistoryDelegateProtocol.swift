@@ -33,7 +33,7 @@ protocol HistoryDelegateProtocol {
     func addItem(_ item: URL) throws
     
     // Plays a given item.
-    func playItem(_ item: HistoryItem) throws
+    func playItem(_ item: HistoryItem)
     
     func resizeLists(_ recentlyAddedListSize: Int, _ recentlyPlayedListSize: Int)
     

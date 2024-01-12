@@ -48,6 +48,8 @@ class HistoryDelegate: HistoryDelegateProtocol {
     init(persistentState: HistoryPersistentState?, _ preferences: HistoryPreferences,
          _ playQueue: PlayQueueDelegateProtocol, _ player: PlaybackDelegateProtocol) {
         
+        print("HistDelegate: init()")
+        
         recentlyAddedItems = OrderedDictionary()
         recentlyPlayedItems = OrderedDictionary()
         lastPlaybackPosition = persistentState?.lastPlaybackPosition ?? 0
@@ -102,17 +104,13 @@ class HistoryDelegate: HistoryDelegateProtocol {
             
         case .track:
             
-            if let trackFile = state.trackFile {
+            if let trackFile = state.trackFile, let metadata = metadataRegistry[trackFile] {
                 
-                do {
-                    
-                    var fileMetadata = FileMetadata()
-                    fileMetadata.primary = try fileReader.getPrimaryMetadata(for: trackFile)
-                    
-                    let track = Track(trackFile, fileMetadata: fileMetadata)
-                    return TrackHistoryItem(track: track, lastEventTime: lastEventTime, eventCount: eventCount)
-                    
-                } catch {}
+                var fileMetadata = FileMetadata()
+                fileMetadata.primary = metadata
+                
+                let track = Track(trackFile, fileMetadata: fileMetadata)
+                return TrackHistoryItem(track: track, lastEventTime: lastEventTime, eventCount: eventCount)
             }
             
         case .playlistFile:
@@ -159,7 +157,7 @@ class HistoryDelegate: HistoryDelegateProtocol {
 //        playlist.addFiles([item])
     }
     
-    func playItem(_ item: HistoryItem) throws {
+    func playItem(_ item: HistoryItem) {
         
         if let trackHistoryItem = item as? TrackHistoryItem {
             playTrackItem(trackHistoryItem)
@@ -192,6 +190,7 @@ class HistoryDelegate: HistoryDelegateProtocol {
         doPlaylistFilePlayed(playlistFileHistoryItem.playlistFile)
         
         // Add it to the PQ
+        // TODO: Get it from the Library ! Don't re-load the tracks from the playlist.
         playQueue.loadTracks(from: [playlistFileHistoryItem.playlistFile], autoplay: true)
     }
     

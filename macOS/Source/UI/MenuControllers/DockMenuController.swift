@@ -70,24 +70,7 @@ class DockMenuController: NSObject, NSMenuDelegate {
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:),
                                  filter: {msg in msg.trackChanged})
         
-        recreateHistoryMenus()
-        
-        // Favorites menu
-        favorites.allFavorites.reversed().forEach {
-            
-            let item = FavoritesMenuItem(title: $0.name, action: #selector(self.playSelectedFavoriteAction(_:)))
-            item.target = self
-            item.favorite = $0
-            favoritesMenu.addItem(item)
-        }
-        
-        bookmarks.allBookmarks.reversed().forEach {
-            
-            let item = BookmarksMenuItem(title: $0.name, action: #selector(self.playSelectedBookmarkAction(_:)))
-            item.target = self
-            item.bookmark = $0
-            bookmarksMenu.addItem(item)
-        }
+        messenger.subscribeAsync(to: .application_launched, handler: appLaunched(_:))
     }
     
     func menuNeedsUpdate(_ menu: NSMenu) {
@@ -152,48 +135,13 @@ class DockMenuController: NSObject, NSMenuDelegate {
     @IBAction func playSelectedHistoryItemAction(_ sender: HistoryMenuItem) {
         
         guard let item = sender.historyItem else {return}
-        
-        do {
-            try history.playItem(item)
-            
-        } catch {
-            
-            if let fnfError = error as? FileNotFoundError {
-                
-                // This needs to be done async. Otherwise, other open dialogs could hang.
-                DispatchQueue.main.async {
-                    
-                    // Position and display an alert with error info
-                    _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove item").showModal()
-                    self.history.deleteItem(item)
-                }
-            }
-        }
+        history.playItem(item)
     }
     
     @IBAction func playSelectedFavoriteAction(_ sender: FavoritesMenuItem) {
         
         guard let favorite = sender.favorite else {return}
-        
-        do {
-            
-            try favorites.playFavorite(favorite)
-            
-        } catch {
-            
-            // TODO: Give the user other options, DON'T always delete the item !
-            
-            if let fnfError = error as? FileNotFoundError {
-                
-                // This needs to be done async. Otherwise, other open dialogs could hang.
-                DispatchQueue.main.async {
-                    
-                    // Position and display an alert with error info
-                    _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove favorite").showModal()
-//                    self.favorites.deleteFavoriteWithFile(favorite.file)
-                }
-            }
-        }
+        favorites.playFavorite(favorite)
     }
     
     @IBAction func playSelectedBookmarkAction(_ sender: BookmarksMenuItem) {
@@ -340,6 +288,30 @@ class DockMenuController: NSObject, NSMenuDelegate {
         menuItem.historyItem = item
         
         return menuItem
+    }
+    
+    // MARK: Notification handling ---------------------------------------------------------------
+    
+    func appLaunched(_ filesToOpen: [URL]) {
+        
+        recreateHistoryMenus()
+        
+        // Favorites menu
+        favorites.allFavorites.reversed().forEach {
+            
+            let item = FavoritesMenuItem(title: $0.name, action: #selector(self.playSelectedFavoriteAction(_:)))
+            item.target = self
+            item.favorite = $0
+            favoritesMenu.addItem(item)
+        }
+        
+        bookmarks.allBookmarks.reversed().forEach {
+            
+            let item = BookmarksMenuItem(title: $0.name, action: #selector(self.playSelectedBookmarkAction(_:)))
+            item.target = self
+            item.bookmark = $0
+            bookmarksMenu.addItem(item)
+        }
     }
     
     func trackTransitioned(_ notification: TrackTransitionNotification) {

@@ -20,86 +20,40 @@ class HistoryMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var recentlyAddedMenu: NSMenu!
     
     @IBOutlet weak var resumeLastPlayedTrackItem: NSMenuItem!
-
-    // Delegate that performs CRUD on the history model
-    private let history: HistoryDelegateProtocol = historyDelegate
-    
-    private let player: PlaybackDelegateProtocol = playbackDelegate
     
     func menuWillOpen(_ menu: NSMenu) {
-        resumeLastPlayedTrackItem.enableIf(player.state == .stopped && history.lastPlaybackPosition > 0)
+        resumeLastPlayedTrackItem.enableIf(player.state == .stopped && historyDelegate.lastPlaybackPosition > 0)
     }
     
     @IBAction fileprivate func resumeLastPlayedTrackAction(_ sender: NSMenuItem) {
         
         do {
             
-            try history.resumeLastPlayedTrack()
+            try historyDelegate.resumeLastPlayedTrack()
             
         } catch {
             
-            if let lastPlayedItem = history.lastPlayedItem, let fnfError = error as? FileNotFoundError {
+            if let lastPlayedItem = historyDelegate.lastPlayedItem, let fnfError = error as? FileNotFoundError {
                 
                 // This needs to be done async. Otherwise, other open dialogs could hang.
                 DispatchQueue.main.async {
                     
                     // Position and display an alert with error info
                     _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove item").showModal()
-                    self.history.deleteItem(lastPlayedItem)
+                    historyDelegate.deleteItem(lastPlayedItem)
                 }
             }
         }
     }
     
     @IBAction fileprivate func clearHistoryAction(_ sender: NSMenuItem) {
-        history.clearAllHistory()
+        historyDelegate.clearAllHistory()
     }
 }
-
-fileprivate let addedItemsArtLoadingQueue: OperationQueue = OperationQueue(opCount: max(SystemUtils.numberOfActiveCores / 2, 2),
-                                                                           qos: .userInteractive)
-
-fileprivate let playedItemsArtLoadingQueue: OperationQueue = OperationQueue(opCount: max(SystemUtils.numberOfActiveCores / 2, 2),
-                                                                            qos: .userInteractive)
 
 // A menu item that stores an associated history item (used when executing the menu item action)
 class HistoryMenuItem: NSMenuItem {
     var historyItem: HistoryItem!
-}
-
-//fileprivate let playlist: PlaylistDelegateProtocol = playlistDelegate
-
-fileprivate func artForFile(_ _file: URL) -> NSImage? {
-    
-    // Resolve sym links and aliases
-    let file = _file.resolvedURL
-    
-    if file.isDirectory {
-        
-        // Display name is last path component
-        // Art is folder icon
-        return .imgGroup_menu
-        
-    } else {
-        
-        // Single file - playlist or track
-        let fileExtension = file.lowerCasedExtension
-        
-        if SupportedTypes.playlistExtensions.contains(fileExtension) {
-            
-            // Playlist
-            // Display name is last path component
-            // Art is playlist icon
-            return .imgHistory_playlist_padded
-            
-        } else if SupportedTypes.allAudioExtensions.contains(fileExtension) {
-            
-//            return (playlist.findFile(file)?.art?.image ?? fileReader.getArt(for: file)?.image)?.imageCopy()
-            return nil
-        }
-    }
-    
-    return nil
 }
 
 // Factory method to create a single history menu item, given a model object (HistoryItem)
@@ -124,21 +78,6 @@ fileprivate func createHistoryMenuItem(_ item: HistoryItem, _ actionTarget: AnyO
     }
     
     menuItem.image?.size = menuItemCoverArtImageSize
-    
-//    let queue = item is AddedItem ? addedItemsArtLoadingQueue : playedItemsArtLoadingQueue
-//    
-//    queue.addOperation {
-//        
-//        if let art = artForFile(item.file) {
-//            
-//            art.size = menuItemCoverArtImageSize
-//            
-//            DispatchQueue.main.async {
-//                menuItem.image = art
-//            }
-//        }
-//    }
-    
     menuItem.historyItem = item
     
     return menuItem
@@ -178,20 +117,13 @@ class RecentlyAddedMenuController: NSObject, NSMenuDelegate {
     // Sub-menu that displays recently added files/folders. Clicking on any of these items will result in the item being added to the playlist if not already present.
     @IBOutlet weak var recentlyAddedMenu: NSMenu!
     
-    // Delegate that performs CRUD on the history model
-    private let history: HistoryDelegateProtocol = historyDelegate
-    
     // Before the menu opens, re-create the menu items from the model
     func menuWillOpen(_ menu: NSMenu) {
         
         recentlyAddedMenu.removeAllItems()
         
         // Retrieve the model and re-create all sub-menu items
-        createChronologicalMenu(history.allRecentlyAddedItems(), recentlyAddedMenu, self, #selector(self.addSelectedItemAction(_:)))
-    }
-    
-    func menuDidClose(_ menu: NSMenu) {
-        addedItemsArtLoadingQueue.cancelAllOperations()
+        createChronologicalMenu(historyDelegate.allRecentlyAddedItems(), recentlyAddedMenu, self, #selector(self.addSelectedItemAction(_:)))
     }
     
     // When a "Recently added" menu item is clicked, the item is added to the playlist
@@ -226,42 +158,20 @@ class RecentlyPlayedMenuController: NSObject, NSMenuDelegate {
     // Sub-menu that displays recently played tracks. Clicking on any of these items will result in the track being played.
     @IBOutlet weak var recentlyPlayedMenu: NSMenu!
     
-    // Delegate that performs CRUD on the history model
-    private let history: HistoryDelegateProtocol = historyDelegate
-    
     // Before the menu opens, re-create the menu items from the model
     func menuWillOpen(_ menu: NSMenu) {
         
         recentlyPlayedMenu.removeAllItems()
         
         // Retrieve the model and re-create all sub-menu items
-        createChronologicalMenu(history.allRecentlyPlayedItems(), recentlyPlayedMenu, self, #selector(self.playSelectedItemAction(_:)))
+        createChronologicalMenu(historyDelegate.allRecentlyPlayedItems(), recentlyPlayedMenu, self, #selector(self.playSelectedItemAction(_:)))
     }
-    
-    func menuDidClose(_ menu: NSMenu) {
-        playedItemsArtLoadingQueue.cancelAllOperations()
-    }
-    
+
     // When a "Recently played" or "Favorites" menu item is clicked, the item is played
     @IBAction fileprivate func playSelectedItemAction(_ sender: HistoryMenuItem) {
         
-        guard let item = sender.historyItem else {return}
-        
-        do {
-            try history.playItem(item)
-            
-        } catch {
-            
-            if let fnfError = error as? FileNotFoundError {
-                
-                // This needs to be done async. Otherwise, other open dialogs could hang.
-                DispatchQueue.main.async {
-                    
-                    // Position and display an alert with error info
-                    _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove item").showModal()
-                    self.history.deleteItem(item)
-                }
-            }
+        if let item = sender.historyItem {
+            historyDelegate.playItem(item)
         }
     }
 }

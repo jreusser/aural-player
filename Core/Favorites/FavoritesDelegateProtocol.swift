@@ -51,5 +51,5 @@ protocol FavoritesDelegateProtocol {
     
     func favoriteAlbumExists(_ album: String) -> Bool
     
-    func playFavorite(_ favorite: Favorite) throws
+    func playFavorite(_ favorite: Favorite)
 }

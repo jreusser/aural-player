@@ -86,17 +86,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
 //            library.homeFolder = theAppSetup.libraryHome
         }
-
-        appModeManager.presentApp()
-        initialize()
         
-        // Update the appLaunched flag
-        appLaunched = true
+        let historyTracks: [URL] = persistentState.history?.recentlyPlayed?.compactMap {$0.trackFile} ?? []
+        let favTracks: [URL] = persistentState.favorites?.favorites?.compactMap {$0.trackFile} ?? []
+        let pqTracks: [URL] = persistentState.playQueue?.tracks ?? []
         
-        // Tell app components that the app has finished launching, and pass along any launch parameters (set of files to open)
-        messenger.publish(.application_launched, payload: filesToOpen)
-        
-        beginPeriodicPersistence()
+        metadataRegistry.loadMetadataForFiles(files: Set<URL>(historyTracks + favTracks + pqTracks)) {
+            
+            DispatchQueue.main.async {
+                
+                appModeManager.presentApp()
+                self.initialize()
+                
+                // Update the appLaunched flag
+                self.appLaunched = true
+                
+                // Tell app components that the app has finished launching, and pass along any launch parameters (set of files to open)
+                self.messenger.publish(.application_launched, payload: self.filesToOpen)
+                
+                self.beginPeriodicPersistence()
+            }
+        }
     }
     
     private func initialize() {

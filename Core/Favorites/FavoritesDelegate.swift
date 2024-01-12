@@ -179,7 +179,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         favorites.userDefinedObjectExists(named: "album_\(album)")
     }
     
-    func playFavorite(_ favorite: Favorite) throws {
+    func playFavorite(_ favorite: Favorite) {
 
         if let favTrack = favorite as? FavoriteTrack {
             
