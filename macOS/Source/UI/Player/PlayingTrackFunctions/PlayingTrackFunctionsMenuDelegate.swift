@@ -48,7 +48,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
         // Subscribe to various notifications
         
         messenger.subscribe(to: .favoritesList_itemAdded, handler: trackAddedToFavorites(_:))
-        messenger.subscribe(to: .favoritesList_tracksRemoved, handler: tracksRemovedFromFavorites(_:))
+        messenger.subscribe(to: .favoritesList_itemsRemoved, handler: tracksRemovedFromFavorites(_:))
         
         messenger.subscribe(to: .player_moreInfo, handler: moreInfo)
         messenger.subscribe(to: .favoritesList_addOrRemove, handler: addOrRemoveFavorite)
@@ -62,9 +62,9 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
     
     private func updateFavoriteButtonState() {
         
-//        if let playingTrack = playbackInfoDelegate.playingTrack {
-//            favoritesMenuItem.onIf(favorites.favoriteTrackExists(playingTrack))
-//        }
+        if let playingTrack = playbackInfoDelegate.playingTrack {
+            favoritesMenuItem.onIf(favorites.favoriteExists(track: playingTrack))
+        }
     }
     
     func destroy() {
@@ -100,15 +100,15 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
     
     private func addOrRemoveFavorite() {
         
-//        guard let playingTrack = playbackInfoDelegate.playingTrack else {return}
-//
-//        // Toggle the button state
-//        if favorites.favoriteTrackExists(playingTrack) {
-//            favorites.deleteFavoriteWithFile(playingTrack.file)
-//            
-//        } else {
-//            _ = favorites.addFavorite(track: playingTrack)
-//        }
+        guard let playingTrack = playbackInfoDelegate.playingTrack else {return}
+
+        // Toggle the button state
+        if favorites.favoriteExists(track: playingTrack) {
+            favorites.removeFavorite(track: playingTrack)
+            
+        } else {
+            favorites.addFavorite(track: playingTrack)
+        }
     }
     
     // Adds the currently playing track position to/from the "Bookmarks" list
@@ -182,25 +182,29 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
     // MARK: Notif handling
     
     func trackAddedToFavorites(_ favorite: Favorite) {
-//        favoritesUpdated([favorite.file], true)
+        
+        if let favTrack = favorite as? FavoriteTrack {
+            favoritesUpdated([favTrack.track.file], true)
+        }
     }
     
     func tracksRemovedFromFavorites(_ removedFavorites: Set<Favorite>) {
-//        favoritesUpdated(Set(removedFavorites.map {$0.file}), false)
+        favoritesUpdated(Set(removedFavorites.compactMap {($0 as? FavoriteTrack)?.track.file}), false)
     }
     
     // Responds to a notification that a track has been added to / removed from the Favorites list, by updating the UI to reflect the new state
     private func favoritesUpdated(_ updatedFavoritesFiles: Set<URL>, _ added: Bool) {
         
         // Do this only if the track in the message is the playing track
-//        guard let playingTrack = playbackInfoDelegate.playingTrack, updatedFavoritesFiles.contains(playingTrack.file) else {return}
-//        
-//        // TODO: Is this really required ???
-//        windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)
-//        
-//        updateFavoriteButtonState()
-//        
-//        infoPopup.showMessage(added ? "Track added to Favorites !" : "Track removed from Favorites !",
-//                                  playerWindowRootView, .maxX)
+        guard let playingTrack = playbackInfoDelegate.playingTrack,
+                updatedFavoritesFiles.contains(playingTrack.file) else {return}
+        
+        // TODO: Is this really required ???
+        windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)
+        
+        updateFavoriteButtonState()
+        
+        infoPopup.showMessage(added ? "Track added to Favorites !" : "Track removed from Favorites !",
+                                  playerWindowRootView, .maxX)
     }
 }

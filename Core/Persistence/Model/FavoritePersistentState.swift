@@ -10,54 +10,39 @@
 import Foundation
 
 struct FavoritesPersistentState: Codable {
-    let favorites: [FavoritePersistentState]?
-}
-
-enum FavoritePersistentItemType: String, Codable {
     
-    case track
-    case playlistFile
-    case folder
-    case group
+    let favoriteTracks: [FavoriteTrackPersistentState]?
+    
+    let favoriteArtists: [FavoriteGroupPersistentState]?
+    let favoriteAlbums: [FavoriteGroupPersistentState]?
+    let favoriteGenres: [FavoriteGroupPersistentState]?
+    let favoriteDecades: [FavoriteGroupPersistentState]?
 }
 
 ///
 /// Persistent state for a single item in the **Favorites** list.
 ///
-/// - SeeAlso: `Favorite`
+/// - SeeAlso: `FavoriteTrack`
 ///
-struct FavoritePersistentState: Codable {
+struct FavoriteTrackPersistentState: Codable {
     
-    let itemType: FavoritePersistentItemType?
-
     var trackFile: URL? = nil
     
-    var playlistFile: URL? = nil
-    
-    var folder: URL? = nil
+    init(favorite: FavoriteTrack) {
+        self.trackFile = favorite.track.file
+    }
+}
+
+///
+/// Persistent state for a single item in the **Favorites** list.
+///
+/// - SeeAlso: `FavoriteGroup`
+///
+struct FavoriteGroupPersistentState: Codable {
     
     var groupName: String? = nil
-    var groupType: GroupType? = nil
     
-    init?(favorite: Favorite) {
-        
-        if let trackItem = favorite as? FavoriteTrack {
-            
-            self.itemType = .track
-            self.trackFile = trackItem.track.file
-            
-            return
-        }
-        
-        if let groupItem = favorite as? FavoriteGroup {
-            
-            self.itemType = .group
-            self.groupName = groupItem.groupName
-            self.groupType = groupItem.groupType
-            
-            return
-        }
-        
-        return nil
+    init(favorite: FavoriteGroup) {
+        self.groupName = favorite.groupName
     }
 }

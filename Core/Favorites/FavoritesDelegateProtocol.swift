@@ -29,9 +29,23 @@ protocol FavoritesDelegateProtocol {
     
     func addFavorite(decade: String)
     
-//    func addFavorite(playlist: Playlist) -> Favorite
+//    func addFavorite(playlist: Playlist)
 //    
-//    func addFavorite(playlistFile: ImportedPlaylist) -> Favorite
+//    func addFavorite(playlistFile: ImportedPlaylist)
+    
+    func removeFavorite(track: Track)
+    
+    func removeFavorite(artist: String)
+
+    func removeFavorite(album: String)
+
+    func removeFavorite(genre: String)
+    
+    func removeFavorite(decade: String)
+    
+//    func removeFavorite(playlist: Playlist)
+//
+//    func removeFavorite(playlistFile: ImportedPlaylist)
     
     var allFavoriteTracks: [FavoriteTrack] {get}
     

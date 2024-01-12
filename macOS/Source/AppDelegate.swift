@@ -88,7 +88,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         let historyTracks: [URL] = appPersistentState.history?.recentlyPlayed?.compactMap {$0.trackFile} ?? []
-        let favTracks: [URL] = appPersistentState.favorites?.favorites?.compactMap {$0.trackFile} ?? []
+        let favTracks: [URL] = appPersistentState.favorites?.favoriteTracks?.compactMap {$0.trackFile} ?? []
         let pqTracks: [URL] = appPersistentState.playQueue?.tracks ?? []
         
         metadataRegistry.loadMetadataForFiles(files: Set<URL>(historyTracks + favTracks + pqTracks)) {
@@ -118,6 +118,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         _ = playQueueDelegate
         _ = libraryDelegate
+        _ = favoritesDelegate
         _ = mediaKeyHandler
         
         DispatchQueue.global(qos: .background).async {

@@ -30,7 +30,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="452" height="177"/>
                     <clipView key="contentView" drawsBackground="NO" id="kLV-1o-whq">
                         <rect key="frame" x="0.0" y="0.0" width="452" height="177"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView identifier="tid_CompactPlayQueue" focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="plain" columnReordering="NO" autosaveColumns="NO" rowHeight="30" viewBased="YES" id="RAo-B3-mxT" customClass="AuralTableView" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="452" height="177"/>
@@ -272,42 +272,30 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="vxS-3G-8Vh"/>
-                <menuItem title="  Add to Favorites" image="heart" catalog="system" id="kfN-Xw-trf" userLabel="Copy these tracks to playlist">
+                <menuItem title="  Favorites" image="heart" catalog="system" id="kfN-Xw-trf" userLabel="Favorites">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="  Add to Favorites" id="zS9-wj-57c">
+                    <menu key="submenu" title="  Favorites" id="zS9-wj-57c">
                         <items>
                             <menuItem title="This track" image="music.note" catalog="system" id="VJw-JZ-VDn">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="favoritesAction:" target="-2" id="Jdf-RU-Pju"/>
+                                    <action selector="favoriteTrackAction:" target="-2" id="zHt-0H-EU9"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Artist ''" image="Artists_Menu" id="Zkc-sz-hXW">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="addArtistToFavoritesAction:" target="-2" id="mrE-Ze-H7k"/>
+                                    <action selector="favoriteArtistAction:" target="-2" id="FSC-db-xDa"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Album ''" image="Albums_Menu" id="dUj-RN-2bC">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="addAlbumToFavoritesAction:" target="-2" id="dTP-3x-Rxt"/>
+                                    <action selector="favoriteAlbumAction:" target="-2" id="EdR-si-VsF"/>
                                 </connections>
                             </menuItem>
                         </items>
                     </menu>
-                </menuItem>
-                <menuItem title="  Add this track to Favorites" image="heart" catalog="system" id="ccr-O5-bNr" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="offStateTitle" value="  Add this track to Favorites"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="onStateTitle" value="  Remove this track from Favorites"/>
-                        <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="heart" catalog="system"/>
-                        <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="heart.slash" catalog="system"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="favoritesAction:" target="-2" id="FtO-Eq-xN7"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="  Get detailed track info" id="E94-FX-PuM">
                     <imageReference key="image" image="info" catalog="system" symbolScale="large"/>
@@ -339,7 +327,6 @@
         <image name="arrow.up.to.line.alt" catalog="system" width="13" height="14"/>
         <image name="doc.on.clipboard" catalog="system" width="16" height="18"/>
         <image name="heart" catalog="system" width="16" height="14"/>
-        <image name="heart.slash" catalog="system" width="16" height="15"/>
         <image name="info" catalog="system" width="11" height="16"/>
         <image name="list.dash" catalog="system" width="16" height="11"/>
         <image name="music.note" catalog="system" width="11" height="15"/>

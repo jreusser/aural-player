@@ -95,14 +95,13 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     
     init(persistentState: LibraryPersistentState?) {
         
-//        self.homeFolder = FilesAndPaths.musicDir.appendingPathComponent("Timo", isDirectory: true).appendingPathComponent("Fury In The Slaughterhouse", isDirectory: true)
-        self.sourceFolders = OrderedSet(persistentState?.sourceFolders ?? [FilesAndPaths.musicDir])
+//        self.sourceFolders = OrderedSet(persistentState?.sourceFolders ?? [FilesAndPaths.musicDir])
+        self.sourceFolders = [FilesAndPaths.musicDir]
         
         super.init(sortOrder: TrackListSort(fields: [.artist, .album, .discNumberAndTrackNumber], order: .ascending),
                    withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])
     }
     
-//    private lazy var loader: TrackLoader = TrackLoader(priority: .high, qOS: .utility)
     private lazy var loader: LibraryLoader = LibraryLoader()
     private lazy var messenger = Messenger(for: self)
     

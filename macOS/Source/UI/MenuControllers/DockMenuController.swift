@@ -59,7 +59,7 @@ class DockMenuController: NSObject, NSMenuDelegate {
         favoritesMenuItem.off()
         
         messenger.subscribeAsync(to: .favoritesList_itemAdded, handler: trackAddedToFavorites(_:))
-        messenger.subscribeAsync(to: .favoritesList_tracksRemoved, handler: tracksRemovedFromFavorites(_:))
+        messenger.subscribeAsync(to: .favoritesList_itemsRemoved, handler: tracksRemovedFromFavorites(_:))
         
         messenger.subscribeAsync(to: .bookmarksList_trackAdded, handler: trackAddedToBookmarks(_:))
         messenger.subscribeAsync(to: .bookmarksList_tracksRemoved, handler: tracksRemovedFromBookmarks(_:))
