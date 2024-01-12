@@ -377,7 +377,7 @@ extension String {
             // s2 is longer than s1, simply truncate the string as a whole
             let fullString = fullLengthString.truncate(font: font, maxWidth: maxWidth)
             let index = fullString.index(fullString.startIndex, offsetBy: s1.count + 3) // 3 spaces between s1 and s2
-            return [s1, fullString.substring(from: index), fullString]
+            return [s1, String(fullString[index...]), fullString]
         }
     }
     

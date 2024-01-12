@@ -34,6 +34,9 @@ public extension NSBezierPath {
                                                control2: CGPoint(x: points[1].x, y: points[1].y) )
             case .closePath: path.closeSubpath()
                 
+            case .cubicCurveTo, .quadraticCurveTo:
+                break
+                
             @unknown default:
                 NSLog("Encountered unknown CGPath element type:" + String(describing: type))
             }

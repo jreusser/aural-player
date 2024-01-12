@@ -29,6 +29,7 @@ extension NSPasteboard {
             
             if let data = pasteboardItems?.first?.data(forType: .data) {
                 return NSKeyedUnarchiver.unarchiveObject(with: data)
+//                return NSKeyedUnarchiver.unarchivedObject(ofClass: NSObject.self, from: data)
             }
             
             return nil

@@ -30,7 +30,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="452" height="177"/>
                     <clipView key="contentView" drawsBackground="NO" id="kLV-1o-whq">
                         <rect key="frame" x="0.0" y="0.0" width="452" height="177"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView identifier="tid_CompactPlayQueue" focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="plain" columnReordering="NO" autosaveColumns="NO" rowHeight="30" viewBased="YES" id="RAo-B3-mxT" customClass="AuralTableView" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="452" height="177"/>

@@ -58,11 +58,11 @@ class SeekSliderCell: HorizontalSliderCell {
     
     override func drawBar(inside aRect: NSRect, flipped: Bool) {
         
-        guard let loop = self.loop else {
-            
-            super.drawBar(inside: aRect, flipped: flipped)
-            return
-        }
+//        guard let loop = self.loop else {
+//            
+//            super.drawBar(inside: aRect, flipped: flipped)
+//            return
+//        }
         
 //        drawBackground(inRect: aRect)
 //        

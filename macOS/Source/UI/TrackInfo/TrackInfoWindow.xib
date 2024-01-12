@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,10 +15,10 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window identifier="playlists" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingIdentifier="playlists" titleVisibility="hidden" id="Vjr-9k-hTE" customClass="SnappingWindow" customModule="Aural" customModuleProvider="target">
-            <windowStyleMask key="styleMask" resizable="YES" texturedBackground="YES"/>
+            <windowStyleMask key="styleMask" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="687" height="550"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1728" height="1079"/>
             <value key="minSize" type="size" width="530" height="300"/>
             <view key="contentView" wantsLayer="YES" id="l2i-1c-z10" userLabel="Root View">
                 <rect key="frame" x="0.0" y="0.0" width="687" height="550"/>
@@ -32,19 +32,19 @@
                             <subviews>
                                 <button toolTip="Hide Track Info" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dW-aa-pDA" userLabel="Close Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="10" y="526.5" width="11.5" height="10"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="6" id="In7-rg-1yJ"/>
-                                        <constraint firstAttribute="width" constant="11" id="rpY-ip-rRu"/>
-                                    </constraints>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="gGi-ZC-ZMk">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="6" id="In7-rg-1yJ"/>
+                                        <constraint firstAttribute="width" constant="11" id="rpY-ip-rRu"/>
+                                    </constraints>
                                     <connections>
                                         <action selector="closeAction:" target="-2" id="bWE-LO-aRM"/>
                                     </connections>
                                 </button>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5gy-ij-kYs" userLabel="Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5gy-ij-kYs" userLabel="Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="40" y="521" width="214" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="210" id="EwP-7p-C6t"/>
@@ -70,7 +70,7 @@
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
-                                            <button toolTip="Artists view" verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="fP4-DI-eVx" userLabel="Lyrics Button">
+                                            <button toolTip="Artists view" tag="1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fP4-DI-eVx" userLabel="Lyrics Button">
                                                 <rect key="frame" x="44" y="0.0" width="22" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="music.mic" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vtd-pZ-qD9" customClass="ImageTabButtonCell" customModule="Aural" customModuleProvider="target">
@@ -78,7 +78,7 @@
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
-                                            <button toolTip="Albums view" verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="QmD-eH-8zb" userLabel="Cover Art Button">
+                                            <button toolTip="Albums view" tag="2" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QmD-eH-8zb" userLabel="Cover Art Button">
                                                 <rect key="frame" x="77" y="0.0" width="22" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2P8-wp-26B" customClass="ImageTabButtonCell" customModule="Aural" customModuleProvider="target">
@@ -87,7 +87,7 @@
                                                     <imageReference key="image" image="photo" catalog="system" symbolScale="large"/>
                                                 </buttonCell>
                                             </button>
-                                            <button toolTip="Genres view" verticalHuggingPriority="750" fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="ZCz-89-x86" userLabel="Audio Button">
+                                            <button toolTip="Genres view" tag="3" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZCz-89-x86" userLabel="Audio Button">
                                                 <rect key="frame" x="110" y="0.0" width="22" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="waveform" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fNE-7v-3oV" customClass="ImageTabButtonCell" customModule="Aural" customModuleProvider="target">
@@ -95,7 +95,7 @@
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
-                                            <button toolTip="Genres view" verticalHuggingPriority="750" fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="Jyf-xz-1nh" userLabel="File System Button">
+                                            <button toolTip="Genres view" tag="4" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jyf-xz-1nh" userLabel="File System Button">
                                                 <rect key="frame" x="143" y="0.0" width="22" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="folder" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TCx-DJ-Zr8" customClass="ImageTabButtonCell" customModule="Aural" customModuleProvider="target">
@@ -112,7 +112,7 @@
                                     <color key="borderColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </box>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wh5-w2-ugn" userLabel="Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wh5-w2-ugn" userLabel="Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="38" y="481" width="214" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="8Zi-hU-VaA"/>
@@ -196,14 +196,14 @@
                     </box>
                     <button toolTip="Export tracks to a playlist file" translatesAutoresizingMaskIntoConstraints="NO" id="tD1-d9-T22" userLabel="Export" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="656" y="15.5" width="16" height="18"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="9" id="DJN-sr-T0g"/>
-                            <constraint firstAttribute="width" constant="16" id="vP8-me-ZSt"/>
-                        </constraints>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrow.right.doc.on.clipboard" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="6Hx-20-ssd">
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="9" id="DJN-sr-T0g"/>
+                            <constraint firstAttribute="width" constant="16" id="vP8-me-ZSt"/>
+                        </constraints>
                     </button>
                 </subviews>
                 <constraints>
@@ -221,7 +221,7 @@
             <accessibility identifier="playlists"/>
             <point key="canvasLocation" x="244.5" y="322"/>
         </window>
-        <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="VLo-9f-WSK" userLabel="Virtual Value Field">
+        <textField hidden="YES" focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="VLo-9f-WSK" userLabel="Virtual Value Field">
             <rect key="frame" x="0.0" y="0.0" width="365" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="pQs-Mm-ugI">
@@ -231,7 +231,7 @@
             </textFieldCell>
             <point key="canvasLocation" x="303" y="-129"/>
         </textField>
-        <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="VDS-Fg-9HX" userLabel="Virtual Key Field">
+        <textField hidden="YES" focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="VDS-Fg-9HX" userLabel="Virtual Key Field">
             <rect key="frame" x="0.0" y="0.0" width="135" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="CFv-Im-hmi">
@@ -255,8 +255,8 @@
         <image name="doc.text" catalog="system" width="14" height="16"/>
         <image name="folder" catalog="system" width="18" height="14"/>
         <image name="music.mic" catalog="system" width="16" height="16"/>
-        <image name="photo" catalog="system" width="23" height="17"/>
-        <image name="waveform" catalog="system" width="14" height="14"/>
+        <image name="photo" catalog="system" width="24" height="18"/>
+        <image name="waveform" catalog="system" width="15" height="16"/>
         <image name="xmark" catalog="system" width="14" height="13"/>
     </resources>
 </document>

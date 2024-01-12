@@ -132,7 +132,7 @@ class FFmpegAudioCodec: FFmpegCodec {
     func decodeAndDrop(packet: FFmpegPacket) {
         
         // Send the packet to the decoder for decoding.
-        var resultCode: ResultCode = context.sendPacket(packet)
+        let resultCode: ResultCode = context.sendPacket(packet)
         if resultCode.isNegative {return}
         
         context.receiveAndDropAllFrames()

@@ -58,8 +58,8 @@ class LayoutPreviewView: NSView {
         path.fill(withColor: .white)
         
         // Draw window frames
-        if let layout = self.layout {
-            
+//        if let layout = self.layout {
+//            
 //            let mainWindowFrame = windowLayoutsManager.mainWindowFrame
 //            renderPreview(layout.mainWindowOrigin, mainWindowFrame.width, mainWindowFrame.height, .imgPlayerPreview)
 //            
@@ -70,7 +70,7 @@ class LayoutPreviewView: NSView {
 //            if layout.showPlaylist, let playlistWindowFrame = layout.playlistWindowFrame {
 //                renderPreview(playlistWindowFrame, .imgPlaylistPreview)
 //            }
-        }
+//        }
     }
     
     private func renderPreview(_ origin: NSPoint, _ width: CGFloat, _ height: CGFloat, _ image: NSImage) {

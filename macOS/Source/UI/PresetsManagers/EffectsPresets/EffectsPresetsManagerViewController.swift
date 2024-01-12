@@ -53,7 +53,7 @@ class EffectsPresetsManagerViewController: NSViewController {
     
     override func destroy() {
         
-        (viewControllers as? [Destroyable])?.forEach {$0.destroy()}
+        viewControllers.forEach {$0.destroy()}
         messenger.unsubscribeFromAll()
     }
     
