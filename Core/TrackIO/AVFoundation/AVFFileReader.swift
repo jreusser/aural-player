@@ -128,9 +128,6 @@ class AVFFileReader: FileReaderProtocol {
     
     private func doGetAuxiliaryMetadata(for file: URL, fromMap metadataMap: AVFMappedMetadata, loadingAudioInfoFrom playbackContext: PlaybackContextProtocol? = nil) -> AuxiliaryMetadata {
         
-        // Obtain the parsers relevant to this track, based on the metadata present.
-        let parsers = metadataMap.keySpaces.compactMap {parsersMap[$0]}
-        
         var metadata = AuxiliaryMetadata()
         
         // Load audio info for the track.

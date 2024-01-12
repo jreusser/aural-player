@@ -39,10 +39,10 @@ extension PlatformImage {
     static let imgBookmark: PlatformImage = PlatformImage(systemSymbolName: "bookmark", accessibilityDescription: nil)!
     
     static let imgVolumeZero: PlatformImage = PlatformImage(systemSymbolName: "volume", accessibilityDescription: nil)!
-    static let imgVolumeLow: PlatformImage = PlatformImage(systemSymbolName: "volume.1", accessibilityDescription: nil)!
-    static let imgVolumeMedium: PlatformImage = PlatformImage(systemSymbolName: "volume.2", accessibilityDescription: nil)!
-    static let imgVolumeHigh: PlatformImage = PlatformImage(systemSymbolName: "volume.3", accessibilityDescription: nil)!
-    static let imgMute: PlatformImage = PlatformImage(systemSymbolName: "volume.slash", accessibilityDescription: nil)!
+    static let imgVolumeLow: PlatformImage = PlatformImage(systemSymbolName: "speaker.wave.1", accessibilityDescription: nil)!
+    static let imgVolumeMedium: PlatformImage = PlatformImage(systemSymbolName: "speaker.wave.2", accessibilityDescription: nil)!
+    static let imgVolumeHigh: PlatformImage = PlatformImage(systemSymbolName: "speaker.wave.3", accessibilityDescription: nil)!
+    static let imgMute: PlatformImage = PlatformImage(systemSymbolName: "speaker.wave.slash", accessibilityDescription: nil)!
     
     static let imgRepeatOne: PlatformImage = PlatformImage(systemSymbolName: "repeat.1", accessibilityDescription: nil)!
     static let imgRepeat: PlatformImage = PlatformImage(systemSymbolName: "repeat", accessibilityDescription: nil)!

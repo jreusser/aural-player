@@ -27,9 +27,6 @@ class BookmarksMenuController: NSObject, NSMenuDelegate {
     
     private lazy var messenger = Messenger(for: self)
     
-    fileprivate lazy var artLoadingQueue: OperationQueue = OperationQueue(opCount: max(SystemUtils.numberOfActiveCores / 2, 2),
-                                                                          qos: .userInteractive)
-    
     // Before the menu opens, re-create the menu items from the model
     func menuNeedsUpdate(_ menu: NSMenu) {
         
@@ -55,10 +52,6 @@ class BookmarksMenuController: NSObject, NSMenuDelegate {
         bookmarks.allBookmarks.reversed().forEach {menu.addItem(createBookmarkMenuItem($0))}
     }
     
-    func menuDidClose(_ menu: NSMenu) {
-        artLoadingQueue.cancelAllOperations()
-    }
-    
     // Factory method to create a single history menu item, given a model object (HistoryItem)
     private func createBookmarkMenuItem(_ bookmark: Bookmark) -> NSMenuItem {
         
@@ -70,19 +63,6 @@ class BookmarksMenuController: NSObject, NSMenuDelegate {
         
         menuItem.image = .imgPlayedTrack
         menuItem.image?.size = menuItemCoverArtImageSize
-        
-        artLoadingQueue.addOperation {[weak self] in
-            
-//            if let theImage = self?.playlist.findFile(bookmark.file)?.art?.image ?? self?.fileReader.getArt(for: bookmark.file)?.image,
-//               let imgCopy = theImage.copy() as? NSImage {
-//
-//                imgCopy.size = menuItemCoverArtImageSize
-//
-//                DispatchQueue.main.async {
-//                    menuItem.image = imgCopy
-//                }
-//            }
-        }
         
         menuItem.bookmark = bookmark
         
