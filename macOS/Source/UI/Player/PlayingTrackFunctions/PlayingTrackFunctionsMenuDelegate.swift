@@ -62,9 +62,9 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
     
     private func updateFavoriteButtonState() {
         
-        if let playingTrack = playbackInfoDelegate.playingTrack {
-            favoritesMenuItem.onIf(favorites.favoriteTrackExists(playingTrack))
-        }
+//        if let playingTrack = playbackInfoDelegate.playingTrack {
+//            favoritesMenuItem.onIf(favorites.favoriteTrackExists(playingTrack))
+//        }
     }
     
     func destroy() {
@@ -100,15 +100,15 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
     
     private func addOrRemoveFavorite() {
         
-        guard let playingTrack = playbackInfoDelegate.playingTrack else {return}
-
-        // Toggle the button state
-        if favorites.favoriteTrackExists(playingTrack) {
-            favorites.deleteFavoriteWithFile(playingTrack.file)
-            
-        } else {
-            _ = favorites.addFavorite(track: playingTrack)
-        }
+//        guard let playingTrack = playbackInfoDelegate.playingTrack else {return}
+//
+//        // Toggle the button state
+//        if favorites.favoriteTrackExists(playingTrack) {
+//            favorites.deleteFavoriteWithFile(playingTrack.file)
+//            
+//        } else {
+//            _ = favorites.addFavorite(track: playingTrack)
+//        }
     }
     
     // Adds the currently playing track position to/from the "Bookmarks" list

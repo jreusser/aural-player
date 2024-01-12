@@ -8,6 +8,7 @@
 //  See the file "LICENSE" in the project root directory for license terms.
 //
 import Foundation
+import OrderedCollections
 
 ///
 /// A delegate allowing access to the list of user-defined favorites.
@@ -19,9 +20,37 @@ import Foundation
 ///
 class FavoritesDelegate: FavoritesDelegateProtocol {
     
-    private typealias Favorites = UserManagedObjects<Favorite>
+    private var favoriteTracks: OrderedDictionary<URL, FavoriteTrack>
     
-    private let favorites: Favorites
+    private var favoriteArtists: OrderedDictionary<String, FavoriteGroup>
+    private var favoriteAlbums: OrderedDictionary<String, FavoriteGroup>
+    private var favoriteGenres: OrderedDictionary<String, FavoriteGroup>
+    private var favoriteDecades: OrderedDictionary<String, FavoriteGroup>
+    
+//    private var favoriteFolders: OrderedSet<URL>
+//    private var favoritePlaylistFiles: OrderedSet<URL>
+//    
+//    private var favoritePlaylists: OrderedSet<String>
+    
+    var allFavoriteTracks: [FavoriteTrack] {
+        Array(favoriteTracks.values)
+    }
+    
+    var allFavoriteArtists: [FavoriteGroup] {
+        Array(favoriteArtists.values)
+    }
+    
+    var allFavoriteAlbums: [FavoriteGroup] {
+        Array(favoriteAlbums.values)
+    }
+    
+    var allFavoriteGenres: [FavoriteGroup] {
+        Array(favoriteGenres.values)
+    }
+    
+    var allFavoriteDecades: [FavoriteGroup] {
+        Array(favoriteDecades.values)
+    }
     
     private let playQueue: PlayQueueDelegateProtocol
     
@@ -30,110 +59,131 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     
     private lazy var messenger = Messenger(for: self)
     
-    init(persistentState: FavoritesPersistentState?, _ playQueue: PlayQueueDelegateProtocol, _ player: PlaybackDelegateProtocol) {
+    init(_ playQueue: PlayQueueDelegateProtocol, _ player: PlaybackDelegateProtocol) {
         
         self.player = player
         self.playQueue = playQueue
         
-        self.favorites = Favorites(systemDefinedObjects: [], userDefinedObjects: [])
+        self.favoriteTracks = OrderedDictionary()
+        self.favoriteArtists = OrderedDictionary()
+        self.favoriteAlbums = OrderedDictionary()
+        self.favoriteGenres = OrderedDictionary()
+        self.favoriteDecades = OrderedDictionary()
+    }
+    
+    private func loadFavoritesFromPersistentState() {
+        
+        guard let state = appPersistentState.favorites else {return}
         
         DispatchQueue.global(qos: .utility).async {
             
-            for fav in persistentState?.favorites?.compactMap({self.favoriteFromPersistentState($0)}) ?? [] {
-                self.favorites.addObject(fav)
+            for favState in state.favorites ?? [] {
+                
+                guard let itemType = favState.itemType else {continue}
+                
+                switch itemType {
+                    
+                case .track:
+                    
+                    guard let trackFile = favState.trackFile, let metadata = metadataRegistry[trackFile] else {continue}
+                    
+                    let track = Track(trackFile, fileMetadata: FileMetadata(primary: metadata))
+                    self.favoriteTracks[trackFile] = FavoriteTrack(track: track)
+                    
+        //        case .playlistFile:
+        //
+        //            if let playlistFile = state.playlistFile {
+        //                return PlaylistFileHistoryItem(playlistFile: playlistFile, lastEventTime: lastEventTime, eventCount: eventCount)
+        //            }
+        //
+        //        case .folder:
+        //
+        //            if let folder = state.folder {
+        //                return FolderHistoryItem(folder: folder, lastEventTime: lastEventTime, eventCount: eventCount)
+        //            }
+                    
+                case .group:
+                    
+                    if let groupName = favState.groupName, let groupType = favState.groupType {
+                        
+                        switch groupType {
+                            
+                        case .artist:
+                            self.favoriteArtists[groupName] = FavoriteGroup(groupName: groupName, groupType: groupType)
+                            
+                        case .album:
+                            self.favoriteAlbums[groupName] = FavoriteGroup(groupName: groupName, groupType: groupType)
+                            
+                        case .genre:
+                            self.favoriteArtists[groupName] = FavoriteGroup(groupName: groupName, groupType: groupType)
+                            
+                        case .decade:
+                            self.favoriteDecades[groupName] = FavoriteGroup(groupName: groupName, groupType: groupType)
+                            
+                        default:
+                            break
+                        }
+                    }
+                    
+                default:
+                    continue
+                }
             }
         }
-        
-        // TODO: Use TrackLoader here to load tracks for all favorites.
     }
     
     private func favoriteFromPersistentState(_ state: FavoritePersistentState) -> Favorite? {
         
-        guard let itemType = state.itemType else {return nil}
         
-        switch itemType {
-            
-        case .track:
-            
-            if let trackFile = state.trackFile {
-                
-                do {
-                    
-                    var fileMetadata = FileMetadata()
-                    fileMetadata.primary = try fileReader.getPrimaryMetadata(for: trackFile)
-                    
-                    let track = Track(trackFile, fileMetadata: fileMetadata)
-                    return FavoriteTrack(track: track)
-                    
-                } catch {}
-            }
-            
-//        case .playlistFile:
-//            
-//            if let playlistFile = state.playlistFile {
-//                return PlaylistFileHistoryItem(playlistFile: playlistFile, lastEventTime: lastEventTime, eventCount: eventCount)
-//            }
-//            
-//        case .folder:
-//            
-//            if let folder = state.folder {
-//                return FolderHistoryItem(folder: folder, lastEventTime: lastEventTime, eventCount: eventCount)
-//            }
-            
-        case .group:
-            
-            if let groupName = state.groupName, let groupType = state.groupType {
-                return FavoriteGroup(groupName: groupName, groupType: groupType)
-            }
-            
-        default: return nil
-            
-        }
         
         return nil
     }
     
-    @discardableResult func addFavorite(track: Track) -> Favorite {
+    func addFavorite(track: Track) {
         
         let favorite = FavoriteTrack(track: track)
-        favorites.addObject(favorite)
+        favoriteTracks[track.file] = favorite
         messenger.publish(.favoritesList_itemAdded, payload: favorite)
         
         print("Added fav track: '\(track.displayName)'")
-        
-        return favorite
     }
     
-    @discardableResult func addFavorite(artist: String) -> Favorite {
+    func addFavorite(artist: String) {
         
         let favorite = FavoriteGroup(groupName: artist, groupType: .artist)
-        favorites.addObject(favorite)
+        favoriteArtists[artist] = favorite
         messenger.publish(.favoritesList_itemAdded, payload: favorite)
         
         print("Added fav artist: '\(artist)'")
-        
-        return favorite
     }
     
-    @discardableResult func addFavorite(album: String) -> Favorite {
+    func addFavorite(album: String) {
         
         let favorite = FavoriteGroup(groupName: album, groupType: .album)
-        favorites.addObject(favorite)
+        favoriteAlbums[album] = favorite
         messenger.publish(.favoritesList_itemAdded, payload: favorite)
         
         print("Added fav album: '\(album)'")
-        
-        return favorite
     }
-//    
-//    func addFavorite(genre: String) -> Favorite {
-//        Favorite(name: "", type: .album)
-//    }
-//    
-//    func addFavorite(decade: String) -> Favorite {
-//        Favorite(name: "", type: .album)
-//    }
-//    
+    
+    func addFavorite(genre: String) {
+        
+        let favorite = FavoriteGroup(groupName: genre, groupType: .genre)
+        favoriteGenres[genre] = favorite
+        messenger.publish(.favoritesList_itemAdded, payload: favorite)
+        
+        print("Added fav genre: '\(genre)'")
+    }
+
+    func addFavorite(decade: String) {
+        
+        let favorite = FavoriteGroup(groupName: decade, groupType: .decade)
+        favoriteGenres[decade] = favorite
+        messenger.publish(.favoritesList_itemAdded, payload: favorite)
+        
+        print("Added fav decade: '\(decade)'")
+    }
+    
 //    func addFavorite(playlist: Playlist) -> Favorite {
 //        Favorite(name: "", type: .album)
 //    }
@@ -142,41 +192,34 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
 //        Favorite(name: "", type: .album)
 //    }
     
-    var allFavorites: [Favorite] {favorites.userDefinedObjects}
-    
-    var count: Int {favorites.numberOfUserDefinedObjects}
-    
-    func getFavoriteWithFile(_ file: URL) -> Favorite? {
-        favorites.userDefinedObject(named: file.path)
-    }
-    
-    func getFavoriteAtIndex(_ index: Int) -> Favorite {
-        favorites.userDefinedObjects[index]
-    }
+//    func getFavoriteAtIndex(_ index: Int) -> Favorite {
+//        favorites.userDefinedObjects[index]
+//    }
     
     func deleteFavorites(atIndices indices: IndexSet) {
         
-        let deletedFavorites = favorites.deleteObjects(atIndices: indices)
-        messenger.publish(.favoritesList_tracksRemoved, payload: Set(deletedFavorites))
+//        let deletedFavorites = favorites.deleteObjects(atIndices: indices)
+//        messenger.publish(.favoritesList_tracksRemoved, payload: Set(deletedFavorites))
     }
     
-    func deleteFavoriteWithFile(_ file: URL) {
-        
-//        if let favorite = favorites.deleteObject(withKey: file.path) {
-//            messenger.publish(.favoritesList_tracksRemoved, payload: Set([favorite]))
-//        }
+    func favoriteExists(track: Track) -> Bool {
+        favoriteTracks[track.file] != nil
     }
     
-    func favoriteTrackExists(_ track: Track) -> Bool {
-        favorites.userDefinedObjectExists(named: track.file.path)
+    func favoriteExists(artist: String) -> Bool {
+        favoriteArtists[artist] != nil
     }
     
-    func favoriteArtistExists(_ artist: String) -> Bool {
-        favorites.userDefinedObjectExists(named: "artist_\(artist)")
+    func favoriteExists(album: String) -> Bool {
+        favoriteAlbums[album] != nil
     }
     
-    func favoriteAlbumExists(_ album: String) -> Bool {
-        favorites.userDefinedObjectExists(named: "album_\(album)")
+    func favoriteExists(genre: String) -> Bool {
+        favoriteGenres[genre] != nil
+    }
+    
+    func favoriteExists(decade: String) -> Bool {
+        favoriteDecades[decade] != nil
     }
     
     func playFavorite(_ favorite: Favorite) {
@@ -195,6 +238,6 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     }
     
     var persistentState: FavoritesPersistentState {
-        FavoritesPersistentState(favorites: allFavorites.compactMap {FavoritePersistentState(favorite: $0)})
+        FavoritesPersistentState(favorites: [])
     }
 }

@@ -294,38 +294,38 @@ class DockMenuController: NSObject, NSMenuDelegate {
     
     func appLaunched(_ filesToOpen: [URL]) {
         
-        recreateHistoryMenus()
-        
-        // Favorites menu
-        favorites.allFavorites.reversed().forEach {
-            
-            let item = FavoritesMenuItem(title: $0.name, action: #selector(self.playSelectedFavoriteAction(_:)))
-            item.target = self
-            item.favorite = $0
-            favoritesMenu.addItem(item)
-        }
-        
-        bookmarks.allBookmarks.reversed().forEach {
-            
-            let item = BookmarksMenuItem(title: $0.name, action: #selector(self.playSelectedBookmarkAction(_:)))
-            item.target = self
-            item.bookmark = $0
-            bookmarksMenu.addItem(item)
-        }
+//        recreateHistoryMenus()
+//        
+//        // Favorites menu
+//        favorites.allFavorites.reversed().forEach {
+//            
+//            let item = FavoritesMenuItem(title: $0.name, action: #selector(self.playSelectedFavoriteAction(_:)))
+//            item.target = self
+//            item.favorite = $0
+//            favoritesMenu.addItem(item)
+//        }
+//        
+//        bookmarks.allBookmarks.reversed().forEach {
+//            
+//            let item = BookmarksMenuItem(title: $0.name, action: #selector(self.playSelectedBookmarkAction(_:)))
+//            item.target = self
+//            item.bookmark = $0
+//            bookmarksMenu.addItem(item)
+//        }
     }
     
     func trackTransitioned(_ notification: TrackTransitionNotification) {
         
-        if let track = notification.endTrack {
-            
-            favoritesMenuItem.enable()
-            favoritesMenuItem.onIf(favorites.favoriteTrackExists(track))
-            
-        } else {
-            
-            // No track playing
-            favoritesMenuItem.off()
-            favoritesMenuItem.disable()
-        }
+//        if let track = notification.endTrack {
+//            
+//            favoritesMenuItem.enable()
+//            favoritesMenuItem.onIf(favorites.favoriteTrackExists(track))
+//            
+//        } else {
+//            
+//            // No track playing
+//            favoritesMenuItem.off()
+//            favoritesMenuItem.disable()
+//        }
     }
 }

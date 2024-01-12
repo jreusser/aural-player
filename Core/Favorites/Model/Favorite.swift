@@ -12,16 +12,13 @@ import Foundation
 ///
 /// Encapsulates a user-defined favorite (a track marked as such).
 ///
-class Favorite: UserManagedObject, Hashable {
+class Favorite: Hashable {
     
     var name: String
     
     var key: String {
         get {""}
-        set {}
     }
-    
-    var userDefined: Bool {true}
     
     init(name: String) {
         self.name = name

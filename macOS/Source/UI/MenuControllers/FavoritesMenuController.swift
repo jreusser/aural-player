@@ -33,24 +33,24 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
         addRemoveFavoritesMenuItem.enableIf(playbackInfoDelegate.state.isPlayingOrPaused)
         
         // Menu has 3 static items
-        manageFavoritesMenuItem.enableIf(favoritesDelegate.count > 0)
+//        manageFavoritesMenuItem.enableIf(favoritesDelegate.count > 0)
     }
 
     func menuWillOpen(_ menu: NSMenu) {
         
-        if let playingTrack = playbackInfoDelegate.playingTrack {
-            addRemoveFavoritesMenuItem.onIf(favoritesDelegate.favoriteTrackExists(playingTrack))
-        } else {
-            addRemoveFavoritesMenuItem.off()
-        }
-        
-        // Remove existing (possibly stale) items, starting after the static items
-        while favoritesMenu.items.count > 3 {
-            favoritesMenu.removeItem(at: 3)
-        }
-        
-        // Recreate the menu (reverse so that newer items appear first).
-        favoritesDelegate.allFavorites.reversed().forEach {favoritesMenu.addItem(createFavoritesMenuItem($0))}
+//        if let playingTrack = playbackInfoDelegate.playingTrack {
+//            addRemoveFavoritesMenuItem.onIf(favoritesDelegate.favoriteTrackExists(playingTrack))
+//        } else {
+//            addRemoveFavoritesMenuItem.off()
+//        }
+//        
+//        // Remove existing (possibly stale) items, starting after the static items
+//        while favoritesMenu.items.count > 3 {
+//            favoritesMenu.removeItem(at: 3)
+//        }
+//        
+//        // Recreate the menu (reverse so that newer items appear first).
+//        favoritesDelegate.allFavorites.reversed().forEach {favoritesMenu.addItem(createFavoritesMenuItem($0))}
     }
     
     // Factory method to create a single Favorites menu item, given a model object (FavoritesItem)

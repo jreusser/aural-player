@@ -22,4 +22,8 @@ struct FileMetadata {
     
     var isPlayable: Bool {validationError == nil}
     var validationError: DisplayableError?
+    
+    init(primary: PrimaryMetadata? = nil) {
+        self.primary = primary
+    }
 }

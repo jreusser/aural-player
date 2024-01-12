@@ -325,15 +325,15 @@ let audioSession: AVAudioSession = .sharedInstance()
         AudioGraphPersistentState(volume: volume,
                                   muted: muted,
                                   pan: pan,
-                                  masterUnit: masterUnit.persistentState,
-                                  eqUnit: eqUnit.persistentState,
-                                  pitchShiftUnit: pitchShiftUnit.persistentState,
-                                  timeStretchUnit: timeStretchUnit.persistentState,
-                                  reverbUnit: reverbUnit.persistentState,
-                                  delayUnit: delayUnit.persistentState,
-                                  filterUnit: filterUnit.persistentState,
-                                  audioUnits: audioUnits.map {$0.persistentState},
-                                  soundProfiles: soundProfiles.persistentState)
+                                  masterUnit: masterUnit.appPersistentState,
+                                  eqUnit: eqUnit.appPersistentState,
+                                  pitchShiftUnit: pitchShiftUnit.appPersistentState,
+                                  timeStretchUnit: timeStretchUnit.appPersistentState,
+                                  reverbUnit: reverbUnit.appPersistentState,
+                                  delayUnit: delayUnit.appPersistentState,
+                                  filterUnit: filterUnit.appPersistentState,
+                                  audioUnits: audioUnits.map {$0.appPersistentState},
+                                  soundProfiles: soundProfiles.appPersistentState)
         
         #endif
     }

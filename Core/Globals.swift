@@ -17,37 +17,37 @@ let appSetup: AppSetup = .shared
 #endif
 
 let persistenceManager: PersistenceManager = PersistenceManager(persistentStateFile: FilesAndPaths.persistentStateFile)
-let persistentState: AppPersistentState = persistenceManager.load(type: AppPersistentState.self) ?? .defaults
+let appPersistentState: AppPersistentState = persistenceManager.load(type: AppPersistentState.self) ?? .defaults
 
 let userDefaults: UserDefaults = .standard
 let preferences: Preferences = Preferences(defaults: userDefaults)
 
 #if os(macOS)
 
-let appModeManager: AppModeManager = AppModeManager(persistentState: persistentState.ui,
+let appModeManager: AppModeManager = AppModeManager(persistentState: appPersistentState.ui,
                                                     preferences: preferences.viewPreferences)
 
 #endif
 
 fileprivate let playQueue: PlayQueue = PlayQueue()
 let playQueueDelegate: PlayQueueDelegateProtocol = PlayQueueDelegate(playQueue: playQueue,
-                                                                     persistentState: persistentState.playQueue)
+                                                                     persistentState: appPersistentState.playQueue)
 
-let library: Library = Library(persistentState: persistentState.library)
+let library: Library = Library(persistentState: appPersistentState.library)
 let libraryDelegate: LibraryDelegateProtocol = LibraryDelegate()
 
-let playlistsManager: PlaylistsManager = PlaylistsManager(playlists: persistentState.playlists?.playlists?.compactMap {Playlist(persistentState: $0)} ?? [])
+let playlistsManager: PlaylistsManager = PlaylistsManager(playlists: appPersistentState.playlists?.playlists?.compactMap {Playlist(persistentState: $0)} ?? [])
 
-//    let playlistDelegate: PlaylistDelegateProtocol = PlaylistDelegate(persistentState: persistentState.playlist, playlist,
+//    let playlistDelegate: PlaylistDelegateProtocol = PlaylistDelegate(persistentState: appPersistentState.playlist, playlist,
 //                                                                           trackReader, preferences)
 
 let audioUnitsManager: AudioUnitsManager = AudioUnitsManager()
 fileprivate let audioEngine: AudioEngine = AudioEngine()
 
 let audioGraph: AudioGraph = AudioGraph(audioEngine: audioEngine, audioUnitsManager: audioUnitsManager,
-                                                    persistentState: persistentState.audioGraph)
+                                                    persistentState: appPersistentState.audioGraph)
 
-var audioGraphDelegate: AudioGraphDelegateProtocol = AudioGraphDelegate(graph: audioGraph, persistentState: persistentState.audioGraph,
+var audioGraphDelegate: AudioGraphDelegateProtocol = AudioGraphDelegate(graph: audioGraph, persistentState: appPersistentState.audioGraph,
                                                                         player: playbackDelegate, preferences: preferences.soundPreferences)
 
 let player: PlayerProtocol = Player(graph: audioGraph, avfScheduler: avfScheduler, ffmpegScheduler: ffmpegScheduler)
@@ -58,7 +58,7 @@ fileprivate let ffmpegScheduler: PlaybackSchedulerProtocol = FFmpegScheduler(pla
 
 let playbackDelegate: PlaybackDelegateProtocol = {
     
-    let profiles = PlaybackProfiles(persistentState: persistentState.playbackProfiles ?? [])
+    let profiles = PlaybackProfiles(persistentState: appPersistentState.playbackProfiles ?? [])
     
     let startPlaybackChain = StartPlaybackChain(player, playQueue: playQueue, trackReader: trackReader, profiles, preferences.playbackPreferences)
     let stopPlaybackChain = StopPlaybackChain(player, playQueue, profiles, preferences.playbackPreferences)
@@ -72,27 +72,26 @@ let playbackDelegate: PlaybackDelegateProtocol = {
 var playbackInfoDelegate: PlaybackInfoDelegateProtocol {playbackDelegate}
 
 var historyDelegate: HistoryDelegateProtocol {_historyDelegate}
-fileprivate let _historyDelegate: HistoryDelegate = HistoryDelegate(persistentState: persistentState.history, preferences.historyPreferences, playQueueDelegate, playbackDelegate)
+fileprivate let _historyDelegate: HistoryDelegate = HistoryDelegate(persistentState: appPersistentState.history, preferences.historyPreferences, playQueueDelegate, playbackDelegate)
 
 var favoritesDelegate: FavoritesDelegateProtocol {_favoritesDelegate}
-fileprivate let _favoritesDelegate: FavoritesDelegate = FavoritesDelegate(persistentState: persistentState.favorites, playQueueDelegate,
-                                                                          playbackDelegate)
+fileprivate let _favoritesDelegate: FavoritesDelegate = FavoritesDelegate(playQueueDelegate, playbackDelegate)
 
 var bookmarksDelegate: BookmarksDelegateProtocol {_bookmarksDelegate}
-fileprivate let _bookmarksDelegate: BookmarksDelegate = BookmarksDelegate(persistentState: persistentState.bookmarks, playQueueDelegate,
+fileprivate let _bookmarksDelegate: BookmarksDelegate = BookmarksDelegate(persistentState: appPersistentState.bookmarks, playQueueDelegate,
                                                                           playbackDelegate)
 
 let fileReader: FileReader = FileReader()
 let trackReader: TrackReader = TrackReader(fileReader, coverArtReader)
 
-let metadataRegistry: MetadataRegistry = MetadataRegistry(persistentState: persistentState.metadata)
+let metadataRegistry: MetadataRegistry = MetadataRegistry(persistentState: appPersistentState.metadata)
 
 let coverArtReader: CoverArtReader = CoverArtReader(fileCoverArtReader, musicBrainzCoverArtReader)
 let fileCoverArtReader: FileCoverArtReader = FileCoverArtReader(fileReader)
 let musicBrainzCoverArtReader: MusicBrainzCoverArtReader = MusicBrainzCoverArtReader(preferences: preferences.metadataPreferences.musicBrainz,
                                                                                      cache: musicBrainzCache)
 
-let musicBrainzCache: MusicBrainzCache = MusicBrainzCache(state: persistentState.musicBrainzCache,
+let musicBrainzCache: MusicBrainzCache = MusicBrainzCache(state: appPersistentState.musicBrainzCache,
                                                           preferences: preferences.metadataPreferences.musicBrainz)
 
 // Fast Fourier Transform
@@ -100,26 +99,26 @@ let fft: FFT = FFT()
 
 #if os(macOS)
 
-let windowLayoutsManager: WindowLayoutsManager = WindowLayoutsManager(persistentState: persistentState.ui?.windowLayout,
+let windowLayoutsManager: WindowLayoutsManager = WindowLayoutsManager(persistentState: appPersistentState.ui?.windowLayout,
                                                                       viewPreferences: preferences.viewPreferences)
 
-let themesManager: ThemesManager = ThemesManager(persistentState: persistentState.ui?.themes, fontSchemesManager: fontSchemesManager)
+let themesManager: ThemesManager = ThemesManager(persistentState: appPersistentState.ui?.themes, fontSchemesManager: fontSchemesManager)
 
-let fontSchemesManager: FontSchemesManager = FontSchemesManager(persistentState: persistentState.ui?.fontSchemes)
+let fontSchemesManager: FontSchemesManager = FontSchemesManager(persistentState: appPersistentState.ui?.fontSchemes)
 var systemFontScheme: FontScheme {fontSchemesManager.systemScheme}
 
-let colorSchemesManager: ColorSchemesManager = ColorSchemesManager(persistentState: persistentState.ui?.colorSchemes)
+let colorSchemesManager: ColorSchemesManager = ColorSchemesManager(persistentState: appPersistentState.ui?.colorSchemes)
 let systemColorScheme: ColorScheme = colorSchemesManager.systemScheme
 
-let playerUIState: PlayerUIState = PlayerUIState(persistentState: persistentState.ui?.player)
-let unifiedPlayerUIState: UnifiedPlayerUIState = UnifiedPlayerUIState(persistentState: persistentState.ui?.unifiedPlayer)
-let playQueueUIState: PlayQueueUIState = PlayQueueUIState(persistentState: persistentState.ui?.playQueue)
+let playerUIState: PlayerUIState = PlayerUIState(persistentState: appPersistentState.ui?.player)
+let unifiedPlayerUIState: UnifiedPlayerUIState = UnifiedPlayerUIState(persistentState: appPersistentState.ui?.unifiedPlayer)
+let playQueueUIState: PlayQueueUIState = PlayQueueUIState(persistentState: appPersistentState.ui?.playQueue)
 let playlistsUIState: PlaylistsUIState = PlaylistsUIState()
-let menuBarPlayerUIState: MenuBarPlayerUIState = MenuBarPlayerUIState(persistentState: persistentState.ui?.menuBarPlayer)
-let controlBarPlayerUIState: ControlBarPlayerUIState = ControlBarPlayerUIState(persistentState: persistentState.ui?.controlBarPlayer)
-let visualizerUIState: VisualizerUIState = VisualizerUIState(persistentState: persistentState.ui?.visualizer)
-let windowAppearanceState: WindowAppearanceState = WindowAppearanceState(persistentState: persistentState.ui?.windowAppearance)
-let tuneBrowserUIState: TuneBrowserUIState = TuneBrowserUIState(persistentState: persistentState.ui?.tuneBrowser)
+let menuBarPlayerUIState: MenuBarPlayerUIState = MenuBarPlayerUIState(persistentState: appPersistentState.ui?.menuBarPlayer)
+let controlBarPlayerUIState: ControlBarPlayerUIState = ControlBarPlayerUIState(persistentState: appPersistentState.ui?.controlBarPlayer)
+let visualizerUIState: VisualizerUIState = VisualizerUIState(persistentState: appPersistentState.ui?.visualizer)
+let windowAppearanceState: WindowAppearanceState = WindowAppearanceState(persistentState: appPersistentState.ui?.windowAppearance)
+let tuneBrowserUIState: TuneBrowserUIState = TuneBrowserUIState(persistentState: appPersistentState.ui?.tuneBrowser)
 
 let mediaKeyHandler: MediaKeyHandler = MediaKeyHandler(preferences.controlsPreferences.mediaKeys)
 

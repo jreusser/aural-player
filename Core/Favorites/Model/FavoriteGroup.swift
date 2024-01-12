@@ -16,9 +16,7 @@ class FavoriteGroup: Favorite {
     let groupType: GroupType
     
     override var key: String {
-        
-        get {"\(groupType.rawValue)_\(groupName)"}
-        set {}
+        "\(groupType.rawValue)_\(groupName)"
     }
     
     init(groupName: String, groupType: GroupType) {

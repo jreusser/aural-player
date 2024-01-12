@@ -15,9 +15,7 @@ class FavoriteTrack: Favorite {
     let track: Track
     
     override var key: String {
-        
-        get {track.file.path}
-        set {}
+        track.file.path
     }
     
     init(track: Track) {

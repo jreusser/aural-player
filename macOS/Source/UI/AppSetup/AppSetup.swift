@@ -23,7 +23,7 @@ class AppSetup {
             return true
         }
         
-        if let appVersion = persistentState.appVersion {
+        if let appVersion = appPersistentState.appVersion {
             return !appVersion.starts(with: "4")
         }
         

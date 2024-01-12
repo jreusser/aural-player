@@ -19,37 +19,39 @@ import Foundation
 ///
 protocol FavoritesDelegateProtocol {
     
-    @discardableResult func addFavorite(track: Track) -> Favorite
+    func addFavorite(track: Track)
     
-    @discardableResult func addFavorite(artist: String) -> Favorite
-//
-    @discardableResult func addFavorite(album: String) -> Favorite
-//
-//    func addFavorite(genre: String) -> Favorite
-//    
-//    func addFavorite(decade: String) -> Favorite
-//    
+    func addFavorite(artist: String)
+
+    func addFavorite(album: String)
+
+    func addFavorite(genre: String)
+    
+    func addFavorite(decade: String)
+    
 //    func addFavorite(playlist: Playlist) -> Favorite
 //    
 //    func addFavorite(playlistFile: ImportedPlaylist) -> Favorite
     
-    var allFavorites: [Favorite] {get}
+    var allFavoriteTracks: [FavoriteTrack] {get}
     
-    var count: Int {get}
+    var allFavoriteArtists: [FavoriteGroup] {get}
     
-    func getFavoriteWithFile(_ file: URL) -> Favorite?
+    var allFavoriteAlbums: [FavoriteGroup] {get}
     
-    func getFavoriteAtIndex(_ index: Int) -> Favorite
+    var allFavoriteGenres: [FavoriteGroup] {get}
     
-    func deleteFavorites(atIndices indices: IndexSet)
+    var allFavoriteDecades: [FavoriteGroup] {get}
     
-    func deleteFavoriteWithFile(_ file: URL)
+    func favoriteExists(track: Track) -> Bool
     
-    func favoriteTrackExists(_ track: Track) -> Bool
+    func favoriteExists(artist: String) -> Bool
     
-    func favoriteArtistExists(_ artist: String) -> Bool
+    func favoriteExists(album: String) -> Bool
     
-    func favoriteAlbumExists(_ album: String) -> Bool
+    func favoriteExists(genre: String) -> Bool
+    
+    func favoriteExists(decade: String) -> Bool
     
     func playFavorite(_ favorite: Favorite)
 }

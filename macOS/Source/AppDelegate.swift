@@ -87,9 +87,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //            library.homeFolder = theAppSetup.libraryHome
         }
         
-        let historyTracks: [URL] = persistentState.history?.recentlyPlayed?.compactMap {$0.trackFile} ?? []
-        let favTracks: [URL] = persistentState.favorites?.favorites?.compactMap {$0.trackFile} ?? []
-        let pqTracks: [URL] = persistentState.playQueue?.tracks ?? []
+        let historyTracks: [URL] = appPersistentState.history?.recentlyPlayed?.compactMap {$0.trackFile} ?? []
+        let favTracks: [URL] = appPersistentState.favorites?.favorites?.compactMap {$0.trackFile} ?? []
+        let pqTracks: [URL] = appPersistentState.playQueue?.tracks ?? []
         
         metadataRegistry.loadMetadataForFiles(files: Set<URL>(historyTracks + favTracks + pqTracks)) {
             
@@ -104,7 +104,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 // Tell app components that the app has finished launching, and pass along any launch parameters (set of files to open)
                 self.messenger.publish(.application_launched, payload: self.filesToOpen)
                 
-                self.beginPeriodicPersistence()
+                self.beginPeriodicPersistence() 
             }
         }
     }
