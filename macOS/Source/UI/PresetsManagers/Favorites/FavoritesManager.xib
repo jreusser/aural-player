@@ -8,7 +8,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="FavoritesManagerViewController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="containerBox" destination="Wcl-GF-UWK" id="sgt-Vy-gmg"/>
                 <outlet property="selectedTabCaption" destination="fMA-Ty-1Q0" id="nxf-JO-Q0C"/>
+                <outlet property="tabButtonsBox" destination="4aY-n1-gLt" id="DK2-5K-143"/>
                 <outlet property="tabGroup" destination="3DZ-HY-LNK" id="tQB-m5-E0U"/>
                 <outlet property="view" destination="Ovo-SL-XF4" id="EeS-wy-vgv"/>
             </connections>
@@ -19,8 +21,15 @@
             <rect key="frame" x="0.0" y="0.0" width="460" height="502"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <box boxType="custom" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Wcl-GF-UWK" userLabel="Container Box">
+                    <rect key="frame" x="0.0" y="0.0" width="460" height="502"/>
+                    <view key="contentView" id="8lP-ww-3HC">
+                        <rect key="frame" x="0.0" y="0.0" width="460" height="502"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </box>
                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fMA-Ty-1Q0">
-                    <rect key="frame" x="25" y="469" width="170" height="23"/>
+                    <rect key="frame" x="25" y="464" width="170" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Tracks" id="EN0-qU-5yO">
                         <font key="font" size="13" name="Play-Regular"/>
@@ -151,12 +160,12 @@ Gw
                     <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </box>
                 <tabView drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="3DZ-HY-LNK" userLabel="Tab Group">
-                    <rect key="frame" x="15" y="48" width="430" height="400"/>
+                    <rect key="frame" x="15" y="48" width="430" height="410"/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
                         <tabViewItem label="Table View" identifier="" id="bUP-ax-Ysz">
                             <view key="view" id="h7B-Yz-cdh">
-                                <rect key="frame" x="0.0" y="0.0" width="430" height="400"/>
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="410"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
@@ -190,12 +199,16 @@ Gw
                 <constraint firstItem="htq-Lq-qTq" firstAttribute="top" secondItem="3DZ-HY-LNK" secondAttribute="bottom" constant="15" id="1eH-A7-jPV"/>
                 <constraint firstItem="htq-Lq-qTq" firstAttribute="leading" secondItem="54W-bE-CZ4" secondAttribute="trailing" constant="6" id="1tJ-UY-Kf3"/>
                 <constraint firstAttribute="trailing" secondItem="4aY-n1-gLt" secondAttribute="trailing" constant="15" id="6ok-XM-eVn"/>
-                <constraint firstItem="3DZ-HY-LNK" firstAttribute="top" secondItem="4aY-n1-gLt" secondAttribute="bottom" constant="15" id="9bg-TQ-OaN"/>
+                <constraint firstItem="3DZ-HY-LNK" firstAttribute="top" secondItem="4aY-n1-gLt" secondAttribute="bottom" constant="5" id="9bg-TQ-OaN"/>
                 <constraint firstItem="htq-Lq-qTq" firstAttribute="bottom" secondItem="54W-bE-CZ4" secondAttribute="bottom" id="A5p-td-spv"/>
+                <constraint firstAttribute="trailing" secondItem="Wcl-GF-UWK" secondAttribute="trailing" id="EA8-U5-tKV"/>
                 <constraint firstAttribute="trailing" secondItem="TZl-N3-SfQ" secondAttribute="trailing" constant="15" id="GHe-Oy-jqf"/>
                 <constraint firstAttribute="bottom" secondItem="54W-bE-CZ4" secondAttribute="bottom" constant="15" id="Kaa-s3-xLt"/>
                 <constraint firstAttribute="bottom" secondItem="TZl-N3-SfQ" secondAttribute="bottom" constant="15" id="MAt-qp-2AL"/>
                 <constraint firstItem="4aY-n1-gLt" firstAttribute="top" secondItem="Ovo-SL-XF4" secondAttribute="top" constant="9" id="S6M-KM-AGe"/>
+                <constraint firstAttribute="bottom" secondItem="Wcl-GF-UWK" secondAttribute="bottom" id="bW2-ZO-3om"/>
+                <constraint firstItem="Wcl-GF-UWK" firstAttribute="leading" secondItem="Ovo-SL-XF4" secondAttribute="leading" id="dPf-xb-NDM"/>
+                <constraint firstItem="Wcl-GF-UWK" firstAttribute="top" secondItem="Ovo-SL-XF4" secondAttribute="top" id="exV-Au-yhO"/>
                 <constraint firstAttribute="trailing" secondItem="3DZ-HY-LNK" secondAttribute="trailing" constant="15" id="lWo-Wr-weq"/>
                 <constraint firstItem="3DZ-HY-LNK" firstAttribute="leading" secondItem="Ovo-SL-XF4" secondAttribute="leading" constant="15" id="nDL-28-712"/>
                 <constraint firstItem="54W-bE-CZ4" firstAttribute="leading" secondItem="Ovo-SL-XF4" secondAttribute="leading" constant="15" id="nrw-MG-BXC"/>

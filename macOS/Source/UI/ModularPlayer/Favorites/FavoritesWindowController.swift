@@ -14,6 +14,8 @@ class FavoritesWindowController: NSWindowController {
     
     override var windowNibName: String? {"FavoritesWindow"}
     
+    @IBOutlet weak var btnClose: NSButton!
+    
     lazy var favoritesManagerViewController: FavoritesManagerViewController = .init()
     
     override func windowDidLoad() {
@@ -22,6 +24,9 @@ class FavoritesWindowController: NSWindowController {
         
         window?.contentView?.addSubview(favoritesManagerViewController.view)
         favoritesManagerViewController.view.anchorToSuperview()
+        btnClose.bringToFront()
+        
+        colorSchemesManager.registerObserver(btnClose, forProperties: [\.buttonColor])
     }
     
     @IBAction func closeWindowAction(_ sender: NSButton) {

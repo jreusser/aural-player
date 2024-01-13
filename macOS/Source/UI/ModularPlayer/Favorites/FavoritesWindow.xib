@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="FavoritesWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="btnClose" destination="90I-6C-Qli" id="CJs-z8-NIp"/>
                 <outlet property="window" destination="VuA-o9-lMn" id="Hev-SD-arC"/>
             </connections>
         </customObject>
