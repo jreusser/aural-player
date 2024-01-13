@@ -13,7 +13,7 @@
 
 ## Overview
 
-Aural Player is an audio player for macOS. Inspired by the classic Winamp player for Windows, it is designed to be easy to use and customizable, with support for a wide variety of popular audio formats and powerful sound tuning capabilities. 
+Aural Player is an audio player for macOS. It aims to bring that nostalgic Winamp experience to macOS, emphasizing simplicity and ease of use. Aural can do a lot, but at its core, it's about drag-drop-and-play. In this online streaming age, if you still have a bunch of audio files collecting dust on your hard drive  ... then this app is for you!
 
 The new 4.0 version brings with it enhanced usability, better aesthetics, and a new full-fledged library and file system browser to browse, search, and organize your music collection.
 
