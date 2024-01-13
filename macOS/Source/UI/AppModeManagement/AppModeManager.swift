@@ -24,6 +24,8 @@ class AppModeManager {
     
     private lazy var controlBarMode: ControlBarAppModeController = ControlBarAppModeController()
     
+    private lazy var compactMode: CompactAppModeController = CompactAppModeController()
+    
     private let preferences: ViewPreferences
     private let lastPresentedAppMode: AppMode?
     
@@ -51,7 +53,8 @@ class AppModeManager {
 //            // Remember app mode from last app launch.
 //            presentMode(lastPresentedAppMode ?? .defaultMode)
 //        }
-        presentMode(.modular)
+//        presentMode(.modular)
+        presentMode(.compact)
     }
     
     func presentMode(_ newMode: AppMode) {
@@ -75,6 +78,9 @@ class AppModeManager {
         case .controlBar:
             
             controlBarMode.presentMode(transitioningFromMode: currentMode)
+            
+        case .compact:
+            compactMode.presentMode(transitioningFromMode: currentMode)
         }
         
         currentMode = newMode
@@ -93,6 +99,8 @@ class AppModeManager {
         case .menuBar: menuBarMode.dismissMode()
             
         case .controlBar:   controlBarMode.dismissMode()
+            
+        case .compact:  compactMode.dismissMode()
             
         }
     }

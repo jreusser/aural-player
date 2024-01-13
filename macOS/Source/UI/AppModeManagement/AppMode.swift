@@ -20,4 +20,5 @@ enum AppMode: String, CaseIterable, Codable {
     case unified
     case menuBar
     case controlBar
+    case compact
 }

@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CompactPlayerWindowController" customModule="Aural" customModuleProvider="target">
+            <connections>
+                <outlet property="btnQuit" destination="ZT2-MQ-uY4" id="pbY-tb-nLf"/>
+                <outlet property="optionsMenuItem" destination="jF6-Ok-k1J" id="KBs-Gc-TAX"/>
+                <outlet property="rootContainerBox" destination="MQS-Uc-HUi" id="Rj3-4K-Can"/>
+                <outlet property="viewController" destination="Wo1-U3-fmA" id="mXl-J6-oth"/>
+                <outlet property="window" destination="ybg-B4-A9D" id="ZBx-bV-Sgc"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window identifier="main" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingIdentifier="main" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="ybg-B4-A9D" userLabel="Compact Player Window" customClass="SnappingWindow" customModule="Aural" customModuleProvider="target">
+            <windowStyleMask key="styleMask" fullSizeContentView="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
+            <rect key="contentRect" x="335" y="100" width="300" height="300"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
+            <value key="minSize" type="size" width="300" height="300"/>
+            <value key="maxSize" type="size" width="300" height="300"/>
+            <view key="contentView" id="R1o-nt-GJA">
+                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="MQS-Uc-HUi" userLabel="Root Container">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                        <view key="contentView" id="oeh-N1-HBS">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <button toolTip="Quit Aural" wantsLayer="YES" focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZT2-MQ-uY4" userLabel="Quit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="10" y="273.5" width="11.5" height="14"/>
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="vcA-DL-aSl">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="11" id="j5W-SI-2tN"/>
+                                        <constraint firstAttribute="height" constant="10" id="ydA-Jn-2xy"/>
+                                    </constraints>
+                                </button>
+                                <button toolTip="Minimize" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OWA-YG-E9q" userLabel="Minimize Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="41" y="275" width="14.5" height="10"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="minus" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="axesIndependently" inset="2" id="0g1-om-Ujd">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
+                                <popUpButton toolTip="Change presentation mode" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wA6-bg-jfE" userLabel="Presentation Mode Menu">
+                                    <rect key="frame" x="23" y="272" width="16" height="15"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="4fO-Xj-39P" id="9A6-gF-XEj">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="cellTitle"/>
+                                        <menu key="menu" autoenablesItems="NO" id="ofP-Jg-utp">
+                                            <items>
+                                                <menuItem hidden="YES" id="4fO-Xj-39P" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                                    <imageReference key="image" image="WindowLayout" symbolScale="medium"/>
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="WindowLayout"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </menuItem>
+                                                <menuItem title="Unified (single window)" id="VMv-5O-5zs">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Menu Bar (macOS menu bar)" id="IYS-dO-9p6">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Control Bar (floating widget)" id="6hU-Ct-NUr">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                </popUpButton>
+                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kRO-cS-abr" userLabel="Title view" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="123" y="272" width="54" height="15"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppTitle" id="2Hm-AK-QNc"/>
+                                </imageView>
+                                <popUpButton toolTip="Options" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ffQ-8V-6KC" userLabel="Settings Menu">
+                                    <rect key="frame" x="272" y="272" width="18" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="jF6-Ok-k1J" id="52g-EZ-dDA">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="cellTitle"/>
+                                        <menu key="menu" autoenablesItems="NO" id="Bhd-cR-b4E">
+                                            <items>
+                                                <menuItem hidden="YES" id="jF6-Ok-k1J" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                                    <imageReference key="image" image="Hamburger" symbolScale="medium"/>
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Hamburger"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </menuItem>
+                                                <menuItem title="Show Play Queue" id="Mrs-Bh-3AU">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Show Library" id="R8C-aA-5YM">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Show Effects panel" id="BQn-Yq-vQk">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem isSeparatorItem="YES" id="wCx-MY-MIk"/>
+                                                <menuItem title="Player view" id="8wf-g9-uKY" userLabel="Player View">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menu key="submenu" title="Player view" id="Oyw-eS-HDg">
+                                                        <items>
+                                                            <menuItem title="Album art" id="hMF-Jp-GT7">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Artist" id="pdy-18-2Vb">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Album" id="oYG-ha-qyM">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Current chapter title" id="fah-l9-FAO">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem isSeparatorItem="YES" id="dkB-Ze-T4t"/>
+                                                            <menuItem title="Main controls" id="f6h-XA-h2G" userLabel="View Player Main Controls">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Track position" id="0nn-4f-5h1">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem isSeparatorItem="YES" id="zfH-Ns-mVe"/>
+                                                            <menuItem title="Track position display" id="3Z6-U2-O7L">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                                <menu key="submenu" title="Track position display" id="rFH-2Y-RYs">
+                                                                    <items>
+                                                                        <menuItem title="Time elapsed" id="1wW-KZ-oaU">
+                                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                                        </menuItem>
+                                                                        <menuItem title="Time remaining" tag="1" id="dDt-2c-iIu">
+                                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                                        </menuItem>
+                                                                        <menuItem title="Track duration" tag="2" id="A7S-tw-thk">
+                                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                                        </menuItem>
+                                                                    </items>
+                                                                </menu>
+                                                            </menuItem>
+                                                        </items>
+                                                    </menu>
+                                                </menuItem>
+                                                <menuItem isSeparatorItem="YES" id="EQj-Rf-yun"/>
+                                                <menuItem title="Theme" id="WSy-5M-OTj" userLabel="Theme">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menu key="submenu" title="Theme" showsStateColumn="NO" id="xTD-f8-SdW">
+                                                        <items>
+                                                            <menuItem isSeparatorItem="YES" id="0sx-Fs-mRw"/>
+                                                            <menuItem title="Poolside.fm" state="mixed" indentationLevel="1" id="1t4-s6-xV3">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                        </items>
+                                                    </menu>
+                                                </menuItem>
+                                                <menuItem title="Create new theme" id="xA1-vv-9jD" userLabel="Create new theme">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem title="Save current theme" id="CMx-nn-kDH" userLabel="Save current theme">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem isSeparatorItem="YES" id="cwd-Hp-Yew"/>
+                                                <menuItem title="Font scheme" id="KOI-5l-JjL">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menu key="submenu" title="Font scheme" showsStateColumn="NO" id="GY3-aQ-WGT">
+                                                        <items>
+                                                            <menuItem isSeparatorItem="YES" id="ZK8-6D-QIt"/>
+                                                            <menuItem title="Standard" indentationLevel="1" id="MZp-1f-Xrp">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Rounded" indentationLevel="1" id="Ti3-ir-Dlw">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Programmer" indentationLevel="1" id="Ufz-8I-Rgy">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Futuristic" indentationLevel="1" id="cPJ-5N-O1v">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Novelist" indentationLevel="1" id="cZE-mL-VZr">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Soy Sauce" indentationLevel="1" id="Zmb-fI-yjE">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Gothic" indentationLevel="1" id="gyR-tF-Z0I">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Papyrus" indentationLevel="1" id="qJZ-UA-ilp">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Poolside.fm" indentationLevel="1" id="hGa-Od-LjA">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem isSeparatorItem="YES" id="v5j-fR-36q"/>
+                                                            <menuItem title="Customize ..." indentationLevel="1" id="Gwr-EG-7GL">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                        </items>
+                                                    </menu>
+                                                </menuItem>
+                                                <menuItem title="Save current scheme" id="7PR-ZV-V0K" userLabel="Save current scheme">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem isSeparatorItem="YES" id="4tM-it-dRR"/>
+                                                <menuItem title="Color scheme" id="aj0-JE-3SC" userLabel="Color scheme">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menu key="submenu" title="Color scheme" showsStateColumn="NO" id="FHZ-bY-Vnt">
+                                                        <items>
+                                                            <menuItem isSeparatorItem="YES" id="mbT-j9-lz7"/>
+                                                            <menuItem title="Lava" indentationLevel="1" id="RsE-k6-sav">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Black &amp; aqua" indentationLevel="1" id="nLT-dh-aMo" userLabel="Black &amp; aqua">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Black &amp; green" indentationLevel="1" id="bS8-ld-aiV">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="White blight" indentationLevel="1" id="hxD-Se-ogL">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Gloomy day" indentationLevel="1" id="Neq-qV-vUw">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Brownie" indentationLevel="1" id="PVH-S1-APR">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="The blues" indentationLevel="1" id="cqV-e3-Qej">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Poolside.fm" indentationLevel="1" id="3gA-2j-4WR">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem isSeparatorItem="YES" id="UBa-vj-LF2"/>
+                                                            <menuItem title="Customize ..." indentationLevel="1" id="wrR-wX-DOT">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                        </items>
+                                                    </menu>
+                                                </menuItem>
+                                                <menuItem title="Save current scheme" id="w8d-am-h1S" userLabel="Save current scheme">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem isSeparatorItem="YES" id="tbL-IM-v32"/>
+                                                <menuItem title="Window corner radius" id="cdx-hA-Zdw">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                                <menuItem isSeparatorItem="YES" id="dww-ic-3RF"/>
+                                                <menuItem title="Window layout" id="kmW-j1-3Er">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menu key="submenu" title="Window layout" id="Ua0-CZ-dpN">
+                                                        <items>
+                                                            <menuItem isSeparatorItem="YES" id="LQd-ND-k1n"/>
+                                                            <menuItem title="Vertical stack" image="WindowLayout-VerticalStack" id="wRV-yK-JAh">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Horizontal stack" image="WindowLayout-HorizontalStack" id="Fqk-Xt-0pi">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Big bottom play queue" image="WindowLayout-BigBottomPlaylist" id="RuD-Yb-IdI">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Big right play queue" image="WindowLayout-BigRightPlaylist" id="hfm-Lu-YlY">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Big left play queue" image="WindowLayout-BigLeftPlaylist" id="jKv-5p-ize">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Vertical player and play queue" image="WindowLayout-VerticalPlayerAndPlaylist" id="mZz-vU-FsP">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Horizontal player and play queue" image="WindowLayout-HorizontalPlayerAndPlaylist" id="k3Y-6E-gZ3">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                            <menuItem title="Compact cornered" image="WindowLayout-CompactCornered" id="Y7e-Pl-9gq">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                            </menuItem>
+                                                        </items>
+                                                    </menu>
+                                                </menuItem>
+                                                <menuItem title="Save current layout" id="3JY-c5-mLD" userLabel="Save current layout">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                </menuItem>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                </popUpButton>
+                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Maj-Oe-YBT" userLabel="Cover Art">
+                                    <rect key="frame" x="50" y="50" width="200" height="200"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="oDZ-UI-nrk"/>
+                                </imageView>
+                                <view wantsLayer="YES" id="dGK-qg-Vk5" userLabel="Playing Track Text View" customClass="PlayingTrackTextView" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="10" y="105" width="280" height="90"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <scrollView wantsLayer="YES" fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="tZe-l9-VC7">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="bQ4-KU-Zag">
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="70"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <textView focusRingType="none" editable="NO" selectable="NO" drawsBackground="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" spellingCorrection="YES" id="QER-GK-umb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="70"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <size key="minSize" width="280" height="70"/>
+                                                        <size key="maxSize" width="280" height="70"/>
+                                                        <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    </textView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                            </clipView>
+                                            <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="kUO-ZM-wWW">
+                                                <rect key="frame" x="-100" y="-100" width="225" height="15"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                            <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="tuh-Cg-aA4">
+                                                <rect key="frame" x="-100" y="-100" width="15" height="174"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                        </scrollView>
+                                    </subviews>
+                                    <connections>
+                                        <outlet property="clipView" destination="bQ4-KU-Zag" id="J0e-fi-6br"/>
+                                        <outlet property="textView" destination="QER-GK-umb" id="0GO-mz-ifx"/>
+                                    </connections>
+                                </view>
+                                <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibj-ZK-QVN" userLabel="Lbl Time Elapsed" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="115" y="68" width="70" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="FDh-Sr-V7f"/>
+                                        <constraint firstAttribute="width" constant="66" id="W60-Zk-6Jg"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="66" id="t93-HC-tMA"/>
+                                        <constraint firstAttribute="height" constant="24" id="xI0-uF-vnF"/>
+                                    </constraints>
+                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="-100:99:99" placeholderString="" id="PVe-EK-ing" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
+                                        <font key="font" size="12" name="Play-Regular"/>
+                                        <color key="textColor" white="0.55233473330000005" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <allowedInputSourceLocales>
+                                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                        </allowedInputSourceLocales>
+                                    </textFieldCell>
+                                </textField>
+                                <view id="uR4-jv-YGr" userLabel="Controls View" customClass="CompactPlaybackView" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button toolTip="Mute / Unmute" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xHR-4c-Ew3" userLabel="Volume Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                            <rect key="frame" x="218" y="12.5" width="23.5" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="left" alignment="left" focusRingType="none" inset="2" id="adi-a1-FUo">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                                <imageReference key="image" image="speaker.wave.3" catalog="system" symbolScale="medium"/>
+                                            </buttonCell>
+                                        </button>
+                                        <slider toolTip="Volume" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HlA-Tv-W2R" userLabel="Volume Slider">
+                                            <rect key="frame" x="241" y="14" width="50" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <sliderCell key="cell" controlSize="small" continuous="YES" state="on" focusRingType="none" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="nUq-qW-zUk" customClass="VolumeSliderCell" customModule="Aural" customModuleProvider="target"/>
+                                        </slider>
+                                        <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vIJ-do-stv" userLabel="Volume Value Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                                            <rect key="frame" x="240" y="29" width="50" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="50%" id="q9L-12-kRg" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
+                                                <font key="font" size="9" name="Play-Regular"/>
+                                                <color key="textColor" white="0.70298936629999997" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button toolTip="Next track" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Xa-0G-Ty2" userLabel="NextTrack Button" customClass="TrackPeekingButton" customModule="Aural" customModuleProvider="target">
+                                            <rect key="frame" x="170" y="15.5" width="14" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="forward.end" catalog="system" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="xrw-hD-wiZ">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="defaultTooltip" value="Next track"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xfX-p8-Hhz" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                            <rect key="frame" x="142" y="13" width="18" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" controlSize="small" state="on" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="Ny9-dD-uv0">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <imageReference key="image" image="Play" symbolScale="large"/>
+                                            </buttonCell>
+                                        </button>
+                                        <button toolTip="Previous track" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zqF-Hu-frZ" userLabel="PrevTrack Button" customClass="TrackPeekingButton" customModule="Aural" customModuleProvider="target">
+                                            <rect key="frame" x="117" y="15.5" width="14" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="backward.end" catalog="system" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="Uuy-AS-3my">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="defaultTooltip" value="Previous track"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button toolTip="A ⇋ B Segment loop" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W5W-9c-Www" userLabel="Loop Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                            <rect key="frame" x="56" y="14" width="26" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Loop" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="f6w-jq-EYg">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                        <button toolTip="Shuffle" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69n-hc-R80" userLabel="Shuffle Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                            <rect key="frame" x="36" y="13" width="17" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="shuffle" catalog="system" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="QZY-X8-ygb">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                        <button toolTip="Repeat" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WKs-lx-AOK" userLabel="Repeat Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                            <rect key="frame" x="15" y="13" width="17" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="repeat" catalog="system" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="3DI-sS-6QZ">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                        <customView focusRingType="none" id="sGL-3y-wPl" customClass="WindowedModeSeekSliderView" customModule="Aural" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="41" width="300" height="38"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <subviews>
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R0p-aD-mJP" userLabel="SeekPositionMarker">
+                                                    <rect key="frame" x="263" y="62" width="6" height="4"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="cqS-0B-WZ1">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <slider hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8JR-Be-slu" userLabel="Seek Slider">
+                                                    <rect key="frame" x="0.0" y="5" width="300" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="8v9-Ps-gS3" customClass="SeekSliderCell" customModule="Aural" customModuleProvider="target"/>
+                                                </slider>
+                                            </subviews>
+                                            <connections>
+                                                <outlet property="lblTrackTime" destination="ibj-ZK-QVN" id="7Fd-Yi-kUG"/>
+                                                <outlet property="seekPositionMarker" destination="R0p-aD-mJP" id="EA1-Jg-hum"/>
+                                                <outlet property="seekSlider" destination="8JR-Be-slu" id="wxk-T9-gkx"/>
+                                                <outlet property="seekSliderCell" destination="8v9-Ps-gS3" id="9eG-O3-DFs"/>
+                                            </connections>
+                                        </customView>
+                                    </subviews>
+                                    <connections>
+                                        <outlet property="btnLoop" destination="W5W-9c-Www" id="jvL-pc-iBA"/>
+                                        <outlet property="btnNextTrack" destination="9Xa-0G-Ty2" id="7bV-sm-R6e"/>
+                                        <outlet property="btnPlayPause" destination="xfX-p8-Hhz" id="mzM-sX-F5F"/>
+                                        <outlet property="btnPreviousTrack" destination="zqF-Hu-frZ" id="yrD-WD-nHt"/>
+                                        <outlet property="sliderView" destination="sGL-3y-wPl" id="Npp-Dm-7bJ"/>
+                                    </connections>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="ZT2-MQ-uY4" firstAttribute="top" secondItem="oeh-N1-HBS" secondAttribute="top" constant="15" id="Ak1-kf-CJZ"/>
+                                <constraint firstItem="ibj-ZK-QVN" firstAttribute="leading" secondItem="oeh-N1-HBS" secondAttribute="leading" constant="117" id="Yf1-vb-7JI"/>
+                                <constraint firstAttribute="bottom" secondItem="ibj-ZK-QVN" secondAttribute="bottom" constant="68" id="a4X-H5-ijQ"/>
+                                <constraint firstItem="ZT2-MQ-uY4" firstAttribute="leading" secondItem="oeh-N1-HBS" secondAttribute="leading" constant="10" id="oGX-iK-HJu"/>
+                            </constraints>
+                        </view>
+                        <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </box>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="MQS-Uc-HUi" secondAttribute="trailing" id="Q13-bq-IhB"/>
+                    <constraint firstAttribute="bottom" secondItem="MQS-Uc-HUi" secondAttribute="bottom" id="UUS-2C-JaT"/>
+                    <constraint firstItem="MQS-Uc-HUi" firstAttribute="top" secondItem="R1o-nt-GJA" secondAttribute="top" id="Z2x-8r-LPd"/>
+                    <constraint firstItem="MQS-Uc-HUi" firstAttribute="leading" secondItem="R1o-nt-GJA" secondAttribute="leading" id="kGV-rX-PNW"/>
+                </constraints>
+            </view>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                    <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="snapLevel">
+                    <integer key="value" value="9"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <accessibility identifier="main"/>
+            <point key="canvasLocation" x="-69" y="-467"/>
+        </window>
+        <customObject id="Wo1-U3-fmA" customClass="CompactPlayerViewController" customModule="Aural" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <image name="AppTitle" width="117" height="32"/>
+        <image name="Hamburger" width="10" height="7"/>
+        <image name="Loop" width="270" height="210"/>
+        <image name="Play" width="40" height="40"/>
+        <image name="WindowLayout" width="20" height="20"/>
+        <image name="WindowLayout-BigBottomPlaylist" width="30" height="20"/>
+        <image name="WindowLayout-BigLeftPlaylist" width="30" height="20"/>
+        <image name="WindowLayout-BigRightPlaylist" width="30" height="20"/>
+        <image name="WindowLayout-CompactCornered" width="30" height="20"/>
+        <image name="WindowLayout-HorizontalPlayerAndPlaylist" width="30" height="20"/>
+        <image name="WindowLayout-HorizontalStack" width="30" height="20"/>
+        <image name="WindowLayout-VerticalPlayerAndPlaylist" width="30" height="20"/>
+        <image name="WindowLayout-VerticalStack" width="30" height="20"/>
+        <image name="backward.end" catalog="system" width="13" height="13"/>
+        <image name="forward.end" catalog="system" width="13" height="13"/>
+        <image name="minus" catalog="system" width="14" height="4"/>
+        <image name="repeat" catalog="system" width="17" height="14"/>
+        <image name="shuffle" catalog="system" width="18" height="14"/>
+        <image name="speaker.wave.3" catalog="system" width="22" height="15"/>
+        <image name="xmark" catalog="system" width="14" height="13"/>
+    </resources>
+</document>
