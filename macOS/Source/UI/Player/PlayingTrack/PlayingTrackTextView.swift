@@ -31,13 +31,15 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
         }
     }
     
-    private var backgroundColor: NSColor {
+    fileprivate var backgroundColor: NSColor {
         
         get {
             clipView.backgroundColor
         }
         
         set(newColor) {
+            
+//            var newColor = NSColor.red
             
             clipView.backgroundColor = newColor
             clipView.enclosingScrollView?.backgroundColor = newColor
@@ -82,6 +84,10 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
     }
     
     var lineSpacingBetweenArtistAlbumAndChapterTitle: CGFloat {7}
+    
+    var horizontalAlignment: NSTextAlignment? {
+        nil
+    }
     
     // The displayed track title
     private var title: String? {
@@ -225,17 +231,23 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
 //        var attributes = [ NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.shadow: shadow ]
         
         var attributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: color]
-        
+        let style = NSMutableParagraphStyle()
         var str: String = text
+        
+        if let textAlignment = self.horizontalAlignment {
+            style.alignment = textAlignment
+        }
         
         if let spacing = lineSpacing {
             
             // If lineSpacing is specified, add a paragraph style attribute and set its lineSpacing field.
-            attributes[.paragraphStyle] = NSMutableParagraphStyle(lineSpacing: spacing)
+            style.lineSpacing = spacing
             
             // Add a newline character to the text to create a line break
             str += "\n"
         }
+        
+        attributes[.paragraphStyle] = style
         
         return NSAttributedString(string: str, attributes: attributes)
     }
@@ -266,6 +278,33 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
         
         backgroundColor = systemColorScheme.backgroundColor
         update()
+    }
+}
+
+@IBDesignable
+class CompactPlayingTrackTextView: PlayingTrackTextView {
+    
+    @IBOutlet weak var backingBox: NSBox!
+    
+    override var backgroundColor: NSColor {
+        
+        get {
+            backingBox.fillColor.clonedWithTransparency(1)
+        }
+        
+        set(newColor) {
+            
+            let semiTransparentColor = newColor.clonedWithTransparency(0.8)
+            backingBox.fillColor = semiTransparentColor
+            
+//            clipView.enclosingScrollView?.backgroundColor = semiTransparentColor
+//            clipView.backgroundColor = semiTransparentColor
+//            textView.backgroundColor = semiTransparentColor
+        }
+    }
+    
+    override var horizontalAlignment: NSTextAlignment? {
+        .center
     }
 }
 

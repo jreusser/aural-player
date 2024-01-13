@@ -624,6 +624,7 @@
 		3EBFF5AA2B52C0F70056D5B4 /* CompactPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EBFF5A92B52C0F70056D5B4 /* CompactPlayer.xib */; };
 		3EBFF5AC2B52C5F10056D5B4 /* CompactPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFF5AB2B52C5F10056D5B4 /* CompactPlayerViewController.swift */; };
 		3EBFF5AE2B52C8150056D5B4 /* CompactPlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFF5AD2B52C8150056D5B4 /* CompactPlaybackView.swift */; };
+		3EBFF5B02B52D84A0056D5B4 /* CompactPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFF5AF2B52D84A0056D5B4 /* CompactPlaybackViewController.swift */; };
 		3EC2975A27864CD400B29551 /* Aural.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC2975927864CD400B29551 /* Aural.xcassets */; };
 		3EC29A5927865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
 		3EC29A5A27865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
@@ -2040,6 +2041,7 @@
 		3EBFF5A92B52C0F70056D5B4 /* CompactPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompactPlayer.xib; sourceTree = "<group>"; };
 		3EBFF5AB2B52C5F10056D5B4 /* CompactPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerViewController.swift; sourceTree = "<group>"; };
 		3EBFF5AD2B52C8150056D5B4 /* CompactPlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlaybackView.swift; sourceTree = "<group>"; };
+		3EBFF5AF2B52D84A0056D5B4 /* CompactPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlaybackViewController.swift; sourceTree = "<group>"; };
 		3EC2975927864CD400B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EC29A5827865BC900B29551 /* MenuItemMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemMappable.swift; sourceTree = "<group>"; };
 		3EC29A5E27865CB500B29551 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -4354,6 +4356,7 @@
 				3EBFF5A72B52C0CC0056D5B4 /* CompactPlayerWindowController.swift */,
 				3EBFF5AB2B52C5F10056D5B4 /* CompactPlayerViewController.swift */,
 				3EBFF5AD2B52C8150056D5B4 /* CompactPlaybackView.swift */,
+				3EBFF5AF2B52D84A0056D5B4 /* CompactPlaybackViewController.swift */,
 			);
 			path = CompactPlayer;
 			sourceTree = "<group>";
@@ -6489,6 +6492,7 @@
 				3E6C123225CEBDF400BF0D07 /* TracksPlaylistSortViewController.swift in Sources */,
 				3EFE393727864897006F8B8C /* GraphicsUtils.swift in Sources */,
 				3EFE39A327864897006F8B8C /* NSSizePersistentState.swift in Sources */,
+				3EBFF5B02B52D84A0056D5B4 /* CompactPlaybackViewController.swift in Sources */,
 				3EFE38FB27864897006F8B8C /* UserManagedObjects.swift in Sources */,
 				3E6C121925CEBDE600BF0D07 /* TracksPlaylistViewController.swift in Sources */,
 				3EFE3A7D27864898006F8B8C /* MetadataFormat.swift in Sources */,
