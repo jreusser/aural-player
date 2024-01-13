@@ -19,6 +19,9 @@ class FavoritesManagerViewController: NSViewController {
     @IBOutlet weak var tabGroup: NSTabView!
     
     lazy var tracksViewController: FavoriteTracksViewController = .init()
+    lazy var tracksTable: NSTableView = tracksViewController.tableView
+    
+    lazy var messenger: Messenger = .init(for: self)
     
     override func viewDidLoad() {
         
@@ -26,6 +29,46 @@ class FavoritesManagerViewController: NSViewController {
         
         tabGroup.tabViewItem(at: 0).view?.addSubview(tracksViewController.view)
         tracksViewController.view.anchorToSuperview()
+    }
+    
+    @IBAction func deleteSelectedItemsAction(_ sender: NSButton) {
+        
+        switch tabGroup.selectedIndex {
+            
+        case 0:
+            
+            let allFavTracks = favoritesDelegate.allFavoriteTracks
+            let selectedFavTracks: [FavoriteTrack] = tracksTable.selectedRowIndexes.map {allFavTracks[$0]}
+            
+            for fav in selectedFavTracks {
+                favoritesDelegate.removeFavorite(track: fav.track)
+            }
+            
+            tracksTable.reloadData()
+            
+        default:
+            return
+        }
+    }
+    
+    @IBAction func playSelectedItemsAction(_ sender: NSButton) {
+        
+        switch tabGroup.selectedIndex {
+            
+        case 0:
+            
+            let allFavTracks = favoritesDelegate.allFavoriteTracks
+            let selectedFavTracks: [FavoriteTrack] = tracksTable.selectedRowIndexes.map {allFavTracks[$0]}
+            
+            messenger.publish(EnqueueAndPlayNowCommand(tracks: selectedFavTracks.map {$0.track}, clearPlayQueue: false))
+            
+        default:
+            return
+        }
+    }
+    
+    @IBAction func doneAction(_ sender: NSButton) {
+        view.window?.windowController?.close()
     }
 }
 
