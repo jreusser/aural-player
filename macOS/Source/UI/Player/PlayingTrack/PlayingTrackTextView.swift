@@ -39,7 +39,7 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
         
         set(newColor) {
             
-//            var newColor = NSColor.red
+            var newColor = NSColor.red
             
             clipView.backgroundColor = newColor
             clipView.enclosingScrollView?.backgroundColor = newColor
@@ -286,26 +286,26 @@ class CompactPlayingTrackTextView: PlayingTrackTextView {
     
     @IBOutlet weak var backingBox: NSBox!
     
-    override var backgroundColor: NSColor {
-        
-        get {
-            backingBox.fillColor.clonedWithTransparency(1)
-        }
-        
-        set(newColor) {
-            
-            let semiTransparentColor = newColor.clonedWithTransparency(0.8)
-            backingBox.fillColor = semiTransparentColor
-            
-//            clipView.enclosingScrollView?.backgroundColor = semiTransparentColor
-//            clipView.backgroundColor = semiTransparentColor
-//            textView.backgroundColor = semiTransparentColor
-        }
-    }
+//    override var backgroundColor: NSColor {
+//        
+//        get {
+//            backingBox.fillColor.clonedWithTransparency(1)
+//        }
+//        
+//        set(newColor) {
+//            
+//            let semiTransparentColor = newColor.clonedWithTransparency(0.8)
+//            backingBox.fillColor = semiTransparentColor
+//            
+////            clipView.enclosingScrollView?.backgroundColor = semiTransparentColor
+////            clipView.backgroundColor = semiTransparentColor
+////            textView.backgroundColor = semiTransparentColor
+//        }
+//    }
     
-    override var horizontalAlignment: NSTextAlignment? {
-        .center
-    }
+//    override var horizontalAlignment: NSTextAlignment? {
+//        .center
+//    }
 }
 
 class MenuBarPlayingTrackTextView: PlayingTrackTextView {

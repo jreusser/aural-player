@@ -60,8 +60,8 @@ class CompactPlayerViewController: NSViewController {
     override func awakeFromNib() {
         
         // Constraint managers
-        lblTrackTimeConstraints = LayoutConstraintsManager(for: lblTrackTime)
-        seekSliderConstraints = LayoutConstraintsManager(for: seekSlider)
+//        lblTrackTimeConstraints = LayoutConstraintsManager(for: lblTrackTime)
+//        seekSliderConstraints = LayoutConstraintsManager(for: seekSlider)
         
         applyTheme()
         
@@ -172,6 +172,8 @@ class CompactPlayerViewController: NSViewController {
         } else {
             trackInfoView.trackInfo = nil
         }
+        
+        lblTrackTime.show()
         
         imgArt.image = player.playingTrack?.art?.image ?? defaultArtwork
 //        imgArt.showIf(imgArt.image != nil && uiState.showAlbumArt)
