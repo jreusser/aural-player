@@ -13,13 +13,21 @@
 
 ## Overview
 
-Aural Player is an audio player for macOS. It aims to bring that nostalgic Winamp experience to macOS, emphasizing simplicity and ease of use. The new 4.0 version brings with it enhanced usability, better aesthetics, and new ways to browse, search, and organize your music collection.
+Aural Player is an audio player for macOS. It aims to bring that nostalgic Winamp experience to macOS, emphasizing simplicity, ease of use. and fun! The new 4.0 version brings with it enhanced usability, better aesthetics, and new ways to browse, search, and organize your music collection.
 
-Aural can do a lot, but at its core, it's about drag-drop-and-play. In this online streaming age, if you still have a bunch of audio files collecting dust on your hard drive  ... then this app is for you! Check out the rich new library and file system browser. With far-reaching audio formats support, you can throw almost anything at Aural and it will probably be able to play it :)
+Aural can do a lot, but at its core, it's about drag-drop-and-play. In this online streaming age, if you still have a bunch of audio files collecting dust on your hard drive  ... then this app is for you! Check out the rich new library and file system browser. 
 
-If you're an audiophile who needs each track to sound a certain way, you'll appreciate the built-in effects and AU plugin support. Aural also remembers your sound settings per track!
+With far-reaching audio formats support, you can throw almost anything at Aural and it will probably be able to play it :)
 
-Make the app uniquely yours by trying its several fun theming options! With a modular UI and multiple app presentation modes, you can mold Aural to fit onto your desktop just the way you want.
+If you're an audiophile who needs each track to sound a certain way, you'll appreciate the built-in effects and AU plugin support. Aural can also remember your sound settings per track!
+
+Make the app uniquely yours by trying its several fun theming options! 
+
+And with a modular UI and multiple app presentation modes, you can mold Aural to fit onto your desktop just the way you want.
+
+## Project philosophy
+
+Aural doesn't aim to be perfect or to be the best player out there. This is an app that aims to be fun, to incorporate ideas from its community of users, and to incrementally improve over time.
 
 ## Key features
 
