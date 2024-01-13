@@ -19,7 +19,7 @@ Aural can do a lot, but at its core, it's about drag-drop-and-play. In this onli
 
 If you're an audiophile who needs each track to sound a certain way, you'll appreciate the built-in effects and AU plugin support. Aural also remembers your sound settings per track!
 
-Make the app uniquely yours by trying its several fun theming options!
+Make the app uniquely yours by trying its several fun theming options! With a modular UI and multiple app presentation modes, you can mold Aural to fit onto your desktop just the way you want.
 
 ## Key features
 
