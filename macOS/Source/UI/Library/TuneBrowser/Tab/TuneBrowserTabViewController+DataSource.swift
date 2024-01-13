@@ -34,11 +34,11 @@ extension TuneBrowserTabViewController: NSOutlineViewDataSource {
         
         if item == nil {
             
-            return root.children.elements[index].value
+            return root.children.values[index]
             
         } else if let fsItem = item as? FileSystemItem {
             
-            return fsItem.children.elements[index].value
+            return fsItem.children.values[index]
         }
         
         return ""

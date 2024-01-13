@@ -61,7 +61,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Presents the application's user interface upon app startup.
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        initialize()
+        let base = FilesAndPaths.musicDir
+        let child = base.appendingPathComponent("/Muthu").appendingPathComponent("Sami")
+        
+        let rel = child.path(relativeTo: base)
+        print("Relative path is: \(rel)")
         
         if AppSetup.setupRequired {
             
@@ -120,6 +124,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         _ = libraryDelegate
         _ = favoritesDelegate
         _ = mediaKeyHandler
+        libraryMonitor.startMonitoring()
         
         DispatchQueue.global(qos: .background).async {
             self.cleanUpLegacyFolders()

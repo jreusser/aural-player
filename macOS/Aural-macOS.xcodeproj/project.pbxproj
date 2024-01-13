@@ -158,6 +158,7 @@
 		3E59E9D22B5211F4001DDCE9 /* FavoriteTracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E59E9D12B5211F4001DDCE9 /* FavoriteTracksViewController.swift */; };
 		3E59E9D52B5214F1001DDCE9 /* FavoritesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E59E9D42B5214F1001DDCE9 /* FavoritesWindow.xib */; };
 		3E59E9D72B521511001DDCE9 /* FavoritesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E59E9D62B521511001DDCE9 /* FavoritesWindowController.swift */; };
+		3E59E9D92B521E6A001DDCE9 /* FileSystemFolderChangedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E59E9D82B521E6A001DDCE9 /* FileSystemFolderChangedNotification.swift */; };
 		3E5ECA4A268F4DA5000AE8B7 /* SeekTimeFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C104525CEB98600BF0D07 /* SeekTimeFormats.swift */; };
 		3E5EE2C928D90D5400E71B1A /* AlbumGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5EE2C828D90D5400E71B1A /* AlbumGroup.swift */; };
 		3E5F3DF126813F2400E826F0 /* NSEventExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F3DF026813F2400E826F0 /* NSEventExtensions.swift */; };
@@ -1594,6 +1595,7 @@
 		3E59E9D12B5211F4001DDCE9 /* FavoriteTracksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTracksViewController.swift; sourceTree = "<group>"; };
 		3E59E9D42B5214F1001DDCE9 /* FavoritesWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesWindow.xib; sourceTree = "<group>"; };
 		3E59E9D62B521511001DDCE9 /* FavoritesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesWindowController.swift; sourceTree = "<group>"; };
+		3E59E9D82B521E6A001DDCE9 /* FileSystemFolderChangedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemFolderChangedNotification.swift; sourceTree = "<group>"; };
 		3E5EE2C828D90D5400E71B1A /* AlbumGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumGroup.swift; sourceTree = "<group>"; };
 		3E5F3DF026813F2400E826F0 /* NSEventExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEventExtensions.swift; sourceTree = "<group>"; };
 		3E5F3DF226814C9700E826F0 /* NSAlertExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAlertExtensions.swift; sourceTree = "<group>"; };
@@ -4532,8 +4534,8 @@
 		3EF84D882835E6E9004EF57B /* LibraryMonitoring */ = {
 			isa = PBXGroup;
 			children = (
-				3EF84D892835E6FE004EF57B /* FolderMonitor.swift */,
 				6C1EFB702B51CC7C005E67D9 /* LibraryMonitor.swift */,
+				3EF84D892835E6FE004EF57B /* FolderMonitor.swift */,
 			);
 			path = LibraryMonitoring;
 			sourceTree = "<group>";
@@ -5271,6 +5273,7 @@
 			isa = PBXGroup;
 			children = (
 				3EFE376827864895006F8B8C /* TrackAddedNotification.swift */,
+				3E59E9D82B521E6A001DDCE9 /* FileSystemFolderChangedNotification.swift */,
 				3EFE376927864895006F8B8C /* TrackNotPlayedNotification.swift */,
 				3EFE376A27864895006F8B8C /* TrackTransitionNotification.swift */,
 				3EFE376B27864895006F8B8C /* AppReopenedNotification.swift */,
@@ -6212,6 +6215,7 @@
 				3EFE385F27864896006F8B8C /* ReverbUnitProtocol.swift in Sources */,
 				3E6C12FE25CEBE8F00BF0D07 /* PlaybackView.swift in Sources */,
 				3E6C130425CEBE8F00BF0D07 /* PlaybackViewController.swift in Sources */,
+				3E59E9D92B521E6A001DDCE9 /* FileSystemFolderChangedNotification.swift in Sources */,
 				3E6C12FD25CEBE8F00BF0D07 /* PlayerAudioViewController.swift in Sources */,
 				3EB1274E2ADDCE1200745603 /* LibraryLoader.swift in Sources */,
 				3EFE397D27864897006F8B8C /* HaltPlaybackAction.swift in Sources */,

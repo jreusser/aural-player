@@ -92,6 +92,7 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         super.viewDidLoad()
         
         messenger.subscribeAsync(to: .fileSystem_fileMetadataLoaded, handler: fileMetadataLoaded(_:))
+        messenger.subscribeAsync(to: .tuneBrowser_folderChanged, handler: folderChanged(_:))
     }
     
     override func destroy() {
@@ -125,6 +126,13 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         
         DispatchQueue.main.async {
             self.browserView.reloadItem(file)
+        }
+    }
+    
+    private func folderChanged(_ notif: FileSystemItemUpdatedNotification) {
+        
+        DispatchQueue.main.async {
+            self.browserView.reloadItem(notif.item)
         }
     }
     

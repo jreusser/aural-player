@@ -73,6 +73,8 @@ class FileSystemLoader {
             
             // Cleanup
             self.session = nil
+            
+            print("Before setting batch, ops = \(self.queue.operationCount)")
             self.batch = nil
             self.blockOpFunction = nil
             

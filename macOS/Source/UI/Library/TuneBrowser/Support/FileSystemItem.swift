@@ -42,6 +42,8 @@ class FileSystemItem {
     
     func setChildren(_ children: [FileSystemItem]) {
         
+        self.children.removeAll()
+        
         for child in children {
             self.children[child.url] = child
         }

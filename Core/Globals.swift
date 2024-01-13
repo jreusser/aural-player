@@ -122,6 +122,8 @@ let tuneBrowserUIState: TuneBrowserUIState = TuneBrowserUIState(persistentState:
 
 let mediaKeyHandler: MediaKeyHandler = MediaKeyHandler(preferences.controlsPreferences.mediaKeys)
 
+let libraryMonitor: LibraryMonitor = .init()
+
 #endif
 
 let remoteControlManager: RemoteControlManager = RemoteControlManager(playbackInfo: playbackInfoDelegate, playQueue: playQueueDelegate, audioGraph: audioGraphDelegate,

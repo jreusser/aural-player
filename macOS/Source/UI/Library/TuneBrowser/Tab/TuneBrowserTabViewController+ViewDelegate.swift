@@ -33,7 +33,7 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
             return
         }
         
-        fileSystem.loadChildren(of: fsItem)
+        fileSystem.loadChildren(of: fsItem, force: false)
     }
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {

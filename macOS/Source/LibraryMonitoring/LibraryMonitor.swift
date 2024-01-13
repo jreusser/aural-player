@@ -10,9 +10,19 @@ import Foundation
 
 class LibraryMonitor {
     
-    var folderMonitors: [FolderMonitor] = []
+    var folderMonitors: [FolderMonitor]
     
-    init(folderMonitors: [FolderMonitor]) {
-        self.folderMonitors = folderMonitors
+    init() {
+        
+        let folders = appPersistentState.library?.sourceFolders ?? []
+        self.folderMonitors = folders.map {FolderMonitor(url: $0)}
+    }
+    
+    func startMonitoring() {
+        folderMonitors.forEach {$0.startMonitoring()}
+    }
+    
+    func stopMonitoring() {
+        folderMonitors.forEach {$0.stopMonitoring()}
     }
 }

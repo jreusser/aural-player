@@ -24,4 +24,5 @@ extension Notification.Name {
     
     static let tuneBrowser_fileAdded = Notification.Name("tuneBrowser_fileAdded")
     static let tuneBrowser_fileDeleted = Notification.Name("tuneBrowser_fileDeleted")
+    static let tuneBrowser_folderChanged = Notification.Name("tuneBrowser_folderChanged")
 }

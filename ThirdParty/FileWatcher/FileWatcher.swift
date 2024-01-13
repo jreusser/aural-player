@@ -8,7 +8,8 @@ public class FileWatcher {
    public var queue: DispatchQueue?
    var streamRef: FSEventStreamRef?
    var hasStarted: Bool { streamRef != nil }
-   public init(_ paths: [String]) { self.filePaths = paths }
+   public init(paths: [String]) { self.filePaths = paths }
+    public init(urls: [URL]) { self.filePaths = urls.map {$0.path} }
    /**
     * - Parameters:
     *    - streamRef: The stream for which event(s) occurred. clientCallBackInfo: The info field that was supplied in the context when this stream was created.
@@ -57,7 +58,7 @@ extension FileWatcher {
     _ callback: @escaping (CallBack),
     _ queue: DispatchQueue
     ) {
-      self.init(paths)
+        self.init(paths: paths)
       self.callback = callback
       self.queue = queue
    }

@@ -21,8 +21,14 @@ class FileSystem: Destroyable {
     var observer: FileSystemUIObserver!
     var observedItem: FileSystemItem!
     
+    lazy var messenger: Messenger = .init(for: self)
+    
     init(observer: FileSystemUIObserver) {
+        
         self.observer = observer
+        
+        messenger.subscribe(to: .tuneBrowser_fileAdded, handler: folderChanged(_:))
+        messenger.subscribe(to: .tuneBrowser_fileDeleted, handler: folderChanged(_:))
     }
     
     func destroy() {
@@ -34,7 +40,7 @@ class FileSystem: Destroyable {
         didSet {
             
             if let theRoot = root {
-                loadChildren(of: theRoot)
+                loadChildren(of: theRoot, force: false)
             }
         }
     }
@@ -76,11 +82,15 @@ class FileSystem: Destroyable {
     
     private let loadLock: ExclusiveAccessSemaphore = .init()
     
-    func loadChildren(of item: FileSystemItem) {
+    func loadChildren(of item: FileSystemItem, force: Bool) {
         
         loadLock.executeAfterWait {
             
-            if item.childrenLoaded.value {return}
+            if !force, item.childrenLoaded.value {return}
+            
+            if force {
+                print("Force-loading children of '\(item.path)'")
+            }
             
             item.childrenLoaded.setValue(true)
             
@@ -100,6 +110,43 @@ class FileSystem: Destroyable {
     
     func sort(by sortField: FileSystemSortField, ascending: Bool) {
         root?.sortChildren(by: sortField, ascending: ascending)
+    }
+    
+    // MARK: Notification handling ---------------------------------------------
+    
+    private func folderChanged(_ notif: FileSystemFolderChangedNotification) {
+        
+        guard let theRoot = self.root else {return}
+        
+        let folder = notif.affectedURL.parentDir
+        print("\nFolder changed: \(folder.path)")
+        
+        var components: [String] = []
+        var parent: URL = folder
+        
+        while parent != FilesAndPaths.musicDir {
+            
+            components.append(parent.lastPathComponent)
+            parent = parent.parentDir
+        }
+        
+        print("\n\nGot Components: \(components)")
+        var curItem: FileSystemItem = theRoot
+        
+        for component in components {
+            
+            let targetURL = curItem.url.appendingPathComponent(component)
+            guard let child = curItem.children[targetURL] else {
+                
+                print("Child '\(component)' not found under: '\(curItem.url.path)'")
+                return
+            }
+            
+            curItem = child
+        }
+        
+        loadChildren(of: curItem, force: true)
+        messenger.publish(FileSystemItemUpdatedNotification(item: curItem))
     }
 }
 
