@@ -13,7 +13,9 @@
 
 ## Overview
 
-Aural Player is an audio player for macOS. Inspired by the classic Winamp player for Windows, it is designed to be easy to use and customizable, with support for a wide variety of popular audio formats and powerful sound tuning capabilities.
+Aural Player is an audio player for macOS. Inspired by the classic Winamp player for Windows, it is designed to be easy to use and customizable, with support for a wide variety of popular audio formats and powerful sound tuning capabilities. 
+
+The new 4.0 version brings with it enhanced usability, better aesthetics, and a new full-fledged library and file system browser to browse, search, and organize your music collection.
 
 ## Key features
 
@@ -23,9 +25,9 @@ Aural Player is an audio player for macOS. Inspired by the classic Winamp player
 * Supports M3U / M3U8 playlists
 * **Playback:** Bookmarking, segment looping, custom seek intervals, per-track last position memory, chapters support, autoplay, resume last played track.
 * **Effects:** Built-in effects (incl. equalizer), Audio Unit (AU) plug-in support, built-in / custom presets, per-track settings memory.
-* **Playlist:** Grouping by artist/album/genre, searching, sorting, type selection.
+* **Library:** Grouping by artist/album/genre/decade, searching, sorting, type selection. File system browser with metadata-based search.
 * **Track information:** ID3, iTunes, WMA, Vorbis Comment, ApeV2, etc. Cover art (with MusicBrainz lookups), lyrics, file system and audio data. Option to export. Last.fm scrobbling and love/unlove **(NEW!)**.
-* **Track lists:** *Favorites* list, *recently added* and *recently played* lists.
+* **Track lists:** *Favorites*, *recently added*, *recently played*, and *most played* lists.
 * **Visualizer:** 3 different visualizations that dance to the music, with customizable colors.
 * **UI:** Modular interface, fully customizable fonts and colors (with gradients), built-in / custom window layouts, configurable window snapping / docking / spacing / corner radius, menu bar mode, control bar (widget) mode.
 * **Usability:** Configurable media keys support, swipe/scroll gesture recognition, remote control from Control Center, headphones, and media control devices / apps.
@@ -42,9 +44,9 @@ This table lists the range of compatible Aural Player versions for your hardware
 
 |              | Intel (x86_64)  | Apple silicon (arm64)|
 | :---:        | :-:             | :-:       |
-| macOS 10.12 Sierra (no longer supported) | [1.0.0](https://github.com/kartik-venugopal/aural-player/releases/tag/v1.0.0) - [3.16.0](https://github.com/kartik-venugopal/aural-player/releases/tag/v3.16.0)           | (N/A)     |
-| macOS 10.13 - 10.15 | [1.0.0](https://github.com/kartik-venugopal/aural-player/releases/tag/v1.0.0) - [latest](https://github.com/kartik-venugopal/aural-player/releases/latest)         | (N/A)     |
-| macOS 11+  | [2.3.0](https://github.com/kartik-venugopal/aural-player/releases/tag/2.3.0) - [latest](https://github.com/kartik-venugopal/aural-player/releases/latest)           | [3.0.0](https://github.com/kartik-venugopal/aural-player/releases/tag/3.0.0) - [latest](https://github.com/kartik-venugopal/aural-player/releases/latest)|
+| macOS 10.12 Sierra (no longer supported) | [3.16.0](https://github.com/kartik-venugopal/aural-player/releases/tag/v3.16.0)           | (N/A)     |
+| macOS 10.13+ | [3.16.0](https://github.com/kartik-venugopal/aural-player/releases/tag/v3.16.0) - [3.25.2](https://github.com/kartik-venugopal/aural-player/releases/latest)         | (N/A)     |
+| macOS 11+  | [3.16.0](https://github.com/kartik-venugopal/aural-player/releases/tag/v3.16.0)           | [3.16.0](https://github.com/kartik-venugopal/aural-player/releases/tag/v3.16.0) - [latest](https://github.com/kartik-venugopal/aural-player/releases/latest)|
 
 **NOTES:** 
 
