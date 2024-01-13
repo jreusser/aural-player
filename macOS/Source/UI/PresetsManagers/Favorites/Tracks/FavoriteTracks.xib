@@ -14,21 +14,21 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="406" height="427"/>
+        <customView misplaced="YES" id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="426" height="427"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="27" horizontalPageScroll="10" verticalLineScroll="27" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7p-bs-zOr" userLabel="Favorites Table">
-                    <rect key="frame" x="0.0" y="0.0" width="406" height="427"/>
-                    <clipView key="contentView" copiesOnScroll="NO" id="ta3-1U-8Dq">
-                        <rect key="frame" x="0.0" y="0.0" width="406" height="427"/>
+                    <rect key="frame" x="0.0" y="0.0" width="446" height="427"/>
+                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ta3-1U-8Dq">
+                        <rect key="frame" x="0.0" y="0.0" width="446" height="427"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="plain" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowHeight="25" rowSizeStyle="automatic" viewBased="YES" id="yfT-pP-Sc2" userLabel="Favorites Table View">
-                                <rect key="frame" x="0.0" y="0.0" width="406" height="394"/>
+                                <rect key="frame" x="0.0" y="0.0" width="446" height="394"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
-                                <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" white="0.42990451390000001" alpha="1" colorSpace="calibratedWhite"/>
                                 <tableColumns>
                                     <tableColumn identifier="cid_favoriteColumn" width="250" minWidth="100" maxWidth="700" id="JTK-kD-96C">
@@ -44,7 +44,7 @@
                                         <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="cid_FavoriteName"/>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
-                                            <tableCellView misplaced="YES" id="ZJI-Xz-Ho1" customClass="FavoritesTableCellView" customModule="Aural" customModuleProvider="target">
+                                            <tableCellView misplaced="YES" id="ZJI-Xz-Ho1" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
                                                 <rect key="frame" x="1" y="1" width="250" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -55,7 +55,7 @@
                                                     </imageView>
                                                     <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVq-hU-ccE" userLabel="Track Name Text Field">
                                                         <rect key="frame" x="35" y="0.0" width="224" height="25"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="Table View Cell" id="jrT-jS-TeJ" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="Table View Cell" id="jrT-jS-TeJ" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -82,7 +82,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="backgroundColor"/>
                         <edgeInsets key="contentInsets" left="0.0" right="0.0" top="33" bottom="0.0"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="FaZ-wl-AtO">

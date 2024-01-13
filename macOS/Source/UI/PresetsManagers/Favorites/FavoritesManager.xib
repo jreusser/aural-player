@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="FavoritesManagerViewController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="selectedTabCaption" destination="fMA-Ty-1Q0" id="nxf-JO-Q0C"/>
                 <outlet property="tabGroup" destination="3DZ-HY-LNK" id="tQB-m5-E0U"/>
                 <outlet property="view" destination="Ovo-SL-XF4" id="EeS-wy-vgv"/>
             </connections>

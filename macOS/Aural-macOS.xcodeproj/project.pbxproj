@@ -618,6 +618,7 @@
 		3EBF293526869A1200D87021 /* PreferencesPopupMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF293426869A1200D87021 /* PreferencesPopupMenuCell.swift */; };
 		3EBF293726869A9300D87021 /* EffectsUnitPopupMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF293626869A9300D87021 /* EffectsUnitPopupMenuCell.swift */; };
 		3EBF3F2A28037B1A00035D18 /* PlayQueuePersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF3F2928037B1A00035D18 /* PlayQueuePersistentState.swift */; };
+		3EBFF5A32B528E430056D5B4 /* FavoriteArtists.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EBFF5A22B528E430056D5B4 /* FavoriteArtists.xib */; };
 		3EC2975A27864CD400B29551 /* Aural.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC2975927864CD400B29551 /* Aural.xcassets */; };
 		3EC29A5927865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
 		3EC29A5A27865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
@@ -2028,6 +2029,7 @@
 		3EBF293426869A1200D87021 /* PreferencesPopupMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPopupMenuCell.swift; sourceTree = "<group>"; };
 		3EBF293626869A9300D87021 /* EffectsUnitPopupMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsUnitPopupMenuCell.swift; sourceTree = "<group>"; };
 		3EBF3F2928037B1A00035D18 /* PlayQueuePersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueuePersistentState.swift; sourceTree = "<group>"; };
+		3EBFF5A22B528E430056D5B4 /* FavoriteArtists.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteArtists.xib; sourceTree = "<group>"; };
 		3EC2975927864CD400B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EC29A5827865BC900B29551 /* MenuItemMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemMappable.swift; sourceTree = "<group>"; };
 		3EC29A5E27865CB500B29551 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -3411,6 +3413,7 @@
 				3E6C0F6C25CEB98600BF0D07 /* FavoritesManager.xib */,
 				3E6C0F6B25CEB98600BF0D07 /* FavoritesManagerViewController.swift */,
 				3E59E9CE2B52100E001DDCE9 /* Tracks */,
+				3EBFF5A12B528E2D0056D5B4 /* Artists */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -4322,6 +4325,14 @@
 				3EBF0F66280C7317000455D6 /* MetadataRegistry.swift */,
 			);
 			path = Registry;
+			sourceTree = "<group>";
+		};
+		3EBFF5A12B528E2D0056D5B4 /* Artists */ = {
+			isa = PBXGroup;
+			children = (
+				3EBFF5A22B528E430056D5B4 /* FavoriteArtists.xib */,
+			);
+			path = Artists;
 			sourceTree = "<group>";
 		};
 		3EC29A5D27865C8600B29551 /* UI */ = {
@@ -5643,6 +5654,7 @@
 				3EF84DAA2836359B004EF57B /* LibrarySidebar.xib in Resources */,
 				3E6C122E25CEBDE600BF0D07 /* PlaybackPreferences.xib in Resources */,
 				3E6C121A25CEBDE600BF0D07 /* PlayQueuePreferences.xib in Resources */,
+				3EBFF5A32B528E430056D5B4 /* FavoriteArtists.xib in Resources */,
 				3E6C12E525CEBE8100BF0D07 /* EffectsWindow.xib in Resources */,
 				3E6C126E25CEBE0600BF0D07 /* MasterPresetsManager.xib in Resources */,
 				3E6C126825CEBE0600BF0D07 /* PitchShiftPresetsManager.xib in Resources */,

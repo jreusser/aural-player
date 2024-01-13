@@ -50,7 +50,7 @@ class TableCellBuilder {
         self.cellFactory = cellFactory
     }
     
-    func withText(text: String, inFont font: PlatformFont, andColor color: PlatformColor, selectedTextColor: PlatformColor, bottomYOffset: CGFloat? = nil, centerYOffset: CGFloat? = nil) -> TableCellBuilder {
+    @discardableResult func withText(text: String, inFont font: PlatformFont, andColor color: PlatformColor, selectedTextColor: PlatformColor, bottomYOffset: CGFloat? = nil, centerYOffset: CGFloat? = nil) -> TableCellBuilder {
         
         self.text = text
         
@@ -64,7 +64,7 @@ class TableCellBuilder {
         return self
     }
     
-    func withAttributedText(strings: [(text: String, font: PlatformFont, color: PlatformColor)], selectedTextColors: [PlatformColor], bottomYOffset: CGFloat? = nil, centerYOffset: CGFloat? = nil) -> TableCellBuilder {
+    @discardableResult func withAttributedText(strings: [(text: String, font: PlatformFont, color: PlatformColor)], selectedTextColors: [PlatformColor], bottomYOffset: CGFloat? = nil, centerYOffset: CGFloat? = nil) -> TableCellBuilder {
         
         var attStr: NSMutableAttributedString = strings[0].text.attributed(font: strings[0].font, color: strings[0].color)
         var selAttStr: NSMutableAttributedString = strings[0].text.attributed(font: strings[0].font, color: selectedTextColors[0])
@@ -92,7 +92,7 @@ class TableCellBuilder {
         return self
     }
     
-    func withImage(image: PlatformImage, inColor color: PlatformColor) -> TableCellBuilder {
+    @discardableResult func withImage(image: PlatformImage, inColor color: PlatformColor? = nil) -> TableCellBuilder {
         
         self.image = image
         self.imageColor = color
@@ -130,10 +130,13 @@ class TableCellBuilder {
         
         cell.textField?.showIf(attributedText != nil || text != nil)
         
-        if let image = self.image, let imageColor = self.imageColor {
+        if let image = self.image {
             
             cell.image = image
-            cell.imageColor = imageColor
+            
+            if let imageColor = self.imageColor {
+                cell.imageColor = imageColor
+            }
         }
         
         cell.imageView?.showIf(image != nil)

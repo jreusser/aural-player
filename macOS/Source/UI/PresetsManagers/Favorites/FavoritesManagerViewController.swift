@@ -16,6 +16,7 @@ class FavoritesManagerViewController: NSViewController {
     
     override var nibName: String? {"FavoritesManager"}
     
+    @IBOutlet weak var selectedTabCaption: NSTextField!
     @IBOutlet weak var tabGroup: NSTabView!
     
     lazy var tracksViewController: FavoriteTracksViewController = .init()
@@ -29,6 +30,9 @@ class FavoritesManagerViewController: NSViewController {
         
         tabGroup.tabViewItem(at: 0).view?.addSubview(tracksViewController.view)
         tracksViewController.view.anchorToSuperview()
+        
+        fontSchemesManager.registerObserver(selectedTabCaption, forProperty: \.captionFont)
+        colorSchemesManager.registerObserver(selectedTabCaption, forProperties: [\.captionTextColor])
     }
     
     @IBAction func deleteSelectedItemsAction(_ sender: NSButton) {
@@ -76,16 +80,4 @@ extension NSUserInterfaceItemIdentifier {
     
     // Table view column identifiers
     static let cid_favoriteColumn: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_favoriteColumn")
-}
-
-class FavoritesTableCellView: PresetsManagerTableCellView {
-   
-    func setInfoFor(favorite: Favorite) {
-        
-        if let trackFav = favorite as? FavoriteTrack {
-            
-            self.text = trackFav.track.displayName
-            self.image = trackFav.track.art?.image ?? .imgPlayingArt
-        }
-    }
 }

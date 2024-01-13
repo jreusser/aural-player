@@ -40,12 +40,29 @@ extension FavoriteTracksViewController: NSTableViewDataSource, NSTableViewDelega
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
         guard let columnId = tableColumn?.identifier,
-              columnId == .cid_favoriteColumn,
-              let cell = tableView.makeView(withIdentifier: columnId, owner: nil) as? FavoritesTableCellView else {return nil}
+              columnId == .cid_favoriteColumn else {return nil}
         
-        let favorite = favoritesDelegate.allFavoriteTracks[row]
-        cell.setInfoFor(favorite: favorite)
+        let track = favoritesDelegate.allFavoriteTracks[row].track
+        let titleAndArtist = track.titleAndArtist
+        let builder = TableCellBuilder()
         
-        return cell
+        if let artist = titleAndArtist.artist {
+            
+            builder.withAttributedText(strings: [(text: artist + "  ", font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.secondaryTextColor),
+                                                        (text: titleAndArtist.title, font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.primaryTextColor)],
+                                              selectedTextColors: [systemColorScheme.secondarySelectedTextColor, systemColorScheme.primarySelectedTextColor],
+                                              bottomYOffset: systemFontScheme.playQueueYOffset)
+            
+        } else {
+            
+            builder.withAttributedText(strings: [(text: titleAndArtist.title,
+                                                         font: systemFontScheme.playlist.trackTextFont,
+                                                         color: systemColorScheme.primaryTextColor)], selectedTextColors: [systemColorScheme.primarySelectedTextColor],
+                                              bottomYOffset: systemFontScheme.playQueueYOffset)
+        }
+        
+        builder.withImage(image: track.art?.image ?? .imgPlayingArt)
+        
+        return builder.buildCell(forTableView: tableView, forColumnWithId: columnId, inRow: row)
     }
 }
