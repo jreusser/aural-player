@@ -16,57 +16,33 @@ class FavoritesManagerViewController: NSViewController {
     
     override var nibName: String? {"FavoritesManager"}
     
-//    override var numberOfPresets: Int {favorites.count}
-//    
-//    override func nameOfPreset(atIndex index: Int) -> String {favorites.getFavoriteAtIndex(index).name}
-//    
-//    override func deletePresets(atIndices indices: IndexSet) {
-//        favorites.deleteFavorites(atIndices: tableView.selectedRowIndexes)
-//    }
-//    
-//    override func applyPreset(atIndex index: Int) {
-//        
-//        let fav = favorites.getFavoriteAtIndex(index)
-//        
-//        do {
-//            
-//            try favorites.playFavorite(fav)
-//            
-//        } catch {
-//            
-//            // TODO: Remove this
-//            
-//            if let fnfError = error as? FileNotFoundError {
-//                
-//                // This needs to be done async. Otherwise, other open dialogs could hang.
-//                DispatchQueue.main.async {
-//                    
-//                    // Position and display an alert with error info
-//                    _ = DialogsAndAlerts.trackNotPlayedAlertWithError(fnfError, "Remove favorite").showModal()
-////                    self.favorites.deleteFavoriteWithFile(fav.file)
-//                    self.tableView.reloadData()
-//                }
-//            }
-//        }
-//    }
+    @IBOutlet weak var tabGroup: NSTabView!
     
-    // MARK: View delegate functions
+    lazy var tracksViewController: FavoriteTracksViewController = .init()
     
-    // Returns a view for a single column
-//    override func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-//        
-//        guard let column = tableColumn else {return nil}
-//        
-//        let colID = column.identifier
-//        let favorite = favorites.getFavoriteAtIndex(row)
-//        
-//        // TODO: favorite.file only applies to tracks, playlists, folders, not to groups.
-//        return createTextCell(tableView, column, row, colID == .cid_favoriteNameColumn ? favorite.name : "", false)
-//    }
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        tabGroup.tabViewItem(at: 0).view?.addSubview(tracksViewController.view)
+        tracksViewController.view.anchorToSuperview()
+    }
 }
 
 extension NSUserInterfaceItemIdentifier {
     
     // Table view column identifiers
-    static let cid_favoriteNameColumn: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_FavoriteName")
+    static let cid_favoriteColumn: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_favoriteColumn")
+}
+
+class FavoritesTableCellView: PresetsManagerTableCellView {
+   
+    func setInfoFor(favorite: Favorite) {
+        
+        if let trackFav = favorite as? FavoriteTrack {
+            
+            self.text = trackFav.track.displayName
+            self.image = trackFav.track.art?.image ?? .imgPlayingArt
+        }
+    }
 }

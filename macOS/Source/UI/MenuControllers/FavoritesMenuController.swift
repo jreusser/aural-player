@@ -14,7 +14,7 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var addRemoveFavoritesMenuItem: ToggleMenuItem!
     @IBOutlet weak var manageFavoritesMenuItem: NSMenuItem!    
     
-    private lazy var managerWindowController: PresetsManagerWindowController = PresetsManagerWindowController.instance
+    private lazy var managerWindowController: FavoritesWindowController = .init()
     
     private lazy var messenger = Messenger(for: self)
     
@@ -30,7 +30,7 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
         addRemoveFavoritesMenuItem.enableIf(playbackInfoDelegate.state.isPlayingOrPaused)
         
         // Menu has 3 static items
-//        manageFavoritesMenuItem.enableIf(favoritesDelegate.count > 0)
+        manageFavoritesMenuItem.enableIf(favoritesDelegate.hasAnyFavorites)
     }
 
     func menuWillOpen(_ menu: NSMenu) {
@@ -49,7 +49,7 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
     
     // Opens the presets manager to manage favorites
     @IBAction func manageFavoritesAction(_ sender: Any) {
-        managerWindowController.showFavoritesManager()
+        managerWindowController.showWindow(self)
     }
 }
 

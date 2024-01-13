@@ -47,15 +47,27 @@ protocol FavoritesDelegateProtocol {
 //
 //    func removeFavorite(playlistFile: ImportedPlaylist)
     
+    var hasAnyFavorites: Bool {get}
+    
     var allFavoriteTracks: [FavoriteTrack] {get}
+    var numberOfFavoriteTracks: Int {get}
+    
+    var artistsFromFavoriteTracks: [String] {get}
+    var albumsFromFavoriteTracks: [String] {get}
+    var genresFromFavoriteTracks: [String] {get}
+    var decadesFromFavoriteTracks: [String] {get}
     
     var allFavoriteArtists: [FavoriteGroup] {get}
+    var numberOfFavoriteArtists: Int {get}
     
     var allFavoriteAlbums: [FavoriteGroup] {get}
+    var numberOfFavoriteAlbums: Int {get}
     
     var allFavoriteGenres: [FavoriteGroup] {get}
+    var numberOfFavoriteGenres: Int {get}
     
     var allFavoriteDecades: [FavoriteGroup] {get}
+    var numberOfFavoriteDecades: Int {get}
     
     func favoriteExists(track: Track) -> Bool
     

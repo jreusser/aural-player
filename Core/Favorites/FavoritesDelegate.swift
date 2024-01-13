@@ -32,24 +32,64 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
 //    
 //    private var favoritePlaylists: OrderedSet<String>
     
+    var hasAnyFavorites: Bool {
+        favoriteTracks.values.isNonEmpty || favoriteArtists.values.isNonEmpty || favoriteAlbums.values.isNonEmpty || favoriteGenres.values.isNonEmpty || favoriteDecades.values.isNonEmpty
+    }
+    
     var allFavoriteTracks: [FavoriteTrack] {
         Array(favoriteTracks.values)
+    }
+    
+    var numberOfFavoriteTracks: Int {
+        favoriteTracks.count
     }
     
     var allFavoriteArtists: [FavoriteGroup] {
         Array(favoriteArtists.values)
     }
     
+    var numberOfFavoriteArtists: Int {
+        favoriteArtists.count
+    }
+    
     var allFavoriteAlbums: [FavoriteGroup] {
         Array(favoriteAlbums.values)
+    }
+    
+    var numberOfFavoriteAlbums: Int {
+        favoriteAlbums.count
     }
     
     var allFavoriteGenres: [FavoriteGroup] {
         Array(favoriteGenres.values)
     }
     
+    var numberOfFavoriteGenres: Int {
+        favoriteGenres.count
+    }
+    
     var allFavoriteDecades: [FavoriteGroup] {
         Array(favoriteDecades.values)
+    }
+    
+    var numberOfFavoriteDecades: Int {
+        favoriteDecades.count
+    }
+    
+    var artistsFromFavoriteTracks: [String] {
+        favoriteTracks.values.compactMap {$0.track.artist}
+    }
+    
+    var albumsFromFavoriteTracks: [String] {
+        favoriteTracks.values.compactMap {$0.track.album}
+    }
+    
+    var genresFromFavoriteTracks: [String] {
+        favoriteTracks.values.compactMap {$0.track.genre}
+    }
+    
+    var decadesFromFavoriteTracks: [String] {
+        favoriteTracks.values.compactMap {$0.track.decade}
     }
     
     private let playQueue: PlayQueueDelegateProtocol
