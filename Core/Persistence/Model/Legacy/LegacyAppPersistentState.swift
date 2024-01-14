@@ -20,7 +20,7 @@ struct LegacyAppPersistentState: Codable {
 //    var ui: UIPersistentState?
     
     var playlist: LegacyPlaylistPersistentState?
-    var audioGraph: AudioGraphPersistentState?
+    var audioGraph: LegacyAudioGraphPersistentState?
 //    
     var playbackSequence: LegacyPlaybackSequencePersistentState?
 //    var playbackProfiles: [PlaybackProfilePersistentState]?

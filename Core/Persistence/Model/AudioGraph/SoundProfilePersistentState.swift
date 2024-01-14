@@ -37,4 +37,17 @@ struct SoundProfilePersistentState: Codable {
         self.pan = profile.pan
         self.effects = MasterPresetPersistentState(preset: profile.effects)
     }
+    
+    init(legacyPersistentState: LegacySoundProfilePersistentState) {
+        
+        self.file = {
+            
+            guard let path = legacyPersistentState.file else {return nil}
+            return URL(fileURLWithPath: path)
+        }()
+        
+        self.volume = legacyPersistentState.volume
+        self.pan = legacyPersistentState.pan
+        self.effects = MasterPresetPersistentState(legacyPersistentState: legacyPersistentState.effects)
+    }
 }

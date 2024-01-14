@@ -19,6 +19,20 @@ struct MasterUnitPersistentState: Codable {
     let state: EffectsUnitState?
     let userPresets: [MasterPresetPersistentState]?
     let currentPresetName: String?
+    
+    init(state: EffectsUnitState?, userPresets: [MasterPresetPersistentState]?, currentPresetName: String?) {
+        
+        self.state = state
+        self.userPresets = userPresets
+        self.currentPresetName = currentPresetName
+    }
+    
+    init(legacyPersistentState: LegacyMasterUnitPersistentState?) {
+        
+        self.state = EffectsUnitState.fromLegacyState(legacyPersistentState?.state)
+        self.userPresets = legacyPersistentState?.userPresets?.map {MasterPresetPersistentState(legacyPersistentState: $0)}
+        self.currentPresetName = legacyPersistentState?.currentPresetName
+    }
 }
 
 ///
@@ -32,8 +46,8 @@ struct MasterPresetPersistentState: Codable {
     let state: EffectsUnitState?
     
     let eq: EQPresetPersistentState?
-    let pitch: PitchShiftPresetPersistentState?
-    let time: TimeStretchPresetPersistentState?
+    let pitchShift: PitchShiftPresetPersistentState?
+    let timeStretch: TimeStretchPresetPersistentState?
     let reverb: ReverbPresetPersistentState?
     let delay: DelayPresetPersistentState?
     let filter: FilterPresetPersistentState?
@@ -52,8 +66,8 @@ struct MasterPresetPersistentState: Codable {
         self.state = preset.state
         
         self.eq = EQPresetPersistentState(preset: preset.eq)
-        self.pitch = PitchShiftPresetPersistentState(preset: preset.pitch)
-        self.time = TimeStretchPresetPersistentState(preset: preset.time)
+        self.pitchShift = PitchShiftPresetPersistentState(preset: preset.pitch)
+        self.timeStretch = TimeStretchPresetPersistentState(preset: preset.time)
         self.reverb = ReverbPresetPersistentState(preset: preset.reverb)
         self.delay = DelayPresetPersistentState(preset: preset.delay)
         self.filter = FilterPresetPersistentState(preset: preset.filter)
@@ -65,5 +79,26 @@ struct MasterPresetPersistentState: Codable {
         self.nameOfCurrentReverbPreset = preset.nameOfCurrentReverbPreset
         self.nameOfCurrentDelayPreset = preset.nameOfCurrentDelayPreset
         self.nameOfCurrentFilterPreset = preset.nameOfCurrentFilterPreset
+    }
+    
+    init(legacyPersistentState: LegacyMasterPresetPersistentState?) {
+        
+        self.name = legacyPersistentState?.name
+        self.state = EffectsUnitState.fromLegacyState(legacyPersistentState?.state)
+        
+        self.eq = EQPresetPersistentState(legacyPersistentState: legacyPersistentState?.eq)
+        self.pitchShift = PitchShiftPresetPersistentState(legacyPersistentState: legacyPersistentState?.pitch)
+        self.timeStretch = TimeStretchPresetPersistentState(legacyPersistentState: legacyPersistentState?.time)
+        self.reverb = ReverbPresetPersistentState(legacyPersistentState: legacyPersistentState?.reverb)
+        self.delay = DelayPresetPersistentState(legacyPersistentState: legacyPersistentState?.delay)
+        self.filter = FilterPresetPersistentState(legacyPersistentState: legacyPersistentState?.filter)
+        
+        self.nameOfCurrentMasterPreset = legacyPersistentState?.nameOfCurrentMasterPreset
+        self.nameOfCurrentEQPreset = legacyPersistentState?.nameOfCurrentEQPreset
+        self.nameOfCurrentPitchShiftPreset = legacyPersistentState?.nameOfCurrentPitchShiftPreset
+        self.nameOfCurrentTimeStretchPreset = legacyPersistentState?.nameOfCurrentTimeStretchPreset
+        self.nameOfCurrentReverbPreset = legacyPersistentState?.nameOfCurrentReverbPreset
+        self.nameOfCurrentDelayPreset = legacyPersistentState?.nameOfCurrentDelayPreset
+        self.nameOfCurrentFilterPreset = legacyPersistentState?.nameOfCurrentFilterPreset
     }
 }

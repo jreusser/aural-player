@@ -317,8 +317,8 @@ let audioSession: AVAudioSession = .sharedInstance()
                                   delayUnit: delayUnit.persistentState,
                                   filterUnit: filterUnit.persistentState,
                                   audioUnits: audioUnits.map {$0.persistentState},
-                                  soundProfiles: soundProfiles.persistentState,
-                                  audioUnitPresets: audioUnitPresets.persistentState)
+                                  audioUnitPresets: audioUnitPresets.persistentState,
+                                  soundProfiles: soundProfiles.persistentState)
         
         #elseif os(iOS)
         

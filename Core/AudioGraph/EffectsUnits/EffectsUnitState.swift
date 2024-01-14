@@ -22,6 +22,23 @@ import Foundation
     
     // Master unit off, and effects unit on
     case suppressed
+    
+    static func fromLegacyState(_ legacyState: LegacyEffectsUnitState?) -> EffectsUnitState {
+        
+        guard let legacyState = legacyState else {return .bypassed}
+        
+        switch legacyState {
+            
+        case .active:
+            return .active
+            
+        case .bypassed:
+            return .bypassed
+            
+        case .suppressed:
+            return .suppressed
+        }
+    }
 }
 
 typealias EffectsUnitStateFunction = () -> EffectsUnitState

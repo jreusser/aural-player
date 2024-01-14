@@ -67,8 +67,8 @@ class MasterPreset: EffectsUnitPreset {
         
         guard let name = persistentState.name, let unitState = persistentState.state,
               let eq = persistentState.eq, let eqPreset = EQPreset(persistentState: eq),
-              let pitch = persistentState.pitch, let pitchPreset = PitchShiftPreset(persistentState: pitch),
-              let time = persistentState.time, let timePreset = TimeStretchPreset(persistentState: time),
+              let pitch = persistentState.pitchShift, let pitchPreset = PitchShiftPreset(persistentState: pitch),
+              let time = persistentState.timeStretch, let timePreset = TimeStretchPreset(persistentState: time),
               let reverb = persistentState.reverb, let reverbPreset = ReverbPreset(persistentState: reverb),
               let delay = persistentState.delay, let delayPreset = DelayPreset(persistentState: delay),
               let filter = persistentState.filter, let filterPreset = FilterPreset(persistentState: filter)

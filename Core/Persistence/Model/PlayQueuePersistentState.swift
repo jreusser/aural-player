@@ -26,7 +26,7 @@ struct PlayQueuePersistentState: Codable {
     
     init(legacyPlaylistPersistentState: LegacyPlaylistPersistentState?, legacyPlaybackSequencePersistentState: LegacyPlaybackSequencePersistentState?) {
         
-        self.tracks = legacyPlaylistPersistentState?.tracks?.compactMap {URL(fileURLWithPath: $0)}
+        self.tracks = legacyPlaylistPersistentState?.tracks?.map {URL(fileURLWithPath: $0)}
         self.repeatMode = legacyPlaybackSequencePersistentState?.repeatMode
         self.shuffleMode = legacyPlaybackSequencePersistentState?.shuffleMode
     }

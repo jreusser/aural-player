@@ -22,6 +22,23 @@ struct AudioUnitPersistentState: Codable {
     let componentType: OSType?
     let componentSubType: OSType?
     let params: [AudioUnitParameterPersistentState]?
+    
+    init(state: EffectsUnitState?, componentType: OSType?, componentSubType: OSType?, params: [AudioUnitParameterPersistentState]?) {
+        
+        self.state = state
+        self.componentType = componentType
+        self.componentSubType = componentSubType
+        self.params = params
+    }
+    
+    init(legacyPersistentState: LegacyAudioUnitPersistentState) {
+        
+        self.state = EffectsUnitState.fromLegacyState(legacyPersistentState.state)
+        
+        self.componentType = legacyPersistentState.componentType
+        self.componentSubType = legacyPersistentState.componentSubType
+        self.params = legacyPersistentState.params?.map {AudioUnitParameterPersistentState(legacyPersistentState: $0)}
+    }
 }
 
 ///
@@ -31,6 +48,18 @@ struct AudioUnitParameterPersistentState: Codable {
     
     let address: UInt64?
     let value: Float?
+    
+    init(address: UInt64?, value: Float?) {
+        
+        self.address = address
+        self.value = value
+    }
+    
+    init(legacyPersistentState: LegacyAudioUnitParameterPersistentState) {
+        
+        self.address = legacyPersistentState.address
+        self.value = legacyPersistentState.value
+    }
 }
 
 ///
@@ -58,9 +87,38 @@ struct AudioUnitPresetPersistentState: Codable {
         
         self.parameterValues = preset.parameterValues
     }
+    
+    init(legacyPersistentState: LegacyAudioUnitPresetPersistentState) {
+        
+        self.name = legacyPersistentState.name
+        self.state = EffectsUnitState.fromLegacyState(legacyPersistentState.state)
+        self.componentType = legacyPersistentState.componentType
+        self.componentSubType = legacyPersistentState.componentSubType
+        self.parameterValues = legacyPersistentState.parameterValues
+    }
 }
 
 struct AudioUnitPresetsPersistentState: Codable {
     
     let presets: [OSType: [OSType: [AudioUnitPresetPersistentState]]]?
+    
+    init(presets: [OSType: [OSType: [AudioUnitPresetPersistentState]]]) {
+        self.presets = presets
+    }
+    
+    init(legacyPersistentState: LegacyAudioUnitPresetsPersistentState?) {
+        
+        var presetsMap: [OSType: [OSType: [AudioUnitPresetPersistentState]]] = [:]
+        
+        for (type, subTypeAndPresetsMap) in legacyPersistentState?.presets ?? [:] {
+            
+            presetsMap[type] = [:]
+            
+            for (subType, presets) in subTypeAndPresetsMap {
+                presetsMap[type]?[subType] = presets.map {AudioUnitPresetPersistentState(legacyPersistentState: $0)}
+            }
+        }
+        
+        self.presets = presetsMap
+    }
 }

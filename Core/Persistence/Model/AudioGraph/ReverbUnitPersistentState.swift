@@ -23,6 +23,27 @@ struct ReverbUnitPersistentState: Codable {
     
     let space: ReverbSpace?
     let amount: Float?
+    
+    init(state: EffectsUnitState?, userPresets: [ReverbPresetPersistentState]?, currentPresetName: String?, renderQuality: Int?, space: ReverbSpace?, amount: Float?) {
+        
+        self.state = state
+        self.userPresets = userPresets
+        self.currentPresetName = currentPresetName
+        self.renderQuality = renderQuality
+        self.space = space
+        self.amount = amount
+    }
+    
+    init(legacyPersistentState: LegacyReverbUnitPersistentState?) {
+        
+        self.state = EffectsUnitState.fromLegacyState(legacyPersistentState?.state)
+        self.userPresets = legacyPersistentState?.userPresets?.map {ReverbPresetPersistentState(legacyPersistentState: $0)}
+        self.currentPresetName = legacyPersistentState?.currentPresetName
+        self.renderQuality = legacyPersistentState?.renderQuality
+        
+        self.space = legacyPersistentState?.space
+        self.amount = legacyPersistentState?.amount
+    }
 }
 
 ///
@@ -45,5 +66,14 @@ struct ReverbPresetPersistentState: Codable {
         
         self.space = preset.space
         self.amount = preset.amount
+    }
+    
+    init(legacyPersistentState: LegacyReverbPresetPersistentState?) {
+        
+        self.name = legacyPersistentState?.name
+        self.state = EffectsUnitState.fromLegacyState(legacyPersistentState?.state)
+        
+        self.space = legacyPersistentState?.space
+        self.amount = legacyPersistentState?.amount
     }
 }

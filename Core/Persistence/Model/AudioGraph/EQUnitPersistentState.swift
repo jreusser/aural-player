@@ -23,6 +23,27 @@ struct EQUnitPersistentState: Codable {
     
     let globalGain: Float?
     let bands: [Float]?
+    
+    init(state: EffectsUnitState?, userPresets: [EQPresetPersistentState]?, currentPresetName: String?, renderQuality: Int?, globalGain: Float?, bands: [Float]?) {
+        
+        self.state = state
+        self.userPresets = userPresets
+        self.currentPresetName = currentPresetName
+        self.renderQuality = renderQuality
+        self.globalGain = globalGain
+        self.bands = bands
+    }
+    
+    init(legacyPersistentState: LegacyEQUnitPersistentState?) {
+        
+        self.state = EffectsUnitState.fromLegacyState(legacyPersistentState?.state)
+        self.userPresets = legacyPersistentState?.userPresets?.map {EQPresetPersistentState(legacyPersistentState: $0)}
+        self.currentPresetName = legacyPersistentState?.currentPresetName
+        self.renderQuality = legacyPersistentState?.renderQuality
+        
+        self.globalGain = legacyPersistentState?.globalGain
+        self.bands = legacyPersistentState?.bands
+    }
 }
 
 ///
@@ -45,5 +66,14 @@ struct EQPresetPersistentState: Codable {
         
         self.bands = preset.bands
         self.globalGain = preset.globalGain
+    }
+    
+    init(legacyPersistentState: LegacyEQPresetPersistentState?) {
+        
+        self.name = legacyPersistentState?.name
+        self.state = EffectsUnitState.fromLegacyState(legacyPersistentState?.state)
+        
+        self.bands = legacyPersistentState?.bands
+        self.globalGain = legacyPersistentState?.globalGain
     }
 }

@@ -22,6 +22,25 @@ struct FilterUnitPersistentState: Codable {
     let renderQuality: Int?
     
     let bands: [FilterBandPersistentState]?
+    
+    init(state: EffectsUnitState?, userPresets: [FilterPresetPersistentState]?, currentPresetName: String?, renderQuality: Int?, bands: [FilterBandPersistentState]?) {
+        
+        self.state = state
+        self.userPresets = userPresets
+        self.currentPresetName = currentPresetName
+        self.renderQuality = renderQuality
+        self.bands = bands
+    }
+    
+    init(legacyPersistentState: LegacyFilterUnitPersistentState?) {
+        
+        self.state = EffectsUnitState.fromLegacyState(legacyPersistentState?.state)
+        self.userPresets = legacyPersistentState?.userPresets?.map {FilterPresetPersistentState(legacyPersistentState: $0)}
+        self.currentPresetName = legacyPersistentState?.currentPresetName
+        self.renderQuality = legacyPersistentState?.renderQuality
+        
+        self.bands = legacyPersistentState?.bands?.map {FilterBandPersistentState(legacyPersistentState: $0)}
+    }
 }
 
 ///
@@ -45,6 +64,14 @@ struct FilterBandPersistentState: Codable {
         self.minFreq = band.minFreq
         self.maxFreq = band.maxFreq
     }
+    
+    init(legacyPersistentState: LegacyFilterBandPersistentState) {
+        
+        self.type = legacyPersistentState.type
+        self.bypass = false     // Legacy apps cannot bypass individual filter bands.
+        self.minFreq = legacyPersistentState.minFreq
+        self.maxFreq = legacyPersistentState.maxFreq
+    }
 }
 
 ///
@@ -65,5 +92,12 @@ struct FilterPresetPersistentState: Codable {
         self.state = preset.state
         
         self.bands = preset.bands.map {FilterBandPersistentState(band: $0)}
+    }
+    
+    init(legacyPersistentState: LegacyFilterPresetPersistentState?) {
+        
+        self.name = legacyPersistentState?.name
+        self.state = EffectsUnitState.fromLegacyState(legacyPersistentState?.state)
+        self.bands = legacyPersistentState?.bands?.map {FilterBandPersistentState(legacyPersistentState: $0)}
     }
 }
