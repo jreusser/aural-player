@@ -17,7 +17,7 @@ struct LegacyAppPersistentState: Codable {
     
     var appVersion: String?
     
-//    var ui: UIPersistentState?
+    var ui: LegacyUIPersistentState?
     
     var playlist: LegacyPlaylistPersistentState?
     var audioGraph: LegacyAudioGraphPersistentState?

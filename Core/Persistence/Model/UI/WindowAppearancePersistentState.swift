@@ -19,6 +19,14 @@ import Foundation
 struct WindowAppearancePersistentState: Codable {
     
     let cornerRadius: CGFloat?
+    
+    init(cornerRadius: CGFloat) {
+        self.cornerRadius = cornerRadius
+    }
+    
+    init(legacyPersistentState: WindowAppearancePersistentState?) {
+        self.cornerRadius = legacyPersistentState?.cornerRadius?.clamped(to: 0...20)
+    }
 }
 
 #endif

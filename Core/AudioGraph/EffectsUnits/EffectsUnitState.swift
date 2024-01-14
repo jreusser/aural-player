@@ -23,9 +23,9 @@ import Foundation
     // Master unit off, and effects unit on
     case suppressed
     
-    static func fromLegacyState(_ legacyState: LegacyEffectsUnitState?) -> EffectsUnitState {
+    static func fromLegacyState(_ legacyState: LegacyEffectsUnitState?) -> EffectsUnitState? {
         
-        guard let legacyState = legacyState else {return .bypassed}
+        guard let legacyState = legacyState else {return nil}
         
         switch legacyState {
             

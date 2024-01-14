@@ -21,4 +21,21 @@ enum AppMode: String, CaseIterable, Codable {
     case menuBar
     case controlBar
     case compact
+    
+    static func fromLegacyAppMode(_ legacyAppMode: LegacyAppMode?) -> AppMode? {
+        
+        guard let legacyAppMode = legacyAppMode else {return nil}
+        
+        switch legacyAppMode {
+            
+        case .windowed:
+            return .modular
+            
+        case .menuBar:
+            return .menuBar
+            
+        case .controlBar:
+            return .controlBar
+        }
+    }
 }

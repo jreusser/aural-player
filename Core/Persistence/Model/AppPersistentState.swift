@@ -47,6 +47,8 @@ struct AppPersistentState: Codable {
         self.bookmarks = legacyAppPersistentState.bookmarks?.map {BookmarkPersistentState(legacyPersistentState: $0)}
         
         self.audioGraph = AudioGraphPersistentState(legacyPersistentState: legacyAppPersistentState.audioGraph)
+        
+        self.ui = UIPersistentState(legacyPersistentState: legacyAppPersistentState.ui)
     }
     
     static let defaults: AppPersistentState = AppPersistentState()

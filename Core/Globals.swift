@@ -135,7 +135,7 @@ var systemFontScheme: FontScheme {fontSchemesManager.systemScheme}
 let colorSchemesManager: ColorSchemesManager = ColorSchemesManager(persistentState: appPersistentState.ui?.colorSchemes)
 let systemColorScheme: ColorScheme = colorSchemesManager.systemScheme
 
-let playerUIState: PlayerUIState = PlayerUIState(persistentState: appPersistentState.ui?.player)
+let playerUIState: PlayerUIState = PlayerUIState(persistentState: appPersistentState.ui?.modularPlayer)
 let unifiedPlayerUIState: UnifiedPlayerUIState = UnifiedPlayerUIState(persistentState: appPersistentState.ui?.unifiedPlayer)
 let playQueueUIState: PlayQueueUIState = PlayQueueUIState(persistentState: appPersistentState.ui?.playQueue)
 let playlistsUIState: PlaylistsUIState = PlaylistsUIState()
@@ -171,19 +171,20 @@ var persistentStateOnExit: AppPersistentState {
 #if os(macOS)
     
     persistentState.ui = UIPersistentState(appMode: appModeManager.currentMode,
-                                           player: playerUIState.persistentState,
-                                           playQueue: playQueueUIState.persistentState,
                                            windowLayout: windowLayoutsManager.persistentState,
                                            themes: themesManager.persistentState,
                                            fontSchemes: fontSchemesManager.persistentState,
                                            colorSchemes: colorSchemesManager.persistentState,
-                                           //                                               playlists: playlistUIState.persistentState,
-                                           visualizer: visualizerUIState.persistentState,
                                            windowAppearance: windowAppearanceState.persistentState,
-                                           tuneBrowser: tuneBrowserUIState.persistentState,
+                                           
+                                           modularPlayer: playerUIState.persistentState,
                                            unifiedPlayer: unifiedPlayerUIState.persistentState,
                                            menuBarPlayer: menuBarPlayerUIState.persistentState,
-                                           controlBarPlayer: controlBarPlayerUIState.persistentState)
+                                           controlBarPlayer: controlBarPlayerUIState.persistentState,
+                                           
+                                           playQueue: playQueueUIState.persistentState,
+                                           visualizer: visualizerUIState.persistentState,
+                                           tuneBrowser: tuneBrowserUIState.persistentState)
     
 #endif
     

@@ -24,7 +24,7 @@ class PlayerUIState {
     
     var trackTimeDisplayType: TrackTimeDisplayType
     
-    init(persistentState: PlayerUIPersistentState?) {
+    init(persistentState: ModularPlayerUIPersistentState?) {
         
         showAlbumArt = persistentState?.showAlbumArt ?? PlayerUIDefaults.showAlbumArt
         showArtist = persistentState?.showArtist ?? PlayerUIDefaults.showArtist
@@ -37,9 +37,9 @@ class PlayerUIState {
         trackTimeDisplayType = persistentState?.trackTimeDisplayType ?? PlayerUIDefaults.trackTimeDisplayType
     }
     
-    var persistentState: PlayerUIPersistentState {
+    var persistentState: ModularPlayerUIPersistentState {
         
-        PlayerUIPersistentState(showAlbumArt: showAlbumArt,
+        ModularPlayerUIPersistentState(showAlbumArt: showAlbumArt,
                                 showArtist: showArtist,
                                 showAlbum: showAlbum,
                                 showCurrentChapter: showCurrentChapter,

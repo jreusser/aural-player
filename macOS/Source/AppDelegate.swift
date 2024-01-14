@@ -48,6 +48,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         SystemUtils.openFilesLimit = 10000
         configureLogging()
+        
+        let src = URL(fileURLWithPath: "/Users/kven/Music/aural/state.json")
+        let dest = URL(fileURLWithPath: "/Users/kven/Music/aural4/state.json")
+        
+        if dest.exists {
+            dest.rename(to: URL(fileURLWithPath: "/Users/kven/Music/aural4/muthu_\(Date().serializableStringAsHMS)_state.json"))
+        }
+        
+        try? FileManager.default.copyItem(at: src, to: dest)
     }
     
     /// Make sure all logging is done to the app's log file
