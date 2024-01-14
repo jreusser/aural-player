@@ -17,7 +17,32 @@ let appSetup: AppSetup = .shared
 #endif
 
 let persistenceManager: PersistenceManager = PersistenceManager(persistentStateFile: FilesAndPaths.persistentStateFile)
-let appPersistentState: AppPersistentState = persistenceManager.load(type: AppPersistentState.self) ?? .defaults
+let appPersistentState: AppPersistentState = {
+    
+    
+    guard let jsonString = try? String(contentsOf: FilesAndPaths.persistentStateFile, encoding: .utf8),
+          let jsonData = jsonString.data(using: .utf8),
+          let dict = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] else {
+        
+        NSLog("Error loading app state config file.")
+        return .defaults
+    }
+    
+    if let appVersionString = dict["appVersion"] as? String,
+       let appVersion = AppVersion(versionString: appVersionString) {
+        
+        print("App major version: \(appVersion.majorVersion)")
+        
+        if appVersion.majorVersion < 4, let legacyPersistentState: LegacyAppPersistentState = persistenceManager.load(type: LegacyAppPersistentState.self) {
+            
+            // Attempt migration and return the mapped instance.
+            print("Mapped persistent state from app version: \(appVersionString)\n")
+            return AppPersistentState(legacyAppPersistentState: legacyPersistentState)
+        }
+    }
+    
+    return persistenceManager.load(type: AppPersistentState.self) ?? .defaults
+}()
 
 let userDefaults: UserDefaults = .standard
 let preferences: Preferences = Preferences(defaults: userDefaults)

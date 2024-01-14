@@ -193,7 +193,7 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
     }
     
     var persistentState: PlayQueuePersistentState {
-        .init(playQueue: self)
+        .init(tracks: tracks.map {$0.file}, repeatMode: self.repeatMode, shuffleMode: self.shuffleMode)
     }
 }
 

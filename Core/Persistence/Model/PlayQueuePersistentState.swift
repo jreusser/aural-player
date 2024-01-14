@@ -17,10 +17,17 @@ struct PlayQueuePersistentState: Codable {
     let repeatMode: RepeatMode?
     let shuffleMode: ShuffleMode?
     
-    init(playQueue: PlayQueue) {
+    init(tracks: [URL]?, repeatMode: RepeatMode?, shuffleMode: ShuffleMode?) {
         
-        self.tracks = playQueue.tracks.map {$0.file}
-        self.repeatMode = playQueue.repeatMode
-        self.shuffleMode = playQueue.shuffleMode
+        self.tracks = tracks
+        self.repeatMode = repeatMode
+        self.shuffleMode = shuffleMode
+    }
+    
+    init(legacyPlaylistPersistentState: LegacyPlaylistPersistentState?, legacyPlaybackSequencePersistentState: LegacyPlaybackSequencePersistentState?) {
+        
+        self.tracks = legacyPlaylistPersistentState?.tracks?.compactMap {URL(fileURLWithPath: $0)}
+        self.repeatMode = legacyPlaybackSequencePersistentState?.repeatMode
+        self.shuffleMode = legacyPlaybackSequencePersistentState?.shuffleMode
     }
 }

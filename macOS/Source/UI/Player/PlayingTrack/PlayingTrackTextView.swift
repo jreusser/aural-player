@@ -39,8 +39,6 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
         
         set(newColor) {
             
-            var newColor = NSColor.red
-            
             clipView.backgroundColor = newColor
             clipView.enclosingScrollView?.backgroundColor = newColor
             textView.backgroundColor = newColor

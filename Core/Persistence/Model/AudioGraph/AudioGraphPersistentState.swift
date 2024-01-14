@@ -33,7 +33,7 @@ struct AudioGraphPersistentState: Codable {
     let filterUnit: FilterUnitPersistentState?
     let audioUnits: [AudioUnitPersistentState]?
     
-    let soundProfiles: [SoundProfilePersistentState]?
+    let soundProfiles: [SoundProfilePersistentState]? = nil
     
     let audioUnitPresets: AudioUnitPresetsPersistentState?
 }

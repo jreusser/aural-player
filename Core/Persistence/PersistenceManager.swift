@@ -36,34 +36,30 @@ class PersistenceManager {
     
     func save<S>(_ state: S) where S: Codable {
         
-        persistentStateFile.parentDir.createDirectory()
-        
-        do {
-            
-            let data = try encoder.encode(state)
-            
-            if let jsonString = String(data: data, encoding: .utf8) {
-                try jsonString.write(to: persistentStateFile, atomically: true, encoding: .utf8)
-            } else {
-                NSLog("Error saving app state config file: Unable to create String from JSON data.")
-            }
-            
-        } catch let error as NSError {
-           NSLog("Error saving app state config file: %@", error.description)
-        }
+//        persistentStateFile.parentDir.createDirectory()
+//        
+//        do {
+//            
+//            let data = try encoder.encode(state)
+//            
+//            if let jsonString = String(data: data, encoding: .utf8) {
+//                try jsonString.write(to: persistentStateFile, atomically: true, encoding: .utf8)
+//            } else {
+//                NSLog("Error saving app state config file: Unable to create String from JSON data.")
+//            }
+//            
+//        } catch let error as NSError {
+//           NSLog("Error saving app state config file: %@", error.description)
+//        }
     }
     
     func load<S>(type: S.Type) -> S? where S: Codable {
         
         do {
             
-            guard let json = try String(contentsOf: persistentStateFile, encoding: .utf8).data(using: .utf8) else {
-                
-                NSLog("Error loading app state config file.")
-                return nil
-            }
-            
-            return try decoder.decode(S.self, from: json)
+            let jsonString = try String(contentsOf: persistentStateFile, encoding: .utf8)
+            guard let jsonData = jsonString.data(using: .utf8) else {return nil}
+            return try decoder.decode(S.self, from: jsonData)
             
         } catch let error as NSError {
             NSLog("Error loading app state config file: %@", error.description)

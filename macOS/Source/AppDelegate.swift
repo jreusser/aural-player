@@ -61,20 +61,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Presents the application's user interface upon app startup.
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        let base = FilesAndPaths.musicDir
-        let child = base.appendingPathComponent("/Muthu").appendingPathComponent("Sami")
-        
-        let rel = child.path(relativeTo: base)
-        print("Relative path is: \(rel)")
-        
-        if AppSetup.setupRequired {
-            
-            messenger.subscribe(to: .appSetup_completed, handler: postLaunch(appSetup:))
-            appSetupWindowController.showWindow(self)
-            
-        } else {
+//        if AppSetup.setupRequired {
+//            
+//            messenger.subscribe(to: .appSetup_completed, handler: postLaunch(appSetup:))
+//            appSetupWindowController.showWindow(self)
+//            
+//        } else {
             postLaunch(appSetup: nil)
-        }
+//        }
         
         // TODO: Put 'startObserving()' in some kind of protocol ???
         colorSchemesManager.startObserving()

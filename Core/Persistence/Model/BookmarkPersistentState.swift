@@ -28,4 +28,18 @@ struct BookmarkPersistentState: Codable {
         self.startPosition = bookmark.startPosition
         self.endPosition = bookmark.endPosition
     }
+    
+    init(legacyPersistentState: LegacyBookmarkPersistentState) {
+        
+        self.name = legacyPersistentState.name
+        
+        self.file = {
+           
+            guard let path = legacyPersistentState.file else {return nil}
+            return URL(fileURLWithPath: path)
+        }()
+        
+        self.startPosition = legacyPersistentState.startPosition
+        self.endPosition = legacyPersistentState.endPosition
+    }
 }

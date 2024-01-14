@@ -17,6 +17,28 @@ struct FavoritesPersistentState: Codable {
     let favoriteAlbums: [FavoriteGroupPersistentState]?
     let favoriteGenres: [FavoriteGroupPersistentState]?
     let favoriteDecades: [FavoriteGroupPersistentState]?
+    
+    init(legacyPersistentState: [LegacyFavoritePersistentState]?) {
+        
+        self.favoriteTracks = legacyPersistentState?.compactMap {
+            
+            guard let path = $0.file else {return nil}
+            return FavoriteTrackPersistentState(trackFile: URL(fileURLWithPath: path))
+        }
+        
+        self.favoriteArtists = nil
+        self.favoriteAlbums = nil
+        self.favoriteGenres = nil
+        self.favoriteDecades = nil
+    }
+    
+    init(favoriteTracks: [FavoriteTrackPersistentState]?, favoriteArtists: [FavoriteGroupPersistentState]?, favoriteAlbums: [FavoriteGroupPersistentState]?, favoriteGenres: [FavoriteGroupPersistentState]?, favoriteDecades: [FavoriteGroupPersistentState]?) {
+        self.favoriteTracks = favoriteTracks
+        self.favoriteArtists = favoriteArtists
+        self.favoriteAlbums = favoriteAlbums
+        self.favoriteGenres = favoriteGenres
+        self.favoriteDecades = favoriteDecades
+    }
 }
 
 ///
@@ -27,6 +49,10 @@ struct FavoritesPersistentState: Codable {
 struct FavoriteTrackPersistentState: Codable {
     
     var trackFile: URL? = nil
+    
+    init(trackFile: URL?) {
+        self.trackFile = trackFile
+    }
     
     init(favorite: FavoriteTrack) {
         self.trackFile = favorite.track.file
