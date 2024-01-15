@@ -12,6 +12,8 @@ import Foundation
 
 class AppSetup {
     
+    // TODO: Take into account data migrated from v3 - color scheme / font scheme, app mode, window layout, etc
+    
     private init() {}
     
     /// Singleton
