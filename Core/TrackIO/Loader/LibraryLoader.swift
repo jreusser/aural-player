@@ -93,7 +93,7 @@ class LibraryLoader {
      
      The progress argument indicates current progress.
      */
-    private func readFiles(_ files: [URL], isRecursiveCall: Bool = false) {
+    private func readFiles(_ files: [URL]) {
         
         for file in files {
             
@@ -105,7 +105,7 @@ class LibraryLoader {
                 // Directory
                 
                 if let dirContents = resolvedFile.children {
-                    readFiles(dirContents, isRecursiveCall: true)
+                    readFiles(dirContents)
                 }
 
             } else {
