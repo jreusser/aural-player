@@ -17,7 +17,7 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
     @IBOutlet weak var browserView: TuneBrowserOutlineView!
     @IBOutlet weak var lblSummary: NSTextField!
     
-    lazy var fileSystem: FileSystem = FileSystem(observer: self)
+    lazy var fileSystem: FileSystemTree = FileSystemTree(observer: self)
     
     var isAvailable: Bool {
         fileSystem.root == nil

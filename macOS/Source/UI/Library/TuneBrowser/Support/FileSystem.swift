@@ -14,16 +14,16 @@ protocol FileSystemUIObserver {
     func itemsAdded(to item: FileSystemItem, at indices: IndexSet)
 }
 
-class FileSystem: Destroyable {
+class FileSystemTree: Destroyable {
     
     private let metadataLoader: FileSystemLoader = FileSystemLoader(priority: .medium)
     
-    var observer: FileSystemUIObserver!
+    var observer: FileSystemUIObserver?
     var observedItem: FileSystemItem!
     
     lazy var messenger: Messenger = .init(for: self)
     
-    init(observer: FileSystemUIObserver) {
+    init(observer: FileSystemUIObserver? = nil) {
         
         self.observer = observer
         
@@ -150,7 +150,7 @@ class FileSystem: Destroyable {
     }
 }
 
-extension FileSystem: FileSystemLoaderObserver {
+extension FileSystemTree: FileSystemLoaderObserver {
     
     func preTrackLoad() {
     }

@@ -639,6 +639,7 @@
 		3EE7CB9C25E22D5D0075F1DD /* EffectsFontScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EE7CB9B25E22D5D0075F1DD /* EffectsFontScheme.xib */; };
 		3EE7CB9F25E22D6C0075F1DD /* EffectsFontSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE7CB9E25E22D6B0075F1DD /* EffectsFontSchemeViewController.swift */; };
 		3EE9BCB7278A896800DFFDD7 /* ColorSchemeableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE9BCB6278A896800DFFDD7 /* ColorSchemeableBox.swift */; };
+		3EEABD442B56D47E00263797 /* Library+Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEABD432B56D47E00263797 /* Library+Build.swift */; };
 		3EEBC6EC27C14A4B00880DFD /* HorizontalSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEBC6EB27C14A4B00880DFD /* HorizontalSliderCell.swift */; };
 		3EEBC6EE27C16CF700880DFD /* EffectsUnitStateObserverRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEBC6ED27C16CF700880DFD /* EffectsUnitStateObserverRegistry.swift */; };
 		3EEC04132687A8E1004478CE /* MenuBarPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC04122687A8E1004478CE /* MenuBarPlaybackViewController.swift */; };
@@ -1679,6 +1680,7 @@
 		3EE7CB9B25E22D5D0075F1DD /* EffectsFontScheme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectsFontScheme.xib; sourceTree = "<group>"; };
 		3EE7CB9E25E22D6B0075F1DD /* EffectsFontSchemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsFontSchemeViewController.swift; sourceTree = "<group>"; };
 		3EE9BCB6278A896800DFFDD7 /* ColorSchemeableBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeableBox.swift; sourceTree = "<group>"; };
+		3EEABD432B56D47E00263797 /* Library+Build.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Library+Build.swift"; sourceTree = "<group>"; };
 		3EEBC6EB27C14A4B00880DFD /* HorizontalSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSliderCell.swift; sourceTree = "<group>"; };
 		3EEBC6ED27C16CF700880DFD /* EffectsUnitStateObserverRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsUnitStateObserverRegistry.swift; sourceTree = "<group>"; };
 		3EEC04122687A8E1004478CE /* MenuBarPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlaybackViewController.swift; sourceTree = "<group>"; };
@@ -3773,6 +3775,7 @@
 			isa = PBXGroup;
 			children = (
 				3EAE9CBF2836B139004499FE /* Library.swift */,
+				3EEABD432B56D47E00263797 /* Library+Build.swift */,
 				3E798F3628389C10000CFAE8 /* LibraryDelegate.swift */,
 			);
 			path = Library;
@@ -6145,6 +6148,7 @@
 				3E6C131325CEBE8F00BF0D07 /* WindowLayout.swift in Sources */,
 				3E6C122B25CEBDE600BF0D07 /* WindowLayoutPopupMenuController.swift in Sources */,
 				3EFE3A4127864898006F8B8C /* FFmpegMappedMetadata.swift in Sources */,
+				3EEABD442B56D47E00263797 /* Library+Build.swift in Sources */,
 				3EFE39DB27864897006F8B8C /* SoundProfilePersistentState.swift in Sources */,
 				3ED23857282063330048CF8E /* FilterUnitViewController+TableViewDelegate.swift in Sources */,
 				3EFE399B27864897006F8B8C /* NSPointPersistentState.swift in Sources */,

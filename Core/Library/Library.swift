@@ -60,6 +60,8 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
         sourceFolders.remove(url)
     }
     
+    var fileSystemTrees: OrderedDictionary<URL, FileSystemTree> = OrderedDictionary()
+    
     /// A map to quickly look up playlists by (absolute) file path (used when adding playlists, to prevent duplicates)
     /// // TODO:
     var _playlists: OrderedDictionary<URL, ImportedPlaylist> = OrderedDictionary()
@@ -103,7 +105,7 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     }
     
     private lazy var loader: LibraryLoader = LibraryLoader()
-    private lazy var messenger = Messenger(for: self)
+    lazy var messenger = Messenger(for: self)
     
     var buildProgress: LibraryBuildProgress {
         
@@ -137,12 +139,6 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
         loader.loadMetadata(ofType: .primary, from: files) {[weak self] in
             self?._isBeingModified.setValue(false)
         }
-    }
-    
-    func buildLibrary() {
-        
-        removeAllTracks()
-        loadTracks(from: Array(sourceFolders), atPosition: nil)
     }
     
     override func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet {
