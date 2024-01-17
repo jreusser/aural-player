@@ -163,9 +163,11 @@ class LibraryDelegate: LibraryDelegateProtocol {
         
         // TODO: Check persistent state to see if the Library window is shown.
         // If shown, immediate = true.
-        let appMode = appPersistentState.ui?.appMode ?? .modular
-        lazy var displayedWindowIDs: [WindowID] = appPersistentState.ui?.windowLayout?.systemLayout?.displayedWindows?.compactMap {$0.id} ?? []
+        let appMode = appModeManager.currentMode ?? .modular
         
+        guard appMode.equalsOneOf(.modular, .unified) else {return}
+        
+        lazy var displayedWindowIDs: [WindowID] = appPersistentState.ui?.windowLayout?.systemLayout?.displayedWindows?.compactMap {$0.id} ?? []
         let libraryShown = appMode == .unified || ((appMode == .modular) && displayedWindowIDs.contains(.library))
         print("\nLibrary Shown ? \(libraryShown), AppMode: \(appMode), displayedWindowIDs: \(displayedWindowIDs)")
         

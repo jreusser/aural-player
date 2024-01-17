@@ -12,12 +12,13 @@ import Cocoa
 class ControlBarSeekSliderView: SeekSliderView {
     
     private let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
+    private let generalUIState: PlayerUIState = playerUIState
     
     var seekPositionDisplayType: TrackTimeDisplayType = .elapsed {
         
         didSet {
             
-            uiState.seekPositionDisplayType = seekPositionDisplayType
+            generalUIState.trackTimeDisplayType = seekPositionDisplayType
             updateSeekPositionLabels(player.seekPosition)
         }
     }
@@ -45,7 +46,7 @@ class ControlBarSeekSliderView: SeekSliderView {
         
         super.awakeFromNib()
         
-        self.seekPositionDisplayType = uiState.seekPositionDisplayType
+        self.seekPositionDisplayType = generalUIState.trackTimeDisplayType
         applyTheme()
     }
     
@@ -63,13 +64,13 @@ class ControlBarSeekSliderView: SeekSliderView {
     
     override func showSeekPositionLabels() {
         
-//        lblTrackTime.showIf(showSeekPosition)
+        lblTrackTime.showIf(showSeekPosition)
         setSeekTimerState(player.state == .playing)
     }
     
     override func hideSeekPositionLabels() {
         
-//        lblTrackTime.hide()
+        lblTrackTime.hide()
         setSeekTimerState(false)
     }
     

@@ -167,13 +167,6 @@ class CompactPlayerViewController: NSViewController {
     
     private func updateTrackInfo() {
         
-//        if let theTrack = player.playingTrack {
-//            trackInfoView.trackInfo = PlayingTrackInfo(track: theTrack, playingChapterTitle: player.playingChapter?.chapter.title)
-//            
-//        } else {
-//            trackInfoView.trackInfo = nil
-//        }
-        
         textView.scrollingEnabled = true
         
         if let theTrack = player.playingTrack {
@@ -183,30 +176,13 @@ class CompactPlayerViewController: NSViewController {
             textView.clear()
         }
         
-//        lblTrackTime.show()
-//        lblTrackTime.stringValue = "FUCK !!! MUTHU"
-//        
-//        print("LBL: \(lblTrackTime.isShown), \(lblTrackTime.frame), \(lblTrackTime.stringValue)")
-        
+        lblTrackTime.showIf(player.state.isPlayingOrPaused)
         imgArt.image = player.playingTrack?.art?.image ?? defaultArtwork
-//        imgArt.showIf(imgArt.image != nil && uiState.showAlbumArt)
-        
-//        infoBox.bringToFront()
-        
-//        if settingsBox.isShown {
-//            settingsBox.bringToFront()
-//        }
-//        
-//        if presentationModesBox.isShown {
-//            presentationModesBox.bringToFront()
-//        }
     }
     
     // MARK: Message handling
 
     func trackTransitioned(_ notification: TrackTransitionNotification) {
-        
-//        layoutTextView()
         updateTrackInfo()
     }
     
@@ -214,11 +190,6 @@ class CompactPlayerViewController: NSViewController {
     func trackInfoUpdated(_ notification: TrackInfoUpdatedNotification) {
         
         if notification.updatedTrack == player.playingTrack {
-            
-//            if notification.updatedFields.contains(.duration) {
-//                layoutTextView()
-//            }
-            
             updateTrackInfo()
         }
     }

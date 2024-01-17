@@ -19,7 +19,6 @@ class ControlBarPlayerUIState {
     var trackInfoScrollingEnabled: Bool
     
     var showSeekPosition: Bool
-    var seekPositionDisplayType: TrackTimeDisplayType
     
     init(persistentState: ControlBarPlayerUIPersistentState?) {
         
@@ -29,7 +28,6 @@ class ControlBarPlayerUIState {
         trackInfoScrollingEnabled = persistentState?.trackInfoScrollingEnabled ?? true
         
         showSeekPosition = persistentState?.showSeekPosition ?? true
-        seekPositionDisplayType = persistentState?.seekPositionDisplayType ?? .elapsed
     }
     
     var persistentState: ControlBarPlayerUIPersistentState {
@@ -43,7 +41,6 @@ class ControlBarPlayerUIState {
         return ControlBarPlayerUIPersistentState(windowFrame: windowFrame,
                                                  cornerRadius: cornerRadius,
                                                  trackInfoScrollingEnabled: trackInfoScrollingEnabled,
-                                                 showSeekPosition: showSeekPosition,
-                                                 seekPositionDisplayType: seekPositionDisplayType)
+                                                 showSeekPosition: showSeekPosition)
     }
 }

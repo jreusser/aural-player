@@ -96,6 +96,17 @@ class CompactPlayerWindowController: NSWindowController {
         appModeManager.presentMode(.menuBar)
     }
     
+    @IBAction func controlBarModeAction(_ sender: AnyObject) {
+        
+        transferViewState()
+        appModeManager.presentMode(.controlBar)
+    }
+    
+    // Minimizes the window (and any child windows)
+    @IBAction func minimizeAction(_ sender: AnyObject) {
+        theWindow.miniaturize(self)
+    }
+    
     @IBAction func quitAction(_ sender: AnyObject) {
         
         transferViewState()

@@ -25,7 +25,5 @@ struct ControlBarPlayerUIPersistentState: Codable {
     let cornerRadius: CGFloat?
     
     let trackInfoScrollingEnabled: Bool?
-    
     let showSeekPosition: Bool?
-    let seekPositionDisplayType: TrackTimeDisplayType?
 }
