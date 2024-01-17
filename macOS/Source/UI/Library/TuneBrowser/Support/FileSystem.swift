@@ -28,6 +28,14 @@ class FileSystemTree: Destroyable {
         itemCache[url] != nil
     }
     
+    func item(forURL url: URL) -> FileSystemItem? {
+        itemCache[url]
+    }
+    
+    func updateCache(withItem item: FileSystemItem) {
+        itemCache[item.url] = item
+    }
+    
     init?(sourceFolderURL: URL) {
         
         guard sourceFolderURL.exists else {return nil}

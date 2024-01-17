@@ -49,6 +49,10 @@ class FileSystemFolderItem: FileSystemItem {
     
     func sortChildren(by sortField: FileSystemSortField, ascending: Bool) {
         
+        if sortField == .name {
+            children.sortValues(by: ascending ? {$0.name < $1.name} : {$0.name > $1.name})
+        }
+        
 //        switch sortField {
 //
 //        case .name:

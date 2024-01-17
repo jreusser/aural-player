@@ -36,21 +36,21 @@ class PersistenceManager {
     
     func save<S>(_ state: S) where S: Codable {
         
-//        persistentStateFile.parentDir.createDirectory()
-//        
-//        do {
-//            
-//            let data = try encoder.encode(state)
-//            
-//            if let jsonString = String(data: data, encoding: .utf8) {
-//                try jsonString.write(to: persistentStateFile, atomically: true, encoding: .utf8)
-//            } else {
-//                NSLog("Error saving app state config file: Unable to create String from JSON data.")
-//            }
-//            
-//        } catch let error as NSError {
-//           NSLog("Error saving app state config file: %@", error.description)
-//        }
+        persistentStateFile.parentDir.createDirectory()
+        
+        do {
+            
+            let data = try encoder.encode(state)
+            
+            if let jsonString = String(data: data, encoding: .utf8) {
+                try jsonString.write(to: persistentStateFile, atomically: true, encoding: .utf8)
+            } else {
+                NSLog("Error saving app state config file: Unable to create String from JSON data.")
+            }
+            
+        } catch let error as NSError {
+           NSLog("Error saving app state config file: %@", error.description)
+        }
     }
     
     func load<S>(type: S.Type) -> S? where S: Codable {

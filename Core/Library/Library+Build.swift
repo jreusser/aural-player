@@ -18,6 +18,9 @@ fileprivate var filesRead: AtomicIntCounter = .init()
 fileprivate var playlistsRead: AtomicIntCounter = .init()
 fileprivate var startedReadingFiles: Bool = false
 
+fileprivate var tracksArr: [Track] = []
+fileprivate var playlistsArr: [ImportedPlaylist] = []
+
 fileprivate var metadata: ConcurrentMap<URL, FileMetadata> = ConcurrentMap()
 fileprivate var fileSystemPlaylists: ConcurrentMap<URL, FileSystemPlaylist> = ConcurrentMap()
 fileprivate var fsItems: OrderedDictionary<URL, FileSystemItem> = OrderedDictionary()
@@ -42,7 +45,7 @@ fileprivate var chosenQueue: OperationQueue!
 
 extension Library {
     
-    var progress: LibraryBuildStats? {
+    var buildStats: LibraryBuildStats? {
         
         startedReadingFiles ?
             .init(filesToRead: totalFiles, playlistsToRead: totalPlaylists, filesRead: filesRead.value, playlistsRead: playlistsRead.value) :
@@ -51,67 +54,91 @@ extension Library {
     
     func buildLibrary(immediate: Bool) {
         
+        let start = Date()
+        
         chosenQueue = immediate ? highPriorityQueue : lowPriorityQueue
         
-        _isBeingModified.setValue(true)
+        print("Q: opCount: \(chosenQueue.maxConcurrentOperationCount), qOS: \(chosenQueue.qualityOfService)")
         
-        removeAllTracks()
-        _playlists.removeAll()
-        fileSystemTrees.removeAll()
-        
-        for folder in sourceFolders {
-            buildTree(forSourceFolder: folder)
-        }
-        
-        chosenQueue.waitUntilAllOperationsAreFinished()
-        
-        for playlist in self.playlists {
+        DispatchQueue.global(qos: immediate ? .userInitiated : .utility).async {
             
-            guard let fsPlaylist = fileSystemPlaylists[playlist.file] else {continue}
-            var tracksToAdd: [Track] = []
-            var trackItemsToAdd: [FileSystemTrackItem] = []
+            self._isBeingModified.setValue(true)
             
-            for file in fsPlaylist.tracks {
+            self.removeAllTracks()
+            self._playlists.removeAll()
+            self.fileSystemTrees.removeAll()
+            
+            self.messenger.publish(.library_startedReadingFileSystem)
+            
+            for folder in self.sourceFolders {
+                self.buildTree(forSourceFolder: folder)
+            }
+            
+            self.fileSystemTrees.values.first?.root.sortChildren(by: .name, ascending: true)
+            
+            startedReadingFiles = true
+            self.messenger.publish(.library_startedAddingTracks)
+            
+            chosenQueue.waitUntilAllOperationsAreFinished()
+            
+            self.addTracks(tracksArr)
+            self.addPlaylists(playlistsArr)
+            
+            for playlist in self.playlists {
                 
-                let trackForFile: Track
+                guard let fsPlaylist = fileSystemPlaylists[playlist.file] else {continue}
                 
-                if let track = self._tracks[file] {
+                var tracksToAdd: [Track] = []
+                var trackItemsToAdd: [FileSystemTrackItem] = []
+                
+                for file in fsPlaylist.tracks {
                     
-                    trackForFile = track
-                    tracksToAdd.append(track)
+                    let trackForFile: Track
                     
-                } else {
+                    if let track = self._tracks[file] {
+                        
+                        trackForFile = track
+                        tracksToAdd.append(track)
+                        
+                    } else {
+                        
+                        let newTrack = Track(file)
+                        trackForFile = newTrack
+                        tracksToAdd.append(newTrack)
+                        
+                        chosenQueue.addOperation {
+                            newTrack.setPrimaryMetadata(from: self.metadata(forFile: file))
+                        }
+                    }
                     
-                    let newTrack = Track(file)
-                    trackForFile = newTrack
-                    tracksToAdd.append(newTrack)
-                    
-                    chosenQueue.addOperation {
-                        newTrack.setPrimaryMetadata(from: self.metadata(forFile: file))
+                    if let trackItem = fsItems[file] as? FileSystemTrackItem {
+                        trackItemsToAdd.append(trackItem)
+                        
+                    } else {
+                        
+                        let newTrackItem = FileSystemTrackItem(track: trackForFile)
+                        trackItemsToAdd.append(newTrackItem)
                     }
                 }
                 
-                if let trackItem = fsItems[file] as? FileSystemTrackItem {
-                    trackItemsToAdd.append(trackItem)
-                    
-                } else {
-                    
-                    let newTrackItem = FileSystemTrackItem(track: trackForFile)
-                    trackItemsToAdd.append(newTrackItem)
-                }
-            }
-            
-            playlist.addTracks(tracksToAdd)
-            
-            if let fsItemForPlaylist = fsItems[playlist.file] as? FileSystemPlaylistItem {
+                playlist.addTracks(tracksToAdd)
                 
-                for trackItem in trackItemsToAdd {
-                    fsItemForPlaylist.addChild(trackItem)
+                if let fsItemForPlaylist = fsItems[playlist.file] as? FileSystemPlaylistItem {
+                    
+                    for trackItem in trackItemsToAdd {
+                        fsItemForPlaylist.addChild(trackItem)
+                    }
                 }
             }
+            
+            chosenQueue.waitUntilAllOperationsAreFinished()
+            
+            self._isBeingModified.setValue(false)
+            self.messenger.publish(.library_doneAddingTracks)
+            
+            let end = Date()
+            print("\nTime taken to build Library: \(end.timeIntervalSince(start)) secs.")
         }
-        
-        chosenQueue.waitUntilAllOperationsAreFinished()
     }
     
     fileprivate func buildTree(forSourceFolder folder: URL) {
@@ -119,45 +146,71 @@ extension Library {
         guard let tree = FileSystemTree(sourceFolderURL: folder) else {return}
         fileSystemTrees[folder] = tree
         
-        buildFolder(tree.root)
+        buildFolder(tree.root, inTree: tree)
     }
     
-    fileprivate func buildFolder(_ folder: FileSystemFolderItem) {
+    fileprivate func buildFolder(_ folder: FileSystemFolderItem, inTree tree: FileSystemTree) {
         
-        guard let children = folder.url.children else {return}
-        let supportedChildren = children.filter {$0.isDirectory || $0.isSupportedFile}
-        
-        for child in supportedChildren {
+        for child in folder.url.children ?? [] {
             
             if child.isDirectory {
                 
                 let childFolder = FileSystemFolderItem(url: child)
+                tree.updateCache(withItem: childFolder)
+                
                 folder.addChild(childFolder)
                 
-                buildFolder(childFolder)
+                buildFolder(childFolder, inTree: tree)
                 
             } else if child.isSupportedAudioFile {
-                readAudioFile(child, under: folder)
+                
+                totalFiles.increment()
+                readAudioFile(child, under: folder, inTree: tree)
                 
             } else if child.isSupportedPlaylistFile {
-                readPlaylistFile(child, under: folder)
+                
+                totalPlaylists.increment()
+                readPlaylistFile(child, under: folder, inTree: tree)
             }
         }
     }
     
-    fileprivate func readAudioFile(_ file: URL, under folder: FileSystemFolderItem) {
+    fileprivate func readAudioFile(_ file: URL, under folder: FileSystemFolderItem, inTree tree: FileSystemTree) {
         
         let newTrack = Track(file)
+        tracksArr.append(newTrack)
+        
         let childTrack = FileSystemTrackItem(track: newTrack)
+        tree.updateCache(withItem: childTrack)
+        
         folder.addChild(childTrack)
         fsItems[file] = childTrack
-        
-        addTracks([newTrack])
         
         chosenQueue.addOperation {
             
             newTrack.setPrimaryMetadata(from: self.metadata(forFile: file))
             filesRead.increment()
+        }
+    }
+    
+    fileprivate func readPlaylistFile(_ file: URL, under folder: FileSystemFolderItem, inTree tree: FileSystemTree) {
+        
+        let newPlaylist = ImportedPlaylist(file: file, tracks: [])
+        playlistsArr.append(newPlaylist)
+        
+        let childPlaylist = FileSystemPlaylistItem(playlist: newPlaylist)
+        tree.updateCache(withItem: childPlaylist)
+        
+        folder.addChild(childPlaylist)
+        fsItems[file] = childPlaylist
+        
+        chosenQueue.addOperation {
+            
+            if let loadedPlaylist = PlaylistIO.loadPlaylist(fromFile: file) {
+                fileSystemPlaylists[file] = loadedPlaylist
+            }
+            
+            playlistsRead.increment()
         }
     }
     
@@ -172,25 +225,5 @@ extension Library {
         }
         
         return fileMetadata
-    }
-    
-    fileprivate func readPlaylistFile(_ file: URL, under folder: FileSystemFolderItem) {
-        
-        let newPlaylist = ImportedPlaylist(file: file, tracks: [])
-        let childPlaylist = FileSystemPlaylistItem(playlist: newPlaylist)
-        folder.addChild(childPlaylist)
-        fsItems[file] = childPlaylist
-        
-        addPlaylists([newPlaylist])
-        
-        chosenQueue.addOperation {
-            
-            if let loadedPlaylist = PlaylistIO.loadPlaylist(fromFile: file) {
-                fileSystemPlaylists[file] = loadedPlaylist
-            }
-            
-            playlistsRead.increment()
-            print("PlaylistsRead: \(playlistsRead.value)")
-        }
     }
 }

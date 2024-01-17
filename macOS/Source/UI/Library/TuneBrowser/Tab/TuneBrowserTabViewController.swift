@@ -17,30 +17,30 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
     @IBOutlet weak var browserView: TuneBrowserOutlineView!
     @IBOutlet weak var lblSummary: NSTextField!
     
-    lazy var fileSystem: FileSystemTree = FileSystemTree(observer: self)
+    lazy var rootFolder: FileSystemFolderItem = library.fileSystemTrees.values.first!.root
     
     var isAvailable: Bool {
-        fileSystem.root == nil
+//        fileSystem.root == nil
+        false
     }
     
-    var rootURL: URL? {
-        fileSystem.rootURL
+    var rootURL: URL {
+        rootFolder.url
     }
     
     func reset() {
         
-        fileSystem.root = nil
+//        fileSystem.root = nil
         browserView.reloadData()
     }
     
     func setRoot(_ rootURL: URL) {
         
-        if fileSystem.rootURL == rootURL {return}
-
-        fileSystem.rootURL = rootURL
+        if self.rootURL == rootURL {return}
         
-        if fileSystem.root?.childrenLoaded.value ?? false {
+        if let folder = library.fileSystemTrees.values.first!.item(forURL: rootURL) as? FileSystemFolderItem {
             
+            self.rootFolder = folder
             browserView.reloadData()
             updateSummary()
         }
@@ -99,7 +99,7 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         
         super.destroy()
         
-        fileSystem.destroy()
+//        fileSystem.destroy()
         messenger.unsubscribeFromAll()
     }
     
@@ -143,7 +143,7 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         // is nil. If nil, go ahead and insert, otherwise skip the update.
         
         browserView.insertItems(at: indices,
-                                inParent: item.url == fileSystem.rootURL ? nil : item)
+                                inParent: item.url == rootURL ? nil : item)
         
         updateSummary()
     }
@@ -154,22 +154,19 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         var numTracks = 0
         var numPlaylists = 0
         
-        if let root = fileSystem.root {
+        for child in rootFolder.children.values {
             
-            for child in root.children.values {
+            if child.isTrack {
+                numTracks.increment()
                 
-                if child.isTrack {
-                    numTracks.increment()
-                    
-                } else if child.isDirectory {
-                    numFolders.increment()
-                    
-                } else if child.isPlaylist {
-                    numPlaylists.increment()
-                }
+            } else if child.isDirectory {
+                numFolders.increment()
+                
+            } else if child.isPlaylist {
+                numPlaylists.increment()
             }
         }
-
+        
         let foldersString = numFolders > 0 ? "\(numFolders) \(numFolders == 1 ? "folder" : "folders")" : ""
         let tracksString = numTracks > 0 ? "\(numTracks) \(numTracks == 1 ? "track" : "tracks")" : ""
         let playlistsString = numPlaylists > 0 ? "\(numPlaylists) \(numPlaylists == 1 ? "playlist" : "playlists")" : ""
@@ -185,30 +182,26 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         guard let item = browserView.item(atRow: browserView.selectedRow),
               let fsItem = item as? FileSystemItem else {return}
         
-        if fsItem.isTrack {
+        if fsItem.isTrack, let trackItem = fsItem as? FileSystemTrackItem {
+            messenger.publish(EnqueueAndPlayNowCommand(tracks: [trackItem.track], clearPlayQueue: false))
             
-            if let track = fsItem.toTrack() {
-                messenger.publish(EnqueueAndPlayNowCommand(tracks: [track], clearPlayQueue: false))
-            }
+        } else if fsItem.isPlaylist, let playlistItem = fsItem as? FileSystemPlaylistItem {
+            messenger.publish(EnqueueAndPlayNowCommand(tracks: playlistItem.playlist.tracks, clearPlayQueue: false))
             
-        } else if fsItem.isPlaylist {
-            
-            let tracks = fsItem.children.values.compactMap {$0.toTrack()}
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: tracks, clearPlayQueue: false))
-            
-        } else {
+        } else if let folderItem = fsItem as? FileSystemFolderItem {
             
             // Folder
-            openFolder(fsItem)
+            openFolder(folderItem)
         }
     }
     
-    private func showURL(_ url: URL, updatePathWidget: Bool = true) {
+    private func openFolder(_ item: FileSystemFolderItem, updatePathWidget: Bool = true) {
         
-        if let currentURL = fileSystem.rootURL {
-            messenger.publish(.tuneBrowser_notePreviousLocation, payload: currentURL)
-        }
+        let currentURL = rootFolder.url
+        messenger.publish(.tuneBrowser_notePreviousLocation, payload: currentURL)
         
+        self.rootFolder = item
+        let url = rootFolder.url
         let path = url.path
         
         if updatePathWidget {
@@ -220,33 +213,8 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
             }
         }
         
-        let fsRoot = FileSystemItem.create(forURL: url)
-        
-        // TODO: WARNING - If the root's children are partially loaded, we
-        // may have duplicates because we will reload and also receive
-        // notifications.
-        
-        // If the children have already been loaded, just reload the browser.
-        if fsRoot.childrenLoaded.value {
-            
-            fileSystem.root = fsRoot
-            browserView.reloadData()
-            updateSummary()
-            
-        } else {
-            
-            reset()
-            
-            // Children not loaded yet, just set the root. No need to reload
-            // the browser coz we will receive notifications.
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.fileSystem.root = fsRoot
-            }
-        }
-    }
-    
-    private func openFolder(_ item: FileSystemItem) {
-        showURL(item.url, updatePathWidget: true)
+        browserView.reloadData()
+        updateSummary()
     }
     
     @IBAction func playNowAction(_ sender: Any) {

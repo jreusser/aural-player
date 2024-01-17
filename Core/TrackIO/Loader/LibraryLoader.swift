@@ -22,9 +22,9 @@ class LibraryLoader {
     var playlistsRead: AtomicIntCounter = .init()
     var startedReadingFiles: Bool = false
     
-    var progress: LibraryBuildStats? {
-        startedReadingFiles ? .init(filesToRead: totalFiles, playlistsToRead: totalPlaylists, filesRead: filesRead.value, playlistsRead: playlistsRead.value) : nil
-    }
+//    var progress: LibraryBuildStats? {
+//        startedReadingFiles ? .init(filesToRead: totalFiles, playlistsToRead: totalPlaylists, filesRead: filesRead.value, playlistsRead: playlistsRead.value) : nil
+//    }
     
     var metadata: ConcurrentMap<URL, FileMetadata> = ConcurrentMap()
     var playlists: ConcurrentMap<URL, FileSystemPlaylist> = ConcurrentMap()

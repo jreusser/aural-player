@@ -38,7 +38,7 @@ class LibraryBuildProgressWindowController: NSWindowController {
     // MARK: Message handling -----------------------------------------------------------
     
     private func updateBuildProgress() {
-//        buildProgressSpinner.percentage = libraryDelegate.buildProgress
+        buildProgressSpinner.percentage = libraryDelegate.buildProgress.buildStats?.progressPercentage ?? 0
     }
     
     private func startedAddingTracks() {

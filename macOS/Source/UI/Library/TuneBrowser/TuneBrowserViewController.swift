@@ -81,7 +81,7 @@ class TuneBrowserViewController: NSViewController {
         respondToSidebarSelectionChange = true
 
         pathControlWidget.url = nil
-        showURL(FilesAndPaths.musicDir)
+//        showURL(FilesAndPaths.musicDir)
     }
     
     private func onAppExit() {
@@ -131,17 +131,16 @@ class TuneBrowserViewController: NSViewController {
     
     @IBAction func pathControlAction(_ sender: Any) {
         
-        if let item = pathControlWidget.clickedPathItem, let url = item.url, url != pathControlWidget.url {
-            
-            // Remove /Volumes from URL before setting fileSystem.rootURL
-            var path = url.path
-            
-            if let volumeName = SystemUtils.primaryVolumeName, path.hasPrefix("/Volumes/\(volumeName)") {
-                path = path.replacingOccurrences(of: "/Volumes/\(volumeName)", with: "")
-            }
-            
-            showURL(URL(fileURLWithPath: path))
+        guard let item = pathControlWidget.clickedPathItem, let url = item.url, url != pathControlWidget.url else {return}
+        
+        // Remove /Volumes from URL before setting fileSystem.rootURL
+        var path = url.path
+        
+        if let volumeName = SystemUtils.primaryVolumeName, path.hasPrefix("/Volumes/\(volumeName)") {
+            path = path.replacingOccurrences(of: "/Volumes/\(volumeName)", with: "")
         }
+        
+        showURL(URL(fileURLWithPath: path))
     }
     
     private var respondToSidebarSelectionChange: Bool = true

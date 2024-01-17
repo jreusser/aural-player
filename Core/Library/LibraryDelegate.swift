@@ -161,7 +161,7 @@ class LibraryDelegate: LibraryDelegateProtocol {
     
     func appLaunched(_ filesToOpen: [URL]) {
         
-        library.buildLibrary()
+        library.buildLibrary(immediate: true)
         // TODO: Monitor a folder ? 'My Music' ???
     }
     

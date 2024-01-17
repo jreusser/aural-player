@@ -19,7 +19,7 @@ protocol LibraryProtocol: TrackListProtocol {
     
     func removeSourceFolder(url: URL)
     
-    func buildLibrary()
+    func buildLibrary(immediate: Bool)
     
     var buildProgress: LibraryBuildProgress {get}
     
@@ -104,7 +104,6 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
                    withGroupings: [ArtistsGrouping(), AlbumsGrouping(), GenresGrouping(), DecadesGrouping()])
     }
     
-    private lazy var loader: LibraryLoader = LibraryLoader()
     lazy var messenger = Messenger(for: self)
     
     var buildProgress: LibraryBuildProgress {
@@ -113,7 +112,8 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
             return .init(isBeingModified: false, startedReadingFiles: false, buildStats: nil)
         }
         
-        return .init(isBeingModified: true, startedReadingFiles: loader.startedReadingFiles, buildStats: loader.progress)
+        let buildStats = self.buildStats
+        return .init(isBeingModified: true, startedReadingFiles: buildStats != nil, buildStats: buildStats)
     }
     
     var artistsGrouping: ArtistsGrouping {
@@ -136,9 +136,9 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
         
         _isBeingModified.setValue(true)
         
-        loader.loadMetadata(ofType: .primary, from: files) {[weak self] in
-            self?._isBeingModified.setValue(false)
-        }
+//        loader.loadMetadata(ofType: .primary, from: files) {[weak self] in
+//            self?._isBeingModified.setValue(false)
+//        }
     }
     
     override func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet {

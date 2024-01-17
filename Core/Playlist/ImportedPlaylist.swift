@@ -34,8 +34,6 @@ class ImportedPlaylist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoa
         
         super.init()
         addTracks(tracks)
-        
-        print("Read playlist: '\(name)' with \(self.size) tracks")
     }
     
     func loadTracks(from files: [URL], atPosition position: Int?) {}

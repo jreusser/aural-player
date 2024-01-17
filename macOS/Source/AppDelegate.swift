@@ -49,6 +49,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         SystemUtils.openFilesLimit = 10000
         configureLogging()
         
+//        copyOverV3State()
+    }
+    
+    private func copyOverV3State() {
+        
         let src = URL(fileURLWithPath: "/Users/kven/Music/aural/state.json")
         let dest = URL(fileURLWithPath: "/Users/kven/Music/aural4/state.json")
         
@@ -111,7 +116,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 // Tell app components that the app has finished launching, and pass along any launch parameters (set of files to open)
                 self.messenger.publish(.application_launched, payload: self.filesToOpen)
                 
-                self.beginPeriodicPersistence() 
+//                self.beginPeriodicPersistence() 
             }
         }
     }
@@ -127,7 +132,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         _ = libraryDelegate
         _ = favoritesDelegate
         _ = mediaKeyHandler
-        libraryMonitor.startMonitoring()
+//        libraryMonitor.startMonitoring()
         
         DispatchQueue.global(qos: .background).async {
             self.cleanUpLegacyFolders()

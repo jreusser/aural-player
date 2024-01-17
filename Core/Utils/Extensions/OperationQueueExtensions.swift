@@ -16,5 +16,29 @@ extension OperationQueue {
         self.init()
         self.maxConcurrentOperationCount = opCount
         self.underlyingQueue = .global(qos: qos)
+        
+        switch qos {
+            
+        case .background:
+            self.qualityOfService = .background
+            
+        case .utility:
+            self.qualityOfService = .utility
+            
+        case .default:
+            self.qualityOfService = .default
+            
+        case .userInitiated:
+            self.qualityOfService = .userInitiated
+            
+        case .userInteractive:
+            self.qualityOfService = .userInteractive
+            
+        case .unspecified:
+            self.qualityOfService = .background
+            
+        @unknown default:
+            self.qualityOfService = .background
+        }
     }
 }

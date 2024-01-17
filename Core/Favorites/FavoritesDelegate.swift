@@ -126,7 +126,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
                 let track = Track(trackFile, fileMetadata: FileMetadata(primary: metadata))
                 self.favoriteTracks[trackFile] = FavoriteTrack(track: track)
                 
-                print("\nRead fav track: \(track.file.path)")
+//                print("\nRead fav track: \(track.file.path)")
             }
             
             for favArtist in state.favoriteArtists?.compactMap({$0.groupName}) ?? [] {

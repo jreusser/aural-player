@@ -170,7 +170,7 @@ extension URL {
         do {
             // Retrieve all files/subfolders within this folder
             return try fileManager.contentsOfDirectory(at: self, includingPropertiesForKeys: [],
-                                                                 options: FileManager.DirectoryEnumerationOptions())
+                                                       options: .skipsHiddenFiles)
             
         } catch let error as NSError {
             
