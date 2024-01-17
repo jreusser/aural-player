@@ -9,6 +9,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SoundAdjustmentPreferencesViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="Smj-Tr-0h3" id="ZZh-L4-BkA"/>
+                <outlet property="volumeDeltaField" destination="3CD-hy-7wN" id="zEv-nx-v0J"/>
+                <outlet property="volumeDeltaStepper" destination="aNR-Uh-ehd" id="US2-XH-anx"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -17,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="676" height="472"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAB-Jh-UvA" userLabel="Volume Increment Label">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAB-Jh-UvA" userLabel="Volume Increment Label">
                     <rect key="frame" x="30" y="363" width="126" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Volume  +/-" id="LnH-jQ-AsS">
@@ -43,8 +45,11 @@
                     <rect key="frame" x="243" y="359" width="15" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" focusRingType="none" alignment="left" minValue="1" maxValue="25" doubleValue="5" id="Q9g-er-EvW"/>
+                    <connections>
+                        <action selector="volumeDeltaAction:" target="-2" id="yKI-9g-Z1P"/>
+                    </connections>
                 </stepper>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="37E-pb-s9a" userLabel="Pan Delta label">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="37E-pb-s9a" userLabel="Pan Delta label">
                     <rect key="frame" x="30" y="334" width="138" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Pan  +/-" id="XDU-Wx-tmx">
@@ -89,7 +94,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" focusRingType="none" alignment="left" increment="5" minValue="5" maxValue="2400" doubleValue="100" id="cNM-7v-5Ao"/>
                 </stepper>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sVx-TN-ze4" userLabel="Volume Increment Label">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sVx-TN-ze4" userLabel="Volume Increment Label">
                     <rect key="frame" x="30" y="231" width="86" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Pitch  +/-" id="AkO-9y-Aa4">
@@ -98,7 +103,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eS5-If-NwQ" userLabel="Volume Increment Label">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eS5-If-NwQ" userLabel="Volume Increment Label">
                     <rect key="frame" x="30" y="200" width="106" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Rate  +/-" id="aSs-xz-5Op">
@@ -125,7 +130,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" focusRingType="none" alignment="left" increment="0.01" minValue="0.01" maxValue="1" doubleValue="0.050000000000000003" id="Wos-eB-dC6"/>
                 </stepper>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aPz-wS-pIj" userLabel="Volume Increment Label">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aPz-wS-pIj" userLabel="Volume Increment Label">
                     <rect key="frame" x="30" y="262" width="106" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="EQ gain  +/-" id="HqS-B1-NZ1">

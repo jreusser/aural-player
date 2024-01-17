@@ -87,10 +87,10 @@ class SoundAdjustmentPreferencesViewController: NSViewController, PreferencesVie
         let soundPrefs = preferences.soundPreferences
 
         soundPrefs.volumeDelta = volumeDeltaStepper.floatValue * ValueConversions.volume_UIToAudioGraph
-        soundPrefs.panDelta = panDeltaStepper.floatValue * ValueConversions.pan_UIToAudioGraph
-
-        soundPrefs.eqDelta = eqDeltaStepper.floatValue
-        soundPrefs.pitchDelta = pitchDeltaStepper.integerValue
-        soundPrefs.timeDelta = timeDeltaStepper.floatValue
+//        soundPrefs.panDelta = panDeltaStepper.floatValue * ValueConversions.pan_UIToAudioGraph
+//
+//        soundPrefs.eqDelta = eqDeltaStepper.floatValue
+//        soundPrefs.pitchDelta = pitchDeltaStepper.integerValue
+//        soundPrefs.timeDelta = timeDeltaStepper.floatValue
     }
 }

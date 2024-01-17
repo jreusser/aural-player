@@ -31,11 +31,13 @@ class CompactPlayerWindowController: NSWindowController {
     
     private var snappingWindow: SnappingWindow!
     
-    private lazy var messenger = Messenger(for: self)
+    lazy var messenger = Messenger(for: self)
     
     private let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
     
     private var appMovingWindow: Bool = false
+    
+    var eventMonitor: EventMonitor! = EventMonitor()
     
     override func windowDidLoad() {
         
@@ -62,6 +64,8 @@ class CompactPlayerWindowController: NSWindowController {
         
         colorSchemesManager.registerObservers([btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem],
                                               forProperty: \.buttonColor)
+        
+        setUpEventHandling()
     }
     
     func applyTheme() {
@@ -86,6 +90,10 @@ class CompactPlayerWindowController: NSWindowController {
         
         close()
         viewController.destroy()
+        
+        eventMonitor.stopMonitoring()
+        eventMonitor = nil
+        
         messenger.unsubscribeFromAll()
     }
     

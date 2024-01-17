@@ -485,6 +485,7 @@
 		3EA6C66E2AD6AFEC00B75166 /* libavutil.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EA6C6612AD6AFDE00B75166 /* libavutil.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3EA6C6702AD6AFEE00B75166 /* libswresample.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA6C6632AD6AFDE00B75166 /* libswresample.xcframework */; };
 		3EA6C6712AD6AFEE00B75166 /* libswresample.xcframework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 3EA6C6632AD6AFDE00B75166 /* libswresample.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3EA800FD2B588BDF00039268 /* CompactPlayerWindowController+EventHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA800FC2B588BDF00039268 /* CompactPlayerWindowController+EventHandling.swift */; };
 		3EA89D972699F0240021CDB9 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA89D962699F0240021CDB9 /* EventMonitor.swift */; };
 		3EA89D9B2699F50C0021CDB9 /* ScrollSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA89D9A2699F50C0021CDB9 /* ScrollSession.swift */; };
 		3EA89D9E2699F5270021CDB9 /* GestureDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA89D9D2699F5270021CDB9 /* GestureDirection.swift */; };
@@ -1526,6 +1527,7 @@
 		3EA6C6612AD6AFDE00B75166 /* libavutil.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavutil.xcframework; sourceTree = "<group>"; };
 		3EA6C6622AD6AFDE00B75166 /* libavcodec.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libavcodec.xcframework; sourceTree = "<group>"; };
 		3EA6C6632AD6AFDE00B75166 /* libswresample.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libswresample.xcframework; sourceTree = "<group>"; };
+		3EA800FC2B588BDF00039268 /* CompactPlayerWindowController+EventHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompactPlayerWindowController+EventHandling.swift"; sourceTree = "<group>"; };
 		3EA89D962699F0240021CDB9 /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		3EA89D9A2699F50C0021CDB9 /* ScrollSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollSession.swift; sourceTree = "<group>"; };
 		3EA89D9D2699F5270021CDB9 /* GestureDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureDirection.swift; sourceTree = "<group>"; };
@@ -3945,6 +3947,7 @@
 			children = (
 				3EBFF5A92B52C0F70056D5B4 /* CompactPlayer.xib */,
 				3EBFF5A72B52C0CC0056D5B4 /* CompactPlayerWindowController.swift */,
+				3EA800FC2B588BDF00039268 /* CompactPlayerWindowController+EventHandling.swift */,
 				3EBFF5AB2B52C5F10056D5B4 /* CompactPlayerViewController.swift */,
 				3E99591F2B587990009A72DD /* CompactPlayerViewController+MenuDelegate.swift */,
 				3EBFF5AD2B52C8150056D5B4 /* CompactPlaybackView.swift */,
@@ -6052,6 +6055,7 @@
 				3EFE388527864896006F8B8C /* AudioUnitPresets.swift in Sources */,
 				3EFE3A1D27864898006F8B8C /* WindowManagerNotifications.swift in Sources */,
 				3E16BE10280DCF7300CE9FE9 /* PlaylistNamesTableViewController+ViewDelegate.swift in Sources */,
+				3EA800FD2B588BDF00039268 /* CompactPlayerWindowController+EventHandling.swift in Sources */,
 				3EFE37DF27864896006F8B8C /* PlaybackPreferences.swift in Sources */,
 				3EFE39C927864897006F8B8C /* AppPersistentState.swift in Sources */,
 				3EBF2931268696FA00D87021 /* TrackInfoPopoverTabButtonCell.swift in Sources */,

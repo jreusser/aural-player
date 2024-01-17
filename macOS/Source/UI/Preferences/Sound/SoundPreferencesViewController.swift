@@ -46,6 +46,9 @@ class SoundPreferencesViewController: NSViewController, PreferencesViewProtocol 
     
     func save() throws {
         
+        try generalPreferencesView.save()
+        try adjustmentPreferencesView.save()
+        
 //        let soundPrefs = preferences.soundPreferences
 //        
 //        if (btnSystemDeviceOnStartup.isOn) {
