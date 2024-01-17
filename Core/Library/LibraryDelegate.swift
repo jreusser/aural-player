@@ -161,8 +161,15 @@ class LibraryDelegate: LibraryDelegateProtocol {
     
     func appLaunched(_ filesToOpen: [URL]) {
         
-        library.buildLibrary(immediate: true)
-        // TODO: Monitor a folder ? 'My Music' ???
+        // TODO: Check persistent state to see if the Library window is shown.
+        // If shown, immediate = true.
+        let appMode = appPersistentState.ui?.appMode ?? .modular
+        lazy var displayedWindowIDs: [WindowID] = appPersistentState.ui?.windowLayout?.systemLayout?.displayedWindows?.compactMap {$0.id} ?? []
+        
+        let libraryShown = appMode == .unified || ((appMode == .modular) && displayedWindowIDs.contains(.library))
+        print("\nLibrary Shown ? \(libraryShown), AppMode: \(appMode), displayedWindowIDs: \(displayedWindowIDs)")
+        
+        library.buildLibrary(immediate: libraryShown)
     }
     
     func appReopened(_ notification: AppReopenedNotification) {

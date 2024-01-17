@@ -99,13 +99,13 @@ class SeekSliderView: NSView, Destroyable {
     
     func showSeekPositionLabels() {
         
-        lblTrackTime.showIf(uiState.showTrackTime)
+//        lblTrackTime.showIf(uiState.showTrackTime)
         setSeekTimerState(true)
     }
     
     func hideSeekPositionLabels() {
         
-        lblTrackTime.hide()
+//        lblTrackTime.hide()
         setSeekTimerState(false)
     }
     
@@ -185,7 +185,7 @@ class SeekSliderView: NSView, Destroyable {
     
     // TODO: Should disable / re-enable the timer when labels are hidden / shown (unnecessary CPU usage), or when showing track duration (which is static).
     func showOrHideTrackTime() {
-        lblTrackTime.showIf(uiState.showTrackTime)
+//        lblTrackTime.showIf(uiState.showTrackTime)
     }
     
     // When the playback rate changes (caused by the Time Stretch effects unit), the seek timer interval needs to be updated, to ensure that the seek position fields are updated fast/slow enough to match the new playback rate.

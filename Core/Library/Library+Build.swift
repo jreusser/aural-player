@@ -38,7 +38,7 @@ fileprivate let lowPriorityQueue: OperationQueue = {
     
     let physicalCores: Int = System.physicalCores
     return OperationQueue(opCount: max(physicalCores / 2, 2),
-                   qos: .utility)
+                   qos: .background)
 }()
 
 fileprivate var chosenQueue: OperationQueue!
@@ -58,8 +58,6 @@ extension Library {
         
         chosenQueue = immediate ? highPriorityQueue : lowPriorityQueue
         
-        print("Q: opCount: \(chosenQueue.maxConcurrentOperationCount), qOS: \(chosenQueue.qualityOfService)")
-        
         DispatchQueue.global(qos: immediate ? .userInitiated : .utility).async {
             
             self._isBeingModified.setValue(true)
@@ -73,8 +71,6 @@ extension Library {
             for folder in self.sourceFolders {
                 self.buildTree(forSourceFolder: folder)
             }
-            
-            self.fileSystemTrees.values.first?.root.sortChildren(by: .name, ascending: true)
             
             startedReadingFiles = true
             self.messenger.publish(.library_startedAddingTracks)
@@ -173,6 +169,8 @@ extension Library {
                 readPlaylistFile(child, under: folder, inTree: tree)
             }
         }
+        
+        folder.sortChildren(by: .name, ascending: true)
     }
     
     fileprivate func readAudioFile(_ file: URL, under folder: FileSystemFolderItem, inTree tree: FileSystemTree) {

@@ -63,13 +63,13 @@ class ControlBarSeekSliderView: SeekSliderView {
     
     override func showSeekPositionLabels() {
         
-        lblTrackTime.showIf(showSeekPosition)
+//        lblTrackTime.showIf(showSeekPosition)
         setSeekTimerState(player.state == .playing)
     }
     
     override func hideSeekPositionLabels() {
         
-        lblTrackTime.hide()
+//        lblTrackTime.hide()
         setSeekTimerState(false)
     }
     

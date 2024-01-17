@@ -16,7 +16,8 @@ class CompactPlayerViewController: NSViewController {
 
     @IBOutlet weak var imgArt: NSImageView!
     
-    @IBOutlet weak var trackInfoView: PlayingTrackTextView!
+    @IBOutlet weak var textView: ScrollingTrackInfoView!
+    
     @IBOutlet weak var lblTrackTime: CenterTextLabel!
     @IBOutlet weak var seekSlider: NSSlider!
     @IBOutlet weak var btnRepeat: NSButton!
@@ -65,8 +66,8 @@ class CompactPlayerViewController: NSViewController {
         
         applyTheme()
         
-        colorSchemesManager.registerSchemeObserver(trackInfoView, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor])
-        fontSchemesManager.registerSchemeObserver(trackInfoView, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont, \.playerTertiaryFont])
+//        colorSchemesManager.registerSchemeObserver(trackInfoView, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor])
+//        fontSchemesManager.registerSchemeObserver(trackInfoView, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont, \.playerTertiaryFont])
         
         // Seek slider
 //        seekSliderConstraints.setLeading(relatedToLeadingOf: textView, offset: -1)
@@ -166,14 +167,26 @@ class CompactPlayerViewController: NSViewController {
     
     private func updateTrackInfo() {
         
+//        if let theTrack = player.playingTrack {
+//            trackInfoView.trackInfo = PlayingTrackInfo(track: theTrack, playingChapterTitle: player.playingChapter?.chapter.title)
+//            
+//        } else {
+//            trackInfoView.trackInfo = nil
+//        }
+        
+        textView.scrollingEnabled = true
+        
         if let theTrack = player.playingTrack {
-            trackInfoView.trackInfo = PlayingTrackInfo(track: theTrack, playingChapterTitle: player.playingChapter?.chapter.title)
+            textView.update(artist: theTrack.artist, title: theTrack.title ?? theTrack.defaultDisplayName)
             
         } else {
-            trackInfoView.trackInfo = nil
+            textView.clear()
         }
         
-        lblTrackTime.show()
+//        lblTrackTime.show()
+//        lblTrackTime.stringValue = "FUCK !!! MUTHU"
+//        
+//        print("LBL: \(lblTrackTime.isShown), \(lblTrackTime.frame), \(lblTrackTime.stringValue)")
         
         imgArt.image = player.playingTrack?.art?.image ?? defaultArtwork
 //        imgArt.showIf(imgArt.image != nil && uiState.showAlbumArt)

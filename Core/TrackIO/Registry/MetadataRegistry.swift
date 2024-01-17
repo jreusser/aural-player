@@ -13,7 +13,7 @@ import Foundation
 class MetadataRegistry: PersistentModelObject {
     
     private let registry: ConcurrentMap<URL, PrimaryMetadata> = ConcurrentMap()
-    private let opQueue: OperationQueue = .init(opCount: System.physicalCores, qos: .userInteractive)
+    private let opQueue: OperationQueue = .init(opCount: (Double(System.physicalCores) * 1.5).roundedInt, qos: .userInteractive)
     lazy var messenger: Messenger = Messenger(for: self)
     
     init(persistentState: MetadataPersistentState?) {
@@ -46,8 +46,9 @@ class MetadataRegistry: PersistentModelObject {
     }
     
     func loadMetadataForFiles(files: Set<URL>, completionHandler: @escaping () -> ()) {
-        
-        print("MetadataRegistry: Reading \(files.count) files ...")
+
+        print("\nMetadataRegistry: Reading \(files.count) files ...")
+        let start = Date()
         
         DispatchQueue.global(qos: .userInteractive).async {
             
@@ -62,10 +63,10 @@ class MetadataRegistry: PersistentModelObject {
             }
             
             print("MetadataRegistry: Waiting to finish reading \(self.opQueue.operationCount) files ...")
-            
             self.opQueue.waitUntilAllOperationsAreFinished()
             
-            print("MetadataRegistry: Done reading files!")
+            let end = Date()
+            print("MetadataRegistry: Done reading files in \(end.timeIntervalSince(start)) secs.!")
             completionHandler()
         }
     }
