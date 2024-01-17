@@ -172,9 +172,8 @@
                                         <outlet property="sliderView" destination="sGL-3y-wPl" id="Npp-Dm-7bJ"/>
                                     </connections>
                                 </view>
-                                <popUpButton toolTip="Options" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ffQ-8V-6KC" userLabel="Settings Menu">
-                                    <rect key="frame" x="272" y="402" width="18" height="18"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButton toolTip="Options" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ffQ-8V-6KC" userLabel="Settings Menu">
+                                    <rect key="frame" x="272" y="402" width="18" height="14"/>
                                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="52g-EZ-dDA">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="cellTitle"/>
@@ -187,10 +186,10 @@
                                                         <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Hamburger"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </menuItem>
-                                                <menuItem title="Show Play Queue" id="Mrs-Bh-3AU" userLabel="Play Queue">
+                                                <menuItem title="Player" id="BQn-Yq-vQk" userLabel="Player">
                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                 </menuItem>
-                                                <menuItem title="Show Effects panel" id="BQn-Yq-vQk" userLabel="Player">
+                                                <menuItem title="Play Queue" id="Mrs-Bh-3AU" userLabel="Play Queue">
                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                 </menuItem>
                                                 <menuItem isSeparatorItem="YES" id="wCx-MY-MIk"/>
@@ -200,9 +199,15 @@
                                                         <items>
                                                             <menuItem title="Scroll track info text" state="on" indentationLevel="2" id="ecA-5M-DtZ">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                                                <connections>
+                                                                    <action selector="toggleTrackInfoScrollingAction:" target="Wo1-U3-fmA" id="vXM-7n-ANl"/>
+                                                                </connections>
                                                             </menuItem>
                                                             <menuItem title="Show seek position" state="on" indentationLevel="2" id="MGI-V4-Lod">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                                                <connections>
+                                                                    <action selector="toggleShowSeekPositionAction:" target="Wo1-U3-fmA" id="xnE-LH-XSB"/>
+                                                                </connections>
                                                             </menuItem>
                                                             <menuItem title="Seek position display" indentationLevel="2" id="8Qz-Rt-MXv">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -210,12 +215,21 @@
                                                                     <items>
                                                                         <menuItem title="Time elapsed" state="on" id="Bpy-xd-WOj" customClass="SeekPositionDisplayTypeMenuItem" customModule="Aural" customModuleProvider="target">
                                                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                                                            <connections>
+                                                                                <action selector="changeSeekPositionDisplayTypeAction:" target="Wo1-U3-fmA" id="MB3-mK-Nc1"/>
+                                                                            </connections>
                                                                         </menuItem>
                                                                         <menuItem title="Time remaining" tag="1" id="hZW-qV-AL5" customClass="SeekPositionDisplayTypeMenuItem" customModule="Aural" customModuleProvider="target">
                                                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                                                            <connections>
+                                                                                <action selector="changeSeekPositionDisplayTypeAction:" target="Wo1-U3-fmA" id="OQg-hw-2zP"/>
+                                                                            </connections>
                                                                         </menuItem>
                                                                         <menuItem title="Track duration" tag="2" id="5jA-HD-rVz" customClass="SeekPositionDisplayTypeMenuItem" customModule="Aural" customModuleProvider="target">
                                                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                                                            <connections>
+                                                                                <action selector="changeSeekPositionDisplayTypeAction:" target="Wo1-U3-fmA" id="NJ6-tF-yMd"/>
+                                                                            </connections>
                                                                         </menuItem>
                                                                     </items>
                                                                 </menu>
@@ -332,8 +346,15 @@
                                                     </connections>
                                                 </menuItem>
                                             </items>
+                                            <connections>
+                                                <outlet property="delegate" destination="Wo1-U3-fmA" id="4vR-Ts-zLk"/>
+                                            </connections>
                                         </menu>
                                     </popUpButtonCell>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="14" id="310-AZ-UYp"/>
+                                        <constraint firstAttribute="width" constant="13" id="bEE-UY-j4j"/>
+                                    </constraints>
                                 </popUpButton>
                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kRO-cS-abr" userLabel="Title view" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="123" y="402" width="54" height="15"/>
@@ -408,9 +429,12 @@
                                         <action selector="quitAction:" target="-2" id="iVU-UW-mqw"/>
                                     </connections>
                                 </button>
-                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Maj-Oe-YBT" userLabel="Cover Art" customClass="RoundedImageView" customModule="Aural" customModuleProvider="target">
+                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Maj-Oe-YBT" userLabel="Cover Art" customClass="RoundedImageView" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="10" y="110" width="280" height="280"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="280" id="TBl-5W-tuu"/>
+                                        <constraint firstAttribute="height" constant="280" id="vMx-MD-pIg"/>
+                                    </constraints>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="oDZ-UI-nrk"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="roundingRadius">
@@ -437,9 +461,14 @@
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="ECO-19-Qag" secondAttribute="trailing" constant="10" id="7hf-p2-Lkt"/>
+                                <constraint firstItem="ffQ-8V-6KC" firstAttribute="top" secondItem="oeh-N1-HBS" secondAttribute="top" constant="14" id="7vX-B5-bG4"/>
                                 <constraint firstItem="ZT2-MQ-uY4" firstAttribute="top" secondItem="oeh-N1-HBS" secondAttribute="top" constant="15" id="Ak1-kf-CJZ"/>
+                                <constraint firstItem="Maj-Oe-YBT" firstAttribute="leading" secondItem="oeh-N1-HBS" secondAttribute="leading" constant="10" id="FYe-vE-Gbg"/>
+                                <constraint firstItem="j4B-LX-hra" firstAttribute="top" secondItem="Maj-Oe-YBT" secondAttribute="bottom" constant="16" id="a5K-Ut-77j"/>
                                 <constraint firstAttribute="bottom" secondItem="ECO-19-Qag" secondAttribute="bottom" constant="68" id="bQ2-D3-DTQ"/>
+                                <constraint firstItem="Maj-Oe-YBT" firstAttribute="top" secondItem="ffQ-8V-6KC" secondAttribute="bottom" constant="12" id="hw3-B2-d2F"/>
                                 <constraint firstItem="ZT2-MQ-uY4" firstAttribute="leading" secondItem="oeh-N1-HBS" secondAttribute="leading" constant="10" id="oGX-iK-HJu"/>
+                                <constraint firstAttribute="trailing" secondItem="ffQ-8V-6KC" secondAttribute="trailing" constant="10" id="oyz-ya-QCb"/>
                             </constraints>
                         </view>
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -472,11 +501,18 @@
                 <outlet property="lblTrackTime" destination="ECO-19-Qag" id="qqE-8a-RRY"/>
                 <outlet property="playbackView" destination="uR4-jv-YGr" id="zX7-nU-Ujn"/>
                 <outlet property="playbackViewController" destination="bXU-Hn-LAO" id="glZ-FA-3Lt"/>
+                <outlet property="scrollingEnabledMenuItem" destination="ecA-5M-DtZ" id="MEx-gt-nnN"/>
+                <outlet property="seekPositionDisplayTypeMenuItem" destination="8Qz-Rt-MXv" id="EbQ-PI-0m2"/>
                 <outlet property="seekSlider" destination="8JR-Be-slu" id="h04-yQ-zWk"/>
                 <outlet property="seekSliderView" destination="sGL-3y-wPl" id="pX5-Yn-iND"/>
+                <outlet property="showSeekPositionMenuItem" destination="MGI-V4-Lod" id="tcy-Z6-luf"/>
                 <outlet property="textView" destination="j4B-LX-hra" id="IX0-x8-hZ5"/>
+                <outlet property="timeElapsedMenuItem" destination="Bpy-xd-WOj" id="EgW-bE-KH0"/>
+                <outlet property="timeRemainingMenuItem" destination="hZW-qV-AL5" id="YSx-W4-M8V"/>
+                <outlet property="trackDurationMenuItem" destination="5jA-HD-rVz" id="9hF-w1-Gor"/>
                 <outlet property="view" destination="oeh-N1-HBS" id="U97-RD-piC"/>
-                <outlet property="viewSettingsMenuButton" destination="ffQ-8V-6KC" id="UKw-Z1-aiq"/>
+                <outlet property="viewSettingsMenu" destination="ekz-ZO-i4a" id="XX8-0O-9ll"/>
+                <outlet property="viewSettingsMenuButton" destination="ffQ-8V-6KC" id="xVt-C8-1IL"/>
             </connections>
         </customObject>
         <customObject id="bXU-Hn-LAO" customClass="CompactPlaybackViewController" customModule="Aural" customModuleProvider="target">

@@ -26,6 +26,7 @@ class CompactPlayerViewController: NSViewController {
     @IBOutlet weak var seekSliderView: ControlBarSeekSliderView!
     
     @IBOutlet weak var viewSettingsMenuButton: NSPopUpButton!
+    @IBOutlet weak var viewSettingsMenu: NSMenu!
     
     @IBOutlet weak var scrollingEnabledMenuItem: NSMenuItem!
     @IBOutlet weak var showSeekPositionMenuItem: NSMenuItem!
@@ -35,7 +36,7 @@ class CompactPlayerViewController: NSViewController {
     @IBOutlet weak var timeRemainingMenuItem: SeekPositionDisplayTypeMenuItem!
     @IBOutlet weak var trackDurationMenuItem: SeekPositionDisplayTypeMenuItem!
     
-    private var seekPositionDisplayTypeItems: [NSMenuItem] = []
+    var seekPositionDisplayTypeItems: [NSMenuItem] = []
     
     @IBOutlet weak var playbackViewController: CompactPlaybackViewController!
     @IBOutlet weak var audioViewController: ControlBarPlayerAudioViewController!
@@ -47,52 +48,44 @@ class CompactPlayerViewController: NSViewController {
     // Delegate that provides access to the Favorites track list.
     private lazy var favorites: FavoritesDelegateProtocol = favoritesDelegate
     
-    private let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
+    let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
     
     private var textViewConstraints: LayoutConstraintsManager!
-    private var lblTrackTimeConstraints: LayoutConstraintsManager!
-    private var seekSliderConstraints: LayoutConstraintsManager!
+//    private var lblTrackTimeConstraints: LayoutConstraintsManager!
     
     private let minWindowWidthToShowSeekPosition: CGFloat = 610
     private let distanceBetweenControlsAndInfo: CGFloat = 31
+    private let lblTrackTime_width: CGFloat = 70
     
     private lazy var messenger = Messenger(for: self)
     
     override func awakeFromNib() {
         
-        // Constraint managers
-//        lblTrackTimeConstraints = LayoutConstraintsManager(for: lblTrackTime)
-//        seekSliderConstraints = LayoutConstraintsManager(for: seekSlider)
-        
         applyTheme()
         
-//        colorSchemesManager.registerSchemeObserver(trackInfoView, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor])
-//        fontSchemesManager.registerSchemeObserver(trackInfoView, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont, \.playerTertiaryFont])
-        
-        // Seek slider
-//        seekSliderConstraints.setLeading(relatedToLeadingOf: textView, offset: -1)
-//        seekSliderConstraints.setTrailing(relatedToLeadingOf: btnRepeat, offset: -distanceBetweenControlsAndInfo)
-//        seekSliderView.showSeekPosition = false
+        // Constraint managers
+        textViewConstraints = LayoutConstraintsManager(for: textView)
+//        lblTrackTimeConstraints = LayoutConstraintsManager(for: lblTrackTime)
         
         // Text view
-//        textViewConstraints.setLeading(relatedToTrailingOf: imgArt, offset: 10)
-//        textViewConstraints.setHeight(26)
-//        textViewConstraints.centerVerticallyInSuperview(offset: -2)
+        textViewConstraints.setLeading(relatedToLeadingOf: textView.superview!, offset: 10)
+        textViewConstraints.setHeight(26)
+        textViewConstraints.setBottom(equalToBottomOf: lblTrackTime)
         
 //        lblTrackTimeConstraints.setHeight(textView.height)
 //        lblTrackTimeConstraints.centerVerticallyInSuperview(offset: 0)
         
-//        layoutTextView()
-//        textView.scrollingEnabled = uiState.trackInfoScrollingEnabled
+        layoutTextView()
+        textView.scrollingEnabled = uiState.trackInfoScrollingEnabled
         
         updateTrackInfo()
         
         // View settings menu items
-//        timeElapsedMenuItem.displayType = .elapsed
-//        timeRemainingMenuItem.displayType = .remaining
-//        trackDurationMenuItem.displayType = .duration
-//        
-//        seekPositionDisplayTypeItems = [timeElapsedMenuItem, timeRemainingMenuItem, trackDurationMenuItem]
+        timeElapsedMenuItem.displayType = .elapsed
+        timeRemainingMenuItem.displayType = .remaining
+        trackDurationMenuItem.displayType = .duration
+        
+        seekPositionDisplayTypeItems = [timeElapsedMenuItem, timeRemainingMenuItem, trackDurationMenuItem]
         
         // MARK: Notification subscriptions
         
@@ -107,53 +100,21 @@ class CompactPlayerViewController: NSViewController {
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
     }
     
-//    var windowWideEnoughForSeekPosition: Bool {
-//        (view.window?.width ?? 0) >= minWindowWidthToShowSeekPosition
-//    }
-//    
-//    ///
-//    /// Computes the maximum required width for the seek position label, given
-//    /// 1. the duration of the track currently playing, and
-//    /// 2. the current font scheme.
-//    ///
-//    var widthForSeekPosLabel: CGFloat {
-//        
-//        guard let track = player.playingTrack else {return 0}
-//        
-//        let widthOfWidestNumber = String.widthOfWidestNumber(forFont: systemFontScheme.playerPrimaryFont)
-//        let duration = track.duration
-//        
-//        let trackTimes = ValueFormatter.formatTrackTimes(0, duration, 0)
-//        let widthOfTimeRemainingString = CGFloat(trackTimes.remaining.count)
-//
-//        return widthOfTimeRemainingString * widthOfWidestNumber
-//    }
-//    
-//    func layoutTextView(forceChange: Bool = true) {
-//        
-//        let showSeekPosition: Bool = uiState.showSeekPosition && windowWideEnoughForSeekPosition
-//        
-//        guard forceChange || (seekSliderView.showSeekPosition != showSeekPosition) else {return}
-//        
-//        // Seek Position label
-//        seekSliderView.showSeekPosition = showSeekPosition
-//        
-//        var labelWidth: CGFloat = 0
-//        
-//        if showSeekPosition {
-//            
-//            lblTrackTimeConstraints.removeAll(withAttributes: [.width, .trailing])
-//            labelWidth = widthForSeekPosLabel + 5 // Compute the required width and add some padding.
-//            
-//            lblTrackTimeConstraints.setWidth(labelWidth)
-//            lblTrackTimeConstraints.setTrailing(relatedToLeadingOf: btnRepeat, offset: -distanceBetweenControlsAndInfo)
-//        }
-//        
-//        // Text view
-//        textViewConstraints.removeAll(withAttributes: [.trailing])
-//        textViewConstraints.setTrailing(relatedToLeadingOf: btnRepeat,
-//                                        offset: -(distanceBetweenControlsAndInfo + (showSeekPosition ? labelWidth : 1)))
-//    }
+    func layoutTextView(forceChange: Bool = true) {
+        
+        let showSeekPosition: Bool = uiState.showSeekPosition
+        
+        guard forceChange || (seekSliderView.showSeekPosition != showSeekPosition) else {return}
+        
+        // Seek Position label
+        seekSliderView.showSeekPosition = showSeekPosition
+        
+        // Text view
+        textViewConstraints.removeAll(withAttributes: [.width])
+        textViewConstraints.setWidth(showSeekPosition ? 200 : 280)
+        
+        textView.redraw()
+    }
     
     // MARK: Track playback actions/functions ------------------------------------------------------------
     
@@ -234,53 +195,6 @@ class CompactPlayerViewController: NSViewController {
     
     func applyColorScheme(_ colorScheme: ColorScheme) {
 //        textView.textColor = colorScheme.player.trackInfoPrimaryTextColor
-    }
-    
-    // MARK: View settings menu delegate functions and action handlers -----------------
-    
-    func menuNeedsUpdate(_ menu: NSMenu) {
-        
-//        scrollingEnabledMenuItem.onIf(textView.scrollingEnabled)
-        
-//        let windowWideEnoughForSeekPosition = self.windowWideEnoughForSeekPosition
-//        showSeekPositionMenuItem.showIf(windowWideEnoughForSeekPosition)
-//        seekPositionDisplayTypeMenuItem.showIf(windowWideEnoughForSeekPosition && uiState.showSeekPosition)
-//        
-//        guard windowWideEnoughForSeekPosition else {return}
-//        
-//        showSeekPositionMenuItem.onIf(uiState.showSeekPosition)
-//        guard uiState.showSeekPosition else {return}
-//        
-//        seekPositionDisplayTypeItems.forEach {$0.off()}
-//        
-//        switch seekSliderView.seekPositionDisplayType {
-//        
-//        case .elapsed:
-//            
-//            timeElapsedMenuItem.on()
-//            
-//        case .remaining:
-//            
-//            timeRemainingMenuItem.on()
-//            
-//        case .duration:
-//            
-//            trackDurationMenuItem.on()
-//        }
-    }
-    
-//    @IBAction func toggleTrackInfoScrollingAction(_ sender: NSMenuItem) {
-//        textView.scrollingEnabled.toggle()
-//    }
-    
-    @IBAction func toggleShowSeekPositionAction(_ sender: NSMenuItem) {
-        
-//        uiState.showSeekPosition.toggle()
-//        layoutTextView()
-    }
-    
-    @IBAction func changeSeekPositionDisplayTypeAction(_ sender: SeekPositionDisplayTypeMenuItem) {
-        seekSliderView.seekPositionDisplayType = sender.displayType
     }
     
     // MARK: Tear down ------------------------------------------
