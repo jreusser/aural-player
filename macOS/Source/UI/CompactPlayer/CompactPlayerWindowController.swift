@@ -14,11 +14,17 @@ class CompactPlayerWindowController: NSWindowController {
     
     override var windowNibName: NSNib.Name? {"CompactPlayer"}
     
+    @IBOutlet weak var logoImage: TintedImageView!
+    
     @IBOutlet weak var rootContainerBox: NSBox!
     @IBOutlet weak var viewController: CompactPlayerViewController!
     
     @IBOutlet weak var btnQuit: TintedImageButton!
     @IBOutlet weak var optionsMenuItem: TintedIconMenuItem!
+    
+    @IBOutlet weak var btnMinimize: TintedImageButton!
+    @IBOutlet weak var presentationModeMenuItem: TintedIconMenuItem!
+    @IBOutlet weak var settingsMenuIconItem: TintedIconMenuItem!
     
     @IBOutlet weak var cornerRadiusStepper: NSStepper!
     @IBOutlet weak var lblCornerRadius: NSTextField!
@@ -50,7 +56,12 @@ class CompactPlayerWindowController: NSWindowController {
         
         snappingWindow.ensureOnScreen()
         
-        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.buttonColor])
+//        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.buttonColor])
+        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
+        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
+        
+        colorSchemesManager.registerObservers([btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem],
+                                              forProperty: \.buttonColor)
     }
     
     func applyTheme() {

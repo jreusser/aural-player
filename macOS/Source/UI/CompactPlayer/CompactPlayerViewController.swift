@@ -50,9 +50,6 @@ class CompactPlayerViewController: NSViewController {
     
     let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
     
-    private var textViewConstraints: LayoutConstraintsManager!
-//    private var lblTrackTimeConstraints: LayoutConstraintsManager!
-    
     private let minWindowWidthToShowSeekPosition: CGFloat = 610
     private let distanceBetweenControlsAndInfo: CGFloat = 31
     private let lblTrackTime_width: CGFloat = 70
@@ -61,19 +58,8 @@ class CompactPlayerViewController: NSViewController {
     
     override func awakeFromNib() {
         
+        colorSchemesManager.registerObserver(lblTrackTime, forProperty: \.primaryTextColor)
         applyTheme()
-        
-        // Constraint managers
-        textViewConstraints = LayoutConstraintsManager(for: textView)
-//        lblTrackTimeConstraints = LayoutConstraintsManager(for: lblTrackTime)
-        
-        // Text view
-        textViewConstraints.setLeading(relatedToLeadingOf: textView.superview!, offset: 10)
-        textViewConstraints.setHeight(26)
-        textViewConstraints.setBottom(equalToBottomOf: lblTrackTime)
-        
-//        lblTrackTimeConstraints.setHeight(textView.height)
-//        lblTrackTimeConstraints.centerVerticallyInSuperview(offset: 0)
         
         layoutTextView()
         textView.scrollingEnabled = uiState.trackInfoScrollingEnabled
@@ -108,10 +94,7 @@ class CompactPlayerViewController: NSViewController {
         
         // Seek Position label
         seekSliderView.showSeekPosition = showSeekPosition
-        
-        // Text view
-        textViewConstraints.removeAll(withAttributes: [.width])
-        textViewConstraints.setWidth(showSeekPosition ? 200 : 280)
+        textView.setFrameSize(NSSize(width: showSeekPosition ? 200 : 280, height: 26))
         
         textView.redraw()
     }
@@ -189,12 +172,12 @@ class CompactPlayerViewController: NSViewController {
     
     func applyFontScheme(_ fontScheme: FontScheme) {
         
-//        textView.font = fontScheme.playerSecondaryFont
-//        layoutTextView()
+        textView.font = fontScheme.playerSecondaryFont
+        layoutTextView()
     }
     
     func applyColorScheme(_ colorScheme: ColorScheme) {
-//        textView.textColor = colorScheme.player.trackInfoPrimaryTextColor
+        textView.redraw()
     }
     
     // MARK: Tear down ------------------------------------------

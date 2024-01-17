@@ -87,6 +87,12 @@
                                                         <action selector="unifiedModeAction:" target="-2" id="8HF-Wl-wzd"/>
                                                     </connections>
                                                 </menuItem>
+                                                <menuItem title="Compact (single compact window)" id="6Ha-ZH-zPx">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <connections>
+                                                        <action selector="compactModeAction:" target="-2" id="nuD-WQ-xcN"/>
+                                                    </connections>
+                                                </menuItem>
                                                 <menuItem title="Menu Bar (macOS menu bar)" id="JoQ-8i-wTl">
                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                     <connections>

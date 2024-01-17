@@ -44,8 +44,12 @@ class ScrollingTrackInfoView: NSView {
     }
 
     /// Scrolling text color
-    var textColor: NSColor = .white {
-        didSet {redraw()}
+    var primaryTextColor: NSColor {
+        systemColorScheme.primaryTextColor
+    }
+    
+    var secondaryTextColor: NSColor {
+        systemColorScheme.secondaryTextColor
     }
     
     ///
@@ -88,7 +92,7 @@ class ScrollingTrackInfoView: NSView {
     private var timerSpeed: Double? {speed / 100}
 
     private var textFontAttributes: [NSAttributedString.Key: Any] {
-        [.font: font, .foregroundColor: textColor]
+        [.font: font, .foregroundColor: primaryTextColor]
     }
     
     override func awakeFromNib() {
@@ -141,7 +145,7 @@ class ScrollingTrackInfoView: NSView {
             if let theArtist = artist {
                 
                 self.text = String(format: "%@ - %@", theArtist, title) as NSString
-                self.attrText = (theArtist + "   ").attributed(font: font, color: .lightGray) + title.attributed(font: font, color: .white)
+                self.attrText = (theArtist + "   ").attributed(font: font, color: secondaryTextColor) + title.attributed(font: font, color: primaryTextColor)
                 
             } else {
                 self.text = title as NSString
@@ -159,7 +163,7 @@ class ScrollingTrackInfoView: NSView {
                 let parts = String.truncateCompositeStringIntoParts(font, width, fullLengthString, theArtist, title, "   ")
                 truncatedString = parts[2]
                 
-                self.attrText = (parts[0] + "   ").attributed(font: font, color: .lightGray) + title.attributed(font: font, color: .white)
+                self.attrText = (parts[0] + "   ").attributed(font: font, color: secondaryTextColor) + title.attributed(font: font, color: primaryTextColor)
                 toolTip = fullLengthString
                 
             } else {

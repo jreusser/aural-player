@@ -9,11 +9,15 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CompactPlayerWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="btnMinimize" destination="OWA-YG-E9q" id="I0j-6B-149"/>
                 <outlet property="btnQuit" destination="ZT2-MQ-uY4" id="pbY-tb-nLf"/>
                 <outlet property="cornerRadiusStepper" destination="CXC-fJ-vs0" id="QvW-rO-w9h"/>
                 <outlet property="lblCornerRadius" destination="M3o-Oh-fXf" id="Itj-Lv-lKl"/>
+                <outlet property="logoImage" destination="kRO-cS-abr" id="o2u-23-NjN"/>
                 <outlet property="optionsMenuItem" destination="jF6-Ok-k1J" id="KBs-Gc-TAX"/>
+                <outlet property="presentationModeMenuItem" destination="4fO-Xj-39P" id="tff-5M-JAl"/>
                 <outlet property="rootContainerBox" destination="MQS-Uc-HUi" id="Rj3-4K-Can"/>
+                <outlet property="settingsMenuIconItem" destination="jF6-Ok-k1J" id="YhT-Ag-Gg6"/>
                 <outlet property="viewController" destination="Wo1-U3-fmA" id="mXl-J6-oth"/>
                 <outlet property="window" destination="ybg-B4-A9D" id="ZBx-bV-Sgc"/>
             </connections>
@@ -38,7 +42,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="300" height="430"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <view id="uR4-jv-YGr" userLabel="Controls View" customClass="CompactPlaybackView" customModule="Aural" customModuleProvider="target">
+                                <view focusRingType="none" id="uR4-jv-YGr" userLabel="Controls View" customClass="CompactPlaybackView" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -126,6 +130,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="shuffleAction:" target="hvg-hh-NVh" id="dpX-qV-mh6"/>
+                                            </connections>
                                         </button>
                                         <button toolTip="Repeat" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WKs-lx-AOK" userLabel="Repeat Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                             <rect key="frame" x="15" y="18" width="17" height="17"/>
@@ -134,6 +141,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="repeatAction:" target="hvg-hh-NVh" id="lER-I8-Y5o"/>
+                                            </connections>
                                         </button>
                                         <customView focusRingType="none" id="sGL-3y-wPl" customClass="ControlBarSeekSliderView" customModule="Aural" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="41" width="300" height="38"/>
@@ -356,10 +366,10 @@
                                         <constraint firstAttribute="width" constant="13" id="bEE-UY-j4j"/>
                                     </constraints>
                                 </popUpButton>
-                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kRO-cS-abr" userLabel="Title view" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
+                                <imageView focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kRO-cS-abr" userLabel="Title view" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="123" y="402" width="54" height="15"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppTitle" id="2Hm-AK-QNc"/>
+                                    <imageCell key="cell" refusesFirstResponder="YES" focusRingType="none" alignment="left" imageScaling="proportionallyDown" image="AppTitle" id="2Hm-AK-QNc"/>
                                 </imageView>
                                 <popUpButton toolTip="Change presentation mode" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wA6-bg-jfE" userLabel="Presentation Mode Menu">
                                     <rect key="frame" x="23" y="402" width="16" height="15"/>
@@ -415,34 +425,28 @@
                                         <action selector="minimizeAction:" target="-2" id="cw1-dv-VYT"/>
                                     </connections>
                                 </button>
-                                <button toolTip="Quit Aural" wantsLayer="YES" focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZT2-MQ-uY4" userLabel="Quit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                                <button toolTip="Quit Aural" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZT2-MQ-uY4" userLabel="Quit Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="10" y="403.5" width="11.5" height="14"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="vcA-DL-aSl">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="11" id="j5W-SI-2tN"/>
-                                        <constraint firstAttribute="height" constant="10" id="ydA-Jn-2xy"/>
-                                    </constraints>
                                     <connections>
                                         <action selector="quitAction:" target="-2" id="iVU-UW-mqw"/>
                                     </connections>
                                 </button>
-                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Maj-Oe-YBT" userLabel="Cover Art" customClass="RoundedImageView" customModule="Aural" customModuleProvider="target">
+                                <imageView focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Maj-Oe-YBT" userLabel="Cover Art" customClass="RoundedImageView" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="10" y="110" width="280" height="280"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="280" id="TBl-5W-tuu"/>
-                                        <constraint firstAttribute="height" constant="280" id="vMx-MD-pIg"/>
-                                    </constraints>
-                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="oDZ-UI-nrk"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <imageCell key="cell" refusesFirstResponder="YES" focusRingType="none" alignment="left" imageScaling="proportionallyDown" id="oDZ-UI-nrk"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="roundingRadius">
-                                            <real key="value" value="3"/>
+                                            <real key="value" value="5"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
-                                <customView id="j4B-LX-hra" customClass="ScrollingTrackInfoView" customModule="Aural" customModuleProvider="target">
+                                <customView focusRingType="none" id="j4B-LX-hra" customClass="ScrollingTrackInfoView" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="10" y="68" width="200" height="26"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 </customView>
@@ -462,12 +466,7 @@
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="ECO-19-Qag" secondAttribute="trailing" constant="10" id="7hf-p2-Lkt"/>
                                 <constraint firstItem="ffQ-8V-6KC" firstAttribute="top" secondItem="oeh-N1-HBS" secondAttribute="top" constant="14" id="7vX-B5-bG4"/>
-                                <constraint firstItem="ZT2-MQ-uY4" firstAttribute="top" secondItem="oeh-N1-HBS" secondAttribute="top" constant="15" id="Ak1-kf-CJZ"/>
-                                <constraint firstItem="Maj-Oe-YBT" firstAttribute="leading" secondItem="oeh-N1-HBS" secondAttribute="leading" constant="10" id="FYe-vE-Gbg"/>
-                                <constraint firstItem="j4B-LX-hra" firstAttribute="top" secondItem="Maj-Oe-YBT" secondAttribute="bottom" constant="16" id="a5K-Ut-77j"/>
                                 <constraint firstAttribute="bottom" secondItem="ECO-19-Qag" secondAttribute="bottom" constant="68" id="bQ2-D3-DTQ"/>
-                                <constraint firstItem="Maj-Oe-YBT" firstAttribute="top" secondItem="ffQ-8V-6KC" secondAttribute="bottom" constant="12" id="hw3-B2-d2F"/>
-                                <constraint firstItem="ZT2-MQ-uY4" firstAttribute="leading" secondItem="oeh-N1-HBS" secondAttribute="leading" constant="10" id="oGX-iK-HJu"/>
                                 <constraint firstAttribute="trailing" secondItem="ffQ-8V-6KC" secondAttribute="trailing" constant="10" id="oyz-ya-QCb"/>
                             </constraints>
                         </view>
@@ -527,6 +526,13 @@
                 <outlet property="lblVolume" destination="vIJ-do-stv" id="4q2-lH-AEH"/>
                 <outlet property="view" destination="HlA-Tv-W2R" id="Ytc-ue-hJ4"/>
                 <outlet property="volumeSlider" destination="HlA-Tv-W2R" id="GSM-NA-wxn"/>
+            </connections>
+        </customObject>
+        <customObject id="hvg-hh-NVh" customClass="ControlBarPlayerSequencingViewController" customModule="Aural" customModuleProvider="target">
+            <connections>
+                <outlet property="btnRepeat" destination="WKs-lx-AOK" id="2A2-O5-cna"/>
+                <outlet property="btnShuffle" destination="69n-hc-R80" id="it9-gA-Jsh"/>
+                <outlet property="view" destination="uR4-jv-YGr" id="coe-dm-2r7"/>
             </connections>
         </customObject>
         <customView id="9TP-Jv-q57" userLabel="Window corner radius editor view (in window)">

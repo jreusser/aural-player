@@ -133,6 +133,10 @@ class MainWindowController: NSWindowController {
         appModeManager.presentMode(.menuBar)
     }
     
+    @IBAction func compactModeAction(_ sender: AnyObject) {
+        appModeManager.presentMode(.compact)
+    }
+    
     @IBAction func controlBarModeAction(_ sender: AnyObject) {
         appModeManager.presentMode(.controlBar)
     }
