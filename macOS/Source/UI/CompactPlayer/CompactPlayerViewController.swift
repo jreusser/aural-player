@@ -96,7 +96,7 @@ class CompactPlayerViewController: NSViewController {
         seekSliderView.showSeekPosition = showSeekPosition
         textView.setFrameSize(NSSize(width: showSeekPosition ? 200 : 280, height: 26))
         
-        textView.redraw()
+        textView.update()
     }
     
     // MARK: Track playback actions/functions ------------------------------------------------------------
@@ -110,8 +110,6 @@ class CompactPlayerViewController: NSViewController {
     }()
     
     private func updateTrackInfo() {
-        
-        textView.scrollingEnabled = true
         
         if let theTrack = player.playingTrack {
             textView.update(artist: theTrack.artist, title: theTrack.title ?? theTrack.defaultDisplayName)

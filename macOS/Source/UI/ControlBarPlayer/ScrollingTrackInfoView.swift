@@ -40,7 +40,9 @@ class ScrollingTrackInfoView: NSView {
 
     /// Font for scrolling text
     var font: NSFont = standardFontSet.mainFont(size: 12) {
-        didSet {fontUpdated()}
+        didSet {
+            fontUpdated()
+        }
     }
 
     /// Scrolling text color
@@ -62,6 +64,10 @@ class ScrollingTrackInfoView: NSView {
             uiState.trackInfoScrollingEnabled = scrollingEnabled
             update(artist: self.artist, title: self.title)
         }
+    }
+    
+    func update() {
+        update(artist: self.artist, title: self.title)
     }
 
     /// Determines if the text should be delayed before starting scroll
@@ -163,7 +169,9 @@ class ScrollingTrackInfoView: NSView {
                 let parts = String.truncateCompositeStringIntoParts(font, width, fullLengthString, theArtist, title, "   ")
                 truncatedString = parts[2]
                 
-                self.attrText = (parts[0] + "   ").attributed(font: font, color: secondaryTextColor) + title.attributed(font: font, color: primaryTextColor)
+                print("\nTruncated Strings: \(parts[0]) | \(parts[1]) | \(parts[2])")
+                
+                self.attrText = (parts[0] + "   ").attributed(font: font, color: secondaryTextColor) + parts[1].attributed(font: font, color: primaryTextColor)
                 toolTip = fullLengthString
                 
             } else {
