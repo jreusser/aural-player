@@ -6333,6 +6333,8 @@
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Frameworks";
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/../**";
 				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Aural Player";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -6364,6 +6366,8 @@
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Frameworks";
 				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/../**";
 				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Aural Player";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

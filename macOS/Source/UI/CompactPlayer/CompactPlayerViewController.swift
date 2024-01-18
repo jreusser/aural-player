@@ -171,7 +171,7 @@ class CompactPlayerViewController: NSViewController {
     }
     
     func applyColorScheme(_ colorScheme: ColorScheme) {
-        textView.redraw()
+        textView.update()
     }
     
     // MARK: Tear down ------------------------------------------

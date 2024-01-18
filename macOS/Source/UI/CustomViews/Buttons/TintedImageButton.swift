@@ -96,12 +96,8 @@ extension NSButton: ColorSchemePropertyObserver {
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
-        if self is TintedImageButton {
-            contentTintColor = newColor
-            
-        } else {
-            redraw()
-        }
+        contentTintColor = newColor
+        redraw()
     }
 }
 
