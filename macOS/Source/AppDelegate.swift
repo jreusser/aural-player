@@ -83,10 +83,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //        } else {
             postLaunch(appSetup: nil)
 //        }
-        
-        // TODO: Put 'startObserving()' in some kind of protocol ???
-        colorSchemesManager.startObserving()
-        fontSchemesManager.startObserving()
     }
     
     private func postLaunch(appSetup: AppSetup?) {

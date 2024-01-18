@@ -55,8 +55,6 @@ class ButtonStateMachine<E> where E: Hashable {
         colorSchemesManager.removeObserver(button)
         colorSchemesManager.registerObserver(button, forProperty: mapping.colorProperty)
         
-        print("doSetState: \(newState)")
-        
         button.toolTip = mapping.toolTip
     }
 }

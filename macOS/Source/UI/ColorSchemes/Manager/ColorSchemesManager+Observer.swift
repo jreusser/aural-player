@@ -109,10 +109,6 @@ extension ColorSchemesManager {
             
             guard let observers = self?.propertyObservers[property] else {return}
             
-//            if property == \.effectsSecondaryColor {
-//                print("\nI have \(observers.count) observers for eff sec.")
-//            }
-            
             observers.forEach {
                 $0.colorChanged(to: newColor, forProperty: property)
             }
@@ -131,17 +127,6 @@ extension ColorSchemesManager {
         }
         
         reverseRegistry.removeValue(forKey: observerObject)
-    }
-    
-    func removeAllObservers() {
-        
-        propertyObservers.removeAll()
-        schemeAndPropertyObservers.removeAll()
-        schemeObservers.removeAll()
-        reverseRegistry.removeAll()
-        
-        propertyKVO.invalidate()
-        schemeKVO.invalidate()
     }
     
     // ----------------------------------------------------------------------------------------------------

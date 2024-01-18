@@ -36,18 +36,9 @@ class PlayerSequencingViewController: NSViewController {
     // Delegate that conveys all repeat/shuffle requests to the sequencer
     lazy var messenger = Messenger(for: self)
     
-    private lazy var exec = RepeatingTaskExecutor(intervalMillis: 500, task: {
-        print("btnRepeat: \(self.btnRepeat.hashValue)")
-    }, queue: .main)
-    
     override func viewDidLoad() {
         
-        print("VDL: btnRepeat: \(btnRepeat.hashValue)")
-        
-//        exec.startOrResume()
-        
         updateRepeatAndShuffleControls(playQueueDelegate.repeatAndShuffleModes)
-        
         initSubscriptions()
     }
     
@@ -85,8 +76,6 @@ class PlayerSequencingViewController: NSViewController {
     
     func updateRepeatAndShuffleControls(_ modes: RepeatAndShuffleModes) {
         
-        print("updateRepeatAndShuffleControls")
-
         btnRepeatStateMachine.setState(modes.repeatMode)
         btnShuffleStateMachine.setState(modes.shuffleMode)
     }

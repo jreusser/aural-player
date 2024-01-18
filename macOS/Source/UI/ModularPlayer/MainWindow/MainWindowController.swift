@@ -92,10 +92,6 @@ class MainWindowController: NSWindowController {
         eventMonitor = nil
         
         playerViewController.destroy()
-        
-        colorSchemesManager.removeAllObservers()
-        fontSchemesManager.removeAllObservers()
-        
         messenger.unsubscribeFromAll()
         
         SingletonPopoverViewController.destroy()

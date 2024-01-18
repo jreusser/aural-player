@@ -120,9 +120,6 @@ class UnifiedPlayerWindowController: NSWindowController {
         
         [playerController, sidebarController, playQueueController, libraryTracksController, libraryArtistsController, libraryAlbumsController, libraryGenresController, libraryDecadesController, tuneBrowserViewController, playlistsViewController].forEach {$0.destroy()}
         
-        colorSchemesManager.removeAllObservers()
-        fontSchemesManager.removeAllObservers()
-        
         messenger.unsubscribeFromAll()
     }
     
