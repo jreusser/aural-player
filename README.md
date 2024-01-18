@@ -2,6 +2,8 @@
 
 <img width="1024" src="https://github.com/kartik-venugopal/aural-player/raw/v4.0/aural4.png"/>
 
+<img width="300" src="https://github.com/kartik-venugopal/aural-player/raw/v4.0/CompactMode.png"/>
+
 ## The v4.0 goals
 
 As of Jan 12, 2024, Aural Player version 4.0 is in active development, and aims to take the app to the next level ... making the app prettier, more intuitive, and offering more ways to search for and organize tracks and track lists.
