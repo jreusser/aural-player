@@ -137,6 +137,8 @@ let systemColorScheme: ColorScheme = colorSchemesManager.systemScheme
 
 let playerUIState: PlayerUIState = PlayerUIState(persistentState: appPersistentState.ui?.modularPlayer)
 let unifiedPlayerUIState: UnifiedPlayerUIState = UnifiedPlayerUIState(persistentState: appPersistentState.ui?.unifiedPlayer)
+let compactPlayerUIState: CompactPlayerUIState = .init()
+
 let playQueueUIState: PlayQueueUIState = PlayQueueUIState(persistentState: appPersistentState.ui?.playQueue)
 let playlistsUIState: PlaylistsUIState = PlaylistsUIState()
 let menuBarPlayerUIState: MenuBarPlayerUIState = MenuBarPlayerUIState(persistentState: appPersistentState.ui?.menuBarPlayer)

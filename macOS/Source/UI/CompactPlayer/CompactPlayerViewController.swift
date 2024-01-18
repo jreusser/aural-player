@@ -15,18 +15,14 @@ class CompactPlayerViewController: NSViewController {
     @IBOutlet weak var containerBox: NSBox!
 
     @IBOutlet weak var imgArt: NSImageView!
-    
     @IBOutlet weak var textView: ScrollingTrackInfoView!
-    
     @IBOutlet weak var lblTrackTime: CenterTextLabel!
-    @IBOutlet weak var seekSlider: NSSlider!
-    @IBOutlet weak var btnRepeat: NSButton!
     
     @IBOutlet weak var playbackView: CompactPlaybackView!
     @IBOutlet weak var seekSliderView: ControlBarSeekSliderView!
     
-    @IBOutlet weak var viewSettingsMenuButton: NSPopUpButton!
-    @IBOutlet weak var viewSettingsMenu: NSMenu!
+    @IBOutlet weak var showPlayerMenuItem: NSMenuItem!
+    @IBOutlet weak var showPlayQueueMenuItem: NSMenuItem!
     
     @IBOutlet weak var scrollingEnabledMenuItem: NSMenuItem!
     @IBOutlet weak var showSeekPositionMenuItem: NSMenuItem!
@@ -122,7 +118,7 @@ class CompactPlayerViewController: NSViewController {
         imgArt.image = player.playingTrack?.art?.image ?? defaultArtwork
     }
     
-    // MARK: Message handling
+    // MARK: Message handling --------------------------------------
 
     func trackTransitioned(_ notification: TrackTransitionNotification) {
         updateTrackInfo()

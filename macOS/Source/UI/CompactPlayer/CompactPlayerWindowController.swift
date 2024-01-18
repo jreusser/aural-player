@@ -10,6 +10,13 @@
 
 import AppKit
 
+class CompactPlayerUIState {
+    
+    init() {}
+    
+    var isShowingPlayer: Bool = true
+}
+
 class CompactPlayerWindowController: NSWindowController {
     
     override var windowNibName: NSNib.Name? {"CompactPlayer"}
@@ -17,7 +24,10 @@ class CompactPlayerWindowController: NSWindowController {
     @IBOutlet weak var logoImage: TintedImageView!
     
     @IBOutlet weak var rootContainerBox: NSBox!
-    @IBOutlet weak var viewController: CompactPlayerViewController!
+    @IBOutlet weak var playerViewController: CompactPlayerViewController!
+    private lazy var playQueueViewController: PlayQueueSimpleViewController = .init()
+    
+    @IBOutlet weak var tabView: NSTabView!
     
     @IBOutlet weak var btnQuit: TintedImageButton!
     @IBOutlet weak var optionsMenuItem: TintedIconMenuItem!
@@ -28,8 +38,6 @@ class CompactPlayerWindowController: NSWindowController {
     
     @IBOutlet weak var cornerRadiusStepper: NSStepper!
     @IBOutlet weak var lblCornerRadius: NSTextField!
-    
-    private var snappingWindow: SnappingWindow!
     
     lazy var messenger = Messenger(for: self)
     
@@ -42,10 +50,15 @@ class CompactPlayerWindowController: NSWindowController {
     override func windowDidLoad() {
         
         window?.isMovableByWindowBackground = true
-        //        window?.level = NSWindow.Level(Int(CGWindowLevelForKey(.floatingWindow)))
-        
-        snappingWindow = window as? SnappingWindow
         window?.center()
+        
+        tabView.tabViewItem(at: 0).view?.addSubview(playerViewController.view)
+        tabView.tabViewItem(at: 1).view?.addSubview(playQueueViewController.view)
+        
+        playQueueViewController.view.anchorToSuperview()
+        
+        tabView.selectTabViewItem(at: 0)
+        compactPlayerUIState.isShowingPlayer = true
         
         rootContainerBox.cornerRadius = 12
 //        cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
@@ -56,9 +69,6 @@ class CompactPlayerWindowController: NSWindowController {
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
         
-        snappingWindow.ensureOnScreen()
-        
-//        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.buttonColor])
         colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
         colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
         
@@ -85,11 +95,24 @@ class CompactPlayerWindowController: NSWindowController {
         uiState.cornerRadius = rootContainerBox.cornerRadius
     }
     
+    @IBAction func showPlayerAction(_ sender: NSMenuItem) {
+        
+        tabView.selectTabViewItem(at: 0)
+        compactPlayerUIState.isShowingPlayer = true
+        eventMonitor.resumeMonitoring()
+    }
+    
+    @IBAction func showPlayQueueAction(_ sender: NSMenuItem) {
+        
+        tabView.selectTabViewItem(at: 1)
+        compactPlayerUIState.isShowingPlayer = false
+        eventMonitor.pauseMonitoring()
+    }
     
     override func destroy() {
         
         close()
-        viewController.destroy()
+        playerViewController.destroy()
         
         eventMonitor.stopMonitoring()
         eventMonitor = nil

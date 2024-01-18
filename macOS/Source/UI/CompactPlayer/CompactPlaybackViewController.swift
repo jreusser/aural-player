@@ -33,6 +33,26 @@ class CompactPlaybackViewController: PlaybackViewController {
         messenger.subscribe(to: .effects_playbackRateChanged, handler: playbackRateChanged(_:))
         messenger.subscribe(to: .player_playbackLoopChanged, handler: playbackLoopChanged)
         
+        messenger.subscribeAsync(to: .player_playTrack, handler: performTrackPlayback(_:))
+        
 //        messenger.subscribe(to: .applyTheme, handler: (playbackView as! CompactPlaybackView).applyTheme)
+    }
+    
+    func performTrackPlayback(_ command: TrackPlaybackCommandNotification) {
+        
+        switch command.type {
+            
+        case .index:
+            
+            if let index = command.index {
+                playbackDelegate.play(index, .defaultParams())
+            }
+            
+        case .track:
+            
+            if let track = command.track {
+                playbackDelegate.play(track, .defaultParams())
+            }
+        }
     }
 }

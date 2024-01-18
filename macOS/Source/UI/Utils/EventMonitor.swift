@@ -22,6 +22,8 @@ class EventMonitor {
     
     private var monitor: Any?
     
+    private var paused: Bool = false
+    
     func registerHandler(forEventType eventType: EventType, _ handler: @escaping EventHandler) {
         handlers[eventType] = handler
     }
@@ -34,7 +36,7 @@ class EventMonitor {
 
         monitor = NSEvent.addLocalMonitorForEvents(matching: allEventMasks, handler: {[weak self] (event: NSEvent) -> NSEvent? in
             
-            if let theSelf = self {
+            if let theSelf = self, !theSelf.paused {
                 return theSelf.handleEvent(event)
             }
             
@@ -49,6 +51,14 @@ class EventMonitor {
         }
         
         return event
+    }
+    
+    func pauseMonitoring() {
+        paused = true
+    }
+    
+    func resumeMonitoring() {
+        paused = false
     }
     
     func stopMonitoring() {

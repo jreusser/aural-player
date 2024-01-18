@@ -16,6 +16,9 @@ extension CompactPlayerViewController: NSMenuDelegate {
     
     func menuNeedsUpdate(_ menu: NSMenu) {
         
+        showPlayerMenuItem.onIf(compactPlayerUIState.isShowingPlayer)
+        showPlayQueueMenuItem.onIf(!compactPlayerUIState.isShowingPlayer)
+        
         scrollingEnabledMenuItem.onIf(textView.scrollingEnabled)
         
         showSeekPositionMenuItem.onIf(uiState.showSeekPosition)

@@ -22,11 +22,7 @@ class PlayerUIState {
     var showControls: Bool
     var showTrackTime: Bool
     
-    var trackTimeDisplayType: TrackTimeDisplayType {
-        didSet {
-            print("HERE changed to: \(trackTimeDisplayType)")
-        }
-    }
+    var trackTimeDisplayType: TrackTimeDisplayType
     
     init(persistentState: ModularPlayerUIPersistentState?) {
         

@@ -169,8 +169,6 @@ class ScrollingTrackInfoView: NSView {
                 let parts = String.truncateCompositeStringIntoParts(font, width, fullLengthString, theArtist, title, "   ")
                 truncatedString = parts[2]
                 
-                print("\nTruncated Strings: \(parts[0]) | \(parts[1]) | \(parts[2])")
-                
                 self.attrText = (parts[0] + "   ").attributed(font: font, color: secondaryTextColor) + parts[1].attributed(font: font, color: primaryTextColor)
                 toolTip = fullLengthString
                 
