@@ -45,7 +45,7 @@ class PlayingTrackView: MouseTrackingView {
         super.awakeFromNib()
         
         artView.showIf(uiState.showAlbumArt)
-//        lblTrackTime.showIf(trackInfo != nil && uiState.showTrackTime)
+        lblTrackTime.showIf(trackInfo != nil && uiState.showTrackTime)
         functionsButton.showIf(trackInfo != nil)
         
         repositionInfoBox()
@@ -77,7 +77,7 @@ class PlayingTrackView: MouseTrackingView {
         textView.trackInfo = self.trackInfo
         artView.image = trackInfo?.art ?? .imgPlayingArt
         
-//        lblTrackTime.showIf(trackInfo != nil && uiState.showTrackTime)
+        lblTrackTime.showIf(trackInfo != nil && uiState.showTrackTime)
         
         controlsBox?.showIf(trackInfo == nil || uiState.showControls)
         controlsBox?.bringToFront()
