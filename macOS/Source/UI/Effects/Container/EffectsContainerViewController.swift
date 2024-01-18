@@ -121,6 +121,7 @@ class EffectsContainerViewController: NSViewController {
           delayViewController, filterViewController, auViewController, devicesViewController] as? [Destroyable])?.forEach {$0.destroy()}
         
         messenger.unsubscribeFromAll()
+        fxUnitStateObserverRegistry.removeAllObservers()
     }
     
     // ------------------------------------------------------------------------

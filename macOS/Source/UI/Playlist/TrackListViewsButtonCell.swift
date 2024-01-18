@@ -12,7 +12,9 @@ import Cocoa
 
 class TrackListViewsButtonCell: TabGroupButtonCell {
     
-    private lazy var button: TrackListTabButton = controlView as! TrackListTabButton
+    var button: TrackListTabButton {
+        controlView as! TrackListTabButton
+    }
     
     @IBInspectable var imgWidth: Int = 13
     @IBInspectable var imgHeight: Int = 13

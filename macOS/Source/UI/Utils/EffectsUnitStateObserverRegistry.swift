@@ -181,6 +181,18 @@ class EffectsUnitStateObserverRegistry {
         
         return .bypassed
     }
+    
+    func removeAllObservers() {
+        
+        registry.removeAll()
+        reverseRegistry.removeAll()
+        
+        auRegistry.removeAll()
+        auReverseRegistry.removeAll()
+        auCompositeStateObservers.removeAll()
+        
+        kvoTokens.invalidate()
+    }
 }
 
 let fxUnitStateObserverRegistry: EffectsUnitStateObserverRegistry = .shared

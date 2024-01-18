@@ -14,8 +14,6 @@ class EffectsUnitTabButtonCell: NSButtonCell {
     
 //    private var selectionBoxColor: NSColor {Colors.selectedTabButtonColor}
     
-    lazy var observingButton: EffectsUnitTabButton = controlView as! EffectsUnitTabButton
-    
     @IBInspectable var imgWidth: Int = 13
     @IBInspectable var imgHeight: Int = 13
     
@@ -23,14 +21,16 @@ class EffectsUnitTabButtonCell: NSButtonCell {
         drawInterior(withFrame: cellFrame, in: controlView)
     }
     
-    lazy var tabButton: EffectsUnitTabButton = controlView as! EffectsUnitTabButton
+    var tabButton: EffectsUnitTabButton {
+        controlView as! EffectsUnitTabButton
+    }
     
     var isSelected: Bool {
         tabButton.isSelected
     }
     
     var imageColor: NSColor {
-        systemColorScheme.colorForEffectsUnitState(fxUnitStateObserverRegistry.currentState(forObserver: observingButton))
+        systemColorScheme.colorForEffectsUnitState(fxUnitStateObserverRegistry.currentState(forObserver: tabButton))
     }
     
     override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
