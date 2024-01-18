@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -479,11 +479,7 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="390"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <customView focusRingType="none" id="Zky-DG-NzB" customClass="ScrollingTrackInfoView" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="11" y="68" width="200" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                </customView>
-                <imageView focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="haa-9u-kVC" userLabel="Cover Art" customClass="RoundedImageView" customModule="Aural" customModuleProvider="target">
+                <imageView wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="haa-9u-kVC" userLabel="Cover Art" customClass="RoundedImageView" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="10" y="110" width="280" height="280"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="280" id="Q58-Je-bRe"/>
@@ -492,10 +488,66 @@
                     <imageCell key="cell" refusesFirstResponder="YES" focusRingType="none" alignment="left" imageScaling="proportionallyDown" id="xih-5Z-Trf"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="roundingRadius">
-                            <real key="value" value="5"/>
+                            <real key="value" value="4"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
+                <box fixedFrame="YES" boxType="custom" borderType="none" cornerRadius="6" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ABa-Th-Fjq">
+                    <rect key="frame" x="257" y="116" width="26" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" id="VZv-Vo-wz9">
+                        <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <popUpButton wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L2c-sU-UBV" userLabel="Functions Menu">
+                                <rect key="frame" x="4" y="8" width="18" height="11"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" controlSize="large" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="K5c-NG-ep2" id="8zl-45-8v4">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" autoenablesItems="NO" id="7Hz-Sr-E3L">
+                                        <items>
+                                            <menuItem hidden="YES" id="K5c-NG-ep2" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                                <imageReference key="image" image="Ellipsis" symbolScale="medium"/>
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Ellipsis"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </menuItem>
+                                            <menuItem title="  Add this track to Favorites" image="heart" catalog="system" id="iCE-3H-bAq" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="offStateTitle" value="  Add this track to Favorites"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="onStateTitle" value="  Remove this track from Favorites"/>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="heart" catalog="system"/>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="heart.slash" catalog="system"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </menuItem>
+                                            <menuItem title="  Bookmark this track position" image="bookmark" catalog="system" id="rdk-lu-d76" userLabel="Bookmark this track position">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="  View detailed track info" id="Hum-GS-bDm" userLabel="View detailed track info">
+                                                <imageReference key="image" image="info" catalog="system" symbolScale="large"/>
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="  Show track in Play Queue" image="text.insert" catalog="system" id="S4p-ZH-feH" userLabel="Show track in Play Queue">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="  Remember track position" image="clock.arrow.2.circlepath" catalog="system" id="avP-z2-gMn" userLabel="Show track in Play Queue">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                        </subviews>
+                    </view>
+                    <color key="fillColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="0.64655080782312924" colorSpace="custom" customColorSpace="sRGB"/>
+                </box>
+                <customView focusRingType="none" id="Zky-DG-NzB" customClass="ScrollingTrackInfoView" customModule="Aural" customModuleProvider="target">
+                    <rect key="frame" x="11" y="68" width="200" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </customView>
                 <view focusRingType="none" id="cnO-Or-V3s" userLabel="Controls View" customClass="CompactPlaybackView" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -670,16 +722,23 @@ IA
     </objects>
     <resources>
         <image name="AppTitle" width="117" height="32"/>
+        <image name="Ellipsis" width="40" height="10"/>
         <image name="Hamburger" width="10" height="7"/>
         <image name="Loop" width="270" height="210"/>
         <image name="Play" width="40" height="40"/>
         <image name="WindowLayout" width="20" height="20"/>
         <image name="backward.end" catalog="system" width="13" height="13"/>
+        <image name="bookmark" catalog="system" width="14" height="16"/>
+        <image name="clock.arrow.2.circlepath" catalog="system" width="18" height="15"/>
         <image name="forward.end" catalog="system" width="13" height="13"/>
+        <image name="heart" catalog="system" width="16" height="14"/>
+        <image name="heart.slash" catalog="system" width="16" height="17"/>
+        <image name="info" catalog="system" width="11" height="16"/>
         <image name="minus" catalog="system" width="14" height="4"/>
         <image name="repeat" catalog="system" width="17" height="14"/>
         <image name="shuffle" catalog="system" width="18" height="14"/>
         <image name="speaker.wave.3" catalog="system" width="22" height="15"/>
+        <image name="text.insert" catalog="system" width="16" height="13"/>
         <image name="xmark" catalog="system" width="14" height="13"/>
     </resources>
 </document>

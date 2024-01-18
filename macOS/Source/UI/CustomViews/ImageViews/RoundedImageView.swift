@@ -39,6 +39,8 @@ class RoundedImageView: NSImageView {
     }
     
     override func awakeFromNib() {
+        
+        super.awakeFromNib()
         layer?.cornerRadius = roundingRadius
     }
 }
