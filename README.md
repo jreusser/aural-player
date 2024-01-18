@@ -10,7 +10,9 @@ As of Jan 12, 2024, Aural Player version 4.0 is in active development, and aims 
 
 ### New core features ("MVP")
 
-- A new "Unified" (single window) app presentation mode. NOTE - The existing modular UI mode will remain.
+- 2 new app modes (NOTE - The existing modular UI mode will remain):
+   * A "Unified" mode that combines all of Aural's modules / features into a single resizable window.
+   * A "Compact" mode that provides the essentials (player and play queue, plus some theming options) in a compact fixed-size window.
 - A rich new full-fledged library for music organization that includes a convenient file system browser and lets the user create and save multiple playlists.
 - The old "playlist" becomes the new "play queue".
 - The ability to easily copy tracks across modules with drag / drop. Example - from a playlist to the play queue, or from the library to a playlist.
