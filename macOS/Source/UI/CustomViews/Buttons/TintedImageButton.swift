@@ -96,6 +96,10 @@ extension NSButton: ColorSchemePropertyObserver {
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
+        if self.toolTip == "Repeat" {
+            print("colorChanged(\(newColor): btnRepeat: \(hashValue)")
+        }
+        
         contentTintColor = newColor
         redraw()
     }

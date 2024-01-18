@@ -74,7 +74,8 @@ class SeekSliderView: NSView, Destroyable {
         let seekTimerInterval = (1000 / (2 * timeStretchUnit.effectiveRate)).roundedInt
         
         seekTimer = RepeatingTaskExecutor(intervalMillis: seekTimerInterval,
-                                          task: updateSeekPosition,
+                                          task: {[weak self] in
+            self?.updateSeekPosition()},
                                           queue: .main)
     }
     

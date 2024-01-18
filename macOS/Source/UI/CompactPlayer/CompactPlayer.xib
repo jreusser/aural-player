@@ -349,7 +349,7 @@
                                     <tabViewItems>
                                         <tabViewItem label="Tab" identifier="" id="xWZ-b3-cwO" userLabel="Player">
                                             <view key="view" id="8oG-VK-t61">
-                                                <rect key="frame" x="0.0" y="0.0" width="286" height="374"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="390"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </view>
                                         </tabViewItem>
