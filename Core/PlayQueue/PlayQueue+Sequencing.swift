@@ -15,9 +15,12 @@ extension PlayQueue {
     func start() -> Track? {
 
         // Set the scope of the new sequence according to the playlist view type. For ex, if the "Artists" playlist view is selected, the new sequence will consist of all tracks in the "Artists" playlist, and the order of playback will be determined by the ordering within the Artists playlist (in addition to the repeat/shuffle modes).
+        if shuffleMode == .on {
+            shuffleSequence.resizeAndReshuffle(size: self.size)
+        }
 
         // Begin playing the subsequent track (first track determined by the sequence)
-        subsequent()
+        return subsequent()
     }
 
     func stop() {
@@ -96,11 +99,11 @@ extension PlayQueue {
     }
     
     func next() -> Track? {
+        
+        guard size > 1, let theCurrentTrackIndex = currentTrackIndex else {return nil}
 
         // If there is no previous track, don't change the playingTrack variable, because the playing track will continue playing
-        guard let nextIndex = indexOfNext else {return nil}
-        
-        let computedValue = shuffleMode == .on ? shuffleSequence.next(repeatMode: repeatMode) : nextIndex
+        let computedValue = shuffleMode == .on ? shuffleSequence.next(repeatMode: repeatMode) : indexOfNext(theCurrentTrackIndex: theCurrentTrackIndex)
         
         // Update the cursor only with a non-nil value.
         if let nonNilComputedValue = computedValue {
@@ -115,25 +118,19 @@ extension PlayQueue {
     }
     
     // Peeks at (without selecting for playback) the next track in the sequence
-    private var indexOfNext: Int? {
+    private func indexOfNext(theCurrentTrackIndex: Int) -> Int? {
         
-        guard size > 1, let theCurTrackIndex = currentTrackIndex else {return nil}
-        
-        if shuffleMode == .on {
-            return shuffleSequence.peekNext()
-            
-        } // Shuffle mode is off
-        else {
-            return theCurTrackIndex < (size - 1) ? theCurTrackIndex + 1 : (repeatMode == .all ? 0 : nil)
-        }
+        shuffleMode == .on ?
+        shuffleSequence.peekNext() :
+        theCurrentTrackIndex < (size - 1) ? theCurrentTrackIndex + 1 : (repeatMode == .all ? 0 : nil)
     }
 
     func previous() -> Track? {
 
         // If there is no previous track, don't change the playingTrack variable, because the playing track will continue playing
-        guard let previousIndex = indexOfPrevious else {return nil}
+        guard size > 1, let theCurrentTrackIndex = currentTrackIndex else {return nil}
         
-        let computedValue = shuffleMode == .on ? shuffleSequence.previous() : previousIndex
+        let computedValue = shuffleMode == .on ? shuffleSequence.previous() : indexOfPrevious(theCurrentTrackIndex: theCurrentTrackIndex)
         
         // Update the cursor only with a non-nil value.
         if let nonNilComputedValue = computedValue {
@@ -148,17 +145,11 @@ extension PlayQueue {
     }
     
     // Peeks at (without selecting for playback) the previous track in the sequence
-    private var indexOfPrevious: Int? {
+    private func indexOfPrevious(theCurrentTrackIndex: Int) -> Int? {
         
-        guard size > 1, let theCurTrackIndex = currentTrackIndex else {return nil}
-        
-        if shuffleMode == .on {
-            return shuffleSequence.peekPrevious()
-            
-        } // Shuffle mode is off
-        else {
-            return theCurTrackIndex > 0 ? theCurTrackIndex - 1 : (repeatMode == .all ? size - 1 : nil)
-        }
+        shuffleMode == .on ?
+        shuffleSequence.peekPrevious() :
+        theCurrentTrackIndex > 0 ? theCurrentTrackIndex - 1 : (repeatMode == .all ? size - 1 : nil)
     }
 
     func peekSubsequent() -> Track? {
@@ -169,14 +160,16 @@ extension PlayQueue {
 
     func peekNext() -> Track? {
 
-        guard let nextIndex = indexOfNext else {return nil}
+        guard size > 1, let theCurrentTrackIndex = currentTrackIndex else {return nil}
+        guard let nextIndex = indexOfNext(theCurrentTrackIndex: theCurrentTrackIndex) else {return nil}
         return self[nextIndex]
     }
 
     func peekPrevious() -> Track? {
 
         // If there is no previous track, don't change the playingTrack variable, because the playing track will continue playing
-        guard let previousIndex = indexOfPrevious else {return nil}
+        guard size > 1, let theCurrentTrackIndex = currentTrackIndex else {return nil}
+        guard let previousIndex = indexOfPrevious(theCurrentTrackIndex: theCurrentTrackIndex) else {return nil}
         return self[previousIndex]
     }
 
