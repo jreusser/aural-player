@@ -25,7 +25,7 @@ struct LegacyAppPersistentState: Codable {
     var playbackSequence: LegacyPlaybackSequencePersistentState?
 //    var playbackProfiles: [PlaybackProfilePersistentState]?
 //    
-//    var history: HistoryPersistentState?
+    var history: LegacyHistoryPersistentState?
     var favorites: [LegacyFavoritePersistentState]?
     var bookmarks: [LegacyBookmarkPersistentState]?
 //    
@@ -36,6 +36,7 @@ struct LegacyAppPersistentState: Codable {
 }
 
 typealias URLPath = String
+typealias DateString = String
 
 struct LegacyPlaylistPersistentState: Codable {
     

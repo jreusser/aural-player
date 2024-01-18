@@ -17,7 +17,7 @@ struct LegacyUIPersistentState: Codable {
 //    let windowLayout: WindowLayoutsPersistentState?
 //    let themes: ThemesPersistentState?
 //    let fontSchemes: FontSchemesPersistentState?
-//    let colorSchemes: ColorSchemesPersistentState?
+    let colorSchemes: LegacyColorSchemesPersistentState?
     let windowAppearance: WindowAppearancePersistentState?
     
     let player: LegacyPlayerUIPersistentState?

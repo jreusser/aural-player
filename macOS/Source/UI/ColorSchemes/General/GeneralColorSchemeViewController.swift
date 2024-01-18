@@ -18,7 +18,6 @@ class GeneralColorSchemeViewController: ColorSchemeViewController {
     
     @IBOutlet weak var backgroundColorPicker: AuralColorPicker!
     @IBOutlet weak var buttonColorPicker: AuralColorPicker!
-    @IBOutlet weak var iconColorPicker: AuralColorPicker!
     
     override func viewDidLoad() {
         
@@ -28,7 +27,6 @@ class GeneralColorSchemeViewController: ColorSchemeViewController {
         
         actionsMap[backgroundColorPicker.tag] = changeBackgroundColor
         actionsMap[buttonColorPicker.tag] = changeButtonColor
-        actionsMap[iconColorPicker.tag] = changeIconColor
     }
     
     override func resetFields(_ scheme: ColorScheme, _ history: ColorSchemeHistory, _ clipboard: ColorClipboard) {
@@ -39,7 +37,6 @@ class GeneralColorSchemeViewController: ColorSchemeViewController {
         
         backgroundColorPicker.color = systemColorScheme.backgroundColor
         buttonColorPicker.color = systemColorScheme.buttonColor
-        iconColorPicker.color = systemColorScheme.iconColor
     }
     
     @IBAction func backgroundColorAction(_ sender: Any) {
@@ -62,16 +59,5 @@ class GeneralColorSchemeViewController: ColorSchemeViewController {
     
     private func changeButtonColor() {
         systemColorScheme.buttonColor = buttonColorPicker.color
-    }
-    
-    @IBAction func iconColorAction(_ sender: Any) {
-        
-        history.noteChange(ColorSchemeChange(tag: iconColorPicker.tag, undoValue: systemColorScheme.iconColor,
-                                             redoValue: iconColorPicker.color, changeType: .changeColor))
-        changeIconColor()
-    }
-    
-    private func changeIconColor() {
-        systemColorScheme.iconColor = iconColorPicker.color
     }
 }

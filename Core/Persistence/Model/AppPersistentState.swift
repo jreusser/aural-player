@@ -42,6 +42,8 @@ struct AppPersistentState: Codable {
         self.playQueue = .init(legacyPlaylistPersistentState: legacyAppPersistentState.playlist,
                                legacyPlaybackSequencePersistentState: legacyAppPersistentState.playbackSequence)
         
+        self.history = .init(legacyPersistentState: legacyAppPersistentState.history)
+        
         self.favorites = .init(legacyPersistentState: legacyAppPersistentState.favorites)
         
         self.bookmarks = legacyAppPersistentState.bookmarks?.map {BookmarkPersistentState(legacyPersistentState: $0)}

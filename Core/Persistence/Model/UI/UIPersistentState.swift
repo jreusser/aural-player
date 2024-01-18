@@ -57,7 +57,7 @@ struct UIPersistentState: Codable {
         self.windowLayout = nil
         self.themes = nil
         self.fontSchemes = nil
-        self.colorSchemes = nil
+        self.colorSchemes = .init(legacyPersistentState: legacyPersistentState?.colorSchemes)
         self.windowAppearance = .init(legacyPersistentState: legacyPersistentState?.windowAppearance)
         
         self.modularPlayer = ModularPlayerUIPersistentState(legacyPersistentState: legacyPersistentState?.player)

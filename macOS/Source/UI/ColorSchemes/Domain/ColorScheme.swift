@@ -35,7 +35,6 @@ class ColorScheme: NSObject, UserManagedObject {
     
     @objc dynamic var backgroundColor: NSColor
     @objc dynamic var buttonColor: NSColor
-    @objc dynamic var iconColor: NSColor
     
     // MARK: Text colors ----------------------------------------------------------------------------------------
     
@@ -76,8 +75,6 @@ class ColorScheme: NSObject, UserManagedObject {
         
         self.backgroundColor = backgroundColor
         self.buttonColor = buttonColor
-        self.iconColor = iconColor
-        
         self.captionTextColor = captionTextColor
         
         self.primaryTextColor = primaryTextColor
@@ -105,8 +102,6 @@ class ColorScheme: NSObject, UserManagedObject {
         
         backgroundColor = scheme.backgroundColor
         buttonColor = scheme.buttonColor
-        iconColor = scheme.iconColor
-        
         captionTextColor = scheme.captionTextColor
         
         primaryTextColor = scheme.primaryTextColor
@@ -134,8 +129,6 @@ class ColorScheme: NSObject, UserManagedObject {
         
         backgroundColor = persistentState?.backgroundColor?.toColor() ?? Self.defaultScheme.backgroundColor
         buttonColor = persistentState?.buttonColor?.toColor() ?? Self.defaultScheme.buttonColor
-        iconColor = persistentState?.iconColor?.toColor() ?? Self.defaultScheme.iconColor
-        
         captionTextColor = persistentState?.captionTextColor?.toColor() ?? Self.defaultScheme.captionTextColor
         
         primaryTextColor = persistentState?.primaryTextColor?.toColor() ?? Self.defaultScheme.primaryTextColor
@@ -166,8 +159,6 @@ class ColorScheme: NSObject, UserManagedObject {
         
         backgroundColor = scheme.backgroundColor
         buttonColor = scheme.buttonColor
-        iconColor = scheme.iconColor
-        
         captionTextColor = scheme.captionTextColor
         
         primaryTextColor = scheme.primaryTextColor

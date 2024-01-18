@@ -57,6 +57,8 @@ class TrackLoader {
     
     private let queue: OperationQueue = OperationQueue()
     
+//    private lazy var messenger: Messenger = .init(for: self)
+    
     init(priority: FileLoaderPriority, qOS: DispatchQoS.QoSClass) {
         
         self.priority = priority
@@ -87,6 +89,10 @@ class TrackLoader {
             if self.batch.fileCount > 0 {
                 self.flushBatch()
             }
+            
+//            if userAction {
+//                self.messenger.publish(.history_itemsAdded, payload: self.session.historyItems)
+//            }
             
             // Cleanup
             self.session = nil
