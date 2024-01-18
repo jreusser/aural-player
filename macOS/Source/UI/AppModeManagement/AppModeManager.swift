@@ -85,6 +85,9 @@ class AppModeManager {
         }
         
         currentMode = newMode
+        
+        colorSchemesManager.startObserving()
+        fontSchemesManager.startObserving()
     }
     
     private func dismissCurrentMode() {
@@ -104,5 +107,8 @@ class AppModeManager {
         case .compact:  compactMode.dismissMode()
             
         }
+        
+        colorSchemesManager.stopObserving()
+        fontSchemesManager.stopObserving()
     }
 }
