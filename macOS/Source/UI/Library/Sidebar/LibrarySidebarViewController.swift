@@ -52,6 +52,12 @@ class LibrarySidebarViewController: NSViewController {
         }
     }
     
+    override func destroy() {
+        
+        super.destroy()
+        messenger.unsubscribeFromAll()
+    }
+    
     @IBAction func createEmptyPlaylistAction(_ sender: Any) {
         
 //        _ = playlistsManager.createNewPlaylist(named: uniquePlaylistName)

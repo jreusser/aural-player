@@ -22,7 +22,7 @@ class EQUnitView: NSView, Destroyable {
     
     var stateFunction: EffectsUnitStateFunction!
     var sliderAction: Selector?
-    var sliderActionTarget: AnyObject?
+    weak var sliderActionTarget: AnyObject?
     
     // ------------------------------------------------------------------------
     

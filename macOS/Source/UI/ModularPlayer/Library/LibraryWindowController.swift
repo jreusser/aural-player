@@ -117,6 +117,12 @@ class LibraryWindowController: NSWindowController {
         close()
         buildProgressUpdateTask.pause()
         messenger.unsubscribeFromAll()
+        
+        [sidebarController, libraryTracksController, libraryArtistsController, libraryAlbumsController, libraryGenresController,
+         libraryDecadesController, libraryImportedPlaylistsController, playlistsViewController, tuneBrowserViewController].forEach {
+            
+            $0.destroy()
+        }
     }
     
     override func showWindow(_ sender: Any?) {

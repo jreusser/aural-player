@@ -53,6 +53,7 @@ class EffectsWindowController: NSWindowController {
 
         close()
         messenger.unsubscribeFromAll()
+        containerViewController.destroy()
     }
     
     // ------------------------------------------------------------------------

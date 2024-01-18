@@ -49,6 +49,12 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
         updateSummary()
     }
     
+    override func destroy() {
+        
+        super.destroy()
+        messenger.unsubscribeFromAll()
+    }
+    
     // TODO: Implement the controls bar !!! Double-click action, sorting, etc
     
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
