@@ -294,7 +294,7 @@
                                         <constraint firstAttribute="width" constant="13" id="bEE-UY-j4j"/>
                                     </constraints>
                                 </popUpButton>
-                                <imageView focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kRO-cS-abr" userLabel="Title view" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
+                                <imageView focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kRO-cS-abr" userLabel="Title view" customClass="AppLogoView" customModule="Aural" customModuleProvider="target">
                                     <rect key="frame" x="123" y="402" width="54" height="15"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <imageCell key="cell" refusesFirstResponder="YES" focusRingType="none" alignment="left" imageScaling="proportionallyDown" image="AppTitle" id="2Hm-AK-QNc"/>
@@ -479,16 +479,13 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="390"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="haa-9u-kVC" userLabel="Cover Art" customClass="RoundedImageView" customModule="Aural" customModuleProvider="target">
+                <imageView wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="haa-9u-kVC" userLabel="Cover Art" customClass="RoundedImageView" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="10" y="110" width="280" height="280"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="280" id="Q58-Je-bRe"/>
-                        <constraint firstAttribute="width" constant="280" id="yGg-Nv-1h4"/>
-                    </constraints>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" focusRingType="none" alignment="left" imageScaling="proportionallyDown" id="xih-5Z-Trf"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="roundingRadius">
-                            <real key="value" value="4"/>
+                            <real key="value" value="6"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
@@ -713,10 +710,6 @@ IA
                     </textFieldCell>
                 </textField>
             </subviews>
-            <constraints>
-                <constraint firstItem="haa-9u-kVC" firstAttribute="top" secondItem="RKL-OU-laL" secondAttribute="top" id="JvH-AF-Quj"/>
-                <constraint firstItem="haa-9u-kVC" firstAttribute="leading" secondItem="RKL-OU-laL" secondAttribute="leading" constant="10" id="UzK-NP-wax"/>
-            </constraints>
             <point key="canvasLocation" x="-284" y="-965"/>
         </view>
     </objects>

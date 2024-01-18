@@ -43,4 +43,8 @@ class RoundedImageView: NSImageView {
         super.awakeFromNib()
         layer?.cornerRadius = roundingRadius
     }
+    
+    override func mouseDown(with event: NSEvent) {
+        window?.performDrag(with: event)
+    }
 }

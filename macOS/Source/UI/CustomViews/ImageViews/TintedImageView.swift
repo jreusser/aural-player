@@ -34,3 +34,10 @@ extension NSImageView: ColorSchemePropertyObserver {
         contentTintColor = newColor
     }
 }
+
+class AppLogoView: TintedImageView {
+    
+    override func mouseDown(with event: NSEvent) {
+        window?.performDrag(with: event)
+    }
+}
