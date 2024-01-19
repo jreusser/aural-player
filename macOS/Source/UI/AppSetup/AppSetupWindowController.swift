@@ -9,19 +9,14 @@
 //  
 
 import Cocoa
+import OrderedCollections
 
 class AppSetupWindowController: NSWindowController {
     
     override var windowNibName: String? {"AppSetupWindow"}
     
     @IBOutlet weak var tabView: NSTabView!
-    
-    @IBOutlet weak var btnPresentationMode: NSButton!
-    @IBOutlet weak var btnWindowLayout: NSButton!
-    @IBOutlet weak var btnColorScheme: NSButton!
-    @IBOutlet weak var btnFontScheme: NSButton!
-    @IBOutlet weak var btnLibraryHome: NSButton!
-    private lazy var tabButtons: [NSButton] = [btnPresentationMode, btnWindowLayout, btnColorScheme, btnFontScheme, btnLibraryHome]
+    @IBOutlet weak var pathControl: NSPathControl!
     
     @IBOutlet weak var btnNext: NSButton!
     @IBOutlet weak var btnPrevious: NSButton!
@@ -38,6 +33,10 @@ class AppSetupWindowController: NSWindowController {
     
     private lazy var messenger: Messenger = Messenger(for: self)
     
+    private var titlesAndIndices: OrderedDictionary<String, Int> = .init()
+    
+    fileprivate static let pathControlFont: NSFont = NSFont(name: standardFontName, size: 15)!
+    
     override func windowDidLoad() {
         
         super.windowDidLoad()
@@ -45,17 +44,62 @@ class AppSetupWindowController: NSWindowController {
         window?.isMovableByWindowBackground = true
         window?.center()
         
+        pathControl.pathItems.removeAll()
+        
+        let pathItems: [NSPathControlItem] = ["Presentation Mode", "Window Layout", "Color Scheme", "Font Scheme", "Library"].enumerated().map {(index, title) in
+            
+            titlesAndIndices[title] = index
+            
+            let item = NSPathControlItem()
+            item.attributedTitle = title.attributed(withFont: Self.pathControlFont, andColor: .lightGray)
+            return item
+        }
+        
+        pathItems.first?.setTitleColor(.white)
+        
+        pathControl.pathItems.append(contentsOf: pathItems)
+        
         for (index, controller) in [presentationModeSetupViewController, windowLayoutSetupViewController, 
                                     colorSchemeSetupViewController, fontSchemeSetupViewController,
                                     libraryHomeSetupViewController].enumerated() {
             
             tabView.tabViewItem(at: index).view?.addSubview(controller.view)
+            controller.view.anchorToSuperview()
         }
+    }
+    
+    @IBAction func pathControlAction(_ sender: NSPathControl) {
+        
+        guard let clickedItem = sender.clickedPathItem,
+              let index = titlesAndIndices[clickedItem.title] else {return}
+        
+        tabView.selectTabViewItem(at: index)
+        
+        if tabView.selectedIndex > 0 {
+            
+            for index in 0..<tabView.selectedIndex {
+                pathControl.pathItems[index].setTitleColor(.systemBlue)
+            }
+        }
+        
+        pathControl.pathItems[tabView.selectedIndex].setTitleColor(.white)
+        
+        if tabView.selectedIndex < indexOfLastTabViewItem {
+            
+            for index in (tabView.selectedIndex + 1)...indexOfLastTabViewItem {
+                pathControl.pathItems[index].setTitleColor(.lightGray)
+            }
+        }
+        
+        btnPrevious.enableIf(tabView.selectedIndex > 0)
+        btnNext.title = tabView.selectedIndex == indexOfLastTabViewItem ? "Done" : "Next"
     }
     
     @IBAction func nextStepAction(_ sender: Any) {
         
         if tabView.selectedIndex == 0, appSetup.presentationMode == .unified {
+            
+            pathControl.pathItems[0].setTitleColor(.systemBlue)
             
             // Skip window layout
             doNextTab()
@@ -72,12 +116,8 @@ class AppSetupWindowController: NSWindowController {
             doNextTab()
         }
         
-        if tabView.selectedIndex > 0 {
-            
-            for index in 0..<tabView.selectedIndex {
-                tabButtons[index].contentTintColor = .systemBlue
-            }
-        }
+        pathControl.pathItems[tabView.selectedIndex - 1].setTitleColor(.systemBlue)
+        pathControl.pathItems[tabView.selectedIndex].setTitleColor(.white)
         
         if tabView.selectedIndex == indexOfLastTabViewItem {
             btnNext.title = "Done"
@@ -94,7 +134,15 @@ class AppSetupWindowController: NSWindowController {
         
         guard tabView.selectedIndex > 0 else {return}
         
-        tabView.selectPreviousTabViewItem(self)
+        if tabView.selectedIndex == 2, appSetup.presentationMode == .unified {
+            
+            pathControl.pathItems[2].setTitleColor(.lightGray)
+            
+            // Skip window layout
+            doPreviousTab()
+        }
+        
+        doPreviousTab()
         
         if tabView.selectedIndex == 0 {
             btnPrevious.disable()
@@ -102,12 +150,12 @@ class AppSetupWindowController: NSWindowController {
         
         btnNext.title = "Next"
         
-        if tabView.selectedIndex < indexOfLastTabViewItem {
-            
-            for index in tabView.selectedIndex..<indexOfLastTabViewItem {
-                tabButtons[index].contentTintColor = .selectedTextColor
-            }
-        }
+        pathControl.pathItems[tabView.selectedIndex].setTitleColor(.white)
+        pathControl.pathItems[tabView.selectedIndex + 1].setTitleColor(.lightGray)
+    }
+    
+    private func doPreviousTab() {
+        tabView.selectPreviousTabViewItem(self)
     }
     
     @IBAction func skipSetupAction(_ sender: Any) {
@@ -115,5 +163,12 @@ class AppSetupWindowController: NSWindowController {
         close()
         appSetup.setupCompleted = false
         messenger.publish(.appSetup_completed)
+    }
+}
+
+extension NSPathControlItem {
+    
+    func setTitleColor(_ color: PlatformColor) {
+        attributedTitle = title.attributed(withFont: AppSetupWindowController.pathControlFont, andColor: color)
     }
 }
