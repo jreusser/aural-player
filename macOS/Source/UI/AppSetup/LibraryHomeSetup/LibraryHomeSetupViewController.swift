@@ -20,7 +20,7 @@ class LibraryHomeSetupViewController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        lblPath.stringValue = appSetup.libraryHome.path
+        lblPath.stringValue = appSetup.librarySourceFolder.path
         openFolderDialog.message = "Choose the folder containing your music collection."
     }
     
@@ -30,7 +30,7 @@ class LibraryHomeSetupViewController: NSViewController {
         
         lblPath.stringValue = folder.path
         
-        appSetup.libraryHome = folder
-        print("Set library home folder to: \(appSetup.libraryHome.path)")
+        appSetup.librarySourceFolder = folder
+        print("Set library home folder to: \(appSetup.librarySourceFolder.path)")
     }
 }

@@ -118,8 +118,8 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     private func performInitialLayout() {
         
         // Remember from last app launch, reverting to default layout if app state is corrupted
-        if appSetup.performSetup {
-            applyLayout(appSetup.windowLayout.layout(gap: CGFloat(preferences.windowGap)))
+        if appSetup.setupCompleted {
+            applyLayout(appSetup.windowLayoutPreset.layout(gap: CGFloat(preferences.windowGap)))
             
         } else {
             applyLayout(savedLayout ?? defaultLayout)

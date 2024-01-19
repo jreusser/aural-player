@@ -22,7 +22,7 @@ class FontSchemeSetupViewController: NSViewController {
         
         super.viewDidLoad()
         
-        let defaultSchemeName = appSetup.fontScheme.name
+        let defaultSchemeName = appSetup.fontSchemePreset.name
         
         lblName.stringValue = defaultSchemeName
         
@@ -37,7 +37,7 @@ class FontSchemeSetupViewController: NSViewController {
         
         lblName.stringValue = selSchemeName
         
-        appSetup.fontScheme = preset
-        print("Set font scheme to: \(appSetup.fontScheme.rawValue)")
+        appSetup.fontSchemePreset = preset
+        print("Set font scheme to: \(appSetup.fontSchemePreset.rawValue)")
     }
 }

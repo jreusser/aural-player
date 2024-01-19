@@ -22,7 +22,7 @@ class ColorSchemeSetupViewController: NSViewController {
         
         super.viewDidLoad()
         
-        let defaultSchemeName = appSetup.colorScheme.name
+        let defaultSchemeName = appSetup.colorSchemePreset.name
         
         lblName.stringValue = defaultSchemeName
         
@@ -37,7 +37,7 @@ class ColorSchemeSetupViewController: NSViewController {
         
         lblName.stringValue = selSchemeName
         
-        appSetup.colorScheme = preset
-        print("Set color scheme to: \(appSetup.colorScheme.rawValue)")
+        appSetup.colorSchemePreset = preset
+        print("Set color scheme to: \(appSetup.colorSchemePreset.rawValue)")
     }
 }

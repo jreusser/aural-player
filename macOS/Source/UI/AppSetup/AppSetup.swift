@@ -19,24 +19,23 @@ class AppSetup {
     /// Singleton
     static var shared: AppSetup = .init()
     
-    static var setupRequired: Bool {
+    private(set) lazy var setupRequired: Bool = {
         
-        if !persistenceManager.persistentStateFileExists {
-            return true
-        }
-        
-        if let appVersion = appPersistentState.appVersion {
-            return !appVersion.starts(with: "4")
+        if persistenceManager.persistentStateFileExists, 
+            let appVersion = appPersistentState.appVersion,
+            appVersion.hasPrefix("4") {
+            
+            return false
         }
         
         return true
-    }
+    }()
     
-    var performSetup: Bool = false
+    var setupCompleted: Bool = false
     
     var presentationMode: AppMode = .defaultMode
-    var windowLayout: WindowLayoutPresets = .defaultLayout
-    var colorScheme: ColorSchemePreset = .defaultScheme
-    var fontScheme: FontSchemePreset = .defaultScheme
-    var libraryHome: URL = FilesAndPaths.musicDir
+    var windowLayoutPreset: WindowLayoutPresets = .defaultLayout
+    var colorSchemePreset: ColorSchemePreset = .defaultScheme
+    var fontSchemePreset: FontSchemePreset = .defaultScheme
+    var librarySourceFolder: URL = FilesAndPaths.musicDir
 }

@@ -65,8 +65,8 @@ class AppSetupWindowController: NSWindowController {
             
             // Last step, done with setup
             close()
-            appSetup.performSetup = true
-            messenger.publish(.appSetup_completed, payload: appSetup)
+            appSetup.setupCompleted = true
+            messenger.publish(.appSetup_completed)
             
         } else {
             doNextTab()
@@ -113,7 +113,7 @@ class AppSetupWindowController: NSWindowController {
     @IBAction func skipSetupAction(_ sender: Any) {
         
         close()
-        appSetup.performSetup = false
+        appSetup.setupCompleted = false
         messenger.publish(.appSetup_completed)
     }
 }

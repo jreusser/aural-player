@@ -78,37 +78,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let df = DateFormatter(format: "H:mm:ss.SSS")
         print("AppDelegate.applicationDidFinishLaunching(): \(df.string(from: Date()))")
         
-//        if AppSetup.setupRequired {
-//            
-//            messenger.subscribe(to: .appSetup_completed, handler: postLaunch(appSetup:))
-//            appSetupWindowController.showWindow(self)
-//            
-//        } else {
-            postLaunch(appSetup: nil)
-//        }
+        initializeMetadataComponents()
+        
+        if appSetup.setupRequired {
+            performAppSetup()
+            
+        } else {
+            postLaunch()
+        }
     }
     
-    private func postLaunch(appSetup: AppSetup?) {
+    private func performAppSetup() {
         
-        if let theAppSetup = appSetup {
+        messenger.subscribe(to: .appSetup_completed) {
             
-            colorSchemesManager.applyScheme(named: theAppSetup.colorScheme.name)
-            fontSchemesManager.applyScheme(named: theAppSetup.fontScheme.name)
+            if appSetup.setupCompleted {
+                
+                colorSchemesManager.applyScheme(named: appSetup.colorSchemePreset.name)
+                fontSchemesManager.applyScheme(named: appSetup.fontSchemePreset.name)
+                
+                library.sourceFolders = [appSetup.librarySourceFolder]
+            }
             
-            //            library.homeFolder = theAppSetup.libraryHome
+            self.postLaunch()
         }
+        
+        appSetupWindowController.showWindow(self)
+    }
+    
+    private func initializeMetadataComponents() {
         
         playQueueDelegate.initialize(fromPersistentState: appPersistentState.playQueue, appLaunchFiles: self.filesToOpen)
         historyDelegate.initialize(fromPersistentState: appPersistentState.history)
         favoritesDelegate.initialize(fromPersistentState: appPersistentState.favorites)
-        
-        //        let historyTracks: [URL] = appPersistentState.history?.recentlyPlayed?.compactMap {$0.trackFile} ?? []
-        //        let favTracks: [URL] = appPersistentState.favorites?.favoriteTracks?.compactMap {$0.trackFile} ?? []
-        //        let pqTracks: [URL] = appPersistentState.playQueue?.tracks ?? []
-        //
-        //        metadataRegistry.loadMetadataForFiles(files: Set<URL>(historyTracks + favTracks + pqTracks)) {
-        //
-        //            DispatchQueue.main.async {
+    }
+    
+    private func postLaunch() {
         
         appModeManager.presentApp()
         self.initialize()
@@ -120,7 +125,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.messenger.publish(.application_launched, payload: self.filesToOpen)
         
         //                self.beginPeriodicPersistence()
-        //            }
     }
     
     private func initialize() {
@@ -130,7 +134,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     #if os(macOS)
         
-        _ = playQueueDelegate
         _ = libraryDelegate
         _ = mediaKeyHandler
         
