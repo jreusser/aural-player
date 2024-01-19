@@ -206,7 +206,7 @@ class AVFFileReader: FileReaderProtocol {
         metadata.auxiliary = doGetAuxiliaryMetadata(for: file, fromMap: metadataMap, loadingAudioInfoFrom: nil)
         
         let parsers = metadataMap.keySpaces.compactMap {parsersMap[$0]}
-        metadata.coverArt = parsers.firstNonNilMappedValue {$0.getArt(metadataMap)}?.image
+        metadata.primary?.art = parsers.firstNonNilMappedValue {$0.getArt(metadataMap)}
         
         return metadata
     }

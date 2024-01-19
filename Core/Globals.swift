@@ -149,7 +149,7 @@ let tuneBrowserUIState: TuneBrowserUIState = TuneBrowserUIState(persistentState:
 
 let mediaKeyHandler: MediaKeyHandler = MediaKeyHandler(preferences.controlsPreferences.mediaKeys)
 
-let libraryMonitor: LibraryMonitor = .init()
+let libraryMonitor: LibraryMonitor = .init(libraryPersistentState: appPersistentState.library)
 
 #endif
 

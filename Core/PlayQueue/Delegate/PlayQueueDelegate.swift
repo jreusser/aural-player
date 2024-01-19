@@ -37,19 +37,14 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     
     lazy var messenger: Messenger = .init(for: self)
     
-    private let persistentTracks: [URL]?
-
     init(playQueue: PlayQueueProtocol, persistentState: PlayQueuePersistentState?) {
 
         self.playQueue = playQueue
         
-        self.persistentTracks = persistentState?.tracks
-     
         _ = setRepeatMode(persistentState?.repeatMode ?? .defaultMode)
         _ = setShuffleMode(persistentState?.shuffleMode ?? .defaultMode)
         
         // Subscribe to notifications
-        messenger.subscribe(to: .application_launched, handler: appLaunched(_:))
         messenger.subscribe(to: .application_reopened, handler: appReopened(_:))
     }
     
@@ -243,37 +238,6 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     }
     
     // MARK: Notification handling ---------------------------------------------------------------
-    
-    func appLaunched(_ filesToOpen: [URL]) {
-        
-        lazy var playQueuePreferences = preferences.playQueuePreferences
-        lazy var playbackPreferences = preferences.playbackPreferences
-        
-        // Check if any launch parameters were specified
-        if filesToOpen.isNonEmpty {
-            
-            // Launch parameters  specified, override playlist saved state and add file paths in params to playlist
-//            addTracks(from: filesToOpen, AutoplayOptions(true), userAction: false)
-            loadTracks(from: filesToOpen, autoplay: playbackPreferences.autoplayAfterOpeningTracks.value)
-
-        } else if playQueuePreferences.playQueueOnStartup.value == .rememberFromLastAppLaunch, let files = self.persistentTracks {
-
-            // No launch parameters specified, load playlist saved state if "Remember state from last launch" preference is selected
-//            addFiles_async(tracks, AutoplayOptions(playbackPreferences.autoplayOnStartup), userAction: false, reorderGroupingPlaylists: true)
-            loadTracks(from: files, autoplay: playbackPreferences.autoplayOnStartup.value)
-        }
-            
-//        } else if playlistPreferences.playlistOnStartup == .loadFile,
-//                  let playlistFile: URL = playlistPreferences.playlistFile {
-//
-//            addFiles_async([playlistFile], AutoplayOptions(playbackPreferences.autoplayOnStartup), userAction: false)
-//
-//        } else if playlistPreferences.playlistOnStartup == .loadFolder,
-//                  let folder: URL = playlistPreferences.tracksFolder {
-//
-//            addFiles_async([folder], AutoplayOptions(playbackPreferences.autoplayOnStartup), userAction: false)
-//        }
-    }
     
     func appReopened(_ notification: AppReopenedNotification) {
         

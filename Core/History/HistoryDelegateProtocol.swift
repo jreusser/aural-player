@@ -23,6 +23,8 @@ import Foundation
 ///
 protocol HistoryDelegateProtocol {
     
+    func initialize(fromPersistentState persistentState: HistoryPersistentState?)
+    
     // Retrieves all items from the Recently added list, in chronological order
     func allRecentlyAddedItems() -> [HistoryItem]
     

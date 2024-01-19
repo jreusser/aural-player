@@ -30,15 +30,15 @@ class FileReader: FileReaderProtocol {
     func getPrimaryMetadata(for file: URL) throws -> PrimaryMetadata {
         
         // TODO: Temporarily disabling the cache. Is this really useful ??? Benefit (performance) vs code complexity / probability of bugs.
-//        if let cachedMetadata = metadataRegistry[file] {
-//            return cachedMetadata
-//        }
+        if let cachedMetadata = metadataRegistry[file] {
+            return cachedMetadata
+        }
         
         let metadata = file.isNativelySupported ?
             try avfReader.getPrimaryMetadata(for: file) :
             try ffmpegReader.getPrimaryMetadata(for: file)
         
-//        metadataRegistry[file] = metadata
+        metadataRegistry[file] = metadata
         return metadata
         
     }

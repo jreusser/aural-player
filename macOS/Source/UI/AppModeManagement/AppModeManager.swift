@@ -51,10 +51,10 @@ class AppModeManager {
 //        } else {
 //
 //            // Remember app mode from last app launch.
-//            presentMode(lastPresentedAppMode ?? .defaultMode)
+            presentMode(lastPresentedAppMode ?? .defaultMode)
 //        }
 //        presentMode(.modular)
-        presentMode(.compact)
+//        presentMode(.compact)
     }
     
     func presentMode(_ newMode: AppMode) {

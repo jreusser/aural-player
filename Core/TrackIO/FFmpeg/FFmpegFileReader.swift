@@ -244,7 +244,7 @@ class FFmpegFileReader: FileReaderProtocol {
             metadata.auxiliary = doGetAuxiliaryMetadata(for: file, fromCtx: fctx, andMap: metadataMap, loadingAudioInfoFrom: nil, usingParsers: relevantParsers)
             
             if let imageData = fctx.bestImageStream?.attachedPic.data {
-                metadata.coverArt = PlatformImage(data: imageData)
+                metadata.primary?.art = CoverArt(imageData: imageData)
             }
             
         } catch {

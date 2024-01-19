@@ -19,6 +19,8 @@ import Foundation
 ///
 protocol FavoritesDelegateProtocol {
     
+    func initialize(fromPersistentState persistentState: FavoritesPersistentState?)
+    
     func addFavorite(track: Track)
     
     func addFavorite(artist: String)

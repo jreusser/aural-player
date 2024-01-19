@@ -48,6 +48,12 @@ enum FileLoaderPriority: Int, CaseIterable {
 // How to deal with 2 simultaneous sessions on startup ? Play queue / Library / Custom playlists ? Adjust batch size accordingly ?
 class TrackLoader {
     
+    static let highPriorityQueue: OperationQueue = .init(opCount: max(4, System.physicalCores), qos: .userInteractive)
+    static let mediumPriorityQueue: OperationQueue = .init(opCount: max(2, System.physicalCores / 2), qos: .utility)
+    static let lowPriorityQueue: OperationQueue = .init(opCount: max(2, System.physicalCores / 2), qos: .background)
+    
+    // ------------------------------------------
+    
     let priority: FileLoaderPriority
     let qOS: DispatchQoS.QoSClass
     
@@ -55,7 +61,7 @@ class TrackLoader {
     private var batch: FileMetadataBatch!
     var blockOpFunction: ((URL) -> BlockOperation)!
     
-    private let queue: OperationQueue = OperationQueue()
+//    private let queue: OperationQueue = OperationQueue()
     
 //    private lazy var messenger: Messenger = .init(for: self)
     
@@ -64,9 +70,9 @@ class TrackLoader {
         self.priority = priority
         self.qOS = qOS
         
-        queue.maxConcurrentOperationCount = priority.concurrentOpCount
-        queue.underlyingQueue = DispatchQueue.global(qos: qOS)
-        queue.qualityOfService = .userInteractive
+//        queue.maxConcurrentOperationCount = priority.concurrentOpCount
+//        queue.underlyingQueue = DispatchQueue.global(qos: qOS)
+//        queue.qualityOfService = .userInteractive
     }
     
     // TODO: Allow the caller to specify a "sort order" for the files, eg. by file path ???
@@ -76,7 +82,7 @@ class TrackLoader {
         observer.preTrackLoad()
         
         session = FileReadSession(metadataType: type, trackList: trackReceiver, insertionIndex: insertionIndex, observer: observer)
-        batch = FileMetadataBatch(ofSize: queue.maxConcurrentOperationCount, insertionIndex: insertionIndex)
+        batch = FileMetadataBatch(ofSize: Self.highPriorityQueue.maxConcurrentOperationCount, insertionIndex: insertionIndex)
         blockOpFunction = blockOp(metadataType: type)
         
         // Move to a background thread to unblock the main thread.
@@ -236,7 +242,7 @@ class TrackLoader {
         
         let filesToRead = batch.filesToRead
         
-        queue.addOperations(filesToRead.map(blockOpFunction), waitUntilFinished: true)
+        Self.highPriorityQueue.addOperations(filesToRead.map(blockOpFunction), waitUntilFinished: true)
         batch.markReadErrors()
         
         session.batchCompleted(batch.files)

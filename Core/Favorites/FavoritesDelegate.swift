@@ -20,12 +20,12 @@ import OrderedCollections
 ///
 class FavoritesDelegate: FavoritesDelegateProtocol {
     
-    private var favoriteTracks: OrderedDictionary<URL, FavoriteTrack>
+    var favoriteTracks: OrderedDictionary<URL, FavoriteTrack>
     
-    private var favoriteArtists: OrderedDictionary<String, FavoriteGroup>
-    private var favoriteAlbums: OrderedDictionary<String, FavoriteGroup>
-    private var favoriteGenres: OrderedDictionary<String, FavoriteGroup>
-    private var favoriteDecades: OrderedDictionary<String, FavoriteGroup>
+    var favoriteArtists: OrderedDictionary<String, FavoriteGroup>
+    var favoriteAlbums: OrderedDictionary<String, FavoriteGroup>
+    var favoriteGenres: OrderedDictionary<String, FavoriteGroup>
+    var favoriteDecades: OrderedDictionary<String, FavoriteGroup>
     
 //    private var favoriteFolders: OrderedSet<URL>
 //    private var favoritePlaylistFiles: OrderedSet<URL>
@@ -109,42 +109,6 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         self.favoriteAlbums = OrderedDictionary()
         self.favoriteGenres = OrderedDictionary()
         self.favoriteDecades = OrderedDictionary()
-        
-        messenger.subscribe(to: .application_launched, handler: loadFavoritesFromPersistentState(_:))
-    }
-    
-    private func loadFavoritesFromPersistentState(_ launchFiles: [URL]) {
-        
-        guard let state = appPersistentState.favorites else {return}
-        
-        DispatchQueue.global(qos: .utility).async {
-            
-            for favTrack in state.favoriteTracks ?? [] {
-                
-                guard let trackFile = favTrack.trackFile, let metadata = metadataRegistry[trackFile] else {continue}
-                
-                let track = Track(trackFile, fileMetadata: FileMetadata(primary: metadata))
-                self.favoriteTracks[trackFile] = FavoriteTrack(track: track)
-                
-//                print("\nRead fav track: \(track.file.path)")
-            }
-            
-            for favArtist in state.favoriteArtists?.compactMap({$0.groupName}) ?? [] {
-                self.favoriteArtists[favArtist] = FavoriteGroup(groupName: favArtist, groupType: .artist)
-            }
-            
-            for favAlbum in state.favoriteAlbums?.compactMap({$0.groupName}) ?? [] {
-                self.favoriteAlbums[favAlbum] = FavoriteGroup(groupName: favAlbum, groupType: .album)
-            }
-            
-            for favGenre in state.favoriteGenres?.compactMap({$0.groupName}) ?? [] {
-                self.favoriteGenres[favGenre] = FavoriteGroup(groupName: favGenre, groupType: .genre)
-            }
-            
-            for favDecade in state.favoriteDecades?.compactMap({$0.groupName}) ?? [] {
-                self.favoriteDecades[favDecade] = FavoriteGroup(groupName: favDecade, groupType: .decade)
-            }
-        }
     }
     
     func addFavorite(track: Track) {

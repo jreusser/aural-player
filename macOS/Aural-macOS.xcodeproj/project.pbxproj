@@ -614,6 +614,9 @@
 		3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */; };
 		3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
+		3ECBEDCA2B5AEBD700563883 /* HistoryDelegate+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBEDC92B5AEBD700563883 /* HistoryDelegate+Init.swift */; };
+		3ECBEDCC2B5AEF7100563883 /* FavoritesDelegate+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBEDCB2B5AEF7100563883 /* FavoritesDelegate+Init.swift */; };
+		3ECBEDCE2B5AF19200563883 /* PlayQueueDelegate+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBEDCD2B5AF19200563883 /* PlayQueueDelegate+Init.swift */; };
 		3ECBF3062619D58500AD5C30 /* AudioUnitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBF3052619D58500AD5C30 /* AudioUnitsViewController.swift */; };
 		3ECBF3082619D58E00AD5C30 /* AudioUnits.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ECBF3072619D58E00AD5C30 /* AudioUnits.xib */; };
 		3ECBF30A2619DF7200AD5C30 /* AudioUnitsViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBF3092619DF7200AD5C30 /* AudioUnitsViewController+TableViewDelegate.swift */; };
@@ -1657,6 +1660,9 @@
 		3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
 		3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTracksToPlaylistCommand.swift; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
+		3ECBEDC92B5AEBD700563883 /* HistoryDelegate+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryDelegate+Init.swift"; sourceTree = "<group>"; };
+		3ECBEDCB2B5AEF7100563883 /* FavoritesDelegate+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoritesDelegate+Init.swift"; sourceTree = "<group>"; };
+		3ECBEDCD2B5AF19200563883 /* PlayQueueDelegate+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueDelegate+Init.swift"; sourceTree = "<group>"; };
 		3ECBF3052619D58500AD5C30 /* AudioUnitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitsViewController.swift; sourceTree = "<group>"; };
 		3ECBF3072619D58E00AD5C30 /* AudioUnits.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioUnits.xib; sourceTree = "<group>"; };
 		3ECBF3092619DF7200AD5C30 /* AudioUnitsViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioUnitsViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
@@ -4094,6 +4100,7 @@
 			children = (
 				3EEFF58327DE842C002CB0FE /* PlayQueueDelegateProtocol.swift */,
 				3EEFF58427DE842C002CB0FE /* PlayQueueDelegate.swift */,
+				3ECBEDCD2B5AF19200563883 /* PlayQueueDelegate+Init.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -4388,6 +4395,7 @@
 			children = (
 				3EFE365D27864895006F8B8C /* FavoritesDelegateProtocol.swift */,
 				3EFE365F27864895006F8B8C /* FavoritesDelegate.swift */,
+				3ECBEDCB2B5AEF7100563883 /* FavoritesDelegate+Init.swift */,
 				3E59E94E2B507BA7001DDCE9 /* Model */,
 			);
 			path = Favorites;
@@ -4852,6 +4860,7 @@
 				3EFE374B27864895006F8B8C /* FixedSizeLRUArray.swift */,
 				3EFE374C27864895006F8B8C /* HistoryDelegateProtocol.swift */,
 				3EFE375127864895006F8B8C /* HistoryDelegate.swift */,
+				3ECBEDC92B5AEBD700563883 /* HistoryDelegate+Init.swift */,
 				3EFE374D27864895006F8B8C /* Model */,
 			);
 			path = History;
@@ -5335,6 +5344,7 @@
 				3EFE3A5127864898006F8B8C /* ITunesSpec.swift in Sources */,
 				3EFE396927864897006F8B8C /* PlayerProtocol.swift in Sources */,
 				3EFE3A7F27864898006F8B8C /* FileMetadata.swift in Sources */,
+				3ECBEDCA2B5AEBD700563883 /* HistoryDelegate+Init.swift in Sources */,
 				3E9E590F25DB6B150064EB5F /* AppModeManager.swift in Sources */,
 				3EFE3B0A27864958006F8B8C /* TypeAliases.swift in Sources */,
 				3EFE3A3927864898006F8B8C /* ID3FFmpegParser.swift in Sources */,
@@ -5467,6 +5477,7 @@
 				3EFE0A922B4B378600C9B121 /* FolderHistoryItem.swift in Sources */,
 				3E43228B2687E313009E8ADB /* ControlBarSeekSliderView.swift in Sources */,
 				3EFE3A5727864898006F8B8C /* MusicBrainzCoverArtReader.swift in Sources */,
+				3ECBEDCE2B5AF19200563883 /* PlayQueueDelegate+Init.swift in Sources */,
 				3EFE38D927864897006F8B8C /* HostedAudioUnitDelegateProtocol.swift in Sources */,
 				3EFE39CD27864897006F8B8C /* MasterUnitPersistentState.swift in Sources */,
 				3EFE38EB27864897006F8B8C /* Stack.swift in Sources */,
@@ -5890,6 +5901,7 @@
 				3EBF29272686944000D87021 /* TrackListViewsButtonCell.swift in Sources */,
 				3E8C791E269C4196005E78D1 /* PlaylistViewSelector.swift in Sources */,
 				3E6C123325CEBDF400BF0D07 /* PlaylistWindowController.swift in Sources */,
+				3ECBEDCC2B5AEF7100563883 /* FavoritesDelegate+Init.swift in Sources */,
 				3EFE39F127864898006F8B8C /* HistoryDelegateProtocol.swift in Sources */,
 				3EFE385527864896006F8B8C /* FavoritesDelegateProtocol.swift in Sources */,
 				3E6C130E25CEBE8F00BF0D07 /* PopoverContentView.swift in Sources */,

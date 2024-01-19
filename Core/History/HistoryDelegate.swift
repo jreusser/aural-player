@@ -57,32 +57,6 @@ class HistoryDelegate: HistoryDelegateProtocol {
         self.playQueue = playQueue
         self.player = player
         
-        // Restore the history model object from persistent state.
-        
-        // Move to a background thread to unblock the main thread.
-        DispatchQueue.global(qos: .utility).async {
-            
-            let recentlyPlayed = persistentState?.recentlyPlayed?.compactMap {self.itemFromPersistentState($0)} ?? []
-            
-            for item in recentlyPlayed.reversed() {
-                self.recentlyPlayedItems[item.key] = item
-            }
-        }
-        
-//        persistentState?.recentlyAdded?.reversed().forEach {item in
-//            
-//            if let file = item.file, let date = item.time {
-//                recentlyAddedItems.add(HistoryItem(file, item.name ?? file.lastPathComponent, date))
-//            }
-//        }
-//        
-//        persistentState?.recentlyPlayed?.reversed().forEach {item in
-//            
-//            if let file = item.file, let date = item.time {
-//                recentlyPlayedItems.add(HistoryItem(file, item.name ?? file.lastPathComponent, date))
-//            }
-//        }
-        
         messenger.publish(.history_updated)
         
         messenger.subscribeAsync(to: .history_itemsAdded, handler: itemsAdded(_:))
@@ -94,45 +68,6 @@ class HistoryDelegate: HistoryDelegateProtocol {
         messenger.subscribeAsync(to: .library_groupPlayed, handler: groupPlayed(_:))
         
         messenger.subscribe(to: .application_willExit, handler: appWillExit)
-    }
-    
-    private func itemFromPersistentState(_ state: HistoryItemPersistentState) -> HistoryItem? {
-        
-        guard let itemType = state.itemType, let lastEventTime = state.lastEventTime, let eventCount = state.eventCount else {return nil}
-        
-        switch itemType {
-            
-        case .track:
-            
-            if let trackFile = state.trackFile, let metadata = metadataRegistry[trackFile] {
-                
-                var fileMetadata = FileMetadata()
-                fileMetadata.primary = metadata
-                
-                let track = Track(trackFile, fileMetadata: fileMetadata)
-                return TrackHistoryItem(track: track, lastEventTime: lastEventTime, eventCount: eventCount)
-            }
-            
-        case .playlistFile:
-            
-            if let playlistFile = state.playlistFile {
-                return PlaylistFileHistoryItem(playlistFile: playlistFile, lastEventTime: lastEventTime, eventCount: eventCount)
-            }
-            
-        case .folder:
-            
-            if let folder = state.folder {
-                return FolderHistoryItem(folder: folder, lastEventTime: lastEventTime, eventCount: eventCount)
-            }
-            
-        case .group:
-            
-            if let groupName = state.groupName, let groupType = state.groupType {
-                return GroupHistoryItem(groupName: groupName, groupType: groupType, lastEventTime: lastEventTime, eventCount: eventCount)
-            }
-        }
-        
-        return nil
     }
     
     func allRecentlyAddedItems() -> [HistoryItem] {

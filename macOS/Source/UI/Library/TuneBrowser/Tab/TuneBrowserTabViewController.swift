@@ -17,6 +17,7 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
     @IBOutlet weak var browserView: TuneBrowserOutlineView!
     @IBOutlet weak var lblSummary: NSTextField!
     
+    lazy var tree: FileSystemTree = library.fileSystemTrees.values.first!
     lazy var rootFolder: FileSystemFolderItem = library.fileSystemTrees.values.first!.root
     
     var isAvailable: Bool {
@@ -204,13 +205,18 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         let url = rootFolder.url
         let path = url.path
         
+        print("\nRel Path: \(item.url.path(relativeTo: tree.rootURL))")
+        
         if updatePathWidget {
             
-            if !path.hasPrefix("/Volumes"), let volumeName = SystemUtils.primaryVolumeName {
-                pathControlWidget.url = URL(fileURLWithPath: "/Volumes/\(volumeName)\(path)")
-            } else {
-                pathControlWidget.url = url
-            }
+//            if !path.hasPrefix("/Volumes"), let volumeName = SystemUtils.primaryVolumeName {
+//                pathControlWidget.url = URL(fileURLWithPath: "/Volumes/\(volumeName)\(path)")
+//            } else {
+//                pathControlWidget.url = url
+//            }
+            pathControlWidget.pathItems[0].title = item.name
+//            pathControlWidget.pathItems[0].image = .init(systemSymbolName: "music.note.house", accessibilityDescription: nil)!
+//            pathControlWidget.pathItems[0].image?.size = .init(width: 14, height: 14)
         }
         
         browserView.reloadData()

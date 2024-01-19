@@ -12,9 +12,9 @@ class LibraryMonitor {
     
     var folderMonitors: [FolderMonitor]
     
-    init() {
+    init(libraryPersistentState: LibraryPersistentState?) {
         
-        let folders = appPersistentState.library?.sourceFolders ?? []
+        let folders = libraryPersistentState?.sourceFolders ?? []
         self.folderMonitors = folders.map {FolderMonitor(url: $0)}
     }
     
