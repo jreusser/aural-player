@@ -73,6 +73,10 @@ class AppSetupWindowController: NSWindowController {
         guard let clickedItem = sender.clickedPathItem,
               let index = titlesAndIndices[clickedItem.title] else {return}
         
+        if index == 1, appSetup.presentationMode != .modular {
+            return
+        }
+        
         tabView.selectTabViewItem(at: index)
         
         if tabView.selectedIndex > 0 {
@@ -97,7 +101,7 @@ class AppSetupWindowController: NSWindowController {
     
     @IBAction func nextStepAction(_ sender: Any) {
         
-        if tabView.selectedIndex == 0, appSetup.presentationMode == .unified {
+        if tabView.selectedIndex == 0, appSetup.presentationMode != .modular {
             
             pathControl.pathItems[0].setTitleColor(.systemBlue)
             
@@ -134,7 +138,7 @@ class AppSetupWindowController: NSWindowController {
         
         guard tabView.selectedIndex > 0 else {return}
         
-        if tabView.selectedIndex == 2, appSetup.presentationMode == .unified {
+        if tabView.selectedIndex == 2, appSetup.presentationMode != .modular {
             
             pathControl.pathItems[2].setTitleColor(.lightGray)
             
