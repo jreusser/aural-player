@@ -14,6 +14,9 @@ import Cocoa
  */
 class FontScheme: NSObject, UserManagedObject {
     
+    // Default color scheme (uses colors from the default system-defined preset)
+    static let defaultScheme: FontScheme = FontScheme("_default_", .futuristic)
+    
     // Displayed name
     var name: String
     

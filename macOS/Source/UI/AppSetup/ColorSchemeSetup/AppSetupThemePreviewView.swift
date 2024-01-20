@@ -32,8 +32,8 @@ class AppSetupThemePreviewView: NSView {
     override func awakeFromNib() {
         
         playerButtons = [btnPlay, btnPreviousTrack, btnNextTrack]
-        playerButtons.forEach {$0.contentTintColor = self.scheme?.buttonColor ?? ColorScheme.defaultScheme.buttonColor}
-
+//        playerButtons.forEach {$0.contentTintColor = self.colorScheme?.buttonColor ?? ColorScheme.defaultScheme.buttonColor}
+        
 //        playlistIndexDurationLabels = [lblPlaylistIndex_1, lblPlaylistIndex_3, lblPlaylistDuration_1, lblPlaylistDuration_3]
 //        playlistTrackTitleLabels = [lblPlaylistTitle_1, lblPlaylistTitle_3]
 //        imgPlayingTrack.tintFunction = {[weak self] in self?.playingTrackIconColor ?? ColorSchemePreset.blackAttack.playlistPlayingTrackIconColor}
@@ -47,11 +47,11 @@ class AppSetupThemePreviewView: NSView {
     
     // When any of the following fields is set, update the corresponding fields.
     
-    var scheme: ColorScheme? {
+    var colorScheme: ColorScheme? {
         
         didSet {
             
-            guard let theScheme = scheme else {return}
+            guard let theScheme = colorScheme else {return}
             
             backgroundColor = theScheme.backgroundColor
             
@@ -64,6 +64,18 @@ class AppSetupThemePreviewView: NSView {
             seekSlider.redraw()
             
             playerButtons.forEach {$0.contentTintColor = theScheme.buttonColor}
+        }
+    }
+    
+    var fontScheme: FontScheme? {
+        
+        didSet {
+            
+            guard let theScheme = fontScheme else {return}
+            
+            lblTrackTitle.font = theScheme.playerPrimaryFont
+            lblArtistAlbum.font = theScheme.playerSecondaryFont
+            lblDuration.font = theScheme.playerTertiaryFont
         }
     }
     

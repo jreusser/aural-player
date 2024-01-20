@@ -22,12 +22,20 @@ class ColorSchemeSetupViewController: NSViewController {
         
         super.viewDidLoad()
         
-        let defaultSchemeName = appSetup.colorSchemePreset.name
+        let schemeName = appSetup.colorSchemePreset.name
         
-        lblName.stringValue = defaultSchemeName
+        lblName.stringValue = schemeName
         
-        previewView.scheme = ColorScheme.defaultScheme
-        btnScheme.selectItem(withTitle: defaultSchemeName)
+        previewView.colorScheme = colorSchemesManager.systemDefinedObject(named: schemeName)
+        previewView.fontScheme = fontSchemesManager.systemDefinedObject(named: appSetup.fontSchemePreset.name)
+        
+        btnScheme.selectItem(withTitle: schemeName)
+    }
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        previewView.fontScheme = fontSchemesManager.systemDefinedObject(named: appSetup.fontSchemePreset.name)
     }
     
     @IBAction func schemeSelectionAction(_ sender: Any) {
@@ -37,7 +45,7 @@ class ColorSchemeSetupViewController: NSViewController {
         let colorSchemePreset = ColorSchemePreset.presetByName(selSchemeName) else {return}
         
         lblName.stringValue = selSchemeName
-        previewView.scheme = scheme
+        previewView.colorScheme = scheme
         
         appSetup.colorSchemePreset = colorSchemePreset
         print("Set color scheme to: \(appSetup.colorSchemePreset.rawValue)")

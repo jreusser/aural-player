@@ -16,26 +16,36 @@ class FontSchemeSetupViewController: NSViewController {
     
     @IBOutlet weak var lblName: NSTextField!
     @IBOutlet weak var btnScheme: NSPopUpButton!
-    @IBOutlet weak var previewView: FontSchemePreviewView!
+    @IBOutlet weak var previewView: AppSetupThemePreviewView!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        let defaultSchemeName = appSetup.fontSchemePreset.name
+        let schemeName = appSetup.fontSchemePreset.name
         
-        lblName.stringValue = defaultSchemeName
+        lblName.stringValue = schemeName
         
-//        previewView.scheme = ColorSchemePreset.defaultScheme.sc
-        btnScheme.selectItem(withTitle: defaultSchemeName)
+        previewView.colorScheme = colorSchemesManager.systemDefinedObject(named: appSetup.colorSchemePreset.name)
+        previewView.fontScheme = fontSchemesManager.systemDefinedObject(named: schemeName)
+        
+        btnScheme.selectItem(withTitle: schemeName)
+    }
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        previewView.colorScheme = colorSchemesManager.systemDefinedObject(named: appSetup.colorSchemePreset.name)
     }
     
     @IBAction func schemeSelectionAction(_ sender: Any) {
         
         guard let selSchemeName = btnScheme.titleOfSelectedItem,
+              let scheme = fontSchemesManager.systemDefinedObject(named: selSchemeName),
               let preset = FontSchemePreset.presetByName(selSchemeName) else {return}
         
         lblName.stringValue = selSchemeName
+        previewView.fontScheme = scheme
         
         appSetup.fontSchemePreset = preset
         print("Set font scheme to: \(appSetup.fontSchemePreset.rawValue)")

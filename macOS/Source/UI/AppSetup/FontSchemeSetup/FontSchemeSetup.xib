@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,7 +11,7 @@
             <connections>
                 <outlet property="btnScheme" destination="MNN-0a-Xsq" id="N4N-N2-g60"/>
                 <outlet property="lblName" destination="mVF-Rz-7EE" id="Gm0-vL-qCP"/>
-                <outlet property="previewView" destination="tGg-nM-bsp" id="lPL-2A-Bk9"/>
+                <outlet property="previewView" destination="WMj-bj-zhI" id="xUN-5J-Vgx"/>
                 <outlet property="view" destination="nAn-FC-Cu2" id="ync-4K-qXu"/>
             </connections>
         </customObject>
@@ -20,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="674" height="470"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldp-RN-qcA" userLabel="Seek Length Label">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldp-RN-qcA" userLabel="Seek Length Label">
                     <rect key="frame" x="18" y="394" width="638" height="41"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Choose your font scheme:" id="9V1-Vf-Tkf">
@@ -29,7 +30,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVF-Rz-7EE" userLabel="Seek Length Label">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVF-Rz-7EE" userLabel="Seek Length Label">
                     <rect key="frame" x="30" y="349" width="614" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="TdB-KZ-3wm">
@@ -39,7 +40,7 @@
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MNN-0a-Xsq" userLabel="Window Layouts Menu">
-                    <rect key="frame" x="194" y="10" width="338" height="25"/>
+                    <rect key="frame" x="174" y="50" width="338" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" title="Standard" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="WTS-RF-5pZ" id="G4e-6K-lJK">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -80,171 +81,110 @@
                         <action selector="schemeSelectionAction:" target="-2" id="Ij1-s2-IOe"/>
                     </connections>
                 </popUpButton>
-                <box fixedFrame="YES" boxType="custom" borderWidth="0.0" cornerRadius="4" translatesAutoresizingMaskIntoConstraints="NO" id="ldc-is-d9Z" userLabel="Preview container">
-                    <rect key="frame" x="146" y="41" width="381" height="305"/>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WMj-bj-zhI" customClass="AppSetupThemePreviewView" customModule="Aural" customModuleProvider="target">
+                    <rect key="frame" x="137" y="110" width="400" height="225"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" id="tGg-nM-bsp" customClass="FontSchemePreviewView" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="381" height="305"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9y8-Aq-Z81">
-                                <rect key="frame" x="112" y="286" width="170" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Player text preview" id="9WC-Bp-wsO">
-                                    <font key="font" size="13" name="Play-Regular"/>
-                                    <color key="textColor" white="0.59778066780000005" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qlj-P5-aJ2">
-                                <rect key="frame" x="112" y="179" width="170" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Playlist text preview" id="Tg4-6i-5eE">
-                                    <font key="font" size="13" name="Play-Regular"/>
-                                    <color key="textColor" white="0.59778066780000005" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qSa-Is-efV">
-                                <rect key="frame" x="112" y="69" width="170" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Effects text preview" id="ndK-8D-QUQ">
-                                    <font key="font" size="13" name="Play-Regular"/>
-                                    <color key="textColor" white="0.59778066780000005" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <box fixedFrame="YES" boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Njv-NQ-aaF" userLabel="Player Box">
-                                <rect key="frame" x="50" y="212" width="302" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="W2w-4g-sdg">
-                                    <rect key="frame" x="0.0" y="0.0" width="302" height="70"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hyt-8Z-vKa">
-                                            <rect key="frame" x="5" y="30" width="293" height="35"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Track Title" id="T2L-wq-p5Z" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
-                                                <font key="font" size="13" name="Play-Regular"/>
-                                                <color key="textColor" white="0.90099318709999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AQI-fF-55K">
-                                            <rect key="frame" x="5" y="0.0" width="293" height="30"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Artist -- Album" id="IIc-hI-zPn" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
-                                                <font key="font" size="11" name="Play-Regular"/>
-                                                <color key="textColor" white="0.64580029039999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </subviews>
-                                </view>
-                                <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </box>
-                            <box fixedFrame="YES" boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="A3k-dD-5M9" userLabel="Playlist Box">
-                                <rect key="frame" x="50" y="102" width="302" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="5ta-GM-7Yc">
-                                    <rect key="frame" x="0.0" y="0.0" width="302" height="70"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rbh-Uc-bki">
-                                            <rect key="frame" x="38" y="2" width="205" height="30"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Some Artist - Some Title" id="mza-Ke-TXQ" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
-                                                <font key="font" size="12" name="Play-Regular"/>
-                                                <color key="textColor" white="0.90230971120000003" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Sq-FW-Edw">
-                                            <rect key="frame" x="5" y="2" width="29" height="30"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="25" id="J9l-TF-vTC" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
-                                                <font key="font" size="12" name="Play-Regular"/>
-                                                <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ztN-BN-t73">
-                                            <rect key="frame" x="234" y="2" width="62" height="30"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="3:57" id="85S-xG-iga" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
-                                                <font key="font" size="12" name="Play-Regular"/>
-                                                <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7J8-gk-3Vp" userLabel="Master Desc">
-                                            <rect key="frame" x="88" y="39" width="113" height="25"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="center" title="Tracks" id="1KA-T0-4H4" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
-                                                <font key="font" size="14" name="AlegreyaSansSC-Regular"/>
-                                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </subviews>
-                                </view>
-                                <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </box>
-                            <box fixedFrame="YES" boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="VfL-2o-jOu" userLabel="Effects Box">
-                                <rect key="frame" x="50" y="9" width="302" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="Zdi-Iu-sjs">
-                                    <rect key="frame" x="0.0" y="0.0" width="302" height="55"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="40A-3c-XtJ" userLabel="Master Desc">
-                                            <rect key="frame" x="49" y="25" width="204" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="center" title="Pitch Shift" id="v8e-Y6-g07" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
-                                                <font key="font" size="14" name="AlegreyaSansSC-Regular"/>
-                                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RUQ-Ot-sto" userLabel="Master Desc">
-                                            <rect key="frame" x="61" y="2" width="78" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" title="Pitch" id="nBV-eK-17T" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
-                                                <font key="font" size="14" name="AlegreyaSansSC-Regular"/>
-                                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcP-8v-ezK" userLabel="Master Desc">
-                                            <rect key="frame" x="146" y="2" width="78" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="right" title="+0.2 8ve" id="Izg-yq-2mL" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
-                                                <font key="font" size="14" name="AlegreyaSansSC-Regular"/>
-                                                <color key="textColor" white="0.90042935879999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </subviews>
-                                </view>
-                                <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </box>
-                        </subviews>
-                        <connections>
-                            <outlet property="containerBox" destination="ldc-is-d9Z" id="TEZ-Bx-LYT"/>
-                            <outlet property="lblFxCaption" destination="40A-3c-XtJ" id="LlZ-Fq-QdY"/>
-                            <outlet property="lblPitchCaption" destination="RUQ-Ot-sto" id="pC3-sL-VCl"/>
-                            <outlet property="lblPitchValue" destination="dcP-8v-ezK" id="dcj-cW-pVd"/>
-                            <outlet property="lblPlayerArtistAlbum" destination="AQI-fF-55K" id="u8V-QT-Ot8"/>
-                            <outlet property="lblPlayerTrackTitle" destination="Hyt-8Z-vKa" id="z4t-Nu-tQt"/>
-                            <outlet property="lblPlaylistDuration" destination="ztN-BN-t73" id="1hG-th-sF8"/>
-                            <outlet property="lblPlaylistHeading" destination="7J8-gk-3Vp" id="ODF-ga-ovi"/>
-                            <outlet property="lblPlaylistIndex" destination="5Sq-FW-Edw" id="aaf-6L-sRF"/>
-                            <outlet property="lblPlaylistTitle" destination="rbh-Uc-bki" id="AIP-TQ-FqI"/>
-                        </connections>
-                    </view>
-                </box>
+                    <subviews>
+                        <box fixedFrame="YES" boxType="custom" borderType="line" cornerRadius="6" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="8Mz-AF-qIE" userLabel="Player Preview">
+                            <rect key="frame" x="0.0" y="0.0" width="406" height="225"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <view key="contentView" id="iHa-gt-EwI">
+                                <rect key="frame" x="1" y="1" width="404" height="223"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ave-Rd-Yip">
+                                        <rect key="frame" x="93" y="136" width="220" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Track Title" id="piq-ig-Icr">
+                                            <font key="font" size="16" name="Play-Regular"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B97-Qu-sVD">
+                                        <rect key="frame" x="93" y="116" width="220" height="26"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Artist -- Album" id="TCg-FU-T8T">
+                                            <font key="font" size="13" name="Play-Regular"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D8Q-bV-w7h">
+                                        <rect key="frame" x="18" y="68" width="370" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <sliderCell key="cell" controlSize="small" enabled="NO" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="vHY-i5-l83" customClass="AppSetupSeekSliderPreviewCell" customModule="Aural" customModuleProvider="target"/>
+                                    </slider>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nk4-Gk-aLr" userLabel="Playing Track Icon" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
+                                        <rect key="frame" x="192" y="23" width="22" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Play" id="hmD-Rn-JUk"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Play"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N7V-uP-dUU" userLabel="Playing Track Icon" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
+                                        <rect key="frame" x="229" y="21.5" width="20.5" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="V6L-Th-6Uf">
+                                            <imageReference key="image" image="forward.end" catalog="system" symbolScale="large"/>
+                                        </imageCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="NextTrack"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ygP-i5-XfH" userLabel="Playing Track Icon" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
+                                        <rect key="frame" x="155" y="21.5" width="19.5" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="02E-hI-35g">
+                                            <imageReference key="image" image="backward.end" catalog="system" symbolScale="large"/>
+                                        </imageCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="PreviousTrack"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BhU-9y-Cu9">
+                                        <rect key="frame" x="20" y="121" width="48" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="music.quarternote.3" catalog="system" id="IB4-yH-T9z"/>
+                                    </imageView>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iGf-SR-nlG">
+                                        <rect key="frame" x="308" y="130" width="80" height="26"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="4:37" id="Reb-b4-BfG">
+                                            <font key="font" size="14" name="Play-Regular"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                            </view>
+                            <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </box>
+                    </subviews>
+                    <connections>
+                        <outlet property="btnNextTrack" destination="N7V-uP-dUU" id="Kvk-qZ-Dfd"/>
+                        <outlet property="btnPlay" destination="Nk4-Gk-aLr" id="YgV-sI-J6d"/>
+                        <outlet property="btnPreviousTrack" destination="ygP-i5-XfH" id="5iD-Jn-NBu"/>
+                        <outlet property="imgArt" destination="BhU-9y-Cu9" id="UeA-Mm-YJg"/>
+                        <outlet property="lblArtistAlbum" destination="B97-Qu-sVD" id="sTx-dO-lZQ"/>
+                        <outlet property="lblDuration" destination="iGf-SR-nlG" id="wgT-Dt-hhC"/>
+                        <outlet property="lblTrackTitle" destination="Ave-Rd-Yip" id="yMd-PY-f6R"/>
+                        <outlet property="playerBox" destination="8Mz-AF-qIE" id="8Wm-9d-Z3q"/>
+                        <outlet property="seekSlider" destination="D8Q-bV-w7h" id="cfZ-m8-deT"/>
+                        <outlet property="seekSliderCell" destination="vHY-i5-l83" id="rOU-g7-4oK"/>
+                    </connections>
+                </customView>
             </subviews>
             <point key="canvasLocation" x="101" y="154"/>
         </customView>
     </objects>
+    <resources>
+        <image name="NextTrack" width="31" height="35"/>
+        <image name="Play" width="40" height="40"/>
+        <image name="PreviousTrack" width="31" height="35"/>
+        <image name="backward.end" catalog="system" width="17" height="17"/>
+        <image name="forward.end" catalog="system" width="17" height="17"/>
+        <image name="music.quarternote.3" catalog="system" width="18" height="15"/>
+    </resources>
 </document>
