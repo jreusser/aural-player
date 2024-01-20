@@ -16,7 +16,7 @@ class ColorSchemeSetupViewController: NSViewController {
     
     @IBOutlet weak var lblName: NSTextField!
     @IBOutlet weak var btnScheme: NSPopUpButton!
-    @IBOutlet weak var previewView: ColorSchemePreviewView!
+    @IBOutlet weak var previewView: AppSetupThemePreviewView!
     
     override func viewDidLoad() {
         
@@ -26,18 +26,20 @@ class ColorSchemeSetupViewController: NSViewController {
         
         lblName.stringValue = defaultSchemeName
         
-//        previewView.scheme = ColorSchemePreset.defaultScheme.sc
+        previewView.scheme = ColorScheme.defaultScheme
         btnScheme.selectItem(withTitle: defaultSchemeName)
     }
     
     @IBAction func schemeSelectionAction(_ sender: Any) {
         
         guard let selSchemeName = btnScheme.titleOfSelectedItem,
-              let preset = ColorSchemePreset.presetByName(selSchemeName) else {return}
+              let scheme = colorSchemesManager.systemDefinedObject(named: selSchemeName),
+        let colorSchemePreset = ColorSchemePreset.presetByName(selSchemeName) else {return}
         
         lblName.stringValue = selSchemeName
+        previewView.scheme = scheme
         
-        appSetup.colorSchemePreset = preset
+        appSetup.colorSchemePreset = colorSchemePreset
         print("Set color scheme to: \(appSetup.colorSchemePreset.rawValue)")
     }
 }

@@ -69,13 +69,13 @@ class PlayingTrackView: MouseTrackingView {
     }
     
     func artUpdated() {
-        artView.image = trackInfo?.art ?? .imgPlayingArt
+        artView.image = trackInfo?.art ?? .imgPlayingArt.tintedWithColor(systemColorScheme.primaryTextColor)
     }
     
     private func trackInfoSet() {
         
         textView.trackInfo = self.trackInfo
-        artView.image = trackInfo?.art ?? .imgPlayingArt
+        artView.image = trackInfo?.art ?? .imgPlayingArt.tintedWithColor(systemColorScheme.primaryTextColor)
         
         lblTrackTime.showIf(trackInfo != nil && uiState.showTrackTime)
         
