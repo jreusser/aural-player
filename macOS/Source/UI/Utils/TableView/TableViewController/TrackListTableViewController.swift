@@ -57,7 +57,9 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         tableView.enclosingScrollView?.autohidesScrollers = false
         tableView.enclosingScrollView?.hasVerticalScroller = true
         
-        colorSchemesManager.registerObserver(tableView, forProperty: \.backgroundColor)
+        colorSchemesManager.registerSchemeObserver(tableView, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor, \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor])
+        
+        fontSchemesManager.registerSchemeObserver(tableView, forProperties: [\.playQueuePrimaryFont, \.playQueueSecondaryFont, \.playQueueTertiaryFont])
     }
     
     // ---------------- NSTableViewDataSource --------------------
