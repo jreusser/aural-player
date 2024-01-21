@@ -117,8 +117,13 @@
                             <constraint firstAttribute="width" constant="20" id="vax-9L-ZeO"/>
                         </constraints>
                     </popUpButton>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EQv-NM-f1r" userLabel="Home Icon">
+                        <rect key="frame" x="6" y="293.5" width="20.5" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="music.note.house" catalog="system" id="VqE-eC-F3O"/>
+                    </imageView>
                     <pathControl focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jTW-xB-lKp">
-                        <rect key="frame" x="0.0" y="285" width="700" height="22"/>
+                        <rect key="frame" x="30" y="290" width="670" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="ce5-UB-er0"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="uI4-do-fff"/>
@@ -173,10 +178,10 @@
                     <constraint firstItem="jmd-Wq-WNc" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="14" id="0Zd-20-KfB"/>
                     <constraint firstItem="hDu-SS-U8T" firstAttribute="leading" secondItem="jmd-Wq-WNc" secondAttribute="trailing" constant="18" id="4kg-Vr-ETO"/>
                     <constraint firstItem="hDu-SS-U8T" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="16" id="650-Ql-AHm"/>
-                    <constraint firstItem="jTW-xB-lKp" firstAttribute="top" secondItem="hDu-SS-U8T" secondAttribute="bottom" constant="20" id="7pz-Fq-WVM"/>
+                    <constraint firstItem="jTW-xB-lKp" firstAttribute="top" secondItem="hDu-SS-U8T" secondAttribute="bottom" constant="15" id="7pz-Fq-WVM"/>
                     <constraint firstAttribute="trailing" secondItem="jTW-xB-lKp" secondAttribute="trailing" id="7uo-xX-t4s"/>
                     <constraint firstItem="jmd-Wq-WNc" firstAttribute="top" secondItem="bwx-2C-Eg4" secondAttribute="top" id="DbC-6V-KQl"/>
-                    <constraint firstItem="jTW-xB-lKp" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" id="Hc4-fZ-VEg"/>
+                    <constraint firstItem="jTW-xB-lKp" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" constant="30" id="Hc4-fZ-VEg"/>
                     <constraint firstAttribute="trailing" secondItem="hDu-SS-U8T" secondAttribute="trailing" id="OL1-aG-W1S"/>
                     <constraint firstItem="YpR-Qx-Ish" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" id="aeg-De-D5A"/>
                     <constraint firstItem="jmd-Wq-WNc" firstAttribute="leading" secondItem="bwx-2C-Eg4" secondAttribute="trailing" constant="7" id="fHc-Ww-fvV"/>
@@ -184,7 +189,7 @@
                     <constraint firstItem="7cL-0X-ZiE" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" constant="3" id="lEF-cN-UX0"/>
                     <constraint firstAttribute="trailing" secondItem="YpR-Qx-Ish" secondAttribute="trailing" id="pdg-Sn-LW4"/>
                     <constraint firstAttribute="bottom" secondItem="YpR-Qx-Ish" secondAttribute="bottom" id="rfA-KS-U2w"/>
-                    <constraint firstItem="YpR-Qx-Ish" firstAttribute="top" secondItem="jTW-xB-lKp" secondAttribute="bottom" constant="5" id="vJa-hU-jXB"/>
+                    <constraint firstItem="YpR-Qx-Ish" firstAttribute="top" secondItem="jTW-xB-lKp" secondAttribute="bottom" constant="10" id="vJa-hU-jXB"/>
                 </constraints>
             </view>
             <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -212,5 +217,6 @@
         <image name="Settings" width="10" height="7"/>
         <image name="arrow.backward" catalog="system" width="20" height="16"/>
         <image name="arrow.forward" catalog="system" width="20" height="16"/>
+        <image name="music.note.house" catalog="system" width="19" height="16"/>
     </resources>
 </document>

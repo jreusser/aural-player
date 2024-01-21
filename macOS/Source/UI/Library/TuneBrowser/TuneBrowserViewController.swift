@@ -59,6 +59,7 @@ class TuneBrowserViewController: NSViewController {
         messenger.subscribe(to: .tuneBrowser_openFolder, handler: openFolder(notif:))
         messenger.subscribe(to: .application_willExit, handler: onAppExit)
         
+        // TODO: This is inefficient!!! Wait till library is built before doing this.
         messenger.subscribeAsync(to: .library_doneAddingTracks) {[weak self] in
             self?.recreateAllFolders()
         }
@@ -151,7 +152,7 @@ class TuneBrowserViewController: NSViewController {
         pathControlWidget.pathItems = pathComponents.map {
             
             let item = NSPathControlItem()
-            item.title = $0
+            item.attributedTitle = $0.attributed(withFont: systemFontScheme.playerSecondaryFont, andColor: systemColorScheme.primaryTextColor)
             return item
         }
     }

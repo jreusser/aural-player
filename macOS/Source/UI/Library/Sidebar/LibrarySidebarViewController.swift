@@ -31,9 +31,10 @@ class LibrarySidebarViewController: NSViewController {
         
         messenger.subscribe(to: .sidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
         
+        // TODO: This is inefficient!!! Wait till library is built before doing this.
         messenger.subscribeAsync(to: .library_doneAddingTracks) {[weak self] in
             
-            self?.sidebarView.reloadData()
+            self?.sidebarView.reloadItem(LibrarySidebarCategory.tuneBrowser)
             self?.sidebarView.expandItem(LibrarySidebarCategory.tuneBrowser)
         }
         

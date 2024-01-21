@@ -16,6 +16,11 @@ extension TuneBrowserViewController {
         
         guard let item = pathControlWidget.clickedPathItem, let indexOfItem = pathControlWidget.indexOf(item: item) else {return}
         
+        // Special case - Same folder as the one displayed is clicked (i.e. the last path item)
+        if indexOfItem == pathControlWidget.pathItems.count - 1 {
+            return
+        }
+        
         // Special case - Root folder in tree of current tab clicked
         if indexOfItem == 0, let tabVC = currentTabVC {
             
@@ -86,7 +91,7 @@ extension NSPathControl {
         
         for (index, pathItem) in self.pathItems.enumerated() {
             
-            if pathItem == item {
+            if pathItem === item {
                 return index
             }
         }
