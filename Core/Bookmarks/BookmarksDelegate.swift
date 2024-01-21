@@ -21,9 +21,9 @@ import Foundation
 ///
 class BookmarksDelegate: BookmarksDelegateProtocol {
     
-    private typealias Bookmarks = UserManagedObjects<Bookmark>
+    typealias Bookmarks = UserManagedObjects<Bookmark>
     
-    private let bookmarks: Bookmarks
+    let bookmarks: Bookmarks
     
     // Delegate used to perform CRUD on the playlist
     private let playQueue: PlayQueueDelegateProtocol
@@ -33,19 +33,17 @@ class BookmarksDelegate: BookmarksDelegateProtocol {
     
     private lazy var messenger = Messenger(for: self)
     
-    init(persistentState: [BookmarkPersistentState]?, _ playQueue: PlayQueueDelegateProtocol, _ player: PlaybackDelegateProtocol) {
+    init(_ playQueue: PlayQueueDelegateProtocol, _ player: PlaybackDelegateProtocol) {
         
         self.playQueue = playQueue
         self.player = player
         
-        // Restore the bookmarks model object from persistent state
-        let allBookmarks: [Bookmark] = persistentState?.compactMap {Bookmark(persistentState: $0)} ?? []
-        self.bookmarks = Bookmarks(systemDefinedObjects: [], userDefinedObjects: allBookmarks)
+        self.bookmarks = Bookmarks(systemDefinedObjects: [], userDefinedObjects: [])
     }
     
     func addBookmark(_ name: String, _ track: Track, _ startPosition: Double, _ endPosition: Double? = nil) -> Bookmark {
         
-        let newBookmark = Bookmark(name, track, startPosition, endPosition)
+        let newBookmark = Bookmark(name: name, track: track, startPosition: startPosition, endPosition: endPosition)
         bookmarks.addObject(newBookmark)
         
         messenger.publish(.bookmarksList_trackAdded, payload: newBookmark)
@@ -69,25 +67,9 @@ class BookmarksDelegate: BookmarksDelegateProtocol {
     }
     
     func playBookmark(_ bookmark: Bookmark) throws {
-        
-//        do {
-//            // First, find or add the given file
-//            if let newTrack = try playlist.findOrAddFile(bookmark.file) {
-//
-//                // Play it.
-//                let params = PlaybackParams().withStartAndEndPosition(bookmark.startPosition, bookmark.endPosition)
-//                player.play(newTrack, params)
-//            }
-//
-//        } catch {
-//
-//            if let fnfError = error as? FileNotFoundError {
-//
-//                // Log and rethrow error
-//                NSLog("Unable to play Bookmark item. Details: %@", fnfError.message)
-//                throw fnfError
-//            }
-//        }
+
+        playQueue.addTracks([bookmark.track])
+        player.play(bookmark.track, PlaybackParams().withStartAndEndPosition(bookmark.startPosition, bookmark.endPosition))
     }
     
     func renameBookmark(named name: String, to newName: String) {
@@ -107,7 +89,7 @@ class BookmarksDelegate: BookmarksDelegateProtocol {
         }
     }
     
-    var persistentState: [BookmarkPersistentState] {
-        allBookmarks.map {BookmarkPersistentState(bookmark: $0)}
+    var persistentState: BookmarksPersistentState {
+        .init(bookmarks: allBookmarks.map {BookmarkPersistentState(bookmark: $0)})
     }
 }

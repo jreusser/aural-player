@@ -111,6 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         playQueueDelegate.initialize(fromPersistentState: appPersistentState.playQueue, appLaunchFiles: self.filesToOpen)
         historyDelegate.initialize(fromPersistentState: appPersistentState.history)
         favoritesDelegate.initialize(fromPersistentState: appPersistentState.favorites)
+        bookmarksDelegate.initialize(fromPersistentState: appPersistentState.bookmarks)
     }
     
     private func postLaunch() {

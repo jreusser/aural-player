@@ -15,15 +15,9 @@ import Foundation
 class Bookmark: UserManagedObject, Hashable {
     
     // A name or description (e.g. "2nd chapter of audiobook")
-    private var _name: String
+    var name: String
     
     // Used by the UI (track.displayName)
-    var name: String {
-        
-        get {track?.displayName ?? _name}
-        set {_name = newValue}
-    }
-    
     var key: String {
         
         get {name}
@@ -33,9 +27,7 @@ class Bookmark: UserManagedObject, Hashable {
     var userDefined: Bool {true}
     
     // The file of the track being bookmarked
-    let file: URL
-    
-    var track: Track?
+    let track: Track
     
     // Seek position within track, expressed in seconds
     let startPosition: Double
@@ -43,26 +35,24 @@ class Bookmark: UserManagedObject, Hashable {
     // Seek position within track, expressed in seconds
     let endPosition: Double?
     
-    init(_ name: String, _ track: Track, _ startPosition: Double, _ endPosition: Double?) {
+    init(name: String, track: Track, startPosition: Double, endPosition: Double?) {
         
-        self._name = name
+        self.name = name
         self.track = track
-        self.file = track.file
         self.startPosition = startPosition
         self.endPosition = endPosition
     }
     
-    init?(persistentState: BookmarkPersistentState) {
-        
-        guard let file = persistentState.file,
-              let startPosition = persistentState.startPosition else {return nil}
-        
-        self.file = file
-        self._name = persistentState.name ?? file.lastPathComponent
-        
-        self.startPosition = startPosition
-        self.endPosition = persistentState.endPosition
-    }
+//    init?(persistentState: BookmarkPersistentState) {
+//        
+//        guard let file = persistentState.file,
+//              let startPosition = persistentState.startPosition else {return nil}
+//        
+//        self.name = persistentState.name ?? file.lastPathComponent
+//        
+//        self.startPosition = startPosition
+//        self.endPosition = persistentState.endPosition
+//    }
     
     static func == (lhs: Bookmark, rhs: Bookmark) -> Bool {
         lhs.name == rhs.name

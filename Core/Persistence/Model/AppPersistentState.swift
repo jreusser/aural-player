@@ -31,7 +31,7 @@ struct AppPersistentState: Codable {
     
     var history: HistoryPersistentState?
     var favorites: FavoritesPersistentState?
-    var bookmarks: [BookmarkPersistentState]?
+    var bookmarks: BookmarksPersistentState?
     
     var musicBrainzCache: MusicBrainzCachePersistentState?
     
@@ -46,7 +46,7 @@ struct AppPersistentState: Codable {
         
         self.favorites = .init(legacyPersistentState: legacyAppPersistentState.favorites)
         
-        self.bookmarks = legacyAppPersistentState.bookmarks?.map {BookmarkPersistentState(legacyPersistentState: $0)}
+        self.bookmarks = .init(legacyPersistentState: legacyAppPersistentState.bookmarks)
         
         self.audioGraph = AudioGraphPersistentState(legacyPersistentState: legacyAppPersistentState.audioGraph)
         

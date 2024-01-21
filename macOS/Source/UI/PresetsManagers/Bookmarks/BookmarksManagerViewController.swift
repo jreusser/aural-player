@@ -72,7 +72,7 @@ class BookmarksManagerViewController: PresetsManagerViewController {
             
         case .cid_bookmarkTrackColumn:
             
-            return createTextCell(tableView, tableColumn!, row, bookmark.file.path, false)
+            return createTextCell(tableView, tableColumn!, row, bookmark.track.file.path, false)
             
         case .cid_bookmarkStartPositionColumn:
             

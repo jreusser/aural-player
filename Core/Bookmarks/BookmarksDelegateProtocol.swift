@@ -18,6 +18,8 @@ import Foundation
 /// - SeeAlso: `Bookmark`
 ///
 protocol BookmarksDelegateProtocol {
+    
+    func initialize(fromPersistentState persistentState: BookmarksPersistentState?)
 
     // If the endPosition parameter is nil, it means a single track position is being bookmarked. Otherwise, a loop is being bookmarked.
     func addBookmark(_ name: String, _ track: Track, _ startPosition: Double, _ endPosition: Double?) -> Bookmark
