@@ -206,10 +206,38 @@ extension NSTableView {
     }
 }
 
-extension NSTableView: ColorSchemePropertyObserver {
+extension NSTableView: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        
+        setBackgroundColor(systemColorScheme.backgroundColor)
+        reloadData()
+    }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        setBackgroundColor(newColor)
+        
+        switch property {
+            
+        case \.backgroundColor:
+            setBackgroundColor(newColor)
+            
+        case \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor, \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor:
+            reloadData()
+            
+        default:
+            return
+        }
+    }
+}
+
+extension NSTableView: FontSchemeObserver {
+    
+    func fontSchemeChanged() {
+        reloadData()
+    }
+    
+    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+        reloadData()
     }
 }
 

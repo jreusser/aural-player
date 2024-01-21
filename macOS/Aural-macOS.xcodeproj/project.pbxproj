@@ -174,6 +174,7 @@
 		3E5F943525E571A6002DEF80 /* Supernova.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F941F25E570A9002DEF80 /* Supernova.swift */; };
 		3E5F943625E571A6002DEF80 /* DiscoBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F941E25E570A9002DEF80 /* DiscoBall.swift */; };
 		3E5F943725E571A6002DEF80 /* SpectrogramBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F941A25E570A9002DEF80 /* SpectrogramBar.swift */; };
+		3E60EAD92B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60EAD82B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift */; };
 		3E62979426A3C0F100C96AB8 /* SnappingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */; };
 		3E62979A26A3CD3800C96AB8 /* Destroyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979926A3CD3800C96AB8 /* Destroyable.swift */; };
 		3E62979D26A3CEBF00C96AB8 /* Restorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979C26A3CEBF00C96AB8 /* Restorable.swift */; };
@@ -1224,6 +1225,7 @@
 		3E5F941D25E570A9002DEF80 /* Visualizer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Visualizer.xib; sourceTree = "<group>"; };
 		3E5F941E25E570A9002DEF80 /* DiscoBall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoBall.swift; sourceTree = "<group>"; };
 		3E5F941F25E570A9002DEF80 /* Supernova.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supernova.swift; sourceTree = "<group>"; };
+		3E60EAD82B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackListTableViewController+Actions.swift"; sourceTree = "<group>"; };
 		3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappingWindowDelegate.swift; sourceTree = "<group>"; };
 		3E62979926A3CD3800C96AB8 /* Destroyable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destroyable.swift; sourceTree = "<group>"; };
 		3E62979C26A3CEBF00C96AB8 /* Restorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restorable.swift; sourceTree = "<group>"; };
@@ -2301,6 +2303,7 @@
 			isa = PBXGroup;
 			children = (
 				3E25B65827F78C0B00D10A5F /* TrackListTableViewController.swift */,
+				3E60EAD82B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift */,
 				3E1741472801FDE500772ED1 /* TrackListTableViewController+DataSource.swift */,
 				3E1741452801EA0A00772ED1 /* TableCellBuilder.swift */,
 			);
@@ -5884,6 +5887,7 @@
 				3EFE3A6F27864898006F8B8C /* ITunesParser.swift in Sources */,
 				3E63620226850AED006F5A2A /* PlaylistFontScheme.swift in Sources */,
 				3EE7CB9825E21FAE0075F1DD /* PlaylistFontSchemeViewController.swift in Sources */,
+				3E60EAD92B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift in Sources */,
 				3E6C12B725CEBE5800BF0D07 /* PlaylistMenuController.swift in Sources */,
 				3EFE3A4F27864898006F8B8C /* LanguageMap.swift in Sources */,
 				3E6C122A25CEBDE600BF0D07 /* PlayQueuePreferencesViewController.swift in Sources */,

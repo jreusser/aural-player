@@ -113,10 +113,6 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     
     // --------------------- Responding to commands ------------------------------------------------
     
-    @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {
-        importFilesAndFolders()
-    }
-    
     // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
     func importFilesAndFolders() {
         
@@ -128,10 +124,6 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
     func addChosenTracks(_ files: [URL]) {
         trackList.loadTracks(from: files)
-    }
-    
-    @IBAction func removeTracksAction(_ sender: NSButton) {
-        removeTracks()
     }
     
     func removeTracks() {
@@ -151,10 +143,6 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         tableView.reloadRows(rows)
     }
     
-    @IBAction func cropSelectionAction(_ sender: Any) {
-        cropSelection()
-    }
-    
     func cropSelection() {
         
         guard selectedRows.isNonEmpty else {return}
@@ -164,10 +152,6 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     }
     
     func notifyReloadTable() {}
-    
-    @IBAction func removeAllTracksAction(_ sender: NSButton) {
-        removeAllTracks()
-    }
     
     func removeAllTracks() {
         
@@ -185,28 +169,16 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     
     // MARK: Table view selection manipulation
     
-    @IBAction func clearSelectionAction(_ sender: NSButton) {
-        clearSelection()
-    }
-    
     @inlinable
     @inline(__always)
     func clearSelection() {
         tableView.clearSelection()
     }
     
-    @IBAction func invertSelectionAction(_ sender: NSButton) {
-        invertSelection()
-    }
-    
     @inlinable
     @inline(__always)
     func invertSelection() {
         tableView.invertSelection()
-    }
-    
-    @IBAction func exportToPlaylistAction(_ sender: NSButton) {
-        exportTrackList()
     }
     
     // Invokes the Save file dialog, to allow the user to save all playlist items to a playlist file
@@ -231,34 +203,6 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         }
 
         return trackListBeingModified
-    }
-    
-    @IBAction func sortByTrackNameAction(_ sender: NSMenuItem) {
-        doSort(by: [.name])
-    }
-    
-    @IBAction func sortByArtistAlbumDiscTrackNumberAction(_ sender: NSMenuItem) {
-        doSort(by: [.artist, .album, .discNumberAndTrackNumber])
-    }
-    
-    @IBAction func sortByArtistAlbumTrackNameAction(_ sender: NSMenuItem) {
-        doSort(by: [.artist, .album, .name])
-    }
-    
-    @IBAction func sortByArtistTrackNameAction(_ sender: NSMenuItem) {
-        doSort(by: [.artist, .name])
-    }
-    
-    @IBAction func sortByAlbumDiscTrackNumberAction(_ sender: NSMenuItem) {
-        doSort(by: [.album, .discNumberAndTrackNumber])
-    }
-    
-    @IBAction func sortByAlbumTrackNameAction(_ sender: NSMenuItem) {
-        doSort(by: [.album, .name])
-    }
-    
-    @IBAction func sortByDurationAction(_ sender: NSMenuItem) {
-        doSort(by: [.duration])
     }
     
     func doSort(by fields: [TrackSortField]) {
@@ -385,22 +329,6 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     
     func scrollRowToVisible(_ row: Int) {
         tableView.scrollRowToVisible(row)
-    }
-    
-    @IBAction func pageUpAction(_ sender: NSButton) {
-        pageUp()
-    }
-    
-    @IBAction func pageDownAction(_ sender: NSButton) {
-        pageDown()
-    }
-    
-    @IBAction func scrollToTopAction(_ sender: NSButton) {
-        scrollToTop()
-    }
-    
-    @IBAction func scrollToBottomAction(_ sender: NSButton) {
-        scrollToBottom()
     }
     
     func pageUp() {
