@@ -9,6 +9,7 @@
 //  
 
 import Foundation
+import AppKit
 
 protocol ColorSchemePropertyObserver {
     
@@ -23,23 +24,6 @@ protocol ColorSchemeObserver: ColorSchemePropertyObserver {
 typealias ColorSchemePropertyObserverFunction = (PlatformColor) -> Void
 
 extension ColorSchemesManager {
-    
-    func startObserving() {
-        
-        for property in propertyObservers.keys {
-            observeProperty(property)
-        }
-
-        for property in schemeAndPropertyObservers.keys {
-            observePropertyForSchemeObserver(property)
-        }
-
-        for observer in schemeObservers {
-            observer.colorSchemeChanged()
-        }
-
-        isObserving = true
-    }
     
     // TODO: Call this from AppModeManager.dismissMode()
     func stopObserving() {
@@ -134,25 +118,7 @@ extension ColorSchemesManager {
     // MARK: Scheme observing
     
     func registerSchemeObserver(_ observer: ColorSchemeObserver, forProperties properties: [KeyPath<ColorScheme, PlatformColor>]) {
-        
-        schemeObservers.append(observer)
-        
-        for property in properties {
-            
-            if schemeAndPropertyObservers[property] == nil {
-                schemeAndPropertyObservers[property] = []
-            }
-            
-            schemeAndPropertyObservers[property]!.append(observer)
-            
-            // TODO: Add to reverse registry
-            
-            if !schemeKVO.isPropertyObserved(property) {
-                observePropertyForSchemeObserver(property)
-            }
-            
-            observer.colorSchemeChanged()
-        }
+        registerSchemeObservers([observer], forProperties: properties)
     }
     
     func registerSchemeObservers(_ observers: [ColorSchemeObserver], forProperties properties: [KeyPath<ColorScheme, PlatformColor>]) {
@@ -175,7 +141,6 @@ extension ColorSchemesManager {
             }
             
             // TODO: Add to reverse registry
-            
             observer.colorSchemeChanged()
         }
     }
@@ -186,14 +151,7 @@ extension ColorSchemesManager {
             
             guard let strongSelf = self else {return}
                     
-            guard !strongSelf.schemeChanged else {
-
-                strongSelf.schemeObservers.forEach {
-                    $0.colorSchemeChanged()
-                }
-                
-                return
-            }
+            if strongSelf.schemeChanged {return}
             
             if let observers = strongSelf.schemeAndPropertyObservers[property] {
             

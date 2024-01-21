@@ -86,7 +86,6 @@ class AppModeManager {
         
         currentMode = newMode
         
-        colorSchemesManager.startObserving()
         fontSchemesManager.startObserving()
     }
     

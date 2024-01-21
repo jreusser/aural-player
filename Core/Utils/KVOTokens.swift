@@ -38,5 +38,7 @@ class KVOTokens<Object: NSObject, Property> {
         
         tokens.forEach {$0.invalidate()}
         tokens.removeAll()
+        
+        observedProperties.removeAll()
     }
 }

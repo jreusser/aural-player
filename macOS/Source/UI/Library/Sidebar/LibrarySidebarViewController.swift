@@ -115,15 +115,11 @@ extension LibrarySidebarViewController: ColorSchemeObserver, FontSchemeObserver 
     
     func colorSchemeChanged() {
         
-        print("\nColor SCHEME Changed")
-        
         sidebarView.backgroundColor = systemColorScheme.backgroundColor
         sidebarView.reloadData()
     }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
-        
-        print("\nColor Changed: \(property)")
         
         sidebarView.backgroundColor = systemColorScheme.backgroundColor
         sidebarView.reloadData()
