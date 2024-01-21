@@ -38,7 +38,9 @@ class LibrarySidebarViewController: NSViewController {
             self?.sidebarView.expandItem(LibrarySidebarCategory.tuneBrowser)
         }
         
-        colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
+//        colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
+        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor])
+        fontSchemesManager.registerObserver(self, forProperty: \.playQueuePrimaryFont)
     }
     
     @IBAction func doubleClickAction(_ sender: NSOutlineView) {
@@ -106,6 +108,33 @@ class LibrarySidebarViewController: NSViewController {
         
         sidebarView.insertItems(at: IndexSet(integer: tuneBrowserUIState.sidebarUserFolders.count),
                                 inParent: LibrarySidebarCategory.tuneBrowser, withAnimation: .slideDown)
+    }
+}
+
+extension LibrarySidebarViewController: ColorSchemeObserver, FontSchemeObserver {
+    
+    func colorSchemeChanged() {
+        
+        print("\nColor SCHEME Changed")
+        
+        sidebarView.backgroundColor = systemColorScheme.backgroundColor
+        sidebarView.reloadData()
+    }
+    
+    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+        
+        print("\nColor Changed: \(property)")
+        
+        sidebarView.backgroundColor = systemColorScheme.backgroundColor
+        sidebarView.reloadData()
+    }
+    
+    func fontSchemeChanged() {
+        sidebarView.reloadData()
+    }
+    
+    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+        sidebarView.reloadData()
     }
 }
 

@@ -40,6 +40,8 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
         fontSchemesManager.registerObservers([lblPlaylistsSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
         colorSchemesManager.registerObservers([lblPlaylistsSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
         
+        colorSchemesManager.registerObserver(outlineView, forProperty: \.backgroundColor)
+        
         updateSummary()
     }
     

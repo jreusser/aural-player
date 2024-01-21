@@ -36,7 +36,8 @@ extension TuneBrowserViewController {
     
     @IBAction func backHistoryMenuAction(_ sender: TuneBrowserHistoryMenuItem) {
         
-//        history.back(to: sender.url)
+        history.back(to: sender.folder)
+//        showFolder(sender.folder, inTree: )
 //        showURL(sender.url, updateHistory: false)
 //        updateNavButtons()
     }

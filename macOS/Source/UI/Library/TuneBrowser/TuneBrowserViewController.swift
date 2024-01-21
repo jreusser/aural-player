@@ -179,8 +179,9 @@ class TuneBrowserViewController: NSViewController {
             
             for folder in history.backStack.underlyingArray.reversed() {
                 
-                let item = TuneBrowserHistoryMenuItem(title: folder.url.lastPathComponent, action: #selector(backHistoryMenuAction(_:)))
-                item.url = folder.url
+                let item = TuneBrowserHistoryMenuItem(title: folder.name, action: #selector(backHistoryMenuAction(_:)))
+                item.folder = folder
+                // TODO: Set tree (create a container struct to hold a folder/tree tuple)
                 item.target = self
                 
                 backHistoryMenu.addItem(item)
@@ -191,8 +192,8 @@ class TuneBrowserViewController: NSViewController {
             
             for folder in history.forwardStack.underlyingArray.reversed() {
                 
-                let item = TuneBrowserHistoryMenuItem(title: folder.url.lastPathComponent, action: #selector(forwardHistoryMenuAction(_:)))
-                item.url = folder.url
+                let item = TuneBrowserHistoryMenuItem(title: folder.name, action: #selector(forwardHistoryMenuAction(_:)))
+                item.folder = folder
                 item.target = self
                 
                 forwardHistoryMenu.addItem(item)
@@ -239,5 +240,21 @@ extension NSTabView {
 
 class TuneBrowserHistoryMenuItem: NSMenuItem {
     
-    var url: URL!
+    var folder: FileSystemFolderItem!
+    var tree: FileSystemTree!
+}
+
+// TODO: !
+struct TuneBrowserLocation {
+    
+    let folder: FileSystemFolderItem
+    let tree: FileSystemTree
+    
+    var folderURL: URL {
+        folder.url
+    }
+    
+    var rootFolderURL: URL {
+        tree.rootURL
+    }
 }
