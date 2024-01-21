@@ -34,6 +34,10 @@ class EffectsUnitTriStateBypassButton: OnOffImageButton, TintableFXUnitStateObse
         mixedStateTooltip = "Re-activate this effects unit"
     }
     
+    func colorForCurrentStateChanged(to newColor: PlatformColor) {
+        contentTintColor = newColor
+    }
+    
     func unitStateChanged(to newState: EffectsUnitState) {
         
         contentTintColor = systemColorScheme.colorForEffectsUnitState(newState)

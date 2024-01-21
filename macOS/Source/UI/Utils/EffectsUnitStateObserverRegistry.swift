@@ -118,13 +118,15 @@ class EffectsUnitStateObserverRegistry {
     
     func registerObserver(_ observer: FXUnitStateObserver, forFXUnit fxUnit: EffectsUnitDelegateProtocol) {
         
-        if fxUnit.unitType != .au {
+        let unitType = fxUnit.unitType
+        
+        if unitType != .au {
             
-            if registry[fxUnit.unitType] == nil {
-                registry[fxUnit.unitType] = []
+            if registry[unitType] == nil {
+                registry[unitType] = []
             }
             
-            registry[fxUnit.unitType]!.append(observer)
+            registry[unitType]!.append(observer)
             
             if let object = observer as? NSObject {
                 reverseRegistry[object] = fxUnit
@@ -190,8 +192,6 @@ class EffectsUnitStateObserverRegistry {
         auRegistry.removeAll()
         auReverseRegistry.removeAll()
         auCompositeStateObservers.removeAll()
-        
-        kvoTokens.invalidate()
     }
 }
 
