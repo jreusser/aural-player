@@ -167,10 +167,10 @@ class UnifiedPlayerWindowController: NSWindowController {
             messenger.publish(.playlists_showPlaylist, payload: item.displayName)
             
         } else if tab == .fileSystem,
-                  let folderURL = item.tuneBrowserURL {
-                
-            tuneBrowserViewController.showURL(folderURL)
-        }
+                  let folder = item.tuneBrowserFolder, let tree = item.tuneBrowserTree {
+                       
+                   tuneBrowserViewController.showFolder(folder, inTree: tree)
+               }
         
         tabGroup.selectTabViewItem(at: tab.rawValue)
     }

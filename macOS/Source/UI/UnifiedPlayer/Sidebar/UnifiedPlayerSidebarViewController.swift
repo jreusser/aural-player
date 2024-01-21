@@ -48,8 +48,8 @@ class UnifiedPlayerSidebarViewController: NSViewController {
             
         case .fileSystem:
             
-            if let folder = sidebarItem.tuneBrowserURL {
-                messenger.publish(LoadAndPlayNowCommand(files: [folder], clearPlayQueue: false))
+            if let folder = sidebarItem.tuneBrowserFolder {
+                messenger.publish(LoadAndPlayNowCommand(files: [folder.url], clearPlayQueue: false))
             }
             
         case .playlists:

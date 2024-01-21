@@ -26,6 +26,7 @@ class FileSystemItem {
     fileprivate lazy var messenger = Messenger(for: self)
     
     var children: OrderedDictionary<URL, FileSystemItem> = OrderedDictionary()
+    var childrenByName: OrderedDictionary<String, FileSystemItem> = OrderedDictionary()
     
     fileprivate init(url: URL, type: FileSystemItemType) {
         
@@ -37,11 +38,13 @@ class FileSystemItem {
     }
     
     func addChild(_ child: FileSystemItem) {
+        
         children[child.url] = child
+        childrenByName[child.name] = child
     }
 }
 
-class FileSystemFolderItem: FileSystemItem {
+class FileSystemFolderItem: FileSystemItem, Equatable {
     
     init(url: URL) {
         super.init(url: url, type: .folder)
@@ -146,6 +149,10 @@ class FileSystemFolderItem: FileSystemItem {
 //
 //            children.sortValues(by: {ascending ? $0.type < $1.type : $0.type > $1.type})
 //        }
+    }
+    
+    static func == (lhs: FileSystemFolderItem, rhs: FileSystemFolderItem) -> Bool {
+        lhs.url == rhs.url
     }
 }
 

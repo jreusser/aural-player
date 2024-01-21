@@ -19,7 +19,7 @@ enum TuneBrowserSidebarCategory: String, CaseIterable, CustomStringConvertible {
 
 class TuneBrowserSidebarItem: Equatable {
     
-    var url: URL
+    let url: URL
     
     init(url: URL) {
         self.url = url

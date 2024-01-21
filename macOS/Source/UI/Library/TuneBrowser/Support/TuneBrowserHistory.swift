@@ -11,10 +11,10 @@ import Foundation
 
 class TuneBrowserHistory {
     
-    var backStack: Stack<URL> = Stack()
-    var forwardStack: Stack<URL> = Stack()
+    var backStack: Stack<FileSystemFolderItem> = Stack()
+    var forwardStack: Stack<FileSystemFolderItem> = Stack()
     
-    func notePreviousLocation(_ location: URL) {
+    func notePreviousLocation(_ location: FileSystemFolderItem) {
         
         if backStack.peek() != location {
             backStack.push(location)
@@ -23,7 +23,7 @@ class TuneBrowserHistory {
         forwardStack.clear()
     }
     
-    func back(from currentLocation: URL) -> URL? {
+    func back(from currentLocation: FileSystemFolderItem) -> FileSystemFolderItem? {
         
         if let location = backStack.pop() {
             
@@ -34,9 +34,9 @@ class TuneBrowserHistory {
         return nil
     }
     
-    func back(to previousLocation: URL) {
+    func back(to previousLocation: FileSystemFolderItem) {
         
-        var poppedURL: URL? = nil
+        var poppedURL: FileSystemFolderItem? = nil
         
         repeat {
             
@@ -53,7 +53,7 @@ class TuneBrowserHistory {
     
     var canGoBack: Bool {!backStack.isEmpty}
     
-    func forward(from currentLocation: URL) -> URL? {
+    func forward(from currentLocation: FileSystemFolderItem) -> FileSystemFolderItem? {
         
         if let location = forwardStack.pop() {
             

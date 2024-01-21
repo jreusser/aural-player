@@ -14,6 +14,10 @@ protocol LibraryDelegateProtocol: GroupedSortedTrackListProtocol {
     
     var buildProgress: LibraryBuildProgress {get}
     
+    var sourceFolders: [URL] {get}
+    
+    var fileSystemTrees: [FileSystemTree] {get}
+    
     // TODO:
     var playlists: [ImportedPlaylist] {get}
     
@@ -46,6 +50,14 @@ class LibraryDelegate: LibraryDelegateProtocol {
     }
     
     var tracks: [Track] {library.tracks}
+    
+    var sourceFolders: [URL] {
+        Array(library.sourceFolders)
+    }
+    
+    var fileSystemTrees: [FileSystemTree] {
+        library.fileSystemTrees
+    }
     
     var playlists: [ImportedPlaylist] {library.playlists}
     
@@ -172,7 +184,6 @@ class LibraryDelegate: LibraryDelegateProtocol {
         lazy var displayedWindowIDs: [WindowID] = appPersistentState.ui?.windowLayout?.systemLayout?.displayedWindows?.compactMap {$0.id} ?? []
         let libraryShown = appMode == .unified || ((appMode == .modular) && displayedWindowIDs.contains(.library))
         print("\nLibrary Shown ? \(libraryShown), AppMode: \(appMode), displayedWindowIDs: \(displayedWindowIDs)")
-        
         library.buildLibrary(immediate: libraryShown)
     }
     

@@ -194,9 +194,9 @@ class LibraryWindowController: NSWindowController {
         let tab = item.browserTab
 
         if tab == .fileSystem,
-                  let folderURL = item.tuneBrowserURL {
+           let folder = item.tuneBrowserFolder, let tree = item.tuneBrowserTree {
                 
-            tuneBrowserViewController.showURL(folderURL)
+            tuneBrowserViewController.showFolder(folder, inTree: tree)
         }
         
         tabGroup.selectTabViewItem(at: tab.rawValue)

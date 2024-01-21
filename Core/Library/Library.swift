@@ -11,44 +11,14 @@
 import Foundation
 import OrderedCollections
 
-protocol LibraryProtocol: TrackListProtocol {
-    
-    var sourceFolders: OrderedSet<URL> {get}
-    
-    func addSourceFolder(url: URL)
-    
-    func removeSourceFolder(url: URL)
-    
-    func buildLibrary(immediate: Bool)
-    
-    var buildProgress: LibraryBuildProgress {get}
-    
-    // TODO:
-    var playlists: [ImportedPlaylist] {get}
-    
-    var numberOfPlaylists: Int {get}
-    
-    var numberOfTracksInPlaylists: Int {get}
-    
-    var durationOfTracksInPlaylists: Double {get}
-    
-    func addPlaylists(_ playlists: [ImportedPlaylist])
-    
-    func playlist(atIndex index: Int) -> ImportedPlaylist?
-    
-    func findGroup(named groupName: String, ofType groupType: GroupType) -> Group?
-}
-
-struct LibraryBuildProgress {
-    
-    let isBeingModified: Bool
-    let startedReadingFiles: Bool
-    let buildStats: LibraryBuildStats?
-}
-
 class Library: GroupedSortedTrackList, LibraryProtocol {
     
     override var displayName: String {"The Library"}
+    
+    var _isBuilt: AtomicBool = .init()
+    var isBuilt: Bool {
+        _isBuilt.value
+    }
     
     var sourceFolders: OrderedSet<URL>
     
@@ -60,7 +30,11 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
         sourceFolders.remove(url)
     }
     
-    var fileSystemTrees: OrderedDictionary<URL, FileSystemTree> = OrderedDictionary()
+    var fileSystemTrees: [FileSystemTree] {
+        Array(_fileSystemTrees.values)
+    }
+    
+    var _fileSystemTrees: OrderedDictionary<URL, FileSystemTree> = OrderedDictionary()
     
     /// A map to quickly look up playlists by (absolute) file path (used when adding playlists, to prevent duplicates)
     /// // TODO:

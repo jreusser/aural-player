@@ -31,6 +31,12 @@ class LibrarySidebarViewController: NSViewController {
         
         messenger.subscribe(to: .sidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
         
+        messenger.subscribeAsync(to: .library_doneAddingTracks) {[weak self] in
+            
+            self?.sidebarView.reloadData()
+            self?.sidebarView.expandItem(LibrarySidebarCategory.tuneBrowser)
+        }
+        
         colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
     }
     
@@ -42,8 +48,8 @@ class LibrarySidebarViewController: NSViewController {
             
         case .fileSystem:
             
-            if let folder = sidebarItem.tuneBrowserURL {
-                messenger.publish(LoadAndPlayNowCommand(files: [folder], clearPlayQueue: false))
+            if let folder = sidebarItem.tuneBrowserFolder {
+                messenger.publish(LoadAndPlayNowCommand(files: [folder.url], clearPlayQueue: false))
             }
             
         default:

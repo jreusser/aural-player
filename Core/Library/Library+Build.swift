@@ -64,7 +64,7 @@ extension Library {
             
             self.removeAllTracks()
             self._playlists.removeAll()
-            self.fileSystemTrees.removeAll()
+            self._fileSystemTrees.removeAll()
             
             self.messenger.publish(.library_startedReadingFileSystem)
             
@@ -130,6 +130,8 @@ extension Library {
             chosenQueue.waitUntilAllOperationsAreFinished()
             
             self._isBeingModified.setValue(false)
+            self._isBuilt.setValue(true)
+            
             self.messenger.publish(.library_doneAddingTracks)
             
             let end = Date()
@@ -140,7 +142,7 @@ extension Library {
     fileprivate func buildTree(forSourceFolder folder: URL) {
         
         guard let tree = FileSystemTree(sourceFolderURL: folder) else {return}
-        fileSystemTrees[folder] = tree
+        _fileSystemTrees[folder] = tree
         
         buildFolder(tree.root, inTree: tree)
     }

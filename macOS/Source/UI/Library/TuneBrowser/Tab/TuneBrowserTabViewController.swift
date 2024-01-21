@@ -17,34 +17,11 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
     @IBOutlet weak var browserView: TuneBrowserOutlineView!
     @IBOutlet weak var lblSummary: NSTextField!
     
-    lazy var tree: FileSystemTree = library.fileSystemTrees.values.first!
-    lazy var rootFolder: FileSystemFolderItem = library.fileSystemTrees.values.first!.root
-    
-    var isAvailable: Bool {
-//        fileSystem.root == nil
-        false
-    }
+    let tree: FileSystemTree
+    let rootFolder: FileSystemFolderItem
     
     var rootURL: URL {
         rootFolder.url
-    }
-    
-    func reset() {
-        
-//        fileSystem.root = nil
-        browserView.reloadData()
-    }
-    
-    func setRoot(_ rootURL: URL) {
-        
-        if self.rootURL == rootURL {return}
-        
-        if let folder = library.fileSystemTrees.values.first!.item(forURL: rootURL) as? FileSystemFolderItem {
-            
-            self.rootFolder = folder
-            browserView.reloadData()
-            updateSummary()
-        }
     }
     
     func scrollToTop(){
@@ -55,6 +32,19 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
     
     let textFont: NSFont = standardFontSet.mainFont(size: 13)
     
+    init(pathControlWidget: NSPathControl, tree: FileSystemTree, rootFolder: FileSystemFolderItem) {
+        
+        self.pathControlWidget = pathControlWidget
+        self.tree = tree
+        self.rootFolder = rootFolder
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()
@@ -64,6 +54,11 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         colorSchemesManager.registerObserver(browserView, forProperty: \.backgroundColor)
         fontSchemesManager.registerObserver(lblSummary, forProperty: \.playQueuePrimaryFont)
         colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
+        
+        restoreDisplayedColumns()
+    }
+    
+    private func restoreDisplayedColumns() {
         
         var displayedColumnIds: [String] = tuneBrowserUIState.displayedColumns.compactMap {$0.id}
 
@@ -92,15 +87,16 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         
         super.viewDidLoad()
         
-        messenger.subscribeAsync(to: .fileSystem_fileMetadataLoaded, handler: fileMetadataLoaded(_:))
+        browserView.reloadData()
+        updateSummary()
+        
+//        messenger.subscribeAsync(to: .fileSystem_fileMetadataLoaded, handler: fileMetadataLoaded(_:))
         messenger.subscribeAsync(to: .tuneBrowser_folderChanged, handler: folderChanged(_:))
     }
     
     override func destroy() {
         
         super.destroy()
-        
-//        fileSystem.destroy()
         messenger.unsubscribeFromAll()
     }
     
@@ -123,12 +119,13 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         }
     }
     
-    private func fileMetadataLoaded(_ file: FileSystemItem) {
-        
-        DispatchQueue.main.async {
-            self.browserView.reloadItem(file)
-        }
-    }
+    // TODO: No longer required because entire file system will be built (with track metadata) before shown in UI.
+//    private func fileMetadataLoaded(_ file: FileSystemItem) {
+//        
+//        DispatchQueue.main.async {
+//            self.browserView.reloadItem(file)
+//        }
+//    }
     
     private func folderChanged(_ notif: FileSystemItemUpdatedNotification) {
         
@@ -192,42 +189,17 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         } else if let folderItem = fsItem as? FileSystemFolderItem {
             
             // Folder
-            openFolder(folderItem)
+            messenger.publish(.tuneBrowser_openFolder,
+                              payload: OpenTuneBrowserFolderCommandNotification(folderToOpen: folderItem,
+                                                                                treeContainingFolder: self.tree,
+                                                                                currentlyOpenFolder: self.rootFolder))
         }
-    }
-    
-    private func openFolder(_ item: FileSystemFolderItem, updatePathWidget: Bool = true) {
-        
-        let currentURL = rootFolder.url
-        messenger.publish(.tuneBrowser_notePreviousLocation, payload: currentURL)
-        
-        self.rootFolder = item
-        let url = rootFolder.url
-        let path = url.path
-        
-        print("\nRel Path: \(item.url.path(relativeTo: tree.rootURL))")
-        
-        if updatePathWidget {
-            
-//            if !path.hasPrefix("/Volumes"), let volumeName = SystemUtils.primaryVolumeName {
-//                pathControlWidget.url = URL(fileURLWithPath: "/Volumes/\(volumeName)\(path)")
-//            } else {
-//                pathControlWidget.url = url
-//            }
-            pathControlWidget.pathItems[0].title = item.name
-//            pathControlWidget.pathItems[0].image = .init(systemSymbolName: "music.note.house", accessibilityDescription: nil)!
-//            pathControlWidget.pathItems[0].image?.size = .init(width: 14, height: 14)
-        }
-        
-        browserView.reloadData()
-        updateSummary()
     }
     
     @IBAction func playNowAction(_ sender: Any) {
         
-        let files = browserView.selectedFileSystemItemURLs
-        
         // TODO: Folder B should not be contained within folder A
+        let files = browserView.selectedFileSystemItemURLs
         
         messenger.publish(LibraryFileSystemItemsPlayedNotification(filesAndFolders: files))
         messenger.publish(LoadAndPlayNowCommand(files: files, clearPlayQueue: true))

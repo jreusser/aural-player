@@ -20,7 +20,7 @@ extension Notification.Name {
     
     static let tuneBrowser_sidebarSelectionChanged = Notification.Name("tuneBrowser_sidebarSelectionChanged")
     
-    static let tuneBrowser_notePreviousLocation = Notification.Name("tuneBrowser_notePreviousLocation")
+    static let tuneBrowser_openFolder = Notification.Name("tuneBrowser_openFolder")
     
     static let tuneBrowser_fileAdded = Notification.Name("tuneBrowser_fileAdded")
     static let tuneBrowser_fileDeleted = Notification.Name("tuneBrowser_fileDeleted")

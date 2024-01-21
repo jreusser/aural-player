@@ -156,7 +156,7 @@ extension TrackListTableViewController: NSTableViewDataSource {
         
         if fileSystemItems.isNonEmpty {
          
-            let folders: [URL] = fileSystemItems.compactMap {$0.tuneBrowserURL}
+            let folders: [URL] = fileSystemItems.compactMap {$0.tuneBrowserFolder}.map {$0.url}
             importFiles(folders, to: destRow)
         }
         

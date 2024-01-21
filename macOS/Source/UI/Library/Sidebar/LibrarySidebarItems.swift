@@ -41,7 +41,8 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
             
         case .tuneBrowser:
             
-            return tuneBrowserUIState.sidebarUserFolders.count + 1
+            return libraryDelegate.fileSystemTrees.count
+            // TODO: Include user folders
         }
     }
     
@@ -55,10 +56,15 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
             
         case .tuneBrowser:
             
-            return [LibrarySidebarItem(displayName: "My Music", browserTab: .fileSystem, tuneBrowserURL: FilesAndPaths.musicDir)] +
-            tuneBrowserUIState.sidebarUserFolders.values.map {
-                LibrarySidebarItem(displayName: $0.url.lastPathComponent, browserTab: .fileSystem, tuneBrowserURL: $0.url)
+            return libraryDelegate.fileSystemTrees.map {tree in
+                
+                let rootFolder = tree.root
+                return LibrarySidebarItem(displayName: rootFolder.name, browserTab: .fileSystem, tuneBrowserFolder: rootFolder, tuneBrowserTree: tree)
             }
+            
+            // TODO: Also add in the user folders from persistent TB state
+            //            tuneBrowserUIState.sidebarUserFolders.values.map {
+            //                LibrarySidebarItem(displayName: $0.url.lastPathComponent, browserTab: .fileSystem, tuneBrowserURL: $0.url)
         }
     }
     
@@ -82,13 +88,18 @@ struct LibrarySidebarItem {
     let displayName: String
     let browserTab: LibraryBrowserTab
     let image: PlatformImage?
-    let tuneBrowserURL: URL?
     
-    init(displayName: String, browserTab: LibraryBrowserTab, tuneBrowserURL: URL? = nil, image: PlatformImage? = nil) {
+    let tuneBrowserFolder: FileSystemFolderItem?
+    let tuneBrowserTree: FileSystemTree?
+    
+    init(displayName: String, browserTab: LibraryBrowserTab, tuneBrowserFolder: FileSystemFolderItem? = nil, tuneBrowserTree: FileSystemTree? = nil, image: PlatformImage? = nil) {
         
         self.displayName = displayName
         self.browserTab = browserTab
-        self.tuneBrowserURL = tuneBrowserURL
+        
+        self.tuneBrowserFolder = tuneBrowserFolder
+        self.tuneBrowserTree = tuneBrowserTree
+        
         self.image = image
     }
 }

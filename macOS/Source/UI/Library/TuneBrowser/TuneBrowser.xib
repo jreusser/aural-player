@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -133,11 +133,11 @@
                         </connections>
                     </pathControl>
                     <tabView type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="YpR-Qx-Ish" userLabel="Tab View">
-                        <rect key="frame" x="0.0" y="0.0" width="700" height="285"/>
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="280"/>
                         <font key="font" metaFont="system"/>
                     </tabView>
-                    <button toolTip="Back" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bwx-2C-Eg4" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="619" y="316" width="18.5" height="20"/>
+                    <button toolTip="Back" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bwx-2C-Eg4" userLabel="Back Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                        <rect key="frame" x="619" y="321" width="18.5" height="20"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" controlSize="small" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="Vqa-qe-ymV">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="message" size="11"/>
@@ -152,8 +152,8 @@
                             <outlet property="menu" destination="PBx-07-kog" id="Gxy-RO-ezD"/>
                         </connections>
                     </button>
-                    <button toolTip="Forward" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jmd-Wq-WNc" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="644" y="316" width="18.5" height="20"/>
+                    <button toolTip="Forward" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jmd-Wq-WNc" userLabel="Forward Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
+                        <rect key="frame" x="644" y="321" width="18.5" height="20"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" controlSize="small" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="llN-vi-1Kv">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="message" size="11"/>
@@ -170,11 +170,12 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="jmd-Wq-WNc" firstAttribute="bottom" secondItem="bwx-2C-Eg4" secondAttribute="bottom" id="3eQ-RR-HUa"/>
+                    <constraint firstItem="jmd-Wq-WNc" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="14" id="0Zd-20-KfB"/>
                     <constraint firstItem="hDu-SS-U8T" firstAttribute="leading" secondItem="jmd-Wq-WNc" secondAttribute="trailing" constant="18" id="4kg-Vr-ETO"/>
                     <constraint firstItem="hDu-SS-U8T" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="16" id="650-Ql-AHm"/>
                     <constraint firstItem="jTW-xB-lKp" firstAttribute="top" secondItem="hDu-SS-U8T" secondAttribute="bottom" constant="20" id="7pz-Fq-WVM"/>
                     <constraint firstAttribute="trailing" secondItem="jTW-xB-lKp" secondAttribute="trailing" id="7uo-xX-t4s"/>
+                    <constraint firstItem="jmd-Wq-WNc" firstAttribute="top" secondItem="bwx-2C-Eg4" secondAttribute="top" id="DbC-6V-KQl"/>
                     <constraint firstItem="jTW-xB-lKp" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" id="Hc4-fZ-VEg"/>
                     <constraint firstAttribute="trailing" secondItem="hDu-SS-U8T" secondAttribute="trailing" id="OL1-aG-W1S"/>
                     <constraint firstItem="YpR-Qx-Ish" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" id="aeg-De-D5A"/>
@@ -183,8 +184,7 @@
                     <constraint firstItem="7cL-0X-ZiE" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" constant="3" id="lEF-cN-UX0"/>
                     <constraint firstAttribute="trailing" secondItem="YpR-Qx-Ish" secondAttribute="trailing" id="pdg-Sn-LW4"/>
                     <constraint firstAttribute="bottom" secondItem="YpR-Qx-Ish" secondAttribute="bottom" id="rfA-KS-U2w"/>
-                    <constraint firstItem="YpR-Qx-Ish" firstAttribute="top" secondItem="jTW-xB-lKp" secondAttribute="bottom" id="vJa-hU-jXB"/>
-                    <constraint firstItem="jTW-xB-lKp" firstAttribute="top" secondItem="jmd-Wq-WNc" secondAttribute="bottom" constant="12" id="wEz-8i-D6f"/>
+                    <constraint firstItem="YpR-Qx-Ish" firstAttribute="top" secondItem="jTW-xB-lKp" secondAttribute="bottom" constant="5" id="vJa-hU-jXB"/>
                 </constraints>
             </view>
             <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

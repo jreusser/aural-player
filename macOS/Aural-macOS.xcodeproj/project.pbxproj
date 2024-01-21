@@ -114,6 +114,9 @@
 		3E4322872687E24A009E8ADB /* ControlBarPlayerAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4322862687E24A009E8ADB /* ControlBarPlayerAudioViewController.swift */; };
 		3E4322892687E303009E8ADB /* ControlBarPlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4322882687E303009E8ADB /* ControlBarPlaybackView.swift */; };
 		3E43228B2687E313009E8ADB /* ControlBarSeekSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43228A2687E313009E8ADB /* ControlBarSeekSliderView.swift */; };
+		3E433CEB2B5C2CAA00D73976 /* OpenTuneBrowserFolderCommandNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E433CEA2B5C2CAA00D73976 /* OpenTuneBrowserFolderCommandNotification.swift */; };
+		3E433CED2B5C328E00D73976 /* LibraryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E433CEC2B5C328E00D73976 /* LibraryProtocols.swift */; };
+		3E433CEF2B5C356F00D73976 /* TuneBrowserViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E433CEE2B5C356F00D73976 /* TuneBrowserViewController+Actions.swift */; };
 		3E4574952B3DEEE600AF117E /* SearchViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4574942B3DEEE600AF117E /* SearchViewController+TableView.swift */; };
 		3E45C03325E1264C00C1519C /* PlayerFontScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E45C03225E1264C00C1519C /* PlayerFontScheme.xib */; };
 		3E45C03625E1269500C1519C /* PlayerFontSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E45C03525E1269500C1519C /* PlayerFontSchemeViewController.swift */; };
@@ -1161,6 +1164,9 @@
 		3E4322862687E24A009E8ADB /* ControlBarPlayerAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlayerAudioViewController.swift; sourceTree = "<group>"; };
 		3E4322882687E303009E8ADB /* ControlBarPlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlaybackView.swift; sourceTree = "<group>"; };
 		3E43228A2687E313009E8ADB /* ControlBarSeekSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarSeekSliderView.swift; sourceTree = "<group>"; };
+		3E433CEA2B5C2CAA00D73976 /* OpenTuneBrowserFolderCommandNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTuneBrowserFolderCommandNotification.swift; sourceTree = "<group>"; };
+		3E433CEC2B5C328E00D73976 /* LibraryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryProtocols.swift; sourceTree = "<group>"; };
+		3E433CEE2B5C356F00D73976 /* TuneBrowserViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuneBrowserViewController+Actions.swift"; sourceTree = "<group>"; };
 		3E4574942B3DEEE600AF117E /* SearchViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+TableView.swift"; sourceTree = "<group>"; };
 		3E45C03225E1264C00C1519C /* PlayerFontScheme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerFontScheme.xib; sourceTree = "<group>"; };
 		3E45C03525E1269500C1519C /* PlayerFontSchemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFontSchemeViewController.swift; sourceTree = "<group>"; };
@@ -3772,6 +3778,7 @@
 		3EAE9CBE2836B122004499FE /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				3E433CEC2B5C328E00D73976 /* LibraryProtocols.swift */,
 				3EAE9CBF2836B139004499FE /* Library.swift */,
 				3EEABD432B56D47E00263797 /* Library+Build.swift */,
 				3E798F3628389C10000CFAE8 /* LibraryDelegate.swift */,
@@ -3907,6 +3914,7 @@
 			children = (
 				3E498E25284D2DA400BF4157 /* TuneBrowser.xib */,
 				3E498E27284D2E4800BF4157 /* TuneBrowserViewController.swift */,
+				3E433CEE2B5C356F00D73976 /* TuneBrowserViewController+Actions.swift */,
 				3E498E24284D2D4E00BF4157 /* Tab */,
 				3EB462C72847FEC6000E3F85 /* Sidebar */,
 				3E81BCD5284AA7FD00927E4A /* Support */,
@@ -4944,6 +4952,7 @@
 				3EFE377427864895006F8B8C /* PlaylistCommandNotification.swift */,
 				3E495B8628105BAD00D4766A /* EnqueueAndPlayNowCommand.swift */,
 				3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */,
+				3E433CEA2B5C2CAA00D73976 /* OpenTuneBrowserFolderCommandNotification.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -5581,6 +5590,7 @@
 				3EFE39C727864897006F8B8C /* GroupingPlaylistPersistentState.swift in Sources */,
 				3EA89D972699F0240021CDB9 /* EventMonitor.swift in Sources */,
 				3E47D2352815A5BD00938F20 /* ControlStatesColorSchemeViewController.swift in Sources */,
+				3E433CEF2B5C356F00D73976 /* TuneBrowserViewController+Actions.swift in Sources */,
 				3EFE38B527864896006F8B8C /* HostedAUNode.swift in Sources */,
 				3EFE38F727864897006F8B8C /* TimeUtils.swift in Sources */,
 				3EFE388327864896006F8B8C /* AudioGraph.swift in Sources */,
@@ -5644,6 +5654,7 @@
 				3E9FD1082A1D5D8D0038AF04 /* FFmpegString.swift in Sources */,
 				3EFE385927864896006F8B8C /* FavoritesDelegate.swift in Sources */,
 				3EFE3A1B27864898006F8B8C /* HistoryNotifications.swift in Sources */,
+				3E433CED2B5C328E00D73976 /* LibraryProtocols.swift in Sources */,
 				3EFE384B27864896006F8B8C /* PlaylistDelegate.swift in Sources */,
 				3EFE386527864896006F8B8C /* PitchShiftUnit.swift in Sources */,
 				3ECFA87F2AE1EB29001096DC /* EffectsContainerViewController.swift in Sources */,
@@ -5916,6 +5927,7 @@
 				3E6C12C025CEBE6700BF0D07 /* PresetsWrapper.swift in Sources */,
 				3E3ACC042B5932EC00F2F678 /* LegacyHistoryPersistentState.swift in Sources */,
 				3EF84D872835D7D9004EF57B /* GroupedSortedTrackList.swift in Sources */,
+				3E433CEB2B5C2CAA00D73976 /* OpenTuneBrowserFolderCommandNotification.swift in Sources */,
 				3EBFF5AE2B52C8150056D5B4 /* CompactPlaybackView.swift in Sources */,
 				3E6C129425CEBE1800BF0D07 /* PrettyScroller.swift in Sources */,
 				3E10178728D7713B002C0D8E /* FFmpegDecoder.swift in Sources */,

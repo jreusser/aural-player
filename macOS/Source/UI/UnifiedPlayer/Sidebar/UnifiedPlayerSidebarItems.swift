@@ -101,10 +101,15 @@ enum UnifiedPlayerSidebarCategory: String, CaseIterable, CustomStringConvertible
             
         case .tuneBrowser:
             
-            return [UnifiedPlayerSidebarItem(displayName: "My Music", browserTab: .fileSystem, tuneBrowserURL: FilesAndPaths.musicDir)] +
-            tuneBrowserUIState.sidebarUserFolders.values.map {
-                UnifiedPlayerSidebarItem(displayName: $0.url.lastPathComponent, browserTab: .fileSystem, tuneBrowserURL: $0.url)
+            return libraryDelegate.fileSystemTrees.map {tree in
+                
+                let rootFolder = tree.root
+                return UnifiedPlayerSidebarItem(displayName: rootFolder.name, browserTab: .fileSystem, tuneBrowserFolder: rootFolder, tuneBrowserTree: tree)
             }
+            
+            // TODO: Also add in the user folders from persistent TB state
+            //            tuneBrowserUIState.sidebarUserFolders.values.map {
+            //                LibrarySidebarItem(displayName: $0.url.lastPathComponent, browserTab: .fileSystem, tuneBrowserURL: $0.url)
             
         case .playlists:
             
@@ -159,18 +164,24 @@ enum UnifiedPlayerSidebarCategory: String, CaseIterable, CustomStringConvertible
     }
 }
 
+// TODO: Consolidate this struct with 'LibrarySidebarItem'
 struct UnifiedPlayerSidebarItem {
     
     let displayName: String
     let browserTab: UnifiedPlayerBrowserTab
     let image: PlatformImage?
-    let tuneBrowserURL: URL?
     
-    init(displayName: String, browserTab: UnifiedPlayerBrowserTab, tuneBrowserURL: URL? = nil, image: PlatformImage? = nil) {
+    let tuneBrowserFolder: FileSystemFolderItem?
+    let tuneBrowserTree: FileSystemTree?
+    
+    init(displayName: String, browserTab: UnifiedPlayerBrowserTab, tuneBrowserFolder: FileSystemFolderItem? = nil, tuneBrowserTree: FileSystemTree? = nil, image: PlatformImage? = nil) {
         
         self.displayName = displayName
         self.browserTab = browserTab
-        self.tuneBrowserURL = tuneBrowserURL
+        
+        self.tuneBrowserFolder = tuneBrowserFolder
+        self.tuneBrowserTree = tuneBrowserTree
+        
         self.image = image
     }
 }
