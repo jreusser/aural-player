@@ -159,6 +159,7 @@
 		3E59E9D52B5214F1001DDCE9 /* FavoritesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E59E9D42B5214F1001DDCE9 /* FavoritesWindow.xib */; };
 		3E59E9D72B521511001DDCE9 /* FavoritesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E59E9D62B521511001DDCE9 /* FavoritesWindowController.swift */; };
 		3E59E9D92B521E6A001DDCE9 /* FileSystemFolderChangedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E59E9D82B521E6A001DDCE9 /* FileSystemFolderChangedNotification.swift */; };
+		3E5AF9A82B5EF15400BA24B3 /* FileSystemFolderLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5AF9A72B5EF15400BA24B3 /* FileSystemFolderLocation.swift */; };
 		3E5EE2C928D90D5400E71B1A /* AlbumGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5EE2C828D90D5400E71B1A /* AlbumGroup.swift */; };
 		3E5F3DF126813F2400E826F0 /* NSEventExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F3DF026813F2400E826F0 /* NSEventExtensions.swift */; };
 		3E5F3DF326814C9700E826F0 /* NSAlertExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F3DF226814C9700E826F0 /* NSAlertExtensions.swift */; };
@@ -1211,6 +1212,7 @@
 		3E59E9D42B5214F1001DDCE9 /* FavoritesWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesWindow.xib; sourceTree = "<group>"; };
 		3E59E9D62B521511001DDCE9 /* FavoritesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesWindowController.swift; sourceTree = "<group>"; };
 		3E59E9D82B521E6A001DDCE9 /* FileSystemFolderChangedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemFolderChangedNotification.swift; sourceTree = "<group>"; };
+		3E5AF9A72B5EF15400BA24B3 /* FileSystemFolderLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemFolderLocation.swift; sourceTree = "<group>"; };
 		3E5EE2C828D90D5400E71B1A /* AlbumGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumGroup.swift; sourceTree = "<group>"; };
 		3E5F3DF026813F2400E826F0 /* NSEventExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEventExtensions.swift; sourceTree = "<group>"; };
 		3E5F3DF226814C9700E826F0 /* NSAlertExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAlertExtensions.swift; sourceTree = "<group>"; };
@@ -3556,6 +3558,7 @@
 				3EB462CB2847FEC6000E3F85 /* TuneBrowserGlobals.swift */,
 				3EB462CC2847FEC6000E3F85 /* FileSystem.swift */,
 				3EB462CD2847FEC6000E3F85 /* FileSystemItem.swift */,
+				3E5AF9A72B5EF15400BA24B3 /* FileSystemFolderLocation.swift */,
 				3EB462CE2847FEC6000E3F85 /* TuneBrowserHistory.swift */,
 			);
 			path = Support;
@@ -5827,6 +5830,7 @@
 				3EAFB5F4267FEE6400F0DC96 /* NSTabViewExtensions.swift in Sources */,
 				3EFE391D27864897006F8B8C /* DateExtensions.swift in Sources */,
 				3EFE386F27864896006F8B8C /* FilterUnit.swift in Sources */,
+				3E5AF9A82B5EF15400BA24B3 /* FileSystemFolderLocation.swift in Sources */,
 				3EFE39A727864897006F8B8C /* ColorPersistentState.swift in Sources */,
 				3EAFB5EC267FEC5C00F0DC96 /* NSViewExtensions.swift in Sources */,
 				3EAFB5F6267FEE9D00F0DC96 /* NSWindowExtensions.swift in Sources */,

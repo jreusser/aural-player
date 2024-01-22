@@ -265,32 +265,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
-    
-    private func folderMonitoring() {
-        
-        //        try! EonilFSEvents.startWatching(
-        //            paths: ["/Users/kven/Muthu"],
-        //            for: ObjectIdentifier(self),
-        //            onQueue: .global(qos: .utility)) {event in
-        //
-        //                guard let flags = event.flag else {return}
-        //
-        //                if flags.contains(.itemCreated) {
-        //                    print("\nCreated: \(event.path)")
-        //                }
-        //
-        //                else if flags.contains(.itemRemoved) {
-        //                    print("\nRemoved: \(event.path)")
-        //                }
-        //
-        //                else if flags.contains(.itemRenamed) {
-        //                    print("\nRenamed: \(event.path)")
-        //                }
-        //
-        //                else {
-        //                    print("\n\n??? UNKNOWN: \(event)")
-        //                }
-        //        }
-    }
-    
 }

@@ -11,10 +11,10 @@ import Foundation
 
 class TuneBrowserHistory {
     
-    var backStack: Stack<FileSystemFolderItem> = Stack()
-    var forwardStack: Stack<FileSystemFolderItem> = Stack()
+    var backStack: Stack<FileSystemFolderLocation> = Stack()
+    var forwardStack: Stack<FileSystemFolderLocation> = Stack()
     
-    func notePreviousLocation(_ location: FileSystemFolderItem) {
+    func notePreviousLocation(_ location: FileSystemFolderLocation) {
         
         if backStack.peek() != location {
             backStack.push(location)
@@ -23,7 +23,7 @@ class TuneBrowserHistory {
         forwardStack.clear()
     }
     
-    func back(from currentLocation: FileSystemFolderItem) -> FileSystemFolderItem? {
+    func back(from currentLocation: FileSystemFolderLocation) -> FileSystemFolderLocation? {
         
         if let location = backStack.pop() {
             
@@ -34,26 +34,26 @@ class TuneBrowserHistory {
         return nil
     }
     
-    func back(to previousLocation: FileSystemFolderItem) {
+    func back(from currentLocation: FileSystemFolderLocation, to previousLocation: FileSystemFolderLocation) {
         
-        var poppedURL: FileSystemFolderItem? = nil
+        var poppedLocation: FileSystemFolderLocation? = nil
         
         repeat {
             
-            guard let thePoppedURL = backStack.pop() else {break}
+            guard let thePoppedLocation = backStack.pop() else {break}
             
-            if thePoppedURL != previousLocation {
-                forwardStack.push(thePoppedURL)
+            if thePoppedLocation != previousLocation {
+                forwardStack.push(thePoppedLocation)
             }
             
-            poppedURL = thePoppedURL
+            poppedLocation = thePoppedLocation
             
-        } while poppedURL != previousLocation
+        } while poppedLocation != previousLocation
     }
     
     var canGoBack: Bool {!backStack.isEmpty}
     
-    func forward(from currentLocation: FileSystemFolderItem) -> FileSystemFolderItem? {
+    func forward(from currentLocation: FileSystemFolderLocation) -> FileSystemFolderLocation? {
         
         if let location = forwardStack.pop() {
             
@@ -64,5 +64,26 @@ class TuneBrowserHistory {
         return nil
     }
     
-    var canGoForward: Bool {!forwardStack.isEmpty}
+    func forward(to forwardLocation: FileSystemFolderLocation) {
+        
+        var poppedLocation: FileSystemFolderLocation? = nil
+        
+        repeat {
+            
+            guard let thePoppedLocation = forwardStack.pop() else {break}
+            
+            if thePoppedLocation != forwardLocation {
+                backStack.push(thePoppedLocation)
+            }
+            
+            poppedLocation = thePoppedLocation
+            
+        } while poppedLocation != forwardLocation
+    }
+    
+    var canGoForward: Bool {
+        
+        print("canGoForward ? \(forwardStack.size) \(!forwardStack.isEmpty)")
+        return !forwardStack.isEmpty
+    }
 }

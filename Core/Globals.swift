@@ -108,7 +108,7 @@ fileprivate let _bookmarksDelegate: BookmarksDelegate = BookmarksDelegate(playQu
 let fileReader: FileReader = FileReader()
 let trackReader: TrackReader = TrackReader(fileReader, coverArtReader)
 
-let metadataRegistry: MetadataRegistry = MetadataRegistry(persistentState: appPersistentState.metadata)
+let metadataRegistry: MetadataRegistry = MetadataRegistry(persistentState: nil)
 
 let coverArtReader: CoverArtReader = CoverArtReader(fileCoverArtReader, musicBrainzCoverArtReader)
 let fileCoverArtReader: FileCoverArtReader = FileCoverArtReader(fileReader)
@@ -166,7 +166,7 @@ var persistentStateOnExit: AppPersistentState {
     persistentState.playQueue = playQueue.persistentState
     persistentState.library = library.persistentState
     persistentState.playlists = playlistsManager.persistentState
-    persistentState.metadata = metadataRegistry.persistentState
+//    persistentState.metadata = metadataRegistry.persistentState
     persistentState.playbackProfiles = playbackDelegate.profiles.all().map {PlaybackProfilePersistentState(profile: $0)}
     
 #if os(macOS)

@@ -18,9 +18,9 @@ class MetadataRegistry: PersistentModelObject {
     
     init(persistentState: MetadataPersistentState?) {
         
-        for entry in persistentState?.metadata ?? [:] {
-            registry[entry.key] = PrimaryMetadata(persistentState: entry.value)
-        }
+//        for entry in persistentState?.metadata ?? [:] {
+//            registry[entry.key] = PrimaryMetadata(persistentState: entry.value)
+//        }
     }
     
     subscript(_ key: URL) -> PrimaryMetadata? {

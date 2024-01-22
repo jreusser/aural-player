@@ -174,21 +174,12 @@ class FileSystemTree: Destroyable {
 //    }
 }
 
-//extension FileSystemTree: FileSystemLoaderObserver {
-//    
-//    func preTrackLoad() {
-//    }
-//    
-//    func postTrackLoad() {
-//    }
-//    
-//    func postBatchLoad(indices: IndexSet) {
-//        
-//        DispatchQueue.main.async {
-//            self.observer?.itemsAdded(to: self.observedItem, at: indices)
-//        }
-//    }
-//}
+extension FileSystemTree: Equatable {
+    
+    static func == (lhs: FileSystemTree, rhs: FileSystemTree) -> Bool {
+        lhs.rootURL == rhs.rootURL
+    }
+}
 
 enum FileSystemSortField {
     

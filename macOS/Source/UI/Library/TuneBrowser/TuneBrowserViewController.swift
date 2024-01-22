@@ -119,13 +119,11 @@ class TuneBrowserViewController: NSViewController {
     
     func showFolder(_ folder: FileSystemFolderItem, inTree tree: FileSystemTree, updateHistory: Bool = true) {
         
-        print("curTabVC: \(self.currentTabVC?.rootURL), num: \(self.tabs.count) \(tabView.selectedIndex)")
-        
         guard let currentTabVC = self.currentTabVC else {return}
         
         if updateHistory {
             
-            history.notePreviousLocation(currentTabVC.rootFolder)
+            history.notePreviousLocation(currentTabVC.location)
             updateNavButtons()
         }
         
@@ -177,11 +175,10 @@ class TuneBrowserViewController: NSViewController {
         
         if history.canGoBack {
             
-            for folder in history.backStack.underlyingArray.reversed() {
+            for location in history.backStack.underlyingArray.reversed() {
                 
-                let item = TuneBrowserHistoryMenuItem(title: folder.name, action: #selector(backHistoryMenuAction(_:)))
-                item.folder = folder
-                // TODO: Set tree (create a container struct to hold a folder/tree tuple)
+                let item = TuneBrowserHistoryMenuItem(title: location.folderName, action: #selector(backHistoryMenuAction(_:)))
+                item.location = location
                 item.target = self
                 
                 backHistoryMenu.addItem(item)
@@ -190,10 +187,10 @@ class TuneBrowserViewController: NSViewController {
         
         if history.canGoForward {
             
-            for folder in history.forwardStack.underlyingArray.reversed() {
+            for location in history.forwardStack.underlyingArray.reversed() {
                 
-                let item = TuneBrowserHistoryMenuItem(title: folder.name, action: #selector(forwardHistoryMenuAction(_:)))
-                item.folder = folder
+                let item = TuneBrowserHistoryMenuItem(title: location.folderName, action: #selector(backHistoryMenuAction(_:)))
+                item.location = location
                 item.target = self
                 
                 forwardHistoryMenu.addItem(item)
@@ -240,21 +237,5 @@ extension NSTabView {
 
 class TuneBrowserHistoryMenuItem: NSMenuItem {
     
-    var folder: FileSystemFolderItem!
-    var tree: FileSystemTree!
-}
-
-// TODO: !
-struct TuneBrowserLocation {
-    
-    let folder: FileSystemFolderItem
-    let tree: FileSystemTree
-    
-    var folderURL: URL {
-        folder.url
-    }
-    
-    var rootFolderURL: URL {
-        tree.rootURL
-    }
+    var location: FileSystemFolderLocation!
 }

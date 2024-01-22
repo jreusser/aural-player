@@ -36,32 +36,39 @@ extension TuneBrowserViewController {
     
     @IBAction func backHistoryMenuAction(_ sender: TuneBrowserHistoryMenuItem) {
         
-        history.back(to: sender.folder)
-//        showFolder(sender.folder, inTree: )
-//        showURL(sender.url, updateHistory: false)
-//        updateNavButtons()
+        guard let location = sender.location,
+        let currentLoc = currentTabVC?.location else {return}
+        
+        history.back(from: currentLoc, to: location)
+        showFolder(location.folder, inTree: location.tree, updateHistory: false)
+        updateNavButtons()
     }
     
     @IBAction func forwardHistoryMenuAction(_ sender: TuneBrowserHistoryMenuItem) {
-//        showURL(sender.url)
+
+        guard let location = sender.location else {return}
+        
+        history.forward(to: location)
+        showFolder(location.folder, inTree: location.tree, updateHistory: false)
+        updateNavButtons()
     }
     
     @IBAction func goBackAction(_ sender: Any) {
         
-//        guard let currentURL = pathControlWidget.url,
-//              let newURL = history.back(from: currentURL) else {return}
-//            
-//        showURL(newURL, updateHistory: false)
-//        updateNavButtons()
+        guard let currentLoc = currentTabVC?.location,
+              let newLocation = history.back(from: currentLoc) else {return}
+            
+        showFolder(newLocation.folder, inTree: newLocation.tree, updateHistory: false)
+        updateNavButtons()
     }
     
     @IBAction func goForwardAction(_ sender: Any) {
         
-//        guard let currentURL = pathControlWidget.url,
-//              let newURL = history.forward(from: currentURL) else {return}
-//            
-//        showURL(newURL, updateHistory: false)
-//        updateNavButtons()
+        guard let currentLoc = currentTabVC?.location,
+              let newLocation = history.forward(from: currentLoc) else {return}
+            
+        showFolder(newLocation.folder, inTree: newLocation.tree, updateHistory: false)
+        updateNavButtons()
     }
     
     @IBAction func removeSidebarShortcutAction(_ sender: Any) {

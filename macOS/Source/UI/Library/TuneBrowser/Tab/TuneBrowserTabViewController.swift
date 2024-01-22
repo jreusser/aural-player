@@ -20,6 +20,10 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
     let tree: FileSystemTree
     let rootFolder: FileSystemFolderItem
     
+    var location: FileSystemFolderLocation {
+        .init(folder: rootFolder, tree: tree)
+    }
+    
     var rootURL: URL {
         rootFolder.url
     }
