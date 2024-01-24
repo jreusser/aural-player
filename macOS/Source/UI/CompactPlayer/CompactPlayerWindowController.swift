@@ -9,6 +9,7 @@
 //  
 
 import AppKit
+import SwiftUI
 
 class CompactPlayerUIState {
     
@@ -24,7 +25,8 @@ class CompactPlayerWindowController: NSWindowController {
     @IBOutlet weak var logoImage: TintedImageView!
     
     @IBOutlet weak var rootContainerBox: NSBox!
-    @IBOutlet weak var playerViewController: CompactPlayerViewController!
+//    @IBOutlet weak var playerViewController: CompactPlayerViewController!
+    var playerView: NSHostingView<CompactPlayerView>!
     private lazy var playQueueViewController: PlayQueueSimpleViewController = .init()
     
     @IBOutlet weak var tabView: NSTabView!
@@ -52,30 +54,46 @@ class CompactPlayerWindowController: NSWindowController {
         window?.isMovableByWindowBackground = true
         window?.center()
         
-        tabView.tabViewItem(at: 0).view?.addSubview(playerViewController.view)
-        tabView.tabViewItem(at: 1).view?.addSubview(playQueueViewController.view)
+        playerView = NSHostingView(rootView: CompactPlayerView())
+        playerView.setFrameSize(NSSize(width: 300, height: 390))
         
-        playQueueViewController.view.anchorToSuperview()
+//        playerViewController = NSHostingController(rootView: CompactPlayerView())
+//        playerViewController.preferredContentSize = NSSize(width: 300, height: 430)
+//        playerViewController.sizingOptions = .preferredContentSize
         
-        tabView.selectTabViewItem(at: 0)
-        compactPlayerUIState.isShowingPlayer = true
+        tabView.tabViewItem(at: 0).view?.addSubview(playerView)
+//        tabView.tabViewItem(at: 1).view?.addSubview(playQueueViewController.view)
+//        rootContainerBox.addSubview(playerView)
         
-        rootContainerBox.cornerRadius = 12
-//        cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
-//        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
-        
-        applyTheme()
-        
-        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
-        
+//        if #available(macOS 13.0, *) {
+//            playerView.sizingOptions = .maxSize
+//        } else {
+//            // Fallback on earlier versions
+//        }
+//        
+//        
+////        playQueueViewController.view.anchorToSuperview()
+//        playerView.setFrameOrigin(.zero)
+//        
+//        tabView.selectTabViewItem(at: 0)
+//        compactPlayerUIState.isShowingPlayer = true
+//        
+        rootContainerBox.cornerRadius = uiState.cornerRadius
+        cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
+        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
+//        
+//        applyTheme()
+//        
+//        messenger.subscribe(to: .applyTheme, handler: applyTheme)
+//        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
+//        
         colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
-        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
-        
+//        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
+//        
         colorSchemesManager.registerObservers([btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem],
                                               forProperty: \.buttonColor)
-        
-        setUpEventHandling()
+//        
+//        setUpEventHandling()
     }
     
     func applyTheme() {
@@ -112,7 +130,7 @@ class CompactPlayerWindowController: NSWindowController {
     override func destroy() {
         
         close()
-        playerViewController.destroy()
+//        playerViewController.destroy()
         
         eventMonitor.stopMonitoring()
         eventMonitor = nil
