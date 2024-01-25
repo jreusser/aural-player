@@ -40,6 +40,7 @@
 		3E16BE12280DD01200CE9FE9 /* PlaylistNamesTableViewController+TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16BE11280DD01200CE9FE9 /* PlaylistNamesTableViewController+TextFieldDelegate.swift */; };
 		3E1741462801EA0A00772ED1 /* TableCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1741452801EA0A00772ED1 /* TableCellBuilder.swift */; };
 		3E1741482801FDE500772ED1 /* TrackListTableViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1741472801FDE500772ED1 /* TrackListTableViewController+DataSource.swift */; };
+		3E17F5A82B632C1300925A35 /* ColorSchemeChangeNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E17F5A72B632C1300925A35 /* ColorSchemeChangeNotifications.swift */; };
 		3E2000BF267CDFFF008BAB70 /* MediaKeysPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2000BE267CDFFF008BAB70 /* MediaKeysPreferences.xib */; };
 		3E2000C1267CE00E008BAB70 /* GesturesPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2000C0267CE00E008BAB70 /* GesturesPreferences.xib */; };
 		3E2000C3267CE019008BAB70 /* RemoteControlPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2000C2267CE019008BAB70 /* RemoteControlPreferences.xib */; };
@@ -1094,6 +1095,7 @@
 		3E16BE11280DD01200CE9FE9 /* PlaylistNamesTableViewController+TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaylistNamesTableViewController+TextFieldDelegate.swift"; sourceTree = "<group>"; };
 		3E1741452801EA0A00772ED1 /* TableCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellBuilder.swift; sourceTree = "<group>"; };
 		3E1741472801FDE500772ED1 /* TrackListTableViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackListTableViewController+DataSource.swift"; sourceTree = "<group>"; };
+		3E17F5A72B632C1300925A35 /* ColorSchemeChangeNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeChangeNotifications.swift; sourceTree = "<group>"; };
 		3E1D1DDD28DCEEC100E79674 /* build-iOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-iOS.sh"; sourceTree = "<group>"; };
 		3E1D1DDE28DCEEC100E79674 /* build-macOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-macOS.sh"; sourceTree = "<group>"; };
 		3E1D1DDF28DD016900E79674 /* macOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = macOS.sh; sourceTree = "<group>"; };
@@ -4944,6 +4946,7 @@
 				3EFE376527864895006F8B8C /* HistoryNotifications.swift */,
 				3EFE376627864895006F8B8C /* WindowManagerNotifications.swift */,
 				3E4C763E2AD7797600DDED45 /* AppSetupNotifications.swift */,
+				3E17F5A72B632C1300925A35 /* ColorSchemeChangeNotifications.swift */,
 			);
 			path = NotificationNames;
 			sourceTree = "<group>";
@@ -5645,6 +5648,7 @@
 				3E6C127025CEBE0600BF0D07 /* FilterPresetBandsViewDelegate.swift in Sources */,
 				3EFE3A4727864898006F8B8C /* WMParser.swift in Sources */,
 				3E6C12E625CEBE8100BF0D07 /* FilterBandViewController.swift in Sources */,
+				3E17F5A82B632C1300925A35 /* ColorSchemeChangeNotifications.swift in Sources */,
 				3E6C12DC25CEBE8100BF0D07 /* FilterChart.swift in Sources */,
 				3E6C125C25CEBE0600BF0D07 /* FilterPresetsManagerViewController.swift in Sources */,
 				3EFE388F27864896006F8B8C /* ReverbSpace.swift in Sources */,

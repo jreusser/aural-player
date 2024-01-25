@@ -91,10 +91,13 @@ extension ColorSchemesManager {
         
         propertyKVO.addObserver(forObject: systemScheme, keyPath: property, options: [.new]) {[weak self] _, newColor in
             
-            guard let observers = self?.propertyObservers[property] else {return}
-            
-            observers.forEach {
-                $0.colorChanged(to: newColor, forProperty: property)
+            DispatchQueue.main.async {
+                
+                guard let observers = self?.propertyObservers[property] else {return}
+                
+                observers.forEach {
+                    $0.colorChanged(to: newColor, forProperty: property)
+                }
             }
         }
     }
@@ -147,18 +150,21 @@ extension ColorSchemesManager {
     
     private func observePropertyForSchemeObserver(_ property: KeyPath<ColorScheme, PlatformColor>) {
         
-        schemeKVO.addObserver(forObject: systemScheme, keyPath: property, options: [.new]) {[weak self] _, newColor in
-            
-            guard let strongSelf = self else {return}
-                    
-            if strongSelf.schemeChanged {return}
-            
-            if let observers = strongSelf.schemeAndPropertyObservers[property] {
-            
-                observers.forEach {
-                    $0.colorChanged(to: newColor, forProperty: property)
-                }
-            }
-        }
+//        schemeKVO.addObserver(forObject: systemScheme, keyPath: property, options: [.new]) {[weak self] _, newColor in
+//            
+//            DispatchQueue.main.async {
+//                
+//                guard let strongSelf = self else {return}
+//                        
+//                if strongSelf.schemeChanged {return}
+//                
+//                if let observers = strongSelf.schemeAndPropertyObservers[property] {
+//                
+//                    observers.forEach {
+//                        $0.colorChanged(to: newColor, forProperty: property)
+//                    }
+//                }
+//            }
+//        }
     }
 }
