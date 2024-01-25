@@ -12,6 +12,8 @@ import Foundation
 
 protocol LibraryDelegateProtocol: GroupedSortedTrackListProtocol {
     
+    var isBuilt: Bool {get}
+    
     var buildProgress: LibraryBuildProgress {get}
     
     var sourceFolders: [URL] {get}
@@ -25,7 +27,7 @@ protocol LibraryDelegateProtocol: GroupedSortedTrackListProtocol {
 }
 
 class LibraryDelegate: LibraryDelegateProtocol {
-
+    
     var sortOrder: TrackListSort {
         
         get {library.sortOrder}
@@ -35,6 +37,10 @@ class LibraryDelegate: LibraryDelegateProtocol {
     var displayName: String {library.displayName}
     
     private lazy var messenger: Messenger = .init(for: self)
+    
+    var isBuilt: Bool {
+        library.isBuilt
+    }
     
     var buildProgress: LibraryBuildProgress {
         library.buildProgress

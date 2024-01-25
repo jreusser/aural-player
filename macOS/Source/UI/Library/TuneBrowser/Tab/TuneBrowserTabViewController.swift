@@ -232,9 +232,9 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
     
     @IBAction func addSidebarShortcutAction(_ sender: Any) {
         
-        if let clickedItem: FileSystemItem = browserView.rightClickedItem as? FileSystemItem {
+        if let clickedItem: FileSystemFolderItem = browserView.rightClickedItem as? FileSystemFolderItem {
 
-            tuneBrowserUIState.addUserFolder(forURL: clickedItem.url)
+            tuneBrowserUIState.addUserFolder(clickedItem, inTree: self.tree)
             messenger.publish(.sidebar_addFileSystemShortcut, payload: clickedItem.url)
         }
     }

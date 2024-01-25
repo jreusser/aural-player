@@ -127,6 +127,23 @@ extension Library {
                 }
             }
             
+            if let tbUserFolders = appPersistentState.ui?.tuneBrowser?.sidebar?.userFolders {
+                
+                for folder in tbUserFolders {
+                    
+                    guard let treeURL = folder.treeURL, let folderURL = folder.folderURL, let tree = self._fileSystemTrees[treeURL] else {continue}
+                    
+                    var pathComponents: [String] = tree.relativePathComponents(forFolderURL: folderURL)
+                    guard pathComponents.isNonEmpty else {continue}
+                    
+                    pathComponents.remove(at: 0)
+                    
+                    if let theFolder = tree.folderForPathComponents(pathComponents) {
+                        tuneBrowserUIState.addUserFolder(theFolder, inTree: tree)
+                    }
+                }
+            }
+            
             chosenQueue.waitUntilAllOperationsAreFinished()
             
             self._isBeingModified.setValue(false)

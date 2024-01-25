@@ -37,11 +37,15 @@ class FileSystemTree: Destroyable {
     }
     
     func relativePathComponents(forFolder folder: FileSystemFolderItem) -> [String] {
+        relativePathComponents(forFolderURL: folder.url)
+    }
+    
+    func relativePathComponents(forFolderURL folderURL: URL) -> [String] {
         
-        if folder == root {return [root.name]}
+        if folderURL == root.url {return [root.name]}
         
         let rootComponents = root.url.pathComponents
-        let folderComponents = folder.url.pathComponents
+        let folderComponents = folderURL.pathComponents
         
         let componentCountDelta = folderComponents.count - rootComponents.count
         guard componentCountDelta > 0 else {return []}

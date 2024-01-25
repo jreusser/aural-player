@@ -52,7 +52,8 @@ struct TuneBrowserSidebarPersistentState: Codable {
 ///
 struct TuneBrowserSidebarItemPersistentState: Codable {
     
-    let url: URL?
+    let folderURL: URL?
+    let treeURL: URL?
 }
 
 #endif

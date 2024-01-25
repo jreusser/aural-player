@@ -61,26 +61,26 @@ class TuneBrowserSidebarViewController: NSViewController, NSOutlineViewDelegate,
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
         if item == nil {
-
             return categories[index]
-
-        } else if item as? TuneBrowserSidebarCategory == .volumes {
-            
-            if index == 0 {
-                return TuneBrowserSidebarItem(url: tuneBrowserPrimaryVolumeURL)
-            }
-
-            let volume = SystemUtils.secondaryVolumes[index - 1]
-            return TuneBrowserSidebarItem(url: volume)
-            
-        } else if item as? TuneBrowserSidebarCategory == .folders {
-            
-            if index == 0 {
-                return tuneBrowserSidebarMusicFolder
-            } else {
-                return tuneBrowserUIState.sidebarUserFolders.elements[index - 1].value
-            }
         }
+
+//        } else if item as? TuneBrowserSidebarCategory == .volumes {
+//            
+//            if index == 0 {
+//                return TuneBrowserSidebarItem(folder: item.)
+//            }
+//
+//            let volume = SystemUtils.secondaryVolumes[index - 1]
+//            return TuneBrowserSidebarItem(url: volume)
+//            
+//        } else if item as? TuneBrowserSidebarCategory == .folders {
+//            
+//            if index == 0 {
+//                return tuneBrowserSidebarMusicFolder
+//            } else {
+//                return tuneBrowserUIState.sidebarUserFolders.elements[index - 1].value
+//            }
+//        }
         
         return ""
     }
@@ -95,7 +95,7 @@ class TuneBrowserSidebarViewController: NSViewController, NSOutlineViewDelegate,
             return createNameCell(outlineView, category.description)
             
         } else if let sidebarItem = item as? TuneBrowserSidebarItem {
-            return createNameCell(outlineView, sidebarItem.url.lastPathComponent)
+            return createNameCell(outlineView, sidebarItem.folder.name)
         }
         
         return nil

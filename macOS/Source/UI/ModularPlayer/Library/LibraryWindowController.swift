@@ -54,6 +54,8 @@ class LibraryWindowController: NSWindowController {
         
         super.windowDidLoad()
         
+        splitView.showIf(libraryDelegate.isBuilt)
+        
         let sidebarView: NSView = sidebarController.view
         splitView.arrangedSubviews[0].addSubview(sidebarView)
         sidebarView.anchorToSuperview()
@@ -152,7 +154,6 @@ class LibraryWindowController: NSWindowController {
             buildProgressView.show()
         }
         
-        sidebarController.sidebarView.disable()
         // TODO: Disable the rest of the window (mouse hover response and clicking on the right side details panel)
         
         if buildProgress.startedReadingFiles, let stats = buildProgress.buildStats {
@@ -227,7 +228,7 @@ class LibraryWindowController: NSWindowController {
         buildProgressUpdateTask.stop()
         buildProgressView.hide()
         
-        sidebarController.sidebarView.enable()
+        splitView.show()
     }
     
     private func applyTheme() {

@@ -19,13 +19,16 @@ enum TuneBrowserSidebarCategory: String, CaseIterable, CustomStringConvertible {
 
 class TuneBrowserSidebarItem: Equatable {
     
-    let url: URL
+    let folder: FileSystemFolderItem
+    let tree: FileSystemTree
     
-    init(url: URL) {
-        self.url = url
+    init(folder: FileSystemFolderItem, tree: FileSystemTree) {
+        
+        self.folder = folder
+        self.tree = tree
     }
     
     static func == (lhs: TuneBrowserSidebarItem, rhs: TuneBrowserSidebarItem) -> Bool {
-        lhs.url == rhs.url
+        lhs.folder == rhs.folder && lhs.tree == rhs.tree
     }
 }

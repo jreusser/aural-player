@@ -41,8 +41,7 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
             
         case .tuneBrowser:
             
-            return libraryDelegate.fileSystemTrees.count
-            // TODO: Include user folders
+            return libraryDelegate.fileSystemTrees.count + tuneBrowserUIState.sidebarUserFolders.count
         }
     }
     
@@ -60,11 +59,10 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
                 
                 let rootFolder = tree.root
                 return LibrarySidebarItem(displayName: rootFolder.name, browserTab: .fileSystem, tuneBrowserFolder: rootFolder, tuneBrowserTree: tree)
+                
+            } + tuneBrowserUIState.sidebarUserFolders.map {
+                LibrarySidebarItem(displayName: $0.folder.name, browserTab: .fileSystem, tuneBrowserFolder: $0.folder, tuneBrowserTree: $0.tree)
             }
-            
-            // TODO: Also add in the user folders from persistent TB state
-            //            tuneBrowserUIState.sidebarUserFolders.values.map {
-            //                LibrarySidebarItem(displayName: $0.url.lastPathComponent, browserTab: .fileSystem, tuneBrowserURL: $0.url)
         }
     }
     

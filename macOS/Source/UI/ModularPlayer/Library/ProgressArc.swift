@@ -12,6 +12,7 @@ import Cocoa
 import CoreGraphics
 import QuartzCore
 
+@IBDesignable
 class ProgressArc: NSView {
     
     /// Color of the background arc.
@@ -32,10 +33,12 @@ class ProgressArc: NSView {
     /// Center of the rendered arcs.
     lazy var arcCenter: CGPoint = CGPoint(x: bounds.centerX, y: bounds.centerY)
     
+    @IBOutlet weak var lblPercentage: NSTextField!
+    
     /// Radius of the rendered arcs.
     lazy var arcRadius: CGFloat = {
         
-        let minOfHalfWidthAndHeight = min(bounds.width / 2, bounds.height)
+        let minOfHalfWidthAndHeight = min(self.convert(bounds, to: nil).width / 2, self.convert(bounds, to: nil).height)
         return minOfHalfWidthAndHeight - (backgroundArcLineWidth / 2)
     }()
     
@@ -69,7 +72,9 @@ class ProgressArc: NSView {
         
         // Background arc
         
-        addArcLayer(havingFrame: dirtyRect, endAngle: 90.1, strokeColor: backgroundArcColor,
+        let conv = self.convert(dirtyRect, to: nil)
+        
+        addArcLayer(havingFrame: conv, endAngle: 90.1, strokeColor: backgroundArcColor,
                     andLineWidth: backgroundArcLineWidth)
         
         // ------------------------------------------------------------------------------------
@@ -78,7 +83,7 @@ class ProgressArc: NSView {
         
         let angleDelta = angleForPercentage(CGFloat(percentage))
         let endAngle = 180 - angleDelta
-        addArcLayer(havingFrame: dirtyRect, endAngle: endAngle, strokeColor: foregroundArcColor,
+        addArcLayer(havingFrame: conv, endAngle: endAngle, strokeColor: foregroundArcColor,
                     andLineWidth: foregroundArcLineWidth)
         
         // ------------------------------------------------------------------------------------
@@ -86,10 +91,15 @@ class ProgressArc: NSView {
         // Text
         
         let text = "\(percentage.clamped(to: 0...100).roundedInt)%"
-        let textSize = text.size(withAttributes: [.font: textFont])
-        
-        let textFrame = CGRect(x: arcCenter.x - (textSize.width / 2), y: arcCenter.y - (textSize.height / 2), width: textSize.width, height: textSize.height)
-        addTextLayer(text: text, alignment: .center, frame: textFrame)
+        lblPercentage.stringValue = text
+        lblPercentage.font = systemFontScheme.playerPrimaryFont
+        lblPercentage.textColor = systemColorScheme.primaryTextColor
+        lblPercentage.bringToFront()
+//        let textSize = text.size(withAttributes: [.font: textFont])
+//        
+////        let textFrame = CGRect(x: arcCenter.x - (textSize.width / 2), y: arcCenter.y - (textSize.height / 2), width: textSize.width, height: textSize.height)
+//        let textFrame = CGRect(x: dirtyRect.centerX, y: dirtyRect.centerY, width: textSize.width, height: textSize.height)
+//        addTextLayer(text: text, alignment: .center, frame: textFrame)
     }
     
     // --------------------------------------------------------------

@@ -27,4 +27,4 @@ let tuneBrowserPrimaryVolumeURL: URL = {
     }
 }()
 
-let tuneBrowserSidebarMusicFolder: TuneBrowserSidebarItem = TuneBrowserSidebarItem(url: tuneBrowserMusicFolderURL)
+//let tuneBrowserSidebarMusicFolder: TuneBrowserSidebarItem = TuneBrowserSidebarItem(url: tuneBrowserMusicFolderURL)

@@ -21,7 +21,7 @@ class TuneBrowserUIState {
     static let defaultSortIsAscending: Bool = true
     var sortIsAscending: Bool
     
-    private(set) var sidebarUserFolders: OrderedDictionary<URL, TuneBrowserSidebarItem> = OrderedDictionary()
+    private(set) var sidebarUserFolders: [TuneBrowserSidebarItem] = []
     
     init(persistentState: TuneBrowserUIPersistentState?) {
 
@@ -29,9 +29,10 @@ class TuneBrowserUIState {
         sortColumn = persistentState?.sortColumn ?? Self.defaultSortColumn
         sortIsAscending = persistentState?.sortIsAscending ?? Self.defaultSortIsAscending
 
-        for path in (persistentState?.sidebar?.userFolders ?? []).compactMap({$0.url}) {
-            addUserFolder(forURL: path)
-        }
+        // TODO: Initialize user folders from FileSystem after Library is loaded (listen for notif ???)
+//        for path in (persistentState?.sidebar?.userFolders ?? []).compactMap({$0.url}) {
+//            addUserFolder(forURL: path)
+//        }
     }
 
     var persistentState: TuneBrowserUIPersistentState {
@@ -39,25 +40,23 @@ class TuneBrowserUIState {
         TuneBrowserUIPersistentState(displayedColumns: displayedColumns.map {TuneBrowserTableColumnPersistentState(id: $0.id, width: $0.width)},
                                      sortColumn: sortColumn,
                                      sortIsAscending: sortIsAscending,
-                                     sidebar: TuneBrowserSidebarPersistentState(userFolders: sidebarUserFolders.map {TuneBrowserSidebarItemPersistentState(url: $0.key)}))
+                                     sidebar: TuneBrowserSidebarPersistentState(userFolders: sidebarUserFolders.map {TuneBrowserSidebarItemPersistentState(folderURL: $0.folder.url, treeURL: $0.tree.rootURL)}))
     }
     
-    func userFolder(forURL url: URL) -> TuneBrowserSidebarItem? {
-        sidebarUserFolders[url]
-    }
-    
-    func addUserFolder(forURL url: URL) {
+    func addUserFolder(_ folder: FileSystemFolderItem, inTree tree: FileSystemTree) {
         
-        if sidebarUserFolders[url] == nil {
-            sidebarUserFolders[url] = TuneBrowserSidebarItem(url: url)
-        }
+//        if sidebarUserFolders[url] == nil {
+//            sidebarUserFolders[url] = TuneBrowserSidebarItem(url: url)
+//        }
+        sidebarUserFolders.append(TuneBrowserSidebarItem(folder: folder, tree: tree))
     }
     
     func removeUserFolder(item: TuneBrowserSidebarItem) -> Int? {
         
-        let index = sidebarUserFolders.index(forKey: item.url)
-        sidebarUserFolders.removeValue(forKey: item.url)
-        return index
+//        let index = sidebarUserFolders.index(forKey: item.url)
+//        sidebarUserFolders.removeValue(forKey: item.url)
+//        return index
+        nil
     }
 }
 
