@@ -67,6 +67,7 @@ class TuneBrowserViewController: NSViewController {
         pathControlWidget.url = nil
         
         recreateAllFolders()
+        updateNavButtons()
     }
     
     private func recreateAllFolders() {
@@ -85,7 +86,11 @@ class TuneBrowserViewController: NSViewController {
         }
         
         if let firstTabVC = self.tabs.values.first?.viewController as? TuneBrowserTabViewController {
-            showFolder(firstTabVC.rootFolder, inTree: firstTabVC.tree)
+            
+            showFolder(firstTabVC.rootFolder, inTree: firstTabVC.tree, updateHistory: false)
+            
+            let location = firstTabVC.location
+            updatePathWidget(forFolder: location.folder, inTree: location.tree)
         }
         
         // Shortcut folders (sidebar)
@@ -97,7 +102,6 @@ class TuneBrowserViewController: NSViewController {
     @discardableResult private func createTabForFolder(_ folder: FileSystemFolderItem, inTree tree: FileSystemTree) -> TuneBrowserTabViewController {
         
         let tabVC = TuneBrowserTabViewController(pathControlWidget: self.pathControlWidget, tree: tree, rootFolder: folder)
-//        tabVC.forceLoadingOfView()
         
         let tabViewItem = NSTabViewItem(viewController: tabVC)
         tabView.addTabViewItem(tabViewItem)
@@ -117,9 +121,14 @@ class TuneBrowserViewController: NSViewController {
 //        // Select it in the sidebar
 //    }
     
-    func showFolder(_ folder: FileSystemFolderItem, inTree tree: FileSystemTree, updateHistory: Bool = true) {
+    func showFolder(_ folder: FileSystemFolderItem, inTree tree: FileSystemTree, updateHistory: Bool) {
         
         guard let currentTabVC = self.currentTabVC else {return}
+        
+        // If same folder as currently displayed, don't do anything
+        if currentTabVC.location.tree == tree && currentTabVC.location.folder == folder {
+            return
+        }
         
         if updateHistory {
             
@@ -156,7 +165,7 @@ class TuneBrowserViewController: NSViewController {
     }
     
     private func openFolder(notif: OpenTuneBrowserFolderCommandNotification) {
-        showFolder(notif.folderToOpen, inTree: notif.treeContainingFolder)
+        showFolder(notif.folderToOpen, inTree: notif.treeContainingFolder, updateHistory: true)
     }
     
     // If the folder currently shown by the browser corresponds to one of the folder shortcuts in the sidebar, select that
@@ -169,7 +178,7 @@ class TuneBrowserViewController: NSViewController {
         
         btnBack.enableIf(history.canGoBack)
         btnForward.enableIf(history.canGoForward)
-        
+
         backHistoryMenu.removeAllItems()
         forwardHistoryMenu.removeAllItems()
         

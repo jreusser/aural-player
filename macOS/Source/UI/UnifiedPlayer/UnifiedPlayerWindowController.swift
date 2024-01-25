@@ -169,7 +169,7 @@ class UnifiedPlayerWindowController: NSWindowController {
         } else if tab == .fileSystem,
                   let folder = item.tuneBrowserFolder, let tree = item.tuneBrowserTree {
                        
-                   tuneBrowserViewController.showFolder(folder, inTree: tree)
+                   tuneBrowserViewController.showFolder(folder, inTree: tree, updateHistory: true)
                }
         
         tabGroup.selectTabViewItem(at: tab.rawValue)

@@ -82,8 +82,6 @@ class TuneBrowserHistory {
     }
     
     var canGoForward: Bool {
-        
-        print("canGoForward ? \(forwardStack.size) \(!forwardStack.isEmpty)")
-        return !forwardStack.isEmpty
+        !forwardStack.isEmpty
     }
 }

@@ -24,14 +24,14 @@ extension TuneBrowserViewController {
         // Special case - Root folder in tree of current tab clicked
         if indexOfItem == 0, let tabVC = currentTabVC {
             
-            showFolder(tabVC.tree.root, inTree: tabVC.tree)
+            showFolder(tabVC.tree.root, inTree: tabVC.tree, updateHistory: true)
             return
         }
         
         let pathComponents: [String] = (1...indexOfItem).map {pathControlWidget.pathItems[$0].title}
         guard let tree = currentTabVC?.tree, let folder = tree.folderForPathComponents(pathComponents) else {return}
         
-        showFolder(folder, inTree: tree)
+        showFolder(folder, inTree: tree, updateHistory: true)
     }
     
     @IBAction func backHistoryMenuAction(_ sender: TuneBrowserHistoryMenuItem) {

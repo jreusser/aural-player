@@ -6,10 +6,9 @@
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
-//  
+//
 
 import AppKit
-import SwiftUI
 
 class CompactPlayerUIState {
     
@@ -25,8 +24,7 @@ class CompactPlayerWindowController: NSWindowController {
     @IBOutlet weak var logoImage: TintedImageView!
     
     @IBOutlet weak var rootContainerBox: NSBox!
-//    @IBOutlet weak var playerViewController: CompactPlayerViewController!
-    var playerView: NSHostingView<CompactPlayerView>!
+    @IBOutlet weak var playerViewController: CompactPlayerViewController!
     private lazy var playQueueViewController: PlayQueueSimpleViewController = .init()
     
     @IBOutlet weak var tabView: NSTabView!
@@ -54,46 +52,30 @@ class CompactPlayerWindowController: NSWindowController {
         window?.isMovableByWindowBackground = true
         window?.center()
         
-        playerView = NSHostingView(rootView: CompactPlayerView())
-        playerView.setFrameSize(NSSize(width: 300, height: 390))
+        tabView.tabViewItem(at: 0).view?.addSubview(playerViewController.view)
+        tabView.tabViewItem(at: 1).view?.addSubview(playQueueViewController.view)
         
-//        playerViewController = NSHostingController(rootView: CompactPlayerView())
-//        playerViewController.preferredContentSize = NSSize(width: 300, height: 430)
-//        playerViewController.sizingOptions = .preferredContentSize
+        playQueueViewController.view.anchorToSuperview()
         
-        tabView.tabViewItem(at: 0).view?.addSubview(playerView)
-//        tabView.tabViewItem(at: 1).view?.addSubview(playQueueViewController.view)
-//        rootContainerBox.addSubview(playerView)
+        tabView.selectTabViewItem(at: 0)
+        compactPlayerUIState.isShowingPlayer = true
         
-//        if #available(macOS 13.0, *) {
-//            playerView.sizingOptions = .maxSize
-//        } else {
-//            // Fallback on earlier versions
-//        }
-//        
-//        
-////        playQueueViewController.view.anchorToSuperview()
-//        playerView.setFrameOrigin(.zero)
-//        
-//        tabView.selectTabViewItem(at: 0)
-//        compactPlayerUIState.isShowingPlayer = true
-//        
-        rootContainerBox.cornerRadius = uiState.cornerRadius
-        cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
-        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
-//        
-//        applyTheme()
-//        
-//        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-//        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
-//        
+        rootContainerBox.cornerRadius = 12
+//        cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
+//        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
+        
+        applyTheme()
+        
+        messenger.subscribe(to: .applyTheme, handler: applyTheme)
+        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
+        
         colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
-//        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
-//        
+        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
+        
         colorSchemesManager.registerObservers([btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem],
                                               forProperty: \.buttonColor)
-//        
-//        setUpEventHandling()
+        
+        setUpEventHandling()
     }
     
     func applyTheme() {
@@ -130,7 +112,7 @@ class CompactPlayerWindowController: NSWindowController {
     override func destroy() {
         
         close()
-//        playerViewController.destroy()
+        playerViewController.destroy()
         
         eventMonitor.stopMonitoring()
         eventMonitor = nil
