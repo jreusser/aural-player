@@ -20,13 +20,15 @@ class CompactPlayerViewModel: ObservableObject {
     @Published private(set) var seekPositionText: String = ""
     @Published private(set) var seekPercentage: Double = 0
     
-    @Published private(set) var isPlaying: Bool = false
-    @Published private(set) var isMuted: Bool = false
+    @Published private(set) var playButtonImage: NSImage = .imgPlay
+    @Published private(set) var playButtonTooltip: String = "Play"
+    
     @Published private(set) var volume: Float = 0
     @Published private(set) var volumeButtonImage: NSImage = .imgVolumeLow
     
-    @Published private(set) var repeatMode: RepeatMode = .off
-    @Published private(set) var shuffleMode: ShuffleMode = .off
+    @Published private(set) var repeatButtonImage: NSImage = .imgRepeat
+    @Published private(set) var repeatButtonImageColor: NSColor = .white
+    @Published private(set) var shuffleButtonImageColor: NSColor = .white
     
     @Published private(set) var backgroundColor: NSColor = .black
     
@@ -38,6 +40,7 @@ class CompactPlayerViewModel: ObservableObject {
     
     @Published private(set) var buttonColor: NSColor = .white
     @Published private(set) var activeControlColor: NSColor = .white
+    @Published private(set) var inactiveControlColor: NSColor = .gray
     
     @Published private(set) var previousTrackDisplayName: String = ""
     @Published private(set) var nextTrackDisplayName: String = ""
@@ -51,24 +54,23 @@ class CompactPlayerViewModel: ObservableObject {
         
         update(forTrack: playbackInfoDelegate.playingTrack, playbackState: playbackInfoDelegate.state)
         
-        isPlaying = playbackInfoDelegate.state == .playing
-        isMuted = audioGraphDelegate.muted
         volume = audioGraphDelegate.volume
         
-        let modes = playQueueDelegate.repeatAndShuffleModes
-        repeatMode = modes.repeatMode
-        shuffleMode = modes.shuffleMode
+        repeatModeUpdated()
+        shuffleModeUpdated()
+        muteStateUpdated()
+        volumeUpdated()
         
         updateSeekPosition()
         
         colorSchemeChanged()
         
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.buttonColor, \.activeControlColor])
+        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.buttonColor, \.activeControlColor, \.inactiveControlColor])
         fontSchemesManager.registerObserver(self, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont])
         
-        messenger.subscribe(to: .player_trackTransitioned, handler: trackTransitioned(_:))
-        messenger.subscribe(to: .player_playbackStateChanged) {[weak self] in
-            self?.isPlaying = playbackInfoDelegate.state == .playing
+        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
+        messenger.subscribeAsync(to: .player_playbackStateChanged) {[weak self] in
+            self?.playPauseStateToggled()
         }
         
         seekTimer = RepeatingTaskExecutor(intervalMillis: 500,
@@ -77,6 +79,13 @@ class CompactPlayerViewModel: ObservableObject {
                                           queue: .main)
         
         seekTimer.startOrResume()
+    }
+    
+    func playPauseStateToggled() {
+        
+        let isPlaying = playbackInfoDelegate.state == .playing
+        self.playButtonImage = isPlaying ? .imgPause : .imgPlay
+        self.playButtonTooltip = isPlaying ? "Pause" : "Play"
     }
     
     private func updateSeekPosition() {
@@ -97,10 +106,23 @@ class CompactPlayerViewModel: ObservableObject {
         artist = playingTrack?.artist
         title = playingTrack?.title ?? ""
         
-        isPlaying = playbackState == .playing
+        playPauseStateToggled()
         
         previousTrackDisplayName = playQueueDelegate.peekPrevious()?.displayName ?? "<None>"
         nextTrackDisplayName = playQueueDelegate.peekNext()?.displayName ?? "<None>"
+    }
+    
+    func repeatModeUpdated() {
+        
+        let mode = playQueueDelegate.repeatAndShuffleModes.repeatMode
+        self.repeatButtonImage = mode == .one ? .imgRepeatOne : .imgRepeat
+        self.repeatButtonImageColor = mode == .off ? systemColorScheme.buttonColor : systemColorScheme.activeControlColor
+    }
+    
+    func shuffleModeUpdated() {
+        
+        let mode = playQueueDelegate.repeatAndShuffleModes.shuffleMode
+        self.shuffleButtonImageColor = mode == .off ? systemColorScheme.buttonColor : systemColorScheme.activeControlColor
     }
     
     // Numerical ranges
@@ -108,34 +130,43 @@ class CompactPlayerViewModel: ObservableObject {
     private static let mediumVolumeRange: Range<Float> = 100.0/3..<200.0/3
     private static let lowVolumeRange: Range<Float> = 1..<100.0/3
     
-    private func updateVolumeMuteButtonImage(_ volume: Float, _ muted: Bool) {
+    func volumeUpdated() {
         
-        if muted {
-            
+        if !audioGraphDelegate.muted {
+            updateVolumeButtonImage()
+        }
+    }
+    
+    func muteStateUpdated() {
+        
+        if audioGraphDelegate.muted {
             volumeButtonImage = .imgMute
-            
         } else {
-
-            // Zero / Low / Medium / High (different images)
+            updateVolumeButtonImage()
+        }
+    }
+    
+    private func updateVolumeButtonImage() {
+        
+        // Zero / Low / Medium / High (different images)
+        
+        switch audioGraphDelegate.volume {
             
-            switch volume {
-                
-            case Self.highVolumeRange:
-                
-                volumeButtonImage = .imgVolumeHigh
-                
-            case Self.mediumVolumeRange:
-                
-                volumeButtonImage = .imgVolumeMedium
-                
-            case Self.lowVolumeRange:
-                
-                volumeButtonImage = .imgVolumeLow
-                
-            default:
-                
-                volumeButtonImage = .imgVolumeZero
-            }
+        case Self.highVolumeRange:
+            
+            volumeButtonImage = .imgVolumeHigh
+            
+        case Self.mediumVolumeRange:
+            
+            volumeButtonImage = .imgVolumeMedium
+            
+        case Self.lowVolumeRange:
+            
+            volumeButtonImage = .imgVolumeLow
+            
+        default:
+            
+            volumeButtonImage = .imgVolumeZero
         }
     }
 }
@@ -149,15 +180,34 @@ extension CompactPlayerViewModel: ColorSchemeObserver {
         secondaryTextColor = systemColorScheme.secondaryTextColor
         buttonColor = systemColorScheme.buttonColor
         activeControlColor = systemColorScheme.activeControlColor
+        inactiveControlColor = systemColorScheme.inactiveControlColor
     }
     
     func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
         
-        backgroundColor = systemColorScheme.backgroundColor
-        primaryTextColor = systemColorScheme.primaryTextColor
-        secondaryTextColor = systemColorScheme.secondaryTextColor
-        buttonColor = systemColorScheme.buttonColor
-        activeControlColor = systemColorScheme.activeControlColor
+        switch property {
+            
+        case \.backgroundColor:
+            backgroundColor = systemColorScheme.backgroundColor
+            
+        case \.primaryTextColor:
+            primaryTextColor = systemColorScheme.primaryTextColor
+            
+        case \.secondaryTextColor:
+            secondaryTextColor = systemColorScheme.secondaryTextColor
+            
+        case \.buttonColor:
+            buttonColor = systemColorScheme.buttonColor
+            
+        case \.activeControlColor:
+            activeControlColor = systemColorScheme.activeControlColor
+            
+        case \.inactiveControlColor:
+            inactiveControlColor = systemColorScheme.inactiveControlColor
+            
+        default:
+            return
+        }
     }
 }
 

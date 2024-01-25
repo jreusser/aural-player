@@ -13,12 +13,33 @@ import SwiftUI
 struct CompactPlayerControlsView: View {
     
     @ObservedObject var model: CompactPlayerViewModel
+    @State private var volumePerc: Float = 0
     
     init(model: CompactPlayerViewModel) {
+        
         self.model = model
+        self.volumePerc = model.volume
     }
     
     var body: some View {
+        
+        ZStack {
+            
+            sequencingControls
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 10)
+            
+            playbackControls
+                .frame(maxWidth: .infinity, alignment: .center)
+            
+            volumeControls
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.trailing, 10)
+            
+        }
+    }
+    
+    var sequencingControls: some View {
         
         HStack {
             
@@ -27,20 +48,37 @@ struct CompactPlayerControlsView: View {
                 
             }, label: {
                 
-                Image(nsImage: imageForRepeatMode())
+                Image(nsImage: model.repeatButtonImage)
                     .resizable()
-                    .foregroundColor(Color(colorForRepeatModeImage()))
-                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(Color(model.repeatButtonImageColor))
+                    .aspectRatio(contentMode: .fill)
             })
             .buttonStyle(PlainButtonStyle())
-            .frame(width: 16, height: 16)
-            .padding(.leading, 10)
+            .frame(width: 13, height: 13)
             .help("Repeat")
             
-            Spacer()
+            Button(action: {
+                _ = playQueueDelegate.toggleShuffleMode()
+                
+            }, label: {
+                
+                Image(systemName: "shuffle")
+                    .resizable()
+                    .foregroundColor(Color(model.shuffleButtonImageColor))
+                    .aspectRatio(contentMode: .fill)
+            })
+            .buttonStyle(PlainButtonStyle())
+            .frame(width: 13, height: 13)
+            .padding(.leading, 5)
+            .help("Shuffle")
+        }
+    }
+    
+    var playbackControls: some View {
+        
+        HStack {
             
             // Previous Track button
-            
             Button(action: {
                 playbackDelegate.previousTrack()
                 
@@ -61,7 +99,7 @@ struct CompactPlayerControlsView: View {
                 
             }, label: {
                 
-                Image(nsImage: model.isPlaying ? .imgPause : .imgPlay)
+                Image(nsImage: model.playButtonImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
             })
@@ -69,7 +107,7 @@ struct CompactPlayerControlsView: View {
             .frame(width: 20, height: 20)
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
             .foregroundColor(Color(model.buttonColor))
-            .help(model.isPlaying ? "Pause" : "Play")
+            .help(model.playButtonTooltip)
             
             // Next Track button
             
@@ -84,31 +122,54 @@ struct CompactPlayerControlsView: View {
             .buttonStyle(PlainButtonStyle())
             .frame(width: 14, height: 14)
             .help(model.nextTrackDisplayName)
-            
-            Spacer()
         }
     }
     
-    private func imageForRepeatMode() -> NSImage {
+    var volumeControls: some View {
         
-        switch model.repeatMode {
+        HStack {
             
-        case .off:
-            return .imgRepeat
+            Button(action: {
+                model.muteStateUpdated()
+                
+            }) {
+                
+                HStack {
+                    Image(nsImage: model.volumeButtonImage)
+                        .foregroundColor(Color(model.buttonColor))
+                    Spacer().frame(minWidth: 0)
+                }
+            }
+            .buttonStyle(PlainButtonStyle())
+            .frame(width: 16, height: 16)
+            .help("Mute / Unmute")
             
-        case .all:
-            return .imgRepeat
+            // Volume Slider
             
-        case .one:
-            return .imgRepeatOne
+            GeometryReader { geometry in
+                
+                ZStack(alignment: .leading) {
+                    Rectangle()
+                        .foregroundColor(Color(model.inactiveControlColor))
+                    Rectangle()
+                        .foregroundColor(Color(model.activeControlColor))
+                        .frame(width: geometry.size.width * CGFloat(volumePerc / 100), height: 4)
+                }
+            }
+            .frame(width: 50, height: 4)
+            .gesture(DragGesture(minimumDistance: 0)
+                .onChanged({ value in
+                    
+                    self.volumePerc = min(max(0, Float(value.location.x / 50 * 100)), 100)
+                    print("\(volumePerc)%")
+                    audioGraphDelegate.volume = volumePerc
+                    model.volumeUpdated()
+                }))
         }
-    }
-    
-    private func colorForRepeatModeImage() -> NSColor {
-        model.repeatMode == .off ? model.buttonColor : model.activeControlColor
     }
 }
 
 #Preview {
     CompactPlayerControlsView(model: .init())
+        .frame(width: 300)
 }

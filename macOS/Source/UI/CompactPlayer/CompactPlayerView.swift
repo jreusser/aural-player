@@ -20,7 +20,7 @@ struct CompactPlayerView: View {
             
             CompactPlayerTrackInfoView(model: self.model)
             CompactPlayerControlsView(model: self.model)
-                .padding(.bottom, 15)
+                .padding(.bottom, 10)
             
             Spacer()
             
