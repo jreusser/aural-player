@@ -43,7 +43,7 @@ class EffectsWindowController: NSWindowController {
         
         btnClose.bringToFront()
         
-        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
+//        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
         
         applyTheme()
         initSubscriptions()

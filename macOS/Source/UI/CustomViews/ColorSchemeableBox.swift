@@ -12,7 +12,7 @@ import Cocoa
 
 extension NSBox: ColorSchemePropertyObserver {
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         fillColor = newColor
     }
 }

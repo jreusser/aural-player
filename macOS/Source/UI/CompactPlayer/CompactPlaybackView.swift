@@ -13,6 +13,6 @@ import AppKit
 class CompactPlaybackView: PlaybackView {
     
     override func setUpButtonColorObservation() {
-        colorSchemesManager.registerObservers([btnPreviousTrack, btnNextTrack], forProperty: \.buttonColor)
+//        colorSchemesManager.registerObservers([btnPreviousTrack, btnNextTrack], forProperty: \.buttonColor)
     }
 }

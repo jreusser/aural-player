@@ -36,8 +36,8 @@ class PlaylistTracksViewController: TrackListTableViewController, ColorSchemePro
         
         super.viewDidLoad()
         
-        colorSchemesManager.registerObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
-                                                                    \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
+//        colorSchemesManager.registerObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
+//                                                                    \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
         
         messenger.subscribeAsync(to: .playlist_tracksAdded, handler: tracksAdded(_:),
                                  filter: {[weak self] notif in self?.playlist?.name == notif.playlistName})
@@ -158,7 +158,7 @@ class PlaylistTracksViewController: TrackListTableViewController, ColorSchemePro
     
     // MARK: Notification handling
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         switch property {
             

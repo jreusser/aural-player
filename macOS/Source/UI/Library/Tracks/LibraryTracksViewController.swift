@@ -37,16 +37,16 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
         
         updateSummary()
         
-        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
-        
-        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
-        
-        fontSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
-        colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
-        
-        colorSchemesManager.registerObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
-                                                                    \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
+//        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
+//        
+//        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+//        
+//        fontSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
+//        colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
+//        
+//        colorSchemesManager.registerObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
+//                                                                    \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
         
         messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
         messenger.subscribeAsync(to: .library_tracksRemoved, handler: tracksRemoved(_:))
@@ -134,7 +134,7 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
     
     // MARK: Notification handling
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         switch property {
             

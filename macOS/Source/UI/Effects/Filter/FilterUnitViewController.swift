@@ -12,7 +12,7 @@ import Cocoa
 /*
     View controller for the Filter effects unit
  */
-class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver, FontSchemePropertyObserver {
+class FilterUnitViewController: EffectsUnitViewController, FontSchemePropertyObserver {
 
     override var nibName: String? {"FilterUnit"}
     
@@ -191,9 +191,9 @@ class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver, 
         
         fontSchemesManager.registerObservers([self, lblSummary], forProperty: \.effectsPrimaryFont)
         
-        colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
-        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor])
-        colorSchemesManager.registerObserver(addButtonMenuIcon, forProperty: \.buttonColor)
+//        colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
+//        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor])
+//        colorSchemesManager.registerObserver(addButtonMenuIcon, forProperty: \.buttonColor)
         
         messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: updateSummary)
     }
@@ -216,13 +216,13 @@ class FilterUnitViewController: EffectsUnitViewController, ColorSchemeObserver, 
         bandsTableView.reloadAllRows(columns: [0, 2, 3])
     }
     
-    func colorSchemeChanged() {
+    override func colorSchemeChanged() {
         
         bandsTableView.setBackgroundColor(systemColorScheme.backgroundColor)
         bandsTableView.reloadData()
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         switch property {
             

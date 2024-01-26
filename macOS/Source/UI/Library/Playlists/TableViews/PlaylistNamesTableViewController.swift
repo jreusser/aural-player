@@ -46,8 +46,8 @@ class PlaylistNamesTableViewController: NSViewController {
 //        playlistViewController.playlist = nil
         
         messenger.subscribe(to: .playlists_createPlaylistFromTracks, handler: createPlaylistFromTracks(_:))
-        colorSchemesManager.registerObserver(tableView, forProperty: \.backgroundColor)
-        colorSchemesManager.registerObserver(self, forProperties: [\.primaryTextColor, \.primarySelectedTextColor, \.textSelectionColor])
+//        colorSchemesManager.registerObserver(tableView, forProperty: \.backgroundColor)
+//        colorSchemesManager.registerObserver(self, forProperties: [\.primaryTextColor, \.primarySelectedTextColor, \.textSelectionColor])
     }
     
     // MARK: Actions
@@ -211,7 +211,7 @@ class PlaylistNamesTableViewController: NSViewController {
 
 extension PlaylistNamesTableViewController: ColorSchemePropertyObserver {
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         switch property {
             

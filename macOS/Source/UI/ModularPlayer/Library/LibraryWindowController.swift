@@ -100,11 +100,11 @@ class LibraryWindowController: NSWindowController {
         messenger.subscribe(to: .library_showBrowserTabForItem, handler: showBrowserTab(forItem:))
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
 
-        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
-        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
-        
-        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+//        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
+//        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
+//        
+//        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
         
         applyTheme()
         

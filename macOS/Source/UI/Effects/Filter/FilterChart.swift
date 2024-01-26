@@ -30,13 +30,13 @@ class FilterChart: NSView, ColorSchemeObserver {
         
         super.awakeFromNib()
         
-        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor])
+//        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor])
         
         messenger.subscribe(to: .filterUnit_bandUpdated, handler: redraw)
         messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: redraw)
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         redraw()
     }
     

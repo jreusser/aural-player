@@ -97,11 +97,11 @@ class FilterBandView: NSView {
         
         fontSchemesManager.registerObserver(filterTypeMenu, forProperty: \.effectsPrimaryFont)
         
-        colorSchemesManager.registerObservers([lblFilterTypeCaption, lblRangeCaption, lblCutoffCaption, lbl20Hz, lbl20KHz], forProperty: \.secondaryTextColor)
-        colorSchemesManager.registerObserver(lblFrequencies, forProperty: \.primaryTextColor)
-        
-        colorSchemesManager.registerSchemeObserver(filterTypeMenu, forProperties: [\.buttonColor, \.primaryTextColor])
-        colorSchemesManager.registerObservers([presetRangesIconMenuItem, presetCutoffsIconMenuItem], forProperty: \.buttonColor)
+//        colorSchemesManager.registerObservers([lblFilterTypeCaption, lblRangeCaption, lblCutoffCaption, lbl20Hz, lbl20KHz], forProperty: \.secondaryTextColor)
+//        colorSchemesManager.registerObserver(lblFrequencies, forProperty: \.primaryTextColor)
+//        
+//        colorSchemesManager.registerSchemeObserver(filterTypeMenu, forProperties: [\.buttonColor, \.primaryTextColor])
+//        colorSchemesManager.registerObservers([presetRangesIconMenuItem, presetCutoffsIconMenuItem], forProperty: \.buttonColor)
         
         messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: bandBypassStateUpdated(bandIndex:),
                             filter: {[weak self] bandIndex in (self?.bandIndex ?? -1) == bandIndex})

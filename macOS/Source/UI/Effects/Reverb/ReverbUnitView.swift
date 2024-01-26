@@ -34,7 +34,7 @@ class ReverbUnitView: NSView, ColorSchemeObserver {
             fxUnitStateObserverRegistry.registerObserver(popupMenuCell, forFXUnit: audioGraphDelegate.reverbUnit)
         }
         
-        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor, \.suppressedControlColor])
+//        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor, \.suppressedControlColor])
     }
     
     // ------------------------------------------------------------------------
@@ -82,7 +82,7 @@ class ReverbUnitView: NSView, ColorSchemeObserver {
         }
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         guard let popupMenuCell = reverbSpaceMenu.cell as? EffectsUnitPopupMenuCell else {return}
         let reverbUnit = audioGraphDelegate.reverbUnit

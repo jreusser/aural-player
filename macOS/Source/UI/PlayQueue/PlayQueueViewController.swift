@@ -42,8 +42,8 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         
         fontSchemesManager.registerSchemeObserver(self, forProperties: [\.playQueuePrimaryFont, \.playQueueSecondaryFont, \.playQueueTertiaryFont])
         
-        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
-                                                                        \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
+//        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
+//                                                                        \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
         
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
         
@@ -114,7 +114,7 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         tableView.reloadDataMaintainingSelection()
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         switch property {
             

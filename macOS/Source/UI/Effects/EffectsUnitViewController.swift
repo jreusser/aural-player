@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class EffectsUnitViewController: NSViewController {
+class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
     
     // ------------------------------------------------------------------------
     
@@ -168,18 +168,18 @@ class EffectsUnitViewController: NSViewController {
         
 //        messenger.subscribe(to: .effects_changeSliderColors, handler: changeSliderColors)
         
-        colorSchemesManager.registerObserver(presetsMenuIconItem, forProperty: \.buttonColor)
-        
-        colorSchemesManager.registerObservers(functionCaptionLabels, forProperty: \.secondaryTextColor)
-        colorSchemesManager.registerObservers(functionValueLabels, forProperty: \.primaryTextColor)
-        
-        colorSchemesManager.registerObservers(buttons, forProperty: \.buttonColor)
-        
-        sliders.forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: effectsUnit)
-        }
-        
-        colorSchemesManager.registerSchemeObservers(sliders, forProperties: [\.backgroundColor])
+//        colorSchemesManager.registerObserver(presetsMenuIconItem, forProperty: \.buttonColor)
+//        
+//        colorSchemesManager.registerObservers(functionCaptionLabels, forProperty: \.secondaryTextColor)
+//        colorSchemesManager.registerObservers(functionValueLabels, forProperty: \.primaryTextColor)
+//        
+//        colorSchemesManager.registerObservers(buttons, forProperty: \.buttonColor)
+//        
+//        sliders.forEach {
+//            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: effectsUnit)
+//        }
+//        
+//        colorSchemesManager.registerSchemeObservers(sliders, forProperties: [\.backgroundColor])
         
         fontSchemesManager.registerObservers(functionLabels, forProperty: \.effectsPrimaryFont)
         
@@ -202,6 +202,10 @@ class EffectsUnitViewController: NSViewController {
     
     func showThisTab() {
         messenger.publish(.effects_showEffectsUnitTab, payload: unitType)
+    }
+    
+    func colorSchemeChanged() {
+        btnBypass.contentTintColor = systemColorScheme.colorForEffectsUnitState(self.effectsUnit.state)
     }
 }
 

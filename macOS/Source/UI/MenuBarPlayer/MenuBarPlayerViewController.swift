@@ -83,8 +83,8 @@ class MenuBarPlayerViewController: NSViewController {
             seekSliderView.stopUpdatingSeekPosition()
         }
         
-        colorSchemesManager.registerObservers([btnQuit],
-                                              forProperty: \.buttonColor)
+//        colorSchemesManager.registerObservers([btnQuit],
+//                                              forProperty: \.buttonColor)
     }
     
     // MARK: Track playback actions/functions ------------------------------------------------------------

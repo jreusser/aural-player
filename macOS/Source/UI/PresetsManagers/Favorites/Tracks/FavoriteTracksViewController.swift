@@ -19,7 +19,7 @@ class FavoriteTracksViewController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        colorSchemesManager.registerObserver(tableView, forProperties: [\.backgroundColor])
+//        colorSchemesManager.registerObserver(tableView, forProperties: [\.backgroundColor])
     }
 }
 

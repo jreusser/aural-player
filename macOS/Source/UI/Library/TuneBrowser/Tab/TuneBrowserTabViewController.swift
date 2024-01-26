@@ -55,9 +55,9 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         
         browserView.enableDragDrop()
         
-        colorSchemesManager.registerObserver(browserView, forProperty: \.backgroundColor)
-        fontSchemesManager.registerObserver(lblSummary, forProperty: \.playQueuePrimaryFont)
-        colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
+//        colorSchemesManager.registerObserver(browserView, forProperty: \.backgroundColor)
+//        fontSchemesManager.registerObserver(lblSummary, forProperty: \.playQueuePrimaryFont)
+//        colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
         
         restoreDisplayedColumns()
     }

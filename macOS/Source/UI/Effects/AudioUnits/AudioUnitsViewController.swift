@@ -50,8 +50,8 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, F
         
         fontSchemesManager.registerObserver(self, forProperty: \.effectsPrimaryFont)
 
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.primarySelectedTextColor, \.textSelectionColor])
-        colorSchemesManager.registerObservers([audioUnitsMenuIconItem, btnRemove], forProperty: \.buttonColor)
+//        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.primarySelectedTextColor, \.textSelectionColor])
+//        colorSchemesManager.registerObservers([audioUnitsMenuIconItem, btnRemove], forProperty: \.buttonColor)
         
 //        audioUnitsMenuIconItem.tintFunction = {Colors.functionButtonColor}
 //        btnRemove.tintFunction = {Colors.functionButtonColor}
@@ -155,7 +155,7 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, F
         tableView.reloadAllRows(columns: [1])
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         
         switch property {

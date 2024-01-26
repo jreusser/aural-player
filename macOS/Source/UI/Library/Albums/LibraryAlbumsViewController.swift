@@ -39,13 +39,13 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
         messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
         messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
         
-        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
-        
-        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
-        
-        fontSchemesManager.registerObservers([lblAlbumsSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
-        colorSchemesManager.registerObservers([lblAlbumsSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
+//        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
+//        
+//        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+//        
+//        fontSchemesManager.registerObservers([lblAlbumsSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
+//        colorSchemesManager.registerObservers([lblAlbumsSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
         
         updateSummary()
     }

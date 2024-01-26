@@ -41,10 +41,10 @@ class FilterBandEditorDialogController: NSWindowController {
         fontSchemesManager.registerObserver(lblWindowCaption, forProperty: \.captionFont)
         fontSchemesManager.registerObservers([btnClose, btnDone], forProperty: \.effectsSecondaryFont)
         
-        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
-        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
-        colorSchemesManager.registerSchemeObserver(btnDone, forProperties: [\.buttonColor, \.primaryTextColor])
-        colorSchemesManager.registerObserver(lblWindowCaption, forProperty: \.captionTextColor)
+//        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
+//        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
+//        colorSchemesManager.registerSchemeObserver(btnDone, forProperties: [\.buttonColor, \.primaryTextColor])
+//        colorSchemesManager.registerObserver(lblWindowCaption, forProperty: \.captionTextColor)
     }
     
     @IBAction func doneAction(_ sender: NSButton) {

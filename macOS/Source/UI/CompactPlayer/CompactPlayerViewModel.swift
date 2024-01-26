@@ -10,7 +10,7 @@
 
 import AppKit
 
-class CompactPlayerViewModel: ObservableObject {
+class CompactPlayerViewModel: NSObject, ObservableObject {
     
     @Published private(set) var coverArt: NSImage = .imgPlayingArt
     
@@ -50,7 +50,9 @@ class CompactPlayerViewModel: ObservableObject {
 //    static let shared: CompactPlayerViewModel = .init()
     private lazy var messenger: Messenger = .init(for: self)
     
-    init() {
+    override init() {
+        
+        super.init()
         
         update(forTrack: playbackInfoDelegate.playingTrack, playbackState: playbackInfoDelegate.state)
         
@@ -65,7 +67,7 @@ class CompactPlayerViewModel: ObservableObject {
         
         colorSchemeChanged()
         
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.buttonColor, \.activeControlColor, \.inactiveControlColor])
+//        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.buttonColor, \.activeControlColor, \.inactiveControlColor])
         fontSchemesManager.registerObserver(self, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont])
         
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
@@ -183,7 +185,7 @@ extension CompactPlayerViewModel: ColorSchemeObserver {
         inactiveControlColor = systemColorScheme.inactiveControlColor
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         switch property {
             

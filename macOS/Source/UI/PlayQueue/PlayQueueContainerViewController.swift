@@ -70,12 +70,12 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
         fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
         fontSchemesManager.registerObserver(self, forProperty: \.playQueueSecondaryFont)
         
-        colorSchemesManager.registerObservers([btnSimpleView, btnExpandedView], forProperties: [\.buttonColor, \.inactiveControlColor])
-        
-        colorSchemesManager.registerObservers([rootContainer, tabButtonsContainer], forProperty: \.backgroundColor)
-        
-        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
-        colorSchemesManager.registerObserver(self, forProperty: \.secondaryTextColor)
+//        colorSchemesManager.registerObservers([btnSimpleView, btnExpandedView], forProperties: [\.buttonColor, \.inactiveControlColor])
+//        
+//        colorSchemesManager.registerObservers([rootContainer, tabButtonsContainer], forProperty: \.backgroundColor)
+//        
+//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+//        colorSchemesManager.registerObserver(self, forProperty: \.secondaryTextColor)
         
         messenger.subscribe(to: .playQueue_addTracks, handler: importFilesAndFolders)
         
@@ -158,7 +158,7 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
         updateSummary()
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         updateSummary()
     }
     

@@ -53,7 +53,7 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
         super.viewDidLoad()
         
         outlineView.enableDragDrop()
-        colorSchemesManager.registerObserver(outlineView, forProperty: \.backgroundColor)
+//        colorSchemesManager.registerObserver(outlineView, forProperty: \.backgroundColor)
     }
     
     override func destroy() {
@@ -62,7 +62,7 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
         messenger.unsubscribeFromAll()
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         if property == \.backgroundColor {
             outlineView.setBackgroundColor(newColor)

@@ -82,7 +82,7 @@ class AudioUnitEditCellView: NSTableCellView {
     @IBOutlet weak var btnEdit: TintedImageButton! {
         
         didSet {
-            colorSchemesManager.registerObserver(btnEdit, forProperty: \.buttonColor)
+//            colorSchemesManager.registerObserver(btnEdit, forProperty: \.buttonColor)
         }
     }
     

@@ -51,8 +51,8 @@ class SeekSliderView: NSView, Destroyable {
         initSeekTimer()
         trackChanged(player.playbackLoop, player.playingTrack)
         
-        colorSchemesManager.registerSchemeObserver(seekSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
-        fontSchemesManager.registerObserver(lblTrackTime, forProperty: \.playerSecondaryFont)
+//        colorSchemesManager.registerSchemeObserver(seekSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
+//        fontSchemesManager.registerObserver(lblTrackTime, forProperty: \.playerSecondaryFont)
     }
     
     func destroy() {
@@ -63,7 +63,7 @@ class SeekSliderView: NSView, Destroyable {
     
     func initSeekPositionLabels() {
         
-        colorSchemesManager.registerObserver(lblTrackTime, forProperty: \.primaryTextColor)
+//        colorSchemesManager.registerObserver(lblTrackTime, forProperty: \.primaryTextColor)
         
         // Allow clicks on the seek time display labels to switch to different display formats.
         lblTrackTime?.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(self.switchTrackTimeDisplayTypeAction)))

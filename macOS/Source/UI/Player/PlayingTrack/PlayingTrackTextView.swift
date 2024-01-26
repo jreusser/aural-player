@@ -262,7 +262,7 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
         update()
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         if property == \.backgroundColor {
             backgroundColor = newColor

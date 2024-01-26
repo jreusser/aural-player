@@ -88,8 +88,6 @@ class EQUnitViewController: EffectsUnitViewController {
         
         messenger.subscribe(to: .eqEffectsUnit_decreaseTreble, handler: decreaseTreble)
         messenger.subscribe(to: .eqEffectsUnit_increaseTreble, handler: increaseTreble)
-        
-        messenger.subscribeToColorSchemeNotification(property: \.activeControlColor, handler: {_ in})
     }
     
     // Provides a "bass boost". Increases each of the EQ bass bands by a certain preset increment.

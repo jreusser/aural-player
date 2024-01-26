@@ -52,8 +52,8 @@ class HoverControlsBox: NSBox {
         
         super.awakeFromNib()
         
-        colorSchemesManager.registerObservers([btnPlay, btnEnqueueAndPlay, btnRepeat, btnShuffle],
-                                              forProperty: \.buttonColor)
+//        colorSchemesManager.registerObservers([btnPlay, btnEnqueueAndPlay, btnRepeat, btnShuffle],
+//                                              forProperty: \.buttonColor)
     }
     
     @IBAction func playGroupAction(_ sender: NSButton) {

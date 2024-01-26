@@ -83,7 +83,7 @@ class EffectsUnitStateObserverRegistry {
         }
     }
     
-    private func observeColor(property: KeyPath<ColorScheme, PlatformColor>, forUnitState state: EffectsUnitState) {
+    private func observeColor(property: ColorSchemeProperty, forUnitState state: EffectsUnitState) {
         
         kvoTokens.addObserver(forObject: systemColorScheme, keyPath: property) {[weak self] _, newColor in
             

@@ -18,7 +18,7 @@ class TintedIconMenuItem: NSMenuItem, ColorSchemePropertyObserver {
     // A base image that is used as an image template.
     @IBInspectable var baseImage: NSImage?
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         image = baseImage?.tintedUsingCIFilterWithColor(newColor)
     }
 }

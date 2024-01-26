@@ -62,7 +62,7 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
         
         snappingWindow.ensureOnScreen()
         
-        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.buttonColor])
+//        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.buttonColor])
     }
     
     func applyTheme() {
@@ -202,7 +202,7 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
         btnQuit.contentTintColor = systemColorScheme.buttonColor
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         btnQuit.contentTintColor = systemColorScheme.buttonColor
     }
 }

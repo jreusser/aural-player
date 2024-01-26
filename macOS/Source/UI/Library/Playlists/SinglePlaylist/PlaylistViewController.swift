@@ -76,10 +76,10 @@ class PlaylistViewController: NSViewController {
         
         messenger.subscribe(to: .playlists_updateSummary, handler: updateSummary)
 
-        colorSchemesManager.registerObservers([rootContainer, tabButtonsBox], forProperty: \.backgroundColor)
-        colorSchemesManager.registerObservers(tabViewButtons, forProperties: [\.backgroundColor, \.buttonColor, \.inactiveControlColor])
-        colorSchemesManager.registerObserver(lblPlaylistName, forProperty: \.captionTextColor)
-        colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
+//        colorSchemesManager.registerObservers([rootContainer, tabButtonsBox], forProperty: \.backgroundColor)
+//        colorSchemesManager.registerObservers(tabViewButtons, forProperties: [\.backgroundColor, \.buttonColor, \.inactiveControlColor])
+//        colorSchemesManager.registerObserver(lblPlaylistName, forProperty: \.captionTextColor)
+//        colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
     }
     
     // MARK: Notification handling

@@ -12,7 +12,7 @@ import Cocoa
 
 extension NSTextField: ColorSchemePropertyObserver {
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         textColor = newColor
     }
 }

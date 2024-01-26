@@ -48,12 +48,12 @@ class LibraryTracksControlsContainer: ControlsContainerView {
         
         viewsToHideOnMouseOver = [lblTracksSummary, lblDurationSummary]
         
-        colorSchemesManager.registerObservers([btnImportTracks, btnRemoveTracks, btnCropTracks, btnRemoveAllTracks,
-                                               btnClearSelection, btnInvertSelection,
-                                               btnSearch, sortTintedIconMenuItem,
-                                               btnExport,
-                                               btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom],
-                                              forProperty: \.buttonColor)
+//        colorSchemesManager.registerObservers([btnImportTracks, btnRemoveTracks, btnCropTracks, btnRemoveAllTracks,
+//                                               btnClearSelection, btnInvertSelection,
+//                                               btnSearch, sortTintedIconMenuItem,
+//                                               btnExport,
+//                                               btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom],
+//                                              forProperty: \.buttonColor)
     }
 }
 
@@ -71,8 +71,8 @@ class LibraryGroupedListControlsContainer: LibraryTracksControlsContainer {
         
         viewsToShowOnMouseOver.append(contentsOf: [btnExpandAll, btnCollapseAll])
         
-        colorSchemesManager.registerObservers([btnExpandAll, btnCollapseAll],
-                                              forProperty: \.buttonColor)
+//        colorSchemesManager.registerObservers([btnExpandAll, btnCollapseAll],
+//                                              forProperty: \.buttonColor)
     }
     
     override func mouseMoved(with event: NSEvent) {

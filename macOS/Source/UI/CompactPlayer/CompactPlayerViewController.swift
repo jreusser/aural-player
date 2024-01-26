@@ -54,7 +54,7 @@ class CompactPlayerViewController: NSViewController {
     
     override func awakeFromNib() {
         
-        colorSchemesManager.registerObserver(lblTrackTime, forProperty: \.primaryTextColor)
+//        colorSchemesManager.registerObserver(lblTrackTime, forProperty: \.primaryTextColor)
         applyTheme()
         
         layoutTextView()

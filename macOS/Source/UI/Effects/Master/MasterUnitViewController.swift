@@ -62,7 +62,7 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
         super.viewDidLoad()
         
         btnRememberSettingsStateMachine.setState(false)
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor, \.suppressedControlColor])
+//        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor, \.suppressedControlColor])
     }
     
     override func initControls() {
@@ -232,7 +232,7 @@ class MasterUnitViewController: EffectsUnitViewController, ColorSchemePropertyOb
         }
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         switch property {
             

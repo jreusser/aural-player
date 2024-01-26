@@ -70,8 +70,8 @@ class PlaybackView: NSView, Destroyable {
     
     func setUpButtonColorObservation() {
         
-        colorSchemesManager.registerObservers([btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack],
-                                                          forProperty: \.buttonColor)
+//        colorSchemesManager.registerObservers([btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack],
+//                                                          forProperty: \.buttonColor)
     }
     
     func setUpPreviousTrackAndNextTrackButtonTooltips() {

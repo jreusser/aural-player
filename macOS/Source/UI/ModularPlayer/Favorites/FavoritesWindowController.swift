@@ -26,7 +26,7 @@ class FavoritesWindowController: NSWindowController {
         favoritesManagerViewController.view.anchorToSuperview()
         btnClose.bringToFront()
         
-        colorSchemesManager.registerObserver(btnClose, forProperties: [\.buttonColor])
+//        colorSchemesManager.registerObserver(btnClose, forProperties: [\.buttonColor])
     }
     
     @IBAction func closeWindowAction(_ sender: NSButton) {

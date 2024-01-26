@@ -45,12 +45,12 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
         fontSchemesManager.registerObserver(self, forProperty: \.effectsPrimaryFont)
         fontSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight, lblPan], forProperty: \.effectsPrimaryFont)
 
-        colorSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight], forProperty: \.secondaryTextColor)
-        colorSchemesManager.registerObserver(lblPan, forProperty: \.primaryTextColor)
-        
-        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.textSelectionColor])
-        
-        colorSchemesManager.registerSchemeObserver(panSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
+//        colorSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight], forProperty: \.secondaryTextColor)
+//        colorSchemesManager.registerObserver(lblPan, forProperty: \.primaryTextColor)
+//        
+//        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.textSelectionColor])
+//        
+//        colorSchemesManager.registerSchemeObserver(panSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
         
         messenger.subscribe(to: .player_panLeft, handler: panLeft)
         messenger.subscribe(to: .player_panRight, handler: panRight)
@@ -144,7 +144,7 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
         tableView.reloadDataMaintainingSelection()
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         switch property {
             

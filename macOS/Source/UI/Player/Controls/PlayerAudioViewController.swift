@@ -55,9 +55,9 @@ class PlayerAudioViewController: NSViewController {
         
         fontSchemesManager.registerObserver(lblVolume, forProperty: \.playerTertiaryFont)
         
-        colorSchemesManager.registerObserver(btnVolume, forProperty: \.buttonColor)
-        colorSchemesManager.registerSchemeObserver(volumeSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
-        colorSchemesManager.registerObserver(lblVolume, forProperty: \.secondaryTextColor)
+//        colorSchemesManager.registerObserver(btnVolume, forProperty: \.buttonColor)
+//        colorSchemesManager.registerSchemeObserver(volumeSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
+//        colorSchemesManager.registerObserver(lblVolume, forProperty: \.secondaryTextColor)
     }
     
     func initSubscriptions() {}

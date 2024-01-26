@@ -20,7 +20,7 @@ class ButtonStateMachine<E> where E: Hashable {
         
         let state: E
         let image: PlatformImage
-        let colorProperty: KeyPath<ColorScheme, PlatformColor>
+        let colorProperty: ColorSchemeProperty
         let toolTip: String?
     }
     
@@ -52,8 +52,8 @@ class ButtonStateMachine<E> where E: Hashable {
         
         button.image = mapping.image
         
-        colorSchemesManager.removeObserver(button)
-        colorSchemesManager.registerObserver(button, forProperty: mapping.colorProperty)
+//        colorSchemesManager.removeObserver(button)
+//        colorSchemesManager.registerObserver(button, forProperty: mapping.colorProperty)
         
         button.toolTip = mapping.toolTip
     }

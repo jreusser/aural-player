@@ -31,7 +31,7 @@ class UnifiedPlayerSidebarViewController: NSViewController {
         
         messenger.subscribe(to: .sidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
         
-        colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
+//        colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
     }
     
     override func destroy() {

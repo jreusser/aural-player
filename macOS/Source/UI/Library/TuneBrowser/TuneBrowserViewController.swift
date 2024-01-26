@@ -45,11 +45,11 @@ class TuneBrowserViewController: NSViewController {
         
         super.awakeFromNib()
         
-        colorSchemesManager.registerObservers([rootContainer, pathControlWidget], forProperty: \.backgroundColor)
-        colorSchemesManager.registerObservers([btnBack, btnForward], forProperty: \.buttonColor)
-        
-        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+//        colorSchemesManager.registerObservers([rootContainer, pathControlWidget], forProperty: \.backgroundColor)
+//        colorSchemesManager.registerObservers([btnBack, btnForward], forProperty: \.buttonColor)
+//        
+//        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
     }
     
     override func viewDidLoad() {
@@ -229,7 +229,7 @@ class TuneBrowserViewController: NSViewController {
 
 extension NSPathControl: ColorSchemePropertyObserver {
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         backgroundColor = newColor
     }
 }

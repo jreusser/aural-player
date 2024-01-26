@@ -43,7 +43,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
         super.awakeFromNib()
         
         updateFavoriteButtonState()
-        colorSchemesManager.registerObserver(iconMenuItem, forProperty: \.buttonColor)
+//        colorSchemesManager.registerObserver(iconMenuItem, forProperty: \.buttonColor)
         
         // Subscribe to various notifications
         

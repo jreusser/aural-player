@@ -39,8 +39,8 @@ class LibrarySidebarViewController: NSViewController {
         }
         
 //        colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
-        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor])
-        fontSchemesManager.registerObserver(self, forProperty: \.playQueuePrimaryFont)
+//        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor])
+//        fontSchemesManager.registerObserver(self, forProperty: \.playQueuePrimaryFont)
     }
     
     @IBAction func doubleClickAction(_ sender: NSOutlineView) {
@@ -119,7 +119,7 @@ extension LibrarySidebarViewController: ColorSchemeObserver, FontSchemeObserver 
         sidebarView.reloadData()
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         sidebarView.backgroundColor = systemColorScheme.backgroundColor
         sidebarView.reloadData()

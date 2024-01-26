@@ -39,13 +39,13 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
         messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
         messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
         
-        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
-        
-        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
-        
-        fontSchemesManager.registerObservers([lblDecadesSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
-        colorSchemesManager.registerObservers([lblDecadesSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
+//        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
+//        
+//        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+//        
+//        fontSchemesManager.registerObservers([lblDecadesSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
+//        colorSchemesManager.registerObservers([lblDecadesSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
         
         updateSummary()
     }

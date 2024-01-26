@@ -69,11 +69,11 @@ class CompactPlayerWindowController: NSWindowController {
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
         
-        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
-        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
-        
-        colorSchemesManager.registerObservers([btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem],
-                                              forProperty: \.buttonColor)
+//        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
+//        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
+//        
+//        colorSchemesManager.registerObservers([btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem],
+//                                              forProperty: \.buttonColor)
         
         setUpEventHandling()
     }
@@ -174,7 +174,7 @@ extension CompactPlayerWindowController: ColorSchemeObserver {
         btnQuit.contentTintColor = systemColorScheme.buttonColor
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: KeyPath<ColorScheme, PlatformColor>) {
+    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         btnQuit.contentTintColor = systemColorScheme.buttonColor
     }
 }

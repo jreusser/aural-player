@@ -96,11 +96,11 @@ class UnifiedPlayerWindowController: NSWindowController {
         
 //        containerBox.addSubview(playerViewController.view)
 
-        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
-        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
-        
-        colorSchemesManager.registerObservers([btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem],
-                                              forProperty: \.buttonColor)
+//        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
+//        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
+//        
+//        colorSchemesManager.registerObservers([btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem],
+//                                              forProperty: \.buttonColor)
         
         applyTheme()
     }

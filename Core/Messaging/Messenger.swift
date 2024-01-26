@@ -290,23 +290,6 @@ class Messenger {
         subscriptions[notifName] = observer
     }
     
-    typealias ColorSchemePropertyChangeHandler = (PlatformColor) -> ()
-    
-    func subscribeToColorSchemeNotification(property: KeyPath<ColorScheme, PlatformColor>, handler: @escaping ColorSchemePropertyChangeHandler ) {
-        
-        let propertyString = String(reflecting: property).replacingOccurrences(of: "\\ColorScheme.", with: "")
-        let notifName: Notification.Name = .init("colorSchemePropertyChange_\(propertyString)")
-        
-        let observer = notifCtr.addObserver(forName: notifName, object: nil, queue: nil, using: {notif in
-            
-            if let colorChangeNotif = notif.payload as? ColorSchemeChangeNotification {
-                handler(colorChangeNotif.newColor)
-            }
-        })
-        
-        subscriptions[notifName] = observer
-    }
-    
     ///
     /// Unsubscribes the client from notifications with the given notification name.
     ///

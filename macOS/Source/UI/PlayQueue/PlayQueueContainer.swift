@@ -55,7 +55,7 @@ class PlayQueueContainer: NSView {
         
         viewsToHideOnMouseOver = [lblTracksSummary, lblDurationSummary]
         
-        colorSchemesManager.registerObservers([btnImportTracks, btnRemoveTracks, btnCropTracks, btnRemoveAllTracks, btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom, btnClearSelection, btnInvertSelection, btnSearch, sortTintedIconMenuItem, btnExport, btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom], forProperty: \.buttonColor)
+//        colorSchemesManager.registerObservers([btnImportTracks, btnRemoveTracks, btnCropTracks, btnRemoveAllTracks, btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom, btnClearSelection, btnInvertSelection, btnSearch, sortTintedIconMenuItem, btnExport, btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom], forProperty: \.buttonColor)
     }
     
     override func viewDidEndLiveResize() {

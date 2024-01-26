@@ -19,20 +19,10 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
     
     private lazy var messenger = Messenger(for: self)
     
-    var propertyObservers: [KeyPath<ColorScheme, PlatformColor>: [ColorSchemePropertyObserver]] = [:]
-    var schemeAndPropertyObservers: [KeyPath<ColorScheme, PlatformColor>: [ColorSchemeObserver]] = [:]
-    
-    var schemeObservers: [ColorSchemeObserver] = []
-    
-    // TODO: This will NOT work for an object that observes multiple properties !!!
-    // The value should be an array of KeyPath.
-    var reverseRegistry: [NSObject: KeyPath<ColorScheme, PlatformColor>] = [:]
-    
-    var propertyKVO: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
-    var schemeKVO: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
+    var propertyObservers: [ColorSchemeProperty: [Int: ColorSchemePropertyChangeHandler]] = [:]
+    var schemeObservers: [Int: ColorSchemeObserver] = [:]
     
     var isObserving: Bool = false
-    
     var schemeChanged: Bool = false
     
     init(persistentState: ColorSchemesPersistentState?) {
@@ -44,9 +34,7 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
             self.systemScheme = ColorScheme(persistentSystemScheme, true)
             
         } else {
-            
-            self.systemScheme = systemDefinedSchemes.first(where: {$0.name == ColorScheme.defaultScheme.name}) ??
-            ColorScheme("_system_", true, .blackAqua)
+            self.systemScheme = ColorScheme("_system_", true, .defaultScheme)
         }
         
         super.init(systemDefinedObjects: systemDefinedSchemes, userDefinedObjects: userDefinedSchemes)
@@ -57,7 +45,7 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
         // Update color / gradient caches whenever the system scheme changes.
 //        AuralPlaylistOutlineView.updateCachedImages()
         
-        schemeObservers.forEach {
+        schemeObservers.values.forEach {
             $0.colorSchemeChanged()
         }
     }
