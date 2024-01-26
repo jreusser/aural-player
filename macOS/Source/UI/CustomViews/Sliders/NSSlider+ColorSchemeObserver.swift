@@ -10,13 +10,9 @@
 
 import Cocoa
 
-extension NSSlider: ColorSchemeObserver {
+extension NSSlider: ColorSchemePropertyChangeReceiver {
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        redraw()
-    }
-    
-    func colorSchemeChanged() {
+    func colorChanged(_ newColor: PlatformColor) {
         redraw()
     }
 }

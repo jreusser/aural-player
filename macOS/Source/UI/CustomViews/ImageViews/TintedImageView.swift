@@ -28,9 +28,9 @@ class TintedImageView: NSImageView {
     }
 }
 
-extension NSImageView: ColorSchemePropertyObserver {
+extension NSImageView: ColorSchemePropertyChangeReceiver {
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
+    func colorChanged(_ newColor: PlatformColor) {
         contentTintColor = newColor
     }
 }

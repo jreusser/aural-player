@@ -12,7 +12,7 @@ import Cocoa
 /*
     View that encapsulates all playback-related controls (play/pause, prev/next track, seeking, segment looping).
 */
-class PlaybackView: NSView, Destroyable {
+class PlaybackView: NSView, ColorSchemeObserver, Destroyable {
     
     // Fields that display/control seek position within the playing track
     @IBOutlet weak var sliderView: SeekSliderView!
@@ -48,6 +48,8 @@ class PlaybackView: NSView, Destroyable {
                                                                                                      ],
                                                                                                      button: btnLoop)
     
+    lazy var buttonColorChangeReceivers: [ColorSchemePropertyChangeReceiver] = [btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack]
+    
     // When the buttons are in an "Off" state, they should be tinted according to the system color scheme's off state button color.
 //    var offStateTintFunction: TintFunction {{.gray}}
 //
@@ -70,8 +72,8 @@ class PlaybackView: NSView, Destroyable {
     
     func setUpButtonColorObservation() {
         
-//        colorSchemesManager.registerObservers([btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack],
-//                                                          forProperty: \.buttonColor)
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: buttonColorChangeReceivers)
     }
     
     func setUpPreviousTrackAndNextTrackButtonTooltips() {
@@ -161,5 +163,12 @@ class PlaybackView: NSView, Destroyable {
     
     func setTrackTimeDisplayType(_ type: TrackTimeDisplayType) {
         sliderView.setTrackTimeDisplayType(type)
+    }
+    
+    func colorSchemeChanged() {
+        
+        buttonColorChangeReceivers.forEach {
+            $0.colorChanged(systemColorScheme.buttonColor)
+        }
     }
 }

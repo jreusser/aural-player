@@ -47,7 +47,9 @@ class GeneralColorSchemeViewController: ColorSchemeViewController {
     }
     
     private func changeBackgroundColor() {
+        
         systemColorScheme.backgroundColor = backgroundColorPicker.color
+        colorSchemesManager.propertyChanged(\.backgroundColor)
     }
     
     @IBAction func buttonColorAction(_ sender: Any) {
@@ -58,6 +60,8 @@ class GeneralColorSchemeViewController: ColorSchemeViewController {
     }
     
     private func changeButtonColor() {
+        
         systemColorScheme.buttonColor = buttonColorPicker.color
+        colorSchemesManager.propertyChanged(\.buttonColor)
     }
 }

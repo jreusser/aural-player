@@ -204,6 +204,7 @@
                         <outlet property="artView" destination="igo-tR-LRb" id="VnL-Zp-NSE"/>
                         <outlet property="controlsBox" destination="tlk-RM-S0u" id="VNE-nE-atH"/>
                         <outlet property="functionsButton" destination="iwf-qn-PJh" id="tyS-sm-Cej"/>
+                        <outlet property="functionsMenuItem" destination="gVO-3W-k3p" id="89R-Gm-3Tf"/>
                         <outlet property="infoBox" destination="Bp8-ZH-oj4" id="nl6-4q-bZD"/>
                         <outlet property="lblTrackTime" destination="UMU-Of-gsK" id="cBb-Tx-gYg"/>
                         <outlet property="textView" destination="mEf-IM-kjw" id="gMc-MR-kzX"/>

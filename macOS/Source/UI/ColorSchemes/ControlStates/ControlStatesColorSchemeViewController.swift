@@ -50,7 +50,9 @@ class ControlStatesColorSchemeViewController: ColorSchemeViewController {
     }
     
     private func changeActiveControlColor() {
+        
         systemColorScheme.activeControlColor = activeControlColorPicker.color
+        colorSchemesManager.propertyChanged(\.activeControlColor)
     }
     
     @IBAction func inactiveControlColorAction(_ sender: Any) {
@@ -61,7 +63,9 @@ class ControlStatesColorSchemeViewController: ColorSchemeViewController {
     }
     
     private func changeInactiveControlColor() {
+        
         systemColorScheme.inactiveControlColor = inactiveControlColorPicker.color
+        colorSchemesManager.propertyChanged(\.inactiveControlColor)
     }
     
     @IBAction func suppressedControlColorAction(_ sender: Any) {
@@ -72,6 +76,8 @@ class ControlStatesColorSchemeViewController: ColorSchemeViewController {
     }
     
     private func changeSuppressedControlColor() {
+        
         systemColorScheme.suppressedControlColor = suppressedControlColorPicker.color
+        colorSchemesManager.propertyChanged(\.suppressedControlColor)
     }
 }

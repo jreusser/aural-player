@@ -12,7 +12,7 @@ import Cocoa
 /*
     View controller for player volume and pan
  */
-class PlayerAudioViewController: NSViewController {
+class PlayerAudioViewController: NSViewController, ColorSchemeObserver {
     
     // Volume/pan controls
     @IBOutlet weak var btnVolume: NSButton!
@@ -55,9 +55,10 @@ class PlayerAudioViewController: NSViewController {
         
         fontSchemesManager.registerObserver(lblVolume, forProperty: \.playerTertiaryFont)
         
-//        colorSchemesManager.registerObserver(btnVolume, forProperty: \.buttonColor)
-//        colorSchemesManager.registerSchemeObserver(volumeSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
-//        colorSchemesManager.registerObserver(lblVolume, forProperty: \.secondaryTextColor)
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: btnVolume)
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor], changeReceiver: volumeSlider)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceiver: lblVolume)
     }
     
     func initSubscriptions() {}
@@ -161,9 +162,13 @@ class PlayerAudioViewController: NSViewController {
     }
     
     func applyTheme() {
-        applyColorScheme(systemColorScheme)
+        colorSchemeChanged()
     }
     
-    func applyColorScheme(_ scheme: ColorScheme) {
+    func colorSchemeChanged() {
+        
+        btnVolume.contentTintColor = systemColorScheme.buttonColor
+        volumeSlider.redraw()
+        lblVolume.textColor = systemColorScheme.secondaryTextColor
     }
 }

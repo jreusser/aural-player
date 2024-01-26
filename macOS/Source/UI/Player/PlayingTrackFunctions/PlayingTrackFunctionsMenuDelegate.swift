@@ -17,8 +17,6 @@ import Cocoa
  */
 class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
     
-    @IBOutlet weak var iconMenuItem: TintedIconMenuItem!
-    
     // Button to add/remove the currently playing track to/from the Favorites list
     @IBOutlet weak var favoritesMenuItem: ToggleMenuItem!
     
@@ -43,7 +41,6 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
         super.awakeFromNib()
         
         updateFavoriteButtonState()
-//        colorSchemesManager.registerObserver(iconMenuItem, forProperty: \.buttonColor)
         
         // Subscribe to various notifications
         

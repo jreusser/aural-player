@@ -54,34 +54,6 @@ class AuralSliderCell: NSSliderCell {
     
     // MARK: Init
     
-    var kvoTokens: [NSKeyValueObservation] = []
-    
-    required init(coder: NSCoder) {
-        
-        super.init(coder: coder)
-        setUpKVO()
-    }
-    
-    func setUpKVO() {
-        
-        kvoTokens.append(systemColorScheme.observe(\.activeControlColor, options: [.initial, .new]) {[weak self] _, _ in
-            self?.controlView?.redraw()
-        })
-        
-        kvoTokens.append(systemColorScheme.observe(\.inactiveControlColor, options: [.initial, .new]) {[weak self] _, _ in
-            self?.controlView?.redraw()
-        })
-    }
-    
-    deinit {
-        
-        kvoTokens.forEach {
-            $0.invalidate()
-        }
-        
-        kvoTokens.removeAll()
-    }
-    
     var originalKnobRect: NSRect {
         super.knobRect(flipped: false)
     }

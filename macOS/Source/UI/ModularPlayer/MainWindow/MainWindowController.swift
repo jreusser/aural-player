@@ -36,6 +36,8 @@ class MainWindowController: NSWindowController {
     
     let controlsPreferences: GesturesControlsPreferences = preferences.controlsPreferences.gestures
     
+    lazy var buttonColorChangeReceivers: [ColorSchemePropertyChangeReceiver] = [btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem]
+    
     override var windowNibName: String? {"MainWindow"}
     
     lazy var messenger = Messenger(for: self)
@@ -68,13 +70,12 @@ class MainWindowController: NSWindowController {
         theWindow.makeKeyAndOrderFront(self)
         
         containerBox.addSubview(playerViewController.view)
-
-//        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
-//        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
-//        
-//        colorSchemesManager.registerObservers([btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem],
-//                                              forProperty: \.buttonColor)
         
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: logoImage)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainerBox)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: buttonColorChangeReceivers)
+
         applyTheme()
     }
     
@@ -145,5 +146,18 @@ class MainWindowController: NSWindowController {
     
     func changeWindowCornerRadius(_ radius: CGFloat) {
         rootContainerBox.cornerRadius = radius
+    }
+}
+
+extension MainWindowController: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        
+        logoImage.contentTintColor = systemColorScheme.captionTextColor
+        rootContainerBox.fillColor = systemColorScheme.backgroundColor
+        
+        buttonColorChangeReceivers.forEach {
+            $0.colorChanged(systemColorScheme.buttonColor)
+        }
     }
 }

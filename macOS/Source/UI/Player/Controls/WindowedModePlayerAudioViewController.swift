@@ -11,12 +11,6 @@ import Cocoa
 
 class WindowedModePlayerAudioViewController: PlayerAudioViewController {
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        applyColorScheme(systemColorScheme)
-    }
-    
     override func initSubscriptions() {
         
         // Subscribe to notifications
@@ -28,7 +22,6 @@ class WindowedModePlayerAudioViewController: PlayerAudioViewController {
         messenger.subscribe(to: .player_increaseVolume, handler: increaseVolume(_:))
         
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
 //        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
 //        messenger.subscribe(to: .player_changeSliderColors, handler: changeSliderColors)
 //        messenger.subscribe(to: .player_changeSliderValueTextColor, handler: changeSliderValueTextColor(_:))

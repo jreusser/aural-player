@@ -19,7 +19,7 @@ class ColorSchemesManager: UserManagedObjects<ColorScheme> {
     
     private lazy var messenger = Messenger(for: self)
     
-    var propertyObservers: [ColorSchemeProperty: [Int: ColorSchemePropertyChangeHandler]] = [:]
+    var propertyObservers: [ColorSchemeProperty: [Int: [ColorSchemePropertyChangeHandler]]] = [:]
     var schemeObservers: [Int: ColorSchemeObserver] = [:]
     
     var isObserving: Bool = false

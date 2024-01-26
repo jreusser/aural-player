@@ -14,7 +14,7 @@ import Cocoa
     Dynamically updates itself based on view settings to show either a single line or multiple
     lines of information.
  */
-class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
+class PlayingTrackTextView: NSView, FontSchemeObserver {
     
     // The text view that displays all the track info
     @IBOutlet weak var textView: NSTextView!
@@ -31,7 +31,7 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
         }
     }
     
-    fileprivate var backgroundColor: NSColor {
+    var backgroundColor: NSColor {
         
         get {
             clipView.backgroundColor
@@ -271,12 +271,6 @@ class PlayingTrackTextView: NSView, FontSchemeObserver, ColorSchemeObserver {
             update()
         }
     }
-    
-    func colorSchemeChanged() {
-        
-        backgroundColor = systemColorScheme.backgroundColor
-        update()
-    }
 }
 
 @IBDesignable
@@ -347,4 +341,15 @@ class MenuBarPlayingTrackTextView: PlayingTrackTextView {
     }
     
     override var lineSpacingBetweenArtistAlbumAndChapterTitle: CGFloat {4}
+}
+
+extension PlayingTrackTextView: ColorSchemePropertyChangeReceiver {
+    
+    func backgroundColorChanged(_ newColor: PlatformColor) {
+        self.backgroundColor = systemColorScheme.backgroundColor
+    }
+    
+    func colorChanged(_ newColor: PlatformColor) {
+        update()
+    }
 }

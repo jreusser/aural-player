@@ -10,11 +10,15 @@
 
 import Cocoa
 
-class ButtonStateMachine<E> where E: Hashable {
+class ButtonStateMachine<E>: ColorSchemeObserver where E: Hashable {
     
     var state: E
     private let button: NSButton
     private(set) var mappings: [E: StateMapping] = [:]
+    
+    var hashValue: Int {
+        button.hashValue
+    }
     
     struct StateMapping {
         
@@ -34,6 +38,7 @@ class ButtonStateMachine<E> where E: Hashable {
         }
 
         doSetState(initialState)
+        colorSchemesManager.registerSchemeObserver(self)
     }
     
     // Switches the button's state to a particular state
@@ -48,13 +53,24 @@ class ButtonStateMachine<E> where E: Hashable {
         
         guard let mapping = mappings[newState] else {return}
         
+        let oldState = self.state
         self.state = newState
         
         button.image = mapping.image
         
-//        colorSchemesManager.removeObserver(button)
-//        colorSchemesManager.registerObserver(button, forProperty: mapping.colorProperty)
+        if let oldColorProp = mappings[oldState]?.colorProperty {
+            colorSchemesManager.removePropertyObserver(self, forProperty: oldColorProp)
+        }
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: mapping.colorProperty, changeReceiver: button)
         
         button.toolTip = mapping.toolTip
+    }
+    
+    func colorSchemeChanged() {
+        
+        if let colorProp = mappings[state]?.colorProperty {
+            button.colorChanged(systemColorScheme[keyPath: colorProp])
+        }
     }
 }

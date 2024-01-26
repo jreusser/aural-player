@@ -11,16 +11,19 @@
 import Foundation
 import AppKit
 
-protocol ColorSchemeObserver {
+protocol ColorSchemeObserver: ColorSchemePropertyObserver {
     
     func colorSchemeChanged()
-    
-    var hashValue: Int {get}
 }
 
 protocol ColorSchemePropertyObserver {
     
     var hashValue: Int {get}
+}
+
+protocol ColorSchemePropertyChangeReceiver {
+    
+    func colorChanged(_ newColor: PlatformColor)
 }
 
 typealias ColorSchemePropertyChangeHandler = (PlatformColor) -> Void
@@ -30,7 +33,7 @@ extension ColorSchemesManager {
     
     func stopObserving() {
         
-        for (prop, var map) in propertyObservers {
+        for (_, var map) in propertyObservers {
             map.removeAll()
         }
         propertyObservers.removeAll()
@@ -50,10 +53,59 @@ extension ColorSchemesManager {
             propertyObservers[property] = [:]
         }
         
-        propertyObservers[property]![observer.hashValue] = handler
+        if propertyObservers[property]![observer.hashValue] == nil {
+            propertyObservers[property]![observer.hashValue] = []
+        }
+        
+        propertyObservers[property]![observer.hashValue]!.append(handler)
         
         // Set initial value.
         handler(systemScheme[keyPath: property])
+    }
+    
+    func registerPropertyObserver(_ observer: ColorSchemePropertyObserver, forProperty property: ColorSchemeProperty,
+                                  changeReceiver: ColorSchemePropertyChangeReceiver) {
+        
+        if propertyObservers[property] == nil {
+            propertyObservers[property] = [:]
+        }
+        
+        if propertyObservers[property]![observer.hashValue] == nil {
+            propertyObservers[property]![observer.hashValue] = []
+        }
+        
+        propertyObservers[property]![observer.hashValue]!.append(changeReceiver.colorChanged(_:))
+        
+        // Set initial value.
+        changeReceiver.colorChanged(systemScheme[keyPath: property])
+    }
+    
+    func registerPropertyObserver(_ observer: ColorSchemePropertyObserver, forProperty property: ColorSchemeProperty,
+                                  changeReceivers: [ColorSchemePropertyChangeReceiver]) {
+        
+        if propertyObservers[property] == nil {
+            propertyObservers[property] = [:]
+        }
+        
+        if propertyObservers[property]![observer.hashValue] == nil {
+            propertyObservers[property]![observer.hashValue] = []
+        }
+        
+        for receiver in changeReceivers {
+            
+            propertyObservers[property]![observer.hashValue]!.append(receiver.colorChanged(_:))
+            
+            // Set initial value.
+            receiver.colorChanged(systemScheme[keyPath: property])
+        }
+    }
+    
+    func registerPropertyObserver(_ observer: ColorSchemePropertyObserver, forProperties properties: [ColorSchemeProperty],
+                                  changeReceiver: ColorSchemePropertyChangeReceiver) {
+        
+        for property in properties {
+            registerPropertyObserver(observer, forProperty: property, changeReceiver: changeReceiver)
+        }
     }
     
     func removePropertyObserver(_ observer: ColorSchemePropertyObserver, forProperty property: ColorSchemeProperty) {
@@ -62,6 +114,20 @@ extension ColorSchemesManager {
     
     func removeSchemeObserver(_ observer: ColorSchemeObserver) {
         schemeObservers.removeValue(forKey: observer.hashValue)
+    }
+    
+    // MARK: Broadcasting change notifications
+    
+    func propertyChanged(_ property: ColorSchemeProperty) {
+        
+        let newColor = systemColorScheme[keyPath: property]
+        
+        for handlers in (propertyObservers[property] ?? [:]).values {
+            
+            for handler in handlers {
+                handler(newColor)
+            }
+        }
     }
     
 //    func registerObserver(_ observer: ColorSchemeObserver, forProperties properties: [ColorSchemeProperty]) {

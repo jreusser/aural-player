@@ -10,9 +10,9 @@
 
 import Cocoa
 
-extension NSBox: ColorSchemePropertyObserver {
+extension NSBox: ColorSchemePropertyChangeReceiver {
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
+    func colorChanged(_ newColor: PlatformColor) {
         fillColor = newColor
     }
 }

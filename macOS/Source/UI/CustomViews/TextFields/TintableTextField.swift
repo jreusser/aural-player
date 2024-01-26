@@ -10,9 +10,9 @@
 
 import Cocoa
 
-extension NSTextField: ColorSchemePropertyObserver {
+extension NSTextField: ColorSchemePropertyChangeReceiver {
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
+    func colorChanged(_ newColor: PlatformColor) {
         textColor = newColor
     }
 }

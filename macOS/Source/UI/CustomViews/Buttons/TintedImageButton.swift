@@ -92,22 +92,15 @@ class FillableImageButton: NSButton {
     }
 }
 
-extension NSButton: ColorSchemePropertyObserver {
+extension NSButton: ColorSchemePropertyChangeReceiver {
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
+    func colorChanged(_ newColor: PlatformColor) {
         
         if self is TintedImageButton {
             contentTintColor = newColor
         } else {
             redraw()
         }
-    }
-}
-
-extension NSButton: ColorSchemeObserver {
-    
-    func colorSchemeChanged() {
-        redraw()
     }
 }
 

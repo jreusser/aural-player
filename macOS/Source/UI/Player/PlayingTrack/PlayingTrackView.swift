@@ -13,7 +13,7 @@ import Cocoa
  A container view for the 2 types of player views - Default / Expanded Art view.
  Switches between the 2 views, shows/hides individual UI components, and handles functions such as auto-hide.
  */
-class PlayingTrackView: MouseTrackingView {
+class PlayingTrackView: MouseTrackingView, ColorSchemeObserver {
     
     private lazy var uiState: PlayerUIState = playerUIState
     
@@ -35,6 +35,7 @@ class PlayingTrackView: MouseTrackingView {
     
     @IBOutlet weak var controlsBox: NSBox!
     @IBOutlet weak var functionsButton: NSPopUpButton!
+    @IBOutlet weak var functionsMenuItem: TintedIconMenuItem!
     
     @IBOutlet weak var lblTrackTime: CenterTextLabel!
     
@@ -55,9 +56,12 @@ class PlayingTrackView: MouseTrackingView {
         
         startTracking()
         
-//        colorSchemesManager.registerObserver(infoBox, forProperty: \.backgroundColor)
-//        colorSchemesManager.registerSchemeObserver(textView, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor])
-//
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: infoBox)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: textView.backgroundColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor], changeReceiver: textView)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: functionsMenuItem)
+
 //        fontSchemesManager.registerSchemeObserver(textView, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont, \.playerTertiaryFont])
     }
     
@@ -184,5 +188,15 @@ class PlayingTrackView: MouseTrackingView {
         }
         
         textView.resized()
+    }
+    
+    // MARK: Theming ------------------------------------------------------------------
+    
+    func colorSchemeChanged() {
+        
+        infoBox.fillColor = systemColorScheme.backgroundColor
+        textView.backgroundColor = systemColorScheme.backgroundColor
+        functionsMenuItem.colorChanged(systemColorScheme.buttonColor)
+        textView.update()
     }
 }

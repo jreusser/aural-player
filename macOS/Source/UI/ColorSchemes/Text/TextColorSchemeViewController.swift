@@ -74,7 +74,9 @@ class TextColorSchemeViewController: ColorSchemeViewController {
     }
     
     private func changeCaptionColor() {
+        
         systemColorScheme.captionTextColor = captionColorPicker.color
+        colorSchemesManager.propertyChanged(\.captionTextColor)
     }
     
     @IBAction func primaryTextColorAction(_ sender: Any) {
@@ -85,7 +87,9 @@ class TextColorSchemeViewController: ColorSchemeViewController {
     }
     
     private func changePrimaryTextColor() {
+        
         systemColorScheme.primaryTextColor = primaryTextColorPicker.color
+        colorSchemesManager.propertyChanged(\.primaryTextColor)
     }
     
     @IBAction func secondaryTextColorAction(_ sender: Any) {
@@ -96,7 +100,9 @@ class TextColorSchemeViewController: ColorSchemeViewController {
     }
     
     private func changeSecondaryTextColor() {
+        
         systemColorScheme.secondaryTextColor = secondaryTextColorPicker.color
+        colorSchemesManager.propertyChanged(\.secondaryTextColor)
     }
     
     @IBAction func tertiaryTextColorAction(_ sender: Any) {
@@ -107,7 +113,9 @@ class TextColorSchemeViewController: ColorSchemeViewController {
     }
     
     private func changeTertiaryTextColor() {
+        
         systemColorScheme.tertiaryTextColor = tertiaryTextColorPicker.color
+        colorSchemesManager.propertyChanged(\.tertiaryTextColor)
     }
     
     @IBAction func primarySelectedTextColorAction(_ sender: Any) {
@@ -118,7 +126,9 @@ class TextColorSchemeViewController: ColorSchemeViewController {
     }
     
     private func changePrimarySelectedTextColor() {
+        
         systemColorScheme.primarySelectedTextColor = primarySelectedTextColorPicker.color
+        colorSchemesManager.propertyChanged(\.primarySelectedTextColor)
     }
     
     @IBAction func secondarySelectedTextColorAction(_ sender: Any) {
@@ -129,7 +139,9 @@ class TextColorSchemeViewController: ColorSchemeViewController {
     }
     
     private func changeSecondarySelectedTextColor() {
+        
         systemColorScheme.secondarySelectedTextColor = secondarySelectedTextColorPicker.color
+        colorSchemesManager.propertyChanged(\.secondarySelectedTextColor)
     }
     
     @IBAction func tertiarySelectedTextColorAction(_ sender: Any) {
@@ -140,7 +152,9 @@ class TextColorSchemeViewController: ColorSchemeViewController {
     }
     
     private func changeTertiarySelectedTextColor() {
+        
         systemColorScheme.tertiarySelectedTextColor = tertiarySelectedTextColorPicker.color
+        colorSchemesManager.propertyChanged(\.tertiarySelectedTextColor)
     }
     
     @IBAction func textSelectionColorAction(_ sender: Any) {
@@ -151,6 +165,8 @@ class TextColorSchemeViewController: ColorSchemeViewController {
     }
     
     private func changeTextSelectionColor() {
+        
         systemColorScheme.textSelectionColor = textSelectionColorPicker.color
+        colorSchemesManager.propertyChanged(\.textSelectionColor)
     }
 }
