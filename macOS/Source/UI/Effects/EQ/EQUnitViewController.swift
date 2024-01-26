@@ -132,10 +132,4 @@ class EQUnitViewController: EffectsUnitViewController {
     // ------------------------------------------------------------------------
     
     // MARK: Theming
-    
-//    override func applyColorScheme(_ scheme: ColorScheme) {
-//
-//        super.applyColorScheme(scheme)
-//        changeSliderColors()
-//    }
 }

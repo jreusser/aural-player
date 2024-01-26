@@ -60,6 +60,7 @@ class PlayingTrackView: MouseTrackingView, ColorSchemeObserver {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: infoBox)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: textView.backgroundColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor], changeReceiver: textView)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: functionsMenuItem)
 
 //        fontSchemesManager.registerSchemeObserver(textView, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont, \.playerTertiaryFont])
@@ -73,18 +74,32 @@ class PlayingTrackView: MouseTrackingView, ColorSchemeObserver {
     }
     
     func artUpdated() {
-        artView.image = trackInfo?.art ?? .imgPlayingArt.tintedWithColor(systemColorScheme.primaryTextColor)
+        
+        if let trackArt = trackInfo?.art {
+            
+            artView.contentTintColor = nil
+            artView.image = trackArt
+            
+        } else {
+
+            artView.contentTintColor = systemColorScheme.secondaryTextColor
+            artView.image = .imgPlayingArt
+        }
     }
     
     private func trackInfoSet() {
         
         textView.trackInfo = self.trackInfo
-        artView.image = trackInfo?.art ?? .imgPlayingArt.tintedWithColor(systemColorScheme.primaryTextColor)
+        artUpdated()
         
         lblTrackTime.showIf(trackInfo != nil && uiState.showTrackTime)
         
         controlsBox?.showIf(trackInfo == nil || uiState.showControls)
         controlsBox?.bringToFront()
+    }
+    
+    private func secondaryTextColorChanged(_ newColor: PlatformColor) {
+        artUpdated()
     }
     
     private func moveInfoBoxTo(_ point: NSPoint) {
@@ -198,5 +213,6 @@ class PlayingTrackView: MouseTrackingView, ColorSchemeObserver {
         textView.backgroundColor = systemColorScheme.backgroundColor
         functionsMenuItem.colorChanged(systemColorScheme.buttonColor)
         textView.update()
+        artUpdated()
     }
 }

@@ -62,7 +62,11 @@ class MasterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
         super.viewDidLoad()
         
         btnRememberSettingsStateMachine.setState(false)
-//        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor, \.suppressedControlColor])
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, handler: activeControlColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.inactiveControlColor, handler: inactiveControlColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.suppressedControlColor, handler: suppressedControlColorChanged(_:))
     }
     
     override func initControls() {
@@ -232,32 +236,31 @@ class MasterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
         }
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
+    override func colorSchemeChanged() {
         
-        switch property {
-            
-        case \.backgroundColor:
-            
-            audioUnitsTable.setBackgroundColor(newColor)
-            
-        case \.activeControlColor:
-            
-            let rowsForActiveUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .active}
-            audioUnitsTable.reloadRows(rowsForActiveUnits, columns: [1])
-            
-        case \.inactiveControlColor:
-            
-            let rowsForBypassedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .bypassed}
-            audioUnitsTable.reloadRows(rowsForBypassedUnits, columns: [1])
-            
-        case \.suppressedControlColor:
-            
-            let rowsForSuppressedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .suppressed}
-            audioUnitsTable.reloadRows(rowsForSuppressedUnits, columns: [1])
-            
-        default:
-            
-            return
-        }
+        super.colorSchemeChanged()
+        audioUnitsTable.colorSchemeChanged()
+    }
+    
+    private func backgroundColorChanged(_ newColor: PlatformColor) {
+        audioUnitsTable.setBackgroundColor(newColor)
+    }
+    
+    private func activeControlColorChanged(_ newColor: PlatformColor) {
+        
+        let rowsForActiveUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .active}
+        audioUnitsTable.reloadRows(rowsForActiveUnits, columns: [1])
+    }
+    
+    private func inactiveControlColorChanged(_ newColor: PlatformColor) {
+        
+        let rowsForBypassedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .bypassed}
+        audioUnitsTable.reloadRows(rowsForBypassedUnits, columns: [1])
+    }
+    
+    private func suppressedControlColorChanged(_ newColor: PlatformColor) {
+        
+        let rowsForSuppressedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .suppressed}
+        audioUnitsTable.reloadRows(rowsForSuppressedUnits, columns: [1])
     }
 }

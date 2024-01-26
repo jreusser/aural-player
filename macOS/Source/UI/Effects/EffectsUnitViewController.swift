@@ -168,18 +168,17 @@ class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
         
 //        messenger.subscribe(to: .effects_changeSliderColors, handler: changeSliderColors)
         
-//        colorSchemesManager.registerObserver(presetsMenuIconItem, forProperty: \.buttonColor)
-//        
-//        colorSchemesManager.registerObservers(functionCaptionLabels, forProperty: \.secondaryTextColor)
-//        colorSchemesManager.registerObservers(functionValueLabels, forProperty: \.primaryTextColor)
-//        
-//        colorSchemesManager.registerObservers(buttons, forProperty: \.buttonColor)
-//        
-//        sliders.forEach {
-//            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: effectsUnit)
-//        }
-//        
-//        colorSchemesManager.registerSchemeObservers(sliders, forProperties: [\.backgroundColor])
+        colorSchemesManager.registerSchemeObserver(self)
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: presetsMenuIconItem)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceivers: functionCaptionLabels)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, changeReceivers: functionValueLabels)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: buttons)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceivers: sliders)
+        
+        sliders.forEach {
+            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: effectsUnit)
+        }
         
         fontSchemesManager.registerObservers(functionLabels, forProperty: \.effectsPrimaryFont)
         
@@ -205,7 +204,24 @@ class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
     }
     
     func colorSchemeChanged() {
+        
         btnBypass.contentTintColor = systemColorScheme.colorForEffectsUnitState(self.effectsUnit.state)
+        
+        functionCaptionLabels.forEach {
+            $0.textColor = systemColorScheme.secondaryTextColor
+        }
+        
+        functionValueLabels.forEach {
+            $0.textColor = systemColorScheme.primaryTextColor
+        }
+        
+        buttons.forEach {
+            $0.contentTintColor = systemColorScheme.buttonColor
+        }
+        
+        sliders.forEach {
+            $0.redraw()
+        }
     }
 }
 
