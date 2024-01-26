@@ -75,8 +75,9 @@ class EffectsContainerViewController: NSViewController {
         // Initialize all sub-views
         initTabGroup()
         
-//        colorSchemesManager.registerObservers(tabViewButtons + [rootContainerBox], forProperty: \.backgroundColor)
-//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceivers: [rootContainerBox] + tabViewButtons)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
         
         applyTheme()
         
@@ -216,5 +217,14 @@ class EffectsContainerViewController: NSViewController {
     
     func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         tabViewButtons[tabView.selectedIndex].redraw()
+    }
+}
+
+extension EffectsContainerViewController: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        
+        rootContainerBox.fillColor = systemColorScheme.backgroundColor
+        lblCaption.textColor = systemColorScheme.captionTextColor
     }
 }

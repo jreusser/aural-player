@@ -206,12 +206,16 @@ extension NSTableView {
     }
 }
 
-extension NSTableView: ColorSchemeObserver {
+extension NSTableView: ColorSchemePropertyChangeReceiver {
     
     func colorSchemeChanged() {
         
         setBackgroundColor(systemColorScheme.backgroundColor)
         reloadDataMaintainingSelection()
+    }
+    
+    func colorChanged(_ newColor: PlatformColor) {
+        setBackgroundColor(newColor)
     }
     
 //    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {

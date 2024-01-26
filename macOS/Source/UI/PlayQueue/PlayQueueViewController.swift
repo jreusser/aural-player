@@ -43,8 +43,15 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         fontSchemesManager.registerSchemeObserver(self, forProperties: [\.playQueuePrimaryFont, \.playQueueSecondaryFont, \.playQueueTertiaryFont])
         
         colorSchemesManager.registerSchemeObserver(self)
-//        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
-//                                                                        \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: tableView)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, handler: activeControlColorChanged(_:))
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
+                                                                            \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor],
+                                                     handler: textColorChanged(_:))
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor,
+                                                     handler: textSelectionColorChanged(_:))
         
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
         
@@ -119,29 +126,19 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         tableView.colorSchemeChanged()
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
+    func activeControlColorChanged(_ newColor: PlatformColor) {
         
-        switch property {
-            
-        case \.activeControlColor:
-            
-            if let playingTrackIndex = playQueueDelegate.currentTrackIndex {
-                tableView.reloadRows([playingTrackIndex])
-            }
-            
-        case \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
-             \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor:
-            
-            tableView.reloadDataMaintainingSelection()
-            
-        case \.textSelectionColor:
-            
-            tableView.redoRowSelection()
-            
-        default:
-            
-            return
+        if let playingTrackIndex = playQueueDelegate.currentTrackIndex {
+            tableView.reloadRows([playingTrackIndex])
         }
+    }
+    
+    func textColorChanged(_ newColor: PlatformColor) {
+        tableView.reloadDataMaintainingSelection()
+    }
+    
+    func textSelectionColorChanged(_ newColor: PlatformColor) {
+        tableView.redoRowSelection()
     }
     
     private func tracksAdded(_ notif: PlayQueueTracksAddedNotification) {

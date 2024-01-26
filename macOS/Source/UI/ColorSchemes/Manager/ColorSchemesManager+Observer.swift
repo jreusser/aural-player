@@ -63,6 +63,14 @@ extension ColorSchemesManager {
         handler(systemScheme[keyPath: property])
     }
     
+    func registerPropertyObserver(_ observer: ColorSchemePropertyObserver, forProperties properties: [ColorSchemeProperty],
+                                  handler: @escaping ColorSchemePropertyChangeHandler) {
+        
+        for property in properties {
+            registerPropertyObserver(observer, forProperty: property, handler: handler)
+        }
+    }
+    
     func registerPropertyObserver(_ observer: ColorSchemePropertyObserver, forProperty property: ColorSchemeProperty,
                                   changeReceiver: ColorSchemePropertyChangeReceiver) {
         

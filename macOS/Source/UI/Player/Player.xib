@@ -22,7 +22,6 @@
         <customObject id="DlG-hJ-3cs" customClass="PlayingTrackFunctionsMenuDelegate" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="favoritesMenuItem" destination="FrP-jc-kMJ" id="Lby-jy-qyo"/>
-                <outlet property="iconMenuItem" destination="gVO-3W-k3p" id="GMc-6O-EuZ"/>
                 <outlet property="playerWindowRootView" destination="ywj-Sd-BS4" id="kUb-bm-08g"/>
                 <outlet property="seekPositionMarkerView" destination="ibi-rN-iTf" id="qlf-33-BqW"/>
                 <outlet property="sliderView" destination="QDN-go-yNZ" id="VCT-Xe-sBe"/>

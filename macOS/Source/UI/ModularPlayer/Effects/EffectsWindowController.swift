@@ -43,7 +43,8 @@ class EffectsWindowController: NSWindowController {
         
         btnClose.bringToFront()
         
-//        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: btnClose)
         
         applyTheme()
         initSubscriptions()
@@ -84,5 +85,12 @@ class EffectsWindowController: NSWindowController {
     
     func changeWindowCornerRadius(_ radius: CGFloat) {
         containerViewController.rootContainerBox.cornerRadius = radius
+    }
+}
+
+extension EffectsWindowController: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        btnClose.contentTintColor = systemColorScheme.buttonColor
     }
 }
