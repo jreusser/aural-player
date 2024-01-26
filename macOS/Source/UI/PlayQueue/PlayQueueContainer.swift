@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class PlayQueueContainer: NSView {
+class PlayQueueContainer: NSView, ColorSchemeObserver {
     
     @IBOutlet weak var lblTracksSummary: NSTextField!
     @IBOutlet weak var lblDurationSummary: NSTextField!
@@ -40,6 +40,8 @@ class PlayQueueContainer: NSView {
     @IBOutlet weak var btnScrollToTop: TintedImageButton!
     @IBOutlet weak var btnScrollToBottom: TintedImageButton!
     
+    private lazy var allButtons: [ColorSchemePropertyChangeReceiver] = [btnImportTracks, btnRemoveTracks, btnCropTracks, btnRemoveAllTracks, btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom, btnClearSelection, btnInvertSelection, btnSearch, sortTintedIconMenuItem, btnExport, btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom]
+    
     private var viewsToShowOnMouseOver: [NSView] = []
     private var viewsToHideOnMouseOver: [NSView] = []
     
@@ -55,7 +57,8 @@ class PlayQueueContainer: NSView {
         
         viewsToHideOnMouseOver = [lblTracksSummary, lblDurationSummary]
         
-//        colorSchemesManager.registerObservers([btnImportTracks, btnRemoveTracks, btnCropTracks, btnRemoveAllTracks, btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom, btnClearSelection, btnInvertSelection, btnSearch, sortTintedIconMenuItem, btnExport, btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom], forProperty: \.buttonColor)
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: allButtons)
     }
     
     override func viewDidEndLiveResize() {
@@ -100,5 +103,12 @@ class PlayQueueContainer: NSView {
         
         viewsToShowOnMouseOver.forEach {$0.hide()}
         viewsToHideOnMouseOver.forEach {$0.show()}
+    }
+    
+    func colorSchemeChanged() {
+        
+        allButtons.forEach {
+            $0.colorChanged(systemColorScheme.buttonColor)
+        }
     }
 }

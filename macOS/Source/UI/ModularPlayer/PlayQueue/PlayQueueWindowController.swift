@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class PlayQueueWindowController: NSWindowController {
+class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
 
     override var windowNibName: String? {"PlayQueueWindow"}
     
@@ -42,8 +42,15 @@ class PlayQueueWindowController: NSWindowController {
         // Offset the caption to the right of the 'X' (Close) button.
         containerViewController.lblCaption.moveRight(distance: 20)
         
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: btnClose)
+        
         changeWindowCornerRadius(windowAppearanceState.cornerRadius)
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
+    }
+    
+    func colorSchemeChanged() {
+        btnClose.contentTintColor = systemColorScheme.buttonColor
     }
     
     // MARK: Actions ----------------------------------------------------------------------------------

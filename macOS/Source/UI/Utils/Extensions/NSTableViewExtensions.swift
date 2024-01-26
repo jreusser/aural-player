@@ -211,23 +211,23 @@ extension NSTableView: ColorSchemeObserver {
     func colorSchemeChanged() {
         
         setBackgroundColor(systemColorScheme.backgroundColor)
-        reloadData()
+        reloadDataMaintainingSelection()
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        
-        switch property {
-            
-        case \.backgroundColor:
-            setBackgroundColor(newColor)
-            
-        case \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor, \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor:
-            reloadData()
-            
-        default:
-            return
-        }
-    }
+//    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
+//        
+//        switch property {
+//            
+//        case \.backgroundColor:
+//            setBackgroundColor(newColor)
+//            
+//        case \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor, \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor:
+//            reloadData()
+//            
+//        default:
+//            return
+//        }
+//    }
 }
 
 extension NSTableView: FontSchemeObserver {

@@ -108,6 +108,14 @@ extension ColorSchemesManager {
         }
     }
     
+    func registerPropertyObserver(_ observer: ColorSchemePropertyObserver, forProperties properties: [ColorSchemeProperty],
+                                  changeReceivers: [ColorSchemePropertyChangeReceiver]) {
+        
+        for property in properties {
+            registerPropertyObserver(observer, forProperty: property, changeReceivers: changeReceivers)
+        }
+    }
+    
     func removePropertyObserver(_ observer: ColorSchemePropertyObserver, forProperty property: ColorSchemeProperty) {
         propertyObservers[property]?.removeValue(forKey: observer.hashValue)
     }

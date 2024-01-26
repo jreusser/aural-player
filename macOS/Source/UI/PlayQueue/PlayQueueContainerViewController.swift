@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObserver, ColorSchemePropertyObserver {
+class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObserver, ColorSchemeObserver {
     
     override var nibName: String? {"PlayQueueContainer"}
     
@@ -24,11 +24,15 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
     @IBOutlet weak var rootContainer: NSBox!
     @IBOutlet weak var tabButtonsContainer: NSBox!
     
+    private lazy var backgroundColorChangeReceivers: [ColorSchemePropertyChangeReceiver] = [rootContainer, tabButtonsContainer]
+    
     // The tab group that switches between the 4 playlist views
     @IBOutlet weak var tabGroup: NSTabView!
     
     @IBOutlet weak var btnSimpleView: TrackListTabButton!
     @IBOutlet weak var btnExpandedView: TrackListTabButton!
+    
+    private lazy var buttonColorChangeReceivers: [ColorSchemePropertyChangeReceiver] = [btnSimpleView, btnExpandedView]
     
     lazy var tabButtons: [TrackListTabButton] = [btnSimpleView, btnExpandedView]
     
@@ -70,12 +74,11 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
         fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
         fontSchemesManager.registerObserver(self, forProperty: \.playQueueSecondaryFont)
         
-//        colorSchemesManager.registerObservers([btnSimpleView, btnExpandedView], forProperties: [\.buttonColor, \.inactiveControlColor])
-//        
-//        colorSchemesManager.registerObservers([rootContainer, tabButtonsContainer], forProperty: \.backgroundColor)
-//        
-//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
-//        colorSchemesManager.registerObserver(self, forProperty: \.secondaryTextColor)
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.buttonColor, \.inactiveControlColor], changeReceivers: buttonColorChangeReceivers)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceivers: backgroundColorChangeReceivers)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceivers: [lblTracksSummary, lblDurationSummary])
         
         messenger.subscribe(to: .playQueue_addTracks, handler: importFilesAndFolders)
         
@@ -158,8 +161,25 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
         updateSummary()
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        updateSummary()
+    func colorSchemeChanged() {
+        
+        [btnSimpleView, btnExpandedView].forEach {
+            $0.redraw()
+        }
+        
+        backgroundColorChangeReceivers.forEach {
+            $0.colorChanged(systemColorScheme.backgroundColor)
+        }
+        
+        lblCaption.textColor = systemColorScheme.captionTextColor
+        lblTracksSummary.textColor = systemColorScheme.secondaryTextColor
+        lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
+    }
+    
+    func secondaryTextColorChanged(_ newColor: PlatformColor) {
+        
+        lblTracksSummary.textColor = newColor
+        lblDurationSummary.textColor = newColor
     }
     
     private func startedAddingTracks() {

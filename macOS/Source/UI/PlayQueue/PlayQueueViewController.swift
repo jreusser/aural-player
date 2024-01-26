@@ -42,6 +42,7 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         
         fontSchemesManager.registerSchemeObserver(self, forProperties: [\.playQueuePrimaryFont, \.playQueueSecondaryFont, \.playQueueTertiaryFont])
         
+        colorSchemesManager.registerSchemeObserver(self)
 //        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
 //                                                                        \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
         
@@ -114,6 +115,10 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         tableView.reloadDataMaintainingSelection()
     }
     
+    func colorSchemeChanged() {
+        tableView.colorSchemeChanged()
+    }
+    
     func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         
         switch property {
@@ -137,10 +142,6 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
             
             return
         }
-    }
-    
-    func colorSchemeChanged() {
-        tableView.reloadDataMaintainingSelection()
     }
     
     private func tracksAdded(_ notif: PlayQueueTracksAddedNotification) {
