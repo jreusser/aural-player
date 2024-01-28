@@ -78,7 +78,7 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
         colorSchemesManager.registerPropertyObserver(self, forProperties: [\.buttonColor, \.inactiveControlColor], changeReceivers: buttonColorChangeReceivers)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceivers: backgroundColorChangeReceivers)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceivers: [lblTracksSummary, lblDurationSummary])
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
         
         messenger.subscribe(to: .playQueue_addTracks, handler: importFilesAndFolders)
         
@@ -172,14 +172,11 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
         }
         
         lblCaption.textColor = systemColorScheme.captionTextColor
-        lblTracksSummary.textColor = systemColorScheme.secondaryTextColor
-        lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
+        updateSummary()
     }
     
     func secondaryTextColorChanged(_ newColor: PlatformColor) {
-        
-        lblTracksSummary.textColor = newColor
-        lblDurationSummary.textColor = newColor
+        updateSummary()
     }
     
     private func startedAddingTracks() {

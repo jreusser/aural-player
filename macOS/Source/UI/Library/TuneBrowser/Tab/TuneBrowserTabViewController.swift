@@ -59,12 +59,12 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
 //        fontSchemesManager.registerObserver(lblSummary, forProperty: \.playQueuePrimaryFont)
 //        colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
         
-        restoreDisplayedColumns()
+//        restoreDisplayedColumns()
     }
     
     private func restoreDisplayedColumns() {
         
-        var displayedColumnIds: [String] = tuneBrowserUIState.displayedColumns.compactMap {$0.id}
+        var displayedColumnIds: [String] = tuneBrowserUIState.displayedColumns.values.map {$0.id}
 
         // Show default columns if none have been selected (eg. first time app is launched).
         if displayedColumnIds.isEmpty {
@@ -82,7 +82,7 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
             browserView.moveColumn(oldIndex, toColumn: index)
         }
 
-        for column in tuneBrowserUIState.displayedColumns {
+        for column in tuneBrowserUIState.displayedColumns.values {
             browserView.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier(column.id))?.width = column.width
         }
     }
@@ -96,6 +96,18 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         
 //        messenger.subscribeAsync(to: .fileSystem_fileMetadataLoaded, handler: fileMetadataLoaded(_:))
         messenger.subscribeAsync(to: .tuneBrowser_folderChanged, handler: folderChanged(_:))
+    }
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        restoreDisplayedColumns()
+    }
+    
+    override func viewWillDisappear() {
+        
+        super.viewWillDisappear()
+        saveColumnsState()
     }
     
     override func destroy() {
@@ -118,16 +130,30 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         
         // TODO: Validation - Don't allow 0 columns to be shown.
         
-        if let id = sender.identifier {
-            browserView.tableColumn(withIdentifier: id)?.isHidden.toggle()
+        guard let id = sender.identifier, let col = browserView.tableColumn(withIdentifier: id) else {return}
+        
+        col.isHidden.toggle()
+        
+//        if col.isHidden {
+//            tuneBrowserUIState.displayedColumns.removeValue(forKey: id.rawValue)
+//        } else {
+//            tuneBrowserUIState.displayedColumns[id.rawValue] = .init(id: id.rawValue, width: col.width)
+//        }
+    }
+    
+    private func saveColumnsState() {
+        
+        tuneBrowserUIState.displayedColumns.removeAll()
+        for column in browserView.tableColumns.filter({$0.isShown}) {
+            tuneBrowserUIState.displayedColumns[column.identifier.rawValue] = .init(id: column.identifier.rawValue, width: column.width)
         }
     }
     
     // TODO: No longer required because entire file system will be built (with track metadata) before shown in UI.
-//    private func fileMetadataLoaded(_ file: FileSystemItem) {
-//        
-//        DispatchQueue.main.async {
-//            self.browserView.reloadItem(file)
+    //    private func fileMetadataLoaded(_ file: FileSystemItem) {
+    //
+    //        DispatchQueue.main.async {
+    //            self.browserView.reloadItem(file)
 //        }
 //    }
     
@@ -191,6 +217,8 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
             messenger.publish(EnqueueAndPlayNowCommand(tracks: playlistItem.playlist.tracks, clearPlayQueue: false))
             
         } else if let folderItem = fsItem as? FileSystemFolderItem {
+            
+            saveColumnsState()
             
             // Folder
             messenger.publish(.tuneBrowser_openFolder,

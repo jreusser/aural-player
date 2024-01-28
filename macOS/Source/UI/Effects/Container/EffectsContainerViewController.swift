@@ -78,6 +78,10 @@ class EffectsContainerViewController: NSViewController {
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceivers: [rootContainerBox] + tabViewButtons)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, handler: activeControlColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.inactiveControlColor, handler: inactiveControlColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.suppressedControlColor, handler: suppressedControlColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, handler: buttonColorChanged(_:))
         
         applyTheme()
         
@@ -218,6 +222,7 @@ class EffectsContainerViewController: NSViewController {
     func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         tabViewButtons[tabView.selectedIndex].redraw()
     }
+    
 }
 
 extension EffectsContainerViewController: ColorSchemeObserver {
@@ -226,5 +231,52 @@ extension EffectsContainerViewController: ColorSchemeObserver {
         
         rootContainerBox.fillColor = systemColorScheme.backgroundColor
         lblCaption.textColor = systemColorScheme.captionTextColor
+    }
+    
+    private func activeControlColorChanged(_ newColor: PlatformColor) {
+        updateTabButtons(forUnitState: .active, newColor: newColor)
+    }
+    
+    private func inactiveControlColorChanged(_ newColor: PlatformColor) {
+        updateTabButtons(forUnitState: .bypassed, newColor: newColor)
+    }
+    
+    private func suppressedControlColorChanged(_ newColor: PlatformColor) {
+        updateTabButtons(forUnitState: .suppressed, newColor: newColor)
+    }
+    
+    private func updateTabButtons(forUnitState unitState: EffectsUnitState, newColor: PlatformColor) {
+        
+        if graph.masterUnit.state == unitState {
+            masterTabViewButton.redraw()
+        }
+        
+        if graph.eqUnit.state == .active {
+            eqTabViewButton.redraw()
+        }
+        
+        if graph.pitchShiftUnit.state == .active {
+            pitchTabViewButton.redraw()
+        }
+        
+        if graph.timeStretchUnit.state == .active {
+            timeTabViewButton.redraw()
+        }
+        
+        if graph.reverbUnit.state == .active {
+            reverbTabViewButton.redraw()
+        }
+        
+        if graph.delayUnit.state == .active {
+            delayTabViewButton.redraw()
+        }
+        
+        if graph.filterUnit.state == .active {
+            filterTabViewButton.redraw()
+        }
+    }
+    
+    private func buttonColorChanged(_ newColor: PlatformColor) {
+        tabViewButtons[tabView.selectedIndex].redraw()
     }
 }

@@ -27,8 +27,6 @@ class EffectsUnitStateObserverRegistry {
     
     private var kvoTokens: KVOTokens<ColorScheme, PlatformColor> = KVOTokens()
     
-//    private var unitStateKVOTokens: [NSKeyValueObservation] = []
-    
     private init() {
         
         for unit in audioGraphDelegate.allUnits {
@@ -47,10 +45,6 @@ class EffectsUnitStateObserverRegistry {
         for au in audioGraphDelegate.audioUnits {
             observeAU(au)
         }
-        
-        observeColor(property: \.activeControlColor, forUnitState: .active)
-        observeColor(property: \.inactiveControlColor, forUnitState: .bypassed)
-        observeColor(property: \.suppressedControlColor, forUnitState: .suppressed)
     }
     
     var compositeAUState: EffectsUnitState {
@@ -80,39 +74,6 @@ class EffectsUnitStateObserverRegistry {
         
         for observer in auCompositeStateObservers {
             observer.unitStateChanged(to: newCompositeAUState)
-        }
-    }
-    
-    private func observeColor(property: ColorSchemeProperty, forUnitState state: EffectsUnitState) {
-        
-        kvoTokens.addObserver(forObject: systemColorScheme, keyPath: property) {[weak self] _, newColor in
-            
-            guard let strongSelf = self else {return}
-            
-            // Redraw all observers of units with matching state.
-            
-            for unit in audioGraphDelegate.allUnits.filter({$0.state == state}) {
-                
-                if let observers = strongSelf.registry[unit.unitType] {
-                
-                    for observer in observers {
-                        observer.colorForCurrentStateChanged(to: newColor)
-                    }
-                    
-                } else if let auDelegate = unit as? HostedAudioUnitDelegateProtocol, let observers = strongSelf.auRegistry[auDelegate.id] {
-                    
-                    for observer in observers {
-                        observer.colorForCurrentStateChanged(to: newColor)
-                    }
-                }
-            }
-            
-            if strongSelf.compositeAUState == state {
-                
-                for observer in strongSelf.auCompositeStateObservers {
-                    observer.colorForCurrentStateChanged(to: newColor)
-                }
-            }
         }
     }
     
@@ -201,18 +162,12 @@ protocol FXUnitStateObserver: AnyObject {
     
     func unitStateChanged(to newState: EffectsUnitState)
     
-    func colorForCurrentStateChanged(to newColor: PlatformColor)
-    
     func redraw()
 }
 
 extension FXUnitStateObserver {
     
     func unitStateChanged(to newState: EffectsUnitState) {
-        redraw()
-    }
-    
-    func colorForCurrentStateChanged(to newColor: PlatformColor) {
         redraw()
     }
 }
@@ -226,10 +181,6 @@ extension TintableFXUnitStateObserver {
     
     func unitStateChanged(to newState: EffectsUnitState) {
         contentTintColor = systemColorScheme.colorForEffectsUnitState(newState)
-    }
-    
-    func colorForCurrentStateChanged(to newColor: PlatformColor) {
-        contentTintColor = newColor
     }
 }
 

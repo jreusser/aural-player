@@ -223,6 +223,27 @@ class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
             $0.redraw()
         }
     }
+    
+    func activeControlColorChanged(_ newColor: PlatformColor) {
+        
+        if self.effectsUnit.state == .active {
+            btnBypass.contentTintColor = newColor
+        }
+    }
+    
+    func inactiveControlColorChanged(_ newColor: PlatformColor) {
+        
+        if self.effectsUnit.state == .bypassed {
+            btnBypass.contentTintColor = newColor
+        }
+    }
+    
+    func suppressedControlColorChanged(_ newColor: PlatformColor) {
+        
+        if self.effectsUnit.state == .suppressed {
+            btnBypass.contentTintColor = newColor
+        }
+    }
 }
 
 // ------------------------------------------------------------------------

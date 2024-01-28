@@ -246,21 +246,60 @@ class MasterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
         audioUnitsTable.setBackgroundColor(newColor)
     }
     
-    private func activeControlColorChanged(_ newColor: PlatformColor) {
+    override func activeControlColorChanged(_ newColor: PlatformColor) {
+        
+        super.activeControlColorChanged(newColor)
         
         let rowsForActiveUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .active}
         audioUnitsTable.reloadRows(rowsForActiveUnits, columns: [1])
+        
+        updateBypassButtons(forUnitState: .active, newColor: newColor)
     }
     
-    private func inactiveControlColorChanged(_ newColor: PlatformColor) {
+    override func inactiveControlColorChanged(_ newColor: PlatformColor) {
+        
+        super.inactiveControlColorChanged(newColor)
         
         let rowsForBypassedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .bypassed}
         audioUnitsTable.reloadRows(rowsForBypassedUnits, columns: [1])
+        
+        updateBypassButtons(forUnitState: .bypassed, newColor: newColor)
     }
     
-    private func suppressedControlColorChanged(_ newColor: PlatformColor) {
+    override func suppressedControlColorChanged(_ newColor: PlatformColor) {
+        
+        super.suppressedControlColorChanged(newColor)
         
         let rowsForSuppressedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .suppressed}
         audioUnitsTable.reloadRows(rowsForSuppressedUnits, columns: [1])
+        
+        updateBypassButtons(forUnitState: .suppressed, newColor: newColor)
+    }
+    
+    private func updateBypassButtons(forUnitState unitState: EffectsUnitState, newColor: PlatformColor) {
+        
+        if eqUnit.state == .active {
+            masterUnitView.updateEQUnitToggle(newColor)
+        }
+        
+        if pitchShiftUnit.state == .active {
+            masterUnitView.updatePitchShiftUnitToggle(newColor)
+        }
+        
+        if timeStretchUnit.state == .active {
+            masterUnitView.updateTimeStretchUnitToggle(newColor)
+        }
+        
+        if reverbUnit.state == .active {
+            masterUnitView.updateReverbUnitToggle(newColor)
+        }
+        
+        if delayUnit.state == .active {
+            masterUnitView.updateDelayUnitToggle(newColor)
+        }
+        
+        if filterUnit.state == .active {
+            masterUnitView.updateFilterUnitToggle(newColor)
+        }
     }
 }

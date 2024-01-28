@@ -104,4 +104,46 @@ class MasterUnitView: NSView {
         lblDelay.onIf(preset.delay.state == .active)
         lblFilter.onIf(preset.filter.state == .active)
     }
+    
+    func updateEQUnitToggle(_ newColor: PlatformColor) {
+        
+        btnEQBypass.contentTintColor = newColor
+        imgEQBypass.contentTintColor = newColor
+        lblEQ.textColor = newColor
+    }
+    
+    func updatePitchShiftUnitToggle(_ newColor: PlatformColor) {
+        
+        btnPitchBypass.contentTintColor = newColor
+        imgPitchBypass.contentTintColor = newColor
+        lblPitch.textColor = newColor
+    }
+    
+    func updateTimeStretchUnitToggle(_ newColor: PlatformColor) {
+        
+        btnTimeBypass.contentTintColor = newColor
+        imgTimeBypass.contentTintColor = newColor
+        lblTime.textColor = newColor
+    }
+    
+    func updateReverbUnitToggle(_ newColor: PlatformColor) {
+        
+        btnReverbBypass.contentTintColor = newColor
+        imgReverbBypass.contentTintColor = newColor
+        lblReverb.textColor = newColor
+    }
+    
+    func updateDelayUnitToggle(_ newColor: PlatformColor) {
+        
+        btnDelayBypass.contentTintColor = newColor
+        imgDelayBypass.contentTintColor = newColor
+        lblDelay.textColor = newColor
+    }
+    
+    func updateFilterUnitToggle(_ newColor: PlatformColor) {
+        
+        btnFilterBypass.contentTintColor = newColor
+        imgFilterBypass.contentTintColor = newColor
+        lblFilter.textColor = newColor
+    }
 }

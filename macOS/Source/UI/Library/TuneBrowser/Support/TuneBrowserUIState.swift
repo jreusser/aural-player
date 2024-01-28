@@ -13,7 +13,7 @@ import OrderedCollections
 
 class TuneBrowserUIState {
     
-    var displayedColumns: [TuneBrowserTableColumn] = []
+    var displayedColumns: OrderedDictionary<String, TuneBrowserTableColumn> = .init()
     
     static let defaultSortColumn: String = "name"
     var sortColumn: String
@@ -25,19 +25,20 @@ class TuneBrowserUIState {
     
     init(persistentState: TuneBrowserUIPersistentState?) {
 
-        displayedColumns = persistentState?.displayedColumns?.compactMap {TuneBrowserTableColumn(persistentState: $0)} ?? []
+        for colState in persistentState?.displayedColumns ?? [] {
+            
+            if let id = colState.id {
+                displayedColumns[id] = TuneBrowserTableColumn(persistentState: colState)
+            }
+        }
+        
         sortColumn = persistentState?.sortColumn ?? Self.defaultSortColumn
         sortIsAscending = persistentState?.sortIsAscending ?? Self.defaultSortIsAscending
-
-        // TODO: Initialize user folders from FileSystem after Library is loaded (listen for notif ???)
-//        for path in (persistentState?.sidebar?.userFolders ?? []).compactMap({$0.url}) {
-//            addUserFolder(forURL: path)
-//        }
     }
 
     var persistentState: TuneBrowserUIPersistentState {
 
-        TuneBrowserUIPersistentState(displayedColumns: displayedColumns.map {TuneBrowserTableColumnPersistentState(id: $0.id, width: $0.width)},
+        TuneBrowserUIPersistentState(displayedColumns: displayedColumns.values.map {TuneBrowserTableColumnPersistentState(id: $0.id, width: $0.width)},
                                      sortColumn: sortColumn,
                                      sortIsAscending: sortIsAscending,
                                      sidebar: TuneBrowserSidebarPersistentState(userFolders: sidebarUserFolders.map {TuneBrowserSidebarItemPersistentState(folderURL: $0.folder.url, treeURL: $0.tree.rootURL)}))
