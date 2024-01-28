@@ -198,27 +198,6 @@ class EffectsContainerViewController: NSViewController {
         lblCaption.font = scheme.captionFont
     }
     
-//    private func changeActiveUnitStateColor(_ color: NSColor) {
-//
-////        tabViewButtons.filter {$0.unitState == .active}.forEach {
-////            $0.reTint()
-////        }
-//    }
-//
-//    private func changeBypassedUnitStateColor(_ color: NSColor) {
-//
-////        tabViewButtons.filter {$0.unitState == .bypassed}.forEach {
-////            $0.reTint()
-////        }
-//    }
-//
-//    private func changeSuppressedUnitStateColor(_ color: NSColor) {
-//
-////        tabViewButtons.filter {$0.unitState == .suppressed}.forEach {
-////            $0.reTint()
-////        }
-//    }
-    
     func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
         tabViewButtons[tabView.selectedIndex].redraw()
     }
@@ -231,6 +210,7 @@ extension EffectsContainerViewController: ColorSchemeObserver {
         
         rootContainerBox.fillColor = systemColorScheme.backgroundColor
         lblCaption.textColor = systemColorScheme.captionTextColor
+        tabViewButtons.forEach {$0.redraw()}
     }
     
     private func activeControlColorChanged(_ newColor: PlatformColor) {
@@ -238,7 +218,9 @@ extension EffectsContainerViewController: ColorSchemeObserver {
     }
     
     private func inactiveControlColorChanged(_ newColor: PlatformColor) {
+        
         updateTabButtons(forUnitState: .bypassed, newColor: newColor)
+        devicesTabViewButton.redraw()
     }
     
     private func suppressedControlColorChanged(_ newColor: PlatformColor) {
@@ -251,28 +233,32 @@ extension EffectsContainerViewController: ColorSchemeObserver {
             masterTabViewButton.redraw()
         }
         
-        if graph.eqUnit.state == .active {
+        if graph.eqUnit.state == unitState {
             eqTabViewButton.redraw()
         }
         
-        if graph.pitchShiftUnit.state == .active {
+        if graph.pitchShiftUnit.state == unitState {
             pitchTabViewButton.redraw()
         }
         
-        if graph.timeStretchUnit.state == .active {
+        if graph.timeStretchUnit.state == unitState {
             timeTabViewButton.redraw()
         }
         
-        if graph.reverbUnit.state == .active {
+        if graph.reverbUnit.state == unitState {
             reverbTabViewButton.redraw()
         }
         
-        if graph.delayUnit.state == .active {
+        if graph.delayUnit.state == unitState {
             delayTabViewButton.redraw()
         }
         
-        if graph.filterUnit.state == .active {
+        if graph.filterUnit.state == unitState {
             filterTabViewButton.redraw()
+        }
+        
+        if graph.audioUnitsStateFunction() == unitState {
+            auTabViewButton.redraw()
         }
     }
     

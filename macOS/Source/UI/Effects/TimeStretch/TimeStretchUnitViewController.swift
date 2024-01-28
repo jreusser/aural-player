@@ -174,4 +174,37 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
 
         messenger.publish(.effects_playbackRateChanged, payload: rateInfo.rate)
     }
+    
+    override func colorSchemeChanged() {
+        
+        super.colorSchemeChanged()
+        timeStretchUnitView.colorChanged(forUnitState: timeStretchUnit.state)
+    }
+    
+    override func activeControlColorChanged(_ newColor: PlatformColor) {
+        
+        super.activeControlColorChanged(newColor)
+        
+        if timeStretchUnit.state == .active {
+            timeStretchUnitView.colorChanged(forUnitState: .active)
+        }
+    }
+    
+    override func inactiveControlColorChanged(_ newColor: PlatformColor) {
+        
+        super.inactiveControlColorChanged(newColor)
+        
+        if timeStretchUnit.state == .bypassed {
+            timeStretchUnitView.colorChanged(forUnitState: .bypassed)
+        }
+    }
+    
+    override func suppressedControlColorChanged(_ newColor: PlatformColor) {
+        
+        super.suppressedControlColorChanged(newColor)
+        
+        if timeStretchUnit.state == .suppressed {
+            timeStretchUnitView.colorChanged(forUnitState: .suppressed)
+        }
+    }
 }

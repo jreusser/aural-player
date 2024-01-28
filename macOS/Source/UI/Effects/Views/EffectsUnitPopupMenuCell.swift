@@ -57,10 +57,6 @@ extension EffectsUnitPopupMenuCell: FXUnitStateObserver {
         tintColor = systemColorScheme.colorForEffectsUnitState(newState)
     }
     
-    func colorForCurrentStateChanged(to newColor: PlatformColor) {
-        redraw()
-    }
-    
     func redraw() {
         controlView?.redraw()
     }

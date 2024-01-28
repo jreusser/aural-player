@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class TimeStretchUnitView: NSView, ColorSchemeObserver {
+class TimeStretchUnitView: NSView {
     
     // ------------------------------------------------------------------------
     
@@ -32,9 +32,7 @@ class TimeStretchUnitView: NSView, ColorSchemeObserver {
     override func awakeFromNib() {
         
         super.awakeFromNib()
-        
         fxUnitStateObserverRegistry.registerObserver(btnShiftPitch, forFXUnit: audioGraphDelegate.timeStretchUnit)
-//        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor, \.suppressedControlColor])
     }
     
     // ------------------------------------------------------------------------
@@ -65,36 +63,7 @@ class TimeStretchUnitView: NSView, ColorSchemeObserver {
         lblTimeStretchRateValue.stringValue = ValueFormatter.formatTimeStretchRate(preset.rate)
     }
     
-    func colorSchemeChanged() {
-        btnShiftPitch.redraw(forState: audioGraphDelegate.timeStretchUnit.state)
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        
-        let timeStretchUnit = audioGraphDelegate.timeStretchUnit
-     
-        switch property {
-            
-        case \.activeControlColor:
-            
-            if timeStretchUnit.isActive {
-                btnShiftPitch.redraw(forState: .active)
-            }
-            
-        case \.inactiveControlColor:
-            
-            if timeStretchUnit.state == .bypassed {
-                btnShiftPitch.redraw(forState: .bypassed)
-            }
-            
-        case \.suppressedControlColor:
-            
-            if timeStretchUnit.state == .suppressed {
-                btnShiftPitch.redraw(forState: .suppressed)
-            }
-            
-        default:
-            return
-        }
+    func colorChanged(forUnitState unitState: EffectsUnitState) {
+        btnShiftPitch.redraw(forState: unitState)
     }
 }

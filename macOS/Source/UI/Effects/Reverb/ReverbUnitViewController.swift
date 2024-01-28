@@ -64,4 +64,37 @@ class ReverbUnitViewController: EffectsUnitViewController {
         reverbUnit.amount = reverbUnitView.amount
         reverbUnitView.setAmount(reverbUnit.amount, amountString: reverbUnit.formattedAmount)
     }
+    
+    override func colorSchemeChanged() {
+        
+        super.colorSchemeChanged()
+        reverbUnitView.updatePopupMenuColor(systemColorScheme.colorForEffectsUnitState(reverbUnit.state))
+    }
+    
+    override func activeControlColorChanged(_ newColor: PlatformColor) {
+        
+        super.activeControlColorChanged(newColor)
+        
+        if reverbUnit.state == .active {
+            reverbUnitView.updatePopupMenuColor(systemColorScheme.activeControlColor)
+        }
+    }
+    
+    override func inactiveControlColorChanged(_ newColor: PlatformColor) {
+        
+        super.inactiveControlColorChanged(newColor)
+        
+        if reverbUnit.state == .bypassed {
+            reverbUnitView.updatePopupMenuColor(systemColorScheme.inactiveControlColor)
+        }
+    }
+    
+    override func suppressedControlColorChanged(_ newColor: PlatformColor) {
+        
+        super.suppressedControlColorChanged(newColor)
+        
+        if reverbUnit.state == .suppressed {
+            reverbUnitView.updatePopupMenuColor(systemColorScheme.suppressedControlColor)
+        }
+    }
 }

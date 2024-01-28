@@ -174,7 +174,10 @@ class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceivers: functionCaptionLabels)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, changeReceivers: functionValueLabels)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: buttons)
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceivers: sliders)
+
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, handler: activeControlColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.inactiveControlColor, handler: inactiveControlColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.suppressedControlColor, handler: suppressedControlColorChanged(_:))
         
         sliders.forEach {
             fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: effectsUnit)
@@ -203,6 +206,13 @@ class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
         messenger.publish(.effects_showEffectsUnitTab, payload: unitType)
     }
     
+    private func redrawSliders() {
+        
+        sliders.forEach {
+            $0.redraw()
+        }
+    }
+    
     func colorSchemeChanged() {
         
         btnBypass.contentTintColor = systemColorScheme.colorForEffectsUnitState(self.effectsUnit.state)
@@ -219,16 +229,15 @@ class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
             $0.contentTintColor = systemColorScheme.buttonColor
         }
         
-        sliders.forEach {
-            $0.redraw()
-        }
+        redrawSliders()
     }
     
     func activeControlColorChanged(_ newColor: PlatformColor) {
         
-        if self.effectsUnit.state == .active {
-            btnBypass.contentTintColor = newColor
-        }
+        guard self.effectsUnit.state == .active else {return}
+        
+        btnBypass.contentTintColor = newColor
+        redrawSliders()
     }
     
     func inactiveControlColorChanged(_ newColor: PlatformColor) {
@@ -236,13 +245,16 @@ class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
         if self.effectsUnit.state == .bypassed {
             btnBypass.contentTintColor = newColor
         }
+        
+        redrawSliders()
     }
     
     func suppressedControlColorChanged(_ newColor: PlatformColor) {
         
-        if self.effectsUnit.state == .suppressed {
-            btnBypass.contentTintColor = newColor
-        }
+        guard self.effectsUnit.state == .suppressed else {return}
+        
+        btnBypass.contentTintColor = newColor
+        redrawSliders()
     }
 }
 

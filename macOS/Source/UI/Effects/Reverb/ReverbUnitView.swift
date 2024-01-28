@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class ReverbUnitView: NSView, ColorSchemeObserver {
+class ReverbUnitView: NSView {
     
     // ------------------------------------------------------------------------
     
@@ -75,40 +75,11 @@ class ReverbUnitView: NSView, ColorSchemeObserver {
         setAmount(preset.amount, amountString: ValueFormatter.formatReverbAmount(preset.amount))
     }
     
-    func colorSchemeChanged() {
+    func updatePopupMenuColor(_ newColor: PlatformColor) {
         
         if let popupMenuCell = reverbSpaceMenu.cell as? EffectsUnitPopupMenuCell {
-            popupMenuCell.tintColor = systemColorScheme.colorForEffectsUnitState(audioGraphDelegate.reverbUnit.state)
-        }
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        
-        guard let popupMenuCell = reverbSpaceMenu.cell as? EffectsUnitPopupMenuCell else {return}
-        let reverbUnit = audioGraphDelegate.reverbUnit
-        
-        switch property {
-            
-        case \.activeControlColor:
-            
-            if reverbUnit.isActive {
-                popupMenuCell.tintColor = systemColorScheme.activeControlColor
-            }
-            
-        case \.inactiveControlColor:
-            
-            if reverbUnit.state == .bypassed {
-                popupMenuCell.tintColor = systemColorScheme.inactiveControlColor
-            }
-            
-        case \.suppressedControlColor:
-            
-            if reverbUnit.state == .suppressed {
-                popupMenuCell.tintColor = systemColorScheme.suppressedControlColor
-            }
-            
-        default:
-            return
+            popupMenuCell.tintColor = newColor
+//            popupMenuCell.tintColor = systemColorScheme.colorForEffectsUnitState(audioGraphDelegate.reverbUnit.state)
         }
     }
 }

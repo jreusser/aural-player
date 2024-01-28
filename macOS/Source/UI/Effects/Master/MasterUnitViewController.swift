@@ -64,9 +64,6 @@ class MasterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
         btnRememberSettingsStateMachine.setState(false)
         
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, handler: activeControlColorChanged(_:))
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.inactiveControlColor, handler: inactiveControlColorChanged(_:))
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.suppressedControlColor, handler: suppressedControlColorChanged(_:))
     }
     
     override func initControls() {
@@ -278,27 +275,27 @@ class MasterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
     
     private func updateBypassButtons(forUnitState unitState: EffectsUnitState, newColor: PlatformColor) {
         
-        if eqUnit.state == .active {
+        if eqUnit.state == unitState {
             masterUnitView.updateEQUnitToggle(newColor)
         }
         
-        if pitchShiftUnit.state == .active {
+        if pitchShiftUnit.state == unitState {
             masterUnitView.updatePitchShiftUnitToggle(newColor)
         }
         
-        if timeStretchUnit.state == .active {
+        if timeStretchUnit.state == unitState {
             masterUnitView.updateTimeStretchUnitToggle(newColor)
         }
         
-        if reverbUnit.state == .active {
+        if reverbUnit.state == unitState {
             masterUnitView.updateReverbUnitToggle(newColor)
         }
         
-        if delayUnit.state == .active {
+        if delayUnit.state == unitState {
             masterUnitView.updateDelayUnitToggle(newColor)
         }
         
-        if filterUnit.state == .active {
+        if filterUnit.state == unitState {
             masterUnitView.updateFilterUnitToggle(newColor)
         }
     }
