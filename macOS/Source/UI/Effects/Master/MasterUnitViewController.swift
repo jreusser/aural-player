@@ -236,7 +236,15 @@ class MasterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
     override func colorSchemeChanged() {
         
         super.colorSchemeChanged()
+        
         audioUnitsTable.colorSchemeChanged()
+        
+        masterUnitView.updateEQUnitToggle(systemColorScheme.colorForEffectsUnitState(eqUnit.state))
+        masterUnitView.updatePitchShiftUnitToggle(systemColorScheme.colorForEffectsUnitState(pitchShiftUnit.state))
+        masterUnitView.updateTimeStretchUnitToggle(systemColorScheme.colorForEffectsUnitState(timeStretchUnit.state))
+        masterUnitView.updateReverbUnitToggle(systemColorScheme.colorForEffectsUnitState(reverbUnit.state))
+        masterUnitView.updateDelayUnitToggle(systemColorScheme.colorForEffectsUnitState(delayUnit.state))
+        masterUnitView.updateFilterUnitToggle(systemColorScheme.colorForEffectsUnitState(filterUnit.state))
     }
     
     private func backgroundColorChanged(_ newColor: PlatformColor) {

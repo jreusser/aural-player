@@ -52,6 +52,12 @@ class FilterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
         let bandsDataFunction = {[weak self] in self?.filterUnit.bands ?? []}
         filterUnitView.initialize(stateFunction: unitStateFunction, bandsDataFunction: bandsDataFunction)
         updateSummary()
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primarySelectedTextColor, handler: primarySelectedTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondarySelectedTextColor, handler: secondarySelectedTextColorChanged(_:))
     }
  
     override func initControls() {
@@ -218,30 +224,48 @@ class FilterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
     
     override func colorSchemeChanged() {
         
+        super.colorSchemeChanged()
+        
         bandsTableView.setBackgroundColor(systemColorScheme.backgroundColor)
         bandsTableView.reloadData()
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
+    private func backgroundColorChanged(_ newColor: PlatformColor) {
+        bandsTableView.setBackgroundColor(newColor)
+    }
+    
+    private func primaryTextColorChanged(_ newColor: PlatformColor) {
+        bandsTableView.reloadAllRows(columns: [3])
+    }
+    
+    private func secondaryTextColorChanged(_ newColor: PlatformColor) {
+        bandsTableView.reloadAllRows(columns: [2])
+    }
+    
+    private func primarySelectedTextColorChanged(_ newColor: PlatformColor) {
+        bandsTableView.reloadRows(bandsTableView.selectedRowIndexes.toArray())
+    }
+    
+    private func secondarySelectedTextColorChanged(_ newColor: PlatformColor) {
+        bandsTableView.reloadRows(bandsTableView.selectedRowIndexes.toArray())
+    }
+    
+    override func activeControlColorChanged(_ newColor: PlatformColor) {
         
-        switch property {
-            
-        case \.backgroundColor:
-            
-            bandsTableView.setBackgroundColor(newColor)
-            
-        case \.primaryTextColor:
-            
-            bandsTableView.reloadAllRows(columns: [3])
-            
-        case \.secondaryTextColor:
-            
-            bandsTableView.reloadAllRows(columns: [2])
-            
-        default:
-            
-            return
-        }
+        super.activeControlColorChanged(newColor)
+        filterUnitView.redrawChart()
+    }
+    
+    override func inactiveControlColorChanged(_ newColor: PlatformColor) {
+        
+        super.inactiveControlColorChanged(newColor)
+        filterUnitView.redrawChart()
+    }
+    
+    override func suppressedControlColorChanged(_ newColor: PlatformColor) {
+        
+        super.suppressedControlColorChanged(newColor)
+        filterUnitView.redrawChart()
     }
     
 //    override func applyFontScheme(_ fontScheme: FontScheme) {
@@ -267,24 +291,6 @@ class FilterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
 //    
 //    override func changeSliderColors() {
 //        filterUnitView.changeSliderColors()
-//    }
-    
-//    override func changeActiveUnitStateColor(_ color: NSColor) {
-//
-//        super.changeActiveUnitStateColor(color)
-//        filterUnitView.changeActiveUnitStateColor(color)
-//    }
-//
-//    override func changeBypassedUnitStateColor(_ color: NSColor) {
-//
-//        super.changeBypassedUnitStateColor(color)
-//        filterUnitView.changeBypassedUnitStateColor(color)
-//    }
-//
-//    override func changeSuppressedUnitStateColor(_ color: NSColor) {
-//
-//        super.changeSuppressedUnitStateColor(color)
-//        filterUnitView.changeSuppressedUnitStateColor(color)
 //    }
     
 //    override func changeFunctionCaptionTextColor(_ color: NSColor) {

@@ -100,20 +100,4 @@ class FilterUnitView: NSView {
     
     func changeSliderColors() {
     }
-    
-    func changeActiveUnitStateColor(_ color: NSColor) {
-        redrawChart()
-    }
-    
-    func changeBypassedUnitStateColor(_ color: NSColor) {
-        redrawChart()
-    }
-    
-    func changeSuppressedUnitStateColor(_ color: NSColor) {
-        redrawChart()
-    }
-    
-    func changeFunctionCaptionTextColor(_ color: NSColor) {
-        redrawChart()
-    }
 }
