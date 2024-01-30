@@ -245,6 +245,8 @@ class MasterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
         masterUnitView.updateReverbUnitToggle(systemColorScheme.colorForEffectsUnitState(reverbUnit.state))
         masterUnitView.updateDelayUnitToggle(systemColorScheme.colorForEffectsUnitState(delayUnit.state))
         masterUnitView.updateFilterUnitToggle(systemColorScheme.colorForEffectsUnitState(filterUnit.state))
+        
+        masterUnitView.updateAUToggles(systemColorScheme.colorForEffectsUnitState(graph.audioUnitsStateFunction()))
     }
     
     private func backgroundColorChanged(_ newColor: PlatformColor) {
@@ -305,6 +307,10 @@ class MasterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
         
         if filterUnit.state == unitState {
             masterUnitView.updateFilterUnitToggle(newColor)
+        }
+        
+        if graph.audioUnitsStateFunction() == unitState {
+            masterUnitView.updateAUToggles(newColor)
         }
     }
 }

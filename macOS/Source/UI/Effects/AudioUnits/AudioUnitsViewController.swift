@@ -31,7 +31,7 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, F
     private var editorDialogs: [String: AudioUnitEditorDialogController] = [:]
     
     @IBOutlet weak var btnAudioUnitsMenu: NSPopUpButton!
-    @IBOutlet weak var audioUnitsMenuIconItem: TintedIconMenuItem!
+    @IBOutlet weak var addAudioUnitMenuIconItem: TintedIconMenuItem!
     @IBOutlet weak var btnRemove: TintedImageButton!
     
     // ------------------------------------------------------------------------
@@ -50,24 +50,18 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, F
         
         fontSchemesManager.registerObserver(self, forProperty: \.effectsPrimaryFont)
 
-//        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.primarySelectedTextColor, \.textSelectionColor])
-//        colorSchemesManager.registerObservers([audioUnitsMenuIconItem, btnRemove], forProperty: \.buttonColor)
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primarySelectedTextColor, handler: primarySelectedTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
         
-//        audioUnitsMenuIconItem.tintFunction = {Colors.functionButtonColor}
-//        btnRemove.tintFunction = {Colors.functionButtonColor}
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: [btnRemove, addAudioUnitMenuIconItem])
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, handler: buttonColorChanged(_:))
         
-//        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
-//        
-//        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
-//        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
-//        
-//        messenger.subscribe(to: .effects_changeActiveUnitStateColor, handler: changeActiveUnitStateColor(_:))
-//        messenger.subscribe(to: .effects_changeBypassedUnitStateColor, handler: changeBypassedUnitStateColor(_:))
-//        messenger.subscribe(to: .effects_changeSuppressedUnitStateColor, handler: changeSuppressedUnitStateColor(_:))
-//        
-//        messenger.subscribe(to: .playlist_changeSelectionBoxColor, handler: changeSelectionBoxColor(_:))
-//        messenger.subscribe(to: .playlist_changeTrackNameTextColor, handler: changeAURowTextColor(_:))
-//        messenger.subscribe(to: .playlist_changeTrackNameSelectedTextColor, handler: changeAURowSelectedTextColor(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, handler: activeControlColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.inactiveControlColor, handler: inactiveControlColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.suppressedControlColor, handler: suppressedControlColorChanged(_:))
     }
     
     override func destroy() {
@@ -146,106 +140,60 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, F
     
     // MARK: Theming
     
-//    func colorSchemeChanged() {
-//
-//        tableView.setBackgroundColor()
-//        tableView.reloadAllRows(columns: [1])
-//    }
     func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
         tableView.reloadAllRows(columns: [1])
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        
-        
-        switch property {
-            
-        case \.backgroundColor:
-            
-            tableView.setBackgroundColor(newColor)
-            
-        case \.primaryTextColor:
-            
-            tableView.reloadAllRows(columns: [1])
-            
-        case \.primarySelectedTextColor:
-            
-            tableView.reloadRows(tableView.selectedRowIndexes, columns: [1])
-            tableView.redoRowSelection()
-            
-        case \.textSelectionColor:
-            
-            tableView.redoRowSelection()
-            
-        default:
-            
-            return
-        }
-    }
-    
     func applyFontScheme(_ fontScheme: FontScheme) {
-        
-//        lblCaption.font = systemFontScheme.captionFont
         tableView.reloadAllRows(columns: [1])
     }
+}
+
+extension AudioUnitsViewController: ColorSchemeObserver {
     
-    func applyColorScheme(_ scheme: ColorScheme) {
+    func colorSchemeChanged() {
         
-        changeBackgroundColor(scheme.backgroundColor)
-        changeMainCaptionTextColor(scheme.secondaryTextColor)
-        
-//        audioUnitsMenuIconItem.reTint()
-//        btnRemove.reTint()
-        
+        backgroundColorChanged(systemColorScheme.backgroundColor)
+        btnRemove.contentTintColor = systemColorScheme.buttonColor
+        addAudioUnitMenuIconItem.colorChanged(systemColorScheme.buttonColor)
         tableView.reloadDataMaintainingSelection()
     }
     
-    private func changeBackgroundColor(_ color: NSColor) {
-        
-        tableScrollView.backgroundColor = color
-        tableClipView.backgroundColor = color
-        tableView.backgroundColor = color
+    private func backgroundColorChanged(_ newColor: NSColor) {
+        tableView.setBackgroundColor(newColor)
     }
     
-    func changeMainCaptionTextColor(_ color: NSColor) {
-//        lblCaption.textColor = color
-    }
-    
-    func changeAURowTextColor(_ color: NSColor) {
+    func primaryTextColorChanged(_ newColor: NSColor) {
         tableView.reloadAllRows(columns: [1])
     }
     
-    func changeAURowSelectedTextColor(_ color: NSColor) {
+    func primarySelectedTextColorChanged(_ newColor: NSColor) {
         tableView.reloadRows(tableView.selectedRowIndexes, columns: [1])
     }
     
-    func changeActiveUnitStateColor(_ color: NSColor) {
+    func activeControlColorChanged(_ newColor: NSColor) {
         
         let rowsForActiveUnits: [Int] = tableView.allRowIndices.filter {audioGraph.audioUnits[$0].state == .active}
         tableView.reloadRows(rowsForActiveUnits, columns: [0])
     }
     
-    func changeBypassedUnitStateColor(_ color: NSColor) {
+    func inactiveControlColorChanged(_ newColor: NSColor) {
         
         let rowsForBypassedUnits: [Int] = tableView.allRowIndices.filter {audioGraph.audioUnits[$0].state == .bypassed}
         tableView.reloadRows(rowsForBypassedUnits, columns: [0])
     }
     
-    func changeSuppressedUnitStateColor(_ color: NSColor) {
+    func suppressedControlColorChanged(_ newColor: NSColor) {
         
         let rowsForSuppressedUnits: [Int] = tableView.allRowIndices.filter {audioGraph.audioUnits[$0].state == .suppressed}
         tableView.reloadRows(rowsForSuppressedUnits, columns: [0])
     }
     
-    func changeFunctionButtonColor(_ color: NSColor) {
-        
-//        audioUnitsMenuIconItem.reTint()
-//        btnRemove.reTint()
-        
+    func buttonColorChanged(_ newColor: NSColor) {
         tableView.reloadAllRows(columns: [2])
     }
     
-    private func changeSelectionBoxColor(_ color: NSColor) {
+    private func textSelectionColorChanged(_ newColor: NSColor) {
         tableView.redoRowSelection()
     }
 }

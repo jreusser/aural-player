@@ -146,4 +146,10 @@ class MasterUnitView: NSView {
         imgFilterBypass.contentTintColor = newColor
         lblFilter.textColor = newColor
     }
+    
+    func updateAUToggles(_ newColor: PlatformColor) {
+        
+        imgAUBypass.contentTintColor = newColor
+        lblAudioUnits.textColor = newColor
+    }
 }

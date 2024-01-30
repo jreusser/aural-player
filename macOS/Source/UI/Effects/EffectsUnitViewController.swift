@@ -216,6 +216,7 @@ class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
     func colorSchemeChanged() {
         
         btnBypass.contentTintColor = systemColorScheme.colorForEffectsUnitState(self.effectsUnit.state)
+        presetsMenuIconItem.colorChanged(systemColorScheme.buttonColor)
         
         functionCaptionLabels.forEach {
             $0.textColor = systemColorScheme.secondaryTextColor

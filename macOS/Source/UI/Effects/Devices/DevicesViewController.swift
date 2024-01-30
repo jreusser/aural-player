@@ -48,8 +48,16 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
 //        colorSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight], forProperty: \.secondaryTextColor)
 //        colorSchemesManager.registerObserver(lblPan, forProperty: \.primaryTextColor)
 //        
-//        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.textSelectionColor])
-//        
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primarySelectedTextColor, handler: primarySelectedTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, handler: activeControlColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.inactiveControlColor, handler: inactiveControlColorChanged(_:))
+//
 //        colorSchemesManager.registerSchemeObserver(panSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
         
         messenger.subscribe(to: .player_panLeft, handler: panLeft)
@@ -109,21 +117,25 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
     
     private func deviceListUpdated() {
         
-        selectionChangeIsInternal = true
-        
-        tableView.reloadData()
-        tableView.selectRow(audioGraphDelegate.indexOfOutputDevice)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.selectionChangeIsInternal = false
+        doMarkingSelectionChangeAsInternal {
+            
+            self.tableView.reloadData()
+            self.tableView.selectRow(audioGraphDelegate.indexOfOutputDevice)
         }
     }
     
     private func defaultDeviceChanged() {
         
+        doMarkingSelectionChangeAsInternal {
+            self.tableView.selectRow(audioGraphDelegate.indexOfOutputDevice)
+        }
+    }
+    
+    private func doMarkingSelectionChangeAsInternal(block: @escaping () -> Void) {
+        
         selectionChangeIsInternal = true
         
-        tableView.selectRow(audioGraphDelegate.indexOfOutputDevice)
+        block()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             self.selectionChangeIsInternal = false
@@ -140,29 +152,51 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
     
     func colorSchemeChanged() {
         
-        tableView.setBackgroundColor(systemColorScheme.backgroundColor)
-        tableView.reloadDataMaintainingSelection()
+        backgroundColorChanged(systemColorScheme.backgroundColor)
+        
+        doMarkingSelectionChangeAsInternal {
+            self.tableView.reloadDataMaintainingSelection()
+        }
+        
+        lblPan.textColor = systemColorScheme.primaryTextColor
+        secondaryTextColorChanged(systemColorScheme.secondaryTextColor)
+        
+        panSlider.redraw()
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
+    private func backgroundColorChanged(_ newColor: NSColor) {
+        tableView.setBackgroundColor(newColor)
+    }
+    
+    private func primaryTextColorChanged(_ newColor: NSColor) {
         
-        switch property {
-            
-        case \.backgroundColor:
-            
-            tableView.setBackgroundColor(systemColorScheme.backgroundColor)
-            
-        case \.primaryTextColor:
-            
-            tableView.reloadDataMaintainingSelection()
-            
-        case \.textSelectionColor:
-            
-            tableView.redoRowSelection()
-            
-        default:
-            
-            return
+        tableView.reloadAllRows(columns: [0])
+        lblPan.textColor = newColor
+    }
+    
+    private func primarySelectedTextColorChanged(_ newColor: NSColor) {
+        tableView.reloadRows(tableView.selectedRowIndexes, columns: [0])
+    }
+    
+    private func secondaryTextColorChanged(_ newColor: NSColor) {
+        
+        [lblBalance, lblPanLeft, lblPanRight].forEach {
+            $0?.textColor = newColor
+        }
+    }
+    
+    private func activeControlColorChanged(_ newColor: NSColor) {
+        panSlider.redraw()
+    }
+    
+    private func inactiveControlColorChanged(_ newColor: NSColor) {
+        panSlider.redraw()
+    }
+    
+    private func textSelectionColorChanged(_ newColor: NSColor) {
+        
+        doMarkingSelectionChangeAsInternal {
+            self.tableView.redoRowSelection()
         }
     }
 }

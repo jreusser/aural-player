@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AudioUnitsViewController" customModule="Aural" customModuleProvider="target">
             <connections>
-                <outlet property="audioUnitsMenuIconItem" destination="Bcn-gB-UfW" id="pY2-BS-Q1K"/>
+                <outlet property="addAudioUnitMenuIconItem" destination="Bcn-gB-UfW" id="pY2-BS-Q1K"/>
                 <outlet property="btnAudioUnitsMenu" destination="skz-J4-Bsf" id="ec1-IT-ner"/>
                 <outlet property="btnRemove" destination="FZh-10-i3P" id="QwF-fi-k2W"/>
                 <outlet property="tableClipView" destination="Rf5-tM-f2s" id="9tH-Va-drG"/>
@@ -28,7 +27,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" copiesOnScroll="NO" id="Rf5-tM-f2s">
                         <rect key="frame" x="1" y="1" width="383" height="116"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" tableStyle="plain" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" id="IHZ-s3-hWQ">
                                 <rect key="frame" x="0.0" y="0.0" width="383" height="116"/>
@@ -84,7 +83,7 @@
                                                 <rect key="frame" x="28" y="0.0" width="325" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1jO-gX-HEt" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1jO-gX-HEt" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="3" y="0.0" width="349" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="345" id="Qmh-59-H9h"/>
