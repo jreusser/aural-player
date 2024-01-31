@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class LibraryTracksControlsContainer: ControlsContainerView {
+class LibraryTracksControlsContainer: ControlsContainerView, ColorSchemeObserver {
     
     @IBOutlet weak var lblTracksSummary: NSTextField!
     @IBOutlet weak var lblDurationSummary: NSTextField!
@@ -35,6 +35,12 @@ class LibraryTracksControlsContainer: ControlsContainerView {
     @IBOutlet weak var btnScrollToTop: TintedImageButton!
     @IBOutlet weak var btnScrollToBottom: TintedImageButton!
     
+    fileprivate lazy var buttonsToColor: [ColorSchemePropertyChangeReceiver] = [btnImportTracks, btnRemoveTracks, btnCropTracks, btnRemoveAllTracks,
+                                                                                btnClearSelection, btnInvertSelection,
+                                                                                btnSearch, sortTintedIconMenuItem,
+                                                                                btnExport,
+                                                                                btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom]
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()
@@ -48,12 +54,15 @@ class LibraryTracksControlsContainer: ControlsContainerView {
         
         viewsToHideOnMouseOver = [lblTracksSummary, lblDurationSummary]
         
-//        colorSchemesManager.registerObservers([btnImportTracks, btnRemoveTracks, btnCropTracks, btnRemoveAllTracks,
-//                                               btnClearSelection, btnInvertSelection,
-//                                               btnSearch, sortTintedIconMenuItem,
-//                                               btnExport,
-//                                               btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom],
-//                                              forProperty: \.buttonColor)
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: buttonsToColor)
+    }
+    
+    func colorSchemeChanged() {
+        
+        buttonsToColor.forEach {
+            $0.colorChanged(systemColorScheme.buttonColor)
+        }
     }
 }
 
@@ -70,9 +79,7 @@ class LibraryGroupedListControlsContainer: LibraryTracksControlsContainer {
         super.awakeFromNib()
         
         viewsToShowOnMouseOver.append(contentsOf: [btnExpandAll, btnCollapseAll])
-        
-//        colorSchemesManager.registerObservers([btnExpandAll, btnCollapseAll],
-//                                              forProperty: \.buttonColor)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: [btnExpandAll, btnCollapseAll])
     }
     
     override func mouseMoved(with event: NSEvent) {
@@ -110,5 +117,14 @@ class LibraryGroupedListControlsContainer: LibraryTracksControlsContainer {
         
         super.mouseExited(with: event)
         hoverControls.hide()
+    }
+    
+    override func colorSchemeChanged() {
+        
+        super.colorSchemeChanged()
+        
+        [btnExpandAll, btnCollapseAll].forEach {
+            $0.colorChanged(systemColorScheme.buttonColor)
+        }
     }
 }

@@ -38,8 +38,15 @@ class LibrarySidebarViewController: NSViewController {
             self?.sidebarView.expandItem(LibrarySidebarCategory.tuneBrowser)
         }
         
-//        colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
-//        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor])
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.buttonColor],
+                                                     handler: textColorOrButtonColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primarySelectedTextColor,
+                                                     handler: selectedTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor,
+                                                     handler: textSelectionColorChanged(_:))
+        
 //        fontSchemesManager.registerObserver(self, forProperty: \.playQueuePrimaryFont)
     }
     
@@ -115,22 +122,32 @@ extension LibrarySidebarViewController: ColorSchemeObserver, FontSchemeObserver 
     
     func colorSchemeChanged() {
         
-        sidebarView.backgroundColor = systemColorScheme.backgroundColor
-        sidebarView.reloadData()
+        sidebarView.setBackgroundColor(systemColorScheme.backgroundColor)
+        sidebarView.reloadDataMaintainingSelection()
     }
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        
-        sidebarView.backgroundColor = systemColorScheme.backgroundColor
-        sidebarView.reloadData()
+    func backgroundColorChanged(_ newColor: PlatformColor) {
+        sidebarView.setBackgroundColor(systemColorScheme.backgroundColor)
+    }
+    
+    func textColorOrButtonColorChanged(_ newColor: PlatformColor) {
+        sidebarView.reloadDataMaintainingSelection()
+    }
+    
+    func selectedTextColorChanged(_ newColor: PlatformColor) {
+        sidebarView.reloadRows(sidebarView.selectedRowIndexes)
+    }
+    
+    func textSelectionColorChanged(_ newColor: PlatformColor) {
+        sidebarView.redoRowSelection()
     }
     
     func fontSchemeChanged() {
-        sidebarView.reloadData()
+        sidebarView.reloadDataMaintainingSelection()
     }
     
     func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
-        sidebarView.reloadData()
+        sidebarView.reloadDataMaintainingSelection()
     }
 }
 

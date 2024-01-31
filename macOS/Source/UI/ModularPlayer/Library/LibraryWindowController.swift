@@ -16,7 +16,7 @@ class LibraryWindowController: NSWindowController {
     
     @IBOutlet weak var rootContainer: NSBox!
     @IBOutlet weak var controlsBox: NSBox!
-
+    
     @IBOutlet weak var btnClose: TintedImageButton!
     @IBOutlet weak var lblCaption: NSTextField!
     
@@ -71,11 +71,11 @@ class LibraryWindowController: NSWindowController {
         let libraryAlbumsView: NSView = libraryAlbumsController.view
         tabGroup.tabViewItem(at: 2).view?.addSubview(libraryAlbumsView)
         libraryAlbumsView.anchorToSuperview()
-
+        
         let libraryGenresView: NSView = libraryGenresController.view
         tabGroup.tabViewItem(at: 3).view?.addSubview(libraryGenresView)
         libraryGenresView.anchorToSuperview()
-
+        
         let libraryDecadesView: NSView = libraryDecadesController.view
         tabGroup.tabViewItem(at: 4).view?.addSubview(libraryDecadesView)
         libraryDecadesView.anchorToSuperview()
@@ -99,12 +99,13 @@ class LibraryWindowController: NSWindowController {
         
         messenger.subscribe(to: .library_showBrowserTabForItem, handler: showBrowserTab(forItem:))
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
-
-//        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
-//        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
-//        
-//        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+        
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainer)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: btnClose)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
+        
+        //        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
         
         applyTheme()
         
@@ -139,7 +140,7 @@ class LibraryWindowController: NSWindowController {
         guard buildProgress.isBeingModified else {
             
             if buildProgressView.isShown {
-
+                
                 buildProgressView.hide()
                 buildIndeterminateSpinner.animates = false
                 buildProgressUpdateTask.stop()
@@ -193,10 +194,10 @@ class LibraryWindowController: NSWindowController {
     private func showBrowserTab(forItem item: LibrarySidebarItem) {
         
         let tab = item.browserTab
-
+        
         if tab == .fileSystem,
            let folder = item.tuneBrowserFolder, let tree = item.tuneBrowserTree {
-                
+            
             tuneBrowserViewController.showFolder(folder, inTree: tree, updateHistory: true)
         }
         
@@ -204,13 +205,13 @@ class LibraryWindowController: NSWindowController {
     }
     
     private func showBrowserTab(forCategory category: LibrarySidebarCategory) {
-
+        
         let tab = category.browserTab
         tabGroup.selectTabViewItem(at: tab.rawValue)
-//
-//        if tab == .playlists {
-//
-//        }
+        //
+        //        if tab == .playlists {
+        //
+        //        }
     }
     
     // MARK: Message handling -----------------------------------------------------------
@@ -229,6 +230,18 @@ class LibraryWindowController: NSWindowController {
         buildProgressView.hide()
         
         splitView.show()
+    }
+}
+
+extension LibraryWindowController: ColorSchemeObserver {
+    
+    // MARK: Theming -----------------------------------------------------------
+    
+    func colorSchemeChanged() {
+        
+        rootContainer.fillColor = systemColorScheme.backgroundColor
+        btnClose.contentTintColor = systemColorScheme.buttonColor
+        lblCaption.textColor = systemColorScheme.captionTextColor
     }
     
     private func applyTheme() {

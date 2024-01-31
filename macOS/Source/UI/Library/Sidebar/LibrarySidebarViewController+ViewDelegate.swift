@@ -30,7 +30,8 @@ extension LibrarySidebarViewController: NSOutlineViewDelegate {
             
 //            return category == .playlists ?
 //            createPlaylistCategoryCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image) :
-            return createNameCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image)
+            return createNameCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, 
+                                  image: category.image, imageColor: systemColorScheme.buttonColor)
             
         } else if let sidebarItem = item as? LibrarySidebarItem {
             
@@ -39,13 +40,14 @@ extension LibrarySidebarViewController: NSOutlineViewDelegate {
 //                return createPlaylistNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
 //            }
             
-            return createNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
+            return createNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor, 
+                                  image: sidebarItem.image, imageColor: systemColorScheme.buttonColor)
         }
         
         return nil
     }
     
-    private func createNameCell(_ outlineView: NSOutlineView, _ text: String, font: NSFont, textColor: NSColor, image: NSImage? = nil) -> NSTableCellView? {
+    private func createNameCell(_ outlineView: NSOutlineView, _ text: String, font: NSFont, textColor: NSColor, image: NSImage? = nil, imageColor: PlatformColor? = nil) -> NSTableCellView? {
         
         guard let cell = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("name"), owner: nil)
             as? NSTableCellView else {return nil}
@@ -55,7 +57,7 @@ extension LibrarySidebarViewController: NSOutlineViewDelegate {
         cell.textColor = textColor
         
         cell.image = image
-        cell.imageColor = textColor
+        cell.imageColor = imageColor
         
         return cell
     }

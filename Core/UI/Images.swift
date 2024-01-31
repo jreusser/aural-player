@@ -101,7 +101,7 @@ extension PlatformImage {
     static let imgAlbumGroup: PlatformImage = PlatformImage(named: "Albums")!
     static let imgGenreGroup: PlatformImage = PlatformImage(named: "Genres")!
 //    static let imgDecadeGroup: PlatformImage = PlatformImage(systemSymbolName: "calendar", accessibilityDescription: nil)!
-    static let imgDecadeGroup: PlatformImage = PlatformImage(named: "Decades")!
+    static let imgDecadeGroup: PlatformImage = PlatformImage(systemSymbolName: "calendar", accessibilityDescription: nil)!
     static let imgFileSystem: PlatformImage = PlatformImage(systemSymbolName: "folder", accessibilityDescription: nil)!
     
     static let imgArtistGroup_menu: PlatformImage = PlatformImage(named: "Artists_Menu")!

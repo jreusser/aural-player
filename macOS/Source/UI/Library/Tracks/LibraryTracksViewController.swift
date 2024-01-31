@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class LibraryTracksViewController: TrackListTableViewController, ColorSchemePropertyObserver {
+class LibraryTracksViewController: TrackListTableViewController {
     
     override var nibName: String? {"LibraryTracks"}
     
@@ -37,16 +37,18 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
         
         updateSummary()
         
-//        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
-//        
+        colorSchemesManager.registerSchemeObserver(self)
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor], handler: tableTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceivers: [lblTracksSummary, lblDurationSummary])
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor], handler: tableSelectedTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
+//
 //        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
-//        
 //        fontSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
-//        colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
-//        
-//        colorSchemesManager.registerObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
-//                                                                    \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor, \.textSelectionColor])
         
         messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
         messenger.subscribeAsync(to: .library_tracksRemoved, handler: tracksRemoved(_:))
@@ -134,28 +136,6 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
     
     // MARK: Notification handling
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        
-        switch property {
-            
-        case \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
-             \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor:
-            
-            let selection = selectedRows
-            tableView.reloadData()
-            tableView.selectRows(selection)
-            
-        case \.textSelectionColor:
-            
-            tableView.reloadRows(selectedRows)
-            tableView.redoRowSelection()
-            
-        default:
-            
-            return
-        }
-    }
-    
     private func tracksAdded(_ notif: LibraryTracksAddedNotification) {
         
 //        tracksAdded(at: notif.trackIndices)
@@ -194,3 +174,34 @@ class LibraryTracksViewController: TrackListTableViewController, ColorSchemeProp
     }
 }
 
+extension LibraryTracksViewController: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        
+        backgroundColorChanged(systemColorScheme.backgroundColor)
+        lblCaption.textColor = systemColorScheme.captionTextColor
+        
+        lblTracksSummary.textColor = systemColorScheme.secondaryTextColor
+        lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
+        
+        tableView.reloadDataMaintainingSelection()
+    }
+    
+    private func backgroundColorChanged(_ newColor: PlatformColor) {
+        
+        rootContainer.fillColor = newColor
+        tableView.setBackgroundColor(newColor)
+    }
+    
+    private func tableTextColorChanged(_ newColor: PlatformColor) {
+        tableView.reloadDataMaintainingSelection()
+    }
+    
+    private func tableSelectedTextColorChanged(_ newColor: PlatformColor) {
+        tableView.reloadRows(selectedRows)
+    }
+    
+    private func textSelectionColorChanged(_ newColor: PlatformColor) {
+        tableView.redoRowSelection()
+    }
+}

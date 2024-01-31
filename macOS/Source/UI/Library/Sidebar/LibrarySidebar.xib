@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -47,7 +47,7 @@
                                                 <rect key="frame" x="8" y="0.0" width="183" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView identifier="Icon" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CN8-jU-61m" userLabel="Icon">
+                                                    <imageView identifier="Icon" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CN8-jU-61m" userLabel="Icon" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="2" width="16" height="18"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="18" id="OjO-5X-5az"/>
@@ -83,7 +83,7 @@
                                                 <rect key="frame" x="8" y="24" width="183" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView identifier="Icon" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-0M-8yW" userLabel="Icon">
+                                                    <imageView identifier="Icon" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-0M-8yW" userLabel="Icon" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="2" width="16" height="18"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="16" id="Csi-El-VkD"/>
