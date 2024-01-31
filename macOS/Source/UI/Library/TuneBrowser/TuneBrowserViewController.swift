@@ -26,6 +26,7 @@ class TuneBrowserViewController: NSViewController {
     @IBOutlet weak var backHistoryMenu: NSMenu!
     @IBOutlet weak var forwardHistoryMenu: NSMenu!
     
+    @IBOutlet weak var imgHomeIcon: TintedImageView!
     @IBOutlet weak var pathControlWidget: NSPathControl!
     
     let history: TuneBrowserHistory = TuneBrowserHistory()
@@ -45,6 +46,7 @@ class TuneBrowserViewController: NSViewController {
         
         super.awakeFromNib()
         
+        colorSchemesManager.registerSchemeObserver(self)
 //        colorSchemesManager.registerObservers([rootContainer, pathControlWidget], forProperty: \.backgroundColor)
 //        colorSchemesManager.registerObservers([btnBack, btnForward], forProperty: \.buttonColor)
 //        
@@ -224,6 +226,22 @@ class TuneBrowserViewController: NSViewController {
         }
         
         messenger.unsubscribeFromAll()
+    }
+}
+
+extension TuneBrowserViewController: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        
+        rootContainer.fillColor = systemColorScheme.backgroundColor
+        lblCaption.textColor = systemColorScheme.captionTextColor
+        pathControlWidget.backgroundColor = systemColorScheme.backgroundColor
+        
+        [btnBack, btnForward].forEach {
+            $0?.contentTintColor = systemColorScheme.buttonColor
+        }
+        
+        imgHomeIcon.contentTintColor = systemColorScheme.buttonColor
     }
 }
 

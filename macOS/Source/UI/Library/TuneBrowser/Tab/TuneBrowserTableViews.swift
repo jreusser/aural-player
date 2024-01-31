@@ -58,12 +58,23 @@ class TuneBrowserItemNameCell: NSTableCellView {
     func initializeForFile(_ file: FileSystemItem) {
         
         lblName.stringValue = file.url.lastPathComponent
+        icon.contentTintColor = systemColorScheme.buttonColor
         
         if file.isDirectory {
             icon.image = .imgGroup
             
         } else if file.isTrack, let trackItem = file as? FileSystemTrackItem {
-            icon.image = trackItem.track.art?.image ?? .imgPlayingArt
+            
+            if let coverArt = trackItem.track.art?.image {
+
+                icon.contentTintColor = nil
+                icon.image = coverArt
+                icon.image?.isTemplate = false
+                
+            } else {
+                icon.image = .imgPlayingArt
+            }
+            
             
         } else if file.isPlaylist {
             icon.image = .imgPlaylistPreview

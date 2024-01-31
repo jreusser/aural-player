@@ -39,13 +39,17 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
         messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
         messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
         
-//        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
-//        
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor], handler: tableTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceivers: [lblArtistsSummary, lblDurationSummary])
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor], handler: tableSelectedTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
+        
 //        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
-//        
 //        fontSchemesManager.registerObservers([lblArtistsSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
-//        colorSchemesManager.registerObservers([lblArtistsSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
         
         updateSummary()
     }
@@ -164,12 +168,46 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
     }
 }
 
+extension LibraryArtistsViewController: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        
+        backgroundColorChanged(systemColorScheme.backgroundColor)
+        lblCaption.textColor = systemColorScheme.captionTextColor
+        
+        lblArtistsSummary.textColor = systemColorScheme.secondaryTextColor
+        lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
+        
+        outlineView.reloadDataMaintainingSelection()
+    }
+    
+    private func backgroundColorChanged(_ newColor: PlatformColor) {
+        
+        rootContainer.fillColor = newColor
+        outlineView.setBackgroundColor(newColor)
+    }
+    
+    private func tableTextColorChanged(_ newColor: PlatformColor) {
+        outlineView.reloadDataMaintainingSelection()
+    }
+    
+    private func tableSelectedTextColorChanged(_ newColor: PlatformColor) {
+        outlineView.reloadRows(selectedRows)
+    }
+    
+    private func textSelectionColorChanged(_ newColor: PlatformColor) {
+        outlineView.redoRowSelection()
+    }
+}
+
 class ArtistCellView: AuralTableCellView {
     
     func update(forGroup group: ArtistGroup) {
         
         text = group.name
         image = .imgArtistGroup
+        image?.isTemplate = true
+        imageColor = systemColorScheme.buttonColor
         
         textFont = systemFontScheme.playerPrimaryFont
         textColor = systemColorScheme.primaryTextColor
@@ -197,8 +235,7 @@ class ArtistAlbumCellView: AuralTableCellView {
         }
         
         textField?.attributedStringValue = string
-        
-        imageView?.image = group.art
+        image = group.art
     }
 }
 

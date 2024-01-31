@@ -82,6 +82,7 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
         
         cell.initializeForFile(item)
         cell.lblName.font = textFont
+        cell.lblName.textColor = systemColorScheme.primaryTextColor
         
         return cell
     }

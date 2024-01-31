@@ -399,6 +399,7 @@
 		3E6C66AB2B54825300AA0D81 /* LegacyUIPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C66AA2B54825300AA0D81 /* LegacyUIPersistentState.swift */; };
 		3E6EFFA32815309500C813AC /* TextColorScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EFFA12815309500C813AC /* TextColorScheme.xib */; };
 		3E6EFFA42815309500C813AC /* TextColorSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EFFA22815309500C813AC /* TextColorSchemeViewController.swift */; };
+		3E7181C12B6B08DD0006F66B /* TuneBrowserTabViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7181C02B6B08DD0006F66B /* TuneBrowserTabViewController+Actions.swift */; };
 		3E71FBEC2AE34B3C00AB6C18 /* LibraryImportedPlaylists.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E71FBEB2AE34B3C00AB6C18 /* LibraryImportedPlaylists.xib */; };
 		3E71FBEE2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E71FBED2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift */; };
 		3E752744267F32A60092BB89 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E752743267F32A60092BB89 /* RoundedImageView.swift */; };
@@ -1460,6 +1461,7 @@
 		3E6C66AA2B54825300AA0D81 /* LegacyUIPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyUIPersistentState.swift; sourceTree = "<group>"; };
 		3E6EFFA12815309500C813AC /* TextColorScheme.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextColorScheme.xib; sourceTree = "<group>"; };
 		3E6EFFA22815309500C813AC /* TextColorSchemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextColorSchemeViewController.swift; sourceTree = "<group>"; };
+		3E7181C02B6B08DD0006F66B /* TuneBrowserTabViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuneBrowserTabViewController+Actions.swift"; sourceTree = "<group>"; };
 		3E71FBEB2AE34B3C00AB6C18 /* LibraryImportedPlaylists.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryImportedPlaylists.xib; sourceTree = "<group>"; };
 		3E71FBED2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryImportedPlaylistsViewController.swift; sourceTree = "<group>"; };
 		3E752743267F32A60092BB89 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
@@ -2536,6 +2538,7 @@
 			children = (
 				3EB462D02847FEC6000E3F85 /* TuneBrowserTab.xib */,
 				3EB462CF2847FEC6000E3F85 /* TuneBrowserTabViewController.swift */,
+				3E7181C02B6B08DD0006F66B /* TuneBrowserTabViewController+Actions.swift */,
 				3EC530E2284B95A50036207C /* TuneBrowserTabViewController+DataSource.swift */,
 				3EB462D12847FEC6000E3F85 /* TuneBrowserTabViewController+ViewDelegate.swift */,
 				3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */,
@@ -5461,6 +5464,7 @@
 				3EFE3A8F27864898006F8B8C /* MetadataEntry.swift in Sources */,
 				3EFE3A3F27864898006F8B8C /* CommonFFMpegMetadataParser.swift in Sources */,
 				3E4322752687C96E009E8ADB /* ControlBarAppModeController.swift in Sources */,
+				3E7181C12B6B08DD0006F66B /* TuneBrowserTabViewController+Actions.swift in Sources */,
 				3EFE39CF27864897006F8B8C /* AudioDevicePersistentState.swift in Sources */,
 				3EFE39FB27864898006F8B8C /* RemoteCommandManager.swift in Sources */,
 				3E4322892687E303009E8ADB /* ControlBarPlaybackView.swift in Sources */,

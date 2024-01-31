@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -642,7 +642,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Crop selected playlist tracks" translatesAutoresizingMaskIntoConstraints="NO" id="sIK-Y1-OxT" userLabel="Crop" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="172" y="9" width="16.5" height="18"/>
+                    <rect key="frame" x="172" y="8.5" width="16.5" height="18"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="scissors" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ymo-FR-BIp">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -670,7 +670,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Clear the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="MaW-3c-jQ0" userLabel="Clear Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="225" y="13" width="12" height="11"/>
+                    <rect key="frame" x="225" y="12.5" width="12" height="13"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="square.slash" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="MhG-uc-Qbk">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -887,7 +887,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Shuffle" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UJI-2E-o7j" userLabel="Favorites Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="130" y="7" width="18" height="18"/>
+                                <rect key="frame" x="130" y="7.5" width="18" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="heart" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="FG9-9U-b0P">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1174,8 +1174,8 @@ Gw
         <image name="Sort" width="35" height="25"/>
         <image name="arrow.right.arrow.left" catalog="system" width="16" height="17"/>
         <image name="arrowtriangle.down" catalog="system" width="14" height="13"/>
-        <image name="arrowtriangle.left.fill.and.line.vertical.and.arrowtriangle.right.fill" catalog="system" width="22" height="16"/>
-        <image name="arrowtriangle.right.fill.and.line.vertical.and.arrowtriangle.left.fill" catalog="system" width="22" height="16"/>
+        <image name="arrowtriangle.left.fill.and.line.vertical.and.arrowtriangle.right.fill" catalog="system" width="21" height="16"/>
+        <image name="arrowtriangle.right.fill.and.line.vertical.and.arrowtriangle.left.fill" catalog="system" width="21" height="16"/>
         <image name="arrowtriangle.up" catalog="system" width="14" height="13"/>
         <image name="doc.text" catalog="system" width="14" height="16"/>
         <image name="heart" catalog="system" width="16" height="14"/>
@@ -1185,7 +1185,7 @@ Gw
         <image name="repeat" catalog="system" width="17" height="14"/>
         <image name="scissors" catalog="system" width="20" height="15"/>
         <image name="shuffle" catalog="system" width="18" height="14"/>
-        <image name="square.slash" catalog="system" width="15" height="15"/>
+        <image name="square.slash" catalog="system" width="15" height="17"/>
         <image name="trash" catalog="system" width="15" height="17"/>
         <image name="xmark.bin" catalog="system" width="19" height="14"/>
     </resources>

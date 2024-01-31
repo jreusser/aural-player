@@ -13,6 +13,7 @@
                 <outlet property="btnBack" destination="bwx-2C-Eg4" id="cNk-pH-qmO"/>
                 <outlet property="btnForward" destination="jmd-Wq-WNc" id="Ggv-tP-71e"/>
                 <outlet property="forwardHistoryMenu" destination="ftf-ek-twl" id="HWr-Tw-uzS"/>
+                <outlet property="imgHomeIcon" destination="EQv-NM-f1r" id="qSN-NV-ghT"/>
                 <outlet property="lblCaption" destination="7cL-0X-ZiE" id="pqy-0t-qqL"/>
                 <outlet property="pathControlWidget" destination="jTW-xB-lKp" id="pf4-wK-1gG"/>
                 <outlet property="rootContainer" destination="fke-7G-0dx" id="QGR-2V-3vK"/>
@@ -117,7 +118,7 @@
                             <constraint firstAttribute="width" constant="20" id="vax-9L-ZeO"/>
                         </constraints>
                     </popUpButton>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EQv-NM-f1r" userLabel="Home Icon">
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EQv-NM-f1r" userLabel="Home Icon" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="6" y="293.5" width="20.5" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="music.note.house" catalog="system" id="VqE-eC-F3O"/>

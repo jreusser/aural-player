@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -169,8 +169,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="700" height="32"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <outlineView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" autosaveColumns="NO" rowHeight="30" rowSizeStyle="automatic" headerView="eGL-lw-kpG" viewBased="YES" indentationPerLevel="16" outlineTableColumn="wQR-x7-Rh4" id="aWI-Z6-ODA" customClass="TuneBrowserOutlineView" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="700" height="10"/>
+                                <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowHeight="30" rowSizeStyle="automatic" headerView="eGL-lw-kpG" viewBased="YES" indentationPerLevel="16" outlineTableColumn="wQR-x7-Rh4" id="aWI-Z6-ODA" customClass="TuneBrowserOutlineView" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="700" height="32"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -193,7 +193,7 @@
                                                     <rect key="frame" x="11" y="1" width="677" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hxx-FN-Mfx">
+                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hxx-FN-Mfx" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
                                                             <rect key="frame" x="5" y="5" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="20" id="AuB-VQ-aP0"/>
@@ -579,7 +579,7 @@
                             </connections>
                         </tableHeaderView>
                     </scrollView>
-                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hmw-dW-XPU" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hmw-dW-XPU" userLabel="Folder summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="26" y="5" width="454" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="450" id="KFl-Fp-raM"/>
