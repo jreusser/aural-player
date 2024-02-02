@@ -49,10 +49,20 @@ class FontSchemesManager: UserManagedObjects<FontScheme> {
     func applyScheme(_ fontScheme: FontScheme) {
         
         schemeChanged = true
+        
         systemScheme.applyScheme(fontScheme)
+        systemSchemeChanged()
+        
         schemeChanged = false
         
         messenger.publish(.applyFontScheme, payload: systemScheme)
+    }
+    
+    private func systemSchemeChanged() {
+        
+        schemeObservers.values.forEach {
+            $0.fontSchemeChanged()
+        }
     }
     
     // State to be persisted to disk.

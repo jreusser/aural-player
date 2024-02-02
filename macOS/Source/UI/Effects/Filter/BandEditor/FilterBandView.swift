@@ -80,8 +80,8 @@ class FilterBandView: NSView {
         oneTimeSetup()
         updateFields()
         
-        applyFontScheme(systemFontScheme)
-        applyColorScheme(systemColorScheme)
+        fontSchemeChanged()
+        colorSchemeChanged()
     }
     
     private func oneTimeSetup() {
@@ -279,44 +279,44 @@ class FilterBandView: NSView {
     
     // MARK: Theming
     
-    func applyFontScheme(_ fontScheme: FontScheme) {
+    func fontSchemeChanged() {
         
-        functionCaptionLabels.forEach {$0.font = systemFontScheme.normalFont}
+        let smallFont = systemFontScheme.smallFont
         
-        filterTypeMenu.font = systemFontScheme.normalFont
+        functionCaptionLabels.forEach {$0.font = smallFont}
+        
+        filterTypeMenu.font = smallFont
         filterTypeMenu.redraw()
         
-        presetRangesMenu.font = systemFontScheme.normalFont
-        lblFrequencies.font = systemFontScheme.normalFont
+        presetRangesMenu.font = smallFont
+        lblFrequencies.font = smallFont
     }
     
-    func applyColorScheme(_ scheme: ColorScheme) {
-        
-        changeFunctionButtonColor()
-        changeTextButtonMenuColor()
-        changeFunctionCaptionTextColor(scheme.secondaryTextColor)
-        changeFunctionValueTextColor(scheme.primaryTextColor)
+    func colorSchemeChanged() {
+
+        buttonColorChanged(systemColorScheme.buttonColor)
+        primaryTextColorChanged(systemColorScheme.primaryTextColor)
+        secondaryTextColorChanged(systemColorScheme.secondaryTextColor)
         redrawSliders()
     }
     
-    func changeFunctionButtonColor() {
-//        [presetCutoffsIconMenuItem, presetRangesIconMenuItem].forEach {$0?.reTint()}
+    func buttonColorChanged(_ newColor: PlatformColor) {
+        [presetCutoffsIconMenuItem, presetRangesIconMenuItem].forEach {$0?.colorChanged(newColor)}
     }
 
-    func changeTextButtonMenuColor() {
-        filterTypeMenu.redraw()
+    func primaryTextColorChanged(_ newColor: PlatformColor) {
+        
+        if let popupMenuCell = filterTypeMenu.cell as? EffectsUnitPopupMenuCell {
+            
+            popupMenuCell.tintColor = systemColorScheme.primaryTextColor
+            filterTypeMenu.redraw()
+        }
+        
+        lblFrequencies.textColor = newColor
     }
     
-    func changeButtonMenuTextColor() {
-        filterTypeMenu.redraw()
-    }
-    
-    func changeFunctionCaptionTextColor(_ color: NSColor) {
-        functionCaptionLabels.forEach {$0.textColor = color}
-    }
-    
-    func changeFunctionValueTextColor(_ color: NSColor) {
-        lblFrequencies.textColor = color
+    func secondaryTextColorChanged(_ newColor: PlatformColor) {
+        functionCaptionLabels.forEach {$0.textColor = newColor}
     }
     
     func redrawSliders() {

@@ -14,7 +14,7 @@ class FilterBandEditorDialogController: NSWindowController {
     
     override var windowNibName: String? {"FilterBandEditorDialog"}
     
-    @IBOutlet weak var lblWindowCaption: NSTextField!
+    @IBOutlet weak var lblCaption: NSTextField!
     @IBOutlet weak var btnClose: NSButton!
     @IBOutlet weak var btnDone: NSButton!
     @IBOutlet weak var rootContainerBox: NSBox!
@@ -26,7 +26,7 @@ class FilterBandEditorDialogController: NSWindowController {
         
         didSet {
             bandView?.bandIndex = self.bandIndex
-            lblWindowCaption?.stringValue = "Filter Band# \(bandIndex + 1)"
+            lblCaption?.stringValue = "Filter Band# \(bandIndex + 1)"
         }
     }
     
@@ -35,19 +35,54 @@ class FilterBandEditorDialogController: NSWindowController {
         super.windowDidLoad()
         window?.isMovableByWindowBackground = true
         
-        lblWindowCaption.stringValue = "Filter Band# \(bandIndex + 1)"
+        lblCaption.stringValue = "Filter Band# \(bandIndex + 1)"
         bandView.initialize(band: filterUnit[bandIndex], at: bandIndex)
         
-        //fontSchemesManager.registerObserver(lblWindowCaption, forProperty: \.captionFont)
-        //fontSchemesManager.registerObservers([btnClose, btnDone], forProperty: \.smallFont)
+        fontSchemesManager.registerObserver(self)
         
-//        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
-//        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)
-//        colorSchemesManager.registerSchemeObserver(btnDone, forProperties: [\.buttonColor, \.primaryTextColor])
-//        colorSchemesManager.registerObserver(lblWindowCaption, forProperty: \.captionTextColor)
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainerBox)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, handler: buttonColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: bandView.secondaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
     }
     
     @IBAction func doneAction(_ sender: NSButton) {
         close()
+    }
+}
+
+extension FilterBandEditorDialogController: FontSchemeObserver {
+    
+    func fontSchemeChanged() {
+        
+        lblCaption.font = systemFontScheme.captionFont
+        btnDone.redraw()
+        bandView.fontSchemeChanged()
+    }
+}
+
+extension FilterBandEditorDialogController: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        
+        rootContainerBox.fillColor = systemColorScheme.backgroundColor
+        btnClose.contentTintColor = systemColorScheme.buttonColor
+        btnDone.redraw()
+        lblCaption.textColor = systemColorScheme.captionTextColor
+    }
+    
+    private func buttonColorChanged(_ newColor: PlatformColor) {
+        
+        btnClose.contentTintColor = newColor
+        btnDone.redraw()
+        bandView.buttonColorChanged(newColor)
+    }
+    
+    private func primaryTextColorChanged(_ newColor: PlatformColor) {
+        
+        btnDone.redraw()
+        bandView.primaryTextColorChanged(newColor)
     }
 }

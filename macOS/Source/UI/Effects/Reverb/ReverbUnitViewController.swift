@@ -65,6 +65,12 @@ class ReverbUnitViewController: EffectsUnitViewController {
         reverbUnitView.setAmount(reverbUnit.amount, amountString: reverbUnit.formattedAmount)
     }
     
+    override func fontSchemeChanged() {
+        
+        super.fontSchemeChanged()
+        reverbUnitView.redrawPopupMenu()
+    }
+    
     override func colorSchemeChanged() {
         
         super.colorSchemeChanged()

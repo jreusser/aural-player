@@ -9,11 +9,7 @@
 //
 import Cocoa
 
-class MasterUnitViewController: EffectsUnitViewController, FontSchemeObserver {
-    
-    func fontSchemeChanged() {
-        
-    }
+class MasterUnitViewController: EffectsUnitViewController {
     
     override var nibName: String? {"MasterUnit"}
     

@@ -75,6 +75,8 @@ class EffectsContainerViewController: NSViewController {
         // Initialize all sub-views
         initTabGroup()
         
+        fontSchemesManager.registerObserver(self)
+        
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceivers: [rootContainerBox] + tabViewButtons)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
@@ -82,8 +84,6 @@ class EffectsContainerViewController: NSViewController {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.inactiveControlColor, handler: inactiveControlColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.suppressedControlColor, handler: suppressedControlColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, handler: buttonColorChanged(_:))
-        
-        applyTheme()
         
         initSubscriptions()
     }
@@ -154,11 +154,7 @@ class EffectsContainerViewController: NSViewController {
     // MARK: Message handling
     
     private func initSubscriptions() {
-
         messenger.subscribe(to: .effects_showEffectsUnitTab, handler: showTab(_:))
-        
-        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
     }
 
     private func showTab(_ effectsUnitType: EffectsUnitType) {
@@ -185,23 +181,13 @@ class EffectsContainerViewController: NSViewController {
 
         }
     }
+}
+
+extension EffectsContainerViewController: FontSchemeObserver {
     
-    // ------------------------------------------------------------------------
-    
-    // MARK: Theming
-    
-    private func applyTheme() {
-        applyFontScheme(systemFontScheme)
+    func fontSchemeChanged() {
+        lblCaption.font = systemFontScheme.captionFont
     }
-    
-    private func applyFontScheme(_ scheme: FontScheme) {
-        lblCaption.font = scheme.captionFont
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        tabViewButtons[tabView.selectedIndex].redraw()
-    }
-    
 }
 
 extension EffectsContainerViewController: ColorSchemeObserver {

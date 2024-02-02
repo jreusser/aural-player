@@ -39,6 +39,11 @@ class ModalDialogButtonCell: NSButtonCell {
     }
 }
 
+class FilterBandEditorDialogButtonCell: ModalDialogButtonCell {
+    
+    override var textFont: NSFont {systemFontScheme.smallFont}
+}
+
 // Cell for all response buttons (Save/Cancel, etc)
 class ModalDialogResponseButtonCell: ModalDialogButtonCell {
     

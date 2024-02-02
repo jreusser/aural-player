@@ -37,7 +37,6 @@ class ChaptersListWindowController: NSWindowController, ModalComponentProtocol {
         
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
         messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
-//        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
     }
     

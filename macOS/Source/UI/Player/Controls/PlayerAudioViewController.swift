@@ -12,7 +12,7 @@ import Cocoa
 /*
     View controller for player volume and pan
  */
-class PlayerAudioViewController: NSViewController, ColorSchemeObserver {
+class PlayerAudioViewController: NSViewController, FontSchemeObserver, ColorSchemeObserver {
     
     // Volume/pan controls
     @IBOutlet weak var btnVolume: NSButton!
@@ -53,7 +53,7 @@ class PlayerAudioViewController: NSViewController, ColorSchemeObserver {
     
     func setUpColorAndFontObservation() {
         
-        //fontSchemesManager.registerObserver(lblVolume, forProperty: \.smallFont)
+        fontSchemesManager.registerObserver(self)
         
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: btnVolume)
@@ -163,6 +163,10 @@ class PlayerAudioViewController: NSViewController, ColorSchemeObserver {
     
     func applyTheme() {
         colorSchemeChanged()
+    }
+    
+    func fontSchemeChanged() {
+        lblVolume.font = systemFontScheme.smallFont
     }
     
     func colorSchemeChanged() {

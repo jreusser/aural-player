@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class FilterChart: NSView, ColorSchemeObserver {
+class FilterChart: NSView {
 
     var bandsDataFunction: (() -> [FilterBand]) = {[]}
     var filterUnit: FilterUnitDelegateProtocol = audioGraphDelegate.filterUnit
@@ -22,26 +22,14 @@ class FilterChart: NSView, ColorSchemeObserver {
     private let bottomMargin: CGFloat = 0
     private let lineWidth: CGFloat = 2
     
-//    private let xMarks: [CGFloat] = [31, 63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000]
-    
     private lazy var messenger: Messenger = Messenger(for: self)
     
     override func awakeFromNib() {
         
         super.awakeFromNib()
         
-//        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor])
-        
         messenger.subscribe(to: .filterUnit_bandUpdated, handler: redraw)
         messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: redraw)
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        redraw()
-    }
-    
-    func colorSchemeChanged() {
-        redraw()
     }
     
     override func draw(_ dirtyRect: NSRect) {
@@ -108,34 +96,5 @@ class FilterChart: NSView, ColorSchemeObserver {
                 GraphicsUtils.drawLine(systemColorScheme.activeControlColor, pt1: NSPoint(x: rx, y: bottomMargin), pt2: NSPoint(x: rx, y: bottomMargin + height), width: lineWidth)
             }
         }
-//
-//        // Draw X-axis markings
-//
-//        for y in xMarks {
-//
-//            let x = log10(y/2) - 1
-//            let sx = offset + x * scale
-//
-//            let intY: Int = Int(y)
-//
-//            let text: String
-//            if intY % 1000 == 0 {
-//                text = String(format: "%dk", intY / 1000)
-//            } else {
-//                text = String(describing: intY)
-//            }
-//
-//            let tw = text.size(withFont: textFont).width
-//            let tx = offset + (x * scale) - (tw / 2)
-//
-//            let trect = NSRect(x: tx, y: bottomMargin + height / 2 + 2, width: tw + 10, height: 15)
-//            text.draw(in: trect, withFont: textFont, andColor: textColor)
-//
-//            if (sx != offset && sx != offset + width) {
-//
-//                GraphicsUtils.drawLine(.gray, pt1: NSPoint(x: sx, y: bottomMargin + height / 2), pt2:
-//                                        NSPoint(x: sx, y: bottomMargin + height / 2 + 5), width: 1.5)
-//            }
-//        }
     }
 }

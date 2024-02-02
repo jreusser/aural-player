@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -11,7 +11,7 @@
                 <outlet property="bandView" destination="dvQ-2f-jgw" id="QcX-bk-vFu"/>
                 <outlet property="btnClose" destination="jdQ-BP-83d" id="O5F-5v-ahc"/>
                 <outlet property="btnDone" destination="JYX-WF-MMo" id="c6x-2w-es7"/>
-                <outlet property="lblWindowCaption" destination="7nl-w7-QLS" id="wFX-Rz-QhE"/>
+                <outlet property="lblCaption" destination="7nl-w7-QLS" id="wFX-Rz-QhE"/>
                 <outlet property="rootContainerBox" destination="Ryl-fE-3Ks" id="Cu2-bj-c1b"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="P8h-MC-axk"/>
             </connections>
@@ -22,7 +22,7 @@
             <windowStyleMask key="styleMask" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="500" height="155"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1728" height="1079"/>
             <value key="minSize" type="size" width="500" height="155"/>
             <value key="maxSize" type="size" width="500" height="155"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
@@ -42,7 +42,7 @@
                         <rect key="frame" x="0.0" y="20" width="500" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dSa-h4-V2e" userLabel="Bass 20" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dSa-h4-V2e" userLabel="Bass 20" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="47" y="21" width="26" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="20" id="kvQ-qc-JRW">
@@ -51,7 +51,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zfh-Uw-rT2" userLabel="Treble 20K" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zfh-Uw-rT2" userLabel="Treble 20K" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="448" y="21" width="35" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="20K" id="5Es-VU-w9v">
@@ -60,7 +60,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CUM-cB-VRz" userLabel="Lbl Treble Range" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CUM-cB-VRz" userLabel="Lbl Treble Range" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="143" y="5" width="236" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="Ozu-gg-Kl0">
@@ -69,7 +69,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dJy-oF-k9o" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dJy-oF-k9o" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="56" width="50" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Type" id="7Yc-g9-Wwb">
@@ -108,7 +108,7 @@
                                     <action selector="bandTypeAction:" target="Mmf-yg-zcv" id="xYT-M2-omD"/>
                                 </connections>
                             </popUpButton>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ye2-Vr-Aow" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ye2-Vr-Aow" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="21" width="50" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Cutoff" id="CJf-v1-ead">
@@ -117,7 +117,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="th2-6U-MIw" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="th2-6U-MIw" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="21" width="50" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Band" id="JgM-xD-4NU">
@@ -355,7 +355,7 @@
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JYX-WF-MMo" userLabel="Done button">
                         <rect key="frame" x="428" y="9" width="55" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SYl-ma-4EQ" customClass="ModalDialogButtonCell" customModule="Aural" customModuleProvider="target">
+                        <buttonCell key="cell" type="roundRect" title="Done" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SYl-ma-4EQ" customClass="FilterBandEditorDialogButtonCell" customModule="Aural" customModuleProvider="target">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="cellTitle"/>
                             <string key="keyEquivalent" base64-UTF8="YES">
@@ -366,7 +366,7 @@ Gw
                             <action selector="doneAction:" target="-2" id="mGA-cJ-Ysu"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7nl-w7-QLS" userLabel="Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7nl-w7-QLS" userLabel="Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="34" y="126" width="297" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" title="Filter  band# 1" id="Eae-b7-lnk">

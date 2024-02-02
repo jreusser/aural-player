@@ -12,12 +12,8 @@ import Cocoa
 /*
     View controller for the Filter effects unit
  */
-class FilterUnitViewController: EffectsUnitViewController, FontSchemeObserver {
+class FilterUnitViewController: EffectsUnitViewController {
     
-    func fontSchemeChanged() {
-        
-    }
-
     override var nibName: String? {"FilterUnit"}
     
     // ------------------------------------------------------------------------
@@ -196,6 +192,7 @@ class FilterUnitViewController: EffectsUnitViewController, FontSchemeObserver {
         //fontSchemesManager.registerObservers([self, lblSummary], forProperty: \.smallFont)
         
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, handler: buttonColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.primarySelectedTextColor, handler: primarySelectedTextColorChanged(_:))
@@ -222,7 +219,9 @@ class FilterUnitViewController: EffectsUnitViewController, FontSchemeObserver {
     
     // MARK: Theming
     
-    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+    override func fontSchemeChanged() {
+        
+        super.fontSchemeChanged()
         bandsTableView.reloadAllRows(columns: [0, 2, 3])
     }
     
@@ -230,12 +229,24 @@ class FilterUnitViewController: EffectsUnitViewController, FontSchemeObserver {
         
         super.colorSchemeChanged()
         
+        buttonColorChanged(systemColorScheme.buttonColor)
+        lblSummary.textColor = systemColorScheme.secondaryTextColor
+        
         bandsTableView.setBackgroundColor(systemColorScheme.backgroundColor)
-        bandsTableView.reloadData()
+        bandsTableView.reloadDataMaintainingSelection()
+        
+        filterUnitView.redrawChart()
     }
     
     private func backgroundColorChanged(_ newColor: PlatformColor) {
         bandsTableView.setBackgroundColor(newColor)
+    }
+    
+    private func buttonColorChanged(_ newColor: PlatformColor) {
+        
+        // Edit buttons
+        bandsTableView.reloadAllRows(columns: [4])
+        addButtonMenuIcon.colorChanged(newColor)
     }
     
     private func primaryTextColorChanged(_ newColor: PlatformColor) {

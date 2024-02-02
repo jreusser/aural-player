@@ -22,8 +22,5 @@ class WindowedModePlayerAudioViewController: PlayerAudioViewController {
         messenger.subscribe(to: .player_increaseVolume, handler: increaseVolume(_:))
         
         messenger.subscribe(to: .applyTheme, handler: applyTheme)
-//        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
-//        messenger.subscribe(to: .player_changeSliderColors, handler: changeSliderColors)
-//        messenger.subscribe(to: .player_changeSliderValueTextColor, handler: changeSliderValueTextColor(_:))
     }
 }

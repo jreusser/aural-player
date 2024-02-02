@@ -110,7 +110,7 @@ extension FilterUnitViewController: NSTableViewDataSource, NSTableViewDelegate {
         guard let cell = tableView.makeView(withIdentifier: id, owner: nil) as? BasicTableCellView else {return nil}
         
         cell.text = text
-        cell.textFont = systemFontScheme.normalFont
+        cell.textFont = systemFontScheme.smallFont
         cell.unselectedTextColor = isPrimaryText ? systemColorScheme.primaryTextColor : systemColorScheme.secondaryTextColor
         cell.selectedTextColor = isPrimaryText ? systemColorScheme.primarySelectedTextColor : systemColorScheme.secondarySelectedTextColor
         cell.rowSelectionStateFunction = {[weak tableView] in tableView?.isRowSelected(row) ?? false}
@@ -121,7 +121,8 @@ extension FilterUnitViewController: NSTableViewDataSource, NSTableViewDelegate {
     private func createEditCell(_ tableView: NSTableView, _ id: NSUserInterfaceItemIdentifier, _ row: Int) -> FilterBandEditCellView? {
         
         guard let cell = tableView.makeView(withIdentifier: id, owner: nil) as? FilterBandEditCellView else {return nil}
-//        colorSchemesManager.registerObserver(cell.btnEdit, forProperty: \.buttonColor)
+        
+        cell.btnEdit.contentTintColor = systemColorScheme.buttonColor
         
         cell.action = {[weak self] in
             self?.bandEditors[row].showWindow()

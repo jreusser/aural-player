@@ -1,4 +1,3 @@
-//
 //  PlayingTrackTextView.swift
 //  Aural
 //
@@ -14,7 +13,7 @@ import Cocoa
     Dynamically updates itself based on view settings to show either a single line or multiple
     lines of information.
  */
-class PlayingTrackTextView: NSView, FontSchemeObserver {
+class PlayingTrackTextView: NSView {
     
     // The text view that displays all the track info
     @IBOutlet weak var textView: NSTextView!
@@ -131,7 +130,7 @@ class PlayingTrackTextView: NSView, FontSchemeObserver {
     }
     
     // Constructs the formatted "rich" text to be displayed in the text view
-    func update(file: String = #file, line: Int = #line, function: String = #function) {
+    func update() {
         
         // First, clear the view to remove any old text
         textView.string = ""
@@ -248,55 +247,6 @@ class PlayingTrackTextView: NSView, FontSchemeObserver {
         attributes[.paragraphStyle] = style
         
         return NSAttributedString(string: str, attributes: attributes)
-    }
-    
-    // ------------------------------------------------------------------------------------------------------
-    
-    // MARK: Appearance observer functions
-    
-    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
-        update()
-    }
-    
-    func fontSchemeChanged() {
-        update()
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        
-        if property == \.backgroundColor {
-            backgroundColor = newColor
-            
-        } else {
-            update()
-        }
-    }
-}
-
-@IBDesignable
-class CompactPlayingTrackTextView: PlayingTrackTextView {
-    
-    @IBOutlet weak var backingBox: NSBox!
-    
-    override var backgroundColor: NSColor {
-        
-        get {
-            backingBox.fillColor.clonedWithTransparency(1)
-        }
-        
-        set(newColor) {
-            
-            let semiTransparentColor = newColor.clonedWithTransparency(0.9)
-            backingBox.fillColor = semiTransparentColor
-            
-//            clipView.enclosingScrollView?.backgroundColor = semiTransparentColor
-//            clipView.backgroundColor = semiTransparentColor
-//            textView.backgroundColor = semiTransparentColor
-        }
-    }
-    
-    override var horizontalAlignment: NSTextAlignment? {
-        .center
     }
 }
 

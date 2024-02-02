@@ -67,12 +67,6 @@ class PlayerViewController: NSViewController {
         messenger.subscribe(to: .player_showOrHideAlbum, handler: infoView.showOrHideAlbum)
         messenger.subscribe(to: .player_showOrHideCurrentChapter, handler: infoView.showOrHideCurrentChapter)
         messenger.subscribe(to: .player_showOrHideMainControls, handler: infoView.showOrHideMainControls)
-        
-//        messenger.subscribe(to: .changeBackgroundColor, handler: infoView.changeBackgroundColor(_:))
-        
-//        messenger.subscribe(to: .player_changeTrackInfoPrimaryTextColor, handler: infoView.changePrimaryTextColor(_:))
-//        messenger.subscribe(to: .player_changeTrackInfoSecondaryTextColor, handler: infoView.changeSecondaryTextColor(_:))
-//        messenger.subscribe(to: .player_changeTrackInfoTertiaryTextColor, handler: infoView.changeTertiaryTextColor(_:))
     }
     
     override func destroy() {

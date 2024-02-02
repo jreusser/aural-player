@@ -9,7 +9,7 @@
 //
 import Cocoa
 
-class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
+class EffectsUnitViewController: NSViewController, FontSchemeObserver, ColorSchemeObserver {
     
     // ------------------------------------------------------------------------
     
@@ -166,7 +166,7 @@ class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
                                 unitType.equalsOneOf(self?.unitType, .master)
                             })
         
-//        messenger.subscribe(to: .effects_changeSliderColors, handler: changeSliderColors)
+        fontSchemesManager.registerObserver(self)
         
         colorSchemesManager.registerSchemeObserver(self)
         
@@ -182,18 +182,6 @@ class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
         sliders.forEach {
             fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: effectsUnit)
         }
-        
-        //fontSchemesManager.registerObservers(functionLabels, forProperty: \.normalFont)
-        
-//        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
-//        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
-//
-//        messenger.subscribe(to: .effects_changeFunctionCaptionTextColor, handler: changeFunctionCaptionTextColor(_:))
-//        messenger.subscribe(to: .effects_changeFunctionValueTextColor, handler: changeFunctionValueTextColor(_:))
-//
-//        messenger.subscribe(to: .effects_changeActiveUnitStateColor, handler: changeActiveUnitStateColor(_:))
-//        messenger.subscribe(to: .effects_changeBypassedUnitStateColor, handler: changeBypassedUnitStateColor(_:))
-//        messenger.subscribe(to: .effects_changeSuppressedUnitStateColor, handler: changeSuppressedUnitStateColor(_:))
     }
     
     func stateChanged() {}
@@ -206,10 +194,10 @@ class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
         messenger.publish(.effects_showEffectsUnitTab, payload: unitType)
     }
     
-    private func redrawSliders() {
+    func fontSchemeChanged() {
         
-        sliders.forEach {
-            $0.redraw()
+        (functionLabels + functionValueLabels).forEach {
+            $0.font = systemFontScheme.smallFont
         }
     }
     
@@ -256,6 +244,13 @@ class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
         
         btnBypass.contentTintColor = newColor
         redrawSliders()
+    }
+    
+    func redrawSliders() {
+        
+        sliders.forEach {
+            $0.redraw()
+        }
     }
 }
 

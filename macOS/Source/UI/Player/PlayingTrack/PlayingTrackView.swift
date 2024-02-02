@@ -13,7 +13,7 @@ import Cocoa
  A container view for the 2 types of player views - Default / Expanded Art view.
  Switches between the 2 views, shows/hides individual UI components, and handles functions such as auto-hide.
  */
-class PlayingTrackView: MouseTrackingView, ColorSchemeObserver {
+class PlayingTrackView: MouseTrackingView, FontSchemeObserver, ColorSchemeObserver {
     
     private lazy var uiState: PlayerUIState = playerUIState
     
@@ -63,7 +63,7 @@ class PlayingTrackView: MouseTrackingView, ColorSchemeObserver {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: functionsMenuItem)
 
-//        //fontSchemesManager.registerSchemeObserver(textView, forProperties: [\.prominentFont, \.normalFont, \.smallFont])
+        fontSchemesManager.registerObserver(self)
     }
     
     var trackInfo: PlayingTrackInfo? {
@@ -210,9 +210,19 @@ class PlayingTrackView: MouseTrackingView, ColorSchemeObserver {
     func colorSchemeChanged() {
         
         infoBox.fillColor = systemColorScheme.backgroundColor
-        textView.backgroundColor = systemColorScheme.backgroundColor
         functionsMenuItem.colorChanged(systemColorScheme.buttonColor)
+        
+        textView.backgroundColor = systemColorScheme.backgroundColor
         textView.update()
-        artUpdated()
+        
+        if trackInfo?.art == nil {
+            artView.contentTintColor = systemColorScheme.secondaryTextColor
+        }
+    }
+    
+    func fontSchemeChanged() {
+        
+        lblTrackTime.font = systemFontScheme.normalFont
+        textView.update()
     }
 }

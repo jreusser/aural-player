@@ -19,7 +19,7 @@ class FilterUnitView: NSView {
     
     @IBOutlet weak var bandsTable: NSTableView!
     
-    @IBOutlet weak var btnAdd: NSButton!
+    @IBOutlet weak var btnAdd: NSPopUpButton!
     @IBOutlet weak var btnRemove: NSButton!
     
     // ------------------------------------------------------------------------
@@ -50,13 +50,11 @@ class FilterUnitView: NSView {
     
     func addBand(_ bandView: FilterBandView, selectNewTab: Bool) {
         
-        
         redrawChart()
         updateCRUDButtonStates()
     }
     
     func removeSelectedBand() {
-        
             
         redrawChart()
         updateCRUDButtonStates()
@@ -74,10 +72,10 @@ class FilterUnitView: NSView {
     
     private func updateCRUDButtonStates() {
         
-//        btnAdd.isEnabled = numTabs < maxNumBands
-//        btnRemove.isEnabled = numTabs > 0
+        let numberOfBands = filterUnit.numberOfBands
         
-        [btnAdd, btnRemove].forEach {$0?.redraw()}
+        btnAdd.isEnabled = numberOfBands < maxNumBands
+        btnRemove.isEnabled = numberOfBands > 0
     }
     
     func redrawChart() {

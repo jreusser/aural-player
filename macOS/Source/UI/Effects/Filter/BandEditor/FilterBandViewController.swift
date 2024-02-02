@@ -30,10 +30,22 @@ class FilterBandViewController: NSViewController {
     
     var band: FilterBand {bandView.band}
     
+    // TODO:
+//    var bandState: EffectsUnitState {}
+    
     private lazy var messenger: Messenger = Messenger(for: self)
     
     private func initialize(band: FilterBand, at index: Int, withButtonAction action: Selector, andTarget target: AnyObject) {
         bandView.initialize(band: band, at: index)
+    }
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor, \.suppressedControlColor],
+                                                     handler: unitStateColorChanged(_:))
     }
     
     // ------------------------------------------------------------------------
@@ -71,6 +83,17 @@ class FilterBandViewController: NSViewController {
             bandView.setCutoffFrequency(Float(selectedItem.tag))
             messenger.publish(.filterUnit_bandUpdated, payload: bandView.bandIndex)
         }
+    }
+}
+
+extension FilterBandViewController: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        bandView.colorSchemeChanged()
+    }
+    
+    func unitStateColorChanged(_ newColor: PlatformColor) {
+        bandView.redrawSliders()
     }
 }
 
