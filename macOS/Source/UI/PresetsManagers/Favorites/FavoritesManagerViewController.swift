@@ -34,7 +34,7 @@ class FavoritesManagerViewController: NSViewController {
         tabGroup.tabViewItem(at: 0).view?.addSubview(tracksViewController.view)
         tracksViewController.view.anchorToSuperview()
         
-//        fontSchemesManager.registerObserver(selectedTabCaption, forProperty: \.captionFont)
+//        //fontSchemesManager.registerObserver(selectedTabCaption, forProperty: \.captionFont)
 //        colorSchemesManager.registerObserver(selectedTabCaption, forProperties: [\.captionTextColor])
 //        colorSchemesManager.registerObservers([containerBox, tabButtonsBox], forProperties: [\.backgroundColor])
         

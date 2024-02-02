@@ -104,16 +104,16 @@ extension NSButton: ColorSchemePropertyChangeReceiver {
     }
 }
 
-extension NSButton: FontSchemePropertyObserver {
-    
-    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
-        redraw()
-    }
-}
+//extension NSButton: FontSchemeObserver {
+//    
+//    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+//        redraw()
+//    }
+//}
 
-extension NSButton: FontSchemeObserver {
-    
-    func fontSchemeChanged() {
-        redraw()
-    }
-}
+//extension NSButton: FontSchemeObserver {
+//    
+//    func fontSchemeChanged() {
+//        redraw()
+//    }
+//}

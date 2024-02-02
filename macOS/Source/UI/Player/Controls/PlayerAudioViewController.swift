@@ -53,7 +53,7 @@ class PlayerAudioViewController: NSViewController, ColorSchemeObserver {
     
     func setUpColorAndFontObservation() {
         
-        fontSchemesManager.registerObserver(lblVolume, forProperty: \.smallFont)
+        //fontSchemesManager.registerObserver(lblVolume, forProperty: \.smallFont)
         
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: btnVolume)

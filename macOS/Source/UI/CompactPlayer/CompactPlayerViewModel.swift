@@ -68,7 +68,7 @@ class CompactPlayerViewModel: NSObject, ObservableObject {
         colorSchemeChanged()
         
 //        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.buttonColor, \.activeControlColor, \.inactiveControlColor])
-        fontSchemesManager.registerObserver(self, forProperties: [\.prominentFont, \.normalFont])
+//        //fontSchemesManager.registerObserver(self, forProperties: [\.prominentFont, \.normalFont])
         
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
         messenger.subscribeAsync(to: .player_playbackStateChanged) {[weak self] in

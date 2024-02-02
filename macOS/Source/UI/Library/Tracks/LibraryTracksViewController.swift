@@ -47,8 +47,8 @@ class LibraryTracksViewController: TrackListTableViewController {
         colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor], handler: tableSelectedTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
 //
-//        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-//        fontSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.normalFont)
+//        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+//        //fontSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.normalFont)
         
         messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
         messenger.subscribeAsync(to: .library_tracksRemoved, handler: tracksRemoved(_:))

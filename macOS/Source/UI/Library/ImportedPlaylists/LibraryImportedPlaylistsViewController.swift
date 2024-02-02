@@ -34,10 +34,10 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
         
 //        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
 //        
-//        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+//        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
 //        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
 //        
-//        fontSchemesManager.registerObservers([lblPlaylistsSummary, lblDurationSummary], forProperty: \.normalFont)
+//        //fontSchemesManager.registerObservers([lblPlaylistsSummary, lblDurationSummary], forProperty: \.normalFont)
 //        colorSchemesManager.registerObservers([lblPlaylistsSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
 //        
 //        colorSchemesManager.registerObserver(outlineView, forProperty: \.backgroundColor)

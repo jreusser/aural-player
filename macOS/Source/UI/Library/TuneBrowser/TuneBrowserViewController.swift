@@ -50,7 +50,7 @@ class TuneBrowserViewController: NSViewController {
 //        colorSchemesManager.registerObservers([rootContainer, pathControlWidget], forProperty: \.backgroundColor)
 //        colorSchemesManager.registerObservers([btnBack, btnForward], forProperty: \.buttonColor)
 //        
-//        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+//        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
 //        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
     }
     

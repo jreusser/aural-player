@@ -93,9 +93,9 @@ class FilterBandView: NSView {
         fxUnitStateObserverRegistry.registerObserver(freqRangeSlider, forFXUnit: filterUnit)
         fxUnitStateObserverRegistry.registerObserver(cutoffSlider, forFXUnit: filterUnit)
         
-        fontSchemesManager.registerObservers([lblFilterTypeCaption, lblRangeCaption, lblCutoffCaption, lblFrequencies, lbl20Hz, lbl20KHz], forProperty: \.normalFont)
+        //fontSchemesManager.registerObservers([lblFilterTypeCaption, lblRangeCaption, lblCutoffCaption, lblFrequencies, lbl20Hz, lbl20KHz], forProperty: \.normalFont)
         
-        fontSchemesManager.registerObserver(filterTypeMenu, forProperty: \.normalFont)
+        //fontSchemesManager.registerObserver(filterTypeMenu, forProperty: \.normalFont)
         
 //        colorSchemesManager.registerObservers([lblFilterTypeCaption, lblRangeCaption, lblCutoffCaption, lbl20Hz, lbl20KHz], forProperty: \.secondaryTextColor)
 //        colorSchemesManager.registerObserver(lblFrequencies, forProperty: \.primaryTextColor)

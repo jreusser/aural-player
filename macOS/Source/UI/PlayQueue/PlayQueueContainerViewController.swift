@@ -10,7 +10,11 @@
 
 import Cocoa
 
-class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObserver, ColorSchemeObserver {
+class PlayQueueContainerViewController: NSViewController, FontSchemeObserver, ColorSchemeObserver {
+    
+    func fontSchemeChanged() {
+        
+    }
     
     override var nibName: String? {"PlayQueueContainer"}
     
@@ -71,8 +75,8 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
         
         doSelectTab(at: playQueueUIState.currentView.rawValue)
         
-        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-        fontSchemesManager.registerObserver(self, forProperty: \.normalFont)
+        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+        //fontSchemesManager.registerObserver(self, forProperty: \.normalFont)
         
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperties: [\.buttonColor, \.inactiveControlColor], changeReceivers: buttonColorChangeReceivers)

@@ -85,8 +85,6 @@ class AppModeManager {
         }
         
         currentMode = newMode
-        
-        fontSchemesManager.startObserving()
     }
     
     private func dismissCurrentMode() {

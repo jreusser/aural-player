@@ -105,7 +105,7 @@ class LibraryWindowController: NSWindowController {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: btnClose)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
         
-        //        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+        //        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
         
         applyTheme()
         

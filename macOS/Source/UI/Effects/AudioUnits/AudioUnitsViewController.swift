@@ -13,7 +13,11 @@ import AVFoundation
 /*
     View controller for the Audio Units view.
  */
-class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, FontSchemePropertyObserver {
+class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, FontSchemeObserver {
+    
+    func fontSchemeChanged() {
+        
+    }
     
     override var nibName: String? {"AudioUnits"}
     
@@ -48,7 +52,7 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, F
     
     override func viewDidLoad() {
         
-        fontSchemesManager.registerObserver(self, forProperty: \.normalFont)
+        //fontSchemesManager.registerObserver(self, forProperty: \.normalFont)
 
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))

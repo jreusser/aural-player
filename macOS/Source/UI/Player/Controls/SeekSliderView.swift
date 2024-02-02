@@ -52,7 +52,7 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
         trackChanged(player.playbackLoop, player.playingTrack)
         
         colorSchemesManager.registerPropertyObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor], changeReceiver: seekSlider)
-//        fontSchemesManager.registerObserver(lblTrackTime, forProperty: \.normalFont)
+//        //fontSchemesManager.registerObserver(lblTrackTime, forProperty: \.normalFont)
     }
     
     func destroy() {

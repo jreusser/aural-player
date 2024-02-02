@@ -38,8 +38,8 @@ class FilterBandEditorDialogController: NSWindowController {
         lblWindowCaption.stringValue = "Filter Band# \(bandIndex + 1)"
         bandView.initialize(band: filterUnit[bandIndex], at: bandIndex)
         
-        fontSchemesManager.registerObserver(lblWindowCaption, forProperty: \.captionFont)
-        fontSchemesManager.registerObservers([btnClose, btnDone], forProperty: \.smallFont)
+        //fontSchemesManager.registerObserver(lblWindowCaption, forProperty: \.captionFont)
+        //fontSchemesManager.registerObservers([btnClose, btnDone], forProperty: \.smallFont)
         
 //        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
 //        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)

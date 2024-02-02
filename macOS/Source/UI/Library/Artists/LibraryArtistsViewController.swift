@@ -48,8 +48,8 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
         colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor], handler: tableSelectedTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
         
-//        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-//        fontSchemesManager.registerObservers([lblArtistsSummary, lblDurationSummary], forProperty: \.normalFont)
+//        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+//        //fontSchemesManager.registerObservers([lblArtistsSummary, lblDurationSummary], forProperty: \.normalFont)
         
         updateSummary()
     }

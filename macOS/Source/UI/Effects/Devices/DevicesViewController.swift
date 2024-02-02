@@ -10,7 +10,12 @@
 
 import Cocoa
 
-class DevicesViewController: NSViewController, FontSchemePropertyObserver, ColorSchemeObserver {
+class DevicesViewController: NSViewController, FontSchemeObserver, ColorSchemeObserver {
+    
+    func fontSchemeChanged() {
+        
+    }
+    
     
     override var nibName: String? {"Devices"}
     
@@ -42,8 +47,8 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
         panSlider.floatValue = audioGraph.pan
         lblPan.stringValue = audioGraph.formattedPan
         
-        fontSchemesManager.registerObserver(self, forProperty: \.normalFont)
-        fontSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight, lblPan], forProperty: \.normalFont)
+        //fontSchemesManager.registerObserver(self, forProperty: \.normalFont)
+        //fontSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight, lblPan], forProperty: \.normalFont)
 
 //        colorSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight], forProperty: \.secondaryTextColor)
 //        colorSchemesManager.registerObserver(lblPan, forProperty: \.primaryTextColor)

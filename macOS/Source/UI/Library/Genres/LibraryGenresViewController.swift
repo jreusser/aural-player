@@ -41,10 +41,10 @@ class LibraryGenresViewController: TrackListOutlineViewController {
         
 //        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
 //        
-//        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+//        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
 //        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
 //        
-//        fontSchemesManager.registerObservers([lblGenresSummary, lblDurationSummary], forProperty: \.normalFont)
+//        //fontSchemesManager.registerObservers([lblGenresSummary, lblDurationSummary], forProperty: \.normalFont)
 //        colorSchemesManager.registerObservers([lblGenresSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
         
         updateSummary()

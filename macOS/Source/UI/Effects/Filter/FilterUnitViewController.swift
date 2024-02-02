@@ -12,7 +12,11 @@ import Cocoa
 /*
     View controller for the Filter effects unit
  */
-class FilterUnitViewController: EffectsUnitViewController, FontSchemePropertyObserver {
+class FilterUnitViewController: EffectsUnitViewController, FontSchemeObserver {
+    
+    func fontSchemeChanged() {
+        
+    }
 
     override var nibName: String? {"FilterUnit"}
     
@@ -189,7 +193,7 @@ class FilterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
         
         messenger.subscribe(to: .filterUnit_bandUpdated, handler: bandUpdated(_:))
         
-        fontSchemesManager.registerObservers([self, lblSummary], forProperty: \.smallFont)
+        //fontSchemesManager.registerObservers([self, lblSummary], forProperty: \.smallFont)
         
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))

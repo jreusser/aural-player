@@ -16,18 +16,9 @@ class FontSchemesManager: UserManagedObjects<FontScheme> {
     
     private lazy var messenger = Messenger(for: self)
     
-    var propertyObservers: [KeyPath<FontScheme, PlatformFont>: [FontSchemePropertyObserver]] = [:]
-    var schemeAndPropertyObservers: [KeyPath<FontScheme, PlatformFont>: [FontSchemeObserver]] = [:]
-    
-    var schemeObservers: [FontSchemeObserver] = []
-    
-    var reverseRegistry: [NSObject: KeyPath<FontScheme, PlatformFont>] = [:]
-    
-    var propertyKVO: KVOTokens<FontScheme, PlatformFont> = KVOTokens()
-    var schemeKVO: KVOTokens<FontScheme, PlatformFont> = KVOTokens()
+    var schemeObservers: [Int: FontSchemeObserver] = [:]
     
     var isObserving: Bool = false
-    
     var schemeChanged: Bool = false
     
     init(persistentState: FontSchemesPersistentState?) {

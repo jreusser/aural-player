@@ -82,7 +82,7 @@ class AudioUnitEditorDialogController: NSWindowController {
         initFactoryPresets()
         initUserPresets()
         
-        fontSchemesManager.registerObserver(lblTitle, forProperty: \.captionFont)
+//        //fontSchemesManager.registerObserver(lblTitle, forProperty: \.captionFont)
         
 //        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
 //        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)

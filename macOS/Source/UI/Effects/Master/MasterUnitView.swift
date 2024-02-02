@@ -78,7 +78,7 @@ class MasterUnitView: NSView {
             fxUnitStateObserverRegistry.registerAUObserver($0)
         }
         
-        fontSchemesManager.registerObservers(labels, forProperty: \.captionFont)
+        //fontSchemesManager.registerObservers(labels, forProperty: \.captionFont)
     }
     
     func applyPreset(_ preset: MasterPreset) {

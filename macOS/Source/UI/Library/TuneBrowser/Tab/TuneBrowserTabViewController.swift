@@ -60,7 +60,7 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
 //        colorSchemesManager.registerObserver(browserView, forProperty: \.backgroundColor)
 //        colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
         
-//        fontSchemesManager.registerObserver(lblSummary, forProperty: \.normalFont)
+//        //fontSchemesManager.registerObserver(lblSummary, forProperty: \.normalFont)
         
 //        restoreDisplayedColumns()
     }

@@ -41,10 +41,10 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
         
 //        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
 //        
-//        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
+//        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
 //        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
 //        
-//        fontSchemesManager.registerObservers([lblDecadesSummary, lblDurationSummary], forProperty: \.normalFont)
+//        //fontSchemesManager.registerObservers([lblDecadesSummary, lblDurationSummary], forProperty: \.normalFont)
 //        colorSchemesManager.registerObservers([lblDecadesSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
         
         updateSummary()

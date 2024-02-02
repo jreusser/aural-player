@@ -183,7 +183,7 @@ class EffectsUnitViewController: NSViewController, ColorSchemeObserver {
             fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: effectsUnit)
         }
         
-        fontSchemesManager.registerObservers(functionLabels, forProperty: \.normalFont)
+        //fontSchemesManager.registerObservers(functionLabels, forProperty: \.normalFont)
         
 //        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
 //        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
