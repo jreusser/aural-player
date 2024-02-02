@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -189,7 +189,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Crop selected playlist tracks" translatesAutoresizingMaskIntoConstraints="NO" id="t6d-dO-Tjg" userLabel="Crop" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="111" y="5" width="16.5" height="18"/>
+                    <rect key="frame" x="111" y="4.5" width="16.5" height="18"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="scissors" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="oH7-Pe-W5Z">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -273,7 +273,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" toolTip="Clear the track selection" translatesAutoresizingMaskIntoConstraints="NO" id="gwX-l4-ioP" userLabel="Clear Selection" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="234" y="9" width="12" height="11"/>
+                    <rect key="frame" x="234" y="8.5" width="12" height="13"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="square.slash" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="JtD-Hy-Xh0">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -591,7 +591,7 @@
         <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="plus.rectangle.on.folder" catalog="system" width="19" height="15"/>
         <image name="scissors" catalog="system" width="20" height="15"/>
-        <image name="square.slash" catalog="system" width="15" height="15"/>
+        <image name="square.slash" catalog="system" width="15" height="17"/>
         <image name="text.below.photo.rtl" catalog="system" width="17" height="19"/>
         <image name="trash" catalog="system" width="15" height="17"/>
         <image name="xmark.bin" catalog="system" width="19" height="14"/>

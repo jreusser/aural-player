@@ -40,7 +40,7 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         
         super.viewDidLoad()
         
-        //fontSchemesManager.registerSchemeObserver(self, forProperties: [\.normalFont])
+        fontSchemesManager.registerObserver(self)
         
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: tableView)
@@ -115,10 +115,6 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
     // MARK: Notification / command handling ----------------------------------------------------------------------------------------
     
     func fontSchemeChanged() {
-        tableView.reloadDataMaintainingSelection()
-    }
-    
-    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
         tableView.reloadDataMaintainingSelection()
     }
     
