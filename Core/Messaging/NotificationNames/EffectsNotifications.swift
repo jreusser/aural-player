@@ -22,6 +22,8 @@ extension Notification.Name {
     // Signifies that the bypass state of an effects unit has changed
     static let effects_unitStateChanged = Notification.Name("effects_unitStateChanged")
     
+    static let effects_auStateChanged = Notification.Name("effects_auStateChanged")
+    
     // Signifies that the playback rate (of the time stretch effects unit) has changed.
     static let effects_playbackRateChanged = Notification.Name("effects_playbackRateChanged")
     

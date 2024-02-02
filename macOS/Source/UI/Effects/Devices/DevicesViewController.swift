@@ -10,11 +10,7 @@
 
 import Cocoa
 
-class DevicesViewController: NSViewController, FontSchemeObserver, ColorSchemeObserver {
-    
-    func fontSchemeChanged() {
-        
-    }
+class DevicesViewController: NSViewController {
     
     
     override var nibName: String? {"Devices"}
@@ -27,12 +23,14 @@ class DevicesViewController: NSViewController, FontSchemeObserver, ColorSchemeOb
     
     @IBOutlet weak var panSlider: NSSlider!
     @IBOutlet weak var lblPan: VALabel!
-
+    
     // Caption labels
     
     @IBOutlet weak var lblBalance: VALabel!
     @IBOutlet weak var lblPanLeft: VALabel!
     @IBOutlet weak var lblPanRight: VALabel!
+    
+    private lazy var labels: [VALabel] = [lblPan, lblBalance, lblPanLeft, lblPanRight]
     
     private lazy var audioGraph: AudioGraphDelegateProtocol = audioGraphDelegate
     private lazy var soundProfiles: SoundProfiles = audioGraphDelegate.soundProfiles
@@ -47,23 +45,15 @@ class DevicesViewController: NSViewController, FontSchemeObserver, ColorSchemeOb
         panSlider.floatValue = audioGraph.pan
         lblPan.stringValue = audioGraph.formattedPan
         
-        //fontSchemesManager.registerObserver(self, forProperty: \.normalFont)
-        //fontSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight, lblPan], forProperty: \.normalFont)
-
-//        colorSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight], forProperty: \.secondaryTextColor)
-//        colorSchemesManager.registerObserver(lblPan, forProperty: \.primaryTextColor)
-//        
+        fontSchemesManager.registerObserver(self)
+        
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.primarySelectedTextColor, handler: primarySelectedTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
-        
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, handler: activeControlColorChanged(_:))
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.inactiveControlColor, handler: inactiveControlColorChanged(_:))
-//
-//        colorSchemesManager.registerSchemeObserver(panSlider, forProperties: [\.backgroundColor, \.activeControlColor, \.inactiveControlColor])
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor], handler: unitStateColorChanged(_:))
         
         messenger.subscribe(to: .player_panLeft, handler: panLeft)
         messenger.subscribe(to: .player_panRight, handler: panRight)
@@ -146,14 +136,18 @@ class DevicesViewController: NSViewController, FontSchemeObserver, ColorSchemeOb
             self.selectionChangeIsInternal = false
         }
     }
+}
+
+extension DevicesViewController: FontSchemeObserver {
     
-    // ---------------------------------------------------------------------------------------------------------
-    
-    // MARK: Theming
-    
-    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
-        tableView.reloadDataMaintainingSelection()
+    func fontSchemeChanged() {
+        
+        tableView.reloadAllRows(columns: [0])
+        labels.forEach {$0.font = systemFontScheme.smallFont}
     }
+}
+
+extension DevicesViewController: ColorSchemeObserver {
     
     func colorSchemeChanged() {
         
@@ -190,11 +184,7 @@ class DevicesViewController: NSViewController, FontSchemeObserver, ColorSchemeOb
         }
     }
     
-    private func activeControlColorChanged(_ newColor: NSColor) {
-        panSlider.redraw()
-    }
-    
-    private func inactiveControlColorChanged(_ newColor: NSColor) {
+    private func unitStateColorChanged(_ newColor: NSColor) {
         panSlider.redraw()
     }
     

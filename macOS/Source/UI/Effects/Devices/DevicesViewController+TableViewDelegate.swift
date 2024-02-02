@@ -12,6 +12,8 @@ import Cocoa
 
 extension DevicesViewController: NSTableViewDataSource, NSTableViewDelegate {
     
+    private static let tableRowHeight: CGFloat = 24
+    
     private var devices: [AudioDevice] {
         audioGraphDelegate.availableDevices
     }
@@ -20,7 +22,7 @@ extension DevicesViewController: NSTableViewDataSource, NSTableViewDelegate {
         audioGraphDelegate.numberOfDevices
     }
     
-    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {32}
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {Self.tableRowHeight}
     
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         AuralTableRowView()
@@ -59,7 +61,7 @@ extension DevicesViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     private func createNameCell(with tableView: NSTableView, forDevice device: AudioDevice, row: Int) -> NSTableCellView? {
         
-        let builder = TableCellBuilder().withText(text: device.name, inFont: systemFontScheme.normalFont,
+        let builder = TableCellBuilder().withText(text: device.name, inFont: systemFontScheme.smallFont,
                                                   andColor: systemColorScheme.primaryTextColor,
                                                   selectedTextColor: systemColorScheme.primarySelectedTextColor)
         

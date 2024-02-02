@@ -67,9 +67,7 @@ extension AudioUnitsViewController: NSTableViewDelegate {
         cell.btnSwitch.onStateTooltip = "Deactivate this Audio Unit"
         
         cell.action = {[weak self] in
-            
-            _ = audioUnit.toggleState()
-            self?.messenger.publish(.effects_unitStateChanged)
+            self?.toggleAudioUnitState(audioUnit: audioUnit)
         }
         
         return cell

@@ -72,7 +72,7 @@ class AudioUnitSwitchCellView: NSTableCellView {
     }
     
     @objc func toggleAudioUnitStateAction(_ sender: Any) {
-        self.action()
+        self.action?()
     }
 }
 

@@ -75,6 +75,7 @@ extension MasterUnitViewController: NSTableViewDelegate {
             
             _ = audioUnit.toggleState()
             self?.messenger.publish(.effects_unitStateChanged)
+            self?.messenger.publish(.effects_auStateChanged)
         }
         
         return cell

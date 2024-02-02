@@ -13,11 +13,7 @@ import AVFoundation
 /*
     View controller for the Audio Units view.
  */
-class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, FontSchemeObserver {
-    
-    func fontSchemeChanged() {
-        
-    }
+class AudioUnitsViewController: NSViewController {
     
     override var nibName: String? {"AudioUnits"}
     
@@ -25,11 +21,8 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, F
     
     // MARK: UI fields
     
-//    @IBOutlet weak var lblCaption: NSTextField!
-    
     @IBOutlet weak var tableView: NSTableView!
-    @IBOutlet weak var tableScrollView: NSScrollView!
-    @IBOutlet weak var tableClipView: NSClipView!
+    @IBOutlet weak var lblSummary: NSTextField!
 
     // Audio Unit ID -> Dialog
     private var editorDialogs: [String: AudioUnitEditorDialogController] = [:]
@@ -52,11 +45,16 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, F
     
     override func viewDidLoad() {
         
-        //fontSchemesManager.registerObserver(self, forProperty: \.normalFont)
+        super.viewDidLoad()
+        
+        updateSummary()
+        
+        fontSchemesManager.registerObserver(self)
 
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceiver: lblSummary)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.primarySelectedTextColor, handler: primarySelectedTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
         
@@ -66,6 +64,8 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, F
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, handler: activeControlColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.inactiveControlColor, handler: inactiveControlColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.suppressedControlColor, handler: suppressedControlColorChanged(_:))
+        
+        messenger.subscribe(to: .effects_auStateChanged, handler: updateSummary)
     }
     
     override func destroy() {
@@ -78,25 +78,25 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, F
 
     @IBAction func addAudioUnitAction(_ sender: Any) {
         
-        if let audioUnitComponent = btnAudioUnitsMenu.selectedItem?.representedObject as? AVAudioUnitComponent,
-           let result = audioGraph.addAudioUnit(ofType: audioUnitComponent.audioComponentDescription.componentType,
-                                                andSubType: audioUnitComponent.audioComponentDescription.componentSubType) {
+        guard let audioUnitComponent = btnAudioUnitsMenu.selectedItem?.representedObject as? AVAudioUnitComponent,
+              let result = audioGraph.addAudioUnit(ofType: audioUnitComponent.audioComponentDescription.componentType,
+                                                   andSubType: audioUnitComponent.audioComponentDescription.componentSubType) else {return}
+        
+        let audioUnit = result.audioUnit
+        
+        // Refresh the table view with the new row.
+        tableView.noteNumberOfRowsChanged()
+        updateSummary()
+        
+        // Create an editor dialog for the new audio unit.
+        editorDialogs[audioUnit.id] = AudioUnitEditorDialogController(for: audioUnit)
+        
+        // Open the audio unit editor window with the new audio unit's custom view.
+        DispatchQueue.main.async {
             
-            let audioUnit = result.0
-            
-            // Refresh the table view with the new row.
-            tableView.noteNumberOfRowsChanged()
-            
-            // Create an editor dialog for the new audio unit.
-            editorDialogs[audioUnit.id] = AudioUnitEditorDialogController(for: audioUnit)
-            
-            // Open the audio unit editor window with the new audio unit's custom view.
-            DispatchQueue.main.async {
-
-                self.doEditAudioUnit(audioUnit)
-                self.messenger.publish(.auEffectsUnit_audioUnitsAddedOrRemoved)
-                self.messenger.publish(.effects_unitStateChanged)
-            }
+            self.doEditAudioUnit(audioUnit)
+            self.messenger.publish(.auEffectsUnit_audioUnitsAddedOrRemoved)
+            self.messenger.publish(.effects_unitStateChanged)
         }
     }
     
@@ -124,32 +124,55 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, F
         }
     }
     
+    func toggleAudioUnitState(audioUnit: HostedAudioUnitDelegateProtocol) {
+        
+        _ = audioUnit.toggleState()
+        messenger.publish(.effects_unitStateChanged)
+        updateSummary()
+    }
+    
     @IBAction func removeAudioUnitsAction(_ sender: Any) {
         
         let selRows = tableView.selectedRowIndexes
+        guard !selRows.isEmpty else {return}
         
-        if !selRows.isEmpty {
+        for unit in audioGraph.removeAudioUnits(at: selRows) {
             
-            for unit in audioGraph.removeAudioUnits(at: selRows) {
-                
-                editorDialogs[unit.id]?.close()
-                editorDialogs.removeValue(forKey: unit.id)
-            }
+            editorDialogs[unit.id]?.close()
+            editorDialogs.removeValue(forKey: unit.id)
+        }
+        
+        tableView.reloadData()
+        updateSummary()
+        
+        messenger.publish(.auEffectsUnit_audioUnitsAddedOrRemoved)
+        messenger.publish(.effects_unitStateChanged)
+    }
+    
+    private func updateSummary() {
+        
+        let audioUnits = audioGraph.audioUnits
+        let numberOfAUs = audioUnits.count
+        
+        if numberOfAUs > 0 {
             
-            tableView.reloadData()
-            messenger.publish(.auEffectsUnit_audioUnitsAddedOrRemoved)
-            messenger.publish(.effects_unitStateChanged)
+            let numberOfActiveAUs = audioUnits.filter {$0.state != .bypassed}.count
+            let unitOrUnitsString = numberOfAUs == 1 ? "Unit" : "Units"
+            
+            lblSummary.stringValue = "\(numberOfAUs) Audio \(unitOrUnitsString) (\(numberOfActiveAUs) active)"
+            
+        } else {
+            lblSummary.stringValue = "0 Audio Units"
         }
     }
+}
+
+extension AudioUnitsViewController: FontSchemeObserver {
     
-    // MARK: Theming
-    
-    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+    func fontSchemeChanged() {
+        
         tableView.reloadAllRows(columns: [1])
-    }
-    
-    func applyFontScheme(_ fontScheme: FontScheme) {
-        tableView.reloadAllRows(columns: [1])
+        lblSummary.font = systemFontScheme.smallFont
     }
 }
 
@@ -161,6 +184,7 @@ extension AudioUnitsViewController: ColorSchemeObserver {
         btnRemove.contentTintColor = systemColorScheme.buttonColor
         addAudioUnitMenuIconItem.colorChanged(systemColorScheme.buttonColor)
         tableView.reloadDataMaintainingSelection()
+        lblSummary.textColor = systemColorScheme.secondaryTextColor
     }
     
     private func backgroundColorChanged(_ newColor: NSColor) {
