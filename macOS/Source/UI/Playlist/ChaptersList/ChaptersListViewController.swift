@@ -117,14 +117,14 @@ class ChaptersListViewController: NSViewController {
             chaptersListView.scrollRowToVisible(chapter.index)
         }
         
-        let chapterCount: Int = player.chapterCount
-        lblSummary.stringValue = String(format: "%d %@", chapterCount, chapterCount == 1 ? "chapter" : "chapters")
-        
-        lblWindowTitle.font = systemFontScheme.playlist.chaptersListCaptionFont
-        lblSummary.font = systemFontScheme.playlist.summaryFont
-        
-        txtSearch.font = systemFontScheme.playlist.chaptersListSearchFont
-        lblNumMatches.font = systemFontScheme.playlist.chaptersListSearchFont
+//        let chapterCount: Int = player.chapterCount
+//        lblSummary.stringValue = String(format: "%d %@", chapterCount, chapterCount == 1 ? "chapter" : "chapters")
+//        
+//        lblWindowTitle.font = systemFontScheme.playlist.chaptersListCaptionFont
+//        lblSummary.font = systemFontScheme.playlist.summaryFont
+//        
+//        txtSearch.font = systemFontScheme.playlist.chaptersListSearchFont
+//        lblNumMatches.font = systemFontScheme.playlist.chaptersListSearchFont
         
         btnLoopChapter.onIf(player.chapterLoopExists)
         
@@ -368,11 +368,11 @@ class ChaptersListViewController: NSViewController {
             
             chaptersListView.reloadDataMaintainingSelection()
             
-            lblWindowTitle.font = systemFontScheme.playlist.chaptersListCaptionFont
-            lblSummary.font = systemFontScheme.playlist.summaryFont
-            
-            txtSearch.font = systemFontScheme.playlist.chaptersListSearchFont
-            lblNumMatches.font = systemFontScheme.playlist.chaptersListSearchFont
+//            lblWindowTitle.font = systemFontScheme.playlist.chaptersListCaptionFont
+//            lblSummary.font = systemFontScheme.playlist.summaryFont
+//            
+//            txtSearch.font = systemFontScheme.playlist.chaptersListSearchFont
+//            lblNumMatches.font = systemFontScheme.playlist.chaptersListSearchFont
         }
     }
     

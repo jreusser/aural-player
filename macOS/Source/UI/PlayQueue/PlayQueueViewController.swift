@@ -40,7 +40,7 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         
         super.viewDidLoad()
         
-        fontSchemesManager.registerSchemeObserver(self, forProperties: [\.playQueuePrimaryFont, \.playQueueSecondaryFont, \.playQueueTertiaryFont])
+        fontSchemesManager.registerSchemeObserver(self, forProperties: [\.normalFont])
         
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: tableView)

@@ -116,7 +116,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
         
         guard let track = player.playingTrack else {return 0}
         
-        let widthOfWidestNumber = String.widthOfWidestNumber(forFont: systemFontScheme.playerPrimaryFont)
+        let widthOfWidestNumber = String.widthOfWidestNumber(forFont: systemFontScheme.prominentFont)
         let duration = track.duration
         
         let trackTimes = ValueFormatter.formatTrackTimes(0, duration, 0)
@@ -224,7 +224,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
     
     func applyFontScheme(_ fontScheme: FontScheme) {
         
-        textView.font = fontScheme.playerSecondaryFont
+        textView.font = fontScheme.normalFont
         layoutTextView()
     }
     

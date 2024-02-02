@@ -26,8 +26,6 @@ class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegat
     
     private lazy var generalView: FontSchemesViewProtocol = GeneralFontSchemeViewController()
     private lazy var playerView: FontSchemesViewProtocol = PlayerFontSchemeViewController()
-    private lazy var playlistView: FontSchemesViewProtocol = PlaylistFontSchemeViewController()
-    private lazy var effectsView: FontSchemesViewProtocol = EffectsFontSchemeViewController()
     
     // Popover to collect user input (i.e. color scheme name) when saving new color schemes
     lazy var userSchemesPopover: StringInputPopoverViewController = .create(self)
@@ -48,7 +46,7 @@ class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegat
         self.window?.isMovableByWindowBackground = true
 
         // Add the subviews to the tab group
-        subViews = [generalView, playerView, playlistView, effectsView]
+        subViews = [generalView, playerView]
         tabView.addViewsForTabs(subViews.map {$0.view})
         
         // Register an observer that updates undo/redo button states whenever the history changes.
@@ -79,11 +77,11 @@ class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegat
         let undoValue: FontScheme = systemFontScheme.clone()
         
         let context = FontSchemeChangeContext()
-        let newScheme = FontScheme("_temp", FontSchemePreset.standard)
+        let newScheme = FontScheme(name: "_temp", copying: .defaultScheme)
         
         generalView.applyFontScheme(context, to: newScheme)
         
-        [playerView, playlistView, effectsView].forEach {$0.applyFontScheme(context, to: newScheme)}
+        [playerView].forEach {$0.applyFontScheme(context, to: newScheme)}
         fontSchemesManager.applyScheme(newScheme)
         
         let redoValue: FontScheme = systemFontScheme.clone()
@@ -214,7 +212,7 @@ extension FontSchemesWindowController: StringInputReceiver {
     func acceptInput(_ string: String) {
         
         // Copy the current system scheme into the new scheme, and name it with the user's given scheme name
-        let newScheme: FontScheme = FontScheme(string, false, systemFontScheme)
+        let newScheme: FontScheme = FontScheme(name: string, copying: systemFontScheme)
         fontSchemesManager.addObject(newScheme)
     }
 }

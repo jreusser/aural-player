@@ -161,7 +161,7 @@ class TuneBrowserViewController: NSViewController {
         pathControlWidget.pathItems = pathComponents.map {
             
             let item = NSPathControlItem()
-            item.attributedTitle = $0.attributed(withFont: systemFontScheme.playerSecondaryFont, andColor: systemColorScheme.primaryTextColor)
+            item.attributedTitle = $0.attributed(withFont: systemFontScheme.normalFont, andColor: systemColorScheme.primaryTextColor)
             return item
         }
     }

@@ -15,7 +15,7 @@ import Cocoa
 class FontScheme: NSObject, UserManagedObject {
     
     // Default color scheme (uses colors from the default system-defined preset)
-    static let defaultScheme: FontScheme = FontScheme("_default_", .futuristic)
+    static let defaultScheme: FontScheme = .futuristic
     
     // Displayed name
     var name: String
@@ -31,186 +31,102 @@ class FontScheme: NSObject, UserManagedObject {
     // False if defined by the user
     let systemDefined: Bool
     
-    @objc dynamic var captionFont: NSFont
+    var captionFont: NSFont
     
-//    @objc dynamic var xtraSmallFont: NSFont
-//    @objc dynamic var smallFont: NSFont
-//    @objc dynamic var mediumFont: NSFont
-//    @objc dynamic var largeFont: NSFont
-//    @objc dynamic var xtraLargeFont: NSFont
-//    @objc dynamic var tableTextYOffset: CGFloat
+    var normalFont: NSFont
+    var prominentFont: NSFont
+    var smallFont: NSFont
+    var extraSmallFont: NSFont
     
-    @objc dynamic var playerPrimaryFont: NSFont
-    @objc dynamic var playerSecondaryFont: NSFont
-    @objc dynamic var playerTertiaryFont: NSFont
+    var tableYOffset: CGFloat
     
-    @objc dynamic var effectsPrimaryFont: NSFont
-    @objc dynamic var effectsSecondaryFont: NSFont
-    @objc dynamic var effectsTertiaryFont: NSFont
-    
-    @objc dynamic var playQueuePrimaryFont: NSFont
-    @objc dynamic var playQueueSecondaryFont: NSFont
-    @objc dynamic var playQueueTertiaryFont: NSFont
-    
-    @objc dynamic var playQueueYOffset: CGFloat
-    
-    var playlist: PlaylistFontScheme
-    var effects: EffectsFontScheme
+    init(name: String, systemDefined: Bool, captionFont: NSFont, normalFont: NSFont, prominentFont: NSFont, smallFont: NSFont, extraSmallFont: NSFont, tableYOffset: CGFloat) {
+        
+        self.name = name
+        self.systemDefined = systemDefined
+        
+        self.captionFont = captionFont
+        self.normalFont = normalFont
+        self.prominentFont = prominentFont
+        self.smallFont = smallFont
+        self.extraSmallFont = extraSmallFont
+        
+        self.tableYOffset = tableYOffset
+    }
     
     // Used when loading app state on startup
-    init(_ persistentState: FontSchemePersistentState?, _ systemDefined: Bool) {
+    init?(persistentState: FontSchemePersistentState?, systemDefined: Bool) {
         
-        self.name = persistentState?.name ?? ""
+        guard let persistentState = persistentState,
+              let schemeName = persistentState.name,
+              let textFontName = persistentState.textFontName,
+              let captionFontName = persistentState.captionFontName,
+              let captionSize = persistentState.captionSize,
+              let normalSize = persistentState.normalSize,
+              let prominentSize = persistentState.prominentSize,
+              let smallSize = persistentState.smallSize,
+              let extraSmallSize = persistentState.extraSmallSize,
+              let tableYOffset = persistentState.tableYOffset
+        else {return nil}
+        
+        guard let captionFont = NSFont(name: captionFontName, size: captionSize),
+              let normalFont = NSFont(name: textFontName, size: normalSize),
+              let prominentFont = NSFont(name: textFontName, size: prominentSize),
+              let smallFont = NSFont(name: textFontName, size: smallSize),
+              let extraSmallFont = NSFont(name: textFontName, size: extraSmallSize)
+        else {return nil}
+        
+        self.name = schemeName
         self.systemDefined = systemDefined
         
-        let defaultSchemePreset = FontSchemePreset.defaultScheme
+        self.captionFont = captionFont
         
-        self.captionFont = FontSchemePreset.standard.captionFont
+        self.normalFont = normalFont
+        self.prominentFont = prominentFont
+        self.smallFont = smallFont
+        self.extraSmallFont = extraSmallFont
         
-        self.playerPrimaryFont = FontSchemePreset.standard.primaryFont
-        self.playerSecondaryFont = FontSchemePreset.standard.secondaryFont
-        self.playerTertiaryFont = FontSchemePreset.standard.tertiaryFont
-        
-        self.effectsPrimaryFont = FontSchemePreset.standard.effectsPrimaryFont
-        self.effectsSecondaryFont = FontSchemePreset.standard.effectsSecondaryFont
-        self.effectsTertiaryFont = FontSchemePreset.standard.tertiaryFont
-        
-        self.playQueuePrimaryFont = FontSchemePreset.standard.playQueuePrimaryFont
-        self.playQueueSecondaryFont = FontSchemePreset.standard.playQueueSecondaryFont
-        self.playQueueTertiaryFont = FontSchemePreset.standard.playQueueTertiaryFont
-        self.playQueueYOffset = FontSchemePreset.standard.playQueueYOffset
-        
-        self.playlist = PlaylistFontScheme(persistentState)
-        self.effects = EffectsFontScheme(persistentState)
-        
-        func fontFromNameAndSize(name: String?, size: CGFloat?) -> NSFont? {
-            
-            if let captionFontName = persistentState?.headingFontName, let captionSize = persistentState?.captionSize {
-                return NSFont(name: captionFontName, size: captionSize)
-            }
-            
-            return nil
-        }
-        
-        self.captionFont = fontFromNameAndSize(name: persistentState?.headingFontName, size: persistentState?.captionSize) ?? defaultSchemePreset.captionFont
-//        self.playerPrimaryFont = fontFromNameAndSize(name: persistentState?.textFontName, size: persistentState?.playerPrimarySize) ?? defaultSchemePreset.primaryFont
-        
-        guard let textFontName = persistentState?.textFontName else {
-            return
-        }
-        
-        if let primarySize = persistentState?.playerPrimarySize, let primaryFont = NSFont(name: textFontName, size: primarySize) {
-            self.playerPrimaryFont = primaryFont
-        }
-        
-        if let secondarySize = persistentState?.playerSecondarySize, let secondaryFont = NSFont(name: textFontName, size: secondarySize) {
-            self.playerSecondaryFont = secondaryFont
-        }
-        
-        if let tertiarySize = persistentState?.playerTertiarySize, let tertiaryFont = NSFont(name: textFontName, size: tertiarySize) {
-            self.playerTertiaryFont = tertiaryFont
-        }
-        
-        if let primarySize = persistentState?.effectsPrimarySize, let primaryFont = NSFont(name: textFontName, size: primarySize) {
-            self.effectsPrimaryFont = primaryFont
-        }
-        
-        if let secondarySize = persistentState?.effectsSecondarySize, let secondaryFont = NSFont(name: textFontName, size: secondarySize) {
-            self.effectsSecondaryFont = secondaryFont
-        }
-        
-        if let tertiarySize = persistentState?.effectsTertiarySize, let tertiaryFont = NSFont(name: textFontName, size: tertiarySize) {
-            self.effectsTertiaryFont = tertiaryFont
-        }
-        
-        if let primarySize = persistentState?.playQueuePrimarySize, let primaryFont = NSFont(name: textFontName, size: primarySize) {
-            self.playQueuePrimaryFont = primaryFont
-        }
-        
-        if let secondarySize = persistentState?.playQueueSecondarySize, let secondaryFont = NSFont(name: textFontName, size: secondarySize) {
-            self.playQueueSecondaryFont = secondaryFont
-        }
-        
-        if let tertiarySize = persistentState?.playQueueTertiarySize, let tertiaryFont = NSFont(name: textFontName, size: tertiarySize) {
-            self.playQueueTertiaryFont = tertiaryFont
-        }
-        
-        if let yOffset = persistentState?.playQueueYOffset {
-            self.playQueueYOffset = yOffset
-        }
+        self.tableYOffset = tableYOffset
     }
     
-    init(_ name: String, _ preset: FontSchemePreset) {
+    // Copy constructor ... for theme creation.
+    init(name: String, copying otherScheme: FontScheme) {
         
         self.name = name
-        self.systemDefined = true
         
-        self.captionFont = preset.captionFont
+        // Schemes created by the user are always "user-defined".
+        self.systemDefined = false
         
-        self.playerPrimaryFont = preset.primaryFont
-        self.playerSecondaryFont = preset.secondaryFont
-        self.playerTertiaryFont = preset.tertiaryFont
+        self.captionFont = otherScheme.captionFont
         
-        self.effectsPrimaryFont = preset.effectsPrimaryFont
-        self.effectsSecondaryFont = preset.effectsSecondaryFont
-        self.effectsTertiaryFont = preset.tertiaryFont
+        self.normalFont = otherScheme.normalFont
+        self.prominentFont = otherScheme.prominentFont
+        self.smallFont = otherScheme.smallFont
+        self.extraSmallFont = otherScheme.extraSmallFont
         
-        self.playQueuePrimaryFont = preset.playQueuePrimaryFont
-        self.playQueueSecondaryFont = preset.playQueueSecondaryFont
-        self.playQueueTertiaryFont = preset.playQueueTertiaryFont
-        self.playQueueYOffset = preset.playQueueYOffset
+        self.tableYOffset = otherScheme.tableYOffset
         
-        self.playlist = PlaylistFontScheme(preset: preset)
-        self.effects = EffectsFontScheme(preset: preset)
-    }
-    
-    init(_ name: String, _ systemDefined: Bool, _ fontScheme: FontScheme) {
-        
-        self.name = name
-        self.systemDefined = systemDefined
-        
-        self.captionFont = fontScheme.captionFont
-        
-        self.playerPrimaryFont = fontScheme.playerPrimaryFont
-        self.playerSecondaryFont = fontScheme.playerSecondaryFont
-        self.playerTertiaryFont = fontScheme.playerTertiaryFont
-        
-        self.effectsPrimaryFont = fontScheme.effectsPrimaryFont
-        self.effectsSecondaryFont = fontScheme.effectsSecondaryFont
-        self.effectsTertiaryFont = fontScheme.effectsTertiaryFont
-        
-        self.playQueuePrimaryFont = fontScheme.playQueuePrimaryFont
-        self.playQueueSecondaryFont = fontScheme.playQueueSecondaryFont
-        self.playQueueTertiaryFont = fontScheme.playQueueTertiaryFont
-        self.playQueueYOffset = fontScheme.playQueueYOffset
-        
-        self.playlist  = fontScheme.playlist.clone()
-        self.effects = fontScheme.effects.clone()
+        self.tableYOffset = otherScheme.tableYOffset
     }
     
     // Applies another font scheme to this scheme.
-    func applyScheme(_ fontScheme: FontScheme) {
+    func applyScheme(_ otherScheme: FontScheme) {
         
-        self.captionFont = fontScheme.captionFont
+        self.captionFont = otherScheme.captionFont
         
-        self.playerPrimaryFont = fontScheme.playerPrimaryFont
-        self.playerSecondaryFont = fontScheme.playerSecondaryFont
-        self.playerTertiaryFont = fontScheme.playerTertiaryFont
+        self.name = otherScheme.name
+
+        self.captionFont = otherScheme.captionFont
         
-        self.effectsPrimaryFont = fontScheme.effectsPrimaryFont
-        self.effectsSecondaryFont = fontScheme.effectsSecondaryFont
-        self.effectsTertiaryFont = fontScheme.effectsTertiaryFont
+        self.normalFont = otherScheme.normalFont
+        self.prominentFont = otherScheme.prominentFont
+        self.smallFont = otherScheme.smallFont
+        self.extraSmallFont = otherScheme.extraSmallFont
         
-        self.playQueuePrimaryFont = fontScheme.playQueuePrimaryFont
-        self.playQueueSecondaryFont = fontScheme.playQueueSecondaryFont
-        self.playQueueTertiaryFont = fontScheme.playQueueTertiaryFont
-        self.playQueueYOffset = fontScheme.playQueueYOffset
-        
-        self.playlist = fontScheme.playlist.clone()
-        self.effects = fontScheme.effects.clone()
+        self.tableYOffset = otherScheme.tableYOffset
     }
     
     func clone() -> FontScheme {
-        return FontScheme(self.name + "_clone", self.systemDefined, self)
+        FontScheme(name: self.name + "_clone", copying: self)
     }
 }

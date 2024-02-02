@@ -44,7 +44,7 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
 //        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
 //        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
 //        
-//        fontSchemesManager.registerObservers([lblDecadesSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
+//        fontSchemesManager.registerObservers([lblDecadesSummary, lblDurationSummary], forProperty: \.normalFont)
 //        colorSchemesManager.registerObservers([lblDecadesSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
         
         updateSummary()
@@ -100,10 +100,10 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
             if let track = item as? Track {
                 
                 return TableCellBuilder().withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
-                                                   inFont: systemFontScheme.playQueuePrimaryFont,
+                                                   inFont: systemFontScheme.normalFont,
                                                    andColor: systemColorScheme.tertiaryTextColor,
                                                    selectedTextColor: systemColorScheme.tertiarySelectedTextColor,
-                                                   centerYOffset: systemFontScheme.playQueueYOffset)
+                                                   centerYOffset: systemFontScheme.tableYOffset)
                     .buildCell(forOutlineView: outlineView,
                                forColumnWithId: .cid_TrackDuration, havingItem: track)
             }
@@ -148,7 +148,7 @@ class DecadeCellView: AuralTableCellView {
     
     func update(forGroup group: DecadeGroup) {
         
-        let string = group.name.attributed(font: systemFontScheme.playerPrimaryFont, color: systemColorScheme.primaryTextColor, lineSpacing: 5)
+        let string = group.name.attributed(font: systemFontScheme.prominentFont, color: systemColorScheme.primaryTextColor, lineSpacing: 5)
         textField?.attributedStringValue = string
         
         imageView?.image = .imgDecadeGroup
@@ -167,15 +167,15 @@ class DecadeTrackCellView: AuralTableCellView {
         
         super.awakeFromNib()
         
-//        lblTrackNumber.font = systemFontScheme.playQueuePrimaryFont
+//        lblTrackNumber.font = systemFontScheme.normalFont
 //        lblTrackNumber.textColor = systemColorScheme.tertiaryTextColor
 //        trackNumberConstraintsManager.removeAll(withAttributes: [.centerY])
-//        trackNumberConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.playQueueYOffset)
+//        trackNumberConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.tableYOffset)
         
-        lblTrackName.font = systemFontScheme.playQueuePrimaryFont
+        lblTrackName.font = systemFontScheme.normalFont
         lblTrackName.textColor = systemColorScheme.primaryTextColor
         trackNameConstraintsManager.removeAll(withAttributes: [.centerY])
-        trackNameConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.playQueueYOffset)
+        trackNameConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.tableYOffset)
     }
     
     func update(forTrack track: Track) {

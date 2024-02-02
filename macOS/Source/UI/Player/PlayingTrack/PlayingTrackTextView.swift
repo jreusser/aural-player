@@ -46,7 +46,7 @@ class PlayingTrackTextView: NSView, FontSchemeObserver {
     }
     
     var titleFont: NSFont {
-        systemFontScheme.playerPrimaryFont
+        systemFontScheme.prominentFont
     }
     
     var titleColor: NSColor {
@@ -54,7 +54,7 @@ class PlayingTrackTextView: NSView, FontSchemeObserver {
     }
     
     var artistAlbumFont: NSFont {
-        systemFontScheme.playerSecondaryFont
+        systemFontScheme.normalFont
     }
     
     var artistAlbumColor: NSColor {
@@ -62,7 +62,7 @@ class PlayingTrackTextView: NSView, FontSchemeObserver {
     }
     
     var chapterTitleFont: NSFont {
-        systemFontScheme.playerTertiaryFont
+        systemFontScheme.smallFont
     }
     
     var chapterTitleColor: NSColor {

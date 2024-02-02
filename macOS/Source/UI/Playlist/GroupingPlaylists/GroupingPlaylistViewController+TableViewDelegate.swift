@@ -84,7 +84,7 @@
 //            return false
 //        }
 //        
-//        cell.updateText(systemFontScheme.playlist.trackTextFont, playlist.displayNameForTrack(self.playlistType, track))
+//        cell.updateText(systemFontScheme.normalFont, playlist.displayNameForTrack(self.playlistType, track))
 //        cell.realignText(yOffset: systemFontScheme.playlist.trackTextYOffset)
 //        
 //        if track == playbackInfo.playingTrack {
@@ -117,7 +117,7 @@
 //            return false
 //        }
 //        
-//        cell.updateText(systemFontScheme.playlist.trackTextFont, ValueFormatter.formatSecondsToHMS(track.duration))
+//        cell.updateText(systemFontScheme.normalFont, ValueFormatter.formatSecondsToHMS(track.duration))
 //        cell.realignText(yOffset: systemFontScheme.playlist.trackTextYOffset)
 //        
 //        return cell

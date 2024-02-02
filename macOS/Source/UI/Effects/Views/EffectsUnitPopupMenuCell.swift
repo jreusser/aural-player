@@ -27,7 +27,7 @@ class EffectsUnitPopupMenuCell: NicerPopupMenuCell {
     override var arrowHeight: CGFloat {4}
     override var arrowLineWidth: CGFloat {1}
     
-    override var titleFont: NSFont {systemFontScheme.effectsPrimaryFont}
+    override var titleFont: NSFont {systemFontScheme.normalFont}
 //    override var titleColor: NSColor {Colors.buttonMenuTextColor}
     
     override func drawTitle(_ title: NSAttributedString, withFrame: NSRect, in inView: NSView) -> NSRect {

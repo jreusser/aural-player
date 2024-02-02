@@ -223,7 +223,7 @@ class MasterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
         
         switch property {
             
-        case \.effectsPrimaryFont:
+        case \.normalFont:
             
             audioUnitsTable.reloadAllRows(columns: [1])
             

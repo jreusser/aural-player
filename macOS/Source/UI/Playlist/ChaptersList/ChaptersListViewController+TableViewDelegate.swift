@@ -25,7 +25,7 @@ extension ChaptersListViewController: NSTableViewDelegate {
     
     private static let rowHeight: CGFloat = 30
     
-    private var fontScheme: PlaylistFontScheme {systemFontScheme.playlist}
+//    private var fontScheme: PlaylistFontScheme {systemFontScheme.playlist}
     
     // Returns a custom view for a single row
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
@@ -70,7 +70,7 @@ extension ChaptersListViewController: NSTableViewDelegate {
             
         }
         
-        cell.realignText(yOffset: fontScheme.trackTextYOffset)
+//        cell.realignText(yOffset: fontScheme.trackTextYOffset)
         return cell
     }
     
@@ -78,7 +78,7 @@ extension ChaptersListViewController: NSTableViewDelegate {
         
         guard let cell = tableView.makeView(withIdentifier: .cid_chapterIndex, owner: nil) as? ChaptersListTableCellView else {return nil}
         
-        cell.textFont = fontScheme.trackTextFont
+//        cell.textFont = fontScheme.trackTextFont
         
 //        cell.unselectedTextColor = Colors.Playlist.indexDurationTextColor
 //        cell.selectedTextColor = Colors.Playlist.indexDurationSelectedTextColor
@@ -99,7 +99,7 @@ extension ChaptersListViewController: NSTableViewDelegate {
         
         guard let cell = tableView.makeView(withIdentifier: .cid_chapterTitle, owner: nil) as? ChaptersListTableCellView else {return nil}
         
-        cell.textFont = fontScheme.trackTextFont
+//        cell.textFont = fontScheme.trackTextFont
         
 //        cell.unselectedTextColor = Colors.Playlist.trackNameTextColor
 //        cell.selectedTextColor = Colors.Playlist.trackNameSelectedTextColor
@@ -116,7 +116,7 @@ extension ChaptersListViewController: NSTableViewDelegate {
         
         guard let cell = tableView.makeView(withIdentifier: id, owner: nil) as? ChaptersListTableCellView else {return nil}
         
-        cell.textFont = fontScheme.trackTextFont
+//        cell.textFont = fontScheme.trackTextFont
         
 //        cell.unselectedTextColor = Colors.Playlist.indexDurationTextColor
 //        cell.selectedTextColor = Colors.Playlist.indexDurationSelectedTextColor

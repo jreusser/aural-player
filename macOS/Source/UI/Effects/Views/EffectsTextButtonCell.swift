@@ -11,6 +11,6 @@ import Cocoa
 
 class EffectsTextButtonCell: ColorAwareButtonCell {
     
-    override var textFont: NSFont {Fonts.Effects.unitFunctionFont}
+    override var textFont: NSFont {systemFontScheme.smallFont}
     override var yOffset: CGFloat {-1}
 }

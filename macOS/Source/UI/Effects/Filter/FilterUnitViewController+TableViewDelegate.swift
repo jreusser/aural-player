@@ -110,7 +110,7 @@ extension FilterUnitViewController: NSTableViewDataSource, NSTableViewDelegate {
         guard let cell = tableView.makeView(withIdentifier: id, owner: nil) as? BasicTableCellView else {return nil}
         
         cell.text = text
-        cell.textFont = systemFontScheme.effectsPrimaryFont
+        cell.textFont = systemFontScheme.normalFont
         cell.unselectedTextColor = isPrimaryText ? systemColorScheme.primaryTextColor : systemColorScheme.secondaryTextColor
         cell.selectedTextColor = isPrimaryText ? systemColorScheme.primarySelectedTextColor : systemColorScheme.secondarySelectedTextColor
         cell.rowSelectionStateFunction = {[weak tableView] in tableView?.isRowSelected(row) ?? false}

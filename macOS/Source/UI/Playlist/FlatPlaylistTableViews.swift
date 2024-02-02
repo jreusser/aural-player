@@ -160,7 +160,7 @@ class DurationCellView: AuralTableCellView {
 //
 //        // Check if this row is selected, change font and color accordingly
 //        textField?.textColor = isSelectedRow ? Colors.Playlist.indexDurationSelectedTextColor : Colors.Playlist.indexDurationTextColor
-        textField?.font = Fonts.Playlist.trackTextFont
+        textField?.font = systemFontScheme.normalFont
     }
 }
 
@@ -173,6 +173,6 @@ class IndexCellView: AuralTableCellView {
         
         // Check if this row is selected, change font and color accordingly
 //        textField?.textColor = rowIsSelected ? Colors.Playlist.indexDurationSelectedTextColor : Colors.Playlist.indexDurationTextColor
-        textField?.font = Fonts.Playlist.trackTextFont
+        textField?.font = systemFontScheme.normalFont
     }
 }

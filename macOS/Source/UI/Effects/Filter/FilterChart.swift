@@ -15,7 +15,7 @@ class FilterChart: NSView, ColorSchemeObserver {
     var filterUnit: FilterUnitDelegateProtocol = audioGraphDelegate.filterUnit
     
     var textFont: NSFont {
-        systemFontScheme.effectsPrimaryFont
+        systemFontScheme.normalFont
     }
     
     private let offset: CGFloat = 0

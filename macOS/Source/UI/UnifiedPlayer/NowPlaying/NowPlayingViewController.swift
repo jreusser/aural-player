@@ -13,10 +13,10 @@ class NowPlayingViewController: NSViewController {
         
         super.viewDidLoad()
         
-//        fontSchemesManager.registerObserver(lblTitle, forProperty: \.playerPrimaryFont)
+//        fontSchemesManager.registerObserver(lblTitle, forProperty: \.prominentFont)
 //        colorSchemesManager.registerObserver(lblTitle, forProperty: \.primaryTextColor)
 //        
-//        fontSchemesManager.registerObserver(lblArtistAlbum, forProperty: \.playerSecondaryFont)
+//        fontSchemesManager.registerObserver(lblArtistAlbum, forProperty: \.normalFont)
 //        colorSchemesManager.registerObserver(lblArtistAlbum, forProperty: \.secondaryTextColor)
         
         // MARK: Notifications --------------------------------------------------------------

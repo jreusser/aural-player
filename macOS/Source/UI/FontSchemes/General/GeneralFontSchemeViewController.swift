@@ -72,16 +72,18 @@ class GeneralFontSchemeViewController: NSViewController, FontSchemesViewProtocol
     
     func loadFontScheme(_ fontScheme: FontScheme) {
         
-        if let displayNameOfTextFont = fontNameToDisplayNameMap[fontScheme.playerPrimaryFont.fontName] {
+        if let displayNameOfTextFont = fontNameToDisplayNameMap[fontScheme.prominentFont.fontName] {
             
             textFontMenuButton.selectItem(withTitle: displayNameOfTextFont)
-            lblTextPreview.font = NSFont(name: fontScheme.playerPrimaryFont.fontName, size: 14)
+            lblTextPreview.font = NSFont(name: fontScheme.prominentFont.fontName, size: 14)
         }
         
-        if let displayNameOfHeadingFont = fontNameToDisplayNameMap[fontScheme.playlist.tabButtonTextFont.fontName] {
+        let captionFontName = fontScheme.captionFont.fontName
+        
+        if let displayNameOfHeadingFont = fontNameToDisplayNameMap[captionFontName] {
             
             headingFontMenuButton.selectItem(withTitle: displayNameOfHeadingFont)
-            lblHeadingPreview.font = NSFont(name: fontScheme.playlist.tabButtonTextFont.fontName, size: 18)
+            lblHeadingPreview.font = NSFont(name: captionFontName, size: 18)
         }
     }
     

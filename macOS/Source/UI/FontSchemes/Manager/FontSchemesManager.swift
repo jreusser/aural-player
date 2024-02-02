@@ -12,7 +12,7 @@ import Cocoa
 class FontSchemesManager: UserManagedObjects<FontScheme> {
     
     // The current system color scheme. It is initialized with the default scheme.
-    private(set) var systemScheme: FontScheme
+    let systemScheme: FontScheme
     
     private lazy var messenger = Messenger(for: self)
     
@@ -32,17 +32,17 @@ class FontSchemesManager: UserManagedObjects<FontScheme> {
     
     init(persistentState: FontSchemesPersistentState?) {
         
-        let systemDefinedSchemes = FontSchemePreset.allCases.map {FontScheme($0.name, $0)}
-        let userDefinedSchemes = (persistentState?.userSchemes ?? []).map {FontScheme($0, false)}
+        let systemDefinedSchemes = FontScheme.allSystemDefinedSchemes
+        let userDefinedSchemes = (persistentState?.userSchemes ?? []).compactMap {FontScheme(persistentState: $0, systemDefined: false)}
+        
+        lazy var copyOfDefaultScheme = FontScheme(name: "_system_", copying: .defaultScheme)
         
         if let persistentSystemScheme = persistentState?.systemScheme {
-            
-            self.systemScheme = FontScheme(persistentSystemScheme, true)
+            self.systemScheme = FontScheme(persistentState: persistentSystemScheme, systemDefined: true) ?? copyOfDefaultScheme
             
         } else {
             
-            self.systemScheme = systemDefinedSchemes.first(where: {$0.name == FontSchemePreset.standard.name}) ??
-                FontScheme("_system_", FontSchemePreset.futuristic)
+            self.systemScheme = copyOfDefaultScheme
         }
         
         super.init(systemDefinedObjects: systemDefinedSchemes, userDefinedObjects: userDefinedSchemes)

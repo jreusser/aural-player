@@ -37,6 +37,7 @@ class Theme: UserManagedObject, PersistentModelObject {
     init?(persistentState: ThemePersistentState, systemDefined: Bool) {
         
         guard let persistentFontScheme = persistentState.fontScheme,
+              let fontScheme = FontScheme(persistentState: persistentFontScheme, systemDefined: systemDefined),
               let persistentColorScheme = persistentState.colorScheme else {return nil}
         
         if systemDefined {
@@ -51,7 +52,7 @@ class Theme: UserManagedObject, PersistentModelObject {
         
         self.userDefined = !systemDefined
         
-        self.fontScheme = FontScheme(persistentFontScheme, systemDefined)
+        self.fontScheme = fontScheme
         self.colorScheme = ColorScheme(persistentColorScheme, systemDefined)
         self.windowAppearance = WindowAppearance(cornerRadius: persistentState.windowAppearance?.cornerRadius ?? WindowAppearanceState.defaultCornerRadius)
     }

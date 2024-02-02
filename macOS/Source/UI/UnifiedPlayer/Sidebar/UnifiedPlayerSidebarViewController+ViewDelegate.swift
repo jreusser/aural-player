@@ -29,17 +29,17 @@ extension UnifiedPlayerSidebarViewController: NSOutlineViewDelegate {
         if let category = item as? UnifiedPlayerSidebarCategory {
             
             return category == .playlists ?
-            createPlaylistCategoryCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image) :
-            createNameCell(outlineView, category.description, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.secondaryTextColor, image: category.image)
+            createPlaylistCategoryCell(outlineView, category.description, font: systemFontScheme.normalFont, textColor: systemColorScheme.secondaryTextColor, image: category.image) :
+            createNameCell(outlineView, category.description, font: systemFontScheme.normalFont, textColor: systemColorScheme.secondaryTextColor, image: category.image)
             
         } else if let sidebarItem = item as? UnifiedPlayerSidebarItem {
             
             if sidebarItem.browserTab == .playlists {
                 
-                return createPlaylistNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
+                return createPlaylistNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.normalFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
             }
             
-            return createNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.playQueuePrimaryFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
+            return createNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.normalFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
         }
         
         return nil

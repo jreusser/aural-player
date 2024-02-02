@@ -42,14 +42,14 @@ class FontSchemePreviewView: NSView {
             
             if let theScheme = scheme {
                
-                playerTitleFont = theScheme.playerPrimaryFont
-                playerArtistAlbumFont = theScheme.playerSecondaryFont
+                playerTitleFont = theScheme.prominentFont
+                playerArtistAlbumFont = theScheme.normalFont
                 
-                playlistHeadingFont = theScheme.playlist.tabButtonTextFont
-                playlistTrackTextFont = theScheme.playlist.trackTextFont
+                playlistHeadingFont = theScheme.captionFont
+                playlistTrackTextFont = theScheme.normalFont
                 
                 effectsCaptionFont = theScheme.captionFont
-                effectsFunctionFont = theScheme.effectsPrimaryFont
+                effectsFunctionFont = theScheme.normalFont
                 
                 containerBox.show()
             }

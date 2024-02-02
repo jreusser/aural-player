@@ -216,7 +216,7 @@ class ThemePreviewView: NSView {
 //                playlistTabButtonCell._textFont = fontScheme.playlist.tabButtonTextFont
 //                playlistSelectedTabButtonCell._boldTextFont = fontScheme.playlist.tabButtonTextFont
 //
-//                (playlistIndexDurationLabels + playlistTrackTitleLabels + [lblPlaylistSelectedDuration, lblPlaylistSelectedTitle]).forEach {$0.font = fontScheme.playlist.trackTextFont}
+//                (playlistIndexDurationLabels + playlistTrackTitleLabels + [lblPlaylistSelectedDuration, lblPlaylistSelectedTitle]).forEach {$0.font = fontScheme.normalFont}
 //
 //                lblEffectsCaption.font = fontScheme.captionFont
 //            }

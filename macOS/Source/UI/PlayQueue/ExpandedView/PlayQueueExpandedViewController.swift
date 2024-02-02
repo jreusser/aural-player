@@ -64,7 +64,7 @@ class PlayQueueExpandedViewController: PlayQueueViewController {
     private func createDurationCell(tableView: NSTableView, track: Track, row: Int) -> AuralTableCellView? {
         
         return TableCellBuilder().withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
-                                           inFont: systemFontScheme.playlist.trackTextFont, andColor: systemColorScheme.tertiaryTextColor,
+                                           inFont: systemFontScheme.normalFont, andColor: systemColorScheme.tertiaryTextColor,
                                            selectedTextColor: systemColorScheme.tertiarySelectedTextColor)
             .buildCell(forTableView: tableView, forColumnWithId: .cid_duration, inRow: row)
     }
@@ -106,7 +106,7 @@ class PlayQueueListTrackNameCell: NSTableCellView {
         }
         
         [lblTitle, lblArtistAlbum, lblDefaultDisplayName].forEach {
-            $0.font = systemFontScheme.playlist.trackTextFont
+            $0.font = systemFontScheme.normalFont
         }
         
         lblTitle.lineBreakMode = .byTruncatingTail

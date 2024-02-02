@@ -44,7 +44,7 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
 //        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
 //        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
 //        
-//        fontSchemesManager.registerObservers([lblAlbumsSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
+//        fontSchemesManager.registerObservers([lblAlbumsSummary, lblDurationSummary], forProperty: \.normalFont)
 //        colorSchemesManager.registerObservers([lblAlbumsSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
         
         updateSummary()
@@ -98,10 +98,10 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
             if let disc = item as? AlbumDiscGroup {
                 
                 return TableCellBuilder().withText(text: disc.name,
-                                                   inFont: systemFontScheme.playerPrimaryFont,
+                                                   inFont: systemFontScheme.prominentFont,
                                                    andColor: systemColorScheme.secondaryTextColor,
                                                    selectedTextColor: systemColorScheme.secondarySelectedTextColor,
-                                                   centerYOffset: systemFontScheme.playQueueYOffset)
+                                                   centerYOffset: systemFontScheme.tableYOffset)
                     .buildCell(forOutlineView: outlineView,
                                forColumnWithId: .cid_DiscName, havingItem: disc)
             }
@@ -111,10 +111,10 @@ class LibraryAlbumsViewController: TrackListOutlineViewController {
             if let track = item as? Track {
                 
                 return TableCellBuilder().withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
-                                                   inFont: systemFontScheme.playQueuePrimaryFont,
+                                                   inFont: systemFontScheme.normalFont,
                                                    andColor: systemColorScheme.tertiaryTextColor,
                                                    selectedTextColor: systemColorScheme.tertiarySelectedTextColor,
-                                                   centerYOffset: systemFontScheme.playQueueYOffset)
+                                                   centerYOffset: systemFontScheme.tableYOffset)
                     .buildCell(forOutlineView: outlineView,
                                forColumnWithId: .cid_TrackDuration, havingItem: track)
             }
@@ -159,24 +159,24 @@ class AlbumCellView: AuralTableCellView {
     
     func update(forGroup group: AlbumGroup) {
         
-        var string = group.name.attributed(font: systemFontScheme.playerPrimaryFont, color: systemColorScheme.primaryTextColor, lineSpacing: 5)
+        var string = group.name.attributed(font: systemFontScheme.prominentFont, color: systemColorScheme.primaryTextColor, lineSpacing: 5)
         
         if let artists = group.artistsString {
-            string = string + "\nby \(artists)".attributed(font: systemFontScheme.playerSecondaryFont, color: systemColorScheme.secondaryTextColor, lineSpacing: 3)
+            string = string + "\nby \(artists)".attributed(font: systemFontScheme.normalFont, color: systemColorScheme.secondaryTextColor, lineSpacing: 3)
         }
         
         var hasGenre: Bool = false
         
         if let genres = group.genresString {
             
-            string = string + "\n\(genres)".attributed(font: systemFontScheme.playerSecondaryFont, color: systemColorScheme.tertiaryTextColor)
+            string = string + "\n\(genres)".attributed(font: systemFontScheme.normalFont, color: systemColorScheme.tertiaryTextColor)
             hasGenre = true
         }
         
         if let year = group.yearString {
             
             let padding = hasGenre ? "  " : ""
-            string = string + "\(padding)[\(year)]".attributed(font: systemFontScheme.playerSecondaryFont, color: systemColorScheme.tertiaryTextColor, lineSpacing: 3)
+            string = string + "\(padding)[\(year)]".attributed(font: systemFontScheme.normalFont, color: systemColorScheme.tertiaryTextColor, lineSpacing: 3)
         }
         
         textField?.attributedStringValue = string
@@ -197,15 +197,15 @@ class AlbumTrackCellView: AuralTableCellView {
         
         super.awakeFromNib()
         
-        lblTrackNumber.font = systemFontScheme.playQueuePrimaryFont
+        lblTrackNumber.font = systemFontScheme.normalFont
         lblTrackNumber.textColor = systemColorScheme.tertiaryTextColor
         trackNumberConstraintsManager.removeAll(withAttributes: [.centerY])
-        trackNumberConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.playQueueYOffset)
+        trackNumberConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.tableYOffset)
         
-        lblTrackName.font = systemFontScheme.playQueuePrimaryFont
+        lblTrackName.font = systemFontScheme.normalFont
         lblTrackName.textColor = systemColorScheme.primaryTextColor
         trackNameConstraintsManager.removeAll(withAttributes: [.centerY])
-        trackNameConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.playQueueYOffset)
+        trackNameConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.tableYOffset)
     }
     
     func update(forTrack track: Track) {
@@ -240,7 +240,7 @@ class GroupSummaryCellView: AuralTableCellView {
     @IBOutlet weak var lblTrackCount: NSTextField!
     @IBOutlet weak var lblDuration: NSTextField!
     
-    lazy var summaryFont: NSFont = systemFontScheme.playQueuePrimaryFont
+    lazy var summaryFont: NSFont = systemFontScheme.normalFont
     
     func update(forGroup group: Group) {
         

@@ -166,7 +166,7 @@ class CompactPlayerViewController: NSViewController {
     
     func applyFontScheme(_ fontScheme: FontScheme) {
         
-        textView.font = fontScheme.playerSecondaryFont
+        textView.font = fontScheme.normalFont
         layoutTextView()
     }
     

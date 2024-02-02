@@ -59,7 +59,7 @@ extension DevicesViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     private func createNameCell(with tableView: NSTableView, forDevice device: AudioDevice, row: Int) -> NSTableCellView? {
         
-        let builder = TableCellBuilder().withText(text: device.name, inFont: systemFontScheme.effectsPrimaryFont,
+        let builder = TableCellBuilder().withText(text: device.name, inFont: systemFontScheme.normalFont,
                                                   andColor: systemColorScheme.primaryTextColor,
                                                   selectedTextColor: systemColorScheme.primarySelectedTextColor)
         

@@ -57,7 +57,7 @@ class PlaylistTracksViewController: TrackListTableViewController, ColorSchemePro
         case .cid_index:
             
             return builder.withText(text: "\(row + 1)",
-                                                   inFont: systemFontScheme.playlist.trackTextFont, andColor: systemColorScheme.tertiaryTextColor,
+                                                   inFont: systemFontScheme.normalFont, andColor: systemColorScheme.tertiaryTextColor,
                                                    selectedTextColor: systemColorScheme.tertiarySelectedTextColor)
 
         case .cid_trackName:
@@ -66,20 +66,20 @@ class PlaylistTracksViewController: TrackListTableViewController, ColorSchemePro
             
             if let artist = titleAndArtist.artist {
                 
-                return builder.withAttributedText(strings: [(text: artist + "  ", font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.secondaryTextColor),
-                                                                       (text: titleAndArtist.title, font: systemFontScheme.playlist.trackTextFont, color: systemColorScheme.primaryTextColor)],
+                return builder.withAttributedText(strings: [(text: artist + "  ", font: systemFontScheme.normalFont, color: systemColorScheme.secondaryTextColor),
+                                                                       (text: titleAndArtist.title, font: systemFontScheme.normalFont, color: systemColorScheme.primaryTextColor)],
                                                              selectedTextColors: [systemColorScheme.secondarySelectedTextColor, systemColorScheme.primarySelectedTextColor])
             } else {
                 
                 return builder.withAttributedText(strings: [(text: titleAndArtist.title,
-                                                                        font: systemFontScheme.playlist.trackTextFont,
+                                                                        font: systemFontScheme.normalFont,
                                                                         color: systemColorScheme.primaryTextColor)], selectedTextColors: [systemColorScheme.primarySelectedTextColor])
             }
             
         case .cid_duration:
             
             return builder.withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
-                                               inFont: systemFontScheme.playlist.trackTextFont, andColor: systemColorScheme.tertiaryTextColor,
+                                               inFont: systemFontScheme.normalFont, andColor: systemColorScheme.tertiaryTextColor,
                                                selectedTextColor: systemColorScheme.tertiarySelectedTextColor)
             
         default:

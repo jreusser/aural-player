@@ -13,8 +13,8 @@ import Cocoa
 class FilterBandsTabButtonCell: TabGroupButtonCell {
     
     override var yOffset: CGFloat {0}
-    override var textFont: NSFont {Fonts.Effects.unitFunctionFont}
-    override var boldTextFont: NSFont {Fonts.Effects.unitFunctionFont}
+    override var textFont: NSFont {systemFontScheme.smallFont}
+    override var boldTextFont: NSFont {systemFontScheme.smallFont}
     
     override var borderRadius: CGFloat {1}
     

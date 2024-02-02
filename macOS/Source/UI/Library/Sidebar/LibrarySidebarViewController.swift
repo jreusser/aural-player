@@ -47,7 +47,7 @@ class LibrarySidebarViewController: NSViewController {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor,
                                                      handler: textSelectionColorChanged(_:))
         
-//        fontSchemesManager.registerObserver(self, forProperty: \.playQueuePrimaryFont)
+//        fontSchemesManager.registerObserver(self, forProperty: \.normalFont)
     }
     
     @IBAction func doubleClickAction(_ sender: NSOutlineView) {

@@ -28,7 +28,7 @@ class ProgressArc: NSView {
     lazy var foregroundArcLineWidth: CGFloat = 6
     
     /// Font to be used for rendered text.
-    let textFont: PlatformFont = fontSchemesManager.systemScheme.playerPrimaryFont
+    let textFont: PlatformFont = fontSchemesManager.systemScheme.prominentFont
     
     /// Center of the rendered arcs.
     lazy var arcCenter: CGPoint = CGPoint(x: bounds.centerX, y: bounds.centerY)
@@ -92,7 +92,7 @@ class ProgressArc: NSView {
         
         let text = "\(percentage.clamped(to: 0...100).roundedInt)%"
         lblPercentage.stringValue = text
-        lblPercentage.font = systemFontScheme.playerPrimaryFont
+        lblPercentage.font = systemFontScheme.prominentFont
         lblPercentage.textColor = systemColorScheme.primaryTextColor
         lblPercentage.bringToFront()
 //        let textSize = text.size(withAttributes: [.font: textFont])

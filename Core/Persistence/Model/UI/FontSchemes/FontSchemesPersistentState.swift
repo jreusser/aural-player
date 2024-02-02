@@ -35,25 +35,16 @@ struct FontSchemePersistentState: Codable {
     let name: String?
     
     let textFontName: String?
-    let headingFontName: String?
+    let captionFontName: String?
     
     let captionSize: CGFloat?
 
-    let playerPrimarySize: CGFloat?
-    let playerSecondarySize: CGFloat?
-    let playerTertiarySize: CGFloat?
+    let normalSize: CGFloat?
+    let prominentSize: CGFloat?
+    let smallSize: CGFloat?
+    let extraSmallSize: CGFloat?
     
-    let effectsPrimarySize: CGFloat?
-    let effectsSecondarySize: CGFloat?
-    let effectsTertiarySize: CGFloat?
-    
-    let playQueuePrimarySize: CGFloat?
-    let playQueueSecondarySize: CGFloat?
-    let playQueueTertiarySize: CGFloat?
-    let playQueueYOffset: CGFloat?
-
-    let playlist: PlaylistFontSchemePersistentState?
-    let effects: EffectsFontSchemePersistentState?
+    let tableYOffset: CGFloat?
     
 #if os(macOS)
 
@@ -62,26 +53,17 @@ struct FontSchemePersistentState: Codable {
 
         self.name = scheme.name
         
-        self.textFontName = scheme.playerPrimaryFont.fontName
-        self.headingFontName = scheme.playlist.tabButtonTextFont.fontName
+        self.textFontName = scheme.normalFont.fontName
+        self.captionFontName = scheme.captionFont.fontName
         
         self.captionSize = scheme.captionFont.pointSize
         
-        self.playerPrimarySize = scheme.playerPrimaryFont.pointSize
-        self.playerSecondarySize = scheme.playerSecondaryFont.pointSize
-        self.playerTertiarySize = scheme.playerTertiaryFont.pointSize
+        self.normalSize = scheme.normalFont.pointSize
+        self.prominentSize = scheme.prominentFont.pointSize
+        self.smallSize = scheme.smallFont.pointSize
+        self.extraSmallSize = scheme.extraSmallFont.pointSize
         
-        self.effectsPrimarySize = scheme.effectsPrimaryFont.pointSize
-        self.effectsSecondarySize = scheme.effectsSecondaryFont.pointSize
-        self.effectsTertiarySize = scheme.effectsTertiaryFont.pointSize
-        
-        self.playQueuePrimarySize = scheme.playQueuePrimaryFont.pointSize
-        self.playQueueSecondarySize = scheme.playQueueSecondaryFont.pointSize
-        self.playQueueTertiarySize = scheme.playQueueTertiaryFont.pointSize
-        self.playQueueYOffset = scheme.playQueueYOffset
-
-        self.playlist = PlaylistFontSchemePersistentState(scheme.playlist)
-        self.effects = EffectsFontSchemePersistentState(scheme.effects)
+        self.tableYOffset = scheme.tableYOffset
     }
     
 #endif

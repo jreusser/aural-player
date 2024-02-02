@@ -42,8 +42,8 @@ class DevicesViewController: NSViewController, FontSchemePropertyObserver, Color
         panSlider.floatValue = audioGraph.pan
         lblPan.stringValue = audioGraph.formattedPan
         
-        fontSchemesManager.registerObserver(self, forProperty: \.effectsPrimaryFont)
-        fontSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight, lblPan], forProperty: \.effectsPrimaryFont)
+        fontSchemesManager.registerObserver(self, forProperty: \.normalFont)
+        fontSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight, lblPan], forProperty: \.normalFont)
 
 //        colorSchemesManager.registerObservers([lblBalance, lblPanLeft, lblPanRight], forProperty: \.secondaryTextColor)
 //        colorSchemesManager.registerObserver(lblPan, forProperty: \.primaryTextColor)

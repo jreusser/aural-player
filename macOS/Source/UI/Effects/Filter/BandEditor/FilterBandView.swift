@@ -93,9 +93,9 @@ class FilterBandView: NSView {
         fxUnitStateObserverRegistry.registerObserver(freqRangeSlider, forFXUnit: filterUnit)
         fxUnitStateObserverRegistry.registerObserver(cutoffSlider, forFXUnit: filterUnit)
         
-        fontSchemesManager.registerObservers([lblFilterTypeCaption, lblRangeCaption, lblCutoffCaption, lblFrequencies, lbl20Hz, lbl20KHz], forProperty: \.effectsPrimaryFont)
+        fontSchemesManager.registerObservers([lblFilterTypeCaption, lblRangeCaption, lblCutoffCaption, lblFrequencies, lbl20Hz, lbl20KHz], forProperty: \.normalFont)
         
-        fontSchemesManager.registerObserver(filterTypeMenu, forProperty: \.effectsPrimaryFont)
+        fontSchemesManager.registerObserver(filterTypeMenu, forProperty: \.normalFont)
         
 //        colorSchemesManager.registerObservers([lblFilterTypeCaption, lblRangeCaption, lblCutoffCaption, lbl20Hz, lbl20KHz], forProperty: \.secondaryTextColor)
 //        colorSchemesManager.registerObserver(lblFrequencies, forProperty: \.primaryTextColor)
@@ -281,13 +281,13 @@ class FilterBandView: NSView {
     
     func applyFontScheme(_ fontScheme: FontScheme) {
         
-        functionCaptionLabels.forEach {$0.font = systemFontScheme.effectsPrimaryFont}
+        functionCaptionLabels.forEach {$0.font = systemFontScheme.normalFont}
         
-        filterTypeMenu.font = systemFontScheme.effectsPrimaryFont
+        filterTypeMenu.font = systemFontScheme.normalFont
         filterTypeMenu.redraw()
         
-        presetRangesMenu.font = systemFontScheme.effectsPrimaryFont
-        lblFrequencies.font = systemFontScheme.effectsPrimaryFont
+        presetRangesMenu.font = systemFontScheme.normalFont
+        lblFrequencies.font = systemFontScheme.normalFont
     }
     
     func applyColorScheme(_ scheme: ColorScheme) {

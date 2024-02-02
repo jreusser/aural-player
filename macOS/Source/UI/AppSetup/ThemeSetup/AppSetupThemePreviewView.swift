@@ -73,9 +73,9 @@ class AppSetupThemePreviewView: NSView {
             
             guard let theScheme = fontScheme else {return}
             
-            lblTrackTitle.font = theScheme.playerPrimaryFont
-            lblArtistAlbum.font = theScheme.playerSecondaryFont
-            lblDuration.font = theScheme.playerTertiaryFont
+            lblTrackTitle.font = theScheme.prominentFont
+            lblArtistAlbum.font = theScheme.normalFont
+            lblDuration.font = theScheme.smallFont
         }
     }
     

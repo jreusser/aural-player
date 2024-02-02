@@ -48,7 +48,7 @@ class AudioUnitsViewController: NSViewController, ColorSchemePropertyObserver, F
     
     override func viewDidLoad() {
         
-        fontSchemesManager.registerObserver(self, forProperty: \.effectsPrimaryFont)
+        fontSchemesManager.registerObserver(self, forProperty: \.normalFont)
 
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))

@@ -72,7 +72,7 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
         doSelectTab(at: playQueueUIState.currentView.rawValue)
         
         fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-        fontSchemesManager.registerObserver(self, forProperty: \.playQueueSecondaryFont)
+        fontSchemesManager.registerObserver(self, forProperty: \.normalFont)
         
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperties: [\.buttonColor, \.inactiveControlColor], changeReceivers: buttonColorChangeReceivers)
@@ -198,7 +198,7 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
         if let playingTrackIndex = playQueueDelegate.currentTrackIndex {
             
             let playIconAttStr = "▶".attributed(font: futuristicFontSet.mainFont(size: 12), color: systemColorScheme.secondaryTextColor)
-            let tracksSummaryAttStr = "  \(playingTrackIndex + 1) / \(playQueueDelegate.size) \(tracksCardinalString)".attributed(font: systemFontScheme.playQueueSecondaryFont,
+            let tracksSummaryAttStr = "  \(playingTrackIndex + 1) / \(playQueueDelegate.size) \(tracksCardinalString)".attributed(font: systemFontScheme.normalFont,
                                                                                                                                   color: systemColorScheme.secondaryTextColor)
             
             lblTracksSummary.attributedStringValue = playIconAttStr + tracksSummaryAttStr
@@ -206,12 +206,12 @@ class PlayQueueContainerViewController: NSViewController, FontSchemePropertyObse
         } else {
             
             lblTracksSummary.stringValue = "\(playQueueDelegate.size) \(tracksCardinalString)"
-            lblTracksSummary.font = systemFontScheme.playQueueSecondaryFont
+            lblTracksSummary.font = systemFontScheme.normalFont
             lblTracksSummary.textColor = systemColorScheme.secondaryTextColor
         }
         
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(playQueueDelegate.duration)
-        lblDurationSummary.font = systemFontScheme.playQueueSecondaryFont
+        lblDurationSummary.font = systemFontScheme.normalFont
         lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
     }
     

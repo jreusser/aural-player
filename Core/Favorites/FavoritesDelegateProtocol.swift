@@ -54,10 +54,10 @@ protocol FavoritesDelegateProtocol {
     var allFavoriteTracks: [FavoriteTrack] {get}
     var numberOfFavoriteTracks: Int {get}
     
-    var artistsFromFavoriteTracks: [String] {get}
-    var albumsFromFavoriteTracks: [String] {get}
-    var genresFromFavoriteTracks: [String] {get}
-    var decadesFromFavoriteTracks: [String] {get}
+    var artistsFromFavoriteTracks: Set<String> {get}
+    var albumsFromFavoriteTracks: Set<String> {get}
+    var genresFromFavoriteTracks: Set<String> {get}
+    var decadesFromFavoriteTracks: Set<String> {get}
     
     var allFavoriteArtists: [FavoriteGroup] {get}
     var numberOfFavoriteArtists: Int {get}

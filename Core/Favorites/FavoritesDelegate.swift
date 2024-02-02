@@ -76,20 +76,20 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         favoriteDecades.count
     }
     
-    var artistsFromFavoriteTracks: [String] {
-        favoriteTracks.values.compactMap {$0.track.artist}
+    var artistsFromFavoriteTracks: Set<String> {
+        Set(favoriteTracks.values.compactMap {$0.track.artist})
     }
     
-    var albumsFromFavoriteTracks: [String] {
-        favoriteTracks.values.compactMap {$0.track.album}
+    var albumsFromFavoriteTracks: Set<String> {
+        Set(favoriteTracks.values.compactMap {$0.track.album})
     }
     
-    var genresFromFavoriteTracks: [String] {
-        favoriteTracks.values.compactMap {$0.track.genre}
+    var genresFromFavoriteTracks: Set<String> {
+        Set(favoriteTracks.values.compactMap {$0.track.genre})
     }
     
-    var decadesFromFavoriteTracks: [String] {
-        favoriteTracks.values.compactMap {$0.track.decade}
+    var decadesFromFavoriteTracks: Set<String> {
+        Set(favoriteTracks.values.compactMap {$0.track.decade})
     }
     
     private let playQueue: PlayQueueDelegateProtocol

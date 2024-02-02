@@ -43,7 +43,7 @@ enum ThemePreset: String, CaseIterable {
 
         switch self {
 
-        case .poolsideFM:   return FontScheme(self.name, .poolsideFM)
+        case .poolsideFM:   return .poolsideFM
 
         }
     }

@@ -37,7 +37,7 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
 //        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
 //        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
 //        
-//        fontSchemesManager.registerObservers([lblPlaylistsSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
+//        fontSchemesManager.registerObservers([lblPlaylistsSummary, lblDurationSummary], forProperty: \.normalFont)
 //        colorSchemesManager.registerObservers([lblPlaylistsSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
 //        
 //        colorSchemesManager.registerObserver(outlineView, forProperty: \.backgroundColor)
@@ -133,10 +133,10 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
             if let track = item as? Track {
                 
                 return TableCellBuilder().withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
-                                                   inFont: systemFontScheme.playQueuePrimaryFont,
+                                                   inFont: systemFontScheme.normalFont,
                                                    andColor: systemColorScheme.tertiaryTextColor,
                                                    selectedTextColor: systemColorScheme.tertiarySelectedTextColor,
-                                                   centerYOffset: systemFontScheme.playQueueYOffset)
+                                                   centerYOffset: systemFontScheme.tableYOffset)
                     .buildCell(forOutlineView: outlineView,
                                forColumnWithId: .cid_TrackDuration, havingItem: track)
             }
@@ -171,7 +171,7 @@ class ImportedPlaylistCellView: AuralTableCellView {
     
     func update(forPlaylist playlist: ImportedPlaylist) {
         
-        let string = playlist.name.attributed(font: systemFontScheme.playerPrimaryFont, color: systemColorScheme.primaryTextColor, lineSpacing: 5)
+        let string = playlist.name.attributed(font: systemFontScheme.prominentFont, color: systemColorScheme.primaryTextColor, lineSpacing: 5)
         textField?.attributedStringValue = string
         
         imageView?.image = .imgPlaylist
@@ -190,10 +190,10 @@ class ImportedPlaylistTrackCellView: AuralTableCellView {
         
         super.awakeFromNib()
         
-        lblTrackName.font = systemFontScheme.playQueuePrimaryFont
+        lblTrackName.font = systemFontScheme.normalFont
         lblTrackName.textColor = systemColorScheme.primaryTextColor
         trackNameConstraintsManager.removeAll(withAttributes: [.centerY])
-        trackNameConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.playQueueYOffset)
+        trackNameConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.tableYOffset)
     }
     
     func update(forTrack track: Track) {

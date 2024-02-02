@@ -66,8 +66,8 @@ class PlaylistViewController: NSViewController {
         doTabViewAction(tableViewTabButton)
         
         lblPlaylistName.font = systemFontScheme.captionFont
-        lblTracksSummary.font = systemFontScheme.playlist.summaryFont
-        lblDurationSummary.font = systemFontScheme.playlist.summaryFont
+        lblTracksSummary.font = systemFontScheme.smallFont
+        lblDurationSummary.font = systemFontScheme.smallFont
         
         controlsContainer.startTracking()
         

@@ -59,7 +59,7 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         
 //        colorSchemesManager.registerSchemeObserver(tableView, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor, \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor])
         
-        fontSchemesManager.registerSchemeObserver(tableView, forProperties: [\.playQueuePrimaryFont, \.playQueueSecondaryFont, \.playQueueTertiaryFont])
+        fontSchemesManager.registerSchemeObserver(tableView, forProperties: [\.normalFont])
     }
     
     // ---------------- NSTableViewDataSource --------------------

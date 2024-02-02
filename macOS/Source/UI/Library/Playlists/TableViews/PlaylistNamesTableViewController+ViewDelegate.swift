@@ -36,7 +36,7 @@ extension PlaylistNamesTableViewController: NSTableViewDelegate {
               columnId == .cid_playlistName else {return nil}
         
         let builder = TableCellBuilder().withText(text: playlist.name,
-                                                  inFont: systemFontScheme.playlist.trackTextFont,
+                                                  inFont: systemFontScheme.normalFont,
                                                   andColor: systemColorScheme.primaryTextColor,
                                                   selectedTextColor: systemColorScheme.primarySelectedTextColor)
         

@@ -49,7 +49,7 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
         
 //        fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-//        fontSchemesManager.registerObservers([lblArtistsSummary, lblDurationSummary], forProperty: \.playQueueSecondaryFont)
+//        fontSchemesManager.registerObservers([lblArtistsSummary, lblDurationSummary], forProperty: \.normalFont)
         
         updateSummary()
     }
@@ -102,10 +102,10 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
             if let disc = item as? AlbumDiscGroup {
                 
                 return TableCellBuilder().withText(text: disc.name,
-                                                   inFont: systemFontScheme.playerPrimaryFont,
+                                                   inFont: systemFontScheme.prominentFont,
                                                    andColor: systemColorScheme.secondaryTextColor,
                                                    selectedTextColor: systemColorScheme.secondarySelectedTextColor,
-                                                   centerYOffset: systemFontScheme.playQueueYOffset)
+                                                   centerYOffset: systemFontScheme.tableYOffset)
                     .buildCell(forOutlineView: outlineView,
                                forColumnWithId: .cid_DiscName, havingItem: disc)
             }
@@ -115,10 +115,10 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
             if let track = item as? Track {
                 
                 return TableCellBuilder().withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
-                                                   inFont: systemFontScheme.playQueuePrimaryFont,
+                                                   inFont: systemFontScheme.normalFont,
                                                    andColor: systemColorScheme.tertiaryTextColor,
                                                    selectedTextColor: systemColorScheme.tertiarySelectedTextColor,
-                                                   centerYOffset: systemFontScheme.playQueueYOffset)
+                                                   centerYOffset: systemFontScheme.tableYOffset)
                     .buildCell(forOutlineView: outlineView,
                                forColumnWithId: .cid_TrackDuration, havingItem: track)
             }
@@ -209,7 +209,7 @@ class ArtistCellView: AuralTableCellView {
         image?.isTemplate = true
         imageColor = systemColorScheme.buttonColor
         
-        textFont = systemFontScheme.playerPrimaryFont
+        textFont = systemFontScheme.prominentFont
         textColor = systemColorScheme.primaryTextColor
     }
 }
@@ -218,20 +218,20 @@ class ArtistAlbumCellView: AuralTableCellView {
     
     func update(forGroup group: AlbumGroup) {
         
-        var string = group.name.attributed(font: systemFontScheme.playerPrimaryFont, color: systemColorScheme.primaryTextColor, lineSpacing: 5)
+        var string = group.name.attributed(font: systemFontScheme.prominentFont, color: systemColorScheme.primaryTextColor, lineSpacing: 5)
         
         var hasGenre: Bool = false
         
         if let genres = group.genresString {
             
-            string = string + "\n\(genres)".attributed(font: systemFontScheme.playerSecondaryFont, color: systemColorScheme.tertiaryTextColor)
+            string = string + "\n\(genres)".attributed(font: systemFontScheme.normalFont, color: systemColorScheme.tertiaryTextColor)
             hasGenre = true
         }
         
         if let year = group.yearString {
             
             let padding = hasGenre ? "  " : ""
-            string = string + "\(padding)[\(year)]".attributed(font: systemFontScheme.playerSecondaryFont, color: systemColorScheme.tertiaryTextColor, lineSpacing: 3)
+            string = string + "\(padding)[\(year)]".attributed(font: systemFontScheme.normalFont, color: systemColorScheme.tertiaryTextColor, lineSpacing: 3)
         }
         
         textField?.attributedStringValue = string

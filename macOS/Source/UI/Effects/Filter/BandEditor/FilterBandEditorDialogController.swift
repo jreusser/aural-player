@@ -39,7 +39,7 @@ class FilterBandEditorDialogController: NSWindowController {
         bandView.initialize(band: filterUnit[bandIndex], at: bandIndex)
         
         fontSchemesManager.registerObserver(lblWindowCaption, forProperty: \.captionFont)
-        fontSchemesManager.registerObservers([btnClose, btnDone], forProperty: \.effectsSecondaryFont)
+        fontSchemesManager.registerObservers([btnClose, btnDone], forProperty: \.smallFont)
         
 //        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
 //        colorSchemesManager.registerObserver(btnClose, forProperty: \.buttonColor)

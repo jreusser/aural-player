@@ -54,6 +54,9 @@ extension Library {
     
     func buildLibrary(immediate: Bool) {
         
+        // TODO: Temporarily disabling Library building. Remove this !!!
+//        return
+        
         let start = Date()
         
         chosenQueue = immediate ? highPriorityQueue : lowPriorityQueue

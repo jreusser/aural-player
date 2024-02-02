@@ -52,12 +52,6 @@ class FilterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
         let bandsDataFunction = {[weak self] in self?.filterUnit.bands ?? []}
         filterUnitView.initialize(stateFunction: unitStateFunction, bandsDataFunction: bandsDataFunction)
         updateSummary()
-        
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primarySelectedTextColor, handler: primarySelectedTextColorChanged(_:))
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondarySelectedTextColor, handler: secondarySelectedTextColorChanged(_:))
     }
  
     override func initControls() {
@@ -195,7 +189,13 @@ class FilterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
         
         messenger.subscribe(to: .filterUnit_bandUpdated, handler: bandUpdated(_:))
         
-        fontSchemesManager.registerObservers([self, lblSummary], forProperty: \.effectsPrimaryFont)
+        fontSchemesManager.registerObservers([self, lblSummary], forProperty: \.smallFont)
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primarySelectedTextColor, handler: primarySelectedTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondarySelectedTextColor, handler: secondarySelectedTextColorChanged(_:))
         
 //        colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
 //        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor])
@@ -239,7 +239,9 @@ class FilterUnitViewController: EffectsUnitViewController, FontSchemePropertyObs
     }
     
     private func secondaryTextColorChanged(_ newColor: PlatformColor) {
+        
         bandsTableView.reloadAllRows(columns: [2])
+        lblSummary.textColor = newColor
     }
     
     private func primarySelectedTextColorChanged(_ newColor: PlatformColor) {

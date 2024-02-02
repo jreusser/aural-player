@@ -155,7 +155,7 @@ class CreateThemeDialogController: SingletonWindowController, StringInputReceive
         }
         
         // Copy the current system scheme into the new scheme, and name it with the user's given scheme name
-        let themeFontScheme: FontScheme = FontScheme("Font scheme for theme '\(string)'", false, fontScheme)
+        let themeFontScheme: FontScheme = FontScheme(name: "Font scheme for theme '\(string)'", copying: fontScheme)
         let themeColorScheme: ColorScheme = ColorScheme("Color scheme for theme '\(string)'", false, colorScheme)
         
         let windowAppearance: WindowAppearance = WindowAppearance(cornerRadius: CGFloat(windowCornerRadiusStepper.integerValue))

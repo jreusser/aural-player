@@ -80,8 +80,6 @@ extension MasterUnitViewController: NSTableViewDelegate {
         return cell
     }
     
-    private var effectsFontScheme: EffectsFontScheme {systemFontScheme.effects}
-    
     private func createNameCell(_ tableView: NSTableView, _ id: NSUserInterfaceItemIdentifier, _ row: Int) -> MasterUnitAUTableNameCellView? {
         
         guard let cell = tableView.makeView(withIdentifier: id, owner: nil) as? MasterUnitAUTableNameCellView else {return nil}
@@ -89,8 +87,8 @@ extension MasterUnitViewController: NSTableViewDelegate {
         let audioUnit = graph.audioUnits[row]
         
         cell.text = audioUnit.name
-        cell.textFont = systemFontScheme.effectsPrimaryFont
-        cell.realignText(yOffset: effectsFontScheme.auRowTextYOffset)
+        cell.textFont = systemFontScheme.normalFont
+        cell.realignText(yOffset: systemFontScheme.tableYOffset)
         cell.textColor = systemColorScheme.colorForEffectsUnitState(audioUnit.state)
         
         return cell

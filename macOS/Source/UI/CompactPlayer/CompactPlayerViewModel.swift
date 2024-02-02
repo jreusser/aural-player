@@ -68,7 +68,7 @@ class CompactPlayerViewModel: NSObject, ObservableObject {
         colorSchemeChanged()
         
 //        colorSchemesManager.registerObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.buttonColor, \.activeControlColor, \.inactiveControlColor])
-        fontSchemesManager.registerObserver(self, forProperties: [\.playerPrimaryFont, \.playerSecondaryFont])
+        fontSchemesManager.registerObserver(self, forProperties: [\.prominentFont, \.normalFont])
         
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
         messenger.subscribeAsync(to: .player_playbackStateChanged) {[weak self] in
@@ -217,13 +217,13 @@ extension CompactPlayerViewModel: FontSchemeObserver {
     
     func fontSchemeChanged() {
         
-        primaryTextFont = systemFontScheme.playerPrimaryFont
-        secondaryTextFont = systemFontScheme.playerSecondaryFont
+        primaryTextFont = systemFontScheme.prominentFont
+        secondaryTextFont = systemFontScheme.normalFont
     }
     
     func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
         
-        primaryTextFont = systemFontScheme.playerPrimaryFont
-        secondaryTextFont = systemFontScheme.playerSecondaryFont
+        primaryTextFont = systemFontScheme.prominentFont
+        secondaryTextFont = systemFontScheme.normalFont
     }
 }

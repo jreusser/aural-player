@@ -27,7 +27,7 @@ class ReverbUnitView: NSView {
         
         super.awakeFromNib()
         
-        fontSchemesManager.registerObserver(reverbSpaceMenu, forProperties: [\.effectsPrimaryFont])
+        fontSchemesManager.registerObserver(reverbSpaceMenu, forProperties: [\.normalFont])
 //        colorSchemesManager.registerSchemeObserver(reverbSpaceMenu, forProperties: [\.buttonColor, \.primaryTextColor])
         
         if let popupMenuCell = reverbSpaceMenu.cell as? EffectsUnitPopupMenuCell {
