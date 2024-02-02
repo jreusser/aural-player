@@ -198,11 +198,15 @@ class PlaybackViewController: NSViewController {
                 self.curChapter = playingChapter
             }
         })
+        
+        playbackView.sliderView.updateSeekTimerState()
     }
     
     // Disables the chapter change polling task
     func stopPollingForChapterChange() {
+        
         seekTimerTaskQueue.dequeueTask(Self.chapterChangePollingTaskId)
+        playbackView.sliderView.updateSeekTimerState()
     }
     
     // MARK: Message handling ---------------------------------------------------------------------

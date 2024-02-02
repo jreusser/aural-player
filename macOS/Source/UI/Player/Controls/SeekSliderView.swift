@@ -83,11 +83,13 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
     @IBAction func switchTrackTimeDisplayTypeAction(_ sender: Any) {
         
         uiState.trackTimeDisplayType = uiState.trackTimeDisplayType.toggle()
-        updateSeekPosition()
+        setTrackTimeDisplayType(uiState.trackTimeDisplayType)
     }
     
     func setTrackTimeDisplayType(_ format: TrackTimeDisplayType) {
+        
         updateSeekPosition()
+        updateSeekTimerState()
     }
     
     func trackStartedPlaying() {
@@ -102,13 +104,13 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
     func showSeekPositionLabels() {
         
         lblTrackTime.showIf(uiState.showTrackTime)
-        setSeekTimerState(true)
+        updateSeekTimerState()
     }
     
     func hideSeekPositionLabels() {
         
-//        lblTrackTime.hide()
-        setSeekTimerState(false)
+        lblTrackTime.hide()
+        updateSeekTimerState()
     }
     
     func noTrackPlaying() {
@@ -143,9 +145,29 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
         timerOn ? seekTimer?.startOrResume() : seekTimer?.pause()
     }
     
+    func updateSeekTimerState() {
+        
+        var needTimer = false
+        let isPlaying = player.state == .playing
+        
+        if isPlaying {
+            
+            let hasTasks = seekTimerTaskQueue.hasTasks
+            
+            let labelShown = uiState.showTrackTime
+            let trackTimeDisplayType = uiState.trackTimeDisplayType
+            let trackTimeNotStatic = labelShown && trackTimeDisplayType != .duration
+            
+            needTimer = hasTasks || trackTimeNotStatic
+        }
+        
+        setSeekTimerState(needTimer)
+        print("Updated timer state: \(needTimer)")
+    }
+    
     // When the playback state changes (e.g. playing -> paused), fields may need to be updated
     func playbackStateChanged(_ newState: PlaybackState) {
-        setSeekTimerState(newState == .playing)
+        updateSeekTimerState()
     }
     
     // When the playback loop for the current playing track is changed, the seek slider needs to be updated (redrawn) to show the current loop state
@@ -183,11 +205,15 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
         } else {
             noTrackPlaying()
         }
+        
+        updateSeekTimerState()
     }
     
     // TODO: Should disable / re-enable the timer when labels are hidden / shown (unnecessary CPU usage), or when showing track duration (which is static).
     func showOrHideTrackTime() {
+        
         lblTrackTime.showIf(uiState.showTrackTime)
+        updateSeekTimerState()
     }
     
     // When the playback rate changes (caused by the Time Stretch effects unit), the seek timer interval needs to be updated, to ensure that the seek position fields are updated fast/slow enough to match the new playback rate.

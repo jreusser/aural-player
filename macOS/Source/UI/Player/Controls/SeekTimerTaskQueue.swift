@@ -26,6 +26,10 @@ class SeekTimerTaskQueue: Destroyable {
     // Accessor to retrieve all currently queued tasks
     var tasks: [SeekTimerTask] = []
     
+    var hasTasks: Bool {
+        tasks.isNonEmpty
+    }
+    
     // Enqueues a single task and maps it to the given (unique) ID so that it can later be retrieved by the same ID when it needs to be dequeued
     func enqueueTask(_ id: String, _ task: @escaping SeekTimerTask) {
         

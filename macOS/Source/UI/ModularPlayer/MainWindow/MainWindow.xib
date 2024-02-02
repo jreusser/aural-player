@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,7 +27,7 @@
             <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
             <rect key="contentRect" x="335" y="100" width="480" height="200"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2056" height="1285"/>
             <value key="minSize" type="size" width="480" height="200"/>
             <value key="maxSize" type="size" width="480" height="200"/>
             <view key="contentView" id="W7v-UI-tl4">
@@ -667,7 +666,7 @@
                 <outlet property="saveThemeMenuItem" destination="eWN-3w-ipu" id="fMJ-Oo-ITV"/>
                 <outlet property="toggleChaptersListMenuItem" destination="noi-da-YlA" id="eWn-LG-God"/>
                 <outlet property="toggleEffectsMenuItem" destination="pfz-PQ-tht" id="r6y-Q3-Pdf"/>
-                <outlet property="togglePlaylistMenuItem" destination="IY9-9c-uYd" id="jdR-qo-Iy7"/>
+                <outlet property="togglePlayQueueMenuItem" destination="IY9-9c-uYd" id="jdR-qo-Iy7"/>
                 <outlet property="toggleVisualizerMenuItem" destination="nCv-Bk-9yW" id="aY0-oY-meL"/>
             </connections>
         </customObject>
@@ -1593,7 +1592,7 @@ CA
                         <items>
                             <menuItem title=" Play Queue window" state="on" image="music.note.list" catalog="system" keyEquivalent="1" id="IY9-9c-uYd" userLabel="Playlist">
                                 <connections>
-                                    <action selector="togglePlaylistAction:" target="7y7-Z8-Sp0" id="htF-Ec-lZF"/>
+                                    <action selector="togglePlayQueueAction:" target="7y7-Z8-Sp0" id="htF-Ec-lZF"/>
                                 </connections>
                             </menuItem>
                             <menuItem title=" Effects window" state="on" image="ToggleEffectsView-Small" keyEquivalent="2" id="pfz-PQ-tht" userLabel="Effects">

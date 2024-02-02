@@ -17,7 +17,7 @@ import Cocoa
 class ViewMenuController: NSObject, NSMenuDelegate {
     
     // Menu items whose states are toggled when they (or others) are clicked
-    @IBOutlet weak var togglePlaylistMenuItem: NSMenuItem!
+    @IBOutlet weak var togglePlayQueueMenuItem: NSMenuItem!
     @IBOutlet weak var toggleEffectsMenuItem: NSMenuItem!
     @IBOutlet weak var toggleChaptersListMenuItem: NSMenuItem!
     @IBOutlet weak var toggleVisualizerMenuItem: NSMenuItem!
@@ -66,7 +66,7 @@ class ViewMenuController: NSObject, NSMenuDelegate {
     // When the menu is about to open, set the menu item states according to the current window/view state
     func menuWillOpen(_ menu: NSMenu) {
         
-        [togglePlaylistMenuItem, toggleEffectsMenuItem].forEach {$0?.show()}
+        [togglePlayQueueMenuItem, toggleEffectsMenuItem].forEach {$0?.show()}
         
 //        togglePlaylistMenuItem.onIf(windowLayoutsManager.isShowingPlaylist)
 //        toggleEffectsMenuItem.onIf(windowLayoutsManager.isShowingEffects)
@@ -80,13 +80,13 @@ class ViewMenuController: NSObject, NSMenuDelegate {
     }
  
     // Shows/hides the playlist window
-    @IBAction func togglePlaylistAction(_ sender: AnyObject) {
-//        windowLayoutsManager.togglePlaylistWindow()
+    @IBAction func togglePlayQueueAction(_ sender: AnyObject) {
+        windowLayoutsManager.toggleWindow(withId: .playQueue)
     }
     
     // Shows/hides the effects window
     @IBAction func toggleEffectsAction(_ sender: AnyObject) {
-//        windowLayoutsManager.toggleEffectsWindow()
+        windowLayoutsManager.toggleWindow(withId: .effects)
     }
     
     // Shows/hides the chapters list window
