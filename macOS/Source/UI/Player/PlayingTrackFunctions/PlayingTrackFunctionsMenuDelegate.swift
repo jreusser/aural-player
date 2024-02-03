@@ -82,6 +82,11 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
                 
         trackReader.loadAuxiliaryMetadata(for: playingTrack)
         TrackInfoViewContext.displayedTrack = playingTrack
+        
+        if windowLayoutsManager.isWindowLoaded(withId: .trackInfo) {
+            messenger.publish(.trackInfo_refresh)
+        }
+        
         windowLayoutsManager.showWindow(withId: .trackInfo)
     }
     

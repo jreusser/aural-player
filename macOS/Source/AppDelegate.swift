@@ -125,6 +125,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Tell app components that the app has finished launching, and pass along any launch parameters (set of files to open)
         self.messenger.publish(.application_launched, payload: self.filesToOpen)
         
+        // TODO: Temporary Autoplay hack !!!
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            playbackDelegate.togglePlayPause()
+        }
+        
         //                self.beginPeriodicPersistence()
     }
     

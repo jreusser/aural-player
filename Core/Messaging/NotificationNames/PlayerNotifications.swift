@@ -193,4 +193,7 @@ extension Notification.Name {
 
     // Commands the player to bookmark the current playback loop (if there is one) for the currently playing track
     static let player_bookmarkLoop = Notification.Name("player_bookmarkLoop")
+    
+    
+    static let trackInfo_refresh = Notification.Name("trackInfo_refresh")
 }

@@ -19,17 +19,27 @@ class TrackInfoWindowController: NSWindowController {
     @IBOutlet weak var btnClose: NSButton!
     @IBOutlet weak var rootContainer: NSBox!
     
+    private lazy var messenger = Messenger(for: self)
+    
     override func windowDidLoad() {
         
         super.windowDidLoad()
         
+        changeWindowCornerRadius(windowAppearanceState.cornerRadius)
+        
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainer)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: btnClose)
+        
+        messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
     }
     
     @IBAction func closeAction(_ sender: Any) {
         close()
+    }
+    
+    func changeWindowCornerRadius(_ radius: CGFloat) {
+        rootContainer.cornerRadius = radius
     }
 }
 

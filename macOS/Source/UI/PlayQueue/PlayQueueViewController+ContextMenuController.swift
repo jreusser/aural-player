@@ -270,6 +270,11 @@ extension PlayQueueViewController: NSMenuDelegate {
                 
         trackReader.loadAuxiliaryMetadata(for: selectedTrack)
         TrackInfoViewContext.displayedTrack = selectedTrack
+        
+        if windowLayoutsManager.isWindowLoaded(withId: .trackInfo) {
+            messenger.publish(.trackInfo_refresh)
+        }
+        
         windowLayoutsManager.showWindow(withId: .trackInfo)
     }
     

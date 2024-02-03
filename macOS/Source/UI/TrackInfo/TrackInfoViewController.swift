@@ -15,6 +15,7 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, NSTabViewDelega
     @IBOutlet weak var tabView: AuralTabView!
     
     @IBOutlet weak var lblMainCaption: NSTextField!
+    @IBOutlet weak var lblTrackTitle: NSTextField!
     @IBOutlet weak var lblTabCaption: NSTextField!
     
     @IBOutlet weak var tabButtonsBox: NSBox!
@@ -75,16 +76,43 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, NSTabViewDelega
                                  filter: {[weak self] msg in (self?.view.window?.isVisible ?? false) &&
                                     msg.updatedTrack == TrackInfoViewContext.displayedTrack &&
                                     msg.updatedFields.contains(.art)})
+        
+        messenger.subscribe(to: .trackInfo_refresh, handler: refresh)
     }
     
     override func viewWillAppear() {
         
         super.viewWillAppear()
+        refresh()
+    }
+    
+    private func refresh() {
+        
+        updateTrackTitle()
+        
         tabViewControllers.forEach {$0.refresh()}
         tabView.selectTabViewItem(at: 0)
         
         fontSchemeChanged()
         colorSchemeChanged()
+    }
+    
+    private func updateTrackTitle() {
+        
+        if let displayedTrack = TrackInfoViewContext.displayedTrack {
+            
+            if let artist = displayedTrack.artist, let title = displayedTrack.title {
+                
+                lblTrackTitle.attributedStringValue = "\(artist)  ".attributed(font: systemFontScheme.prominentFont, color: systemColorScheme.secondaryTextColor) +
+                title.attributed(font: systemFontScheme.prominentFont, color: systemColorScheme.primaryTextColor)
+                
+            } else {
+                lblTrackTitle.stringValue = displayedTrack.displayName
+            }
+            
+        } else {
+            lblTrackTitle.stringValue = "<No Track displayed>"
+        }
     }
     
     override func destroy() {
@@ -204,6 +232,7 @@ extension TrackInfoViewController: FontSchemeObserver {
     func fontSchemeChanged() {
         
         lblMainCaption.font = systemFontScheme.captionFont
+        lblTrackTitle.font = systemFontScheme.prominentFont
         lblTabCaption.font = systemFontScheme.captionFont
         
         tabViewControllers.forEach {
@@ -217,6 +246,7 @@ extension TrackInfoViewController: ColorSchemeObserver {
     func colorSchemeChanged() {
 
         lblMainCaption.textColor = systemColorScheme.captionTextColor
+        updateTrackTitle()
         lblTabCaption.textColor = systemColorScheme.captionTextColor
         
         tabButtonsBox.fillColor = systemColorScheme.backgroundColor
@@ -240,12 +270,16 @@ extension TrackInfoViewController: ColorSchemeObserver {
     
     private func primaryTextColorChanged(_ newColor: PlatformColor) {
         
+        updateTrackTitle()
+        
         tabViewControllers.forEach {
             $0.primaryTextColorChanged(newColor)
         }
     }
     
     private func secondaryTextColorChanged(_ newColor: PlatformColor) {
+        
+        updateTrackTitle()
         
         tabViewControllers.forEach {
             $0.secondaryTextColorChanged(newColor)
