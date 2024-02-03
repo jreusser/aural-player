@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,14 +26,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="525" height="265"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" tableStyle="plain" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="200" rowSizeStyle="automatic" viewBased="YES" id="AV2-8I-woR" userLabel="File system Table View">
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="plain" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="200" rowSizeStyle="automatic" viewBased="YES" id="AV2-8I-woR" userLabel="File system Table View">
                                 <rect key="frame" x="0.0" y="0.0" width="525" height="265"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn identifier="cid_TrackInfoKey" width="135" minWidth="135" maxWidth="135" id="lKh-fu-Vz7" userLabel="Key">
+                                    <tableColumn identifier="cid_TrackInfoKey" width="135" minWidth="135" maxWidth="1000" id="lKh-fu-Vz7" userLabel="Key">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -48,7 +49,7 @@
                                                 <rect key="frame" x="1" y="1" width="135" height="200"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="set-8K-Md5">
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="set-8K-Md5">
                                                         <rect key="frame" x="-2" y="1" width="150" height="200"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="omy-ne-QSi">
@@ -64,7 +65,7 @@
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn identifier="cid_TrackInfoValue" width="365" minWidth="365" maxWidth="365" id="n1T-aJ-1W1" userLabel="Value">
+                                    <tableColumn identifier="cid_TrackInfoValue" width="377" minWidth="365" maxWidth="10000" id="n1T-aJ-1W1" userLabel="Value">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -74,22 +75,27 @@
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                         <prototypeCellViews>
-                                            <tableCellView id="Dcp-gh-lLE">
-                                                <rect key="frame" x="139" y="1" width="365" height="200"/>
+                                            <tableCellView focusRingType="none" misplaced="YES" id="Dcp-gh-lLE">
+                                                <rect key="frame" x="139" y="1" width="377" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wri-FC-R8y">
-                                                        <rect key="frame" x="0.0" y="0.0" width="365" height="200"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="0XI-mU-7Yu">
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wri-FC-R8y">
+                                                        <rect key="frame" x="5" y="0.0" width="367" height="30"/>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" id="0XI-mU-7Yu">
                                                             <font key="font" size="13" name="Play-Regular"/>
                                                             <color key="textColor" white="0.85465494789999996" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="unemphasizedSelectedContentBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="Wri-FC-R8y" firstAttribute="top" secondItem="Dcp-gh-lLE" secondAttribute="top" id="FMO-zV-AQh"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Wri-FC-R8y" secondAttribute="trailing" constant="5" id="Ie0-w7-bAY"/>
+                                                    <constraint firstItem="Wri-FC-R8y" firstAttribute="leading" secondItem="Dcp-gh-lLE" secondAttribute="leading" constant="5" id="NCA-ry-ga6"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Wri-FC-R8y" secondAttribute="bottom" id="ZXN-9M-Hoa"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="Wri-FC-R8y" id="XOG-MB-zNb"/>
                                                 </connections>
@@ -121,34 +127,12 @@
                 <constraint firstAttribute="trailing" secondItem="Cet-08-E6R" secondAttribute="trailing" id="XMp-HS-4Sf"/>
                 <constraint firstItem="Cet-08-E6R" firstAttribute="leading" secondItem="vYM-9r-59T" secondAttribute="leading" id="yaR-YW-gS5"/>
             </constraints>
-            <point key="canvasLocation" x="11" y="487"/>
+            <point key="canvasLocation" x="10.5" y="486.5"/>
         </view>
         <customObject id="cti-aU-VdN" customClass="FileSystemTrackInfoViewDelegate" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="table" destination="AV2-8I-woR" id="Jg5-aE-R3V"/>
-                <outlet property="virtualKeyField" destination="PSc-Zp-mQ0" id="Lqh-A1-gBB"/>
-                <outlet property="virtualValueField" destination="9Fi-iF-zhB" id="xsA-uM-4Do"/>
             </connections>
         </customObject>
-        <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="PSc-Zp-mQ0" userLabel="Virtual Key Field">
-            <rect key="frame" x="0.0" y="0.0" width="135" height="200"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="0O5-K1-RRC">
-                <font key="font" size="13" name="Play-Regular"/>
-                <color key="textColor" white="0.85465494789999996" alpha="1" colorSpace="calibratedWhite"/>
-                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-            </textFieldCell>
-            <point key="canvasLocation" x="-87" y="-270"/>
-        </textField>
-        <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="9Fi-iF-zhB" userLabel="Virtual Value Field">
-            <rect key="frame" x="0.0" y="0.0" width="365" height="200"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="U3Z-Hw-VGh">
-                <font key="font" size="13" name="Play-Regular"/>
-                <color key="textColor" white="0.85465494789999996" alpha="1" colorSpace="calibratedWhite"/>
-                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-            </textFieldCell>
-            <point key="canvasLocation" x="217" y="-289"/>
-        </textField>
     </objects>
 </document>

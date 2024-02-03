@@ -16,9 +16,7 @@ protocol ColorSchemeObserver: ColorSchemePropertyObserver {
     func colorSchemeChanged()
 }
 
-protocol ColorSchemePropertyObserver {
-    
-    var hashValue: Int {get}
+protocol ColorSchemePropertyObserver where Self: NSObject {
 }
 
 protocol ColorSchemePropertyChangeReceiver {

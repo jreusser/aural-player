@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -127,29 +127,7 @@
         <customObject id="lr1-tA-ZHv" customClass="MetadataTrackInfoViewDelegate" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="table" destination="hxq-Uy-1B0" id="ouB-ra-Ufp"/>
-                <outlet property="virtualKeyField" destination="vQ8-Eh-YdX" id="eek-wh-p6u"/>
-                <outlet property="virtualValueField" destination="pso-Rd-T5q" id="Cfa-gp-e52"/>
             </connections>
         </customObject>
-        <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="vQ8-Eh-YdX" userLabel="Virtual Key Field">
-            <rect key="frame" x="0.0" y="0.0" width="135" height="200"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="wJk-Iq-FM4">
-                <font key="font" size="13" name="Play-Regular"/>
-                <color key="textColor" white="0.85465494789999996" alpha="1" colorSpace="calibratedWhite"/>
-                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-            </textFieldCell>
-            <point key="canvasLocation" x="-87" y="-270"/>
-        </textField>
-        <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="pso-Rd-T5q" userLabel="Virtual Value Field">
-            <rect key="frame" x="0.0" y="0.0" width="365" height="200"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="jlf-ez-fDJ">
-                <font key="font" size="13" name="Play-Regular"/>
-                <color key="textColor" white="0.85465494789999996" alpha="1" colorSpace="calibratedWhite"/>
-                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-            </textFieldCell>
-            <point key="canvasLocation" x="217" y="-289"/>
-        </textField>
     </objects>
 </document>

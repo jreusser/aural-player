@@ -10,15 +10,15 @@
 
 import Cocoa
 
-class ButtonStateMachine<E>: ColorSchemeObserver where E: Hashable {
+class ButtonStateMachine<E>: NSObject, ColorSchemeObserver where E: Hashable {
     
     var state: E
     private let button: NSButton
     private(set) var mappings: [E: StateMapping] = [:]
     
-    var hashValue: Int {
-        button.hashValue
-    }
+//    var hashValue: Int {
+//        button.hashValue
+//    }
     
     struct StateMapping {
         
@@ -36,6 +36,8 @@ class ButtonStateMachine<E>: ColorSchemeObserver where E: Hashable {
         for mapping in mappings {
             self.mappings[mapping.state] = mapping
         }
+        
+        super.init()
 
         doSetState(initialState)
         colorSchemesManager.registerSchemeObserver(self)
