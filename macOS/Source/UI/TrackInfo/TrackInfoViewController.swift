@@ -18,6 +18,13 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, NSTabViewDelega
     @IBOutlet weak var lblTabCaption: NSTextField!
     
     @IBOutlet weak var tabButtonsBox: NSBox!
+    @IBOutlet weak var btnMetadataTab: NSButton!
+    @IBOutlet weak var btnLyricsTab: NSButton!
+    @IBOutlet weak var btnCoverArtTab: NSButton!
+    @IBOutlet weak var btnAudioTab: NSButton!
+    @IBOutlet weak var btnFileSystemTab: NSButton!
+    
+    private lazy var tabButtons: [NSButton] = [btnMetadataTab, btnLyricsTab, btnCoverArtTab, btnAudioTab, btnFileSystemTab]
     
     @IBOutlet weak var exportArtMenuItem: NSMenuItem!
     @IBOutlet weak var exportHTMLWithArtMenuItem: NSMenuItem!
@@ -52,6 +59,16 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, NSTabViewDelega
         
         tabView.selectTabViewItem(at: 0)
         
+        fontSchemesManager.registerObserver(self)
+        
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceivers: [lblMainCaption, lblTabCaption])
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, handler: buttonColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.inactiveControlColor, handler: inactiveControlColorChanged(_:))
+        
         // Only respond to these notifications when the popover is shown, the updated track matches the displayed track,
         // and the album art field of the track was updated.
         messenger.subscribeAsync(to: .player_trackInfoUpdated, handler: coverArtViewController.trackInfoUpdated(_:),
@@ -66,11 +83,8 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, NSTabViewDelega
         tabViewControllers.forEach {$0.refresh()}
         tabView.selectTabViewItem(at: 0)
         
-        lblMainCaption.font = systemFontScheme.captionFont
-        lblMainCaption.textColor = systemColorScheme.captionTextColor
-        
-        lblTabCaption.font = systemFontScheme.captionFont
-        lblTabCaption.textColor = systemColorScheme.captionTextColor
+        fontSchemeChanged()
+        colorSchemeChanged()
     }
     
     override func destroy() {
@@ -189,21 +203,83 @@ extension TrackInfoViewController: FontSchemeObserver {
     
     func fontSchemeChanged() {
         
+        lblMainCaption.font = systemFontScheme.captionFont
+        lblTabCaption.font = systemFontScheme.captionFont
+        
+        tabViewControllers.forEach {
+            $0.fontSchemeChanged()
+        }
     }
 }
 
 extension TrackInfoViewController: ColorSchemeObserver {
     
     func colorSchemeChanged() {
+
+        lblMainCaption.textColor = systemColorScheme.captionTextColor
+        lblTabCaption.textColor = systemColorScheme.captionTextColor
         
         tabButtonsBox.fillColor = systemColorScheme.backgroundColor
+        tabButtons.forEach {
+            $0.redraw()
+        }
         
+        tabViewControllers.forEach {
+            $0.colorSchemeChanged()
+        }
+    }
+    
+    private func backgroundColorChanged(_ newColor: PlatformColor) {
+        
+        tabButtonsBox.fillColor = newColor
+        
+        tabViewControllers.forEach {
+            $0.backgroundColorChanged(newColor)
+        }
+    }
+    
+    private func primaryTextColorChanged(_ newColor: PlatformColor) {
+        
+        tabViewControllers.forEach {
+            $0.primaryTextColorChanged(newColor)
+        }
+    }
+    
+    private func secondaryTextColorChanged(_ newColor: PlatformColor) {
+        
+        tabViewControllers.forEach {
+            $0.secondaryTextColorChanged(newColor)
+        }
+    }
+    
+    private func buttonColorChanged(_ newColor: PlatformColor) {
+        tabButtons[tabView.selectedIndex].redraw()
+    }
+    
+    private func inactiveControlColorChanged(_ newColor: PlatformColor) {
+        
+        for button in tabButtons {
+            
+            if let buttonCell = button.cell as? TabGroupButtonCell, !buttonCell.isOn {
+                button.redraw()
+            }
+        }
     }
 }
 
 protocol TrackInfoViewProtocol where Self: NSViewController {
     
     func refresh()
+    
+    func fontSchemeChanged()
+    
+    func colorSchemeChanged()
+    
+    func backgroundColorChanged(_ newColor: PlatformColor)
+    
+    func primaryTextColorChanged(_ newColor: PlatformColor)
+    
+    func secondaryTextColorChanged(_ newColor: PlatformColor)
     
     var view: NSView {get}
     

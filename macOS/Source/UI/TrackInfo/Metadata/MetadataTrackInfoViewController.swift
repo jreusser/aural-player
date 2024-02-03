@@ -35,4 +35,28 @@ class MetadataTrackInfoViewController: NSViewController, TrackInfoViewProtocol {
     func writeHTML(to writer: HTMLWriter) {
         writer.addTable("Metadata:", 3, nil, tableView.htmlTable)
     }
+    
+    // MARK: Theming ---------------------------------------------------
+    
+    func fontSchemeChanged() {
+        tableView.reloadData()
+    }
+    
+    func colorSchemeChanged() {
+        
+        tableView.setBackgroundColor(systemColorScheme.backgroundColor)
+        tableView.reloadData()
+    }
+    
+    func backgroundColorChanged(_ newColor: PlatformColor) {
+        tableView.setBackgroundColor(newColor)
+    }
+    
+    func primaryTextColorChanged(_ newColor: PlatformColor) {
+        tableView.reloadAllRows(columns: [1])
+    }
+    
+    func secondaryTextColorChanged(_ newColor: PlatformColor) {
+        tableView.reloadAllRows(columns: [0])
+    }
 }

@@ -44,4 +44,29 @@ class LyricsTrackInfoViewController: NSViewController, TrackInfoViewProtocol {
         let lyrics = HTMLText(text: textView.string, underlined: false, bold: false, italic: false, width: nil)
         writer.addParagraph(lyrics)
     }
+    
+    // MARK: Theming ---------------------------------------------------
+    
+    func fontSchemeChanged() {
+        textView.font = systemFontScheme.normalFont
+    }
+    
+    func colorSchemeChanged() {
+        
+        backgroundColorChanged(systemColorScheme.backgroundColor)
+        primaryTextColorChanged(systemColorScheme.primaryTextColor)
+    }
+    
+    func backgroundColorChanged(_ newColor: PlatformColor) {
+        
+        textView.backgroundColor = newColor
+        textView.enclosingScrollView?.backgroundColor = newColor
+        textView.enclosingScrollView?.contentView.backgroundColor = newColor
+    }
+    
+    func primaryTextColorChanged(_ newColor: PlatformColor) {
+        textView.textColor = newColor
+    }
+    
+    func secondaryTextColorChanged(_ newColor: PlatformColor) {}
 }

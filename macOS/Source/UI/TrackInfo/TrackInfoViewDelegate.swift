@@ -30,7 +30,6 @@ class TrackInfoViewDelegate: NSObject, NSTableViewDataSource, NSTableViewDelegat
             
             // A track is playing, add its info to the info array, as key-value pairs
             keyValuePairs = infoForTrack(track)
-            print("KVPairs: \(keyValuePairs.count)")
             return keyValuePairs.count
         }
         
@@ -49,12 +48,14 @@ class TrackInfoViewDelegate: NSObject, NSTableViewDataSource, NSTableViewDelegat
         case .cid_trackInfoKeyColumn:
             
             cell.text = "\(kvPair.key):"
+            cell.textFont = systemFontScheme.normalFont
             cell.textColor = systemColorScheme.secondaryTextColor
             return cell
             
         case .cid_trackInfoValueColumn:
             
             cell.text = kvPair.value
+            cell.textFont = systemFontScheme.normalFont
             cell.textColor = systemColorScheme.primaryTextColor
             return cell
             

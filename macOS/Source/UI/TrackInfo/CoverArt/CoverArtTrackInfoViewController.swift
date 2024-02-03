@@ -78,4 +78,28 @@ class CoverArtTrackInfoViewController: NSViewController, TrackInfoViewProtocol {
             _ = DialogsAndAlerts.genericErrorAlert("Image file not written", "Unable to export image", error.localizedDescription).showModal()
         }
     }
+    
+    // MARK: Theming ---------------------------------------------------
+    
+    func fontSchemeChanged() {
+        tableView.reloadData()
+    }
+    
+    func colorSchemeChanged() {
+        
+        tableView.setBackgroundColor(systemColorScheme.backgroundColor)
+        tableView.reloadData()
+    }
+    
+    func backgroundColorChanged(_ newColor: PlatformColor) {
+        tableView.setBackgroundColor(newColor)
+    }
+    
+    func primaryTextColorChanged(_ newColor: PlatformColor) {
+        tableView.reloadAllRows(columns: [1])
+    }
+    
+    func secondaryTextColorChanged(_ newColor: PlatformColor) {
+        tableView.reloadAllRows(columns: [0])
+    }
 }

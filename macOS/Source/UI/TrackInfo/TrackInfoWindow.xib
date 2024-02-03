@@ -225,8 +225,14 @@
         </window>
         <customObject id="ia2-jn-Kxe" customClass="TrackInfoViewController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="btnAudioTab" destination="ZCz-89-x86" id="3IH-XY-hvX"/>
+                <outlet property="btnCoverArtTab" destination="QmD-eH-8zb" id="H9p-bC-L6K"/>
+                <outlet property="btnFileSystemTab" destination="Jyf-xz-1nh" id="4BW-uu-MNV"/>
+                <outlet property="btnLyricsTab" destination="fP4-DI-eVx" id="zEc-qj-U7a"/>
+                <outlet property="btnMetadataTab" destination="yFW-vn-kbQ" id="NqW-0A-3Lw"/>
                 <outlet property="lblMainCaption" destination="5gy-ij-kYs" id="NSA-AM-Xva"/>
                 <outlet property="lblTabCaption" destination="Wh5-w2-ugn" id="978-9c-37l"/>
+                <outlet property="tabButtonsBox" destination="hk9-Ug-9ll" id="HSR-JX-KDe"/>
                 <outlet property="tabView" destination="J3M-bs-byf" id="xYz-PL-P3U"/>
                 <outlet property="view" destination="l2i-1c-z10" id="TQo-Y5-eGO"/>
             </connections>
