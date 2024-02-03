@@ -127,12 +127,12 @@
                                     </textFieldCell>
                                 </textField>
                                 <tabView appearanceType="darkAqua" drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="J3M-bs-byf" userLabel="Tab group" customClass="AuralTabView" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="40" y="58" width="515" height="233"/>
+                                    <rect key="frame" x="40" y="25" width="515" height="266"/>
                                     <font key="font" metaFont="system"/>
                                     <tabViewItems>
                                         <tabViewItem label="Metadata" identifier="0" id="6lp-HE-id9" userLabel="Metadata" customClass="AuralTabViewItem" customModule="Aural" customModuleProvider="target">
                                             <view key="view" id="jtC-sV-AlS">
-                                                <rect key="frame" x="0.0" y="0.0" width="515" height="233"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="515" height="266"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </view>
                                             <connections>
@@ -188,6 +188,72 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
+                                <popUpButton toolTip="Options" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dxa-7e-NY7" userLabel="Export Menu">
+                                    <rect key="frame" x="548" y="402" width="18" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="QUn-Nd-OV7">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="cellTitle"/>
+                                        <menu key="menu" autoenablesItems="NO" id="Lc2-MI-qiL">
+                                            <items>
+                                                <menuItem hidden="YES" id="p0s-b8-liX" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                                    <imageReference key="image" image="Hamburger" symbolScale="medium"/>
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Hamburger"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </menuItem>
+                                                <menuItem title="Export cover art ..." image="arrow.right.doc.on.clipboard" catalog="system" id="Qf3-Ml-khe" userLabel="Export cover art ...">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menu key="submenu" title="Export metadata ..." id="tF1-XW-PRc" userLabel="Metadata menu">
+                                                        <items>
+                                                            <menuItem title="As JPEG file" id="YQ3-ag-DVD">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                                <connections>
+                                                                    <action selector="exportJPEGAction:" target="ia2-jn-Kxe" id="fEV-bk-Vo8"/>
+                                                                </connections>
+                                                            </menuItem>
+                                                            <menuItem title="As PNG file" id="4ij-xM-Bub">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                                <connections>
+                                                                    <action selector="exportPNGAction:" target="ia2-jn-Kxe" id="JAD-dx-XDV"/>
+                                                                </connections>
+                                                            </menuItem>
+                                                        </items>
+                                                    </menu>
+                                                </menuItem>
+                                                <menuItem title="Export metadata ..." image="arrow.right.doc.on.clipboard" catalog="system" id="vfJ-1a-hb4" userLabel="Export metadata ...">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menu key="submenu" title="Export metadata ..." id="lrk-Ft-oMI" userLabel="Metadata menu">
+                                                        <items>
+                                                            <menuItem title="As HTML file (with cover art)" id="eoj-zU-qyI">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                                <connections>
+                                                                    <action selector="exportHTMLWithArtAction:" target="ia2-jn-Kxe" id="k12-aR-6Vk"/>
+                                                                </connections>
+                                                            </menuItem>
+                                                            <menuItem title="As HTML file" id="utd-0c-3xq">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                                <connections>
+                                                                    <action selector="exportHTMLAction:" target="ia2-jn-Kxe" id="elP-VE-IWZ"/>
+                                                                </connections>
+                                                            </menuItem>
+                                                            <menuItem title="As JSON file" id="1I0-U9-i74">
+                                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                                <connections>
+                                                                    <action selector="exportJSONAction:" target="ia2-jn-Kxe" id="KIo-z0-ddJ"/>
+                                                                </connections>
+                                                            </menuItem>
+                                                        </items>
+                                                    </menu>
+                                                </menuItem>
+                                            </items>
+                                            <connections>
+                                                <outlet property="delegate" destination="ia2-jn-Kxe" id="rH5-CC-vrq"/>
+                                            </connections>
+                                        </menu>
+                                    </popUpButtonCell>
+                                </popUpButton>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="Wh5-w2-ugn" firstAttribute="leading" secondItem="92z-tP-OUL" secondAttribute="leading" constant="40" id="3Ke-O4-KhH"/>
@@ -199,7 +265,7 @@
                                 <constraint firstItem="4dW-aa-pDA" firstAttribute="top" secondItem="92z-tP-OUL" secondAttribute="top" constant="16" id="G9W-xF-w9F"/>
                                 <constraint firstItem="J3M-bs-byf" firstAttribute="leading" secondItem="92z-tP-OUL" secondAttribute="leading" constant="40" id="IdY-QZ-9hI"/>
                                 <constraint firstAttribute="trailing" secondItem="J3M-bs-byf" secondAttribute="trailing" constant="20" symbolic="YES" id="gjZ-Xk-ZrA"/>
-                                <constraint firstAttribute="bottom" secondItem="J3M-bs-byf" secondAttribute="bottom" constant="58" id="hNW-7S-LI9"/>
+                                <constraint firstAttribute="bottom" secondItem="J3M-bs-byf" secondAttribute="bottom" constant="25" id="hNW-7S-LI9"/>
                                 <constraint firstItem="TKH-ck-MlM" firstAttribute="top" secondItem="5gy-ij-kYs" secondAttribute="bottom" constant="7" id="iC2-wu-RO7"/>
                                 <constraint firstItem="Wh5-w2-ugn" firstAttribute="top" secondItem="5gy-ij-kYs" secondAttribute="bottom" constant="55" id="jI6-se-bl8"/>
                                 <constraint firstAttribute="trailing" secondItem="hk9-Ug-9ll" secondAttribute="trailing" constant="10" id="jYz-zc-pKs"/>
@@ -210,29 +276,13 @@
                         <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </box>
-                    <button toolTip="Export tracks to a playlist file" translatesAutoresizingMaskIntoConstraints="NO" id="tD1-d9-T22" userLabel="Export" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="544" y="15.5" width="16" height="18"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrow.right.doc.on.clipboard" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="6Hx-20-ssd">
-                            <behavior key="behavior" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="9" id="DJN-sr-T0g"/>
-                            <constraint firstAttribute="width" constant="16" id="vP8-me-ZSt"/>
-                        </constraints>
-                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="tD1-d9-T22" secondAttribute="trailing" constant="15" id="7RJ-hf-qFh"/>
                     <constraint firstItem="XTe-se-Wih" firstAttribute="leading" secondItem="l2i-1c-z10" secondAttribute="leading" id="Jak-I3-Pk2"/>
                     <constraint firstAttribute="trailing" secondItem="XTe-se-Wih" secondAttribute="trailing" id="QYH-jy-fGG"/>
                     <constraint firstAttribute="bottom" secondItem="XTe-se-Wih" secondAttribute="bottom" id="XhH-GW-m3F"/>
-                    <constraint firstAttribute="bottom" secondItem="tD1-d9-T22" secondAttribute="bottom" constant="20" symbolic="YES" id="ctJ-MG-v7c"/>
                     <constraint firstItem="XTe-se-Wih" firstAttribute="top" secondItem="l2i-1c-z10" secondAttribute="top" id="mQu-XV-X88"/>
                 </constraints>
-                <connections>
-                    <outlet property="btnExport" destination="tD1-d9-T22" id="4RH-qo-9ov"/>
-                </connections>
             </view>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
@@ -249,6 +299,9 @@
                 <outlet property="btnFileSystemTab" destination="Jyf-xz-1nh" id="4BW-uu-MNV"/>
                 <outlet property="btnLyricsTab" destination="fP4-DI-eVx" id="zEc-qj-U7a"/>
                 <outlet property="btnMetadataTab" destination="yFW-vn-kbQ" id="NqW-0A-3Lw"/>
+                <outlet property="exportArtMenuItem" destination="Qf3-Ml-khe" id="1Mu-nu-p00"/>
+                <outlet property="exportHTMLWithArtMenuItem" destination="eoj-zU-qyI" id="3Oz-ky-52r"/>
+                <outlet property="exportMenuIcon" destination="p0s-b8-liX" id="6E7-Kq-gs0"/>
                 <outlet property="lblMainCaption" destination="5gy-ij-kYs" id="NSA-AM-Xva"/>
                 <outlet property="lblTabCaption" destination="Wh5-w2-ugn" id="978-9c-37l"/>
                 <outlet property="lblTrackTitle" destination="TKH-ck-MlM" id="Ky7-kn-Pj8"/>
@@ -259,6 +312,7 @@
         </customObject>
     </objects>
     <resources>
+        <image name="Hamburger" width="10" height="7"/>
         <image name="arrow.right.doc.on.clipboard" catalog="system" width="16" height="18"/>
         <image name="doc.text" catalog="system" width="14" height="16"/>
         <image name="folder" catalog="system" width="18" height="14"/>

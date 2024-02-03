@@ -224,7 +224,10 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     }
     
     func showWindow(withId id: WindowID) {
-        getWindow(forId: id).show()
+        
+        let childWindow = getWindow(forId: id)
+        mainWindow.addChildWindow(childWindow, ordered: .above)
+        childWindow.show()
     }
     
     func hideWindow(withId id: WindowID) {

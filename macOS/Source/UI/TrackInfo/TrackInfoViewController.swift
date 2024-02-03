@@ -10,13 +10,15 @@
 
 import AppKit
 
-class TrackInfoViewController: NSViewController, NSMenuDelegate, NSTabViewDelegate {
+class TrackInfoViewController: NSViewController {
     
     @IBOutlet weak var tabView: AuralTabView!
     
     @IBOutlet weak var lblMainCaption: NSTextField!
     @IBOutlet weak var lblTrackTitle: NSTextField!
     @IBOutlet weak var lblTabCaption: NSTextField!
+    
+    @IBOutlet weak var exportMenuIcon: TintedIconMenuItem!
     
     @IBOutlet weak var tabButtonsBox: NSBox!
     @IBOutlet weak var btnMetadataTab: NSButton!
@@ -25,20 +27,20 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, NSTabViewDelega
     @IBOutlet weak var btnAudioTab: NSButton!
     @IBOutlet weak var btnFileSystemTab: NSButton!
     
-    private lazy var tabButtons: [NSButton] = [btnMetadataTab, btnLyricsTab, btnCoverArtTab, btnAudioTab, btnFileSystemTab]
+    lazy var tabButtons: [NSButton] = [btnMetadataTab, btnLyricsTab, btnCoverArtTab, btnAudioTab, btnFileSystemTab]
     
     @IBOutlet weak var exportArtMenuItem: NSMenuItem!
     @IBOutlet weak var exportHTMLWithArtMenuItem: NSMenuItem!
     
-    private let metadataViewController: MetadataTrackInfoViewController = MetadataTrackInfoViewController()
-    private let lyricsViewController: LyricsTrackInfoViewController = LyricsTrackInfoViewController()
-    private let coverArtViewController: CoverArtTrackInfoViewController = CoverArtTrackInfoViewController()
-    private let audioViewController: AudioTrackInfoViewController = AudioTrackInfoViewController()
-    private let fileSystemViewController: FileSystemTrackInfoViewController = FileSystemTrackInfoViewController()
+    let metadataViewController: MetadataTrackInfoViewController = MetadataTrackInfoViewController()
+    let lyricsViewController: LyricsTrackInfoViewController = LyricsTrackInfoViewController()
+    let coverArtViewController: CoverArtTrackInfoViewController = CoverArtTrackInfoViewController()
+    let audioViewController: AudioTrackInfoViewController = AudioTrackInfoViewController()
+    let fileSystemViewController: FileSystemTrackInfoViewController = FileSystemTrackInfoViewController()
     
-    private var tabViewControllers: [TrackInfoViewProtocol] = []
+    var tabViewControllers: [TrackInfoViewProtocol] = []
     
-    private lazy var dateFormatter: DateFormatter = DateFormatter(format: "MMMM dd, yyyy 'at' hh:mm:ss a")
+    lazy var dateFormatter: DateFormatter = DateFormatter(format: "MMMM dd, yyyy 'at' hh:mm:ss a")
     
     private lazy var messenger = Messenger(for: self)
     
@@ -68,6 +70,7 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, NSTabViewDelega
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, handler: buttonColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: exportMenuIcon)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.inactiveControlColor, handler: inactiveControlColorChanged(_:))
         
         // Only respond to these notifications when the popover is shown, the updated track matches the displayed track,
@@ -97,7 +100,7 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, NSTabViewDelega
         colorSchemeChanged()
     }
     
-    private func updateTrackTitle() {
+    func updateTrackTitle() {
         
         if let displayedTrack = TrackInfoViewContext.displayedTrack {
             
@@ -119,101 +122,6 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, NSTabViewDelega
         messenger.unsubscribeFromAll()
     }
 
-    func menuWillOpen(_ menu: NSMenu) {
-        
-        let hasImage: Bool = TrackInfoViewContext.displayedTrack?.art?.image != nil
-        
-        exportArtMenuItem.showIf(hasImage)
-        exportHTMLWithArtMenuItem.showIf(hasImage)
-    }
-    
-    @IBAction func exportJPEGAction(_ sender: AnyObject) {
-        doExportArt(.jpeg, "jpg")
-    }
-    
-    @IBAction func exportPNGAction(_ sender: AnyObject) {
-        doExportArt(.png, "png")
-    }
-    
-    private func doExportArt(_ type: NSBitmapImageRep.FileType, _ fileExtension: String) {
-        
-        if let track = TrackInfoViewContext.displayedTrack {
-            coverArtViewController.exportArt(forTrack: track, type: type, fileExtension: fileExtension)
-        }
-    }
-    
-    @IBAction func exportJSONAction(_ sender: AnyObject) {
-        
-        guard let track = TrackInfoViewContext.displayedTrack else {return}
-        
-        let dialog = DialogsAndAlerts.exportMetadataDialog(fileName: track.displayName + "-metadata", fileExtension: "json")
-        guard dialog.runModal() == .OK, let outFile = dialog.url else {return}
-        
-        var appDict = [NSString: AnyObject]()
-        appDict["version"] = NSApp.appVersion as AnyObject
-        appDict["exportDate"] = dateFormatter.string(from: Date()) as AnyObject
-
-        let dict: [NSString: AnyObject?] = ["appInfo": appDict as NSDictionary,
-                                           "metadata": metadataViewController.jsonObject,
-                                           "coverArt": coverArtViewController.jsonObject,
-                                           "lyrics": lyricsViewController.jsonObject,
-                                           "audio": audioViewController.jsonObject,
-                                           "fileSystem": fileSystemViewController.jsonObject]
-        
-        do {
-            try JSONSerialization.writeObject(dict as NSDictionary, toFile: outFile)
-            
-        } catch {
-            
-            if let error = error as? JSONWriteError {
-                _ = DialogsAndAlerts.genericErrorAlert("JSON file not written", error.message, error.description).showModal()
-            }
-        }
-    }
-    
-    @IBAction func exportHTMLWithArtAction(_ sender: AnyObject) {
-        doExportHTML(withArt: true)
-    }
-    
-    @IBAction func exportHTMLAction(_ sender: AnyObject) {
-        doExportHTML(withArt: false)
-    }
-        
-    private func doExportHTML(withArt includeArt: Bool) {
-        
-        guard let track = TrackInfoViewContext.displayedTrack else {return}
-        
-        let dialog = DialogsAndAlerts.exportMetadataDialog(fileName: track.displayName + "-metadata", fileExtension: "html")
-        guard dialog.runModal() == .OK, let outFile = dialog.url else {return}
-            
-        do {
-            let writer = HTMLWriter(outputFile: outFile)
-            
-            writer.addTitle(track.displayName)
-            writer.addHeading(track.displayName, 2, false)
-            
-            let text = String(format: "Metadata exported by Aural Player v%@ on: %@", NSApp.appVersion, dateFormatter.string(from: Date()))
-            let exportDate = HTMLText(text: text, underlined: true, bold: false, italic: false, width: nil)
-            writer.addParagraph(exportDate)
-            
-            if includeArt {
-                coverArtViewController.writeHTML(to: writer)
-            }
-            
-            ([metadataViewController, lyricsViewController, audioViewController, fileSystemViewController] as? [TrackInfoViewProtocol])?.forEach {
-                $0.writeHTML(to: writer)
-            }
-            
-            try writer.writeToFile()
-            
-        } catch {
-            
-            if let error = error as? HTMLWriteError {
-                _ = DialogsAndAlerts.genericErrorAlert("HTML file not written", error.message, error.description).showModal()
-            }
-        }
-    }
-    
     @IBAction func previousTabAction(_ sender: Any) {
         tabView.previousTab()
     }
@@ -221,83 +129,12 @@ class TrackInfoViewController: NSViewController, NSMenuDelegate, NSTabViewDelega
     @IBAction func nextTabAction(_ sender: Any) {
         tabView.nextTab()
     }
+}
+
+extension TrackInfoViewController: NSTabViewDelegate {
     
     func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
         lblTabCaption.stringValue = self.tabView.items[tabView.selectedIndex].tabButton.toolTip ?? ""
-    }
-}
-
-extension TrackInfoViewController: FontSchemeObserver {
-    
-    func fontSchemeChanged() {
-        
-        lblMainCaption.font = systemFontScheme.captionFont
-        lblTrackTitle.font = systemFontScheme.prominentFont
-        lblTabCaption.font = systemFontScheme.captionFont
-        
-        tabViewControllers.forEach {
-            $0.fontSchemeChanged()
-        }
-    }
-}
-
-extension TrackInfoViewController: ColorSchemeObserver {
-    
-    func colorSchemeChanged() {
-
-        lblMainCaption.textColor = systemColorScheme.captionTextColor
-        updateTrackTitle()
-        lblTabCaption.textColor = systemColorScheme.captionTextColor
-        
-        tabButtonsBox.fillColor = systemColorScheme.backgroundColor
-        tabButtons.forEach {
-            $0.redraw()
-        }
-        
-        tabViewControllers.forEach {
-            $0.colorSchemeChanged()
-        }
-    }
-    
-    private func backgroundColorChanged(_ newColor: PlatformColor) {
-        
-        tabButtonsBox.fillColor = newColor
-        
-        tabViewControllers.forEach {
-            $0.backgroundColorChanged(newColor)
-        }
-    }
-    
-    private func primaryTextColorChanged(_ newColor: PlatformColor) {
-        
-        updateTrackTitle()
-        
-        tabViewControllers.forEach {
-            $0.primaryTextColorChanged(newColor)
-        }
-    }
-    
-    private func secondaryTextColorChanged(_ newColor: PlatformColor) {
-        
-        updateTrackTitle()
-        
-        tabViewControllers.forEach {
-            $0.secondaryTextColorChanged(newColor)
-        }
-    }
-    
-    private func buttonColorChanged(_ newColor: PlatformColor) {
-        tabButtons[tabView.selectedIndex].redraw()
-    }
-    
-    private func inactiveControlColorChanged(_ newColor: PlatformColor) {
-        
-        for button in tabButtons {
-            
-            if let buttonCell = button.cell as? TabGroupButtonCell, !buttonCell.isOn {
-                button.redraw()
-            }
-        }
     }
 }
 
