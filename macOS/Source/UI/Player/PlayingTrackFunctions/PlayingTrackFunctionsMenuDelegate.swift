@@ -25,6 +25,8 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
     
     @IBOutlet weak var playerWindowRootView: NSView!
     
+    @IBOutlet weak var rememberLastPositionMenuItem: ToggleMenuItem!
+    
     // Delegate that provides access to the Favorites track list.
     private lazy var favorites: FavoritesDelegateProtocol = favoritesDelegate
     
@@ -51,10 +53,21 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
         messenger.subscribe(to: .favoritesList_addOrRemove, handler: addOrRemoveFavorite)
         messenger.subscribe(to: .player_bookmarkPosition, handler: bookmarkPosition)
         messenger.subscribe(to: .player_bookmarkLoop, handler: bookmarkLoop)
+        
+        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
     }
     
     func menuWillOpen(_ menu: NSMenu) {
+        
         updateFavoriteButtonState()
+        updateRememberPositionMenuItemState()
+    }
+    
+    private func updateRememberPositionMenuItemState() {
+        
+        if let playingTrack = playbackInfoDelegate.playingTrack {
+            rememberLastPositionMenuItem.onIf(playbackProfiles.hasFor(playingTrack))
+        }
     }
     
     private func updateFavoriteButtonState() {
@@ -181,6 +194,10 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
         }
     }
     
+    @IBAction func rememberLastPositionAction(_ sender: ToggleMenuItem) {
+        messenger.publish(!rememberLastPositionMenuItem.isOn ? .player_savePlaybackProfile : .player_deletePlaybackProfile)
+    }
+    
     // MARK: Notif handling
     
     func trackAddedToFavorites(_ favorite: Favorite) {
@@ -208,5 +225,12 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
         
         infoPopup.showMessage(added ? "Track added to Favorites !" : "Track removed from Favorites !",
                                   playerWindowRootView, .maxX)
+    }
+    
+    private func trackTransitioned(_ notification: TrackTransitionNotification) {
+        
+        if notification.endTrack != nil {
+            updateRememberPositionMenuItemState()
+        }
     }
 }

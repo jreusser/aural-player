@@ -23,6 +23,7 @@
             <connections>
                 <outlet property="favoritesMenuItem" destination="FrP-jc-kMJ" id="Lby-jy-qyo"/>
                 <outlet property="playerWindowRootView" destination="ywj-Sd-BS4" id="kUb-bm-08g"/>
+                <outlet property="rememberLastPositionMenuItem" destination="AbS-M3-f1L" id="ard-uB-5Zf"/>
                 <outlet property="seekPositionMarkerView" destination="ibi-rN-iTf" id="qlf-33-BqW"/>
                 <outlet property="sliderView" destination="QDN-go-yNZ" id="VCT-Xe-sBe"/>
             </connections>
@@ -106,7 +107,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
-                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMU-Of-gsK" userLabel="Lbl Time Elapsed" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                    <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMU-Of-gsK" userLabel="Lbl Time Elapsed" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="312" y="23" width="70" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="Rnm-6W-ccF"/>
@@ -166,10 +167,16 @@
                                                             <action selector="showPlayingTrackAction:" target="DlG-hJ-3cs" id="VFe-pC-A4q"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="  Remember track position" image="clock.arrow.2.circlepath" catalog="system" id="AbS-M3-f1L" userLabel="Show track in Play Queue">
+                                                    <menuItem title="  Remember track position" image="clock.arrow.2.circlepath" catalog="system" id="AbS-M3-f1L" userLabel="Remember Track Position" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="clock.arrow.2.circlepath" catalog="system"/>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="clock.arrow.2.circlepath" catalog="system"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="offStateTitle" value=" Remember playback position for this track"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="onStateTitle" value=" Don't remember playback position for this track"/>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="showPlayingTrackAction:" target="DlG-hJ-3cs" id="XxR-S2-T38"/>
+                                                            <action selector="rememberLastPositionAction:" target="DlG-hJ-3cs" id="TGD-fw-Iae"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
@@ -240,7 +247,7 @@
                                             <action selector="volumeAction:" target="bbe-2a-cSz" id="gc4-34-eVp"/>
                                         </connections>
                                     </slider>
-                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i7r-GF-ZgY" userLabel="Volume Value Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                                    <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i7r-GF-ZgY" userLabel="Volume Value Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                                         <rect key="frame" x="414" y="29" width="50" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="50%" id="syX-k9-H41" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
@@ -348,7 +355,7 @@
                                         <rect key="frame" x="0.0" y="41" width="480" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ibi-rN-iTf" userLabel="SeekPositionMarker">
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ibi-rN-iTf" userLabel="SeekPositionMarker">
                                                 <rect key="frame" x="263" y="62" width="6" height="4"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="AZK-Q7-97j">

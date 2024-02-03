@@ -49,6 +49,8 @@ class PlayingTrackView: MouseTrackingView, FontSchemeObserver, ColorSchemeObserv
         lblTrackTime.showIf(trackInfo != nil && uiState.showTrackTime)
         functionsButton.showIf(trackInfo != nil)
         
+        // TODO: Hide functionsMenuItem on trackTransitioned (if endTrack == nil, i.e. playback stopped)
+        
         repositionInfoBox()
 
         controlsBox?.showIf(trackInfo == nil || uiState.showControls)

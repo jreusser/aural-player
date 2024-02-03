@@ -81,16 +81,16 @@ fileprivate let avfScheduler: PlaybackSchedulerProtocol = AVFScheduler(audioGrap
 
 fileprivate let ffmpegScheduler: PlaybackSchedulerProtocol = FFmpegScheduler(playerNode: audioGraph.playerNode)
 
+let playbackProfiles = PlaybackProfiles(persistentState: appPersistentState.playbackProfiles ?? [])
+
 let playbackDelegate: PlaybackDelegateProtocol = {
     
-    let profiles = PlaybackProfiles(persistentState: appPersistentState.playbackProfiles ?? [])
-    
-    let startPlaybackChain = StartPlaybackChain(player, playQueue: playQueue, trackReader: trackReader, profiles, preferences.playbackPreferences)
-    let stopPlaybackChain = StopPlaybackChain(player, playQueue, profiles, preferences.playbackPreferences)
+    let startPlaybackChain = StartPlaybackChain(player, playQueue: playQueue, trackReader: trackReader, playbackProfiles, preferences.playbackPreferences)
+    let stopPlaybackChain = StopPlaybackChain(player, playQueue, playbackProfiles, preferences.playbackPreferences)
     let trackPlaybackCompletedChain = TrackPlaybackCompletedChain(startPlaybackChain, stopPlaybackChain, playQueue)
     
     // Playback Delegate
-    return PlaybackDelegate(player, playQueue: playQueue, profiles, preferences.playbackPreferences,
+    return PlaybackDelegate(player, playQueue: playQueue, playbackProfiles, preferences.playbackPreferences,
                             startPlaybackChain, stopPlaybackChain, trackPlaybackCompletedChain)
 }()
 
