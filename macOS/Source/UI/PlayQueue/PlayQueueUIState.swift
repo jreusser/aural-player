@@ -13,7 +13,11 @@ import Foundation
 class PlayQueueUIState: PersistentModelObject {
     
     // The current play queue view type displayed within the tab group.
-    var currentView: PlayQueueView
+    var currentView: PlayQueueView {
+        didSet {
+            print("curView: \(currentView)")
+        }
+    }
     
     var selectedRows: IndexSet = .empty
     
@@ -28,11 +32,11 @@ class PlayQueueUIState: PersistentModelObject {
 
 enum PlayQueueView: Int, Codable {
     
-    case tableView
-    case listView
+    case simple
+    case expanded
 }
 
 struct PlayQueueUIDefaults {
     
-    static let currentView: PlayQueueView = .tableView
+    static let currentView: PlayQueueView = .simple
 }

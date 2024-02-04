@@ -11,6 +11,11 @@
 import Cocoa
 
 class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver, ColorSchemeObserver {
+    
+    /// Override this !!!
+    var playQueueView: PlayQueueView {
+        .simple
+    }
 
     override var isTrackListBeingModified: Bool {playQueueDelegate.isBeingModified}
     
@@ -57,25 +62,7 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
         
-        messenger.subscribe(to: .playQueue_playSelectedTrack, handler: playSelectedTrack)
-        
         messenger.subscribe(to: .playQueue_refresh, handler: tableView.reloadData)
-        
-        messenger.subscribe(to: .playQueue_selectAllItems, handler: tableView.selectAllItems)
-        messenger.subscribe(to: .playQueue_clearSelection, handler: tableView.clearSelection)
-        messenger.subscribe(to: .playQueue_invertSelection, handler: tableView.invertSelection)
-        
-//        messenger.subscribe(to: .playQueue_moveTracksUp, handler: moveTracksUp)
-//        messenger.subscribe(to: .playQueue_moveTracksDown, handler: moveTracksDown)
-//        messenger.subscribe(to: .playQueue_moveTracksToTop, handler: moveTracksToTop)
-//        messenger.subscribe(to: .playQueue_moveTracksToBottom, handler: moveTracksToBottom)
-        
-        messenger.subscribe(to: .playQueue_pageUp, handler: tableView.pageUp)
-        messenger.subscribe(to: .playQueue_pageDown, handler: tableView.pageDown)
-        messenger.subscribe(to: .playQueue_scrollToTop, handler: tableView.scrollToTop)
-        messenger.subscribe(to: .playQueue_scrollToBottom, handler: tableView.scrollToBottom)
-        
-        messenger.subscribe(to: .playQueue_showPlayingTrack, handler: showPlayingTrack)
     }
     
     override func tracksMovedByDragDrop(minReloadIndex: Int, maxReloadIndex: Int) {
@@ -105,7 +92,7 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         }
     }
     
-    private func showPlayingTrack() {
+    func showPlayingTrack() {
         
         if let indexOfPlayingTrack = playQueueDelegate.currentTrackIndex {
             selectTrack(at: indexOfPlayingTrack)

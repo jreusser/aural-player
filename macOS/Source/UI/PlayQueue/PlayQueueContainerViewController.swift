@@ -93,6 +93,19 @@ class PlayQueueContainerViewController: NSViewController {
         
         messenger.subscribe(to: .playQueue_playNext, handler: playNext)
         
+        messenger.subscribe(to: .playQueue_playSelectedTrack, handler: playSelectedTrack)
+        
+        messenger.subscribe(to: .playQueue_selectAllTracks, handler: selectAllTracks)
+        messenger.subscribe(to: .playQueue_clearSelection, handler: clearSelection)
+        messenger.subscribe(to: .playQueue_invertSelection, handler: invertSelection)
+        
+        messenger.subscribe(to: .playQueue_pageUp, handler: pageUp)
+        messenger.subscribe(to: .playQueue_pageDown, handler: pageDown)
+        messenger.subscribe(to: .playQueue_scrollToTop, handler: scrollToTop)
+        messenger.subscribe(to: .playQueue_scrollToBottom, handler: scrollToBottom)
+        
+        messenger.subscribe(to: .playQueue_showPlayingTrack, handler: showPlayingTrack)
+        
         messenger.subscribe(to: .playQueue_moveTracksUp, handler: moveTracksUp)
         messenger.subscribe(to: .playQueue_moveTracksDown, handler: moveTracksDown)
         messenger.subscribe(to: .playQueue_moveTracksToTop, handler: moveTracksToTop)
@@ -115,6 +128,10 @@ class PlayQueueContainerViewController: NSViewController {
         updateSummary()
     }
     
+    func playSelectedTrack() {
+        currentViewController.playSelectedTrack()
+    }
+    
     // TODO: REFACTORING - move this to a generic TableWindowController.
     private func exportAsPlaylistFile() {
         
@@ -130,6 +147,18 @@ class PlayQueueContainerViewController: NSViewController {
         }
     }
     
+    func selectAllTracks() {
+        currentViewController.selectAll()
+    }
+    
+    func clearSelection() {
+        currentViewController.clearSelection()
+    }
+    
+    func invertSelection() {
+        currentViewController.invertSelection()
+    }
+    
     // Removes all items from the playlist
     func removeAllTracks() {
         
@@ -141,6 +170,26 @@ class PlayQueueContainerViewController: NSViewController {
         messenger.publish(.playQueue_refresh)
         
         updateSummary()
+    }
+    
+    func showPlayingTrack() {
+        currentViewController.showPlayingTrack()
+    }
+    
+    func pageUp() {
+        currentViewController.pageUp()
+    }
+    
+    func pageDown() {
+        currentViewController.pageDown()
+    }
+    
+    func scrollToTop() {
+        currentViewController.scrollToTop()
+    }
+    
+    func scrollToBottom() {
+        currentViewController.scrollToBottom()
     }
     
     private func checkIfPlayQueueIsBeingModified() -> Bool {
@@ -200,6 +249,14 @@ class PlayQueueContainerViewController: NSViewController {
         
         controllers.forEach {$0.destroy()}
         messenger.unsubscribeFromAll()
+    }
+}
+
+extension PlayQueueContainerViewController: NSTabViewDelegate {
+    
+    func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
+        
+        playQueueUIState.currentView = tabGroup.selectedIndex == 0 ? .simple : .expanded
     }
 }
 

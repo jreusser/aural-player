@@ -12,6 +12,10 @@ import Cocoa
 
 class PlayQueueSimpleViewController: PlayQueueViewController {
     
+    override var playQueueView: PlayQueueView {
+        .simple
+    }
+    
     override var nibName: String? {"PlayQueueSimpleView"}
     
     override var rowHeight: CGFloat {30}

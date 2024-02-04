@@ -112,8 +112,8 @@ class PlayQueueMenuController: NSObject, NSMenuDelegate {
         }
     }
     
-    @IBAction func selectAllItemsAction(_ sender: Any) {
-        messenger.publish(.playQueue_selectAllItems)
+    @IBAction func selectAllTracksAction(_ sender: Any) {
+        messenger.publish(.playQueue_selectAllTracks)
     }
     
     // Clears the play queue table view selection.

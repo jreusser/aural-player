@@ -936,7 +936,7 @@ CA
                             <menuItem isSeparatorItem="YES" id="Fv7-3m-8Q1"/>
                             <menuItem title=" Select all tracks" image="list.bullet.rectangle.fill" catalog="system" keyEquivalent="a" id="NMF-Bq-MjN">
                                 <connections>
-                                    <action selector="selectAllItemsAction:" target="qFA-s7-21q" id="lyK-pV-dZY"/>
+                                    <action selector="selectAllTracksAction:" target="qFA-s7-21q" id="lyK-pV-dZY"/>
                                 </connections>
                             </menuItem>
                             <menuItem title=" Clear selection" image="square.slash" catalog="system" id="q1G-iQ-9xR" userLabel="Clear selection">

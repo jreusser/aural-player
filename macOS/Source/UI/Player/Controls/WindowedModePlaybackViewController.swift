@@ -49,7 +49,6 @@ class WindowedModePlaybackViewController: PlaybackViewController {
         guard let playbackView = self.playbackView as? WindowedModePlaybackView else {return}
         
         messenger.subscribe(to: .applyTheme, handler: playbackView.applyTheme)
-//        messenger.subscribe(to: .player_changeSliderColors, handler: playbackView.changeSliderColors)
     }
     
     func performTrackPlayback(_ command: TrackPlaybackCommandNotification) {
@@ -67,12 +66,6 @@ class WindowedModePlaybackViewController: PlaybackViewController {
             if let track = command.track {
                 playTrack(track)
             }
-            
-//        case .group:
-//
-//            if let group = command.group {
-//                playGroup(group)
-//            }
         }
     }
     
@@ -83,10 +76,6 @@ class WindowedModePlaybackViewController: PlaybackViewController {
     func playTrack(_ track: Track) {
         player.play(track, .defaultParams())
     }
-    
-//    func playGroup(_ group: Group) {
-//        player.play(group, PlaybackParams.defaultParams())
-//    }
     
     func seekBackward_secondary() {
         
@@ -109,24 +98,28 @@ class WindowedModePlaybackViewController: PlaybackViewController {
     
     // MARK: Chapter playback functions ------------------------------------------------------------
     
+    private func loopChanged() {
+        playbackView.playbackLoopChanged(player.playbackLoop, player.playingTrack?.duration ?? 0)
+    }
+    
     func playChapter(_ index: Int) {
         
         player.playChapter(index)
-        playbackView.playbackLoopChanged(player.playbackLoop, player.playingTrack?.duration ?? 0)
+        loopChanged()
         playbackView.playbackStateChanged(player.state)
     }
     
     func previousChapter() {
         
         player.previousChapter()
-        playbackView.playbackLoopChanged(player.playbackLoop, player.playingTrack?.duration ?? 0)
+        loopChanged()
         playbackView.playbackStateChanged(player.state)
     }
     
     func nextChapter() {
         
         player.nextChapter()
-        playbackView.playbackLoopChanged(player.playbackLoop, player.playingTrack?.duration ?? 0)
+        loopChanged()
         playbackView.playbackStateChanged(player.state)
     }
     
@@ -140,7 +133,7 @@ class WindowedModePlaybackViewController: PlaybackViewController {
     func toggleChapterLoop() {
         
         _ = player.toggleChapterLoop()
-        playbackView.playbackLoopChanged(player.playbackLoop, player.playingTrack?.duration ?? 0)
+        loopChanged()
         
         messenger.publish(.player_playbackLoopChanged)
     }

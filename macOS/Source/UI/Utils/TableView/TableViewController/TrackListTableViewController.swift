@@ -173,6 +173,12 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
     
     @inlinable
     @inline(__always)
+    func selectAll() {
+        tableView.selectAllItems()
+    }
+    
+    @inlinable
+    @inline(__always)
     func clearSelection() {
         tableView.clearSelection()
     }
