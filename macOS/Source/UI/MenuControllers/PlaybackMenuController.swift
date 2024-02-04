@@ -38,7 +38,7 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var jumpToTimeMenuItem: NSMenuItem!
     
     @IBOutlet weak var detailedInfoMenuItem: NSMenuItem!
-    @IBOutlet weak var showInPlaylistMenuItem: NSMenuItem!
+    @IBOutlet weak var showInPlayQueueMenuItem: NSMenuItem!
     
     // Playback repeat modes
     @IBOutlet weak var repeatOffMenuItem: NSMenuItem!
@@ -83,7 +83,7 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
         // Enabled only if playing/paused
         let showingModalComponent: Bool = windowLayoutsManager.isShowingModalComponent
         
-//        showInPlaylistMenuItem.enableIf(isPlayingOrPaused && windowLayoutsManager.isShowingPlaylist)
+        showInPlayQueueMenuItem.enableIf(isPlayingOrPaused && windowLayoutsManager.isShowingPlayQueue)
         [replayTrackMenuItem, loopMenuItem, detailedInfoMenuItem].forEach {$0.enableIf(isPlayingOrPaused)}
         
         // Should not invoke these items when a popover is being displayed (because of the keyboard shortcuts which conflict with the CMD arrow and Alt arrow functions when editing text within a popover)
@@ -236,7 +236,7 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
     
     // Shows (selects) the currently playing track, within the playlist, if there is one
     @IBAction func showPlayingTrackAction(_ sender: Any) {
-//        messenger.publish(.playlist_showPlayingTrack, payload: playlistUIState.currentViewSelector)
+        messenger.publish(.playQueue_showPlayingTrack)
     }
     
     @IBAction func rememberLastPositionAction(_ sender: ToggleMenuItem) {

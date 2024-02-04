@@ -41,6 +41,8 @@ class PlayingTrackView: MouseTrackingView, FontSchemeObserver, ColorSchemeObserv
     
     private var autoHideFields_showing: Bool = false
     
+    private lazy var messenger = Messenger(for: self)
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()
@@ -66,6 +68,8 @@ class PlayingTrackView: MouseTrackingView, FontSchemeObserver, ColorSchemeObserv
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: functionsMenuItem)
 
         fontSchemesManager.registerObserver(self)
+        
+        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
     }
     
     var trackInfo: PlayingTrackInfo? {
@@ -205,6 +209,16 @@ class PlayingTrackView: MouseTrackingView, FontSchemeObserver, ColorSchemeObserv
         }
         
         textView.resized()
+    }
+    
+    private func trackTransitioned(_ notif: TrackTransitionNotification) {
+        
+        // If playback stopped, hide/dismiss the functions menu.
+        if notif.endTrack == nil {
+            
+            functionsButton.hide()
+            functionsButton.menu?.cancelTracking()
+        }
     }
     
     // MARK: Theming ------------------------------------------------------------------

@@ -319,9 +319,9 @@
                                         </connections>
                                     </button>
                                     <button toolTip="A ⇋ B Segment loop" wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hgz-4P-n2t" userLabel="Loop Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                        <rect key="frame" x="56" y="14" width="26" height="14"/>
+                                        <rect key="frame" x="61" y="14" width="14" height="14"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Loop" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="tHw-2c-h8N">
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Loop" imagePosition="only" alignment="center" imageScaling="axesIndependently" inset="2" id="tHw-2c-h8N">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -410,7 +410,7 @@
     </objects>
     <resources>
         <image name="Ellipsis" width="40" height="10"/>
-        <image name="Loop" width="270" height="210"/>
+        <image name="Loop" width="18" height="25"/>
         <image name="Play" width="40" height="40"/>
         <image name="PlayingArt" width="237" height="237"/>
         <image name="backward" catalog="system" width="19" height="12"/>
