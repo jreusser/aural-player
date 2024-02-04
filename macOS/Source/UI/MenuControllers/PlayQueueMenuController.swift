@@ -12,11 +12,66 @@ import Cocoa
 
 class PlayQueueMenuController: NSObject, NSMenuDelegate {
     
+    @IBOutlet weak var playSelectedTrackItem: NSMenuItem!
+    
+    @IBOutlet weak var exportToPlaylistItem: NSMenuItem!
+    
+    @IBOutlet weak var removeSelectedTracksItem: NSMenuItem!
+    @IBOutlet weak var cropSelectedTracksItem: NSMenuItem!
+    @IBOutlet weak var removeAllTracksItem: NSMenuItem!
+    
+    @IBOutlet weak var selectAllTracksItem: NSMenuItem!
+    @IBOutlet weak var clearSelectionItem: NSMenuItem!
+    @IBOutlet weak var invertSelectionItem: NSMenuItem!
+    
+    @IBOutlet weak var moveSelectedTracksUpItem: NSMenuItem!
+    @IBOutlet weak var moveSelectedTracksToTopItem: NSMenuItem!
+    @IBOutlet weak var moveSelectedTracksDownItem: NSMenuItem!
+    @IBOutlet weak var moveSelectedTracksToBottomItem: NSMenuItem!
+    
+    @IBOutlet weak var searchItem: NSMenuItem!
+    @IBOutlet weak var sortItem: NSMenuItem!
+    
+    @IBOutlet weak var pageUpItem: NSMenuItem!
+    @IBOutlet weak var pageDownItem: NSMenuItem!
+    @IBOutlet weak var scrollToTopItem: NSMenuItem!
+    @IBOutlet weak var scrollToBottomItem: NSMenuItem!
+    
     private lazy var alertDialog: AlertWindowController = .instance
     
     private let playQueue: PlayQueueDelegateProtocol = playQueueDelegate
     
     private lazy var messenger = Messenger(for: self)
+    
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        
+        let selRows = playQueueUIState.selectedRows
+        let hasSelRows = selRows.isNonEmpty
+        
+        let pqSize = playQueueDelegate.size
+        let pqHasTracks = pqSize > 0
+        let moreThanOneTrack = pqSize > 1
+        
+        playSelectedTrackItem.enableIf(selRows.count == 1)
+        
+        [exportToPlaylistItem, removeAllTracksItem, searchItem, 
+         pageUpItem, pageDownItem, scrollToTopItem, scrollToBottomItem].forEach {
+            
+            $0.enableIf(pqHasTracks)
+        }
+        
+        [removeSelectedTracksItem, clearSelectionItem].forEach {
+            $0.enableIf(hasSelRows)
+        }
+        
+        [cropSelectedTracksItem, moveSelectedTracksUpItem,
+         moveSelectedTracksToTopItem, moveSelectedTracksDownItem, moveSelectedTracksToBottomItem].forEach {
+            
+            $0.enableIf(hasSelRows && moreThanOneTrack)
+        }
+        
+        sortItem.enableIf(pqSize >= 2)
+    }
     
     // Plays the selected play queue track.
     @IBAction func playSelectedTrackAction(_ sender: Any) {

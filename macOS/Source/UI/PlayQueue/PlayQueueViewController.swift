@@ -164,4 +164,8 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         
         playQueueDelegate.loadTracks(from: files, atPosition: row, clearQueue: clearQueue, autoplay: autoplay)
     }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        playQueueUIState.selectedRows = self.selectedRows
+    }
 }
