@@ -689,6 +689,7 @@
 		3EF84DA82836332A004EF57B /* LibrarySidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84DA72836332A004EF57B /* LibrarySidebarViewController.swift */; };
 		3EF84DAA2836359B004EF57B /* LibrarySidebar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EF84DA92836359B004EF57B /* LibrarySidebar.xib */; };
 		3EFA0AD1262ABBA40023143E /* MasterPresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA0AD0262ABBA40023143E /* MasterPresetView.swift */; };
+		3EFAA8CF2B70260A001A6682 /* HMSTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFAA8CE2B70260A001A6682 /* HMSTimeFormatter.swift */; };
 		3EFB64932772361D00D47A6B /* TimeStretchSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFB64922772361D00D47A6B /* TimeStretchSliderCell.swift */; };
 		3EFB64952772491C00D47A6B /* EffectsUnitTriStateCheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFB64942772491C00D47A6B /* EffectsUnitTriStateCheckButton.swift */; };
 		3EFB9ECF26A689D800EA8440 /* MetadataTrackInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFB9ECE26A689D800EA8440 /* MetadataTrackInfo.xib */; };
@@ -1747,6 +1748,7 @@
 		3EF84DA72836332A004EF57B /* LibrarySidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrarySidebarViewController.swift; sourceTree = "<group>"; };
 		3EF84DA92836359B004EF57B /* LibrarySidebar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibrarySidebar.xib; sourceTree = "<group>"; };
 		3EFA0AD0262ABBA40023143E /* MasterPresetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPresetView.swift; sourceTree = "<group>"; };
+		3EFAA8CE2B70260A001A6682 /* HMSTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMSTimeFormatter.swift; sourceTree = "<group>"; };
 		3EFB64922772361D00D47A6B /* TimeStretchSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStretchSliderCell.swift; sourceTree = "<group>"; };
 		3EFB64942772491C00D47A6B /* EffectsUnitTriStateCheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsUnitTriStateCheckButton.swift; sourceTree = "<group>"; };
 		3EFB9ECE26A689D800EA8440 /* MetadataTrackInfo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MetadataTrackInfo.xib; sourceTree = "<group>"; };
@@ -4538,6 +4540,7 @@
 				3EFE36D227864895006F8B8C /* Concurrency */,
 				3EFE36D627864895006F8B8C /* HTTP */,
 				3EFE36D927864895006F8B8C /* TimeIntervalFormatter.swift */,
+				3EFAA8CE2B70260A001A6682 /* HMSTimeFormatter.swift */,
 				3EFE36DA27864895006F8B8C /* FileSize.swift */,
 				3EFE36DB27864895006F8B8C /* HTMLWriter.swift */,
 				3EFE36DC27864895006F8B8C /* SystemUtils.swift */,
@@ -5541,6 +5544,7 @@
 				3EAFB617267FF4C200F0DC96 /* EffectsSliderPreviewCell.swift in Sources */,
 				3EBF29332686979700D87021 /* EffectsTextButtonCell.swift in Sources */,
 				3EFE392F27864897006F8B8C /* TimeIntervalFormatter.swift in Sources */,
+				3EFAA8CF2B70260A001A6682 /* HMSTimeFormatter.swift in Sources */,
 				3E466C8F27FA296C00342C30 /* MainWindowController+EventHandling.swift in Sources */,
 				3EBF293726869A9300D87021 /* EffectsUnitPopupMenuCell.swift in Sources */,
 				3EFE37E127864896006F8B8C /* ViewPreferences.swift in Sources */,

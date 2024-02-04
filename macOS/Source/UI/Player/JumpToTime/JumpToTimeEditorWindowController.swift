@@ -20,11 +20,13 @@ class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate 
     @IBOutlet weak var btnSeconds: NSButton!
     @IBOutlet weak var btnPercentage: NSButton!
     
-    @IBOutlet weak var timePicker: IntervalPicker!
-    
+    @IBOutlet weak var hmsFormatter: HMSTimeFormatter!
     @IBOutlet weak var secondsFormatter: TimeIntervalFormatter!
     
     @IBOutlet weak var percentageFormatter: TimeIntervalFormatter!
+    
+    @IBOutlet weak var txtHMS: NSTextField!
+    @IBOutlet weak var hmsStepper: NSStepper!
     
     @IBOutlet weak var txtSeconds: NSTextField!
     @IBOutlet weak var secondsStepper: NSStepper!
@@ -39,6 +41,14 @@ class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate 
     private var modalDialogResponse: ModalDialogResponse = .ok
     
     override func windowDidLoad() {
+        
+        hmsFormatter.valueFunction = {[weak self] () -> String in
+            ValueFormatter.formatSecondsToHMS(self?.hmsStepper.doubleValue ?? 0)
+        }
+        
+        hmsFormatter.updateFunction = {[weak self] (_ value: Double) in
+            self?.hmsStepper.doubleValue = value
+        }
         
         secondsFormatter.valueFunction = {[weak self] () -> String in
             String(describing: self?.secondsStepper.doubleValue ?? 0)
@@ -105,8 +115,11 @@ class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate 
         btnSeconds.title = String(format: "Specify as seconds (0 to %d)", durationInt)
         
         // Reset to 00:00:00
-        timePicker.maxInterval = roundedDuration
-        timePicker.reset()
+        
+        hmsStepper.doubleValue = 0
+        hmsStepper.maxValue = roundedDuration
+        hmsFormatter.maxValue = roundedDuration
+        hmsStepperAction(self)
         
         secondsFormatter.maxValue = roundedDuration
         secondsStepper.maxValue = roundedDuration
@@ -119,18 +132,27 @@ class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate 
     
     @IBAction func radioButtonAction(_ sender: Any) {
         
-        timePicker.enableIf(btnHMS.isOn)
+        [txtHMS, hmsStepper].forEach {$0?.enableIf(btnHMS.isOn)}
+        
+        if txtHMS.isEnabled {
+            window?.makeFirstResponder(txtHMS)
+        }
+        
         [txtSeconds, secondsStepper].forEach {$0?.enableIf(btnSeconds.isOn)}
         
         if txtSeconds.isEnabled {
-            self.window?.makeFirstResponder(txtSeconds)
+            window?.makeFirstResponder(txtSeconds)
         }
         
         [txtPercentage, percentageStepper].forEach {$0?.enableIf(btnPercentage.isOn)}
         
         if txtPercentage.isEnabled {
-            self.window?.makeFirstResponder(txtPercentage)
+            window?.makeFirstResponder(txtPercentage)
         }
+    }
+    
+    @IBAction func hmsStepperAction(_ sender: Any) {
+        txtHMS.stringValue = ValueFormatter.formatSecondsToHMS(secondsStepper.doubleValue)
     }
     
     @IBAction func secondsStepperAction(_ sender: Any) {
@@ -148,7 +170,7 @@ class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate 
         if btnHMS.isOn {
             
             // HH : MM : SS
-            jumpToTime = timePicker.interval
+            jumpToTime = hmsStepper.doubleValue
             
         } else if btnSeconds.isOn {
             

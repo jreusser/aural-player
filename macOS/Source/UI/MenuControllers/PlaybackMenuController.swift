@@ -246,28 +246,24 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
     // Updates the menu item states per the current playback modes
     private func updateRepeatAndShuffleMenuItemStates() {
         
-//        let modes = sequenceInfo.repeatAndShuffleModes
-//
-//        shuffleOffMenuItem.onIf(modes.shuffleMode == .off)
-//        shuffleOnMenuItem.onIf(modes.shuffleMode == .on)
-//
-//        switch modes.repeatMode {
-//
-//        case .off:
-//
-//            repeatOffMenuItem.on()
-//            [repeatOneMenuItem, repeatAllMenuItem].forEach {$0?.off()}
-//
-//        case .one:
-//
-//            repeatOneMenuItem.on()
-//            [repeatOffMenuItem, repeatAllMenuItem].forEach {$0?.off()}
-//
-//        case .all:
-//
-//            repeatAllMenuItem.on()
-//            [repeatOffMenuItem, repeatOneMenuItem].forEach {$0?.off()}
-//        }
+        let modes = playQueue.repeatAndShuffleModes
+        
+        shuffleOffMenuItem.onIf(modes.shuffleMode == .off)
+        shuffleOnMenuItem.onIf(modes.shuffleMode == .on)
+        
+        [repeatOffMenuItem, repeatOneMenuItem, repeatAllMenuItem].forEach {$0?.off()}
+        
+        switch modes.repeatMode {
+            
+        case .off:
+            repeatOffMenuItem.on()
+            
+        case .all:
+            repeatAllMenuItem.on()
+            
+        case .one:
+            repeatOneMenuItem.on()
+        }
     }
     
     deinit {

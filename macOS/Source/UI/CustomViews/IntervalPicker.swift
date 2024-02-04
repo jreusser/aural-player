@@ -52,7 +52,7 @@ class IntervalPicker: NSDatePicker {
         self.font = standardFontSet.mainFont(size: 11)
         
         // 24 hour clock (don't want AM/PM)
-        self.locale = Locale(identifier: "en_GB")
+        self.locale = Locale(identifier: "en_US")
         
         let startOfDay = Date().startOfDay
         
