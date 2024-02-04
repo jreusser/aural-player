@@ -73,6 +73,8 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     // One-time setup.
     override func awakeFromNib() {
         
+        super.awakeFromNib()
+        
         // Associate each of the menu items with a specific pitch shift or playback rate value, so that when the item is clicked later, that value can be readily retrieved and used in performing the action.
         
         // Pitch shift menu items

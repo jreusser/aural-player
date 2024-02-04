@@ -28,7 +28,7 @@
             <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
             <rect key="contentRect" x="335" y="100" width="480" height="200"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2056" height="1285"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
             <value key="minSize" type="size" width="480" height="200"/>
             <value key="maxSize" type="size" width="480" height="200"/>
             <view key="contentView" id="W7v-UI-tl4">
@@ -1204,38 +1204,38 @@ CA
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Sound" autoenablesItems="NO" id="Aav-Ne-flK">
                         <items>
-                            <menuItem title="      Output Device" id="vUc-A9-u2L" userLabel="Output Device">
+                            <menuItem title=" Output Device" image="hifispeaker.fill" catalog="system" id="vUc-A9-u2L" userLabel="Output Device">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="      Output Device" id="ESK-9z-tnn">
+                                <menu key="submenu" title=" Output Device" id="ESK-9z-tnn">
                                     <connections>
                                         <outlet property="delegate" destination="l5y-V5-pVh" id="9QO-h9-jm7"/>
                                     </connections>
                                 </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="t2F-2a-oaG"/>
-                            <menuItem title=" Mute / Unmute" image="Mute-Small" keyEquivalent="m" id="mXC-Nj-30W" userLabel="Mute/Unmute">
+                            <menuItem title="  Mute / Unmute" image="speaker.slash" catalog="system" keyEquivalent="m" id="mXC-Nj-30W" userLabel="Mute/Unmute">
                                 <connections>
                                     <action selector="muteOrUnmuteAction:" target="l5y-V5-pVh" id="3f6-Er-VV4"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title=" Decrease volume" image="VolumeLow-Small" keyEquivalent="" id="u2W-GF-tJF">
+                            <menuItem title="  Decrease volume" image="speaker.wave.1" catalog="system" keyEquivalent="" id="u2W-GF-tJF">
                                 <connections>
                                     <action selector="decreaseVolumeAction:" target="l5y-V5-pVh" id="M9x-DV-Y5s"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title=" Increase volume" image="VolumeHigh-Small" keyEquivalent="" id="L8L-Tg-Rdw">
+                            <menuItem title=" Increase volume" image="speaker.wave.3" catalog="system" keyEquivalent="" id="L8L-Tg-Rdw">
                                 <connections>
                                     <action selector="increaseVolumeAction:" target="l5y-V5-pVh" id="UTm-qB-RrX"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="2vd-V9-mYY"/>
-                            <menuItem title=" Pan left" image="PanL-Small" keyEquivalent="" id="MP6-6c-dGm">
+                            <menuItem title=" Pan left" image="left" catalog="system" keyEquivalent="" id="MP6-6c-dGm">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
                                 <connections>
                                     <action selector="panLeftAction:" target="l5y-V5-pVh" id="xe5-8E-BII"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title=" Pan right" image="PanR-Small" keyEquivalent="" id="TBd-KB-AQH">
+                            <menuItem title=" Pan right" image="right" catalog="system" keyEquivalent="" id="TBd-KB-AQH">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
                                 <connections>
                                     <action selector="panRightAction:" target="l5y-V5-pVh" id="tpT-pi-Kfp"/>
@@ -1253,7 +1253,7 @@ CA
                                     <action selector="masterBypassAction:" target="l5y-V5-pVh" id="ljv-fg-WYL"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="  EQ" image="EQ" id="fOg-t0-0n5" userLabel="EQ">
+                            <menuItem title="  EQ" image="slider.vertical.3" catalog="system" id="fOg-t0-0n5" userLabel="EQ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="  EQ" id="L1U-AG-SSz">
                                     <items>
@@ -1298,7 +1298,7 @@ CA
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title=" Pitch" image="Pitch" id="IUM-Qa-dxl" userLabel="Pitch Shift">
+                            <menuItem title=" Pitch" image="waveform.path.ecg" catalog="system" id="IUM-Qa-dxl" userLabel="Pitch Shift">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title=" Pitch" id="VE6-4V-nrW">
                                     <items>
@@ -1378,7 +1378,7 @@ CA
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title=" Time" image="Time" id="3nV-gO-6pc">
+                            <menuItem title=" Time" image="timer" catalog="system" id="3nV-gO-6pc">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title=" Time" id="ICY-fL-KtP">
                                     <items>
@@ -1447,20 +1447,20 @@ CA
                                 </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="95v-9R-MGo"/>
-                            <menuItem title="  Remember sound settings for this track" id="2cz-mQ-hvg" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">
+                            <menuItem title="  Remember sound settings for this track" image="clock.arrow.2.circlepath" catalog="system" id="2cz-mQ-hvg" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="offStateTitle" value="  Remember sound settings for this track"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="onStateTitle" value="  Don't remember sound settings for this track"/>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="Remember"/>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="Remember"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="offStateTitle" value=" Remember sound settings for this track"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="onStateTitle" value=" Don't remember sound settings for this track"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="clock.arrow.2.circlepath" catalog="system"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="clock.arrow.2.circlepath" catalog="system"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="rememberSettingsAction:" target="l5y-V5-pVh" id="tKs-7X-5Hh"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="uz2-4d-gRE"/>
-                            <menuItem title="  Manage effects presets" image="EffectsPresets-Editor" keyEquivalent="e" id="ty6-E8-YoP" userLabel="Manage effects presets">
+                            <menuItem title="  Manage effects presets" image="pencil" catalog="system" keyEquivalent="e" id="ty6-E8-YoP" userLabel="Manage effects presets">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="managePresetsAction:" target="l5y-V5-pVh" id="SsJ-GJ-5Vc"/>
@@ -2041,8 +2041,6 @@ CA
         <image name="Clear-Small" width="13" height="15"/>
         <image name="ColorScheme" width="13" height="14"/>
         <image name="ControlBarMode-Small" width="14" height="10"/>
-        <image name="EQ" width="14" height="14"/>
-        <image name="EffectsPresets-Editor" width="14" height="14"/>
         <image name="Favorites" width="15" height="15"/>
         <image name="Favorites-Editor" width="15" height="15"/>
         <image name="FontScheme" width="14" height="14"/>
@@ -2050,21 +2048,13 @@ CA
         <image name="Hamburger" width="10" height="7"/>
         <image name="MasterTab-Small" width="14" height="14"/>
         <image name="MenuBarMode-Small" width="14" height="10"/>
-        <image name="Mute-Small" width="14" height="14"/>
-        <image name="PanL-Small" width="12" height="12"/>
-        <image name="PanR-Small" width="12" height="12"/>
-        <image name="Pitch" width="17" height="13"/>
         <image name="RecentlyAdded" width="18" height="14"/>
         <image name="RecentlyPlayed" width="18" height="14"/>
-        <image name="Remember" width="15" height="15"/>
-        <image name="Time" width="16" height="13"/>
         <image name="ToggleChaptersList-Small" width="14" height="11"/>
         <image name="ToggleEffectsView-Small" width="14" height="14"/>
         <image name="ToggleVisualizer-Small" width="14" height="14"/>
         <image name="Update" width="15" height="15"/>
         <image name="UserGuide" width="16" height="14"/>
-        <image name="VolumeHigh-Small" width="14" height="14"/>
-        <image name="VolumeLow-Small" width="14" height="14"/>
         <image name="WindowLayout" width="20" height="20"/>
         <image name="WindowLayout-BigBottomPlaylist" width="30" height="20"/>
         <image name="WindowLayout-BigLeftPlaylist" width="30" height="20"/>
@@ -2091,7 +2081,9 @@ CA
         <image name="clock.arrow.2.circlepath" catalog="system" width="18" height="15"/>
         <image name="forward" catalog="system" width="19" height="12"/>
         <image name="forward.end" catalog="system" width="13" height="13"/>
+        <image name="hifispeaker.fill" catalog="system" width="13" height="16"/>
         <image name="info" catalog="system" width="9" height="12"/>
+        <image name="left" catalog="system" width="9" height="12"/>
         <image name="list.bullet.rectangle.fill" catalog="system" width="18" height="14"/>
         <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="minus" catalog="system" width="14" height="4"/>
@@ -2099,15 +2091,23 @@ CA
         <image name="music.quarternote.3" catalog="system" width="18" height="15"/>
         <image name="opticaldisc" catalog="system" width="15" height="15"/>
         <image name="pause" catalog="system" width="9" height="13"/>
+        <image name="pencil" catalog="system" width="14" height="13"/>
         <image name="play" catalog="system" width="12" height="13"/>
         <image name="plus.rectangle.on.folder" catalog="system" width="19" height="15"/>
         <image name="repeat" catalog="system" width="17" height="14"/>
+        <image name="right" catalog="system" width="10" height="12"/>
         <image name="scissors" catalog="system" width="16" height="13"/>
         <image name="shuffle" catalog="system" width="18" height="14"/>
+        <image name="slider.vertical.3" catalog="system" width="15" height="14"/>
+        <image name="speaker.slash" catalog="system" width="14" height="16"/>
+        <image name="speaker.wave.1" catalog="system" width="16" height="14"/>
+        <image name="speaker.wave.3" catalog="system" width="22" height="15"/>
         <image name="square.slash" catalog="system" width="15" height="17"/>
         <image name="stop" catalog="system" width="14" height="13"/>
         <image name="text.insert" catalog="system" width="16" height="13"/>
+        <image name="timer" catalog="system" width="15" height="15"/>
         <image name="trash" catalog="system" width="15" height="17"/>
+        <image name="waveform.path.ecg" catalog="system" width="16" height="16"/>
         <image name="xmark" catalog="system" width="14" height="13"/>
         <image name="xmark.bin" catalog="system" width="19" height="14"/>
     </resources>
