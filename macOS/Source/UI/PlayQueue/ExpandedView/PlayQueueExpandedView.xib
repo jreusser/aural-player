@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PlayQueueExpandedViewController" customModule="Aural" customModuleProvider="target">
             <connections>
-                <outlet property="favoriteAlbumMenuItem" destination="U4I-4j-jIJ" id="dv0-c0-NU0"/>
-                <outlet property="favoriteArtistMenuItem" destination="OP4-8V-TAP" id="Xb0-EK-tLg"/>
-                <outlet property="favoriteDecadeMenuItem" destination="jff-Up-h7O" id="527-Bt-TTk"/>
-                <outlet property="favoriteGenreMenuItem" destination="gvw-tO-p8o" id="tBs-uO-MC4"/>
-                <outlet property="favoriteTrackMenuItem" destination="E1w-0j-ZjQ" id="5MU-oe-Zw6"/>
-                <outlet property="infoMenuItem" destination="E94-FX-PuM" id="c4A-Qo-w0t"/>
-                <outlet property="playNextMenuItem" destination="557-bs-7lR" id="dPM-ac-JTC"/>
-                <outlet property="playNowMenuItem" destination="jTl-IJ-icl" id="ZTv-GE-qXI"/>
-                <outlet property="playlistNamesMenu" destination="8qW-Wx-JfH" id="ffL-8D-TBU"/>
                 <outlet property="tableView" destination="RAo-B3-mxT" id="dsz-R1-5kW"/>
                 <outlet property="view" destination="c22-O7-iKe" id="XKF-eG-k8l"/>
             </connections>
@@ -206,7 +196,6 @@
                                     <action trigger="doubleAction" selector="playSelectedTrackAction:" target="-2" id="5hc-8n-tRD"/>
                                     <outlet property="dataSource" destination="-2" id="Mwz-mF-1kU"/>
                                     <outlet property="delegate" destination="-2" id="ued-SD-WDl"/>
-                                    <outlet property="menu" destination="a5D-eN-GSW" id="IPH-hS-neU"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -230,158 +219,8 @@
             </constraints>
             <point key="canvasLocation" x="139" y="153.5"/>
         </customView>
-        <menu autoenablesItems="NO" id="a5D-eN-GSW" userLabel="Context Menu">
-            <items>
-                <menuItem title="  Play now" image="play" catalog="system" id="jTl-IJ-icl">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="playNowAction:" target="-2" id="Xnt-VT-aXB"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="  Play next" image="list.dash" catalog="system" id="557-bs-7lR">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="playNextAction:" target="-2" id="RW8-ow-wzS"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="n6M-3F-fnb"/>
-                <menuItem title="  Copy these tracks to playlist" image="doc.on.clipboard" catalog="system" id="NKJ-IV-vNC" userLabel="Copy these tracks to playlist">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="  Copy these tracks to playlist" id="8qW-Wx-JfH">
-                        <items>
-                            <menuItem title="Item 1" id="Mgs-1P-cTf">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Item 2" id="NIh-kx-lLD">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="Item 3" id="19D-RL-dqO">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="  Create a new playlist with these tracks" image="text.badge.plus" catalog="system" id="Try-Ah-q1X" userLabel="Remove tracks">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="createPlaylistWithTracksAction:" target="-2" id="a8m-pn-O1L"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="me0-dP-F1Q"/>
-                <menuItem title="  Remove these tracks" image="xmark.bin" catalog="system" id="hBY-5o-I8Z" userLabel="Remove tracks">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="removeTracksMenuAction:" target="-2" id="GFR-na-xXN"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="  Crop selected tracks" image="scissors" catalog="system" id="FVD-zO-B89" userLabel="Crop selected tracks">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="cropSelectionMenuAction:" target="-2" id="wOX-2C-3YM"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="KDo-db-t71"/>
-                <menuItem title="  Move these tracks up" image="arrow.up" catalog="system" id="Q39-Yy-l6l" userLabel="Move tracks up">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="moveTracksUpAction:" target="-2" id="Wjm-Vm-Izi"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="  Move these tracks down" image="arrow.down" catalog="system" id="UXX-38-q2a" userLabel="Move tracks down">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="moveTracksDownAction:" target="-2" id="y4T-rc-tuT"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="  Move these tracks to the top" image="arrow.up.to.line.alt" catalog="system" id="7v6-tI-nVD" userLabel="Move tracks top">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="moveTracksToTopAction:" target="-2" id="d2v-s9-3EW"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="  Move these tracks to the bottom" image="arrow.down.to.line.alt" catalog="system" id="QwL-kJ-9Yv" userLabel="Move tracks bottom">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="moveTracksToBottomAction:" target="-2" id="lkd-aa-iL8"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="vxS-3G-8Vh"/>
-                <menuItem title="  Favorites" image="heart" catalog="system" id="ftd-cW-tWh" userLabel="Favorites">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="  Favorites" id="naW-3l-EhC">
-                        <items>
-                            <menuItem title="This track" image="music.note" catalog="system" id="E1w-0j-ZjQ">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="favoriteTrackAction:" target="-2" id="BGI-yu-8pJ"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Artist ''" image="Artists_Menu" id="OP4-8V-TAP">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="favoriteArtistAction:" target="-2" id="PpB-wJ-l75"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Album ''" image="opticaldisc" catalog="system" id="U4I-4j-jIJ">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="favoriteAlbumAction:" target="-2" id="N0P-HU-PH0"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Genre ''" image="Genres_Menu" id="gvw-tO-p8o" userLabel="Genre ''">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="favoriteGenreAction:" target="-2" id="Db2-mm-cx8"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Decade ''" image="calendar" catalog="system" id="jff-Up-h7O">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="favoriteDecadeAction:" target="-2" id="2aK-my-kdx"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="  Get detailed track info" id="E94-FX-PuM">
-                    <imageReference key="image" image="info" catalog="system" symbolScale="large"/>
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="trackInfoAction:" target="-2" id="PlD-0i-Fms"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="  Show these tracks in Finder" image="ShowInFinder" id="2va-tB-KRm" userLabel="Show track in Finder">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="showInFinderAction:" target="-2" id="abk-uI-baa"/>
-                    </connections>
-                </menuItem>
-            </items>
-            <connections>
-                <outlet property="delegate" destination="-2" id="ebf-Of-ZnQ"/>
-            </connections>
-            <point key="canvasLocation" x="-379" y="233"/>
-        </menu>
     </objects>
     <resources>
-        <image name="Artists_Menu" width="20" height="20"/>
-        <image name="Genres_Menu" width="20" height="20"/>
-        <image name="ShowInFinder" width="15" height="15"/>
-        <image name="arrow.down" catalog="system" width="13" height="14"/>
-        <image name="arrow.down.to.line.alt" catalog="system" width="13" height="14"/>
-        <image name="arrow.up" catalog="system" width="13" height="14"/>
-        <image name="arrow.up.to.line.alt" catalog="system" width="13" height="14"/>
-        <image name="calendar" catalog="system" width="16" height="14"/>
-        <image name="doc.on.clipboard" catalog="system" width="16" height="18"/>
-        <image name="heart" catalog="system" width="16" height="14"/>
-        <image name="info" catalog="system" width="11" height="16"/>
-        <image name="list.dash" catalog="system" width="16" height="11"/>
-        <image name="music.note" catalog="system" width="11" height="15"/>
-        <image name="opticaldisc" catalog="system" width="15" height="15"/>
-        <image name="play" catalog="system" width="12" height="13"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>
-        <image name="scissors" catalog="system" width="20" height="15"/>
-        <image name="text.badge.plus" catalog="system" width="16" height="14"/>
-        <image name="xmark.bin" catalog="system" width="19" height="14"/>
     </resources>
 </document>

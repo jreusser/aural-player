@@ -10,6 +10,21 @@
 
 import Cocoa
 
+class ChapterMenuItem: NSMenuItem {
+    
+    let index: Int
+    
+    init(title: String, action: Selector, index: Int) {
+        
+        self.index = index
+        super.init(title: title, action: action, keyEquivalent: "")
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 extension PlayQueueViewController: NSMenuDelegate {
     
     func menuNeedsUpdate(_ menu: NSMenu) {
@@ -22,53 +37,6 @@ extension PlayQueueViewController: NSMenuDelegate {
             $0.enableIf(oneRowSelected)
         }
         
-        // Update the state of the favorites menu items (based on if the clicked track / group is already in the favorites list or not)
-        if let theClickedTrack = selectedTracks.first {
-            
-            let titlePrefix = favoritesDelegate.favoriteExists(track: theClickedTrack) ? "Remove" : "Add"
-            favoriteTrackMenuItem.title = "\(titlePrefix) this track"
-            
-            if let artist = theClickedTrack.artist {
-                
-                let titlePrefix = favoritesDelegate.favoriteExists(artist: artist) ? "Remove" : "Add"
-                favoriteArtistMenuItem.title = "\(titlePrefix) artist '\(artist)'"
-                favoriteArtistMenuItem.show()
-                
-            } else {
-                favoriteArtistMenuItem.hide()
-            }
-            
-            if let album = theClickedTrack.album {
-                
-                let titlePrefix = favoritesDelegate.favoriteExists(album: album) ? "Remove" : "Add"
-                favoriteAlbumMenuItem.title = "\(titlePrefix) album '\(album)'"
-                favoriteAlbumMenuItem.show()
-                
-            } else {
-                favoriteAlbumMenuItem.hide()
-            }
-            
-            if let genre = theClickedTrack.genre {
-                
-                let titlePrefix = favoritesDelegate.favoriteExists(genre: genre) ? "Remove" : "Add"
-                favoriteGenreMenuItem.title = "\(titlePrefix) genre '\(genre)'"
-                favoriteGenreMenuItem.show()
-                
-            } else {
-                favoriteGenreMenuItem.hide()
-            }
-            
-            if let decade = theClickedTrack.decade {
-
-                let titlePrefix = favoritesDelegate.favoriteExists(decade: decade) ? "Remove" : "Add"
-                favoriteDecadeMenuItem.title = "\(titlePrefix) decade '\(decade)'"
-                favoriteDecadeMenuItem.show()
-                
-            } else {
-                favoriteDecadeMenuItem.hide()
-            }
-        }
-        
         playNextMenuItem.enableIf(atLeastOneRowSelected && playQueueDelegate.currentTrack != nil && !playingTrackSelected)
         
         // TODO: playlist names menu should have a separate delegate so that the menu
@@ -79,6 +47,82 @@ extension PlayQueueViewController: NSMenuDelegate {
         for playlist in playlistsManager.userDefinedObjects {
             playlistNamesMenu.addItem(withTitle: playlist.name, action: #selector(copyTracksToPlaylistAction(_:)), keyEquivalent: "")
         }
+        
+        chaptersMenu.removeAllItems()
+        
+        // Update the state of the favorites menu items (based on if the clicked track / group is already in the favorites list or not)
+        guard let theClickedTrack = selectedTracks.first else {return}
+        
+        let clickedPlayingTrack = playbackInfoDelegate.playingTrack == theClickedTrack
+        let clickedPlayingTrackAndHasChapters = clickedPlayingTrack && theClickedTrack.hasChapters
+        
+        viewChaptersListMenuItem.showIf(clickedPlayingTrackAndHasChapters)
+        jumpToChapterMenuItem.showIf(clickedPlayingTrackAndHasChapters)
+        
+        if clickedPlayingTrackAndHasChapters, let playingChapter = playbackInfoDelegate.playingChapter {
+            
+            let chapters = theClickedTrack.chapters
+            
+            for (index, chapter) in chapters.enumerated() {
+                
+                let item = ChapterMenuItem(title: chapter.title, action: #selector(jumpToChapterAction(_:)), index: index)
+                item.state = .off
+                chaptersMenu.addItem(item)
+            }
+            
+            chaptersMenu.item(at: playingChapter.index)?.state = .on
+        }
+        
+        let titlePrefix = favoritesDelegate.favoriteExists(track: theClickedTrack) ? "Remove" : "Add"
+        favoriteTrackMenuItem.title = "\(titlePrefix) this track"
+        
+        if let artist = theClickedTrack.artist {
+            
+            let titlePrefix = favoritesDelegate.favoriteExists(artist: artist) ? "Remove" : "Add"
+            favoriteArtistMenuItem.title = "\(titlePrefix) artist '\(artist)'"
+            favoriteArtistMenuItem.show()
+            
+        } else {
+            favoriteArtistMenuItem.hide()
+        }
+        
+        if let album = theClickedTrack.album {
+            
+            let titlePrefix = favoritesDelegate.favoriteExists(album: album) ? "Remove" : "Add"
+            favoriteAlbumMenuItem.title = "\(titlePrefix) album '\(album)'"
+            favoriteAlbumMenuItem.show()
+            
+        } else {
+            favoriteAlbumMenuItem.hide()
+        }
+        
+        if let genre = theClickedTrack.genre {
+            
+            let titlePrefix = favoritesDelegate.favoriteExists(genre: genre) ? "Remove" : "Add"
+            favoriteGenreMenuItem.title = "\(titlePrefix) genre '\(genre)'"
+            favoriteGenreMenuItem.show()
+            
+        } else {
+            favoriteGenreMenuItem.hide()
+        }
+        
+        if let decade = theClickedTrack.decade {
+            
+            let titlePrefix = favoritesDelegate.favoriteExists(decade: decade) ? "Remove" : "Add"
+            favoriteDecadeMenuItem.title = "\(titlePrefix) decade '\(decade)'"
+            favoriteDecadeMenuItem.show()
+            
+        } else {
+            favoriteDecadeMenuItem.hide()
+        }
+    }
+    
+    @IBAction func viewChaptersListAction(_ sender: Any) {
+        windowLayoutsManager.showWindow(withId: .chaptersList)
+    }
+    
+    @IBAction func jumpToChapterAction(_ sender: ChapterMenuItem) {
+        messenger.publish(.player_playChapter, payload: sender.index)
     }
     
     @IBAction func playNowAction(_ sender: NSMenuItem) {

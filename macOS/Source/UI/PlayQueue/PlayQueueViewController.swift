@@ -26,12 +26,17 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
     @IBOutlet weak var playNowMenuItem: NSMenuItem!
     @IBOutlet weak var playNextMenuItem: NSMenuItem!
     
+    @IBOutlet weak var viewChaptersListMenuItem: NSMenuItem!
+    @IBOutlet weak var jumpToChapterMenuItem: NSMenuItem!
+    @IBOutlet weak var chaptersMenu: NSMenu!
+    
     @IBOutlet weak var favoriteTrackMenuItem: NSMenuItem!
     @IBOutlet weak var favoriteArtistMenuItem: NSMenuItem!
     @IBOutlet weak var favoriteAlbumMenuItem: NSMenuItem!
     @IBOutlet weak var favoriteGenreMenuItem: NSMenuItem!
     @IBOutlet weak var favoriteDecadeMenuItem: NSMenuItem!
     
+    @IBOutlet weak var contextMenu: NSMenu!
     @IBOutlet weak var infoMenuItem: NSMenuItem!
     
     @IBOutlet weak var playlistNamesMenu: NSMenu!
@@ -44,6 +49,8 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        tableView.menu = contextMenu
         
         fontSchemesManager.registerObserver(self)
         
@@ -59,10 +66,14 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
                                                      handler: textSelectionColorChanged(_:))
         
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
-        
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
-        
         messenger.subscribe(to: .playQueue_refresh, handler: tableView.reloadData)
+    }
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        contextMenu.delegate = self
     }
     
     override func tracksMovedByDragDrop(minReloadIndex: Int, maxReloadIndex: Int) {
