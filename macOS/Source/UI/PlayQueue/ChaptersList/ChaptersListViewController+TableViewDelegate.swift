@@ -70,7 +70,8 @@ extension ChaptersListViewController: NSTableViewDelegate {
             
         }
         
-//        cell.realignText(yOffset: fontScheme.trackTextYOffset)
+        cell.realignText(yOffset: systemFontScheme.tableYOffset)
+        
         return cell
     }
     
@@ -78,10 +79,9 @@ extension ChaptersListViewController: NSTableViewDelegate {
         
         guard let cell = tableView.makeView(withIdentifier: .cid_chapterIndex, owner: nil) as? ChaptersListTableCellView else {return nil}
         
-//        cell.textFont = fontScheme.trackTextFont
-        
-//        cell.unselectedTextColor = Colors.Playlist.indexDurationTextColor
-//        cell.selectedTextColor = Colors.Playlist.indexDurationSelectedTextColor
+        cell.textFont = systemFontScheme.normalFont
+        cell.unselectedTextColor = systemColorScheme.tertiaryTextColor
+        cell.selectedTextColor = systemColorScheme.tertiarySelectedTextColor
         
         cell.rowSelectionStateFunction = {[weak tableView] in tableView?.isRowSelected(row) ?? false}
         
@@ -89,9 +89,8 @@ extension ChaptersListViewController: NSTableViewDelegate {
         cell.textField?.showIf(!showCurrentChapterMarker)
         
         cell.image = showCurrentChapterMarker ? .imgPlayFilled : nil
-//        cell.imageView?.contentTintColor = Colors.Playlist.playingTrackIconColor
         cell.imageView?.showIf(showCurrentChapterMarker)
-        cell.imageView?.contentTintColor = systemColorScheme.activeControlColor
+        cell.imageColor = systemColorScheme.activeControlColor
         
         return cell
     }
@@ -100,10 +99,9 @@ extension ChaptersListViewController: NSTableViewDelegate {
         
         guard let cell = tableView.makeView(withIdentifier: .cid_chapterTitle, owner: nil) as? ChaptersListTableCellView else {return nil}
         
-//        cell.textFont = fontScheme.trackTextFont
-        
-//        cell.unselectedTextColor = Colors.Playlist.trackNameTextColor
-//        cell.selectedTextColor = Colors.Playlist.trackNameSelectedTextColor
+        cell.textFont = systemFontScheme.normalFont
+        cell.unselectedTextColor = systemColorScheme.primaryTextColor
+        cell.selectedTextColor = systemColorScheme.primarySelectedTextColor
         
         cell.text = text
         cell.textField?.show()
@@ -117,10 +115,9 @@ extension ChaptersListViewController: NSTableViewDelegate {
         
         guard let cell = tableView.makeView(withIdentifier: id, owner: nil) as? ChaptersListTableCellView else {return nil}
         
-//        cell.textFont = fontScheme.trackTextFont
-        
-//        cell.unselectedTextColor = Colors.Playlist.indexDurationTextColor
-//        cell.selectedTextColor = Colors.Playlist.indexDurationSelectedTextColor
+        cell.textFont = systemFontScheme.normalFont
+        cell.unselectedTextColor = systemColorScheme.tertiaryTextColor
+        cell.selectedTextColor = systemColorScheme.tertiarySelectedTextColor
         
         cell.text = text
         cell.textField?.show()

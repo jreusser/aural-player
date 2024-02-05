@@ -15,6 +15,8 @@ import Cocoa
 @IBDesignable
 class OnOffImageButton: NSButton {
     
+    private var _state: NSControl.StateValue = .off
+    
     var weight: NSFont.Weight = .heavy {
         
         didSet {
@@ -22,12 +24,21 @@ class OnOffImageButton: NSButton {
         }
     }
     
-    private var kvoTokens: [NSKeyValueObservation] = []
-    
     override var image: NSImage? {
         
         didSet {
             image?.isTemplate = true
+        }
+    }
+    
+    override var state: NSControl.StateValue {
+        
+        get {
+            _state
+        }
+        
+        set {
+            _state = newValue
         }
     }
     
@@ -60,7 +71,7 @@ class OnOffImageButton: NSButton {
         
         super.on()
     }
-    
+
     // Convenience function to set the button to "On" if the specified condition is true, and "Off" if not.
     override func onIf(_ condition: Bool) {
         condition ? on() : off()
@@ -71,13 +82,8 @@ class OnOffImageButton: NSButton {
         isOn ? off() : on()
     }
     
-    deinit {
-        
-        kvoTokens.forEach {
-            $0.invalidate()
-        }
-        
-        kvoTokens.removeAll()
+    func reTint() {
+        isOn ? on() : off()
     }
 }
 

@@ -21,7 +21,7 @@ class ChaptersListViewController: NSViewController {
     
     @IBOutlet weak var header: NSTableHeaderView!
     
-    @IBOutlet weak var lblWindowTitle: NSTextField!
+    @IBOutlet weak var lblCaption: NSTextField!
     @IBOutlet weak var lblSummary: NSTextField!
     
     @IBOutlet weak var btnClose: TintedImageButton!
@@ -38,36 +38,32 @@ class ChaptersListViewController: NSViewController {
     @IBOutlet weak var btnNextMatch: TintedImageButton!
     
     // Holds all search results from the latest performed search
-    private var searchResults: [Int] = []
+    var searchResults: [Int] = []
     
     // Points to the current search result selected within the chapters list, and assists in search result navigation.
     // Serves as an index within the searchResults array.
     // Will be nil if no results available or no chapters available.
-    private var resultIndex: Int?
+    var resultIndex: Int?
     
     let player: PlaybackDelegateProtocol = playbackDelegate
     
     private lazy var messenger = Messenger(for: self)
     
-//    private lazy var uiState: PlaylistUIState = playlistUIState
+    //    private lazy var uiState: PlaylistUIState = playlistUIState
     
     override func viewDidLoad() {
         
         scrollView.drawsBackground = false
         clipView.drawsBackground = false
         
-//        functionButtons = [btnClose, btnPreviousChapter, btnNextChapter, btnReplayChapter,
-//                           btnLoopChapter, btnCaseSensitive, btnPreviousMatch, btnNextMatch]
-        
-        applyColorScheme(systemColorScheme)
-        
         chaptersListView.customizeHeader(heightIncrease: 5, customCellType: ChaptersListTableHeaderCell.self)
         
         // Set these fields for later access
-//        uiState.chaptersListView = self.chaptersListView
+        //        uiState.chaptersListView = self.chaptersListView
         
         initSubscriptions()
         
+        btnCaseSensitive.off()
         btnLoopChapter.off()
         
         lblNumMatches.stringValue = ""
@@ -76,42 +72,42 @@ class ChaptersListViewController: NSViewController {
     
     private func initSubscriptions() {
         
+        fontSchemesManager.registerObserver(self)
+        
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, handler: buttonColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, handler: activeControlStateColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.inactiveControlColor, handler: inactiveControlStateColorChanged(_:))
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, handler: captionTextColorChanged(_:))
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.tertiaryTextColor, handler: tertiaryTextColorChanged(_:))
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primarySelectedTextColor, handler: primarySelectedTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.tertiarySelectedTextColor, handler: tertiarySelectedTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
+        
         messenger.subscribe(to: .player_chapterChanged, handler: chapterChanged(_:))
-        
         messenger.subscribe(to: .player_playbackLoopChanged, handler: playbackLoopChanged)
-        
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackChanged)
-        
         messenger.subscribe(to: .chaptersList_playSelectedChapter, handler: playSelectedChapter)
-        
-        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
-        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
-//        messenger.subscribe(to: .changeBackgroundColor, handler: changeBackgroundColor(_:))
-//        messenger.subscribe(to: .changeFunctionButtonColor, handler: changeFunctionButtonColor(_:))
-//        messenger.subscribe(to: .changeToggleButtonOffStateColor, handler: changeToggleButtonOffStateColor(_:))
-//        messenger.subscribe(to: .changeMainCaptionTextColor, handler: changeMainCaptionTextColor(_:))
-//        
-//        messenger.subscribe(to: .playlist_changeTrackNameTextColor, handler: changeTrackNameTextColor(_:))
-//        messenger.subscribe(to: .playlist_changeIndexDurationTextColor, handler: changeIndexDurationTextColor(_:))
-//        
-//        messenger.subscribe(to: .playlist_changeTrackNameSelectedTextColor, handler: changeTrackNameSelectedTextColor(_:))
-//        messenger.subscribe(to: .playlist_changeIndexDurationSelectedTextColor, handler: changeIndexDurationSelectedTextColor(_:))
-//        
-//        messenger.subscribe(to: .playlist_changePlayingTrackIconColor, handler: changePlayingTrackIconColor(_:))
-//        messenger.subscribe(to: .playlist_changeSelectionBoxColor, handler: changeSelectionBoxColor(_:))
-//        
-//        messenger.subscribe(to: .playlist_changeSummaryInfoColor, handler: changeSummaryInfoColor(_:))
     }
     
     override func destroy() {
         messenger.unsubscribeFromAll()
     }
     
-    override func viewDidAppear() {
+    override func viewWillAppear() {
         
-        // Need to do this every time the view reappears (i.e. the Chapters list window is opened)
-        chaptersListView.reloadData()
+        super.viewWillAppear()
+
+        // TODO: This is inefficient for the tableView (will be reloaded twice) !
+        fontSchemeChanged()
+        colorSchemeChanged()
         
         if let chapter = player.playingChapter, chapter.index < chaptersListView.numberOfRows {
             chaptersListView.scrollRowToVisible(chapter.index)
@@ -119,12 +115,6 @@ class ChaptersListViewController: NSViewController {
         
         let chapterCount: Int = player.chapterCount
         lblSummary.stringValue = String(format: "%d %@", chapterCount, chapterCount == 1 ? "chapter" : "chapters")
-//        
-//        lblWindowTitle.font = systemFontScheme.playlist.chaptersListCaptionFont
-        lblSummary.font = systemFontScheme.smallFont
-//
-//        txtSearch.font = systemFontScheme.playlist.chaptersListSearchFont
-//        lblNumMatches.font = systemFontScheme.playlist.chaptersListSearchFont
         
         btnLoopChapter.onIf(player.chapterLoopExists)
         
@@ -197,118 +187,6 @@ class ChaptersListViewController: NSViewController {
         self.view.window?.makeFirstResponder(chaptersListView)
     }
     
-    // MARK: Search functions
-    
-    @IBAction func searchAction(_ sender: AnyObject) {
-        
-        let queryText = txtSearch.stringValue
-        
-        // Clear any previous search results
-        searchResults.removeAll()
-        
-        // Ensure that there is some query text and that the playing track has some chapters
-        if !queryText.isEmpty, let chapters = player.playingTrack?.chapters {
-            
-            searchResults = chapters.indices.filter {index in compare(queryText, chapters[index].title)}
-            
-            let numResults: Int = searchResults.count
-            let hasResults: Bool = numResults > 0
-            
-            // Select the first result or no row if no results
-            chaptersListView.selectRows(hasResults ? [searchResults[0]] : [])
-            
-            if hasResults {
-                chaptersListView.scrollRowToVisible(searchResults[0])
-            }
-            
-            resultIndex = hasResults ? 0 : nil
-            
-            // Update the search UI to indicate the number of results and allow navigation through them
-            lblNumMatches.stringValue = String(format: "%d %@", numResults, numResults == 1 ? "match" : "matches")
-            btnPreviousMatch.disable()
-            btnNextMatch.enableIf(numResults > 1)
-            
-        } else {
-            
-            // No text or no track chapters
-            lblNumMatches.stringValue = ""
-            [btnPreviousMatch, btnNextMatch].forEach {$0?.disable()}
-        }
-    }
-    
-    @IBAction func toggleCaseSensitiveSearchAction(_ sender: AnyObject) {
-
-        // Perform the search again
-        btnCaseSensitive.toggle()
-        searchAction(self)
-    }
-    
-    // Navigate to the previous search result
-    @IBAction func previousSearchResultAction(_ sender: AnyObject) {
-        
-        if let index = resultIndex, index > 0 {
-            selectSearchResult(index - 1)
-        }
-    }
-    
-    // Navigate to the next search result
-    @IBAction func nextSearchResultAction(_ sender: AnyObject) {
-        
-        if let index = resultIndex, index < searchResults.count - 1 {
-            selectSearchResult(index + 1)
-        }
-    }
-    
-    /*
-     Selects the given search result within the NSTableView
-     
-     @param index
-     Index within the searchResults array (eg. first result, second result, etc)
-     */
-    private func selectSearchResult(_ index: Int) {
-        
-        // Select the search result and scroll to make it visible
-        let row = searchResults[index]
-        
-        chaptersListView.selectRow(row)
-        chaptersListView.scrollRowToVisible(row)
-        
-        resultIndex = index
-        
-        // Update the navigation buttons
-        btnPreviousMatch.enableIf(index > 0)
-        btnNextMatch.enableIf(index < searchResults.count - 1)
-    }
-    
-    // Compares query text with a chapter title
-    private func compare(_ queryText: String, _ chapterTitle: String) -> Bool {
-        return btnCaseSensitive.isOn ? chapterTitle.contains(queryText) : chapterTitle.lowercased().contains(queryText.lowercased())
-    }
-    
-    // Returns true if the search field has focus, false if not.
-    var isPerformingSearch: Bool {
-        
-        // Check if the search field has focus (i.e. it's the first responder of the Chapters list window).
-        
-        if let firstResponderView = self.view.window?.firstResponder as? NSView {
-        
-            // Iterate up the view hierarchy of the first responder view to see if any of its parent views
-            // is the search field.
-            
-            var curView: NSView? = firstResponderView
-            while curView != nil {
-                
-                if curView === txtSearch {
-                    return true
-                }
-                
-                curView = curView?.superview
-            }
-        }
-        
-        return false
-    }
-    
     // MARK: Message handling
     
     func trackChanged() {
@@ -357,107 +235,8 @@ class ChaptersListViewController: NSViewController {
     
     private func applyTheme() {
         
-        applyFontScheme(systemFontScheme)
-        applyColorScheme(systemColorScheme)
+//        applyFontScheme(systemFontScheme)
+//        applyColorScheme(systemColorScheme)
     }
     
-    private func applyFontScheme(_ fontScheme: FontScheme) {
-        
-        // Don't need to do this if the window is not visible
-        if let _window = view.window, _window.isVisible {
-            
-            chaptersListView.reloadDataMaintainingSelection()
-            
-//            lblWindowTitle.font = systemFontScheme.playlist.chaptersListCaptionFont
-//            lblSummary.font = systemFontScheme.playlist.summaryFont
-//            
-//            txtSearch.font = systemFontScheme.playlist.chaptersListSearchFont
-//            lblNumMatches.font = systemFontScheme.playlist.chaptersListSearchFont
-        }
-    }
-    
-    private func applyColorScheme(_ scheme: ColorScheme) {
-        
-        changeBackgroundColor(scheme.backgroundColor)
-        
-//        changeSummaryInfoColor(scheme.playlist.summaryInfoColor)
-        changeMainCaptionTextColor(scheme.secondaryTextColor)
-        
-        changeFunctionButtonColor(scheme.buttonColor)
-        
-        redrawSearchField()
-        
-        chaptersListView.reloadData()
-    }
-    
-    private func changeBackgroundColor(_ color: NSColor) {
-        
-        chaptersListView.backgroundColor = NSColor.clear
-        header.redraw()
-    }
-    
-    private func changeFunctionButtonColor(_ color: NSColor) {
-//        functionButtons.forEach {$0.reTint()}
-    }
-    
-    private func changeToggleButtonOffStateColor(_ color: NSColor) {
-//        [btnLoopChapter, btnCaseSensitive].forEach {$0.reTint()}
-    }
-    
-    private func changeSummaryInfoColor(_ color: NSColor) {
-        
-        [lblSummary, lblNumMatches].forEach {$0?.textColor = color}
-        header.redraw()
-    }
-    
-    private func changeTrackNameTextColor(_ color: NSColor) {
-        
-        chaptersListView.reloadAllRows(columns: [1])
-        redrawSearchField()
-    }
-    
-    private func redrawSearchField() {
-        
-//        txtSearch.textColor = Colors.Playlist.trackNameTextColor
-        
-        if let cell: NSSearchFieldCell = txtSearch.cell as? NSSearchFieldCell {
-            
-            // This is a hack to force these cells to redraw
-            cell.resetCancelButtonCell()
-            cell.resetSearchButtonCell()
-            
-            // Tint the 2 cell images according to the appropriate color.
-//            cell.cancelButtonCell?.image = cell.cancelButtonCell?.image?.filledWithColor(Colors.Playlist.trackNameTextColor)
-//            cell.searchButtonCell?.image = cell.searchButtonCell?.image?.filledWithColor(Colors.Playlist.trackNameTextColor)
-        }
-        
-        txtSearch.redraw()
-    }
-    
-    private func changeIndexDurationTextColor(_ color: NSColor) {
-        chaptersListView.reloadAllRows(columns: [0, 2, 3])
-    }
-    
-    private func changeTrackNameSelectedTextColor(_ color: NSColor) {
-        chaptersListView.reloadRows(chaptersListView.selectedRowIndexes, columns: [1])
-    }
-    
-    private func changeIndexDurationSelectedTextColor(_ color: NSColor) {
-        chaptersListView.reloadRows(chaptersListView.selectedRowIndexes, columns: [0, 2, 3])
-    }
-    
-    private func changeSelectionBoxColor(_ color: NSColor) {
-        chaptersListView.redoRowSelection()
-    }
-    
-    private func changePlayingTrackIconColor(_ color: NSColor) {
-        
-        if let playingChapterIndex = player.playingChapter?.index {
-            chaptersListView.reloadRows([playingChapterIndex], columns: [0])
-        }
-    }
-    
-    private func changeMainCaptionTextColor(_ color: NSColor) {
-        lblWindowTitle.textColor = color
-    }
 }

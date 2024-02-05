@@ -32,28 +32,18 @@ class ChaptersListWindowController: NSWindowController, ModalComponentProtocol {
     
     override func windowDidLoad() {
         
-        changeBackgroundColor(systemColorScheme.backgroundColor)
+        super.windowDidLoad()
+        
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainerBox)
+        
         rootContainerBox.cornerRadius = uiState.cornerRadius
         
-        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
     }
     
     @IBAction func closeWindowAction(_ sender: AnyObject) {
-//        windowLayoutsManager.hideChaptersListWindow()
-    }
-    
-    private func applyTheme() {
-        applyColorScheme(systemColorScheme)
-    }
-    
-    private func applyColorScheme(_ scheme: ColorScheme) {
-        changeBackgroundColor(scheme.backgroundColor)
-    }
-    
-    private func changeBackgroundColor(_ color: NSColor) {
-        rootContainerBox.fillColor = color
+        windowLayoutsManager.hideWindow(withId: .chaptersList)
     }
     
     func changeWindowCornerRadius(_ radius: CGFloat) {
@@ -66,5 +56,12 @@ class ChaptersListWindowController: NSWindowController, ModalComponentProtocol {
         
         close()
         messenger.unsubscribeFromAll()
+    }
+}
+
+extension ChaptersListWindowController: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        rootContainerBox.fillColor = systemColorScheme.backgroundColor
     }
 }
