@@ -83,7 +83,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <button toolTip="Previous chapter" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Axi-IH-THL" userLabel="Previous Chapter Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="254" y="6.5" width="14" height="15"/>
+                                    <rect key="frame" x="273" y="13.5" width="14" height="15"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="backward.end" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="h7P-iZ-vNE">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -111,7 +111,7 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Next chapter" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iBr-vY-6sc" userLabel="Next Chapter Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="273" y="6.5" width="14" height="15"/>
+                                    <rect key="frame" x="297" y="13.5" width="14" height="15"/>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="forward.end" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Tma-2F-034">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -125,14 +125,14 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Toggle current chapter loop" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vD3-y2-J8L" userLabel="Loop Button" customClass="OnOffImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="319" y="6" width="13" height="13"/>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Loop" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="UKo-WT-hH4">
+                                    <rect key="frame" x="321" y="14" width="15" height="14"/>
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Loop" imagePosition="only" alignment="center" imageScaling="axesIndependently" inset="2" id="UKo-WT-hH4">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="13" id="9GP-DR-xzf"/>
-                                        <constraint firstAttribute="width" constant="13" id="kyd-iY-5bD"/>
+                                        <constraint firstAttribute="height" constant="14" id="9GP-DR-xzf"/>
+                                        <constraint firstAttribute="width" constant="15" id="kyd-iY-5bD"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="image" keyPath="offStateImage" value="LoopChapter-Off"/>
@@ -145,14 +145,14 @@
                                     </connections>
                                 </button>
                                 <button toolTip="Replay current chapter" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tye-Wf-orr" userLabel="Replay Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="297" y="5" width="16" height="16"/>
-                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Replay" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="dfN-R0-OXt">
+                                    <rect key="frame" x="248" y="10" width="15.5" height="23"/>
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrow.uturn.backward" catalog="system" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="dfN-R0-OXt">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system" size="21"/>
                                     </buttonCell>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="16" id="Tmw-pA-lzr"/>
-                                        <constraint firstAttribute="height" constant="16" id="tai-mK-py5"/>
+                                        <constraint firstAttribute="width" constant="15" id="Tmw-pA-lzr"/>
+                                        <constraint firstAttribute="height" constant="15" id="tai-mK-py5"/>
                                     </constraints>
                                     <connections>
                                         <action selector="replayCurrentChapterAction:" target="uhU-UR-xwr" id="Os2-Lr-1A4"/>
@@ -208,28 +208,28 @@
                                 </button>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="iBr-vY-6sc" secondAttribute="bottom" constant="8" id="3g0-gO-SAX"/>
                                 <constraint firstItem="Bqb-2Y-Uw2" firstAttribute="leading" secondItem="R3F-5h-tZn" secondAttribute="leading" constant="10" id="8Zr-hA-Vcd"/>
                                 <constraint firstItem="5J6-lG-aTa" firstAttribute="top" secondItem="R3F-5h-tZn" secondAttribute="top" constant="6" id="EHh-Jx-In0"/>
                                 <constraint firstItem="ISr-Ro-Dis" firstAttribute="leading" secondItem="8Of-xA-IUV" secondAttribute="trailing" constant="10" id="ESF-HL-7wS"/>
                                 <constraint firstItem="Hh1-Ht-7fu" firstAttribute="leading" secondItem="R3F-5h-tZn" secondAttribute="leading" constant="22" id="EWh-rY-JQb"/>
                                 <constraint firstAttribute="trailing" secondItem="CPE-oP-CME" secondAttribute="trailing" constant="16" id="IWW-vz-s3H"/>
-                                <constraint firstAttribute="bottom" secondItem="Tye-Wf-orr" secondAttribute="bottom" constant="5" id="JeX-co-VLM"/>
                                 <constraint firstAttribute="bottom" secondItem="Hh1-Ht-7fu" secondAttribute="bottom" constant="23" id="LMk-Oc-KS1"/>
                                 <constraint firstItem="ISr-Ro-Dis" firstAttribute="centerY" secondItem="jY6-EF-Drz" secondAttribute="centerY" id="NTY-5i-CVT"/>
                                 <constraint firstItem="PhG-3g-wVK" firstAttribute="centerY" secondItem="jY6-EF-Drz" secondAttribute="centerY" id="OzZ-cR-eeb"/>
-                                <constraint firstItem="iBr-vY-6sc" firstAttribute="leading" secondItem="Axi-IH-THL" secondAttribute="trailing" constant="5" id="RYc-Be-Rae"/>
-                                <constraint firstItem="Tye-Wf-orr" firstAttribute="leading" secondItem="R3F-5h-tZn" secondAttribute="centerX" constant="5" id="UoB-Mx-krW"/>
+                                <constraint firstItem="Axi-IH-THL" firstAttribute="trailing" secondItem="R3F-5h-tZn" secondAttribute="centerX" constant="-5" id="QrF-W4-9Rq"/>
+                                <constraint firstItem="Tye-Wf-orr" firstAttribute="trailing" secondItem="Axi-IH-THL" secondAttribute="leading" constant="-10" id="UoB-Mx-krW"/>
                                 <constraint firstItem="jY6-EF-Drz" firstAttribute="leading" secondItem="R3F-5h-tZn" secondAttribute="leading" constant="14" id="XJ4-Pl-vch"/>
+                                <constraint firstItem="vD3-y2-J8L" firstAttribute="centerY" secondItem="Tye-Wf-orr" secondAttribute="centerY" constant="2" id="YBL-Wv-2jF"/>
                                 <constraint firstItem="8Of-xA-IUV" firstAttribute="leading" secondItem="jY6-EF-Drz" secondAttribute="trailing" constant="40" id="bIo-bS-6Ee"/>
-                                <constraint firstItem="vD3-y2-J8L" firstAttribute="leading" secondItem="Tye-Wf-orr" secondAttribute="trailing" constant="6" id="csq-wX-8mX"/>
-                                <constraint firstAttribute="bottom" secondItem="vD3-y2-J8L" secondAttribute="bottom" constant="6" id="e3E-Dp-aLS"/>
+                                <constraint firstItem="vD3-y2-J8L" firstAttribute="leading" secondItem="iBr-vY-6sc" secondAttribute="trailing" constant="10" id="csq-wX-8mX"/>
+                                <constraint firstItem="iBr-vY-6sc" firstAttribute="centerY" secondItem="Axi-IH-THL" secondAttribute="centerY" id="e13-2U-9Zj"/>
                                 <constraint firstItem="Bqb-2Y-Uw2" firstAttribute="top" secondItem="R3F-5h-tZn" secondAttribute="top" constant="16" id="hha-xH-u4e"/>
                                 <constraint firstItem="PhG-3g-wVK" firstAttribute="leading" secondItem="jY6-EF-Drz" secondAttribute="trailing" constant="9" id="j1b-3c-c3m"/>
                                 <constraint firstItem="CPE-oP-CME" firstAttribute="centerY" secondItem="ISr-Ro-Dis" secondAttribute="centerY" id="kvP-7J-Up2"/>
-                                <constraint firstItem="iBr-vY-6sc" firstAttribute="trailing" secondItem="R3F-5h-tZn" secondAttribute="centerX" constant="-5" id="l0e-ch-Rse"/>
                                 <constraint firstItem="8Of-xA-IUV" firstAttribute="centerY" secondItem="jY6-EF-Drz" secondAttribute="centerY" id="lBy-Vq-OWa"/>
-                                <constraint firstAttribute="bottom" secondItem="Axi-IH-THL" secondAttribute="bottom" constant="8" id="lch-dF-vOG"/>
+                                <constraint firstAttribute="bottom" secondItem="Axi-IH-THL" secondAttribute="bottom" constant="15" id="lch-dF-vOG"/>
+                                <constraint firstItem="Tye-Wf-orr" firstAttribute="centerY" secondItem="iBr-vY-6sc" secondAttribute="centerY" constant="-2" id="mxR-EB-1vw"/>
+                                <constraint firstItem="iBr-vY-6sc" firstAttribute="leading" secondItem="R3F-5h-tZn" secondAttribute="centerX" constant="5" id="qJe-eW-XMw"/>
                                 <constraint firstItem="jY6-EF-Drz" firstAttribute="top" secondItem="5J6-lG-aTa" secondAttribute="bottom" constant="14" id="tGZ-RX-IAX"/>
                                 <constraint firstItem="5J6-lG-aTa" firstAttribute="leading" secondItem="Bqb-2Y-Uw2" secondAttribute="trailing" constant="15" id="x0d-8i-xYb"/>
                                 <constraint firstItem="CPE-oP-CME" firstAttribute="leading" secondItem="ISr-Ro-Dis" secondAttribute="trailing" constant="4" id="yJl-Yd-Yd6"/>
@@ -489,9 +489,9 @@
         <image name="Loop" width="18" height="25"/>
         <image name="LoopChapter-Off" width="20" height="20"/>
         <image name="LoopChapter-On" width="20" height="20"/>
-        <image name="Replay" width="35" height="35"/>
         <image name="Search-CaseSensitive-Off" width="43" height="31"/>
         <image name="Search-CaseSensitive-On" width="43" height="31"/>
+        <image name="arrow.uturn.backward" catalog="system" width="15" height="14"/>
         <image name="arrowshape.left.fill" catalog="system" width="17" height="14"/>
         <image name="arrowshape.right.fill" catalog="system" width="17" height="14"/>
         <image name="backward.end" catalog="system" width="13" height="13"/>
