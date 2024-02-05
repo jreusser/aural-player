@@ -117,12 +117,12 @@ class ChaptersListViewController: NSViewController {
             chaptersListView.scrollRowToVisible(chapter.index)
         }
         
-//        let chapterCount: Int = player.chapterCount
-//        lblSummary.stringValue = String(format: "%d %@", chapterCount, chapterCount == 1 ? "chapter" : "chapters")
+        let chapterCount: Int = player.chapterCount
+        lblSummary.stringValue = String(format: "%d %@", chapterCount, chapterCount == 1 ? "chapter" : "chapters")
 //        
 //        lblWindowTitle.font = systemFontScheme.playlist.chaptersListCaptionFont
-//        lblSummary.font = systemFontScheme.playlist.summaryFont
-//        
+        lblSummary.font = systemFontScheme.smallFont
+//
 //        txtSearch.font = systemFontScheme.playlist.chaptersListSearchFont
 //        lblNumMatches.font = systemFontScheme.playlist.chaptersListSearchFont
         

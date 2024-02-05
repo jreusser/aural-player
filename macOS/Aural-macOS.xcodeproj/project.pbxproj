@@ -2277,6 +2277,7 @@
 				3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */,
 				3E25B65127F7859800D10A5F /* SimpleView */,
 				3E25B65227F785D800D10A5F /* ExpandedView */,
+				3E6C0F5F25CEB98600BF0D07 /* ChaptersList */,
 				3E47214C282AE3820097F1AB /* TrackListTabButton.swift */,
 				3EDCC4B7282C2223002AF3AE /* PlayQueueUIState.swift */,
 			);
@@ -2914,7 +2915,6 @@
 				3E6C0F4D25CEB98600BF0D07 /* GroupingPlaylists */,
 				3E6C0F5925CEB98600BF0D07 /* Search */,
 				3E6C0F4125CEB98600BF0D07 /* Sort */,
-				3E6C0F5F25CEB98600BF0D07 /* ChaptersList */,
 				3E6C0F5C25CEB98600BF0D07 /* AuralPlaylistViews.swift */,
 				3E6C0F5D25CEB98600BF0D07 /* GroupingPlaylistTableViews.swift */,
 				3E6C0F5E25CEB98600BF0D07 /* PlaylistContextMenuController.swift */,

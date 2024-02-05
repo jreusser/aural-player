@@ -60,6 +60,10 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
                 
                 windowLoaders.append(WindowLoader(windowID: .trackInfo, windowControllerType: TrackInfoWindowController.self))
                 
+            case .chaptersList:
+                
+                windowLoaders.append(WindowLoader(windowID: .chaptersList, windowControllerType: ChaptersListWindowController.self))
+                
             default:
                 
                 continue
@@ -250,7 +254,7 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     func showChaptersListWindow() {
         
 //        let shouldCenterChaptersListWindow = !chaptersListWindowLoader.isWindowLoaded
-//
+
 //        mainWindow.addChildWindow(_chaptersListWindow, ordered: .above)
 //        _chaptersListWindow.makeKeyAndOrderFront(self)
 //
@@ -258,7 +262,7 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
 //        // After that, the window will be restored to its previous on-screen location
 //        if shouldCenterChaptersListWindow && playlistWindowLoaded {
 //            _chaptersListWindow.showCentered(relativeTo: _playlistWindow)
-//        }
+////        }
     }
     
     var isShowingPlayQueue: Bool {

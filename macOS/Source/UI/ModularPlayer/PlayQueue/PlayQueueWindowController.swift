@@ -47,7 +47,20 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         
         changeWindowCornerRadius(windowAppearanceState.cornerRadius)
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
+        messenger.subscribe(to: .player_trackTransitioned, handler: trackTransitioned(_:))
     }
+    
+    func trackTransitioned(_ notif: TrackTransitionNotification) {
+    
+            // New track has no chapters, or there is no new track
+            if playbackInfoDelegate.chapterCount == 0 {
+                windowLayoutsManager.hideWindow(withId: .chaptersList)
+    
+            } // Only show chapters list if preferred by user
+            else {
+                windowLayoutsManager.showWindow(withId: .chaptersList)
+            }
+        }
     
     func colorSchemeChanged() {
         btnClose.contentTintColor = systemColorScheme.buttonColor
