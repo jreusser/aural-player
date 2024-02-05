@@ -30,6 +30,8 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
     @IBOutlet weak var jumpToChapterMenuItem: NSMenuItem!
     @IBOutlet weak var chaptersMenu: NSMenu!
     
+    @IBOutlet weak var favoriteMenu: NSMenu!
+    
     @IBOutlet weak var favoriteTrackMenuItem: NSMenuItem!
     @IBOutlet weak var favoriteArtistMenuItem: NSMenuItem!
     @IBOutlet weak var favoriteAlbumMenuItem: NSMenuItem!
@@ -73,7 +75,12 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
     override func viewWillAppear() {
         
         super.viewWillAppear()
+        
         contextMenu.delegate = self
+        
+        for item in contextMenu.items + favoriteMenu.items + playlistNamesMenu.items {
+            item.target = self
+        }
     }
     
     override func tracksMovedByDragDrop(minReloadIndex: Int, maxReloadIndex: Int) {

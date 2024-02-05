@@ -67,6 +67,7 @@ extension PlayQueueViewController: NSMenuDelegate {
                 
                 let item = ChapterMenuItem(title: chapter.title, action: #selector(jumpToChapterAction(_:)), index: index)
                 item.state = .off
+                item.target = self
                 chaptersMenu.addItem(item)
             }
             

@@ -539,6 +539,7 @@
                 <outlet property="favoriteArtistMenuItem" destination="UXQ-lX-SR9" id="utM-wZ-i36"/>
                 <outlet property="favoriteDecadeMenuItem" destination="kgk-hW-g2B" id="c9f-gk-yjF"/>
                 <outlet property="favoriteGenreMenuItem" destination="NMs-Eg-c2g" id="tga-O6-fNW"/>
+                <outlet property="favoriteMenu" destination="YdI-S6-ECx" id="RFJ-yA-R4k"/>
                 <outlet property="favoriteTrackMenuItem" destination="J4u-pe-wd5" id="7ki-1C-a1c"/>
                 <outlet property="infoMenuItem" destination="gkC-2Y-06q" id="w6l-D7-tJG"/>
                 <outlet property="jumpToChapterMenuItem" destination="wqo-qf-3cg" id="1NG-Qy-kyh"/>
@@ -556,6 +557,7 @@
                 <outlet property="favoriteArtistMenuItem" destination="UXQ-lX-SR9" id="1AT-Ir-fEA"/>
                 <outlet property="favoriteDecadeMenuItem" destination="kgk-hW-g2B" id="jfO-om-nRa"/>
                 <outlet property="favoriteGenreMenuItem" destination="NMs-Eg-c2g" id="LNW-rP-AoY"/>
+                <outlet property="favoriteMenu" destination="YdI-S6-ECx" id="65n-dk-dHS"/>
                 <outlet property="favoriteTrackMenuItem" destination="J4u-pe-wd5" id="rHt-DT-OvV"/>
                 <outlet property="infoMenuItem" destination="gkC-2Y-06q" id="YwA-FP-kT1"/>
                 <outlet property="jumpToChapterMenuItem" destination="wqo-qf-3cg" id="ZQt-gO-omD"/>
@@ -611,15 +613,21 @@
             <items>
                 <menuItem title="  Play now" image="play" catalog="system" id="yLf-Z8-HKY">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="playNowAction:" target="kd5-kG-XlG" id="AQ8-q7-3yV"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Play next" image="list.dash" catalog="system" id="74g-y8-018">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="playNextAction:" target="kd5-kG-XlG" id="xm4-Qe-mZX"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="0EF-v0-Yvl"/>
                 <menuItem title="  View chapters list" image="list.dash" catalog="system" id="wSF-DA-Xzf" userLabel="View chapters list">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="viewChaptersListAction:" target="X6e-yN-Epj" id="RiQ-jg-Uye"/>
+                        <action selector="viewChaptersListAction:" target="kd5-kG-XlG" id="tcw-Q3-n2h"/>
                     </connections>
                 </menuItem>
                 <menuItem title="  Jump to chapter" image="list.dash" catalog="system" id="wqo-qf-3cg" userLabel="Jump to chapter">
@@ -651,26 +659,47 @@
                 </menuItem>
                 <menuItem title="  Create a new playlist with these tracks" image="text.badge.plus" catalog="system" id="7I8-lj-SZ4" userLabel="Remove tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="createPlaylistWithTracksAction:" target="kd5-kG-XlG" id="bxi-U1-7PG"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Nc0-NI-cwr"/>
                 <menuItem title="  Remove these tracks" image="xmark.bin" catalog="system" id="q5r-Ka-hvq" userLabel="Remove tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="removeTracksMenuAction:" target="kd5-kG-XlG" id="RBw-tg-8Ot"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Crop selected tracks" image="scissors" catalog="system" id="P2t-mU-c8U" userLabel="Crop selected tracks">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="cropSelectionMenuAction:" target="kd5-kG-XlG" id="ewW-jB-IRe"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="TJ8-Qu-miQ"/>
                 <menuItem title="  Move these tracks up" image="arrow.up" catalog="system" id="xhD-0V-jMz" userLabel="Move tracks up">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="moveTracksUpAction:" target="kd5-kG-XlG" id="Y2A-GJ-8Ye"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks down" image="arrow.down" catalog="system" id="Eix-CI-G9n" userLabel="Move tracks down">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="moveTracksDownAction:" target="kd5-kG-XlG" id="pdK-xP-lDC"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks to the top" image="arrow.up.to.line.alt" catalog="system" id="5MI-wU-fuP" userLabel="Move tracks top">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="moveTracksToTopAction:" target="kd5-kG-XlG" id="IRz-gp-DeN"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks to the bottom" image="arrow.down.to.line.alt" catalog="system" id="O3S-j8-C1c" userLabel="Move tracks bottom">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="moveTracksToBottomAction:" target="kd5-kG-XlG" id="4lA-Pq-ypA"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="4TY-3Z-NOW"/>
                 <menuItem title="  Favorites" image="heart" catalog="system" id="zUu-GT-tTB" userLabel="Favorites">
@@ -679,18 +708,33 @@
                         <items>
                             <menuItem title="This track" image="music.note" catalog="system" id="J4u-pe-wd5">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="favoriteTrackAction:" target="kd5-kG-XlG" id="80h-JS-P6f"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Artist ''" image="Artists_Menu" id="UXQ-lX-SR9">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="favoriteArtistAction:" target="kd5-kG-XlG" id="2CA-MU-twR"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Album ''" image="opticaldisc" catalog="system" id="i0J-gA-h99">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="favoriteAlbumAction:" target="kd5-kG-XlG" id="YbM-bh-zc2"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Genre ''" image="Genres_Menu" id="NMs-Eg-c2g" userLabel="Genre ''">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="favoriteGenreAction:" target="kd5-kG-XlG" id="k5c-7d-Ica"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Decade ''" image="calendar" catalog="system" id="kgk-hW-g2B">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="favoriteDecadeAction:" target="kd5-kG-XlG" id="dFf-Sh-Krn"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>
@@ -698,9 +742,15 @@
                 <menuItem title="  Get detailed track info" id="gkC-2Y-06q">
                     <imageReference key="image" image="info" catalog="system" symbolScale="large"/>
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="trackInfoAction:" target="kd5-kG-XlG" id="742-TT-Fpw"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="  Show these tracks in Finder" image="ShowInFinder" id="Zlz-qH-EeU" userLabel="Show track in Finder">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showInFinderAction:" target="kd5-kG-XlG" id="6D6-VL-zwW"/>
+                    </connections>
                 </menuItem>
             </items>
             <point key="canvasLocation" x="-379" y="233"/>
