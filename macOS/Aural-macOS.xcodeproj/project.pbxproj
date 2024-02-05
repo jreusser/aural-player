@@ -960,7 +960,6 @@
 		3EFE3A0727864898006F8B8C /* EffectsNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE375B27864895006F8B8C /* EffectsNotifications.swift */; };
 		3EFE3A0927864898006F8B8C /* TuneBrowserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE375C27864895006F8B8C /* TuneBrowserNotifications.swift */; };
 		3EFE3A0B27864898006F8B8C /* VisualizerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE375D27864895006F8B8C /* VisualizerNotifications.swift */; };
-		3EFE3A0D27864898006F8B8C /* SequencerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE375E27864895006F8B8C /* SequencerNotifications.swift */; };
 		3EFE3A0F27864898006F8B8C /* FavoritesListNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE375F27864895006F8B8C /* FavoritesListNotifications.swift */; };
 		3EFE3A1127864898006F8B8C /* PresetsManagerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE376027864895006F8B8C /* PresetsManagerNotifications.swift */; };
 		3EFE3A1327864898006F8B8C /* BookmarksNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE376127864895006F8B8C /* BookmarksNotifications.swift */; };
@@ -2022,7 +2021,6 @@
 		3EFE375B27864895006F8B8C /* EffectsNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectsNotifications.swift; sourceTree = "<group>"; };
 		3EFE375C27864895006F8B8C /* TuneBrowserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserNotifications.swift; sourceTree = "<group>"; };
 		3EFE375D27864895006F8B8C /* VisualizerNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualizerNotifications.swift; sourceTree = "<group>"; };
-		3EFE375E27864895006F8B8C /* SequencerNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerNotifications.swift; sourceTree = "<group>"; };
 		3EFE375F27864895006F8B8C /* FavoritesListNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesListNotifications.swift; sourceTree = "<group>"; };
 		3EFE376027864895006F8B8C /* PresetsManagerNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetsManagerNotifications.swift; sourceTree = "<group>"; };
 		3EFE376127864895006F8B8C /* BookmarksNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarksNotifications.swift; sourceTree = "<group>"; };
@@ -4906,7 +4904,6 @@
 				3EFE375B27864895006F8B8C /* EffectsNotifications.swift */,
 				3EFE375C27864895006F8B8C /* TuneBrowserNotifications.swift */,
 				3EFE375D27864895006F8B8C /* VisualizerNotifications.swift */,
-				3EFE375E27864895006F8B8C /* SequencerNotifications.swift */,
 				3EFE375F27864895006F8B8C /* FavoritesListNotifications.swift */,
 				3EFE376027864895006F8B8C /* PresetsManagerNotifications.swift */,
 				3EFE376127864895006F8B8C /* BookmarksNotifications.swift */,
@@ -6036,7 +6033,6 @@
 				3E9C12152622259500D90EA4 /* ThemePreset.swift in Sources */,
 				3EFE3A7927864898006F8B8C /* AVFMappedMetadata.swift in Sources */,
 				3EFE3A3727864898006F8B8C /* ChapterChangedNotification.swift in Sources */,
-				3EFE3A0D27864898006F8B8C /* SequencerNotifications.swift in Sources */,
 				3EFE391927864897006F8B8C /* IndexSetExtensions.swift in Sources */,
 				3EFE3A3B27864898006F8B8C /* FFmpegMetadataParser.swift in Sources */,
 				3E81BCD7284AAB5100927E4A /* TuneBrowserItemsAddedNotification.swift in Sources */,

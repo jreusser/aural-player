@@ -155,11 +155,11 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
 
     func removeAllTracks() {
         
-        let wasPlaying: Bool = playQueue.currentTrack != nil
+        let playingTrack: Track? = playQueue.currentTrack
         playQueue.removeAllTracks()
         
-        if wasPlaying {
-            messenger.publish(.player_stop)
+        if let thePlayingTrack = playingTrack {
+            messenger.publish(.playQueue_playingTrackRemoved, payload: thePlayingTrack)
         }
     }
 
