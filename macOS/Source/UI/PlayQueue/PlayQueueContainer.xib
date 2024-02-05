@@ -540,9 +540,14 @@
                 <outlet property="favoriteDecadeMenuItem" destination="kgk-hW-g2B" id="c9f-gk-yjF"/>
                 <outlet property="favoriteGenreMenuItem" destination="NMs-Eg-c2g" id="tga-O6-fNW"/>
                 <outlet property="favoriteMenu" destination="YdI-S6-ECx" id="RFJ-yA-R4k"/>
+                <outlet property="favoriteMenuItem" destination="zUu-GT-tTB" id="9o7-Jc-NiQ"/>
                 <outlet property="favoriteTrackMenuItem" destination="J4u-pe-wd5" id="7ki-1C-a1c"/>
                 <outlet property="infoMenuItem" destination="gkC-2Y-06q" id="w6l-D7-tJG"/>
                 <outlet property="jumpToChapterMenuItem" destination="wqo-qf-3cg" id="1NG-Qy-kyh"/>
+                <outlet property="moveTracksDownMenuItem" destination="Eix-CI-G9n" id="bV5-tb-EoB"/>
+                <outlet property="moveTracksToBottomMenuItem" destination="O3S-j8-C1c" id="mJe-FQ-pmc"/>
+                <outlet property="moveTracksToTopMenuItem" destination="5MI-wU-fuP" id="hFv-nr-NLC"/>
+                <outlet property="moveTracksUpMenuItem" destination="xhD-0V-jMz" id="cFF-Dt-aHw"/>
                 <outlet property="playNextMenuItem" destination="74g-y8-018" id="TZv-U9-EY6"/>
                 <outlet property="playNowMenuItem" destination="yLf-Z8-HKY" id="9nW-FU-XsD"/>
                 <outlet property="playlistNamesMenu" destination="OfQ-im-fw1" id="wV8-b0-fTc"/>
@@ -558,9 +563,14 @@
                 <outlet property="favoriteDecadeMenuItem" destination="kgk-hW-g2B" id="jfO-om-nRa"/>
                 <outlet property="favoriteGenreMenuItem" destination="NMs-Eg-c2g" id="LNW-rP-AoY"/>
                 <outlet property="favoriteMenu" destination="YdI-S6-ECx" id="65n-dk-dHS"/>
+                <outlet property="favoriteMenuItem" destination="zUu-GT-tTB" id="wDg-HS-ZCB"/>
                 <outlet property="favoriteTrackMenuItem" destination="J4u-pe-wd5" id="rHt-DT-OvV"/>
                 <outlet property="infoMenuItem" destination="gkC-2Y-06q" id="YwA-FP-kT1"/>
                 <outlet property="jumpToChapterMenuItem" destination="wqo-qf-3cg" id="ZQt-gO-omD"/>
+                <outlet property="moveTracksDownMenuItem" destination="Eix-CI-G9n" id="lpR-iR-ss1"/>
+                <outlet property="moveTracksToBottomMenuItem" destination="O3S-j8-C1c" id="Xmd-fQ-9iI"/>
+                <outlet property="moveTracksToTopMenuItem" destination="5MI-wU-fuP" id="7ut-Ux-Zuc"/>
+                <outlet property="moveTracksUpMenuItem" destination="xhD-0V-jMz" id="iAh-xH-17D"/>
                 <outlet property="playNextMenuItem" destination="74g-y8-018" id="M8c-mJ-Tcy"/>
                 <outlet property="playNowMenuItem" destination="yLf-Z8-HKY" id="MX3-ax-gFl"/>
                 <outlet property="playlistNamesMenu" destination="OfQ-im-fw1" id="KSO-k6-VWZ"/>

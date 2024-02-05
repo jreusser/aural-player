@@ -31,13 +31,19 @@ extension PlayQueueViewController: NSMenuDelegate {
         
         let atLeastOneRowSelected = selectedRowCount >= 1
         let oneRowSelected = selectedRowCount == 1
-        let playingTrackSelected = playQueueDelegate.currentTrackIndex != nil && selectedRows.contains(playQueueDelegate.currentTrackIndex!)
         
-        [playNowMenuItem, favoriteTrackMenuItem, infoMenuItem].forEach {
-            $0.enableIf(oneRowSelected)
+        var playingTrackSelected = false
+        if let currentTrackIndex = playQueueDelegate.currentTrackIndex, selectedRows.contains(currentTrackIndex) {
+            playingTrackSelected = true
         }
         
-        playNextMenuItem.enableIf(atLeastOneRowSelected && playQueueDelegate.currentTrack != nil && !playingTrackSelected)
+        playNowMenuItem.showIf(oneRowSelected && (!playingTrackSelected))
+        
+        [favoriteMenuItem, infoMenuItem].forEach {
+            $0.showIf(oneRowSelected)
+        }
+        
+        playNextMenuItem.showIf(atLeastOneRowSelected && playbackInfoDelegate.state.isPlayingOrPaused && !playingTrackSelected)
         
         // TODO: playlist names menu should have a separate delegate so that the menu
         // is not unnecessarily updated until required.
@@ -72,6 +78,10 @@ extension PlayQueueViewController: NSMenuDelegate {
             }
             
             chaptersMenu.item(at: playingChapter.index)?.state = .on
+        }
+        
+        [moveTracksUpMenuItem, moveTracksDownMenuItem, moveTracksToTopMenuItem, moveTracksToBottomMenuItem].forEach {
+            $0?.showIf(atLeastOneRowSelected)
         }
         
         let titlePrefix = favoritesDelegate.favoriteExists(track: theClickedTrack) ? "Remove" : "Add"
