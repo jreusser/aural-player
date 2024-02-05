@@ -21,10 +21,6 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
     @IBOutlet weak var seekSlider: NSSlider!
     @IBOutlet weak var seekSliderCell: SeekSliderCell!
     
-    // A clone of the seek slider, used to render the segment playback loop
-    @IBOutlet weak var seekSliderClone: NSSlider!
-    @IBOutlet weak var seekSliderCloneCell: SeekSliderCell!
-    
     // Timer that periodically updates the seek position slider and label
     var seekTimer: RepeatingTaskExecutor?
     
@@ -177,14 +173,14 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
             
             // If loop start has not yet been marked, mark it (e.g. when marking chapter loops)
             
-            seekSliderClone.doubleValue = loop.startTime * 100 / trackDuration
-            seekSliderCell.markLoopStart(seekSliderCloneCell.knobCenter)
+            let startPerc = loop.startTime * 100 / trackDuration
+            seekSliderCell.markLoopStart(startPerc: startPerc)
             
             // Use the seek slider clone to mark the exact position of the center of the slider knob, at both the start and end points of the playback loop (for rendering)
             if let loopEndTime = loop.endTime {
                 
-                seekSliderClone.doubleValue = loopEndTime * 100 / trackDuration
-                seekSliderCell.markLoopEnd(seekSliderCloneCell.knobCenter)
+                let endPerc = (loopEndTime / trackDuration) * 100
+                seekSliderCell.markLoopEnd(endPerc: endPerc)
             }
             
         } else {

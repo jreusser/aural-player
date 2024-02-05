@@ -17,13 +17,13 @@ class ControlBarSeekSliderCell: SeekSliderCell {
     private lazy var halfLoopMarkerWidth: CGFloat = loopMarkerWidth / 2
     
     // Interpret start value as percentage of slider width, not as an X value.
-    override func markLoopStart(_ start: CGFloat) {
-        self.loop = PlaybackLoopRange(start: start, end: nil)
+    override func markLoopStart(startPerc: CGFloat) {
+//        self.loop = PlaybackLoopRange(start: start, end: nil)
     }
     
     // Marks the rendering end point for a segment playback loop. The end argument is the X co-ordinate of the center of the knob frame at the loop end point
-    override func markLoopEnd(_ end: CGFloat) {
-        self.loop?.end = end
+    override func markLoopEnd(endPerc: CGFloat) {
+//        self.loop?.end = end
     }
     
     // Don't draw the knob

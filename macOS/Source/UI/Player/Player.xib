@@ -28,12 +28,6 @@
                 <outlet property="sliderView" destination="QDN-go-yNZ" id="VCT-Xe-sBe"/>
             </connections>
         </customObject>
-        <slider verticalHuggingPriority="750" id="oxZ-LA-ON2" userLabel="Seek Slider Clone">
-            <rect key="frame" x="0.0" y="0.0" width="450" height="15"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="Wuq-H7-8ix" customClass="SeekSliderCell" customModule="Aural" customModuleProvider="target"/>
-            <point key="canvasLocation" x="-2884" y="682"/>
-        </slider>
         <customObject id="bbe-2a-cSz" customClass="WindowedModePlayerAudioViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnVolume" destination="TDX-6H-xzc" id="aKC-Wy-MKo"/>
@@ -378,8 +372,6 @@
                                             <outlet property="seekPositionMarker" destination="ibi-rN-iTf" id="JC0-Fi-7uZ"/>
                                             <outlet property="seekSlider" destination="byN-wX-zim" id="8cV-zn-dOr"/>
                                             <outlet property="seekSliderCell" destination="tx9-Ld-QmK" id="Of0-R1-DI7"/>
-                                            <outlet property="seekSliderClone" destination="oxZ-LA-ON2" id="6rp-YS-fmc"/>
-                                            <outlet property="seekSliderCloneCell" destination="Wuq-H7-8ix" id="Ox2-nc-vcY"/>
                                         </connections>
                                     </customView>
                                 </subviews>
