@@ -39,28 +39,8 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
         
         effectsUnit = graph.timeStretchUnit
         presetsWrapper = PresetsWrapper<TimeStretchPreset, TimeStretchPresets>(timeStretchUnit.presets)
-        
-        fxUnitStateObserverRegistry.registerObserver(slider, forFXUnit: effectsUnit)
-        
-        slider.effectsUnit = timeStretchUnit
-        slider.allowedValues = 0.25...4
-        
-        slider.valueFunction = {(angle: CGFloat, arcRange: CGFloat, allowedValues: ClosedRange<Float>) in
-            
-            let minValue = allowedValues.lowerBound
-            let maxValue = allowedValues.upperBound
-            return minValue * powf(2, Float(angle) * log2f(maxValue / minValue) / Float(arcRange))
-        }
-        
-        slider.angleFunction = {(value: Float, arcRange: CGFloat, allowedValues: ClosedRange<Float>) in
-            
-            let minValue = allowedValues.lowerBound
-            let maxValue = allowedValues.upperBound
-            return CGFloat(log2f(value / minValue) * Float(arcRange) / log2f(maxValue / minValue))
-        }
-        
-        slider.setTicks(valuesAndTolerances: [(0.25, 0.01), (0.5, 0.05), (1, 0.05), (2, 0.1), (3, 0.1), (4, 0.1)])
-        
+
+        // TODO: Temporary
         timeStretchUnit.shiftPitch = true
     }
 

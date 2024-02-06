@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,9 +10,9 @@
             <connections>
                 <outlet property="btnBypass" destination="II7-fY-0FS" id="ekP-WC-hYk"/>
                 <outlet property="loadPresetsMenuItem" destination="LVL-nD-43p" id="NUh-jF-jtT"/>
-                <outlet property="presetsMenu" destination="YDW-db-oFd" id="fLG-1N-vp1"/>
-                <outlet property="presetsMenuButton" destination="rrE-w8-gig" id="ZBc-UX-iGA"/>
-                <outlet property="presetsMenuIconItem" destination="8v4-M7-RfA" id="8c9-6g-DWY"/>
+                <outlet property="presetsAndSettingsMenu" destination="YDW-db-oFd" id="fLG-1N-vp1"/>
+                <outlet property="presetsAndSettingsMenuButton" destination="rrE-w8-gig" id="ZBc-UX-iGA"/>
+                <outlet property="presetsAndSettingsMenuIconItem" destination="8v4-M7-RfA" id="8c9-6g-DWY"/>
                 <outlet property="renderQualityMenu" destination="WEb-bW-Dg2" id="p9H-bh-qAN"/>
                 <outlet property="reverbUnitView" destination="elw-qF-nCD" id="MWM-Tn-dx8"/>
                 <outlet property="view" destination="txu-mA-r9M" id="g6V-BI-hnN"/>
@@ -144,18 +144,18 @@
                         <outlet property="reverbSpaceMenu" destination="ZjF-HF-nkd" id="lqu-9F-j2p"/>
                     </connections>
                 </view>
-                <popUpButton toolTip="Presets" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rrE-w8-gig" userLabel="Presets Menu">
-                    <rect key="frame" x="15" y="115" width="15" height="13"/>
+                <popUpButton toolTip="Presets and settings" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rrE-w8-gig" userLabel="Presets Menu">
+                    <rect key="frame" x="14" y="115" width="15" height="13"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="aYW-ES-T3J">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" showsStateColumn="NO" id="osr-0j-Bhu">
                             <items>
-                                <menuItem image="Settings" hidden="YES" id="8v4-M7-RfA" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                <menuItem image="Ellipsis" hidden="YES" id="8v4-M7-RfA" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Settings"/>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Ellipsis"/>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
                                 <menuItem title="Load preset" id="LVL-nD-43p">
@@ -194,6 +194,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Settings" width="10" height="7"/>
+        <image name="Ellipsis" width="40" height="10"/>
     </resources>
 </document>

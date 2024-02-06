@@ -32,7 +32,29 @@ class TimeStretchUnitView: NSView {
     override func awakeFromNib() {
         
         super.awakeFromNib()
+        
+        timeSlider.effectsUnit = audioGraphDelegate.timeStretchUnit
+        
+        fxUnitStateObserverRegistry.registerObserver(timeSlider, forFXUnit: audioGraphDelegate.timeStretchUnit)
         fxUnitStateObserverRegistry.registerObserver(btnShiftPitch, forFXUnit: audioGraphDelegate.timeStretchUnit)
+        
+        timeSlider.allowedValues = 0.25...4
+        
+        timeSlider.valueFunction = {(angle: CGFloat, arcRange: CGFloat, allowedValues: ClosedRange<Float>) in
+            
+            let minValue = allowedValues.lowerBound
+            let maxValue = allowedValues.upperBound
+            return minValue * powf(2, Float(angle) * log2f(maxValue / minValue) / Float(arcRange))
+        }
+        
+        timeSlider.angleFunction = {(value: Float, arcRange: CGFloat, allowedValues: ClosedRange<Float>) in
+            
+            let minValue = allowedValues.lowerBound
+            let maxValue = allowedValues.upperBound
+            return CGFloat(log2f(value / minValue) * Float(arcRange) / log2f(maxValue / minValue))
+        }
+        
+        timeSlider.setTicks(valuesAndTolerances: [(0.25, 0.01), (0.5, 0.05), (1, 0.05), (2, 0.1), (3, 0.1), (4, 0.1)])
     }
     
     // ------------------------------------------------------------------------

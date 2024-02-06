@@ -97,6 +97,7 @@
 		3E39754E26892C890055887E /* ControlBarPlayerUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */; };
 		3E3ACC042B5932EC00F2F678 /* LegacyHistoryPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3ACC032B5932EC00F2F678 /* LegacyHistoryPersistentState.swift */; };
 		3E3ACC062B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3ACC052B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift */; };
+		3E3B8D342B72D95B0060C7C7 /* EffectsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B8D332B72D95B0060C7C7 /* EffectsContainerView.swift */; };
 		3E3BCFF62AF1BB0000FD893A /* UserPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3BCFF52AF1BB0000FD893A /* UserPreference.swift */; };
 		3E3BCFF92AF1DBF100FD893A /* GeneralSoundPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3BCFF82AF1DBF100FD893A /* GeneralSoundPreferences.xib */; };
 		3E3BCFFB2AF1DC0300FD893A /* GeneralSoundPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3BCFFA2AF1DC0300FD893A /* GeneralSoundPreferencesViewController.swift */; };
@@ -1154,6 +1155,7 @@
 		3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlayerUIState.swift; sourceTree = "<group>"; };
 		3E3ACC032B5932EC00F2F678 /* LegacyHistoryPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyHistoryPersistentState.swift; sourceTree = "<group>"; };
 		3E3ACC052B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyColorSchemesPersistentState.swift; sourceTree = "<group>"; };
+		3E3B8D332B72D95B0060C7C7 /* EffectsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsContainerView.swift; sourceTree = "<group>"; };
 		3E3BCFF52AF1BB0000FD893A /* UserPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreference.swift; sourceTree = "<group>"; };
 		3E3BCFF82AF1DBF100FD893A /* GeneralSoundPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralSoundPreferences.xib; sourceTree = "<group>"; };
 		3E3BCFFA2AF1DC0300FD893A /* GeneralSoundPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSoundPreferencesViewController.swift; sourceTree = "<group>"; };
@@ -4038,6 +4040,7 @@
 			isa = PBXGroup;
 			children = (
 				3ECFA87C2AE1EB01001096DC /* EffectsContainer.xib */,
+				3E3B8D332B72D95B0060C7C7 /* EffectsContainerView.swift */,
 				3ECFA87E2AE1EB29001096DC /* EffectsContainerViewController.swift */,
 			);
 			path = Container;
@@ -6127,6 +6130,7 @@
 				3EFE39DF27864897006F8B8C /* AudioUnitPersistentState.swift in Sources */,
 				3EFE0A952B4B37B400C9B121 /* GroupHistoryItem.swift in Sources */,
 				3EAD41912829D4AE00763A12 /* PlayQueueExpandedViewController.swift in Sources */,
+				3E3B8D342B72D95B0060C7C7 /* EffectsContainerView.swift in Sources */,
 				3E7181C32B6C5A350006F66B /* FontScheme+Presets.swift in Sources */,
 				3EC530E9284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift in Sources */,
 				3EFE37E727864896006F8B8C /* HistoryPreferences.swift in Sources */,

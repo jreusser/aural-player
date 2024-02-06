@@ -11,9 +11,9 @@
 import Foundation
 
 // Cell for sliders on generated AU Parameter control views.
-class AUParameterSliderCell: AuralSliderCell {
+class AUParameterSliderCell: HorizontalSliderCell {
     
-    override var barRadius: CGFloat {1.5}
+    override var knobHeightOutsideBar: CGFloat {4.5}
     
     override func progressRect(forBarRect barRect: NSRect, andKnobRect knobRect: NSRect) -> NSRect {
         

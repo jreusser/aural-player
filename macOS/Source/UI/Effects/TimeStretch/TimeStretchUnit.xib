@@ -10,9 +10,9 @@
         <customObject id="-2" userLabel="File's Owner" customClass="TimeStretchUnitViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnBypass" destination="0b3-aI-4fr" id="b9o-1J-3tO"/>
-                <outlet property="presetsMenu" destination="OBh-pH-csn" id="OZp-im-tu6"/>
-                <outlet property="presetsMenuButton" destination="SzE-Ik-872" id="ud1-pS-ufy"/>
-                <outlet property="presetsMenuIconItem" destination="HQi-sq-AI8" id="zbw-Qt-GBa"/>
+                <outlet property="presetsAndSettingsMenu" destination="OBh-pH-csn" id="OZp-im-tu6"/>
+                <outlet property="presetsAndSettingsMenuButton" destination="SzE-Ik-872" id="ud1-pS-ufy"/>
+                <outlet property="presetsAndSettingsMenuIconItem" destination="HQi-sq-AI8" id="zbw-Qt-GBa"/>
                 <outlet property="renderQualityMenu" destination="onR-yp-4uP" id="9NN-oZ-iE7"/>
                 <outlet property="slider" destination="AfR-K4-Iki" id="8Pr-2K-KjH"/>
                 <outlet property="timeStretchUnitView" destination="ux8-Uv-FBN" id="3Qh-04-Roz"/>
@@ -41,7 +41,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <box boxType="custom" borderWidth="0.0" titlePosition="noTitle" id="gaN-32-BBx" userLabel="Slider Container">
-                            <rect key="frame" x="73" y="47" width="60" height="60"/>
+                            <rect key="frame" x="53" y="47" width="60" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <view key="contentView" id="Kb8-d7-PHk">
                                 <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
@@ -73,7 +73,7 @@
                             <color key="fillColor" red="1" green="0.27058823529999998" blue="0.2274509804" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         </box>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mj8-FV-QPw" userLabel="1/4 Rate" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="36" y="44" width="35" height="24"/>
+                            <rect key="frame" x="16" y="44" width="35" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="1/4" id="Rs1-6o-0tZ">
                                 <font key="font" size="11" name="Play-Regular"/>
@@ -82,7 +82,7 @@
                             </textFieldCell>
                         </textField>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sTh-re-1EM" userLabel="4 Rate" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="135" y="44" width="25" height="24"/>
+                            <rect key="frame" x="115" y="44" width="25" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="4" id="2Bh-sl-NsX">
                                 <font key="font" size="11" name="Play-Regular"/>
@@ -91,7 +91,7 @@
                             </textFieldCell>
                         </textField>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9IV-G1-qdp" userLabel="Lbl Rate Value" customClass="TopTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="77" y="108" width="52" height="24"/>
+                            <rect key="frame" x="57" y="108" width="52" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="0" id="f86-3M-tjl">
                                 <font key="font" size="11" name="Play-Regular"/>
@@ -100,7 +100,7 @@
                             </textFieldCell>
                         </textField>
                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SUA-Sk-H5c" customClass="EffectsUnitToggle" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="235" y="34" width="24" height="24"/>
+                            <rect key="frame" x="215" y="34" width="24" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NotChecked" imagePosition="left" alignment="left" alternateImage="Checked" controlSize="small" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="RR3-i1-TI8">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -111,7 +111,7 @@
                             </connections>
                         </button>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XtF-Pu-aY0" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="266" y="34" width="104" height="24"/>
+                            <rect key="frame" x="246" y="34" width="104" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Shift Pitch" id="xlO-FY-WYE">
                                 <font key="font" size="11" name="Play-Regular"/>
@@ -120,7 +120,7 @@
                             </textFieldCell>
                         </textField>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EHy-7S-R1b" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="211" y="85" width="60" height="24"/>
+                            <rect key="frame" x="191" y="86" width="60" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="1 / 10" id="u5J-uR-qnf">
                                 <font key="font" size="11" name="Play-Regular"/>
@@ -129,7 +129,7 @@
                             </textFieldCell>
                         </textField>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ONO-YX-tOW" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="278" y="85" width="60" height="24"/>
+                            <rect key="frame" x="258" y="86" width="60" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="1 / 100" id="9fr-Nf-zXM">
                                 <font key="font" size="11" name="Play-Regular"/>
@@ -138,7 +138,7 @@
                             </textFieldCell>
                         </textField>
                         <button toolTip="Decrease rate by one tenth" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ISN-h2-7JL" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="233" y="66" width="16" height="22"/>
+                            <rect key="frame" x="213" y="66" width="16" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="ph6-A8-tae">
                                 <behavior key="behavior" lightByContents="YES"/>
@@ -150,7 +150,7 @@
                             </connections>
                         </button>
                         <button toolTip="Increase rate by one tenth" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7rk-Dt-Iib" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="233" y="109.5" width="16" height="22"/>
+                            <rect key="frame" x="213" y="109.5" width="16" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="lxr-B2-2uj">
                                 <behavior key="behavior" lightByContents="YES"/>
@@ -162,7 +162,7 @@
                             </connections>
                         </button>
                         <button toolTip="Increase rate by one hundredth" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="saL-tl-5xS" userLabel="Add" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="300" y="109.5" width="16" height="22"/>
+                            <rect key="frame" x="280" y="109.5" width="16" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="jMq-fr-asY">
                                 <behavior key="behavior" lightByContents="YES"/>
@@ -174,7 +174,7 @@
                             </connections>
                         </button>
                         <button toolTip="Decrease rate by one hundredth" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Muc-Cm-Ib7" userLabel="Remove" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="300" y="66" width="16" height="22"/>
+                            <rect key="frame" x="280" y="66" width="16" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="e3e-W2-P7S">
                                 <behavior key="behavior" lightByContents="YES"/>
@@ -192,18 +192,18 @@
                         <outlet property="timeSlider" destination="AfR-K4-Iki" id="Rcl-zR-LK6"/>
                     </connections>
                 </view>
-                <popUpButton toolTip="Presets" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SzE-Ik-872" userLabel="Presets Menu">
-                    <rect key="frame" x="15" y="115" width="15" height="13"/>
+                <popUpButton toolTip="Presets and settings" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SzE-Ik-872" userLabel="Presets Menu">
+                    <rect key="frame" x="14" y="115" width="15" height="13"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="p1L-4Q-opX">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" showsStateColumn="NO" id="k4p-yp-Gfy">
                             <items>
-                                <menuItem image="Settings" hidden="YES" id="HQi-sq-AI8" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
+                                <menuItem image="Ellipsis" hidden="YES" id="HQi-sq-AI8" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Settings"/>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="baseImage" value="Ellipsis"/>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
                                 <menuItem title="Load preset" id="Fzv-K8-hJF">
@@ -281,8 +281,8 @@
     </objects>
     <resources>
         <image name="Checked" width="200" height="200"/>
+        <image name="Ellipsis" width="40" height="10"/>
         <image name="NotChecked" width="200" height="200"/>
-        <image name="Settings" width="10" height="7"/>
         <image name="chevron.down" catalog="system" width="18" height="11"/>
         <image name="chevron.up" catalog="system" width="18" height="11"/>
     </resources>

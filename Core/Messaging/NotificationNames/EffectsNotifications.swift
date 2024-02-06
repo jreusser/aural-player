@@ -47,6 +47,10 @@ extension Notification.Name {
     // Commands the audio graph to delete the saved sound profile for the current track.
     static let effects_deleteSoundProfile = Notification.Name("effects_deleteSoundProfile")
     
+    static let effects_showPresetsAndSettingsMenu = Notification.Name("effects_showPresetsAndSettingsMenu")
+    
+    static let effects_hidePresetsAndSettingsMenu = Notification.Name("effects_hidePresetsAndSettingsMenu")
+    
     // ----------------------------------------------------------------------------------------
     
     // MARK: Master effects unit commands

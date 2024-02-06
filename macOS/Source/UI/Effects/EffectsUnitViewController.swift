@@ -18,10 +18,10 @@ class EffectsUnitViewController: NSViewController, FontSchemeObserver, ColorSche
     @IBOutlet weak var btnBypass: EffectsUnitTriStateBypassButton!
     
     // Presets controls
-    @IBOutlet weak var presetsMenuButton: NSPopUpButton!
-    @IBOutlet weak var presetsMenuIconItem: TintedIconMenuItem!
+    @IBOutlet weak var presetsAndSettingsMenuButton: NSPopUpButton!
+    @IBOutlet weak var presetsAndSettingsMenuIconItem: TintedIconMenuItem!
     @IBOutlet weak var loadPresetsMenuItem: NSMenuItem!
-    @IBOutlet weak var presetsMenu: NSMenu!
+    @IBOutlet weak var presetsAndSettingsMenu: NSMenu!
     lazy var userPresetsPopover: StringInputPopoverViewController = .create(self)
     
     @IBOutlet weak var renderQualityMenu: NSMenu!
@@ -63,12 +63,12 @@ class EffectsUnitViewController: NSViewController, FontSchemeObserver, ColorSche
         
         findThemeableComponents(under: view)
         
-        presetsMenuButton.font = .menuFont
+        presetsAndSettingsMenuButton.font = .menuFont
         
-        presetsMenu?.items.forEach {
+        presetsAndSettingsMenu?.items.forEach {
             
-            $0.action = presetsMenuButton.action
-            $0.target = presetsMenuButton.target
+            $0.action = presetsAndSettingsMenuButton.action
+            $0.target = presetsAndSettingsMenuButton.target
         }
         
         if let theRenderQualityMenu = renderQualityMenu {
@@ -121,7 +121,7 @@ class EffectsUnitViewController: NSViewController, FontSchemeObserver, ColorSche
     func initControls() {
         
         stateChanged()
-        presetsMenuButton.deselect()
+        presetsAndSettingsMenuButton.deselect()
     }
     
     // ------------------------------------------------------------------------
@@ -145,7 +145,7 @@ class EffectsUnitViewController: NSViewController, FontSchemeObserver, ColorSche
     
     // Displays a popover to allow the user to name the new custom preset
     @IBAction func savePresetAction(_ sender: AnyObject) {
-        userPresetsPopover.show(presetsMenuButton, .minY)
+        userPresetsPopover.show(presetsAndSettingsMenuButton, .minY)
     }
     
     // ------------------------------------------------------------------------
@@ -166,11 +166,16 @@ class EffectsUnitViewController: NSViewController, FontSchemeObserver, ColorSche
                                 unitType.equalsOneOf(self?.unitType, .master)
                             })
         
+        messenger.subscribe(to: .effects_showPresetsAndSettingsMenu, handler: presetsAndSettingsMenuButton.show)
+        messenger.subscribe(to: .effects_hidePresetsAndSettingsMenu, handler: presetsAndSettingsMenuButton.hide)
+        
+        presetsAndSettingsMenuButton.hide()
+        
         fontSchemesManager.registerObserver(self)
         
         colorSchemesManager.registerSchemeObserver(self)
         
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: presetsMenuIconItem)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: presetsAndSettingsMenuIconItem)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceivers: functionCaptionLabels)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, changeReceivers: functionValueLabels)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: buttons)
@@ -204,7 +209,7 @@ class EffectsUnitViewController: NSViewController, FontSchemeObserver, ColorSche
     func colorSchemeChanged() {
         
         btnBypass.contentTintColor = systemColorScheme.colorForEffectsUnitState(self.effectsUnit.state)
-        presetsMenuIconItem.colorChanged(systemColorScheme.buttonColor)
+        presetsAndSettingsMenuIconItem.colorChanged(systemColorScheme.buttonColor)
         
         functionCaptionLabels.forEach {
             $0.textColor = systemColorScheme.secondaryTextColor
@@ -298,13 +303,13 @@ extension EffectsUnitViewController: NSMenuDelegate {
         }
 
         loadPresetsMenuItem?.enable()
-        presetsMenu.recreateMenu(insertingItemsAt: 0, fromItems: presetsWrapper.userDefinedPresets,
+        presetsAndSettingsMenu.recreateMenu(insertingItemsAt: 0, fromItems: presetsWrapper.userDefinedPresets,
                                  action: #selector(presetsAction(_:)), target: self)
         
-        presetsMenu.items.forEach {$0.state = .off}
+        presetsAndSettingsMenu.items.forEach {$0.state = .off}
         
         if let currentPresetName = effectsUnit.nameOfCurrentPreset,
-           let itemForCurrentPreset = presetsMenu.item(withTitle: currentPresetName) {
+           let itemForCurrentPreset = presetsAndSettingsMenu.item(withTitle: currentPresetName) {
             
             itemForCurrentPreset.state = .on
         }

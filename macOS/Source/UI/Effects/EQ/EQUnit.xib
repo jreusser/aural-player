@@ -12,9 +12,9 @@
                 <outlet property="btnBypass" destination="lmp-7m-bHA" id="tRO-Zi-hU6"/>
                 <outlet property="eqUnitView" destination="zTt-IY-Dad" id="Tq0-ny-AWA"/>
                 <outlet property="loadPresetsMenuItem" destination="ZUZ-sN-HFg" id="m6T-KP-FyY"/>
-                <outlet property="presetsMenu" destination="ZTW-al-XWb" id="NvE-sD-sgB"/>
-                <outlet property="presetsMenuButton" destination="Q15-iZ-G8V" id="eHx-yd-zRG"/>
-                <outlet property="presetsMenuIconItem" destination="ZUZ-sN-HFg" id="j2j-i6-XU7"/>
+                <outlet property="presetsAndSettingsMenu" destination="ZTW-al-XWb" id="NvE-sD-sgB"/>
+                <outlet property="presetsAndSettingsMenuButton" destination="Q15-iZ-G8V" id="eHx-yd-zRG"/>
+                <outlet property="presetsAndSettingsMenuIconItem" destination="ZUZ-sN-HFg" id="j2j-i6-XU7"/>
                 <outlet property="renderQualityMenu" destination="SyB-yZ-xre" id="3wC-F0-fbv"/>
                 <outlet property="view" destination="zTt-IY-Dad" id="2gC-LH-eIR"/>
             </connections>
@@ -281,8 +281,8 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <popUpButton toolTip="Presets" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q15-iZ-G8V" userLabel="Presets Menu">
-                    <rect key="frame" x="15" y="115" width="15" height="13"/>
+                <popUpButton toolTip="Presets and settings" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q15-iZ-G8V" userLabel="Presets Menu">
+                    <rect key="frame" x="14" y="115" width="15" height="13"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" altersStateOfSelectedItem="NO" id="WlN-df-qI3">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -290,11 +290,11 @@
                         <menu key="menu" showsStateColumn="NO" id="VbO-RY-QUI">
                             <items>
                                 <menuItem hidden="YES" id="ZUZ-sN-HFg" customClass="TintedIconMenuItem" customModule="Aural" customModuleProvider="target">
-                                    <imageReference key="image" image="Settings" symbolScale="default"/>
+                                    <imageReference key="image" image="Ellipsis" symbolScale="default"/>
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="image" keyPath="baseImage">
-                                            <imageReference key="value" image="Settings" symbolScale="medium"/>
+                                            <imageReference key="value" image="Ellipsis" symbolScale="medium"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </menuItem>
@@ -391,6 +391,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Settings" width="10" height="7"/>
+        <image name="Ellipsis" width="40" height="10"/>
     </resources>
 </document>

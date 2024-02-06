@@ -26,6 +26,15 @@ class CircularSlider: NSControl, FXUnitStateObserver {
         allowedValues.upperBound
     }
     
+    override var integerValue: Int {
+        
+        didSet {
+            
+            setValue(Float(integerValue))
+            redraw()
+        }
+    }
+    
     var allowedValues: ClosedRange<Float> = 0...0 {
         
         didSet {
@@ -203,14 +212,17 @@ class CircularSlider: NSControl, FXUnitStateObserver {
         let angleRads = ySign > 0 ? min(atan((dy * ySign) / (dx * xSign)), 45 * CGFloat.pi / 180) : atan((dy * ySign) / (dx * xSign))
         
         let correctedAngle: CGFloat = convertAngleRadsToAngleDegrees(angleRads, xSign, ySign)
-        perimeterPoint = convertAngleDegreesToPerimeterPoint(correctedAngle)
-        
         let value = computeValue(angle: correctedAngle)
         
         if let tick = snapValueToTick(value) {
+            
             self.floatValue = tick.value
+            perimeterPoint = convertAngleDegreesToPerimeterPoint(tick.angleDegrees)
+            
         } else {
+            
             self.floatValue = value
+            perimeterPoint = convertAngleDegreesToPerimeterPoint(correctedAngle)
         }
         
         sendAction(self.action, to: self.target)
