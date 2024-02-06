@@ -230,7 +230,7 @@
                                                     <menu key="submenu" title="Theme" showsStateColumn="NO" id="Uo3-IE-YSc">
                                                         <items>
                                                             <menuItem isSeparatorItem="YES" id="end-21-kUh"/>
-                                                            <menuItem title="Poolside.fm" state="mixed" indentationLevel="1" id="7ET-rc-9Yr">
+                                                            <menuItem title="Poolside.fm" indentationLevel="1" id="7ET-rc-9Yr">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                                 <connections>
                                                                     <action selector="applyPresetAction:" target="iBX-Gc-cxj" id="YXr-eh-zuJ"/>

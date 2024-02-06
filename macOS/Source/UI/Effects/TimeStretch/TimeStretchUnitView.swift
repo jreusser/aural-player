@@ -15,7 +15,7 @@ class TimeStretchUnitView: NSView {
     
     // MARK: UI fields
     
-    @IBOutlet weak var timeSlider: LogSlider!
+    @IBOutlet weak var timeSlider: CircularSlider!
     
     @IBOutlet weak var btnShiftPitch: EffectsUnitToggle!
     

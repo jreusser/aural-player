@@ -1,5 +1,5 @@
 //
-//  TickedCircularSlider.swift
+//  DiscreteCircularSlider.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -19,14 +19,14 @@ struct CircularSliderTick {
 }
 
 @IBDesignable
-class TickedCircularSlider: NSControl {
+class DiscreteCircularSlider: NSControl {
     
-    @IBInspectable var minValue: Float = 0 {
-        didSet {allowedValues = minValue...maxValue}
+    var minValue: Float {
+        allowedValues.lowerBound
     }
     
-    @IBInspectable var maxValue: Float = 100 {
-        didSet {allowedValues = minValue...maxValue}
+    var maxValue: Float {
+        allowedValues.upperBound
     }
     
     @IBInspectable var interval: Float = 1
@@ -115,19 +115,6 @@ class TickedCircularSlider: NSControl {
         
         // Clear any previously added sublayers (otherwise, previously drawn arcs will remain)
         layer?.sublayers?.removeAll()
-        
-        let circlePath = NSBezierPath(ovalIn: dirtyRect.insetBy(dx: 0, dy: 0))
-
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = circlePath.cgPath
-
-        shapeLayer.fillColor = backgroundColor.cgColor
-        shapeLayer.strokeColor = NSColor.clear.cgColor
-
-        shapeLayer.rasterizationScale = 2.0 * NSScreen.main!.backingScaleFactor
-        shapeLayer.shouldRasterize = true
-
-        self.layer?.addSublayer(shapeLayer)
         
         // ------------------------ ARC ----------------------------
                 

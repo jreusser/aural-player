@@ -1,5 +1,5 @@
 //
-//  LogSlider.swift
+//  CircularSlider.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -7,18 +7,10 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //  
-
-//
-//  LogSlider.swift
-//  CircSlider
-//
-//  Created by Kartik Venugopal on 06.02.24.
-//
-
 import Cocoa
 
 @IBDesignable
-class LogSlider: NSControl, FXUnitStateObserver {
+class CircularSlider: NSControl, FXUnitStateObserver {
     
     var effectsUnit: EffectsUnitDelegateProtocol!
     
@@ -26,8 +18,36 @@ class LogSlider: NSControl, FXUnitStateObserver {
         didSet {redraw()}
     }
     
-    @IBInspectable var minValue: Float = 1
-    @IBInspectable var maxValue: Float = 100
+    var minValue: Float {
+        allowedValues.lowerBound
+    }
+    
+    var maxValue: Float {
+        allowedValues.upperBound
+    }
+    
+    var allowedValues: ClosedRange<Float> = 0...0 {
+        
+        didSet {
+            
+            if floatValue < allowedValues.lowerBound {
+                setValue(allowedValues.lowerBound)
+                
+            } else if floatValue > allowedValues.upperBound {
+                setValue(allowedValues.upperBound)
+            }
+            
+            redraw()
+        }
+    }
+    
+    var angleFunction: (Float, CGFloat, ClosedRange<Float>) -> CGFloat = {_, _, _ in
+        0
+    }
+    
+    var valueFunction: (CGFloat, CGFloat, ClosedRange<Float>) -> Float = {_, _, _ in
+        0
+    }
     
     @IBInspectable var arcWidth: CGFloat = 2 {
         didSet {redraw()}
@@ -49,7 +69,7 @@ class LogSlider: NSControl, FXUnitStateObserver {
     
     var ticks: [CircularSliderTick] = []
     
-    func computeTicks(valuesAndTolerances: [(value: Float, tolerance: Float)]) {
+    func setTicks(valuesAndTolerances: [(value: Float, tolerance: Float)]) {
         
         ticks.removeAll()
         
@@ -111,14 +131,17 @@ class LogSlider: NSControl, FXUnitStateObserver {
     }
    
     func computeAngle(value: Float) -> CGFloat {
-        CGFloat(log2f(value / minValue) * 270 / log2f(maxValue / minValue))
+        angleFunction(value, arcRange, allowedValues)
     }
 
     func computeValue(angle: CGFloat) -> Float {
-        minValue * powf(2, Float(angle) * log2f(maxValue / minValue) / 270.0)
+        valueFunction(angle, arcRange, allowedValues)
     }
     
+    var arcStartAngle: CGFloat = 225
     var arcEndAngle: CGFloat = -45
+    
+    lazy var arcRange: CGFloat = arcStartAngle - arcEndAngle
     
     override func draw(_ dirtyRect: NSRect) {
         
@@ -128,7 +151,7 @@ class LogSlider: NSControl, FXUnitStateObserver {
         // ------------------------ ARC ----------------------------
         
         let arcPath = NSBezierPath()
-        arcPath.appendArc(withCenter: center, radius: radius - 2, startAngle: 225, endAngle: arcEndAngle, clockwise: true)
+        arcPath.appendArc(withCenter: center, radius: radius - arcWidth, startAngle: arcStartAngle, endAngle: arcEndAngle, clockwise: true)
 
         let arcLayer = CAShapeLayer()
         arcLayer.path = arcPath.cgPath

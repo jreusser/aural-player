@@ -1,5 +1,5 @@
 //
-//  TickedCircularSlider+Support.swift
+//  DiscreteCircularSlider+Support.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -9,7 +9,7 @@
 //  
 import AppKit
 
-extension TickedCircularSlider {
+extension DiscreteCircularSlider {
     
     override func mouseDown(with event: NSEvent) {
         
@@ -81,9 +81,6 @@ extension TickedCircularSlider {
      
         let dx = center.x - loc.x
         let dy = center.y - loc.y
-        
-        print("center: \(center), loc: \(loc)")
-        print("dx: \(dx), dy: \(dy)")
         
         let xSign: CGFloat = dx == 0 ? 1 : dx / abs(dx)
         let ySign: CGFloat = dy == 0 ? 1 : dy / abs(dy)
