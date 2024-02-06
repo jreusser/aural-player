@@ -21,8 +21,7 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
     // MARK: UI fields
     
     @IBOutlet weak var timeStretchUnitView: TimeStretchUnitView!
-    @IBOutlet weak var slider: TickedCircularSlider!
-    @IBOutlet weak var lblRate: CenterTextFunctionValueLabel!
+    @IBOutlet weak var slider: LogSlider!
     
     // ------------------------------------------------------------------------
     
@@ -40,6 +39,12 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
         
         effectsUnit = graph.timeStretchUnit
         presetsWrapper = PresetsWrapper<TimeStretchPreset, TimeStretchPresets>(timeStretchUnit.presets)
+        
+        slider.minValue = 0.25
+        slider.maxValue = 4
+        slider.setValue(1)
+        
+        timeStretchUnit.shiftPitch = true
     }
 
     override func initControls() {
@@ -66,13 +71,9 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
     // Updates the playback rate value
     @IBAction func timeStretchAction(_ sender: AnyObject) {
         
-        timeStretchUnit.rate = 0.25 + (slider.floatValue * 0.05)
-        lblRate.stringValue = "\(ValueFormatter.formatTimeStretchRate(timeStretchUnit.rate))"
-        print("Changed Rate: \(timeStretchUnit.rate)")
-
-//        timeStretchUnit.rate = timeStretchUnitView.rate
-//        timeStretchUnitView.setRate(timeStretchUnit.rate, rateString: timeStretchUnit.formattedRate,
-//                                shiftPitchString: timeStretchUnit.formattedPitch)
+        timeStretchUnit.rate = timeStretchUnitView.rate
+        timeStretchUnitView.setRate(timeStretchUnit.rate, rateString: timeStretchUnit.formattedRate,
+                                shiftPitchString: timeStretchUnit.formattedPitch)
 
         // If the unit is active, publish a notification that the playback rate has changed. Other UI elements may need to be updated as a result.
         if timeStretchUnit.isActive {

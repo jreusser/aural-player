@@ -15,7 +15,7 @@ class TimeStretchUnitView: NSView {
     
     // MARK: UI fields
     
-    @IBOutlet weak var timeSlider: TimeStretchSlider!
+    @IBOutlet weak var timeSlider: LogSlider!
     
     @IBOutlet weak var btnShiftPitch: EffectsUnitToggle!
     
@@ -26,7 +26,7 @@ class TimeStretchUnitView: NSView {
     // MARK: Properties
     
     var rate: Float {
-        timeSlider.rate
+        timeSlider.floatValue
     }
     
     override func awakeFromNib() {
@@ -44,7 +44,7 @@ class TimeStretchUnitView: NSView {
         
         btnShiftPitch.onIf(shiftPitch)
         
-        timeSlider.rate = rate
+        timeSlider.setValue(rate)
         lblTimeStretchRateValue.stringValue = rateString
     }
     
@@ -52,14 +52,14 @@ class TimeStretchUnitView: NSView {
     func setRate(_ rate: Float, rateString: String, shiftPitchString: String) {
         
         lblTimeStretchRateValue.stringValue = rateString
-        timeSlider.rate = rate
+        timeSlider.setValue(rate)
     }
     
     func applyPreset(_ preset: TimeStretchPreset) {
         
         btnShiftPitch.onIf(preset.shiftPitch)
         
-        timeSlider.rate = preset.rate
+        timeSlider.setValue(preset.rate)
         lblTimeStretchRateValue.stringValue = ValueFormatter.formatTimeStretchRate(preset.rate)
     }
     

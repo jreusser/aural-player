@@ -126,9 +126,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.messenger.publish(.application_launched, payload: self.filesToOpen)
         
         // TODO: Temporary Autoplay hack !!!
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-            playbackDelegate.togglePlayPause()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+//            playbackDelegate.togglePlayPause()
+//        }
         
         //                self.beginPeriodicPersistence()
     }
