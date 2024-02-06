@@ -64,6 +64,8 @@ class TimeStretchUnitView: NSView {
     }
     
     func colorChanged(forUnitState unitState: EffectsUnitState) {
+        
+        timeSlider.redraw()
         btnShiftPitch.redraw(forState: unitState)
     }
 }

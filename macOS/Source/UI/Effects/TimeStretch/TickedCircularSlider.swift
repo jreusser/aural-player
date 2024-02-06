@@ -15,6 +15,7 @@ struct CircularSliderTick {
     let value: Float
     let angleDegrees: CGFloat
     let perimeterPoint: NSPoint
+    let tolerance: Float?
 }
 
 @IBDesignable
@@ -107,7 +108,7 @@ class TickedCircularSlider: NSControl {
         let angle = CGFloat(computeAngle(value: value))
         let perimeterPoint = convertAngleDegreesToPerimeterPoint(angle)
         
-        return CircularSliderTick(value: value, angleDegrees: angle, perimeterPoint: perimeterPoint)
+        return CircularSliderTick(value: value, angleDegrees: angle, perimeterPoint: perimeterPoint, tolerance: nil)
     }
     
     override func draw(_ dirtyRect: NSRect) {

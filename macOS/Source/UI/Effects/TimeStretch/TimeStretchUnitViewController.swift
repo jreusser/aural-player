@@ -40,9 +40,12 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
         effectsUnit = graph.timeStretchUnit
         presetsWrapper = PresetsWrapper<TimeStretchPreset, TimeStretchPresets>(timeStretchUnit.presets)
         
+        fxUnitStateObserverRegistry.registerObserver(slider, forFXUnit: effectsUnit)
+        
+        slider.effectsUnit = timeStretchUnit
         slider.minValue = 0.25
         slider.maxValue = 4
-        slider.setValue(1)
+        slider.computeTicks(valuesAndTolerances: [(0.25, 0.01), (0.5, 0.05), (1, 0.05), (2, 0.1), (3, 0.1), (4, 0.1)])
         
         timeStretchUnit.shiftPitch = true
     }

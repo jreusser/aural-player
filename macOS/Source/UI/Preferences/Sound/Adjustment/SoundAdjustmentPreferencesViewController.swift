@@ -91,6 +91,6 @@ class SoundAdjustmentPreferencesViewController: NSViewController, PreferencesVie
 //
 //        soundPrefs.eqDelta = eqDeltaStepper.floatValue
 //        soundPrefs.pitchDelta = pitchDeltaStepper.integerValue
-//        soundPrefs.timeDelta = timeDeltaStepper.floatValue
+        soundPrefs.timeDelta = timeDeltaStepper.floatValue
     }
 }

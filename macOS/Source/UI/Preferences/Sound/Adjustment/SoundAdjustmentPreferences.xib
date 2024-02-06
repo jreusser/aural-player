@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SoundAdjustmentPreferencesViewController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="lblTimeDelta" destination="4kH-AF-Bh3" id="iOK-fh-cYY"/>
+                <outlet property="timeDeltaStepper" destination="yfZ-Jd-fVD" id="ffV-FZ-eow"/>
                 <outlet property="view" destination="Smj-Tr-0h3" id="ZZh-L4-BkA"/>
                 <outlet property="volumeDeltaField" destination="3CD-hy-7wN" id="zEv-nx-v0J"/>
                 <outlet property="volumeDeltaStepper" destination="aNR-Uh-ehd" id="US2-XH-anx"/>
@@ -112,7 +114,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4kH-AF-Bh3" userLabel="Pan Delta Field">
+                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4kH-AF-Bh3" userLabel="Rate Delta Field">
                     <rect key="frame" x="196" y="198" width="47" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" state="on" focusRingType="none" alignment="right" title="0.05x" id="1gt-lJ-pfs">
@@ -125,10 +127,13 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <stepper focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yfZ-Jd-fVD" userLabel="Pan Delta Stepper">
+                <stepper focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yfZ-Jd-fVD" userLabel="Rate Delta Stepper">
                     <rect key="frame" x="243" y="196" width="15" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <stepperCell key="cell" controlSize="small" continuous="YES" focusRingType="none" alignment="left" increment="0.01" minValue="0.01" maxValue="1" doubleValue="0.050000000000000003" id="Wos-eB-dC6"/>
+                    <connections>
+                        <action selector="timeDeltaAction:" target="-2" id="tl6-0f-JqO"/>
+                    </connections>
                 </stepper>
                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aPz-wS-pIj" userLabel="Volume Increment Label">
                     <rect key="frame" x="30" y="262" width="106" height="20"/>

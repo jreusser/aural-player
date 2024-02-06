@@ -18,7 +18,9 @@
 import Cocoa
 
 @IBDesignable
-class LogSlider: NSControl {
+class LogSlider: NSControl, FXUnitStateObserver {
+    
+    var effectsUnit: EffectsUnitDelegateProtocol!
     
     override var floatValue: Float {
         didSet {redraw()}
@@ -42,7 +44,51 @@ class LogSlider: NSControl {
     var backgroundColor: NSColor {.black}
 
     var foregroundColor: NSColor {
-        systemColorScheme.activeControlColor
+        systemColorScheme.colorForEffectsUnitState(effectsUnit.state)
+    }
+    
+    var ticks: [CircularSliderTick] = []
+    
+    func computeTicks(valuesAndTolerances: [(value: Float, tolerance: Float)]) {
+        
+        ticks.removeAll()
+        
+        for valueAndTolerance in valuesAndTolerances {
+            ticks.append(computeTick(valueAndTolerance: valueAndTolerance))
+        }
+    }
+    
+    private func computeTick(valueAndTolerance: (value: Float, tolerance: Float)) -> CircularSliderTick {
+
+        let angle = CGFloat(computeAngle(value: valueAndTolerance.value))
+        let perimeterPoint = convertAngleDegreesToPerimeterPoint(angle)
+        
+        return CircularSliderTick(value: valueAndTolerance.value, angleDegrees: angle, perimeterPoint: perimeterPoint, tolerance: valueAndTolerance.tolerance)
+    }
+    
+    func snapValueToTick(_ value: Float) -> CircularSliderTick? {
+        
+        var minDistance: Float = 10000
+        var snapTick: CircularSliderTick?
+        
+        for tick in ticks {
+            
+            guard let tolerance = tick.tolerance else {continue}
+            
+            let distance = abs(value - tick.value)
+            if distance < minDistance {
+                
+                minDistance = distance
+                if distance <= tolerance {
+                    snapTick = tick
+                }
+                
+            } else if distance > minDistance {
+                break
+            }
+        }
+        
+        return snapTick
     }
     
     func setValue(_ value: Float) {
@@ -78,19 +124,6 @@ class LogSlider: NSControl {
         
         // Clear any previously added sublayers (otherwise, previously drawn arcs will remain)
         layer?.sublayers?.removeAll()
-        
-//        let circlePath = NSBezierPath(ovalIn: dirtyRect.insetBy(dx: 0, dy: 0))
-//        
-//        let shapeLayer = CAShapeLayer()
-//        shapeLayer.path = circlePath.cgPath
-//
-//        shapeLayer.fillColor = backgroundColor.cgColor
-//        shapeLayer.strokeColor = NSColor.clear.cgColor
-//
-//        shapeLayer.rasterizationScale = 2.0 * NSScreen.main!.backingScaleFactor
-//        shapeLayer.shouldRasterize = true
-//
-//        self.layer?.addSublayer(shapeLayer)
         
         // ------------------------ ARC ----------------------------
         
@@ -147,13 +180,15 @@ class LogSlider: NSControl {
         let angleRads = ySign > 0 ? min(atan((dy * ySign) / (dx * xSign)), 45 * CGFloat.pi / 180) : atan((dy * ySign) / (dx * xSign))
         
         let correctedAngle: CGFloat = convertAngleRadsToAngleDegrees(angleRads, xSign, ySign)
-        
-//        if maxedOut && (correctedAngle.isEqual(to: 0) || correctedAngle.isEqual(to: 270)) {
-//            return
-//        }
-        
         perimeterPoint = convertAngleDegreesToPerimeterPoint(correctedAngle)
-        self.floatValue = computeValue(angle: correctedAngle)
+        
+        let value = computeValue(angle: correctedAngle)
+        
+        if let tick = snapValueToTick(value) {
+            self.floatValue = tick.value
+        } else {
+            self.floatValue = value
+        }
         
         sendAction(self.action, to: self.target)
     }
@@ -226,4 +261,3 @@ class LogSlider: NSControl {
         }
     }
 }
-

@@ -3356,8 +3356,8 @@
 				3E6C100325CEB98600BF0D07 /* TimeStretchUnitView.swift */,
 				3EFB64922772361D00D47A6B /* TimeStretchSliderCell.swift */,
 				3EF72D6B2B71AAF5005166BF /* TickedCircularSlider.swift */,
-				3E2FA5EC2B72260200DD6A20 /* LogSlider.swift */,
 				3EF72D6D2B71AB2B005166BF /* TickedCircularSlider+Support.swift */,
+				3E2FA5EC2B72260200DD6A20 /* LogSlider.swift */,
 			);
 			path = TimeStretch;
 			sourceTree = "<group>";
