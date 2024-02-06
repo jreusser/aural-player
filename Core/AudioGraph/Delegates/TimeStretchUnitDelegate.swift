@@ -68,15 +68,13 @@ class TimeStretchUnitDelegate: EffectsUnitDelegate<TimeStretchUnit>, TimeStretch
         
         // Rate is increased by an amount set in the user preferences
         rate = (rate + preferences.timeDelta).clamped(to: rateRange)
-        
         return (rate, formattedRate)
     }
     
     func increaseRate(by increment: Float) -> (rate: Float, rateString: String) {
-
+        
         // Rate is increased by an amount set in the user preferences
         rate = (rate + increment).clamped(to: rateRange)
-        
         return (rate, formattedRate)
     }
     

@@ -681,6 +681,8 @@
 		3EF30D0D28DC6FE900CB09EA /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 3EF30D0C28DC6FE900CB09EA /* DequeModule */; };
 		3EF30D0F28DC6FE900CB09EA /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 3EF30D0E28DC6FE900CB09EA /* OrderedCollections */; };
 		3EF30D3E28DC735200CB09EA /* ffmpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = 3EF30D3D28DC735100CB09EA /* ffmpeg.c */; };
+		3EF72D6C2B71AAF5005166BF /* TickedCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF72D6B2B71AAF5005166BF /* TickedCircularSlider.swift */; };
+		3EF72D6E2B71AB2B005166BF /* TickedCircularSlider+Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF72D6D2B71AB2B005166BF /* TickedCircularSlider+Support.swift */; };
 		3EF84D872835D7D9004EF57B /* GroupedSortedTrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84D862835D7D9004EF57B /* GroupedSortedTrackList.swift */; };
 		3EF84D8A2835E6FE004EF57B /* FolderMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF84D892835E6FE004EF57B /* FolderMonitor.swift */; };
 		3EF84DA128362753004EF57B /* LibraryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EF84DA028362753004EF57B /* LibraryWindow.xib */; };
@@ -1742,6 +1744,8 @@
 		3EF30D3C28DC735100CB09EA /* ffmpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffmpeg.h; sourceTree = "<group>"; };
 		3EF30D3D28DC735100CB09EA /* ffmpeg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffmpeg.c; sourceTree = "<group>"; };
 		3EF30D3F28DC796400CB09EA /* common.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = common.sh; sourceTree = "<group>"; };
+		3EF72D6B2B71AAF5005166BF /* TickedCircularSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickedCircularSlider.swift; sourceTree = "<group>"; };
+		3EF72D6D2B71AB2B005166BF /* TickedCircularSlider+Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TickedCircularSlider+Support.swift"; sourceTree = "<group>"; };
 		3EF84D862835D7D9004EF57B /* GroupedSortedTrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedSortedTrackList.swift; sourceTree = "<group>"; };
 		3EF84D892835E6FE004EF57B /* FolderMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderMonitor.swift; sourceTree = "<group>"; };
 		3EF84DA028362753004EF57B /* LibraryWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryWindow.xib; sourceTree = "<group>"; };
@@ -3349,6 +3353,8 @@
 				3E6C100425CEB98600BF0D07 /* TimeStretchUnitViewController.swift */,
 				3E6C100325CEB98600BF0D07 /* TimeStretchUnitView.swift */,
 				3EFB64922772361D00D47A6B /* TimeStretchSliderCell.swift */,
+				3EF72D6B2B71AAF5005166BF /* TickedCircularSlider.swift */,
+				3EF72D6D2B71AB2B005166BF /* TickedCircularSlider+Support.swift */,
 			);
 			path = TimeStretch;
 			sourceTree = "<group>";
@@ -5561,6 +5567,7 @@
 				3EFE395F27864897006F8B8C /* AuralPlayerNode.swift in Sources */,
 				3EFE386B27864896006F8B8C /* EffectsUnit.swift in Sources */,
 				3EBF292D2686961300D87021 /* EffectsUnitTabButton.swift in Sources */,
+				3EF72D6C2B71AAF5005166BF /* TickedCircularSlider.swift in Sources */,
 				3EFE381527864896006F8B8C /* CueSheetIO.swift in Sources */,
 				3E6C127425CEBE1800BF0D07 /* EffectsUnitTabButtonCell.swift in Sources */,
 				3EBF292B268695B700D87021 /* EffectsUnitTriStateBypassButton.swift in Sources */,
@@ -6164,6 +6171,7 @@
 				3EFE385327864896006F8B8C /* SoundConstants.swift in Sources */,
 				3EEC04192687A9E9004478CE /* WindowedModePlayerSequencingViewController.swift in Sources */,
 				3EB462D52847FEC6000E3F85 /* TuneBrowserUIState.swift in Sources */,
+				3EF72D6E2B71AB2B005166BF /* TickedCircularSlider+Support.swift in Sources */,
 				3EEC04252687ABB5004478CE /* WindowedModeSeekSliderView.swift in Sources */,
 				3E6C131325CEBE8F00BF0D07 /* WindowLayout.swift in Sources */,
 				3E6C122B25CEBDE600BF0D07 /* WindowLayoutPopupMenuController.swift in Sources */,

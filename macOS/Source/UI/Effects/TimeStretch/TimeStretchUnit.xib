@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,10 +10,12 @@
         <customObject id="-2" userLabel="File's Owner" customClass="TimeStretchUnitViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnBypass" destination="0b3-aI-4fr" id="b9o-1J-3tO"/>
+                <outlet property="lblRate" destination="wOn-5R-Kii" id="PqS-Ms-LEO"/>
                 <outlet property="presetsMenu" destination="OBh-pH-csn" id="OZp-im-tu6"/>
                 <outlet property="presetsMenuButton" destination="SzE-Ik-872" id="ud1-pS-ufy"/>
                 <outlet property="presetsMenuIconItem" destination="HQi-sq-AI8" id="zbw-Qt-GBa"/>
                 <outlet property="renderQualityMenu" destination="onR-yp-4uP" id="9NN-oZ-iE7"/>
+                <outlet property="slider" destination="fcb-dO-hE6" id="sIh-On-xSd"/>
                 <outlet property="timeStretchUnitView" destination="ux8-Uv-FBN" id="3Qh-04-Roz"/>
                 <outlet property="view" destination="cWd-Fu-GJN" id="02m-Ap-0Qq"/>
             </connections>
@@ -36,7 +38,7 @@
                     </connections>
                 </button>
                 <view id="ux8-Uv-FBN" customClass="TimeStretchUnitView" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="53" y="8" width="400" height="149"/>
+                    <rect key="frame" x="588" y="8" width="400" height="149"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mj8-FV-QPw" userLabel="1/4 Rate" customClass="CenterTextFunctionCaptionLabel" customModule="Aural" customModuleProvider="target">
@@ -61,9 +63,6 @@
                             <rect key="frame" x="44" y="119" width="254" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="4" doubleValue="2" tickMarkPosition="below" numberOfTickMarks="5" sliderType="linear" id="dwC-c1-k4c" customClass="SymmetricEffectsUnitSliderCell" customModule="Aural" customModuleProvider="target"/>
-                            <connections>
-                                <action selector="timeStretchAction:" target="-2" id="xku-3l-Ve0"/>
-                            </connections>
                         </slider>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9IV-G1-qdp" userLabel="Lbl Rate Value" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="322" y="117" width="52" height="24"/>
@@ -169,6 +168,11 @@
                                 <action selector="shiftPitchAction:" target="-2" id="GUP-j9-Wop"/>
                             </connections>
                         </button>
+                        <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U4x-ee-Bfq">
+                            <rect key="frame" x="259" y="37" width="28" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <sliderCell key="cell" controlSize="large" alignment="left" maxValue="100" doubleValue="50" sliderType="circular" id="FQH-DJ-fLk"/>
+                        </slider>
                     </subviews>
                     <connections>
                         <outlet property="btnShiftPitch" destination="SUA-Sk-H5c" id="mrz-BQ-cdW"/>
@@ -259,6 +263,50 @@
                         <action selector="presetsAction:" target="-2" id="Nha-8u-mPe"/>
                     </connections>
                 </popUpButton>
+                <box fixedFrame="YES" boxType="custom" borderWidth="0.0" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="jhk-hg-SWk">
+                    <rect key="frame" x="210" y="54" width="60" height="60"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" id="fVR-CM-s2W">
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fcb-dO-hE6" customClass="TickedCircularSlider" customModule="Aural" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                        <real key="value" value="75"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="interval">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="arcWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="timeStretchAction:" target="-2" id="ubW-nO-Gh4"/>
+                                </connections>
+                            </customView>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wOn-5R-Kii" userLabel="Lbl Rate Value" customClass="CenterTextFunctionValueLabel" customModule="Aural" customModuleProvider="target">
+                                <rect key="frame" x="114" y="-8" width="52" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="0" id="ds6-Jx-PeU">
+                                    <font key="font" size="11" name="Play-Regular"/>
+                                    <color key="textColor" white="0.40263488479999998" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <color key="fillColor" red="1" green="0.27058823529411763" blue="0.22745098039215686" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                </box>
             </subviews>
             <point key="canvasLocation" x="141" y="153"/>
         </view>

@@ -74,8 +74,11 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
         let isPlayingOrPaused = playbackState.isPlayingOrPaused
         let noTrack = playbackState == .stopped
         
+        let isShowingSearchDialog = NSApp.windows.first(where: {$0.identifier?.rawValue == "search"})?.isVisible ?? false
+        
         // Play/pause enabled if at least one track available
-        playOrPauseMenuItem.enableIf(playQueue.size > 0)
+        // TODO: Disable if search dialog is shown
+        playOrPauseMenuItem.enableIf(playQueue.size > 0 && !isShowingSearchDialog)
         
         stopMenuItem.enableIf(!noTrack)
         jumpToTimeMenuItem.enableIf(isPlayingOrPaused)

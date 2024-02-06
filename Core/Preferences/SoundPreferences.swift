@@ -29,9 +29,9 @@ class SoundPreferences {
     
     var panDelta: Float = 10
     
-    var eqDelta: Float = 10
+    var eqDelta: Float = 1
     var pitchDelta: Int = 10
-    var timeDelta: Float = 10
+    var timeDelta: Float = 0.05
     
     var effectsSettingsOnStartupOption: EffectsSettingsStartupOptions = .applyMasterPreset
     var masterPresetOnStartup_name: String?

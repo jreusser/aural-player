@@ -52,7 +52,12 @@ class PlayQueueMenuController: NSObject, NSMenuDelegate {
         let pqHasTracks = pqSize > 0
         let moreThanOneTrack = pqSize > 1
         
-        playSelectedTrackItem.enableIf(selRows.count == 1)
+        var playingTrackSelected = false
+        if let currentTrackIndex = playQueue.currentTrackIndex, selRows.contains(currentTrackIndex) {
+            playingTrackSelected = true
+        }
+        
+        playSelectedTrackItem.enableIf(selRows.count == 1 && (!playingTrackSelected))
         
         [exportToPlaylistItem, removeAllTracksItem, searchItem, 
          pageUpItem, pageDownItem, scrollToTopItem, scrollToBottomItem].forEach {
