@@ -142,7 +142,6 @@
 		3E4C763B2AD7713400DDED45 /* AppSetupWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E4C763A2AD7713400DDED45 /* AppSetupWindow.xib */; };
 		3E4C763D2AD774DA00DDED45 /* AppSetupWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4C763C2AD774DA00DDED45 /* AppSetupWindowController.swift */; };
 		3E4C763F2AD7797600DDED45 /* AppSetupNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4C763E2AD7797600DDED45 /* AppSetupNotifications.swift */; };
-		3E4CC362261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */; };
 		3E51CCF0285E8986002CBEF2 /* UnifiedPlayerSidebar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E51CCEF285E8986002CBEF2 /* UnifiedPlayerSidebar.xib */; };
 		3E51CCF2285E899E002CBEF2 /* UnifiedPlayerSidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51CCF1285E899E002CBEF2 /* UnifiedPlayerSidebarViewController.swift */; };
 		3E51CCF4285E8A45002CBEF2 /* UnifiedPlayerSidebarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E51CCF3285E8A45002CBEF2 /* UnifiedPlayerSidebarItems.swift */; };
@@ -1203,7 +1202,6 @@
 		3E4C763A2AD7713400DDED45 /* AppSetupWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSetupWindow.xib; sourceTree = "<group>"; };
 		3E4C763C2AD774DA00DDED45 /* AppSetupWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetupWindowController.swift; sourceTree = "<group>"; };
 		3E4C763E2AD7797600DDED45 /* AppSetupNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetupNotifications.swift; sourceTree = "<group>"; };
-		3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterUnitViewController+AUTableViewDelegate.swift"; sourceTree = "<group>"; };
 		3E51CCEF285E8986002CBEF2 /* UnifiedPlayerSidebar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnifiedPlayerSidebar.xib; sourceTree = "<group>"; };
 		3E51CCF1285E899E002CBEF2 /* UnifiedPlayerSidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayerSidebarViewController.swift; sourceTree = "<group>"; };
 		3E51CCF3285E8A45002CBEF2 /* UnifiedPlayerSidebarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayerSidebarItems.swift; sourceTree = "<group>"; };
@@ -3375,7 +3373,6 @@
 			children = (
 				3E6C100625CEB98600BF0D07 /* MasterUnit.xib */,
 				3E6C100825CEB98600BF0D07 /* MasterUnitViewController.swift */,
-				3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */,
 				3E6C100725CEB98600BF0D07 /* MasterUnitView.swift */,
 				3E3B8D352B72E2700060C7C7 /* FuseBoxPopupMenuCell.swift */,
 				3E3B8D372B72E5580060C7C7 /* Fuse.xib */,
@@ -5741,7 +5738,6 @@
 				3EFA0AD1262ABBA40023143E /* MasterPresetView.swift in Sources */,
 				3EAE9CC02836B139004499FE /* Library.swift in Sources */,
 				3EFE38B727864896006F8B8C /* AudioGraphDefaults.swift in Sources */,
-				3E4CC362261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift in Sources */,
 				3EFE39C527864897006F8B8C /* ModularPlayerUIPersistentState.swift in Sources */,
 				3E7BDD762823118D00EC5BC6 /* NSAlert+Extensions.swift in Sources */,
 				3EFE37F127864896006F8B8C /* PlayQueuePreferences.swift in Sources */,

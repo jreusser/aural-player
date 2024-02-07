@@ -13,8 +13,8 @@ class MasterPresetView: MasterUnitView {
     
     override func awakeFromNib() {
         
-        buttons = [btnEQBypass, btnPitchBypass, btnTimeBypass, btnReverbBypass, btnDelayBypass, btnFilterBypass]
-        images = [imgEQBypass, imgPitchBypass, imgTimeBypass, imgReverbBypass, imgDelayBypass, imgFilterBypass]
+//        buttons = [btnEQBypass, btnPitchBypass, btnTimeBypass, btnReverbBypass, btnDelayBypass, btnFilterBypass]
+//        images = [imgEQBypass, imgPitchBypass, imgTimeBypass, imgReverbBypass, imgDelayBypass, imgFilterBypass]
 //        labels = [lblEQ, lblPitch, lblTime, lblReverb, lblDelay, lblFilter]
     }
 }

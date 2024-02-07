@@ -9,7 +9,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MasterUnitViewController" customModule="Aural" customModuleProvider="target">
             <connections>
-                <outlet property="audioUnitsTable" destination="eil-eP-SY2" id="Rgo-Gw-4YX"/>
                 <outlet property="btnBypass" destination="moJ-jS-aMf" id="1c7-3L-xKO"/>
                 <outlet property="btnRememberSettings" destination="zQa-Sk-jsP" id="c8I-h1-6Po"/>
                 <outlet property="loadPresetsMenuItem" destination="3Rk-uS-j0Z" id="qir-Si-lpG"/>
@@ -87,271 +86,6 @@
                         <action selector="rememberSettingsAction:" target="-2" id="psj-cQ-h5y"/>
                     </connections>
                 </button>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fzh-MR-f13" userLabel="EQ img" customClass="EffectsUnitTriStateBypassImage" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="91" y="-98.5" width="12" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="slider.vertical.3" catalog="system" id="9qn-7n-8az"/>
-                </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nVs-WL-LP9" userLabel="Pitch img" customClass="EffectsUnitTriStateBypassImage" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="90" y="-122" width="14" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="PitchTab" id="SYF-U4-x7B"/>
-                </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e41-Za-bAz" userLabel="Time img" customClass="EffectsUnitTriStateBypassImage" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="91" y="-143" width="12" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="TimeTab" id="cJJ-gg-lUy"/>
-                </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Zl-Xy-dIF" userLabel="Reverb img" customClass="EffectsUnitTriStateBypassImage" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="92" y="-165" width="12" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="ReverbTab" id="Q4M-JT-nLT"/>
-                </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8WO-RO-zo9" userLabel="Delay img" customClass="EffectsUnitTriStateBypassImage" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="92" y="-187" width="12" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DelayTab" id="OKu-xs-tpa"/>
-                </imageView>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TEA-7G-z9j" userLabel="Filter Img" customClass="EffectsUnitTriStateBypassImage" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="92" y="-209" width="12" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="FilterTab" id="8gZ-7i-5pd"/>
-                </imageView>
-                <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gkV-hj-Ass" userLabel="EQ bypass" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="66" y="-97" width="12" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="f3w-yl-bNa">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="eqBypassAction:" target="-2" id="2K8-Dx-HzO"/>
-                    </connections>
-                </button>
-                <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x3R-kg-7Oc" userLabel="Pitch bypass" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="66" y="-121" width="12" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="PG9-jn-qNt">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="pitchBypassAction:" target="-2" id="7IZ-AP-rUe"/>
-                    </connections>
-                </button>
-                <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WYt-4P-GnF" userLabel="Time bypass" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="66" y="-143" width="12" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="DzH-VJ-6kx">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="timeBypassAction:" target="-2" id="Niz-Ud-2Vh"/>
-                    </connections>
-                </button>
-                <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FvF-Bn-65K" userLabel="Reverb bypass" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="67" y="-165" width="12" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="9Yj-Fx-YTT">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="reverbBypassAction:" target="-2" id="GMQ-ax-seT"/>
-                    </connections>
-                </button>
-                <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t99-9E-imb" userLabel="Delay bypass" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="67" y="-187" width="12" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="BpI-fD-3Bv">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="delayBypassAction:" target="-2" id="uOf-cn-LGC"/>
-                    </connections>
-                </button>
-                <button wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hag-cU-yjr" userLabel="Filter bypass" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="67" y="-209" width="12" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="SIO-P3-66A">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="filterBypassAction:" target="-2" id="5pw-Yc-Kwv"/>
-                    </connections>
-                </button>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xbi-ik-mnL" customClass="EffectsUnitTriStateLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="107" y="-102" width="114" height="22"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Equalizer" id="NSP-Dl-dEp" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
-                        <font key="font" metaFont="cellTitle"/>
-                        <color key="textColor" white="0.70435334849999998" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ezl-gn-Yog" customClass="EffectsUnitTriStateLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="107" y="-126" width="114" height="22"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Pitch  Shift" id="tgx-CH-rGH" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
-                        <font key="font" metaFont="cellTitle"/>
-                        <color key="textColor" white="0.69909178709999997" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X9R-3W-ttJ" customClass="EffectsUnitTriStateLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="107" y="-148" width="114" height="22"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Time  Stretch" id="TAM-yS-wVq" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
-                        <font key="font" metaFont="cellTitle"/>
-                        <color key="textColor" white="0.69909178709999997" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rS8-ot-eiS" customClass="EffectsUnitTriStateLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="107" y="-170" width="114" height="22"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Reverb" id="4mz-Tv-0tR" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
-                        <font key="font" metaFont="cellTitle"/>
-                        <color key="textColor" white="0.69909178709999997" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avF-ri-vcW" customClass="EffectsUnitTriStateLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="107" y="-192" width="114" height="22"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Delay" id="lGs-3h-aym" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
-                        <font key="font" metaFont="cellTitle"/>
-                        <color key="textColor" white="0.69909178709999997" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iMc-8N-B7s" customClass="EffectsUnitTriStateLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="107" y="-214" width="114" height="22"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Filter" id="Py8-mY-1DG" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
-                        <font key="font" metaFont="cellTitle"/>
-                        <color key="textColor" white="0.69909178709999997" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CDb-nZ-S4q" customClass="EffectsUnitTriStateLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="265" y="-101" width="110" height="25"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Audio  Units" id="kM8-pR-upS" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
-                        <font key="font" metaFont="cellTitle"/>
-                        <color key="textColor" white="0.69909178709999997" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="egz-UU-CLH" userLabel="AU img" customClass="EffectsUnitTriStateBypassImage" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="246" y="-95" width="16" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AUTab" id="3EN-IA-YU3"/>
-                </imageView>
-                <scrollView fixedFrame="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9w-gh-2Hp" userLabel="AU Table">
-                    <rect key="frame" x="241" y="-208" width="212" height="104"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <clipView key="contentView" copiesOnScroll="NO" id="d25-ls-j0N">
-                        <rect key="frame" x="1" y="1" width="195" height="102"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" tableStyle="plain" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" id="eil-eP-SY2">
-                                <rect key="frame" x="0.0" y="0.0" width="209" height="102"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <size key="intercellSpacing" width="2" height="0.0"/>
-                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                                <tableColumns>
-                                    <tableColumn identifier="cid_AudioUnitSwitch" width="20" minWidth="20" maxWidth="20" id="Ly8-tt-KdX">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                        </tableHeaderCell>
-                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="Wed-Mr-W1I">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                        <prototypeCellViews>
-                                            <tableCellView id="Bc3-0Y-6fE" customClass="AudioUnitSwitchCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="1" y="0.0" width="20" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <button wantsLayer="YES" id="NOo-TQ-wrx" userLabel="Bypass button" customClass="EffectsUnitTriStateBypassButton" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="5" y="6" width="12" height="12"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="LiD-Kw-8da">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                    </button>
-                                                </subviews>
-                                                <connections>
-                                                    <outlet property="btnSwitch" destination="NOo-TQ-wrx" id="hLX-hm-gdc"/>
-                                                </connections>
-                                            </tableCellView>
-                                        </prototypeCellViews>
-                                    </tableColumn>
-                                    <tableColumn identifier="cid_AudioUnitName" width="185" minWidth="185" maxWidth="185" id="Qgf-AP-bin">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                        </tableHeaderCell>
-                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="nIc-Jm-eaF">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                        <prototypeCellViews>
-                                            <tableCellView id="YxN-U3-cj4" customClass="MasterUnitAUTableNameCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="23" y="0.0" width="185" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="2jd-cT-upy" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="1" y="0.0" width="184" height="24"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="180" id="CXW-A8-ypT"/>
-                                                            <constraint firstAttribute="height" constant="24" id="DBN-EA-3sj"/>
-                                                        </constraints>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" id="owk-H7-UWT">
-                                                            <font key="font" usesAppearanceFont="YES"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="2jd-cT-upy" firstAttribute="leading" secondItem="YxN-U3-cj4" secondAttribute="leading" constant="3" id="1LO-Py-1gX"/>
-                                                    <constraint firstItem="2jd-cT-upy" firstAttribute="bottom" secondItem="YxN-U3-cj4" secondAttribute="bottom" id="3Le-oZ-Gah"/>
-                                                </constraints>
-                                                <connections>
-                                                    <outlet property="textField" destination="2jd-cT-upy" id="HhE-9e-2MK"/>
-                                                </connections>
-                                            </tableCellView>
-                                        </prototypeCellViews>
-                                    </tableColumn>
-                                </tableColumns>
-                                <connections>
-                                    <outlet property="dataSource" destination="-2" id="yWH-fc-DIa"/>
-                                    <outlet property="delegate" destination="-2" id="fCO-IP-Nqh"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                    </clipView>
-                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="I2M-J6-CQQ">
-                        <rect key="frame" x="-100" y="-100" width="332" height="15"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </scroller>
-                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="bKs-Gn-zWi">
-                        <rect key="frame" x="196" y="1" width="15" height="102"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </scroller>
-                </scrollView>
                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="36D-nM-bZT" userLabel="Fuse Box Menu Button">
                     <rect key="frame" x="92" y="109" width="256" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -374,7 +108,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QVA-nu-U8b" customClass="EffectsUnitToggle" customModule="Aural" customModuleProvider="target">
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QVA-nu-U8b" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="100" y="54" width="28" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NotChecked" imagePosition="left" alignment="left" alternateImage="Checked" controlSize="small" state="on" imageScaling="axesIndependently" inset="2" id="fSx-EC-qQ5">
@@ -384,43 +118,18 @@
                 </button>
             </subviews>
             <connections>
-                <outlet property="btnDelayBypass" destination="t99-9E-imb" id="y24-le-FeZ"/>
-                <outlet property="btnEQBypass" destination="gkV-hj-Ass" id="2dd-TN-t8p"/>
-                <outlet property="btnFilterBypass" destination="hag-cU-yjr" id="Vdq-tP-wl0"/>
-                <outlet property="btnPitchBypass" destination="x3R-kg-7Oc" id="0ee-ka-4dF"/>
-                <outlet property="btnReverbBypass" destination="FvF-Bn-65K" id="dtd-Jj-Bl9"/>
-                <outlet property="btnTimeBypass" destination="WYt-4P-GnF" id="aK2-OB-q7t"/>
-                <outlet property="fuseBoxMenuButton" destination="36D-nM-bZT" id="mog-dJ-pDK"/>
-                <outlet property="imgAUBypass" destination="egz-UU-CLH" id="r9O-os-Kwd"/>
-                <outlet property="imgDelayBypass" destination="8WO-RO-zo9" id="XK8-5s-i83"/>
-                <outlet property="imgEQBypass" destination="Fzh-MR-f13" id="P3R-be-XXm"/>
-                <outlet property="imgFilterBypass" destination="TEA-7G-z9j" id="mhx-OV-TDp"/>
-                <outlet property="imgPitchBypass" destination="nVs-WL-LP9" id="RrK-Ke-n4U"/>
-                <outlet property="imgReverbBypass" destination="4Zl-Xy-dIF" id="o6d-9A-mW7"/>
-                <outlet property="imgTimeBypass" destination="e41-Za-bAz" id="0BV-TG-5MS"/>
-                <outlet property="lblAudioUnits" destination="CDb-nZ-S4q" id="k7D-ZZ-DuD"/>
-                <outlet property="lblDelay" destination="avF-ri-vcW" id="WbF-nf-aa7"/>
-                <outlet property="lblEQ" destination="Xbi-ik-mnL" id="3g1-Jl-c73"/>
-                <outlet property="lblFilter" destination="iMc-8N-B7s" id="CdJ-6x-ILz"/>
-                <outlet property="lblPitch" destination="Ezl-gn-Yog" id="ZoQ-Cd-5Gx"/>
-                <outlet property="lblReverb" destination="rS8-ot-eiS" id="Qvc-mf-rvI"/>
-                <outlet property="lblTime" destination="X9R-3W-ttJ" id="heg-hY-cLy"/>
+                <outlet property="btnFuseBoxMenu" destination="36D-nM-bZT" id="mog-dJ-pDK"/>
+                <outlet property="btnRememberSettings" destination="QVA-nu-U8b" id="ia6-I4-T1K"/>
+                <outlet property="fuseBoxMenuButtonCell" destination="cjG-Ys-hHL" id="8rp-rB-cfc"/>
             </connections>
             <point key="canvasLocation" x="139" y="153"/>
         </view>
     </objects>
     <resources>
-        <image name="AUTab" width="32" height="19"/>
         <image name="Checked" width="200" height="200"/>
-        <image name="DelayTab" width="23" height="22"/>
         <image name="Ellipsis" width="40" height="10"/>
-        <image name="FilterTab" width="26" height="26"/>
         <image name="NotChecked" width="200" height="200"/>
-        <image name="PitchTab" width="32" height="26"/>
-        <image name="ReverbTab" width="25" height="25"/>
-        <image name="TimeTab" width="32" height="32"/>
         <image name="bolt.fill" catalog="system" width="13" height="17"/>
         <image name="clock.arrow.2.circlepath" catalog="system" width="18" height="15"/>
-        <image name="slider.vertical.3" catalog="system" width="15" height="14"/>
     </resources>
 </document>

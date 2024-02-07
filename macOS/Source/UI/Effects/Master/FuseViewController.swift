@@ -17,6 +17,7 @@ class FuseViewController: NSViewController {
     @IBOutlet weak var imgBypass: EffectsUnitTriStateBypassImage!
     @IBOutlet weak var icon: EffectsUnitTriStateBypassImage!
     @IBOutlet weak var lblUnitCaption: EffectsUnitTriStateLabel!
+    @IBOutlet weak var backgroundBox: NSBox!
     
     var effectsUnit: EffectsUnitDelegateProtocol!
     
@@ -31,7 +32,7 @@ class FuseViewController: NSViewController {
         let unitType = fxUnit.unitType
         
         if let auUnit = effectsUnit as? HostedAudioUnitDelegateProtocol {
-            lblUnitCaption.stringValue = auUnit.name
+            lblUnitCaption.stringValue = "\(auUnit.name) v\(auUnit.version)"
         } else {
             lblUnitCaption.stringValue = unitType.caption
         }
@@ -53,6 +54,12 @@ class FuseViewController: NSViewController {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.suppressedControlColor, handler: suppressedControlColorChanged(_:))
     }
     
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        backgroundBox.fillColor = systemColorScheme.backgroundColor
+    }
+    
     @IBAction func bypassAction(_ sender: EffectsUnitTriStateBypassImage) {
         
         effectsUnit.toggleState()
@@ -65,7 +72,7 @@ class FuseViewController: NSViewController {
 extension FuseViewController: FontSchemeObserver {
     
     func fontSchemeChanged() {
-        lblUnitCaption.font = systemFontScheme.captionFont
+        lblUnitCaption.font = systemFontScheme.normalFont
     }
 }
 

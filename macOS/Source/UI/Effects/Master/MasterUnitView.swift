@@ -11,36 +11,9 @@ import Cocoa
 
 class MasterUnitView: NSView {
     
-    @IBOutlet weak var fuseBoxMenuButton: NSPopUpButton!
-    
-    @IBOutlet weak var btnEQBypass: EffectsUnitTriStateBypassButton!
-    @IBOutlet weak var btnPitchBypass: EffectsUnitTriStateBypassButton!
-    @IBOutlet weak var btnTimeBypass: EffectsUnitTriStateBypassButton!
-    @IBOutlet weak var btnReverbBypass: EffectsUnitTriStateBypassButton!
-    @IBOutlet weak var btnDelayBypass: EffectsUnitTriStateBypassButton!
-    @IBOutlet weak var btnFilterBypass: EffectsUnitTriStateBypassButton!
-    
-    @IBOutlet weak var imgEQBypass: EffectsUnitTriStateBypassImage!
-    @IBOutlet weak var imgPitchBypass: EffectsUnitTriStateBypassImage!
-    @IBOutlet weak var imgTimeBypass: EffectsUnitTriStateBypassImage!
-    @IBOutlet weak var imgReverbBypass: EffectsUnitTriStateBypassImage!
-    @IBOutlet weak var imgDelayBypass: EffectsUnitTriStateBypassImage!
-    @IBOutlet weak var imgFilterBypass: EffectsUnitTriStateBypassImage!
-    
-    @IBOutlet weak var imgAUBypass: EffectsUnitTriStateBypassImage!
-    
-    @IBOutlet weak var lblEQ: EffectsUnitTriStateLabel!
-    @IBOutlet weak var lblPitch: EffectsUnitTriStateLabel!
-    @IBOutlet weak var lblTime: EffectsUnitTriStateLabel!
-    @IBOutlet weak var lblReverb: EffectsUnitTriStateLabel!
-    @IBOutlet weak var lblDelay: EffectsUnitTriStateLabel!
-    @IBOutlet weak var lblFilter: EffectsUnitTriStateLabel!
-    
-    @IBOutlet weak var lblAudioUnits: EffectsUnitTriStateLabel!
-    
-    var buttons: [EffectsUnitTriStateBypassButton] = []
-    var images: [EffectsUnitTriStateBypassImage] = []
-    var labels: [EffectsUnitTriStateLabel] = []
+    @IBOutlet weak var btnFuseBoxMenu: NSPopUpButton!
+    @IBOutlet weak var fuseBoxMenuButtonCell: FuseBoxPopupMenuCell!
+    @IBOutlet weak var btnRememberSettings: NSButton!
     
     private lazy var messenger = Messenger(for: self)
     
@@ -48,42 +21,7 @@ class MasterUnitView: NSView {
         
         super.awakeFromNib()
         
-        buttons = [btnEQBypass, btnPitchBypass, btnTimeBypass, btnReverbBypass, btnDelayBypass, btnFilterBypass]
-        images = [imgEQBypass, imgPitchBypass, imgTimeBypass, imgReverbBypass, imgDelayBypass, imgFilterBypass, imgAUBypass]
-        labels = [lblEQ, lblPitch, lblTime, lblReverb, lblDelay, lblFilter, lblAudioUnits]
-        
-        let audioGraph = audioGraphDelegate
-        
-        ([btnEQBypass, imgEQBypass, lblEQ] as! [FXUnitStateObserver]).forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.eqUnit)
-        }
-
-        ([btnPitchBypass, imgPitchBypass, lblPitch] as! [FXUnitStateObserver]).forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.pitchShiftUnit)
-        }
-
-        ([btnTimeBypass, imgTimeBypass, lblTime] as! [FXUnitStateObserver]).forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.timeStretchUnit)
-        }
-
-        ([btnReverbBypass, imgReverbBypass, lblReverb] as! [FXUnitStateObserver]).forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.reverbUnit)
-        }
-
-        ([btnDelayBypass, imgDelayBypass, lblDelay] as! [FXUnitStateObserver]).forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.delayUnit)
-        }
-
-        ([btnFilterBypass, imgFilterBypass, lblFilter] as! [FXUnitStateObserver]).forEach {
-            fxUnitStateObserverRegistry.registerObserver($0, forFXUnit: audioGraph.filterUnit)
-        }
-        
-        ([imgAUBypass, lblAudioUnits] as! [FXUnitStateObserver]).forEach {
-            fxUnitStateObserverRegistry.registerAUObserver($0)
-        }
-        
-        //fontSchemesManager.registerObservers(labels, forProperty: \.captionFont)
-        // Remove all user-defined preset items (i.e. all items before the first separator)
+        fxUnitStateObserverRegistry.registerObserver(fuseBoxMenuButtonCell, forFXUnit: audioGraphDelegate.masterUnit)
         
         for fxUnit in audioGraphDelegate.allUnits.filter({$0.unitType != .master}) {
             doAddFuseBoxMenuItemForEffectsUnit(fxUnit)
@@ -91,6 +29,18 @@ class MasterUnitView: NSView {
         
         messenger.subscribe(to: .auEffectsUnit_audioUnitAdded, handler: doAddFuseBoxMenuItemForEffectsUnit(_:))
         messenger.subscribe(to: .auEffectsUnit_audioUnitsRemoved, handler: audioUnitsRemoved(_:))
+        messenger.subscribe(to: .player_trackTransitioned, handler: updateRememberSettingsButtonState)
+        
+        updateRememberSettingsButtonState()
+    }
+    
+    private func updateRememberSettingsButtonState() {
+        
+        if let playingTrack = playbackInfoDelegate.playingTrack {
+            btnRememberSettings.onIf(audioGraphDelegate.soundProfiles.hasFor(playingTrack))
+        } else {
+            btnRememberSettings.off()
+        }
     }
     
     private func doAddFuseBoxMenuItemForEffectsUnit(_ unit: EffectsUnitDelegateProtocol) {
@@ -101,7 +51,7 @@ class MasterUnitView: NSView {
         vc.effectsUnit = unit
         
         item.view = vc.view
-        fuseBoxMenuButton.menu?.addItem(item)
+        btnFuseBoxMenu.menu?.addItem(item)
     }
     
     private func audioUnitsRemoved(_ indexes: IndexSet) {
@@ -110,79 +60,41 @@ class MasterUnitView: NSView {
             
             // Adjust index for icon menu item + 6 built-in FX units.
             let adjustedIndex = index + 7
-            fuseBoxMenuButton.menu?.removeItem(at: adjustedIndex)
+            btnFuseBoxMenu.menu?.removeItem(at: adjustedIndex)
         }
+    }
+    
+    func redrawFuseBoxMenu() {
+        
+        fuseBoxMenuButtonCell.unitStateChanged(to: audioGraphDelegate.masterUnit.state)
+        btnFuseBoxMenu.redraw()
+    }
+    
+    func buttonColorChanged(_ newColor: PlatformColor) {
+        btnRememberSettings.contentTintColor = newColor
     }
     
     func applyPreset(_ preset: MasterPreset) {
         
-        btnEQBypass.onIf(preset.eq.state == .active)
-        btnPitchBypass.onIf(preset.pitch.state == .active)
-        btnTimeBypass.onIf(preset.time.state == .active)
-        btnReverbBypass.onIf(preset.reverb.state == .active)
-        btnDelayBypass.onIf(preset.delay.state == .active)
-        btnFilterBypass.onIf(preset.filter.state == .active)
-        
-        imgEQBypass.onIf(preset.eq.state == .active)
-        imgPitchBypass.onIf(preset.pitch.state == .active)
-        imgTimeBypass.onIf(preset.time.state == .active)
-        imgReverbBypass.onIf(preset.reverb.state == .active)
-        imgDelayBypass.onIf(preset.delay.state == .active)
-        imgFilterBypass.onIf(preset.filter.state == .active)
-        
-        lblEQ.onIf(preset.eq.state == .active)
-        lblPitch.onIf(preset.pitch.state == .active)
-        lblTime.onIf(preset.time.state == .active)
-        lblReverb.onIf(preset.reverb.state == .active)
-        lblDelay.onIf(preset.delay.state == .active)
-        lblFilter.onIf(preset.filter.state == .active)
-    }
-    
-    func updateEQUnitToggle(_ newColor: PlatformColor) {
-        
-        btnEQBypass.contentTintColor = newColor
-        imgEQBypass.contentTintColor = newColor
-        lblEQ.textColor = newColor
-    }
-    
-    func updatePitchShiftUnitToggle(_ newColor: PlatformColor) {
-        
-        btnPitchBypass.contentTintColor = newColor
-        imgPitchBypass.contentTintColor = newColor
-        lblPitch.textColor = newColor
-    }
-    
-    func updateTimeStretchUnitToggle(_ newColor: PlatformColor) {
-        
-        btnTimeBypass.contentTintColor = newColor
-        imgTimeBypass.contentTintColor = newColor
-        lblTime.textColor = newColor
-    }
-    
-    func updateReverbUnitToggle(_ newColor: PlatformColor) {
-        
-        btnReverbBypass.contentTintColor = newColor
-        imgReverbBypass.contentTintColor = newColor
-        lblReverb.textColor = newColor
-    }
-    
-    func updateDelayUnitToggle(_ newColor: PlatformColor) {
-        
-        btnDelayBypass.contentTintColor = newColor
-        imgDelayBypass.contentTintColor = newColor
-        lblDelay.textColor = newColor
-    }
-    
-    func updateFilterUnitToggle(_ newColor: PlatformColor) {
-        
-        btnFilterBypass.contentTintColor = newColor
-        imgFilterBypass.contentTintColor = newColor
-        lblFilter.textColor = newColor
-    }
-    
-    func updateAUToggles(_ newColor: PlatformColor) {
-        
-        imgAUBypass.contentTintColor = newColor
-        lblAudioUnits.textColor = newColor
+//        btnEQBypass.onIf(preset.eq.state == .active)
+//        btnPitchBypass.onIf(preset.pitch.state == .active)
+//        btnTimeBypass.onIf(preset.time.state == .active)
+//        btnReverbBypass.onIf(preset.reverb.state == .active)
+//        btnDelayBypass.onIf(preset.delay.state == .active)
+//        btnFilterBypass.onIf(preset.filter.state == .active)
+//        
+//        imgEQBypass.onIf(preset.eq.state == .active)
+//        imgPitchBypass.onIf(preset.pitch.state == .active)
+//        imgTimeBypass.onIf(preset.time.state == .active)
+//        imgReverbBypass.onIf(preset.reverb.state == .active)
+//        imgDelayBypass.onIf(preset.delay.state == .active)
+//        imgFilterBypass.onIf(preset.filter.state == .active)
+//        
+//        lblEQ.onIf(preset.eq.state == .active)
+//        lblPitch.onIf(preset.pitch.state == .active)
+//        lblTime.onIf(preset.time.state == .active)
+//        lblReverb.onIf(preset.reverb.state == .active)
+//        lblDelay.onIf(preset.delay.state == .active)
+//        lblFilter.onIf(preset.filter.state == .active)
     }
 }

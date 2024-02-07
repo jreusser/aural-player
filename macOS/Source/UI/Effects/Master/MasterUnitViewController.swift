@@ -18,8 +18,6 @@ class MasterUnitViewController: EffectsUnitViewController {
     // MARK: UI fields
     
     @IBOutlet weak var masterUnitView: MasterUnitView!
-    @IBOutlet weak var audioUnitsTable: NSTableView!
-    
     @IBOutlet weak var btnRememberSettings: TintedImageButton!
     
     private lazy var btnRememberSettingsStateMachine: ButtonStateMachine<Bool> = ButtonStateMachine(initialState: false, mappings: [
@@ -60,10 +58,7 @@ class MasterUnitViewController: EffectsUnitViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
         btnRememberSettingsStateMachine.setState(false)
-        
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
     }
     
     override func initControls() {
@@ -82,8 +77,6 @@ class MasterUnitViewController: EffectsUnitViewController {
         broadcastStateChangeNotification()
         
         messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.effectiveRate)
-        
-        audioUnitsTable.reloadData()
     }
     
     @IBAction override func presetsAction(_ sender: AnyObject) {
@@ -167,12 +160,13 @@ class MasterUnitViewController: EffectsUnitViewController {
                                  filter: {msg in msg.trackChanged})
         
         messenger.subscribe(to: .masterEffectsUnit_toggleEffects, handler: toggleEffects)
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, handler: buttonColorChanged(_:))
     }
     
     override func stateChanged() {
         
         messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.effectiveRate)
-        audioUnitsTable.reloadAllRows(columns: [1])
     }
     
     private func toggleEffects() {
@@ -214,102 +208,29 @@ class MasterUnitViewController: EffectsUnitViewController {
         messenger.publish(.effects_unitStateChanged)
     }
     
-    // ------------------------------------------------------------------------
-    
-    // MARK: Theming
-    
-    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
-        
-        switch property {
-            
-        case \.normalFont:
-            
-            audioUnitsTable.reloadAllRows(columns: [1])
-            
-        default:
-            
-            return
-        }
-    }
-    
     override func colorSchemeChanged() {
-        
+
         super.colorSchemeChanged()
         
-        audioUnitsTable.colorSchemeChanged()
-        
-        masterUnitView.updateEQUnitToggle(systemColorScheme.colorForEffectsUnitState(eqUnit.state))
-        masterUnitView.updatePitchShiftUnitToggle(systemColorScheme.colorForEffectsUnitState(pitchShiftUnit.state))
-        masterUnitView.updateTimeStretchUnitToggle(systemColorScheme.colorForEffectsUnitState(timeStretchUnit.state))
-        masterUnitView.updateReverbUnitToggle(systemColorScheme.colorForEffectsUnitState(reverbUnit.state))
-        masterUnitView.updateDelayUnitToggle(systemColorScheme.colorForEffectsUnitState(delayUnit.state))
-        masterUnitView.updateFilterUnitToggle(systemColorScheme.colorForEffectsUnitState(filterUnit.state))
-        
-        masterUnitView.updateAUToggles(systemColorScheme.colorForEffectsUnitState(graph.audioUnitsStateFunction()))
-    }
-    
-    private func backgroundColorChanged(_ newColor: PlatformColor) {
-        audioUnitsTable.setBackgroundColor(newColor)
+        masterUnitView.redrawFuseBoxMenu()
+        masterUnitView.buttonColorChanged(systemColorScheme.buttonColor)
     }
     
     override func activeControlColorChanged(_ newColor: PlatformColor) {
         
-        super.activeControlColorChanged(newColor)
-        
-        let rowsForActiveUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .active}
-        audioUnitsTable.reloadRows(rowsForActiveUnits, columns: [1])
-        
-        updateBypassButtons(forUnitState: .active, newColor: newColor)
+        if masterUnit.state == .active {
+            masterUnitView.redrawFuseBoxMenu()
+        }
     }
     
     override func inactiveControlColorChanged(_ newColor: PlatformColor) {
         
-        super.inactiveControlColorChanged(newColor)
-        
-        let rowsForBypassedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .bypassed}
-        audioUnitsTable.reloadRows(rowsForBypassedUnits, columns: [1])
-        
-        updateBypassButtons(forUnitState: .bypassed, newColor: newColor)
+        if masterUnit.state == .bypassed {
+            masterUnitView.redrawFuseBoxMenu()
+        }
     }
     
-    override func suppressedControlColorChanged(_ newColor: PlatformColor) {
-        
-        super.suppressedControlColorChanged(newColor)
-        
-        let rowsForSuppressedUnits: [Int] = audioUnitsTable.allRowIndices.filter {graph.audioUnits[$0].state == .suppressed}
-        audioUnitsTable.reloadRows(rowsForSuppressedUnits, columns: [1])
-        
-        updateBypassButtons(forUnitState: .suppressed, newColor: newColor)
-    }
-    
-    private func updateBypassButtons(forUnitState unitState: EffectsUnitState, newColor: PlatformColor) {
-        
-        if eqUnit.state == unitState {
-            masterUnitView.updateEQUnitToggle(newColor)
-        }
-        
-        if pitchShiftUnit.state == unitState {
-            masterUnitView.updatePitchShiftUnitToggle(newColor)
-        }
-        
-        if timeStretchUnit.state == unitState {
-            masterUnitView.updateTimeStretchUnitToggle(newColor)
-        }
-        
-        if reverbUnit.state == unitState {
-            masterUnitView.updateReverbUnitToggle(newColor)
-        }
-        
-        if delayUnit.state == unitState {
-            masterUnitView.updateDelayUnitToggle(newColor)
-        }
-        
-        if filterUnit.state == unitState {
-            masterUnitView.updateFilterUnitToggle(newColor)
-        }
-        
-        if graph.audioUnitsStateFunction() == unitState {
-            masterUnitView.updateAUToggles(newColor)
-        }
+    func buttonColorChanged(_ newColor: PlatformColor) {
+        masterUnitView.buttonColorChanged(newColor)
     }
 }

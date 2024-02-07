@@ -29,7 +29,12 @@ class FuseBoxPopupMenuCell: NSPopUpButtonCell {
     var arrowLineWidth: CGFloat {2}
     
     var titleFont: NSFont {systemFontScheme.normalFont}
-//    var titleColor: NSColor {Colors.buttonMenuTextColor}
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        image?.isTemplate = true
+    }
     
     override func drawTitle(_ title: NSAttributedString, withFrame: NSRect, in inView: NSView) -> NSRect {
         
@@ -37,6 +42,10 @@ class FuseBoxPopupMenuCell: NSPopUpButtonCell {
                                   withFont: titleFont, andColor: tintColor, yOffset: 1)
         
         return withFrame
+    }
+    
+    override func drawImage(withFrame cellFrame: NSRect, in controlView: NSView) {
+        image?.tintedWithColor(tintColor).draw(in: NSMakeRect(10, 3, 18, 18))
     }
     
     override internal func drawBorderAndBackground(withFrame cellFrame: NSRect, in controlView: NSView) {
@@ -50,4 +59,13 @@ class FuseBoxPopupMenuCell: NSPopUpButtonCell {
     }
     
     override func titleRect(forBounds cellFrame: NSRect) -> NSRect {cellFrame}
+}
+
+extension FuseBoxPopupMenuCell: FXUnitStateObserver {
+
+    func unitStateChanged(to newState: EffectsUnitState) {
+        
+        tintColor = systemColorScheme.colorForEffectsUnitState(newState)
+        (controlView as? NSPopUpButton)?.contentTintColor = tintColor
+    }
 }
