@@ -42,7 +42,7 @@
                     </textFieldCell>
                 </textField>
                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uBj-uC-pvY" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="-2" y="5" width="214" height="25"/>
+                    <rect key="frame" x="3" y="5" width="214" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="210" id="gdk-pw-xc0"/>
                         <constraint firstAttribute="height" constant="25" id="nR5-Ve-A1Z"/>
@@ -54,7 +54,7 @@
                     </textFieldCell>
                 </textField>
                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Cy-DF-Q4T" userLabel="Duration summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="278" y="5" width="204" height="25"/>
+                    <rect key="frame" x="263" y="5" width="204" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="M7I-9D-CJr"/>
                         <constraint firstAttribute="width" constant="200" id="pRd-g6-s5g"/>
@@ -440,12 +440,12 @@
                 </button>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="5Cy-DF-Q4T" secondAttribute="trailing" id="0XV-Z3-7SD"/>
+                <constraint firstAttribute="trailing" secondItem="5Cy-DF-Q4T" secondAttribute="trailing" constant="15" id="0XV-Z3-7SD"/>
                 <constraint firstItem="tEn-S2-HfY" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="6" id="0ov-mM-KVd"/>
                 <constraint firstItem="qVg-n6-YlU" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="1W8-ak-IJT"/>
                 <constraint firstItem="J7Y-d2-B86" firstAttribute="leading" secondItem="0iC-Kr-Awj" secondAttribute="trailing" constant="17" id="1Yr-Od-6Wi"/>
                 <constraint firstItem="KXN-hH-zTo" firstAttribute="top" secondItem="OkT-Fu-DdS" secondAttribute="bottom" constant="17" id="1tA-Aq-uuw"/>
-                <constraint firstItem="uBj-uC-pvY" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="2dh-Gc-JJX"/>
+                <constraint firstItem="uBj-uC-pvY" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="5" id="2dh-Gc-JJX"/>
                 <constraint firstItem="s9j-Si-mwF" firstAttribute="bottom" secondItem="dKD-ej-8l7" secondAttribute="bottom" id="3TP-Gb-uCJ"/>
                 <constraint firstItem="jIR-8v-jiy" firstAttribute="leading" secondItem="GxK-EL-OP6" secondAttribute="trailing" constant="1" id="5sV-nW-K27"/>
                 <constraint firstItem="t6d-dO-Tjg" firstAttribute="leading" secondItem="LjQ-xb-h2D" secondAttribute="trailing" constant="5" id="6Bi-Ji-1ym"/>
