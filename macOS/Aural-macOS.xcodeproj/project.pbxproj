@@ -3374,9 +3374,7 @@
 				3E6C100625CEB98600BF0D07 /* MasterUnit.xib */,
 				3E6C100825CEB98600BF0D07 /* MasterUnitViewController.swift */,
 				3E6C100725CEB98600BF0D07 /* MasterUnitView.swift */,
-				3E3B8D352B72E2700060C7C7 /* FuseBoxPopupMenuCell.swift */,
-				3E3B8D372B72E5580060C7C7 /* Fuse.xib */,
-				3E3B8D392B72E5AF0060C7C7 /* FuseViewController.swift */,
+				3EC7936D2B7369D400AF7E9E /* FuseBox */,
 			);
 			path = Master;
 			sourceTree = "<group>";
@@ -4028,6 +4026,16 @@
 				3E9F692126B9CE26001FAFA3 /* PlaylistControlsContainer.swift */,
 			);
 			path = SinglePlaylist;
+			sourceTree = "<group>";
+		};
+		3EC7936D2B7369D400AF7E9E /* FuseBox */ = {
+			isa = PBXGroup;
+			children = (
+				3E3B8D372B72E5580060C7C7 /* Fuse.xib */,
+				3E3B8D352B72E2700060C7C7 /* FuseBoxPopupMenuCell.swift */,
+				3E3B8D392B72E5AF0060C7C7 /* FuseViewController.swift */,
+			);
+			path = FuseBox;
 			sourceTree = "<group>";
 		};
 		3ECBF3042619D55F00AD5C30 /* AudioUnits */ = {

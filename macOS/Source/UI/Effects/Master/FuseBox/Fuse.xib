@@ -42,7 +42,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="EQTab" id="c2u-JM-abd"/>
                 </imageView>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAB-LP-Oa5" userLabel="Unit Caption" customClass="EffectsUnitTriStateLabel" customModule="Aural" customModuleProvider="target">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAB-LP-Oa5" userLabel="Unit Caption" customClass="EffectsUnitTriStateLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="72" y="7" width="262" height="22"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" title="Equalizer" id="HOB-yc-Wfv" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">

@@ -14,12 +14,4 @@ import Foundation
 class AUParameterSliderCell: HorizontalSliderCell {
     
     override var knobHeightOutsideBar: CGFloat {4.5}
-    
-    override func progressRect(forBarRect barRect: NSRect, andKnobRect knobRect: NSRect) -> NSRect {
-        
-        let minX = barRect.minX
-        let maxX = knobRect.minX
-        
-        return NSRect(x: minX, y: barRect.minY, width: maxX - minX, height: barRect.height)
-    }
 }

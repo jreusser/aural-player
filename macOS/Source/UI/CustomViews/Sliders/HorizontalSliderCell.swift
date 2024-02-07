@@ -37,7 +37,7 @@ class HorizontalSliderCell: AuralSliderCell {
     override func knobRect(flipped: Bool) -> NSRect {
         
         let bar = barRect(flipped: false)
-        let val = CGFloat(doubleValue)
+        let val = CGFloat(doubleValue - minValue)
         
         let startX = bar.minX + (val * bar.width / valueRange)
         let xOffset = -(val * knobWidth / valueRange)
