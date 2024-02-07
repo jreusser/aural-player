@@ -39,13 +39,9 @@ class LibraryGenresViewController: TrackListOutlineViewController {
         messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
         messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
         
-//        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
-//        
-//        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
-//        
-//        //fontSchemesManager.registerObservers([lblGenresSummary, lblDurationSummary], forProperty: \.normalFont)
-//        colorSchemesManager.registerObservers([lblGenresSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainer)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceivers: [lblGenresSummary, lblDurationSummary])
         
         updateSummary()
     }
@@ -142,72 +138,25 @@ class LibraryGenresViewController: TrackListOutlineViewController {
         lblGenresSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "genre" : "genres"), \(numTracks) \(numTracks == 1 ? "track" : "tracks")"
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(library.duration)
     }
-}
-
-class GenreCellView: AuralTableCellView {
     
-    func update(forGroup group: GenreGroup) {
+    override func fontSchemeChanged() {
         
-        let string = group.name.attributed(font: systemFontScheme.prominentFont, color: systemColorScheme.primaryTextColor, lineSpacing: 5)
-        textField?.attributedStringValue = string
+        super.fontSchemeChanged()
         
-        imageView?.image = .imgGenreGroup
-    }
-}
-
-class GenreTrackCellView: AuralTableCellView {
-    
-    @IBOutlet weak var lblTrackNumber: NSTextField!
-    @IBOutlet weak var lblTrackName: NSTextField!
-    
-    lazy var trackNumberConstraintsManager = LayoutConstraintsManager(for: lblTrackNumber!)
-    lazy var trackNameConstraintsManager = LayoutConstraintsManager(for: lblTrackName!)
-    
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        
-//        lblTrackNumber.font = systemFontScheme.normalFont
-//        lblTrackNumber.textColor = systemColorScheme.tertiaryTextColor
-//        trackNumberConstraintsManager.removeAll(withAttributes: [.centerY])
-//        trackNumberConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.tableYOffset)
-        
-        lblTrackName.font = systemFontScheme.normalFont
-        lblTrackName.textColor = systemColorScheme.primaryTextColor
-        trackNameConstraintsManager.removeAll(withAttributes: [.centerY])
-        trackNameConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.tableYOffset)
-    }
-    
-    func update(forTrack track: Track) {
-        
-//        if let trackNumber = track.trackNumber {
-//            lblTrackNumber.stringValue = "\(trackNumber)"
-//        }
-        
-        lblTrackName.stringValue = track.titleOrDefaultDisplayName
-    }
-    
-    override var backgroundStyle: NSView.BackgroundStyle {
-        
-        didSet {
-            
-            if rowIsSelected {
-                
-                lblTrackNumber.textColor = systemColorScheme.tertiarySelectedTextColor
-                lblTrackName.textColor = systemColorScheme.primarySelectedTextColor
-                
-            } else {
-                
-                lblTrackNumber.textColor = systemColorScheme.tertiaryTextColor
-                lblTrackName.textColor = systemColorScheme.primaryTextColor
-            }
+        lblCaption.font = systemFontScheme.captionFont
+        [lblGenresSummary, lblDurationSummary].forEach {
+            $0.font = systemFontScheme.smallFont
         }
     }
-}
-
-extension NSUserInterfaceItemIdentifier {
     
-    // Outline view column identifiers
-    static let cid_GenreName: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_GenreName")
-    static let cid_GenreDuration: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_GenreDuration")
+    override func colorSchemeChanged() {
+        
+        super.colorSchemeChanged()
+        
+        rootContainer.fillColor = systemColorScheme.backgroundColor
+        lblCaption.textColor = systemColorScheme.captionTextColor
+        
+        lblGenresSummary.textColor = systemColorScheme.secondaryTextColor
+        lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
+    }
 }

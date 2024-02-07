@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
+class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, FontSchemeObserver, ColorSchemeObserver {
     
     @IBOutlet weak var outlineView: NSOutlineView!
 
@@ -53,7 +53,14 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
         super.viewDidLoad()
         
         outlineView.enableDragDrop()
-//        colorSchemesManager.registerObserver(outlineView, forProperty: \.backgroundColor)
+        
+        fontSchemesManager.registerObserver(self)
+        
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: outlineView)
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor], handler: textColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor], handler: selectedTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
     }
     
     override func destroy() {
@@ -359,5 +366,27 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate {
     
     func scrollToBottom() {
         outlineView.scrollToBottom()
+    }
+    
+    // MARK: Theming --------------------------------------------------------------------------------
+    
+    func fontSchemeChanged() {
+        outlineView.reloadDataMaintainingSelection()
+    }
+    
+    func colorSchemeChanged() {
+        outlineView.colorSchemeChanged()
+    }
+    
+    func textColorChanged(_ newColor: PlatformColor) {
+        outlineView.reloadDataMaintainingSelection()
+    }
+    
+    func selectedTextColorChanged(_ newColor: PlatformColor) {
+        outlineView.reloadRows(selectedRows)
+    }
+    
+    func textSelectionColorChanged(_ newColor: PlatformColor) {
+        outlineView.redoRowSelection()
     }
 }

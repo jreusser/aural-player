@@ -18,6 +18,8 @@ class HoverControlsBox: NSBox {
     @IBOutlet weak var btnShuffle: TintedImageButton!
     @IBOutlet weak var btnFavorite: TintedImageButton!
     
+    fileprivate lazy var buttons: [TintedImageButton] = [btnPlay, btnEnqueueAndPlay, btnRepeat, btnShuffle, btnFavorite]
+    
     private lazy var messenger: Messenger = Messenger(for: self)
     
     var group: Group? {
@@ -52,11 +54,11 @@ class HoverControlsBox: NSBox {
         
         super.awakeFromNib()
         
-//        colorSchemesManager.registerObservers([btnPlay, btnEnqueueAndPlay, btnRepeat, btnShuffle],
-//                                              forProperty: \.buttonColor)
+        fillColor = NSColor(white: 0.35, alpha: 0.8)
+        cornerRadius = 5
     }
     
-    @IBAction func playGroupAction(_ sender: NSButton) {
+    @IBAction func playGroupOrPlaylistAction(_ sender: NSButton) {
         
         messenger.publish(.player_setRepeatMode, payload: RepeatMode.off)
         messenger.publish(.player_setShuffleMode, payload: ShuffleMode.off)

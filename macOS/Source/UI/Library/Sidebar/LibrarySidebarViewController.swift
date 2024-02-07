@@ -38,6 +38,8 @@ class LibrarySidebarViewController: NSViewController {
             self?.sidebarView.expandItem(LibrarySidebarCategory.tuneBrowser)
         }
         
+        fontSchemesManager.registerObserver(self)
+        
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.buttonColor],
@@ -46,8 +48,6 @@ class LibrarySidebarViewController: NSViewController {
                                                      handler: selectedTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor,
                                                      handler: textSelectionColorChanged(_:))
-        
-//        //fontSchemesManager.registerObserver(self, forProperty: \.normalFont)
     }
     
     @IBAction func doubleClickAction(_ sender: NSOutlineView) {

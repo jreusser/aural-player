@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class PlaylistTracksViewController: TrackListTableViewController, ColorSchemePropertyObserver {
+class PlaylistTracksViewController: TrackListTableViewController {
     
     override var nibName: String? {"PlaylistTracks"}
     

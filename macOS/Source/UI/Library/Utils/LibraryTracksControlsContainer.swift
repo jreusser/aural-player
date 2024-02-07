@@ -102,6 +102,12 @@ class LibraryGroupedListControlsContainer: LibraryTracksControlsContainer {
             
         } else if let playlist = outlineView.item(atRow: row) as? ImportedPlaylist {
             hoverControls.playlist = playlist
+            
+        } else {
+            
+            // Track
+            hoverControls.hide()
+            return
         }
         
         let boxHeight = hoverControls.height / 2

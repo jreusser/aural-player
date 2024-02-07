@@ -218,12 +218,16 @@ class MasterUnitViewController: EffectsUnitViewController {
     
     override func activeControlColorChanged(_ newColor: PlatformColor) {
         
+        super.activeControlColorChanged(newColor)
+        
         if masterUnit.state == .active {
             masterUnitView.redrawFuseBoxMenu()
         }
     }
     
     override func inactiveControlColorChanged(_ newColor: PlatformColor) {
+        
+        super.inactiveControlColorChanged(newColor)
         
         if masterUnit.state == .bypassed {
             masterUnitView.redrawFuseBoxMenu()

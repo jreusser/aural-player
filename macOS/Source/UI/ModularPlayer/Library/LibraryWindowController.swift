@@ -100,17 +100,17 @@ class LibraryWindowController: NSWindowController {
         messenger.subscribe(to: .library_showBrowserTabForItem, handler: showBrowserTab(forItem:))
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
         
+        fontSchemesManager.registerObserver(self)
+        
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainer)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: btnClose)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
         
-        //        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-        
         applyTheme()
         
         // TODO: Temporary, remove this !!!
-        tabGroup.selectTabViewItem(at: 0)
+        tabGroup.selectTabViewItem(at: 2)
         
         displayBuildProgress()
     }
@@ -230,6 +230,13 @@ class LibraryWindowController: NSWindowController {
         buildProgressView.hide()
         
         splitView.show()
+    }
+}
+
+extension LibraryWindowController: FontSchemeObserver {
+    
+    func fontSchemeChanged() {
+        lblCaption.font = systemFontScheme.captionFont
     }
 }
 

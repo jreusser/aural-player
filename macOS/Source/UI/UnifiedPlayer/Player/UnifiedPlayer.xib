@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -132,8 +132,17 @@
                                                     <action selector="showPlayingTrackAction:" target="YDH-Lw-Yxg" id="Pum-B0-hPi"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="  Remember track position" image="clock.arrow.2.circlepath" catalog="system" id="HWr-ZV-QQS" userLabel="Show track in Play Queue">
+                                            <menuItem title="  Remember track position" image="clock.arrow.2.circlepath" catalog="system" id="HWr-ZV-QQS" userLabel=" Remember track position" customClass="ToggleMenuItem" customModule="Aural" customModuleProvider="target">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="clock.arrow.2.circlepath" catalog="system"/>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="clock.arrow.2.circlepath" catalog="system"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="offStateTitle" value=" Remember playback position for this track"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="onStateTitle" value=" Don't remember playback position for this track"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="rememberLastPositionAction:" target="YDH-Lw-Yxg" id="Ouk-ag-dge"/>
+                                                </connections>
                                             </menuItem>
                                         </items>
                                         <connections>
@@ -424,6 +433,7 @@
             <connections>
                 <outlet property="artView" destination="I3Y-0e-Nm0" id="pjf-r5-loq"/>
                 <outlet property="functionsButton" destination="Glt-fW-V9p" id="ORV-v5-kIn"/>
+                <outlet property="functionsMenuItem" destination="lV5-HH-E3d" id="a7C-lX-c8p"/>
                 <outlet property="infoBox" destination="7BY-ME-fle" id="Vdu-XC-ACl"/>
                 <outlet property="lblTrackTime" destination="i4S-AL-UJd" id="07f-aT-1pp"/>
                 <outlet property="textView" destination="T0r-Cf-1AZ" id="bzf-p2-OuS"/>
@@ -461,7 +471,7 @@
         <customObject id="YDH-Lw-Yxg" customClass="PlayingTrackFunctionsMenuDelegate" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="favoritesMenuItem" destination="OM8-1p-7Dk" id="hrp-WR-UM0"/>
-                <outlet property="iconMenuItem" destination="lV5-HH-E3d" id="tHt-kh-mHU"/>
+                <outlet property="rememberLastPositionMenuItem" destination="HWr-ZV-QQS" id="t9Y-2P-5kG"/>
                 <outlet property="seekPositionMarkerView" destination="iet-di-Oy3" id="0zs-Im-5xi"/>
                 <outlet property="sliderView" destination="5pM-GQ-4Cs" id="i5V-Tb-34l"/>
             </connections>
@@ -469,7 +479,7 @@
     </objects>
     <resources>
         <image name="Ellipsis" width="40" height="10"/>
-        <image name="Loop" width="270" height="210"/>
+        <image name="Loop" width="18" height="25"/>
         <image name="Play" width="40" height="40"/>
         <image name="SampleArt" width="600" height="600"/>
         <image name="backward" catalog="system" width="19" height="12"/>
@@ -479,7 +489,7 @@
         <image name="forward" catalog="system" width="19" height="12"/>
         <image name="forward.end" catalog="system" width="13" height="13"/>
         <image name="heart" catalog="system" width="16" height="14"/>
-        <image name="heart.slash" catalog="system" width="16" height="15"/>
+        <image name="heart.slash" catalog="system" width="16" height="17"/>
         <image name="info" catalog="system" width="11" height="16"/>
         <image name="repeat" catalog="system" width="17" height="14"/>
         <image name="shuffle" catalog="system" width="18" height="14"/>

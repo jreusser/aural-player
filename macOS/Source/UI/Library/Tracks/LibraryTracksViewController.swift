@@ -37,18 +37,8 @@ class LibraryTracksViewController: TrackListTableViewController {
         
         updateSummary()
         
-        colorSchemesManager.registerSchemeObserver(self)
-        
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
-        
-        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor], handler: tableTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainer)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceivers: [lblTracksSummary, lblDurationSummary])
-        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor], handler: tableSelectedTextColorChanged(_:))
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
-//
-//        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-//        //fontSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.normalFont)
         
         messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
         messenger.subscribeAsync(to: .library_tracksRemoved, handler: tracksRemoved(_:))
@@ -172,36 +162,26 @@ class LibraryTracksViewController: TrackListTableViewController {
 //            tableView.noteNumberOfRowsChanged()
 //        }
     }
-}
 
-extension LibraryTracksViewController: ColorSchemeObserver {
-    
-    func colorSchemeChanged() {
+    override func fontSchemeChanged() {
         
-        backgroundColorChanged(systemColorScheme.backgroundColor)
+        super.fontSchemeChanged()
+        
+        lblCaption.font = systemFontScheme.captionFont
+        [lblTracksSummary, lblDurationSummary].forEach {
+            $0.font = systemFontScheme.smallFont
+        }
+    }
+    
+    override func colorSchemeChanged() {
+        
+        super.colorSchemeChanged()
+        
+        rootContainer.fillColor = systemColorScheme.backgroundColor
         lblCaption.textColor = systemColorScheme.captionTextColor
         
-        lblTracksSummary.textColor = systemColorScheme.secondaryTextColor
-        lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
-        
-        tableView.reloadDataMaintainingSelection()
-    }
-    
-    private func backgroundColorChanged(_ newColor: PlatformColor) {
-        
-        rootContainer.fillColor = newColor
-        tableView.setBackgroundColor(newColor)
-    }
-    
-    private func tableTextColorChanged(_ newColor: PlatformColor) {
-        tableView.reloadDataMaintainingSelection()
-    }
-    
-    private func tableSelectedTextColorChanged(_ newColor: PlatformColor) {
-        tableView.reloadRows(selectedRows)
-    }
-    
-    private func textSelectionColorChanged(_ newColor: PlatformColor) {
-        tableView.redoRowSelection()
+        [lblTracksSummary, lblDurationSummary].forEach {
+            $0?.textColor = systemColorScheme.secondaryTextColor
+        }
     }
 }

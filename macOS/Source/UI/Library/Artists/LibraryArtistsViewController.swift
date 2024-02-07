@@ -39,17 +39,9 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
         messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
         messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
         
-        colorSchemesManager.registerSchemeObserver(self)
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainer)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
-        
-        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor], handler: tableTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceivers: [lblArtistsSummary, lblDurationSummary])
-        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor], handler: tableSelectedTextColorChanged(_:))
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
-        
-//        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-//        //fontSchemesManager.registerObservers([lblArtistsSummary, lblDurationSummary], forProperty: \.normalFont)
         
         updateSummary()
     }
@@ -106,8 +98,8 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
                                                    andColor: systemColorScheme.secondaryTextColor,
                                                    selectedTextColor: systemColorScheme.secondarySelectedTextColor,
                                                    centerYOffset: systemFontScheme.tableYOffset)
-                    .buildCell(forOutlineView: outlineView,
-                               forColumnWithId: .cid_DiscName, havingItem: disc)
+                .buildCell(forOutlineView: outlineView,
+                           forColumnWithId: .cid_DiscName, havingItem: disc)
             }
             
         case .cid_Duration:
@@ -119,8 +111,8 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
                                                    andColor: systemColorScheme.tertiaryTextColor,
                                                    selectedTextColor: systemColorScheme.tertiarySelectedTextColor,
                                                    centerYOffset: systemFontScheme.tableYOffset)
-                    .buildCell(forOutlineView: outlineView,
-                               forColumnWithId: .cid_TrackDuration, havingItem: track)
+                .buildCell(forOutlineView: outlineView,
+                           forColumnWithId: .cid_TrackDuration, havingItem: track)
             }
             
             if let artist = item as? ArtistGroup,
@@ -166,105 +158,25 @@ class LibraryArtistsViewController: TrackListOutlineViewController {
         lblArtistsSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "artist" : "artists"), \(numTracks) \(numTracks == 1 ? "track" : "tracks")"
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(library.duration)
     }
-}
-
-extension LibraryArtistsViewController: ColorSchemeObserver {
     
-    func colorSchemeChanged() {
+    override func fontSchemeChanged() {
         
-        backgroundColorChanged(systemColorScheme.backgroundColor)
+        super.fontSchemeChanged()
+        
+        lblCaption.font = systemFontScheme.captionFont
+        [lblArtistsSummary, lblDurationSummary].forEach {
+            $0.font = systemFontScheme.smallFont
+        }
+    }
+    
+    override func colorSchemeChanged() {
+        
+        super.colorSchemeChanged()
+        
+        rootContainer.fillColor = systemColorScheme.backgroundColor
         lblCaption.textColor = systemColorScheme.captionTextColor
         
         lblArtistsSummary.textColor = systemColorScheme.secondaryTextColor
         lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
-        
-        outlineView.reloadDataMaintainingSelection()
     }
-    
-    private func backgroundColorChanged(_ newColor: PlatformColor) {
-        
-        rootContainer.fillColor = newColor
-        outlineView.setBackgroundColor(newColor)
-    }
-    
-    private func tableTextColorChanged(_ newColor: PlatformColor) {
-        outlineView.reloadDataMaintainingSelection()
-    }
-    
-    private func tableSelectedTextColorChanged(_ newColor: PlatformColor) {
-        outlineView.reloadRows(selectedRows)
-    }
-    
-    private func textSelectionColorChanged(_ newColor: PlatformColor) {
-        outlineView.redoRowSelection()
-    }
-}
-
-class ArtistCellView: AuralTableCellView {
-    
-    func update(forGroup group: ArtistGroup) {
-        
-        text = group.name
-        image = .imgArtistGroup
-        image?.isTemplate = true
-        imageColor = systemColorScheme.buttonColor
-        
-        textFont = systemFontScheme.prominentFont
-        textColor = systemColorScheme.primaryTextColor
-    }
-}
-
-class ArtistAlbumCellView: AuralTableCellView {
-    
-    func update(forGroup group: AlbumGroup) {
-        
-        var string = group.name.attributed(font: systemFontScheme.prominentFont, color: systemColorScheme.primaryTextColor, lineSpacing: 5)
-        
-        var hasGenre: Bool = false
-        
-        if let genres = group.genresString {
-            
-            string = string + "\n\(genres)".attributed(font: systemFontScheme.normalFont, color: systemColorScheme.tertiaryTextColor)
-            hasGenre = true
-        }
-        
-        if let year = group.yearString {
-            
-            let padding = hasGenre ? "  " : ""
-            string = string + "\(padding)[\(year)]".attributed(font: systemFontScheme.normalFont, color: systemColorScheme.tertiaryTextColor, lineSpacing: 3)
-        }
-        
-        textField?.attributedStringValue = string
-        image = group.art
-    }
-}
-
-extension GroupSummaryCellView {
-    
-    func update(forArtistGroup group: ArtistGroup, showAlbumsCount: Bool = true) {
-        
-        let trackCount = group.numberOfTracks
-        let albumCount = group.numberOfSubGroups
-        
-        if showAlbumsCount {
-            lblTrackCount.stringValue = "\(albumCount) \(albumCount == 1 ? "album" : "albums"), \(trackCount) \(trackCount == 1 ? "track" : "tracks")"
-        } else {
-            lblTrackCount.stringValue = "\(trackCount) \(trackCount == 1 ? "track" : "tracks")"
-        }
-        
-        lblDuration.stringValue = ValueFormatter.formatSecondsToHMS(group.duration)
-        
-        lblTrackCount.font = summaryFont
-        lblDuration.font = summaryFont
-        
-        lblTrackCount.textColor = systemColorScheme.secondaryTextColor
-        lblDuration.textColor = systemColorScheme.secondaryTextColor
-    }
-}
-
-extension NSUserInterfaceItemIdentifier {
-    
-    // Outline view column identifiers
-    static let cid_ArtistName: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_ArtistName")
-    static let cid_ArtistDuration: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_ArtistDuration")
 }

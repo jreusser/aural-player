@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver, ColorSchemeObserver {
+class PlayQueueViewController: TrackListTableViewController {
     
     /// Override this !!!
     var playQueueView: PlayQueueView {
@@ -60,18 +60,7 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
         
         tableView.menu = contextMenu
         
-        fontSchemesManager.registerObserver(self)
-        
-        colorSchemesManager.registerSchemeObserver(self)
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: tableView)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, handler: activeControlColorChanged(_:))
-        
-        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor,
-                                                                            \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor],
-                                                     handler: textColorChanged(_:))
-        
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor,
-                                                     handler: textSelectionColorChanged(_:))
         
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
@@ -125,27 +114,11 @@ class PlayQueueViewController: TrackListTableViewController, FontSchemeObserver,
     
     // MARK: Notification / command handling ----------------------------------------------------------------------------------------
     
-    func fontSchemeChanged() {
-        tableView.reloadDataMaintainingSelection()
-    }
-    
-    func colorSchemeChanged() {
-        tableView.colorSchemeChanged()
-    }
-    
     func activeControlColorChanged(_ newColor: PlatformColor) {
         
         if let playingTrackIndex = playQueueDelegate.currentTrackIndex {
             tableView.reloadRows([playingTrackIndex])
         }
-    }
-    
-    func textColorChanged(_ newColor: PlatformColor) {
-        tableView.reloadDataMaintainingSelection()
-    }
-    
-    func textSelectionColorChanged(_ newColor: PlatformColor) {
-        tableView.redoRowSelection()
     }
     
     private func tracksAdded(_ notif: PlayQueueTracksAddedNotification) {

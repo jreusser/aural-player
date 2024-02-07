@@ -12,7 +12,7 @@ import Cocoa
 /*
     Controller for the color scheme editor panel that allows the current system color scheme to be edited.
  */
-class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, ModalDialogDelegate, NSToolbarItemValidation {
+class ColorSchemesWindowController: SingletonWindowController, ModalDialogDelegate, NSToolbarItemValidation {
     
     override var windowNibName: NSNib.Name? {"ColorSchemes"}
     
@@ -36,9 +36,6 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
     private lazy var controlStatesSchemeView: ColorSchemesViewProtocol = ControlStatesColorSchemeViewController()
     
     private var subViews: [ColorSchemesViewProtocol] = []
-    
-    // Popover to collect user input (i.e. color scheme name) when saving new color schemes
-    lazy var userSchemesPopover: StringInputPopoverViewController = .create(self)
     
     // Maintains a history of all changes made to the system color scheme since the dialog opened. Allows undo/redo.
     private var history: ColorSchemeHistory = ColorSchemeHistory()
@@ -98,30 +95,6 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
         theWindow.showCenteredOnScreen()
         
         return .ok
-    }
-    
-    // Applies an existing color scheme (either user-defined or system-defined) to the current system color scheme.
-    @IBAction func applySchemeAction(_ sender: NSMenuItem) {
-        
-        // First, capture a snapshot of the current scheme (for potentially undoing later)
-        let undoValue: ColorScheme = systemColorScheme.clone()
-        
-        // Apply the user-selected scheme
-        colorSchemesManager.applyScheme(named: sender.title)
-            
-        // Capture the new scheme (for potentially redoing changes later)
-        let newScheme = systemColorScheme
-        let redoValue: ColorScheme = newScheme.clone()
-        history.noteChange(ColorSchemeChange(tag: 1, undoValue: undoValue, redoValue: redoValue, changeType: .applyScheme))
-            
-        // Notify UI components of the scheme change
-        schemeUpdated(newScheme)
-    }
-    
-    @IBAction func saveSchemeAction(_ sender: Any) {
-        
-        // Allows the user to type in a name and save a new color scheme
-        userSchemesPopover.show(btnSave, NSRectEdge.minY)
     }
     
     // Undo all changes made to the system color scheme since the dialog last opened (i.e. this editing session)
@@ -228,16 +201,6 @@ class ColorSchemesWindowController: SingletonWindowController, NSMenuDelegate, M
         
         // Make sure the color panel closes before the app exits
         NSColorPanel.shared.close()
-    }
-    
-    // MARK - MenuDelegate functions
-    
-    // When the menu is about to open, recreate the menu with to the currently available color schemes.
-    func menuNeedsUpdate(_ menu: NSMenu) {
-        
-        menu.recreateMenu(insertingItemsAt: 1, fromItems: colorSchemesManager.userDefinedObjects,
-                          action: #selector(self.applySchemeAction(_:)), target: self,
-                          indentationLevel: 1)
     }
 }
 

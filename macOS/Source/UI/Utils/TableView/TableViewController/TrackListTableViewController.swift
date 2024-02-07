@@ -10,7 +10,7 @@
 
 import Cocoa
 
-class TrackListTableViewController: NSViewController, NSTableViewDelegate {
+class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontSchemeObserver, ColorSchemeObserver {
     
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var sortOrderMenuItemView: SortOrderMenuItemView!
@@ -57,9 +57,19 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         tableView.enclosingScrollView?.autohidesScrollers = false
         tableView.enclosingScrollView?.hasVerticalScroller = true
         
-//        colorSchemesManager.registerSchemeObserver(tableView, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor, \.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor])
+        fontSchemesManager.registerObserver(self)
         
-        //fontSchemesManager.registerSchemeObserver(tableView, forProperties: [\.normalFont])
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: tableView)
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor],
+                                                     handler: textColorChanged(_:))
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor],
+                                                     handler: selectedTextColorChanged(_:))
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor,
+                                                     handler: textSelectionColorChanged(_:))
     }
     
     // ---------------- NSTableViewDataSource --------------------
@@ -386,5 +396,25 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate {
         if firstRemovedRow <= lastRowAfterRemove {
             tableView.reloadRows(firstRemovedRow...lastRowAfterRemove, columns: [0])
         }
+    }
+    
+    func fontSchemeChanged() {
+        tableView.reloadDataMaintainingSelection()
+    }
+    
+    func colorSchemeChanged() {
+        tableView.colorSchemeChanged()
+    }
+    
+    func textColorChanged(_ newColor: PlatformColor) {
+        tableView.reloadDataMaintainingSelection()
+    }
+    
+    func selectedTextColorChanged(_ newColor: PlatformColor) {
+        tableView.reloadRows(selectedRows)
+    }
+    
+    func textSelectionColorChanged(_ newColor: PlatformColor) {
+        tableView.redoRowSelection()
     }
 }

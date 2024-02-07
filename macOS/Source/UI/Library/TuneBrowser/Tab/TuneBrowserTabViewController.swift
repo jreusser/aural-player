@@ -34,7 +34,9 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
     
     lazy var messenger = Messenger(for: self)
     
-    let textFont: NSFont = standardFontSet.mainFont(size: 13)
+    var textFont: NSFont {
+        systemFontScheme.normalFont
+    }
     
     init(pathControlWidget: NSPathControl, tree: FileSystemTree, rootFolder: FileSystemFolderItem) {
         

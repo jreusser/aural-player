@@ -625,6 +625,11 @@
 		3EC530E9284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC530E8284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift */; };
 		3EC62B6628512F0600995264 /* Playlists.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC62B6528512F0600995264 /* Playlists.xib */; };
 		3EC62B6828512F2400995264 /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC62B6728512F2400995264 /* PlaylistsViewController.swift */; };
+		3EC7936F2B73C34600AF7E9E /* LibraryArtistsView+TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7936E2B73C34600AF7E9E /* LibraryArtistsView+TableCells.swift */; };
+		3EC793712B73C41000AF7E9E /* LibraryAlbumsView+TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793702B73C41000AF7E9E /* LibraryAlbumsView+TableCells.swift */; };
+		3EC793732B73C45500AF7E9E /* LibraryGenresView+TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793722B73C45500AF7E9E /* LibraryGenresView+TableCells.swift */; };
+		3EC793752B73C4C400AF7E9E /* LibraryDecadesView+TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793742B73C4C400AF7E9E /* LibraryDecadesView+TableCells.swift */; };
+		3EC793772B73DB3600AF7E9E /* LibraryImportedPlaylistsView+TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793762B73DB3600AF7E9E /* LibraryImportedPlaylistsView+TableCells.swift */; };
 		3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */; };
 		3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
@@ -1683,6 +1688,11 @@
 		3EC530E8284BC56E0036207C /* LibrarySidebarViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibrarySidebarViewController+DataSource.swift"; sourceTree = "<group>"; };
 		3EC62B6528512F0600995264 /* Playlists.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Playlists.xib; sourceTree = "<group>"; };
 		3EC62B6728512F2400995264 /* PlaylistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
+		3EC7936E2B73C34600AF7E9E /* LibraryArtistsView+TableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibraryArtistsView+TableCells.swift"; sourceTree = "<group>"; };
+		3EC793702B73C41000AF7E9E /* LibraryAlbumsView+TableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibraryAlbumsView+TableCells.swift"; sourceTree = "<group>"; };
+		3EC793722B73C45500AF7E9E /* LibraryGenresView+TableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibraryGenresView+TableCells.swift"; sourceTree = "<group>"; };
+		3EC793742B73C4C400AF7E9E /* LibraryDecadesView+TableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibraryDecadesView+TableCells.swift"; sourceTree = "<group>"; };
+		3EC793762B73DB3600AF7E9E /* LibraryImportedPlaylistsView+TableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibraryImportedPlaylistsView+TableCells.swift"; sourceTree = "<group>"; };
 		3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
 		3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTracksToPlaylistCommand.swift; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
@@ -2145,6 +2155,7 @@
 			children = (
 				3E05FD41283A453D00EB7861 /* LibraryAlbums.xib */,
 				3E05FD43283A455300EB7861 /* LibraryAlbumsViewController.swift */,
+				3EC793702B73C41000AF7E9E /* LibraryAlbumsView+TableCells.swift */,
 			);
 			path = Albums;
 			sourceTree = "<group>";
@@ -2358,6 +2369,7 @@
 			children = (
 				3E2ADEDA2843E4B7009586E7 /* LibraryDecades.xib */,
 				3E2ADEDC2843E554009586E7 /* LibraryDecadesViewController.swift */,
+				3EC793742B73C4C400AF7E9E /* LibraryDecadesView+TableCells.swift */,
 			);
 			path = Decades;
 			sourceTree = "<group>";
@@ -3539,6 +3551,7 @@
 			children = (
 				3E71FBEB2AE34B3C00AB6C18 /* LibraryImportedPlaylists.xib */,
 				3E71FBED2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift */,
+				3EC793762B73DB3600AF7E9E /* LibraryImportedPlaylistsView+TableCells.swift */,
 			);
 			path = ImportedPlaylists;
 			sourceTree = "<group>";
@@ -3587,6 +3600,7 @@
 			children = (
 				3E8DD6402844988500FED49D /* LibraryArtists.xib */,
 				3E8DD6422844998500FED49D /* LibraryArtistsViewController.swift */,
+				3EC7936E2B73C34600AF7E9E /* LibraryArtistsView+TableCells.swift */,
 				3EB462BE2847CCA7000E3F85 /* LibraryArtistsSortView.swift */,
 			);
 			path = Artists;
@@ -3597,6 +3611,7 @@
 			children = (
 				3E8DD6452845633500FED49D /* LibraryGenres.xib */,
 				3E8DD6472845641700FED49D /* LibraryGenresViewController.swift */,
+				3EC793722B73C45500AF7E9E /* LibraryGenresView+TableCells.swift */,
 			);
 			path = Genres;
 			sourceTree = "<group>";
@@ -5380,6 +5395,7 @@
 				3E1341282B6F008E009782B6 /* TrackInfoViewController+MenuDelegate.swift in Sources */,
 				3EFE3A8727864898006F8B8C /* FileSystemInfo.swift in Sources */,
 				3ECBF30A2619DF7200AD5C30 /* AudioUnitsViewController+TableViewDelegate.swift in Sources */,
+				3EC793752B73C4C400AF7E9E /* LibraryDecadesView+TableCells.swift in Sources */,
 				3E6C66A92B54686D00AA0D81 /* LegacyAudioGraphPersistentState.swift in Sources */,
 				3EFE387527864896006F8B8C /* ReverbUnit.swift in Sources */,
 				3ECBF3062619D58500AD5C30 /* AudioUnitsViewController.swift in Sources */,
@@ -5474,6 +5490,7 @@
 				3E2A2A062809B68A000F0539 /* PlaylistNamesTableViewController.swift in Sources */,
 				3E08AC13281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift in Sources */,
 				3EC530E5284BB69C0036207C /* TableDragDropContext.swift in Sources */,
+				3EC7936F2B73C34600AF7E9E /* LibraryArtistsView+TableCells.swift in Sources */,
 				3EFE3A9127864898006F8B8C /* AuxiliaryMetadata.swift in Sources */,
 				3EEFF59027DE84A3002CB0FE /* PlayableItem.swift in Sources */,
 				3EFE396D27864897006F8B8C /* PlaybackDelegate.swift in Sources */,
@@ -5589,6 +5606,7 @@
 				3EFE395F27864897006F8B8C /* AuralPlayerNode.swift in Sources */,
 				3EFE386B27864896006F8B8C /* EffectsUnit.swift in Sources */,
 				3EBF292D2686961300D87021 /* EffectsUnitTabButton.swift in Sources */,
+				3EC793712B73C41000AF7E9E /* LibraryAlbumsView+TableCells.swift in Sources */,
 				3EF72D6C2B71AAF5005166BF /* DiscreteCircularSlider.swift in Sources */,
 				3EFE381527864896006F8B8C /* CueSheetIO.swift in Sources */,
 				3E6C127425CEBE1800BF0D07 /* EffectsUnitTabButtonCell.swift in Sources */,
@@ -5903,6 +5921,7 @@
 				3EFE39DD27864897006F8B8C /* EQUnitPersistentState.swift in Sources */,
 				3EFE380727864896006F8B8C /* SortField.swift in Sources */,
 				3E6C12DF25CEBE8100BF0D07 /* PlayingTrackTextView.swift in Sources */,
+				3EC793732B73C45500AF7E9E /* LibraryGenresView+TableCells.swift in Sources */,
 				3E6C12EC25CEBE8100BF0D07 /* PlayingTrackView.swift in Sources */,
 				3EC29A5927865BC900B29551 /* MenuItemMappable.swift in Sources */,
 				3EFE384527864896006F8B8C /* Group_Old.swift in Sources */,
@@ -6167,6 +6186,7 @@
 				3E10178828D7713B002C0D8E /* FFmpegPacketTable.swift in Sources */,
 				3EABDDEA2694BC40008066E8 /* VisualizerViewOptions.swift in Sources */,
 				3E5F943025E571A6002DEF80 /* VisualizerViewProtocol.swift in Sources */,
+				3EC793772B73DB3600AF7E9E /* LibraryImportedPlaylistsView+TableCells.swift in Sources */,
 				3E798F3728389C10000CFAE8 /* LibraryDelegate.swift in Sources */,
 				3EB1274C2ADD8E3C00745603 /* LibraryHomeSetupViewController.swift in Sources */,
 				3EFE39D127864897006F8B8C /* FilterUnitPersistentState.swift in Sources */,

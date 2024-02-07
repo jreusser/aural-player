@@ -24,6 +24,8 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
     
     lazy var messenger: Messenger = Messenger(for: self)
     
+    private var selectedRows: IndexSet {outlineView.selectedRowIndexes}
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -32,15 +34,16 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
 //        messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
         messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
         
-//        colorSchemesManager.registerObserver(rootContainer, forProperty: \.backgroundColor)
-//        
-//        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
-//        
-//        //fontSchemesManager.registerObservers([lblPlaylistsSummary, lblDurationSummary], forProperty: \.normalFont)
-//        colorSchemesManager.registerObservers([lblPlaylistsSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
-//        
-//        colorSchemesManager.registerObserver(outlineView, forProperty: \.backgroundColor)
+        fontSchemesManager.registerObserver(self)
+        
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceivers: [rootContainer, outlineView])
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceivers: [lblPlaylistsSummary, lblDurationSummary])
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor], handler: textColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primarySelectedTextColor, \.secondarySelectedTextColor, \.tertiarySelectedTextColor], handler: selectedTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
         
         updateSummary()
     }
@@ -60,11 +63,11 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
     // TODO: Implement the controls bar !!! Double-click action, sorting, etc
     
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
-        item is ImportedPlaylist
+        ((item as? ImportedPlaylist)?.size ?? -1) > 0
     }
     
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        item is ImportedPlaylist
+        ((item as? ImportedPlaylist)?.size ?? -1) > 0
     }
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
@@ -87,7 +90,7 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
         }
         
         if let playlist = item as? ImportedPlaylist, let track = playlist[index] {
-            return track
+            return IndexedTrack(track: track, index: index)
         }
         
         return ""
@@ -110,10 +113,10 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
             
         case .cid_Name:
             
-            if let track = item as? Track,
+            if let track = item as? IndexedTrack,
                let cell = outlineView.makeView(withIdentifier: .cid_TrackName, owner: nil) as? ImportedPlaylistTrackCellView {
                 
-                cell.update(forTrack: track)
+                cell.update(forTrack: track.track, atIndex: track.index)
                 cell.rowSelectionStateFunction = {[weak outlineView, weak track] in outlineView?.isItemSelected(track as Any) ?? false}
                 
                 return cell
@@ -130,9 +133,9 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
             
         case .cid_Duration:
             
-            if let track = item as? Track {
+            if let track = item as? IndexedTrack {
                 
-                return TableCellBuilder().withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
+                return TableCellBuilder().withText(text: ValueFormatter.formatSecondsToHMS(track.track.duration),
                                                    inFont: systemFontScheme.normalFont,
                                                    andColor: systemColorScheme.tertiaryTextColor,
                                                    selectedTextColor: systemColorScheme.tertiarySelectedTextColor,
@@ -165,62 +168,52 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
         lblPlaylistsSummary.stringValue = "\(numGroups) \(numGroups == 1 ? "playlist file" : "playlist files"), \(numTracks) \(numTracks == 1 ? "track" : "tracks")"
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(library.durationOfTracksInPlaylists)
     }
-}
-
-class ImportedPlaylistCellView: AuralTableCellView {
     
-    func update(forPlaylist playlist: ImportedPlaylist) {
+    @IBAction func doubleClickAction(_ sender: NSOutlineView) {
         
-        let string = playlist.name.attributed(font: systemFontScheme.prominentFont, color: systemColorScheme.primaryTextColor, lineSpacing: 5)
-        textField?.attributedStringValue = string
+        let selectedItem = outlineView.selectedItem
         
-        imageView?.image = .imgPlaylist
-    }
-}
-
-class ImportedPlaylistTrackCellView: AuralTableCellView {
-    
-    @IBOutlet weak var lblTrackNumber: NSTextField!
-    @IBOutlet weak var lblTrackName: NSTextField!
-    
-    lazy var trackNumberConstraintsManager = LayoutConstraintsManager(for: lblTrackNumber!)
-    lazy var trackNameConstraintsManager = LayoutConstraintsManager(for: lblTrackName!)
-    
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        
-        lblTrackName.font = systemFontScheme.normalFont
-        lblTrackName.textColor = systemColorScheme.primaryTextColor
-        trackNameConstraintsManager.removeAll(withAttributes: [.centerY])
-        trackNameConstraintsManager.centerVerticallyInSuperview(offset: systemFontScheme.tableYOffset)
-    }
-    
-    func update(forTrack track: Track) {
-        lblTrackName.stringValue = track.titleOrDefaultDisplayName
-    }
-    
-    override var backgroundStyle: NSView.BackgroundStyle {
-        
-        didSet {
+        if let clickedPlaylist = selectedItem as? ImportedPlaylist {
+            messenger.publish(EnqueueAndPlayNowCommand(tracks: clickedPlaylist.tracks, clearPlayQueue: false))
             
-            if rowIsSelected {
-                
-                lblTrackNumber.textColor = systemColorScheme.tertiarySelectedTextColor
-                lblTrackName.textColor = systemColorScheme.primarySelectedTextColor
-                
-            } else {
-                
-                lblTrackNumber.textColor = systemColorScheme.tertiaryTextColor
-                lblTrackName.textColor = systemColorScheme.primaryTextColor
-            }
+        } else if let clickedTrack = selectedItem as? IndexedTrack {
+            messenger.publish(EnqueueAndPlayNowCommand(tracks: [clickedTrack.track], clearPlayQueue: false))
         }
     }
 }
 
-extension NSUserInterfaceItemIdentifier {
+extension LibraryImportedPlaylistsViewController: FontSchemeObserver {
     
-    // Outline view column identifiers
-    static let cid_ImportedPlaylistName: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_ImportedPlaylistName")
-    static let cid_ImportedPlaylistDuration: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_ImportedPlaylistDuration")
+    func fontSchemeChanged() {
+        
+        outlineView.reloadDataMaintainingSelection()
+        lblCaption.font = systemFontScheme.captionFont
+        [lblPlaylistsSummary, lblDurationSummary].forEach {
+            $0.font = systemFontScheme.smallFont
+        }
+    }
+}
+
+extension LibraryImportedPlaylistsViewController: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        
+        outlineView.colorSchemeChanged()
+        lblCaption.textColor = systemColorScheme.captionTextColor
+        [lblPlaylistsSummary, lblDurationSummary].forEach {
+            $0?.textColor = systemColorScheme.secondaryTextColor
+        }
+    }
+    
+    func textColorChanged(_ newColor: PlatformColor) {
+        outlineView.reloadDataMaintainingSelection()
+    }
+    
+    func selectedTextColorChanged(_ newColor: PlatformColor) {
+        outlineView.reloadRows(selectedRows)
+    }
+    
+    func textSelectionColorChanged(_ newColor: PlatformColor) {
+        outlineView.redoRowSelection()
+    }
 }
