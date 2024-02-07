@@ -157,6 +157,19 @@ class TuneBrowserViewController: NSViewController {
         updateSidebarSelection()
     }
     
+    private func recreatePathWidgetItems() {
+        
+        guard let currentTabVC = self.currentTabVC else {return}
+        let pathComponents = currentTabVC.tree.relativePathComponents(forFolder: currentTabVC.rootFolder)
+        
+        pathControlWidget.pathItems = pathComponents.map {
+            
+            let item = NSPathControlItem()
+            item.attributedTitle = $0.attributed(withFont: systemFontScheme.normalFont, andColor: systemColorScheme.primaryTextColor)
+            return item
+        }
+    }
+    
     private func updatePathWidget(forFolder folder: FileSystemFolderItem, inTree tree: FileSystemTree) {
         
         let pathComponents = tree.relativePathComponents(forFolder: folder)
@@ -240,7 +253,7 @@ extension TuneBrowserViewController: FontSchemeObserver {
     func fontSchemeChanged() {
         
         lblCaption.font = systemFontScheme.captionFont
-        updatePathControlItemTheming()
+        recreatePathWidgetItems()
     }
     
     fileprivate func updatePathControlItemTheming() {

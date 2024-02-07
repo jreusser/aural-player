@@ -13,6 +13,7 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
     
     override var nibName: String? {"TuneBrowserTab"}
     
+    @IBOutlet weak var rootContainer: NSBox!
     var pathControlWidget: NSPathControl!
     @IBOutlet weak var browserView: TuneBrowserOutlineView!
     @IBOutlet weak var lblSummary: NSTextField!
@@ -57,12 +58,14 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         
         browserView.enableDragDrop()
         
+        fontSchemesManager.registerObserver(self)
+        
         colorSchemesManager.registerSchemeObserver(self)
-        
-//        colorSchemesManager.registerObserver(browserView, forProperty: \.backgroundColor)
-//        colorSchemesManager.registerObserver(lblSummary, forProperty: \.secondaryTextColor)
-        
-//        //fontSchemesManager.registerObserver(lblSummary, forProperty: \.normalFont)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceivers: [rootContainer, browserView])
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceiver: lblSummary)
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor], handler: textColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primarySelectedTextColor, \.secondarySelectedTextColor], handler: selectedTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
         
 //        restoreDisplayedColumns()
     }
@@ -212,12 +215,34 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
     }
 }
 
+extension TuneBrowserTabViewController: FontSchemeObserver {
+    
+    func fontSchemeChanged() {
+        
+        browserView.reloadDataMaintainingSelection()
+        lblSummary.font = systemFontScheme.smallFont
+    }
+}
+
 extension TuneBrowserTabViewController: ColorSchemeObserver {
     
     func colorSchemeChanged() {
         
+        rootContainer.fillColor = systemColorScheme.backgroundColor
         browserView.setBackgroundColor(systemColorScheme.backgroundColor)
         browserView.reloadDataMaintainingSelection()
         lblSummary.textColor = systemColorScheme.secondaryTextColor
+    }
+    
+    func textColorChanged(_ newColor: PlatformColor) {
+        browserView.reloadDataMaintainingSelection()
+    }
+    
+    func selectedTextColorChanged(_ newColor: PlatformColor) {
+        browserView.reloadRows(browserView.selectedRowIndexes)
+    }
+    
+    func textSelectionColorChanged(_ newColor: PlatformColor) {
+        browserView.redoRowSelection()
     }
 }

@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="browserView" destination="aWI-Z6-ODA" id="4hv-Fv-sgb"/>
                 <outlet property="lblSummary" destination="hmw-dW-XPU" id="tfv-Wc-M9Z"/>
+                <outlet property="rootContainer" destination="fke-7G-0dx" id="05u-S4-iQp"/>
                 <outlet property="view" destination="fke-7G-0dx" id="kDU-DE-sRJ"/>
             </connections>
         </customObject>
@@ -125,20 +126,20 @@
                 <rect key="frame" x="0.0" y="0.0" width="700" height="341"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U24-9d-uRM" userLabel="FileSystemBrowser">
-                        <rect key="frame" x="0.0" y="43" width="700" height="270"/>
+                    <scrollView borderType="none" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U24-9d-uRM" userLabel="FileSystemBrowser">
+                        <rect key="frame" x="0.0" y="43" width="700" height="214"/>
                         <clipView key="contentView" copiesOnScroll="NO" id="JxV-7x-wTQ">
-                            <rect key="frame" x="0.0" y="0.0" width="700" height="270"/>
+                            <rect key="frame" x="0.0" y="0.0" width="685" height="214"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowHeight="30" rowSizeStyle="automatic" headerView="eGL-lw-kpG" viewBased="YES" indentationPerLevel="16" outlineTableColumn="wQR-x7-Rh4" id="aWI-Z6-ODA" customClass="TuneBrowserOutlineView" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="700" height="242"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="685" height="186"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="tuneBrowser_name" editable="NO" width="668" minWidth="40" maxWidth="1000" id="wQR-x7-Rh4" userLabel="Name">
+                                        <tableColumn identifier="tuneBrowser_name" editable="NO" width="653" minWidth="40" maxWidth="1000" id="wQR-x7-Rh4" userLabel="Name">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Name">
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -152,7 +153,7 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView identifier="tuneBrowser_name" id="2AN-za-1XM" customClass="TuneBrowserItemNameCell" customModule="Aural" customModuleProvider="target">
-                                                    <rect key="frame" x="11" y="1" width="677" height="30"/>
+                                                    <rect key="frame" x="11" y="1" width="662" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hxx-FN-Mfx" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
@@ -161,10 +162,10 @@
                                                                 <constraint firstAttribute="width" constant="20" id="AuB-VQ-aP0"/>
                                                                 <constraint firstAttribute="height" constant="20" id="Fy9-iK-qLR"/>
                                                             </constraints>
-                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="Uik-hf-zSd"/>
+                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="Uik-hf-zSd" customClass="TableImageCell" customModule="Aural" customModuleProvider="target"/>
                                                         </imageView>
                                                         <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ErL-og-g2v">
-                                                            <rect key="frame" x="33" y="2" width="644" height="24"/>
+                                                            <rect key="frame" x="33" y="2" width="629" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="WSD-Fw-aJF">
                                                                 <font key="font" metaFont="system"/>
@@ -529,12 +530,12 @@
                             <rect key="frame" x="-100" y="-100" width="500" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="CPl-ZX-sKk">
-                            <rect key="frame" x="-100" y="-100" width="15" height="102"/>
+                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="CPl-ZX-sKk">
+                            <rect key="frame" x="685" y="28" width="15" height="186"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" wantsLayer="YES" id="eGL-lw-kpG">
-                            <rect key="frame" x="0.0" y="0.0" width="700" height="28"/>
+                            <rect key="frame" x="0.0" y="0.0" width="685" height="28"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <connections>
                                 <outlet property="menu" destination="bs8-bP-8Hb" id="qqJ-sD-TcA"/>

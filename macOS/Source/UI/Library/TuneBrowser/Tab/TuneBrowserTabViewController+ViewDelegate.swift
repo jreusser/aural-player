@@ -17,23 +17,16 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
         return fsItem.name
     }
     
-    func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        return 30
+    func outlineView(_ outlineView: NSOutlineView, rowViewForItem item: Any) -> NSTableRowView? {
+        LibrarySidebarRowView()
     }
+    
+    func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {30}
     
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         
         guard let fsItem = item as? FileSystemItem else {return false}
         return fsItem.type.equalsOneOf(.folder, .playlist)
-    }
-    
-    func outlineViewItemWillExpand(_ notification: Notification) {
-        
-//        guard let fsItem = notification.userInfo?["NSObject"] as? FileSystemItem else {
-//            return
-//        }
-//        
-//        fileSystem.loadChildren(of: fsItem, force: false)
     }
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
@@ -94,6 +87,7 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
         
         cell.initializeForFile(item)
         cell.textFont = textFont
+        cell.textColor = systemColorScheme.secondaryTextColor
         
         return cell
     }
@@ -105,6 +99,7 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
         
         cell.text = item.track.title
         cell.textFont = textFont
+        cell.textColor = systemColorScheme.secondaryTextColor
         
         return cell
     }
@@ -116,6 +111,7 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
         
         cell.text = item.track.artist ?? item.track.albumArtist
         cell.textFont = textFont
+        cell.textColor = systemColorScheme.secondaryTextColor
         
         return cell
     }
@@ -127,6 +123,7 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
         
         cell.text = item.track.album
         cell.textFont = textFont
+        cell.textColor = systemColorScheme.secondaryTextColor
         
         return cell
     }
@@ -138,6 +135,7 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
         
         cell.text = item.track.genre
         cell.textFont = textFont
+        cell.textColor = systemColorScheme.secondaryTextColor
         
         return cell
     }
@@ -154,6 +152,7 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
         }
         
         cell.textFont = textFont
+        cell.textColor = systemColorScheme.secondaryTextColor
         
         return cell
     }
@@ -170,6 +169,7 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
         }
         
         cell.textFont = textFont
+        cell.textColor = systemColorScheme.secondaryTextColor
         
         return cell
     }
@@ -181,6 +181,7 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
         
         cell.text = "\(year)"
         cell.textFont = textFont
+        cell.textColor = systemColorScheme.secondaryTextColor
         
         return cell
     }
@@ -192,6 +193,7 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
         
         cell.text = ValueFormatter.formatSecondsToHMS(item.track.duration)
         cell.textFont = textFont
+        cell.textColor = systemColorScheme.secondaryTextColor
         
         return cell
     }
@@ -204,6 +206,7 @@ extension TuneBrowserTabViewController: NSOutlineViewDelegate {
         let metadata = item.track.audioInfo
         cell.text = metadata?.codec ?? metadata?.format
         cell.textFont = textFont
+        cell.textColor = systemColorScheme.secondaryTextColor
         
         return cell
     }
