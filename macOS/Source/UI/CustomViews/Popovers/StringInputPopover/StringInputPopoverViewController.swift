@@ -64,14 +64,13 @@ class StringInputPopoverViewController: NSViewController, ModalComponentProtocol
     // Shows the popover
     func show(_ relativeToView: NSView, _ preferredEdge: NSRectEdge) {
         
-        if !isShown {
-            
-            initFields()
-            popover.show(relativeTo: positioningRect, of: relativeToView, preferredEdge: preferredEdge)
-            initFields()
-            
-            errorBox.hide()
-        }
+        guard !isShown else {return}
+        
+        initFields()
+        popover.show(relativeTo: positioningRect, of: relativeToView, preferredEdge: preferredEdge)
+        initFields()
+        
+        errorBox.hide()
     }
     
     private func initFields() {

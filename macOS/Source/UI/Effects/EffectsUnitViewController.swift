@@ -145,7 +145,7 @@ class EffectsUnitViewController: NSViewController, FontSchemeObserver, ColorSche
     
     // Displays a popover to allow the user to name the new custom preset
     @IBAction func savePresetAction(_ sender: AnyObject) {
-        userPresetsPopover.show(presetsAndSettingsMenuButton, .minY)
+        userPresetsPopover.show(presetsAndSettingsMenuButton, .maxX)
     }
     
     // ------------------------------------------------------------------------

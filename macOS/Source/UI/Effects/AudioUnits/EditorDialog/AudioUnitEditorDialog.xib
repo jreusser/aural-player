@@ -138,14 +138,14 @@ Gw
                         </textFieldCell>
                     </textField>
                     <button toolTip="Save new preset" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AlZ-mk-WMx" userLabel="Save">
-                        <rect key="frame" x="597" y="530" width="15" height="15"/>
+                        <rect key="frame" x="600" y="533" width="12" height="12"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Save" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="VDp-oI-5Sy">
                             <behavior key="behavior" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <constraints>
-                            <constraint firstAttribute="width" constant="15" id="I0K-ha-gSJ"/>
-                            <constraint firstAttribute="height" constant="15" id="z0O-2a-F6v"/>
+                            <constraint firstAttribute="width" constant="12" id="I0K-ha-gSJ"/>
+                            <constraint firstAttribute="height" constant="12" id="z0O-2a-F6v"/>
                         </constraints>
                         <connections>
                             <action selector="saveUserPresetAction:" target="-2" id="Y2W-fT-nn8"/>

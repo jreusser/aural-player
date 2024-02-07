@@ -57,7 +57,11 @@ class FilterUnitViewController: EffectsUnitViewController {
     override func initControls() {
 
         super.initControls()
+        
         addEditorsForAllBands()
+        bandsTableView.reloadData()
+        updateSummary()
+        filterUnitView.redrawChart()
     }
     
     private func addEditorsForAllBands() {
