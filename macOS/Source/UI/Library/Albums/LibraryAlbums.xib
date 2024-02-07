@@ -268,7 +268,7 @@
                                                         <color key="borderColor" red="1" green="1" blue="1" alpha="0.15416647010000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </box>
                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="FAa-wt-Goy" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="45" width="172" height="24"/>
+                                                        <rect key="frame" x="0.0" y="45" width="167" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="zi3-TY-8PP"/>
                                                         </constraints>
@@ -279,7 +279,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4N9-4G-3Rg" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="21" width="172" height="24"/>
+                                                        <rect key="frame" x="-2" y="21" width="169" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="Ecc-di-Pal"/>
                                                         </constraints>
@@ -304,13 +304,13 @@
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="4N9-4G-3Rg" secondAttribute="bottom" constant="21" id="DIC-3z-5OU"/>
                                                     <constraint firstItem="FAa-wt-Goy" firstAttribute="top" secondItem="iCR-FO-Nfi" secondAttribute="top" constant="21" id="GCs-Bu-25V"/>
-                                                    <constraint firstAttribute="trailing" secondItem="FAa-wt-Goy" secondAttribute="trailing" constant="10" id="KcR-Rr-Jtt"/>
+                                                    <constraint firstAttribute="trailing" secondItem="FAa-wt-Goy" secondAttribute="trailing" constant="15" id="KcR-Rr-Jtt"/>
                                                     <constraint firstItem="ADK-iu-Gta" firstAttribute="top" secondItem="iCR-FO-Nfi" secondAttribute="top" id="NMu-dN-6a7"/>
                                                     <constraint firstAttribute="trailing" secondItem="ADK-iu-Gta" secondAttribute="trailing" id="ULe-im-dbB"/>
                                                     <constraint firstItem="4N9-4G-3Rg" firstAttribute="trailing" secondItem="FAa-wt-Goy" secondAttribute="trailing" id="XTq-fV-4ac"/>
                                                     <constraint firstAttribute="bottom" secondItem="a5U-hX-qqF" secondAttribute="bottom" id="ZGs-oe-DiK"/>
                                                     <constraint firstItem="ADK-iu-Gta" firstAttribute="leading" secondItem="iCR-FO-Nfi" secondAttribute="leading" id="h9D-Au-oym"/>
-                                                    <constraint firstItem="4N9-4G-3Rg" firstAttribute="leading" secondItem="iCR-FO-Nfi" secondAttribute="leading" constant="2" id="hTp-BK-FBs"/>
+                                                    <constraint firstItem="4N9-4G-3Rg" firstAttribute="leading" secondItem="iCR-FO-Nfi" secondAttribute="leading" id="hTp-BK-FBs"/>
                                                     <constraint firstItem="FAa-wt-Goy" firstAttribute="leading" secondItem="iCR-FO-Nfi" secondAttribute="leading" constant="2" id="pEX-CV-22K"/>
                                                     <constraint firstAttribute="trailing" secondItem="a5U-hX-qqF" secondAttribute="trailing" id="uYN-Z5-Zd2"/>
                                                     <constraint firstItem="a5U-hX-qqF" firstAttribute="leading" secondItem="iCR-FO-Nfi" secondAttribute="leading" id="yev-7m-Qm9"/>
@@ -338,7 +338,7 @@
                                                         <color key="borderColor" red="1" green="1" blue="1" alpha="0.15416647010000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </box>
                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xlc-bt-yRc" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="31" width="172" height="20"/>
+                                                        <rect key="frame" x="-2" y="31" width="169" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="r4s-Hi-AeQ"/>
                                                         </constraints>
@@ -349,7 +349,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5K6-pc-UHr" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="9" width="172" height="20"/>
+                                                        <rect key="frame" x="-2" y="9" width="169" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="xBK-Dx-9Ko"/>
                                                         </constraints>
@@ -375,14 +375,14 @@
                                                     <constraint firstAttribute="trailing" secondItem="9j0-9l-Vm2" secondAttribute="trailing" id="0wE-DE-uVx"/>
                                                     <constraint firstAttribute="bottom" secondItem="8gC-M3-G7j" secondAttribute="bottom" id="6Cs-4S-mvs"/>
                                                     <constraint firstAttribute="trailing" secondItem="8gC-M3-G7j" secondAttribute="trailing" id="7nu-4e-c0K"/>
-                                                    <constraint firstAttribute="trailing" secondItem="xlc-bt-yRc" secondAttribute="trailing" constant="10" id="IAU-Vc-bRb"/>
-                                                    <constraint firstItem="xlc-bt-yRc" firstAttribute="leading" secondItem="wPs-kN-cbY" secondAttribute="leading" constant="2" id="IZ3-CH-Yyu"/>
+                                                    <constraint firstAttribute="trailing" secondItem="xlc-bt-yRc" secondAttribute="trailing" constant="15" id="IAU-Vc-bRb"/>
+                                                    <constraint firstItem="xlc-bt-yRc" firstAttribute="leading" secondItem="wPs-kN-cbY" secondAttribute="leading" id="IZ3-CH-Yyu"/>
                                                     <constraint firstItem="9j0-9l-Vm2" firstAttribute="leading" secondItem="wPs-kN-cbY" secondAttribute="leading" id="JpS-Ou-uwh"/>
                                                     <constraint firstItem="xlc-bt-yRc" firstAttribute="trailing" secondItem="5K6-pc-UHr" secondAttribute="trailing" id="Lg3-9P-W0J"/>
                                                     <constraint firstItem="8gC-M3-G7j" firstAttribute="leading" secondItem="wPs-kN-cbY" secondAttribute="leading" id="Oij-Sh-5r3"/>
                                                     <constraint firstItem="9j0-9l-Vm2" firstAttribute="top" secondItem="wPs-kN-cbY" secondAttribute="top" id="j9w-0s-PON"/>
                                                     <constraint firstItem="8gC-M3-G7j" firstAttribute="top" secondItem="5K6-pc-UHr" secondAttribute="bottom" constant="8" id="k8U-rN-G3d"/>
-                                                    <constraint firstItem="5K6-pc-UHr" firstAttribute="leading" secondItem="wPs-kN-cbY" secondAttribute="leading" constant="2" id="oo8-4c-b2F"/>
+                                                    <constraint firstItem="5K6-pc-UHr" firstAttribute="leading" secondItem="wPs-kN-cbY" secondAttribute="leading" id="oo8-4c-b2F"/>
                                                     <constraint firstItem="xlc-bt-yRc" firstAttribute="top" secondItem="9j0-9l-Vm2" secondAttribute="bottom" constant="8" id="xCQ-5f-X4O"/>
                                                 </constraints>
                                                 <connections>
@@ -395,7 +395,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="hBY-pE-fw3" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="3" width="172" height="24"/>
+                                                        <rect key="frame" x="0.0" y="3" width="167" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="L5v-pb-Wdw"/>
                                                         </constraints>
@@ -409,7 +409,7 @@
                                                 <constraints>
                                                     <constraint firstItem="hBY-pE-fw3" firstAttribute="leading" secondItem="QEO-Sl-n0O" secondAttribute="leading" constant="2" id="Fgp-9K-Y8g"/>
                                                     <constraint firstItem="hBY-pE-fw3" firstAttribute="centerY" secondItem="QEO-Sl-n0O" secondAttribute="centerY" id="Grs-k7-zSL"/>
-                                                    <constraint firstAttribute="trailing" secondItem="hBY-pE-fw3" secondAttribute="trailing" constant="10" id="tqg-gh-01q"/>
+                                                    <constraint firstAttribute="trailing" secondItem="hBY-pE-fw3" secondAttribute="trailing" constant="15" id="tqg-gh-01q"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="hBY-pE-fw3" id="WEX-2T-j5v"/>

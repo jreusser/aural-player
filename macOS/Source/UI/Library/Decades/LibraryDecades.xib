@@ -282,7 +282,7 @@
                                                         <color key="borderColor" red="1" green="1" blue="1" alpha="0.15416647010000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </box>
                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kqg-sg-e5i" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="32" width="172" height="20"/>
+                                                        <rect key="frame" x="0.0" y="32" width="167" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="L29-uf-4Gx"/>
                                                         </constraints>
@@ -293,7 +293,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="L79-BT-rh2" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="8" width="172" height="20"/>
+                                                        <rect key="frame" x="0.0" y="8" width="167" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="p2P-0S-lUY"/>
                                                         </constraints>
@@ -321,7 +321,7 @@
                                                     <constraint firstItem="oNH-z8-R5B" firstAttribute="leading" secondItem="c1S-vV-5cB" secondAttribute="leading" id="Jri-C9-ECx"/>
                                                     <constraint firstItem="kqg-sg-e5i" firstAttribute="leading" secondItem="c1S-vV-5cB" secondAttribute="leading" constant="2" id="Vdt-61-VsT"/>
                                                     <constraint firstItem="L79-BT-rh2" firstAttribute="trailing" secondItem="kqg-sg-e5i" secondAttribute="trailing" id="ZAi-st-HfT"/>
-                                                    <constraint firstAttribute="trailing" secondItem="kqg-sg-e5i" secondAttribute="trailing" constant="10" id="ePS-h6-ehI"/>
+                                                    <constraint firstAttribute="trailing" secondItem="kqg-sg-e5i" secondAttribute="trailing" constant="15" id="ePS-h6-ehI"/>
                                                     <constraint firstAttribute="bottom" secondItem="oNH-z8-R5B" secondAttribute="bottom" id="pdC-SB-ZKs"/>
                                                     <constraint firstAttribute="trailing" secondItem="oNH-z8-R5B" secondAttribute="trailing" id="rt8-ys-rDb"/>
                                                     <constraint firstAttribute="trailing" secondItem="bE5-k4-XxF" secondAttribute="trailing" id="uzw-X7-rkl"/>
@@ -351,7 +351,7 @@
                                                         <color key="borderColor" red="1" green="1" blue="1" alpha="0.15416647010000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </box>
                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="da7-vl-6Bg" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="32" width="172" height="20"/>
+                                                        <rect key="frame" x="0.0" y="32" width="167" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="i79-Nz-ARr"/>
                                                         </constraints>
@@ -362,7 +362,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="luf-Uu-Hdd" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="8" width="172" height="20"/>
+                                                        <rect key="frame" x="0.0" y="8" width="167" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="KL4-NW-UTn"/>
                                                         </constraints>
@@ -388,7 +388,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="9Je-pu-2Wg" secondAttribute="trailing" id="2fT-cg-UTW"/>
                                                     <constraint firstItem="elG-21-3Si" firstAttribute="leading" secondItem="tzI-yw-kpk" secondAttribute="leading" id="4Fk-lj-Ijt"/>
                                                     <constraint firstAttribute="trailing" secondItem="elG-21-3Si" secondAttribute="trailing" id="6wZ-xd-hIk"/>
-                                                    <constraint firstAttribute="trailing" secondItem="da7-vl-6Bg" secondAttribute="trailing" constant="10" id="Fde-f5-KQY"/>
+                                                    <constraint firstAttribute="trailing" secondItem="da7-vl-6Bg" secondAttribute="trailing" constant="15" id="Fde-f5-KQY"/>
                                                     <constraint firstAttribute="bottom" secondItem="elG-21-3Si" secondAttribute="bottom" id="J6Q-ah-Yje"/>
                                                     <constraint firstItem="luf-Uu-Hdd" firstAttribute="leading" secondItem="tzI-yw-kpk" secondAttribute="leading" constant="2" id="Ous-IB-crr"/>
                                                     <constraint firstItem="luf-Uu-Hdd" firstAttribute="trailing" secondItem="da7-vl-6Bg" secondAttribute="trailing" id="ggg-Ah-WNP"/>
@@ -409,7 +409,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1JZ-OV-5xK" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="3" width="172" height="24"/>
+                                                        <rect key="frame" x="0.0" y="3" width="167" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="hpV-JX-GXj"/>
                                                         </constraints>
@@ -421,7 +421,7 @@
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="1JZ-OV-5xK" secondAttribute="trailing" constant="10" id="5ZV-2A-Yfu"/>
+                                                    <constraint firstAttribute="trailing" secondItem="1JZ-OV-5xK" secondAttribute="trailing" constant="15" id="5ZV-2A-Yfu"/>
                                                     <constraint firstItem="1JZ-OV-5xK" firstAttribute="leading" secondItem="mcL-Wx-chz" secondAttribute="leading" constant="2" id="89R-i0-yA6"/>
                                                     <constraint firstItem="1JZ-OV-5xK" firstAttribute="centerY" secondItem="mcL-Wx-chz" secondAttribute="centerY" id="bU4-1M-crV"/>
                                                 </constraints>
