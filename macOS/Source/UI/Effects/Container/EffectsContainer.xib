@@ -33,7 +33,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="200"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n9O-Uy-jzq" userLabel="Unit Description" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n9O-Uy-jzq" userLabel="Unit Description" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="35" y="171" width="180" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" title="Time  Stretch" id="yCL-v9-cVM">
@@ -105,9 +105,10 @@
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eDA-4d-7nO" userLabel="Master button" customClass="EffectsUnitTabButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="226" y="170" width="22" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="MasterTab" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A4C-Nd-64T" customClass="EffectsUnitTabButtonCell" customModule="Aural" customModuleProvider="target">
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="A4C-Nd-64T" customClass="EffectsUnitTabButtonCell" customModule="Aural" customModuleProvider="target">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <imageReference key="image" image="powerplug.fill" catalog="system" symbolScale="large"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="imgWidth">
                                     <integer key="value" value="15"/>
@@ -145,7 +146,7 @@
                     <button tag="2" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Pj-VR-Lif" userLabel="Pitch button" customClass="EffectsUnitTabButton" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="282" y="170" width="22" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="PitchTab" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="j0c-oV-udU" customClass="EffectsUnitTabButtonCell" customModule="Aural" customModuleProvider="target">
+                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="waveform.path.ecg" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="j0c-oV-udU" customClass="EffectsUnitTabButtonCell" customModule="Aural" customModuleProvider="target">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -282,11 +283,11 @@
         <image name="AUTab" width="32" height="19"/>
         <image name="DelayTab" width="23" height="22"/>
         <image name="FilterTab" width="26" height="26"/>
-        <image name="MasterTab" width="20" height="14"/>
-        <image name="PitchTab" width="32" height="26"/>
         <image name="ReverbTab" width="25" height="25"/>
         <image name="hifispeaker.fill" catalog="system" width="13" height="16"/>
+        <image name="powerplug.fill" catalog="system" width="25" height="17"/>
         <image name="slider.vertical.3" catalog="system" width="19" height="18"/>
         <image name="timer" catalog="system" width="20" height="20"/>
+        <image name="waveform.path.ecg" catalog="system" width="16" height="16"/>
     </resources>
 </document>

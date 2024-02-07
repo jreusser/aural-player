@@ -95,7 +95,7 @@ class AudioUnitsViewController: NSViewController {
         DispatchQueue.main.async {
             
             self.doEditAudioUnit(audioUnit)
-            self.messenger.publish(.auEffectsUnit_audioUnitsAddedOrRemoved)
+            self.messenger.publish(.auEffectsUnit_audioUnitAdded, payload: audioUnit)
             self.messenger.publish(.effects_unitStateChanged)
         }
     }
@@ -145,7 +145,7 @@ class AudioUnitsViewController: NSViewController {
         tableView.reloadData()
         updateSummary()
         
-        messenger.publish(.auEffectsUnit_audioUnitsAddedOrRemoved)
+        messenger.publish(.auEffectsUnit_audioUnitsRemoved, payload: selRows)
         messenger.publish(.effects_unitStateChanged)
     }
     

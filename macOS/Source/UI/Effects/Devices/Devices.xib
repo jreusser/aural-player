@@ -27,17 +27,17 @@
                     <rect key="frame" x="45" y="47" width="380" height="98"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" copiesOnScroll="NO" id="ZlV-f6-hdL">
-                        <rect key="frame" x="1" y="1" width="378" height="96"/>
+                        <rect key="frame" x="1" y="1" width="363" height="96"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" tableStyle="plain" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" id="xeh-k7-Jq1" customClass="AuralTableView" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="378" height="96"/>
+                                <rect key="frame" x="0.0" y="0.0" width="364" height="96"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="2" height="0.0"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn identifier="cid_Device" width="340" minWidth="340" maxWidth="340" id="kn9-Jo-UC1">
+                                    <tableColumn identifier="cid_Device" width="320" minWidth="320" maxWidth="320" id="kn9-Jo-UC1">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -50,7 +50,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="zV3-SF-GI9" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="1" y="0.0" width="340" height="24"/>
+                                                <rect key="frame" x="1" y="0.0" width="330" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TSc-YX-7DU" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
@@ -82,7 +82,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="23Q-du-lve" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
-                                                <rect key="frame" x="343" y="0.0" width="30" height="24"/>
+                                                <rect key="frame" x="333" y="0.0" width="30" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="o07-Gh-RLQ" customClass="TintedImageView" customModule="Aural" customModuleProvider="target">
@@ -110,7 +110,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="HKb-Cr-5my">
-                        <rect key="frame" x="363" y="1" width="16" height="96"/>
+                        <rect key="frame" x="364" y="1" width="15" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>

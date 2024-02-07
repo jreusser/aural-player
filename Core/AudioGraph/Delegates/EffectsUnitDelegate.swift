@@ -45,7 +45,7 @@ class EffectsUnitDelegate<T: EffectsUnitProtocol>: EffectsUnitDelegateProtocol {
     
     var isActive: Bool {unit.isActive}
     
-    func toggleState() -> EffectsUnitState {
+    @discardableResult func toggleState() -> EffectsUnitState {
         unit.toggleState()
     }
     

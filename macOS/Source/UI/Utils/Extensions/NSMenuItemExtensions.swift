@@ -157,3 +157,9 @@ extension NSMenuItem {
     }
 }
 
+extension NSPopUpButtonCell {
+
+    func redraw() {
+        controlView?.redraw()
+    }
+}

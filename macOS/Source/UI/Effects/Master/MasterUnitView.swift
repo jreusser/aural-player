@@ -11,6 +11,8 @@ import Cocoa
 
 class MasterUnitView: NSView {
     
+    @IBOutlet weak var fuseBoxMenuButton: NSPopUpButton!
+    
     @IBOutlet weak var btnEQBypass: EffectsUnitTriStateBypassButton!
     @IBOutlet weak var btnPitchBypass: EffectsUnitTriStateBypassButton!
     @IBOutlet weak var btnTimeBypass: EffectsUnitTriStateBypassButton!
@@ -39,6 +41,8 @@ class MasterUnitView: NSView {
     var buttons: [EffectsUnitTriStateBypassButton] = []
     var images: [EffectsUnitTriStateBypassImage] = []
     var labels: [EffectsUnitTriStateLabel] = []
+    
+    private lazy var messenger = Messenger(for: self)
     
     override func awakeFromNib() {
         
@@ -79,6 +83,35 @@ class MasterUnitView: NSView {
         }
         
         //fontSchemesManager.registerObservers(labels, forProperty: \.captionFont)
+        // Remove all user-defined preset items (i.e. all items before the first separator)
+        
+        for fxUnit in audioGraphDelegate.allUnits.filter({$0.unitType != .master}) {
+            doAddFuseBoxMenuItemForEffectsUnit(fxUnit)
+        }
+        
+        messenger.subscribe(to: .auEffectsUnit_audioUnitAdded, handler: doAddFuseBoxMenuItemForEffectsUnit(_:))
+        messenger.subscribe(to: .auEffectsUnit_audioUnitsRemoved, handler: audioUnitsRemoved(_:))
+    }
+    
+    private func doAddFuseBoxMenuItemForEffectsUnit(_ unit: EffectsUnitDelegateProtocol) {
+        
+        let item = NSMenuItem(title: "")
+        
+        let vc = FuseViewController()
+        vc.effectsUnit = unit
+        
+        item.view = vc.view
+        fuseBoxMenuButton.menu?.addItem(item)
+    }
+    
+    private func audioUnitsRemoved(_ indexes: IndexSet) {
+        
+        for index in indexes.sorted(by: {$0 > $1}) {
+            
+            // Adjust index for icon menu item + 6 built-in FX units.
+            let adjustedIndex = index + 7
+            fuseBoxMenuButton.menu?.removeItem(at: adjustedIndex)
+        }
     }
     
     func applyPreset(_ preset: MasterPreset) {

@@ -48,4 +48,30 @@ enum EffectsUnitType: Int {
 
         }
     }
+    
+    var icon: PlatformImage {
+
+        switch self {
+        
+        case .master:   return .imgMasterUnit
+            
+        case .eq:       return .imgEQUnit
+            
+        case .pitch:    return .imgPitchShiftUnit
+            
+        case .time:     return .imgTimeStretchUnit
+            
+        case .reverb:   return .imgReverbUnit
+            
+        case .delay:    return .imgDelayUnit
+            
+        case .filter:   return .imgFilterUnit
+            
+        case .au:       return .imgAudioUnit
+            
+        default:
+            
+            return .imgMasterUnit
+        }
+    }
 }

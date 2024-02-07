@@ -167,7 +167,6 @@ class MasterUnitViewController: EffectsUnitViewController {
                                  filter: {msg in msg.trackChanged})
         
         messenger.subscribe(to: .masterEffectsUnit_toggleEffects, handler: toggleEffects)
-        messenger.subscribe(to: .auEffectsUnit_audioUnitsAddedOrRemoved, handler: audioUnitsTable.reloadData)
     }
     
     override func stateChanged() {

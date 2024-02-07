@@ -98,6 +98,9 @@
 		3E3ACC042B5932EC00F2F678 /* LegacyHistoryPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3ACC032B5932EC00F2F678 /* LegacyHistoryPersistentState.swift */; };
 		3E3ACC062B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3ACC052B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift */; };
 		3E3B8D342B72D95B0060C7C7 /* EffectsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B8D332B72D95B0060C7C7 /* EffectsContainerView.swift */; };
+		3E3B8D362B72E2700060C7C7 /* FuseBoxPopupMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B8D352B72E2700060C7C7 /* FuseBoxPopupMenuCell.swift */; };
+		3E3B8D382B72E5580060C7C7 /* Fuse.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B8D372B72E5580060C7C7 /* Fuse.xib */; };
+		3E3B8D3A2B72E5AF0060C7C7 /* FuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B8D392B72E5AF0060C7C7 /* FuseViewController.swift */; };
 		3E3BCFF62AF1BB0000FD893A /* UserPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3BCFF52AF1BB0000FD893A /* UserPreference.swift */; };
 		3E3BCFF92AF1DBF100FD893A /* GeneralSoundPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3BCFF82AF1DBF100FD893A /* GeneralSoundPreferences.xib */; };
 		3E3BCFFB2AF1DC0300FD893A /* GeneralSoundPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3BCFFA2AF1DC0300FD893A /* GeneralSoundPreferencesViewController.swift */; };
@@ -1156,6 +1159,9 @@
 		3E3ACC032B5932EC00F2F678 /* LegacyHistoryPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyHistoryPersistentState.swift; sourceTree = "<group>"; };
 		3E3ACC052B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyColorSchemesPersistentState.swift; sourceTree = "<group>"; };
 		3E3B8D332B72D95B0060C7C7 /* EffectsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsContainerView.swift; sourceTree = "<group>"; };
+		3E3B8D352B72E2700060C7C7 /* FuseBoxPopupMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuseBoxPopupMenuCell.swift; sourceTree = "<group>"; };
+		3E3B8D372B72E5580060C7C7 /* Fuse.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Fuse.xib; sourceTree = "<group>"; };
+		3E3B8D392B72E5AF0060C7C7 /* FuseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuseViewController.swift; sourceTree = "<group>"; };
 		3E3BCFF52AF1BB0000FD893A /* UserPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreference.swift; sourceTree = "<group>"; };
 		3E3BCFF82AF1DBF100FD893A /* GeneralSoundPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralSoundPreferences.xib; sourceTree = "<group>"; };
 		3E3BCFFA2AF1DC0300FD893A /* GeneralSoundPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSoundPreferencesViewController.swift; sourceTree = "<group>"; };
@@ -3371,6 +3377,9 @@
 				3E6C100825CEB98600BF0D07 /* MasterUnitViewController.swift */,
 				3E4CC361261EBEEC00740333 /* MasterUnitViewController+AUTableViewDelegate.swift */,
 				3E6C100725CEB98600BF0D07 /* MasterUnitView.swift */,
+				3E3B8D352B72E2700060C7C7 /* FuseBoxPopupMenuCell.swift */,
+				3E3B8D372B72E5580060C7C7 /* Fuse.xib */,
+				3E3B8D392B72E5AF0060C7C7 /* FuseViewController.swift */,
 			);
 			path = Master;
 			sourceTree = "<group>";
@@ -5271,6 +5280,7 @@
 				3E51F346262AFDCA0048452F /* ThemesManager.xib in Resources */,
 				3E498E26284D2DA400BF4157 /* TuneBrowser.xib in Resources */,
 				3EC62B6628512F0600995264 /* Playlists.xib in Resources */,
+				3E3B8D382B72E5580060C7C7 /* Fuse.xib in Resources */,
 				3EAF96ED28DCE1B6008561A7 /* Exo-Medium.ttf in Resources */,
 				3E6C124225CEBDF400BF0D07 /* ArtistsPlaylistSort.xib in Resources */,
 				3E6C125425CEBE0600BF0D07 /* ColorSchemesManager.xib in Resources */,
@@ -5562,6 +5572,7 @@
 				3EAFB617267FF4C200F0DC96 /* EffectsSliderPreviewCell.swift in Sources */,
 				3EBF29332686979700D87021 /* EffectsTextButtonCell.swift in Sources */,
 				3EFE392F27864897006F8B8C /* TimeIntervalFormatter.swift in Sources */,
+				3E3B8D3A2B72E5AF0060C7C7 /* FuseViewController.swift in Sources */,
 				3EFAA8CF2B70260A001A6682 /* HMSTimeFormatter.swift in Sources */,
 				3E466C8F27FA296C00342C30 /* MainWindowController+EventHandling.swift in Sources */,
 				3EBF293726869A9300D87021 /* EffectsUnitPopupMenuCell.swift in Sources */,
@@ -5906,6 +5917,7 @@
 				3E8FF9DC27F634BE009CEDDD /* TrackLoader.swift in Sources */,
 				3E6C124D25CEBDF400BF0D07 /* PlaylistSearchWindowController.swift in Sources */,
 				3E6C122025CEBDE600BF0D07 /* PlaylistSortWindowController.swift in Sources */,
+				3E3B8D362B72E2700060C7C7 /* FuseBoxPopupMenuCell.swift in Sources */,
 				3EB3FFDC27DE3839009F7E2C /* ColorScheme+Presets.swift in Sources */,
 				3EA6C6322AD6AAA100B75166 /* FFmpegStreamProtocol.swift in Sources */,
 				3E6C125125CEBDF400BF0D07 /* PlaylistUIState.swift in Sources */,

@@ -107,6 +107,17 @@ extension PlatformImage {
     static let imgArtistGroup_menu: PlatformImage = PlatformImage(named: "Artists_Menu")!
     static let imgAlbumGroup_menu: PlatformImage = PlatformImage(named: "Albums_Menu")!
     
+    // --------------- Effects Unit icons -----------------
+
+    static let imgMasterUnit: PlatformImage = PlatformImage(systemSymbolName: "powerplug.fill", accessibilityDescription: nil)!
+    static let imgEQUnit: PlatformImage = PlatformImage(systemSymbolName: "slider.vertical.3", accessibilityDescription: nil)!
+    static let imgPitchShiftUnit: PlatformImage = PlatformImage(systemSymbolName: "waveform.path.ecg", accessibilityDescription: nil)!
+    static let imgTimeStretchUnit: PlatformImage = PlatformImage(systemSymbolName: "timer", accessibilityDescription: nil)!
+    static let imgReverbUnit: PlatformImage = PlatformImage(named: "ReverbTab")!
+    static let imgDelayUnit: PlatformImage = PlatformImage(named: "DelayTab")!
+    static let imgFilterUnit: PlatformImage = PlatformImage(named: "FilterTab")!
+    static let imgAudioUnit: PlatformImage = PlatformImage(named: "AUTab")!
+    
     #if os(iOS)
     
     ///

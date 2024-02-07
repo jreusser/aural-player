@@ -31,7 +31,8 @@ extension Notification.Name {
     
     // MARK: Notifications published by the Audio Units effects unit.
     
-    static let auEffectsUnit_audioUnitsAddedOrRemoved = Notification.Name("auEffectsUnit_audioUnitsAddedOrRemoved")
+    static let auEffectsUnit_audioUnitAdded = Notification.Name("auEffectsUnit_audioUnitAdded")
+    static let auEffectsUnit_audioUnitsRemoved = Notification.Name("auEffectsUnit_audioUnitsRemoved")
     
     // MARK: Effects commands
     

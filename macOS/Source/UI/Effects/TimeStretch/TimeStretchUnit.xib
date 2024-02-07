@@ -100,9 +100,9 @@
                             </textFieldCell>
                         </textField>
                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SUA-Sk-H5c" customClass="EffectsUnitToggle" customModule="Aural" customModuleProvider="target">
-                            <rect key="frame" x="215" y="34" width="24" height="24"/>
+                            <rect key="frame" x="211" y="31" width="28" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NotChecked" imagePosition="left" alignment="left" alternateImage="Checked" controlSize="small" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="RR3-i1-TI8">
+                            <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NotChecked" imagePosition="left" alignment="left" alternateImage="Checked" controlSize="small" state="on" imageScaling="axesIndependently" inset="2" id="RR3-i1-TI8">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="smallSystem"/>
                             </buttonCell>
