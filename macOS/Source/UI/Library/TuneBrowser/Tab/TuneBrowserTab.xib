@@ -118,59 +118,21 @@
             </connections>
             <point key="canvasLocation" x="-147" y="-1180"/>
         </menu>
-        <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" id="fke-7G-0dx" userLabel="Root Container">
-            <rect key="frame" x="0.0" y="0.0" width="700" height="72"/>
+        <box focusRingType="none" misplaced="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" id="fke-7G-0dx" userLabel="Root Container">
+            <rect key="frame" x="0.0" y="0.0" width="700" height="341"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" id="tdp-f1-awf">
-                <rect key="frame" x="0.0" y="0.0" width="700" height="72"/>
+                <rect key="frame" x="0.0" y="0.0" width="700" height="341"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <popUpButton toolTip="Playlist View" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hDu-SS-U8T" userLabel="Settings Menu">
-                        <rect key="frame" x="675" y="48" width="25" height="8"/>
-                        <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="pdo-9D-x2u" id="jgX-6S-K6n">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" size="11" name="Play-Regular"/>
-                            <menu key="menu" autoenablesItems="NO" id="hyW-aa-Bcy">
-                                <items>
-                                    <menuItem image="Settings" hidden="YES" id="pdo-9D-x2u">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem title="Show table header" id="TmD-1C-jwo">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem isSeparatorItem="YES" id="su5-Hl-ama"/>
-                                    <menuItem title="Text size" id="jsH-wE-uoS">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                        <menu key="submenu" title="Text size" id="Dhd-gi-m4h">
-                                            <items>
-                                                <menuItem title="Normal" id="XfO-F9-NgQ">
-                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                </menuItem>
-                                                <menuItem title="Larger" tag="1" id="Is9-Bm-6nd">
-                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                </menuItem>
-                                                <menuItem title="Largest" tag="2" id="VOd-SI-1BS">
-                                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                                </menuItem>
-                                            </items>
-                                        </menu>
-                                    </menuItem>
-                                </items>
-                            </menu>
-                        </popUpButtonCell>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="8" id="kPt-Jn-JnQ"/>
-                            <constraint firstAttribute="width" constant="20" id="vax-9L-ZeO"/>
-                        </constraints>
-                    </popUpButton>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U24-9d-uRM" userLabel="FileSystemBrowser">
-                        <rect key="frame" x="0.0" y="40" width="700" height="32"/>
+                        <rect key="frame" x="0.0" y="43" width="700" height="270"/>
                         <clipView key="contentView" copiesOnScroll="NO" id="JxV-7x-wTQ">
-                            <rect key="frame" x="0.0" y="0.0" width="700" height="32"/>
+                            <rect key="frame" x="0.0" y="0.0" width="700" height="270"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowHeight="30" rowSizeStyle="automatic" headerView="eGL-lw-kpG" viewBased="YES" indentationPerLevel="16" outlineTableColumn="wQR-x7-Rh4" id="aWI-Z6-ODA" customClass="TuneBrowserOutlineView" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="700" height="32"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="700" height="242"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -580,10 +542,10 @@
                         </tableHeaderView>
                     </scrollView>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hmw-dW-XPU" userLabel="Folder summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                        <rect key="frame" x="26" y="5" width="454" height="25"/>
+                        <rect key="frame" x="13" y="10" width="454" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="450" id="KFl-Fp-raM"/>
-                            <constraint firstAttribute="height" constant="25" id="pji-Ww-S2S"/>
+                            <constraint firstAttribute="width" constant="450" id="Z1g-xr-HGn"/>
+                            <constraint firstAttribute="height" constant="25" id="xng-uf-tbJ"/>
                         </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="0 tracks" id="XkK-Ew-uAb" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
                             <font key="font" metaFont="system"/>
@@ -593,22 +555,17 @@
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="hDu-SS-U8T" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" constant="16" id="650-Ql-AHm"/>
-                    <constraint firstItem="U24-9d-uRM" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" id="GGR-Zm-4eh"/>
-                    <constraint firstItem="U24-9d-uRM" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" id="JdK-KK-rPi"/>
-                    <constraint firstAttribute="bottom" secondItem="hmw-dW-XPU" secondAttribute="bottom" constant="5" id="MjJ-VF-gGk"/>
-                    <constraint firstAttribute="trailing" secondItem="hDu-SS-U8T" secondAttribute="trailing" id="OL1-aG-W1S"/>
-                    <constraint firstAttribute="bottom" secondItem="U24-9d-uRM" secondAttribute="bottom" constant="40" id="Snq-Rm-Tsv"/>
-                    <constraint firstItem="hmw-dW-XPU" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" constant="28" id="wXd-No-Em0"/>
-                    <constraint firstAttribute="trailing" secondItem="U24-9d-uRM" secondAttribute="trailing" id="zkT-PS-GzT"/>
+                    <constraint firstItem="hmw-dW-XPU" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" constant="15" id="7nj-c1-ZHv"/>
+                    <constraint firstItem="hmw-dW-XPU" firstAttribute="top" secondItem="U24-9d-uRM" secondAttribute="bottom" constant="8" symbolic="YES" id="GZM-eg-GYQ"/>
+                    <constraint firstAttribute="bottom" secondItem="hmw-dW-XPU" secondAttribute="bottom" constant="10" id="TTI-MD-XDc"/>
+                    <constraint firstItem="U24-9d-uRM" firstAttribute="top" secondItem="tdp-f1-awf" secondAttribute="top" id="VJV-0B-d4s"/>
+                    <constraint firstItem="U24-9d-uRM" firstAttribute="leading" secondItem="tdp-f1-awf" secondAttribute="leading" id="ob3-zv-Nze"/>
+                    <constraint firstAttribute="trailing" secondItem="U24-9d-uRM" secondAttribute="trailing" id="u1H-Ph-xRD"/>
                 </constraints>
             </view>
             <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-            <color key="fillColor" white="0.0848004534527972" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <point key="canvasLocation" x="139" y="639.5"/>
+            <color key="fillColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+            <point key="canvasLocation" x="139" y="667.5"/>
         </box>
     </objects>
-    <resources>
-        <image name="Settings" width="10" height="7"/>
-    </resources>
 </document>

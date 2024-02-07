@@ -27,7 +27,7 @@ class LibrarySidebarViewController: NSViewController {
         super.viewDidLoad()
         
         categories.forEach {sidebarView.expandItem($0)}
-        sidebarView.selectRow(8)
+        sidebarView.selectRow(1)
         
         messenger.subscribe(to: .sidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
         

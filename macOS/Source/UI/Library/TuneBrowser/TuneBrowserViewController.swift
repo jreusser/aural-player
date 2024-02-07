@@ -108,7 +108,7 @@ class TuneBrowserViewController: NSViewController {
         
         let tabViewItem = NSTabViewItem(viewController: tabVC)
         tabView.addTabViewItem(tabViewItem)
-        tabVC.view.anchorToSuperview()
+//        tabVC.view.anchorToSuperview()
         
         self.tabs[folder.url] = tabViewItem
         

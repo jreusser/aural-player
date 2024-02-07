@@ -106,7 +106,12 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
     override func viewWillAppear() {
         
         super.viewWillAppear()
-        restoreDisplayedColumns()
+//        restoreDisplayedColumns()
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        print("Frame: \(browserView.frame), ViewFrame: \(view.frame)")
     }
     
     override func viewWillDisappear() {
