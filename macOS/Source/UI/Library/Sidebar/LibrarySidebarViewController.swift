@@ -27,7 +27,7 @@ class LibrarySidebarViewController: NSViewController {
         super.viewDidLoad()
         
         categories.forEach {sidebarView.expandItem($0)}
-        sidebarView.selectRow(1)
+        sidebarView.selectRow(8)
         
         messenger.subscribe(to: .sidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
         
@@ -37,6 +37,8 @@ class LibrarySidebarViewController: NSViewController {
             self?.sidebarView.reloadItem(LibrarySidebarCategory.tuneBrowser)
             self?.sidebarView.expandItem(LibrarySidebarCategory.tuneBrowser)
         }
+        
+        messenger.subscribe(to: .tuneBrowser_displayedFolderChanged, handler: displayedFolderChanged(_:))
         
         fontSchemesManager.registerObserver(self)
         
@@ -116,9 +118,33 @@ class LibrarySidebarViewController: NSViewController {
         sidebarView.insertItems(at: IndexSet(integer: tuneBrowserUIState.sidebarUserFolders.count),
                                 inParent: LibrarySidebarCategory.tuneBrowser, withAnimation: .slideDown)
     }
+    
+    private func displayedFolderChanged(_ newLocation: FileSystemFolderLocation) {
+        
+        let tbItems = LibrarySidebarCategory.tuneBrowser.items
+        
+        for item in tbItems {
+            
+            if item.tuneBrowserFolder == newLocation.folder {
+                
+                sidebarView.selectItems([item])
+                return
+            }
+        }
+        
+        sidebarView.clearSelection()
+    }
 }
 
-extension LibrarySidebarViewController: ColorSchemeObserver, FontSchemeObserver {
+extension LibrarySidebarViewController: FontSchemeObserver, ColorSchemeObserver {
+    
+    func fontSchemeChanged() {
+        sidebarView.reloadDataMaintainingSelection()
+    }
+    
+    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
+        sidebarView.reloadDataMaintainingSelection()
+    }
     
     func colorSchemeChanged() {
         
@@ -142,13 +168,7 @@ extension LibrarySidebarViewController: ColorSchemeObserver, FontSchemeObserver 
         sidebarView.redoRowSelection()
     }
     
-    func fontSchemeChanged() {
-        sidebarView.reloadDataMaintainingSelection()
-    }
     
-    func fontChanged(to newFont: PlatformFont, forProperty property: KeyPath<FontScheme, PlatformFont>) {
-        sidebarView.reloadDataMaintainingSelection()
-    }
 }
 
 extension LibrarySidebarViewController: NSTextFieldDelegate {

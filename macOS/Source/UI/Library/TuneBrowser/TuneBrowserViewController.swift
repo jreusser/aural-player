@@ -46,12 +46,13 @@ class TuneBrowserViewController: NSViewController {
         
         super.awakeFromNib()
         
+        fontSchemesManager.registerObserver(self)
+        
         colorSchemesManager.registerSchemeObserver(self)
-//        colorSchemesManager.registerObservers([rootContainer, pathControlWidget], forProperty: \.backgroundColor)
-//        colorSchemesManager.registerObservers([btnBack, btnForward], forProperty: \.buttonColor)
-//        
-//        //fontSchemesManager.registerObserver(lblCaption, forProperty: \.captionFont)
-//        colorSchemesManager.registerObserver(lblCaption, forProperty: \.captionTextColor)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: backgroundColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.primaryTextColor, handler: primaryTextColorChanged(_:))
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: [btnBack, btnForward, imgHomeIcon])
     }
     
     override func viewDidLoad() {
@@ -152,6 +153,8 @@ class TuneBrowserViewController: NSViewController {
             createTabForFolder(folder, inTree: tree)
             tabView.showLastTab()
         }
+        
+        updateSidebarSelection()
     }
     
     private func updatePathWidget(forFolder folder: FileSystemFolderItem, inTree tree: FileSystemTree) {
@@ -173,7 +176,10 @@ class TuneBrowserViewController: NSViewController {
     // If the folder currently shown by the browser corresponds to one of the folder shortcuts in the sidebar, select that
     // item in the sidebar.
     func updateSidebarSelection() {
-        // TODO:
+        
+        if let currentLocation = currentTabVC?.location {
+            messenger.publish(.tuneBrowser_displayedFolderChanged, payload: currentLocation)
+        }
     }
     
     func updateNavButtons() {
@@ -229,13 +235,31 @@ class TuneBrowserViewController: NSViewController {
     }
 }
 
+extension TuneBrowserViewController: FontSchemeObserver {
+    
+    func fontSchemeChanged() {
+        
+        lblCaption.font = systemFontScheme.captionFont
+        updatePathControlItemTheming()
+    }
+    
+    fileprivate func updatePathControlItemTheming() {
+        
+        for item in pathControlWidget.pathItems {
+            item.attributedTitle = item.title.attributed(withFont: systemFontScheme.normalFont, andColor: systemColorScheme.primaryTextColor)
+        }
+    }
+}
+
 extension TuneBrowserViewController: ColorSchemeObserver {
     
     func colorSchemeChanged() {
         
         rootContainer.fillColor = systemColorScheme.backgroundColor
         lblCaption.textColor = systemColorScheme.captionTextColor
+        
         pathControlWidget.backgroundColor = systemColorScheme.backgroundColor
+        updatePathControlItemTheming()
         
         [btnBack, btnForward].forEach {
             $0?.contentTintColor = systemColorScheme.buttonColor
@@ -243,12 +267,15 @@ extension TuneBrowserViewController: ColorSchemeObserver {
         
         imgHomeIcon.contentTintColor = systemColorScheme.buttonColor
     }
-}
-
-extension NSPathControl: ColorSchemePropertyObserver {
     
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        backgroundColor = newColor
+    fileprivate func backgroundColorChanged(_ newColor: PlatformColor) {
+        
+        rootContainer.fillColor = newColor
+        pathControlWidget.backgroundColor = newColor
+    }
+    
+    fileprivate func primaryTextColorChanged(_ newColor: PlatformColor) {
+        updatePathControlItemTheming()
     }
 }
 

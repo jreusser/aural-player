@@ -110,7 +110,7 @@ class LibraryWindowController: NSWindowController {
         applyTheme()
         
         // TODO: Temporary, remove this !!!
-        tabGroup.selectTabViewItem(at: 2)
+        tabGroup.selectTabViewItem(at: 6)
         
         displayBuildProgress()
     }

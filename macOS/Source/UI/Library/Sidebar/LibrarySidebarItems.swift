@@ -81,7 +81,7 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
     }
 }
 
-struct LibrarySidebarItem {
+struct LibrarySidebarItem: Equatable {
     
     let displayName: String
     let browserTab: LibraryBrowserTab
@@ -99,6 +99,20 @@ struct LibrarySidebarItem {
         self.tuneBrowserTree = tuneBrowserTree
         
         self.image = image
+    }
+    
+    static func == (lhs: LibrarySidebarItem, rhs: LibrarySidebarItem) -> Bool {
+        
+        if lhs.browserTab != rhs.browserTab {
+            return false
+        }
+        
+        if lhs.browserTab != .fileSystem {
+            return true
+        }
+        
+        // Same folder implies same tree
+        return lhs.tuneBrowserFolder == rhs.tuneBrowserFolder
     }
 }
 
