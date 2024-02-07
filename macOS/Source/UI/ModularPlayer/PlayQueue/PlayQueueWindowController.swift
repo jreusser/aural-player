@@ -14,7 +14,9 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
 
     override var windowNibName: String? {"PlayQueueWindow"}
     
+    @IBOutlet weak var rootContainer: NSBox!
     @IBOutlet weak var btnClose: TintedImageButton!
+    @IBOutlet weak var containerView: NSView!
     private lazy var btnCloseConstraints: LayoutConstraintsManager = LayoutConstraintsManager(for: btnClose)
     
     private lazy var containerViewController: PlayQueueContainerViewController = .init()
@@ -27,7 +29,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         
         theWindow.isMovableByWindowBackground = true
         
-        window?.contentView?.addSubview(containerViewController.view)
+        containerView.addSubview(containerViewController.view)
         
         containerViewController.view.anchorToSuperview()
         
@@ -43,6 +45,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         containerViewController.lblCaption.moveRight(distance: 20)
         
         colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainer)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: btnClose)
         
         changeWindowCornerRadius(windowAppearanceState.cornerRadius)
@@ -63,6 +66,8 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         }
     
     func colorSchemeChanged() {
+        
+        rootContainer.fillColor = systemColorScheme.backgroundColor
         btnClose.contentTintColor = systemColorScheme.buttonColor
     }
     
@@ -75,7 +80,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
     // MARK: Notification handling ----------------------------------------------------------------------------------
     
     private func changeWindowCornerRadius(_ radius: CGFloat) {
-        containerViewController.rootContainer.cornerRadius = radius
+        rootContainer.cornerRadius = radius
     }
     
     override func destroy() {

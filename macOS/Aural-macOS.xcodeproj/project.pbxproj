@@ -630,6 +630,7 @@
 		3EC793732B73C45500AF7E9E /* LibraryGenresView+TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793722B73C45500AF7E9E /* LibraryGenresView+TableCells.swift */; };
 		3EC793752B73C4C400AF7E9E /* LibraryDecadesView+TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793742B73C4C400AF7E9E /* LibraryDecadesView+TableCells.swift */; };
 		3EC793772B73DB3600AF7E9E /* LibraryImportedPlaylistsView+TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793762B73DB3600AF7E9E /* LibraryImportedPlaylistsView+TableCells.swift */; };
+		3EC793792B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793782B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift */; };
 		3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */; };
 		3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
@@ -1693,6 +1694,7 @@
 		3EC793722B73C45500AF7E9E /* LibraryGenresView+TableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibraryGenresView+TableCells.swift"; sourceTree = "<group>"; };
 		3EC793742B73C4C400AF7E9E /* LibraryDecadesView+TableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibraryDecadesView+TableCells.swift"; sourceTree = "<group>"; };
 		3EC793762B73DB3600AF7E9E /* LibraryImportedPlaylistsView+TableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibraryImportedPlaylistsView+TableCells.swift"; sourceTree = "<group>"; };
+		3EC793782B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnifiedPlayerWindowController+Support.swift"; sourceTree = "<group>"; };
 		3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
 		3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTracksToPlaylistCommand.swift; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
@@ -3561,6 +3563,7 @@
 			children = (
 				3E7638AA2857D88B00461F4D /* UnifiedPlayerWindow.xib */,
 				3E7638AC2857D9F600461F4D /* UnifiedPlayerWindowController.swift */,
+				3EC793782B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift */,
 				3E836E3A2868B9FD009371D4 /* UnifiedPlayerWindowController+EventHandling.swift */,
 				3E51CCEE285E896B002CBEF2 /* Sidebar */,
 				3EB42029285A627C007159CC /* Player */,
@@ -5433,6 +5436,7 @@
 				3E6C123F25CEBDF400BF0D07 /* ChaptersListViewController+TableViewDelegate.swift in Sources */,
 				3E6C123A25CEBDF400BF0D07 /* ChaptersListWindowController.swift in Sources */,
 				3E836E392868A36F009371D4 /* UnifiedPlayerNotifications.swift in Sources */,
+				3EC793792B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift in Sources */,
 				3EFE397F27864897006F8B8C /* ApplyPlaybackProfileAction.swift in Sources */,
 				3E6C128F25CEBE1800BF0D07 /* CheckRadioButtonCell.swift in Sources */,
 				3E08AC11281B214F004A53F7 /* TintableTextField.swift in Sources */,

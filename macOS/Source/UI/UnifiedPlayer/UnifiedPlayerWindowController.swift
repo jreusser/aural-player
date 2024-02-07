@@ -28,6 +28,8 @@ class UnifiedPlayerWindowController: NSWindowController {
     // The tab group that switches between the 4 playlist views
     @IBOutlet weak var tabGroup: NSTabView!
     
+    lazy var buttonColorChangeReceivers: [ColorSchemePropertyChangeReceiver] = [btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem]
+    
     lazy var playerController: UnifiedPlayerViewController = UnifiedPlayerViewController()
     
     private lazy var sidebarController: UnifiedPlayerSidebarViewController = UnifiedPlayerSidebarViewController()
@@ -94,13 +96,10 @@ class UnifiedPlayerWindowController: NSWindowController {
         
         theWindow.makeKeyAndOrderFront(self)
         
-//        containerBox.addSubview(playerViewController.view)
-
-//        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
-//        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
-//        
-//        colorSchemesManager.registerObservers([btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem],
-//                                              forProperty: \.buttonColor)
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: logoImage)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainerBox)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: buttonColorChangeReceivers)
         
         applyTheme()
     }
@@ -186,44 +185,14 @@ class UnifiedPlayerWindowController: NSWindowController {
     }
 }
 
-extension NSTabView {
+extension UnifiedPlayerWindowController: ColorSchemeObserver {
     
-    func addAndAnchorSubView(forController controller: NSViewController) {
+    func colorSchemeChanged() {
         
-        let item = NSTabViewItem()
-        addTabViewItem(item)
-        item.view?.addSubview(controller.view)
+        rootContainerBox.fillColor = systemColorScheme.backgroundColor
         
-        controller.view.anchorToSuperview()
-    }
-    
-    func addAndHorizontallyCenterSubView(forController controller: NSViewController) {
-        
-        let item = NSTabViewItem()
-        addTabViewItem(item)
-        item.view?.addSubview(controller.view)
-        
-        let cons = LayoutConstraintsManager(for: controller.view)
-        
-        cons.setWidth(480)
-        cons.setHeight(200)
-        cons.centerHorizontallyInSuperview()
-        cons.setTop(relatedToTopOf: controller.view.superview!, offset: 0)
-    }
-}
-
-extension NSSplitView {
-    
-    func addAndAnchorSubView(_ subView: NSView, underArrangedSubviewAt index: Int) {
-        
-        arrangedSubviews[index].addSubview(subView)
-        subView.anchorToSuperview()
-    }
-}
-
-class UnifiedPlayerSplitView: NSSplitView {
-    
-    override func resetCursorRects() {
-        // Do nothing
+        buttonColorChangeReceivers.forEach {
+            $0.colorChanged(systemColorScheme.buttonColor)
+        }
     }
 }

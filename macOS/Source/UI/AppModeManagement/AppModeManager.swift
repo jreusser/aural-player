@@ -61,6 +61,8 @@ class AppModeManager {
         
         dismissCurrentMode()
         
+        currentMode = newMode
+        
         switch newMode {
         
         case .modular:
@@ -83,8 +85,6 @@ class AppModeManager {
             
             compactMode.presentMode(transitioningFromMode: currentMode)
         }
-        
-        currentMode = newMode
     }
     
     private func dismissCurrentMode() {

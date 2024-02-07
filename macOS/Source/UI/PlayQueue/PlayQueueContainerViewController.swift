@@ -21,10 +21,7 @@ class PlayQueueContainerViewController: NSViewController {
     // Spinner that shows progress when tracks are being added to the play queue.
     @IBOutlet weak var progressSpinner: NSProgressIndicator!
     
-    @IBOutlet weak var rootContainer: NSBox!
     @IBOutlet weak var tabButtonsContainer: NSBox!
-    
-    private lazy var backgroundColorChangeReceivers: [ColorSchemePropertyChangeReceiver] = [rootContainer, tabButtonsContainer]
     
     // The tab group that switches between the 4 playlist views
     @IBOutlet weak var tabGroup: NSTabView!
@@ -60,6 +57,17 @@ class PlayQueueContainerViewController: NSViewController {
         
         super.viewDidLoad()
         
+//        if appModeManager.currentMode != .modular {
+//            lblCaption.hide()
+//        }
+        
+        if appModeManager.currentMode == .modular, 
+            let lblCaptionLeadingConstraint = lblCaption.superview?.constraints.first(where: {$0.firstAttribute == .leading}) {
+            
+            print("LeadingCons: \(lblCaptionLeadingConstraint.constant)")
+            lblCaptionLeadingConstraint.constant = 23
+        }
+        
         let compactView = simpleViewController.view
         let prettyView = expandedViewController.view
         
@@ -75,7 +83,7 @@ class PlayQueueContainerViewController: NSViewController {
         
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperties: [\.buttonColor, \.inactiveControlColor], changeReceivers: buttonColorChangeReceivers)
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceivers: backgroundColorChangeReceivers)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: tabButtonsContainer)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
         
@@ -277,9 +285,7 @@ extension PlayQueueContainerViewController: ColorSchemeObserver {
             $0.redraw()
         }
         
-        backgroundColorChangeReceivers.forEach {
-            $0.colorChanged(systemColorScheme.backgroundColor)
-        }
+        tabButtonsContainer.fillColor = systemColorScheme.backgroundColor
         
         lblCaption.textColor = systemColorScheme.captionTextColor
         updateSummary()

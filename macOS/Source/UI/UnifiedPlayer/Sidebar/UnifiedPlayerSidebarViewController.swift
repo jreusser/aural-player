@@ -31,7 +31,9 @@ class UnifiedPlayerSidebarViewController: NSViewController {
         
         messenger.subscribe(to: .sidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
         
-//        colorSchemesManager.registerObserver(sidebarView, forProperty: \.backgroundColor)
+        fontSchemesManager.registerObserver(self)
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: sidebarView)
     }
     
     override func destroy() {
@@ -105,6 +107,20 @@ class UnifiedPlayerSidebarViewController: NSViewController {
         
         sidebarView.insertItems(at: IndexSet(integer: tuneBrowserUIState.sidebarUserFolders.count),
                                 inParent: UnifiedPlayerSidebarCategory.tuneBrowser, withAnimation: .slideDown)
+    }
+}
+
+extension UnifiedPlayerSidebarViewController: FontSchemeObserver {
+    
+    func fontSchemeChanged() {
+        sidebarView.reloadDataMaintainingSelection()
+    }
+}
+
+extension UnifiedPlayerSidebarViewController: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        sidebarView.colorSchemeChanged()
     }
 }
 
