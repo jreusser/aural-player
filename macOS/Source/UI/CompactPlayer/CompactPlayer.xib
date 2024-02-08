@@ -37,7 +37,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="430"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="MQS-Uc-HUi" userLabel="Root Container">
+                    <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="MQS-Uc-HUi" userLabel="Root Container" customClass="DraggableBox" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="430"/>
                         <view key="contentView" id="oeh-N1-HBS">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="430"/>
@@ -142,7 +142,7 @@
                                                     <menu key="submenu" title="Theme" showsStateColumn="NO" id="xTD-f8-SdW">
                                                         <items>
                                                             <menuItem isSeparatorItem="YES" id="0sx-Fs-mRw"/>
-                                                            <menuItem title="Poolside.fm" state="mixed" indentationLevel="1" id="1t4-s6-xV3">
+                                                            <menuItem title="Poolside.fm" indentationLevel="1" id="1t4-s6-xV3">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                             </menuItem>
                                                         </items>
@@ -206,10 +206,6 @@
                                                                 <connections>
                                                                     <action selector="applyPresetAction:" target="RIV-fl-9fB" id="sag-Zp-Fv7"/>
                                                                 </connections>
-                                                            </menuItem>
-                                                            <menuItem isSeparatorItem="YES" id="v5j-fR-36q"/>
-                                                            <menuItem title="Customize ..." indentationLevel="1" id="Gwr-EG-7GL">
-                                                                <modifierMask key="keyEquivalentModifierMask"/>
                                                             </menuItem>
                                                         </items>
                                                         <connections>
@@ -418,7 +414,7 @@
                 <outlet property="view" destination="cnO-Or-V3s" id="kH0-2e-hTY"/>
             </connections>
         </customObject>
-        <customObject id="9Ew-gi-k9J" customClass="ControlBarPlayerAudioViewController" customModule="Aural" customModuleProvider="target">
+        <customObject id="9Ew-gi-k9J" customClass="CompactPlayerAudioViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnVolume" destination="enH-U1-cEq" id="jXr-RK-XOP"/>
                 <outlet property="lblVolume" destination="eMx-ep-HQv" id="FLi-qj-VRa"/>
@@ -476,7 +472,7 @@
                 <outlet property="theMenu" destination="GY3-aQ-WGT" id="ofi-el-bfz"/>
             </connections>
         </customObject>
-        <view id="RKL-OU-laL" userLabel="Player View" customClass="MouseTrackingView" customModule="Aural" customModuleProvider="target">
+        <view id="RKL-OU-laL" userLabel="Player View" customClass="CompactPlayerView" customModule="Aural" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="300" height="390"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -493,7 +489,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <box fixedFrame="YES" boxType="custom" borderType="none" cornerRadius="6" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ABa-Th-Fjq" userLabel="Functions Box">
+                <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" cornerRadius="6" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ABa-Th-Fjq" userLabel="Functions Box">
                     <rect key="frame" x="257" y="116" width="26" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="VZv-Vo-wz9">
@@ -728,6 +724,9 @@ IA
                 <constraint firstItem="haa-9u-kVC" firstAttribute="top" secondItem="RKL-OU-laL" secondAttribute="top" id="Day-B1-Ara"/>
                 <constraint firstItem="haa-9u-kVC" firstAttribute="leading" secondItem="RKL-OU-laL" secondAttribute="leading" constant="10" id="oQA-04-gP1"/>
             </constraints>
+            <connections>
+                <outlet property="functionsMenuContainerBox" destination="ABa-Th-Fjq" id="bg4-fo-L1l"/>
+            </connections>
             <point key="canvasLocation" x="-284" y="-965"/>
         </view>
     </objects>

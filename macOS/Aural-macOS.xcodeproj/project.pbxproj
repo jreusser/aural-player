@@ -625,6 +625,8 @@
 		3EC793752B73C4C400AF7E9E /* LibraryDecadesView+TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793742B73C4C400AF7E9E /* LibraryDecadesView+TableCells.swift */; };
 		3EC793772B73DB3600AF7E9E /* LibraryImportedPlaylistsView+TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793762B73DB3600AF7E9E /* LibraryImportedPlaylistsView+TableCells.swift */; };
 		3EC793792B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793782B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift */; };
+		3EC7937B2B74518900AF7E9E /* CompactPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7937A2B74518900AF7E9E /* CompactPlayerView.swift */; };
+		3EC7937D2B74578700AF7E9E /* CompactPlayerAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7937C2B74578700AF7E9E /* CompactPlayerAudioViewController.swift */; };
 		3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */; };
 		3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
@@ -1683,6 +1685,8 @@
 		3EC793742B73C4C400AF7E9E /* LibraryDecadesView+TableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibraryDecadesView+TableCells.swift"; sourceTree = "<group>"; };
 		3EC793762B73DB3600AF7E9E /* LibraryImportedPlaylistsView+TableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibraryImportedPlaylistsView+TableCells.swift"; sourceTree = "<group>"; };
 		3EC793782B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnifiedPlayerWindowController+Support.swift"; sourceTree = "<group>"; };
+		3EC7937A2B74518900AF7E9E /* CompactPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerView.swift; sourceTree = "<group>"; };
+		3EC7937C2B74578700AF7E9E /* CompactPlayerAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerAudioViewController.swift; sourceTree = "<group>"; };
 		3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
 		3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTracksToPlaylistCommand.swift; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
@@ -3985,7 +3989,9 @@
 				3EBFF5A72B52C0CC0056D5B4 /* CompactPlayerWindowController.swift */,
 				3EA800FC2B588BDF00039268 /* CompactPlayerWindowController+EventHandling.swift */,
 				3EBFF5AB2B52C5F10056D5B4 /* CompactPlayerViewController.swift */,
+				3EC7937A2B74518900AF7E9E /* CompactPlayerView.swift */,
 				3E99591F2B587990009A72DD /* CompactPlayerViewController+MenuDelegate.swift */,
+				3EC7937C2B74578700AF7E9E /* CompactPlayerAudioViewController.swift */,
 				3EBFF5AD2B52C8150056D5B4 /* CompactPlaybackView.swift */,
 				3EBFF5AF2B52D84A0056D5B4 /* CompactPlaybackViewController.swift */,
 			);
@@ -5851,6 +5857,7 @@
 				3EFE386F27864896006F8B8C /* FilterUnit.swift in Sources */,
 				3E5AF9A82B5EF15400BA24B3 /* FileSystemFolderLocation.swift in Sources */,
 				3EFE39A727864897006F8B8C /* ColorPersistentState.swift in Sources */,
+				3EC7937D2B74578700AF7E9E /* CompactPlayerAudioViewController.swift in Sources */,
 				3EAFB5EC267FEC5C00F0DC96 /* NSViewExtensions.swift in Sources */,
 				3EAFB5F6267FEE9D00F0DC96 /* NSWindowExtensions.swift in Sources */,
 				3EFE37E927864896006F8B8C /* PreferencesDefaults.swift in Sources */,
@@ -6115,6 +6122,7 @@
 				3EFE39A327864897006F8B8C /* NSSizePersistentState.swift in Sources */,
 				3EBFF5B02B52D84A0056D5B4 /* CompactPlaybackViewController.swift in Sources */,
 				3EFE38FB27864897006F8B8C /* UserManagedObjects.swift in Sources */,
+				3EC7937B2B74518900AF7E9E /* CompactPlayerView.swift in Sources */,
 				3E6C121925CEBDE600BF0D07 /* TracksPlaylistViewController.swift in Sources */,
 				3EFE3A7D27864898006F8B8C /* MetadataFormat.swift in Sources */,
 				3E6C122425CEBDE600BF0D07 /* TracksPlaylistViewController+TableViewDataSource.swift in Sources */,

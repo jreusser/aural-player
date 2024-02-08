@@ -16,3 +16,10 @@ extension NSBox: ColorSchemePropertyChangeReceiver {
         fillColor = newColor
     }
 }
+
+class DraggableBox: NSBox {
+    
+    override func mouseDown(with event: NSEvent) {
+        window?.performDrag(with: event)
+    }
+}

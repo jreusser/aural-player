@@ -55,9 +55,6 @@ class CompactPlayerViewController: NSViewController {
     
     override func awakeFromNib() {
         
-//        colorSchemesManager.registerObserver(lblTrackTime, forProperty: \.primaryTextColor)
-        applyTheme()
-        
         layoutTextView()
         textView.scrollingEnabled = uiState.trackInfoScrollingEnabled
         
@@ -80,10 +77,6 @@ class CompactPlayerViewController: NSViewController {
         messenger.subscribeAsync(to: .player_trackNotPlayed, handler: trackNotPlayed(_:))
         
         messenger.subscribe(to: .favoritesList_addOrRemove, handler: addOrRemoveFavorite)
-        
-        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyFontScheme, handler: applyFontScheme(_:))
-        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
     }
     
     func layoutTextView(forceChange: Bool = true) {
@@ -164,24 +157,6 @@ class CompactPlayerViewController: NSViewController {
     
     // MARK: Appearance ----------------------------------------
     
-    func applyTheme() {
-        
-        applyFontScheme(systemFontScheme)
-        applyColorScheme(systemColorScheme)
-    }
-    
-    func applyFontScheme(_ fontScheme: FontScheme) {
-        
-        textView.font = fontScheme.normalFont
-        layoutTextView()
-    }
-    
-    func applyColorScheme(_ colorScheme: ColorScheme) {
-        textView.update()
-    }
-    
-    // MARK: Tear down ------------------------------------------
-    
     override func destroy() {
         
         [playbackViewController, audioViewController, sequencingViewController].forEach {
@@ -196,9 +171,9 @@ extension CompactPlayerViewController: FontSchemeObserver {
     
     func fontSchemeChanged() {
         
-        textView.font = systemFontScheme.normalFont
-        lblTrackTime.font = systemFontScheme.normalFont
-        textView.update()
+        textView.font = systemFontScheme.smallFont
+        lblTrackTime.font = systemFontScheme.smallFont
+        layoutTextView()
     }
 }
 
