@@ -249,7 +249,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
         
         seekPositionDisplayTypeItems.forEach {$0.off()}
         
-        switch seekSliderView.seekPositionDisplayType {
+        switch playerUIState.trackTimeDisplayType {
         
         case .elapsed:
             
@@ -278,7 +278,9 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
     }
     
     @IBAction func changeSeekPositionDisplayTypeAction(_ sender: SeekPositionDisplayTypeMenuItem) {
-        seekSliderView.seekPositionDisplayType = sender.displayType
+        
+        playerUIState.trackTimeDisplayType = sender.displayType
+        seekSliderView.setTrackTimeDisplayType(playerUIState.trackTimeDisplayType)
     }
     
     // MARK: Tear down ------------------------------------------

@@ -12,17 +12,7 @@ import Cocoa
 class ControlBarSeekSliderView: SeekSliderView {
     
     private let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
-    private let generalUIState: PlayerUIState = playerUIState
     
-    var seekPositionDisplayType: TrackTimeDisplayType = .elapsed {
-        
-        didSet {
-            
-            generalUIState.trackTimeDisplayType = seekPositionDisplayType
-            updateSeekPositionLabels(player.seekPosition)
-        }
-    }
- 
     ///
     /// Determines whether or not the seek position needs to be displayed (when a track is playing).
     ///
@@ -46,21 +36,22 @@ class ControlBarSeekSliderView: SeekSliderView {
         
         super.awakeFromNib()
         
-        self.seekPositionDisplayType = generalUIState.trackTimeDisplayType
+        updateSeekPositionLabels(player.seekPosition)
         applyTheme()
     }
     
     override func initSeekPositionLabels() {
         
         lblTrackTime?.addGestureRecognizer(NSClickGestureRecognizer(target: self,
-                                                                       action: #selector(self.switchSeekPositionDisplay)))
+                                                                       action: #selector(self.switchTrackTimeDisplayTypeAction)))
     }
     
-    @objc func switchSeekPositionDisplay() {
-        
-        seekPositionDisplayType = seekPositionDisplayType.toggle()
-        updateSeekPositionLabels(player.seekPosition)
-    }
+//    @objc func switchSeekPositionDisplay() {
+//        
+//        playerUIState.trackTimeDisplayType = playerUIState.trackTimeDisplayType.toggle()
+//        updateSeekPositionLabels(player.seekPosition)
+//        updateSeekTimerState()
+//    }
     
     override func showSeekPositionLabels() {
         

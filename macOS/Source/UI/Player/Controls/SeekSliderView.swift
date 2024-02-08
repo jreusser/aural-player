@@ -30,8 +30,6 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
     // Delegate that conveys all playback requests to the player / playback sequencer
     let player: PlaybackDelegateProtocol = playbackDelegate
     
-    private lazy var uiState: PlayerUIState = playerUIState
-    
     var seekSliderValue: Double {seekSlider.doubleValue}
     
     private let seekTimerTaskQueue: SeekTimerTaskQueue = .instance
@@ -78,8 +76,8 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
     
     @IBAction func switchTrackTimeDisplayTypeAction(_ sender: Any) {
         
-        uiState.trackTimeDisplayType = uiState.trackTimeDisplayType.toggle()
-        setTrackTimeDisplayType(uiState.trackTimeDisplayType)
+        playerUIState.trackTimeDisplayType = playerUIState.trackTimeDisplayType.toggle()
+        setTrackTimeDisplayType(playerUIState.trackTimeDisplayType)
     }
     
     func setTrackTimeDisplayType(_ format: TrackTimeDisplayType) {
@@ -99,7 +97,7 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
     
     func showSeekPositionLabels() {
         
-        lblTrackTime.showIf(uiState.showTrackTime)
+        lblTrackTime.showIf(playerUIState.showTrackTime)
         updateSeekTimerState()
     }
     
@@ -134,7 +132,7 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
     func updateSeekPositionLabels(_ seekPos: PlaybackPosition) {
         
         lblTrackTime.stringValue = ValueFormatter.formatTrackTime(elapsedSeconds: seekPos.timeElapsed, duration: seekPos.trackDuration,
-                                                                  percentageElapsed: seekPos.percentageElapsed, trackTimeDisplayType: uiState.trackTimeDisplayType)
+                                                                  percentageElapsed: seekPos.percentageElapsed, trackTimeDisplayType: playerUIState.trackTimeDisplayType)
     }
     
     func setSeekTimerState(_ timerOn: Bool) {
@@ -150,8 +148,8 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
             
             let hasTasks = seekTimerTaskQueue.hasTasks
             
-            let labelShown = uiState.showTrackTime
-            let trackTimeDisplayType = uiState.trackTimeDisplayType
+            let labelShown = playerUIState.showTrackTime
+            let trackTimeDisplayType = playerUIState.trackTimeDisplayType
             let trackTimeNotStatic = labelShown && trackTimeDisplayType != .duration
             
             needTimer = hasTasks || trackTimeNotStatic
@@ -208,7 +206,7 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
     // TODO: Should disable / re-enable the timer when labels are hidden / shown (unnecessary CPU usage), or when showing track duration (which is static).
     func showOrHideTrackTime() {
         
-        lblTrackTime.showIf(uiState.showTrackTime)
+        lblTrackTime.showIf(playerUIState.showTrackTime)
         updateSeekTimerState()
     }
     
