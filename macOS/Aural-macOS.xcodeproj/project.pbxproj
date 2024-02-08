@@ -627,8 +627,10 @@
 		3EC793792B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793782B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift */; };
 		3EC7937B2B74518900AF7E9E /* CompactPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7937A2B74518900AF7E9E /* CompactPlayerView.swift */; };
 		3EC7937D2B74578700AF7E9E /* CompactPlayerAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7937C2B74578700AF7E9E /* CompactPlayerAudioViewController.swift */; };
-		3EC7937F2B745E0800AF7E9E /* UnifiedPlayerEffects.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC7937E2B745E0800AF7E9E /* UnifiedPlayerEffects.xib */; };
-		3EC793812B745E1200AF7E9E /* UnifiedPlayerEffectsSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793802B745E1200AF7E9E /* UnifiedPlayerEffectsSheetViewController.swift */; };
+		3EC7937F2B745E0800AF7E9E /* EffectsSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC7937E2B745E0800AF7E9E /* EffectsSheetView.xib */; };
+		3EC793812B745E1200AF7E9E /* EffectsSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793802B745E1200AF7E9E /* EffectsSheetViewController.swift */; };
+		3EC793862B746C6D00AF7E9E /* CompactPlayQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793852B746C6D00AF7E9E /* CompactPlayQueueViewController.swift */; };
+		3EC793882B74700900AF7E9E /* CompactPlayQueue.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC793872B74700900AF7E9E /* CompactPlayQueue.xib */; };
 		3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */; };
 		3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
@@ -1689,8 +1691,10 @@
 		3EC793782B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnifiedPlayerWindowController+Support.swift"; sourceTree = "<group>"; };
 		3EC7937A2B74518900AF7E9E /* CompactPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerView.swift; sourceTree = "<group>"; };
 		3EC7937C2B74578700AF7E9E /* CompactPlayerAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerAudioViewController.swift; sourceTree = "<group>"; };
-		3EC7937E2B745E0800AF7E9E /* UnifiedPlayerEffects.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnifiedPlayerEffects.xib; sourceTree = "<group>"; };
-		3EC793802B745E1200AF7E9E /* UnifiedPlayerEffectsSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayerEffectsSheetViewController.swift; sourceTree = "<group>"; };
+		3EC7937E2B745E0800AF7E9E /* EffectsSheetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectsSheetView.xib; sourceTree = "<group>"; };
+		3EC793802B745E1200AF7E9E /* EffectsSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsSheetViewController.swift; sourceTree = "<group>"; };
+		3EC793852B746C6D00AF7E9E /* CompactPlayQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayQueueViewController.swift; sourceTree = "<group>"; };
+		3EC793872B74700900AF7E9E /* CompactPlayQueue.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompactPlayQueue.xib; sourceTree = "<group>"; };
 		3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
 		3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTracksToPlaylistCommand.swift; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
@@ -3317,6 +3321,7 @@
 				3E3633E12685FB2C006A88ED /* EffectsUnitViewController.swift */,
 				3E2D09DB2AD4C5430062D3C9 /* RenderQualityMenu.xib */,
 				3E2D09DA2AD4C5430062D3C9 /* RenderQualityMenuViewController.swift */,
+				3EC793832B7466DC00AF7E9E /* SheetView */,
 				3ECFA87B2AE1EAC9001096DC /* Container */,
 				3E6C100525CEB98600BF0D07 /* Master */,
 				3E6C0FF725CEB98600BF0D07 /* EQ */,
@@ -3999,6 +4004,7 @@
 				3EC7937C2B74578700AF7E9E /* CompactPlayerAudioViewController.swift */,
 				3EBFF5AD2B52C8150056D5B4 /* CompactPlaybackView.swift */,
 				3EBFF5AF2B52D84A0056D5B4 /* CompactPlaybackViewController.swift */,
+				3EC793842B746C6000AF7E9E /* PlayQueue */,
 			);
 			path = CompactPlayer;
 			sourceTree = "<group>";
@@ -4052,10 +4058,26 @@
 		3EC793822B74600600AF7E9E /* Effects */ = {
 			isa = PBXGroup;
 			children = (
-				3EC7937E2B745E0800AF7E9E /* UnifiedPlayerEffects.xib */,
-				3EC793802B745E1200AF7E9E /* UnifiedPlayerEffectsSheetViewController.swift */,
 			);
 			path = Effects;
+			sourceTree = "<group>";
+		};
+		3EC793832B7466DC00AF7E9E /* SheetView */ = {
+			isa = PBXGroup;
+			children = (
+				3EC7937E2B745E0800AF7E9E /* EffectsSheetView.xib */,
+				3EC793802B745E1200AF7E9E /* EffectsSheetViewController.swift */,
+			);
+			path = SheetView;
+			sourceTree = "<group>";
+		};
+		3EC793842B746C6000AF7E9E /* PlayQueue */ = {
+			isa = PBXGroup;
+			children = (
+				3EC793872B74700900AF7E9E /* CompactPlayQueue.xib */,
+				3EC793852B746C6D00AF7E9E /* CompactPlayQueueViewController.swift */,
+			);
+			path = PlayQueue;
 			sourceTree = "<group>";
 		};
 		3ECBF3042619D55F00AD5C30 /* AudioUnits */ = {
@@ -5258,7 +5280,7 @@
 				3EA3335B2AE098620041B4FA /* MenuBarPlayer.xib in Resources */,
 				3EAF96FA28DCE1B6008561A7 /* Metamorphous-Regular.ttf in Resources */,
 				3E2C4BD72B38E5E600FC65DD /* SearchWindow.xib in Resources */,
-				3EC7937F2B745E0800AF7E9E /* UnifiedPlayerEffects.xib in Resources */,
+				3EC7937F2B745E0800AF7E9E /* EffectsSheetView.xib in Resources */,
 				3ED2385928207E2C0048CF8E /* FilterBandEditorDialog.xib in Resources */,
 				3E6C121525CEBDE500BF0D07 /* ViewPreferences.xib in Resources */,
 				3E6C126125CEBE0600BF0D07 /* LayoutsManager.xib in Resources */,
@@ -5334,6 +5356,7 @@
 				3EB42028285A5E9E007159CC /* NowPlaying.xib in Resources */,
 				3EAF96F728DCE1B6008561A7 /* Play-Regular.ttf in Resources */,
 				3EAF96FB28DCE1B6008561A7 /* control-freak.regular.ttf in Resources */,
+				3EC793882B74700900AF7E9E /* CompactPlayQueue.xib in Resources */,
 				3E25B65027F7818900D10A5F /* PlayQueueWindow.xib in Resources */,
 				3E71FBEC2AE34B3C00AB6C18 /* LibraryImportedPlaylists.xib in Resources */,
 				3EB1274A2ADD8E1E00745603 /* LibraryHomeSetup.xib in Resources */,
@@ -5779,7 +5802,7 @@
 				3E6C11B925CEBDAD00BF0D07 /* MediaKeyHandler.swift in Sources */,
 				3E2000C5267CEE53008BAB70 /* MediaKeysPreferencesViewController.swift in Sources */,
 				3EFE385127864896006F8B8C /* ValueConversions.swift in Sources */,
-				3EC793812B745E1200AF7E9E /* UnifiedPlayerEffectsSheetViewController.swift in Sources */,
+				3EC793812B745E1200AF7E9E /* EffectsSheetViewController.swift in Sources */,
 				3EFE3A0B27864898006F8B8C /* VisualizerNotifications.swift in Sources */,
 				3E71FBEE2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift in Sources */,
 				3EFE38BD27864896006F8B8C /* AudioGraphDelegateProtocol.swift in Sources */,
@@ -6057,6 +6080,7 @@
 				3E5F942025E570A9002DEF80 /* Spectrogram3DBar.swift in Sources */,
 				3EFE390B27864897006F8B8C /* StringExtensions.swift in Sources */,
 				3E9FD1052A1D5CAA0038AF04 /* FFmpegChannelLayout.swift in Sources */,
+				3EC793862B746C6D00AF7E9E /* CompactPlayQueueViewController.swift in Sources */,
 				3E045D0F281352370069DEFE /* SortOrderMenuItemView.swift in Sources */,
 				3E5F943725E571A6002DEF80 /* SpectrogramBar.swift in Sources */,
 				3EB462DA2847FEC6000E3F85 /* TuneBrowserTabViewController.swift in Sources */,

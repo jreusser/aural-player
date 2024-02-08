@@ -1,5 +1,5 @@
 //
-//  UnifiedPlayerEffectsSheetViewController.swift
+//  EffectsSheetViewController.swift
 //  Aural
 //
 //  Copyright © 2024 Kartik Venugopal. All rights reserved.
@@ -10,12 +10,14 @@
 
 import AppKit
 
-class UnifiedPlayerEffectsSheetViewController: NSViewController {
+class EffectsSheetViewController: NSViewController {
     
-    override var nibName: NSNib.Name? {"UnifiedPlayerEffects"}
+    override var nibName: NSNib.Name? {"EffectsSheetView"}
     
     @IBOutlet weak var btnClose: TintedImageButton!
     @IBOutlet weak var effectsViewController: EffectsContainerViewController!
+    
+    private lazy var messenger: Messenger = .init(for: self)
     
     override func viewDidLoad() {
         
@@ -29,11 +31,13 @@ class UnifiedPlayerEffectsSheetViewController: NSViewController {
     }
     
     @IBAction func closeAction(_ sender: NSButton) {
-        self.dismiss(self)
+        
+        dismiss(self)
+        messenger.publish(.effects_sheetDismissed)
     }
 }
 
-extension UnifiedPlayerEffectsSheetViewController: ColorSchemeObserver {
+extension EffectsSheetViewController: ColorSchemeObserver {
     
     func colorSchemeChanged() {
         btnClose.contentTintColor = systemColorScheme.buttonColor

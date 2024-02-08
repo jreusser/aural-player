@@ -284,6 +284,8 @@ class WindowLayoutsManager: UserManagedObjects<WindowLayout>, Destroyable, Resto
     // MARK: Miscellaneous functions ------------------------------------
 
     func addChildWindow(_ window: NSWindow) {
+        
+        // TODO: Switch on appMode ... mainWindow is only available in modular mode !!!
         mainWindow.addChildWindow(window, ordered: .above)
     }
     

@@ -16,6 +16,8 @@ extension Notification.Name {
     
     // MARK: Notifications published by Effects (effects processing) components.
     
+    static let effects_sheetDismissed = Notification.Name("effects_sheetDismissed")
+    
     // Signifies that an effects unit has just been activated
     static let effects_unitActivated = Notification.Name("effects_unitActivated")
     

@@ -31,7 +31,7 @@ class UnifiedPlayerWindowController: NSWindowController {
     lazy var buttonColorChangeReceivers: [ColorSchemePropertyChangeReceiver] = [btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem]
     
     lazy var playerController: UnifiedPlayerViewController = UnifiedPlayerViewController()
-    private lazy var effectsSheetViewController: UnifiedPlayerEffectsSheetViewController = .init()
+    private lazy var effectsSheetViewController: EffectsSheetViewController = .init()
     
     private lazy var sidebarController: UnifiedPlayerSidebarViewController = UnifiedPlayerSidebarViewController()
     

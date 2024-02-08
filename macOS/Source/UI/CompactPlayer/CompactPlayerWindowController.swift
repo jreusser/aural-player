@@ -25,7 +25,8 @@ class CompactPlayerWindowController: NSWindowController {
     
     @IBOutlet weak var rootContainerBox: NSBox!
     @IBOutlet weak var playerViewController: CompactPlayerViewController!
-    private lazy var playQueueViewController: PlayQueueExpandedViewController = .init()
+    private lazy var playQueueViewController: CompactPlayQueueViewController = .init()
+    private lazy var effectsSheetViewController: EffectsSheetViewController = .init()
     
     @IBOutlet weak var tabView: NSTabView!
     
@@ -63,6 +64,8 @@ class CompactPlayerWindowController: NSWindowController {
         rootContainerBox.cornerRadius = 8
 //        cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
 //        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
+        
+        messenger.subscribe(to: .effects_sheetDismissed, handler: eventMonitor.resumeMonitoring)
         
         applyTheme()
         
@@ -107,6 +110,14 @@ class CompactPlayerWindowController: NSWindowController {
         tabView.selectTabViewItem(at: 1)
         compactPlayerUIState.isShowingPlayer = false
         eventMonitor.pauseMonitoring()
+    }
+    
+    @IBAction func showEffectsAction(_ sender: NSMenuItem) {
+        
+        compactPlayerUIState.isShowingPlayer = false
+        eventMonitor.pauseMonitoring()
+        
+        playerViewController.presentAsSheet(effectsSheetViewController)
     }
     
     override func destroy() {

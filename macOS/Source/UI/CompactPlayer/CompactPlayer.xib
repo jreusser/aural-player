@@ -91,6 +91,12 @@
                                                         <action selector="showPlayQueueAction:" target="-2" id="ZHd-0T-9Yy"/>
                                                     </connections>
                                                 </menuItem>
+                                                <menuItem title="Effects" id="JQP-n6-B5o">
+                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <connections>
+                                                        <action selector="showEffectsAction:" target="-2" id="ik3-3K-2aR"/>
+                                                    </connections>
+                                                </menuItem>
                                                 <menuItem isSeparatorItem="YES" id="wCx-MY-MIk"/>
                                                 <menuItem title="Player view" id="8wf-g9-uKY" userLabel="Player View">
                                                     <modifierMask key="keyEquivalentModifierMask"/>

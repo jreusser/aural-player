@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CompactPlayQueueViewController" customModule="Aural" customModuleProvider="target">
+            <connections>
+                <outlet property="lblDurationSummary" destination="FMM-38-eg8" id="lqM-Es-0Uq"/>
+                <outlet property="lblTracksSummary" destination="E3H-PZ-zam" id="N7k-1v-YgK"/>
+                <outlet property="tableView" destination="v1i-DE-EUT" id="M82-gi-HRD"/>
+                <outlet property="view" destination="rlY-xn-aWC" id="aBY-ZT-Co9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" id="rlY-xn-aWC" userLabel="Compact Play Queue">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="390"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" id="el0-VE-Ib7">
+                <rect key="frame" x="0.0" y="0.0" width="300" height="390"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <scrollView ambiguous="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="55" horizontalPageScroll="10" verticalLineScroll="55" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" id="Xxw-1I-HfF">
+                        <rect key="frame" x="0.0" y="34" width="300" height="356"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="Vug-Hx-3O1">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="356"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <tableView identifier="tid_CompactPlayQueue" focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" tableStyle="plain" columnReordering="NO" autosaveColumns="NO" rowHeight="50" viewBased="YES" id="v1i-DE-EUT" customClass="AuralTableView" customModule="Aural" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="356"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <size key="intercellSpacing" width="3" height="5"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                    <tableColumns>
+                                        <tableColumn identifier="cid_Index" width="30" minWidth="30" maxWidth="30" id="SsQ-6E-Nld" userLabel="Index">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            </tableHeaderCell>
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="FOd-Zs-Mwf">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                            <prototypeCellViews>
+                                                <tableCellView misplaced="YES" id="0w6-g2-NRC" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
+                                                    <rect key="frame" x="1" y="2" width="0.0" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="QEF-KT-Ib2" userLabel="Index">
+                                                            <rect key="frame" x="6" y="0.0" width="4" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="XVj-Vc-CZG"/>
+                                                            </constraints>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" id="jtE-6y-M18" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
+                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7nt-h6-FwA">
+                                                            <rect key="frame" x="8" y="11" width="12" height="10"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="12" id="C2n-JL-Ua8"/>
+                                                                <constraint firstAttribute="height" constant="10" id="KKr-vQ-77Q"/>
+                                                            </constraints>
+                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyUpOrDown" id="8Up-kA-mfH" customClass="TableImageCell" customModule="Aural" customModuleProvider="target"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="QEF-KT-Ib2" firstAttribute="leading" secondItem="0w6-g2-NRC" secondAttribute="leading" constant="8" id="7Yd-Yx-EUN"/>
+                                                        <constraint firstAttribute="trailing" secondItem="QEF-KT-Ib2" secondAttribute="trailing" id="CF9-Vv-Zxe"/>
+                                                        <constraint firstAttribute="centerY" secondItem="QEF-KT-Ib2" secondAttribute="centerY" id="NIB-g5-vsD"/>
+                                                        <constraint firstItem="7nt-h6-FwA" firstAttribute="leading" secondItem="QEF-KT-Ib2" secondAttribute="leading" id="otZ-Gc-GY5"/>
+                                                        <constraint firstAttribute="centerY" secondItem="7nt-h6-FwA" secondAttribute="centerY" constant="1" id="sym-fX-HeR"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="imageView" destination="7nt-h6-FwA" id="Dau-6P-0bx"/>
+                                                        <outlet property="textField" destination="QEF-KT-Ib2" id="bFe-3S-Kvz"/>
+                                                    </connections>
+                                                </tableCellView>
+                                            </prototypeCellViews>
+                                        </tableColumn>
+                                        <tableColumn identifier="cid_Name" width="200" minWidth="200" maxWidth="200" id="rev-eW-Yyo" userLabel="Track Name">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            </tableHeaderCell>
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="dKJ-2f-yCp">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                            <prototypeCellViews>
+                                                <tableCellView id="vUj-ka-rRh" customClass="PlayQueueListTrackNameCell" customModule="Aural" customModuleProvider="target">
+                                                    <rect key="frame" x="34" y="2" width="197" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YAf-ng-KMA" userLabel="Title" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="28" width="197" height="20"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="iOU-dh-YIA"/>
+                                                            </constraints>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="OTC-Tz-vIy" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
+                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8S4-l4-lCp" userLabel="Default Display Name" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="5" width="197" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="90J-Ug-aF2"/>
+                                                            </constraints>
+                                                            <textFieldCell key="cell" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" alignment="left" id="dBA-wW-I2N" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
+                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="WcR-Za-oZ6" userLabel="Artist Album" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="2" width="197" height="20"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="sfM-vI-bvI"/>
+                                                            </constraints>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" alignment="left" usesSingleLineMode="YES" id="De9-gs-HU5" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
+                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="YAf-ng-KMA" secondAttribute="trailing" constant="2" id="DpK-gF-iCa"/>
+                                                        <constraint firstAttribute="bottom" secondItem="WcR-Za-oZ6" secondAttribute="bottom" constant="2" id="Ggk-cM-Bmv"/>
+                                                        <constraint firstAttribute="centerY" secondItem="8S4-l4-lCp" secondAttribute="centerY" id="PXN-EK-0aA"/>
+                                                        <constraint firstAttribute="trailing" secondItem="WcR-Za-oZ6" secondAttribute="trailing" constant="2" id="XjT-hO-Xep"/>
+                                                        <constraint firstAttribute="trailing" secondItem="8S4-l4-lCp" secondAttribute="trailing" constant="2" id="eMj-Jc-KpW"/>
+                                                        <constraint firstItem="YAf-ng-KMA" firstAttribute="top" secondItem="vUj-ka-rRh" secondAttribute="top" constant="2" id="i4b-aL-P8x"/>
+                                                        <constraint firstItem="YAf-ng-KMA" firstAttribute="leading" secondItem="vUj-ka-rRh" secondAttribute="leading" constant="2" id="i7a-JS-1hv"/>
+                                                        <constraint firstItem="8S4-l4-lCp" firstAttribute="leading" secondItem="vUj-ka-rRh" secondAttribute="leading" constant="2" id="l1I-ke-cOj"/>
+                                                        <constraint firstItem="WcR-Za-oZ6" firstAttribute="leading" secondItem="vUj-ka-rRh" secondAttribute="leading" constant="2" id="n4w-LQ-Njg"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="lblArtistAlbum" destination="WcR-Za-oZ6" id="QUV-aC-s58"/>
+                                                        <outlet property="lblDefaultDisplayName" destination="8S4-l4-lCp" id="eEE-Ug-vL5"/>
+                                                        <outlet property="lblTitle" destination="YAf-ng-KMA" id="if1-9F-DrQ"/>
+                                                        <outlet property="textField" destination="YAf-ng-KMA" id="YS7-bU-eC3"/>
+                                                    </connections>
+                                                </tableCellView>
+                                            </prototypeCellViews>
+                                        </tableColumn>
+                                        <tableColumn identifier="cid_Duration" width="50" minWidth="50" maxWidth="50" id="tPZ-0b-ufd" userLabel="Duration">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </tableHeaderCell>
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="3qU-cN-HH6">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                            <prototypeCellViews>
+                                                <tableCellView misplaced="YES" id="WDk-6x-pQc" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
+                                                    <rect key="frame" x="237" y="2" width="0.0" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="w0M-QL-S1o" userLabel="Duration">
+                                                            <rect key="frame" x="-2" y="10" width="4" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="uEi-Ep-Gi8"/>
+                                                            </constraints>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" id="Gp3-Im-zdx" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">
+                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="w0M-QL-S1o" firstAttribute="leading" secondItem="WDk-6x-pQc" secondAttribute="leading" id="Tsn-Dz-fx0"/>
+                                                        <constraint firstAttribute="trailing" secondItem="w0M-QL-S1o" secondAttribute="trailing" constant="10" id="a9y-tB-WAP"/>
+                                                        <constraint firstItem="w0M-QL-S1o" firstAttribute="centerY" secondItem="WDk-6x-pQc" secondAttribute="centerY" id="lwo-eL-mSR"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="textField" destination="w0M-QL-S1o" id="U6y-a9-Avt"/>
+                                                    </connections>
+                                                </tableCellView>
+                                            </prototypeCellViews>
+                                        </tableColumn>
+                                    </tableColumns>
+                                    <connections>
+                                        <action trigger="doubleAction" selector="playSelectedTrackAction:" target="-2" id="SWj-Vi-ozO"/>
+                                        <outlet property="dataSource" destination="-2" id="cDm-xt-8GD"/>
+                                        <outlet property="delegate" destination="-2" id="Qr4-1U-i9z"/>
+                                    </connections>
+                                </tableView>
+                            </subviews>
+                            <nil key="backgroundColor"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="uT8-KT-299">
+                            <rect key="frame" x="-100" y="-100" width="500" height="15"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="BRx-Bv-wZY">
+                            <rect key="frame" x="-100" y="-100" width="15" height="102"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E3H-PZ-zam" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                        <rect key="frame" x="8" y="15" width="150" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="0 tracks" id="azG-qQ-aVV" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" white="0.70157877599999996" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FMM-38-eg8" userLabel="Duration summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                        <rect key="frame" x="193" y="15" width="100" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="0:00" id="Ba2-IF-rK1" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" white="0.70157877599999996" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="-274" y="39"/>
+        </box>
+    </objects>
+</document>
