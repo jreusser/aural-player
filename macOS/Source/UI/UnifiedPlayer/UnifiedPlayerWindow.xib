@@ -139,7 +139,7 @@
                     <popUpButton toolTip="Change presentation mode" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NqW-hK-ujf" userLabel="Presentation Mode Menu">
                         <rect key="frame" x="23" y="472" width="16" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="zFw-j4-cIv" id="Rd4-S7-rXd">
+                        <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="Rd4-S7-rXd">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="12" name="Play-Regular"/>
                             <menu key="menu" autoenablesItems="NO" id="yxx-jU-mtZ">
@@ -155,6 +155,12 @@
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
                                             <action selector="modularModeAction:" target="-2" id="iT6-Ba-laz"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Compact (single compact window)" id="lDW-RP-IDY">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="compactModeAction:" target="-2" id="wWK-Ey-5dq"/>
                                         </connections>
                                     </menuItem>
                                     <menuItem title="Menu Bar (macOS menu bar)" id="qUd-g2-853">
@@ -182,7 +188,7 @@
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppTitle" id="HdP-Q9-02D"/>
                     </imageView>
                     <popUpButton toolTip="Options" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jbr-GM-SIl" userLabel="Settings Menu">
-                        <rect key="frame" x="777" y="469" width="18" height="18"/>
+                        <rect key="frame" x="772" y="469" width="18" height="18"/>
                         <popUpButtonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="J1C-Fv-lVe">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="12" name="Play-Regular"/>
@@ -197,6 +203,9 @@
                                     </menuItem>
                                     <menuItem title="Show Effects panel" id="cfN-34-RZz">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="showEffectsPanelAction:" target="-2" id="Ej3-Vu-mGo"/>
+                                        </connections>
                                     </menuItem>
                                     <menuItem isSeparatorItem="YES" id="2eb-F7-fTq"/>
                                     <menuItem title="Player view" id="nxC-5g-nzT" userLabel="Player View">
@@ -436,7 +445,7 @@
                     <constraint firstItem="Jbr-GM-SIl" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="13" id="ZWW-sf-fWL"/>
                     <constraint firstItem="Qgw-qr-6uY" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="13" id="dJO-BH-B8R"/>
                     <constraint firstAttribute="bottom" secondItem="aim-2G-bxd" secondAttribute="bottom" id="mAH-5T-VIR"/>
-                    <constraint firstAttribute="trailing" secondItem="Jbr-GM-SIl" secondAttribute="trailing" constant="5" id="pPn-dB-10v"/>
+                    <constraint firstAttribute="trailing" secondItem="Jbr-GM-SIl" secondAttribute="trailing" constant="10" id="pPn-dB-10v"/>
                     <constraint firstItem="qQ2-PJ-W1D" firstAttribute="top" secondItem="Jbr-GM-SIl" secondAttribute="bottom" constant="10" id="wmi-x6-0Nj"/>
                     <constraint firstAttribute="trailing" secondItem="zSX-rs-0Aq" secondAttribute="trailing" constant="10" id="zPw-5I-DkB"/>
                 </constraints>

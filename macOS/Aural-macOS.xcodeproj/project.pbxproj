@@ -627,6 +627,8 @@
 		3EC793792B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793782B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift */; };
 		3EC7937B2B74518900AF7E9E /* CompactPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7937A2B74518900AF7E9E /* CompactPlayerView.swift */; };
 		3EC7937D2B74578700AF7E9E /* CompactPlayerAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC7937C2B74578700AF7E9E /* CompactPlayerAudioViewController.swift */; };
+		3EC7937F2B745E0800AF7E9E /* UnifiedPlayerEffects.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC7937E2B745E0800AF7E9E /* UnifiedPlayerEffects.xib */; };
+		3EC793812B745E1200AF7E9E /* UnifiedPlayerEffectsSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC793802B745E1200AF7E9E /* UnifiedPlayerEffectsSheetViewController.swift */; };
 		3EC856A82811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */; };
 		3EC856AA2811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */; };
 		3EC9E67426A5E1EB00C17302 /* TableViewDragDropExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */; };
@@ -1687,6 +1689,8 @@
 		3EC793782B7409B900AF7E9E /* UnifiedPlayerWindowController+Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnifiedPlayerWindowController+Support.swift"; sourceTree = "<group>"; };
 		3EC7937A2B74518900AF7E9E /* CompactPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerView.swift; sourceTree = "<group>"; };
 		3EC7937C2B74578700AF7E9E /* CompactPlayerAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerAudioViewController.swift; sourceTree = "<group>"; };
+		3EC7937E2B745E0800AF7E9E /* UnifiedPlayerEffects.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnifiedPlayerEffects.xib; sourceTree = "<group>"; };
+		3EC793802B745E1200AF7E9E /* UnifiedPlayerEffectsSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayerEffectsSheetViewController.swift; sourceTree = "<group>"; };
 		3EC856A72811BA7000647CF4 /* PlayQueueViewController+ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueViewController+ContextMenuController.swift"; sourceTree = "<group>"; };
 		3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTracksToPlaylistCommand.swift; sourceTree = "<group>"; };
 		3EC9E67326A5E1EB00C17302 /* TableViewDragDropExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDragDropExtensions.swift; sourceTree = "<group>"; };
@@ -3560,6 +3564,7 @@
 				3E51CCEE285E896B002CBEF2 /* Sidebar */,
 				3EB42029285A627C007159CC /* Player */,
 				3EB42024285A5E83007159CC /* NowPlaying */,
+				3EC793822B74600600AF7E9E /* Effects */,
 			);
 			path = UnifiedPlayer;
 			sourceTree = "<group>";
@@ -4042,6 +4047,15 @@
 				3E3B8D392B72E5AF0060C7C7 /* FuseViewController.swift */,
 			);
 			path = FuseBox;
+			sourceTree = "<group>";
+		};
+		3EC793822B74600600AF7E9E /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				3EC7937E2B745E0800AF7E9E /* UnifiedPlayerEffects.xib */,
+				3EC793802B745E1200AF7E9E /* UnifiedPlayerEffectsSheetViewController.swift */,
+			);
+			path = Effects;
 			sourceTree = "<group>";
 		};
 		3ECBF3042619D55F00AD5C30 /* AudioUnits */ = {
@@ -5244,6 +5258,7 @@
 				3EA3335B2AE098620041B4FA /* MenuBarPlayer.xib in Resources */,
 				3EAF96FA28DCE1B6008561A7 /* Metamorphous-Regular.ttf in Resources */,
 				3E2C4BD72B38E5E600FC65DD /* SearchWindow.xib in Resources */,
+				3EC7937F2B745E0800AF7E9E /* UnifiedPlayerEffects.xib in Resources */,
 				3ED2385928207E2C0048CF8E /* FilterBandEditorDialog.xib in Resources */,
 				3E6C121525CEBDE500BF0D07 /* ViewPreferences.xib in Resources */,
 				3E6C126125CEBE0600BF0D07 /* LayoutsManager.xib in Resources */,
@@ -5764,6 +5779,7 @@
 				3E6C11B925CEBDAD00BF0D07 /* MediaKeyHandler.swift in Sources */,
 				3E2000C5267CEE53008BAB70 /* MediaKeysPreferencesViewController.swift in Sources */,
 				3EFE385127864896006F8B8C /* ValueConversions.swift in Sources */,
+				3EC793812B745E1200AF7E9E /* UnifiedPlayerEffectsSheetViewController.swift in Sources */,
 				3EFE3A0B27864898006F8B8C /* VisualizerNotifications.swift in Sources */,
 				3E71FBEE2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift in Sources */,
 				3EFE38BD27864896006F8B8C /* AudioGraphDelegateProtocol.swift in Sources */,

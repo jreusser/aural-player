@@ -33,7 +33,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="200"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n9O-Uy-jzq" userLabel="Unit Description" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n9O-Uy-jzq" userLabel="Unit Description" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="35" y="171" width="180" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="left" title="Time  Stretch" id="yCL-v9-cVM">

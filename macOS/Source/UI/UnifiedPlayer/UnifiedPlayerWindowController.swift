@@ -31,11 +31,11 @@ class UnifiedPlayerWindowController: NSWindowController {
     lazy var buttonColorChangeReceivers: [ColorSchemePropertyChangeReceiver] = [btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem]
     
     lazy var playerController: UnifiedPlayerViewController = UnifiedPlayerViewController()
+    private lazy var effectsSheetViewController: UnifiedPlayerEffectsSheetViewController = .init()
     
     private lazy var sidebarController: UnifiedPlayerSidebarViewController = UnifiedPlayerSidebarViewController()
     
     private lazy var playQueueController: PlayQueueContainerViewController = PlayQueueContainerViewController()
-    private lazy var effectsController: EffectsContainerViewController = .init()
     
     private lazy var libraryTracksController: LibraryTracksViewController = LibraryTracksViewController()
     private lazy var libraryArtistsController: LibraryArtistsViewController = LibraryArtistsViewController()
@@ -72,9 +72,6 @@ class UnifiedPlayerWindowController: NSWindowController {
         browserSplitView.addAndAnchorSubView(sidebarController.view, underArrangedSubviewAt: 0)
         
         tabGroup.addAndAnchorSubView(forController: playQueueController)
-//        tabGroup.addAndAnchorSubView(forController: effectsController)
-        tabGroup.addAndHorizontallyCenterSubView(forController: effectsController)
-        
         tabGroup.addAndAnchorSubView(forController: libraryTracksController)
         tabGroup.addAndAnchorSubView(forController: libraryArtistsController)
         tabGroup.addAndAnchorSubView(forController: libraryAlbumsController)
@@ -140,12 +137,20 @@ class UnifiedPlayerWindowController: NSWindowController {
         appModeManager.presentMode(.modular)
     }
     
+    @IBAction func compactModeAction(_ sender: AnyObject) {
+        appModeManager.presentMode(.compact)
+    }
+    
     @IBAction func menuBarModeAction(_ sender: AnyObject) {
         appModeManager.presentMode(.menuBar)
     }
     
     @IBAction func controlBarModeAction(_ sender: AnyObject) {
         appModeManager.presentMode(.controlBar)
+    }
+    
+    @IBAction func showEffectsPanelAction(_ sender: AnyObject) {
+        playerController.presentAsSheet(effectsSheetViewController)
     }
     
     // MARK: Message handling -----------------------------------------------------------

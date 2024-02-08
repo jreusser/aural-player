@@ -29,7 +29,6 @@ enum UnifiedPlayerSidebarCategory: String, CaseIterable, CustomStringConvertible
     ]
     
     case playQueue = "Play Queue"
-    case effects = "Effects"
     case library = "Library"
     case tuneBrowser = "File System"
     case playlists = "Playlists"
@@ -44,10 +43,6 @@ enum UnifiedPlayerSidebarCategory: String, CaseIterable, CustomStringConvertible
         case .playQueue:
             
             return .playQueue
-            
-        case .effects:
-            
-            return .effects
             
         case .favorites:
             
@@ -85,7 +80,7 @@ enum UnifiedPlayerSidebarCategory: String, CaseIterable, CustomStringConvertible
             
             return Self.historyItems.count
             
-        case .playQueue, .effects, .favorites, .bookmarks:
+        case .playQueue, .favorites, .bookmarks:
             
             return 0
         }
@@ -119,7 +114,7 @@ enum UnifiedPlayerSidebarCategory: String, CaseIterable, CustomStringConvertible
             
             return Self.historyItems
             
-        case .playQueue, .effects, .favorites, .bookmarks:
+        case .playQueue, .favorites, .bookmarks:
             
             return []
         }
@@ -132,10 +127,6 @@ enum UnifiedPlayerSidebarCategory: String, CaseIterable, CustomStringConvertible
         case .playQueue:
             
             return .imgPlayQueue
-            
-        case .effects:
-            
-            return .imgEffects
             
         case .library:
             
@@ -189,17 +180,16 @@ struct UnifiedPlayerSidebarItem {
 enum UnifiedPlayerBrowserTab: Int {
     
     case playQueue = 0,
-         effects = 1,
-         libraryTracks = 2,
-         libraryArtists = 3,
-         libraryAlbums = 4,
-         libraryGenres = 5,
-         libraryDecades = 6,
-         fileSystem = 7,
-         playlists = 8,
-         historyRecentlyPlayed = 9,
-         historyMostPlayed = 10,
-         historyRecentlyAdded = 11,
-         favorites = 12,
-         bookmarks = 13
+         libraryTracks = 1,
+         libraryArtists = 2,
+         libraryAlbums = 3,
+         libraryGenres = 4,
+         libraryDecades = 5,
+         fileSystem = 6,
+         playlists = 7,
+         historyRecentlyPlayed = 8,
+         historyMostPlayed = 9,
+         historyRecentlyAdded = 10,
+         favorites = 11,
+         bookmarks = 12
 }
