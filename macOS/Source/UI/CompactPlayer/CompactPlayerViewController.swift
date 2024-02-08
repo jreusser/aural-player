@@ -33,6 +33,9 @@ class CompactPlayerViewController: NSViewController {
     @IBOutlet weak var timeRemainingMenuItem: SeekPositionDisplayTypeMenuItem!
     @IBOutlet weak var trackDurationMenuItem: SeekPositionDisplayTypeMenuItem!
     
+    @IBOutlet weak var cornerRadiusStepper: NSStepper!
+    @IBOutlet weak var lblCornerRadius: NSTextField!
+    
     var seekPositionDisplayTypeItems: [NSMenuItem] = []
     
     @IBOutlet weak var playbackViewController: CompactPlaybackViewController!
@@ -45,18 +48,13 @@ class CompactPlayerViewController: NSViewController {
     // Delegate that provides access to the Favorites track list.
     private lazy var favorites: FavoritesDelegateProtocol = favoritesDelegate
     
-    let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
-    
-    private let minWindowWidthToShowSeekPosition: CGFloat = 610
-    private let distanceBetweenControlsAndInfo: CGFloat = 31
-    private let lblTrackTime_width: CGFloat = 70
-    
     private lazy var messenger = Messenger(for: self)
     
     override func awakeFromNib() {
         
-        layoutTextView()
-        textView.scrollingEnabled = uiState.trackInfoScrollingEnabled
+        super.awakeFromNib()
+        
+        initFromPersistentState()
         
         updateTrackInfo()
         
@@ -79,9 +77,15 @@ class CompactPlayerViewController: NSViewController {
         messenger.subscribe(to: .favoritesList_addOrRemove, handler: addOrRemoveFavorite)
     }
     
+    private func initFromPersistentState() {
+        
+        layoutTextView()
+        textView.scrollingEnabled = compactPlayerUIState.trackInfoScrollingEnabled
+    }
+    
     func layoutTextView(forceChange: Bool = true) {
         
-        let showSeekPosition: Bool = uiState.showSeekPosition
+        let showSeekPosition: Bool = compactPlayerUIState.showSeekPosition
         
         guard forceChange || (seekSliderView.showSeekPosition != showSeekPosition) else {return}
         
@@ -96,14 +100,6 @@ class CompactPlayerViewController: NSViewController {
     
     // MARK: Track playback actions/functions ------------------------------------------------------------
     
-    /// An image to display when the currently playing track does not have any associated cover art, resized to an optimal size for display in Control Center.
-    private lazy var defaultArtwork: PlatformImage = {
-        
-        var image = PlatformImage.imgPlayingArt.copy(ofSize: imgArt.size).filledWithColor(.white)
-        image.isTemplate = false
-        return image
-    }()
-    
     private func updateTrackInfo() {
         
         if let theTrack = player.playingTrack {
@@ -114,7 +110,19 @@ class CompactPlayerViewController: NSViewController {
         }
         
         lblTrackTime.showIf(player.state.isPlayingOrPaused)
-        imgArt.image = player.playingTrack?.art?.image ?? defaultArtwork
+        
+        if let playingTrackArt = player.playingTrack?.art?.image {
+            
+            imgArt.image = playingTrackArt
+            imgArt.contentTintColor = nil
+            imgArt.image?.isTemplate = false
+            
+        } else {
+            
+            imgArt.image = .imgPlayingArt
+            imgArt.contentTintColor = systemColorScheme.secondaryTextColor
+            imgArt.image?.isTemplate = true
+        }
     }
     
     // MARK: Message handling --------------------------------------

@@ -424,6 +424,9 @@
                                     <menuItem isSeparatorItem="YES" id="xl6-Ww-9ou"/>
                                     <menuItem title="Sort order" id="9R1-fX-tq9">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <outlet property="view" destination="IAW-N7-buz" id="NIn-ez-CYe"/>
+                                        </connections>
                                     </menuItem>
                                 </items>
                             </menu>
@@ -479,6 +482,48 @@
             </view>
             <point key="canvasLocation" x="-274" y="39"/>
         </box>
+        <customView id="IAW-N7-buz" userLabel="Sort order menu item view" customClass="SortOrderMenuItemView" customModule="Aural" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="186" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHo-Cc-V9F">
+                    <rect key="frame" x="99" y="5" width="43" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="radio" title="▲" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="uqc-Pk-nzu">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="changeSortOrderAction:" target="IAW-N7-buz" id="V1A-8c-dyb"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ftc-Kk-T7r">
+                    <rect key="frame" x="143" y="5" width="43" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="radio" title="▼" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="H65-GR-bTz">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="changeSortOrderAction:" target="IAW-N7-buz" id="iQd-Kp-TWK"/>
+                    </connections>
+                </button>
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fq6-3x-yoc">
+                    <rect key="frame" x="11" y="1" width="86" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Sort order:" id="TKn-xU-c66">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <connections>
+                <outlet property="btnAscending" destination="tHo-Cc-V9F" id="PPi-kE-mRb"/>
+                <outlet property="btnDescending" destination="Ftc-Kk-T7r" id="09K-d0-Xtc"/>
+            </connections>
+            <point key="canvasLocation" x="293" y="564"/>
+        </customView>
     </objects>
     <resources>
         <image name="Sort" width="35" height="25"/>

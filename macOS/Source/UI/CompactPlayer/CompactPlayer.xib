@@ -365,6 +365,9 @@
                                             </view>
                                         </tabViewItem>
                                     </tabViewItems>
+                                    <connections>
+                                        <outlet property="delegate" destination="-2" id="hKV-Fh-3w0"/>
+                                    </connections>
                                 </tabView>
                             </subviews>
                             <constraints>
@@ -392,13 +395,15 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <accessibility identifier="main"/>
-            <point key="canvasLocation" x="-69" y="-467"/>
+            <point key="canvasLocation" x="-369" y="-491"/>
         </window>
         <customObject id="Wo1-U3-fmA" customClass="CompactPlayerViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="audioViewController" destination="9Ew-gi-k9J" id="1G7-kI-jfM"/>
                 <outlet property="containerBox" destination="MQS-Uc-HUi" id="pIY-dc-vv8"/>
+                <outlet property="cornerRadiusStepper" destination="CXC-fJ-vs0" id="p64-jI-scL"/>
                 <outlet property="imgArt" destination="haa-9u-kVC" id="b8y-eQ-bov"/>
+                <outlet property="lblCornerRadius" destination="M3o-Oh-fXf" id="YWd-2k-7jl"/>
                 <outlet property="lblTrackTime" destination="ftO-IU-dAo" id="RED-56-Oig"/>
                 <outlet property="playbackView" destination="cnO-Or-V3s" id="Xls-Zn-dnd"/>
                 <outlet property="playbackViewController" destination="bXU-Hn-LAO" id="glZ-FA-3Lt"/>
@@ -438,39 +443,6 @@
                 <outlet property="view" destination="db8-NK-xWk" id="jp9-gq-Mqd"/>
             </connections>
         </customObject>
-        <customView id="9TP-Jv-q57" userLabel="Window corner radius editor view (in window)">
-            <rect key="frame" x="0.0" y="0.0" width="220" height="25"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rbh-Fx-dud">
-                    <rect key="frame" x="29" y="5" width="138" height="15"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Window corner radius" id="BuH-FL-mbs">
-                        <font key="font" size="11" name="Play-Regular"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M3o-Oh-fXf">
-                    <rect key="frame" x="151" y="5" width="39" height="15"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="3px" id="HD8-VE-Yj0">
-                        <font key="font" size="11" name="Play-Regular"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <stepper focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CXC-fJ-vs0" userLabel="Radius Stepper">
-                    <rect key="frame" x="193" y="0.0" width="15" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <stepperCell key="cell" controlSize="small" continuous="YES" refusesFirstResponder="YES" focusRingType="none" alignment="left" maxValue="20" doubleValue="3" id="TSc-WI-MLL"/>
-                    <connections>
-                        <action selector="cornerRadiusStepperAction:" target="-2" id="ZUT-o0-7TY"/>
-                    </connections>
-                </stepper>
-            </subviews>
-            <point key="canvasLocation" x="-104" y="527"/>
-        </customView>
         <customObject id="1AV-wk-fXj" customClass="ColorSchemePopupMenuController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="theMenu" destination="FHZ-bY-Vnt" id="cWn-YX-5fW"/>
@@ -479,6 +451,11 @@
         <customObject id="RIV-fl-9fB" customClass="FontSchemePopupMenuController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="theMenu" destination="GY3-aQ-WGT" id="ofi-el-bfz"/>
+            </connections>
+        </customObject>
+        <customObject id="VNs-7z-6xS" customClass="ThemePopupMenuController" customModule="Aural" customModuleProvider="target">
+            <connections>
+                <outlet property="theMenu" destination="xTD-f8-SdW" id="CBb-xa-ZZR"/>
             </connections>
         </customObject>
         <view id="RKL-OU-laL" userLabel="Player View" customClass="CompactPlayerView" customModule="Aural" customModuleProvider="target">
@@ -491,7 +468,7 @@
                         <constraint firstAttribute="width" constant="280" id="5XO-Bu-nRv"/>
                         <constraint firstAttribute="height" constant="280" id="r9q-qh-bUK"/>
                     </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" focusRingType="none" alignment="left" imageScaling="proportionallyDown" id="xih-5Z-Trf"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" focusRingType="none" alignment="left" imageScaling="axesIndependently" id="xih-5Z-Trf"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="roundingRadius">
                             <real key="value" value="6"/>
@@ -730,13 +707,41 @@ IA
             <connections>
                 <outlet property="functionsMenuContainerBox" destination="ABa-Th-Fjq" id="bg4-fo-L1l"/>
             </connections>
-            <point key="canvasLocation" x="-284" y="-965"/>
+            <point key="canvasLocation" x="82" y="-461"/>
         </view>
-        <customObject id="VNs-7z-6xS" customClass="ThemePopupMenuController" customModule="Aural" customModuleProvider="target">
-            <connections>
-                <outlet property="theMenu" destination="xTD-f8-SdW" id="CBb-xa-ZZR"/>
-            </connections>
-        </customObject>
+        <customView id="9TP-Jv-q57" userLabel="Window corner radius editor view (in window)">
+            <rect key="frame" x="0.0" y="0.0" width="220" height="25"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rbh-Fx-dud">
+                    <rect key="frame" x="21" y="5" width="138" height="15"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Window corner radius" id="BuH-FL-mbs">
+                        <font key="font" size="11" name="Play-Regular"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M3o-Oh-fXf">
+                    <rect key="frame" x="154" y="5" width="39" height="15"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="3px" id="HD8-VE-Yj0">
+                        <font key="font" size="11" name="Play-Regular"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <stepper focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CXC-fJ-vs0" userLabel="Radius Stepper">
+                    <rect key="frame" x="196" y="0.0" width="15" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <stepperCell key="cell" controlSize="small" continuous="YES" refusesFirstResponder="YES" focusRingType="none" alignment="left" maxValue="20" doubleValue="3" id="TSc-WI-MLL"/>
+                    <connections>
+                        <action selector="cornerRadiusStepperAction:" target="-2" id="ZUT-o0-7TY"/>
+                    </connections>
+                </stepper>
+            </subviews>
+            <point key="canvasLocation" x="-104" y="527"/>
+        </customView>
     </objects>
     <resources>
         <image name="AppTitle" width="117" height="32"/>

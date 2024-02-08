@@ -46,7 +46,7 @@ class SettingsPopupMenuController: NSObject, NSMenuDelegate {
         [applyThemeMenuItem, saveThemeMenuItem, createThemeMenuItem, applyFontSchemeMenuItem, saveFontSchemeMenuItem, applyColorSchemeMenuItem, saveColorSchemeMenuItem].forEach {$0.enableIf(!isShowingModalComponent)}
         
         cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
-        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue) px"
+        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
     }
     
     // Shows/hides the play queue window (by delegating)

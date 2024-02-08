@@ -10,13 +10,6 @@
 
 import AppKit
 
-class CompactPlayerUIState {
-    
-    init() {}
-    
-    var isShowingPlayer: Bool = true
-}
-
 class CompactPlayerWindowController: NSWindowController {
     
     override var windowNibName: NSNib.Name? {"CompactPlayer"}
@@ -40,8 +33,6 @@ class CompactPlayerWindowController: NSWindowController {
     
     lazy var messenger = Messenger(for: self)
     
-    private let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
-    
     private var appMovingWindow: Bool = false
     
     var eventMonitor: EventMonitor! = EventMonitor()
@@ -56,51 +47,50 @@ class CompactPlayerWindowController: NSWindowController {
         
         playQueueViewController.view.anchorToSuperview()
         
-        tabView.selectTabViewItem(at: 1)
-        compactPlayerUIState.isShowingPlayer = false
-        
-        rootContainerBox.cornerRadius = 8
-//        cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
-//        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
-
+        tabView.selectTabViewItem(at: 0)
         
         colorSchemesManager.registerSchemeObserver(self)
         
-        messenger.subscribe(to: .effects_sheetDismissed, handler: eventMonitor.resumeMonitoring)
+        initFromPersistentState()
         
-//        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
-//        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
-//        
-//        colorSchemesManager.registerObservers([btnQuit, btnMinimize, presentationModeMenuItem, settingsMenuIconItem],
-//                                              forProperty: \.buttonColor)
+        messenger.subscribe(to: .effects_sheetDismissed, handler: eventMonitor.resumeMonitoring)
         
         setUpEventHandling()
     }
     
+    private func initFromPersistentState() {
+        
+        if let rememberedLocation = compactPlayerUIState.windowLocation {
+            window?.setFrameOrigin(rememberedLocation)
+        }
+        
+        changeWindowCornerRadius(compactPlayerUIState.cornerRadius)
+    }
+    
     @IBAction func cornerRadiusStepperAction(_ sender: NSStepper) {
         
+        let cgFloatValue = CGFloat(cornerRadiusStepper.floatValue)
+        
+        compactPlayerUIState.cornerRadius = cgFloatValue
+        changeWindowCornerRadius(cgFloatValue)
         lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
-        rootContainerBox.cornerRadius = CGFloat(cornerRadiusStepper.integerValue)
-        uiState.cornerRadius = rootContainerBox.cornerRadius
     }
     
     @IBAction func showPlayerAction(_ sender: NSMenuItem) {
         
         tabView.selectTabViewItem(at: 0)
-        compactPlayerUIState.isShowingPlayer = true
         eventMonitor.resumeMonitoring()
     }
     
     @IBAction func showPlayQueueAction(_ sender: NSMenuItem) {
         
         tabView.selectTabViewItem(at: 1)
-        compactPlayerUIState.isShowingPlayer = false
         eventMonitor.pauseMonitoring()
     }
     
     @IBAction func showEffectsAction(_ sender: NSMenuItem) {
         
-        compactPlayerUIState.isShowingPlayer = false
+        compactPlayerUIState.displayedTab = .effects
         eventMonitor.pauseMonitoring()
         
         playerViewController.presentAsSheet(effectsSheetViewController)
@@ -153,15 +143,11 @@ class CompactPlayerWindowController: NSWindowController {
     }
     
     private func transferViewState() {
-        uiState.windowFrame = theWindow.frame
+        compactPlayerUIState.windowLocation = theWindow.frame.origin
     }
     
-    // MARK: Menu delegate functions -----------------------------
-    
-    func menuNeedsUpdate(_ menu: NSMenu) {
-        
-        cornerRadiusStepper.integerValue = rootContainerBox.cornerRadius.roundedInt
-        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
+    private func changeWindowCornerRadius(_ radius: CGFloat) {
+        rootContainerBox.cornerRadius = radius
     }
 }
 
@@ -178,6 +164,29 @@ extension CompactPlayerWindowController: ColorSchemeObserver {
         
         [presentationModeMenuItem, settingsMenuIconItem].forEach {
             $0?.colorChanged(systemColorScheme.buttonColor)
+        }
+    }
+}
+
+extension CompactPlayerWindowController: NSTabViewDelegate {
+    
+    func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
+        
+        // NOTE: Effects does not have its own tab (it's displayed in a separate sheet view).
+        
+        switch tabView.selectedIndex {
+            
+        case 0:
+            compactPlayerUIState.displayedTab = .player
+            
+        case 1:
+            compactPlayerUIState.displayedTab = .playQueue
+            
+        case 2:
+            compactPlayerUIState.displayedTab = .search
+            
+        default:
+            compactPlayerUIState.displayedTab = .player
         }
     }
 }

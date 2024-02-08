@@ -58,7 +58,7 @@ class CreateThemeDialogController: SingletonWindowController, StringInputReceive
         initColorSchemesMenu()
         
         windowCornerRadiusStepper.integerValue = WindowAppearanceState.defaultCornerRadius.roundedInt
-        lblWindowCornerRadius.stringValue = "\(windowCornerRadiusStepper.integerValue) px"
+        lblWindowCornerRadius.stringValue = "\(windowCornerRadiusStepper.integerValue)px"
         
         errorBox.hide()
         
@@ -96,7 +96,7 @@ class CreateThemeDialogController: SingletonWindowController, StringInputReceive
     }
     
     @IBAction func cornerRadiusStepperAction(_ sender: NSStepper) {
-        lblWindowCornerRadius.stringValue = "\(windowCornerRadiusStepper.integerValue) px"
+        lblWindowCornerRadius.stringValue = "\(windowCornerRadiusStepper.integerValue)px"
     }
     
     @IBAction func okAction(_ sender: Any) {

@@ -266,7 +266,9 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
     }
     
     @IBAction func toggleTrackInfoScrollingAction(_ sender: NSMenuItem) {
+        
         textView.scrollingEnabled.toggle()
+        uiState.trackInfoScrollingEnabled = textView.scrollingEnabled
     }
     
     @IBAction func toggleShowSeekPositionAction(_ sender: NSMenuItem) {

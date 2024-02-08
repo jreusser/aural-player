@@ -27,7 +27,7 @@ class WindowCornerRadiusMenuItemView: NSView {
     @IBAction func cornerRadiusStepperAction(_ sender: NSStepper) {
         
         uiState.cornerRadius = CGFloat(cornerRadiusStepper.integerValue)
-        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue) px"
+        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
         
         messenger.publish(.windowAppearance_changeCornerRadius, payload: uiState.cornerRadius)
     }

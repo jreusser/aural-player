@@ -16,43 +16,53 @@ extension CompactPlayerViewController: NSMenuDelegate {
     
     func menuNeedsUpdate(_ menu: NSMenu) {
         
-        showPlayerMenuItem.onIf(compactPlayerUIState.isShowingPlayer)
-        showPlayQueueMenuItem.onIf(!compactPlayerUIState.isShowingPlayer)
+        showPlayerMenuItem.onIf(compactPlayerUIState.displayedTab == .player)
+        showPlayQueueMenuItem.onIf(compactPlayerUIState.displayedTab.equalsOneOf(.playQueue, .search))
+        scrollingEnabledMenuItem.onIf(compactPlayerUIState.trackInfoScrollingEnabled)
+        showSeekPositionMenuItem.onIf(compactPlayerUIState.showSeekPosition)
+        seekPositionDisplayTypeMenuItem.showIf(compactPlayerUIState.showSeekPosition)
         
-        scrollingEnabledMenuItem.onIf(textView.scrollingEnabled)
-        
-        showSeekPositionMenuItem.onIf(uiState.showSeekPosition)
-        guard uiState.showSeekPosition else {return}
-
-        seekPositionDisplayTypeItems.forEach {$0.off()}
-
-        switch seekSliderView.seekPositionDisplayType {
-
-        case .elapsed:
-
-            timeElapsedMenuItem.on()
-
-        case .remaining:
-
-            timeRemainingMenuItem.on()
-
-        case .duration:
-
-            trackDurationMenuItem.on()
+        if compactPlayerUIState.showSeekPosition {
+            
+            seekPositionDisplayTypeItems.forEach {$0.off()}
+            
+            switch playerUIState.trackTimeDisplayType {
+                
+            case .elapsed:
+                
+                timeElapsedMenuItem.on()
+                
+            case .remaining:
+                
+                timeRemainingMenuItem.on()
+                
+            case .duration:
+                
+                trackDurationMenuItem.on()
+            }
         }
+        
+        cornerRadiusStepper.integerValue = compactPlayerUIState.cornerRadius.roundedInt
+        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
+        
+        print("Set stepper to: \(cornerRadiusStepper.integerValue)")
     }
     
     @IBAction func toggleTrackInfoScrollingAction(_ sender: NSMenuItem) {
+        
+        compactPlayerUIState.trackInfoScrollingEnabled.toggle()
         textView.scrollingEnabled.toggle()
     }
     
     @IBAction func toggleShowSeekPositionAction(_ sender: NSMenuItem) {
         
-        uiState.showSeekPosition.toggle()
+        compactPlayerUIState.showSeekPosition.toggle()
         layoutTextView()
     }
     
     @IBAction func changeSeekPositionDisplayTypeAction(_ sender: SeekPositionDisplayTypeMenuItem) {
+        
+        playerUIState.trackTimeDisplayType = sender.displayType
         seekSliderView.seekPositionDisplayType = sender.displayType
     }
 }

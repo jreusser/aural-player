@@ -76,7 +76,7 @@ class ViewMenuController: NSObject, NSMenuDelegate {
         playerViewMenuItem.off()
         
         cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
-        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue) px"
+        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
     }
  
     // Shows/hides the playlist window

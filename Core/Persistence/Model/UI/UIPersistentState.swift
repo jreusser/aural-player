@@ -28,23 +28,28 @@ struct UIPersistentState: Codable {
     let unifiedPlayer: UnifiedPlayerUIPersistentState?
     let menuBarPlayer: MenuBarPlayerUIPersistentState?
     let controlBarPlayer: ControlBarPlayerUIPersistentState?
+    let compactPlayer: CompactPlayerUIPersistentState?
     
     let playQueue: PlayQueueUIPersistentState?
     let visualizer: VisualizerUIPersistentState?
     let tuneBrowser: TuneBrowserUIPersistentState?
     
-    init(appMode: AppMode?, windowLayout: WindowLayoutsPersistentState?, themes: ThemesPersistentState?, fontSchemes: FontSchemesPersistentState?, colorSchemes: ColorSchemesPersistentState?, windowAppearance: WindowAppearancePersistentState?, modularPlayer: ModularPlayerUIPersistentState?, unifiedPlayer: UnifiedPlayerUIPersistentState?, menuBarPlayer: MenuBarPlayerUIPersistentState?, controlBarPlayer: ControlBarPlayerUIPersistentState?, playQueue: PlayQueueUIPersistentState?, visualizer: VisualizerUIPersistentState?, tuneBrowser: TuneBrowserUIPersistentState?) {
+    init(appMode: AppMode?, windowLayout: WindowLayoutsPersistentState?, themes: ThemesPersistentState?, fontSchemes: FontSchemesPersistentState?, colorSchemes: ColorSchemesPersistentState?, windowAppearance: WindowAppearancePersistentState?, modularPlayer: ModularPlayerUIPersistentState?, unifiedPlayer: UnifiedPlayerUIPersistentState?, menuBarPlayer: MenuBarPlayerUIPersistentState?, controlBarPlayer: ControlBarPlayerUIPersistentState?, compactPlayer: CompactPlayerUIPersistentState?, playQueue: PlayQueueUIPersistentState?, visualizer: VisualizerUIPersistentState?, tuneBrowser: TuneBrowserUIPersistentState?) {
         
         self.appMode = appMode
+        
         self.windowLayout = windowLayout
         self.themes = themes
         self.fontSchemes = fontSchemes
         self.colorSchemes = colorSchemes
         self.windowAppearance = windowAppearance
+        
         self.modularPlayer = modularPlayer
         self.unifiedPlayer = unifiedPlayer
         self.menuBarPlayer = menuBarPlayer
         self.controlBarPlayer = controlBarPlayer
+        self.compactPlayer = compactPlayer
+        
         self.playQueue = playQueue
         self.visualizer = visualizer
         self.tuneBrowser = tuneBrowser
@@ -64,6 +69,7 @@ struct UIPersistentState: Codable {
         self.unifiedPlayer = nil
         self.menuBarPlayer = nil
         self.controlBarPlayer = nil
+        self.compactPlayer = nil
         
         self.playQueue = nil
         self.visualizer = nil
