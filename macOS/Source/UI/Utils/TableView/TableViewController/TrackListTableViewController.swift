@@ -111,6 +111,10 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontS
         let cell = view(forColumn: columnId, row: row, track: track)
             .buildCell(forTableView: tableView, forColumnWithId: columnId, inRow: row)
         
+        cell?.textField?.lineBreakMode = .byTruncatingTail
+        cell?.textField?.usesSingleLineMode = true
+        cell?.textField?.cell?.truncatesLastVisibleLine = true
+        
         cell?.rowSelectionStateFunction = {[weak tableView] in
             tableView?.selectedRowIndexes.contains(row) ?? false
         }

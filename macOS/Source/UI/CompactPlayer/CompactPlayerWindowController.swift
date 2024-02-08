@@ -25,7 +25,7 @@ class CompactPlayerWindowController: NSWindowController {
     
     @IBOutlet weak var rootContainerBox: NSBox!
     @IBOutlet weak var playerViewController: CompactPlayerViewController!
-    private lazy var playQueueViewController: PlayQueueSimpleViewController = .init()
+    private lazy var playQueueViewController: PlayQueueExpandedViewController = .init()
     
     @IBOutlet weak var tabView: NSTabView!
     
@@ -60,7 +60,7 @@ class CompactPlayerWindowController: NSWindowController {
         tabView.selectTabViewItem(at: 0)
         compactPlayerUIState.isShowingPlayer = true
         
-        rootContainerBox.cornerRadius = 12
+        rootContainerBox.cornerRadius = 8
 //        cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
 //        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
         

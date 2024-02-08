@@ -14,6 +14,7 @@ class CompactPlayerViewController: NSViewController {
     
     @IBOutlet weak var containerBox: NSBox!
 
+    @IBOutlet weak var trackInfoContainerBox: NSBox!
     @IBOutlet weak var imgArt: NSImageView!
     @IBOutlet weak var textView: ScrollingTrackInfoView!
     @IBOutlet weak var lblTrackTime: CenterTextLabel!
@@ -71,6 +72,9 @@ class CompactPlayerViewController: NSViewController {
         
         // MARK: Notification subscriptions
         
+        fontSchemesManager.registerObserver(self)
+        colorSchemesManager.registerSchemeObserver(self)
+        
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
         messenger.subscribeAsync(to: .player_trackInfoUpdated, handler: trackInfoUpdated(_:))
         messenger.subscribeAsync(to: .player_trackNotPlayed, handler: trackNotPlayed(_:))
@@ -90,6 +94,8 @@ class CompactPlayerViewController: NSViewController {
         
         // Seek Position label
         seekSliderView.showSeekPosition = showSeekPosition
+        
+        trackInfoContainerBox.setFrameSize(NSSize(width: showSeekPosition ? 200 : 280, height: 26))
         textView.setFrameSize(NSSize(width: showSeekPosition ? 200 : 280, height: 26))
         
         textView.update()
@@ -183,5 +189,24 @@ class CompactPlayerViewController: NSViewController {
         }
         
         messenger.unsubscribeFromAll()
+    }
+}
+
+extension CompactPlayerViewController: FontSchemeObserver {
+    
+    func fontSchemeChanged() {
+        
+        textView.font = systemFontScheme.normalFont
+        lblTrackTime.font = systemFontScheme.normalFont
+        textView.update()
+    }
+}
+
+extension CompactPlayerViewController: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        
+        lblTrackTime.textColor = systemColorScheme.secondaryTextColor
+        textView.update()
     }
 }

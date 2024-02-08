@@ -406,12 +406,6 @@
 		3E71FBEE2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E71FBED2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift */; };
 		3E752744267F32A60092BB89 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E752743267F32A60092BB89 /* RoundedImageView.swift */; };
 		3E758B06281DDA5900BBE872 /* EffectsWindowRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E758B05281DDA5900BBE872 /* EffectsWindowRootView.swift */; };
-		3E75CB252B60700900D789D4 /* CompactPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E75CB242B60700900D789D4 /* CompactPlayerView.swift */; };
-		3E75CB272B6070AA00D789D4 /* CompactPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E75CB262B6070AA00D789D4 /* CompactPlayerViewModel.swift */; };
-		3E75CB292B607F7A00D789D4 /* NewCompactPlayerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E75CB282B607F7A00D789D4 /* NewCompactPlayerWindowController.swift */; };
-		3E75CB2B2B60800F00D789D4 /* NewCompactPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E75CB2A2B60800F00D789D4 /* NewCompactPlayer.xib */; };
-		3E75CB2D2B60850A00D789D4 /* CompactPlayerTrackInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E75CB2C2B60850A00D789D4 /* CompactPlayerTrackInfoView.swift */; };
-		3E75CB2F2B60861600D789D4 /* CompactPlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E75CB2E2B60861600D789D4 /* CompactPlayerControlsView.swift */; };
 		3E7638AB2857D88B00461F4D /* UnifiedPlayerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7638AA2857D88B00461F4D /* UnifiedPlayerWindow.xib */; };
 		3E7638AD2857D9F600461F4D /* UnifiedPlayerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7638AC2857D9F600461F4D /* UnifiedPlayerWindowController.swift */; };
 		3E7638AF2857DA3F00461F4D /* UnifiedAppModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7638AE2857DA3F00461F4D /* UnifiedAppModeController.swift */; };
@@ -1474,12 +1468,6 @@
 		3E71FBED2AE34B4800AB6C18 /* LibraryImportedPlaylistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryImportedPlaylistsViewController.swift; sourceTree = "<group>"; };
 		3E752743267F32A60092BB89 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		3E758B05281DDA5900BBE872 /* EffectsWindowRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsWindowRootView.swift; sourceTree = "<group>"; };
-		3E75CB242B60700900D789D4 /* CompactPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerView.swift; sourceTree = "<group>"; };
-		3E75CB262B6070AA00D789D4 /* CompactPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerViewModel.swift; sourceTree = "<group>"; };
-		3E75CB282B607F7A00D789D4 /* NewCompactPlayerWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCompactPlayerWindowController.swift; sourceTree = "<group>"; };
-		3E75CB2A2B60800F00D789D4 /* NewCompactPlayer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewCompactPlayer.xib; sourceTree = "<group>"; };
-		3E75CB2C2B60850A00D789D4 /* CompactPlayerTrackInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerTrackInfoView.swift; sourceTree = "<group>"; };
-		3E75CB2E2B60861600D789D4 /* CompactPlayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerControlsView.swift; sourceTree = "<group>"; };
 		3E7638AA2857D88B00461F4D /* UnifiedPlayerWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnifiedPlayerWindow.xib; sourceTree = "<group>"; };
 		3E7638AC2857D9F600461F4D /* UnifiedPlayerWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayerWindowController.swift; sourceTree = "<group>"; };
 		3E7638AE2857DA3F00461F4D /* UnifiedAppModeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedAppModeController.swift; sourceTree = "<group>"; };
@@ -3995,12 +3983,6 @@
 			children = (
 				3EBFF5A92B52C0F70056D5B4 /* CompactPlayer.xib */,
 				3EBFF5A72B52C0CC0056D5B4 /* CompactPlayerWindowController.swift */,
-				3E75CB2A2B60800F00D789D4 /* NewCompactPlayer.xib */,
-				3E75CB282B607F7A00D789D4 /* NewCompactPlayerWindowController.swift */,
-				3E75CB242B60700900D789D4 /* CompactPlayerView.swift */,
-				3E75CB2C2B60850A00D789D4 /* CompactPlayerTrackInfoView.swift */,
-				3E75CB2E2B60861600D789D4 /* CompactPlayerControlsView.swift */,
-				3E75CB262B6070AA00D789D4 /* CompactPlayerViewModel.swift */,
 				3EA800FC2B588BDF00039268 /* CompactPlayerWindowController+EventHandling.swift */,
 				3EBFF5AB2B52C5F10056D5B4 /* CompactPlayerViewController.swift */,
 				3E99591F2B587990009A72DD /* CompactPlayerViewController+MenuDelegate.swift */,
@@ -5311,7 +5293,6 @@
 				3E6C122E25CEBDE600BF0D07 /* PlaybackPreferences.xib in Resources */,
 				3E6C121A25CEBDE600BF0D07 /* PlayQueuePreferences.xib in Resources */,
 				3EBFF5A32B528E430056D5B4 /* FavoriteArtists.xib in Resources */,
-				3E75CB2B2B60800F00D789D4 /* NewCompactPlayer.xib in Resources */,
 				3E6C12E525CEBE8100BF0D07 /* EffectsWindow.xib in Resources */,
 				3E6C126E25CEBE0600BF0D07 /* MasterPresetsManager.xib in Resources */,
 				3E6C126825CEBE0600BF0D07 /* PitchShiftPresetsManager.xib in Resources */,
@@ -5555,9 +5536,7 @@
 				3E9FD1022A1D5C740038AF04 /* FFmpegDecoder+SegmentLoop.swift in Sources */,
 				3E6C12E425CEBE8100BF0D07 /* CutoffFrequencySlider.swift in Sources */,
 				3E6C125D25CEBE0600BF0D07 /* DelayPresetsManagerViewController.swift in Sources */,
-				3E75CB2D2B60850A00D789D4 /* CompactPlayerTrackInfoView.swift in Sources */,
 				3E59E9512B507BA7001DDCE9 /* FavoriteTrack.swift in Sources */,
-				3E75CB252B60700900D789D4 /* CompactPlayerView.swift in Sources */,
 				3EFE391527864897006F8B8C /* FloatingPointExtensions.swift in Sources */,
 				3EFE38FD27864897006F8B8C /* ValueFormatter.swift in Sources */,
 				3E6C12EF25CEBE8100BF0D07 /* DelayUnitView.swift in Sources */,
@@ -5691,7 +5670,6 @@
 				3EC29A5F27865CB500B29551 /* Images.swift in Sources */,
 				3E419B5F27B18C6500C2B965 /* CALayerExtensions.swift in Sources */,
 				3E91932F25E0DA9C00F30F81 /* FontSchemesWindowController.swift in Sources */,
-				3E75CB2F2B60861600D789D4 /* CompactPlayerControlsView.swift in Sources */,
 				3ECF275C26A5567000974120 /* FontSet.swift in Sources */,
 				3E51CCF6285E8CBB002CBEF2 /* UnifiedPlayerSidebarViewController+DataSource.swift in Sources */,
 				3ED8E74A281482C9002E313F /* TableImageCell.swift in Sources */,
@@ -5761,7 +5739,6 @@
 				3E36BD3426A68EAA00B6E28B /* LyricsTrackInfoViewController.swift in Sources */,
 				3EFE3A7B27864898006F8B8C /* AVFFormatDescriptions.swift in Sources */,
 				3E6C122925CEBDE600BF0D07 /* MainWindowController.swift in Sources */,
-				3E75CB292B607F7A00D789D4 /* NewCompactPlayerWindowController.swift in Sources */,
 				3EFE393327864897006F8B8C /* HTMLWriter.swift in Sources */,
 				3E2C4BD22B38D7EB00FC65DD /* SearchScope.swift in Sources */,
 				3E6C126925CEBE0600BF0D07 /* MasterPresetsManagerViewController.swift in Sources */,
@@ -5790,7 +5767,6 @@
 				3E2A2A0B280A032F000F0539 /* PlaylistTracksViewController.swift in Sources */,
 				3EFE0A982B4B5A6700C9B121 /* LibraryGroupPlayedNotification.swift in Sources */,
 				3EEC041B2687AA36004478CE /* MenuBarPlayerAudioViewController.swift in Sources */,
-				3E75CB272B6070AA00D789D4 /* CompactPlayerViewModel.swift in Sources */,
 				3E7979E4282EEEBD005AB91E /* ImageTabButtonCell.swift in Sources */,
 				3EEC04172687A982004478CE /* MenuBarPlayerSequencingViewController.swift in Sources */,
 				3EFE381F27864896006F8B8C /* SearchResult.swift in Sources */,
