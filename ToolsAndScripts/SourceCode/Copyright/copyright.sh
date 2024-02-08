@@ -3,7 +3,7 @@
 #  copyright.sh
 #  Aural
 #
-#  Copyright © 2023 Kartik Venugopal. All rights reserved.
+#  Copyright © 2024 Kartik Venugopal. All rights reserved.
 
 export basedir=/Users/kven/Projects/xcode/Aural/Tests
 #export basedir=~/Src
