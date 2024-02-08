@@ -160,19 +160,19 @@ extension PlayQueueViewController: NSMenuDelegate {
         messenger.publish(.playQueue_cropSelection)
     }
     
-    @IBAction func moveTracksUpAction(_ sender: Any) {
+    @IBAction func moveTracksUpMenuAction(_ sender: Any) {
         messenger.publish(.playQueue_moveTracksUp)
     }
     
-    @IBAction func moveTracksDownAction(_ sender: Any) {
+    @IBAction func moveTracksDownMenuAction(_ sender: Any) {
         messenger.publish(.playQueue_moveTracksDown)
     }
     
-    @IBAction func moveTracksToTopAction(_ sender: Any) {
+    @IBAction func moveTracksToTopMenuAction(_ sender: Any) {
         messenger.publish(.playQueue_moveTracksToTop)
     }
 
-    @IBAction func moveTracksToBottomAction(_ sender: Any) {
+    @IBAction func moveTracksToBottomMenuAction(_ sender: Any) {
         messenger.publish(.playQueue_moveTracksToBottom)
     }
     

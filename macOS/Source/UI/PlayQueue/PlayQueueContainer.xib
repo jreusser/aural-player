@@ -673,25 +673,25 @@
                 <menuItem title="  Move these tracks up" image="arrow.up" catalog="system" id="xhD-0V-jMz" userLabel="Move tracks up">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="moveTracksUpAction:" target="kd5-kG-XlG" id="Y2A-GJ-8Ye"/>
+                        <action selector="moveTracksUpMenuAction:" target="X6e-yN-Epj" id="Fde-hI-pRZ"/>
                     </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks down" image="arrow.down" catalog="system" id="Eix-CI-G9n" userLabel="Move tracks down">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="moveTracksDownAction:" target="kd5-kG-XlG" id="pdK-xP-lDC"/>
+                        <action selector="moveTracksDownMenuAction:" target="X6e-yN-Epj" id="MS6-PP-jSf"/>
                     </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks to the top" image="arrow.up.to.line.alt" catalog="system" id="5MI-wU-fuP" userLabel="Move tracks top">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="moveTracksToTopAction:" target="kd5-kG-XlG" id="IRz-gp-DeN"/>
+                        <action selector="moveTracksToTopMenuAction:" target="X6e-yN-Epj" id="nR5-Ua-LYc"/>
                     </connections>
                 </menuItem>
                 <menuItem title="  Move these tracks to the bottom" image="arrow.down.to.line.alt" catalog="system" id="O3S-j8-C1c" userLabel="Move tracks bottom">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="moveTracksToBottomAction:" target="kd5-kG-XlG" id="4lA-Pq-ypA"/>
+                        <action selector="moveTracksToBottomMenuAction:" target="X6e-yN-Epj" id="vNA-kR-q4D"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="4TY-3Z-NOW"/>

@@ -132,7 +132,7 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontS
     // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
     func importFilesAndFolders() {
         
-        if !trackList.isBeingModified, fileOpenDialog.runModal() == .OK {
+        if fileOpenDialog.runModal() == .OK {
             trackList.loadTracks(from: fileOpenDialog.urls)
         }
     }
@@ -145,6 +145,7 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontS
     func removeTracks() {
         
         _ = trackList.removeTracks(at: selectedRows)
+        // TODO: Publish a notif with the removed track indices so that sibling TrackList Table VCs can refresh (and self).
         updateSummary()
     }
     
@@ -165,6 +166,7 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontS
         
         trackList.cropTracks(at: selectedRows)
         notifyReloadTable()
+        updateSummary()
     }
     
     func notifyReloadTable() {}
@@ -173,6 +175,7 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontS
         
         trackList.removeAllTracks()
         notifyReloadTable()
+        updateSummary()
     }
     
     @inlinable
@@ -263,9 +266,9 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontS
     }
     
     // Must have a non-empty playlist, and at least one selected row, but not all rows selected.
-    func moveTracksUp() {
+    @discardableResult func moveTracksUp() -> Bool {
 
-        guard atLeastTwoRowsAndNotAllSelected else {return}
+        guard atLeastTwoRowsAndNotAllSelected else {return false}
 
         let results = trackList.moveTracksUp(from: selectedRows)
         
@@ -274,12 +277,14 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontS
         if let minRow = selectedRows.min() {
             tableView.scrollRowToVisible(minRow)
         }
+        
+        return true
     }
 
     // Must have a non-empty playlist, and at least one selected row, but not all rows selected.
-    func moveTracksDown() {
+    @discardableResult func moveTracksDown() -> Bool {
 
-        guard atLeastTwoRowsAndNotAllSelected else {return}
+        guard atLeastTwoRowsAndNotAllSelected else {return false}
 
         let results = trackList.moveTracksDown(from: selectedRows)
         
@@ -288,6 +293,8 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontS
         if let minRow = selectedRows.min() {
             tableView.scrollRowToVisible(minRow)
         }
+        
+        return true
     }
 
     // Rearranges tracks within the view that have been reordered
@@ -301,12 +308,12 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontS
     }
 
     // Must have a non-empty playlist, and at least one selected row, but not all rows selected.
-    func moveTracksToTop() {
+    @discardableResult func moveTracksToTop() -> Bool {
 
         let selectedRows = self.selectedRows
         let selectedRowCount = self.selectedRowCount
         
-        guard atLeastTwoRowsAndNotAllSelected else {return}
+        guard atLeastTwoRowsAndNotAllSelected else {return false}
         
         let results = trackList.moveTracksToTop(from: selectedRows)
         
@@ -314,29 +321,31 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontS
         removeAndInsertItems(results.sorted(by: <))
         
         // Refresh the relevant rows
-        guard let maxSelectedRow = selectedRows.max() else {return}
+        guard let maxSelectedRow = selectedRows.max() else {return true}
         
         tableView.reloadRows(0...maxSelectedRow)
         
         // Select all the same rows but now at the top
         tableView.scrollToTop()
         tableView.selectRows(0..<selectedRowCount)
+        
+        return true
     }
 
     // Must have a non-empty playlist, and at least one selected row, but not all rows selected.
-    func moveTracksToBottom() {
+    @discardableResult func moveTracksToBottom() -> Bool {
 
         let selectedRows = self.selectedRows
         let selectedRowCount = self.selectedRowCount
         
-        guard atLeastTwoRowsAndNotAllSelected else {return}
+        guard atLeastTwoRowsAndNotAllSelected else {return false}
         
         let results = trackList.moveTracksToBottom(from: selectedRows)
         
         // Move the rows
         removeAndInsertItems(results.sorted(by: >))
         
-        guard let minSelectedRow = selectedRows.min() else {return}
+        guard let minSelectedRow = selectedRows.min() else {return true}
         
         let lastRow = self.lastRow
         
@@ -347,6 +356,8 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontS
         let firstSelectedRow = lastRow - selectedRowCount + 1
         tableView.selectRows(firstSelectedRow...lastRow)
         tableView.scrollToBottom()
+        
+        return true
     }
     
     func scrollRowToVisible(_ row: Int) {

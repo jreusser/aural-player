@@ -17,72 +17,43 @@ class CompactPlayQueueViewController: PlayQueueViewController {
     @IBOutlet weak var lblTracksSummary: NSTextField!
     @IBOutlet weak var lblDurationSummary: NSTextField!
     
+    // Spinner that shows progress when tracks are being added to the play queue.
+    @IBOutlet weak var progressSpinner: NSProgressIndicator!
+    
     override var playQueueView: PlayQueueView {
         .expanded
     }
     
-    override var rowHeight: CGFloat {45}
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        messenger.subscribeAsync(to: .playQueue_startedAddingTracks, handler: startedAddingTracks)
+        messenger.subscribeAsync(to: .playQueue_doneAddingTracks, handler: doneAddingTracks)
+        
+        messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
+    }
+    
+    // MARK: Notification handling ----------------------------------------------------------------------------------
+    
+    func startedAddingTracks() {
+        
+        progressSpinner.startAnimation(nil)
+        progressSpinner.show()
+    }
+    
+    func doneAddingTracks() {
+        
+        progressSpinner.hide()
+        progressSpinner.stopAnimation(nil)
+    }
     
     // MARK: Table view delegate / data source --------------------------------------------------------------------------------------------------------
     
+    override var rowHeight: CGFloat {45}
+    
     override func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
-        guard let track = track(forRow: row), let columnId = tableColumn?.identifier else {return nil}
-        
-        switch columnId {
-            
-        case .cid_index:
-            
-            let builder = TableCellBuilder()
-            
-            if track == playQueueDelegate.currentTrack {
-                
-                return builder.withImage(image: .imgPlayFilled, inColor: systemColorScheme.activeControlColor).buildCell(forTableView: tableView,
-                                                                                                                         forColumnWithId: columnId, inRow: row)
-                
-            } else {
-                
-                return builder.withText(text: "\(row + 1)",
-                                        inFont: systemFontScheme.smallFont, andColor: systemColorScheme.tertiaryTextColor,
-                                        selectedTextColor: systemColorScheme.tertiarySelectedTextColor).buildCell(forTableView: tableView,
-                                                                                                                  forColumnWithId: columnId, inRow: row)
-            }
-            
-        case .cid_trackName:
-            
-            return createTrackNameCell(tableView: tableView, track: track, row: row)
-            
-        case .cid_duration:
-            
-            return createDurationCell(tableView: tableView, track: track, row: row)
-            
-        default:
-            
-            return nil
-        }
-    }
-    
-    private func createTrackNameCell(tableView: NSTableView, track: Track, row: Int) -> PlayQueueListTrackNameCell? {
-        
-        guard let cell = tableView.makeView(withIdentifier: .cid_trackName, owner: nil) as? PlayQueueListTrackNameCell else {return nil}
-        cell.updateForTrack(track)
-        cell.rowSelectionStateFunction = {[weak tableView] in
-            tableView?.selectedRowIndexes.contains(row) ?? false
-        }
-        
-        [cell.lblTitle, cell.lblArtistAlbum, cell.lblDefaultDisplayName].forEach {
-            $0.font = systemFontScheme.smallFont
-        }
-        
-        return cell
-    }
-    
-    private func createDurationCell(tableView: NSTableView, track: Track, row: Int) -> AuralTableCellView? {
-        
-        return TableCellBuilder().withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
-                                           inFont: systemFontScheme.smallFont, andColor: systemColorScheme.tertiaryTextColor,
-                                           selectedTextColor: systemColorScheme.tertiarySelectedTextColor)
-            .buildCell(forTableView: tableView, forColumnWithId: .cid_duration, inRow: row)
+        getView(for: tableColumn, row: row)
     }
     
     override func updateSummary() {
@@ -107,6 +78,12 @@ class CompactPlayQueueViewController: PlayQueueViewController {
         lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(playQueueDelegate.duration)
         lblDurationSummary.font = systemFontScheme.smallFont
         lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
+    }
+    
+    override func trackTransitioned(_ notification: TrackTransitionNotification) {
+        
+        super.trackTransitioned(notification)
+        updateSummary()
     }
     
     override func fontSchemeChanged() {

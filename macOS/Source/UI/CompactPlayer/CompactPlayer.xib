@@ -150,6 +150,9 @@
                                                             <menuItem isSeparatorItem="YES" id="0sx-Fs-mRw"/>
                                                             <menuItem title="Poolside.fm" indentationLevel="1" id="1t4-s6-xV3">
                                                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                                                <connections>
+                                                                    <action selector="applyPresetAction:" target="VNs-7z-6xS" id="3ma-mp-hbX"/>
+                                                                </connections>
                                                             </menuItem>
                                                         </items>
                                                     </menu>
@@ -652,6 +655,9 @@ IA
                                 <string key="keyEquivalent">l</string>
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </buttonCell>
+                            <connections>
+                                <action selector="toggleLoopAction:" target="bXU-Hn-LAO" id="qJg-wQ-Fyg"/>
+                            </connections>
                         </button>
                         <button toolTip="Shuffle" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JMp-km-U7a" userLabel="Shuffle Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="31" y="18" width="17" height="17"/>
@@ -683,15 +689,6 @@ IA
                             <rect key="frame" x="0.0" y="41" width="300" height="38"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <subviews>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N3w-s8-We0" userLabel="SeekPositionMarker">
-                                    <rect key="frame" x="263" y="62" width="6" height="4"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="Ufs-os-q80">
-                                        <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
                                 <slider hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QNQ-Ga-gr7" userLabel="Seek Slider">
                                     <rect key="frame" x="0.0" y="5" width="300" height="15"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -735,6 +732,11 @@ IA
             </connections>
             <point key="canvasLocation" x="-284" y="-965"/>
         </view>
+        <customObject id="VNs-7z-6xS" customClass="ThemePopupMenuController" customModule="Aural" customModuleProvider="target">
+            <connections>
+                <outlet property="theMenu" destination="xTD-f8-SdW" id="CBb-xa-ZZR"/>
+            </connections>
+        </customObject>
     </objects>
     <resources>
         <image name="AppTitle" width="117" height="32"/>

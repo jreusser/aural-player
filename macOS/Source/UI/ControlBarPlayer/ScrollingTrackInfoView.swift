@@ -132,6 +132,7 @@ class ScrollingTrackInfoView: NSView {
         self.artist = nil
         self.title = ""
         self.text = ""
+        self.attrText = nil
         
         clearTimer()
         redraw()

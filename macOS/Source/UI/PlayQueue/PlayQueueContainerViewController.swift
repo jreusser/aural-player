@@ -29,7 +29,7 @@ class PlayQueueContainerViewController: NSViewController {
     @IBOutlet weak var btnSimpleView: TrackListTabButton!
     @IBOutlet weak var btnExpandedView: TrackListTabButton!
     
-    private lazy var buttonColorChangeReceivers: [ColorSchemePropertyChangeReceiver] = [btnSimpleView, btnExpandedView]
+    var buttonColorChangeReceivers: [ColorSchemePropertyChangeReceiver] = []
     
     lazy var tabButtons: [TrackListTabButton] = [btnSimpleView, btnExpandedView]
     
@@ -57,27 +57,37 @@ class PlayQueueContainerViewController: NSViewController {
         
         super.viewDidLoad()
         
-//        if appModeManager.currentMode != .modular {
-//            lblCaption.hide()
-//        }
+        initializeView()
+        setUpTheming()
+        initSubscriptions()
         
-        if appModeManager.currentMode == .modular, 
+        updateSummary()
+    }
+    
+    func initializeView() {
+        
+        if appModeManager.currentMode == .modular,
             let lblCaptionLeadingConstraint = lblCaption.superview?.constraints.first(where: {$0.firstAttribute == .leading}) {
             
             print("LeadingCons: \(lblCaptionLeadingConstraint.constant)")
             lblCaptionLeadingConstraint.constant = 23
         }
         
-        let compactView = simpleViewController.view
+        let simpleView = simpleViewController.view
         let prettyView = expandedViewController.view
         
-        for (index, view) in [compactView, prettyView].enumerated() {
+        for (index, view) in [simpleView, prettyView].enumerated() {
             
             tabGroup.tabViewItem(at: index).view?.addSubview(view)
             view.anchorToSuperview()
         }
         
         doSelectTab(at: playQueueUIState.currentView.rawValue)
+    }
+    
+    func setUpTheming() {
+        
+        buttonColorChangeReceivers = [btnSimpleView, btnExpandedView]
         
         fontSchemesManager.registerObserver(self)
         
@@ -86,6 +96,9 @@ class PlayQueueContainerViewController: NSViewController {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: tabButtonsContainer)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: secondaryTextColorChanged(_:))
+    }
+    
+    func initSubscriptions() {
         
         messenger.subscribe(to: .playQueue_addTracks, handler: importFilesAndFolders)
         
@@ -121,38 +134,20 @@ class PlayQueueContainerViewController: NSViewController {
         
         messenger.subscribe(to: .playQueue_search, handler: search)
         
-        messenger.subscribe(to: .playQueue_exportAsPlaylistFile, handler: exportAsPlaylistFile)
+        messenger.subscribe(to: .playQueue_exportAsPlaylistFile, handler: exportToPlaylistFile)
         
         messenger.subscribeAsync(to: .playQueue_startedAddingTracks, handler: startedAddingTracks)
         messenger.subscribeAsync(to: .playQueue_doneAddingTracks, handler: doneAddingTracks)
         
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
-        messenger.subscribeAsync(to: .playQueue_tracksRemoved, handler: updateSummary)
         
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: updateSummary)
         
         messenger.subscribe(to: .playQueue_updateSummary, handler: updateSummary)
-        
-        updateSummary()
     }
     
     func playSelectedTrack() {
         currentViewController.playSelectedTrack()
-    }
-    
-    // TODO: REFACTORING - move this to a generic TableWindowController.
-    private func exportAsPlaylistFile() {
-        
-        // Make sure there is at least one track to save.
-        guard playQueueDelegate.size > 0, !checkIfPlayQueueIsBeingModified() else {return}
-        
-        let saveDialog = DialogsAndAlerts.savePlaylistDialog
-        
-        if saveDialog.runModal() == .OK,
-           let newFileURL = saveDialog.url {
-            
-            playQueueDelegate.exportToFile(newFileURL)
-        }
     }
     
     func selectAllTracks() {
@@ -213,13 +208,13 @@ class PlayQueueContainerViewController: NSViewController {
     
     // MARK: Notification handling ----------------------------------------------------------------------------------
     
-    private func startedAddingTracks() {
+    func startedAddingTracks() {
         
         progressSpinner.startAnimation(nil)
         progressSpinner.show()
     }
     
-    private func doneAddingTracks() {
+    func doneAddingTracks() {
         
         progressSpinner.hide()
         progressSpinner.stopAnimation(nil)

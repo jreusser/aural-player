@@ -12,33 +12,82 @@ import AppKit
 
 extension TrackListTableViewController {
     
-    @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {
+    func checkAndAlertIfTrackListIsBeingModified() -> Bool {
+        
+        guard !trackList.isBeingModified else {
+            
+            // TODO: Show alert "Cannot add files to the <trackList.displayName> while it is being modified!"
+            return true
+        }
+        
+        return false
+    }
+    
+    @IBAction func importFilesAndFoldersAction(_ sender: AnyObject) {
+        
+        if checkAndAlertIfTrackListIsBeingModified() {return}
         importFilesAndFolders()
     }
     
-    @IBAction func removeTracksAction(_ sender: NSButton) {
+    @IBAction func removeTracksAction(_ sender: AnyObject) {
+        
+        if checkAndAlertIfTrackListIsBeingModified() {return}
         removeTracks()
     }
     
-    @IBAction func cropSelectionAction(_ sender: Any) {
+    @IBAction func cropSelectionAction(_ sender: AnyObject) {
+        
+        if checkAndAlertIfTrackListIsBeingModified() {return}
         cropSelection()
     }
     
-    @IBAction func removeAllTracksAction(_ sender: NSButton) {
+    @IBAction func removeAllTracksAction(_ sender: AnyObject) {
+        
+        if checkAndAlertIfTrackListIsBeingModified() {return}
         removeAllTracks()
+    }
+    
+    // MARK: Reordering of tracks
+    
+    // Moves any selected tracks up one row in the play queue
+    @IBAction func moveTracksUpAction(_ sender: Any) {
+        
+        if checkAndAlertIfTrackListIsBeingModified() {return}
+        moveTracksUp()
+    }
+    
+    // Moves any selected tracks down one row in the play queue
+    @IBAction func moveTracksDownAction(_ sender: Any) {
+        
+        if checkAndAlertIfTrackListIsBeingModified() {return}
+        moveTracksDown()
+    }
+    
+    // Moves the selected playlist item up one row in the play queue
+    @IBAction func moveTracksToTopAction(_ sender: Any) {
+        
+        if checkAndAlertIfTrackListIsBeingModified() {return}
+        moveTracksToTop()
+    }
+    
+    // Moves the selected playlist item up one row in the play queue
+    @IBAction func moveTracksToBottomAction(_ sender: Any) {
+        
+        if checkAndAlertIfTrackListIsBeingModified() {return}
+        moveTracksToBottom()
     }
     
     // MARK: Table view selection manipulation
     
-    @IBAction func clearSelectionAction(_ sender: NSButton) {
+    @IBAction func clearSelectionAction(_ sender: AnyObject) {
         clearSelection()
     }
     
-    @IBAction func invertSelectionAction(_ sender: NSButton) {
+    @IBAction func invertSelectionAction(_ sender: AnyObject) {
         invertSelection()
     }
     
-    @IBAction func exportToPlaylistAction(_ sender: NSButton) {
+    @IBAction func exportToPlaylistAction(_ sender: AnyObject) {
         exportTrackList()
     }
     
@@ -70,19 +119,19 @@ extension TrackListTableViewController {
         doSort(by: [.duration])
     }
     
-    @IBAction func pageUpAction(_ sender: NSButton) {
+    @IBAction func pageUpAction(_ sender: AnyObject) {
         pageUp()
     }
     
-    @IBAction func pageDownAction(_ sender: NSButton) {
+    @IBAction func pageDownAction(_ sender: AnyObject) {
         pageDown()
     }
     
-    @IBAction func scrollToTopAction(_ sender: NSButton) {
+    @IBAction func scrollToTopAction(_ sender: AnyObject) {
         scrollToTop()
     }
     
-    @IBAction func scrollToBottomAction(_ sender: NSButton) {
+    @IBAction func scrollToBottomAction(_ sender: AnyObject) {
         scrollToBottom()
     }
 }

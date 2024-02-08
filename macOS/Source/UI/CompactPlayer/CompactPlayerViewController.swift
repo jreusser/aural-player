@@ -171,8 +171,8 @@ extension CompactPlayerViewController: FontSchemeObserver {
     
     func fontSchemeChanged() {
         
-        textView.font = systemFontScheme.smallFont
-        lblTrackTime.font = systemFontScheme.smallFont
+        textView.font = systemFontScheme.normalFont
+        lblTrackTime.font = systemFontScheme.normalFont
         layoutTextView()
     }
 }

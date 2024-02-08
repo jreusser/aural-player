@@ -291,25 +291,27 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
     
     func preTrackPlayback(_ notification: PreTrackPlaybackNotification) {
         
-        let oldTrack = notification.oldTrack
-        let newTrack = notification.newTrack
+        // TODO: Temporary
         
-        if let theOldTrack = oldTrack, (needToRememberSettingsForAllTracks || soundProfiles.hasFor(theOldTrack)) {
-            
-            doSaveProfile(forTrack: theOldTrack)
-            
-            if let theNewTrack = newTrack, let profile = soundProfiles[theNewTrack] {
-                graph.applySoundProfile(profile)
-                
-            } else {
-                graph.restoreSystemSoundProfile()
-            }
-            
-        } else if let theNewTrack = newTrack, let profile = soundProfiles[theNewTrack] {
-            
-            graph.captureSystemSoundProfile()
-            graph.applySoundProfile(profile)
-        }
+//        let oldTrack = notification.oldTrack
+//        let newTrack = notification.newTrack
+//        
+//        if let theOldTrack = oldTrack, (needToRememberSettingsForAllTracks || soundProfiles.hasFor(theOldTrack)) {
+//            
+//            doSaveProfile(forTrack: theOldTrack)
+//            
+//            if let theNewTrack = newTrack, let profile = soundProfiles[theNewTrack] {
+//                graph.applySoundProfile(profile)
+//                
+//            } else {
+//                graph.restoreSystemSoundProfile()
+//            }
+//            
+//        } else if let theNewTrack = newTrack, let profile = soundProfiles[theNewTrack] {
+//            
+//            graph.captureSystemSoundProfile()
+//            graph.applySoundProfile(profile)
+//        }
     }
     
     @inline(__always)

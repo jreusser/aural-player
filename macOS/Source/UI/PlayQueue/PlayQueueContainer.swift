@@ -40,12 +40,19 @@ class PlayQueueContainer: NSView, ColorSchemeObserver {
     @IBOutlet weak var btnScrollToTop: TintedImageButton!
     @IBOutlet weak var btnScrollToBottom: TintedImageButton!
     
-    private lazy var allButtons: [ColorSchemePropertyChangeReceiver] = [btnImportTracks, btnRemoveTracks, btnCropTracks, btnRemoveAllTracks, btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom, btnClearSelection, btnInvertSelection, btnSearch, sortTintedIconMenuItem, btnExport, btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom]
-    
-    private var viewsToShowOnMouseOver: [NSView] = []
-    private var viewsToHideOnMouseOver: [NSView] = []
+    var allButtons: [ColorSchemePropertyChangeReceiver] = []
+    var viewsToShowOnMouseOver: [NSView] = []
+    var viewsToHideOnMouseOver: [NSView] = []
     
     override func awakeFromNib() {
+        
+        setUpSubviewsForAutoHide()
+        
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: allButtons)
+    }
+    
+    func setUpSubviewsForAutoHide() {
         
         viewsToShowOnMouseOver = [btnImportTracks,
                                   btnRemoveTracks, btnCropTracks, btnRemoveAllTracks,
@@ -57,8 +64,7 @@ class PlayQueueContainer: NSView, ColorSchemeObserver {
         
         viewsToHideOnMouseOver = [lblTracksSummary, lblDurationSummary]
         
-        colorSchemesManager.registerSchemeObserver(self)
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: allButtons)
+        allButtons = [btnImportTracks, btnRemoveTracks, btnCropTracks, btnRemoveAllTracks, btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom, btnClearSelection, btnInvertSelection, btnSearch, sortTintedIconMenuItem, btnExport, btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom]
     }
     
     override func viewDidEndLiveResize() {

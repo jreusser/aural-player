@@ -33,10 +33,7 @@ extension PlayQueueContainerViewController {
     
     // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
     func importFilesAndFolders() {
-        
-        if !playQueueDelegate.isBeingModified, fileOpenDialog.runModal() == .OK {
-            playQueueDelegate.loadTracks(from: fileOpenDialog.urls)
-        }
+        currentViewController.importFilesAndFoldersAction(self)
     }
     
     @IBAction func removeTracksAction(_ sender: Any) {
@@ -319,12 +316,6 @@ extension PlayQueueContainerViewController {
     // TODO: what to do with tracks already in the PQ ???
     // TODO: Perhaps use a new TrackRegistry to cache and reuse Tracks
     func enqueueAndPlayNow(_ command: EnqueueAndPlayNowCommand) {
-        
-//        if command.clearPlayQueue {
-//            playQueueDelegate.removeAllTracks()
-//        }
-//
-//        let indices = playQueueDelegate.addTracks(command.tracks)
         
         let indices = playQueueDelegate.enqueueTracks(command.tracks, clearQueue: command.clearPlayQueue)
         

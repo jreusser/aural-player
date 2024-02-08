@@ -109,21 +109,21 @@ class PlaylistTracksViewController: TrackListTableViewController {
     
     // MARK: Actions (control buttons)
     
-    @IBAction func moveTracksUpAction(_ sender: NSButton) {
-        moveTracksUp()
-    }
-    
-    @IBAction func moveTracksDownAction(_ sender: NSButton) {
-        moveTracksDown()
-    }
-    
-    @IBAction func moveTracksToTopAction(_ sender: NSButton) {
-        moveTracksToTop()
-    }
-    
-    @IBAction func moveTracksToBottomAction(_ sender: NSButton) {
-        moveTracksToBottom()
-    }
+//    @IBAction func moveTracksUpAction(_ sender: NSButton) {
+//        moveTracksUp()
+//    }
+//    
+//    @IBAction func moveTracksDownAction(_ sender: NSButton) {
+//        moveTracksDown()
+//    }
+//    
+//    @IBAction func moveTracksToTopAction(_ sender: NSButton) {
+//        moveTracksToTop()
+//    }
+//    
+//    @IBAction func moveTracksToBottomAction(_ sender: NSButton) {
+//        moveTracksToBottom()
+//    }
     
     @IBAction func doubleClickAction(_ sender: NSTableView) {
         

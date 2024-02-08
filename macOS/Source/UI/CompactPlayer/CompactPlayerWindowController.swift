@@ -31,8 +31,6 @@ class CompactPlayerWindowController: NSWindowController {
     @IBOutlet weak var tabView: NSTabView!
     
     @IBOutlet weak var btnQuit: TintedImageButton!
-    @IBOutlet weak var optionsMenuItem: TintedIconMenuItem!
-    
     @IBOutlet weak var btnMinimize: TintedImageButton!
     @IBOutlet weak var presentationModeMenuItem: TintedIconMenuItem!
     @IBOutlet weak var settingsMenuIconItem: TintedIconMenuItem!
@@ -58,19 +56,17 @@ class CompactPlayerWindowController: NSWindowController {
         
         playQueueViewController.view.anchorToSuperview()
         
-        tabView.selectTabViewItem(at: 0)
-        compactPlayerUIState.isShowingPlayer = true
+        tabView.selectTabViewItem(at: 1)
+        compactPlayerUIState.isShowingPlayer = false
         
         rootContainerBox.cornerRadius = 8
 //        cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
 //        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
+
+        
+        colorSchemesManager.registerSchemeObserver(self)
         
         messenger.subscribe(to: .effects_sheetDismissed, handler: eventMonitor.resumeMonitoring)
-        
-        applyTheme()
-        
-        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
         
 //        colorSchemesManager.registerObserver(rootContainerBox, forProperty: \.backgroundColor)
 //        colorSchemesManager.registerObserver(logoImage, forProperty: \.captionTextColor)
@@ -79,16 +75,6 @@ class CompactPlayerWindowController: NSWindowController {
 //                                              forProperty: \.buttonColor)
         
         setUpEventHandling()
-    }
-    
-    func applyTheme() {
-        applyColorScheme(systemColorScheme)
-    }
-    
-    func applyColorScheme(_ colorScheme: ColorScheme) {
-        
-        rootContainerBox.fillColor = colorScheme.backgroundColor
-        //        [btnQuit, optionsMenuItem].forEach {($0 as? Tintable)?.reTint()}
     }
     
     @IBAction func cornerRadiusStepperAction(_ sender: NSStepper) {
@@ -182,10 +168,16 @@ class CompactPlayerWindowController: NSWindowController {
 extension CompactPlayerWindowController: ColorSchemeObserver {
     
     func colorSchemeChanged() {
-        btnQuit.contentTintColor = systemColorScheme.buttonColor
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        btnQuit.contentTintColor = systemColorScheme.buttonColor
+        
+        rootContainerBox.fillColor = systemColorScheme.backgroundColor
+        logoImage.contentTintColor = systemColorScheme.captionTextColor
+        
+        [btnQuit, btnMinimize].forEach {
+            $0.contentTintColor = systemColorScheme.buttonColor
+        }
+        
+        [presentationModeMenuItem, settingsMenuIconItem].forEach {
+            $0?.colorChanged(systemColorScheme.buttonColor)
+        }
     }
 }

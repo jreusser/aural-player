@@ -128,7 +128,7 @@ class PlayQueueViewController: TrackListTableViewController {
         tracksAdded(at: notif.trackIndices)
     }
     
-    private func trackTransitioned(_ notification: TrackTransitionNotification) {
+    func trackTransitioned(_ notification: TrackTransitionNotification) {
     
         let refreshIndexes: [Int] = Set([notification.beginTrack, notification.endTrack]
                                             .compactMap {$0})
@@ -147,12 +147,63 @@ class PlayQueueViewController: TrackListTableViewController {
         
         // TODO: Load these 2 values from user preferences
         let clearQueue: Bool = false    // Append or replace ???
-        let autoplay: Bool = true       // Autoplay on add
+        let autoplay: Bool = false       // Autoplay on add
         
         playQueueDelegate.loadTracks(from: files, atPosition: row, clearQueue: clearQueue, autoplay: autoplay)
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         playQueueUIState.selectedRows = self.selectedRows
+    }
+    
+    // MARK: Method overrides --------------------------------------------------------------------------------
+    
+    /**
+        The Play Queue needs to update the summary in the case when tracks were reordered, because, if a track
+        is playing, it may have moved.
+     */
+    
+    @discardableResult override func moveTracksUp() -> Bool {
+
+        if super.moveTracksUp() {
+            
+            updateSummary()
+            return true
+        }
+        
+        return false
+    }
+
+    @discardableResult override func moveTracksDown() -> Bool {
+
+        if super.moveTracksDown() {
+            
+            updateSummary()
+            return true
+        }
+        
+        return false
+    }
+
+    @discardableResult override func moveTracksToTop() -> Bool {
+
+        if super.moveTracksToTop() {
+            
+            updateSummary()
+            return true
+        }
+        
+        return false
+    }
+
+    @discardableResult override func moveTracksToBottom() -> Bool {
+
+        if super.moveTracksToBottom() {
+            
+            updateSummary()
+            return true
+        }
+        
+        return false
     }
 }

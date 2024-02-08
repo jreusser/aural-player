@@ -48,7 +48,7 @@ class PlaybackView: NSView, ColorSchemeObserver, Destroyable {
                                                                                                      ],
                                                                                                      button: btnLoop)
     
-    lazy var buttonColorChangeReceivers: [ColorSchemePropertyChangeReceiver] = [btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack]
+    var buttonColorChangeReceivers: [ColorSchemePropertyChangeReceiver] = []
     
     // When the buttons are in an "Off" state, they should be tinted according to the system color scheme's off state button color.
 //    var offStateTintFunction: TintFunction {{.gray}}
@@ -71,6 +71,8 @@ class PlaybackView: NSView, ColorSchemeObserver, Destroyable {
     }
     
     func setUpButtonColorObservation() {
+        
+        buttonColorChangeReceivers = [btnSeekBackward, btnSeekForward, btnPreviousTrack, btnNextTrack]
         
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: buttonColorChangeReceivers)

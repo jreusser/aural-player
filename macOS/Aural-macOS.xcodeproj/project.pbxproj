@@ -642,6 +642,9 @@
 		3ECBF30A2619DF7200AD5C30 /* AudioUnitsViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECBF3092619DF7200AD5C30 /* AudioUnitsViewController+TableViewDelegate.swift */; };
 		3ECDCA4E2B4C84CD003BB67E /* LibraryFileSystemItemsPlayedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECDCA4D2B4C84CD003BB67E /* LibraryFileSystemItemsPlayedNotification.swift */; };
 		3ECF275C26A5567000974120 /* FontSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF275B26A5567000974120 /* FontSet.swift */; };
+		3ECF71A52B74EDE000FDB69B /* CompactPlayQueueContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF71A42B74EDE000FDB69B /* CompactPlayQueueContainer.swift */; };
+		3ECF71A92B74F69600FDB69B /* CompactPlayQueueViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF71A82B74F69600FDB69B /* CompactPlayQueueViewController+Actions.swift */; };
+		3ECF71AB2B74FB7700FDB69B /* CompactPlayQueueViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF71AA2B74FB7700FDB69B /* CompactPlayQueueViewController+ViewDelegate.swift */; };
 		3ECFA87D2AE1EB01001096DC /* EffectsContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ECFA87C2AE1EB01001096DC /* EffectsContainer.xib */; };
 		3ECFA87F2AE1EB29001096DC /* EffectsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECFA87E2AE1EB29001096DC /* EffectsContainerViewController.swift */; };
 		3ED0A4F027DD016200C7A438 /* ButtonStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A4EF27DD016200C7A438 /* ButtonStateMachine.swift */; };
@@ -1706,6 +1709,9 @@
 		3ECBF3092619DF7200AD5C30 /* AudioUnitsViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioUnitsViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		3ECDCA4D2B4C84CD003BB67E /* LibraryFileSystemItemsPlayedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryFileSystemItemsPlayedNotification.swift; sourceTree = "<group>"; };
 		3ECF275B26A5567000974120 /* FontSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSet.swift; sourceTree = "<group>"; };
+		3ECF71A42B74EDE000FDB69B /* CompactPlayQueueContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayQueueContainer.swift; sourceTree = "<group>"; };
+		3ECF71A82B74F69600FDB69B /* CompactPlayQueueViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompactPlayQueueViewController+Actions.swift"; sourceTree = "<group>"; };
+		3ECF71AA2B74FB7700FDB69B /* CompactPlayQueueViewController+ViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompactPlayQueueViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
 		3ECFA87C2AE1EB01001096DC /* EffectsContainer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EffectsContainer.xib; sourceTree = "<group>"; };
 		3ECFA87E2AE1EB29001096DC /* EffectsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsContainerViewController.swift; sourceTree = "<group>"; };
 		3ED0A4EF27DD016200C7A438 /* ButtonStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStateMachine.swift; sourceTree = "<group>"; };
@@ -4076,6 +4082,9 @@
 			children = (
 				3EC793872B74700900AF7E9E /* CompactPlayQueue.xib */,
 				3EC793852B746C6D00AF7E9E /* CompactPlayQueueViewController.swift */,
+				3ECF71AA2B74FB7700FDB69B /* CompactPlayQueueViewController+ViewDelegate.swift */,
+				3ECF71A82B74F69600FDB69B /* CompactPlayQueueViewController+Actions.swift */,
+				3ECF71A42B74EDE000FDB69B /* CompactPlayQueueContainer.swift */,
 			);
 			path = PlayQueue;
 			sourceTree = "<group>";
@@ -5641,6 +5650,7 @@
 				3E6C12A925CEBE2700BF0D07 /* EffectsUnitTriStateBypassImage.swift in Sources */,
 				3E3633E22685FB2C006A88ED /* EffectsUnitViewController.swift in Sources */,
 				3EFE38E127864897006F8B8C /* AudioGraphProtocols.swift in Sources */,
+				3ECF71AB2B74FB7700FDB69B /* CompactPlayQueueViewController+ViewDelegate.swift in Sources */,
 				3EFE389727864896006F8B8C /* ReverbPresets.swift in Sources */,
 				3E6C12CA25CEBE6700BF0D07 /* EffectsWindowController.swift in Sources */,
 				3EBD345D2B5DBFC40048AC03 /* BookmarksDelegate+Init.swift in Sources */,
@@ -5721,6 +5731,7 @@
 				3EFE3A3D27864898006F8B8C /* DefaultFFMpegMetadataParser.swift in Sources */,
 				3EFE383D27864896006F8B8C /* GroupedTrackMoveResult.swift in Sources */,
 				3EFE3A2327864898006F8B8C /* TrackTransitionNotification.swift in Sources */,
+				3ECF71A52B74EDE000FDB69B /* CompactPlayQueueContainer.swift in Sources */,
 				3EB3A62126A773350060487C /* FontSizeStepper.swift in Sources */,
 				3EFE39C327864897006F8B8C /* ControlBarPlayerUIPersistentState.swift in Sources */,
 				3E9FD1082A1D5D8D0038AF04 /* FFmpegString.swift in Sources */,
@@ -5944,6 +5955,7 @@
 				3E98E5F8262D51AF00A65BCE /* PlayingTrackInfo.swift in Sources */,
 				3EFE0A8C2B4B364200C9B121 /* TrackHistoryItem.swift in Sources */,
 				3EA6C6292AD6AAA100B75166 /* FFmpegCodecContext.swift in Sources */,
+				3ECF71A92B74F69600FDB69B /* CompactPlayQueueViewController+Actions.swift in Sources */,
 				3EFE39DD27864897006F8B8C /* EQUnitPersistentState.swift in Sources */,
 				3EFE380727864896006F8B8C /* SortField.swift in Sources */,
 				3E6C12DF25CEBE8100BF0D07 /* PlayingTrackTextView.swift in Sources */,
