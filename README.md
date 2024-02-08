@@ -1,13 +1,16 @@
 <img width="225" src="https://raw.githubusercontent.com/maculateConception/aural-player/master/Documentation/Screenshots/readmeLogo.png"/>
 
-### Library
-<img width="1400" src="https://github.com/kartik-venugopal/aural-player/raw/v4.0/aural4.png"/>
-
-### Tune Browser
-<img width="1400" src="https://github.com/kartik-venugopal/aural-player/raw/v4.0/TuneBrowser.png"/>
+### Unified Mode
+<img width="900" src="https://github.com/kartik-venugopal/aural-player/raw/v4.0/UnifiedMode.png"/>
 
 ### Compact Mode
 <img width="300" src="https://github.com/kartik-venugopal/aural-player/raw/v4.0/CompactMode.png"/>
+
+### Library (in Modular Mode)
+<img width="1400" src="https://github.com/kartik-venugopal/aural-player/raw/v4.0/aural4.png"/>
+
+### Tune Browser (in Modular Mode)
+<img width="1400" src="https://github.com/kartik-venugopal/aural-player/raw/v4.0/TuneBrowser.png"/>
 
 ## The v4.0 goals
 
