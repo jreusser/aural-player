@@ -3,6 +3,8 @@
 ### Unified Mode
 <img width="900" src="https://github.com/kartik-venugopal/aural-player/raw/v4.0/UnifiedMode.png"/>
 
+<img width="900" src="https://github.com/kartik-venugopal/aural-player/raw/v4.0/UnifiedMode-FX.png"/>
+
 ### Compact Mode
 <img width="300" src="https://github.com/kartik-venugopal/aural-player/raw/v4.0/CompactMode.png"/>
 
