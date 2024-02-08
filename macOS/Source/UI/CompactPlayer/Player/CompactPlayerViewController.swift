@@ -66,15 +66,15 @@ class CompactPlayerViewController: NSViewController {
     
     func layoutTextView(forceChange: Bool = true) {
         
-        let showSeekPosition: Bool = compactPlayerUIState.showSeekPosition
+        let showTrackTime: Bool = compactPlayerUIState.showTrackTime
         
-        guard forceChange || (seekSliderView.showSeekPosition != showSeekPosition) else {return}
+        guard forceChange || (seekSliderView.showTrackTime != showTrackTime) else {return}
         
         // Seek Position label
-        seekSliderView.showSeekPosition = showSeekPosition
+        seekSliderView.showOrHideTrackTime()
         
-        trackInfoContainerBox.setFrameSize(NSSize(width: showSeekPosition ? 200 : 280, height: 26))
-        textView.setFrameSize(NSSize(width: showSeekPosition ? 200 : 280, height: 26))
+        trackInfoContainerBox.setFrameSize(NSSize(width: showTrackTime ? 200 : 280, height: 26))
+        textView.setFrameSize(NSSize(width: showTrackTime ? 200 : 280, height: 26))
         
         textView.update()
     }

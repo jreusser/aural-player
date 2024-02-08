@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -603,7 +603,7 @@
                 <outlet property="seekSlider" destination="oBR-SZ-2k2" id="vpD-ju-zWN"/>
                 <outlet property="seekSliderView" destination="Aqe-re-gbP" id="4aJ-Z3-rXC"/>
                 <outlet property="sequencingViewController" destination="3w7-fX-EBl" id="clA-zc-wu3"/>
-                <outlet property="showSeekPositionMenuItem" destination="h7t-6S-pQK" id="CEp-p1-RQc"/>
+                <outlet property="showTrackTimeMenuItem" destination="h7t-6S-pQK" id="CEp-p1-RQc"/>
                 <outlet property="textView" destination="lNe-zj-5jU" id="X0y-Ps-po3"/>
                 <outlet property="timeElapsedMenuItem" destination="Fax-Qw-7a9" id="7e8-uP-lt7"/>
                 <outlet property="timeRemainingMenuItem" destination="4M7-PM-McI" id="ZqS-Mp-exb"/>
@@ -692,7 +692,7 @@
         <image name="DockTopCenter" width="14" height="12"/>
         <image name="DockTopLeft" width="14" height="12"/>
         <image name="DockTopRight" width="14" height="12"/>
-        <image name="Loop" width="270" height="210"/>
+        <image name="Loop" width="18" height="25"/>
         <image name="MenuBarMode-Small" width="14" height="10"/>
         <image name="NextTrack" width="21" height="23"/>
         <image name="Pause" width="30" height="35"/>

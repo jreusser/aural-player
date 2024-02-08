@@ -45,6 +45,8 @@ class MainWindowController: NSWindowController {
     // MARK: Setup
     
     override func awakeFromNib() {
+        
+        super.awakeFromNib()
         NSApp.mainMenu = self.mainMenu
     }
     

@@ -13,23 +13,8 @@ class ControlBarSeekSliderView: SeekSliderView {
     
     private let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
     
-    ///
-    /// Determines whether or not the seek position needs to be displayed (when a track is playing).
-    ///
-    var showSeekPosition: Bool = false {
-       
-        // When the value is updated, need to show / hide the label and update its displayed text.
-        didSet {
-            
-            if player.playingTrack != nil {
-                
-                updateSeekPosition()
-                showSeekPositionLabels()
-                return
-            }
-            
-            hideSeekPositionLabels()
-        }
+    override var showTrackTime: Bool {
+        compactPlayerUIState.showTrackTime
     }
     
     override func awakeFromNib() {
@@ -44,25 +29,6 @@ class ControlBarSeekSliderView: SeekSliderView {
         
         lblTrackTime?.addGestureRecognizer(NSClickGestureRecognizer(target: self,
                                                                        action: #selector(self.switchTrackTimeDisplayTypeAction)))
-    }
-    
-//    @objc func switchSeekPositionDisplay() {
-//        
-//        playerUIState.trackTimeDisplayType = playerUIState.trackTimeDisplayType.toggle()
-//        updateSeekPositionLabels(player.seekPosition)
-//        updateSeekTimerState()
-//    }
-    
-    override func showSeekPositionLabels() {
-        
-        lblTrackTime.showIf(showSeekPosition)
-        updateSeekTimerState()
-    }
-    
-    override func hideSeekPositionLabels() {
-        
-        lblTrackTime.hide()
-        updateSeekTimerState()
     }
     
     func applyTheme() {

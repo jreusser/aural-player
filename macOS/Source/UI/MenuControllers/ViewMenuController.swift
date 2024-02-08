@@ -73,8 +73,6 @@ class ViewMenuController: NSObject, NSMenuDelegate {
 //        toggleChaptersListMenuItem.onIf(windowLayoutsManager.isShowingChaptersList)
 //        toggleVisualizerMenuItem.onIf(windowLayoutsManager.isShowingVisualizer)
         
-        playerViewMenuItem.off()
-        
         cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
         lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
     }

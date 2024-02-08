@@ -26,7 +26,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
     @IBOutlet weak var viewSettingsMenuButton: NSPopUpButton!
     
     @IBOutlet weak var scrollingEnabledMenuItem: NSMenuItem!
-    @IBOutlet weak var showSeekPositionMenuItem: NSMenuItem!
+    @IBOutlet weak var showTrackTimeMenuItem: NSMenuItem!
     @IBOutlet weak var seekPositionDisplayTypeMenuItem: NSMenuItem!
     
     @IBOutlet weak var timeElapsedMenuItem: SeekPositionDisplayTypeMenuItem!
@@ -68,7 +68,10 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
         // Seek slider
         seekSliderConstraints.setLeading(relatedToLeadingOf: textView, offset: -1)
         seekSliderConstraints.setTrailing(relatedToLeadingOf: btnRepeat, offset: -distanceBetweenControlsAndInfo)
-        seekSliderView.showSeekPosition = false
+        
+        // TODO: WTF is this (why false by default) ?!!!
+//        controlBarPlayerUIState.showTrackTime = false
+        seekSliderView.showOrHideTrackTime()
         
         // Text view
         textViewConstraints.setLeading(relatedToTrailingOf: imgArt, offset: 10)
@@ -127,16 +130,16 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
     
     func layoutTextView(forceChange: Bool = true) {
         
-        let showSeekPosition: Bool = uiState.showSeekPosition && windowWideEnoughForSeekPosition
+        let showTrackTime: Bool = uiState.showTrackTime && windowWideEnoughForSeekPosition
         
-        guard forceChange || (seekSliderView.showSeekPosition != showSeekPosition) else {return}
+        guard forceChange || (seekSliderView.showTrackTime != showTrackTime) else {return}
         
         // Seek Position label
-        seekSliderView.showSeekPosition = showSeekPosition
+        seekSliderView.showOrHideTrackTime()
         
         var labelWidth: CGFloat = 0
         
-        if showSeekPosition {
+        if showTrackTime {
             
             lblTrackTimeConstraints.removeAll(withAttributes: [.width, .trailing])
             labelWidth = widthForSeekPosLabel + 5 // Compute the required width and add some padding.
@@ -148,7 +151,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
         // Text view
         textViewConstraints.removeAll(withAttributes: [.trailing])
         textViewConstraints.setTrailing(relatedToLeadingOf: btnRepeat,
-                                        offset: -(distanceBetweenControlsAndInfo + (showSeekPosition ? labelWidth : 1)))
+                                        offset: -(distanceBetweenControlsAndInfo + (showTrackTime ? labelWidth : 1)))
     }
     
     // MARK: Track playback actions/functions ------------------------------------------------------------
@@ -239,13 +242,13 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
         scrollingEnabledMenuItem.onIf(textView.scrollingEnabled)
         
         let windowWideEnoughForSeekPosition = self.windowWideEnoughForSeekPosition
-        showSeekPositionMenuItem.showIf(windowWideEnoughForSeekPosition)
-        seekPositionDisplayTypeMenuItem.showIf(windowWideEnoughForSeekPosition && uiState.showSeekPosition)
+        showTrackTimeMenuItem.showIf(windowWideEnoughForSeekPosition)
+        seekPositionDisplayTypeMenuItem.showIf(windowWideEnoughForSeekPosition && uiState.showTrackTime)
         
         guard windowWideEnoughForSeekPosition else {return}
         
-        showSeekPositionMenuItem.onIf(uiState.showSeekPosition)
-        guard uiState.showSeekPosition else {return}
+        showTrackTimeMenuItem.onIf(uiState.showTrackTime)
+        guard uiState.showTrackTime else {return}
         
         seekPositionDisplayTypeItems.forEach {$0.off()}
         
@@ -273,7 +276,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
     
     @IBAction func toggleShowSeekPositionAction(_ sender: NSMenuItem) {
         
-        uiState.showSeekPosition.toggle()
+        uiState.showTrackTime.toggle()
         layoutTextView()
     }
     

@@ -32,6 +32,10 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
     
     var seekSliderValue: Double {seekSlider.doubleValue}
     
+    var showTrackTime: Bool {
+        playerUIState.showTrackTime
+    }
+    
     private let seekTimerTaskQueue: SeekTimerTaskQueue = .instance
     
     override func awakeFromNib() {
@@ -92,13 +96,7 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
         seekSlider.enable()
         seekSlider.show()
         
-        showSeekPositionLabels()
-    }
-    
-    func showSeekPositionLabels() {
-        
-        lblTrackTime.showIf(playerUIState.showTrackTime)
-        updateSeekTimerState()
+        showOrHideTrackTime()
     }
     
     func hideSeekPositionLabels() {
@@ -148,7 +146,7 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
             
             let hasTasks = seekTimerTaskQueue.hasTasks
             
-            let labelShown = playerUIState.showTrackTime
+            let labelShown = showTrackTime
             let trackTimeDisplayType = playerUIState.trackTimeDisplayType
             let trackTimeNotStatic = labelShown && trackTimeDisplayType != .duration
             
@@ -206,7 +204,7 @@ class SeekSliderView: NSView, Destroyable, ColorSchemeObserver {
     // TODO: Should disable / re-enable the timer when labels are hidden / shown (unnecessary CPU usage), or when showing track duration (which is static).
     func showOrHideTrackTime() {
         
-        lblTrackTime.showIf(playerUIState.showTrackTime)
+        lblTrackTime.showIf(player.playingTrack != nil && showTrackTime)
         updateSeekTimerState()
     }
     

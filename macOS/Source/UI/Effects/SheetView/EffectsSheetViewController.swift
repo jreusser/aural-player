@@ -31,6 +31,10 @@ class EffectsSheetViewController: NSViewController {
     }
     
     @IBAction func closeAction(_ sender: NSButton) {
+        endSheet()
+    }
+    
+    func endSheet() {
         
         dismiss(self)
         messenger.publish(.effects_sheetDismissed)

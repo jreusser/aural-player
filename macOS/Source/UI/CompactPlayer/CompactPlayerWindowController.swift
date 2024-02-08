@@ -14,6 +14,8 @@ class CompactPlayerWindowController: NSWindowController {
     
     override var windowNibName: NSNib.Name? {"CompactPlayerWindow"}
     
+    @IBOutlet weak var mainMenu: NSMenu!
+    
     @IBOutlet weak var rootContainerBox: NSBox!
     
     @IBOutlet weak var logoImage: TintedImageView!
@@ -23,31 +25,21 @@ class CompactPlayerWindowController: NSWindowController {
     @IBOutlet weak var settingsMenuIconItem: TintedIconMenuItem!
     
     @IBOutlet weak var tabView: NSTabView!
-    private let playerViewController: CompactPlayerViewController = .init()
-    private let playQueueViewController: CompactPlayQueueViewController = .init()
-    private lazy var effectsSheetViewController: EffectsSheetViewController = .init()
-    
-    @IBOutlet weak var showPlayerMenuItem: NSMenuItem!
-    @IBOutlet weak var showPlayQueueMenuItem: NSMenuItem!
-    
-    @IBOutlet weak var scrollingEnabledMenuItem: NSMenuItem!
-    @IBOutlet weak var showSeekPositionMenuItem: NSMenuItem!
-    @IBOutlet weak var seekPositionDisplayTypeMenuItem: NSMenuItem!
-    
-    @IBOutlet weak var timeElapsedMenuItem: SeekPositionDisplayTypeMenuItem!
-    @IBOutlet weak var timeRemainingMenuItem: SeekPositionDisplayTypeMenuItem!
-    @IBOutlet weak var trackDurationMenuItem: SeekPositionDisplayTypeMenuItem!
-    
-    @IBOutlet weak var cornerRadiusStepper: NSStepper!
-    @IBOutlet weak var lblCornerRadius: NSTextField!
-    
-    var seekPositionDisplayTypeItems: [NSMenuItem] = []
+    let playerViewController: CompactPlayerViewController = .init()
+    let playQueueViewController: CompactPlayQueueViewController = .init()
+    lazy var effectsSheetViewController: EffectsSheetViewController = .init()
     
     lazy var messenger = Messenger(for: self)
     
     private var appMovingWindow: Bool = false
     
     var eventMonitor: EventMonitor! = EventMonitor()
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        NSApp.mainMenu = self.mainMenu
+    }
     
     override func windowDidLoad() {
         
@@ -63,16 +55,14 @@ class CompactPlayerWindowController: NSWindowController {
         
         tabView.selectTabViewItem(at: 0)
         
-        // View settings menu items
-        timeElapsedMenuItem.displayType = .elapsed
-        timeRemainingMenuItem.displayType = .remaining
-        trackDurationMenuItem.displayType = .duration
-        
-        seekPositionDisplayTypeItems = [timeElapsedMenuItem, timeRemainingMenuItem, trackDurationMenuItem]
-        
         colorSchemesManager.registerSchemeObserver(self)
         
         messenger.subscribe(to: .effects_sheetDismissed, handler: effectsSheetDismissed)
+        
+        messenger.subscribe(to: .CompactPlayer.showPlayer, handler: showPlayer)
+        messenger.subscribe(to: .CompactPlayer.showPlayQueue, handler: showPlayQueue)
+        messenger.subscribe(to: .CompactPlayer.toggleEffects, handler: toggleEffects)
+        messenger.subscribe(to: .CompactPlayer.changeWindowCornerRadius, handler: changeWindowCornerRadius)
         
         setUpEventHandling()
     }
@@ -83,50 +73,7 @@ class CompactPlayerWindowController: NSWindowController {
             window?.setFrameOrigin(rememberedLocation)
         }
         
-        changeWindowCornerRadius(compactPlayerUIState.cornerRadius)
-    }
-    
-    @IBAction func cornerRadiusStepperAction(_ sender: NSStepper) {
-        
-        let cgFloatValue = CGFloat(cornerRadiusStepper.floatValue)
-        
-        compactPlayerUIState.cornerRadius = cgFloatValue
-        changeWindowCornerRadius(cgFloatValue)
-        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
-    }
-    
-    @IBAction func showPlayerAction(_ sender: NSMenuItem) {
-        
-        tabView.selectTabViewItem(at: 0)
-        eventMonitor.resumeMonitoring()
-    }
-    
-    @IBAction func showPlayQueueAction(_ sender: NSMenuItem) {
-        
-        tabView.selectTabViewItem(at: 1)
-        eventMonitor.pauseMonitoring()
-    }
-    
-    @IBAction func showEffectsAction(_ sender: NSMenuItem) {
-        
-        switch compactPlayerUIState.displayedTab {
-            
-        case .player:
-            playerViewController.presentAsSheet(effectsSheetViewController)
-            
-        case .playQueue:
-            playQueueViewController.presentAsSheet(effectsSheetViewController)
-            
-        case .search:
-            // TODO: Implement this!
-            return
-            
-        default:
-            return
-        }
-        
-        compactPlayerUIState.displayedTab = .effects
-        eventMonitor.pauseMonitoring()
+        changeWindowCornerRadius()
     }
     
     override func destroy() {
@@ -175,12 +122,58 @@ class CompactPlayerWindowController: NSWindowController {
         NSApp.terminate(self)
     }
     
+    func showPlayer() {
+        
+        guard compactPlayerUIState.displayedTab != .player else {return}
+        
+        tabView.selectTabViewItem(at: 0)
+        eventMonitor.resumeMonitoring()
+    }
+    
+    func showPlayQueue() {
+        
+        guard compactPlayerUIState.displayedTab != .playQueue else {return}
+        
+        tabView.selectTabViewItem(at: 1)
+        eventMonitor.pauseMonitoring()
+    }
+    
+    func toggleEffects() {
+        
+        if compactPlayerUIState.displayedTab == .effects {
+            
+            effectsSheetViewController.endSheet()
+            return
+        }
+        
+        // Effects not shown, so show it.
+        
+        switch compactPlayerUIState.displayedTab {
+            
+        case .player:
+            playerViewController.presentAsSheet(effectsSheetViewController)
+            
+        case .playQueue:
+            playQueueViewController.presentAsSheet(effectsSheetViewController)
+            
+        case .search:
+            // TODO: Implement this!
+            return
+            
+        default:
+            return
+        }
+        
+        compactPlayerUIState.displayedTab = .effects
+        eventMonitor.pauseMonitoring()
+    }
+    
     private func transferViewState() {
         compactPlayerUIState.windowLocation = theWindow.frame.origin
     }
     
-    private func changeWindowCornerRadius(_ radius: CGFloat) {
-        rootContainerBox.cornerRadius = radius
+    func changeWindowCornerRadius() {
+        rootContainerBox.cornerRadius = compactPlayerUIState.cornerRadius
     }
     
     private func effectsSheetDismissed() {
@@ -205,7 +198,7 @@ class CompactPlayerWindowController: NSWindowController {
             compactPlayerUIState.displayedTab = .search
             
         default:
-            compactPlayerUIState.displayedTab = .player
+            return
         }
     }
 }
