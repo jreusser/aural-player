@@ -14,7 +14,7 @@ extension SearchViewController: NSTableViewDataSource {
     
     // Returns the total number of playlist rows
     func numberOfRows(in tableView: NSTableView) -> Int {
-        self.searchResults?.count ?? 0
+        searchResults?.count ?? 0
     }
 }
     
@@ -24,7 +24,7 @@ extension SearchViewController: NSTableViewDelegate {
         
         guard let columnId = tableColumn?.identifier,
               let cell = tableView.makeView(withIdentifier: columnId, owner: nil) as? NSTableCellView,
-              let result = self.searchResults?.results[row] else {return nil}
+              let result = searchResults?.results[row] else {return nil}
         
         switch columnId {
             
@@ -53,6 +53,7 @@ extension SearchViewController: NSTableViewDelegate {
 extension NSUserInterfaceItemIdentifier {
     
     // Table view column identifiers
+    static let cid_searchResultIndexColumn: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_searchResultIndex")
     static let cid_searchResultTrackColumn: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_searchResultTrack")
     static let cid_searchResultLocationColumn: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_searchResultLocation")
     static let cid_searchResultMatchedFieldColumn: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("cid_searchResultMatchedField")

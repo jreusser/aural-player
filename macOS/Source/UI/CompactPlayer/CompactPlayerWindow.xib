@@ -374,6 +374,12 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </view>
                                         </tabViewItem>
+                                        <tabViewItem label="Search" identifier="" id="Wh5-US-W7Y">
+                                            <view key="view" id="4Ca-Vt-lwy">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="390"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                        </tabViewItem>
                                     </tabViewItems>
                                     <connections>
                                         <outlet property="delegate" destination="-2" id="hKV-Fh-3w0"/>

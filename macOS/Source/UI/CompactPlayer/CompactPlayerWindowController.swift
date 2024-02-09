@@ -27,6 +27,7 @@ class CompactPlayerWindowController: NSWindowController {
     @IBOutlet weak var tabView: NSTabView!
     let playerViewController: CompactPlayerViewController = .init()
     let playQueueViewController: CompactPlayQueueViewController = .init()
+    let searchViewController: CompactPlayQueueSearchViewController = .init()
     lazy var effectsSheetViewController: EffectsSheetViewController = .init()
     
     lazy var messenger = Messenger(for: self)
@@ -50,10 +51,12 @@ class CompactPlayerWindowController: NSWindowController {
         
         tabView.tabViewItem(at: 0).view?.addSubview(playerViewController.view)
         tabView.tabViewItem(at: 1).view?.addSubview(playQueueViewController.view)
+        tabView.tabViewItem(at: 2).view?.addSubview(searchViewController.view)
         
         playQueueViewController.view.anchorToSuperview()
+        searchViewController.view.anchorToSuperview()
         
-        tabView.selectTabViewItem(at: 0)
+        tabView.selectTabViewItem(at: 2)
         
         colorSchemesManager.registerSchemeObserver(self)
         

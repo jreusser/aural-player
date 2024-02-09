@@ -23,7 +23,8 @@ import Foundation
 class Messenger {
     
     // The underlying NotificationCenter that is used for actual notification delivery.
-    private let notifCtr: NotificationCenter = .default
+    private var notifCtr: NotificationCenter {.default}
+    private static var notifCtr: NotificationCenter {.default}
     
     private typealias Observer = NSObjectProtocol
     
@@ -333,6 +334,16 @@ class Messenger {
         notification.payload = payload
         notification.object = client
         
+        notifCtr.post(notification)
+    }
+    
+    static func publish<P: NotificationPayload>(_ payload: P) {
+        
+        // The notification name is extracted from the payload object, and the payload
+        // object is wrapped in a Notification which is then posted by the NotificationCenter.
+        
+        var notification = Notification(name: payload.notificationName)
+        notification.payload = payload
         notifCtr.post(notification)
     }
     
