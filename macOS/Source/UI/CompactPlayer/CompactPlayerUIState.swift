@@ -12,7 +12,7 @@ import Foundation
 
 class CompactPlayerUIState {
     
-    var displayedTab: CompactPlayerTab = .player
+    var displayedView: CompactPlayerDisplayedView = .player
     
     var windowLocation: NSPoint?
     
@@ -48,7 +48,7 @@ class CompactPlayerUIState {
     }
 }
 
-enum CompactPlayerTab {
+enum CompactPlayerDisplayedView {
     
     case player
     case playQueue

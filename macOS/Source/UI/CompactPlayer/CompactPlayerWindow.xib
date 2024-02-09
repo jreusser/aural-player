@@ -162,6 +162,9 @@
                                                                 </connections>
                                                             </menuItem>
                                                         </items>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="VNs-7z-6xS" id="sKB-EP-ff4"/>
+                                                        </connections>
                                                     </menu>
                                                 </menuItem>
                                                 <menuItem title="Font scheme" id="KOI-5l-JjL">
@@ -415,6 +418,7 @@
                 <outlet property="showTrackTimeMenuItem" destination="MGI-V4-Lod" id="G34-hx-xt7"/>
                 <outlet property="timeElapsedMenuItem" destination="Bpy-xd-WOj" id="abj-Ud-uvh"/>
                 <outlet property="timeRemainingMenuItem" destination="hZW-qV-AL5" id="SOT-gI-VgQ"/>
+                <outlet property="toggleEffectsMenuItem" destination="JQP-n6-B5o" id="bi7-5p-PyE"/>
                 <outlet property="trackDurationMenuItem" destination="5jA-HD-rVz" id="Djk-aj-igU"/>
             </connections>
         </customObject>
@@ -499,14 +503,7 @@
             </subviews>
             <point key="canvasLocation" x="-288" y="361"/>
         </customView>
-        <customObject id="FJQ-36-5aR" customClass="CompactViewMenuController" customModule="Aural" customModuleProvider="target">
-            <connections>
-                <outlet property="lblCornerRadius" destination="M3o-Oh-fXf" id="mMf-1C-Lzh"/>
-                <outlet property="showPlayQueueMenuItem" destination="BJ6-ad-JqX" id="hi5-vb-uy6"/>
-                <outlet property="showPlayerMenuItem" destination="zzl-wA-8VI" id="kNb-Uh-cQm"/>
-                <outlet property="toggleEffectsMenuItem" destination="bNb-Bg-afD" id="IYo-BM-x9t"/>
-            </connections>
-        </customObject>
+        <customObject id="FJQ-36-5aR" customClass="CompactViewMenuController" customModule="Aural" customModuleProvider="target"/>
         <customObject id="eSc-sQ-9Ho" userLabel="Theme Popup Menu Controller (Menu)" customClass="ThemePopupMenuController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="theMenu" destination="GKD-Ky-kzd" id="n7T-k4-JB5"/>
@@ -533,6 +530,7 @@
                 <outlet property="showTrackTimeMenuItem" destination="hun-ag-sKK" id="Zje-ix-o5T"/>
                 <outlet property="timeElapsedMenuItem" destination="xly-7a-SJZ" id="cvJ-ja-jd1"/>
                 <outlet property="timeRemainingMenuItem" destination="GHC-fd-Ein" id="ye5-1M-i5M"/>
+                <outlet property="toggleEffectsMenuItem" destination="bNb-Bg-afD" id="OYW-Vf-JXJ"/>
                 <outlet property="trackDurationMenuItem" destination="hXb-z4-5R9" id="470-Ug-Ped"/>
             </connections>
         </customObject>
@@ -1007,13 +1005,13 @@ CA
                                                     <menuItem title="Time remaining" tag="1" id="GHC-fd-Ein" customClass="SeekPositionDisplayTypeMenuItem" customModule="Aural" customModuleProvider="target">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="changeSeekPositionDisplayTypeAction:" target="-2" id="WIf-0f-F7Z"/>
+                                                            <action selector="changeSeekPositionDisplayTypeAction:" target="RlF-o4-guF" id="66r-tl-OMb"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Track duration" tag="2" id="hXb-z4-5R9" customClass="SeekPositionDisplayTypeMenuItem" customModule="Aural" customModuleProvider="target">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="changeSeekPositionDisplayTypeAction:" target="-2" id="X2b-7Y-3bD"/>
+                                                            <action selector="changeSeekPositionDisplayTypeAction:" target="RlF-o4-guF" id="O05-c8-FDe"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
@@ -1035,6 +1033,9 @@ CA
                                             </connections>
                                         </menuItem>
                                     </items>
+                                    <connections>
+                                        <outlet property="delegate" destination="eSc-sQ-9Ho" id="XLd-vq-z1D"/>
+                                    </connections>
                                 </menu>
                             </menuItem>
                             <menuItem title=" Font scheme" image="FontScheme" id="qZP-sV-r0Y" userLabel="Font scheme">
@@ -1096,11 +1097,10 @@ CA
                                                 <action selector="applyPresetAction:" target="mA4-L7-GTE" id="QDm-XV-aFU"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="Mib-ZE-ilv"/>
-                                        <menuItem title="Customize ..." indentationLevel="1" id="Gye-eO-uUh">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
                                     </items>
+                                    <connections>
+                                        <outlet property="delegate" destination="mA4-L7-GTE" id="3Ff-Bi-EbU"/>
+                                    </connections>
                                 </menu>
                             </menuItem>
                             <menuItem title=" Color scheme" image="ColorScheme" id="S24-NG-oah" userLabel="Color scheme">
@@ -1156,11 +1156,10 @@ CA
                                                 <action selector="applyPresetAction:" target="SoK-7w-hRg" id="5On-oV-4U8"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="9WG-hs-4MI"/>
-                                        <menuItem title="Customize ..." indentationLevel="1" id="vwv-3H-oPh">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
                                     </items>
+                                    <connections>
+                                        <outlet property="delegate" destination="SoK-7w-hRg" id="wOO-ol-hwR"/>
+                                    </connections>
                                 </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="mqe-9M-xhV"/>
@@ -1173,15 +1172,27 @@ CA
                             <menuItem isSeparatorItem="YES" id="RB3-6p-V12"/>
                             <menuItem title=" Switch to Modular mode" image="uiwindow.split.2x1" catalog="system" id="03s-FD-8X0" userLabel="Switch to menu bar mode">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="modularModeAction:" target="FJQ-36-5aR" id="457-7i-kSI"/>
+                                </connections>
                             </menuItem>
                             <menuItem title=" Switch to Unified mode" image="macwindow" catalog="system" id="mxp-o0-HHT" userLabel="Switch to menu bar mode">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="unifiedModeAction:" target="FJQ-36-5aR" id="lAz-oP-QAe"/>
+                                </connections>
                             </menuItem>
                             <menuItem title=" Switch to Menu Bar mode" image="MenuBarMode-Small" id="5mm-zW-aUG" userLabel="Switch to menu bar mode">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="menuBarModeAction:" target="FJQ-36-5aR" id="AhG-jU-k6E"/>
+                                </connections>
                             </menuItem>
                             <menuItem title=" Switch to Widget mode" image="ControlBarMode-Small" id="rE4-L1-8Kg" userLabel="Switch to control bar mode">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="widgetModeAction:" target="FJQ-36-5aR" id="ACF-16-YOB"/>
+                                </connections>
                             </menuItem>
                         </items>
                         <connections>

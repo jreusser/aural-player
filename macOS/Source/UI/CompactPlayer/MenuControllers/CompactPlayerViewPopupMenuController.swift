@@ -14,6 +14,7 @@ class CompactPlayerViewPopupMenuController: NSObject, NSMenuDelegate {
     
     @IBOutlet weak var showPlayerMenuItem: NSMenuItem!
     @IBOutlet weak var showPlayQueueMenuItem: NSMenuItem!
+    @IBOutlet weak var toggleEffectsMenuItem: NSMenuItem!
     
     @IBOutlet weak var scrollingEnabledMenuItem: NSMenuItem!
     @IBOutlet weak var showTrackTimeMenuItem: NSMenuItem!
@@ -44,8 +45,20 @@ class CompactPlayerViewPopupMenuController: NSObject, NSMenuDelegate {
     
     func menuNeedsUpdate(_ menu: NSMenu) {
         
-        showPlayerMenuItem.onIf(compactPlayerUIState.displayedTab == .player)
-        showPlayQueueMenuItem.onIf(compactPlayerUIState.displayedTab.equalsOneOf(.playQueue, .search))
+        [showPlayerMenuItem, showPlayQueueMenuItem, toggleEffectsMenuItem].forEach {$0?.off()}
+
+        switch compactPlayerUIState.displayedView {
+            
+        case .player:
+            showPlayerMenuItem.on()
+            
+        case .playQueue, .search:
+            showPlayQueueMenuItem.on()
+            
+        case .effects:
+            toggleEffectsMenuItem.on()
+        }
+        
         scrollingEnabledMenuItem.onIf(compactPlayerUIState.trackInfoScrollingEnabled)
         showTrackTimeMenuItem.onIf(compactPlayerUIState.showTrackTime)
         seekPositionDisplayTypeMenuItem.showIf(compactPlayerUIState.showTrackTime)

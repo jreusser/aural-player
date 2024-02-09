@@ -12,49 +12,21 @@ import AppKit
 
 class CompactViewMenuController: NSObject, NSMenuDelegate {
     
-    // Menu items whose states are toggled when they (or others) are clicked
-    @IBOutlet weak var showPlayerMenuItem: NSMenuItem!
-    @IBOutlet weak var showPlayQueueMenuItem: NSMenuItem!
-    @IBOutlet weak var toggleEffectsMenuItem: NSMenuItem!
-    
-    @IBOutlet weak var cornerRadiusStepper: NSStepper!
-    @IBOutlet weak var lblCornerRadius: NSTextField!
-    
     private lazy var messenger: Messenger = .init(for: self)
     
-    // When the menu is about to open, set the menu item states according to the current window/view state
-    func menuWillOpen(_ menu: NSMenu) {
-        
-        [showPlayerMenuItem, showPlayQueueMenuItem, toggleEffectsMenuItem].forEach {$0?.off()}
-
-        switch compactPlayerUIState.displayedTab {
-            
-        case .player:
-            showPlayerMenuItem.on()
-            
-        case .playQueue, .search:
-            showPlayQueueMenuItem.on()
-            
-        case .effects:
-            toggleEffectsMenuItem.on()
-        }
-        
-        cornerRadiusStepper.integerValue = compactPlayerUIState.cornerRadius.roundedInt
-        lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
+    @IBAction func modularModeAction(_ sender: AnyObject) {
+        messenger.publish(.CompactPlayer.switchToModularMode)
     }
     
-    // Shows/hides the Player view
-    @IBAction func showPlayerAction(_ sender: AnyObject) {
-        messenger.publish(.CompactPlayer.showPlayer)
-    }
- 
-    // Shows/hides the Play Queue view
-    @IBAction func showPlayQueueAction(_ sender: AnyObject) {
-        messenger.publish(.CompactPlayer.showPlayQueue)
+    @IBAction func unifiedModeAction(_ sender: AnyObject) {
+        messenger.publish(.CompactPlayer.switchToUnifiedMode)
     }
     
-    // Shows/hides the effects view
-    @IBAction func toggleEffectsAction(_ sender: AnyObject) {
-        messenger.publish(.CompactPlayer.toggleEffects)
+    @IBAction func menuBarModeAction(_ sender: AnyObject) {
+        messenger.publish(.CompactPlayer.switchToMenuBarMode)
+    }
+    
+    @IBAction func widgetModeAction(_ sender: AnyObject) {
+        messenger.publish(.CompactPlayer.switchToWidgetMode)
     }
 }

@@ -28,5 +28,10 @@ extension Notification.Name {
         static let changeTrackTimeDisplayType = Notification.Name("compactPlayer_changeTrackTimeDisplayType")
         
         static let changeWindowCornerRadius = Notification.Name("compactPlayer_changeWindowCornerRadius")
+        
+        static let switchToModularMode = Notification.Name("compactPlayer_switchToModularMode")
+        static let switchToUnifiedMode = Notification.Name("compactPlayer_switchToUnifiedMode")
+        static let switchToMenuBarMode = Notification.Name("compactPlayer_switchToMenuBarMode")
+        static let switchToWidgetMode = Notification.Name("compactPlayer_switchToWidgetMode")
     }
 }

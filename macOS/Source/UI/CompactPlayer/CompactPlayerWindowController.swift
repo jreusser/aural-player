@@ -64,6 +64,11 @@ class CompactPlayerWindowController: NSWindowController {
         messenger.subscribe(to: .CompactPlayer.toggleEffects, handler: toggleEffects)
         messenger.subscribe(to: .CompactPlayer.changeWindowCornerRadius, handler: changeWindowCornerRadius)
         
+        messenger.subscribe(to: .CompactPlayer.switchToModularMode, handler: switchToModularMode)
+        messenger.subscribe(to: .CompactPlayer.switchToUnifiedMode, handler: switchToUnifiedMode)
+        messenger.subscribe(to: .CompactPlayer.switchToMenuBarMode, handler: switchToMenuBarMode)
+        messenger.subscribe(to: .CompactPlayer.switchToWidgetMode, handler: switchToWidgetMode)
+        
         setUpEventHandling()
     }
     
@@ -88,24 +93,40 @@ class CompactPlayerWindowController: NSWindowController {
     }
     
     @IBAction func modularModeAction(_ sender: AnyObject) {
+        switchToModularMode()
+    }
+    
+    @IBAction func unifiedModeAction(_ sender: AnyObject) {
+        switchToUnifiedMode()
+    }
+    
+    @IBAction func menuBarModeAction(_ sender: AnyObject) {
+        switchToMenuBarMode()
+    }
+    
+    @IBAction func controlBarModeAction(_ sender: AnyObject) {
+        switchToWidgetMode()
+    }
+    
+    private func switchToModularMode() {
         
         transferViewState()
         appModeManager.presentMode(.modular)
     }
     
-    @IBAction func unifiedModeAction(_ sender: AnyObject) {
+    private func switchToUnifiedMode() {
         
         transferViewState()
         appModeManager.presentMode(.unified)
     }
     
-    @IBAction func menuBarModeAction(_ sender: AnyObject) {
+    private func switchToMenuBarMode() {
         
         transferViewState()
         appModeManager.presentMode(.menuBar)
     }
     
-    @IBAction func controlBarModeAction(_ sender: AnyObject) {
+    private func switchToWidgetMode() {
         
         transferViewState()
         appModeManager.presentMode(.controlBar)
@@ -124,7 +145,11 @@ class CompactPlayerWindowController: NSWindowController {
     
     func showPlayer() {
         
-        guard compactPlayerUIState.displayedTab != .player else {return}
+        if compactPlayerUIState.displayedView == .effects {
+            effectsSheetViewController.endSheet()
+        }
+        
+        guard compactPlayerUIState.displayedView != .player else {return}
         
         tabView.selectTabViewItem(at: 0)
         eventMonitor.resumeMonitoring()
@@ -132,7 +157,11 @@ class CompactPlayerWindowController: NSWindowController {
     
     func showPlayQueue() {
         
-        guard compactPlayerUIState.displayedTab != .playQueue else {return}
+        if compactPlayerUIState.displayedView == .effects {
+            effectsSheetViewController.endSheet()
+        }
+        
+        guard compactPlayerUIState.displayedView != .playQueue else {return}
         
         tabView.selectTabViewItem(at: 1)
         eventMonitor.pauseMonitoring()
@@ -140,7 +169,7 @@ class CompactPlayerWindowController: NSWindowController {
     
     func toggleEffects() {
         
-        if compactPlayerUIState.displayedTab == .effects {
+        if compactPlayerUIState.displayedView == .effects {
             
             effectsSheetViewController.endSheet()
             return
@@ -148,7 +177,7 @@ class CompactPlayerWindowController: NSWindowController {
         
         // Effects not shown, so show it.
         
-        switch compactPlayerUIState.displayedTab {
+        switch compactPlayerUIState.displayedView {
             
         case .player:
             playerViewController.presentAsSheet(effectsSheetViewController)
@@ -164,7 +193,7 @@ class CompactPlayerWindowController: NSWindowController {
             return
         }
         
-        compactPlayerUIState.displayedTab = .effects
+        compactPlayerUIState.displayedView = .effects
         eventMonitor.pauseMonitoring()
     }
     
@@ -189,13 +218,13 @@ class CompactPlayerWindowController: NSWindowController {
         switch tabView.selectedIndex {
             
         case 0:
-            compactPlayerUIState.displayedTab = .player
+            compactPlayerUIState.displayedView = .player
             
         case 1:
-            compactPlayerUIState.displayedTab = .playQueue
+            compactPlayerUIState.displayedView = .playQueue
             
         case 2:
-            compactPlayerUIState.displayedTab = .search
+            compactPlayerUIState.displayedView = .search
             
         default:
             return
