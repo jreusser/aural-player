@@ -144,6 +144,18 @@ class PlaybackViewController: NSViewController {
         playbackView.updateSeekPosition()
     }
     
+    func seekBackward_secondary() {
+        
+        player.seekBackwardSecondary()
+        playbackView.updateSeekPosition()
+    }
+    
+    func seekForward_secondary() {
+        
+        player.seekForwardSecondary()
+        playbackView.updateSeekPosition()
+    }
+    
     func jumpToTime(_ time: Double) {
         
         player.seekToTime(time)

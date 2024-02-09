@@ -25,6 +25,8 @@ class CompactPlaybackViewController: PlaybackViewController {
         messenger.subscribe(to: .player_nextTrack, handler: nextTrack)
         messenger.subscribe(to: .player_seekBackward, handler: seekBackward(_:))
         messenger.subscribe(to: .player_seekForward, handler: seekForward(_:))
+        messenger.subscribe(to: .player_seekBackward_secondary, handler: seekBackward_secondary)
+        messenger.subscribe(to: .player_seekForward_secondary, handler: seekForward_secondary)
         messenger.subscribe(to: .player_jumpToTime, handler: jumpToTime(_:))
         
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))

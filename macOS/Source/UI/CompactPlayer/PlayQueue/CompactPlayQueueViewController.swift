@@ -48,6 +48,13 @@ class CompactPlayQueueViewController: PlayQueueViewController {
         progressSpinner.stopAnimation(nil)
     }
     
+    // TODO: This is a hack ! Re-investigate the superClass method that calls this. eg. doSort()
+    override func notifyReloadTable() {
+        
+        tableView.reloadData()
+        updateSummary()
+    }
+    
     // MARK: Table view delegate / data source --------------------------------------------------------------------------------------------------------
     
     override var rowHeight: CGFloat {45}

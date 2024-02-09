@@ -78,40 +78,40 @@ class SoundMenuController: NSObject, NSMenuDelegate {
         // Associate each of the menu items with a specific pitch shift or playback rate value, so that when the item is clicked later, that value can be readily retrieved and used in performing the action.
         
         // Pitch shift menu items
-        twoOctavesBelowMenuItem.paramValue = -2
-        oneOctaveBelowMenuItem.paramValue = -1
-        halfOctaveBelowMenuItem.paramValue = -0.5
-        thirdOctaveBelowMenuItem.paramValue = -1/3
-        sixthOctaveBelowMenuItem.paramValue = -1/6
-        
-        sixthOctaveAboveMenuItem.paramValue = 1/6
-        thirdOctaveAboveMenuItem.paramValue = 1/3
-        halfOctaveAboveMenuItem.paramValue = 0.5
-        oneOctaveAboveMenuItem.paramValue = 1
-        twoOctavesAboveMenuItem.paramValue = 2
-        
-        // Playback rate (Time) menu items
-        rate0_25MenuItem.paramValue = 0.25
-        rate0_5MenuItem.paramValue = 0.5
-        rate0_75MenuItem.paramValue = 0.75
-        rate1_25MenuItem.paramValue = 1.25
-        rate1_5MenuItem.paramValue = 1.5
-        rate2MenuItem.paramValue = 2
-        rate3MenuItem.paramValue = 3
-        rate4MenuItem.paramValue = 4
+//        twoOctavesBelowMenuItem.paramValue = -2
+//        oneOctaveBelowMenuItem.paramValue = -1
+//        halfOctaveBelowMenuItem.paramValue = -0.5
+//        thirdOctaveBelowMenuItem.paramValue = -1/3
+//        sixthOctaveBelowMenuItem.paramValue = -1/6
+//        
+//        sixthOctaveAboveMenuItem.paramValue = 1/6
+//        thirdOctaveAboveMenuItem.paramValue = 1/3
+//        halfOctaveAboveMenuItem.paramValue = 0.5
+//        oneOctaveAboveMenuItem.paramValue = 1
+//        twoOctavesAboveMenuItem.paramValue = 2
+//        
+//        // Playback rate (Time) menu items
+//        rate0_25MenuItem.paramValue = 0.25
+//        rate0_5MenuItem.paramValue = 0.5
+//        rate0_75MenuItem.paramValue = 0.75
+//        rate1_25MenuItem.paramValue = 1.25
+//        rate1_5MenuItem.paramValue = 1.5
+//        rate2MenuItem.paramValue = 2
+//        rate3MenuItem.paramValue = 3
+//        rate4MenuItem.paramValue = 4
     }
     
     // When the menu is about to open, update the menu item states
     func menuNeedsUpdate(_ menu: NSMenu) {
         
-        [panLeftMenuItem, panRightMenuItem].forEach {$0?.enableIf(!windowLayoutsManager.isShowingModalComponent)}
-        rememberSettingsMenuItem.enableIf(playbackInfoDelegate.playingTrack != nil)
+//        [panLeftMenuItem, panRightMenuItem].forEach {$0?.enableIf(!windowLayoutsManager.isShowingModalComponent)}
+//        rememberSettingsMenuItem.enableIf(playbackInfoDelegate.playingTrack != nil)
     }
     
     func menuWillOpen(_ menu: NSMenu) {
         
         // Audio output devices menu
-        if (menu == devicesMenu) {
+        if menu == devicesMenu {
             
             // Recreate the menu each time
             
@@ -137,11 +137,11 @@ class SoundMenuController: NSObject, NSMenuDelegate {
         } else {
             
             masterBypassMenuItem.onIf(!masterUnit.isActive)
-            rememberSettingsMenuItem.showIf(soundPreferences.rememberEffectsSettingsOption == .individualTracks)
-            
-            if let playingTrack = playbackInfoDelegate.playingTrack {
-                rememberSettingsMenuItem.onIf(soundProfiles.hasFor(playingTrack))
-            }
+//            rememberSettingsMenuItem.showIf(soundPreferences.rememberEffectsSettingsOption == .individualTracks)
+//            
+//            if let playingTrack = playbackInfoDelegate.playingTrack {
+//                rememberSettingsMenuItem.onIf(soundProfiles.hasFor(playingTrack))
+//            }
         }
     }
     
@@ -303,6 +303,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     // Increases the playback rate by a certain preset increment
     @IBAction func increaseRateAction(_ sender: Any) {
         
+        // TODO: This logic only works for modular mode.
         if effectsWindowLoaded {
             messenger.publish(.timeEffectsUnit_increaseRate)
         } else {

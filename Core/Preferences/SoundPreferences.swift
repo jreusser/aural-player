@@ -16,7 +16,7 @@ class SoundPreferences {
     
     var outputDeviceOnStartup: OutputDeviceOnStartup = .defaultInstance
     
-    var volumeDelta: Float = 10
+    var volumeDelta: Float = 0.05
     
     private let scrollSensitiveVolumeDeltas: [ScrollSensitivity: Float] = [.low: 0.025, .medium: 0.05, .high: 0.1]
     
@@ -25,9 +25,9 @@ class SoundPreferences {
     }
     
     var volumeOnStartupOption: VolumeStartupOptions = .rememberFromLastAppLaunch
-    var startupVolumeValue: Float = 10
+    var startupVolumeValue: Float = 0.5
     
-    var panDelta: Float = 10
+    var panDelta: Float = 0.1
     
     var eqDelta: Float = 1
     var pitchDelta: Int = 10

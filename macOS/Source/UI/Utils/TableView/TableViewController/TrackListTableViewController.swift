@@ -169,7 +169,7 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontS
         updateSummary()
     }
     
-    func notifyReloadTable() {}
+    @objc func notifyReloadTable() {}
     
     func removeAllTracks() {
         

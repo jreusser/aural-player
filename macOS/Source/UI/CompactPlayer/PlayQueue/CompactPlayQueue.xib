@@ -11,6 +11,7 @@
                 <outlet property="lblDurationSummary" destination="FMM-38-eg8" id="lqM-Es-0Uq"/>
                 <outlet property="lblTracksSummary" destination="E3H-PZ-zam" id="N7k-1v-YgK"/>
                 <outlet property="progressSpinner" destination="xTF-ma-4qy" id="4by-1U-YcI"/>
+                <outlet property="sortOrderMenuItemView" destination="IAW-N7-buz" id="MeF-p9-JiX"/>
                 <outlet property="tableView" destination="v1i-DE-EUT" id="M82-gi-HRD"/>
                 <outlet property="view" destination="rlY-xn-aWC" id="aBY-ZT-Co9"/>
             </connections>
@@ -402,24 +403,45 @@
                                     </menuItem>
                                     <menuItem title="Sort by track name" id="B4P-a1-d06">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByTrackNameAction:" target="-2" id="00x-M3-8O7"/>
+                                        </connections>
                                     </menuItem>
                                     <menuItem title="Sort by artist, album, and disc/track #" id="VqJ-fH-PDN" userLabel="Sort by artist, album, and disc/track #">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByArtistAlbumDiscTrackNumberAction:" target="-2" id="8GQ-b5-zYw"/>
+                                        </connections>
                                     </menuItem>
                                     <menuItem title="Sort by artist, album, and track name" id="1E3-VW-qBt" userLabel="Sort by artist, album, and track name">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByArtistAlbumTrackNameAction:" target="-2" id="tpW-Lb-1J6"/>
+                                        </connections>
                                     </menuItem>
                                     <menuItem title="Sort by artist and track name" id="8e6-3k-eYU" userLabel="Sort by artist and track name">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByArtistTrackNameAction:" target="-2" id="zte-Bs-xcx"/>
+                                        </connections>
                                     </menuItem>
                                     <menuItem title="Sort by album and disc/track #" id="Pbv-Jv-1dO" userLabel="Sort by album and disc/track #">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByAlbumDiscTrackNumberAction:" target="-2" id="BaM-Ln-ssz"/>
+                                        </connections>
                                     </menuItem>
                                     <menuItem title="Sort by album and track name" id="Bhu-b4-0Yd" userLabel="Sort by album and track name">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByAlbumTrackNameAction:" target="-2" id="MYg-tX-DhB"/>
+                                        </connections>
                                     </menuItem>
                                     <menuItem title="Sort by duration" id="XCj-Ha-xm9">
                                         <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="sortByDurationAction:" target="-2" id="MLm-59-dFb"/>
+                                        </connections>
                                     </menuItem>
                                     <menuItem isSeparatorItem="YES" id="xl6-Ww-9ou"/>
                                     <menuItem title="Sort order" id="9R1-fX-tq9">

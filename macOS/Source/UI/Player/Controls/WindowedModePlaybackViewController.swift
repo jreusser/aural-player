@@ -77,18 +77,6 @@ class WindowedModePlaybackViewController: PlaybackViewController {
         player.play(track, .defaultParams())
     }
     
-    func seekBackward_secondary() {
-        
-        player.seekBackwardSecondary()
-        playbackView.updateSeekPosition()
-    }
-    
-    func seekForward_secondary() {
-        
-        player.seekForwardSecondary()
-        playbackView.updateSeekPosition()
-    }
-    
     // Returns a view that marks the current position of the seek slider knob.
     var seekPositionMarkerView: NSView! {
         
