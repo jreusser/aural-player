@@ -80,8 +80,8 @@ class PlaybackView: NSView, ColorSchemeObserver, Destroyable {
     
     func setUpPreviousTrackAndNextTrackButtonTooltips() {
         
-        guard let btnPreviousTrack = btnPreviousTrack as? TrackPeekingButton,
-              let btnNextTrack = btnNextTrack as? TrackPeekingButton else {
+        guard var btnPreviousTrack = btnPreviousTrack as? TrackPeekingButtonProtocol,
+              var btnNextTrack = btnNextTrack as? TrackPeekingButtonProtocol else {
                   return
               }
         

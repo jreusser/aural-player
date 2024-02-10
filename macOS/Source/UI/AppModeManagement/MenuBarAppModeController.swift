@@ -19,7 +19,7 @@ import Cocoa
 /// The menu bar app mode allows the user access to essential player functions and is intended for a
 /// low level of user interaction. It will typically be used when running the application in the "background".
 ///
-class MenuBarAppModeController: NSObject, AppModeController, NSMenuDelegate {
+class MenuBarAppModeController: NSObject, AppModeController {
 
     var mode: AppMode {.menuBar}
 
@@ -55,14 +55,6 @@ class MenuBarAppModeController: NSObject, AppModeController, NSMenuDelegate {
         statusItem?.menu = menu
     }
     
-    func menuDidClose(_ menu: NSMenu) {
-//        playerViewController?.menuBarMenuClosed()
-    }
-    
-    func menuWillOpen(_ menu: NSMenu) {
-//        playerViewController?.menuBarMenuOpened()
-    }
-    
     func dismissMode() {
         
         playerViewController?.destroy()
@@ -79,5 +71,16 @@ class MenuBarAppModeController: NSObject, AppModeController, NSMenuDelegate {
         
         playerViewController = nil
         playQueueViewController = nil
+    }
+}
+
+extension MenuBarAppModeController: NSMenuDelegate {
+    
+    func menuDidClose(_ menu: NSMenu) {
+        playerViewController?.menuBarMenuClosed()
+    }
+    
+    func menuWillOpen(_ menu: NSMenu) {
+        playerViewController?.menuBarMenuOpened()
     }
 }

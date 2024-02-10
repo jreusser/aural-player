@@ -14,4 +14,7 @@ class VolumeSliderCell: HorizontalSliderCell {
     
     override var knobWidth: CGFloat {10}
     override var knobHeightOutsideBar: CGFloat {4}
+    
+    override var barRadius: CGFloat {0}
+    override var knobRadius: CGFloat {0}
 }

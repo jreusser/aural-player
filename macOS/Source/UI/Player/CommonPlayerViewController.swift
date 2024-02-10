@@ -21,7 +21,15 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     // Toggle buttons (their images change)
     @IBOutlet weak var btnPlayPause: NSButton!
     
-    private lazy var btnPlayPauseStateMachine: ButtonStateMachine<PlaybackState> =
+    // Buttons whose tool tips may change
+    @IBOutlet weak var btnPreviousTrack: NSButton!
+    @IBOutlet weak var btnNextTrack: NSButton!
+    
+    @IBOutlet weak var btnRepeat: NSButton!
+    @IBOutlet weak var btnShuffle: NSButton!
+    @IBOutlet weak var btnLoop: NSButton!
+    
+    lazy var btnPlayPauseStateMachine: ButtonStateMachine<PlaybackState> =
     
     ButtonStateMachine(initialState: playbackDelegate.state,
                        mappings: [
@@ -31,9 +39,22 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
                        ],
                        button: btnPlayPause)
     
-    @IBOutlet weak var btnLoop: NSButton!
+    lazy var btnRepeatStateMachine: ButtonStateMachine<RepeatMode> = ButtonStateMachine(initialState: playQueueDelegate.repeatAndShuffleModes.repeatMode,
+                                                                                                mappings: [
+                                                                                                    ButtonStateMachine.StateMapping(state: .off, image: .imgRepeat, colorProperty: \.inactiveControlColor, toolTip: "Repeat"),
+                                                                                                    ButtonStateMachine.StateMapping(state: .all, image: .imgRepeat, colorProperty: \.activeControlColor, toolTip: "Repeat"),
+                                                                                                    ButtonStateMachine.StateMapping(state: .one, image: .imgRepeatOne, colorProperty: \.activeControlColor, toolTip: "Repeat")
+                                                                                                ],
+                                                                                                button: btnRepeat)
     
-    private lazy var btnLoopStateMachine: ButtonStateMachine<PlaybackLoopState> = ButtonStateMachine(initialState: playbackDelegate.playbackLoopState,
+    lazy var btnShuffleStateMachine: ButtonStateMachine<ShuffleMode> = ButtonStateMachine(initialState: playQueueDelegate.repeatAndShuffleModes.shuffleMode,
+                                                                                                  mappings: [
+                                                                                                    ButtonStateMachine.StateMapping(state: .off, image: .imgShuffle, colorProperty: \.inactiveControlColor, toolTip: "Shuffle"),
+                                                                                                    ButtonStateMachine.StateMapping(state: .on, image: .imgShuffle, colorProperty: \.activeControlColor, toolTip: "Shuffle")
+                                                                                                  ],
+                                                                                                  button: btnShuffle)
+    
+    lazy var btnLoopStateMachine: ButtonStateMachine<PlaybackLoopState> = ButtonStateMachine(initialState: playbackDelegate.playbackLoopState,
                                                                                                      mappings: [
                                                                                                         ButtonStateMachine.StateMapping(state: .none, image: .imgLoop, colorProperty: \.inactiveControlColor, toolTip: "Initiate a segment loop"),
                                                                                                         ButtonStateMachine.StateMapping(state: .started, image: .imgLoopStarted, colorProperty: \.activeControlColor, toolTip: "Complete the segment loop"),
@@ -41,12 +62,12 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
                                                                                                      ],
                                                                                                      button: btnLoop)
     
-    // Buttons whose tool tips may change
-    @IBOutlet weak var btnPreviousTrack: NSButton!
-    @IBOutlet weak var btnNextTrack: NSButton!
-    
     @IBOutlet weak var btnSeekBackward: NSButton!
     @IBOutlet weak var btnSeekForward: NSButton!
+    
+    // Shows the time elapsed for the currently playing track, and allows arbitrary seeking within the track
+    @IBOutlet weak var seekSlider: NSSlider!
+    @IBOutlet weak var seekSliderCell: SeekSliderCell!
     
     // Volume/pan controls
     @IBOutlet weak var btnVolume: NSButton!
@@ -55,7 +76,20 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     @IBOutlet weak var lblVolume: VALabel!
     
     // Wrappers around the feedback labels that automatically hide them after showing them for a brief interval
-    var autoHidingVolumeLabel: AutoHidingView!
+    lazy var autoHidingVolumeLabel: AutoHidingView = AutoHidingView(lblVolume, Self.feedbackLabelAutoHideIntervalSeconds)
+    
+    // Timer that periodically updates the seek position slider and label
+    lazy var seekTimer: RepeatingTaskExecutor = RepeatingTaskExecutor(intervalMillis: (1000 / (2 * audioGraphDelegate.timeStretchUnit.effectiveRate)).roundedInt,
+                                                                      task: {[weak self] in
+                                                                        self?.updateSeekPosition()},
+                                                                      queue: .main)
+    
+    let seekTimerTaskQueue: SeekTimerTaskQueue = .instance
+    
+    // Keeps track of the last known value of the current chapter (used to detect chapter changes)
+    var curChapter: IndexedChapter? = nil
+    
+    lazy var messenger = Messenger(for: self)
     
     // Numerical ranges
     let highVolumeRange: ClosedRange<Float> = 200.0/3...100
@@ -64,6 +98,16 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     // Time intervals for which feedback labels or views that are to be auto-hidden are displayed, before being hidden.
     static let feedbackLabelAutoHideIntervalSeconds: TimeInterval = 1
+    
+    private static let chapterChangePollingTaskId: String = "ChapterChangePollingTask"
+    
+    var showTrackTime: Bool {
+        playerUIState.showTrackTime
+    }
+    
+    var displaysChapterIndicator: Bool {
+        true
+    }
     
     var trackTimeFont: NSFont {
         systemFontScheme.normalFont
@@ -121,15 +165,51 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         
         super.viewDidLoad()
         
+        setUpPlaybackControls()
         setUpTheming()
         
-        updateTrackInfo(for: playbackDelegate.playingTrack, playingChapterTitle: playbackDelegate.playingChapter?.chapter.title)
-        btnPlayPauseStateMachine.setState(playbackDelegate.state)
-        updateSeekTimerState()
+        trackChanged(to: playbackDelegate.playingTrack)
         
-        autoHidingVolumeLabel = AutoHidingView(lblVolume, Self.feedbackLabelAutoHideIntervalSeconds)
-        volumeSlider.floatValue = audioGraphDelegate.volume
-        volumeChanged(volume: audioGraphDelegate.volume, muted: audioGraphDelegate.muted, updateSlider: true, showFeedback: false)
+        setUpNotificationHandling()
+    }
+    
+    func setUpPlaybackControls() {
+        
+        lblTrackTime.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(self.switchTrackTimeDisplayTypeAction(_:))))
+        
+        if var peekingPreviousTrackButton = btnPreviousTrack as? TrackPeekingButtonProtocol {
+            
+            peekingPreviousTrackButton.toolTipFunction = {
+                
+                if let prevTrack = playQueueDelegate.peekPrevious() {
+                    return String(format: "Previous track: '%@'", prevTrack.displayName)
+                }
+                
+                return nil
+            }
+            
+            peekingPreviousTrackButton.updateTooltip()
+        }
+        
+        if var peekingNextTrackButton = btnNextTrack as? TrackPeekingButtonProtocol {
+            
+            peekingNextTrackButton.toolTipFunction = {
+                
+                if let nextTrack = playQueueDelegate.peekNext() {
+                    return String(format: "Next track: '%@'", nextTrack.displayName)
+                }
+
+                return nil
+            }
+            
+            peekingNextTrackButton.updateTooltip()
+        }
+    }
+    
+    func trackChanged(to newTrack: Track?) {
+        
+        updateTrackInfo(for: newTrack, playingChapterTitle: playbackDelegate.playingChapter?.chapter.title)
+        updatePlaybackControls(for: newTrack)
     }
     
     func updateTrackInfo(for track: Track?, playingChapterTitle: String? = nil) {
@@ -178,10 +258,73 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         }
     }
     
+    func updatePlaybackControls(for track: Track?) {
+        
+        // Button state
+        
+        btnPlayPauseStateMachine.setState(playbackDelegate.state)
+        [btnPreviousTrack, btnNextTrack].forEach {
+            ($0 as? TrackPeekingButtonProtocol)?.updateTooltip()
+        }
+        
+        updateRepeatAndShuffleControls(modes: playQueueDelegate.repeatAndShuffleModes)
+        
+        // Seek controls state
+        
+        let isPlayingTrack = track != nil
+        seekSlider.enableIf(isPlayingTrack)
+        seekSlider.showIf(isPlayingTrack)
+        lblTrackTime.showIf(isPlayingTrack && showTrackTime)
+        playbackLoopChanged()
+        
+        // Seek timer tasks
+        
+        if displaysChapterIndicator {
+            
+            if track?.hasChapters ?? false {
+                beginPollingForChapterChange()
+            } else {
+                stopPollingForChapterChange()
+            }
+        }
+        
+        updateSeekTimerState()
+        
+        // Volume controls
+        
+        // Volume may have changed because of sound profiles
+        volumeChanged(volume: audioGraphDelegate.volume, muted: audioGraphDelegate.muted)
+    }
+    
+    // Creates a recurring task that polls the player to detect a change in the currently playing track chapter.
+    // This only occurs when the currently playing track actually has chapters.
+    func beginPollingForChapterChange() {
+        
+        seekTimerTaskQueue.enqueueTask(Self.chapterChangePollingTaskId, {
+            
+            let playingChapter: IndexedChapter? = playbackDelegate.playingChapter
+            
+            // Compare the current chapter with the last known value of current chapter.
+            if self.curChapter != playingChapter {
+                
+                // There has been a change ... notify observers and update the variable.
+                self.messenger.publish(ChapterChangedNotification(oldChapter: self.curChapter, newChapter: playingChapter))
+                self.curChapter = playingChapter
+            }
+        })
+    }
+    
+    // Disables the chapter change polling task
+    func stopPollingForChapterChange() {
+        seekTimerTaskQueue.dequeueTask(Self.chapterChangePollingTaskId)
+    }
+    
     func setUpTheming() {
         
         fontSchemesManager.registerObserver(self)
-        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerSchemeObservers(self)
+        
+        setUpColorSchemePropertyObservation()
     }
     
     func setUpColorSchemePropertyObservation() {
@@ -241,23 +384,33 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         
     }
     
-    func setUpNotificationHandling() {
-        
-    }
-    
     @IBAction func togglePlayPauseAction(_ sender: NSButton) {
-        
+     
+        let priorState = playbackDelegate.state
         playbackDelegate.togglePlayPause()
-        btnPlayPauseStateMachine.setState(playbackDelegate.state)
-        updateSeekTimerState()
+        
+        // If a track change occurred, we don't need to do these updates. A notif will take care of it.
+        if priorState.isPlayingOrPaused {
+            
+            btnPlayPauseStateMachine.setState(playbackDelegate.state)
+            updateSeekTimerState()
+        }
     }
     
     @IBAction func previousTrackAction(_ sender: NSButton) {
-        
+        previousTrack()
+    }
+    
+    func previousTrack() {
+        playbackDelegate.previousTrack()
     }
     
     @IBAction func nextTrackAction(_ sender: NSButton) {
-        
+        nextTrack()
+    }
+
+    func nextTrack() {
+        playbackDelegate.nextTrack()
     }
     
     @IBAction func seekBackwardAction(_ sender: NSButton) {
@@ -270,13 +423,88 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     @IBAction func seekSliderAction(_ sender: NSSlider) {
         
+        playbackDelegate.seekToPercentage(seekSlider.doubleValue)
+        updateSeekPosition()
     }
     
     @IBAction func toggleLoopAction(_ sender: NSButton) {
         
+        guard playbackDelegate.state.isPlayingOrPaused else {return}
+        
+        playbackDelegate.toggleLoop()
+        messenger.publish(.player_playbackLoopChanged)
+    }
+    
+    @IBAction func switchTrackTimeDisplayTypeAction(_ sender: NSTextField) {
+        
+        playerUIState.trackTimeDisplayType = playerUIState.trackTimeDisplayType.toggle()
+        setTrackTimeDisplayType(to: playerUIState.trackTimeDisplayType)
+    }
+    
+    func updateSeekPosition() {
+        
+        let seekPosn = playbackDelegate.seekPosition
+        seekSlider.doubleValue = seekPosn.percentageElapsed
+        
+        lblTrackTime.stringValue = ValueFormatter.formatTrackTime(elapsedSeconds: seekPosn.timeElapsed, duration: seekPosn.trackDuration,
+                                                                  percentageElapsed: seekPosn.percentageElapsed, trackTimeDisplayType: playerUIState.trackTimeDisplayType)
+        
+        for task in seekTimerTaskQueue.tasks {
+            task()
+        }
     }
     
     func updateSeekTimerState() {
+        
+        var needTimer = false
+        let isPlaying = player.state == .playing
+        
+        if isPlaying {
+            
+            let hasTasks = seekTimerTaskQueue.hasTasks
+            
+            let labelShown = showTrackTime
+            let trackTimeDisplayType = playerUIState.trackTimeDisplayType
+            let trackTimeNotStatic = labelShown && trackTimeDisplayType != .duration
+            
+            needTimer = hasTasks || trackTimeNotStatic
+        }
+        
+        setSeekTimerState(to: needTimer)
+        print("Updated timer state: \(needTimer)")
+    }
+    
+    func setSeekTimerState(to timerOn: Bool) {
+        timerOn ? seekTimer.startOrResume() : seekTimer.pause()
+    }
+    
+    func playbackLoopChanged() {
+        
+        btnLoopStateMachine.setState(playbackDelegate.playbackLoopState)
+
+        // When the playback loop for the current playing track is changed, the seek slider needs to be updated (redrawn) to show the current loop state
+        
+        if let playingTrack = playbackDelegate.playingTrack, let loop = playbackDelegate.playbackLoop {
+            
+            // If loop start has not yet been marked, mark it (e.g. when marking chapter loops)
+            
+            let trackDuration = playingTrack.duration
+            let startPerc = loop.startTime * 100 / trackDuration
+            seekSliderCell.markLoopStart(startPerc: startPerc)
+            
+            // Use the seek slider clone to mark the exact position of the center of the slider knob, at both the start and end points of the playback loop (for rendering)
+            if let loopEndTime = loop.endTime {
+                
+                let endPerc = (loopEndTime / trackDuration) * 100
+                seekSliderCell.markLoopEnd(endPerc: endPerc)
+            }
+            
+        } else {
+            seekSliderCell.removeLoop()
+        }
+
+        seekSlider.redraw()
+        updateSeekPosition()
     }
     
     func playChapter(index: Int) {
@@ -359,19 +587,33 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     }
     
     @IBAction func toggleRepeatModeAction(_ sender: NSButton) {
-        
+        toggleRepeatMode()
+    }
+    
+    func toggleRepeatMode() {
+        updateRepeatAndShuffleControls(modes: playQueueDelegate.toggleRepeatMode())
     }
     
     @IBAction func toggleShuffleModeAction(_ sender: NSButton) {
+        toggleShuffleMode()
+    }
+    
+    func toggleShuffleMode() {
+        updateRepeatAndShuffleControls(modes: playQueueDelegate.toggleShuffleMode())
+    }
+    
+    func updateRepeatAndShuffleControls(modes: RepeatAndShuffleModes) {
         
+        btnRepeatStateMachine.setState(modes.repeatMode)
+        btnShuffleStateMachine.setState(modes.shuffleMode)
     }
     
     func setRepeatMode(to repeatMode: RepeatMode) {
-        
+        updateRepeatAndShuffleControls(modes: playQueueDelegate.setRepeatMode(repeatMode))
     }
     
     func setShuffleMode(to shuffleMode: ShuffleMode) {
-        
+        updateRepeatAndShuffleControls(modes: playQueueDelegate.setShuffleMode(shuffleMode))
     }
     
     func showOrHideAlbumArt() {
@@ -396,18 +638,33 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     func showOrHideTrackTime() {
         
-    }
-    
-    func toggleTrackTimeDisplayType() {
-        
+        lblTrackTime.showIf(playbackDelegate.playingTrack != nil && showTrackTime)
+        updateSeekTimerState()
     }
     
     func setTrackTimeDisplayType(to format: TrackTimeDisplayType) {
         
+        let seekPosn = playbackDelegate.seekPosition
+        lblTrackTime.stringValue = ValueFormatter.formatTrackTime(elapsedSeconds: seekPosn.timeElapsed, duration: seekPosn.trackDuration,
+                                                                  percentageElapsed: seekPosn.percentageElapsed, trackTimeDisplayType: playerUIState.trackTimeDisplayType)
+        
+        updateSeekTimerState()
+    }
+    
+    // MARK: Notification handling ---------------------------------------------------------------------
+    
+    func setUpNotificationHandling() {
+        
+        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
+        messenger.subscribe(to: .player_playbackLoopChanged, handler: playbackLoopChanged)
+        messenger.subscribe(to: .player_trackNotPlayed, handler: trackNotPlayed(_:))
+        
+//        messenger.subscribe(to: .effects_playbackRateChanged, handler: playbackRateChanged(_:))
+//        messenger.subscribe(to: .player_playbackLoopChanged, handler: playbackLoopChanged)
     }
     
     func trackTransitioned(_ notification: TrackTransitionNotification) {
-        
+        trackChanged(to: notification.endTrack)
     }
     
     func chapterChanged(_ notification: ChapterChangedNotification) {
@@ -421,4 +678,9 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     func trackNotPlayed(_ notification: TrackNotPlayedNotification) {
         
     }
+    
+    override func destroy() {
+        messenger.unsubscribeFromAll()
+    }
 }
+ 

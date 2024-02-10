@@ -44,6 +44,13 @@ extension ColorSchemesManager {
         observer.colorSchemeChanged()
     }
     
+    func registerSchemeObservers(_ observers: ColorSchemeObserver...) {
+        
+        observers.forEach {
+            registerSchemeObserver($0)
+        }
+    }
+    
     func registerPropertyObserver(_ observer: ColorSchemePropertyObserver, forProperty property: ColorSchemeProperty, 
                                   handler: @escaping ColorSchemePropertyChangeHandler) {
         

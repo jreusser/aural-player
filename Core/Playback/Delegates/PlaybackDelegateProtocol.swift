@@ -103,7 +103,7 @@ protocol PlaybackDelegateProtocol: PlaybackInfoDelegateProtocol {
      
         Returns the definition of the current loop, if one is defined, after the execution of this function
      */
-    func toggleLoop() -> PlaybackLoop?
+    @discardableResult func toggleLoop() -> PlaybackLoop?
     
     // For the currently playing track, plays the chapter with the given index, from the start time.
     // If this chapter is already playing, it is played from the start time.

@@ -9,6 +9,7 @@
 //
 import Cocoa
 
+// TODO: Dead code, remove !!!
 class MenuBarSeekSliderCell: SeekSliderCell {
     
     private static let whiteGradient: NSGradient = NSGradient(starting: .white, ending: .white)!

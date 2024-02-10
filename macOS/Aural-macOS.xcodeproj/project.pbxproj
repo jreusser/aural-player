@@ -3734,6 +3734,7 @@
 			isa = PBXGroup;
 			children = (
 				3EA3335A2AE098620041B4FA /* MenuBarPlayer.xib */,
+				3E5864A12B76EC8700BDB5A6 /* MenuBarPVC.swift */,
 				3E824A4225DB74840089F217 /* MenuBarPlayerViewController.swift */,
 				3EBABCBD262C1A350015A73A /* MenuBarPlayerSettingsViewController.swift */,
 				3E987ECB2630088600E6836D /* MenuBarPlayerUIState.swift */,
@@ -3744,7 +3745,6 @@
 				3EEC041A2687AA36004478CE /* MenuBarPlayerAudioViewController.swift */,
 				3EEC041E2687AB15004478CE /* MenuBarPlaybackView.swift */,
 				3EEC04222687AB76004478CE /* MenuBarSeekSliderView.swift */,
-				3E5864A12B76EC8700BDB5A6 /* MenuBarPVC.swift */,
 			);
 			path = MenuBarPlayer;
 			sourceTree = "<group>";

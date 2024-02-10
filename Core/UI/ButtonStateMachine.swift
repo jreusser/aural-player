@@ -68,12 +68,19 @@ class ButtonStateMachine<E>: NSObject, ColorSchemeObserver where E: Hashable {
             }
             
             colorSchemesManager.registerPropertyObserver(self, forProperty: mapping.colorProperty, changeReceiver: button)
+            
+        } else {
+            updateButtonColor()
         }
         
         button.toolTip = mapping.toolTip
     }
     
     func colorSchemeChanged() {
+        updateButtonColor()
+    }
+    
+    private func updateButtonColor() {
         
         if let colorProp = mappings[state]?.colorProperty {
             button.colorChanged(systemColorScheme[keyPath: colorProp])

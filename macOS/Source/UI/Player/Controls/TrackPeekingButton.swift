@@ -9,11 +9,18 @@
 //
 import Cocoa
 
+protocol TrackPeekingButtonProtocol {
+    
+    var toolTipFunction: (() -> String?)? {get set}
+    
+    func updateTooltip()
+}
+
 /*
     A "smart" button that determines and sets its own tool tip dynamically based on logic (closure) that can be set externally. Useful when tool tips need to change based on app state, e.g. to display the previous/next track name in a tool tip for the previous/next track control buttons.
  */
 @IBDesignable
-class TrackPeekingButton: TintedImageButton {
+class TrackPeekingButton: TintedImageButton, TrackPeekingButtonProtocol {
     
     @IBInspectable var defaultTooltip: String!
     
@@ -42,7 +49,7 @@ class TrackPeekingButton: TintedImageButton {
 }
 
 @IBDesignable
-class WhiteTrackPeekingButton: WhiteImageButton {
+class FillableImageTrackPeekingButton: FillableImageButton, TrackPeekingButtonProtocol {
     
     @IBInspectable var defaultTooltip: String!
     

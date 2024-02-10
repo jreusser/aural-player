@@ -197,7 +197,7 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
         }
     }
     
-    func toggleLoop() -> PlaybackLoop? {
+    @discardableResult func toggleLoop() -> PlaybackLoop? {
         
         guard state.isPlayingOrPaused else {return nil}
         

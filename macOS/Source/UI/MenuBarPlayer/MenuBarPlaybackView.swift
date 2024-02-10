@@ -16,8 +16,8 @@ class MenuBarPlaybackView: PlaybackView {
     
     override func setUpPreviousTrackAndNextTrackButtonTooltips() {
         
-        guard let btnPreviousTrack = btnPreviousTrack as? WhiteTrackPeekingButton,
-              let btnNextTrack = btnNextTrack as? WhiteTrackPeekingButton else {
+        guard let btnPreviousTrack = btnPreviousTrack as? FillableImageTrackPeekingButton,
+              let btnNextTrack = btnNextTrack as? FillableImageTrackPeekingButton else {
                   return
               }
         
