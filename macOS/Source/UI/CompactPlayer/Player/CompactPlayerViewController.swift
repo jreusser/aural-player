@@ -16,7 +16,7 @@ class CompactPlayerViewController: NSViewController {
     
     @IBOutlet weak var trackInfoContainerBox: NSBox!
     @IBOutlet weak var imgArt: NSImageView!
-    @IBOutlet weak var textView: ScrollingTrackInfoView!
+    @IBOutlet weak var textView: ScrollingTrackTextView!
     @IBOutlet weak var lblTrackTime: CenterTextLabel!
     
     @IBOutlet weak var playbackView: CompactPlaybackView!

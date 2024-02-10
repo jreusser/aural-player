@@ -56,7 +56,7 @@ class CompactPlayerWindowController: NSWindowController {
         playQueueViewController.view.anchorToSuperview()
         searchViewController.view.anchorToSuperview()
         
-        tabView.selectTabViewItem(at: 2)
+        tabView.selectTabViewItem(at: 0)
         
         colorSchemesManager.registerSchemeObserver(self)
         
@@ -71,6 +71,8 @@ class CompactPlayerWindowController: NSWindowController {
         messenger.subscribe(to: .CompactPlayer.switchToUnifiedMode, handler: switchToUnifiedMode)
         messenger.subscribe(to: .CompactPlayer.switchToMenuBarMode, handler: switchToMenuBarMode)
         messenger.subscribe(to: .CompactPlayer.switchToWidgetMode, handler: switchToWidgetMode)
+        
+        messenger.subscribe(to: .CompactPlayer.showSearch, handler: showSearch)
         
         setUpEventHandling()
     }
@@ -198,6 +200,10 @@ class CompactPlayerWindowController: NSWindowController {
         
         compactPlayerUIState.displayedView = .effects
         eventMonitor.pauseMonitoring()
+    }
+    
+    func showSearch() {
+        tabView.selectTabViewItem(at: 2)
     }
     
     private func transferViewState() {

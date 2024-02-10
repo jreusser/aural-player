@@ -29,6 +29,8 @@ class CompactPlayQueueSearchViewController: NSViewController {
         
         super.viewDidLoad()
         
+        searchField.focusRingType = .none
+        
         fontSchemesManager.registerObserver(self)
         colorSchemesManager.registerSchemeObserver(self)
     }
@@ -36,8 +38,6 @@ class CompactPlayQueueSearchViewController: NSViewController {
     override func viewDidAppear() {
         
         super.viewDidAppear()
-        
-        searchField.focusRingType = .none
         
         searchField.stringValue = ""
         searchQuery.text = ""
@@ -66,7 +66,10 @@ class CompactPlayQueueSearchViewController: NSViewController {
     }
     
     private func noResultsFound() {
+        
         lblSummary.stringValue = "No results found"
+        searchResults = nil
+        resultsTable.reloadData()
     }
     
     // If no fields to compare or no search text, don't do the search
@@ -96,7 +99,7 @@ class CompactPlayQueueSearchViewController: NSViewController {
     }
     
     @IBAction func searchDoneAction(_ sender: Any) {
-        view.window?.close()
+        messenger.publish(.CompactPlayer.showPlayQueue)
     }
 }
 

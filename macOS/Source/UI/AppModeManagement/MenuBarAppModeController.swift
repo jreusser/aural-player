@@ -24,13 +24,15 @@ class MenuBarAppModeController: NSObject, AppModeController, NSMenuDelegate {
     var mode: AppMode {.menuBar}
 
     private var statusItem: NSStatusItem?
-    private var viewController: MenuBarPlayerViewController!
+    private var playerViewController: MenuBarPVC!
+    private var playQueueViewController: CompactPlayQueueViewController!
     
     private let appIcon: NSImage = NSImage(named: "AppIcon-MenuBar")!
     
     func presentMode(transitioningFromMode previousMode: AppMode?) {
         
-        viewController = MenuBarPlayerViewController()
+        playerViewController = MenuBarPVC()
+        playQueueViewController = CompactPlayQueueViewController()
 
         // Make app run in menu bar and make it active.
         NSApp.setActivationPolicy(.accessory)
@@ -41,25 +43,30 @@ class MenuBarAppModeController: NSObject, AppModeController, NSMenuDelegate {
         statusItem?.button?.toolTip = "Aural Player v\(NSApp.appVersion)"
         
         let menu = NSMenu()
-        let menuItem = NSMenuItem(view: viewController.view)
         
-        menu.addItem(menuItem)
+        let playerMenuItem = NSMenuItem(view: playerViewController.view)
+        menu.addItem(playerMenuItem)
+        
+        let playQueueMenuItem = NSMenuItem(view: playQueueViewController.view)
+        menu.addItem(playQueueMenuItem)
+        
         menu.delegate = self
         
         statusItem?.menu = menu
     }
     
     func menuDidClose(_ menu: NSMenu) {
-        viewController?.menuBarMenuClosed()
+//        playerViewController?.menuBarMenuClosed()
     }
     
     func menuWillOpen(_ menu: NSMenu) {
-        viewController?.menuBarMenuOpened()
+//        playerViewController?.menuBarMenuOpened()
     }
     
     func dismissMode() {
         
-        viewController?.destroy()
+        playerViewController?.destroy()
+        playQueueViewController?.destroy()
      
         if let statusItem = self.statusItem {
             
@@ -70,6 +77,7 @@ class MenuBarAppModeController: NSObject, AppModeController, NSMenuDelegate {
             self.statusItem = nil
         }
         
-        viewController = nil
+        playerViewController = nil
+        playQueueViewController = nil
     }
 }

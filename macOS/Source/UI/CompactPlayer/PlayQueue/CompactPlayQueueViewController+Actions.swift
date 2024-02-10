@@ -39,4 +39,8 @@ extension CompactPlayQueueViewController {
         
         updateSummary()
     }
+    
+    @IBAction func searchAction(_ sender: Any) {
+        messenger.publish(.CompactPlayer.showSearch)
+    }
 }

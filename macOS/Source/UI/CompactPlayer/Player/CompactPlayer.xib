@@ -99,7 +99,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="200" height="26"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView focusRingType="none" id="ct7-SQ-RNY" customClass="ScrollingTrackInfoView" customModule="Aural" customModuleProvider="target">
+                            <customView focusRingType="none" id="ct7-SQ-RNY" customClass="ScrollingTrackTextView" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>

@@ -31,7 +31,7 @@ class PlayingTrackView: MouseTrackingView, FontSchemeObserver, ColorSchemeObserv
     
     @IBOutlet weak var infoBox: NSBox!
     @IBOutlet weak var artView: NSImageView!
-    @IBOutlet weak var textView: PlayingTrackTextView!
+    @IBOutlet weak var textView: MultilineTrackTextView!
     
     @IBOutlet weak var controlsBox: NSBox!
     @IBOutlet weak var functionsButton: NSPopUpButton!

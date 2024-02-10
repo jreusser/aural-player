@@ -34,6 +34,10 @@ class TintedImageButton: NSButton {
         super.awakeFromNib()
         image?.isTemplate = true
     }
+    
+    override func colorChanged(_ newColor: PlatformColor) {
+        contentTintColor = newColor
+    }
 }
 
 @IBDesignable
@@ -65,42 +69,66 @@ class WhiteImageButton: NSButton {
 @IBDesignable
 class FillableImageButton: NSButton {
     
-    @IBInspectable var tintColor: NSColor!
-    
-    // A base image that is used as an image template.
-    @IBInspectable var baseImage: NSImage!
+    override var contentTintColor: NSColor? {
+        
+        didSet {
+            
+            if !isReTinting {
+                reTint()
+            }
+        }
+    }
     
     override var image: NSImage? {
         
         didSet {
+            
+            if !isReTinting {
+                reTint()
+            }
+        }
+    }
+    
+    private var isReTinting: Bool = false
+    
+    private func reTint() {
+        
+        if let contentTintColor = self.contentTintColor {
+            
+            isReTinting = true
+            
+            self.image = image?.filledWithColor(contentTintColor)
             image?.isTemplate = false
+            
+            isReTinting = false
         }
     }
     
     override func awakeFromNib() {
         
         super.awakeFromNib()
-        fill(image: baseImage, withColor: tintColor)
+        reTint()
     }
     
-    func fill(image baseImage: NSImage, withColor tintColor: NSColor) {
+    func fill(image: NSImage, withColor tintColor: NSColor) {
         
-        self.baseImage = baseImage
-        self.tintColor = tintColor
+        isReTinting = true
         
-        self.image = baseImage.filledWithColor(tintColor)
+        self.contentTintColor = tintColor
+        self.image = image.filledWithColor(tintColor)
+        
+        isReTinting = false
+    }
+    
+    override func colorChanged(_ newColor: PlatformColor) {
+        self.contentTintColor = newColor
     }
 }
 
 extension NSButton: ColorSchemePropertyChangeReceiver {
     
-    func colorChanged(_ newColor: PlatformColor) {
-        
-        if self is TintedImageButton {
-            contentTintColor = newColor
-        } else {
-            redraw()
-        }
+    @objc func colorChanged(_ newColor: PlatformColor) {
+        redraw()
     }
 }
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,7 +31,7 @@
                 </imageView>
                 <box wantsLayer="YES" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="7BY-ME-fle" userLabel="Playing Track Info Box">
                     <rect key="frame" x="80" y="55" width="786" height="70"/>
-                    <view key="contentView" id="T0r-Cf-1AZ" customClass="PlayingTrackTextView" customModule="Aural" customModuleProvider="target">
+                    <view key="contentView" id="T0r-Cf-1AZ" customClass="MultilineTrackTextView" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="786" height="70"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -40,7 +39,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="697" height="70"/>
                                 <clipView key="contentView" copiesOnScroll="NO" id="RdT-fa-WIX">
                                     <rect key="frame" x="0.0" y="0.0" width="697" height="70"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView focusRingType="none" editable="NO" selectable="NO" horizontallyResizable="YES" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" spellingCorrection="YES" id="I8f-EI-P2l">
                                             <rect key="frame" x="0.0" y="0.0" width="697" height="70"/>

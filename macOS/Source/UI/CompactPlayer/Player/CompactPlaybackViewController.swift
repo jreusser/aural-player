@@ -39,22 +39,4 @@ class CompactPlaybackViewController: PlaybackViewController {
         
 //        messenger.subscribe(to: .applyTheme, handler: (playbackView as! CompactPlaybackView).applyTheme)
     }
-    
-    func performTrackPlayback(_ command: TrackPlaybackCommandNotification) {
-        
-        switch command.type {
-            
-        case .index:
-            
-            if let index = command.index {
-                playbackDelegate.play(index, .defaultParams())
-            }
-            
-        case .track:
-            
-            if let track = command.track {
-                playbackDelegate.play(track, .defaultParams())
-            }
-        }
-    }
 }

@@ -68,7 +68,7 @@
                         <box wantsLayer="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Bp8-ZH-oj4" userLabel="Playing Track Info Box">
                             <rect key="frame" x="85" y="85" width="381" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <view key="contentView" id="mEf-IM-kjw" customClass="PlayingTrackTextView" customModule="Aural" customModuleProvider="target">
+                            <view key="contentView" id="mEf-IM-kjw" customClass="MultilineTrackTextView" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="381" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>

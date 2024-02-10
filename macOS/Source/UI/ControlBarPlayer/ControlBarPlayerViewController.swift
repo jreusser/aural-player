@@ -15,7 +15,7 @@ class ControlBarPlayerViewController: NSViewController, NSMenuDelegate {
 
     @IBOutlet weak var imgArt: NSImageView!
     
-    @IBOutlet weak var textView: ScrollingTrackInfoView!
+    @IBOutlet weak var textView: ScrollingTrackTextView!
     @IBOutlet weak var lblTrackTime: CenterTextLabel!
     @IBOutlet weak var seekSlider: NSSlider!
     @IBOutlet weak var btnRepeat: NSButton!

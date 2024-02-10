@@ -387,6 +387,9 @@
                             <constraint firstAttribute="height" constant="8" id="MYg-FF-EmX"/>
                             <constraint firstAttribute="width" constant="13" id="ekQ-Ez-VcO"/>
                         </constraints>
+                        <connections>
+                            <action selector="searchAction:" target="-2" id="hKb-Mb-1jO"/>
+                        </connections>
                     </button>
                     <popUpButton hidden="YES" toolTip="Sort the Play Queue" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aBL-E4-FyY" userLabel="Sort">
                         <rect key="frame" x="242" y="11" width="23" height="14"/>
