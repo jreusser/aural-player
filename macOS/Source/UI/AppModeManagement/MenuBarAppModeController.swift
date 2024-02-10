@@ -27,7 +27,20 @@ class MenuBarAppModeController: NSObject, AppModeController {
     private var playerViewController: MenuBarPVC!
     private var playQueueViewController: CompactPlayQueueViewController!
     
+    private var playQueueMenuItem: NSMenuItem!
+    private var settingsMenuItems: [NSMenuItem] = []
+    
     private let appIcon: NSImage = NSImage(named: "AppIcon-MenuBar")!
+    
+    private lazy var messenger: Messenger = .init(for: self)
+    
+    override init() {
+        
+        super.init()
+        
+        messenger.subscribe(to: .MenuBarPlayer.toggleSettingsMenu, handler: toggleSettingsMenu)
+        messenger.subscribe(to: .MenuBarPlayer.togglePlayQueue, handler: togglePlayQueue)
+    }
     
     func presentMode(transitioningFromMode previousMode: AppMode?) {
         
@@ -47,10 +60,22 @@ class MenuBarAppModeController: NSObject, AppModeController {
         let playerMenuItem = NSMenuItem(view: playerViewController.view)
         menu.addItem(playerMenuItem)
         
-        let playQueueMenuItem = NSMenuItem(view: playQueueViewController.view)
-        menu.addItem(playQueueMenuItem)
+        menu.addItem(.separator())
         
-        menu.delegate = self
+        self.playQueueMenuItem = NSMenuItem(view: playQueueViewController.view)
+        menu.addItem(playQueueMenuItem)
+        playQueueMenuItem.showIf(menuBarPlayerUIState.showPlayQueue)
+        
+        menu.addItem(.separator())
+        
+        self.settingsMenuItems = playerViewController.settingsMenu.items
+        playerViewController.settingsMenu.removeAllItems()
+        
+        for item in settingsMenuItems {
+            menu.addItem(item)
+        }
+        
+        menu.delegate = playerViewController
         
         statusItem?.menu = menu
     }
@@ -71,16 +96,28 @@ class MenuBarAppModeController: NSObject, AppModeController {
         
         playerViewController = nil
         playQueueViewController = nil
+        playQueueMenuItem = nil
+    }
+    
+    private func toggleSettingsMenu() {
+        
+        self.settingsMenuItems.forEach {
+            $0.toggleShownOrHidden()
+        }
+    }
+    
+    private func togglePlayQueue() {
+        playQueueMenuItem.showIf(menuBarPlayerUIState.showPlayQueue)
     }
 }
 
-extension MenuBarAppModeController: NSMenuDelegate {
-    
-    func menuDidClose(_ menu: NSMenu) {
-        playerViewController?.menuBarMenuClosed()
-    }
-    
-    func menuWillOpen(_ menu: NSMenu) {
-        playerViewController?.menuBarMenuOpened()
-    }
-}
+//extension MenuBarAppModeController: NSMenuDelegate {
+//    
+//    func menuDidClose(_ menu: NSMenu) {
+//        playerViewController?.menuBarMenuClosed()
+//    }
+//    
+//    func menuWillOpen(_ menu: NSMenu) {
+//        playerViewController?.menuBarMenuOpened()
+//    }
+//}

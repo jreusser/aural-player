@@ -16,6 +16,7 @@ import Foundation
 ///
 struct MenuBarPlayerUIPersistentState: Codable {
     
+    let showPlayQueue: Bool?
     let showAlbumArt: Bool?
     let showArtist: Bool?
     let showAlbum: Bool?

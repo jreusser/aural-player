@@ -611,6 +611,8 @@
 		3EBFF5AE2B52C8150056D5B4 /* CompactPlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFF5AD2B52C8150056D5B4 /* CompactPlaybackView.swift */; };
 		3EBFF5B02B52D84A0056D5B4 /* CompactPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFF5AF2B52D84A0056D5B4 /* CompactPlaybackViewController.swift */; };
 		3EBFF5B32B53C0550056D5B4 /* LegacyAppPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFF5B22B53C0550056D5B4 /* LegacyAppPersistentState.swift */; };
+		3EC0793D2B783611008CB68C /* MenuBarPlayerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0793C2B783611008CB68C /* MenuBarPlayerNotifications.swift */; };
+		3EC0793F2B783AB2008CB68C /* MenuBarSettingsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0793E2B783AB2008CB68C /* MenuBarSettingsMenuController.swift */; };
 		3EC083652B5B3DCB001934DA /* AppSetupThemePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC083642B5B3DCB001934DA /* AppSetupThemePreviewView.swift */; };
 		3EC2975A27864CD400B29551 /* Aural.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC2975927864CD400B29551 /* Aural.xcassets */; };
 		3EC29A5927865BC900B29551 /* MenuItemMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC29A5827865BC900B29551 /* MenuItemMappable.swift */; };
@@ -1690,6 +1692,8 @@
 		3EBFF5AD2B52C8150056D5B4 /* CompactPlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlaybackView.swift; sourceTree = "<group>"; };
 		3EBFF5AF2B52D84A0056D5B4 /* CompactPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlaybackViewController.swift; sourceTree = "<group>"; };
 		3EBFF5B22B53C0550056D5B4 /* LegacyAppPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyAppPersistentState.swift; sourceTree = "<group>"; };
+		3EC0793C2B783611008CB68C /* MenuBarPlayerNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayerNotifications.swift; sourceTree = "<group>"; };
+		3EC0793E2B783AB2008CB68C /* MenuBarSettingsMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarSettingsMenuController.swift; sourceTree = "<group>"; };
 		3EC083642B5B3DCB001934DA /* AppSetupThemePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetupThemePreviewView.swift; sourceTree = "<group>"; };
 		3EC2975927864CD400B29551 /* Aural.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Aural.xcassets; sourceTree = "<group>"; };
 		3EC29A5827865BC900B29551 /* MenuItemMappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemMappable.swift; sourceTree = "<group>"; };
@@ -3745,6 +3749,7 @@
 				3EEC041A2687AA36004478CE /* MenuBarPlayerAudioViewController.swift */,
 				3EEC041E2687AB15004478CE /* MenuBarPlaybackView.swift */,
 				3EEC04222687AB76004478CE /* MenuBarSeekSliderView.swift */,
+				3EC0793E2B783AB2008CB68C /* MenuBarSettingsMenuController.swift */,
 			);
 			path = MenuBarPlayer;
 			sourceTree = "<group>";
@@ -5038,6 +5043,7 @@
 				3EAE9CC12836DBF5004499FE /* LibraryNotifications.swift */,
 				3E836E382868A36F009371D4 /* UnifiedPlayerNotifications.swift */,
 				3ECF71B32B75750300FDB69B /* CompactPlayerNotifications.swift */,
+				3EC0793C2B783611008CB68C /* MenuBarPlayerNotifications.swift */,
 				3EFE375B27864895006F8B8C /* EffectsNotifications.swift */,
 				3EFE375C27864895006F8B8C /* TuneBrowserNotifications.swift */,
 				3EFE375D27864895006F8B8C /* VisualizerNotifications.swift */,
@@ -5965,6 +5971,7 @@
 				3EFE3A1527864898006F8B8C /* PlaylistNotifications.swift in Sources */,
 				3EFE3A0327864898006F8B8C /* PlayerNotifications.swift in Sources */,
 				3EB3A61E26A76F450060487C /* NSScrollViewExtensions.swift in Sources */,
+				3EC0793D2B783611008CB68C /* MenuBarPlayerNotifications.swift in Sources */,
 				3EB3A60426A726EF0060487C /* NSTableCellViewExtensions.swift in Sources */,
 				3EE2CC3326811074002C1B29 /* NSTableViewExtensions.swift in Sources */,
 				3E2D09D92AD4BA390062D3C9 /* AUParameterSliderCell.swift in Sources */,
@@ -6332,6 +6339,7 @@
 				3E6C131325CEBE8F00BF0D07 /* WindowLayout.swift in Sources */,
 				3E6C122B25CEBDE600BF0D07 /* WindowLayoutPopupMenuController.swift in Sources */,
 				3EFE3A4127864898006F8B8C /* FFmpegMappedMetadata.swift in Sources */,
+				3EC0793F2B783AB2008CB68C /* MenuBarSettingsMenuController.swift in Sources */,
 				3EEABD442B56D47E00263797 /* Library+Build.swift in Sources */,
 				3EFE39DB27864897006F8B8C /* SoundProfilePersistentState.swift in Sources */,
 				3ED23857282063330048CF8E /* FilterUnitViewController+TableViewDelegate.swift in Sources */,

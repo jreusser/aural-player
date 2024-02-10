@@ -175,7 +175,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     func setUpPlaybackControls() {
         
-        lblTrackTime.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(self.switchTrackTimeDisplayTypeAction(_:))))
+        lblTrackTime.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(self.toggleTrackTimeDisplayTypeAction(_:))))
         
         if var peekingPreviousTrackButton = btnPreviousTrack as? TrackPeekingButtonProtocol {
             
@@ -435,7 +435,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         messenger.publish(.player_playbackLoopChanged)
     }
     
-    @IBAction func switchTrackTimeDisplayTypeAction(_ sender: NSTextField) {
+    @IBAction func toggleTrackTimeDisplayTypeAction(_ sender: NSTextField) {
         
         playerUIState.trackTimeDisplayType = playerUIState.trackTimeDisplayType.toggle()
         setTrackTimeDisplayType(to: playerUIState.trackTimeDisplayType)

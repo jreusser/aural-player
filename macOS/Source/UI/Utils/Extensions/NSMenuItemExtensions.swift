@@ -148,6 +148,10 @@ extension NSMenuItem {
         self.isEnabled = !condition
     }
     
+    func toggleShownOrHidden() {
+        self.isHidden.toggle()
+    }
+    
     // Creates a menu item that serves only to describe other items in the menu. The item will have no action.
     static func createDescriptor(title: String) -> NSMenuItem {
         

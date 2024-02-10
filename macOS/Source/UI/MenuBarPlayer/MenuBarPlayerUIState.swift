@@ -9,6 +9,7 @@
 //
 class MenuBarPlayerUIState {
     
+    var showPlayQueue: Bool
     var showAlbumArt: Bool
     var showArtist: Bool
     var showAlbum: Bool
@@ -16,6 +17,7 @@ class MenuBarPlayerUIState {
     
     init(persistentState: MenuBarPlayerUIPersistentState?) {
         
+        showPlayQueue = persistentState?.showPlayQueue ?? MenuBarPlayerUIDefaults.showPlayQueue
         showAlbumArt = persistentState?.showAlbumArt ?? MenuBarPlayerUIDefaults.showAlbumArt
         showArtist = persistentState?.showArtist ?? MenuBarPlayerUIDefaults.showArtist
         showAlbum = persistentState?.showAlbum ?? MenuBarPlayerUIDefaults.showAlbum
@@ -24,7 +26,8 @@ class MenuBarPlayerUIState {
     
     var persistentState: MenuBarPlayerUIPersistentState {
         
-        MenuBarPlayerUIPersistentState(showAlbumArt: showAlbumArt,
+        MenuBarPlayerUIPersistentState(showPlayQueue: showPlayQueue,
+                                       showAlbumArt: showAlbumArt,
                                        showArtist: showArtist,
                                        showAlbum: showAlbum,
                                        showCurrentChapter: showCurrentChapter)
@@ -33,6 +36,7 @@ class MenuBarPlayerUIState {
 
 class MenuBarPlayerUIDefaults {
     
+    static let showPlayQueue: Bool = false
     static let showAlbumArt: Bool = true
     static let showArtist: Bool = true
     static let showAlbum: Bool = true

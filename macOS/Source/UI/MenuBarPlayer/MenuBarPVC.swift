@@ -17,10 +17,33 @@ class MenuBarPVC: CommonPlayerViewController {
     @IBOutlet weak var logoImage: TintedImageView!
 //    @IBOutlet weak var presentationModeMenuItem: TintedIconMenuItem!
     
-//    @IBOutlet weak var btnSettingsMenu: NSPopUpButton!
+//    @IBOutlet weak var btnSettingsMenu: NSButton!
 //    @IBOutlet weak var settingsMenuIconItem: TintedIconMenuItem!
     
+    @IBOutlet weak var settingsMenu: NSMenu!
+    @IBOutlet weak var settingsMenuController: MenuBarSettingsMenuController!
+    
+    @IBOutlet weak var showPlayQueueMenuItem: NSMenuItem!
+    
+    @IBOutlet weak var timeElapsedMenuItem: SeekPositionDisplayTypeMenuItem!
+    @IBOutlet weak var timeRemainingMenuItem: SeekPositionDisplayTypeMenuItem!
+    @IBOutlet weak var trackDurationMenuItem: SeekPositionDisplayTypeMenuItem!
+    
+    var seekPositionDisplayTypeItems: [NSMenuItem] = []
+    
     override var nibName: NSNib.Name? {"MenuBarPlayer"}
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        
+        // View settings menu items
+        timeElapsedMenuItem.displayType = .elapsed
+        timeRemainingMenuItem.displayType = .remaining
+        trackDurationMenuItem.displayType = .duration
+        
+        seekPositionDisplayTypeItems = [timeElapsedMenuItem, timeRemainingMenuItem, trackDurationMenuItem]
+    }
     
     override var showTrackTime: Bool {
         compactPlayerUIState.showTrackTime
@@ -63,42 +86,8 @@ class MenuBarPVC: CommonPlayerViewController {
         logoImage.colorChanged(systemColorScheme.captionTextColor)
     }
     
-    func menuBarMenuOpened() {
-        
-//        if settingsBox.isShown {
-//            
-//            settingsBox.hide()
-//            infoBox.bringToFront()
-//        }
-//        
-//        if presentationModesBox.isShown {
-//
-//            presentationModesBox.hide()
-//            infoBox.bringToFront()
-//        }
-        
-        // If the player is playing, we need to resume updating the seek
-        // position as the view is now visible.
-        updateSeekPosition()
-        updateSeekTimerState()
-    }
-    
-    func menuBarMenuClosed() {
-        
-//        if settingsBox.isShown {
-//            
-//            settingsBox.hide()
-//            infoBox.bringToFront()
-//        }
-//        
-//        if presentationModesBox.isShown {
-//
-//            presentationModesBox.hide()
-//            infoBox.bringToFront()
-//        }
-        
-        // Updating seek position is not necessary when the view has been closed.
-        setSeekTimerState(to: false)
+    func menuBarMenuWillOpen() {
+        settingsMenuController.menuWillOpen(settingsMenu)
     }
     
     func stopUpdatingSeekPosition() {
@@ -109,6 +98,10 @@ class MenuBarPVC: CommonPlayerViewController {
         
         updateSeekPosition()
         setSeekTimerState(to: true)
+    }
+    
+    @IBAction func toggleSettingsMenuAction(_ sender: NSButton) {
+        messenger.publish(.MenuBarPlayer.toggleSettingsMenu)
     }
     
     @IBAction func presentationModesRadioButtonAction(_ sender: AnyObject) {}
@@ -132,5 +125,75 @@ class MenuBarPVC: CommonPlayerViewController {
 
     @IBAction func quitAction(_ sender: AnyObject) {
         NSApp.terminate(self)
+    }
+}
+
+extension MenuBarPVC: NSMenuDelegate {
+    
+    func menuDidClose(_ menu: NSMenu) {
+        
+//        if settingsBox.isShown {
+//
+//            settingsBox.hide()
+//            infoBox.bringToFront()
+//        }
+//
+//        if presentationModesBox.isShown {
+//
+//            presentationModesBox.hide()
+//            infoBox.bringToFront()
+//        }
+        
+        // Updating seek position is not necessary when the view has been closed.
+        setSeekTimerState(to: false)
+    }
+    
+    func menuWillOpen(_ menu: NSMenu) {
+        
+        showPlayQueueMenuItem.onIf(menuBarPlayerUIState.showPlayQueue)
+        
+        seekPositionDisplayTypeItems.forEach {$0.off()}
+        
+        switch playerUIState.trackTimeDisplayType {
+            
+        case .elapsed:
+            timeElapsedMenuItem.on()
+            
+        case .remaining:
+            timeRemainingMenuItem.on()
+            
+        case .duration:
+            trackDurationMenuItem.on()
+        }
+        
+//        if settingsBox.isShown {
+//
+//            settingsBox.hide()
+//            infoBox.bringToFront()
+//        }
+//
+//        if presentationModesBox.isShown {
+//
+//            presentationModesBox.hide()
+//            infoBox.bringToFront()
+//        }
+        
+        // If the player is playing, we need to resume updating the seek
+        // position as the view is now visible.
+        updateSeekPosition()
+        updateSeekTimerState()
+    }
+    
+    // Shows/hides the Play Queue view
+    @IBAction func showPlayQueueAction(_ sender: AnyObject) {
+        
+        menuBarPlayerUIState.showPlayQueue.toggle()
+        messenger.publish(.MenuBarPlayer.togglePlayQueue)
+    }
+
+    @IBAction func changeSeekPositionDisplayTypeAction(_ sender: SeekPositionDisplayTypeMenuItem) {
+        
+        playerUIState.trackTimeDisplayType = sender.displayType
+//        messenger.publish(.CompactPlayer.changeTrackTimeDisplayType)
     }
 }
