@@ -16,6 +16,7 @@
                 <outlet property="btnPreviousTrack" destination="AAi-7n-PAk" id="sDp-P3-en5"/>
                 <outlet property="btnQuit" destination="enq-6c-0bc" id="YLr-E1-cR4"/>
                 <outlet property="btnRepeat" destination="vDs-we-Jvw" id="M4H-fK-2JS"/>
+                <outlet property="btnSettings" destination="t49-BV-Ux5" id="1vX-fw-yrS"/>
                 <outlet property="btnShuffle" destination="0r6-na-u8Q" id="8zK-n5-fJh"/>
                 <outlet property="btnVolume" destination="lt1-d9-2mN" id="hKv-Yp-vBu"/>
                 <outlet property="lblTrackTime" destination="D24-2X-fE6" id="XWd-QC-B4g"/>
@@ -71,7 +72,7 @@
                         <action selector="quitAction:" target="-2" id="Bnb-by-1s4"/>
                     </connections>
                 </button>
-                <button toolTip="Settings" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t49-BV-Ux5" userLabel="Settings Button">
+                <button toolTip="Settings" wantsLayer="YES" focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t49-BV-Ux5" userLabel="Settings Button" customClass="FillableImageButton" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="280" y="151" width="10" height="10"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Settings" imagePosition="only" alignment="center" refusesFirstResponder="YES" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="4Ga-yr-68s">

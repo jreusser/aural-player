@@ -15,10 +15,8 @@ class MenuBarPlayerViewController: CommonPlayerViewController {
     @IBOutlet weak var rootContainerBox: NSBox!
     @IBOutlet weak var btnQuit: FillableImageButton!
     @IBOutlet weak var logoImage: TintedImageView!
-//    @IBOutlet weak var presentationModeMenuItem: TintedIconMenuItem!
     
-//    @IBOutlet weak var btnSettingsMenu: NSButton!
-//    @IBOutlet weak var settingsMenuIconItem: TintedIconMenuItem!
+    @IBOutlet weak var btnSettings: NSButton!
     
     override var nibName: NSNib.Name? {"MenuBarPlayer"}
     
@@ -63,8 +61,10 @@ class MenuBarPlayerViewController: CommonPlayerViewController {
         super.colorSchemeChanged()
         
         rootContainerBox.fillColor = systemColorScheme.backgroundColor
-        btnQuit.colorChanged(systemColorScheme.buttonColor)
         logoImage.colorChanged(systemColorScheme.captionTextColor)
+        [btnQuit, btnSettings].forEach {
+            $0.colorChanged(systemColorScheme.buttonColor)
+        }
     }
     
     func stopUpdatingSeekPosition() {

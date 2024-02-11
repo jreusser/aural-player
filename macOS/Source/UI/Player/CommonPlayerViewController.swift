@@ -347,6 +347,8 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         multilineTrackTextView.titleFont = multilineTrackTextTitleFont
         multilineTrackTextView.artistAlbumFont = multilineTrackTextArtistAlbumFont
         multilineTrackTextView.chapterTitleFont = multilineTrackTextChapterTitleFont
+        
+        multilineTrackTextView.update()
     }
     
     func updateScrollingTrackTextViewFonts() {
@@ -356,7 +358,17 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     func colorSchemeChanged() {
         
         updateTrackTextViewColors()
+        
+        // Re-tint the default playing track cover art, if no track cover art is displayed.
+        if playbackDelegate.playingTrack?.art == nil {
+            artView.contentTintColor = systemColorScheme.secondaryTextColor
+        }
+        
         lblTrackTime.textColor = trackTimeColor
+        
+        [btnPreviousTrack, btnNextTrack].forEach {
+            $0.colorChanged(systemColorScheme.buttonColor)
+        }
         
         btnVolume.colorChanged(systemColorScheme.buttonColor)
         volumeSlider.redraw()
@@ -372,6 +384,8 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         multilineTrackTextView.titleColor = multilineTrackTextTitleColor
         multilineTrackTextView.artistAlbumColor = multilineTrackTextArtistAlbumColor
         multilineTrackTextView.chapterTitleColor = multilineTrackTextChapterTitleColor
+        
+        multilineTrackTextView.update()
     }
     
     func updateScrollingTrackTextViewColors() {
