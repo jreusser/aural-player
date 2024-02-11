@@ -589,7 +589,7 @@
 		3EB5108C25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */; };
 		3EB805DD2B793FE7005E464A /* MenuBarPlayQueueContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB805DC2B793FE7005E464A /* MenuBarPlayQueueContainer.swift */; };
 		3EB805DF2B795D0C005E464A /* ControlBarPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB805DE2B795D0C005E464A /* ControlBarPVC.swift */; };
-		3EB805E12B7987B1005E464A /* CompactPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB805E02B7987B1005E464A /* CompactPVC.swift */; };
+		3EB805E12B7987B1005E464A /* CompactPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB805E02B7987B1005E464A /* CompactPlayerViewController.swift */; };
 		3EB88E772629DA9500C8D230 /* ThemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */; };
 		3EBD345D2B5DBFC40048AC03 /* BookmarksDelegate+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD345C2B5DBFC40048AC03 /* BookmarksDelegate+Init.swift */; };
 		3EBF0F67280C7317000455D6 /* MetadataRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF0F66280C7317000455D6 /* MetadataRegistry.swift */; };
@@ -606,7 +606,6 @@
 		3EBFF5A52B52C0670056D5B4 /* CompactAppModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFF5A42B52C0670056D5B4 /* CompactAppModeController.swift */; };
 		3EBFF5A82B52C0CC0056D5B4 /* CompactPlayerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFF5A72B52C0CC0056D5B4 /* CompactPlayerWindowController.swift */; };
 		3EBFF5AA2B52C0F70056D5B4 /* CompactPlayerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EBFF5A92B52C0F70056D5B4 /* CompactPlayerWindow.xib */; };
-		3EBFF5AC2B52C5F10056D5B4 /* CompactPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFF5AB2B52C5F10056D5B4 /* CompactPlayerViewController.swift */; };
 		3EBFF5B32B53C0550056D5B4 /* LegacyAppPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFF5B22B53C0550056D5B4 /* LegacyAppPersistentState.swift */; };
 		3EC0793D2B783611008CB68C /* MenuBarPlayerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0793C2B783611008CB68C /* MenuBarPlayerNotifications.swift */; };
 		3EC079422B7848A3008CB68C /* MenuBarPlayQueue.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC079412B7848A3008CB68C /* MenuBarPlayQueue.xib */; };
@@ -1664,7 +1663,7 @@
 		3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemePopupMenuController.swift; sourceTree = "<group>"; };
 		3EB805DC2B793FE7005E464A /* MenuBarPlayQueueContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayQueueContainer.swift; sourceTree = "<group>"; };
 		3EB805DE2B795D0C005E464A /* ControlBarPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPVC.swift; sourceTree = "<group>"; };
-		3EB805E02B7987B1005E464A /* CompactPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPVC.swift; sourceTree = "<group>"; };
+		3EB805E02B7987B1005E464A /* CompactPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerViewController.swift; sourceTree = "<group>"; };
 		3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePopupMenuController.swift; sourceTree = "<group>"; };
 		3EBD345C2B5DBFC40048AC03 /* BookmarksDelegate+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookmarksDelegate+Init.swift"; sourceTree = "<group>"; };
 		3EBF0F66280C7317000455D6 /* MetadataRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataRegistry.swift; sourceTree = "<group>"; };
@@ -1681,7 +1680,6 @@
 		3EBFF5A42B52C0670056D5B4 /* CompactAppModeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactAppModeController.swift; sourceTree = "<group>"; };
 		3EBFF5A72B52C0CC0056D5B4 /* CompactPlayerWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerWindowController.swift; sourceTree = "<group>"; };
 		3EBFF5A92B52C0F70056D5B4 /* CompactPlayerWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompactPlayerWindow.xib; sourceTree = "<group>"; };
-		3EBFF5AB2B52C5F10056D5B4 /* CompactPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerViewController.swift; sourceTree = "<group>"; };
 		3EBFF5B22B53C0550056D5B4 /* LegacyAppPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyAppPersistentState.swift; sourceTree = "<group>"; };
 		3EC0793C2B783611008CB68C /* MenuBarPlayerNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayerNotifications.swift; sourceTree = "<group>"; };
 		3EC079412B7848A3008CB68C /* MenuBarPlayQueue.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuBarPlayQueue.xib; sourceTree = "<group>"; };
@@ -4135,8 +4133,7 @@
 			isa = PBXGroup;
 			children = (
 				3ECF71B12B7571D200FDB69B /* CompactPlayer.xib */,
-				3EB805E02B7987B1005E464A /* CompactPVC.swift */,
-				3EBFF5AB2B52C5F10056D5B4 /* CompactPlayerViewController.swift */,
+				3EB805E02B7987B1005E464A /* CompactPlayerViewController.swift */,
 				3EC7937A2B74518900AF7E9E /* CompactPlayerView.swift */,
 			);
 			path = Player;
@@ -5913,7 +5910,6 @@
 				3EFE391727864897006F8B8C /* IntExtensions.swift in Sources */,
 				3EEFF58E27DE842C002CB0FE /* PlayQueueProtocol.swift in Sources */,
 				3E6668B32ADB515600BBD119 /* PresetLayoutPreviewView.swift in Sources */,
-				3EBFF5AC2B52C5F10056D5B4 /* CompactPlayerViewController.swift in Sources */,
 				3E987ECC2630088600E6836D /* MenuBarPlayerUIState.swift in Sources */,
 				3EFE3A5527864898006F8B8C /* MusicBrainzRESTClient.swift in Sources */,
 				3EFE3A9727864898006F8B8C /* TrackReader.swift in Sources */,
@@ -6110,7 +6106,7 @@
 				3EB462D32847FEC6000E3F85 /* TuneBrowserSidebarViewController.swift in Sources */,
 				3E6C66AB2B54825300AA0D81 /* LegacyUIPersistentState.swift in Sources */,
 				3EFE38CF27864896006F8B8C /* EQUnitDelegate.swift in Sources */,
-				3EB805E12B7987B1005E464A /* CompactPVC.swift in Sources */,
+				3EB805E12B7987B1005E464A /* CompactPlayerViewController.swift in Sources */,
 				3EF84DA6283632ED004EF57B /* LibrarySidebarItems.swift in Sources */,
 				3EFE388727864896006F8B8C /* FilterPresets.swift in Sources */,
 				3EFE382127864896006F8B8C /* SearchResults.swift in Sources */,
