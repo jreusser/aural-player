@@ -13,6 +13,8 @@ class ControlBarSeekSliderCell: SeekSliderCell {
     
     override var barRadius: CGFloat {1}
     
+    override var barHeight: CGFloat {3}
+    
     private let loopMarkerWidth: CGFloat = 8
     private lazy var halfLoopMarkerWidth: CGFloat = loopMarkerWidth / 2
     

@@ -87,8 +87,8 @@ class MenuBarPlayQueueViewController: CompactPlayQueueViewController {
 //            
         } else {
             
-            // Sort by album and name
-            fields = [.album, .name]
+            // Default sort
+            fields = [.artist, .album, .discNumberAndTrackNumber]
         }
 
         sortOptionsBox.hide()
