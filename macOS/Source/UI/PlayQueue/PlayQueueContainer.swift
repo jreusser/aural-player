@@ -15,30 +15,30 @@ class PlayQueueContainer: NSView, ColorSchemeObserver {
     @IBOutlet weak var lblTracksSummary: NSTextField!
     @IBOutlet weak var lblDurationSummary: NSTextField!
     
-    @IBOutlet weak var btnImportTracks: TintedImageButton!
+    @IBOutlet weak var btnImportTracks: NSButton!
     
-    @IBOutlet weak var btnRemoveTracks: TintedImageButton!
-    @IBOutlet weak var btnCropTracks: TintedImageButton!
-    @IBOutlet weak var btnRemoveAllTracks: TintedImageButton!
+    @IBOutlet weak var btnRemoveTracks: NSButton!
+    @IBOutlet weak var btnCropTracks: NSButton!
+    @IBOutlet weak var btnRemoveAllTracks: NSButton!
     
-    @IBOutlet weak var btnMoveTracksUp: TintedImageButton!
-    @IBOutlet weak var btnMoveTracksDown: TintedImageButton!
-    @IBOutlet weak var btnMoveTracksToTop: TintedImageButton!
-    @IBOutlet weak var btnMoveTracksToBottom: TintedImageButton!
+    @IBOutlet weak var btnMoveTracksUp: NSButton!
+    @IBOutlet weak var btnMoveTracksDown: NSButton!
+    @IBOutlet weak var btnMoveTracksToTop: NSButton!
+    @IBOutlet weak var btnMoveTracksToBottom: NSButton!
     
-    @IBOutlet weak var btnClearSelection: TintedImageButton!
-    @IBOutlet weak var btnInvertSelection: TintedImageButton!
+    @IBOutlet weak var btnClearSelection: NSButton!
+    @IBOutlet weak var btnInvertSelection: NSButton!
     
-    @IBOutlet weak var btnSearch: TintedImageButton!
-    @IBOutlet weak var btnSort: NSPopUpButton!
+    @IBOutlet weak var btnSearch: NSButton!
+    @IBOutlet weak var btnSortPopup: NSPopUpButton!
     @IBOutlet weak var sortTintedIconMenuItem: TintedIconMenuItem!
     
-    @IBOutlet weak var btnExport: TintedImageButton!
+    @IBOutlet weak var btnExport: NSButton!
     
-    @IBOutlet weak var btnPageUp: TintedImageButton!
-    @IBOutlet weak var btnPageDown: TintedImageButton!
-    @IBOutlet weak var btnScrollToTop: TintedImageButton!
-    @IBOutlet weak var btnScrollToBottom: TintedImageButton!
+    @IBOutlet weak var btnPageUp: NSButton!
+    @IBOutlet weak var btnPageDown: NSButton!
+    @IBOutlet weak var btnScrollToTop: NSButton!
+    @IBOutlet weak var btnScrollToBottom: NSButton!
     
     var allButtons: [ColorSchemePropertyChangeReceiver] = []
     var viewsToShowOnMouseOver: [NSView] = []
@@ -58,7 +58,7 @@ class PlayQueueContainer: NSView, ColorSchemeObserver {
                                   btnRemoveTracks, btnCropTracks, btnRemoveAllTracks,
                                   btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom,
                                   btnClearSelection, btnInvertSelection,
-                                  btnSearch, btnSort,
+                                  btnSearch, btnSortPopup,
                                   btnExport,
                                   btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom]
         

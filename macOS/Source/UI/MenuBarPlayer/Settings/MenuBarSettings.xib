@@ -18,7 +18,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="283" y="305" width="366" height="277"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2056" height="1285"/>
             <view key="contentView" id="NKb-Ji-liu">
                 <rect key="frame" x="0.0" y="0.0" width="366" height="277"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -56,12 +56,12 @@
                                         <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wVx-Ph-zNg" userLabel="App Modes Menu">
                                             <rect key="frame" x="14" y="74" width="204" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <popUpButtonCell key="cell" type="push" title="&lt;Select Presentation Mode&gt;" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="mGe-Vg-tcU" id="OHp-lf-nxH">
+                                            <popUpButtonCell key="cell" type="push" title="&lt;Select Presentation Mode&gt;" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="mGe-Vg-tcU" id="OHp-lf-nxH">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <menu key="menu" showsStateColumn="NO" id="yLA-dd-rOt">
                                                     <items>
-                                                        <menuItem title="&lt;Select Presentation Mode&gt;" hidden="YES" allowsKeyEquivalentWhenHidden="YES" id="mGe-Vg-tcU"/>
+                                                        <menuItem title="&lt;Select Presentation Mode&gt;" state="on" hidden="YES" allowsKeyEquivalentWhenHidden="YES" id="mGe-Vg-tcU"/>
                                                         <menuItem title="Modular (multiple windows)" identifier="modular" id="50o-e8-560">
                                                             <modifierMask key="keyEquivalentModifierMask"/>
                                                         </menuItem>

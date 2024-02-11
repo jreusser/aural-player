@@ -1,5 +1,5 @@
 //
-//  CompactPlayQueueContainer.swift
+//  MenuBarPlayQueueContainer.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -8,22 +8,34 @@
 //  See the file "LICENSE" in the project root directory for license terms.
 //  
 
-import Foundation
+import AppKit
 
-class CompactPlayQueueContainer: PlayQueueContainer {
+class MenuBarPlayQueueContainer: PlayQueueContainer {
+    
+    @IBOutlet weak var btnSort: NSButton!
+    @IBOutlet weak var sortOptionsBox: NSBox!
     
     override func setUpSubviewsForAutoHide() {
         
         viewsToShowOnMouseOver = [btnImportTracks, btnExport,
                                   btnRemoveTracks, btnCropTracks, btnRemoveAllTracks,
                                   btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom,
-                                  btnSearch, btnSortPopup]
+                                  btnSearch, btnSort]
         
         viewsToHideOnMouseOver = [lblTracksSummary, lblDurationSummary]
         
         allButtons = [btnImportTracks, btnExport,
                       btnRemoveTracks, btnCropTracks, btnRemoveAllTracks,
                       btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom,
-                      btnSearch, sortTintedIconMenuItem]
+                      btnSearch, btnSort]
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        
+        super.mouseExited(with: event)
+        
+        if sortOptionsBox.isShown {
+            sortOptionsBox.hide()
+        }
     }
 }

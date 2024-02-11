@@ -587,6 +587,7 @@
 		3EB462DC2847FEC6000E3F85 /* TuneBrowserTabViewController+ViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462D12847FEC6000E3F85 /* TuneBrowserTabViewController+ViewDelegate.swift */; };
 		3EB462DD2847FEC6000E3F85 /* TuneBrowserTableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */; };
 		3EB5108C25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */; };
+		3EB805DD2B793FE7005E464A /* MenuBarPlayQueueContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB805DC2B793FE7005E464A /* MenuBarPlayQueueContainer.swift */; };
 		3EB88E772629DA9500C8D230 /* ThemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */; };
 		3EBD345D2B5DBFC40048AC03 /* BookmarksDelegate+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD345C2B5DBFC40048AC03 /* BookmarksDelegate+Init.swift */; };
 		3EBF0F67280C7317000455D6 /* MetadataRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF0F66280C7317000455D6 /* MetadataRegistry.swift */; };
@@ -1662,6 +1663,7 @@
 		3EB462D12847FEC6000E3F85 /* TuneBrowserTabViewController+ViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TuneBrowserTabViewController+ViewDelegate.swift"; sourceTree = "<group>"; };
 		3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserTableViews.swift; sourceTree = "<group>"; };
 		3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemePopupMenuController.swift; sourceTree = "<group>"; };
+		3EB805DC2B793FE7005E464A /* MenuBarPlayQueueContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayQueueContainer.swift; sourceTree = "<group>"; };
 		3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePopupMenuController.swift; sourceTree = "<group>"; };
 		3EBD345C2B5DBFC40048AC03 /* BookmarksDelegate+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookmarksDelegate+Init.swift"; sourceTree = "<group>"; };
 		3EBF0F66280C7317000455D6 /* MetadataRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataRegistry.swift; sourceTree = "<group>"; };
@@ -4041,6 +4043,7 @@
 			children = (
 				3EC079412B7848A3008CB68C /* MenuBarPlayQueue.xib */,
 				3EC079432B784B07008CB68C /* MenuBarPlayQueueViewController.swift */,
+				3EB805DC2B793FE7005E464A /* MenuBarPlayQueueContainer.swift */,
 			);
 			path = PlayQueue;
 			sourceTree = "<group>";
@@ -5741,6 +5744,7 @@
 				3E6C12BF25CEBE6700BF0D07 /* EQUnitViewController.swift in Sources */,
 				3EFE39C727864897006F8B8C /* GroupingPlaylistPersistentState.swift in Sources */,
 				3EA89D972699F0240021CDB9 /* EventMonitor.swift in Sources */,
+				3EB805DD2B793FE7005E464A /* MenuBarPlayQueueContainer.swift in Sources */,
 				3E47D2352815A5BD00938F20 /* ControlStatesColorSchemeViewController.swift in Sources */,
 				3E433CEF2B5C356F00D73976 /* TuneBrowserViewController+Actions.swift in Sources */,
 				3EFE38B527864896006F8B8C /* HostedAUNode.swift in Sources */,
