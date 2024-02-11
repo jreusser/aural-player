@@ -203,11 +203,6 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         seekSliderConstraints.setLeading(relatedToLeadingOf: scrollingTrackTextView, offset: -1)
         seekSliderConstraints.setTrailing(relatedToLeadingOf: btnRepeat, offset: -Self.distanceBetweenControlsAndInfo)
         
-        // Text view
-        textViewConstraints.setLeading(relatedToTrailingOf: artView, offset: 5)
-        textViewConstraints.setHeight(30)
-        textViewConstraints.centerVerticallyInSuperview(offset: 0)
-        
         lblTrackTimeConstraints.setHeight(scrollingTrackTextView.height)
         lblTrackTimeConstraints.centerVerticallyInSuperview(offset: 0)
         
@@ -482,6 +477,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         scrollingTextViewContainerBox.fillColor = systemColorScheme.backgroundColor
         scrollingTrackTextView.titleTextColor = scrollingTrackTextTitleColor
         scrollingTrackTextView.artistTextColor = scrollingTrackTextArtistColor
+        scrollingTrackTextView.update()
     }
     
     func setUpCommandHandling() {
@@ -517,12 +513,26 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         playbackDelegate.nextTrack()
     }
     
+    // Seeks backward within the currently playing track
     @IBAction func seekBackwardAction(_ sender: NSButton) {
-        
+        seekBackward(inputMode: .discrete)
     }
     
-    @IBAction func seekForwardAction(_ sender: NSButton) {
+    func seekBackward(inputMode: UserInputMode) {
         
+        playbackDelegate.seekBackward(inputMode)
+        updateSeekPosition()
+    }
+    
+    // Seeks forward within the currently playing track
+    @IBAction func seekForwardAction(_ sender: NSButton) {
+        seekForward(inputMode: .discrete)
+    }
+    
+    func seekForward(inputMode: UserInputMode) {
+        
+        playbackDelegate.seekForward(inputMode)
+        updateSeekPosition()
     }
     
     @IBAction func seekSliderAction(_ sender: NSSlider) {
@@ -559,22 +569,25 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     }
     
     var shouldEnableSeekTimer: Bool {
+        playbackDelegate.state == .playing
         
-        var needTimer = false
-        let isPlaying = playbackDelegate.state == .playing
-        
-        if isPlaying {
-            
-            let hasTasks = seekTimerTaskQueue.hasTasks
-            
-            let labelShown = showTrackTime
-            let trackTimeDisplayType = playerUIState.trackTimeDisplayType
-            let trackTimeNotStatic = labelShown && trackTimeDisplayType != .duration
-            
-            needTimer = hasTasks || trackTimeNotStatic
-        }
-        
-        return needTimer
+        // TODO: Modular player should check playerUIState.showMainControls (slider)
+//        
+//        var needTimer = false
+//        let isPlaying = playbackDelegate.state == .playing
+//        
+//        if isPlaying {
+//            
+//            let hasTasks = seekTimerTaskQueue.hasTasks
+//            
+//            let labelShown = showTrackTime
+//            let trackTimeDisplayType = playerUIState.trackTimeDisplayType
+//            let trackTimeNotStatic = labelShown && trackTimeDisplayType != .duration
+//            
+//            needTimer = hasTasks || trackTimeNotStatic
+//        }
+//        
+//        return needTimer
     }
     
     func updateSeekTimerState() {

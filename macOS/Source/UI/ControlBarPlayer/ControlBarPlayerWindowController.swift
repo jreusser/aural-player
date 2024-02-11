@@ -48,31 +48,13 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
             dockTopLeftAction(self)
         }
         
-//        btnQuit.tintFunction = {Colors.functionButtonColor}
-//        optionsMenuItem.tintFunction = {Colors.functionButtonColor}
-
         rootContainerBox.cornerRadius = uiState.cornerRadius
         cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
         lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
         
-        applyTheme()
-        
-        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .applyColorScheme, handler: applyColorScheme(_:))
+        colorSchemesManager.registerSchemeObserver(self)
         
         snappingWindow.ensureOnScreen()
-        
-//        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.buttonColor])
-    }
-    
-    func applyTheme() {
-        applyColorScheme(systemColorScheme)
-    }
-    
-    func applyColorScheme(_ colorScheme: ColorScheme) {
-        
-        rootContainerBox.fillColor = colorScheme.backgroundColor
-//        [btnQuit, optionsMenuItem].forEach {($0 as? Tintable)?.reTint()}
     }
     
     @IBAction func cornerRadiusStepperAction(_ sender: NSStepper) {
@@ -199,10 +181,9 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
     }
     
     func colorSchemeChanged() {
+        
+        rootContainerBox.fillColor = systemColorScheme.backgroundColor
         btnQuit.contentTintColor = systemColorScheme.buttonColor
-    }
-    
-    func colorChanged(to newColor: PlatformColor, forProperty property: ColorSchemeProperty) {
-        btnQuit.contentTintColor = systemColorScheme.buttonColor
+        optionsMenuItem.colorChanged(systemColorScheme.buttonColor)
     }
 }
