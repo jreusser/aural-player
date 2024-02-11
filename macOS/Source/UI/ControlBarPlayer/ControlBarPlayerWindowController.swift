@@ -12,7 +12,7 @@ import Cocoa
 class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NSMenuDelegate, ColorSchemeObserver {
     
     @IBOutlet weak var rootContainerBox: NSBox!
-    @IBOutlet weak var viewController: ControlBarPlayerViewController!
+    @IBOutlet weak var viewController: ControlBarPVC!
     
     @IBOutlet weak var btnQuit: TintedImageButton!
     @IBOutlet weak var optionsMenuItem: TintedIconMenuItem!

@@ -67,16 +67,6 @@ class MenuBarPlayerViewController: CommonPlayerViewController {
         }
     }
     
-    func stopUpdatingSeekPosition() {
-        setSeekTimerState(to: false)
-    }
-    
-    func resumeUpdatingSeekPosition() {
-        
-        updateSeekPosition()
-        setSeekTimerState(to: true)
-    }
-    
     @IBAction func toggleSettingsMenuAction(_ sender: NSButton) {
         messenger.publish(.MenuBarPlayer.showSettings)
     }

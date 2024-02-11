@@ -588,6 +588,7 @@
 		3EB462DD2847FEC6000E3F85 /* TuneBrowserTableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */; };
 		3EB5108C25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */; };
 		3EB805DD2B793FE7005E464A /* MenuBarPlayQueueContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB805DC2B793FE7005E464A /* MenuBarPlayQueueContainer.swift */; };
+		3EB805DF2B795D0C005E464A /* ControlBarPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB805DE2B795D0C005E464A /* ControlBarPVC.swift */; };
 		3EB88E772629DA9500C8D230 /* ThemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */; };
 		3EBD345D2B5DBFC40048AC03 /* BookmarksDelegate+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD345C2B5DBFC40048AC03 /* BookmarksDelegate+Init.swift */; };
 		3EBF0F67280C7317000455D6 /* MetadataRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBF0F66280C7317000455D6 /* MetadataRegistry.swift */; };
@@ -1664,6 +1665,7 @@
 		3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserTableViews.swift; sourceTree = "<group>"; };
 		3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemePopupMenuController.swift; sourceTree = "<group>"; };
 		3EB805DC2B793FE7005E464A /* MenuBarPlayQueueContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayQueueContainer.swift; sourceTree = "<group>"; };
+		3EB805DE2B795D0C005E464A /* ControlBarPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPVC.swift; sourceTree = "<group>"; };
 		3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePopupMenuController.swift; sourceTree = "<group>"; };
 		3EBD345C2B5DBFC40048AC03 /* BookmarksDelegate+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookmarksDelegate+Init.swift"; sourceTree = "<group>"; };
 		3EBF0F66280C7317000455D6 /* MetadataRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataRegistry.swift; sourceTree = "<group>"; };
@@ -2534,6 +2536,7 @@
 			children = (
 				3E43227C2687D65F009E8ADB /* ControlBarPlayer.xib */,
 				3E43227E2687DE35009E8ADB /* ControlBarPlayerWindowController.swift */,
+				3EB805DE2B795D0C005E464A /* ControlBarPVC.swift */,
 				3E4322802687DFEA009E8ADB /* ControlBarPlayerViewController.swift */,
 				3E43227A2687D531009E8ADB /* ScrollingTrackTextView.swift */,
 				3E4322822687E138009E8ADB /* ControlBarPlaybackViewController.swift */,
@@ -6167,6 +6170,7 @@
 				3EFE390B27864897006F8B8C /* StringExtensions.swift in Sources */,
 				3E9FD1052A1D5CAA0038AF04 /* FFmpegChannelLayout.swift in Sources */,
 				3EC793862B746C6D00AF7E9E /* CompactPlayQueueViewController.swift in Sources */,
+				3EB805DF2B795D0C005E464A /* ControlBarPVC.swift in Sources */,
 				3E045D0F281352370069DEFE /* SortOrderMenuItemView.swift in Sources */,
 				3E5F943725E571A6002DEF80 /* SpectrogramBar.swift in Sources */,
 				3EB462DA2847FEC6000E3F85 /* TuneBrowserTabViewController.swift in Sources */,

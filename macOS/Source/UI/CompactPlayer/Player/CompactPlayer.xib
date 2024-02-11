@@ -132,7 +132,7 @@
                                 <action selector="volumeAction:" target="PI4-6v-ltd" id="3iX-pV-7tf"/>
                             </connections>
                         </slider>
-                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="laD-Xd-df4" userLabel="Volume Value Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                        <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="laD-Xd-df4" userLabel="Volume Value Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="240" y="34" width="50" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="50%" id="ILV-a7-x4Z" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
@@ -255,7 +255,7 @@ IA
                         <outlet property="sliderView" destination="VYB-2P-ws3" id="3Vq-tr-R2v"/>
                     </connections>
                 </view>
-                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jjR-wK-cgP" userLabel="Seek Position" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jjR-wK-cgP" userLabel="Seek Position" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="223" y="68" width="70" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="-956:67:67" id="Eeu-7k-a7b" customClass="VCenteredLabelCell" customModule="Aural" customModuleProvider="target">

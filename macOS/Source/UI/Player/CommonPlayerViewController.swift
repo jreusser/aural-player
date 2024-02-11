@@ -29,6 +29,8 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     @IBOutlet weak var btnShuffle: NSButton!
     @IBOutlet weak var btnLoop: NSButton!
     
+    @IBOutlet weak var scrollingTextViewContainerBox: NSBox!
+    
     lazy var btnPlayPauseStateMachine: ButtonStateMachine<PlaybackState> =
     
     ButtonStateMachine(initialState: playbackDelegate.state,
@@ -99,6 +101,11 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     // Time intervals for which feedback labels or views that are to be auto-hidden are displayed, before being hidden.
     static let feedbackLabelAutoHideIntervalSeconds: TimeInterval = 1
     
+    private var artViewConstraints: LayoutConstraintsManager!
+    private var textViewConstraints: LayoutConstraintsManager!
+    private var lblTrackTimeConstraints: LayoutConstraintsManager!
+    private var seekSliderConstraints: LayoutConstraintsManager!
+    
     private static let chapterChangePollingTaskId: String = "ChapterChangePollingTask"
     
     var showTrackTime: Bool {
@@ -165,6 +172,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         
         super.viewDidLoad()
         
+        setUpTrackInfoView()
         setUpPlaybackControls()
         setUpTheming()
         
@@ -172,6 +180,82 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         
         setUpNotificationHandling()
         setUpCommandHandling()
+    }
+    
+    func setUpTrackInfoView() {
+        
+    }
+    
+    func setUpScrollingTrackInfoView() {
+        
+        scrollingTrackTextView.anchorToSuperview()
+        
+        artViewConstraints = LayoutConstraintsManager(for: artView)
+        artViewConstraints.setWidth(46)
+        artViewConstraints.setHeight(46)
+        
+        // Constraint managers
+        lblTrackTimeConstraints = LayoutConstraintsManager(for: lblTrackTime)
+        seekSliderConstraints = LayoutConstraintsManager(for: seekSlider)
+        textViewConstraints = LayoutConstraintsManager(for: scrollingTextViewContainerBox)
+        
+        // Seek slider
+        seekSliderConstraints.setLeading(relatedToLeadingOf: scrollingTrackTextView, offset: -1)
+        seekSliderConstraints.setTrailing(relatedToLeadingOf: btnRepeat, offset: -Self.distanceBetweenControlsAndInfo)
+        
+        // Text view
+        textViewConstraints.setLeading(relatedToTrailingOf: artView, offset: 5)
+        textViewConstraints.setHeight(30)
+        textViewConstraints.centerVerticallyInSuperview(offset: 0)
+        
+        lblTrackTimeConstraints.setHeight(scrollingTrackTextView.height)
+        lblTrackTimeConstraints.centerVerticallyInSuperview(offset: 0)
+        
+        layoutScrollingTrackTextView()
+        scrollingTrackTextView.scrollingEnabled = controlBarPlayerUIState.trackInfoScrollingEnabled
+    }
+    
+    private static let distanceBetweenControlsAndInfo: CGFloat = 31
+    
+    ///
+    /// Computes the maximum required width for the seek position label, given
+    /// 1. the duration of the track currently playing, and
+    /// 2. the current font scheme.
+    ///
+    var widthForSeekPosLabel: CGFloat {
+        
+        guard let track = playbackDelegate.playingTrack else {return 0}
+        
+        let widthOfWidestNumber = String.widthOfWidestNumber(forFont: trackTimeFont)
+        let duration = track.duration
+        
+        let trackTimes = ValueFormatter.formatTrackTimes(0, duration, 0)
+        let widthOfTimeRemainingString = CGFloat(trackTimes.remaining.count)
+
+        return widthOfTimeRemainingString * widthOfWidestNumber
+    }
+    
+    func layoutScrollingTrackTextView() {
+        
+        // Seek Position label
+        lblTrackTime.showIf(playbackDelegate.playingTrack != nil && showTrackTime)
+        updateSeekTimerState()
+        
+        var labelWidth: CGFloat = 0
+        
+        if showTrackTime {
+            
+            lblTrackTimeConstraints.removeAll(withAttributes: [.width, .trailing])
+            labelWidth = widthForSeekPosLabel + 5 // Compute the required width and add some padding.
+            
+            lblTrackTimeConstraints.setWidth(labelWidth)
+            lblTrackTimeConstraints.setTrailing(relatedToLeadingOf: btnRepeat, offset: -Self.distanceBetweenControlsAndInfo)
+        }
+        
+        // Text view
+        textViewConstraints.removeAll(withAttributes: [.trailing])
+        textViewConstraints.setTrailing(relatedToLeadingOf: btnRepeat,
+                                        offset: -(Self.distanceBetweenControlsAndInfo + (showTrackTime ? labelWidth : 1)))
     }
     
     func setUpPlaybackControls() {
@@ -234,6 +318,8 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     }
     
     func updateScrollingTrackTextView(for track: Track?) {
+        
+        layoutScrollingTrackTextView()
         
         if let theTrack = track {
             scrollingTrackTextView.update(artist: theTrack.artist, title: theTrack.title ?? theTrack.defaultDisplayName)
@@ -353,7 +439,9 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     }
     
     func updateScrollingTrackTextViewFonts() {
+        
         scrollingTrackTextView.font = scrollingTrackTextFont
+        layoutScrollingTrackTextView()
     }
     
     func colorSchemeChanged() {
@@ -391,6 +479,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     func updateScrollingTrackTextViewColors() {
         
+        scrollingTextViewContainerBox.fillColor = systemColorScheme.backgroundColor
         scrollingTrackTextView.titleTextColor = scrollingTrackTextTitleColor
         scrollingTrackTextView.artistTextColor = scrollingTrackTextArtistColor
     }
