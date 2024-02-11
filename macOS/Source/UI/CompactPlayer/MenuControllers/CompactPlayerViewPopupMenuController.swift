@@ -125,6 +125,6 @@ class CompactPlayerViewPopupMenuController: NSObject, NSMenuDelegate {
     @IBAction func changeSeekPositionDisplayTypeAction(_ sender: SeekPositionDisplayTypeMenuItem) {
         
         playerUIState.trackTimeDisplayType = sender.displayType
-        messenger.publish(.CompactPlayer.changeTrackTimeDisplayType)
+        messenger.publish(.Player.setTrackTimeDisplayType, payload: sender.displayType)
     }
 }

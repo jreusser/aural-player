@@ -25,7 +25,7 @@ class CompactPlayerWindowController: NSWindowController {
     @IBOutlet weak var settingsMenuIconItem: TintedIconMenuItem!
     
     @IBOutlet weak var tabView: NSTabView!
-    let playerViewController: CompactPVC = .init()
+    let playerViewController: CompactPlayerViewController = .init()
     let playQueueViewController: CompactPlayQueueViewController = .init()
     let searchViewController: CompactPlayQueueSearchViewController = .init()
     lazy var effectsSheetViewController: EffectsSheetViewController = .init()

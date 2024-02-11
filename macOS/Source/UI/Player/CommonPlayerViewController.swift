@@ -496,6 +496,10 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         messenger.subscribe(to: .player_seekForward, handler: seekForward(inputMode:))
         messenger.subscribe(to: .player_seekBackward_secondary, handler: seekBackward_secondary)
         messenger.subscribe(to: .player_seekForward_secondary, handler: seekForward_secondary)
+        
+        messenger.subscribe(to: .Player.setTrackTimeDisplayType, handler: setTrackTimeDisplayType(to:))
+        
+//        messenger.subscribe(to: .Player.setTrackTimeDisplayType, handler: )
 //        messenger.subscribe(to: .player_jumpToTime, handler: jumpToTime(_:))
     }
     
