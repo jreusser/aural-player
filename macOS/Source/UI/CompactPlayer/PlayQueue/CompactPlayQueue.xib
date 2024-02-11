@@ -56,7 +56,7 @@
                                                     <rect key="frame" x="1" y="2" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="QEF-KT-Ib2" userLabel="Index">
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="QEF-KT-Ib2" userLabel="Index">
                                                             <rect key="frame" x="6" y="0.0" width="26" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="XVj-Vc-CZG"/>
@@ -106,7 +106,7 @@
                                                     <rect key="frame" x="34" y="2" width="200" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YAf-ng-KMA" userLabel="Title" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YAf-ng-KMA" userLabel="Title" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28" width="200" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="iOU-dh-YIA"/>
@@ -117,7 +117,7 @@
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8S4-l4-lCp" userLabel="Default Display Name" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8S4-l4-lCp" userLabel="Default Display Name" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="5" width="200" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="90J-Ug-aF2"/>
@@ -128,7 +128,7 @@
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="WcR-Za-oZ6" userLabel="Artist Album" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="WcR-Za-oZ6" userLabel="Artist Album" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="2" width="200" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="sfM-vI-bvI"/>
@@ -176,7 +176,7 @@
                                                     <rect key="frame" x="237" y="2" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="w0M-QL-S1o" userLabel="Duration">
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="w0M-QL-S1o" userLabel="Duration">
                                                             <rect key="frame" x="-2" y="10" width="44" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="uEi-Ep-Gi8"/>
@@ -218,7 +218,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E3H-PZ-zam" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E3H-PZ-zam" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="8" y="12" width="150" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="0 tracks" id="azG-qQ-aVV" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
@@ -227,7 +227,7 @@
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FMM-38-eg8" userLabel="Duration summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FMM-38-eg8" userLabel="Duration summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="193" y="12" width="100" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="0:00" id="Ba2-IF-rK1" customClass="VALabelCell" customModule="Aural" customModuleProvider="target">
@@ -462,7 +462,7 @@
                             <constraint firstAttribute="height" constant="14" id="M6Z-2g-Gbw"/>
                         </constraints>
                     </popUpButton>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ILg-fo-rF1" userLabel="Play Queue Caption Label" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ILg-fo-rF1" userLabel="Play Queue Caption Label" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="23" y="360" width="214" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="76d-fr-gp4"/>
@@ -514,7 +514,7 @@
                     <outlet property="btnRemoveAllTracks" destination="EEM-hK-rk8" id="ntH-to-arj"/>
                     <outlet property="btnRemoveTracks" destination="pcR-HY-5FP" id="JLp-ba-8H5"/>
                     <outlet property="btnSearch" destination="M1d-v2-GBv" id="hkh-6z-VUE"/>
-                    <outlet property="btnSort" destination="aBL-E4-FyY" id="Sjh-gC-o97"/>
+                    <outlet property="btnSortPopup" destination="aBL-E4-FyY" id="GSm-CH-E1g"/>
                     <outlet property="lblDurationSummary" destination="FMM-38-eg8" id="gzg-Vq-Nbf"/>
                     <outlet property="lblTracksSummary" destination="E3H-PZ-zam" id="bkB-oU-qqb"/>
                     <outlet property="sortTintedIconMenuItem" destination="ah3-Us-I4W" id="9ly-s0-F2d"/>
@@ -548,7 +548,7 @@
                         <action selector="changeSortOrderAction:" target="IAW-N7-buz" id="iQd-Kp-TWK"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fq6-3x-yoc">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fq6-3x-yoc">
                     <rect key="frame" x="11" y="1" width="86" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Sort order:" id="TKn-xU-c66">

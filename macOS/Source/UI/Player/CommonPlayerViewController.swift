@@ -481,20 +481,26 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     }
     
     func setUpCommandHandling() {
+        
         messenger.subscribeAsync(to: .player_playTrack, handler: performTrackPlayback(_:))
+        messenger.subscribe(to: .player_decreaseVolume, handler: decreaseVolume(inputMode:))
+        messenger.subscribe(to: .player_increaseVolume, handler: increaseVolume(inputMode:))
+        messenger.subscribe(to: .player_muteOrUnmute, handler: muteOrUnmute)
+        
+        messenger.subscribe(to: .player_playOrPause, handler: playOrPause)
+        messenger.subscribe(to: .player_stop, handler: stop)
+        messenger.subscribe(to: .player_replayTrack, handler: replayTrack)
+        messenger.subscribe(to: .player_previousTrack, handler: previousTrack)
+        messenger.subscribe(to: .player_nextTrack, handler: nextTrack)
+        messenger.subscribe(to: .player_seekBackward, handler: seekBackward(inputMode:))
+        messenger.subscribe(to: .player_seekForward, handler: seekForward(inputMode:))
+        messenger.subscribe(to: .player_seekBackward_secondary, handler: seekBackward_secondary)
+        messenger.subscribe(to: .player_seekForward_secondary, handler: seekForward_secondary)
+//        messenger.subscribe(to: .player_jumpToTime, handler: jumpToTime(_:))
     }
     
     @IBAction func togglePlayPauseAction(_ sender: NSButton) {
-     
-        let priorState = playbackDelegate.state
-        playbackDelegate.togglePlayPause()
-        
-        // If a track change occurred, we don't need to do these updates. A notif will take care of it.
-        if priorState.isPlayingOrPaused {
-            
-            btnPlayPauseStateMachine.setState(playbackDelegate.state)
-            updateSeekTimerState()
-        }
+        playOrPause()
     }
     
     @IBAction func previousTrackAction(_ sender: NSButton) {
@@ -511,6 +517,38 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
 
     func nextTrack() {
         playbackDelegate.nextTrack()
+    }
+    
+    func playOrPause() {
+        
+        let priorState = playbackDelegate.state
+        playbackDelegate.togglePlayPause()
+        
+        // If a track change occurred, we don't need to do these updates. A notif will take care of it.
+        if priorState.isPlayingOrPaused {
+            
+            btnPlayPauseStateMachine.setState(playbackDelegate.state)
+            updateSeekTimerState()
+        }
+    }
+    
+    func stop() {
+        playbackDelegate.stop()
+    }
+    
+    // Replays the currently playing track, from the beginning, if there is one
+    func replayTrack() {
+        
+        let wasPaused: Bool = playbackDelegate.state == .paused
+        
+        playbackDelegate.replay()
+        updateSeekPosition()
+        
+        if wasPaused {
+            
+            btnPlayPauseStateMachine.setState(playbackDelegate.state)
+            updateSeekTimerState()
+        }
     }
     
     // Seeks backward within the currently playing track
@@ -532,6 +570,18 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     func seekForward(inputMode: UserInputMode) {
         
         playbackDelegate.seekForward(inputMode)
+        updateSeekPosition()
+    }
+    
+    func seekBackward_secondary() {
+        
+        playbackDelegate.seekBackwardSecondary()
+        updateSeekPosition()
+    }
+    
+    func seekForward_secondary() {
+        
+        playbackDelegate.seekForwardSecondary()
         updateSeekPosition()
     }
     
@@ -653,6 +703,20 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         
         audioGraphDelegate.volume = volumeSlider.floatValue
         volumeChanged(volume: audioGraphDelegate.volume, muted: audioGraphDelegate.muted, updateSlider: false)
+    }
+    
+    // Decreases the volume by a certain preset decrement
+    func decreaseVolume(inputMode: UserInputMode) {
+        
+        let newVolume = audioGraphDelegate.decreaseVolume(inputMode: inputMode)
+        volumeChanged(volume: newVolume, muted: audioGraph.muted)
+    }
+    
+    // Increases the volume by a certain preset increment
+    func increaseVolume(inputMode: UserInputMode) {
+        
+        let newVolume = audioGraphDelegate.increaseVolume(inputMode: inputMode)
+        volumeChanged(volume: newVolume, muted: audioGraph.muted)
     }
     
     @IBAction func muteOrUnmuteAction(_ sender: NSButton) {

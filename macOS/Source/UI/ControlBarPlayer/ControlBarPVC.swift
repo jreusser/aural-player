@@ -36,20 +36,12 @@ class ControlBarPVC: CommonPlayerViewController {
         controlBarPlayerUIState.showTrackTime
     }
     
-    override var trackTimeFont: NSFont {
-        systemFontScheme.normalFont
-    }
-    
     override var displaysChapterIndicator: Bool {
         false
     }
     
     override func updateTrackTextView(for track: Track?, playingChapterTitle: String? = nil) {
         updateScrollingTrackTextView(for: track)
-    }
-    
-    override var scrollingTrackTextFont: NSFont {
-        systemFontScheme.normalFont
     }
     
     override func updateTrackTextViewFonts() {
@@ -76,8 +68,8 @@ class ControlBarPVC: CommonPlayerViewController {
     
     @IBAction func toggleTrackInfoScrollingAction(_ sender: NSMenuItem) {
         
-        scrollingTrackTextView.scrollingEnabled.toggle()
         controlBarPlayerUIState.trackInfoScrollingEnabled = scrollingTrackTextView.scrollingEnabled
+        scrollingTrackTextView.scrollingEnabled.toggle()
     }
     
     @IBAction func toggleShowSeekPositionAction(_ sender: NSMenuItem) {
