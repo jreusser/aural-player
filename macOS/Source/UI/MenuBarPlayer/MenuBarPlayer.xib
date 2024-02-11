@@ -36,7 +36,6 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="k4h-E2-r6g" customClass="MenuBarPlayerSettingsViewController" customModule="Aural" customModuleProvider="target"/>
         <view id="t8B-TT-ONb">
             <rect key="frame" x="0.0" y="0.0" width="300" height="172"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -420,9 +419,6 @@ DQ
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" size="11" name="Play-Regular"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="showOrHideAlbumArtAction:" target="k4h-E2-r6g" id="IKL-JK-MyW"/>
-                                </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fBv-Rz-lHb" customClass="DialogCheckRadioButton" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="22" y="48" width="141" height="20"/>
@@ -431,9 +427,6 @@ DQ
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" size="11" name="Play-Regular"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="showOrHideArtistAction:" target="k4h-E2-r6g" id="0eW-LX-7kB"/>
-                                </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NFf-ys-rG2" customClass="DialogCheckRadioButton" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="22" y="28" width="141" height="20"/>
@@ -442,9 +435,6 @@ DQ
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" size="11" name="Play-Regular"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="showOrHideAlbumAction:" target="k4h-E2-r6g" id="CNW-ak-KJY"/>
-                                </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nLt-l8-0oN" userLabel="Show chapter title" customClass="DialogCheckRadioButton" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="22" y="8" width="141" height="20"/>
@@ -453,9 +443,6 @@ DQ
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" size="11" name="Play-Regular"/>
                                 </buttonCell>
-                                <connections>
-                                    <action selector="showOrHideChapterTitleAction:" target="k4h-E2-r6g" id="k2p-WS-TSO"/>
-                                </connections>
                             </button>
                         </subviews>
                     </view>
@@ -641,6 +628,6 @@ DQ
         <image name="forward.end" catalog="system" width="13" height="13"/>
         <image name="repeat" catalog="system" width="17" height="14"/>
         <image name="shuffle" catalog="system" width="18" height="14"/>
-        <image name="speaker.wave.2" catalog="system" width="19" height="14"/>
+        <image name="speaker.wave.2" catalog="system" width="24" height="18"/>
     </resources>
 </document>

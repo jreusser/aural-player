@@ -21,7 +21,6 @@ class MenuBarPVC: CommonPlayerViewController {
 //    @IBOutlet weak var settingsMenuIconItem: TintedIconMenuItem!
     
     @IBOutlet weak var settingsMenu: NSMenu!
-    @IBOutlet weak var settingsMenuController: MenuBarSettingsMenuController!
     
     @IBOutlet weak var showPlayQueueMenuItem: NSMenuItem!
     
@@ -32,6 +31,10 @@ class MenuBarPVC: CommonPlayerViewController {
     var seekPositionDisplayTypeItems: [NSMenuItem] = []
     
     override var nibName: NSNib.Name? {"MenuBarPlayer"}
+    
+    override var shouldEnableSeekTimer: Bool {
+        super.shouldEnableSeekTimer && view.superview != nil
+    }
     
     override func awakeFromNib() {
         
@@ -84,10 +87,6 @@ class MenuBarPVC: CommonPlayerViewController {
         rootContainerBox.fillColor = systemColorScheme.backgroundColor
         btnQuit.colorChanged(systemColorScheme.buttonColor)
         logoImage.colorChanged(systemColorScheme.captionTextColor)
-    }
-    
-    func menuBarMenuWillOpen() {
-        settingsMenuController.menuWillOpen(settingsMenu)
     }
     
     func stopUpdatingSeekPosition() {

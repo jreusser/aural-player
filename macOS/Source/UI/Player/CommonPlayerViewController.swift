@@ -454,10 +454,10 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         }
     }
     
-    func updateSeekTimerState() {
+    var shouldEnableSeekTimer: Bool {
         
         var needTimer = false
-        let isPlaying = player.state == .playing
+        let isPlaying = playbackDelegate.state == .playing
         
         if isPlaying {
             
@@ -470,8 +470,13 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
             needTimer = hasTasks || trackTimeNotStatic
         }
         
-        setSeekTimerState(to: needTimer)
-        print("Updated timer state: \(needTimer)")
+        return needTimer
+    }
+    
+    func updateSeekTimerState() {
+        
+        setSeekTimerState(to: shouldEnableSeekTimer)
+        print("Updated timer state: \(shouldEnableSeekTimer)")
     }
     
     func setSeekTimerState(to timerOn: Bool) {
