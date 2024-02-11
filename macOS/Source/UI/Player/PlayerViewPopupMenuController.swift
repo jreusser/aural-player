@@ -128,6 +128,6 @@ class PlayerViewPopupMenuController: NSObject, NSMenuDelegate {
     private func setTrackTimeDisplayType(to type: TrackTimeDisplayType) {
         
         uiState.trackTimeDisplayType = type
-        messenger.publish(.player_setTrackTimeDisplayType, payload: type)
+        messenger.publish(.Player.setTrackTimeDisplayType, payload: type)
     }
 }

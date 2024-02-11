@@ -177,10 +177,13 @@ extension Notification.Name {
     
     // Commands the player to show or hide the seek time elapsed/remaining displays.
     static let player_showOrHideTrackTime = Notification.Name("player_showOrHideTrackTime")
-
-    // Commands the player to set the format of the seek time elapsed display to a specific format.
-    static let player_setTrackTimeDisplayType = Notification.Name("player_setTrackTimeDisplayType")
     
+    struct Player {
+        
+        // Commands the player to set the format of the seek time elapsed display to a specific format.
+        static let setTrackTimeDisplayType = Notification.Name("player_setTrackTimeDisplayType")
+    }
+
     // ----------------------------------------------------------------------------------------
     
     // MARK: Playing track function commands

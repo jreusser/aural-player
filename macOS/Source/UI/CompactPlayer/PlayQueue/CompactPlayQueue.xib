@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CompactPlayQueueViewController" customModule="Aural" customModuleProvider="target">
             <connections>
+                <outlet property="lblCaption" destination="ILg-fo-rF1" id="ZWU-Hb-Ec7"/>
                 <outlet property="lblDurationSummary" destination="FMM-38-eg8" id="lqM-Es-0Uq"/>
                 <outlet property="lblTracksSummary" destination="E3H-PZ-zam" id="N7k-1v-YgK"/>
                 <outlet property="progressSpinner" destination="xTF-ma-4qy" id="4by-1U-YcI"/>
@@ -25,15 +26,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="390"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="55" horizontalPageScroll="10" verticalLineScroll="55" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" id="Xxw-1I-HfF">
-                        <rect key="frame" x="0.0" y="34" width="300" height="356"/>
+                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="55" horizontalPageScroll="10" verticalLineScroll="55" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" id="Xxw-1I-HfF" userLabel="Scroll View">
+                        <rect key="frame" x="0.0" y="34" width="300" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" drawsBackground="NO" id="Vug-Hx-3O1">
-                            <rect key="frame" x="0.0" y="0.0" width="300" height="356"/>
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="320"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView identifier="tid_CompactPlayQueue" focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="plain" columnReordering="NO" autosaveColumns="NO" rowHeight="50" viewBased="YES" id="v1i-DE-EUT" customClass="AuralTableView" customModule="Aural" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="356"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="320"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="5"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -461,9 +462,22 @@
                             <constraint firstAttribute="height" constant="14" id="M6Z-2g-Gbw"/>
                         </constraints>
                     </popUpButton>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ILg-fo-rF1" userLabel="Play Queue Caption Label" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                        <rect key="frame" x="8" y="360" width="214" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="76d-fr-gp4"/>
+                            <constraint firstAttribute="width" constant="210" id="dTN-oT-aj0"/>
+                        </constraints>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Play  Queue" id="dVU-RS-mFb">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="3Of-aL-sDz" firstAttribute="leading" secondItem="M4Y-BC-T8J" secondAttribute="trailing" constant="1" id="1fy-Cj-Nqz"/>
+                    <constraint firstItem="ILg-fo-rF1" firstAttribute="top" secondItem="el0-VE-Ib7" secondAttribute="top" constant="5" id="3fC-iJ-7qN"/>
                     <constraint firstAttribute="bottom" secondItem="d0w-w8-fA7" secondAttribute="bottom" constant="12" id="4d8-Ao-jMo"/>
                     <constraint firstItem="RsD-Tk-fTw" firstAttribute="leading" secondItem="pcR-HY-5FP" secondAttribute="trailing" constant="5" id="4o2-Sy-dES"/>
                     <constraint firstItem="sb4-QZ-Nqd" firstAttribute="leading" secondItem="rGi-Br-hY8" secondAttribute="trailing" constant="1" id="6dC-QK-x2m"/>
@@ -474,6 +488,7 @@
                     <constraint firstItem="pcR-HY-5FP" firstAttribute="leading" secondItem="8Vi-ax-FQk" secondAttribute="trailing" constant="15" id="IRK-bo-zz9"/>
                     <constraint firstAttribute="bottom" secondItem="xTF-ma-4qy" secondAttribute="bottom" constant="10" id="JjW-Lc-7JF"/>
                     <constraint firstItem="aBL-E4-FyY" firstAttribute="centerY" secondItem="M1d-v2-GBv" secondAttribute="centerY" id="TKM-jR-vqP"/>
+                    <constraint firstItem="ILg-fo-rF1" firstAttribute="leading" secondItem="el0-VE-Ib7" secondAttribute="leading" constant="10" id="Uiv-0W-eZk"/>
                     <constraint firstItem="M4Y-BC-T8J" firstAttribute="centerY" secondItem="sb4-QZ-Nqd" secondAttribute="centerY" id="Zba-h8-1u4"/>
                     <constraint firstItem="aBL-E4-FyY" firstAttribute="leading" secondItem="M1d-v2-GBv" secondAttribute="trailing" constant="5" id="buk-BK-wnV"/>
                     <constraint firstItem="EEM-hK-rk8" firstAttribute="centerY" secondItem="RsD-Tk-fTw" secondAttribute="centerY" id="cOX-KA-Z9f"/>

@@ -14,6 +14,7 @@ class CompactPlayQueueViewController: PlayQueueViewController {
     
     override var nibName: NSNib.Name? {"CompactPlayQueue"}
     
+    @IBOutlet weak var lblCaption: NSTextField!
     @IBOutlet weak var lblTracksSummary: NSTextField!
     @IBOutlet weak var lblDurationSummary: NSTextField!
     
@@ -27,6 +28,8 @@ class CompactPlayQueueViewController: PlayQueueViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
         
         messenger.subscribeAsync(to: .playQueue_startedAddingTracks, handler: startedAddingTracks)
         messenger.subscribeAsync(to: .playQueue_doneAddingTracks, handler: doneAddingTracks)
@@ -96,12 +99,16 @@ class CompactPlayQueueViewController: PlayQueueViewController {
     override func fontSchemeChanged() {
         
         super.fontSchemeChanged()
+        
+        lblCaption.font = systemFontScheme.captionFont
         updateSummary()
     }
     
     override func colorSchemeChanged() {
         
         super.colorSchemeChanged()
+        
+        lblCaption.textColor = systemColorScheme.captionTextColor
         updateSummary()
     }
 }

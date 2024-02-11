@@ -688,4 +688,3 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         messenger.unsubscribeFromAll()
     }
 }
- 

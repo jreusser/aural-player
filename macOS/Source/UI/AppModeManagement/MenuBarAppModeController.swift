@@ -24,11 +24,12 @@ class MenuBarAppModeController: NSObject, AppModeController {
     var mode: AppMode {.menuBar}
 
     private var statusItem: NSStatusItem?
-    private var playerViewController: MenuBarPVC!
-    private var playQueueViewController: CompactPlayQueueViewController!
+    
+    private var playerViewController: MenuBarPlayerViewController!
+    private lazy var playQueueViewController: MenuBarPlayQueueViewController! = .init()
+    private lazy var settingsWindowController: MenuBarSettingsWindowController! = .init()
     
     private var playQueueMenuItem: NSMenuItem!
-    private var settingsMenuItems: [NSMenuItem] = []
     
     private let appIcon: NSImage = NSImage(named: "AppIcon-MenuBar")!
     
@@ -38,14 +39,13 @@ class MenuBarAppModeController: NSObject, AppModeController {
         
         super.init()
         
-        messenger.subscribe(to: .MenuBarPlayer.toggleSettingsMenu, handler: toggleSettingsMenu)
+        messenger.subscribe(to: .MenuBarPlayer.showSettings, handler: showSettings)
         messenger.subscribe(to: .MenuBarPlayer.togglePlayQueue, handler: togglePlayQueue)
     }
     
     func presentMode(transitioningFromMode previousMode: AppMode?) {
         
-        playerViewController = MenuBarPVC()
-        playQueueViewController = CompactPlayQueueViewController()
+        playerViewController = MenuBarPlayerViewController()
 
         // Make app run in menu bar and make it active.
         NSApp.setActivationPolicy(.accessory)
@@ -56,28 +56,14 @@ class MenuBarAppModeController: NSObject, AppModeController {
         statusItem?.button?.toolTip = "Aural Player v\(NSApp.appVersion)"
         
         let menu = NSMenu()
+        statusItem?.menu = menu
         
         let playerMenuItem = NSMenuItem(view: playerViewController.view)
         menu.addItem(playerMenuItem)
         
-        menu.addItem(.separator())
-        
-        self.playQueueMenuItem = NSMenuItem(view: playQueueViewController.view)
-        menu.addItem(playQueueMenuItem)
-        playQueueMenuItem.showIf(menuBarPlayerUIState.showPlayQueue)
-        
-        menu.addItem(.separator())
-        
-        self.settingsMenuItems = playerViewController.settingsMenu.items
-        playerViewController.settingsMenu.removeAllItems()
-        
-        for item in settingsMenuItems {
-            menu.addItem(item)
-        }
+        togglePlayQueue()
         
         menu.delegate = playerViewController
-        
-        statusItem?.menu = menu
     }
     
     func dismissMode() {
@@ -97,27 +83,31 @@ class MenuBarAppModeController: NSObject, AppModeController {
         playerViewController = nil
         playQueueViewController = nil
         playQueueMenuItem = nil
+        settingsWindowController = nil
     }
     
-    private func toggleSettingsMenu() {
+    private func showSettings() {
         
-        self.settingsMenuItems.forEach {
-            $0.toggleShownOrHidden()
-        }
+        NSApp.activate(ignoringOtherApps: true)
+        
+        settingsWindowController.showWindow(self)
+        settingsWindowController.window?.center()
+        settingsWindowController.window?.makeKeyAndOrderFront(self)
     }
     
     private func togglePlayQueue() {
-        playQueueMenuItem.showIf(menuBarPlayerUIState.showPlayQueue)
+        
+        createPlayQueueMenuItemIfRequired()
+        playQueueMenuItem?.showIf(menuBarPlayerUIState.showPlayQueue)
+    }
+    
+    private func createPlayQueueMenuItemIfRequired() {
+        
+        guard menuBarPlayerUIState.showPlayQueue, playQueueMenuItem == nil else {return}
+        
+        statusItem?.menu?.addItem(.separator())
+        
+        self.playQueueMenuItem = NSMenuItem(view: playQueueViewController.view)
+        statusItem?.menu?.addItem(playQueueMenuItem)
     }
 }
-
-//extension MenuBarAppModeController: NSMenuDelegate {
-//    
-//    func menuDidClose(_ menu: NSMenu) {
-//        playerViewController?.menuBarMenuClosed()
-//    }
-//    
-//    func menuWillOpen(_ menu: NSMenu) {
-//        playerViewController?.menuBarMenuOpened()
-//    }
-//}
