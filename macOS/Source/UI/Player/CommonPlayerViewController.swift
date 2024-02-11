@@ -171,6 +171,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         trackChanged(to: playbackDelegate.playingTrack)
         
         setUpNotificationHandling()
+        setUpCommandHandling()
     }
     
     func setUpPlaybackControls() {
@@ -395,7 +396,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     }
     
     func setUpCommandHandling() {
-        
+        messenger.subscribeAsync(to: .player_playTrack, handler: performTrackPlayback(_:))
     }
     
     @IBAction func togglePlayPauseAction(_ sender: NSButton) {
@@ -696,6 +697,24 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     func trackNotPlayed(_ notification: TrackNotPlayedNotification) {
         
+    }
+    
+    func performTrackPlayback(_ command: TrackPlaybackCommandNotification) {
+        
+        switch command.type {
+            
+        case .index:
+            
+            if let index = command.index {
+                playbackDelegate.play(index, .defaultParams())
+            }
+            
+        case .track:
+            
+            if let track = command.track {
+                playbackDelegate.play(track, .defaultParams())
+            }
+        }
     }
     
     override func destroy() {
