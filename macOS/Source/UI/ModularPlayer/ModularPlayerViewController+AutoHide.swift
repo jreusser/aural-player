@@ -26,28 +26,24 @@ extension ModularPlayerViewController {
     
     override func mouseEntered(with event: NSEvent) {
 
-        guard multilineTrackTextView.trackInfo != nil else {return}
-        
-        functionsButton.show()
+        if multilineTrackTextView.trackInfo != nil {
+            functionsButton.show()
+        }
         
         if !playerUIState.showControls {
             autoHideControls_show()
         }
-        
-        print("Entered !")
     }
     
     override func mouseExited(with event: NSEvent) {
-        
-        guard multilineTrackTextView.trackInfo != nil else {return}
-        
-        functionsButton.hide()
+
+        if multilineTrackTextView.trackInfo != nil {
+            functionsButton.hide()
+        }
         
         if !playerUIState.showControls {
             autoHideControls_hide()
         }
-        
-        print("Exited !")
     }
     
     private func moveInfoBoxTo(_ point: NSPoint) {

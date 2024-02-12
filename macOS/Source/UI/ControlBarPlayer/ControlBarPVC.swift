@@ -53,6 +53,8 @@ class ControlBarPVC: CommonPlayerViewController {
     }
     
     override func setUpTrackInfoView() {
+        
+        super.setUpTrackInfoView()
         setUpScrollingTrackInfoView()
     }
     

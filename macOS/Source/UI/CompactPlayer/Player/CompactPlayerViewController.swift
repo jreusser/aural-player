@@ -35,6 +35,8 @@ class CompactPlayerViewController: CommonPlayerViewController {
     }
     
     override func setUpTrackInfoView() {
+        
+        super.setUpTrackInfoView()
         setUpScrollingTrackInfoView()
     }
     

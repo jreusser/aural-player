@@ -183,7 +183,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     }
     
     func setUpTrackInfoView() {
-        
+        showOrHideAlbumArt()
     }
     
     func setUpScrollingTrackInfoView() {
@@ -284,6 +284,8 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
             
             peekingNextTrackButton.updateTooltip()
         }
+        
+        showOrHideMainControls()
     }
     
     func trackChanged(to newTrack: Track?) {
@@ -406,7 +408,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     }
     
     func setUpColorSchemePropertyObservation() {
-        // Override this!
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, changeReceiver: volumeSlider)
     }
     
     func fontSchemeChanged() {
