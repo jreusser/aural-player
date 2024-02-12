@@ -31,7 +31,7 @@ class PlayerViewController: NSViewController {
     @IBOutlet weak var playerAudioViewController: PlayerAudioViewController!
     @IBOutlet weak var playingTrackFunctionsMenuDelegate: PlayingTrackFunctionsMenuDelegate!
     
-    @IBOutlet weak var infoView: PlayingTrackView!
+//    @IBOutlet weak var infoView: ModularPlayerView!
     
     // Delegate that conveys all seek and playback info requests to the player
     private let player: PlaybackInfoDelegateProtocol = playbackInfoDelegate
@@ -62,11 +62,11 @@ class PlayerViewController: NSViewController {
         
         messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
         
-        messenger.subscribe(to: .player_showOrHideAlbumArt, handler: infoView.showOrHideAlbumArt)
-        messenger.subscribe(to: .player_showOrHideArtist, handler: infoView.showOrHideArtist)
-        messenger.subscribe(to: .player_showOrHideAlbum, handler: infoView.showOrHideAlbum)
-        messenger.subscribe(to: .player_showOrHideCurrentChapter, handler: infoView.showOrHideCurrentChapter)
-        messenger.subscribe(to: .player_showOrHideMainControls, handler: infoView.showOrHideMainControls)
+//        messenger.subscribe(to: .player_showOrHideAlbumArt, handler: infoView.showOrHideAlbumArt)
+//        messenger.subscribe(to: .player_showOrHideArtist, handler: infoView.showOrHideArtist)
+//        messenger.subscribe(to: .player_showOrHideAlbum, handler: infoView.showOrHideAlbum)
+//        messenger.subscribe(to: .player_showOrHideCurrentChapter, handler: infoView.showOrHideCurrentChapter)
+//        messenger.subscribe(to: .player_showOrHideMainControls, handler: infoView.showOrHideMainControls)
     }
     
     override func destroy() {
@@ -79,12 +79,12 @@ class PlayerViewController: NSViewController {
     
     private func trackChanged(_ track: Track?) {
         
-        if let theTrack = track {
-            infoView.trackInfo = PlayingTrackInfo(track: theTrack, playingChapterTitle: player.playingChapter?.chapter.title)
-            
-        } else {
-            infoView.trackInfo = nil
-        }
+//        if let theTrack = track {
+//            infoView.trackInfo = PlayingTrackInfo(track: theTrack, playingChapterTitle: player.playingChapter?.chapter.title)
+//            
+//        } else {
+//            infoView.trackInfo = nil
+//        }
     }
     
     func trackNotPlayed() {
@@ -93,14 +93,14 @@ class PlayerViewController: NSViewController {
     
     // When track info for the playing track changes, display fields need to be updated
     func playingTrackInfoUpdated(_ notification: TrackInfoUpdatedNotification) {
-        infoView.artUpdated()
+//        infoView.artUpdated()
     }
     
     func chapterChanged(_ notification: ChapterChangedNotification) {
         
-        if let playingTrack = player.playingTrack {
-            infoView.trackInfo = PlayingTrackInfo(track: playingTrack, playingChapterTitle: notification.newChapter?.chapter.title)
-        }
+//        if let playingTrack = player.playingTrack {
+//            infoView.trackInfo = PlayingTrackInfo(track: playingTrack, playingChapterTitle: notification.newChapter?.chapter.title)
+//        }
     }
     
     // MARK: Message handling

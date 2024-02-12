@@ -121,7 +121,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     }
     
     var trackTimeColor: NSColor {
-        systemColorScheme.secondaryTextColor
+        systemColorScheme.primaryTextColor
     }
     
     var volumeLevelFont: NSFont {
@@ -345,10 +345,6 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         // Button state
         
         btnPlayPauseStateMachine.setState(playbackDelegate.state)
-        [btnPreviousTrack, btnNextTrack].forEach {
-            ($0 as? TrackPeekingButtonProtocol)?.updateTooltip()
-        }
-        
         updateRepeatAndShuffleControls(modes: playQueueDelegate.repeatAndShuffleModes)
         
         // Seek controls state
@@ -410,7 +406,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     }
     
     func setUpColorSchemePropertyObservation() {
-        
+        // Override this!
     }
     
     func fontSchemeChanged() {
@@ -443,15 +439,12 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         
         updateTrackTextViewColors()
         
-        // Re-tint the default playing track cover art, if no track cover art is displayed.
-        if playbackDelegate.playingTrack?.art == nil {
-            artView.contentTintColor = systemColorScheme.secondaryTextColor
-        }
+        artViewTintColorChanged(systemColorScheme.secondaryTextColor)
         
         lblTrackTime.textColor = trackTimeColor
         
-        [btnPreviousTrack, btnNextTrack].forEach {
-            $0.colorChanged(systemColorScheme.buttonColor)
+        [btnPreviousTrack, btnNextTrack, btnSeekBackward, btnSeekForward].forEach {
+            $0?.colorChanged(systemColorScheme.buttonColor)
         }
         
         btnVolume.colorChanged(systemColorScheme.buttonColor)
@@ -465,6 +458,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     func updateMultilineTrackTextViewColors() {
         
+        multilineTrackTextView.backgroundColor = systemColorScheme.backgroundColor
         multilineTrackTextView.titleColor = multilineTrackTextTitleColor
         multilineTrackTextView.artistAlbumColor = multilineTrackTextArtistAlbumColor
         multilineTrackTextView.chapterTitleColor = multilineTrackTextChapterTitleColor
@@ -478,6 +472,14 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         scrollingTrackTextView.titleTextColor = scrollingTrackTextTitleColor
         scrollingTrackTextView.artistTextColor = scrollingTrackTextArtistColor
         scrollingTrackTextView.update()
+    }
+    
+    func artViewTintColorChanged(_ newColor: PlatformColor) {
+        
+        // Re-tint the default playing track cover art, if no track cover art is displayed.
+        if playbackDelegate.playingTrack?.art == nil {
+            artView.contentTintColor = newColor
+        }
     }
     
     func setUpCommandHandling() {
@@ -497,6 +499,12 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         messenger.subscribe(to: .player_seekBackward_secondary, handler: seekBackward_secondary)
         messenger.subscribe(to: .player_seekForward_secondary, handler: seekForward_secondary)
         
+        messenger.subscribe(to: .player_showOrHideAlbumArt, handler: showOrHideAlbumArt)
+        messenger.subscribe(to: .player_showOrHideArtist, handler: showOrHideArtist)
+        messenger.subscribe(to: .player_showOrHideAlbum, handler: showOrHideAlbum)
+        messenger.subscribe(to: .player_showOrHideCurrentChapter, handler: showOrHideCurrentChapter)
+        messenger.subscribe(to: .player_showOrHideMainControls, handler: showOrHideMainControls)
+        messenger.subscribe(to: .player_showOrHideTrackTime, handler: showOrHideTrackTime)
         messenger.subscribe(to: .Player.setTrackTimeDisplayType, handler: setTrackTimeDisplayType(to:))
         
 //        messenger.subscribe(to: .Player.setTrackTimeDisplayType, handler: )
@@ -806,23 +814,23 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         updateRepeatAndShuffleControls(modes: playQueueDelegate.setShuffleMode(shuffleMode))
     }
     
-    func showOrHideAlbumArt() {
+    @objc dynamic func showOrHideAlbumArt() {
         
     }
     
-    func showOrHideArtist() {
-        
+    @objc dynamic func showOrHideArtist() {
+        multilineTrackTextView.update()
     }
     
-    func showOrHideAlbum() {
-        
+    @objc dynamic func showOrHideAlbum() {
+        multilineTrackTextView.update()
     }
     
-    func showOrHideCurrentChapter() {
-        
+    @objc dynamic func showOrHideCurrentChapter() {
+        multilineTrackTextView.update()
     }
     
-    func showOrHideMainControls() {
+    @objc dynamic func showOrHideMainControls() {
         
     }
     

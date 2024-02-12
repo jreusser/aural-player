@@ -54,10 +54,6 @@ class CompactPlayerViewController: CommonPlayerViewController {
         
         let showTrackTime: Bool = compactPlayerUIState.showTrackTime
         
-        // Seek Position label
-//        lblTrackTime.showIf(playbackDelegate.playingTrack != nil && showTrackTime)
-//        updateSeekTimerState()
-        
         scrollingTextViewContainerBox.setFrameSize(NSSize(width: showTrackTime ? 200 : 280, height: 26))
         scrollingTrackTextView.setFrameSize(NSSize(width: showTrackTime ? 200 : 280, height: 26))
         

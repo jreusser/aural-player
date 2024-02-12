@@ -20,7 +20,7 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var rootContainerBox: NSBox!
     @IBOutlet weak var containerBox: NSBox!
     
-    private let playerViewController: PlayerViewController = PlayerViewController()
+    private let playerViewController: ModularPlayerViewController = ModularPlayerViewController()
     
     @IBOutlet weak var btnQuit: TintedImageButton!
     @IBOutlet weak var btnMinimize: TintedImageButton!

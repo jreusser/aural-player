@@ -107,11 +107,6 @@ class MultilineTrackTextView: NSView {
         update()
     }
     
-    // Updates the view when the user settings that control display of metadata fields have changed
-    func displayedTextChanged() {
-        update()
-    }
-    
     // Constructs the formatted "rich" text to be displayed in the text view
     func update() {
         

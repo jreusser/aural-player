@@ -29,8 +29,6 @@ class PlayerViewPopupMenuController: NSObject, NSMenuDelegate {
     
     private let player: PlaybackInfoDelegateProtocol = playbackInfoDelegate
     
-    private lazy var uiState: PlayerUIState = playerUIState
-    
     private lazy var messenger = Messenger(for: self)
     
     // When the menu is about to open, set the menu item states according to the current window/view state
@@ -50,23 +48,23 @@ class PlayerViewPopupMenuController: NSObject, NSMenuDelegate {
         }
         
         showArtistMenuItem.showIf(hasArtist)
-        showArtistMenuItem.onIf(uiState.showArtist)
+        showArtistMenuItem.onIf(playerUIState.showArtist)
         
         showAlbumMenuItem.showIf(hasAlbum)
-        showAlbumMenuItem.onIf(uiState.showAlbum)
+        showAlbumMenuItem.onIf(playerUIState.showAlbum)
         
         showCurrentChapterMenuItem.showIf(hasChapters)
-        showCurrentChapterMenuItem.onIf(uiState.showCurrentChapter)
+        showCurrentChapterMenuItem.onIf(playerUIState.showCurrentChapter)
         
-        showArtMenuItem.onIf(uiState.showAlbumArt)
+        showArtMenuItem.onIf(playerUIState.showAlbumArt)
         
-        showMainControlsMenuItem.onIf(uiState.showControls)
+        showMainControlsMenuItem.onIf(playerUIState.showControls)
         
-        showTrackTimeMenuItem.onIf(uiState.showTrackTime)
+        showTrackTimeMenuItem.onIf(playerUIState.showTrackTime)
         
         [trackTimeElapsedMenuItem, trackTimeRemainingMenuItem, trackDurationMenuItem].forEach {$0.off()}
         
-        switch uiState.trackTimeDisplayType {
+        switch playerUIState.trackTimeDisplayType {
             
         case .elapsed:          trackTimeElapsedMenuItem.on()
             
@@ -79,37 +77,37 @@ class PlayerViewPopupMenuController: NSObject, NSMenuDelegate {
     
     @IBAction func showOrHideAlbumArtAction(_ sender: NSMenuItem) {
         
-        uiState.showAlbumArt.toggle()
+        playerUIState.showAlbumArt.toggle()
         messenger.publish(.player_showOrHideAlbumArt)
     }
     
     @IBAction func showOrHideArtistAction(_ sender: NSMenuItem) {
         
-        uiState.showArtist.toggle()
+        playerUIState.showArtist.toggle()
         messenger.publish(.player_showOrHideArtist)
     }
     
     @IBAction func showOrHideAlbumAction(_ sender: NSMenuItem) {
         
-        uiState.showAlbum.toggle()
+        playerUIState.showAlbum.toggle()
         messenger.publish(.player_showOrHideAlbum)
     }
     
     @IBAction func showOrHideCurrentChapterAction(_ sender: NSMenuItem) {
         
-        uiState.showCurrentChapter.toggle()
+        playerUIState.showCurrentChapter.toggle()
         messenger.publish(.player_showOrHideCurrentChapter)
     }
     
     @IBAction func showOrHideMainControlsAction(_ sender: NSMenuItem) {
         
-        uiState.showControls.toggle()
+        playerUIState.showControls.toggle()
         messenger.publish(.player_showOrHideMainControls)
     }
     
     @IBAction func showOrHideTrackTimeAction(_ sender: NSMenuItem) {
         
-        uiState.showTrackTime.toggle()
+        playerUIState.showTrackTime.toggle()
         messenger.publish(.player_showOrHideTrackTime)
     }
     
@@ -127,7 +125,7 @@ class PlayerViewPopupMenuController: NSObject, NSMenuDelegate {
     
     private func setTrackTimeDisplayType(to type: TrackTimeDisplayType) {
         
-        uiState.trackTimeDisplayType = type
+        playerUIState.trackTimeDisplayType = type
         messenger.publish(.Player.setTrackTimeDisplayType, payload: type)
     }
 }

@@ -507,7 +507,7 @@
                 <outlet property="btnScrollToBottom" destination="MMP-UE-Pvd" id="g3H-8E-0ag"/>
                 <outlet property="btnScrollToTop" destination="fTC-f4-YZK" id="Mi6-Bu-eie"/>
                 <outlet property="btnSearch" destination="YA5-WL-tDq" id="KFz-XC-8HR"/>
-                <outlet property="btnSort" destination="KXN-hH-zTo" id="7iZ-va-zqx"/>
+                <outlet property="btnSortPopup" destination="KXN-hH-zTo" id="TMk-54-8RJ"/>
                 <outlet property="lblDurationSummary" destination="5Cy-DF-Q4T" id="PQI-aD-gPq"/>
                 <outlet property="lblTracksSummary" destination="uBj-uC-pvY" id="ztd-QJ-GFY"/>
                 <outlet property="sortTintedIconMenuItem" destination="Gde-vx-lXP" id="h3A-Hs-lEu"/>

@@ -184,4 +184,8 @@ extension NSViewController {
             _ = self.view
         }
     }
+    
+    func startTrackingView(options: NSTrackingArea.Options) {
+        view.addTrackingArea(.init(rect: view.bounds, options: options, owner: self))
+    }
 }
