@@ -29,7 +29,7 @@ class UnifiedPlayerSidebarViewController: NSViewController {
         categories.forEach {sidebarView.collapseItem($0)}
         sidebarView.selectRow(0)
         
-        messenger.subscribe(to: .sidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
+        messenger.subscribe(to: .Library.Sidebar.addFileSystemShortcut, handler: addFileSystemShortcut)
         
         fontSchemesManager.registerObserver(self)
         colorSchemesManager.registerSchemeObserver(self)

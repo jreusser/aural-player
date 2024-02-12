@@ -30,9 +30,9 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
         
         super.viewDidLoad()
         
-        messenger.subscribeAsync(to: .library_doneAddingTracks, handler: doneAddingTracks)
-//        messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
-        messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
+        messenger.subscribeAsync(to: .Library.doneAddingTracks, handler: doneAddingTracks)
+//        messenger.subscribe(to: .Library.reloadTable, handler: reloadTable)
+        messenger.subscribe(to: .Library.updateSummary, handler: updateSummary)
         
         fontSchemesManager.registerObserver(self)
         

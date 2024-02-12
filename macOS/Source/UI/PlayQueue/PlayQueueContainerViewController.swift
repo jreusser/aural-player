@@ -100,50 +100,50 @@ class PlayQueueContainerViewController: NSViewController {
     
     func initSubscriptions() {
         
-        messenger.subscribe(to: .playQueue_addTracks, handler: importFilesAndFolders)
+        messenger.subscribe(to: .PlayQueue.addTracks, handler: importFilesAndFolders)
         
-        messenger.subscribe(to: .playQueue_removeTracks, handler: removeTracks)
-        messenger.subscribe(to: .playQueue_cropSelection, handler: cropSelection)
-        messenger.subscribe(to: .playQueue_removeAllTracks, handler: removeAllTracks)
+        messenger.subscribe(to: .PlayQueue.removeTracks, handler: removeTracks)
+        messenger.subscribe(to: .PlayQueue.cropSelection, handler: cropSelection)
+        messenger.subscribe(to: .PlayQueue.removeAllTracks, handler: removeAllTracks)
         
-        messenger.subscribe(to: .playQueue_enqueueAndPlayNow, handler: enqueueAndPlayNow(_:))
-        messenger.subscribe(to: .playQueue_enqueueAndPlayNext, handler: enqueueAndPlayNext(_:))
-        messenger.subscribe(to: .playQueue_enqueueAndPlayLater, handler: enqueueAndPlayLater(_:))
+        messenger.subscribe(to: .PlayQueue.enqueueAndPlayNow, handler: enqueueAndPlayNow(_:))
+        messenger.subscribe(to: .PlayQueue.enqueueAndPlayNext, handler: enqueueAndPlayNext(_:))
+        messenger.subscribe(to: .PlayQueue.enqueueAndPlayLater, handler: enqueueAndPlayLater(_:))
         
-        messenger.subscribe(to: .playQueue_loadAndPlayNow, handler: loadAndPlayNow(_:))
+        messenger.subscribe(to: .PlayQueue.loadAndPlayNow, handler: loadAndPlayNow(_:))
         
-        messenger.subscribe(to: .playQueue_playNext, handler: playNext)
+        messenger.subscribe(to: .PlayQueue.playNext, handler: playNext)
         
-        messenger.subscribe(to: .playQueue_playSelectedTrack, handler: playSelectedTrack)
+        messenger.subscribe(to: .PlayQueue.playSelectedTrack, handler: playSelectedTrack)
         
-        messenger.subscribe(to: .playQueue_selectAllTracks, handler: selectAllTracks)
-        messenger.subscribe(to: .playQueue_clearSelection, handler: clearSelection)
-        messenger.subscribe(to: .playQueue_invertSelection, handler: invertSelection)
+        messenger.subscribe(to: .PlayQueue.selectAllTracks, handler: selectAllTracks)
+        messenger.subscribe(to: .PlayQueue.clearSelection, handler: clearSelection)
+        messenger.subscribe(to: .PlayQueue.invertSelection, handler: invertSelection)
         
-        messenger.subscribe(to: .playQueue_pageUp, handler: pageUp)
-        messenger.subscribe(to: .playQueue_pageDown, handler: pageDown)
-        messenger.subscribe(to: .playQueue_scrollToTop, handler: scrollToTop)
-        messenger.subscribe(to: .playQueue_scrollToBottom, handler: scrollToBottom)
+        messenger.subscribe(to: .PlayQueue.pageUp, handler: pageUp)
+        messenger.subscribe(to: .PlayQueue.pageDown, handler: pageDown)
+        messenger.subscribe(to: .PlayQueue.scrollToTop, handler: scrollToTop)
+        messenger.subscribe(to: .PlayQueue.scrollToBottom, handler: scrollToBottom)
         
-        messenger.subscribe(to: .playQueue_showPlayingTrack, handler: showPlayingTrack)
+        messenger.subscribe(to: .PlayQueue.showPlayingTrack, handler: showPlayingTrack)
         
-        messenger.subscribe(to: .playQueue_moveTracksUp, handler: moveTracksUp)
-        messenger.subscribe(to: .playQueue_moveTracksDown, handler: moveTracksDown)
-        messenger.subscribe(to: .playQueue_moveTracksToTop, handler: moveTracksToTop)
-        messenger.subscribe(to: .playQueue_moveTracksToBottom, handler: moveTracksToBottom)
+        messenger.subscribe(to: .PlayQueue.moveTracksUp, handler: moveTracksUp)
+        messenger.subscribe(to: .PlayQueue.moveTracksDown, handler: moveTracksDown)
+        messenger.subscribe(to: .PlayQueue.moveTracksToTop, handler: moveTracksToTop)
+        messenger.subscribe(to: .PlayQueue.moveTracksToBottom, handler: moveTracksToBottom)
         
-        messenger.subscribe(to: .playQueue_search, handler: search)
+        messenger.subscribe(to: .PlayQueue.search, handler: search)
         
-        messenger.subscribe(to: .playQueue_exportAsPlaylistFile, handler: exportToPlaylistFile)
+        messenger.subscribe(to: .PlayQueue.exportAsPlaylistFile, handler: exportToPlaylistFile)
         
-        messenger.subscribeAsync(to: .playQueue_startedAddingTracks, handler: startedAddingTracks)
-        messenger.subscribeAsync(to: .playQueue_doneAddingTracks, handler: doneAddingTracks)
+        messenger.subscribeAsync(to: .PlayQueue.startedAddingTracks, handler: startedAddingTracks)
+        messenger.subscribeAsync(to: .PlayQueue.doneAddingTracks, handler: doneAddingTracks)
         
-        messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
+        messenger.subscribeAsync(to: .PlayQueue.tracksAdded, handler: updateSummary)
         
         messenger.subscribeAsync(to: .Player.trackTransitioned, handler: updateSummary)
         
-        messenger.subscribe(to: .playQueue_updateSummary, handler: updateSummary)
+        messenger.subscribe(to: .PlayQueue.updateSummary, handler: updateSummary)
     }
     
     func playSelectedTrack() {
@@ -170,7 +170,7 @@ class PlayQueueContainerViewController: NSViewController {
         playQueueDelegate.removeAllTracks()
         
         // Tell the play queue UI to refresh its views.
-        messenger.publish(.playQueue_refresh)
+        messenger.publish(.PlayQueue.refresh)
         
         updateSummary()
     }

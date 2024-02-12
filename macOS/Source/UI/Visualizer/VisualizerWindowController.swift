@@ -48,7 +48,7 @@ class VisualizerWindowController: NSWindowController, NSWindowDelegate {
         super.windowDidLoad()
         
         theWindow.isMovableByWindowBackground = true
-        messenger.subscribeAsync(to: .audioGraph_outputDeviceChanged, handler: audioOutputDeviceChanged)
+        messenger.subscribeAsync(to: .AudioGraph.outputDeviceChanged, handler: audioOutputDeviceChanged)
     }
     
     override func awakeFromNib() {

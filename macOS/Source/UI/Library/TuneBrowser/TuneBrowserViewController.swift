@@ -63,7 +63,7 @@ class TuneBrowserViewController: NSViewController {
         messenger.subscribe(to: .application_willExit, handler: onAppExit)
         
         // TODO: This is inefficient!!! Wait till library is built before doing this.
-        messenger.subscribeAsync(to: .library_doneAddingTracks) {[weak self] in
+        messenger.subscribeAsync(to: .Library.doneAddingTracks) {[weak self] in
             self?.recreateAllFolders()
         }
         

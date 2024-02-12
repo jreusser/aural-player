@@ -74,7 +74,7 @@ extension TuneBrowserTabViewController {
         if let clickedItem: FileSystemFolderItem = browserView.rightClickedItem as? FileSystemFolderItem {
 
             tuneBrowserUIState.addUserFolder(clickedItem, inTree: self.tree)
-            messenger.publish(.sidebar_addFileSystemShortcut, payload: clickedItem.url)
+            messenger.publish(.Library.Sidebar.addFileSystemShortcut, payload: clickedItem.url)
         }
     }
     

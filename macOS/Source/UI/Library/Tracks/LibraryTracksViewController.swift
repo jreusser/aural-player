@@ -40,16 +40,16 @@ class LibraryTracksViewController: TrackListTableViewController {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainer)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceivers: [lblTracksSummary, lblDurationSummary])
         
-        messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
-        messenger.subscribeAsync(to: .library_tracksRemoved, handler: tracksRemoved(_:))
-        messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
-        messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
+        messenger.subscribeAsync(to: .Library.tracksAdded, handler: tracksAdded(_:))
+        messenger.subscribeAsync(to: .Library.tracksRemoved, handler: tracksRemoved(_:))
+        messenger.subscribe(to: .Library.updateSummary, handler: updateSummary)
+        messenger.subscribe(to: .Library.reloadTable, handler: reloadTable)
         
-        messenger.subscribeAsync(to: .library_doneAddingTracks, handler: doneAddingTracks)
+        messenger.subscribeAsync(to: .Library.doneAddingTracks, handler: doneAddingTracks)
         
-//        messenger.subscribe(to: .library_addChosenFiles, handler: addChosenTracks(_:))
+//        messenger.subscribe(to: .Library.addChosenFiles, handler: addChosenTracks(_:))
 //
-//        messenger.subscribe(to: .library_copyTracks, handler: copyTracks(_:))
+//        messenger.subscribe(to: .Library.copyTracks, handler: copyTracks(_:))
     }
     
     override func view(forColumn column: NSUserInterfaceItemIdentifier, row: Int, track: Track) -> TableCellBuilder {
@@ -93,7 +93,7 @@ class LibraryTracksViewController: TrackListTableViewController {
     }
     
     override func notifyReloadTable() {
-        messenger.publish(.library_reloadTable)
+        messenger.publish(.Library.reloadTable)
     }
     
     override func destroy() {
@@ -115,11 +115,11 @@ class LibraryTracksViewController: TrackListTableViewController {
     }
     
     @IBAction func playNextAction(_ sender: NSMenuItem) {
-//        messenger.publish(.playQueue_enqueueAndPlayNext, payload: playlist[selectedRows])
+//        messenger.publish(.PlayQueue.enqueueAndPlayNext, payload: playlist[selectedRows])
     }
     
     @IBAction func playLaterAction(_ sender: NSMenuItem) {
-//        messenger.publish(.playQueue_enqueueAndPlayLater, payload: playlist[selectedRows])
+//        messenger.publish(.PlayQueue.enqueueAndPlayLater, payload: playlist[selectedRows])
     }
     
     // ---------------------------------------------------------------------------------------------------------

@@ -47,10 +47,10 @@ class Player: PlayerProtocol {
         self.avfScheduler = avfScheduler
         self.ffmpegScheduler = ffmpegScheduler
         
-        messenger.subscribeAsync(to: .audioGraph_outputDeviceChanged, handler: audioOutputDeviceChanged)
+        messenger.subscribeAsync(to: .AudioGraph.outputDeviceChanged, handler: audioOutputDeviceChanged)
         
-        messenger.subscribeAsync(to: .audioGraph_preGraphChange, handler: preAudioGraphChange(_:))
-        messenger.subscribeAsync(to: .audioGraph_graphChanged, handler: audioGraphChanged(_:))
+        messenger.subscribeAsync(to: .AudioGraph.preGraphChange, handler: preAudioGraphChange(_:))
+        messenger.subscribeAsync(to: .AudioGraph.graphChanged, handler: audioGraphChanged(_:))
     }
     
     func play(_ track: Track, _ startPosition: Double, _ endPosition: Double? = nil) {

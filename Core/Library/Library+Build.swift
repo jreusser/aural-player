@@ -69,14 +69,14 @@ extension Library {
             self._playlists.removeAll()
             self._fileSystemTrees.removeAll()
             
-            self.messenger.publish(.library_startedReadingFileSystem)
+            self.messenger.publish(.Library.startedReadingFileSystem)
             
             for folder in self.sourceFolders {
                 self.buildTree(forSourceFolder: folder)
             }
             
             startedReadingFiles = true
-            self.messenger.publish(.library_startedAddingTracks)
+            self.messenger.publish(.Library.startedAddingTracks)
             
             chosenQueue.waitUntilAllOperationsAreFinished()
             
@@ -152,7 +152,7 @@ extension Library {
             self._isBeingModified.setValue(false)
             self._isBuilt.setValue(true)
             
-            self.messenger.publish(.library_doneAddingTracks)
+            self.messenger.publish(.Library.doneAddingTracks)
             
             let end = Date()
             print("\nTime taken to build Library: \(end.timeIntervalSince(start)) secs.")

@@ -105,7 +105,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
     
     // Shows (selects) the currently playing track, within the playlist, if there is one
     @IBAction func showPlayingTrackAction(_ sender: Any) {
-        messenger.publish(.playQueue_showPlayingTrack)
+        messenger.publish(.PlayQueue.showPlayingTrack)
     }
     
     // Adds/removes the currently playing track to/from the "Favorites" list

@@ -200,12 +200,12 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
 extension PlayQueue: TrackLoaderObserver {
     
     func preTrackLoad() {
-        messenger.publish(.playQueue_startedAddingTracks)
+        messenger.publish(.PlayQueue.startedAddingTracks)
     }
     
     func postTrackLoad() {
         
-        messenger.publish(.playQueue_doneAddingTracks)
+        messenger.publish(.PlayQueue.doneAddingTracks)
         
         // Make sure this is reset after track load.
         autoplay.setValue(false)

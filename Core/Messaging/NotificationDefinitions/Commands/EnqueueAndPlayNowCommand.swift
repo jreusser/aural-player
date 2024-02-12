@@ -12,14 +12,14 @@ import Foundation
 
 struct EnqueueAndPlayNowCommand: NotificationPayload {
     
-    let notificationName: Notification.Name = .playQueue_enqueueAndPlayNow
+    let notificationName: Notification.Name = .PlayQueue.enqueueAndPlayNow
     let tracks: [Track]
     let clearPlayQueue: Bool
 }
 
 struct LoadAndPlayNowCommand: NotificationPayload {
     
-    let notificationName: Notification.Name = .playQueue_loadAndPlayNow
+    let notificationName: Notification.Name = .PlayQueue.loadAndPlayNow
     let files: [URL]
     let clearPlayQueue: Bool
 }

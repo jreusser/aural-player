@@ -41,21 +41,21 @@ class TracksRemovedNotification: NotificationPayload {
 class PlayQueueTracksAddedNotification: TracksAddedNotification {
     
     init(trackIndices: IndexSet) {
-        super.init(notificationName: .playQueue_tracksAdded, trackIndices: trackIndices)
+        super.init(notificationName: .PlayQueue.tracksAdded, trackIndices: trackIndices)
     }
 }
 
 class LibraryTracksAddedNotification: TracksAddedNotification {
     
     init(trackIndices: IndexSet) {
-        super.init(notificationName: .library_tracksAdded, trackIndices: trackIndices)
+        super.init(notificationName: .Library.tracksAdded, trackIndices: trackIndices)
     }
 }
 
 class LibraryTracksRemovedNotification: TracksAddedNotification {
     
     init(trackIndices: IndexSet) {
-        super.init(notificationName: .library_tracksRemoved, trackIndices: trackIndices)
+        super.init(notificationName: .Library.tracksRemoved, trackIndices: trackIndices)
     }
 }
 

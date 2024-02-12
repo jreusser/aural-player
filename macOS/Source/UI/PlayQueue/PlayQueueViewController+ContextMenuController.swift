@@ -141,7 +141,7 @@ extension PlayQueueViewController: NSMenuDelegate {
     }
     
     @IBAction func playNextAction(_ sender: NSMenuItem) {
-        messenger.publish(.playQueue_playNext)
+        messenger.publish(.PlayQueue.playNext)
     }
     
     @IBAction func copyTracksToPlaylistAction(_ sender: NSMenuItem) {
@@ -153,27 +153,27 @@ extension PlayQueueViewController: NSMenuDelegate {
     }
     
     @IBAction func removeTracksMenuAction(_ sender: Any) {
-        messenger.publish(.playQueue_removeTracks)
+        messenger.publish(.PlayQueue.removeTracks)
     }
     
     @IBAction func cropSelectionMenuAction(_ sender: Any) {
-        messenger.publish(.playQueue_cropSelection)
+        messenger.publish(.PlayQueue.cropSelection)
     }
     
     @IBAction func moveTracksUpMenuAction(_ sender: Any) {
-        messenger.publish(.playQueue_moveTracksUp)
+        messenger.publish(.PlayQueue.moveTracksUp)
     }
     
     @IBAction func moveTracksDownMenuAction(_ sender: Any) {
-        messenger.publish(.playQueue_moveTracksDown)
+        messenger.publish(.PlayQueue.moveTracksDown)
     }
     
     @IBAction func moveTracksToTopMenuAction(_ sender: Any) {
-        messenger.publish(.playQueue_moveTracksToTop)
+        messenger.publish(.PlayQueue.moveTracksToTop)
     }
 
     @IBAction func moveTracksToBottomMenuAction(_ sender: Any) {
-        messenger.publish(.playQueue_moveTracksToBottom)
+        messenger.publish(.PlayQueue.moveTracksToBottom)
     }
     
     // Adds/removes the currently playing track, if there is one, to/from the "Favorites" list

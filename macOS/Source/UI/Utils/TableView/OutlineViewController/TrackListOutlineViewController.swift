@@ -147,7 +147,7 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, F
     }
     
     func notifyReloadTable() {
-        messenger.publish(.library_reloadTable)
+        messenger.publish(.Library.reloadTable)
     }
     
     @IBAction func removeAllTracksAction(_ sender: NSButton) {

@@ -12,6 +12,6 @@ import Foundation
 
 struct LibraryGroupPlayedNotification: NotificationPayload {
     
-    let notificationName: Notification.Name = .library_groupPlayed
+    let notificationName: Notification.Name = .Library.groupPlayed
     let group: Group
 }

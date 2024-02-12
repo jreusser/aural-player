@@ -12,6 +12,6 @@ import Foundation
 
 struct LibraryFileSystemItemsPlayedNotification: NotificationPayload {
     
-    let notificationName: Notification.Name = .library_fileSystemItemsPlayed
+    let notificationName: Notification.Name = .Library.fileSystemItemsPlayed
     let filesAndFolders: [URL]
 }

@@ -29,10 +29,10 @@ class LibrarySidebarViewController: NSViewController {
         categories.forEach {sidebarView.expandItem($0)}
         sidebarView.selectRow(1)
         
-        messenger.subscribe(to: .sidebar_addFileSystemShortcut, handler: addFileSystemShortcut)
+        messenger.subscribe(to: .Library.Sidebar.addFileSystemShortcut, handler: addFileSystemShortcut)
         
         // TODO: This is inefficient!!! Wait till library is built before doing this.
-        messenger.subscribeAsync(to: .library_doneAddingTracks) {[weak self] in
+        messenger.subscribeAsync(to: .Library.doneAddingTracks) {[weak self] in
             
             self?.sidebarView.reloadItem(LibrarySidebarCategory.tuneBrowser)
             self?.sidebarView.expandItem(LibrarySidebarCategory.tuneBrowser)

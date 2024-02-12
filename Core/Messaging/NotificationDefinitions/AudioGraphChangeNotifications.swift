@@ -22,14 +22,14 @@ class AudioGraphChangeContext {
 
 struct AudioGraphChangedNotification: NotificationPayload {
     
-    let notificationName: Notification.Name = .audioGraph_graphChanged
+    let notificationName: Notification.Name = .AudioGraph.graphChanged
     
     let context: AudioGraphChangeContext
 }
 
 struct PreAudioGraphChangeNotification: NotificationPayload {
     
-    let notificationName: Notification.Name = .audioGraph_preGraphChange
+    let notificationName: Notification.Name = .AudioGraph.preGraphChange
 
     let context: AudioGraphChangeContext
 }

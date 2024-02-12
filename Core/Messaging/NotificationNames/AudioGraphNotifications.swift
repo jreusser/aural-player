@@ -14,12 +14,15 @@ import Foundation
 ///
 extension Notification.Name {
     
-    // Signifies that the audio output device for the audio engine has changed.
-    // eg. when the user plugs headphones in or out of the system, or connects to
-    // a new set of speakers.
-    static let audioGraph_outputDeviceChanged = Notification.Name("audioGraph_outputDeviceChanged")
-    
-    static let audioGraph_preGraphChange = Notification.Name("audioGraph_preGraphChange")
-    
-    static let audioGraph_graphChanged = Notification.Name("audioGraph_graphChanged")
+    struct AudioGraph {
+        
+        // Signifies that the audio output device for the audio engine has changed.
+        // eg. when the user plugs headphones in or out of the system, or connects to
+        // a new set of speakers.
+        static let outputDeviceChanged = Notification.Name("audioGraph_outputDeviceChanged")
+        
+        static let preGraphChange = Notification.Name("audioGraph_preGraphChange")
+        
+        static let graphChanged = Notification.Name("audioGraph_graphChanged")
+    }
 }

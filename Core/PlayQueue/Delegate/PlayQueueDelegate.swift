@@ -159,7 +159,7 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         playQueue.removeAllTracks()
         
         if let thePlayingTrack = playingTrack {
-            messenger.publish(.playQueue_playingTrackRemoved, payload: thePlayingTrack)
+            messenger.publish(.PlayQueue.playingTrackRemoved, payload: thePlayingTrack)
         }
     }
 

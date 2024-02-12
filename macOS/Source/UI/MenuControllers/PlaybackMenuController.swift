@@ -239,7 +239,7 @@ class PlaybackMenuController: NSObject, NSMenuDelegate {
     
     // Shows (selects) the currently playing track, within the playlist, if there is one
     @IBAction func showPlayingTrackAction(_ sender: Any) {
-        messenger.publish(.playQueue_showPlayingTrack)
+        messenger.publish(.PlayQueue.showPlayingTrack)
     }
     
     @IBAction func rememberLastPositionAction(_ sender: ToggleMenuItem) {

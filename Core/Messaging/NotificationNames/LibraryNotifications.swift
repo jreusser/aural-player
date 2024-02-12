@@ -12,46 +12,52 @@ import Foundation
 
 extension Notification.Name {
     
-    // MARK: Notifications published by the library.
-    
-    // Signifies that the library has begun reading the home folder in the file system, but has not yet started reading metadata
-    // from the individual files / playlists.
-    static let library_startedReadingFileSystem = Notification.Name("startedReadingFileSystem")
-    
-    // Signifies that the library has begun adding a set of tracks.
-    static let library_startedAddingTracks = Notification.Name("library_startedAddingTracks")
-    
-    // Signifies that the library has finished adding a set of tracks.
-    static let library_doneAddingTracks = Notification.Name("library_doneAddingTracks")
-    
-    // Signifies that some chosen tracks could not be added to the library (i.e. an error condition).
-    static let library_tracksNotAdded = Notification.Name("library_tracksNotAdded")
-    
-    // Signifies that new tracks have been added to the library.
-    static let library_tracksAdded = Notification.Name("library_tracksAdded")
-    
-    static let library_tracksRemoved = Notification.Name("library_tracksRemoved")
-    
-    static let library_tracksDragDropped = Notification.Name("library_tracksDragDropped")
-    
-    static let library_groupPlayed = Notification.Name("library_groupPlayed")
-    
-    static let library_fileSystemItemsPlayed = Notification.Name("library_fileSystemItemsPlayed")
-    
-    static let library_sorted = Notification.Name("library_sorted")
-    
-    // Signifies that the summary for the library needs to be updated.
-    static let library_updateSummary = Notification.Name("library_updateSummary")
-    
-    // Signifies that the summary for the library needs to be updated.
-    static let library_reloadTable = Notification.Name("library_reloadTable")
-    
-    // Command to show a specific Library browser tab (specified in the payload).
-    static let library_showBrowserTabForItem = Notification.Name("library_showBrowserTabForItem")
-    
-    // Command to show a specific Library browser tab (specified in the payload).
-    static let library_showBrowserTabForCategory = Notification.Name("library_showBrowserTabForCategory")
-    
-    // Command to show a specific Library browser tab (specified in the payload).
-    static let sidebar_addFileSystemShortcut = Notification.Name("sidebar_addFileSystemShortcut")
+    struct Library {
+        
+        // MARK: Notifications published by the library.
+        
+        // Signifies that the library has begun reading the home folder in the file system, but has not yet started reading metadata
+        // from the individual files / playlists.
+        static let startedReadingFileSystem = Notification.Name("library_startedReadingFileSystem")
+        
+        // Signifies that the library has begun adding a set of tracks.
+        static let startedAddingTracks = Notification.Name("library_startedAddingTracks")
+        
+        // Signifies that the library has finished adding a set of tracks.
+        static let doneAddingTracks = Notification.Name("library_doneAddingTracks")
+        
+        // Signifies that some chosen tracks could not be added to the library (i.e. an error condition).
+        static let tracksNotAdded = Notification.Name("library_tracksNotAdded")
+        
+        // Signifies that new tracks have been added to the library.
+        static let tracksAdded = Notification.Name("library_tracksAdded")
+        
+        static let tracksRemoved = Notification.Name("library_tracksRemoved")
+        
+        static let tracksDragDropped = Notification.Name("library_tracksDragDropped")
+        
+        static let groupPlayed = Notification.Name("library_groupPlayed")
+        
+        static let fileSystemItemsPlayed = Notification.Name("library_fileSystemItemsPlayed")
+        
+        static let sorted = Notification.Name("library_sorted")
+        
+        // Signifies that the summary for the library needs to be updated.
+        static let updateSummary = Notification.Name("library_updateSummary")
+        
+        // Signifies that the summary for the library needs to be updated.
+        static let reloadTable = Notification.Name("library_reloadTable")
+        
+        // Command to show a specific Library browser tab (specified in the payload).
+        static let showBrowserTabForItem = Notification.Name("library_showBrowserTabForItem")
+        
+        // Command to show a specific Library browser tab (specified in the payload).
+        static let showBrowserTabForCategory = Notification.Name("library_showBrowserTabForCategory")
+        
+        struct Sidebar {
+            
+            // Command to show a specific Library browser tab (specified in the payload).
+            static let addFileSystemShortcut = Notification.Name("library_sidebar_addFileSystemShortcut")
+        }
+    }
 }

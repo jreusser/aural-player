@@ -107,10 +107,10 @@ extension LibrarySidebarViewController: NSOutlineViewDelegate {
         let item = outlineView.item(atRow: outlineView.selectedRow)
         
         if let selectedItem = item as? LibrarySidebarItem {
-            messenger.publish(.library_showBrowserTabForItem, payload: selectedItem)
+            messenger.publish(.Library.showBrowserTabForItem, payload: selectedItem)
             
         } else if let selectedCategory = item as? LibrarySidebarCategory {
-            messenger.publish(.library_showBrowserTabForCategory, payload: selectedCategory)
+            messenger.publish(.Library.showBrowserTabForCategory, payload: selectedCategory)
         }
     }
 }

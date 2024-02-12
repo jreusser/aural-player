@@ -258,7 +258,7 @@ let audioSession: AVAudioSession = .sharedInstance()
         audioEngine.start()
         
         // Send out a notification
-        messenger.publish(.audioGraph_outputDeviceChanged)
+        messenger.publish(.AudioGraph.outputDeviceChanged)
     }
     
 #endif

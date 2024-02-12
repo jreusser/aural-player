@@ -64,8 +64,8 @@ class HistoryDelegate: HistoryDelegateProtocol {
         messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackPlayed(_:),
                                  filter: {msg in msg.playbackStarted})
         
-        messenger.subscribeAsync(to: .library_fileSystemItemsPlayed, handler: fileSystemItemsPlayed(_:))
-        messenger.subscribeAsync(to: .library_groupPlayed, handler: groupPlayed(_:))
+        messenger.subscribeAsync(to: .Library.fileSystemItemsPlayed, handler: fileSystemItemsPlayed(_:))
+        messenger.subscribeAsync(to: .Library.groupPlayed, handler: groupPlayed(_:))
         
         messenger.subscribe(to: .application_willExit, handler: appWillExit)
     }

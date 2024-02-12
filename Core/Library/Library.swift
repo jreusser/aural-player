@@ -149,11 +149,11 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
 extension Library: TrackLoaderObserver {
     
     func preTrackLoad() {
-        messenger.publish(.library_startedAddingTracks)
+        messenger.publish(.Library.startedAddingTracks)
     }
     
     func postTrackLoad() {
-        messenger.publish(.library_doneAddingTracks)
+        messenger.publish(.Library.doneAddingTracks)
     }
     
     func postBatchLoad(indices: IndexSet) {

@@ -147,11 +147,11 @@ class PlaylistTracksViewController: TrackListTableViewController {
     }
     
     @IBAction func playNextAction(_ sender: NSMenuItem) {
-        messenger.publish(.playQueue_enqueueAndPlayNext, payload: playlist[selectedRows])
+        messenger.publish(.PlayQueue.enqueueAndPlayNext, payload: playlist[selectedRows])
     }
     
     @IBAction func playLaterAction(_ sender: NSMenuItem) {
-        messenger.publish(.playQueue_enqueueAndPlayLater, payload: playlist[selectedRows])
+        messenger.publish(.PlayQueue.enqueueAndPlayLater, payload: playlist[selectedRows])
     }
     
     // ---------------------------------------------------------------------------------------------------------

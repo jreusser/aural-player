@@ -59,12 +59,12 @@ class LibraryLoader {
             
             defer {completionHandler?()}
             
-            self.messenger.publish(.library_startedReadingFileSystem)
+            self.messenger.publish(.Library.startedReadingFileSystem)
             
             self.readFiles(files)
             self.startedReadingFiles = true
             
-            self.messenger.publish(.library_startedAddingTracks)
+            self.messenger.publish(.Library.startedAddingTracks)
             
             self.queue.waitUntilAllOperationsAreFinished()
             
@@ -77,7 +77,7 @@ class LibraryLoader {
             
             self.readPlaylists()
             
-            self.messenger.publish(.library_doneAddingTracks)
+            self.messenger.publish(.Library.doneAddingTracks)
             
             // Cleanup
             self.blockOpFunction = nil

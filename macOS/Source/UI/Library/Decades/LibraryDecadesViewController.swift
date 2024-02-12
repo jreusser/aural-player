@@ -31,13 +31,13 @@ class LibraryDecadesViewController: TrackListOutlineViewController {
         
         super.viewDidLoad()
         
-        messenger.subscribeAsync(to: .library_tracksAdded, handler: tracksAdded(_:))
-        messenger.subscribeAsync(to: .library_tracksRemoved, handler: reloadTable)
+        messenger.subscribeAsync(to: .Library.tracksAdded, handler: tracksAdded(_:))
+        messenger.subscribeAsync(to: .Library.tracksRemoved, handler: reloadTable)
         
-        messenger.subscribeAsync(to: .library_doneAddingTracks, handler: doneAddingTracks)
+        messenger.subscribeAsync(to: .Library.doneAddingTracks, handler: doneAddingTracks)
         
-        messenger.subscribe(to: .library_reloadTable, handler: reloadTable)
-        messenger.subscribe(to: .library_updateSummary, handler: updateSummary)
+        messenger.subscribe(to: .Library.reloadTable, handler: reloadTable)
+        messenger.subscribe(to: .Library.updateSummary, handler: updateSummary)
         
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainer)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)

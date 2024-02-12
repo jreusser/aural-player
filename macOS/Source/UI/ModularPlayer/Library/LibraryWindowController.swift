@@ -93,11 +93,11 @@ class LibraryWindowController: NSWindowController {
         playlistsView.anchorToSuperview()
         
         let windowShownFilter = {[weak self] in self?.theWindow.isVisible ?? false}
-        messenger.subscribeAsync(to: .library_startedReadingFileSystem, handler: startedReadingFileSystem, filter: windowShownFilter)
-        messenger.subscribeAsync(to: .library_startedAddingTracks, handler: startedAddingTracks, filter: windowShownFilter)
-        messenger.subscribeAsync(to: .library_doneAddingTracks, handler: doneAddingTracks, filter: windowShownFilter)
+        messenger.subscribeAsync(to: .Library.startedReadingFileSystem, handler: startedReadingFileSystem, filter: windowShownFilter)
+        messenger.subscribeAsync(to: .Library.startedAddingTracks, handler: startedAddingTracks, filter: windowShownFilter)
+        messenger.subscribeAsync(to: .Library.doneAddingTracks, handler: doneAddingTracks, filter: windowShownFilter)
         
-        messenger.subscribe(to: .library_showBrowserTabForItem, handler: showBrowserTab(forItem:))
+        messenger.subscribe(to: .Library.showBrowserTabForItem, handler: showBrowserTab(forItem:))
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
         
         fontSchemesManager.registerObserver(self)

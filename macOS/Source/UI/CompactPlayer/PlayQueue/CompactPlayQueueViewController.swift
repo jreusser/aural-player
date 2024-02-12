@@ -31,10 +31,10 @@ class CompactPlayQueueViewController: PlayQueueViewController {
         
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
         
-        messenger.subscribeAsync(to: .playQueue_startedAddingTracks, handler: startedAddingTracks)
-        messenger.subscribeAsync(to: .playQueue_doneAddingTracks, handler: doneAddingTracks)
+        messenger.subscribeAsync(to: .PlayQueue.startedAddingTracks, handler: startedAddingTracks)
+        messenger.subscribeAsync(to: .PlayQueue.doneAddingTracks, handler: doneAddingTracks)
         
-        messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
+        messenger.subscribeAsync(to: .PlayQueue.tracksAdded, handler: updateSummary)
     }
     
     // MARK: Notification handling ----------------------------------------------------------------------------------

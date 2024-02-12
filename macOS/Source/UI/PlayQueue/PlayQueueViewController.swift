@@ -62,9 +62,9 @@ class PlayQueueViewController: TrackListTableViewController {
         
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, handler: activeControlColorChanged(_:))
         
-        messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
+        messenger.subscribeAsync(to: .PlayQueue.tracksAdded, handler: tracksAdded(_:))
         messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:))
-        messenger.subscribe(to: .playQueue_refresh, handler: tableView.reloadData)
+        messenger.subscribe(to: .PlayQueue.refresh, handler: tableView.reloadData)
     }
     
     override func viewWillAppear() {
@@ -82,11 +82,11 @@ class PlayQueueViewController: TrackListTableViewController {
     }
     
     override func tracksMovedByDragDrop(minReloadIndex: Int, maxReloadIndex: Int) {
-        messenger.publish(.playQueue_updateSummary)
+        messenger.publish(.PlayQueue.updateSummary)
     }
     
     override func notifyReloadTable() {
-        messenger.publish(.playQueue_refresh)
+        messenger.publish(.PlayQueue.refresh)
     }
     
     override func destroy() {

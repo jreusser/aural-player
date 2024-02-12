@@ -31,8 +31,8 @@ class LibraryBuildProgressWindowController: NSWindowController {
         
         super.windowDidLoad()
         
-        messenger.subscribeAsync(to: .library_startedAddingTracks, handler: startedAddingTracks)
-        messenger.subscribeAsync(to: .library_doneAddingTracks, handler: doneAddingTracks)
+        messenger.subscribeAsync(to: .Library.startedAddingTracks, handler: startedAddingTracks)
+        messenger.subscribeAsync(to: .Library.doneAddingTracks, handler: doneAddingTracks)
     }
     
     // MARK: Message handling -----------------------------------------------------------
