@@ -14,7 +14,7 @@ import Foundation
 ///
 struct ChapterChangedNotification: NotificationPayload {
     
-    let notificationName: Notification.Name = .player_chapterChanged
+    let notificationName: Notification.Name = .Player.chapterChanged
     
     // The chapter that was playing before the chapter change (may be nil, meaning no defined chapter was playing)
     let oldChapter: IndexedChapter?

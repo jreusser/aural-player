@@ -67,7 +67,7 @@ class DockMenuController: NSObject, NSMenuDelegate {
         messenger.subscribeAsync(to: .history_updated, handler: recreateHistoryMenus)
         
         // Subscribe to notifications
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:),
+        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:),
                                  filter: {msg in msg.trackChanged})
         
         messenger.subscribeAsync(to: .application_launched, handler: appLaunched(_:))
@@ -169,76 +169,76 @@ class DockMenuController: NSObject, NSMenuDelegate {
     
     // Pauses or resumes playback
     @IBAction func playOrPauseAction(_ sender: AnyObject) {
-        messenger.publish(.player_playOrPause)
+        messenger.publish(.Player.playOrPause)
     }
     
     @IBAction func stopAction(_ sender: AnyObject) {
-        messenger.publish(.player_stop)
+        messenger.publish(.Player.stop)
     }
     
     // Replays the currently playing track from the beginning, if there is one
     @IBAction func replayTrackAction(_ sender: AnyObject) {
-        messenger.publish(.player_replayTrack)
+        messenger.publish(.Player.replayTrack)
     }
     
     // Plays the previous track in the current playback sequence
     @IBAction func previousTrackAction(_ sender: AnyObject) {
-        messenger.publish(.player_previousTrack)
+        messenger.publish(.Player.previousTrack)
     }
     
     // Plays the next track in the current playback sequence
     @IBAction func nextTrackAction(_ sender: AnyObject) {
-        messenger.publish(.player_nextTrack)
+        messenger.publish(.Player.nextTrack)
     }
     
     // Seeks backward within the currently playing track
     @IBAction func seekBackwardAction(_ sender: AnyObject) {
-        messenger.publish(.player_seekBackward, payload: UserInputMode.discrete)
+        messenger.publish(.Player.seekBackward, payload: UserInputMode.discrete)
     }
     
     // Seeks forward within the currently playing track
     @IBAction func seekForwardAction(_ sender: AnyObject) {
-        messenger.publish(.player_seekForward, payload: UserInputMode.discrete)
+        messenger.publish(.Player.seekForward, payload: UserInputMode.discrete)
     }
     
     // Sets the repeat mode to "Off"
     @IBAction func repeatOffAction(_ sender: AnyObject) {
-        messenger.publish(.player_setRepeatMode, payload: RepeatMode.off)
+        messenger.publish(.Player.setRepeatMode, payload: RepeatMode.off)
     }
     
     // Sets the repeat mode to "Repeat One"
     @IBAction func repeatOneAction(_ sender: AnyObject) {
-        messenger.publish(.player_setRepeatMode, payload: RepeatMode.one)
+        messenger.publish(.Player.setRepeatMode, payload: RepeatMode.one)
     }
     
     // Sets the repeat mode to "Repeat All"
     @IBAction func repeatAllAction(_ sender: AnyObject) {
-        messenger.publish(.player_setRepeatMode, payload: RepeatMode.all)
+        messenger.publish(.Player.setRepeatMode, payload: RepeatMode.all)
     }
     
     // Sets the shuffle mode to "Off"
     @IBAction func shuffleOffAction(_ sender: AnyObject) {
-        messenger.publish(.player_setShuffleMode, payload: ShuffleMode.off)
+        messenger.publish(.Player.setShuffleMode, payload: ShuffleMode.off)
     }
     
     // Sets the shuffle mode to "On"
     @IBAction func shuffleOnAction(_ sender: AnyObject) {
-        messenger.publish(.player_setShuffleMode, payload: ShuffleMode.on)
+        messenger.publish(.Player.setShuffleMode, payload: ShuffleMode.on)
     }
     
     // Mutes or unmutes the player
     @IBAction func muteOrUnmuteAction(_ sender: AnyObject) {
-        messenger.publish(.player_muteOrUnmute)
+        messenger.publish(.Player.muteOrUnmute)
     }
     
     // Decreases the volume by a certain preset decrement
     @IBAction func decreaseVolumeAction(_ sender: Any) {
-        messenger.publish(.player_decreaseVolume, payload: UserInputMode.discrete)
+        messenger.publish(.Player.decreaseVolume, payload: UserInputMode.discrete)
     }
     
     // Increases the volume by a certain preset increment
     @IBAction func increaseVolumeAction(_ sender: Any) {
-        messenger.publish(.player_increaseVolume, payload: UserInputMode.discrete)
+        messenger.publish(.Player.increaseVolume, payload: UserInputMode.discrete)
     }
     
     // Updates the menu item states per the current playback modes

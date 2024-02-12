@@ -65,7 +65,7 @@ class FuseViewController: NSViewController {
         effectsUnit.toggleState()
         
         // Update the bypass buttons for all effects units
-        messenger.publish(.effects_unitStateChanged)
+        messenger.publish(.Effects.unitStateChanged)
     }
 }
 

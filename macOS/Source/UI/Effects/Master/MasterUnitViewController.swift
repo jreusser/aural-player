@@ -76,13 +76,13 @@ class MasterUnitViewController: EffectsUnitViewController {
         super.bypassAction(sender)
         broadcastStateChangeNotification()
         
-        messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.effectiveRate)
+        messenger.publish(.Effects.playbackRateChanged, payload: timeStretchUnit.effectiveRate)
     }
     
     @IBAction override func presetsAction(_ sender: AnyObject) {
         
         super.presetsAction(sender)
-        messenger.publish(.effects_updateEffectsUnitView, payload: EffectsUnitType.master)
+        messenger.publish(.Effects.updateEffectsUnitView, payload: EffectsUnitType.master)
     }
     
     @IBAction func eqBypassAction(_ sender: AnyObject) {
@@ -103,7 +103,7 @@ class MasterUnitViewController: EffectsUnitViewController {
         
         _ = timeStretchUnit.toggleState()
         
-        messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.effectiveRate)
+        messenger.publish(.Effects.playbackRateChanged, payload: timeStretchUnit.effectiveRate)
         
         broadcastStateChangeNotification()
     }
@@ -138,12 +138,12 @@ class MasterUnitViewController: EffectsUnitViewController {
         
         if soundProfiles.hasFor(playingTrack) {
             
-            messenger.publish(.effects_deleteSoundProfile)
+            messenger.publish(.Effects.deleteSoundProfile)
             btnRememberSettingsStateMachine.setState(false)
             
         } else {
             
-            messenger.publish(.effects_saveSoundProfile)
+            messenger.publish(.Effects.saveSoundProfile)
             btnRememberSettingsStateMachine.setState(true)
         }
     }
@@ -156,17 +156,17 @@ class MasterUnitViewController: EffectsUnitViewController {
         
         super.initSubscriptions()
         
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackChanged(_:),
+        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackChanged(_:),
                                  filter: {msg in msg.trackChanged})
         
-        messenger.subscribe(to: .masterEffectsUnit_toggleEffects, handler: toggleEffects)
+        messenger.subscribe(to: .Effects.MasterUnit.toggleEffects, handler: toggleEffects)
         
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, handler: buttonColorChanged(_:))
     }
     
     override func stateChanged() {
         
-        messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.effectiveRate)
+        messenger.publish(.Effects.playbackRateChanged, payload: timeStretchUnit.effectiveRate)
     }
     
     private func toggleEffects() {
@@ -180,7 +180,7 @@ class MasterUnitViewController: EffectsUnitViewController {
             
             if soundProfiles.hasFor(newTrack) {
                 
-                messenger.publish(.effects_updateEffectsUnitView, payload: EffectsUnitType.master)
+                messenger.publish(.Effects.updateEffectsUnitView, payload: EffectsUnitType.master)
                 
                 btnRememberSettingsStateMachine.setState(true)
                 
@@ -205,7 +205,7 @@ class MasterUnitViewController: EffectsUnitViewController {
     private func broadcastStateChangeNotification() {
         
         // Update the bypass buttons for the effects units
-        messenger.publish(.effects_unitStateChanged)
+        messenger.publish(.Effects.unitStateChanged)
     }
     
     override func colorSchemeChanged() {

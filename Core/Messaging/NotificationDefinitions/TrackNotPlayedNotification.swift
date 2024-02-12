@@ -14,7 +14,7 @@ import Foundation
 ///
 struct TrackNotPlayedNotification: NotificationPayload {
  
-    let notificationName: Notification.Name = .player_trackNotPlayed
+    let notificationName: Notification.Name = .Player.trackNotPlayed
     
     // The track that was playing before this error occurred (used to refresh certain UI elements, eg. playlist).
     let oldTrack: Track?

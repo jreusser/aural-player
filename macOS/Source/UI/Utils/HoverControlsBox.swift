@@ -60,8 +60,8 @@ class HoverControlsBox: NSBox {
     
     @IBAction func playGroupOrPlaylistAction(_ sender: NSButton) {
         
-        messenger.publish(.player_setRepeatMode, payload: RepeatMode.off)
-        messenger.publish(.player_setShuffleMode, payload: ShuffleMode.off)
+        messenger.publish(.Player.setRepeatMode, payload: RepeatMode.off)
+        messenger.publish(.Player.setShuffleMode, payload: ShuffleMode.off)
         
         doPlay(clearPlayQueue: true)
     }
@@ -72,16 +72,16 @@ class HoverControlsBox: NSBox {
     
     @IBAction func repeatGroupAction(_ sender: NSButton) {
         
-        messenger.publish(.player_setRepeatMode, payload: RepeatMode.all)
-        messenger.publish(.player_setShuffleMode, payload: ShuffleMode.off)
+        messenger.publish(.Player.setRepeatMode, payload: RepeatMode.all)
+        messenger.publish(.Player.setShuffleMode, payload: ShuffleMode.off)
         
         doPlay(clearPlayQueue: true)
     }
     
     @IBAction func shuffleGroupAction(_ sender: NSButton) {
         
-        messenger.publish(.player_setRepeatMode, payload: RepeatMode.off)
-        messenger.publish(.player_setShuffleMode, payload: ShuffleMode.on)
+        messenger.publish(.Player.setRepeatMode, payload: RepeatMode.off)
+        messenger.publish(.Player.setShuffleMode, payload: ShuffleMode.on)
         
         doPlay(clearPlayQueue: true)
     }

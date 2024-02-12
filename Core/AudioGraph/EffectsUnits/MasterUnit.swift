@@ -50,7 +50,7 @@ class MasterUnit: EffectsUnit, MasterUnitProtocol {
         
         super.init(unitType: .master, unitState: persistentState?.state ?? AudioGraphDefaults.masterState)
         
-        messenger.subscribe(to: .effects_unitActivated, handler: ensureActive)
+        messenger.subscribe(to: .Effects.unitActivated, handler: ensureActive)
         
         if let currentPresetName = persistentState?.currentPresetName,
             let matchingPreset = presets.object(named: currentPresetName) {

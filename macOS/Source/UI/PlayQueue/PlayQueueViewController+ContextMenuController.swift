@@ -133,7 +133,7 @@ extension PlayQueueViewController: NSMenuDelegate {
     }
     
     @IBAction func jumpToChapterAction(_ sender: ChapterMenuItem) {
-        messenger.publish(.player_playChapter, payload: sender.index)
+        messenger.publish(.Player.playChapter, payload: sender.index)
     }
     
     @IBAction func playNowAction(_ sender: NSMenuItem) {
@@ -327,7 +327,7 @@ extension PlayQueueViewController: NSMenuDelegate {
         TrackInfoViewContext.displayedTrack = selectedTrack
         
         if windowLayoutsManager.isWindowLoaded(withId: .trackInfo) {
-            messenger.publish(.trackInfo_refresh)
+            messenger.publish(.Player.trackInfo_refresh)
         }
         
         windowLayoutsManager.showWindow(withId: .trackInfo)

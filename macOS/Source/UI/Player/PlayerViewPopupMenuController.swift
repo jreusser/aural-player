@@ -78,37 +78,37 @@ class PlayerViewPopupMenuController: NSObject, NSMenuDelegate {
     @IBAction func showOrHideAlbumArtAction(_ sender: NSMenuItem) {
         
         playerUIState.showAlbumArt.toggle()
-        messenger.publish(.player_showOrHideAlbumArt)
+        messenger.publish(.Player.showOrHideAlbumArt)
     }
     
     @IBAction func showOrHideArtistAction(_ sender: NSMenuItem) {
         
         playerUIState.showArtist.toggle()
-        messenger.publish(.player_showOrHideArtist)
+        messenger.publish(.Player.showOrHideArtist)
     }
     
     @IBAction func showOrHideAlbumAction(_ sender: NSMenuItem) {
         
         playerUIState.showAlbum.toggle()
-        messenger.publish(.player_showOrHideAlbum)
+        messenger.publish(.Player.showOrHideAlbum)
     }
     
     @IBAction func showOrHideCurrentChapterAction(_ sender: NSMenuItem) {
         
         playerUIState.showCurrentChapter.toggle()
-        messenger.publish(.player_showOrHideCurrentChapter)
+        messenger.publish(.Player.showOrHideCurrentChapter)
     }
     
     @IBAction func showOrHideMainControlsAction(_ sender: NSMenuItem) {
         
         playerUIState.showControls.toggle()
-        messenger.publish(.player_showOrHideMainControls)
+        messenger.publish(.Player.showOrHideMainControls)
     }
     
     @IBAction func showOrHideTrackTimeAction(_ sender: NSMenuItem) {
         
         playerUIState.showTrackTime.toggle()
-        messenger.publish(.player_showOrHideTrackTime)
+        messenger.publish(.Player.showOrHideTrackTime)
     }
     
     @IBAction func trackTimeElapsedDisplayTypeAction(_ sender: NSMenuItem) {

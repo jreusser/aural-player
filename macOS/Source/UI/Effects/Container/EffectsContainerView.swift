@@ -24,10 +24,10 @@ class EffectsContainerView: MouseTrackingView {
     }
     
     override func mouseEntered(with event: NSEvent) {
-        messenger.publish(.effects_showPresetsAndSettingsMenu)
+        messenger.publish(.Effects.showPresetsAndSettingsMenu)
     }
     
     override func mouseExited(with event: NSEvent) {
-        messenger.publish(.effects_hidePresetsAndSettingsMenu)
+        messenger.publish(.Effects.hidePresetsAndSettingsMenu)
     }
 }

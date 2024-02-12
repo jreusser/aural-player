@@ -44,7 +44,7 @@ class StartPlaybackChain: PlaybackChain {
         actionIndex = -1
         PlaybackRequestContext.begun(context)
         
-        messenger.publish(.player_preTrackChange)
+        messenger.publish(.Player.preTrackChange)
         proceed(context)
     }
     

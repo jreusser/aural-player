@@ -15,7 +15,7 @@ import Foundation
 ///
 struct AutoplayCommandNotification: NotificationPayload {
     
-    let notificationName: Notification.Name = .player_autoplay
+    let notificationName: Notification.Name = .Player.autoplay
     
     // See AutoplayCommandType
     let type: AutoplayCommandType

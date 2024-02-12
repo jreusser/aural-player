@@ -15,35 +15,35 @@ class WindowedModePlaybackViewController: PlaybackViewController {
         
         // MARK: Notifications --------------------------------------------------------------
         
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
-        messenger.subscribe(to: .player_trackNotPlayed, handler: trackNotPlayed(_:))
+        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:))
+        messenger.subscribe(to: .Player.trackNotPlayed, handler: trackNotPlayed(_:))
         
-        messenger.subscribe(to: .effects_playbackRateChanged, handler: playbackRateChanged(_:))
-        messenger.subscribe(to: .player_playbackLoopChanged, handler: playbackLoopChanged)
+        messenger.subscribe(to: .Effects.playbackRateChanged, handler: playbackRateChanged(_:))
+        messenger.subscribe(to: .Player.playbackLoopChanged, handler: playbackLoopChanged)
         
         // MARK: Commands --------------------------------------------------------------
         
-        messenger.subscribeAsync(to: .player_playTrack, handler: performTrackPlayback(_:))
+        messenger.subscribeAsync(to: .Player.playTrack, handler: performTrackPlayback(_:))
         
-        messenger.subscribe(to: .player_playOrPause, handler: playOrPause)
-        messenger.subscribe(to: .player_stop, handler: stop)
-        messenger.subscribe(to: .player_previousTrack, handler: previousTrack)
-        messenger.subscribe(to: .player_nextTrack, handler: nextTrack)
-        messenger.subscribe(to: .player_replayTrack, handler: replayTrack)
-        messenger.subscribe(to: .player_seekBackward, handler: seekBackward(_:))
-        messenger.subscribe(to: .player_seekForward, handler: seekForward(_:))
-        messenger.subscribe(to: .player_seekBackward_secondary, handler: seekBackward_secondary)
-        messenger.subscribe(to: .player_seekForward_secondary, handler: seekForward_secondary)
-        messenger.subscribe(to: .player_jumpToTime, handler: jumpToTime(_:))
-        messenger.subscribe(to: .player_toggleLoop, handler: toggleLoop)
+        messenger.subscribe(to: .Player.playOrPause, handler: playOrPause)
+        messenger.subscribe(to: .Player.stop, handler: stop)
+        messenger.subscribe(to: .Player.previousTrack, handler: previousTrack)
+        messenger.subscribe(to: .Player.nextTrack, handler: nextTrack)
+        messenger.subscribe(to: .Player.replayTrack, handler: replayTrack)
+        messenger.subscribe(to: .Player.seekBackward, handler: seekBackward(_:))
+        messenger.subscribe(to: .Player.seekForward, handler: seekForward(_:))
+        messenger.subscribe(to: .Player.seekBackward_secondary, handler: seekBackward_secondary)
+        messenger.subscribe(to: .Player.seekForward_secondary, handler: seekForward_secondary)
+        messenger.subscribe(to: .Player.jumpToTime, handler: jumpToTime(_:))
+        messenger.subscribe(to: .Player.toggleLoop, handler: toggleLoop)
         
-        messenger.subscribe(to: .player_playChapter, handler: playChapter(_:))
-        messenger.subscribe(to: .player_previousChapter, handler: previousChapter)
-        messenger.subscribe(to: .player_nextChapter, handler: nextChapter)
-        messenger.subscribe(to: .player_replayChapter, handler: replayChapter)
-        messenger.subscribe(to: .player_toggleChapterLoop, handler: toggleChapterLoop)
+        messenger.subscribe(to: .Player.playChapter, handler: playChapter(_:))
+        messenger.subscribe(to: .Player.previousChapter, handler: previousChapter)
+        messenger.subscribe(to: .Player.nextChapter, handler: nextChapter)
+        messenger.subscribe(to: .Player.replayChapter, handler: replayChapter)
+        messenger.subscribe(to: .Player.toggleChapterLoop, handler: toggleChapterLoop)
         
-        messenger.subscribe(to: .player_showOrHideTrackTime, handler: playbackView.showOrHideTimeElapsedRemaining)
+        messenger.subscribe(to: .Player.showOrHideTrackTime, handler: playbackView.showOrHideTimeElapsedRemaining)
         messenger.subscribe(to: .Player.setTrackTimeDisplayType, handler: playbackView.setTrackTimeDisplayType(_:))
         
         guard let playbackView = self.playbackView as? WindowedModePlaybackView else {return}
@@ -105,6 +105,6 @@ class WindowedModePlaybackViewController: PlaybackViewController {
         _ = player.toggleChapterLoop()
         loopChanged()
         
-        messenger.publish(.player_playbackLoopChanged)
+        messenger.publish(.Player.playbackLoopChanged)
     }
 }

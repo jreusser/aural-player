@@ -27,9 +27,9 @@ class MasterUnitView: NSView {
             doAddFuseBoxMenuItemForEffectsUnit(fxUnit)
         }
         
-        messenger.subscribe(to: .auEffectsUnit_audioUnitAdded, handler: doAddFuseBoxMenuItemForEffectsUnit(_:))
-        messenger.subscribe(to: .auEffectsUnit_audioUnitsRemoved, handler: audioUnitsRemoved(_:))
-        messenger.subscribe(to: .player_trackTransitioned, handler: updateRememberSettingsButtonState)
+        messenger.subscribe(to: .Effects.audioUnitAdded, handler: doAddFuseBoxMenuItemForEffectsUnit(_:))
+        messenger.subscribe(to: .Effects.audioUnitsRemoved, handler: audioUnitsRemoved(_:))
+        messenger.subscribe(to: .Player.trackTransitioned, handler: updateRememberSettingsButtonState)
         
         updateRememberSettingsButtonState()
     }

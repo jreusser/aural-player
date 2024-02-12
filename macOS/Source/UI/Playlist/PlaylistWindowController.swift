@@ -161,11 +161,11 @@
 //        messenger.subscribeAsync(to: .playlist_tracksNotAdded, handler: tracksNotAdded(_:))
 //
 //        // Respond only if track duration has changed (affecting the summary)
-//        messenger.subscribeAsync(to: .player_trackInfoUpdated, handler: trackInfoUpdated(_:),
+//        messenger.subscribeAsync(to: .Player.trackInfoUpdated, handler: trackInfoUpdated(_:),
 //                                 filter: {msg in msg.updatedFields.contains(.duration)})
 //
-//        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackChanged)
-//        messenger.subscribeAsync(to: .player_trackNotPlayed, handler: trackChanged)
+//        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackChanged)
+//        messenger.subscribeAsync(to: .Player.trackNotPlayed, handler: trackChanged)
 //
 //        messenger.subscribe(to: .playlist_viewChanged, handler: playlistTypeChanged(_:))
 ////        messenger.subscribe(to: .playlist_currentPlaylistChanged, handler: playlistChanged)

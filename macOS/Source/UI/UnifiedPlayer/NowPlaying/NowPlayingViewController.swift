@@ -21,8 +21,8 @@ class NowPlayingViewController: NSViewController {
         
         // MARK: Notifications --------------------------------------------------------------
         
-//        Messenger.subscribeAsync(self, .player_trackTransitioned, self.trackTransitioned(_:), queue: .main)
-//        Messenger.subscribe(self, .player_trackNotPlayed, self.trackNotPlayed(_:))
+//        Messenger.subscribeAsync(self, .Player.trackTransitioned, self.trackTransitioned(_:), queue: .main)
+//        Messenger.subscribe(self, .Player.trackNotPlayed, self.trackNotPlayed(_:))
         
         // MARK: Commands --------------------------------------------------------------
         
@@ -30,7 +30,7 @@ class NowPlayingViewController: NSViewController {
 //        Messenger.subscribe(self, .changeFunctionButtonColor, playbackView.changeFunctionButtonColor(_:))
 //        Messenger.subscribe(self, .changeToggleButtonOffStateColor, playbackView.changeToggleButtonOffStateColor(_:))
 //
-//        Messenger.subscribe(self, .player_changeTextSize, playbackView.changeTextSize(_:))
+//        Messenger.subscribe(self, .Player.changeTextSize, playbackView.changeTextSize(_:))
     }
     
     // The "errorState" arg indicates whether the player is in an error state (i.e. the new track cannot be played back). If so, update the UI accordingly.

@@ -55,10 +55,10 @@ class DevicesViewController: NSViewController {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperties: [\.activeControlColor, \.inactiveControlColor], handler: unitStateColorChanged(_:))
         
-        messenger.subscribe(to: .player_panLeft, handler: panLeft)
-        messenger.subscribe(to: .player_panRight, handler: panRight)
+        messenger.subscribe(to: .Player.panLeft, handler: panLeft)
+        messenger.subscribe(to: .Player.panRight, handler: panRight)
         
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:),
+        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:),
                                  filter: {msg in msg.trackChanged})
         
         messenger.subscribeAsync(to: .deviceManager_deviceListUpdated, handler: deviceListUpdated)
@@ -85,7 +85,7 @@ class DevicesViewController: NSViewController {
         panSlider.floatValue = audioGraph.panLeft()
         lblPan.stringValue = audioGraph.formattedPan
         
-        messenger.publish(.effects_showEffectsUnitTab, payload: EffectsUnitType.devices)
+        messenger.publish(.Effects.showEffectsUnitTab, payload: EffectsUnitType.devices)
     }
     
     // Pans the sound towards the right channel, by a certain preset value
@@ -94,7 +94,7 @@ class DevicesViewController: NSViewController {
         panSlider.floatValue = audioGraph.panRight()
         lblPan.stringValue = audioGraph.formattedPan
         
-        messenger.publish(.effects_showEffectsUnitTab, payload: EffectsUnitType.devices)
+        messenger.publish(.Effects.showEffectsUnitTab, payload: EffectsUnitType.devices)
     }
     
     private func trackTransitioned(_ notification: TrackTransitionNotification) {

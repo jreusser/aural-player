@@ -91,9 +91,9 @@ class ChaptersListViewController: NSViewController {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.tertiarySelectedTextColor, handler: tertiarySelectedTextColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.textSelectionColor, handler: textSelectionColorChanged(_:))
         
-        messenger.subscribe(to: .player_chapterChanged, handler: chapterChanged(_:))
-        messenger.subscribe(to: .player_playbackLoopChanged, handler: playbackLoopChanged)
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackChanged)
+        messenger.subscribe(to: .Player.chapterChanged, handler: chapterChanged(_:))
+        messenger.subscribe(to: .Player.playbackLoopChanged, handler: playbackLoopChanged)
+        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackChanged)
         messenger.subscribe(to: .chaptersList_playSelectedChapter, handler: playSelectedChapter)
     }
     
@@ -132,7 +132,7 @@ class ChaptersListViewController: NSViewController {
         
         if let selRow = chaptersListView.selectedRowIndexes.first {
             
-            messenger.publish(.player_playChapter, payload: selRow)
+            messenger.publish(.Player.playChapter, payload: selRow)
             btnLoopChapter.onIf(player.chapterLoopExists)
             
             // Remove focus from the search field (if necessary)
@@ -142,7 +142,7 @@ class ChaptersListViewController: NSViewController {
     
     @IBAction func playPreviousChapterAction(_ sender: AnyObject) {
         
-        messenger.publish(.player_previousChapter)
+        messenger.publish(.Player.previousChapter)
         btnLoopChapter.onIf(player.chapterLoopExists)
         
         // Remove focus from the search field (if necessary)
@@ -151,7 +151,7 @@ class ChaptersListViewController: NSViewController {
     
     @IBAction func playNextChapterAction(_ sender: AnyObject) {
         
-        messenger.publish(.player_nextChapter)
+        messenger.publish(.Player.nextChapter)
         btnLoopChapter.onIf(player.chapterLoopExists)
         
         // Remove focus from the search field (if necessary)
@@ -164,7 +164,7 @@ class ChaptersListViewController: NSViewController {
         // (possible if chapters don't cover the entire timespan of the track)
         if player.playingChapter != nil {
             
-            messenger.publish(.player_replayChapter)
+            messenger.publish(.Player.replayChapter)
             btnLoopChapter.onIf(player.chapterLoopExists)
         }
         
@@ -179,7 +179,7 @@ class ChaptersListViewController: NSViewController {
         if player.playingChapter != nil {
             
             // Toggle the loop
-            messenger.publish(.player_toggleChapterLoop)
+            messenger.publish(.Player.toggleChapterLoop)
             btnLoopChapter.onIf(player.chapterLoopExists)
         }
         

@@ -68,7 +68,7 @@ class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate 
         
         percentageFormatter.maxValue = 100
         
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:),
+        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:),
                                  filter: {[weak self] msg in self?.isModal ?? false})
     }
     
@@ -184,7 +184,7 @@ class JumpToTimeEditorWindowController: NSWindowController, ModalDialogDelegate 
             jumpToTime = percentageStepper.doubleValue * secondsStepper.maxValue / 100
         }
         
-        messenger.publish(.player_jumpToTime, payload: jumpToTime)
+        messenger.publish(.Player.jumpToTime, payload: jumpToTime)
         
         modalDialogResponse = .ok
         theWindow.close()

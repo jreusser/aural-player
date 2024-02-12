@@ -17,20 +17,20 @@ class ControlBarPlaybackViewController: PlaybackViewController {
         
         // MARK: Notifications --------------------------------------------------------------
         
-        messenger.subscribe(to: .player_playOrPause, handler: playOrPause)
-        messenger.subscribe(to: .player_stop, handler: stop)
-        messenger.subscribe(to: .player_replayTrack, handler: replayTrack)
-        messenger.subscribe(to: .player_previousTrack, handler: previousTrack)
-        messenger.subscribe(to: .player_nextTrack, handler: nextTrack)
-        messenger.subscribe(to: .player_seekBackward, handler: seekBackward(_:))
-        messenger.subscribe(to: .player_seekForward, handler: seekForward(_:))
-        messenger.subscribe(to: .player_jumpToTime, handler: jumpToTime(_:))
+        messenger.subscribe(to: .Player.playOrPause, handler: playOrPause)
+        messenger.subscribe(to: .Player.stop, handler: stop)
+        messenger.subscribe(to: .Player.replayTrack, handler: replayTrack)
+        messenger.subscribe(to: .Player.previousTrack, handler: previousTrack)
+        messenger.subscribe(to: .Player.nextTrack, handler: nextTrack)
+        messenger.subscribe(to: .Player.seekBackward, handler: seekBackward(_:))
+        messenger.subscribe(to: .Player.seekForward, handler: seekForward(_:))
+        messenger.subscribe(to: .Player.jumpToTime, handler: jumpToTime(_:))
         
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
-        messenger.subscribe(to: .player_trackNotPlayed, handler: trackNotPlayed(_:))
+        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:))
+        messenger.subscribe(to: .Player.trackNotPlayed, handler: trackNotPlayed(_:))
         
-        messenger.subscribe(to: .effects_playbackRateChanged, handler: playbackRateChanged(_:))
-        messenger.subscribe(to: .player_playbackLoopChanged, handler: playbackLoopChanged)
+        messenger.subscribe(to: .Effects.playbackRateChanged, handler: playbackRateChanged(_:))
+        messenger.subscribe(to: .Player.playbackLoopChanged, handler: playbackLoopChanged)
         
         messenger.subscribe(to: .applyTheme, handler: (playbackView as! ControlBarPlaybackView).applyTheme)
     }

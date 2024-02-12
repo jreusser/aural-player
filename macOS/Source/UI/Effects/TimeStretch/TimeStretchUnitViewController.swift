@@ -62,7 +62,7 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
         super.bypassAction(sender)
         
         // The playback rate may have changed, send out a notification
-        messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.effectiveRate)
+        messenger.publish(.Effects.playbackRateChanged, payload: timeStretchUnit.effectiveRate)
     }
 
     // Updates the playback rate value
@@ -74,7 +74,7 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
 
         // If the unit is active, publish a notification that the playback rate has changed. Other UI elements may need to be updated as a result.
         if timeStretchUnit.isActive {
-            messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.rate)
+            messenger.publish(.Effects.playbackRateChanged, payload: timeStretchUnit.rate)
         }
     }
     
@@ -89,7 +89,7 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
 
         // If the unit is active, publish a notification that the playback rate has changed. Other UI elements may need to be updated as a result.
         if timeStretchUnit.isActive {
-            messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.rate)
+            messenger.publish(.Effects.playbackRateChanged, payload: timeStretchUnit.rate)
         }
     }
     
@@ -101,7 +101,7 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
 
         // If the unit is active, publish a notification that the playback rate has changed. Other UI elements may need to be updated as a result.
         if timeStretchUnit.isActive {
-            messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.rate)
+            messenger.publish(.Effects.playbackRateChanged, payload: timeStretchUnit.rate)
         }
     }
     
@@ -113,7 +113,7 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
 
         // If the unit is active, publish a notification that the playback rate has changed. Other UI elements may need to be updated as a result.
         if timeStretchUnit.isActive {
-            messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.rate)
+            messenger.publish(.Effects.playbackRateChanged, payload: timeStretchUnit.rate)
         }
     }
     
@@ -125,7 +125,7 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
 
         // If the unit is active, publish a notification that the playback rate has changed. Other UI elements may need to be updated as a result.
         if timeStretchUnit.isActive {
-            messenger.publish(.effects_playbackRateChanged, payload: timeStretchUnit.rate)
+            messenger.publish(.Effects.playbackRateChanged, payload: timeStretchUnit.rate)
         }
     }
     
@@ -142,9 +142,9 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
         
         super.initSubscriptions()
         
-        messenger.subscribe(to: .timeEffectsUnit_decreaseRate, handler: decreaseRate)
-        messenger.subscribe(to: .timeEffectsUnit_increaseRate, handler: increaseRate)
-        messenger.subscribe(to: .timeEffectsUnit_setRate, handler: setRate(_:))
+        messenger.subscribe(to: .Effects.TimeStretchUnit.decreaseRate, handler: decreaseRate)
+        messenger.subscribe(to: .Effects.TimeStretchUnit.increaseRate, handler: increaseRate)
+        messenger.subscribe(to: .Effects.TimeStretchUnit.setRate, handler: setRate(_:))
     }
 
     // Sets the playback rate to a specific value
@@ -168,7 +168,7 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
     // Changes the playback rate to a specific value
     private func rateChange(_ rateInfo: (rate: Float, rateString: String)) {
 
-        messenger.publish(.effects_unitStateChanged)
+        messenger.publish(.Effects.unitStateChanged)
 
         timeStretchUnitView.setRate(rateInfo.rate, rateString: rateInfo.rateString,
                                 shiftPitchString: timeStretchUnit.formattedPitch)
@@ -176,7 +176,7 @@ class TimeStretchUnitViewController: EffectsUnitViewController {
 
         showThisTab()
 
-        messenger.publish(.effects_playbackRateChanged, payload: rateInfo.rate)
+        messenger.publish(.Effects.playbackRateChanged, payload: rateInfo.rate)
     }
     
     override func colorSchemeChanged() {

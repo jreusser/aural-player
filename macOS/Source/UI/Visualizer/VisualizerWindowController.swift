@@ -87,7 +87,7 @@ class VisualizerWindowController: NSWindowController, NSWindowDelegate {
         
         window?.orderFront(self)
         
-        messenger.subscribeAsync(to: .player_playbackStateChanged, handler: playbackStateChanged)
+        messenger.subscribeAsync(to: .Player.playbackStateChanged, handler: playbackStateChanged)
     }
     
     private func initUI(type: VisualizationType, lowAmplitudeColor: NSColor, highAmplitudeColor: NSColor) {
@@ -207,6 +207,6 @@ class VisualizerWindowController: NSWindowController, NSWindowDelegate {
         
         allViews.forEach {$0.dismissView()}
         
-        messenger.unsubscribe(from: .player_playbackStateChanged)
+        messenger.unsubscribe(from: .Player.playbackStateChanged)
     }
 }

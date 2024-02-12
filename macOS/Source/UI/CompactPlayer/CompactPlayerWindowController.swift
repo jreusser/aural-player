@@ -60,7 +60,7 @@ class CompactPlayerWindowController: NSWindowController {
         
         colorSchemesManager.registerSchemeObserver(self)
         
-        messenger.subscribe(to: .effects_sheetDismissed, handler: effectsSheetDismissed)
+        messenger.subscribe(to: .Effects.sheetDismissed, handler: effectsSheetDismissed)
         
         messenger.subscribe(to: .CompactPlayer.showPlayer, handler: showPlayer)
         messenger.subscribe(to: .CompactPlayer.showPlayQueue, handler: showPlayQueue)

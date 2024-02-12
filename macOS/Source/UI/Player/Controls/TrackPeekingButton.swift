@@ -34,7 +34,7 @@ class TrackPeekingButton: TintedImageButton, TrackPeekingButtonProtocol {
         super.awakeFromNib()
         updateTooltip()
         
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: updateTooltip)
+        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: updateTooltip)
     }
     
     func updateTooltip() {

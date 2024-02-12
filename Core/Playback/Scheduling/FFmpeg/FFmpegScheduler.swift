@@ -234,7 +234,7 @@ class FFmpegScheduler: PlaybackSchedulerProtocol {
     
     // Signal track playback completion
     func trackCompleted(_ session: PlaybackSession) {
-        messenger.publish(.player_trackPlaybackCompleted, payload: session)
+        messenger.publish(.Player.trackPlaybackCompleted, payload: session)
     }
     
     func pause() {

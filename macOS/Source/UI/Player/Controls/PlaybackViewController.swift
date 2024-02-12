@@ -176,7 +176,7 @@ class PlaybackViewController: NSViewController {
         _ = player.toggleLoop()
         playbackLoopChanged()
         
-        messenger.publish(.player_playbackLoopChanged)
+        messenger.publish(.Player.playbackLoopChanged)
     }
     
     // When the playback loop for the current playing track is changed, the seek slider needs to be updated (redrawn) to show the current loop state

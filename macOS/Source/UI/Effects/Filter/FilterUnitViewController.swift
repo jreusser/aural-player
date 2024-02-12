@@ -191,7 +191,7 @@ class FilterUnitViewController: EffectsUnitViewController {
         
         super.initSubscriptions()
         
-        messenger.subscribe(to: .filterUnit_bandUpdated, handler: bandUpdated(_:))
+        messenger.subscribe(to: .Effects.FilterUnit.bandUpdated, handler: bandUpdated(_:))
         
         //fontSchemesManager.registerObservers([self, lblSummary], forProperty: \.smallFont)
         
@@ -206,7 +206,7 @@ class FilterUnitViewController: EffectsUnitViewController {
 //        colorSchemesManager.registerSchemeObserver(self, forProperties: [\.backgroundColor, \.primaryTextColor, \.secondaryTextColor])
 //        colorSchemesManager.registerObserver(addButtonMenuIcon, forProperty: \.buttonColor)
         
-        messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: updateSummary)
+        messenger.subscribe(to: .Effects.FilterUnit.bandBypassStateUpdated, handler: updateSummary)
     }
     
     override func stateChanged() {

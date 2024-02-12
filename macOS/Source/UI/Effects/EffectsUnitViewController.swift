@@ -133,7 +133,7 @@ class EffectsUnitViewController: NSViewController, FontSchemeObserver, ColorSche
         _ = effectsUnit.toggleState()
         stateChanged()
         
-        messenger.publish(.effects_unitStateChanged)
+        messenger.publish(.Effects.unitStateChanged)
     }
     
     // Applies a preset to the effects unit
@@ -157,17 +157,17 @@ class EffectsUnitViewController: NSViewController, FontSchemeObserver, ColorSche
         fxUnitStateObserverRegistry.registerObserver(btnBypass, forFXUnit: effectsUnit)
         
         // Subscribe to notifications
-        messenger.subscribe(to: .effects_unitStateChanged, handler: stateChanged)
+        messenger.subscribe(to: .Effects.unitStateChanged, handler: stateChanged)
         
         // FIXME: Revisit this filter logic.
-        messenger.subscribe(to: .effects_updateEffectsUnitView,
+        messenger.subscribe(to: .Effects.updateEffectsUnitView,
                             handler: initControls,
                             filter: {[weak self] (unitType: EffectsUnitType) in
                                 unitType.equalsOneOf(self?.unitType, .master)
                             })
         
-        messenger.subscribe(to: .effects_showPresetsAndSettingsMenu, handler: presetsAndSettingsMenuButton.show)
-        messenger.subscribe(to: .effects_hidePresetsAndSettingsMenu, handler: presetsAndSettingsMenuButton.hide)
+        messenger.subscribe(to: .Effects.showPresetsAndSettingsMenu, handler: presetsAndSettingsMenuButton.show)
+        messenger.subscribe(to: .Effects.hidePresetsAndSettingsMenu, handler: presetsAndSettingsMenuButton.hide)
         
         presetsAndSettingsMenuButton.hide()
         
@@ -196,7 +196,7 @@ class EffectsUnitViewController: NSViewController, FontSchemeObserver, ColorSche
     // MARK: Helper functions
     
     func showThisTab() {
-        messenger.publish(.effects_showEffectsUnitTab, payload: unitType)
+        messenger.publish(.Effects.showEffectsUnitTab, payload: unitType)
     }
     
     func fontSchemeChanged() {

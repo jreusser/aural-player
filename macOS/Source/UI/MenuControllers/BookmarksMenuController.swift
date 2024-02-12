@@ -71,12 +71,12 @@ class BookmarksMenuController: NSObject, NSMenuDelegate {
     
     // When a bookmark menu item is clicked, the item is played
     @IBAction func bookmarkTrackPositionAction(_ sender: Any) {
-        messenger.publish(.player_bookmarkPosition)
+        messenger.publish(.Player.bookmarkPosition)
     }
     
     // When a bookmark menu item is clicked, the item is played
     @IBAction func bookmarkTrackSegmentLoopAction(_ sender: Any) {
-        messenger.publish(.player_bookmarkLoop)
+        messenger.publish(.Player.bookmarkLoop)
     }
     
     // When a bookmark menu item is clicked, the item is played

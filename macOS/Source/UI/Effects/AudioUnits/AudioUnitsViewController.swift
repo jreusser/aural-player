@@ -65,7 +65,7 @@ class AudioUnitsViewController: NSViewController {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.inactiveControlColor, handler: inactiveControlColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.suppressedControlColor, handler: suppressedControlColorChanged(_:))
         
-        messenger.subscribe(to: .effects_auStateChanged, handler: updateSummary)
+        messenger.subscribe(to: .Effects.auStateChanged, handler: updateSummary)
     }
     
     override func destroy() {
@@ -95,8 +95,8 @@ class AudioUnitsViewController: NSViewController {
         DispatchQueue.main.async {
             
             self.doEditAudioUnit(audioUnit)
-            self.messenger.publish(.auEffectsUnit_audioUnitAdded, payload: audioUnit)
-            self.messenger.publish(.effects_unitStateChanged)
+            self.messenger.publish(.Effects.audioUnitAdded, payload: audioUnit)
+            self.messenger.publish(.Effects.unitStateChanged)
         }
     }
     
@@ -127,7 +127,7 @@ class AudioUnitsViewController: NSViewController {
     func toggleAudioUnitState(audioUnit: HostedAudioUnitDelegateProtocol) {
         
         _ = audioUnit.toggleState()
-        messenger.publish(.effects_unitStateChanged)
+        messenger.publish(.Effects.unitStateChanged)
         updateSummary()
     }
     
@@ -145,8 +145,8 @@ class AudioUnitsViewController: NSViewController {
         tableView.reloadData()
         updateSummary()
         
-        messenger.publish(.auEffectsUnit_audioUnitsRemoved, payload: selRows)
-        messenger.publish(.effects_unitStateChanged)
+        messenger.publish(.Effects.audioUnitsRemoved, payload: selRows)
+        messenger.publish(.Effects.unitStateChanged)
     }
     
     private func updateSummary() {

@@ -46,7 +46,7 @@ extension UnifiedPlayerWindowController {
            ScrollSession.validateEvent(timestamp: event.timestamp, eventDirection: scrollDirection) {
         
             // Scroll up = increase volume, scroll down = decrease volume
-            messenger.publish(scrollDirection == .up ?.player_increaseVolume : .player_decreaseVolume, payload: UserInputMode.continuous)
+            messenger.publish(scrollDirection == .up ?.Player.increaseVolume : .Player.decreaseVolume, payload: UserInputMode.continuous)
         }
     }
     
@@ -67,7 +67,7 @@ extension UnifiedPlayerWindowController {
         if ScrollSession.validateEvent(timestamp: event.timestamp, eventDirection: scrollDirection) {
             
             // Scroll left = seek backward, scroll right = seek forward
-            messenger.publish(scrollDirection == .left ? .player_seekBackward : .player_seekForward, payload: UserInputMode.continuous)
+            messenger.publish(scrollDirection == .left ? .Player.seekBackward : .Player.seekForward, payload: UserInputMode.continuous)
         }
     }
     

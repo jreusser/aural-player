@@ -59,11 +59,11 @@
 //        messenger.subscribeAsync(to: .playlist_trackAdded, handler: trackAdded(_:))
 //        messenger.subscribeAsync(to: .playlist_tracksRemoved, handler: tracksRemoved(_:))
 //
-//        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
-//        messenger.subscribeAsync(to: .player_trackNotPlayed, handler: trackNotPlayed(_:))
+//        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:))
+//        messenger.subscribeAsync(to: .Player.trackNotPlayed, handler: trackNotPlayed(_:))
 //
 //        // Don't bother responding if only album art was updated
-//        messenger.subscribeAsync(to: .player_trackInfoUpdated, handler: trackInfoUpdated(_:),
+//        messenger.subscribeAsync(to: .Player.trackInfoUpdated, handler: trackInfoUpdated(_:),
 //                                 filter: {msg in msg.updatedFields.contains(.duration)})
 //
 //        // MARK: Command handling -------------------------------------------------------------------------------------------------

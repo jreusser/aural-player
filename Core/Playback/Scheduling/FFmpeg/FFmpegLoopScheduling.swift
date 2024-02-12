@@ -34,7 +34,7 @@ extension FFmpegScheduler {
             playerNode.play()
         }
         
-        messenger.publish(.player_loopRestarted)
+        messenger.publish(.Player.loopRestarted)
     }
     
     func initiateLoopDecodingAndScheduling(for session: PlaybackSession, context: FFmpegPlaybackContext, decoder: FFmpegDecoder, with loop: PlaybackLoop, startingAt time: Double? = nil) {

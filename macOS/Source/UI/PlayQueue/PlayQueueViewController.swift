@@ -63,7 +63,7 @@ class PlayQueueViewController: TrackListTableViewController {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.activeControlColor, handler: activeControlColorChanged(_:))
         
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: tracksAdded(_:))
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
+        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:))
         messenger.subscribe(to: .playQueue_refresh, handler: tableView.reloadData)
     }
     

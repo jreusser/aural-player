@@ -73,7 +73,7 @@ class EffectsUnit: NSObject {
     func stateChanged() {
         
         if stateChangeRequiresNotification, isActive, unitType != .master {
-            messenger.publish(.effects_unitActivated)
+            messenger.publish(.Effects.unitActivated)
         }
     }
     

@@ -28,8 +28,8 @@ class FilterChart: NSView {
         
         super.awakeFromNib()
         
-        messenger.subscribe(to: .filterUnit_bandUpdated, handler: redraw)
-        messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: redraw)
+        messenger.subscribe(to: .Effects.FilterUnit.bandUpdated, handler: redraw)
+        messenger.subscribe(to: .Effects.FilterUnit.bandBypassStateUpdated, handler: redraw)
     }
     
     override func draw(_ dirtyRect: NSRect) {

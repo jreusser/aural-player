@@ -124,7 +124,7 @@ class RemoteCommandManager: NSObject {
     ///
     @objc func handleTogglePlayPause(_ event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
         
-        messenger.publish(.player_playOrPause)
+        messenger.publish(.Player.playOrPause)
         return .success
     }
     
@@ -137,7 +137,7 @@ class RemoteCommandManager: NSObject {
     ///
     @objc func handleStop(_ event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
         
-        messenger.publish(.player_stop)
+        messenger.publish(.Player.stop)
         return .success
     }
     
@@ -150,7 +150,7 @@ class RemoteCommandManager: NSObject {
     ///
     @objc func handlePreviousTrack(_ event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
         
-        messenger.publish(.player_previousTrack)
+        messenger.publish(.Player.previousTrack)
         return .success
     }
     
@@ -163,7 +163,7 @@ class RemoteCommandManager: NSObject {
     ///
     @objc func handleNextTrack(_ event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
         
-        messenger.publish(.player_nextTrack)
+        messenger.publish(.Player.nextTrack)
         return .success
     }
     
@@ -177,9 +177,9 @@ class RemoteCommandManager: NSObject {
     @objc func handleSkipBackward(_ event: MPSkipIntervalCommandEvent) -> MPRemoteCommandHandlerStatus {
         
         #if os(macOS)
-        messenger.publish(.player_seekBackward, payload: UserInputMode.discrete)
+        messenger.publish(.Player.seekBackward, payload: UserInputMode.discrete)
         #elseif os(iOS)
-        messenger.publish(.player_seekBackward)
+        messenger.publish(.Player.seekBackward)
         #endif
         
         return .success
@@ -195,9 +195,9 @@ class RemoteCommandManager: NSObject {
     @objc func handleSkipForward(_ event: MPSkipIntervalCommandEvent) -> MPRemoteCommandHandlerStatus {
         
         #if os(macOS)
-        messenger.publish(.player_seekForward, payload: UserInputMode.discrete)
+        messenger.publish(.Player.seekForward, payload: UserInputMode.discrete)
         #elseif os(iOS)
-        messenger.publish(.player_seekForward)
+        messenger.publish(.Player.seekForward)
         #endif
         
         return .success
@@ -212,7 +212,7 @@ class RemoteCommandManager: NSObject {
     ///
     @objc func handleChangePlaybackPosition(_ event: MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {
         
-        messenger.publish(.player_jumpToTime, payload: event.positionTime)
+        messenger.publish(.Player.jumpToTime, payload: event.positionTime)
         return .success
     }
 }

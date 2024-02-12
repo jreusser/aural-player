@@ -49,12 +49,12 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
         messenger.subscribe(to: .favoritesList_itemAdded, handler: trackAddedToFavorites(_:))
         messenger.subscribe(to: .favoritesList_itemsRemoved, handler: tracksRemovedFromFavorites(_:))
         
-        messenger.subscribe(to: .player_moreInfo, handler: moreInfo)
+        messenger.subscribe(to: .Player.moreInfo, handler: moreInfo)
         messenger.subscribe(to: .favoritesList_addOrRemove, handler: addOrRemoveFavorite)
-        messenger.subscribe(to: .player_bookmarkPosition, handler: bookmarkPosition)
-        messenger.subscribe(to: .player_bookmarkLoop, handler: bookmarkLoop)
+        messenger.subscribe(to: .Player.bookmarkPosition, handler: bookmarkPosition)
+        messenger.subscribe(to: .Player.bookmarkLoop, handler: bookmarkLoop)
         
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
+        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:))
     }
     
     func menuWillOpen(_ menu: NSMenu) {
@@ -97,7 +97,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
         TrackInfoViewContext.displayedTrack = playingTrack
         
         if windowLayoutsManager.isWindowLoaded(withId: .trackInfo) {
-            messenger.publish(.trackInfo_refresh)
+            messenger.publish(.Player.trackInfo_refresh)
         }
         
         windowLayoutsManager.showWindow(withId: .trackInfo)
@@ -195,7 +195,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
     }
     
     @IBAction func rememberLastPositionAction(_ sender: ToggleMenuItem) {
-        messenger.publish(!rememberLastPositionMenuItem.isOn ? .player_savePlaybackProfile : .player_deletePlaybackProfile)
+        messenger.publish(!rememberLastPositionMenuItem.isOn ? .Player.savePlaybackProfile : .Player.deletePlaybackProfile)
     }
     
     // MARK: Notif handling

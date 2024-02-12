@@ -37,7 +37,7 @@ class EffectsSheetViewController: NSViewController {
     func endSheet() {
         
         dismiss(self)
-        messenger.publish(.effects_sheetDismissed)
+        messenger.publish(.Effects.sheetDismissed)
     }
 }
 

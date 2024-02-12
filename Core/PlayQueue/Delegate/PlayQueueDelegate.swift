@@ -115,7 +115,7 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     func removeTracks(at indices: IndexSet) -> [Track] {
         
         if let playingTrackIndex = playQueue.currentTrackIndex, indices.contains(playingTrackIndex) {
-            messenger.publish(.player_stop)
+            messenger.publish(.Player.stop)
         }
         
         return playQueue.removeTracks(at: indices)

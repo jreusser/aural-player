@@ -59,7 +59,7 @@ class FilterBandView: NSView {
     }
     
     private lazy var bandChangedCallback: (() -> Void) = {
-        self.messenger.publish(.filterUnit_bandUpdated, payload: self.bandIndex)
+        self.messenger.publish(.Effects.FilterUnit.bandUpdated, payload: self.bandIndex)
     }
     
     private lazy var messenger: Messenger = Messenger(for: self)
@@ -103,7 +103,7 @@ class FilterBandView: NSView {
 //        colorSchemesManager.registerSchemeObserver(filterTypeMenu, forProperties: [\.buttonColor, \.primaryTextColor])
 //        colorSchemesManager.registerObservers([presetRangesIconMenuItem, presetCutoffsIconMenuItem], forProperty: \.buttonColor)
         
-        messenger.subscribe(to: .filterUnit_bandBypassStateUpdated, handler: bandBypassStateUpdated(bandIndex:),
+        messenger.subscribe(to: .Effects.FilterUnit.bandBypassStateUpdated, handler: bandBypassStateUpdated(bandIndex:),
                             filter: {[weak self] bandIndex in (self?.bandIndex ?? -1) == bandIndex})
         
 //        presetRangesIconMenuItem.tintFunction = {Colors.functionButtonColor}

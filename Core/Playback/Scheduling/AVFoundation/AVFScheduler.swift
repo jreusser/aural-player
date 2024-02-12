@@ -152,7 +152,7 @@ class AVFScheduler: PlaybackSchedulerProtocol {
             playerNode.play()
         }
         
-        messenger.publish(.player_loopRestarted)
+        messenger.publish(.Player.loopRestarted)
     }
     
     func endLoop(_ session: PlaybackSession, _ loopEndTime: Double, _ beginPlayback: Bool) {
@@ -196,7 +196,7 @@ class AVFScheduler: PlaybackSchedulerProtocol {
     
     // Signal track playback completion
     func trackCompleted(_ session: PlaybackSession) {
-        messenger.publish(.player_trackPlaybackCompleted, payload: session)
+        messenger.publish(.Player.trackPlaybackCompleted, payload: session)
     }
     
     func loopSegmentCompleted(_ session: PlaybackSession) {
@@ -234,7 +234,7 @@ class AVFScheduler: PlaybackSchedulerProtocol {
             playerNode.play()
         }
         
-        messenger.publish(.player_loopRestarted)
+        messenger.publish(.Player.loopRestarted)
     }
 
     // Computes a segment completion handler closure, given a playback session.

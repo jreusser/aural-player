@@ -50,7 +50,7 @@ class PlayQueueWindowController: NSWindowController, ColorSchemeObserver {
         
         changeWindowCornerRadius(windowAppearanceState.cornerRadius)
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
-        messenger.subscribe(to: .player_trackTransitioned, handler: trackTransitioned(_:))
+        messenger.subscribe(to: .Player.trackTransitioned, handler: trackTransitioned(_:))
     }
     
     func trackTransitioned(_ notif: TrackTransitionNotification) {

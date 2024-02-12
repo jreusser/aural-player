@@ -57,14 +57,14 @@ class FilterBandViewController: NSViewController {
         if let selectedItemTitle = sender.titleOfSelectedItem {
             
             bandView.changeBandType(FilterBandType.fromDescription(selectedItemTitle))
-            messenger.publish(.filterUnit_bandUpdated, payload: bandView.bandIndex)
+            messenger.publish(.Effects.FilterUnit.bandUpdated, payload: bandView.bandIndex)
         }
     }
     
     @IBAction func cutoffSliderAction(_ sender: EffectsUnitSlider) {
         
         bandView.cutoffFrequencyChanged()
-        messenger.publish(.filterUnit_bandUpdated, payload: bandView.bandIndex)
+        messenger.publish(.Effects.FilterUnit.bandUpdated, payload: bandView.bandIndex)
     }
     
     @IBAction func presetRangeAction(_ sender: NSPopUpButton) {
@@ -72,7 +72,7 @@ class FilterBandViewController: NSViewController {
         if let rangeItem = sender.selectedItem as? FrequencyRangeMenuItem {
             
             bandView.setFrequencyRange(minFreq: rangeItem.minFreq, maxFreq: rangeItem.maxFreq)
-            messenger.publish(.filterUnit_bandUpdated, payload: bandView.bandIndex)
+            messenger.publish(.Effects.FilterUnit.bandUpdated, payload: bandView.bandIndex)
         }
     }
     
@@ -81,7 +81,7 @@ class FilterBandViewController: NSViewController {
         if let selectedItem = sender.selectedItem {
             
             bandView.setCutoffFrequency(Float(selectedItem.tag))
-            messenger.publish(.filterUnit_bandUpdated, payload: bandView.bandIndex)
+            messenger.publish(.Effects.FilterUnit.bandUpdated, payload: bandView.bandIndex)
         }
     }
 }

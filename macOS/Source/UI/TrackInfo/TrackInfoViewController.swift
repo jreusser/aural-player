@@ -75,12 +75,12 @@ class TrackInfoViewController: NSViewController {
         
         // Only respond to these notifications when the popover is shown, the updated track matches the displayed track,
         // and the album art field of the track was updated.
-        messenger.subscribeAsync(to: .player_trackInfoUpdated, handler: coverArtViewController.trackInfoUpdated(_:),
+        messenger.subscribeAsync(to: .Player.trackInfoUpdated, handler: coverArtViewController.trackInfoUpdated(_:),
                                  filter: {[weak self] msg in (self?.view.window?.isVisible ?? false) &&
                                     msg.updatedTrack == TrackInfoViewContext.displayedTrack &&
                                     msg.updatedFields.contains(.art)})
         
-        messenger.subscribe(to: .trackInfo_refresh, handler: refresh)
+        messenger.subscribe(to: .Player.trackInfo_refresh, handler: refresh)
     }
     
     override func viewWillAppear() {

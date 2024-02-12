@@ -15,7 +15,7 @@ import Foundation
 ///
 struct PreTrackPlaybackNotification: NotificationPayload {
     
-    let notificationName: Notification.Name = .player_preTrackPlayback
+    let notificationName: Notification.Name = .Player.preTrackPlayback
     
     // The track that was playing before the track change (may be nil, meaning no track was playing)
     let oldTrack: Track?

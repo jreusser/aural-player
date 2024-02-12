@@ -35,7 +35,7 @@ class Player: PlayerProtocol {
     private(set) var state: PlaybackState = .stopped {
 
         didSet {
-            messenger.publish(.player_playbackStateChanged)
+            messenger.publish(.Player.playbackStateChanged)
         }
     }
     
@@ -144,7 +144,7 @@ class Player: PlayerProtocol {
         if !playbackCompleted, let newSession = PlaybackSession.startNewSessionForPlayingTrack() {
             
             scheduler.seekToTime(newSession, actualSeekTime, state == .playing)
-            messenger.publish(.player_seekPerformed)
+            messenger.publish(.Player.seekPerformed)
         }
         
         return PlayerSeekResult(actualSeekPosition: actualSeekTime, loopRemoved: loopRemoved, trackPlaybackCompleted: playbackCompleted)

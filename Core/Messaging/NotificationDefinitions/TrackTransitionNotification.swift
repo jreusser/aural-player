@@ -17,7 +17,7 @@ import Foundation
 ///
 struct TrackTransitionNotification: NotificationPayload {
 
-    let notificationName: Notification.Name = .player_trackTransitioned
+    let notificationName: Notification.Name = .Player.trackTransitioned
     
     // The track that was playing before the transition (may be nil, meaning no track was playing)
     let beginTrack: Track?

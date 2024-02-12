@@ -14,7 +14,7 @@ import Foundation
 ///
 struct TrackPlaybackCommandNotification: NotificationPayload {
     
-    let notificationName: Notification.Name = .player_playTrack
+    let notificationName: Notification.Name = .Player.playTrack
     
     // Type indicates whether the request parameter is an index, track, or group.
     // This is used to initialize the new playback sequence.

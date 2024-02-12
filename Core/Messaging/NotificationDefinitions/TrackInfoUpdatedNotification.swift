@@ -15,7 +15,7 @@ import Foundation
 ///
 struct TrackInfoUpdatedNotification: NotificationPayload {
     
-    let notificationName: Notification.Name = .player_trackInfoUpdated
+    let notificationName: Notification.Name = .Player.trackInfoUpdated
     
     // The track that has been updated
     let updatedTrack: Track

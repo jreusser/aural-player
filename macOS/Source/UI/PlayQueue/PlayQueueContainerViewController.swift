@@ -141,7 +141,7 @@ class PlayQueueContainerViewController: NSViewController {
         
         messenger.subscribeAsync(to: .playQueue_tracksAdded, handler: updateSummary)
         
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: updateSummary)
+        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: updateSummary)
         
         messenger.subscribe(to: .playQueue_updateSummary, handler: updateSummary)
     }

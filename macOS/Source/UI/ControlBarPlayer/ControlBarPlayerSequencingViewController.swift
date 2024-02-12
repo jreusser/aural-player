@@ -19,7 +19,7 @@ class ControlBarPlayerSequencingViewController: PlayerSequencingViewController {
     
     override func initSubscriptions() {
         
-        messenger.subscribe(to: .player_setRepeatMode, handler: setRepeatMode(_:))
-        messenger.subscribe(to: .player_setShuffleMode, handler: setShuffleMode(_:))
+        messenger.subscribe(to: .Player.setRepeatMode, handler: setRepeatMode(_:))
+        messenger.subscribe(to: .Player.setShuffleMode, handler: setShuffleMode(_:))
     }
 }

@@ -486,31 +486,29 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     func setUpCommandHandling() {
         
-        messenger.subscribeAsync(to: .player_playTrack, handler: performTrackPlayback(_:))
-        messenger.subscribe(to: .player_decreaseVolume, handler: decreaseVolume(inputMode:))
-        messenger.subscribe(to: .player_increaseVolume, handler: increaseVolume(inputMode:))
-        messenger.subscribe(to: .player_muteOrUnmute, handler: muteOrUnmute)
+        messenger.subscribeAsync(to: .Player.playTrack, handler: performTrackPlayback(_:))
+        messenger.subscribe(to: .Player.decreaseVolume, handler: decreaseVolume(inputMode:))
+        messenger.subscribe(to: .Player.increaseVolume, handler: increaseVolume(inputMode:))
+        messenger.subscribe(to: .Player.muteOrUnmute, handler: muteOrUnmute)
         
-        messenger.subscribe(to: .player_playOrPause, handler: playOrPause)
-        messenger.subscribe(to: .player_stop, handler: stop)
-        messenger.subscribe(to: .player_replayTrack, handler: replayTrack)
-        messenger.subscribe(to: .player_previousTrack, handler: previousTrack)
-        messenger.subscribe(to: .player_nextTrack, handler: nextTrack)
-        messenger.subscribe(to: .player_seekBackward, handler: seekBackward(inputMode:))
-        messenger.subscribe(to: .player_seekForward, handler: seekForward(inputMode:))
-        messenger.subscribe(to: .player_seekBackward_secondary, handler: seekBackward_secondary)
-        messenger.subscribe(to: .player_seekForward_secondary, handler: seekForward_secondary)
+        messenger.subscribe(to: .Player.playOrPause, handler: playOrPause)
+        messenger.subscribe(to: .Player.stop, handler: stop)
+        messenger.subscribe(to: .Player.replayTrack, handler: replayTrack)
+        messenger.subscribe(to: .Player.previousTrack, handler: previousTrack)
+        messenger.subscribe(to: .Player.nextTrack, handler: nextTrack)
+        messenger.subscribe(to: .Player.seekBackward, handler: seekBackward(inputMode:))
+        messenger.subscribe(to: .Player.seekForward, handler: seekForward(inputMode:))
+        messenger.subscribe(to: .Player.seekBackward_secondary, handler: seekBackward_secondary)
+        messenger.subscribe(to: .Player.seekForward_secondary, handler: seekForward_secondary)
+        messenger.subscribe(to: .Player.jumpToTime, handler: jumpToTime(_:))
         
-        messenger.subscribe(to: .player_showOrHideAlbumArt, handler: showOrHideAlbumArt)
-        messenger.subscribe(to: .player_showOrHideArtist, handler: showOrHideArtist)
-        messenger.subscribe(to: .player_showOrHideAlbum, handler: showOrHideAlbum)
-        messenger.subscribe(to: .player_showOrHideCurrentChapter, handler: showOrHideCurrentChapter)
-        messenger.subscribe(to: .player_showOrHideMainControls, handler: showOrHideMainControls)
-        messenger.subscribe(to: .player_showOrHideTrackTime, handler: showOrHideTrackTime)
+        messenger.subscribe(to: .Player.showOrHideAlbumArt, handler: showOrHideAlbumArt)
+        messenger.subscribe(to: .Player.showOrHideArtist, handler: showOrHideArtist)
+        messenger.subscribe(to: .Player.showOrHideAlbum, handler: showOrHideAlbum)
+        messenger.subscribe(to: .Player.showOrHideCurrentChapter, handler: showOrHideCurrentChapter)
+        messenger.subscribe(to: .Player.showOrHideMainControls, handler: showOrHideMainControls)
+        messenger.subscribe(to: .Player.showOrHideTrackTime, handler: showOrHideTrackTime)
         messenger.subscribe(to: .Player.setTrackTimeDisplayType, handler: setTrackTimeDisplayType(to:))
-        
-//        messenger.subscribe(to: .Player.setTrackTimeDisplayType, handler: )
-//        messenger.subscribe(to: .player_jumpToTime, handler: jumpToTime(_:))
     }
     
     @IBAction func togglePlayPauseAction(_ sender: NSButton) {
@@ -546,6 +544,24 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         }
     }
     
+    func performTrackPlayback(_ command: TrackPlaybackCommandNotification) {
+        
+        switch command.type {
+            
+        case .index:
+            
+            if let index = command.index {
+                playbackDelegate.play(index, .defaultParams())
+            }
+            
+        case .track:
+            
+            if let track = command.track {
+                playbackDelegate.play(track, .defaultParams())
+            }
+        }
+    }
+    
     func stop() {
         playbackDelegate.stop()
     }
@@ -563,6 +579,12 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
             btnPlayPauseStateMachine.setState(playbackDelegate.state)
             updateSeekTimerState()
         }
+    }
+    
+    @IBAction func seekSliderAction(_ sender: NSSlider) {
+        
+        playbackDelegate.seekToPercentage(seekSlider.doubleValue)
+        updateSeekPosition()
     }
     
     // Seeks backward within the currently playing track
@@ -599,9 +621,9 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         updateSeekPosition()
     }
     
-    @IBAction func seekSliderAction(_ sender: NSSlider) {
+    func jumpToTime(_ time: Double) {
         
-        playbackDelegate.seekToPercentage(seekSlider.doubleValue)
+        playbackDelegate.seekToTime(time)
         updateSeekPosition()
     }
     
@@ -610,7 +632,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         guard playbackDelegate.state.isPlayingOrPaused else {return}
         
         playbackDelegate.toggleLoop()
-        messenger.publish(.player_playbackLoopChanged)
+        messenger.publish(.Player.playbackLoopChanged)
     }
     
     @IBAction func toggleTrackTimeDisplayTypeAction(_ sender: NSTextField) {
@@ -695,22 +717,38 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     func playChapter(index: Int) {
         
+        playbackDelegate.playChapter(index)
+        playbackLoopChanged()
+//        playbackView.playbackStateChanged(playbackDelegate.state)
     }
     
     func previousChapter() {
         
+        playbackDelegate.previousChapter()
+        playbackLoopChanged()
+//        playbackView.playbackStateChanged(playbackDelegate.state)
     }
     
     func nextChapter() {
         
+        playbackDelegate.nextChapter()
+        playbackLoopChanged()
+//        playbackView.playbackStateChanged(playbackDelegate.state)
     }
     
     func replayChapter() {
         
+        playbackDelegate.replayChapter()
+        updateSeekPosition()
+//        playbackView.playbackStateChanged(playbackDelegate.state)
     }
     
     func toggleChapterLoop() {
         
+        _ = playbackDelegate.toggleChapterLoop()
+        playbackLoopChanged()
+        
+        messenger.publish(.Player.playbackLoopChanged)
     }
     
     @IBAction func volumeAction(_ sender: NSSlider) {
@@ -816,10 +854,6 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         updateRepeatAndShuffleControls(modes: playQueueDelegate.setShuffleMode(shuffleMode))
     }
     
-    @objc dynamic func showOrHideAlbumArt() {
-        
-    }
-    
     @objc dynamic func showOrHideArtist() {
         multilineTrackTextView.update()
     }
@@ -830,6 +864,10 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     @objc dynamic func showOrHideCurrentChapter() {
         multilineTrackTextView.update()
+    }
+    
+    @objc dynamic func showOrHideAlbumArt() {
+        
     }
     
     @objc dynamic func showOrHideMainControls() {
@@ -855,12 +893,12 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     func setUpNotificationHandling() {
         
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
-        messenger.subscribe(to: .player_playbackLoopChanged, handler: playbackLoopChanged)
-        messenger.subscribe(to: .player_trackNotPlayed, handler: trackNotPlayed(_:))
+        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:))
+        messenger.subscribe(to: .Player.playbackLoopChanged, handler: playbackLoopChanged)
+        messenger.subscribe(to: .Player.chapterChanged, handler: chapterChanged(_:))
+        messenger.subscribe(to: .Player.trackNotPlayed, handler: trackNotPlayed(_:))
         
-//        messenger.subscribe(to: .effects_playbackRateChanged, handler: playbackRateChanged(_:))
-//        messenger.subscribe(to: .player_playbackLoopChanged, handler: playbackLoopChanged)
+        messenger.subscribe(to: .Effects.playbackRateChanged, handler: playbackRateChanged(_:))
     }
     
     func trackTransitioned(_ notification: TrackTransitionNotification) {
@@ -869,6 +907,9 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     func chapterChanged(_ notification: ChapterChangedNotification) {
         
+        if let playingTrack = playbackDelegate.playingTrack {
+            multilineTrackTextView?.trackInfo = PlayingTrackInfo(track: playingTrack, playingChapterTitle: notification.newChapter?.chapter.title)
+        }
     }
     
     func playingTrackInfoUpdated(_ notification: TrackInfoUpdatedNotification) {
@@ -879,21 +920,12 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         
     }
     
-    func performTrackPlayback(_ command: TrackPlaybackCommandNotification) {
+    func playbackRateChanged(_ newPlaybackRate: Float) {
         
-        switch command.type {
-            
-        case .index:
-            
-            if let index = command.index {
-                playbackDelegate.play(index, .defaultParams())
-            }
-            
-        case .track:
-            
-            if let track = command.track {
-                playbackDelegate.play(track, .defaultParams())
-            }
+        let interval = (1000 / (2 * newPlaybackRate)).roundedInt
+        
+        if interval != seekTimer.interval {
+            seekTimer.interval = interval
         }
     }
     

@@ -89,7 +89,7 @@ class EffectsPresetsManagerGenericViewController: NSViewController, NSTableViewD
         if let preset = firstSelectedPreset {
             
             effectsUnit.applyPreset(named: preset.name)
-            messenger.publish(.effects_updateEffectsUnitView, payload: self.unitType!)
+            messenger.publish(.Effects.updateEffectsUnitView, payload: self.unitType!)
         }
     }
     

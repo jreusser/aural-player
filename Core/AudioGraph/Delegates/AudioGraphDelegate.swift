@@ -147,10 +147,10 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
         graph.captureSystemSoundProfile()
         
         messenger.subscribe(to: .application_willExit, handler: onAppExit)
-        messenger.subscribe(to: .player_preTrackPlayback, handler: preTrackPlayback(_:))
+        messenger.subscribe(to: .Player.preTrackPlayback, handler: preTrackPlayback(_:))
         
-        messenger.subscribe(to: .effects_saveSoundProfile, handler: saveSoundProfile)
-        messenger.subscribe(to: .effects_deleteSoundProfile, handler: deleteSoundProfile)
+        messenger.subscribe(to: .Effects.saveSoundProfile, handler: saveSoundProfile)
+        messenger.subscribe(to: .Effects.deleteSoundProfile, handler: deleteSoundProfile)
     }
     
     let minVolume: Float = 0

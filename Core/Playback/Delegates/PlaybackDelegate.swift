@@ -60,13 +60,13 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
         
         // Subscribe to notifications
         messenger.subscribe(to: .application_willExit, handler: onAppExit)
-        messenger.subscribeAsync(to: .player_trackPlaybackCompleted, handler: trackPlaybackCompleted(_:))
+        messenger.subscribeAsync(to: .Player.trackPlaybackCompleted, handler: trackPlaybackCompleted(_:))
         messenger.subscribe(to: .playQueue_playingTrackRemoved, handler: doStop(_:))
 
         // Commands
-        messenger.subscribeAsync(to: .player_autoplay, handler: autoplay(_:))
-        messenger.subscribe(to: .player_savePlaybackProfile, handler: savePlaybackProfile)
-        messenger.subscribe(to: .player_deletePlaybackProfile, handler: deletePlaybackProfile)
+        messenger.subscribeAsync(to: .Player.autoplay, handler: autoplay(_:))
+        messenger.subscribe(to: .Player.savePlaybackProfile, handler: savePlaybackProfile)
+        messenger.subscribe(to: .Player.deletePlaybackProfile, handler: deletePlaybackProfile)
 //        messenger.subscribe(to: .playlist_currentPlaylistChanged, handler: stop)
     }
     
@@ -313,7 +313,7 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
                 doTrackPlaybackCompleted()
                 
             } else if seekResult.loopRemoved {
-                messenger.publish(.player_playbackLoopChanged)
+                messenger.publish(.Player.playbackLoopChanged)
             }
         }
     }

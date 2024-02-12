@@ -79,7 +79,7 @@ extension MainWindowController {
         if gesturesPreferences.allowTrackChange {
             
             // Publish the command notification
-            messenger.publish(swipeDirection == .left ? .player_previousTrack : .player_nextTrack)
+            messenger.publish(swipeDirection == .left ? .Player.previousTrack : .Player.nextTrack)
         }
     }
     
@@ -88,7 +88,7 @@ extension MainWindowController {
         if gesturesPreferences.allowVolumeControl && ScrollSession.validateEvent(timestamp: event.timestamp, eventDirection: scrollDirection) {
         
             // Scroll up = increase volume, scroll down = decrease volume
-            messenger.publish(scrollDirection == .up ?.player_increaseVolume : .player_decreaseVolume, payload: UserInputMode.continuous)
+            messenger.publish(scrollDirection == .up ?.Player.increaseVolume : .Player.decreaseVolume, payload: UserInputMode.continuous)
         }
     }
     
@@ -109,7 +109,7 @@ extension MainWindowController {
             if ScrollSession.validateEvent(timestamp: event.timestamp, eventDirection: scrollDirection) {
         
                 // Scroll left = seek backward, scroll right = seek forward
-                messenger.publish(scrollDirection == .left ? .player_seekBackward : .player_seekForward, payload: UserInputMode.continuous)
+                messenger.publish(scrollDirection == .left ? .Player.seekBackward : .Player.seekForward, payload: UserInputMode.continuous)
             }
         }
     }

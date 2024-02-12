@@ -99,7 +99,7 @@ extension FilterUnitViewController: NSTableViewDataSource, NSTableViewDelegate {
             strongSelf.filterUnit[row] = band
             cell.buttonStateUpdated(to: strongSelf.filterUnit.state)
             
-            strongSelf.messenger.publish(.filterUnit_bandBypassStateUpdated, payload: row)
+            strongSelf.messenger.publish(.Effects.FilterUnit.bandBypassStateUpdated, payload: row)
         }
         
         return cell

@@ -87,9 +87,9 @@ class PitchShiftUnitViewController: EffectsUnitViewController {
         
         super.initSubscriptions()
         
-        messenger.subscribe(to: .pitchEffectsUnit_decreasePitch, handler: decreasePitch)
-        messenger.subscribe(to: .pitchEffectsUnit_increasePitch, handler: increasePitch)
-        messenger.subscribe(to: .pitchEffectsUnit_setPitch, handler: setPitch(_:))
+        messenger.subscribe(to: .Effects.PitchShiftUnit.decreasePitch, handler: decreasePitch)
+        messenger.subscribe(to: .Effects.PitchShiftUnit.increasePitch, handler: increasePitch)
+        messenger.subscribe(to: .Effects.PitchShiftUnit.setPitch, handler: setPitch(_:))
     }
     
     // Sets the pitch to a specific value
@@ -102,7 +102,7 @@ class PitchShiftUnitViewController: EffectsUnitViewController {
         
         pitchShiftUnitView.pitch = newPitch
         
-        messenger.publish(.effects_unitStateChanged)
+        messenger.publish(.Effects.unitStateChanged)
         
         // Show the Pitch tab
         showThisTab()
@@ -121,7 +121,7 @@ class PitchShiftUnitViewController: EffectsUnitViewController {
     // Changes the pitch to a specified value
     private func pitchChange(_ pitch: PitchShift) {
         
-        messenger.publish(.effects_unitStateChanged)
+        messenger.publish(.Effects.unitStateChanged)
         
         pitchShiftUnitView.pitch = pitch
         

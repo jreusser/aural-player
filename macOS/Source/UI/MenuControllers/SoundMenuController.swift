@@ -154,27 +154,27 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     
     // Mutes or unmutes the player
     @IBAction func muteOrUnmuteAction(_ sender: AnyObject) {
-        messenger.publish(.player_muteOrUnmute)
+        messenger.publish(.Player.muteOrUnmute)
     }
     
     // Decreases the volume by a certain preset decrement
     @IBAction func decreaseVolumeAction(_ sender: Any) {
-        messenger.publish(.player_decreaseVolume, payload: UserInputMode.discrete)
+        messenger.publish(.Player.decreaseVolume, payload: UserInputMode.discrete)
     }
     
     // Increases the volume by a certain preset increment
     @IBAction func increaseVolumeAction(_ sender: Any) {
-        messenger.publish(.player_increaseVolume, payload: UserInputMode.discrete)
+        messenger.publish(.Player.increaseVolume, payload: UserInputMode.discrete)
     }
     
     // Pans the sound towards the left channel, by a certain preset value
     @IBAction func panLeftAction(_ sender: Any) {
-        messenger.publish(.player_panLeft)
+        messenger.publish(.Player.panLeft)
     }
     
     // Pans the sound towards the right channel, by a certain preset value
     @IBAction func panRightAction(_ sender: Any) {
-        messenger.publish(.player_panRight)
+        messenger.publish(.Player.panRight)
     }
     
     // Whether or not the Effects window is loaded (and is able to receive commands).
@@ -184,7 +184,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     @IBAction func masterBypassAction(_ sender: Any) {
         
         if effectsWindowLoaded {
-            messenger.publish(.masterEffectsUnit_toggleEffects)
+            messenger.publish(.Effects.MasterUnit.toggleEffects)
         } else {
             _ = masterUnit.toggleState()
         }
@@ -198,7 +198,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     @IBAction func decreaseBassAction(_ sender: Any) {
         
         if effectsWindowLoaded {
-            messenger.publish(.eqEffectsUnit_decreaseBass)
+            messenger.publish(.Effects.EQUnit.decreaseBass)
         } else {
             _ = eqUnit.decreaseBass()
         }
@@ -208,7 +208,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     @IBAction func increaseBassAction(_ sender: Any) {
         
         if effectsWindowLoaded {
-            messenger.publish(.eqEffectsUnit_increaseBass)
+            messenger.publish(.Effects.EQUnit.increaseBass)
         } else {
             _ = eqUnit.increaseBass()
         }
@@ -218,7 +218,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     @IBAction func decreaseMidsAction(_ sender: Any) {
         
         if effectsWindowLoaded {
-            messenger.publish(.eqEffectsUnit_decreaseMids)
+            messenger.publish(.Effects.EQUnit.decreaseMids)
         } else {
             _ = eqUnit.decreaseMids()
         }
@@ -228,7 +228,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     @IBAction func increaseMidsAction(_ sender: Any) {
         
         if effectsWindowLoaded {
-            messenger.publish(.eqEffectsUnit_increaseMids)
+            messenger.publish(.Effects.EQUnit.increaseMids)
         } else {
             _ = eqUnit.increaseMids()
         }
@@ -238,7 +238,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     @IBAction func decreaseTrebleAction(_ sender: Any) {
         
         if effectsWindowLoaded {
-            messenger.publish(.eqEffectsUnit_decreaseTreble)
+            messenger.publish(.Effects.EQUnit.decreaseTreble)
         } else {
             _ = eqUnit.decreaseTreble()
         }
@@ -248,7 +248,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     @IBAction func increaseTrebleAction(_ sender: Any) {
         
         if effectsWindowLoaded {
-            messenger.publish(.eqEffectsUnit_increaseTreble)
+            messenger.publish(.Effects.EQUnit.increaseTreble)
         } else {
             _ = eqUnit.increaseTreble()
         }
@@ -258,7 +258,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     @IBAction func decreasePitchAction(_ sender: Any) {
         
         if effectsWindowLoaded {
-            messenger.publish(.pitchEffectsUnit_decreasePitch)
+            messenger.publish(.Effects.PitchShiftUnit.decreasePitch)
         } else {
             _ = pitchShiftUnit.decreasePitch()
         }
@@ -268,7 +268,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     @IBAction func increasePitchAction(_ sender: Any) {
         
         if effectsWindowLoaded {
-            messenger.publish(.pitchEffectsUnit_increasePitch)
+            messenger.publish(.Effects.PitchShiftUnit.increasePitch)
         } else {
             _ = pitchShiftUnit.increasePitch()
         }
@@ -281,7 +281,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
         let pitch = sender.paramValue
         
         if effectsWindowLoaded {
-            messenger.publish(.pitchEffectsUnit_setPitch, payload: pitch)
+            messenger.publish(.Effects.PitchShiftUnit.setPitch, payload: pitch)
             
         } else {
             
@@ -294,7 +294,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     @IBAction func decreaseRateAction(_ sender: Any) {
         
         if effectsWindowLoaded {
-            messenger.publish(.timeEffectsUnit_decreaseRate)
+            messenger.publish(.Effects.TimeStretchUnit.decreaseRate)
         } else {
             _ = timeStretchUnit.decreaseRate()
         }
@@ -305,7 +305,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
         
         // TODO: This logic only works for modular mode.
         if effectsWindowLoaded {
-            messenger.publish(.timeEffectsUnit_increaseRate)
+            messenger.publish(.Effects.TimeStretchUnit.increaseRate)
         } else {
             _ = timeStretchUnit.increaseRate()
         }
@@ -318,7 +318,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
         let rate = sender.paramValue
         
         if effectsWindowLoaded {
-            messenger.publish(.timeEffectsUnit_setRate, payload: rate)
+            messenger.publish(.Effects.TimeStretchUnit.setRate, payload: rate)
             
         } else {
             
@@ -328,7 +328,7 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     }
     
     @IBAction func rememberSettingsAction(_ sender: ToggleMenuItem) {
-        messenger.publish(rememberSettingsMenuItem.isOff ? .effects_saveSoundProfile : .effects_deleteSoundProfile)
+        messenger.publish(rememberSettingsMenuItem.isOff ? .Effects.saveSoundProfile : .Effects.deleteSoundProfile)
     }
 }
 

@@ -52,21 +52,21 @@ class PlayerViewController: NSViewController {
     // Subscribe to various notifications
     private func initSubscriptions() {
         
-        messenger.subscribe(to: .player_chapterChanged, handler: chapterChanged(_:))
-        messenger.subscribe(to: .player_trackNotPlayed, handler: trackNotPlayed)
+        messenger.subscribe(to: .Player.chapterChanged, handler: chapterChanged(_:))
+        messenger.subscribe(to: .Player.trackNotPlayed, handler: trackNotPlayed)
         
         // Only respond if the playing track was updated
-        messenger.subscribeAsync(to: .player_trackInfoUpdated, handler: playingTrackInfoUpdated(_:),
+        messenger.subscribeAsync(to: .Player.trackInfoUpdated, handler: playingTrackInfoUpdated(_:),
                                  filter: {msg in msg.updatedTrack == self.player.playingTrack &&
                                     msg.updatedFields.contains(.art)})
         
-        messenger.subscribeAsync(to: .player_trackTransitioned, handler: trackTransitioned(_:))
+        messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:))
         
-//        messenger.subscribe(to: .player_showOrHideAlbumArt, handler: infoView.showOrHideAlbumArt)
-//        messenger.subscribe(to: .player_showOrHideArtist, handler: infoView.showOrHideArtist)
-//        messenger.subscribe(to: .player_showOrHideAlbum, handler: infoView.showOrHideAlbum)
-//        messenger.subscribe(to: .player_showOrHideCurrentChapter, handler: infoView.showOrHideCurrentChapter)
-//        messenger.subscribe(to: .player_showOrHideMainControls, handler: infoView.showOrHideMainControls)
+//        messenger.subscribe(to: .Player.showOrHideAlbumArt, handler: infoView.showOrHideAlbumArt)
+//        messenger.subscribe(to: .Player.showOrHideArtist, handler: infoView.showOrHideArtist)
+//        messenger.subscribe(to: .Player.showOrHideAlbum, handler: infoView.showOrHideAlbum)
+//        messenger.subscribe(to: .Player.showOrHideCurrentChapter, handler: infoView.showOrHideCurrentChapter)
+//        messenger.subscribe(to: .Player.showOrHideMainControls, handler: infoView.showOrHideMainControls)
     }
     
     override func destroy() {

@@ -80,14 +80,14 @@ class EQUnitViewController: EffectsUnitViewController {
         
         super.initSubscriptions()
         
-        messenger.subscribe(to: .eqEffectsUnit_decreaseBass, handler: decreaseBass)
-        messenger.subscribe(to: .eqEffectsUnit_increaseBass, handler: increaseBass)
+        messenger.subscribe(to: .Effects.EQUnit.decreaseBass, handler: decreaseBass)
+        messenger.subscribe(to: .Effects.EQUnit.increaseBass, handler: increaseBass)
         
-        messenger.subscribe(to: .eqEffectsUnit_decreaseMids, handler: decreaseMids)
-        messenger.subscribe(to: .eqEffectsUnit_increaseMids, handler: increaseMids)
+        messenger.subscribe(to: .Effects.EQUnit.decreaseMids, handler: decreaseMids)
+        messenger.subscribe(to: .Effects.EQUnit.increaseMids, handler: increaseMids)
         
-        messenger.subscribe(to: .eqEffectsUnit_decreaseTreble, handler: decreaseTreble)
-        messenger.subscribe(to: .eqEffectsUnit_increaseTreble, handler: increaseTreble)
+        messenger.subscribe(to: .Effects.EQUnit.decreaseTreble, handler: decreaseTreble)
+        messenger.subscribe(to: .Effects.EQUnit.increaseTreble, handler: increaseTreble)
     }
     
     // Provides a "bass boost". Increases each of the EQ bass bands by a certain preset increment.
@@ -125,7 +125,7 @@ class EQUnitViewController: EffectsUnitViewController {
         stateChanged()
         eqUnitView.bandsUpdated(bands, globalGain: eqUnit.globalGain)
         
-        messenger.publish(.effects_unitStateChanged)
+        messenger.publish(.Effects.unitStateChanged)
         showThisTab()
     }
     
