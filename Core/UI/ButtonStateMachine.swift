@@ -59,21 +59,20 @@ class ButtonStateMachine<E>: NSObject, ColorSchemeObserver where E: Hashable {
         self.state = newState
         
         button.image = mapping.image
+        button.toolTip = mapping.toolTip
+        
+        // Register for color scheme property observation for the new color property, if different from the previous one.
+        guard let oldColorProp = mappings[oldState]?.colorProperty, oldColorProp != mapping.colorProperty else {return}
         
         // Color scheme property customization possible only in modular or unified app modes.
         if let currentAppMode = appModeManager.currentMode, currentAppMode.equalsOneOf(.modular, .unified) {
             
-            if let oldColorProp = mappings[oldState]?.colorProperty {
-                colorSchemesManager.removePropertyObserver(self, forProperty: oldColorProp)
-            }
-            
+            colorSchemesManager.removePropertyObserver(self, forProperty: oldColorProp)
             colorSchemesManager.registerPropertyObserver(self, forProperty: mapping.colorProperty, changeReceiver: button)
             
         } else {
             updateButtonColor()
         }
-        
-        button.toolTip = mapping.toolTip
     }
     
     func colorSchemeChanged() {

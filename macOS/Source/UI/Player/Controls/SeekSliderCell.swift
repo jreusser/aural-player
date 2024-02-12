@@ -29,6 +29,8 @@ class SeekSliderCell: HorizontalSliderCell {
     
     override var barHeight: CGFloat {2}
     
+    private lazy var loopMarkerHeight: CGFloat = barHeight + (2 * (knobHeightOutsideBar))
+    
     var loop: PlaybackLoopRange?
     
     // Returns the center of the current knob frame
@@ -49,6 +51,10 @@ class SeekSliderCell: HorizontalSliderCell {
     // Invalidates the track segment playback loop
     func removeLoop() {
         self.loop = nil
+    }
+    
+    override func knobRect(flipped: Bool) -> NSRect {
+        .zero
     }
     
     override func progressRect(forBarRect barRect: NSRect, andKnobRect knobRect: NSRect) -> NSRect {
@@ -72,15 +78,11 @@ class SeekSliderCell: HorizontalSliderCell {
     
     override func drawBar(inside aRect: NSRect, flipped: Bool) {
         
+        super.drawBar(inside: aRect, flipped: flipped)
+        
         guard let loop = self.loop else {
-            
-            super.drawBar(inside: aRect, flipped: flipped)
             return
         }
-        
-        drawBackground(inRect: aRect)
-        let knobRect = self.knobRect(flipped: false)
-        drawProgress(inRect: progressRect(forBarRect: aRect, andKnobRect: knobRect))
         
         // ------- MARK: Loop Markers -------------------------------------------------
         
@@ -88,7 +90,7 @@ class SeekSliderCell: HorizontalSliderCell {
             
             let centerX = aRect.minX + (perc * aRect.width / 100)
             let minX = max(aRect.minX, centerX - halfKnobWidth)
-            let markerRect = NSRect(x: minX, y: knobRect.minY, width: knobRect.width, height: knobRect.height)
+            let markerRect = NSRect(x: minX, y: aRect.minY - knobHeightOutsideBar, width: knobWidth, height: loopMarkerHeight)
             
             NSBezierPath.fillRoundedRect(markerRect, radius: knobRadius, withColor: controlStateColor)
             NSBezierPath.strokeRoundedRect(markerRect, radius: knobRadius, withColor: systemColorScheme.backgroundColor, lineWidth: 2)
