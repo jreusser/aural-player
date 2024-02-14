@@ -122,3 +122,7 @@ extension ControlBarPVC: NSMenuDelegate {
         }
     }
 }
+
+class SeekPositionDisplayTypeMenuItem: NSMenuItem {
+    var displayType: TrackTimeDisplayType = .elapsed
+}

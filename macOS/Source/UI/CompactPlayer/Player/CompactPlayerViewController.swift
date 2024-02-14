@@ -14,6 +14,14 @@ class CompactPlayerViewController: CommonPlayerViewController {
     
     override var nibName: NSNib.Name? {"CompactPlayer"}
     
+    @IBOutlet weak var functionsMenuContainerBox: NSBox!
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        startTrackingView(options: [.activeAlways, .mouseEnteredAndExited])
+    }
+    
     override var showTrackTime: Bool {
         compactPlayerUIState.showTrackTime
     }
@@ -78,5 +86,18 @@ class CompactPlayerViewController: CommonPlayerViewController {
         
         playerUIState.trackTimeDisplayType = sender.displayType
         setTrackTimeDisplayType(to: playerUIState.trackTimeDisplayType)
+    }
+    
+    // MARK: Auto-hide of playing track functions menu button ----------------------------------------
+    
+    override func mouseEntered(with event: NSEvent) {
+        
+        if playbackInfoDelegate.playingTrack != nil {
+            functionsMenuContainerBox.show()
+        }
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        functionsMenuContainerBox.hide()
     }
 }
