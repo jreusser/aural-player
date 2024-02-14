@@ -22,6 +22,8 @@ class ScrollingTrackTextView: NSView {
         didSet {resized()}
     }
     
+    // TODO: Use TrackInfo here instead of artist + title
+    
     ///
     /// (Optional) Name of the artist of the track whose info is currently displayed in the text view.
     ///

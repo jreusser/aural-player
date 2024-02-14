@@ -532,7 +532,7 @@
                                         <constraint firstAttribute="height" constant="13" id="7Di-bS-mTc"/>
                                         <constraint firstAttribute="width" constant="40" id="xcD-qx-ihZ"/>
                                     </constraints>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" refusesFirstResponder="YES" state="on" focusRingType="none" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="vfc-ab-d4E" customClass="ControlBarVolumeSliderCell" customModule="Aural" customModuleProvider="target"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" refusesFirstResponder="YES" state="on" focusRingType="none" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="vfc-ab-d4E" customClass="VolumeSliderCell" customModule="Aural" customModuleProvider="target"/>
                                     <connections>
                                         <action selector="volumeAction:" target="VLj-aK-Baf" id="RJB-x3-HMK"/>
                                     </connections>

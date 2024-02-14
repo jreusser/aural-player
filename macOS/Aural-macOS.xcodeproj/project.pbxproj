@@ -96,7 +96,6 @@
 		3E36BD4E26A6AA5A00B6E28B /* TableViewRepresentations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36BD4D26A6AA5A00B6E28B /* TableViewRepresentations.swift */; };
 		3E380DAE262F4D6500BDF7B4 /* LazyViewLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E380DAD262F4D6500BDF7B4 /* LazyViewLoader.swift */; };
 		3E3975462688894C0055887E /* ControlBarSeekSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3975452688894C0055887E /* ControlBarSeekSliderCell.swift */; };
-		3E397548268900C60055887E /* ControlBarVolumeSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E397547268900C60055887E /* ControlBarVolumeSliderCell.swift */; };
 		3E39754E26892C890055887E /* ControlBarPlayerUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */; };
 		3E3ACC042B5932EC00F2F678 /* LegacyHistoryPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3ACC032B5932EC00F2F678 /* LegacyHistoryPersistentState.swift */; };
 		3E3ACC062B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3ACC052B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift */; };
@@ -1167,7 +1166,6 @@
 		3E36BD4D26A6AA5A00B6E28B /* TableViewRepresentations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewRepresentations.swift; sourceTree = "<group>"; };
 		3E380DAD262F4D6500BDF7B4 /* LazyViewLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyViewLoader.swift; sourceTree = "<group>"; };
 		3E3975452688894C0055887E /* ControlBarSeekSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarSeekSliderCell.swift; sourceTree = "<group>"; };
-		3E397547268900C60055887E /* ControlBarVolumeSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarVolumeSliderCell.swift; sourceTree = "<group>"; };
 		3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlayerUIState.swift; sourceTree = "<group>"; };
 		3E3ACC032B5932EC00F2F678 /* LegacyHistoryPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyHistoryPersistentState.swift; sourceTree = "<group>"; };
 		3E3ACC052B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyColorSchemesPersistentState.swift; sourceTree = "<group>"; };
@@ -2533,9 +2531,7 @@
 				3E43227C2687D65F009E8ADB /* ControlBarPlayer.xib */,
 				3E43227E2687DE35009E8ADB /* ControlBarPlayerWindowController.swift */,
 				3EB805DE2B795D0C005E464A /* ControlBarPVC.swift */,
-				3E43227A2687D531009E8ADB /* ScrollingTrackTextView.swift */,
 				3E3975452688894C0055887E /* ControlBarSeekSliderCell.swift */,
-				3E397547268900C60055887E /* ControlBarVolumeSliderCell.swift */,
 				3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */,
 			);
 			path = ControlBarPlayer;
@@ -3468,6 +3464,7 @@
 			children = (
 				3E6C102425CEB98600BF0D07 /* MouseTrackingView.swift */,
 				3E6C102725CEB98600BF0D07 /* MultilineTrackTextView.swift */,
+				3E43227A2687D531009E8ADB /* ScrollingTrackTextView.swift */,
 				3E98E5F7262D51AF00A65BCE /* PlayingTrackInfo.swift */,
 			);
 			path = PlayingTrack;
@@ -5610,7 +5607,6 @@
 				3EFE39CD27864897006F8B8C /* MasterUnitPersistentState.swift in Sources */,
 				3EFE38EB27864897006F8B8C /* Stack.swift in Sources */,
 				3EFE37F727864896006F8B8C /* SoundPreferences.swift in Sources */,
-				3E397548268900C60055887E /* ControlBarVolumeSliderCell.swift in Sources */,
 				3EFE386927864896006F8B8C /* TimeStretchUnit.swift in Sources */,
 				3EFFEB8327D9CEF8006A333B /* KVOTokens.swift in Sources */,
 				3E2C4BD92B38E5F800FC65DD /* SearchWindowController.swift in Sources */,
