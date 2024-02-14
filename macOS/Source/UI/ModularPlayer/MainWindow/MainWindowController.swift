@@ -136,8 +136,8 @@ class MainWindowController: NSWindowController {
         appModeManager.presentMode(.compact)
     }
     
-    @IBAction func controlBarModeAction(_ sender: AnyObject) {
-        appModeManager.presentMode(.controlBar)
+    @IBAction func widgetModeAction(_ sender: AnyObject) {
+        appModeManager.presentMode(.widget)
     }
     
     // MARK: Message handling -----------------------------------------------------------

@@ -350,7 +350,7 @@
                                                 <menuItem title="Control Bar (floating widget)" id="6hU-Ct-NUr">
                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                     <connections>
-                                                        <action selector="controlBarModeAction:" target="-2" id="Uw3-3o-1hB"/>
+                                                        <action selector="widgetModeAction:" target="-2" id="Uw3-3o-1hB"/>
                                                     </connections>
                                                 </menuItem>
                                             </items>
@@ -1300,7 +1300,7 @@ CA
                                     <action selector="menuBarModeAction:" target="FJQ-36-5aR" id="AhG-jU-k6E"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title=" Switch to Widget mode" image="ControlBarMode-Small" id="rE4-L1-8Kg" userLabel="Switch to control bar mode">
+                            <menuItem title=" Switch to Widget mode" image="WidgetMode-Small" id="rE4-L1-8Kg" userLabel="Switch to widget mode">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="widgetModeAction:" target="FJQ-36-5aR" id="ACF-16-YOB"/>
@@ -1336,7 +1336,6 @@ CA
         <image name="Bookmarks-Editor" width="15" height="15"/>
         <image name="Clear-Small" width="13" height="15"/>
         <image name="ColorScheme" width="13" height="14"/>
-        <image name="ControlBarMode-Small" width="14" height="10"/>
         <image name="Favorites" width="15" height="15"/>
         <image name="Favorites-Editor" width="15" height="15"/>
         <image name="FontScheme" width="14" height="14"/>
@@ -1347,6 +1346,7 @@ CA
         <image name="RecentlyPlayed" width="18" height="14"/>
         <image name="Update" width="15" height="15"/>
         <image name="UserGuide" width="16" height="14"/>
+        <image name="WidgetMode-Small" width="128" height="128"/>
         <image name="WindowLayout" width="20" height="20"/>
         <image name="arrow.2.squarepath" catalog="system" width="19" height="14"/>
         <image name="arrow.down" catalog="system" width="13" height="14"/>

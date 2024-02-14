@@ -1,5 +1,5 @@
 //
-//  ControlBarPlayerWindowController.swift
+//  WidgetPlayerWindowController.swift
 //  Aural
 //
 //  Copyright © 2024 Kartik Venugopal. All rights reserved.
@@ -9,10 +9,10 @@
 //  
 import Cocoa
 
-class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NSMenuDelegate, ColorSchemeObserver {
+class WidgetPlayerWindowController: NSWindowController, NSWindowDelegate, NSMenuDelegate, ColorSchemeObserver {
     
     @IBOutlet weak var rootContainerBox: NSBox!
-    @IBOutlet weak var viewController: ControlBarPVC!
+    @IBOutlet weak var viewController: WidgetPlayerViewController!
     
     @IBOutlet weak var btnQuit: TintedImageButton!
     @IBOutlet weak var optionsMenuItem: TintedIconMenuItem!
@@ -24,9 +24,9 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
     
     private lazy var messenger = Messenger(for: self)
     
-    private let uiState: ControlBarPlayerUIState = controlBarPlayerUIState
+    private let uiState: WidgetPlayerUIState = widgetPlayerUIState
     
-    override var windowNibName: String? {"ControlBarPlayer"}
+    override var windowNibName: String? {"WidgetPlayer"}
     
     private var appMovingWindow: Bool = false
     
@@ -44,7 +44,7 @@ class ControlBarPlayerWindowController: NSWindowController, NSWindowDelegate, NS
         } else {
             
             // Dock to top left if persistent window frame not available (the first time
-            // control bar mode is presented).
+            // widget mode is presented).
             dockTopLeftAction(self)
         }
         

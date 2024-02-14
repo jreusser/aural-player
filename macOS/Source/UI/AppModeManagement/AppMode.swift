@@ -19,7 +19,7 @@ enum AppMode: String, CaseIterable, Codable {
     case modular
     case unified
     case menuBar
-    case controlBar
+    case widget
     case compact
     
     static func fromLegacyAppMode(_ legacyAppMode: LegacyAppMode?) -> AppMode? {
@@ -34,8 +34,8 @@ enum AppMode: String, CaseIterable, Codable {
         case .menuBar:
             return .menuBar
             
-        case .controlBar:
-            return .controlBar
+        case .widget:
+            return .widget
         }
     }
 }

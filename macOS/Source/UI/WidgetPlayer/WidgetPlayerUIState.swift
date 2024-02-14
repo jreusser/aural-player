@@ -1,5 +1,5 @@
 //
-//  ControlBarPlayerUIState.swift
+//  WidgetPlayerUIState.swift
 //  Aural
 //
 //  Copyright © 2024 Kartik Venugopal. All rights reserved.
@@ -9,7 +9,7 @@
 //  
 import Cocoa
 
-class ControlBarPlayerUIState {
+class WidgetPlayerUIState {
     
     var windowFrame: NSRect?
     
@@ -20,7 +20,7 @@ class ControlBarPlayerUIState {
     
     var showTrackTime: Bool
     
-    init(persistentState: ControlBarPlayerUIPersistentState?) {
+    init(persistentState: WidgetPlayerUIPersistentState?) {
         
         windowFrame = persistentState?.windowFrame?.toNSRect()
         cornerRadius = persistentState?.cornerRadius ?? Self.defaultCornerRadius
@@ -30,7 +30,7 @@ class ControlBarPlayerUIState {
         showTrackTime = persistentState?.showTrackTime ?? true
     }
     
-    var persistentState: ControlBarPlayerUIPersistentState {
+    var persistentState: WidgetPlayerUIPersistentState {
         
         var windowFrame: NSRectPersistentState? = nil
         
@@ -38,7 +38,7 @@ class ControlBarPlayerUIState {
             windowFrame = NSRectPersistentState(rect: frame)
         }
         
-        return ControlBarPlayerUIPersistentState(windowFrame: windowFrame,
+        return WidgetPlayerUIPersistentState(windowFrame: windowFrame,
                                                  cornerRadius: cornerRadius,
                                                  trackInfoScrollingEnabled: trackInfoScrollingEnabled,
                                                  showTrackTime: showTrackTime)

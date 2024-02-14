@@ -109,7 +109,7 @@ class CompactPlayerWindowController: NSWindowController {
         switchToMenuBarMode()
     }
     
-    @IBAction func controlBarModeAction(_ sender: AnyObject) {
+    @IBAction func widgetModeAction(_ sender: AnyObject) {
         switchToWidgetMode()
     }
     
@@ -134,7 +134,7 @@ class CompactPlayerWindowController: NSWindowController {
     private func switchToWidgetMode() {
         
         transferViewState()
-        appModeManager.presentMode(.controlBar)
+        appModeManager.presentMode(.widget)
     }
     
     // Minimizes the window (and any child windows)

@@ -17,7 +17,7 @@ class ViewPreferencesViewController: NSViewController, PreferencesViewProtocol {
     
     @IBOutlet weak var windowedAppModeMenuItem: NSMenuItem!
     @IBOutlet weak var menuBarAppModeMenuItem: NSMenuItem!
-    @IBOutlet weak var controlBarAppModeMenuItem: NSMenuItem!
+    @IBOutlet weak var widgetAppModeMenuItem: NSMenuItem!
     
     @IBOutlet weak var btnStartWithLayout: NSButton!
     @IBOutlet weak var btnRememberLayout: NSButton!
@@ -37,7 +37,7 @@ class ViewPreferencesViewController: NSViewController, PreferencesViewProtocol {
         
         windowedAppModeMenuItem.representedObject = AppMode.modular
         menuBarAppModeMenuItem.representedObject = AppMode.menuBar
-        controlBarAppModeMenuItem.representedObject = AppMode.controlBar
+        widgetAppModeMenuItem.representedObject = AppMode.widget
     }
     
     func resetFields() {
@@ -60,9 +60,9 @@ class ViewPreferencesViewController: NSViewController, PreferencesViewProtocol {
 //            
 //            appModeMenu.select(menuBarAppModeMenuItem)
 //            
-//        case AppMode.controlBar.rawValue:
+//        case AppMode.widget.rawValue:
 //            
-//            appModeMenu.select(controlBarAppModeMenuItem)
+//            appModeMenu.select(widgetAppModeMenuItem)
 //            
 //        default:
 //            

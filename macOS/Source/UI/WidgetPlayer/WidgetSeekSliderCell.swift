@@ -1,5 +1,5 @@
 //
-//  ControlBarSeekSliderCell.swift
+//  WidgetSeekSliderCell.swift
 //  Aural
 //
 //  Copyright © 2024 Kartik Venugopal. All rights reserved.
@@ -9,7 +9,7 @@
 //  
 import Cocoa
 
-class ControlBarSeekSliderCell: SeekSliderCell {
+class WidgetSeekSliderCell: SeekSliderCell {
     
     override var barRadius: CGFloat {0}
     override var barHeight: CGFloat {3}

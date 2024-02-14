@@ -1,5 +1,5 @@
 //
-//  ControlBarAppModeController.swift
+//  WidgetAppModeController.swift
 //  Aural
 //
 //  Copyright © 2024 Kartik Venugopal. All rights reserved.
@@ -10,27 +10,27 @@
 import Cocoa
 
 ///
-/// Controller responsible for presenting / dismissing the *Control Bar* application user interface mode.
+/// Controller responsible for presenting / dismissing the *Widget* application user interface mode.
 ///
-/// The control bar app mode presents a minimalistic user interface consisting of a single compact "floating"
+/// The widget app mode presents a minimalistic user interface consisting of a single compact "floating"
 /// window containing only player controls, playing track info, and some options to change the displayed info
 /// and appearance (theme).
 ///
-/// The control bar app mode allows the user access to essential player functions and is intended for a
+/// The widget app mode allows the user access to essential player functions and is intended for a
 /// low level of user interaction. It will typically be used when running the application in the "background".
 ///
-class ControlBarAppModeController: AppModeController {
+class WidgetAppModeController: AppModeController {
 
-    var mode: AppMode {.controlBar}
+    var mode: AppMode {.widget}
 
-    private var windowController: ControlBarPlayerWindowController?
+    private var windowController: WidgetPlayerWindowController?
     
     func presentMode(transitioningFromMode previousMode: AppMode?) {
 
         NSApp.setActivationPolicy(.regular)
         NSApp.menu = nil
         
-        windowController = ControlBarPlayerWindowController()
+        windowController = WidgetPlayerWindowController()
         windowController?.showWindow(self)
     }
     

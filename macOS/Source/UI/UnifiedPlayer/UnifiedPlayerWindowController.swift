@@ -145,8 +145,8 @@ class UnifiedPlayerWindowController: NSWindowController {
         appModeManager.presentMode(.menuBar)
     }
     
-    @IBAction func controlBarModeAction(_ sender: AnyObject) {
-        appModeManager.presentMode(.controlBar)
+    @IBAction func widgetModeAction(_ sender: AnyObject) {
+        appModeManager.presentMode(.widget)
     }
     
     @IBAction func showEffectsPanelAction(_ sender: AnyObject) {

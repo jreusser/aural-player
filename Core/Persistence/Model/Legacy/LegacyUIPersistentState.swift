@@ -23,7 +23,7 @@ struct LegacyUIPersistentState: Codable {
     let player: LegacyPlayerUIPersistentState?
 //    let menuBarPlayer: MenuBarPlayerUIPersistentState?
 //    let controlBarPlayer: ControlBarPlayerUIPersistentState?
-//    
+//
 //    let playlist: PlaylistUIPersistentState?
 //    let visualizer: VisualizerUIPersistentState?
 }
@@ -32,7 +32,7 @@ enum LegacyAppMode: String, CaseIterable, Codable {
     
     case windowed
     case menuBar
-    case controlBar
+    case widget
 }
 
 struct LegacyPlayerUIPersistentState: Codable {

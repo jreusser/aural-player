@@ -207,7 +207,7 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         lblTrackTimeConstraints.centerVerticallyInSuperview(offset: 0)
         
         layoutScrollingTrackTextView()
-        scrollingTrackTextView.scrollingEnabled = controlBarPlayerUIState.trackInfoScrollingEnabled
+        scrollingTrackTextView.scrollingEnabled = widgetPlayerUIState.trackInfoScrollingEnabled
     }
     
     private static let distanceBetweenControlsAndInfo: CGFloat = 31

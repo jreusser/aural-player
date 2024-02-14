@@ -95,8 +95,8 @@
 		3E36BD4A26A690A800B6E28B /* FileSystemTrackInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E36BD4926A690A800B6E28B /* FileSystemTrackInfo.xib */; };
 		3E36BD4E26A6AA5A00B6E28B /* TableViewRepresentations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36BD4D26A6AA5A00B6E28B /* TableViewRepresentations.swift */; };
 		3E380DAE262F4D6500BDF7B4 /* LazyViewLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E380DAD262F4D6500BDF7B4 /* LazyViewLoader.swift */; };
-		3E3975462688894C0055887E /* ControlBarSeekSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3975452688894C0055887E /* ControlBarSeekSliderCell.swift */; };
-		3E39754E26892C890055887E /* ControlBarPlayerUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */; };
+		3E3975462688894C0055887E /* WidgetSeekSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3975452688894C0055887E /* WidgetSeekSliderCell.swift */; };
+		3E39754E26892C890055887E /* WidgetPlayerUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E39754D26892C890055887E /* WidgetPlayerUIState.swift */; };
 		3E3ACC042B5932EC00F2F678 /* LegacyHistoryPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3ACC032B5932EC00F2F678 /* LegacyHistoryPersistentState.swift */; };
 		3E3ACC062B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3ACC052B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift */; };
 		3E3B8D342B72D95B0060C7C7 /* EffectsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B8D332B72D95B0060C7C7 /* EffectsContainerView.swift */; };
@@ -113,10 +113,10 @@
 		3E3DFFCE260D9BBA0092F0BF /* MetadataPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3DFFCD260D9BBA0092F0BF /* MetadataPreferences.xib */; };
 		3E3DFFD2260DA0560092F0BF /* MetadataPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3DFFD1260DA0560092F0BF /* MetadataPreferencesViewController.swift */; };
 		3E419B5F27B18C6500C2B965 /* CALayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E419B5E27B18C6500C2B965 /* CALayerExtensions.swift */; };
-		3E4322752687C96E009E8ADB /* ControlBarAppModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4322742687C96E009E8ADB /* ControlBarAppModeController.swift */; };
+		3E4322752687C96E009E8ADB /* WidgetAppModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4322742687C96E009E8ADB /* WidgetAppModeController.swift */; };
 		3E43227B2687D531009E8ADB /* ScrollingTrackTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43227A2687D531009E8ADB /* ScrollingTrackTextView.swift */; };
-		3E43227D2687D65F009E8ADB /* ControlBarPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E43227C2687D65F009E8ADB /* ControlBarPlayer.xib */; };
-		3E43227F2687DE35009E8ADB /* ControlBarPlayerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43227E2687DE35009E8ADB /* ControlBarPlayerWindowController.swift */; };
+		3E43227D2687D65F009E8ADB /* WidgetPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E43227C2687D65F009E8ADB /* WidgetPlayer.xib */; };
+		3E43227F2687DE35009E8ADB /* WidgetPlayerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43227E2687DE35009E8ADB /* WidgetPlayerWindowController.swift */; };
 		3E433CEB2B5C2CAA00D73976 /* OpenTuneBrowserFolderCommandNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E433CEA2B5C2CAA00D73976 /* OpenTuneBrowserFolderCommandNotification.swift */; };
 		3E433CED2B5C328E00D73976 /* LibraryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E433CEC2B5C328E00D73976 /* LibraryProtocols.swift */; };
 		3E433CEF2B5C356F00D73976 /* TuneBrowserViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E433CEE2B5C356F00D73976 /* TuneBrowserViewController+Actions.swift */; };
@@ -583,7 +583,7 @@
 		3EB462DD2847FEC6000E3F85 /* TuneBrowserTableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */; };
 		3EB5108C25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */; };
 		3EB805DD2B793FE7005E464A /* MenuBarPlayQueueContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB805DC2B793FE7005E464A /* MenuBarPlayQueueContainer.swift */; };
-		3EB805DF2B795D0C005E464A /* ControlBarPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB805DE2B795D0C005E464A /* ControlBarPVC.swift */; };
+		3EB805DF2B795D0C005E464A /* WidgetPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB805DE2B795D0C005E464A /* WidgetPlayerViewController.swift */; };
 		3EB805E12B7987B1005E464A /* CompactPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB805E02B7987B1005E464A /* CompactPlayerViewController.swift */; };
 		3EB88E772629DA9500C8D230 /* ThemePopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */; };
 		3EBD345D2B5DBFC40048AC03 /* BookmarksDelegate+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD345C2B5DBFC40048AC03 /* BookmarksDelegate+Init.swift */; };
@@ -1165,8 +1165,8 @@
 		3E36BD4926A690A800B6E28B /* FileSystemTrackInfo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileSystemTrackInfo.xib; sourceTree = "<group>"; };
 		3E36BD4D26A6AA5A00B6E28B /* TableViewRepresentations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewRepresentations.swift; sourceTree = "<group>"; };
 		3E380DAD262F4D6500BDF7B4 /* LazyViewLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyViewLoader.swift; sourceTree = "<group>"; };
-		3E3975452688894C0055887E /* ControlBarSeekSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarSeekSliderCell.swift; sourceTree = "<group>"; };
-		3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlayerUIState.swift; sourceTree = "<group>"; };
+		3E3975452688894C0055887E /* WidgetSeekSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSeekSliderCell.swift; sourceTree = "<group>"; };
+		3E39754D26892C890055887E /* WidgetPlayerUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPlayerUIState.swift; sourceTree = "<group>"; };
 		3E3ACC032B5932EC00F2F678 /* LegacyHistoryPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyHistoryPersistentState.swift; sourceTree = "<group>"; };
 		3E3ACC052B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyColorSchemesPersistentState.swift; sourceTree = "<group>"; };
 		3E3B8D332B72D95B0060C7C7 /* EffectsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsContainerView.swift; sourceTree = "<group>"; };
@@ -1183,10 +1183,10 @@
 		3E3DFFCD260D9BBA0092F0BF /* MetadataPreferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MetadataPreferences.xib; sourceTree = "<group>"; };
 		3E3DFFD1260DA0560092F0BF /* MetadataPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataPreferencesViewController.swift; sourceTree = "<group>"; };
 		3E419B5E27B18C6500C2B965 /* CALayerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtensions.swift; sourceTree = "<group>"; };
-		3E4322742687C96E009E8ADB /* ControlBarAppModeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarAppModeController.swift; sourceTree = "<group>"; };
+		3E4322742687C96E009E8ADB /* WidgetAppModeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAppModeController.swift; sourceTree = "<group>"; };
 		3E43227A2687D531009E8ADB /* ScrollingTrackTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTrackTextView.swift; sourceTree = "<group>"; };
-		3E43227C2687D65F009E8ADB /* ControlBarPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ControlBarPlayer.xib; sourceTree = "<group>"; };
-		3E43227E2687DE35009E8ADB /* ControlBarPlayerWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPlayerWindowController.swift; sourceTree = "<group>"; };
+		3E43227C2687D65F009E8ADB /* WidgetPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetPlayer.xib; sourceTree = "<group>"; };
+		3E43227E2687DE35009E8ADB /* WidgetPlayerWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPlayerWindowController.swift; sourceTree = "<group>"; };
 		3E433CEA2B5C2CAA00D73976 /* OpenTuneBrowserFolderCommandNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTuneBrowserFolderCommandNotification.swift; sourceTree = "<group>"; };
 		3E433CEC2B5C328E00D73976 /* LibraryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryProtocols.swift; sourceTree = "<group>"; };
 		3E433CEE2B5C356F00D73976 /* TuneBrowserViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuneBrowserViewController+Actions.swift"; sourceTree = "<group>"; };
@@ -1651,7 +1651,7 @@
 		3EB462D22847FEC6000E3F85 /* TuneBrowserTableViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneBrowserTableViews.swift; sourceTree = "<group>"; };
 		3EB5108B25DC2C3C0075F8AF /* FontSchemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemePopupMenuController.swift; sourceTree = "<group>"; };
 		3EB805DC2B793FE7005E464A /* MenuBarPlayQueueContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayQueueContainer.swift; sourceTree = "<group>"; };
-		3EB805DE2B795D0C005E464A /* ControlBarPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarPVC.swift; sourceTree = "<group>"; };
+		3EB805DE2B795D0C005E464A /* WidgetPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPlayerViewController.swift; sourceTree = "<group>"; };
 		3EB805E02B7987B1005E464A /* CompactPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPlayerViewController.swift; sourceTree = "<group>"; };
 		3EB88E762629DA9500C8D230 /* ThemePopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePopupMenuController.swift; sourceTree = "<group>"; };
 		3EBD345C2B5DBFC40048AC03 /* BookmarksDelegate+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookmarksDelegate+Init.swift"; sourceTree = "<group>"; };
@@ -2525,16 +2525,16 @@
 			path = Metadata;
 			sourceTree = "<group>";
 		};
-		3E4322792687D519009E8ADB /* ControlBarPlayer */ = {
+		3E4322792687D519009E8ADB /* WidgetPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				3E43227C2687D65F009E8ADB /* ControlBarPlayer.xib */,
-				3E43227E2687DE35009E8ADB /* ControlBarPlayerWindowController.swift */,
-				3EB805DE2B795D0C005E464A /* ControlBarPVC.swift */,
-				3E3975452688894C0055887E /* ControlBarSeekSliderCell.swift */,
-				3E39754D26892C890055887E /* ControlBarPlayerUIState.swift */,
+				3E43227C2687D65F009E8ADB /* WidgetPlayer.xib */,
+				3E43227E2687DE35009E8ADB /* WidgetPlayerWindowController.swift */,
+				3EB805DE2B795D0C005E464A /* WidgetPlayerViewController.swift */,
+				3E3975452688894C0055887E /* WidgetSeekSliderCell.swift */,
+				3E39754D26892C890055887E /* WidgetPlayerUIState.swift */,
 			);
-			path = ControlBarPlayer;
+			path = WidgetPlayer;
 			sourceTree = "<group>";
 		};
 		3E45C03025E1261800C1519C /* Player */ = {
@@ -2841,7 +2841,7 @@
 				3E6C0FDD25CEB98600BF0D07 /* MenuControllers */,
 				3E10179128D791ED002C0D8E /* ModularPlayer */,
 				3E7638A92857D7F800461F4D /* UnifiedPlayer */,
-				3E4322792687D519009E8ADB /* ControlBarPlayer */,
+				3E4322792687D519009E8ADB /* WidgetPlayer */,
 				3EBFF5A62B52C0B20056D5B4 /* CompactPlayer */,
 				3E9E590225DB6B150064EB5F /* MenuBarPlayer */,
 				3E6C101A25CEB98600BF0D07 /* Player */,
@@ -3703,7 +3703,7 @@
 				3E9E590125DB6B150064EB5F /* ModularAppModeController.swift */,
 				3E7638AE2857DA3F00461F4D /* UnifiedAppModeController.swift */,
 				3E9E58FF25DB6B150064EB5F /* MenuBarAppModeController.swift */,
-				3E4322742687C96E009E8ADB /* ControlBarAppModeController.swift */,
+				3E4322742687C96E009E8ADB /* WidgetAppModeController.swift */,
 				3EBFF5A42B52C0670056D5B4 /* CompactAppModeController.swift */,
 				3E62979926A3CD3800C96AB8 /* Destroyable.swift */,
 				3E62979C26A3CEBF00C96AB8 /* Restorable.swift */,
@@ -5409,7 +5409,7 @@
 				3ECF71B22B7571D200FDB69B /* CompactPlayer.xib in Resources */,
 				3E6C122C25CEBDE600BF0D07 /* HistoryPreferences.xib in Resources */,
 				3E6C123D25CEBDF400BF0D07 /* Artists.xib in Resources */,
-				3E43227D2687D65F009E8ADB /* ControlBarPlayer.xib in Resources */,
+				3E43227D2687D65F009E8ADB /* WidgetPlayer.xib in Resources */,
 				3E6C12AD25CEBE2700BF0D07 /* StringInputPopover.xib in Resources */,
 				3EB462C32847E528000E3F85 /* Playlist.xib in Resources */,
 				3E45C03325E1264C00C1519C /* PlayerFontScheme.xib in Resources */,
@@ -5562,7 +5562,7 @@
 				3E8DD6482845641700FED49D /* LibraryGenresViewController.swift in Sources */,
 				3EFE3A8F27864898006F8B8C /* MetadataEntry.swift in Sources */,
 				3EFE3A3F27864898006F8B8C /* CommonFFMpegMetadataParser.swift in Sources */,
-				3E4322752687C96E009E8ADB /* ControlBarAppModeController.swift in Sources */,
+				3E4322752687C96E009E8ADB /* WidgetAppModeController.swift in Sources */,
 				3E7181C12B6B08DD0006F66B /* TuneBrowserTabViewController+Actions.swift in Sources */,
 				3EFE39CF27864897006F8B8C /* AudioDevicePersistentState.swift in Sources */,
 				3EFE39FB27864898006F8B8C /* RemoteCommandManager.swift in Sources */,
@@ -5576,7 +5576,7 @@
 				3EBF3F2A28037B1A00035D18 /* PlayQueuePersistentState.swift in Sources */,
 				3E045D0B281341110069DEFE /* TrackComparators.swift in Sources */,
 				3E498E28284D2E4800BF4157 /* TuneBrowserViewController.swift in Sources */,
-				3E39754E26892C890055887E /* ControlBarPlayerUIState.swift in Sources */,
+				3E39754E26892C890055887E /* WidgetPlayerUIState.swift in Sources */,
 				3E2A2A062809B68A000F0539 /* PlaylistNamesTableViewController.swift in Sources */,
 				3E08AC13281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift in Sources */,
 				3EC530E5284BB69C0036207C /* TableDragDropContext.swift in Sources */,
@@ -5588,14 +5588,14 @@
 				3E3ACC062B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift in Sources */,
 				3E10175728D741E7002C0D8E /* MediaKeyTap.swift in Sources */,
 				3EFE3A3127864898006F8B8C /* SelectSearchResultCommandNotification.swift in Sources */,
-				3E43227F2687DE35009E8ADB /* ControlBarPlayerWindowController.swift in Sources */,
+				3E43227F2687DE35009E8ADB /* WidgetPlayerWindowController.swift in Sources */,
 				3E59E9D22B5211F4001DDCE9 /* FavoriteTracksViewController.swift in Sources */,
 				3EFE382527864896006F8B8C /* SearchQuery.swift in Sources */,
 				3EB462BF2847CCA7000E3F85 /* LibraryArtistsSortView.swift in Sources */,
 				3EFE391B27864897006F8B8C /* EnumExtensions.swift in Sources */,
 				3EFE397727864897006F8B8C /* CloseFileHandlesAction.swift in Sources */,
 				3EFE3A0927864898006F8B8C /* TuneBrowserNotifications.swift in Sources */,
-				3E3975462688894C0055887E /* ControlBarSeekSliderCell.swift in Sources */,
+				3E3975462688894C0055887E /* WidgetSeekSliderCell.swift in Sources */,
 				3E7638AF2857DA3F00461F4D /* UnifiedAppModeController.swift in Sources */,
 				3EA6C62F2AD6AAA100B75166 /* FFmpegFileContext.swift in Sources */,
 				3E5864A02B76DD0000BDB5A6 /* CommonPlayerViewController.swift in Sources */,
@@ -6145,7 +6145,7 @@
 				3EFE390B27864897006F8B8C /* StringExtensions.swift in Sources */,
 				3E9FD1052A1D5CAA0038AF04 /* FFmpegChannelLayout.swift in Sources */,
 				3EC793862B746C6D00AF7E9E /* CompactPlayQueueViewController.swift in Sources */,
-				3EB805DF2B795D0C005E464A /* ControlBarPVC.swift in Sources */,
+				3EB805DF2B795D0C005E464A /* WidgetPlayerViewController.swift in Sources */,
 				3E045D0F281352370069DEFE /* SortOrderMenuItemView.swift in Sources */,
 				3E5F943725E571A6002DEF80 /* SpectrogramBar.swift in Sources */,
 				3EB462DA2847FEC6000E3F85 /* TuneBrowserTabViewController.swift in Sources */,

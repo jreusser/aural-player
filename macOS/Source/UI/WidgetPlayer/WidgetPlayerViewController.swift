@@ -1,5 +1,5 @@
 //
-//  ControlBarPVC.swift
+//  WidgetPlayerViewController.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -10,7 +10,7 @@
 
 import AppKit
 
-class ControlBarPVC: CommonPlayerViewController {
+class WidgetPlayerViewController: CommonPlayerViewController {
     
     @IBOutlet weak var scrollingEnabledMenuItem: NSMenuItem!
     @IBOutlet weak var showTrackTimeMenuItem: NSMenuItem!
@@ -33,7 +33,7 @@ class ControlBarPVC: CommonPlayerViewController {
     }
     
     override var showTrackTime: Bool {
-        controlBarPlayerUIState.showTrackTime
+        widgetPlayerUIState.showTrackTime
     }
     
     override var displaysChapterIndicator: Bool {
@@ -70,13 +70,13 @@ class ControlBarPVC: CommonPlayerViewController {
     
     @IBAction func toggleTrackInfoScrollingAction(_ sender: NSMenuItem) {
         
-        controlBarPlayerUIState.trackInfoScrollingEnabled = scrollingTrackTextView.scrollingEnabled
+        widgetPlayerUIState.trackInfoScrollingEnabled = scrollingTrackTextView.scrollingEnabled
         scrollingTrackTextView.scrollingEnabled.toggle()
     }
     
     @IBAction func toggleShowSeekPositionAction(_ sender: NSMenuItem) {
         
-        controlBarPlayerUIState.showTrackTime.toggle()
+        widgetPlayerUIState.showTrackTime.toggle()
         layoutScrollingTrackTextView()
     }
     
@@ -93,16 +93,16 @@ class ControlBarPVC: CommonPlayerViewController {
     }
 }
 
-extension ControlBarPVC: NSMenuDelegate {
+extension WidgetPlayerViewController: NSMenuDelegate {
     
     func menuNeedsUpdate(_ menu: NSMenu) {
         
-        scrollingEnabledMenuItem.onIf(controlBarPlayerUIState.trackInfoScrollingEnabled)
+        scrollingEnabledMenuItem.onIf(widgetPlayerUIState.trackInfoScrollingEnabled)
         
-        seekPositionDisplayTypeMenuItem.showIf(controlBarPlayerUIState.showTrackTime)
+        seekPositionDisplayTypeMenuItem.showIf(widgetPlayerUIState.showTrackTime)
         
-        showTrackTimeMenuItem.onIf(controlBarPlayerUIState.showTrackTime)
-        guard controlBarPlayerUIState.showTrackTime else {return}
+        showTrackTimeMenuItem.onIf(widgetPlayerUIState.showTrackTime)
+        guard widgetPlayerUIState.showTrackTime else {return}
         
         seekPositionDisplayTypeItems.forEach {$0.off()}
         

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -44,7 +43,7 @@
                     <box boxType="custom" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="qQ2-PJ-W1D" userLabel="Divider Line">
                         <rect key="frame" x="0.0" y="458" width="800" height="1"/>
                         <view key="contentView" id="ogn-QH-VpQ">
-                            <rect key="frame" x="1" y="1" width="798" height="0.0"/>
+                            <rect key="frame" x="1" y="0.5" width="798" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                         <constraints>
@@ -172,7 +171,7 @@
                                     <menuItem title="Control Bar (floating widget)" id="KMl-dm-ab8">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
-                                            <action selector="controlBarModeAction:" target="-2" id="aOF-Kh-twD"/>
+                                            <action selector="widgetModeAction:" target="-2" id="aOF-Kh-twD"/>
                                         </connections>
                                     </menuItem>
                                 </items>

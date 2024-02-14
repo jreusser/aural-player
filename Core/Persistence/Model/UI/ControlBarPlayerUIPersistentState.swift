@@ -1,5 +1,5 @@
 //
-//  ControlBarPlayerUIPersistentState.swift
+//  WidgetPlayerUIPersistentState.swift
 //  Aural
 //
 //  Copyright © 2024 Kartik Venugopal. All rights reserved.
@@ -17,9 +17,9 @@ import UIKit
 ///
 /// Persistent state for the Control Bar app mode's UI.
 ///
-/// - SeeAlso: `ControlBarPlayerUIState`
+/// - SeeAlso: `WidgetPlayerUIState`
 ///
-struct ControlBarPlayerUIPersistentState: Codable {
+struct WidgetPlayerUIPersistentState: Codable {
     
     let windowFrame: NSRectPersistentState?
     let cornerRadius: CGFloat?

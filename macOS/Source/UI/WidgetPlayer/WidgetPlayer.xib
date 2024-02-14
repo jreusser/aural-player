@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="ControlBarPlayerWindowController" customModule="Aural" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="WidgetPlayerWindowController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="btnQuit" destination="Ll7-4b-FN9" id="bMh-DH-wIW"/>
                 <outlet property="cornerRadiusStepper" destination="EPl-ya-Gzc" id="36A-6P-nQa"/>
@@ -26,13 +26,13 @@
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
             <value key="minSize" type="size" width="610" height="50"/>
             <value key="maxSize" type="size" width="10000" height="50"/>
-            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ" customClass="ControlBarPlaybackView" customModule="Aural" customModuleProvider="target">
+            <view key="contentView" wantsLayer="YES" misplaced="YES" id="EiT-Mj-1SZ" customClass="WidgetPlaybackView" customModule="Aural" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="598" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="5" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="cl4-0e-ANP" userLabel="Background Box">
                         <rect key="frame" x="0.0" y="0.0" width="598" height="50"/>
-                        <view key="contentView" id="Aqe-re-gbP" customClass="ControlBarSeekSliderView" customModule="Aural" customModuleProvider="target">
+                        <view key="contentView" id="Aqe-re-gbP" customClass="WidgetSeekSliderView" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="598" height="50"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -185,7 +185,7 @@
                                 <slider wantsLayer="YES" verticalHuggingPriority="750" id="oBR-SZ-2k2" userLabel="Seek Slider">
                                     <rect key="frame" x="71" y="-4" width="205" height="14"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <sliderCell key="cell" controlSize="mini" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="ovd-HG-pIx" customClass="ControlBarSeekSliderCell" customModule="Aural" customModuleProvider="target"/>
+                                    <sliderCell key="cell" controlSize="mini" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="ovd-HG-pIx" customClass="WidgetSeekSliderCell" customModule="Aural" customModuleProvider="target"/>
                                     <connections>
                                         <action selector="seekSliderAction:" target="VLj-aK-Baf" id="VoC-hg-GJ8"/>
                                     </connections>
@@ -606,7 +606,7 @@
             </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="79" y="153"/>
         </window>
-        <customObject id="VLj-aK-Baf" customClass="ControlBarPVC" customModule="Aural" customModuleProvider="target">
+        <customObject id="VLj-aK-Baf" customClass="WidgetPlayerViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="artView" destination="Zmm-Kt-3Gg" id="8Et-DQ-Bd8"/>
                 <outlet property="btnLoop" destination="8tt-Ju-N8p" id="dU8-6m-nKw"/>

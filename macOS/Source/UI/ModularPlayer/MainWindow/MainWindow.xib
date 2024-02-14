@@ -102,7 +102,7 @@
                                                 <menuItem title="Control Bar (floating widget)" id="zIp-0Y-NQx">
                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                     <connections>
-                                                        <action selector="controlBarModeAction:" target="-2" id="2qo-8F-aJd"/>
+                                                        <action selector="widgetModeAction:" target="-2" id="2qo-8F-aJd"/>
                                                     </connections>
                                                 </menuItem>
                                             </items>
@@ -1636,7 +1636,7 @@ CA
                             <menuItem title=" Switch to menu bar mode" image="MenuBarMode-Small" id="zS7-7O-5lF" userLabel="Switch to menu bar mode">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title=" Switch to control bar mode" image="ControlBarMode-Small" id="ht9-cb-4uj" userLabel="Switch to control bar mode">
+                            <menuItem title=" Switch to widget mode" image="WidgetMode-Small" id="ht9-cb-4uj" userLabel="Switch to widget mode">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="bmk-qe-d8C"/>
@@ -2040,7 +2040,6 @@ CA
         <image name="Bookmarks-Editor" width="15" height="15"/>
         <image name="Clear-Small" width="13" height="15"/>
         <image name="ColorScheme" width="13" height="14"/>
-        <image name="ControlBarMode-Small" width="14" height="10"/>
         <image name="Favorites" width="15" height="15"/>
         <image name="Favorites-Editor" width="15" height="15"/>
         <image name="FontScheme" width="14" height="14"/>
@@ -2054,6 +2053,7 @@ CA
         <image name="ToggleVisualizer-Small" width="14" height="14"/>
         <image name="Update" width="15" height="15"/>
         <image name="UserGuide" width="16" height="14"/>
+        <image name="WidgetMode-Small" width="128" height="128"/>
         <image name="WindowLayout" width="20" height="20"/>
         <image name="WindowLayout-BigBottomPlaylist" width="30" height="20"/>
         <image name="WindowLayout-BigLeftPlaylist" width="30" height="20"/>

@@ -144,7 +144,7 @@ let compactPlayerUIState: CompactPlayerUIState = .init(persistentState: appPersi
 let playQueueUIState: PlayQueueUIState = PlayQueueUIState(persistentState: appPersistentState.ui?.playQueue)
 let playlistsUIState: PlaylistsUIState = PlaylistsUIState()
 let menuBarPlayerUIState: MenuBarPlayerUIState = MenuBarPlayerUIState(persistentState: appPersistentState.ui?.menuBarPlayer)
-let controlBarPlayerUIState: ControlBarPlayerUIState = ControlBarPlayerUIState(persistentState: appPersistentState.ui?.controlBarPlayer)
+let widgetPlayerUIState: WidgetPlayerUIState = WidgetPlayerUIState(persistentState: appPersistentState.ui?.widgetPlayer)
 let visualizerUIState: VisualizerUIState = VisualizerUIState(persistentState: appPersistentState.ui?.visualizer)
 let windowAppearanceState: WindowAppearanceState = WindowAppearanceState(persistentState: appPersistentState.ui?.windowAppearance)
 let tuneBrowserUIState: TuneBrowserUIState = TuneBrowserUIState(persistentState: appPersistentState.ui?.tuneBrowser)
@@ -184,7 +184,7 @@ var persistentStateOnExit: AppPersistentState {
                                            modularPlayer: playerUIState.persistentState,
                                            unifiedPlayer: unifiedPlayerUIState.persistentState,
                                            menuBarPlayer: menuBarPlayerUIState.persistentState,
-                                           controlBarPlayer: controlBarPlayerUIState.persistentState,
+                                           widgetPlayer: widgetPlayerUIState.persistentState,
                                            compactPlayer: compactPlayerUIState.persistentState,
                                            
                                            playQueue: playQueueUIState.persistentState,
