@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,7 +18,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <view id="aXk-ne-Q1U" userLabel="Now Playing View" customClass="ModularPlayerView" customModule="Aural" customModuleProvider="target">
+        <view id="aXk-ne-Q1U" userLabel="Now Playing View">
             <rect key="frame" x="0.0" y="0.0" width="866" height="130"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -39,7 +40,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="697" height="70"/>
                                 <clipView key="contentView" copiesOnScroll="NO" id="RdT-fa-WIX">
                                     <rect key="frame" x="0.0" y="0.0" width="697" height="70"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView focusRingType="none" editable="NO" selectable="NO" horizontallyResizable="YES" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" spellingCorrection="YES" id="I8f-EI-P2l">
                                             <rect key="frame" x="0.0" y="0.0" width="697" height="70"/>
@@ -66,7 +67,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4S-AL-UJd" userLabel="Lbl Time Elapsed" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
+                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4S-AL-UJd" userLabel="Lbl Time Elapsed" customClass="CenterTextLabel" customModule="Aural" customModuleProvider="target">
                                 <rect key="frame" x="713" y="23" width="70" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="66" id="Gf6-Pc-z8E"/>
@@ -168,10 +169,10 @@
                     <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </box>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="5pM-GQ-4Cs" userLabel="SeekSliderView" customClass="WindowedModeSeekSliderView" customModule="Aural" customModuleProvider="target">
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="5pM-GQ-4Cs" userLabel="SeekSliderView">
                     <rect key="frame" x="0.0" y="38" width="866" height="15"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iet-di-Oy3" userLabel="SeekPositionMarker">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iet-di-Oy3" userLabel="SeekPositionMarker">
                             <rect key="frame" x="430" y="6" width="6" height="4"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="ueA-FQ-059">
@@ -204,7 +205,7 @@
                         <outlet property="seekSliderCell" destination="JET-if-N3H" id="hfa-C1-Fj2"/>
                     </connections>
                 </customView>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="nHq-7V-BR9" userLabel="Playback View" customClass="PlaybackView" customModule="Aural" customModuleProvider="target">
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="nHq-7V-BR9" userLabel="Playback View">
                     <rect key="frame" x="0.0" y="0.0" width="866" height="50"/>
                     <subviews>
                         <button toolTip="Seek forward" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rfx-HW-l39" userLabel="Seek Fwd Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
@@ -324,7 +325,7 @@
                                 <action selector="nextTrackAction:" target="pLt-bi-EBs" id="KlI-Kx-4Oc"/>
                             </connections>
                         </button>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MXD-Kc-HKp" userLabel="SeekPositionMarker">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MXD-Kc-HKp" userLabel="SeekPositionMarker">
                             <rect key="frame" x="452" y="-25" width="6" height="4"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="jik-nC-NgS">
@@ -361,7 +362,7 @@
                                 <action selector="shuffleAction:" target="vBr-yF-vuh" id="CDH-jE-8DU"/>
                             </connections>
                         </button>
-                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g7T-dA-7YQ" userLabel="Volume Value Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
+                        <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g7T-dA-7YQ" userLabel="Volume Value Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="813" y="29" width="50" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="46" id="84Z-t3-1wd"/>
@@ -424,14 +425,6 @@
                 <constraint firstAttribute="bottom" secondItem="nHq-7V-BR9" secondAttribute="bottom" id="eeY-fh-cb8"/>
                 <constraint firstAttribute="trailing" secondItem="5pM-GQ-4Cs" secondAttribute="trailing" id="z5f-Vd-4Qu"/>
             </constraints>
-            <connections>
-                <outlet property="artView" destination="I3Y-0e-Nm0" id="pjf-r5-loq"/>
-                <outlet property="functionsButton" destination="Glt-fW-V9p" id="ORV-v5-kIn"/>
-                <outlet property="functionsMenuItem" destination="lV5-HH-E3d" id="a7C-lX-c8p"/>
-                <outlet property="infoBox" destination="7BY-ME-fle" id="Vdu-XC-ACl"/>
-                <outlet property="lblTrackTime" destination="i4S-AL-UJd" id="07f-aT-1pp"/>
-                <outlet property="textView" destination="T0r-Cf-1AZ" id="bzf-p2-OuS"/>
-            </connections>
             <point key="canvasLocation" x="-2809" y="272.5"/>
         </view>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>

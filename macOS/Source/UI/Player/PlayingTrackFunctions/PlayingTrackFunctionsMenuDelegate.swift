@@ -20,8 +20,7 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
     // Button to add/remove the currently playing track to/from the Favorites list
     @IBOutlet weak var favoritesMenuItem: ToggleMenuItem!
     
-    @IBOutlet weak var sliderView: WindowedModeSeekSliderView!
-    @IBOutlet weak var seekPositionMarkerView: NSView!
+//    @IBOutlet weak var seekPositionMarkerView: NSView!
     
     @IBOutlet weak var playerWindowRootView: NSView!
     
@@ -181,16 +180,16 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
             
         } else {
             
-            sliderView.positionSeekPositionMarkerView()
+//            sliderView.positionSeekPositionMarkerView()
             
             // Show popover relative to seek slider
-            if seekPositionMarkerView.isVisible {
-                bookmarkNamePopover.show(seekPositionMarkerView, NSRectEdge.maxY)
-
-            } // Show popover relative to window
-            else {
+//            if seekPositionMarkerView.isVisible {
+//                bookmarkNamePopover.show(seekPositionMarkerView, NSRectEdge.maxY)
+//
+//            } // Show popover relative to window
+//            else {
                 bookmarkNamePopover.show(playerWindowRootView, NSRectEdge.maxX)
-            }
+//            }
         }
     }
     

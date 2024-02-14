@@ -491,9 +491,10 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     func setUpCommandHandling() {
         
         messenger.subscribeAsync(to: .Player.playTrack, handler: performTrackPlayback(_:))
+        
+        messenger.subscribe(to: .Player.muteOrUnmute, handler: muteOrUnmute)
         messenger.subscribe(to: .Player.decreaseVolume, handler: decreaseVolume(inputMode:))
         messenger.subscribe(to: .Player.increaseVolume, handler: increaseVolume(inputMode:))
-        messenger.subscribe(to: .Player.muteOrUnmute, handler: muteOrUnmute)
         
         messenger.subscribe(to: .Player.playOrPause, handler: playOrPause)
         messenger.subscribe(to: .Player.stop, handler: stop)
@@ -505,6 +506,18 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
         messenger.subscribe(to: .Player.seekBackward_secondary, handler: seekBackward_secondary)
         messenger.subscribe(to: .Player.seekForward_secondary, handler: seekForward_secondary)
         messenger.subscribe(to: .Player.jumpToTime, handler: jumpToTime(_:))
+        messenger.subscribe(to: .Player.toggleLoop, handler: toggleLoop)
+        
+        messenger.subscribe(to: .Player.setRepeatMode, handler: setRepeatMode(to:))
+        messenger.subscribe(to: .Player.toggleRepeatMode, handler: toggleRepeatMode)
+        messenger.subscribe(to: .Player.setShuffleMode, handler: setShuffleMode(to:))
+        messenger.subscribe(to: .Player.toggleShuffleMode, handler: toggleShuffleMode)
+        
+        messenger.subscribe(to: .Player.playChapter, handler: playChapter(index:))
+        messenger.subscribe(to: .Player.previousChapter, handler: previousChapter)
+        messenger.subscribe(to: .Player.nextChapter, handler: nextChapter)
+        messenger.subscribe(to: .Player.replayChapter, handler: replayChapter)
+        messenger.subscribe(to: .Player.toggleChapterLoop, handler: toggleChapterLoop)
         
         messenger.subscribe(to: .Player.showOrHideAlbumArt, handler: showOrHideAlbumArt)
         messenger.subscribe(to: .Player.showOrHideArtist, handler: showOrHideArtist)
@@ -632,6 +645,10 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     }
     
     @IBAction func toggleLoopAction(_ sender: NSButton) {
+        toggleLoop()
+    }
+    
+    func toggleLoop() {
         
         guard playbackDelegate.state.isPlayingOrPaused else {return}
         
