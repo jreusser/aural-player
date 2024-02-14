@@ -10,9 +10,6 @@
         <customObject id="-2" userLabel="File's Owner" customClass="UnifiedPlayerViewController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="infoView" destination="aXk-ne-Q1U" id="tYC-NA-oue"/>
-                <outlet property="playbackViewController" destination="pLt-bi-EBs" id="KJr-Gn-01f"/>
-                <outlet property="playerAudioViewController" destination="wU1-qk-dUQ" id="tjM-1k-1iY"/>
-                <outlet property="playerSequencingViewController" destination="vBr-yF-vuh" id="E6G-BR-xY4"/>
                 <outlet property="playingTrackFunctionsMenuDelegate" destination="YDH-Lw-Yxg" id="tM7-zL-V0d"/>
                 <outlet property="view" destination="aXk-ne-Q1U" id="J8m-0Q-dkH"/>
             </connections>
@@ -187,9 +184,6 @@
                                 <constraint firstAttribute="height" constant="11" id="yCT-OM-PqY"/>
                             </constraints>
                             <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="JET-if-N3H" customClass="SeekSliderCell" customModule="Aural" customModuleProvider="target"/>
-                            <connections>
-                                <action selector="seekSliderAction:" target="pLt-bi-EBs" id="OZs-Av-0dp"/>
-                            </connections>
                         </slider>
                     </subviews>
                     <constraints>
@@ -218,9 +212,6 @@
                                 <constraint firstAttribute="width" constant="20" id="Cso-np-a7d"/>
                                 <constraint firstAttribute="height" constant="13" id="x48-XU-nKy"/>
                             </constraints>
-                            <connections>
-                                <action selector="seekForwardAction:" target="pLt-bi-EBs" id="CfB-Xt-tfi"/>
-                            </connections>
                         </button>
                         <button wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5rA-mK-Ihh" userLabel="Play Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="424" y="12" width="18" height="18"/>
@@ -233,9 +224,6 @@
                                 <constraint firstAttribute="width" constant="18" id="111-YK-B5H"/>
                                 <constraint firstAttribute="height" constant="18" id="5sa-1o-q1l"/>
                             </constraints>
-                            <connections>
-                                <action selector="playPauseAction:" target="pLt-bi-EBs" id="uSU-3z-Rbt"/>
-                            </connections>
                         </button>
                         <button toolTip="A ⇋ B Segment loop" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lDv-Mk-n4T" userLabel="Loop Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="41" y="14" width="26" height="14"/>
@@ -247,9 +235,6 @@
                                 <constraint firstAttribute="height" constant="14" id="GxJ-sq-xZe"/>
                                 <constraint firstAttribute="width" constant="26" id="m2e-7p-VP0"/>
                             </constraints>
-                            <connections>
-                                <action selector="toggleLoopAction:" target="pLt-bi-EBs" id="ciD-Zc-6gy"/>
-                            </connections>
                         </button>
                         <button toolTip="Repeat" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rZu-pg-YVP" userLabel="Repeat Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="13" width="17" height="17"/>
@@ -261,9 +246,6 @@
                                 <constraint firstAttribute="height" constant="12" id="1Ft-yN-XME"/>
                                 <constraint firstAttribute="width" constant="17" id="CXb-Qe-kE1"/>
                             </constraints>
-                            <connections>
-                                <action selector="repeatAction:" target="vBr-yF-vuh" id="z7G-J4-nsp"/>
-                            </connections>
                         </button>
                         <button toolTip="Previous track" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pIl-Qj-Bbe" userLabel="PrevTrack Button" customClass="TrackPeekingButton" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="399" y="14.5" width="14" height="14"/>
@@ -278,9 +260,6 @@
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="defaultTooltip" value="Previous track"/>
                             </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="previousTrackAction:" target="pLt-bi-EBs" id="O8l-mz-IKH"/>
-                            </connections>
                         </button>
                         <button toolTip="Mute / Unmute" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ky9-I0-As0" userLabel="Volume Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="768" y="11" width="27" height="21"/>
@@ -293,9 +272,6 @@
                                 <constraint firstAttribute="width" constant="27" id="R2x-H1-XHq"/>
                                 <constraint firstAttribute="height" constant="11" id="m9z-mY-A2l"/>
                             </constraints>
-                            <connections>
-                                <action selector="muteOrUnmuteAction:" target="wU1-qk-dUQ" id="t2q-3T-81a"/>
-                            </connections>
                         </button>
                         <slider toolTip="Volume" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ty7-YX-csv" userLabel="Volume Slider">
                             <rect key="frame" x="794" y="14" width="74" height="15"/>
@@ -304,9 +280,6 @@
                                 <constraint firstAttribute="width" constant="70" id="P8o-ig-rcj"/>
                             </constraints>
                             <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="2la-ip-Cy1" customClass="VolumeSliderCell" customModule="Aural" customModuleProvider="target"/>
-                            <connections>
-                                <action selector="volumeAction:" target="wU1-qk-dUQ" id="yeu-Bw-M89"/>
-                            </connections>
                         </slider>
                         <button toolTip="Next track" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RWZ-DI-dyv" userLabel="NextTrack Button" customClass="TrackPeekingButton" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="452" y="14.5" width="14" height="14"/>
@@ -321,9 +294,6 @@
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="defaultTooltip" value="Next track"/>
                             </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="nextTrackAction:" target="pLt-bi-EBs" id="KlI-Kx-4Oc"/>
-                            </connections>
                         </button>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MXD-Kc-HKp" userLabel="SeekPositionMarker">
                             <rect key="frame" x="452" y="-25" width="6" height="4"/>
@@ -344,9 +314,6 @@
                                 <constraint firstAttribute="width" constant="20" id="aYL-dn-uN2"/>
                                 <constraint firstAttribute="height" constant="13" id="fkd-v8-Sba"/>
                             </constraints>
-                            <connections>
-                                <action selector="seekBackwardAction:" target="pLt-bi-EBs" id="HEk-Oc-2yA"/>
-                            </connections>
                         </button>
                         <button toolTip="Shuffle" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mwt-ld-sqn" userLabel="Shuffle Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="21" y="13" width="17" height="17"/>
@@ -358,9 +325,6 @@
                                 <constraint firstAttribute="width" constant="17" id="EWt-7b-waj"/>
                                 <constraint firstAttribute="height" constant="12" id="uvA-a0-z0R"/>
                             </constraints>
-                            <connections>
-                                <action selector="shuffleAction:" target="vBr-yF-vuh" id="CDH-jE-8DU"/>
-                            </connections>
                         </button>
                         <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g7T-dA-7YQ" userLabel="Volume Value Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                             <rect key="frame" x="813" y="29" width="50" height="20"/>
@@ -428,27 +392,6 @@
             <point key="canvasLocation" x="-2809" y="272.5"/>
         </view>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="wU1-qk-dUQ" customClass="WindowedModePlayerAudioViewController" customModule="Aural" customModuleProvider="target">
-            <connections>
-                <outlet property="btnVolume" destination="ky9-I0-As0" id="lV7-Yf-aWx"/>
-                <outlet property="lblVolume" destination="g7T-dA-7YQ" id="Hm0-wA-BzK"/>
-                <outlet property="view" destination="Ty7-YX-csv" id="79T-Sm-A6Q"/>
-                <outlet property="volumeSlider" destination="Ty7-YX-csv" id="fek-Xx-5aH"/>
-            </connections>
-        </customObject>
-        <customObject id="vBr-yF-vuh" customClass="WindowedModePlayerSequencingViewController" customModule="Aural" customModuleProvider="target">
-            <connections>
-                <outlet property="btnRepeat" destination="rZu-pg-YVP" id="V1c-Et-ERq"/>
-                <outlet property="btnShuffle" destination="Mwt-ld-sqn" id="Z4u-9q-ORX"/>
-                <outlet property="view" destination="rZu-pg-YVP" id="b3k-WN-Aj7"/>
-            </connections>
-        </customObject>
-        <customObject id="pLt-bi-EBs" customClass="WindowedModePlaybackViewController" customModule="Aural" customModuleProvider="target">
-            <connections>
-                <outlet property="playbackView" destination="nHq-7V-BR9" id="oYl-nD-4us"/>
-                <outlet property="view" destination="nHq-7V-BR9" id="m3e-7G-K9i"/>
-            </connections>
-        </customObject>
         <slider verticalHuggingPriority="750" id="aWI-32-OZS" userLabel="Seek Slider Clone">
             <rect key="frame" x="0.0" y="0.0" width="450" height="15"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
