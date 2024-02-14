@@ -96,7 +96,7 @@ class AudioToolboxParser: AVFMetadataParser {
             
             if let key = item.keyAsString, let value = item.valueAsString, !essentialFieldKeys.contains(key) {
                 
-                let rKey = readableKeys[key] ?? key.replacingOccurrences(of: "info-", with: "").capitalizingFirstLetter()
+                let rKey = readableKeys[key] ?? key.removingOccurrences(of: "info-").capitalizingFirstLetter()
                 metadata[key] = MetadataEntry(format: .audioToolbox, key: rKey, value: value)
             }
         }

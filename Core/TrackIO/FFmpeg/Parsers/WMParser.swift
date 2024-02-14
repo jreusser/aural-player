@@ -70,7 +70,7 @@ class WMParser: FFmpegMetadataParser {
         
         for key in metadataMap.map.keys {
             
-            let lcKey = key.lowercased().trim().replacingOccurrences(of: keyPrefix, with: "")
+            let lcKey = key.lowercased().trim().removingOccurrences(of: keyPrefix)
             
             if !ignoredKeys.contains(lcKey) {
                 
@@ -349,7 +349,7 @@ class WMParser: FFmpegMetadataParser {
     private func readableKey(_ key: String) -> String {
         
         let lcKey = key.lowercased()
-        let trimmedKey = lcKey.replacingOccurrences(of: keyPrefix, with: "").trim()
+        let trimmedKey = lcKey.removingOccurrences(of: keyPrefix).trim()
         
         if let rKey = auxiliaryKeys[trimmedKey] {
             

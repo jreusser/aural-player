@@ -76,7 +76,7 @@
 //        tokens.remove(at: 0)
 //        tokens.removeLast()
 //
-//        let filePath: String = (tokens.count == 1 ? tokens[0] : tokens.joined(separator: " ")).replacingOccurrences(of: "\"", with: "")
+//        let filePath: String = (tokens.count == 1 ? tokens[0] : tokens.joined(separator: " ")).removingOccurrences(of: "\"")
 //
 //        cursor.increment()
 //
@@ -194,7 +194,7 @@
 //        let tokens = line.components(separatedBy: " ")
 //        if tokens.count < 2 {return nil}
 //
-//        return tokens.suffix(from: 1).joined(separator: " ").replacingOccurrences(of: "\"", with: "")
+//        return tokens.suffix(from: 1).joined(separator: " ").removingOccurrences(of: "\"")
 //    }
 //
 //    private static func readIndex() -> Double? {

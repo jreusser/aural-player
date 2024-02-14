@@ -313,7 +313,7 @@ class ParserUtils {
         for (key, value) in dict {
             
             if let keyStr = key as? String, keyStr.hasPrefix("{") && keyStr.hasSuffix("}"), value is NSDictionary {
-                imgMetadata.type = keyStr.replacingOccurrences(of: "{", with: "").replacingOccurrences(of: "}", with: "")
+                imgMetadata.type = keyStr.removingOccurrences(of: "{").removingOccurrences(of: "}")
             }
         }
         

@@ -78,11 +78,15 @@ extension String {
     #endif
     
     func withEncodingAndNullsRemoved() -> String {
-        (self.removingPercentEncoding ?? self).replacingOccurrences(of: "\0", with: "")
+        (self.removingPercentEncoding ?? self).removingOccurrences(of: "\0")
     }
     
     func removingNewlines() -> String {
-        self.replacingOccurrences(of: "\n", with: "")
+        self.removingOccurrences(of: "\n")
+    }
+    
+    func removingOccurrences(of string: String) -> String {
+        self.replacingOccurrences(of: string, with: "")
     }
     
     // Splits a camel cased word into separate words, all capitalized. For ex, "albumName" -> "Album Name". This is useful for display within the UI.

@@ -16,15 +16,18 @@ let appSetup: AppSetup = .shared
 
 #endif
 
+fileprivate let logger: Logger = .init()
+
 let persistenceManager: PersistenceManager = PersistenceManager(persistentStateFile: FilesAndPaths.persistentStateFile)
 let appPersistentState: AppPersistentState = {
     
-    
+    // TODO: Replace try? with do {try} and log the error!
+    // TODO: Add an arg to Logger.error(error: Error)
     guard let jsonString = try? String(contentsOf: FilesAndPaths.persistentStateFile, encoding: .utf8),
           let jsonData = jsonString.data(using: .utf8),
           let dict = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] else {
         
-        NSLog("Error loading app state config file.")
+        logger.warning("Error loading app state config file.")
         return .defaults
     }
     

@@ -17,6 +17,7 @@
 		3E05FD42283A453D00EB7861 /* LibraryAlbums.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E05FD41283A453D00EB7861 /* LibraryAlbums.xib */; };
 		3E05FD44283A455300EB7861 /* LibraryAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E05FD43283A455300EB7861 /* LibraryAlbumsViewController.swift */; };
 		3E0610852B7A8F48004C5B3B /* ModularPlayerViewController+AutoHide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0610842B7A8F48004C5B3B /* ModularPlayerViewController+AutoHide.swift */; };
+		3E0610882B7C27B7004C5B3B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0610872B7C27B7004C5B3B /* Logger.swift */; };
 		3E08AC11281B214F004A53F7 /* TintableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E08AC10281B214F004A53F7 /* TintableTextField.swift */; };
 		3E08AC13281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E08AC12281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift */; };
 		3E10175628D741E7002C0D8E /* MediaKeyTapInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10174828D741E7002C0D8E /* MediaKeyTapInternals.swift */; };
@@ -1089,6 +1090,7 @@
 		3E05FD41283A453D00EB7861 /* LibraryAlbums.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryAlbums.xib; sourceTree = "<group>"; };
 		3E05FD43283A455300EB7861 /* LibraryAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryAlbumsViewController.swift; sourceTree = "<group>"; };
 		3E0610842B7A8F48004C5B3B /* ModularPlayerViewController+AutoHide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModularPlayerViewController+AutoHide.swift"; sourceTree = "<group>"; };
+		3E0610872B7C27B7004C5B3B /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		3E08AC10281B214F004A53F7 /* TintableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintableTextField.swift; sourceTree = "<group>"; };
 		3E08AC12281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSlider+ColorSchemeObserver.swift"; sourceTree = "<group>"; };
 		3E10174828D741E7002C0D8E /* MediaKeyTapInternals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeyTapInternals.swift; sourceTree = "<group>"; };
@@ -2182,6 +2184,14 @@
 				3EC793702B73C41000AF7E9E /* LibraryAlbumsView+TableCells.swift */,
 			);
 			path = Albums;
+			sourceTree = "<group>";
+		};
+		3E0610862B7C27A5004C5B3B /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				3E0610872B7C27B7004C5B3B /* Logger.swift */,
+			);
+			path = Logging;
 			sourceTree = "<group>";
 		};
 		3E10171B28D741E7002C0D8E /* ThirdParty */ = {
@@ -4673,6 +4683,7 @@
 		3EFE36AE27864895006F8B8C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3E0610862B7C27A5004C5B3B /* Logging */,
 				3E498E29284D524D00BF4157 /* SystemKit */,
 				3EFE36AF27864895006F8B8C /* AppVersion.swift */,
 				3EFE36B027864895006F8B8C /* FileSizeUnit.swift */,
@@ -5986,6 +5997,7 @@
 				3E6C126425CEBE0600BF0D07 /* PitchShiftPresetsManagerViewController.swift in Sources */,
 				3E6C12C625CEBE6700BF0D07 /* PitchShiftUnitView.swift in Sources */,
 				3E634D762846B8B9008A47EC /* MouseTrackingOutlineView.swift in Sources */,
+				3E0610882B7C27B7004C5B3B /* Logger.swift in Sources */,
 				3E6C12C125CEBE6700BF0D07 /* PitchShiftUnitViewController.swift in Sources */,
 				3E6C12B425CEBE5800BF0D07 /* PlaybackMenuController.swift in Sources */,
 				3EFE396727864897006F8B8C /* AVFPlaybackContext.swift in Sources */,
