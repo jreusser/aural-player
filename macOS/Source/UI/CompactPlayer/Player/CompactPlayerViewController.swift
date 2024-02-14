@@ -10,7 +10,7 @@
 
 import AppKit
 
-class CompactPlayerViewController: CommonPlayerViewController {
+class CompactPlayerViewController: PlayerViewController {
     
     override var nibName: NSNib.Name? {"CompactPlayer"}
     

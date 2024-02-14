@@ -1,5 +1,5 @@
 //
-//  CommonPlayerViewController.swift
+//  PlayerViewController.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -10,7 +10,7 @@
 
 import AppKit
 
-class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSchemeObserver {
+class PlayerViewController: NSViewController, FontSchemeObserver, ColorSchemeObserver {
     
     @IBOutlet weak var artView: NSImageView!
     @IBOutlet weak var multilineTrackTextView: MultilineTrackTextView!
@@ -231,10 +231,6 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     }
     
     func layoutScrollingTrackTextView() {
-        
-        // Seek Position label
-//        lblTrackTime.showIf(playbackDelegate.playingTrack != nil && showTrackTime)
-//        updateSeekTimerState()
         
         var labelWidth: CGFloat = 0
         

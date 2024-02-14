@@ -10,7 +10,7 @@
 
 import AppKit
 
-class WidgetPlayerViewController: CommonPlayerViewController {
+class WidgetPlayerViewController: PlayerViewController {
     
     @IBOutlet weak var scrollingEnabledMenuItem: NSMenuItem!
     @IBOutlet weak var showTrackTimeMenuItem: NSMenuItem!

@@ -10,7 +10,7 @@
 
 import AppKit
 
-class MenuBarPlayerViewController: CommonPlayerViewController {
+class MenuBarPlayerViewController: PlayerViewController {
     
     @IBOutlet weak var rootContainerBox: NSBox!
     @IBOutlet weak var btnQuit: FillableImageButton!

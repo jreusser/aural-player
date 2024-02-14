@@ -10,7 +10,7 @@
 
 import AppKit
 
-class ModularPlayerViewController: CommonPlayerViewController {
+class ModularPlayerViewController: PlayerViewController {
     
     override var nibName: NSNib.Name? {"ModularPlayer"}
     
