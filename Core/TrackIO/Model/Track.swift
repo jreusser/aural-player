@@ -170,3 +170,10 @@ class Track: Hashable, PlaylistItem, PlayableItem {
         hasher.combine(file)
     }
 }
+
+extension Track: CustomStringConvertible {
+    
+    var description: String {
+        displayName
+    }
+}

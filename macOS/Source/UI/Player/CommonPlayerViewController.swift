@@ -233,8 +233,8 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     func layoutScrollingTrackTextView() {
         
         // Seek Position label
-        lblTrackTime.showIf(playbackDelegate.playingTrack != nil && showTrackTime)
-        updateSeekTimerState()
+//        lblTrackTime.showIf(playbackDelegate.playingTrack != nil && showTrackTime)
+//        updateSeekTimerState()
         
         var labelWidth: CGFloat = 0
         
@@ -340,6 +340,10 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
             artView.contentTintColor = systemColorScheme.secondaryTextColor
             artView.image?.isTemplate = true
         }
+    }
+    
+    func updateDuration(for track: Track?) {
+        updateSeekPosition()
     }
     
     func updatePlaybackControls(for track: Track?) {
@@ -656,24 +660,6 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     var shouldEnableSeekTimer: Bool {
         playbackDelegate.state == .playing
-        
-        // TODO: Modular player should check playerUIState.showMainControls (slider)
-//        
-//        var needTimer = false
-//        let isPlaying = playbackDelegate.state == .playing
-//        
-//        if isPlaying {
-//            
-//            let hasTasks = seekTimerTaskQueue.hasTasks
-//            
-//            let labelShown = showTrackTime
-//            let trackTimeDisplayType = playerUIState.trackTimeDisplayType
-//            let trackTimeNotStatic = labelShown && trackTimeDisplayType != .duration
-//            
-//            needTimer = hasTasks || trackTimeNotStatic
-//        }
-//        
-//        return needTimer
     }
     
     func updateSeekTimerState() {
@@ -718,34 +704,37 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     func playChapter(index: Int) {
         
         playbackDelegate.playChapter(index)
-        playbackLoopChanged()
-//        playbackView.playbackStateChanged(playbackDelegate.state)
+        postChapterChange()
     }
     
     func previousChapter() {
         
         playbackDelegate.previousChapter()
-        playbackLoopChanged()
-//        playbackView.playbackStateChanged(playbackDelegate.state)
+        postChapterChange()
     }
     
     func nextChapter() {
         
         playbackDelegate.nextChapter()
-        playbackLoopChanged()
-//        playbackView.playbackStateChanged(playbackDelegate.state)
+        postChapterChange()
     }
     
     func replayChapter() {
         
         playbackDelegate.replayChapter()
-        updateSeekPosition()
-//        playbackView.playbackStateChanged(playbackDelegate.state)
+        postChapterChange()
+    }
+    
+    private func postChapterChange() {
+        
+        playbackLoopChanged()
+        btnPlayPauseStateMachine.setState(playbackDelegate.state)
+        updateSeekTimerState()
     }
     
     func toggleChapterLoop() {
         
-        _ = playbackDelegate.toggleChapterLoop()
+        playbackDelegate.toggleChapterLoop()
         playbackLoopChanged()
         
         messenger.publish(.Player.playbackLoopChanged)
@@ -894,6 +883,10 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     func setUpNotificationHandling() {
         
         messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:))
+        messenger.subscribe(to: .Player.trackInfoUpdated, handler: playingTrackInfoUpdated(_:), filter: {notif in
+            notif.updatedTrack == playbackDelegate.playingTrack
+        })
+        
         messenger.subscribe(to: .Player.playbackLoopChanged, handler: playbackLoopChanged)
         messenger.subscribe(to: .Player.chapterChanged, handler: chapterChanged(_:))
         messenger.subscribe(to: .Player.trackNotPlayed, handler: trackNotPlayed(_:))
@@ -907,17 +900,28 @@ class CommonPlayerViewController: NSViewController, FontSchemeObserver, ColorSch
     
     func chapterChanged(_ notification: ChapterChangedNotification) {
         
-        if let playingTrack = playbackDelegate.playingTrack {
+        if let playingTrack = notification.newChapter?.track {
             multilineTrackTextView?.trackInfo = PlayingTrackInfo(track: playingTrack, playingChapterTitle: notification.newChapter?.chapter.title)
         }
     }
     
     func playingTrackInfoUpdated(_ notification: TrackInfoUpdatedNotification) {
         
+        if notification.updatedFields.contains(.art) {
+            updateCoverArt(for: notification.updatedTrack)
+        }
+        
+        if notification.updatedFields.contains(.duration) {
+            updateDuration(for: notification.updatedTrack)
+        }
     }
     
     func trackNotPlayed(_ notification: TrackNotPlayedNotification) {
         
+        trackChanged(to: nil)
+        
+        NSAlert.showError(withTitle: "Track not played",
+                          andText: "Error playing audio file '\(notification.errorTrack.file.lastPathComponent)':\n\(notification.error.message)")
     }
     
     func playbackRateChanged(_ newPlaybackRate: Float) {

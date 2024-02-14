@@ -122,7 +122,7 @@ protocol PlaybackDelegateProtocol: PlaybackInfoDelegateProtocol {
     
     // For the currently playing track, toggles a segment loop bounded by the currently playing chapter's start and end time
     // Returns whether or not a loop exists for the currently playing chapter, after the toggle operation.
-    func toggleChapterLoop() -> Bool
+    @discardableResult func toggleChapterLoop() -> Bool
     
     // Whether or not a loop exists for the currently playing chapter
     var chapterLoopExists: Bool {get}

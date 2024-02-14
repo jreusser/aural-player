@@ -21,8 +21,30 @@ class ModularPlayerViewController: CommonPlayerViewController {
     
     override var shouldEnableSeekTimer: Bool {
         
-        // TODO: If controls are auto-hidden and track time is also hidden (or static), disable the timer (if chapter title is hidden)
-        super.shouldEnableSeekTimer
+        if playbackDelegate.state != .playing {
+            return false
+        }
+        
+        // Check if we need to update seek slider position
+        if playerUIState.showControls {
+            return true
+        }
+        
+        // Assume controls are hidden
+        
+        // Check if we need to update track time
+        if playerUIState.showTrackTime && playerUIState.trackTimeDisplayType != .duration {
+            return true
+        }
+        
+        // Assume no need to update track time
+        
+        // Check if we need to check current chapter (i.e. seekTimerTaskQueue)
+        if seekTimerTaskQueue.hasTasks {
+            return true
+        }
+        
+        return false
     }
     
     override func viewDidLoad() {

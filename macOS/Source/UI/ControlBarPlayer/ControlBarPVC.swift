@@ -85,6 +85,12 @@ class ControlBarPVC: CommonPlayerViewController {
         playerUIState.trackTimeDisplayType = sender.displayType
         setTrackTimeDisplayType(to: playerUIState.trackTimeDisplayType)
     }
+    
+    override func updateDuration(for track: Track?) {
+        
+        updateSeekPosition()
+        layoutScrollingTrackTextView()
+    }
 }
 
 extension ControlBarPVC: NSMenuDelegate {
