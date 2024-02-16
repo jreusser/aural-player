@@ -2225,13 +2225,13 @@
 				3E6C104225CEB98600BF0D07 /* ModularPlayer.xib */,
 				3E2549422B7A7E0B00FD83D1 /* ModularPlayerViewController.swift */,
 				3E0610842B7A8F48004C5B3B /* ModularPlayerViewController+AutoHide.swift */,
-				3E59E9D32B5214E0001DDCE9 /* Favorites */,
 				3E6C104F25CEB98600BF0D07 /* WindowManagement */,
 				3E6C0F1D25CEB98500BF0D07 /* MainWindow */,
 				3E10179328D7929D002C0D8E /* PlayQueue */,
 				3E10179228D79203002C0D8E /* Library */,
 				3E10179428D793B1002C0D8E /* Effects */,
 				3E2C4BD52B38E5D300FC65DD /* Search */,
+				3E59E9D32B5214E0001DDCE9 /* Favorites */,
 			);
 			path = ModularPlayer;
 			sourceTree = "<group>";

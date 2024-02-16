@@ -78,6 +78,14 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         favoriteDecades.count
     }
     
+    var allFavoriteFolders: [FavoriteFolder] {
+        Array(favoriteFolders.values)
+    }
+    
+    var numberOfFavoriteFolders: Int {
+        favoriteFolders.count
+    }
+    
     var artistsFromFavoriteTracks: Set<String> {
         Set(favoriteTracks.values.compactMap {$0.track.artist})
     }
@@ -261,14 +269,13 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
             
         } else if let favFolder = favorite as? FavoriteFolder {
             
-            // Recursively get all track and playlist file URLs, then query library for those, then add all to the PQ before playing
-            // TODO: Add library method to expand a folder into its tracks.
+            // Recursively get all tracks, then add them to the PQ before playing
             
             if let folder = libraryDelegate.findFileSystemFolder(atLocation: favFolder.folder) {
-                
+                messenger.publish(EnqueueAndPlayNowCommand(tracks: folder.tracks, clearPlayQueue: false))
                 
             } else {
-                
+                playQueueDelegate.loadTracks(from: [favFolder.folder], autoplay: true)
             }
         }
     }
@@ -279,6 +286,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
                                  favoriteArtists: self.allFavoriteArtists.map {FavoriteGroupPersistentState(favorite: $0)},
                                  favoriteAlbums: self.allFavoriteAlbums.map {FavoriteGroupPersistentState(favorite: $0)},
                                  favoriteGenres: self.allFavoriteGenres.map {FavoriteGroupPersistentState(favorite: $0)},
-                                 favoriteDecades: self.allFavoriteDecades.map {FavoriteGroupPersistentState(favorite: $0)})
+                                 favoriteDecades: self.allFavoriteDecades.map {FavoriteGroupPersistentState(favorite: $0)},
+                                 favoriteFolders: self.allFavoriteFolders.map {FavoriteFolderPersistentState(favorite: $0)})
     }
 }

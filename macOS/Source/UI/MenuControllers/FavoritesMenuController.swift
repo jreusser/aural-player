@@ -55,24 +55,31 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
 
 // MARK: Favorite Tracks menu --------------------------------------------
 
-class FavoriteTracksMenuController: NSObject, NSMenuDelegate {
+class GenericFavoritesMenuController: NSObject, NSMenuDelegate {
     
-    // Menu that displays tracks marked "favorites". Clicking on any of these items will result in the track being  played.
-    @IBOutlet weak var favoriteTracksMenu: NSMenu!
+    @IBOutlet weak var theMenu: NSMenu!
+    
+    var favoritesFunction: () -> [Favorite] {
+        {[]}
+    }
+    
+    var itemImageFunction: (Favorite) -> PlatformImage? {
+        {_ in nil}
+    }
     
     func menuWillOpen(_ menu: NSMenu) {
         
         // Remove existing items, before re-creating the menu.
-        favoriteTracksMenu.removeAllItems()
+        theMenu.removeAllItems()
         
         // Recreate the menu (reverse so that newer items appear first).
-        for fav in favoritesDelegate.allFavoriteTracks.reversed() {
-            favoriteTracksMenu.addItem(createFavoriteTrackMenuItem(fav))
+        for fav in favoritesFunction().reversed() {
+            theMenu.addItem(createFavoriteMenuItem(fav))
         }
     }
     
     // Factory method to create a single Favorites menu item, given a model object (FavoritesItem)
-    private func createFavoriteTrackMenuItem(_ fav: FavoriteTrack) -> NSMenuItem {
+    private func createFavoriteMenuItem(_ fav: Favorite) -> NSMenuItem {
         
         // The action for the menu item will depend on whether it is a playable item
         let action = #selector(self.playSelectedItemAction(_:))
@@ -80,7 +87,7 @@ class FavoriteTracksMenuController: NSObject, NSMenuDelegate {
         let menuItem = FavoritesMenuItem(title: "  " + fav.name, action: action)
         menuItem.target = self
         
-        menuItem.image = fav.track.art?.image ?? .imgPlayedTrack
+        menuItem.image = itemImageFunction(fav)
         menuItem.image?.size = menuItemCoverArtImageSize
         
         menuItem.favorite = fav
@@ -94,178 +101,78 @@ class FavoriteTracksMenuController: NSObject, NSMenuDelegate {
         if let fav = sender.favorite {
             favoritesDelegate.playFavorite(fav)
         }
+    }
+}
+
+class FavoriteTracksMenuController: GenericFavoritesMenuController {
+    
+    override var favoritesFunction: () -> [Favorite] {
+        {favoritesDelegate.allFavoriteTracks}
+    }
+    
+    override var itemImageFunction: (Favorite) -> PlatformImage? {
+        {fav in (fav as? FavoriteTrack)?.track.art?.image ?? .imgPlayedTrack}
     }
 }
 
 // MARK: Favorite Groups menu --------------------------------------------
 
-@IBDesignable
-class FavoriteGroupsMenuController: NSObject, NSMenuDelegate {
+class FavoriteArtistsMenuController: GenericFavoritesMenuController {
     
-    // Menu that displays tracks marked "favorites". Clicking on any of these items will result in the track being  played.
-    @IBOutlet weak var favoriteGroupsMenu: NSMenu!
-    @IBInspectable weak var itemImage: NSImage!
-    
-    // Override this !!!
-    var groupsFunction: () -> [FavoriteGroup] {
-        {[]}
-    }
-    
-    func menuWillOpen(_ menu: NSMenu) {
-        
-        // Remove existing items, before re-creating the menu.
-        favoriteGroupsMenu.removeAllItems()
-        
-        // Recreate the menu (reverse so that newer items appear first).
-        for fav in groupsFunction().reversed() {
-            favoriteGroupsMenu.addItem(createFavoriteGroupMenuItem(fav))
-        }
-    }
-    
-    // Factory method to create a single Favorites menu item, given a model object (FavoritesItem)
-    private func createFavoriteGroupMenuItem(_ fav: FavoriteGroup) -> NSMenuItem {
-        
-        // The action for the menu item will depend on whether it is a playable item
-        let action = #selector(self.playSelectedItemAction(_:))
-        
-        let menuItem = FavoritesMenuItem(title: "  " + fav.groupName, action: action)
-        menuItem.target = self
-        
-        menuItem.image = itemImage
-        menuItem.image?.size = menuItemCoverArtImageSize
-        
-        menuItem.favorite = fav
-        
-        return menuItem
-    }
-    
-    // When a "Favorites" menu item is clicked, the item is played
-    @IBAction fileprivate func playSelectedItemAction(_ sender: FavoritesMenuItem) {
-        
-        if let fav = sender.favorite {
-            favoritesDelegate.playFavorite(fav)
-        }
-    }
-}
-
-class FavoriteArtistsMenuController: FavoriteGroupsMenuController {
-    
-    override var groupsFunction: () -> [FavoriteGroup] {
+    override var favoritesFunction: () -> [Favorite] {
         {favoritesDelegate.allFavoriteArtists}
     }
+    
+    override var itemImageFunction: (Favorite) -> PlatformImage? {
+        {_ in .imgArtistGroup_menu}
+    }
 }
 
-class FavoriteAlbumsMenuController: FavoriteGroupsMenuController {
+class FavoriteAlbumsMenuController: GenericFavoritesMenuController {
     
-    override var groupsFunction: () -> [FavoriteGroup] {
+    override var favoritesFunction: () -> [Favorite] {
         {favoritesDelegate.allFavoriteAlbums}
     }
+    
+    override var itemImageFunction: (Favorite) -> PlatformImage? {
+        {_ in .imgAlbumGroup_menu}
+    }
 }
 
-class FavoriteGenresMenuController: FavoriteGroupsMenuController {
+class FavoriteGenresMenuController: GenericFavoritesMenuController {
     
-    override var groupsFunction: () -> [FavoriteGroup] {
+    override var favoritesFunction: () -> [Favorite] {
         {favoritesDelegate.allFavoriteGenres}
     }
-}
-
-class FavoriteDecadesMenuController: FavoriteGroupsMenuController {
     
-    override var groupsFunction: () -> [FavoriteGroup] {
-        {favoritesDelegate.allFavoriteDecades}
+    override var itemImageFunction: (Favorite) -> PlatformImage? {
+        {_ in .imgGenreGroup}
     }
 }
 
-//// MARK: Favorite Albums menu --------------------------------------------
-//
-//class FavoriteAlbumsMenuController: NSObject, NSMenuDelegate {
-//    
-//    // Menu that displays tracks marked "favorites". Clicking on any of these items will result in the track being  played.
-//    @IBOutlet weak var favoriteAlbumsMenu: NSMenu!
-//    
-//    func menuWillOpen(_ menu: NSMenu) {
-//        
-//        // Remove existing items, before re-creating the menu.
-//        favoriteAlbumsMenu.removeAllItems()
-//        
-//        // Recreate the menu (reverse so that newer items appear first).
-//        for fav in favoritesDelegate.allFavoriteAlbums.reversed() {
-//            favoriteAlbumsMenu.addItem(createFavoriteAlbumMenuItem(fav))
-//        }
-//    }
-//    
-//    // Factory method to create a single Favorites menu item, given a model object (FavoritesItem)
-//    private func createFavoriteAlbumMenuItem(_ fav: FavoriteGroup) -> NSMenuItem {
-//        
-//        // The action for the menu item will depend on whether it is a playable item
-//        let action = #selector(self.playSelectedItemAction(_:))
-//        
-//        let menuItem = FavoritesMenuItem(title: "  " + fav.groupName, action: action)
-//        menuItem.target = self
-//        
-//        menuItem.image = .imgAlbumGroup_menu
-//        menuItem.image?.size = menuItemCoverArtImageSize
-//        
-//        menuItem.favorite = fav
-//        
-//        return menuItem
-//    }
-//    
-//    // When a "Favorites" menu item is clicked, the item is played
-//    @IBAction fileprivate func playSelectedItemAction(_ sender: FavoritesMenuItem) {
-//        
-//        if let fav = sender.favorite {
-//            favoritesDelegate.playFavorite(fav)
-//        }
-//    }
-//}
+class FavoriteDecadesMenuController: GenericFavoritesMenuController {
+    
+    override var favoritesFunction: () -> [Favorite] {
+        {favoritesDelegate.allFavoriteDecades}
+    }
+    
+    override var itemImageFunction: (Favorite) -> PlatformImage? {
+        {_ in .imgDecadeGroup}
+    }
+}
+
+class FavoriteFoldersMenuController: GenericFavoritesMenuController {
+    
+    override var favoritesFunction: () -> [Favorite] {
+        {favoritesDelegate.allFavoriteFolders}
+    }
+    
+    override var itemImageFunction: (Favorite) -> PlatformImage? {
+        {_ in .imgFileSystem}
+    }
+}
 
 class FavoritesMenuItem: NSMenuItem {
     
     var favorite: Favorite!
 }
-
-// Factory method to create a single Favorites menu item, given a model object (FavoritesItem)
-//private func createFavoriteTrackMenuItem(_ item: Favorite) -> NSMenuItem {
-//    
-//    // The action for the menu item will depend on whether it is a playable item
-//    let action = #selector(self.playSelectedItemAction(_:))
-//    
-//    let menuItem = FavoritesMenuItem(title: "  " + item.name, action: action)
-//    menuItem.target = self
-//    
-//    if let trackItem = item as? FavoriteTrack {
-//        menuItem.image = trackItem.track.art?.image
-//        
-//    } else if let groupItem = item as? FavoriteGroup {
-//        
-//        switch groupItem.groupType {
-//            
-//        case .artist:
-//            menuItem.image = .imgArtistGroup_menu
-//            
-//        case .album:
-//            menuItem.image = .imgAlbumGroup_menu
-//            
-//        case .genre:
-//            menuItem.image = .imgGenreGroup
-//
-//        case .decade:
-//            menuItem.image = .imgDecadeGroup
-//
-//        case .albumDisc:
-//            menuItem.image = .imgAlbumGroup_menu
-//            
-//        default:
-//            break
-//        }
-//        
-//    } else {
-//        menuItem.image = .imgPlayedTrack
-//    }
-//    
-//    menuItem.image?.size = menuItemCoverArtImageSize
-//    menuItem.favorite = item
-//    
-//    return menuItem
-//}

@@ -50,6 +50,32 @@ class FileSystemFolderItem: FileSystemItem, Equatable {
         super.init(url: url, type: .folder)
     }
     
+    private var _tracks: [Track] = []
+    
+    var tracks: [Track] {
+        
+        _tracks = []
+        findTracksInFolder(self)
+        
+        return _tracks
+    }
+    
+    private func findTracksInFolder(_ folder: FileSystemFolderItem) {
+        
+        for child in folder.children.values {
+            
+            if child.isTrack, let trackItem = child as? FileSystemTrackItem {
+                _tracks.append(trackItem.track)
+                
+            } else if child.isDirectory, let subFolder = child as? FileSystemFolderItem {
+                findTracksInFolder(subFolder)
+                
+            } else if child.isPlaylist, let playlist = child as? FileSystemPlaylistItem {
+                _tracks.append(contentsOf: playlist.playlist.tracks)
+            }
+        }
+    }
+    
     func sortChildren(by sortField: FileSystemSortField, ascending: Bool) {
         
         if sortField == .name {

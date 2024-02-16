@@ -75,6 +75,9 @@ protocol FavoritesDelegateProtocol {
     var allFavoriteDecades: [FavoriteGroup] {get}
     var numberOfFavoriteDecades: Int {get}
     
+    var allFavoriteFolders: [FavoriteFolder] {get}
+    var numberOfFavoriteFolders: Int {get}
+    
     func favoriteExists(track: Track) -> Bool
     
     func favoriteExists(artist: String) -> Bool

@@ -99,6 +99,23 @@ extension TuneBrowserTabViewController {
 //        }
     }
     
+    @IBAction func addToFavoritesAction(_ sender: NSMenuItem) {
+        
+        guard let selItem = browserView.selectedFileSystemItems.first else {return}
+        
+        if selItem.isDirectory {
+            favoritesDelegate.addFavorite(folder: selItem.url)
+            
+        } else if selItem.isTrack, let track = selItem as? FileSystemTrackItem {
+            favoritesDelegate.addFavorite(track: track.track)
+        }
+        
+//        else if selItem.isPlaylist, let playlist = selItem as? FileSystemPlaylistItem {
+////            favoritesDelegate.addFavo
+//        }
+        
+    }
+    
     @IBAction func showBrowserItemInFinderAction(_ sender: Any) {
         
         if let selItem = browserView.rightClickedItem as? FileSystemItem {

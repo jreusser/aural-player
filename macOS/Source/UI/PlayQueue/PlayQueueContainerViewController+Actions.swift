@@ -341,11 +341,11 @@ extension PlayQueueContainerViewController {
         
         playQueueDelegate.loadTracks(from: command.files, clearQueue: command.clearPlayQueue, autoplay: true)
         
-        controllers.forEach {
-            
-            $0.reloadTable()
-            $0.updateSummary()
-        }
+//        controllers.forEach {
+//            
+//            $0.reloadTable()
+//            $0.updateSummary()
+//        }
     }
     
     // TODO:

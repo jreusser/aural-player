@@ -17,6 +17,7 @@ struct FavoritesPersistentState: Codable {
     let favoriteAlbums: [FavoriteGroupPersistentState]?
     let favoriteGenres: [FavoriteGroupPersistentState]?
     let favoriteDecades: [FavoriteGroupPersistentState]?
+    let favoriteFolders: [FavoriteFolderPersistentState]?
     
     init(legacyPersistentState: [LegacyFavoritePersistentState]?) {
         
@@ -30,14 +31,17 @@ struct FavoritesPersistentState: Codable {
         self.favoriteAlbums = nil
         self.favoriteGenres = nil
         self.favoriteDecades = nil
+        self.favoriteFolders = nil
     }
     
-    init(favoriteTracks: [FavoriteTrackPersistentState]?, favoriteArtists: [FavoriteGroupPersistentState]?, favoriteAlbums: [FavoriteGroupPersistentState]?, favoriteGenres: [FavoriteGroupPersistentState]?, favoriteDecades: [FavoriteGroupPersistentState]?) {
+    init(favoriteTracks: [FavoriteTrackPersistentState]?, favoriteArtists: [FavoriteGroupPersistentState]?, favoriteAlbums: [FavoriteGroupPersistentState]?, favoriteGenres: [FavoriteGroupPersistentState]?, favoriteDecades: [FavoriteGroupPersistentState]?, favoriteFolders: [FavoriteFolderPersistentState]?) {
+        
         self.favoriteTracks = favoriteTracks
         self.favoriteArtists = favoriteArtists
         self.favoriteAlbums = favoriteAlbums
         self.favoriteGenres = favoriteGenres
         self.favoriteDecades = favoriteDecades
+        self.favoriteFolders = favoriteFolders
     }
 }
 
@@ -56,6 +60,24 @@ struct FavoriteTrackPersistentState: Codable {
     
     init(favorite: FavoriteTrack) {
         self.trackFile = favorite.track.file
+    }
+}
+
+///
+/// Persistent state for a single item in the **Favorites** list.
+///
+/// - SeeAlso: `FavoriteFolder`
+///
+struct FavoriteFolderPersistentState: Codable {
+    
+    var folder: URL? = nil
+    
+    init(folder: URL?) {
+        self.folder = folder
+    }
+    
+    init(favorite: FavoriteFolder) {
+        self.folder = favorite.folder
     }
 }
 
