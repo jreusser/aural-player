@@ -33,6 +33,8 @@ protocol LibraryProtocol: TuneBrowserProtocol {
     func playlist(atIndex index: Int) -> ImportedPlaylist?
     
     func findGroup(named groupName: String, ofType groupType: GroupType) -> Group?
+    
+    func findFileSystemFolder(atLocation location: URL) -> FileSystemFolderItem?
 }
 
 protocol TuneBrowserProtocol {

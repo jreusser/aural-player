@@ -31,9 +31,11 @@ protocol FavoritesDelegateProtocol {
     
     func addFavorite(decade: String)
     
-//    func addFavorite(playlist: Playlist)
-//    
+    func addFavorite(folder: URL)
+    
 //    func addFavorite(playlistFile: ImportedPlaylist)
+    
+//    func addFavorite(playlist: Playlist)
     
     func removeFavorite(track: Track)
     
@@ -44,6 +46,8 @@ protocol FavoritesDelegateProtocol {
     func removeFavorite(genre: String)
     
     func removeFavorite(decade: String)
+    
+    func removeFavorite(folder: URL)
     
 //    func removeFavorite(playlist: Playlist)
 //

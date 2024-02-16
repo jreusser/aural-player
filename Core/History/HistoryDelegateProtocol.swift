@@ -52,4 +52,16 @@ protocol HistoryDelegateProtocol {
     func resumeLastPlayedTrack() throws
     
     // TODO: getPlayStats(), getAddStats()
+    
+    func noteAddedItems(tracks: [Track])
+    
+    func noteAddedItems(groups: [Group], tracks: [Track])
+    
+    // Library (playlist files)
+    func noteAddedItems(playlistFiles: [ImportedPlaylist], tracks: [Track])
+    
+    // Tune Browser
+    func noteAddedItems(folders: [FileSystemFolderItem], tracks: [FileSystemTrackItem], playlistFiles: [FileSystemPlaylistItem])
+    
+    func noteAddedItems(playlist: Playlist)
 }

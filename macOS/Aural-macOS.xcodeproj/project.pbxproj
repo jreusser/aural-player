@@ -44,6 +44,7 @@
 		3E16BE12280DD01200CE9FE9 /* PlaylistNamesTableViewController+TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E16BE11280DD01200CE9FE9 /* PlaylistNamesTableViewController+TextFieldDelegate.swift */; };
 		3E1741462801EA0A00772ED1 /* TableCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1741452801EA0A00772ED1 /* TableCellBuilder.swift */; };
 		3E1741482801FDE500772ED1 /* TrackListTableViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1741472801FDE500772ED1 /* TrackListTableViewController+DataSource.swift */; };
+		3E1AEFAC2B7D67320081CF1B /* FavoriteFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AEFAB2B7D67320081CF1B /* FavoriteFolder.swift */; };
 		3E2000BF267CDFFF008BAB70 /* MediaKeysPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2000BE267CDFFF008BAB70 /* MediaKeysPreferences.xib */; };
 		3E2000C1267CE00E008BAB70 /* GesturesPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2000C0267CE00E008BAB70 /* GesturesPreferences.xib */; };
 		3E2000C3267CE019008BAB70 /* RemoteControlPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2000C2267CE019008BAB70 /* RemoteControlPreferences.xib */; };
@@ -1097,6 +1098,7 @@
 		3E16BE11280DD01200CE9FE9 /* PlaylistNamesTableViewController+TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaylistNamesTableViewController+TextFieldDelegate.swift"; sourceTree = "<group>"; };
 		3E1741452801EA0A00772ED1 /* TableCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellBuilder.swift; sourceTree = "<group>"; };
 		3E1741472801FDE500772ED1 /* TrackListTableViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackListTableViewController+DataSource.swift"; sourceTree = "<group>"; };
+		3E1AEFAB2B7D67320081CF1B /* FavoriteFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteFolder.swift; sourceTree = "<group>"; };
 		3E1D1DDD28DCEEC100E79674 /* build-iOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-iOS.sh"; sourceTree = "<group>"; };
 		3E1D1DDE28DCEEC100E79674 /* build-macOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-macOS.sh"; sourceTree = "<group>"; };
 		3E1D1DDF28DD016900E79674 /* macOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = macOS.sh; sourceTree = "<group>"; };
@@ -2605,9 +2607,10 @@
 		3E59E94E2B507BA7001DDCE9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3E59E94F2B507BA7001DDCE9 /* FavoriteTrack.swift */,
 				3E59E9502B507BA7001DDCE9 /* Favorite.swift */,
+				3E59E94F2B507BA7001DDCE9 /* FavoriteTrack.swift */,
 				3E59E9532B507D31001DDCE9 /* FavoriteGroup.swift */,
+				3E1AEFAB2B7D67320081CF1B /* FavoriteFolder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2811,8 +2814,8 @@
 				3E6C0FDD25CEB98600BF0D07 /* MenuControllers */,
 				3E10179128D791ED002C0D8E /* ModularPlayer */,
 				3E7638A92857D7F800461F4D /* UnifiedPlayer */,
-				3E4322792687D519009E8ADB /* WidgetPlayer */,
 				3EBFF5A62B52C0B20056D5B4 /* CompactPlayer */,
+				3E4322792687D519009E8ADB /* WidgetPlayer */,
 				3E9E590225DB6B150064EB5F /* MenuBarPlayer */,
 				3E6C101A25CEB98600BF0D07 /* Player */,
 				3E6C103625CEB98600BF0D07 /* TrackInfo */,
@@ -6093,6 +6096,7 @@
 				3E798F3928389DCD000CFAE8 /* LibraryPersistentState.swift in Sources */,
 				3E6C121C25CEBDE600BF0D07 /* SoundPreferencesViewController.swift in Sources */,
 				3E59E98D2B50C356001DDCE9 /* FileWatcherEvent.swift in Sources */,
+				3E1AEFAC2B7D67320081CF1B /* FavoriteFolder.swift in Sources */,
 				3E5F943325E571A6002DEF80 /* Spectrogram.swift in Sources */,
 				3EFE3A6D27864898006F8B8C /* AudioToolboxParser.swift in Sources */,
 				3EFE38DB27864897006F8B8C /* PitchShiftUnitDelegateProtocol.swift in Sources */,

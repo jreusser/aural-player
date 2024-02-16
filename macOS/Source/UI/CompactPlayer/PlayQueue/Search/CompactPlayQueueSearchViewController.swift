@@ -45,6 +45,12 @@ class CompactPlayQueueSearchViewController: NSViewController {
         view.window?.makeFirstResponder(searchField)
     }
     
+    override func destroy() {
+        
+        super.destroy()
+        messenger.unsubscribeFromAll()
+    }
+    
     // Called when any of the search criteria have changed, performs a new search
     private func updateSearch() {
         

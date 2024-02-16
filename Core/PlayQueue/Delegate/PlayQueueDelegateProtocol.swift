@@ -10,33 +10,32 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol, SequencingProtocol {
     
     // MARK: Mutating functions ---------------------------------------------------------------
     
+    // Tracks loaded directly from the file system (either Finder or on startup)
     func loadTracks(from files: [URL], atPosition position: Int?, clearQueue: Bool, autoplay: Bool)
     
     // Adds tracks to the end of the queue, i.e. "Play Now" or "Play Later"
     func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> IndexSet
-
+    
+    // Library (Tracks view) / Managed Playlists / Favorites / Bookmarks / History
+    func enqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet
+    
+    // Library (grouped views) / Favorites / History
+    func enqueueToPlayNow(groups: [Group], tracks: [Track], clearQueue: Bool) -> IndexSet
+    
+    // Library (playlist files)
+    func enqueueToPlayNow(playlistFiles: [ImportedPlaylist], tracks: [Track], clearQueue: Bool) -> IndexSet
+    
+    // Library (Managed Playlist)
+    func enqueueToPlayNow(playlist: Playlist, clearQueue: Bool) -> IndexSet
+    
+    // Tune Browser
+    func enqueueToPlayNow(folders: [FileSystemFolderItem], tracks: [FileSystemTrackItem], playlistFiles: [FileSystemPlaylistItem], clearQueue: Bool) -> IndexSet
+    
     // Inserts tracks immediately after the current track, i.e. "Play Next"
     func enqueueTracksToPlayNext(_ newTracks: [Track]) -> IndexSet
     
     // Moves tracks immediately after the current track, i.e. "Play Next"
     func moveTracksToPlayNext(from indices: IndexSet) -> IndexSet
-    
-    // MARK: Sequencing functions ---------------------------------------------------------------
-    
-    // Returns the current repeat and shuffle modes
-    var repeatAndShuffleModes: (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {get}
-    
-    // Toggles between repeat modes. See RepeatMode for more details. Returns the new repeat and shuffle mode after performing the toggle operation.
-    func toggleRepeatMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
-    
-    // Toggles between shuffle modes. See ShuffleMode for more details. Returns the new repeat and shuffle mode after performing the toggle operation.
-    func toggleShuffleMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
-    
-    // Sets the repeat mode to a specific value. Returns the new repeat and shuffle mode after performing the toggle operation.
-    func setRepeatMode(_ repeatMode: RepeatMode) -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
-    
-    // Sets the shuffle mode to a specific value. Returns the new repeat and shuffle mode after performing the toggle operation.
-    func setShuffleMode(_ shuffleMode: ShuffleMode) -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode)
 }
 
 extension PlayQueueDelegateProtocol {

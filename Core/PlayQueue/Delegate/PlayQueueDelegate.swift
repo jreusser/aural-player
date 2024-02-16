@@ -97,6 +97,34 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
+    
+    // Library (Tracks view) / Managed Playlists / Favorites / Bookmarks / History
+    func enqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet {
+        
+        let indices = playQueue.enqueueTracks(tracks, clearQueue: clearQueue)
+        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
+        return indices
+    }
+    
+    // Library (grouped views) / Favorites / History
+    func enqueueToPlayNow(groups: [Group], tracks: [Track], clearQueue: Bool) -> IndexSet {
+        .empty
+    }
+    
+    // Library (playlist files)
+    func enqueueToPlayNow(playlistFiles: [ImportedPlaylist], tracks: [Track], clearQueue: Bool) -> IndexSet {
+        .empty
+    }
+    
+    // Library (Managed Playlist)
+    func enqueueToPlayNow(playlist: Playlist, clearQueue: Bool) -> IndexSet {
+        .empty
+    }
+    
+    // Tune Browser
+    func enqueueToPlayNow(folders: [FileSystemFolderItem], tracks: [FileSystemTrackItem], playlistFiles: [FileSystemPlaylistItem], clearQueue: Bool) -> IndexSet {
+        .empty
+    }
 
     func enqueueTracksToPlayNext(_ newTracks: [Track]) -> IndexSet {
 

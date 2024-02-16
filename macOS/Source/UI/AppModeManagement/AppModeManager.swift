@@ -2,7 +2,7 @@
 //  AppModeManager.swift
 //  Aural
 //
-//  Copyright © 2023 Kartik Venugopal. All rights reserved.
+//  Copyright © 2024 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
@@ -22,7 +22,7 @@ class AppModeManager {
     
     private lazy var menuBarMode: MenuBarAppModeController = MenuBarAppModeController()
     
-    private lazy var controlBarMode: ControlBarAppModeController = ControlBarAppModeController()
+    private lazy var widgetMode: WidgetAppModeController = WidgetAppModeController()
     
     private lazy var compactMode: CompactAppModeController = CompactAppModeController()
     
@@ -53,7 +53,8 @@ class AppModeManager {
 //            // Remember app mode from last app launch.
 //            presentMode(lastPresentedAppMode ?? .defaultMode)
 //        }
-        presentMode(.compact)
+//        presentMode(.unified)
+        presentMode(.modular)
 //        presentMode(.compact)
     }
     
@@ -77,9 +78,9 @@ class AppModeManager {
             
             menuBarMode.presentMode(transitioningFromMode: currentMode)
             
-        case .controlBar:
+        case .widget:
             
-            controlBarMode.presentMode(transitioningFromMode: currentMode)
+            widgetMode.presentMode(transitioningFromMode: currentMode)
             
         case .compact:
             
@@ -99,7 +100,7 @@ class AppModeManager {
             
         case .menuBar: menuBarMode.dismissMode()
             
-        case .controlBar:   controlBarMode.dismissMode()
+        case .widget:   widgetMode.dismissMode()
             
         case .compact:  compactMode.dismissMode()
             

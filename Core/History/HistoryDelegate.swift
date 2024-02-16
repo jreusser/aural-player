@@ -23,6 +23,26 @@ import OrderedCollections
 /// - SeeAlso: `PlayedItem`
 ///
 class HistoryDelegate: HistoryDelegateProtocol {
+    func noteAddedItems(tracks: [Track]) {
+        
+    }
+    
+    func noteAddedItems(groups: [Group], tracks: [Track]) {
+        
+    }
+    
+    func noteAddedItems(playlistFiles: [ImportedPlaylist], tracks: [Track]) {
+        
+    }
+    
+    func noteAddedItems(folders: [FileSystemFolderItem], tracks: [FileSystemTrackItem], playlistFiles: [FileSystemPlaylistItem]) {
+        
+    }
+    
+    func noteAddedItems(playlist: Playlist) {
+        
+    }
+    
     
     // Recently added items
     var recentlyAddedItems: OrderedDictionary<String, HistoryItem>

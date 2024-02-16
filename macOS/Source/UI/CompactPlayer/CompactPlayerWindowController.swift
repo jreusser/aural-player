@@ -26,7 +26,7 @@ class CompactPlayerWindowController: NSWindowController {
     
     @IBOutlet weak var tabView: NSTabView!
     let playerViewController: CompactPlayerViewController = .init()
-    let playQueueViewController: CompactPlayQueueViewController = .init()
+    var playQueueViewController: CompactPlayQueueViewController! = .init()
     let searchViewController: CompactPlayQueueSearchViewController = .init()
     lazy var effectsSheetViewController: EffectsSheetViewController = .init()
     
@@ -89,12 +89,19 @@ class CompactPlayerWindowController: NSWindowController {
     override func destroy() {
         
         close()
-        playerViewController.destroy()
+        
+        [playerViewController, playQueueViewController, searchViewController].forEach {
+            $0.destroy()
+        }
+        
+        playQueueViewController = nil
         
         eventMonitor.stopMonitoring()
         eventMonitor = nil
         
         messenger.unsubscribeFromAll()
+        
+        NSApp.mainMenu = nil
     }
     
     @IBAction func modularModeAction(_ sender: AnyObject) {
