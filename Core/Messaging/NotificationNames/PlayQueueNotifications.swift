@@ -30,6 +30,10 @@ extension Notification.Name {
         
         static let tracksRemoved = Notification.Name("playQueue_tracksRemoved")
         
+        // Signifies that the currently playing track has been removed from the playlist, suggesting
+        // that playback should stop.
+        static let playingTrackRemoved = Notification.Name("playQueue_playingTrackRemoved")
+        
         static let tracksDragDropped = Notification.Name("playQueue_tracksDragDropped")
         
         static let sorted = Notification.Name("playQueue_sorted")
@@ -62,10 +66,6 @@ extension Notification.Name {
         static let removeTracks = Notification.Name("playQueue_removeTracks")
         static let removeAllTracks = Notification.Name("playQueue_removeAllTracks")
         static let refresh = Notification.Name("playQueue_refresh")
-        
-        // Signifies that the currently playing track has been removed from the playlist, suggesting
-        // that playback should stop.
-        static let playingTrackRemoved = Notification.Name("playQueue_playingTrackRemoved")
         
         // Commands the play queue to remove any selected tracks.
         static let exportAsPlaylistFile = Notification.Name("playQueue_exportAsPlaylistFile")

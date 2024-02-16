@@ -68,8 +68,6 @@ class HistoryDelegate: HistoryDelegateProtocol {
     init(persistentState: HistoryPersistentState?, _ preferences: HistoryPreferences,
          _ playQueue: PlayQueueDelegateProtocol, _ player: PlaybackDelegateProtocol) {
         
-        print("HistDelegate: init()")
-        
         recentlyAddedItems = OrderedDictionary()
         recentlyPlayedItems = OrderedDictionary()
         lastPlaybackPosition = persistentState?.lastPlaybackPosition ?? 0

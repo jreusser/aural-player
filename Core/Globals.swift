@@ -34,8 +34,6 @@ let appPersistentState: AppPersistentState = {
     if let appVersionString = dict["appVersion"] as? String,
        let appVersion = AppVersion(versionString: appVersionString) {
         
-        print("App major version: \(appVersion.majorVersion)")
-        
         if appVersion.majorVersion < 4, let legacyPersistentState: LegacyAppPersistentState = persistenceManager.load(type: LegacyAppPersistentState.self) {
             
             // Attempt migration and return the mapped instance.

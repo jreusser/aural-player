@@ -14,9 +14,6 @@ extension PlayQueueDelegate {
     
     func initialize(fromPersistentState persistentState: PlayQueuePersistentState?, appLaunchFiles: [URL]) {
         
-        let df = DateFormatter(format: "H:mm:ss.SSS")
-        print("PQDelegate.appLaunched(): \(df.string(from: Date()))")
-        
         lazy var playQueuePreferences = preferences.playQueuePreferences
         lazy var playbackPreferences = preferences.playbackPreferences
         

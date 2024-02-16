@@ -53,7 +53,6 @@ class FolderMonitor {
         }
         
         fileWatcher.start() // start monitoring
-        print("\nMonitoring folder: \(url.path)")
     }
     
     /// Stop listening for changes to the directory, if the source has been created.

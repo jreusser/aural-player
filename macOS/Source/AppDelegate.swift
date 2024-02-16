@@ -75,8 +75,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Presents the application's user interface upon app startup.
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        let df = DateFormatter(format: "H:mm:ss.SSS")
-        print("AppDelegate.applicationDidFinishLaunching(): \(df.string(from: Date()))")
+//        let df = DateFormatter(format: "H:mm:ss.SSS")
+//        print("AppDelegate.applicationDidFinishLaunching(): \(df.string(from: Date()))")
         
         initializeMetadataComponents()
         
