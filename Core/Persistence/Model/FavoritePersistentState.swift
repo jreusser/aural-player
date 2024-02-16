@@ -18,6 +18,7 @@ struct FavoritesPersistentState: Codable {
     let favoriteGenres: [FavoriteGroupPersistentState]?
     let favoriteDecades: [FavoriteGroupPersistentState]?
     let favoriteFolders: [FavoriteFolderPersistentState]?
+    let favoritePlaylistFiles: [FavoritePlaylistFilePersistentState]?
     
     init(legacyPersistentState: [LegacyFavoritePersistentState]?) {
         
@@ -32,9 +33,10 @@ struct FavoritesPersistentState: Codable {
         self.favoriteGenres = nil
         self.favoriteDecades = nil
         self.favoriteFolders = nil
+        self.favoritePlaylistFiles = nil
     }
     
-    init(favoriteTracks: [FavoriteTrackPersistentState]?, favoriteArtists: [FavoriteGroupPersistentState]?, favoriteAlbums: [FavoriteGroupPersistentState]?, favoriteGenres: [FavoriteGroupPersistentState]?, favoriteDecades: [FavoriteGroupPersistentState]?, favoriteFolders: [FavoriteFolderPersistentState]?) {
+    init(favoriteTracks: [FavoriteTrackPersistentState]?, favoriteArtists: [FavoriteGroupPersistentState]?, favoriteAlbums: [FavoriteGroupPersistentState]?, favoriteGenres: [FavoriteGroupPersistentState]?, favoriteDecades: [FavoriteGroupPersistentState]?, favoriteFolders: [FavoriteFolderPersistentState]?, favoritePlaylistFiles: [FavoritePlaylistFilePersistentState]?) {
         
         self.favoriteTracks = favoriteTracks
         self.favoriteArtists = favoriteArtists
@@ -42,6 +44,7 @@ struct FavoritesPersistentState: Codable {
         self.favoriteGenres = favoriteGenres
         self.favoriteDecades = favoriteDecades
         self.favoriteFolders = favoriteFolders
+        self.favoritePlaylistFiles = favoritePlaylistFiles
     }
 }
 
@@ -78,6 +81,24 @@ struct FavoriteFolderPersistentState: Codable {
     
     init(favorite: FavoriteFolder) {
         self.folder = favorite.folder
+    }
+}
+
+///
+/// Persistent state for a single item in the **Favorites** list.
+///
+/// - SeeAlso: `FavoritePlaylistFile`
+///
+struct FavoritePlaylistFilePersistentState: Codable {
+    
+    var playlistFile: URL? = nil
+    
+    init(playlistFile: URL?) {
+        self.playlistFile = playlistFile
+    }
+    
+    init(favorite: FavoritePlaylistFile) {
+        self.playlistFile = favorite.playlistFile
     }
 }
 

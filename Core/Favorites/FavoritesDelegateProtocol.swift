@@ -33,7 +33,7 @@ protocol FavoritesDelegateProtocol {
     
     func addFavorite(folder: URL)
     
-//    func addFavorite(playlistFile: ImportedPlaylist)
+    func addFavorite(playlistFile: URL)
     
 //    func addFavorite(playlist: Playlist)
     
@@ -49,10 +49,10 @@ protocol FavoritesDelegateProtocol {
     
     func removeFavorite(folder: URL)
     
-//    func removeFavorite(playlist: Playlist)
-//
-//    func removeFavorite(playlistFile: ImportedPlaylist)
+    func removeFavorite(playlistFile: URL)
     
+//    func removeFavorite(playlist: Playlist)
+
     var hasAnyFavorites: Bool {get}
     
     var allFavoriteTracks: [FavoriteTrack] {get}
@@ -77,6 +77,9 @@ protocol FavoritesDelegateProtocol {
     
     var allFavoriteFolders: [FavoriteFolder] {get}
     var numberOfFavoriteFolders: Int {get}
+    
+    var allFavoritePlaylistFiles: [FavoritePlaylistFile] {get}
+    var numberOfFavoritePlaylistFiles: Int {get}
     
     func favoriteExists(track: Track) -> Bool
     

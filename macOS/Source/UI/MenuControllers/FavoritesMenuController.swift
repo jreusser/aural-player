@@ -98,6 +98,9 @@ class GenericFavoritesMenuController: NSObject, NSMenuDelegate {
     // When a "Favorites" menu item is clicked, the item is played
     @IBAction fileprivate func playSelectedItemAction(_ sender: FavoritesMenuItem) {
         
+        let df = DateFormatter(format: "H:mm:ss.SSS")
+        print("Fav played: \(df.string(from: Date()))")
+        
         if let fav = sender.favorite {
             favoritesDelegate.playFavorite(fav)
         }
@@ -169,6 +172,17 @@ class FavoriteFoldersMenuController: GenericFavoritesMenuController {
     
     override var itemImageFunction: (Favorite) -> PlatformImage? {
         {_ in .imgFileSystem}
+    }
+}
+
+class FavoritePlaylistFilesMenuController: GenericFavoritesMenuController {
+    
+    override var favoritesFunction: () -> [Favorite] {
+        {favoritesDelegate.allFavoritePlaylistFiles}
+    }
+    
+    override var itemImageFunction: (Favorite) -> PlatformImage? {
+        {_ in .imgPlaylist}
     }
 }
 

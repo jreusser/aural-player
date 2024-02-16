@@ -108,12 +108,10 @@ extension TuneBrowserTabViewController {
             
         } else if selItem.isTrack, let track = selItem as? FileSystemTrackItem {
             favoritesDelegate.addFavorite(track: track.track)
+            
+        } else if selItem.isPlaylist {
+            favoritesDelegate.addFavorite(playlistFile: selItem.url)
         }
-        
-//        else if selItem.isPlaylist, let playlist = selItem as? FileSystemPlaylistItem {
-////            favoritesDelegate.addFavo
-//        }
-        
     }
     
     @IBAction func showBrowserItemInFinderAction(_ sender: Any) {

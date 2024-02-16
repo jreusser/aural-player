@@ -26,6 +26,8 @@ protocol LibraryDelegateProtocol: GroupedSortedTrackListProtocol {
     func findGroup(named groupName: String, ofType groupType: GroupType) -> Group?
     
     func findFileSystemFolder(atLocation location: URL) -> FileSystemFolderItem?
+    
+    func findImportedPlaylist(atLocation location: URL) -> ImportedPlaylist?
 }
 
 class LibraryDelegate: LibraryDelegateProtocol {
@@ -177,6 +179,10 @@ class LibraryDelegate: LibraryDelegateProtocol {
     
     func findFileSystemFolder(atLocation location: URL) -> FileSystemFolderItem? {
         library.findFileSystemFolder(atLocation: location)
+    }
+    
+    func findImportedPlaylist(atLocation location: URL) -> ImportedPlaylist? {
+        library.findImportedPlaylist(atLocation: location)
     }
     
     func exportToFile(_ file: URL) {

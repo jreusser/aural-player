@@ -671,6 +671,14 @@
                 <outlet property="theMenu" destination="yoM-pe-F6G" id="YSN-se-vgJ"/>
             </connections>
         </customObject>
+        <customObject id="XBi-jq-Tk7" userLabel="Favorite Playlist Files Menu Controller" customClass="FavoritePlaylistFilesMenuController" customModule="Aural" customModuleProvider="target">
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="image" keyPath="itemImage" value="calendar" catalog="system"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="theMenu" destination="d6c-y9-ty4" id="53d-ko-BaN"/>
+            </connections>
+        </customObject>
         <customObject id="Jfa-2S-wE7" customClass="BookmarksMenuController" customModule="Aural" customModuleProvider="target">
             <connections>
                 <outlet property="bookmarkTrackPositionMenuItem" destination="4Im-2o-F9y" id="fJI-rO-di6"/>
@@ -1591,6 +1599,14 @@ CA
                                     </connections>
                                 </menu>
                             </menuItem>
+                            <menuItem title="  Playlist Files" image="list.dash" catalog="system" id="3Ln-tn-2Ar" userLabel="Playlist Files">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="  Playlist Files" autoenablesItems="NO" id="d6c-y9-ty4">
+                                    <connections>
+                                        <outlet property="delegate" destination="XBi-jq-Tk7" id="Kyu-vD-Tdg"/>
+                                    </connections>
+                                </menu>
+                            </menuItem>
                         </items>
                         <connections>
                             <outlet property="delegate" destination="Xig-UD-YRO" id="pMB-4S-0Na"/>
@@ -2101,6 +2117,7 @@ CA
         <image name="info" catalog="system" width="9" height="12"/>
         <image name="left" catalog="system" width="9" height="12"/>
         <image name="list.bullet.rectangle.fill" catalog="system" width="18" height="14"/>
+        <image name="list.dash" catalog="system" width="16" height="11"/>
         <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="minus" catalog="system" width="14" height="4"/>
         <image name="music.note.list" catalog="system" width="16" height="15"/>

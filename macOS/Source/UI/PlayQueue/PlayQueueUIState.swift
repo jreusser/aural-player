@@ -13,11 +13,7 @@ import Foundation
 class PlayQueueUIState: PersistentModelObject {
     
     // The current play queue view type displayed within the tab group.
-    var currentView: PlayQueueView {
-        didSet {
-            print("curView: \(currentView)")
-        }
-    }
+    var currentView: PlayQueueView
     
     var selectedRows: IndexSet = .empty
     

@@ -69,7 +69,6 @@ class PlayQueueContainerViewController: NSViewController {
         if appModeManager.currentMode == .modular,
             let lblCaptionLeadingConstraint = lblCaption.superview?.constraints.first(where: {$0.firstAttribute == .leading}) {
             
-            print("LeadingCons: \(lblCaptionLeadingConstraint.constant)")
             lblCaptionLeadingConstraint.constant = 23
         }
         

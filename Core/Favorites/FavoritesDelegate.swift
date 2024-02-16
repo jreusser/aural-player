@@ -28,11 +28,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     var favoriteDecades: OrderedDictionary<String, FavoriteGroup>
     
     var favoriteFolders: OrderedDictionary<URL, FavoriteFolder>
-    
-//    private var favoriteFolders: OrderedSet<URL>
-//    private var favoritePlaylistFiles: OrderedSet<URL>
-//    
-//    private var favoritePlaylists: OrderedSet<String>
+    var favoritePlaylistFiles: OrderedDictionary<URL, FavoritePlaylistFile>
     
     var hasAnyFavorites: Bool {
         favoriteTracks.values.isNonEmpty || favoriteArtists.values.isNonEmpty || favoriteAlbums.values.isNonEmpty || favoriteGenres.values.isNonEmpty || favoriteDecades.values.isNonEmpty || favoriteFolders.values.isNonEmpty
@@ -86,6 +82,14 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         favoriteFolders.count
     }
     
+    var allFavoritePlaylistFiles: [FavoritePlaylistFile] {
+        Array(favoritePlaylistFiles.values)
+    }
+    
+    var numberOfFavoritePlaylistFiles: Int {
+        favoritePlaylistFiles.count
+    }
+    
     var artistsFromFavoriteTracks: Set<String> {
         Set(favoriteTracks.values.compactMap {$0.track.artist})
     }
@@ -120,6 +124,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         self.favoriteGenres = OrderedDictionary()
         self.favoriteDecades = OrderedDictionary()
         self.favoriteFolders = OrderedDictionary()
+        self.favoritePlaylistFiles = OrderedDictionary()
     }
     
     func addFavorite(track: Track) {
@@ -176,14 +181,19 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         print("Added fav folder: '\(folder.path)'")
     }
     
+    func addFavorite(playlistFile: URL) {
+        
+        let favorite = FavoritePlaylistFile(playlistFile: playlistFile)
+        favoritePlaylistFiles[playlistFile] = favorite
+        messenger.publish(.favoritesList_itemAdded, payload: favorite)
+        
+        print("Added fav playlist file: '\(playlistFile.path)'")
+    }
+    
 //    func addFavorite(playlist: Playlist) {
 //        Favorite(name: "", type: .album)
 //    }
 //    
-//    func addFavorite(playlistFile: ImportedPlaylist) {
-//        Favorite(name: "", type: .album)
-//    }
-    
     func removeFavorite(track: Track) {
         
         if let removedFav = favoriteTracks.removeValue(forKey: track.file) {
@@ -222,6 +232,13 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     func removeFavorite(folder: URL) {
         
         if let removedFav = favoriteFolders.removeValue(forKey: folder) {
+            messenger.publish(.favoritesList_itemsRemoved, payload: Set<Favorite>([removedFav]))
+        }
+    }
+    
+    func removeFavorite(playlistFile: URL) {
+        
+        if let removedFav = favoritePlaylistFiles.removeValue(forKey: playlistFile) {
             messenger.publish(.favoritesList_itemsRemoved, payload: Set<Favorite>([removedFav]))
         }
     }
@@ -277,6 +294,15 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
             } else {
                 playQueueDelegate.loadTracks(from: [favFolder.folder], autoplay: true)
             }
+            
+        } else if let favPlaylistFile = favorite as? FavoritePlaylistFile {
+            
+            if let importedPlaylist = library.findImportedPlaylist(atLocation: favPlaylistFile.playlistFile) {
+                messenger.publish(EnqueueAndPlayNowCommand(tracks: importedPlaylist.tracks, clearPlayQueue: false))
+                
+            } else {
+                playQueueDelegate.loadTracks(from: [favPlaylistFile.playlistFile], autoplay: true)
+            }
         }
     }
     
@@ -287,6 +313,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
                                  favoriteAlbums: self.allFavoriteAlbums.map {FavoriteGroupPersistentState(favorite: $0)},
                                  favoriteGenres: self.allFavoriteGenres.map {FavoriteGroupPersistentState(favorite: $0)},
                                  favoriteDecades: self.allFavoriteDecades.map {FavoriteGroupPersistentState(favorite: $0)},
-                                 favoriteFolders: self.allFavoriteFolders.map {FavoriteFolderPersistentState(favorite: $0)})
+                                 favoriteFolders: self.allFavoriteFolders.map {FavoriteFolderPersistentState(favorite: $0)},
+                                 favoritePlaylistFiles: self.allFavoritePlaylistFiles.map {FavoritePlaylistFilePersistentState(favorite: $0)})
     }
 }

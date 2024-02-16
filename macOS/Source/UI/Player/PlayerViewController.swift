@@ -676,9 +676,7 @@ class PlayerViewController: NSViewController, FontSchemeObserver, ColorSchemeObs
     }
     
     func updateSeekTimerState() {
-        
         setSeekTimerState(to: shouldEnableSeekTimer)
-        print("Updated timer state: \(shouldEnableSeekTimer)")
     }
     
     func setSeekTimerState(to timerOn: Bool) {

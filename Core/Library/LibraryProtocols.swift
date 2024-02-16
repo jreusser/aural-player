@@ -35,6 +35,8 @@ protocol LibraryProtocol: TuneBrowserProtocol {
     func findGroup(named groupName: String, ofType groupType: GroupType) -> Group?
     
     func findFileSystemFolder(atLocation location: URL) -> FileSystemFolderItem?
+    
+    func findImportedPlaylist(atLocation location: URL) -> ImportedPlaylist?
 }
 
 protocol TuneBrowserProtocol {

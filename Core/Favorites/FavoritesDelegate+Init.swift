@@ -53,6 +53,14 @@ extension FavoritesDelegate {
             for favDecade in state.favoriteDecades?.compactMap({$0.groupName}) ?? [] {
                 self.favoriteDecades[favDecade] = FavoriteGroup(groupName: favDecade, groupType: .decade)
             }
+            
+            for favFolder in state.favoriteFolders?.compactMap({$0.folder}) ?? [] {
+                self.favoriteFolders[favFolder] = FavoriteFolder(folder: favFolder)
+            }
+            
+            for favPlaylistFile in state.favoritePlaylistFiles?.compactMap({$0.playlistFile}) ?? [] {
+                self.favoritePlaylistFiles[favPlaylistFile] = FavoritePlaylistFile(playlistFile: favPlaylistFile)
+            }
         }
     }
 }

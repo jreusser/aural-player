@@ -148,6 +148,10 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     func findFileSystemFolder(atLocation location: URL) -> FileSystemFolderItem? {
         (fileSystemTrees.firstNonNilMappedValue {$0.item(forURL: location)}) as? FileSystemFolderItem
     }
+    
+    func findImportedPlaylist(atLocation location: URL) -> ImportedPlaylist? {
+        _playlists[location]
+    }
 }
 
 extension Library: TrackLoaderObserver {
