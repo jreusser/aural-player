@@ -12,7 +12,12 @@ import AppKit
 
 class PlaylistViewController: TrackListTableViewController {
     
-    unowned var playlist: Playlist! = nil
+    unowned var playlist: Playlist! = nil {
+        
+        didSet {
+            reloadTable()
+        }
+    }
     
     override var isTrackListBeingModified: Bool {playlist?.isBeingModified ?? false}
     

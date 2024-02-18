@@ -14,15 +14,7 @@ class PlaylistContainerViewController: NSViewController {
     
     override var nibName: String? {"PlaylistContainer"}
     
-    unowned var playlist: Playlist! = nil {
-        
-        didSet {
-            
-            controllers.forEach {$0.playlist = playlist}
-            lblCaption.stringValue = playlist?.name ?? ""
-            updateSummary()
-        }
-    }
+    unowned var playlist: Playlist!
     
     @IBOutlet weak var lblCaption: NSTextField!
     @IBOutlet weak var lblTracksSummary: NSTextField!
@@ -65,6 +57,12 @@ class PlaylistContainerViewController: NSViewController {
         
         super.viewDidLoad()
         
+        controllers.forEach {
+            
+            $0.forceLoadingOfView()
+            $0.playlist = playlist
+        }
+        
         initializeView()
         setUpTheming()
         initSubscriptions()
@@ -73,6 +71,8 @@ class PlaylistContainerViewController: NSViewController {
     }
     
     func initializeView() {
+        
+        lblCaption.stringValue = playlist?.name ?? ""
         
         let simpleView = simpleViewController.view
         let prettyView = expandedViewController.view
@@ -102,6 +102,7 @@ class PlaylistContainerViewController: NSViewController {
     func initSubscriptions() {
         
         messenger.subscribeAsync(to: .playlists_startedAddingTracks, handler: startedAddingTracks)
+        messenger.subscribeAsync(to: .playlist_tracksAdded, handler: updateSummary)
         messenger.subscribeAsync(to: .playlists_doneAddingTracks, handler: doneAddingTracks)
         
         messenger.subscribe(to: .playlists_updateSummary, handler: updateSummary)

@@ -48,8 +48,8 @@ class PlaylistsViewController: NSViewController {
         }
         
         let newController = PlaylistContainerViewController()
-        newController.forceLoadingOfView()
         newController.playlist = playlist
+        newController.forceLoadingOfView()
         
         tabGroup.addTabViewItem(NSTabViewItem(viewController: newController))
         newController.view.anchorToSuperview()
