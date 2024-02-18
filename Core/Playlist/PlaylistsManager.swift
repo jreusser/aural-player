@@ -34,6 +34,7 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
     init(playlists: [Playlist]) {
         
         super.init(systemDefinedObjects: [], userDefinedObjects: playlists)
+//        super.init(systemDefinedObjects: [], userDefinedObjects: [])
         
         messenger.subscribe(to: .playlist_startedAddingTracks, handler: playlistStartedAddingTracks)
         messenger.subscribe(to: .playlist_doneAddingTracks, handler: playlistDoneAddingTracks)

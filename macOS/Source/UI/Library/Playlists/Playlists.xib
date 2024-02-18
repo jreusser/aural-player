@@ -18,6 +18,13 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <box boxType="custom" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="PgX-LB-MQS" userLabel="Root Container">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+                    <view key="contentView" id="kvU-l9-JU4">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </box>
                 <tabView type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="o7Y-hO-mVz">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
                     <font key="font" metaFont="system"/>
@@ -26,8 +33,12 @@
             <constraints>
                 <constraint firstItem="o7Y-hO-mVz" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="BE2-ms-53C"/>
                 <constraint firstItem="o7Y-hO-mVz" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Olm-uD-JeE"/>
+                <constraint firstAttribute="bottom" secondItem="PgX-LB-MQS" secondAttribute="bottom" id="SsR-cz-XL8"/>
+                <constraint firstItem="PgX-LB-MQS" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="U1B-co-zAo"/>
                 <constraint firstAttribute="bottom" secondItem="o7Y-hO-mVz" secondAttribute="bottom" id="UnK-4g-uYG"/>
                 <constraint firstAttribute="trailing" secondItem="o7Y-hO-mVz" secondAttribute="trailing" id="WFX-kH-AJF"/>
+                <constraint firstAttribute="trailing" secondItem="PgX-LB-MQS" secondAttribute="trailing" id="jo8-s7-F1P"/>
+                <constraint firstItem="PgX-LB-MQS" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="tyo-Uy-D12"/>
             </constraints>
             <point key="canvasLocation" x="139" y="154"/>
         </customView>

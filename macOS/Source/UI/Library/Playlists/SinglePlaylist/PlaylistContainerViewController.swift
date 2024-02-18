@@ -126,7 +126,7 @@ class PlaylistContainerViewController: NSViewController {
     // Removes all items from the playlist
     func removeAllTracks() {
         
-        guard playQueueDelegate.size > 0, !checkIfPlayQueueIsBeingModified() else {return}
+        guard playlist.size > 0, !checkIfPlaylistIsBeingModified() else {return}
         
         playQueueDelegate.removeAllTracks()
         
@@ -152,15 +152,16 @@ class PlaylistContainerViewController: NSViewController {
         currentViewController.scrollToBottom()
     }
     
-    private func checkIfPlayQueueIsBeingModified() -> Bool {
+    private func checkIfPlaylistIsBeingModified() -> Bool {
         
-        let playQueueBeingModified = playQueueDelegate.isBeingModified
+        let playlistBeingModified = playlist.isBeingModified
         
-        if playQueueBeingModified {
-            alertDialog.showAlert(.error, "Play Queue not modified", "The Play Queue cannot be modified while tracks are being added", "Please wait till the Play Queue is done adding tracks ...")
+        if playlistBeingModified {
+            
+            alertDialog.showAlert(.error, "Playlist not modified", "The Playlist cannot be modified while tracks are being added", "Please wait till the Playlist is done adding tracks ...")
         }
         
-        return playQueueBeingModified
+        return playlistBeingModified
     }
     
     // MARK: Notification handling ----------------------------------------------------------------------------------
@@ -179,30 +180,22 @@ class PlaylistContainerViewController: NSViewController {
         
         progressSpinner.hide()
         progressSpinner.stopAnimation(nil)
+        
+        updateSummary()
     }
     
     func updateSummary() {
         
-        let tracksCardinalString = playQueueDelegate.size == 1 ? "track" : "tracks"
-        
-        if let playingTrackIndex = playQueueDelegate.currentTrackIndex {
+        guard let displayedPlaylist = self.playlist else {
             
-            let playIconAttStr = "▶".attributed(font: futuristicFontSet.mainFont(size: 12), color: systemColorScheme.secondaryTextColor)
-            let tracksSummaryAttStr = "  \(playingTrackIndex + 1) / \(playQueueDelegate.size) \(tracksCardinalString)".attributed(font: systemFontScheme.smallFont,
-                                                                                                                                  color: systemColorScheme.secondaryTextColor)
-            
-            lblTracksSummary.attributedStringValue = playIconAttStr + tracksSummaryAttStr
-            
-        } else {
-            
-            lblTracksSummary.stringValue = "\(playQueueDelegate.size) \(tracksCardinalString)"
-            lblTracksSummary.font = systemFontScheme.smallFont
-            lblTracksSummary.textColor = systemColorScheme.secondaryTextColor
+            lblTracksSummary.stringValue = "0 tracks"
+            lblDurationSummary.stringValue = "0:00"
+            return
         }
         
-        lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(playQueueDelegate.duration)
-        lblDurationSummary.font = systemFontScheme.smallFont
-        lblDurationSummary.textColor = systemColorScheme.secondaryTextColor
+        let numTracks = displayedPlaylist.size
+        lblTracksSummary.stringValue = "\(numTracks) \(numTracks == 1 ? "track" : "tracks")"
+        lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(displayedPlaylist.duration)
     }
     
     func search() {
@@ -220,7 +213,7 @@ extension PlaylistContainerViewController: NSTabViewDelegate {
     
     func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
         
-        playQueueUIState.currentView = tabGroup.selectedIndex == 0 ? .simple : .expanded
+//        playQueueUIState.currentView = tabGroup.selectedIndex == 0 ? .simple : .expanded
     }
 }
 
@@ -229,7 +222,10 @@ extension PlaylistContainerViewController: FontSchemeObserver {
     func fontSchemeChanged() {
         
         lblCaption.font = systemFontScheme.captionFont
-        updateSummary()
+        
+        [lblTracksSummary, lblDurationSummary].forEach {
+            $0.font = systemFontScheme.smallFont
+        }
     }
 }
 
@@ -244,7 +240,10 @@ extension PlaylistContainerViewController: ColorSchemeObserver {
         tabButtonsContainer.fillColor = systemColorScheme.backgroundColor
         
         lblCaption.textColor = systemColorScheme.captionTextColor
-        updateSummary()
+        
+        [lblTracksSummary, lblDurationSummary].forEach {
+            $0?.textColor = systemColorScheme.secondaryTextColor
+        }
     }
     
     func secondaryTextColorChanged(_ newColor: PlatformColor) {

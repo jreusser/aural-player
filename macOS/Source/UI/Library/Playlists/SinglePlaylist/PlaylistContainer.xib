@@ -29,15 +29,6 @@
             <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eYO-BE-EAh" userLabel="Root Container">
-                    <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
-                    <view key="contentView" id="QuL-8j-IiD">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                </box>
                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UL3-fE-hNw" userLabel="Playlist Name Caption Label" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="3" y="368" width="214" height="25"/>
                     <constraints>
@@ -51,13 +42,13 @@
                     </textFieldCell>
                 </textField>
                 <box focusRingType="none" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Sm7-TY-8Me" userLabel="Tab Buttons Box">
-                    <rect key="frame" x="750" y="366" width="40" height="30"/>
+                    <rect key="frame" x="725" y="366" width="75" height="30"/>
                     <view key="contentView" id="tyA-q7-r8s">
-                        <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
+                        <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button toolTip="Table view" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IPu-Hm-LYb" userLabel="Table View Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="2" y="1" width="16" height="28"/>
+                                <rect key="frame" x="30" y="1" width="16" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="list.dash" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jr6-Jd-2oD" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -76,7 +67,7 @@
                                 </connections>
                             </button>
                             <button toolTip="List view" tag="1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gdf-q1-83d" userLabel="List View Button" customClass="TrackListTabButton" customModule="Aural" customModuleProvider="target">
-                                <rect key="frame" x="22" y="1" width="16" height="28"/>
+                                <rect key="frame" x="55" y="1" width="16" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="text.below.photo.rtl" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="snk-Fj-l31" customClass="TrackListViewsButtonCell" customModule="Aural" customModuleProvider="target">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -89,7 +80,7 @@
                         </subviews>
                     </view>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="YOE-cK-kEX"/>
+                        <constraint firstAttribute="width" constant="75" id="YOE-cK-kEX"/>
                         <constraint firstAttribute="height" constant="30" id="i1K-2a-KIs"/>
                     </constraints>
                     <color key="borderColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -126,7 +117,7 @@
                     </textFieldCell>
                 </textField>
                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eur-oQ-9Hc" userLabel="Duration summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">
-                    <rect key="frame" x="588" y="8" width="204" height="25"/>
+                    <rect key="frame" x="598" y="8" width="204" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="RUH-di-ywm"/>
                         <constraint firstAttribute="height" constant="25" id="WjE-sS-UdM"/>
@@ -387,7 +378,6 @@
                 </button>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="eYO-BE-EAh" secondAttribute="trailing" id="1AI-pK-lvr"/>
                 <constraint firstItem="4Uh-kK-VnW" firstAttribute="leading" secondItem="7Mf-8C-Zp3" secondAttribute="trailing" constant="19" id="2ly-BZ-efr"/>
                 <constraint firstItem="00U-XE-o0q" firstAttribute="top" secondItem="Sm7-TY-8Me" secondAttribute="bottom" constant="9" id="2pi-PL-fwy"/>
                 <constraint firstAttribute="trailing" secondItem="00U-XE-o0q" secondAttribute="trailing" constant="5" id="359-Tj-4i1"/>
@@ -403,8 +393,6 @@
                 <constraint firstAttribute="bottom" secondItem="mDJ-st-t2B" secondAttribute="bottom" constant="11" id="C1w-LG-UgR"/>
                 <constraint firstAttribute="bottom" secondItem="cfI-gT-Pl8" secondAttribute="bottom" constant="15" id="Df7-AP-sbc"/>
                 <constraint firstItem="dMv-UL-Zzc" firstAttribute="top" secondItem="00U-XE-o0q" secondAttribute="bottom" constant="10" id="GZ7-9V-h83"/>
-                <constraint firstAttribute="bottom" secondItem="eYO-BE-EAh" secondAttribute="bottom" id="HXj-ua-Rla"/>
-                <constraint firstItem="eYO-BE-EAh" firstAttribute="leading" secondItem="dET-Qb-ycg" secondAttribute="leading" id="Jh6-7B-66r"/>
                 <constraint firstAttribute="bottom" secondItem="Zz5-RR-IpZ" secondAttribute="bottom" constant="14" id="Jqh-c5-UYi"/>
                 <constraint firstItem="dMv-UL-Zzc" firstAttribute="centerX" secondItem="dET-Qb-ycg" secondAttribute="centerX" id="L0t-fm-jcB"/>
                 <constraint firstItem="00U-XE-o0q" firstAttribute="leading" secondItem="dET-Qb-ycg" secondAttribute="leading" constant="5" id="Loo-1u-Zi2"/>
@@ -417,11 +405,10 @@
                 <constraint firstItem="Sm7-TY-8Me" firstAttribute="centerY" secondItem="UL3-fE-hNw" secondAttribute="centerY" id="Rrd-i2-6U5"/>
                 <constraint firstAttribute="bottom" secondItem="mZU-yP-Hrw" secondAttribute="bottom" constant="11" id="TS3-0B-0U4"/>
                 <constraint firstItem="X25-Gg-uSb" firstAttribute="leading" secondItem="enU-fq-IPM" secondAttribute="trailing" constant="5" id="WuK-Ay-yES"/>
-                <constraint firstAttribute="trailing" secondItem="Sm7-TY-8Me" secondAttribute="trailing" constant="10" id="Y7g-kU-dnx"/>
+                <constraint firstAttribute="trailing" secondItem="Sm7-TY-8Me" secondAttribute="trailing" id="Y7g-kU-dnx"/>
                 <constraint firstItem="mZU-yP-Hrw" firstAttribute="leading" secondItem="dRo-KG-HMl" secondAttribute="trailing" constant="4" id="aF6-uK-PKL"/>
                 <constraint firstAttribute="bottom" secondItem="UKW-zG-nOV" secondAttribute="bottom" constant="11" id="ajC-ZM-9pB"/>
                 <constraint firstItem="Sm7-TY-8Me" firstAttribute="trailing" secondItem="eur-oQ-9Hc" secondAttribute="trailing" id="arp-VS-vlN"/>
-                <constraint firstItem="eYO-BE-EAh" firstAttribute="top" secondItem="dET-Qb-ycg" secondAttribute="top" id="b5M-RF-Bck"/>
                 <constraint firstAttribute="bottom" secondItem="dRo-KG-HMl" secondAttribute="bottom" constant="13" id="cbi-zC-zQW"/>
                 <constraint firstItem="enU-fq-IPM" firstAttribute="leading" secondItem="mDJ-st-t2B" secondAttribute="trailing" constant="21" id="f92-Z4-u0Y"/>
                 <constraint firstItem="UKW-zG-nOV" firstAttribute="bottom" secondItem="Zg5-Cy-8d0" secondAttribute="bottom" id="fVc-q3-VIl"/>
