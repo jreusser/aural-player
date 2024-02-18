@@ -2,143 +2,120 @@
 //  PlaylistViewController.swift
 //  Aural
 //
-//  Copyright © 2024 Kartik Venugopal. All rights reserved.
+//  Copyright © 2021 Kartik Venugopal. All rights reserved.
 //
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //  
 
-import Cocoa
+import AppKit
 
-class PlaylistViewController: NSViewController {
+class PlaylistViewController: TrackListTableViewController {
     
-    override var nibName: String? {"Playlist"}
+    unowned var playlist: Playlist! = nil
     
-    @IBOutlet weak var rootContainer: NSBox!
-    @IBOutlet weak var tabButtonsBox: NSBox!
-
-    @IBOutlet weak var lblPlaylistName: NSTextField!
+    override var isTrackListBeingModified: Bool {playlist?.isBeingModified ?? false}
     
-    // The tab group that switches between the 4 playlist views
-    @IBOutlet weak var tabGroup: NSTabView!
-    @IBOutlet weak var tableViewTabButton: TrackListTabButton!
-    @IBOutlet weak var listViewTabButton: TrackListTabButton!
+    override var trackList: TrackListProtocol! {playlist}
     
-    private lazy var tabViewButtons: [TrackListTabButton] = [tableViewTabButton, listViewTabButton]
+    // MARK: Menu items (for menu delegate)
     
-    @IBOutlet weak var lblTracksSummary: NSTextField!
-    @IBOutlet weak var lblDurationSummary: NSTextField!
+    @IBOutlet weak var playNowMenuItem: NSMenuItem!
+    @IBOutlet weak var playNextMenuItem: NSMenuItem!
     
-    // Spinner that shows progress when tracks are being added to any of the playlists.
-    @IBOutlet weak var progressSpinner: NSProgressIndicator!
+    @IBOutlet weak var viewChaptersListMenuItem: NSMenuItem!
+    @IBOutlet weak var jumpToChapterMenuItem: NSMenuItem!
+    @IBOutlet weak var chaptersMenu: NSMenu!
     
-    @IBOutlet weak var controlsContainer: PlaylistControlsContainer!
+    @IBOutlet weak var favoriteMenu: NSMenu!
+    @IBOutlet weak var favoriteMenuItem: NSMenuItem!
     
-    // The different playlist views
-    @IBOutlet weak var tableViewController: PlaylistTracksViewController!
+    @IBOutlet weak var favoriteTrackMenuItem: NSMenuItem!
+    @IBOutlet weak var favoriteArtistMenuItem: NSMenuItem!
+    @IBOutlet weak var favoriteAlbumMenuItem: NSMenuItem!
+    @IBOutlet weak var favoriteGenreMenuItem: NSMenuItem!
+    @IBOutlet weak var favoriteDecadeMenuItem: NSMenuItem!
     
-    unowned var playlist: Playlist! = nil {
-        
-        didSet {
-            
-            tableViewController.playlist = playlist
-            lblPlaylistName.stringValue = playlist?.name ?? ""
-            updateSummary()
-        }
-    }
+    @IBOutlet weak var moveTracksUpMenuItem: NSMenuItem!
+    @IBOutlet weak var moveTracksDownMenuItem: NSMenuItem!
+    @IBOutlet weak var moveTracksToTopMenuItem: NSMenuItem!
+    @IBOutlet weak var moveTracksToBottomMenuItem: NSMenuItem!
     
-    lazy var fileOpenDialog = DialogsAndAlerts.openFilesAndFoldersDialog
+    @IBOutlet weak var contextMenu: NSMenu!
+    @IBOutlet weak var infoMenuItem: NSMenuItem!
     
-    private lazy var messenger: Messenger = Messenger(for: self)
+    @IBOutlet weak var playlistNamesMenu: NSMenu!
+    
+    // Popup view that displays a brief notification when a selected track is added/removed to/from the Favorites list
+    lazy var infoPopup: InfoPopupViewController = .instance
+    
+    lazy var messenger: Messenger = .init(for: self)
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        if let tab0View = tabGroup.tabViewItem(at: 0).view {
+        tableView.menu = contextMenu
+        
+        messenger.subscribeAsync(to: .playlist_tracksAdded, handler: tracksAdded(_:), filter: {[weak self] notif in
+            notif.playlistName == self?.playlist.name
+        })
+        
+//        messenger.subscribe(to: .PlayQueue.refresh, handler: tableView.reloadData)
+    }
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        if contextMenu != nil {
             
-            tab0View.addSubview(tableViewController.view)
-            tableViewController.view.anchorToSuperview()
-        }
-        
-        playlistsManager.loadPlaylists()
-        
-        doTabViewAction(tableViewTabButton)
-        
-        lblPlaylistName.font = systemFontScheme.captionFont
-        lblTracksSummary.font = systemFontScheme.smallFont
-        lblDurationSummary.font = systemFontScheme.smallFont
-        
-        controlsContainer.startTracking()
-        
-        messenger.subscribeAsync(to: .playlists_startedAddingTracks, handler: startedAddingTracks)
-        messenger.subscribeAsync(to: .playlists_doneAddingTracks, handler: doneAddingTracks)
-        
-        messenger.subscribe(to: .playlists_updateSummary, handler: updateSummary)
-
-//        colorSchemesManager.registerObservers([rootContainer, tabButtonsBox], forProperty: \.backgroundColor)
-//        colorSchemesManager.registerObservers(tabViewButtons, forProperties: [\.backgroundColor, \.buttonColor, \.inactiveControlColor])
-//        colorSchemesManager.registerObserver(lblPlaylistName, forProperty: \.captionTextColor)
-//        colorSchemesManager.registerObservers([lblTracksSummary, lblDurationSummary], forProperty: \.secondaryTextColor)
-    }
-    
-    // MARK: Notification handling
-    
-    func playlistRenamed(to newPlaylistName: String) {
-        lblPlaylistName.stringValue = newPlaylistName
-    }
-    
-    private func startedAddingTracks() {
-        
-        progressSpinner.startAnimation(self)
-        progressSpinner.show()
-    }
-    
-    private func doneAddingTracks() {
-
-        progressSpinner.hide()
-        progressSpinner.stopAnimation(self)
-    }
-    
-    private func updateSummary() {
-        
-        guard let displayedPlaylist = self.playlist else {
+            contextMenu.delegate = self
             
-            lblTracksSummary.stringValue = "0 tracks"
-            lblDurationSummary.stringValue = "0:00"
-            return
+            for item in contextMenu.items + favoriteMenu.items + playlistNamesMenu.items {
+                item.target = self
+            }
         }
-        
-        let numTracks = displayedPlaylist.size
-        lblTracksSummary.stringValue = "\(numTracks) \(numTracks == 1 ? "track" : "tracks")"
-        lblDurationSummary.stringValue = ValueFormatter.formatSecondsToHMS(displayedPlaylist.duration)
     }
     
-    @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {
-        importFilesAndFolders()
+    override func tracksMovedByDragDrop(minReloadIndex: Int, maxReloadIndex: Int) {
+//        messenger.publish(.PlayQueue.updateSummary)
     }
     
-    @IBAction func tabViewAction(_ sender: TrackListTabButton) {
-        doTabViewAction(sender)
+    override func notifyReloadTable() {
+//        messenger.publish(.PlayQueue.refresh)
     }
     
-    private func doTabViewAction(_ sender: TrackListTabButton) {
+    override func destroy() {
         
-        // Set sender button state, reset all other button states
-        tabViewButtons.forEach {$0.unSelect()}
-        sender.select()
-
-        // Button tag is the tab index
-        tabGroup.selectTabViewItem(at: sender.tag)
+        super.destroy()
+        messenger.unsubscribeFromAll()
     }
     
-    // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
-    func importFilesAndFolders() {
+    // MARK: Commands --------------------------------------------------------------------------------------------------------
+    
+    @IBAction func playSelectedTrackAction(_ sender: Any) {
+        playSelectedTrack()
+    }
+    
+    func playSelectedTrack() {
         
-        guard let playlist = self.playlist, !playlist.isBeingModified else {return}
-        
-        if fileOpenDialog.runModal() == .OK {
-            playlist.loadTracks(from: fileOpenDialog.urls)
+        if let firstSelectedRow = selectedRows.min() {
+            
+            // TODO: Enqueue and play
+//            messenger.publish(TrackPlaybackCommandNotification(index: firstSelectedRow))
         }
+    }
+    
+    // MARK: Notification / command handling ----------------------------------------------------------------------------------------
+    
+    private func tracksAdded(_ notif: PlaylistTracksAddedNotification) {
+        tracksAdded(at: notif.trackIndices)
+    }
+    
+    // MARK: Data source functions
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+//        playQueueUIState.selectedRows = self.selectedRows
     }
 }

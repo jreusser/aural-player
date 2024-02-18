@@ -38,7 +38,7 @@ class PlaylistsViewController: NSViewController {
         
         for tab in tabGroup.tabViewItems {
             
-            guard let controller = tab.viewController as? PlaylistViewController else {continue}
+            guard let controller = tab.viewController as? PlaylistContainerViewController else {continue}
             
             if controller.playlist == playlist {
                 
@@ -47,7 +47,7 @@ class PlaylistsViewController: NSViewController {
             }
         }
         
-        let newController = PlaylistViewController()
+        let newController = PlaylistContainerViewController()
         newController.forceLoadingOfView()
         newController.playlist = playlist
         
@@ -58,6 +58,6 @@ class PlaylistsViewController: NSViewController {
     }
     
     private func playlistRenamed(_ notif: PlaylistRenamedNotification) {
-        (tabGroup.tabViewItem(at: notif.index).viewController as? PlaylistViewController)?.playlistRenamed(to: notif.newName)
+        (tabGroup.tabViewItem(at: notif.index).viewController as? PlaylistContainerViewController)?.playlistRenamed(to: notif.newName)
     }
 }
