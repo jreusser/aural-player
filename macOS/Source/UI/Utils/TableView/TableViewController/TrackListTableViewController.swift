@@ -398,6 +398,10 @@ class TrackListTableViewController: NSViewController, NSTableViewDelegate, FontS
         tableView.reloadRows(indices.min()!..<numberOfTracks)
     }
     
+    func tracksAppended() {
+        tableView.noteNumberOfRowsChanged()
+    }
+    
     func tracksRemoved(at indices: IndexSet) {
         
         tableView.removeRows(at: indices, withAnimation: .slideUp)

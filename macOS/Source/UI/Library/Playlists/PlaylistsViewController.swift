@@ -24,6 +24,7 @@ class PlaylistsViewController: NSViewController {
         
         messenger.subscribe(to: .playlists_showPlaylist, handler: showPlaylist(named:))
         messenger.subscribe(to: .Playlist.renamed, handler: playlistRenamed(_:))
+        messenger.subscribe(to: .playlist_copyTracks, handler: copyTracks(_:))
     }
     
     override func destroy() {
@@ -58,6 +59,20 @@ class PlaylistsViewController: NSViewController {
     }
     
     private func playlistRenamed(_ notif: PlaylistRenamedNotification) {
-        (tabGroup.tabViewItem(at: notif.index).viewController as? PlaylistContainerViewController)?.playlistRenamed(to: notif.newName)
+        controller(forIndex: notif.index)?.playlistRenamed(to: notif.newName)
+    }
+    
+    private func controller(forIndex index: Int) -> PlaylistContainerViewController? {
+        tabGroup.tabViewItem(at: index).viewController as? PlaylistContainerViewController
+    }
+    
+    private func copyTracks(_ notif: CopyTracksToPlaylistCommand) {
+        
+        guard let destinationPlaylist = playlistsManager.userDefinedObject(named: notif.destinationPlaylistName) else {return}
+        destinationPlaylist.addTracks(notif.tracks)
+        
+        if let indexOfPlaylist = playlistsManager.indexOfUserDefinedObject(named: notif.destinationPlaylistName) {
+            controller(forIndex: indexOfPlaylist)?.tracksCopiedToPlaylist()
+        }
     }
 }

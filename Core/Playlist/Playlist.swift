@@ -49,13 +49,10 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
         
         self.name = name
         self.dateCreated = persistentState.dateCreated ?? Date()
-        self.persistentStateToLoad = persistentState
-    }
-    
-    // TODO: Add a loader argument here ? So that the playlists can share a single loader ?
-    func loadPersistentTracks() {
         
-        if let files = self.persistentState.tracks, files.isNonEmpty {
+        super.init()
+        
+        if let files = persistentState.tracks, files.isNonEmpty {
             loadTracks(from: files)
         }
     }

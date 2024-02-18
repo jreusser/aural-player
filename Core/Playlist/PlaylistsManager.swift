@@ -22,19 +22,16 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
     private var playlistsLoaded: Bool = false
     
     var isAnyPlaylistBeingModified: Bool {
-        
-        let playlistModifyFlags: Set<Bool> = Set(userDefinedObjects.map {$0.isBeingModified})
-        return playlistModifyFlags.contains(true)
+        userDefinedObjects.contains(where: {$0.isBeingModified})
     }
     
     var playlistNames: [String] {
         userDefinedObjects.map {$0.name}
     }
 
-    init(playlists: [Playlist]) {
+    init() {
         
-        super.init(systemDefinedObjects: [], userDefinedObjects: playlists)
-//        super.init(systemDefinedObjects: [], userDefinedObjects: [])
+        super.init(systemDefinedObjects: [], userDefinedObjects: [])
         
         messenger.subscribe(to: .application_launched, handler: loadPlaylists)
         messenger.subscribe(to: .playlist_startedAddingTracks, handler: playlistStartedAddingTracks)
@@ -62,14 +59,19 @@ class PlaylistsManager: UserManagedObjects<Playlist>, PersistentModelObject {
     
     func loadPlaylists() {
         
-        // TODO: Load each individual playlist lazily !!!
+        // TODO: This should only be done if/when the library is also built. Use the same conditions here.
         
         if playlistsLoaded {return}
         
         playlistsLoaded = true
         
-        userDefinedObjects.forEach {
-            $0.loadPersistentTracks()
+        guard let state = appPersistentState.playlists?.playlists else {return}
+        
+        for playlistState in state {
+            
+            if let playlist = Playlist(persistentState: playlistState) {
+                addObject(playlist)
+            }
         }
     }
     

@@ -62,7 +62,7 @@ let playQueueDelegate: PlayQueueDelegateProtocol = PlayQueueDelegate(playQueue: 
 let library: Library = Library(persistentState: appPersistentState.library)
 let libraryDelegate: LibraryDelegateProtocol = LibraryDelegate()
 
-let playlistsManager: PlaylistsManager = PlaylistsManager(playlists: appPersistentState.playlists?.playlists?.compactMap {Playlist(persistentState: $0)} ?? [])
+let playlistsManager: PlaylistsManager = PlaylistsManager()
 
 //    let playlistDelegate: PlaylistDelegateProtocol = PlaylistDelegate(persistentState: appPersistentState.playlist, playlist,
 //                                                                           trackReader, preferences)

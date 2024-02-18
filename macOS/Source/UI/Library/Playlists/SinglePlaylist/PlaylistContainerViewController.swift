@@ -171,6 +171,12 @@ class PlaylistContainerViewController: NSViewController {
         lblCaption.stringValue = newPlaylistName
     }
     
+    func tracksCopiedToPlaylist() {
+        
+        currentViewController.tracksAppended()
+        updateSummary()
+    }
+    
     func startedAddingTracks() {
         
         progressSpinner.startAnimation(nil)

@@ -122,11 +122,7 @@ class TrackLoader {
 
                 case .primary:
 
-                    if let loadedMetadata = metadataRegistry[file] {
-                        fileMetadata.primary = loadedMetadata
-                    } else {
-                        fileMetadata.primary = try fileReader.getPrimaryMetadata(for: file)
-                    }
+                    fileMetadata.primary = try fileReader.getPrimaryMetadata(for: file)
 
                 case .playback:
 

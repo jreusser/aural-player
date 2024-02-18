@@ -66,7 +66,10 @@ class PlaylistViewController: TrackListTableViewController {
             notif.playlistName == self?.playlist.name
         })
         
-//        messenger.subscribe(to: .PlayQueue.refresh, handler: tableView.reloadData)
+        messenger.subscribe(to: .playlist_addChosenFiles, handler: addChosenTracks(_:))
+        
+        messenger.subscribe(to: .playlist_copyTracks, handler: copyTracks(_:))
+        messenger.subscribe(to: .playlist_refresh, handler: reloadTable)
     }
     
     override func viewWillAppear() {
@@ -122,5 +125,17 @@ class PlaylistViewController: TrackListTableViewController {
     
     func tableViewSelectionDidChange(_ notification: Notification) {
 //        playQueueUIState.selectedRows = self.selectedRows
+    }
+    
+    private func copyTracks(_ notif: CopyTracksToPlaylistCommand) {
+        
+        guard let destinationPlaylist = playlistsManager.userDefinedObject(named: notif.destinationPlaylistName) else {return}
+        
+        destinationPlaylist.addTracks(notif.tracks)
+        
+        // If tracks were added to the displayed playlist, update the table view.
+        if destinationPlaylist == playlist {
+            tableView.noteNumberOfRowsChanged()
+        }
     }
 }

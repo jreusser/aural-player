@@ -62,6 +62,10 @@ class UserManagedObjects<O: UserManagedObject> {
         userDefinedObjectsMap[name]
     }
     
+    func indexOfUserDefinedObject(named name: String) -> Int? {
+        userDefinedObjectsMap.index(forKey: name)
+    }
+    
     func systemDefinedObject(named name: String) -> O? {
         systemDefinedObjectsMap[name]
     }
