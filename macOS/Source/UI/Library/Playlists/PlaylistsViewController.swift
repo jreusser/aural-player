@@ -21,7 +21,9 @@ class PlaylistsViewController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         messenger.subscribe(to: .playlists_showPlaylist, handler: showPlaylist(named:))
+        messenger.subscribe(to: .Playlist.renamed, handler: playlistRenamed(_:))
     }
     
     override func destroy() {
@@ -53,5 +55,9 @@ class PlaylistsViewController: NSViewController {
         newController.view.anchorToSuperview()
         
         tabGroup.showLastTab()
+    }
+    
+    private func playlistRenamed(_ notif: PlaylistRenamedNotification) {
+        (tabGroup.tabViewItem(at: notif.index).viewController as? PlaylistViewController)?.playlistRenamed(to: notif.newName)
     }
 }

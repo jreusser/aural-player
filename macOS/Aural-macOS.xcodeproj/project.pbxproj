@@ -54,6 +54,7 @@
 		3E2331EF2AE036E4004A5473 /* PlayQueueContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2331EE2AE036E4004A5473 /* PlayQueueContainerViewController.swift */; };
 		3E2331F12AE03728004A5473 /* PlayQueueContainerViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2331F02AE03728004A5473 /* PlayQueueContainerViewController+Actions.swift */; };
 		3E2331F32AE088DB004A5473 /* UnifiedPlayerUIPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2331F22AE088DB004A5473 /* UnifiedPlayerUIPersistentState.swift */; };
+		3E250CBC2B82826B00C96EA4 /* PlaylistRenamedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E250CBB2B82826B00C96EA4 /* PlaylistRenamedNotification.swift */; };
 		3E2549432B7A7E0B00FD83D1 /* ModularPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2549422B7A7E0B00FD83D1 /* ModularPlayerViewController.swift */; };
 		3E25B65027F7818900D10A5F /* PlayQueueWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E25B64F27F7818900D10A5F /* PlayQueueWindow.xib */; };
 		3E25B65427F7865900D10A5F /* PlayQueueWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25B65327F7865900D10A5F /* PlayQueueWindowController.swift */; };
@@ -1114,6 +1115,7 @@
 		3E2331EE2AE036E4004A5473 /* PlayQueueContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueContainerViewController.swift; sourceTree = "<group>"; };
 		3E2331F02AE03728004A5473 /* PlayQueueContainerViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueContainerViewController+Actions.swift"; sourceTree = "<group>"; };
 		3E2331F22AE088DB004A5473 /* UnifiedPlayerUIPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayerUIPersistentState.swift; sourceTree = "<group>"; };
+		3E250CBB2B82826B00C96EA4 /* PlaylistRenamedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistRenamedNotification.swift; sourceTree = "<group>"; };
 		3E2549422B7A7E0B00FD83D1 /* ModularPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularPlayerViewController.swift; sourceTree = "<group>"; };
 		3E25B64F27F7818900D10A5F /* PlayQueueWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayQueueWindow.xib; sourceTree = "<group>"; };
 		3E25B65327F7865900D10A5F /* PlayQueueWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueWindowController.swift; sourceTree = "<group>"; };
@@ -5033,6 +5035,7 @@
 				3E81BCD6284AAB5100927E4A /* TuneBrowserItemsAddedNotification.swift */,
 				3EFE0A972B4B5A6700C9B121 /* LibraryGroupPlayedNotification.swift */,
 				3ECDCA4D2B4C84CD003BB67E /* LibraryFileSystemItemsPlayedNotification.swift */,
+				3E250CBB2B82826B00C96EA4 /* PlaylistRenamedNotification.swift */,
 			);
 			path = NotificationDefinitions;
 			sourceTree = "<group>";
@@ -6231,6 +6234,7 @@
 				3EFE38F127864897006F8B8C /* ConcurrentMap.swift in Sources */,
 				3EFE390927864897006F8B8C /* DictionaryExtensions.swift in Sources */,
 				3EB1A8112826D14F00866012 /* ThemablePopupButton.swift in Sources */,
+				3E250CBC2B82826B00C96EA4 /* PlaylistRenamedNotification.swift in Sources */,
 				3E6C12B825CEBE5800BF0D07 /* ViewMenuController.swift in Sources */,
 				3EFE390127864897006F8B8C /* AVAudioFormatExtensions.swift in Sources */,
 				3E6C121E25CEBDE600BF0D07 /* ViewPreferencesViewController.swift in Sources */,

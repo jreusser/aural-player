@@ -165,9 +165,16 @@ var persistentStateOnExit: AppPersistentState {
     
     persistentState.audioGraph = audioGraph.persistentState
     persistentState.playQueue = playQueue.persistentState
+    
     persistentState.library = library.persistentState
     persistentState.playlists = playlistsManager.persistentState
+    persistentState.history = _historyDelegate.persistentState
+    persistentState.favorites = _favoritesDelegate.persistentState
+    persistentState.bookmarks = _bookmarksDelegate.persistentState
+    
+    // TODO: Remove this (not needed?)
 //    persistentState.metadata = metadataRegistry.persistentState
+    
     persistentState.playbackProfiles = playbackDelegate.profiles.all().map {PlaybackProfilePersistentState(profile: $0)}
     
 #if os(macOS)
@@ -191,9 +198,7 @@ var persistentStateOnExit: AppPersistentState {
     
 #endif
     
-    persistentState.history = _historyDelegate.persistentState
-    persistentState.favorites = _favoritesDelegate.persistentState
-    persistentState.bookmarks = _bookmarksDelegate.persistentState
+    
     persistentState.musicBrainzCache = musicBrainzCoverArtReader.cache.persistentState
     
     return persistentState

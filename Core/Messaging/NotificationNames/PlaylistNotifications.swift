@@ -16,6 +16,11 @@ extension Notification.Name {
     
     // MARK: Notifications published by the playlist.
     
+    struct Playlist {
+        
+        static let renamed = Notification.Name("playlist_renamed")
+    }
+    
 //    // Signifies that the current playlist has changed.
 //    static let playlist_currentPlaylistChanged = Notification.Name("playlist_currentPlaylistChanged")
     

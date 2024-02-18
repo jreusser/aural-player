@@ -24,6 +24,7 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
     
     case library = "Library"
     case tuneBrowser = "File System"
+    case playlists = "Playlists"
     
     var browserTab: LibraryBrowserTab {
         return .libraryTracks
@@ -42,6 +43,10 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         case .tuneBrowser:
             
             return libraryDelegate.fileSystemTrees.count + tuneBrowserUIState.sidebarUserFolders.count
+            
+        case .playlists:
+            
+            return playlistsManager.numberOfUserDefinedObjects
         }
     }
     
@@ -63,6 +68,12 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
             } + tuneBrowserUIState.sidebarUserFolders.map {
                 LibrarySidebarItem(displayName: $0.folder.name, browserTab: .fileSystem, tuneBrowserFolder: $0.folder, tuneBrowserTree: $0.tree)
             }
+            
+        case .playlists:
+            
+            return playlistsManager.userDefinedObjects.map {
+                LibrarySidebarItem(displayName: $0.name, browserTab: .playlists)
+            }
         }
     }
     
@@ -77,13 +88,17 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         case .tuneBrowser:
             
             return .imgFileSystem
+            
+        case .playlists:
+            
+            return .imgPlaylist
         }
     }
 }
 
-struct LibrarySidebarItem: Equatable {
+class LibrarySidebarItem: Equatable {
     
-    let displayName: String
+    var displayName: String
     let browserTab: LibraryBrowserTab
     let image: PlatformImage?
     
@@ -124,5 +139,6 @@ enum LibraryBrowserTab: Int {
          libraryGenres = 3,
          libraryDecades = 4,
          libraryImportedPlaylists = 5,
-         fileSystem = 6
+         fileSystem = 6,
+         playlists = 7
 }

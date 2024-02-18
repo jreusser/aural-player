@@ -28,20 +28,22 @@ extension LibrarySidebarViewController: NSOutlineViewDelegate {
         
         if let category = item as? LibrarySidebarCategory {
             
-//            return category == .playlists ?
-//            createPlaylistCategoryCell(outlineView, category.description, font: systemFontScheme.normalFont, textColor: systemColorScheme.secondaryTextColor, image: category.image) :
-            return createNameCell(outlineView, category.description, font: systemFontScheme.normalFont, textColor: systemColorScheme.secondaryTextColor, 
-                                  image: category.image, imageColor: systemColorScheme.buttonColor)
+            return category == .playlists ?
+            createPlaylistCategoryCell(outlineView, category.description, font: systemFontScheme.normalFont, textColor: systemColorScheme.secondaryTextColor, image: category.image) :
+            createNameCell(outlineView, category.description, font: systemFontScheme.normalFont, textColor: systemColorScheme.secondaryTextColor,
+                           image: category.image, imageColor: systemColorScheme.buttonColor)
             
         } else if let sidebarItem = item as? LibrarySidebarItem {
             
-//            if sidebarItem.browserTab == .playlists {
-//                
-//                return createPlaylistNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.normalFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
-//            }
-            
-            return createNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.normalFont, textColor: systemColorScheme.primaryTextColor, 
-                                  image: sidebarItem.image, imageColor: systemColorScheme.buttonColor)
+            if sidebarItem.browserTab == .playlists {
+                
+                return createPlaylistNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.normalFont, textColor: systemColorScheme.primaryTextColor, image: sidebarItem.image)
+                
+            } else {
+                
+                return createNameCell(outlineView, sidebarItem.displayName, font: systemFontScheme.normalFont, textColor: systemColorScheme.primaryTextColor,
+                                      image: sidebarItem.image, imageColor: systemColorScheme.buttonColor)
+            }
         }
         
         return nil
@@ -139,7 +141,7 @@ class PlaylistSidebarCategoryCell: NSTableCellView {
     
     func updateAddButton(withAction action: Selector, onTarget target: NSViewController) {
         
-        btnAddPlaylist.contentTintColor = systemColorScheme.secondaryTextColor
+        btnAddPlaylist.contentTintColor = systemColorScheme.buttonColor
         btnAddPlaylist.action = action
         btnAddPlaylist.target = target
     }

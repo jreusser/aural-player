@@ -103,7 +103,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <button toolTip="Create a new playlist" translatesAutoresizingMaskIntoConstraints="NO" id="Ac1-IU-CSd" userLabel="Add Playlist Button" customClass="TintedImageButton" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="166" y="5.5" width="12.5" height="14"/>
+                                                        <rect key="frame" x="166" y="3.5" width="12.5" height="14"/>
                                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="plus" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="uzU-3f-SRy">
                                                             <behavior key="behavior" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -121,7 +121,7 @@
                                                     <constraint firstItem="Z1G-df-ixl" firstAttribute="leading" secondItem="xLP-0M-8yW" secondAttribute="trailing" constant="6" id="SWy-2V-cfb"/>
                                                     <constraint firstItem="xLP-0M-8yW" firstAttribute="leading" secondItem="xKL-Uy-7L2" secondAttribute="leading" id="cd3-qY-8yh"/>
                                                     <constraint firstItem="Z1G-df-ixl" firstAttribute="centerY" secondItem="xKL-Uy-7L2" secondAttribute="centerY" id="dYX-NB-2zZ"/>
-                                                    <constraint firstItem="Ac1-IU-CSd" firstAttribute="centerY" secondItem="xKL-Uy-7L2" secondAttribute="centerY" id="yha-KA-mek"/>
+                                                    <constraint firstItem="Ac1-IU-CSd" firstAttribute="centerY" secondItem="xKL-Uy-7L2" secondAttribute="centerY" constant="2" id="yha-KA-mek"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="btnAddPlaylist" destination="Ac1-IU-CSd" id="bhe-V0-q4c"/>
@@ -133,7 +133,7 @@
                                                 <rect key="frame" x="8" y="48" width="183" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Yyi-ag-sBe" userLabel="Playlist Name" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Yyi-ag-sBe" userLabel="Playlist Name" customClass="EditableLibraryTextField" customModule="Aural" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="0.0" width="160" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="1ih-Om-sqE"/>

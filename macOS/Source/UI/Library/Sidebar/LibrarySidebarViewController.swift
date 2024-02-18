@@ -78,16 +78,20 @@ class LibrarySidebarViewController: NSViewController {
     
     @IBAction func createEmptyPlaylistAction(_ sender: Any) {
         
-//        _ = playlistsManager.createNewPlaylist(named: uniquePlaylistName)
-//        sidebarView.reloadData()
-//        sidebarView.expandItem(LibrarySidebarCategory.playlists)
-//        
-//        let playlistCategoryIndex = sidebarView.row(forItem: LibrarySidebarCategory.playlists)
-//        let numPlaylists = playlistsManager.numberOfUserDefinedObjects
-//        let indexOfNewPlaylist = playlistCategoryIndex + numPlaylists
-//        
-//        sidebarView.selectRow(indexOfNewPlaylist)
-//        editTextField(inRow: indexOfNewPlaylist)
+        playlistsManager.createNewPlaylist(named: uniquePlaylistName)
+        let numPlaylists = playlistsManager.numberOfUserDefinedObjects
+        
+        sidebarView.insertItems(at: IndexSet(integer: numPlaylists - 1), inParent: LibrarySidebarCategory.playlists, withAnimation: .effectGap)
+        
+        sidebarView.reloadItem(LibrarySidebarCategory.playlists)
+        sidebarView.expandItem(LibrarySidebarCategory.playlists)
+        
+        let playlistCategoryIndex = sidebarView.row(forItem: LibrarySidebarCategory.playlists)
+        
+        let indexOfNewPlaylist = playlistCategoryIndex + numPlaylists
+        
+        sidebarView.selectRow(indexOfNewPlaylist)
+        editTextField(inRow: indexOfNewPlaylist)
     }
     
     private func editTextField(inRow row: Int) {
@@ -175,38 +179,44 @@ extension LibrarySidebarViewController: NSTextFieldDelegate {
     
     func controlTextDidEndEditing(_ obj: Notification) {
         
-//        let playlistCategoryRow = sidebarView.row(forItem: LibrarySidebarCategory.playlists)
-//        let rowOfPlaylist = sidebarView.selectedRow
-//        let indexOfPlaylist = rowOfPlaylist - playlistCategoryRow - 1
-//        
-//        guard let editedTextField = obj.object as? NSTextField else {return}
-//        
-//        let playlist = playlistsManager.userDefinedObjects[indexOfPlaylist]
-//        let oldPlaylistName = playlist.name
-//        let newPlaylistName = editedTextField.stringValue
-//        
-//        // No change in playlist name. Nothing to be done.
-//        if newPlaylistName == oldPlaylistName {return}
-//        
-//        editedTextField.textColor = .defaultSelectedLightTextColor
-//        
-//        // If new name is empty or a playlist with the new name exists, revert to old value.
-//        if newPlaylistName.isEmptyAfterTrimming {
-//            
-//            editedTextField.stringValue = playlist.name
-//            
-//            _ = DialogsAndAlerts.genericErrorAlert("Can't rename playlist", "Playlist name must have at least one non-whitespace character.", "Please type a valid name.").showModal()
-//            
-//        } else if playlistsManager.userDefinedObjectExists(named: newPlaylistName) {
-//            
-//            editedTextField.stringValue = playlist.name
-//            
-//            _ = DialogsAndAlerts.genericErrorAlert("Can't rename playlist", "Another playlist with that name already exists.", "Please type a unique name.").showModal()
-//            
-//        } else {
-//            
-//            playlistsManager.renameObject(named: oldPlaylistName, to: newPlaylistName)
-////            playlistViewController.playlist = playlist
-//        }
+        let playlistCategoryRow = sidebarView.row(forItem: LibrarySidebarCategory.playlists)
+        let rowOfPlaylist = sidebarView.selectedRow
+        let indexOfPlaylist = rowOfPlaylist - playlistCategoryRow - 1
+        
+        guard let editedTextField = obj.object as? NSTextField else {return}
+        
+        let playlist = playlistsManager.userDefinedObjects[indexOfPlaylist]
+        let oldPlaylistName = playlist.name
+        let newPlaylistName = editedTextField.stringValue
+        
+        // No change in playlist name. Nothing to be done.
+        if newPlaylistName == oldPlaylistName {return}
+        
+        editedTextField.textColor = systemColorScheme.primaryTextColor
+        
+        // If new name is empty or a playlist with the new name exists, revert to old value.
+        if newPlaylistName.isEmptyAfterTrimming {
+            
+            editedTextField.stringValue = playlist.name
+            
+            _ = DialogsAndAlerts.genericErrorAlert("Can't rename playlist", "Playlist name must have at least one non-whitespace character.", "Please type a valid name.").showModal()
+            
+        } else if playlistsManager.userDefinedObjectExists(named: newPlaylistName) {
+            
+            editedTextField.stringValue = playlist.name
+            
+            _ = DialogsAndAlerts.genericErrorAlert("Can't rename playlist", "Another playlist with that name already exists.", "Please type a unique name.").showModal()
+            
+        } else {
+            
+            playlistsManager.renameObject(named: oldPlaylistName, to: newPlaylistName)
+            messenger.publish(PlaylistRenamedNotification(index: indexOfPlaylist, newName: newPlaylistName))
+            
+            if let sidebarItem = sidebarView.item(atRow: rowOfPlaylist) as? LibrarySidebarItem {
+                sidebarItem.displayName = newPlaylistName
+            }
+            
+//            playlistViewController.playlist = playlist
+        }
     }
 }

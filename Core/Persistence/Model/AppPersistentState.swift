@@ -20,18 +20,18 @@ struct AppPersistentState: Codable {
     var ui: UIPersistentState?
     #endif
     
-    var playlists: PlaylistsPersistentState?
     var playQueue: PlayQueuePersistentState?
-    var library: LibraryPersistentState?
     var audioGraph: AudioGraphPersistentState?
+    var library: LibraryPersistentState?
     
 //    var metadata: MetadataPersistentState?
     
-    var playbackProfiles: [PlaybackProfilePersistentState]?
-    
+    var playlists: PlaylistsPersistentState?
     var history: HistoryPersistentState?
     var favorites: FavoritesPersistentState?
     var bookmarks: BookmarksPersistentState?
+    
+    var playbackProfiles: [PlaybackProfilePersistentState]?
     
     var musicBrainzCache: MusicBrainzCachePersistentState?
     

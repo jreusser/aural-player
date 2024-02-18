@@ -84,6 +84,10 @@ class PlaylistViewController: NSViewController {
     
     // MARK: Notification handling
     
+    func playlistRenamed(to newPlaylistName: String) {
+        lblPlaylistName.stringValue = newPlaylistName
+    }
+    
     private func startedAddingTracks() {
         
         progressSpinner.startAnimation(self)

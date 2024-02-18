@@ -195,7 +195,10 @@ class LibraryWindowController: NSWindowController {
         
         let tab = item.browserTab
         
-        if tab == .fileSystem,
+        if tab == .playlists {
+            messenger.publish(.playlists_showPlaylist, payload: item.displayName)
+            
+        } else if tab == .fileSystem,
            let folder = item.tuneBrowserFolder, let tree = item.tuneBrowserTree {
             
             tuneBrowserViewController.showFolder(folder, inTree: tree, updateHistory: true)

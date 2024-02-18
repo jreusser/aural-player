@@ -57,14 +57,33 @@ class PresetsManagerTableCellView: NSTableCellView {
 // Used to change text field selection cursor and text color
 class EditableTextField: NSTextField {
     
+    var editTextColor: PlatformColor {
+        .black
+    }
+    
+    var editCursorColor: PlatformColor {
+        .black
+    }
+    
     override func becomeFirstResponder() -> Bool {
         
-//        self.textColor = NSColor.black
+        self.textColor = editTextColor
         
         // Cursor color
         let fieldEditor = self.window!.fieldEditor(true, for: self) as! NSTextView
-        fieldEditor.insertionPointColor = NSColor.black
+        fieldEditor.insertionPointColor = editCursorColor
         
         return super.becomeFirstResponder()
+    }
+}
+
+class EditableLibraryTextField: EditableTextField {
+    
+    override var editTextColor: PlatformColor {
+        systemColorScheme.primaryTextColor
+    }
+    
+    override var editCursorColor: PlatformColor {
+        systemColorScheme.primaryTextColor
     }
 }
