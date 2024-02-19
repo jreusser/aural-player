@@ -30,6 +30,10 @@ class UnifiedAppModeController: AppModeController {
         }
         
         windowController?.showWindow(self)
+        
+        // Build Library if not already built or building
+        // Always give it a high priority.
+        libraryDelegate.buildLibraryIfNotBuilt(immediate: true)
     }
     
     func dismissMode() {

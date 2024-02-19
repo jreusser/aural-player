@@ -27,19 +27,19 @@ fileprivate var fsItems: OrderedDictionary<URL, FileSystemItem> = OrderedDiction
 
 fileprivate var blockOpFunction: ((URL) -> BlockOperation)!
 
-fileprivate let highPriorityQueue: OperationQueue = {
-    
-    let activeCores: Int = SystemUtils.numberOfActiveCores
-    return OperationQueue(opCount: max(4, (Double(activeCores) * 1.5).roundedInt),
-                   qos: .userInteractive)
-}()
-
-fileprivate let lowPriorityQueue: OperationQueue = {
-    
-    let physicalCores: Int = System.physicalCores
-    return OperationQueue(opCount: max(physicalCores / 2, 2),
-                   qos: .background)
-}()
+//fileprivate let highPriorityQueue: OperationQueue = {
+//    
+//    let physicalCores: Int = System.physicalCores
+//    return OperationQueue(opCount: max(4, (Double(physicalCores) * 1.5).roundedInt),
+//                   qos: .userInteractive)
+//}()
+//
+//fileprivate let lowPriorityQueue: OperationQueue = {
+//    
+//    let physicalCores: Int = System.physicalCores
+//    return OperationQueue(opCount: max(2, physicalCores / 2),
+//                   qos: .background)
+//}()
 
 fileprivate var chosenQueue: OperationQueue!
 
@@ -59,7 +59,7 @@ extension Library {
         
         let start = Date()
         
-        chosenQueue = immediate ? highPriorityQueue : lowPriorityQueue
+        chosenQueue = immediate ? TrackLoader.highPriorityQueue : TrackLoader.lowPriorityQueue
         
         DispatchQueue.global(qos: immediate ? .userInitiated : .utility).async {
             

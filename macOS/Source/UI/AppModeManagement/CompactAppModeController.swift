@@ -23,6 +23,10 @@ class CompactAppModeController: AppModeController {
         
         windowController = CompactPlayerWindowController()
         windowController?.showWindow(self)
+        
+        // Build Library if not already built or building
+        // Always give it a low priority (not user-interactive through any UI components).
+        libraryDelegate.buildLibraryIfNotBuilt(immediate: false)
     }
     
     func dismissMode() {

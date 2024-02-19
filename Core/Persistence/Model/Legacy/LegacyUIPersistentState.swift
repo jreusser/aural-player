@@ -16,12 +16,12 @@ struct LegacyUIPersistentState: Codable {
     
 //    let windowLayout: WindowLayoutsPersistentState?
 //    let themes: ThemesPersistentState?
-//    let fontSchemes: FontSchemesPersistentState?
+    let fontSchemes: LegacyFontSchemesPersistentState?
     let colorSchemes: LegacyColorSchemesPersistentState?
     let windowAppearance: WindowAppearancePersistentState?
     
     let player: LegacyPlayerUIPersistentState?
-//    let menuBarPlayer: MenuBarPlayerUIPersistentState?
+    let menuBarPlayer: MenuBarPlayerUIPersistentState?
 //    let controlBarPlayer: ControlBarPlayerUIPersistentState?
 //
 //    let playlist: PlaylistUIPersistentState?

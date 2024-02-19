@@ -11,6 +11,7 @@
 		3E00091F2ADF26A20052357D /* ImportedPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E00091E2ADF26A20052357D /* ImportedPlaylist.swift */; };
 		3E0397E82B83EB73004454DB /* AppDelegate+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0397E72B83EB73004454DB /* AppDelegate+Init.swift */; };
 		3E0397EA2B83EC27004454DB /* AppDelegate+TearDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0397E92B83EC27004454DB /* AppDelegate+TearDown.swift */; };
+		3E0397EC2B83FF85004454DB /* LegacyFontSchemesPersistentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0397EB2B83FF85004454DB /* LegacyFontSchemesPersistentState.swift */; };
 		3E045D06281322450069DEFE /* TrackInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E045D05281322450069DEFE /* TrackInfoWindow.xib */; };
 		3E045D092813407D0069DEFE /* TrackListSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E045D082813407D0069DEFE /* TrackListSort.swift */; };
 		3E045D0B281341110069DEFE /* TrackComparators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E045D0A281341110069DEFE /* TrackComparators.swift */; };
@@ -1073,6 +1074,7 @@
 		3E00091E2ADF26A20052357D /* ImportedPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedPlaylist.swift; sourceTree = "<group>"; };
 		3E0397E72B83EB73004454DB /* AppDelegate+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Init.swift"; sourceTree = "<group>"; };
 		3E0397E92B83EC27004454DB /* AppDelegate+TearDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+TearDown.swift"; sourceTree = "<group>"; };
+		3E0397EB2B83FF85004454DB /* LegacyFontSchemesPersistentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyFontSchemesPersistentState.swift; sourceTree = "<group>"; };
 		3E045D05281322450069DEFE /* TrackInfoWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackInfoWindow.xib; sourceTree = "<group>"; };
 		3E045D082813407D0069DEFE /* TrackListSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListSort.swift; sourceTree = "<group>"; };
 		3E045D0A281341110069DEFE /* TrackComparators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackComparators.swift; sourceTree = "<group>"; };
@@ -4006,6 +4008,7 @@
 				3EBFF5B22B53C0550056D5B4 /* LegacyAppPersistentState.swift */,
 				3E3ACC032B5932EC00F2F678 /* LegacyHistoryPersistentState.swift */,
 				3E6C66AA2B54825300AA0D81 /* LegacyUIPersistentState.swift */,
+				3E0397EB2B83FF85004454DB /* LegacyFontSchemesPersistentState.swift */,
 				3E6C66A82B54686D00AA0D81 /* LegacyAudioGraphPersistentState.swift */,
 				3E3ACC052B5939E700F2F678 /* LegacyColorSchemesPersistentState.swift */,
 			);
@@ -5710,6 +5713,7 @@
 				3EFFEB8727D9D33D006A333B /* FontSchemesManager+Observer.swift in Sources */,
 				3E10178C28D7713B002C0D8E /* FFmpegPacketFrames.swift in Sources */,
 				3EFE38BB27864896006F8B8C /* PitchShiftUnitDelegate.swift in Sources */,
+				3E0397EC2B83FF85004454DB /* LegacyFontSchemesPersistentState.swift in Sources */,
 				3E6C12C425CEBE6700BF0D07 /* EQUnitView.swift in Sources */,
 				3E3BCFFB2AF1DC0300FD893A /* GeneralSoundPreferencesViewController.swift in Sources */,
 				3E6C12BF25CEBE6700BF0D07 /* EQUnitViewController.swift in Sources */,

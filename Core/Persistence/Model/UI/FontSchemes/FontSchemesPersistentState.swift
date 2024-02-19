@@ -23,6 +23,12 @@ struct FontSchemesPersistentState: Codable {
 
     let systemScheme: FontSchemePersistentState?
     let userSchemes: [FontSchemePersistentState]?
+    
+    init(legacyPersistentState: LegacyFontSchemesPersistentState?) {
+        
+        self.systemScheme = .init(legacyPersistentState: legacyPersistentState?.systemScheme)
+        self.userSchemes = legacyPersistentState?.userSchemes?.compactMap {.init(legacyPersistentState: $0)}
+    }
 }
 
 ///
@@ -64,6 +70,29 @@ struct FontSchemePersistentState: Codable {
         self.extraSmallSize = scheme.extraSmallFont.pointSize
         
         self.tableYOffset = scheme.tableYOffset
+    }
+    
+    init?(legacyPersistentState: LegacyFontSchemePersistentState?) {
+        
+        guard let legacyPersistentState = legacyPersistentState else {return nil}
+        
+        guard let name = legacyPersistentState.name,
+        let textFontName = legacyPersistentState.textFontName,
+        let headingFontName = legacyPersistentState.headingFontName else {return nil}
+        
+        self.name = name
+        
+        self.textFontName = textFontName
+        self.captionFontName = headingFontName
+        
+        self.captionSize = legacyPersistentState.effects?.unitCaptionSize
+        
+        self.prominentSize = legacyPersistentState.player?.titleSize
+        self.normalSize = legacyPersistentState.playlist?.trackTextSize
+        self.smallSize = legacyPersistentState.player?.feedbackTextSize
+        self.extraSmallSize = legacyPersistentState.effects?.filterChartSize
+        
+        self.tableYOffset = legacyPersistentState.playlist?.trackTextYOffset
     }
     
 #endif

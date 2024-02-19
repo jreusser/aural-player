@@ -31,6 +31,10 @@ class ModularAppModeController: AppModeController {
         
         manager.restore()
         
+        // Build Library if not already built or building
+        // Give it a higher priority if the Library window is displayed.
+        libraryDelegate.buildLibraryIfNotBuilt(immediate: manager.isShowingLibrary)
+        
         // If this is not a transition from a different app mode, we don't need to execute the hack below.
         if previousMode == nil || previousMode == .modular {return}
         

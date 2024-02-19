@@ -16,6 +16,8 @@ protocol LibraryDelegateProtocol: GroupedSortedTrackListProtocol {
     
     var buildProgress: LibraryBuildProgress {get}
     
+    func buildLibraryIfNotBuilt(immediate: Bool)
+    
     var sourceFolders: [URL] {get}
     
     var fileSystemTrees: [FileSystemTree] {get}
@@ -53,7 +55,6 @@ class LibraryDelegate: LibraryDelegateProtocol {
     init() {
 
         // Subscribe to notifications
-        messenger.subscribe(to: .application_launched, handler: appLaunched(_:))
         messenger.subscribe(to: .application_reopened, handler: appReopened(_:))
         
         libraryMonitor.startMonitoring()
@@ -87,6 +88,18 @@ class LibraryDelegate: LibraryDelegateProtocol {
     
     var summary: (size: Int, totalDuration: Double) {
         library.summary
+    }
+    
+    func buildLibraryIfNotBuilt(immediate: Bool) {
+        
+        if !(isBuilt || isBeingModified) {
+            
+            print("In app mode (\(appModeManager.currentMode)), building library: immediate ? \(immediate)")
+            library.buildLibrary(immediate: immediate)
+            
+        } else {
+            print("In app mode (\(appModeManager.currentMode)), ALREADY BUILT library")
+        }
     }
     
     func indexOfTrack(_ track: Track) -> Int? {
@@ -190,20 +203,6 @@ class LibraryDelegate: LibraryDelegateProtocol {
     }
 
     // MARK: Notification handling ---------------------------------------------------------------
-    
-    func appLaunched(_ filesToOpen: [URL]) {
-        
-        // TODO: Check persistent state to see if the Library window is shown.
-        // If shown, immediate = true.
-        let appMode = appModeManager.currentMode ?? .modular
-        
-        guard appMode.equalsOneOf(.modular, .unified) else {return}
-        
-        lazy var displayedWindowIDs: [WindowID] = appPersistentState.ui?.windowLayout?.systemLayout?.displayedWindows?.compactMap {$0.id} ?? []
-        let libraryShown = appMode == .unified || ((appMode == .modular) && displayedWindowIDs.contains(.library))
-        print("\nLibrary Shown ? \(libraryShown), AppMode: \(appMode), displayedWindowIDs: \(displayedWindowIDs)")
-        library.buildLibrary(immediate: libraryShown)
-    }
     
     func appReopened(_ notification: AppReopenedNotification) {
         
