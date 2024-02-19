@@ -24,7 +24,7 @@ extension PlaylistContainerViewController {
         
         // Button tag is the tab index
         tabGroup.selectTabViewItem(at: tabIndex)
-        playQueueUIState.currentView = PlayQueueView(rawValue: tabIndex)!
+//        playQueueUIState.currentView = PlayQueueView(rawValue: tabIndex)!
     }
     
     @IBAction func importFilesAndFoldersAction(_ sender: NSButton) {
@@ -47,11 +47,11 @@ extension PlaylistContainerViewController {
         // Check for at least 1 row (and also get the minimum index).
         guard let firstRemovedRow = selectedRows.min() else {return}
         
-        _ = playQueueDelegate.removeTracks(at: selectedRows)
+        playlist.removeTracks(at: selectedRows)
         currentViewController.clearSelection()
         
         // Update all rows from the first (i.e. smallest index) removed row, down to the end of the track list.
-        let lastRowAfterRemove = playQueueDelegate.size - 1
+        let lastRowAfterRemove = playlist.size - 1
         
         controllers.forEach {
             
@@ -77,7 +77,7 @@ extension PlaylistContainerViewController {
         
         guard tracksToDelete.isNonEmpty else {return}
         
-        _ = playQueueDelegate.removeTracks(at: tracksToDelete)
+        playlist.removeTracks(at: tracksToDelete)
         
         controllers.forEach {
             $0.reloadTable()
@@ -88,7 +88,7 @@ extension PlaylistContainerViewController {
     
     @IBAction func removeAllTracksAction(_ sender: NSButton) {
         
-        playQueueDelegate.removeAllTracks()
+        playlist.removeAllTracks()
         controllers.forEach {$0.reloadTable()}
         updateSummary()
     }
@@ -103,7 +103,7 @@ extension PlaylistContainerViewController {
         guard currentViewController.atLeastTwoRowsAndNotAllSelected else {return}
 
         let selectedRows = currentViewController.selectedRows
-        let results = playQueueDelegate.moveTracksUp(from: selectedRows)
+        let results = playlist.moveTracksUp(from: selectedRows)
         
         controllers.forEach {
             $0.moveAndReloadItems(results.sorted(by: <))
@@ -126,7 +126,7 @@ extension PlaylistContainerViewController {
         guard currentViewController.atLeastTwoRowsAndNotAllSelected else {return}
 
         let selectedRows = currentViewController.selectedRows
-        let results = playQueueDelegate.moveTracksDown(from: selectedRows)
+        let results = playlist.moveTracksDown(from: selectedRows)
         
         controllers.forEach {
             $0.moveAndReloadItems(results.sorted(by: >))
@@ -150,7 +150,7 @@ extension PlaylistContainerViewController {
         
         let selectedRows = currentViewController.selectedRows
         let selectedRowCount = currentViewController.selectedRowCount
-        let results = playQueueDelegate.moveTracksToTop(from: selectedRows)
+        let results = playlist.moveTracksToTop(from: selectedRows)
         
         // Move the rows
         controllers.forEach {
@@ -181,7 +181,7 @@ extension PlaylistContainerViewController {
         
         let selectedRows = currentViewController.selectedRows
         let selectedRowCount = currentViewController.selectedRowCount
-        let results = playQueueDelegate.moveTracksToBottom(from: selectedRows)
+        let results = playlist.moveTracksToBottom(from: selectedRows)
         let lastRow = currentViewController.lastRow
         
         controllers.forEach {
@@ -220,28 +220,28 @@ extension PlaylistContainerViewController {
     func exportToPlaylistFile() {
         
         // Make sure there is at least one track to save.
-        guard playQueueDelegate.size > 0, !checkIfPlayQueueIsBeingModified() else {return}
+        guard playlist.size > 0, !checkIfPlaylistIsBeingModified() else {return}
 
         if saveDialog.runModal() == .OK,
            let playlistFile = saveDialog.url {
             
-            playQueueDelegate.exportToFile(playlistFile)
+            playlist.exportToFile(playlistFile)
         }
     }
     
     // TODO: Can this func be put somewhere common / shared ???
-    private func checkIfPlayQueueIsBeingModified() -> Bool {
+    private func checkIfPlaylistIsBeingModified() -> Bool {
         
-        let playQueueBeingModified = playQueueDelegate.isBeingModified
+        let playlistBeingModified = playlist.isBeingModified
 
-        if playQueueBeingModified {
+        if playlistBeingModified {
 
             alertDialog.showAlert(.error, "Play Queue not modified",
                                   "The Play Queue cannot be modified while tracks are being added",
                                   "Please wait till the Play Queue is done adding tracks ...")
         }
 
-        return playQueueBeingModified
+        return playlistBeingModified
     }
     
     @IBAction func searchAction(_ sender: NSButton) {
@@ -277,9 +277,7 @@ extension PlaylistContainerViewController {
     }
     
     private func doSort(by fields: [TrackSortField]) {
-        
         currentViewController.sort(by: fields, order: sortOrderMenuItemView.sortOrder)
-        updateSummary()
     }
     
     @IBAction func pageUpAction(_ sender: NSButton) {
@@ -300,46 +298,46 @@ extension PlaylistContainerViewController {
     
     func playNext() {
         
-        let destRows = playQueueDelegate.moveTracksToPlayNext(from: currentViewController.selectedRows)
-        
-        controllers.forEach {
-            $0.tableView.reloadData()
-        }
-        
-        // The current playing track index may have changed as a result of this operation.
-        updateSummary()
-        
-        // Re-select the tracks that were moved.
-        currentViewController.tableView.selectRows(destRows)
+//        let destRows = playlist.moveTracksToPlayNext(from: currentViewController.selectedRows)
+//        
+//        controllers.forEach {
+//            $0.tableView.reloadData()
+//        }
+//        
+//        // The current playing track index may have changed as a result of this operation.
+//        updateSummary()
+//        
+//        // Re-select the tracks that were moved.
+//        currentViewController.tableView.selectRows(destRows)
     }
     
     // TODO: what to do with tracks already in the PQ ???
     // TODO: Perhaps use a new TrackRegistry to cache and reuse Tracks
     func enqueueAndPlayNow(_ command: EnqueueAndPlayNowCommand) {
         
-        let indices = playQueueDelegate.enqueueTracks(command.tracks, clearQueue: command.clearPlayQueue)
-        
-        if indices.isNonEmpty, !command.clearPlayQueue {
-            
-            controllers.forEach {
-                $0.noteNumberOfRowsChanged()
-            }
-            
-        } else {
-            
-            controllers.forEach {
-                $0.reloadTable()
-            }
-        }
-        
-        if let firstTrack = command.tracks.first {
-            messenger.publish(TrackPlaybackCommandNotification(track: firstTrack))
-        }
+//        let indices = playlist.enqueueTracks(command.tracks, clearQueue: command.clearPlayQueue)
+//        
+//        if indices.isNonEmpty, !command.clearPlayQueue {
+//            
+//            controllers.forEach {
+//                $0.noteNumberOfRowsChanged()
+//            }
+//            
+//        } else {
+//            
+//            controllers.forEach {
+//                $0.reloadTable()
+//            }
+//        }
+//        
+//        if let firstTrack = command.tracks.first {
+//            messenger.publish(TrackPlaybackCommandNotification(track: firstTrack))
+//        }
     }
     
     func loadAndPlayNow(_ command: LoadAndPlayNowCommand) {
         
-        playQueueDelegate.loadTracks(from: command.files, clearQueue: command.clearPlayQueue, autoplay: true)
+//        playlist.loadTracks(from: command.files)
         
 //        controllers.forEach {
 //
@@ -351,13 +349,13 @@ extension PlaylistContainerViewController {
     // TODO:
     func enqueueAndPlayNext(_ tracks: [Track]) {
         
-//        let indices = playQueueDelegate.enqueueTracksToPlayNext(tracks)
+//        let indices = playlist.enqueueTracksToPlayNext(tracks)
         
     }
     
     // TODO:
     func enqueueAndPlayLater(_ tracks: [Track]) {
         
-//        let indices = playQueueDelegate.enqueueTracks(tracks, clearQueue: false)
+//        let indices = playlist.enqueueTracks(tracks, clearQueue: false)
     }
 }

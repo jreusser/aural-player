@@ -28,10 +28,6 @@ class PlaylistViewController: TrackListTableViewController {
     @IBOutlet weak var playNowMenuItem: NSMenuItem!
     @IBOutlet weak var playNextMenuItem: NSMenuItem!
     
-    @IBOutlet weak var viewChaptersListMenuItem: NSMenuItem!
-    @IBOutlet weak var jumpToChapterMenuItem: NSMenuItem!
-    @IBOutlet weak var chaptersMenu: NSMenu!
-    
     @IBOutlet weak var favoriteMenu: NSMenu!
     @IBOutlet weak var favoriteMenuItem: NSMenuItem!
     
@@ -91,7 +87,7 @@ class PlaylistViewController: TrackListTableViewController {
     }
     
     override func notifyReloadTable() {
-//        messenger.publish(.PlayQueue.refresh)
+        messenger.publish(.playlist_refresh)
     }
     
     override func destroy() {
@@ -108,10 +104,8 @@ class PlaylistViewController: TrackListTableViewController {
     
     func playSelectedTrack() {
         
-        if let firstSelectedRow = selectedRows.min() {
-            
-            // TODO: Enqueue and play
-//            messenger.publish(TrackPlaybackCommandNotification(index: firstSelectedRow))
+        if let firstSelectedRow = selectedRows.min(), let track = playlist[firstSelectedRow] {
+            messenger.publish(EnqueueAndPlayNowCommand(tracks: [track], clearPlayQueue: false))
         }
     }
     

@@ -39,31 +39,11 @@ extension PlaylistViewController: NSMenuDelegate {
             playlistNamesMenu.addItem(withTitle: playlist.name, action: #selector(copyTracksToPlaylistAction(_:)), keyEquivalent: "")
         }
         
-        chaptersMenu.removeAllItems()
-        
         // Update the state of the favorites menu items (based on if the clicked track / group is already in the favorites list or not)
         guard let theClickedTrack = selectedTracks.first else {return}
         
         let clickedPlayingTrack = playbackInfoDelegate.playingTrack == theClickedTrack
         let clickedPlayingTrackAndHasChapters = clickedPlayingTrack && theClickedTrack.hasChapters
-        
-        viewChaptersListMenuItem.showIf(clickedPlayingTrackAndHasChapters)
-        jumpToChapterMenuItem.showIf(clickedPlayingTrackAndHasChapters)
-        
-        if clickedPlayingTrackAndHasChapters, let playingChapter = playbackInfoDelegate.playingChapter {
-            
-            let chapters = theClickedTrack.chapters
-            
-            for (index, chapter) in chapters.enumerated() {
-                
-                let item = ChapterMenuItem(title: chapter.title, action: #selector(jumpToChapterAction(_:)), index: index)
-                item.state = .off
-                item.target = self
-                chaptersMenu.addItem(item)
-            }
-            
-            chaptersMenu.item(at: playingChapter.index)?.state = .on
-        }
         
         [moveTracksUpMenuItem, moveTracksDownMenuItem, moveTracksToTopMenuItem, moveTracksToBottomMenuItem].forEach {
             $0?.showIf(atLeastOneRowSelected)

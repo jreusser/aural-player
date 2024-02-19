@@ -52,6 +52,14 @@ class LibrarySidebarViewController: NSViewController {
                                                      handler: textSelectionColorChanged(_:))
     }
     
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        categories.forEach {sidebarView.expandItem($0)}
+        sidebarView.selectRow(1)
+    }
+    
     @IBAction func doubleClickAction(_ sender: NSOutlineView) {
         
         guard let sidebarItem = sidebarView.selectedItem as? LibrarySidebarItem else {return}

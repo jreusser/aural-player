@@ -29,7 +29,8 @@ class PlaylistControlsContainer: NSView {
     @IBOutlet weak var btnInvertSelection: TintedImageButton!
     
     @IBOutlet weak var btnSearch: TintedImageButton!
-    @IBOutlet weak var btnSort: TintedImageButton!
+    @IBOutlet weak var btnSortPopup: NSPopUpButton!
+    @IBOutlet weak var sortTintedIconMenuItem: TintedIconMenuItem!
     
     @IBOutlet weak var btnExport: TintedImageButton!
     
@@ -40,18 +41,26 @@ class PlaylistControlsContainer: NSView {
     
     private var viewsToShowOnMouseOver: [NSView] = []
     private var viewsToHideOnMouseOver: [NSView] = []
+    private var allButtons: [ColorSchemePropertyChangeReceiver] = []
     
     override func awakeFromNib() {
+        
+        super.awakeFromNib()
         
         viewsToShowOnMouseOver = [btnImportTracks,
                                   btnRemoveTracks, btnCropTracks, btnRemoveAllTracks,
                                   btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom,
                                   btnClearSelection, btnInvertSelection,
-                                  btnSearch, btnSort,
+                                  btnSearch, btnSortPopup,
                                   btnExport,
                                   btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom]
         
         viewsToHideOnMouseOver = [lblTracksSummary, lblDurationSummary]
+        
+        allButtons = [btnImportTracks, btnRemoveTracks, btnCropTracks, btnRemoveAllTracks, btnMoveTracksUp, btnMoveTracksDown, btnMoveTracksToTop, btnMoveTracksToBottom, btnClearSelection, btnInvertSelection, btnSearch, sortTintedIconMenuItem, btnExport, btnPageUp, btnPageDown, btnScrollToTop, btnScrollToBottom]
+        
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: allButtons)
     }
     
     override func setFrameSize(_ newSize: NSSize) {
@@ -119,5 +128,15 @@ class PlaylistControlsContainer: NSView {
         
         viewsToShowOnMouseOver.forEach {$0.hide()}
         viewsToHideOnMouseOver.forEach {$0.show()}
+    }
+}
+
+extension PlaylistControlsContainer: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        
+        allButtons.forEach {
+            $0.colorChanged(systemColorScheme.buttonColor)
+        }
     }
 }

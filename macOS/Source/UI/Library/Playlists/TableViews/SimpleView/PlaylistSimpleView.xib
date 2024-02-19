@@ -161,7 +161,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
-                                    <action trigger="doubleAction" selector="doubleClickAction:" target="-2" id="IHw-lk-z8B"/>
+                                    <action trigger="doubleAction" selector="playSelectedTrackAction:" target="-2" id="zxl-QL-maE"/>
                                     <outlet property="dataSource" destination="-2" id="Iaq-et-LTb"/>
                                     <outlet property="delegate" destination="-2" id="kz2-fy-MyH"/>
                                     <outlet property="menu" destination="udY-Kb-i5J" id="jXb-Bv-dwZ"/>
@@ -198,9 +198,6 @@
                 </menuItem>
                 <menuItem title="Play now (clearing the play queue)" id="9wQ-gy-eam">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="playNowClearingPlayQueueAction:" target="-2" id="EC0-oX-igA"/>
-                    </connections>
                 </menuItem>
                 <menuItem title="Play next" id="tz5-H8-IlF">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -210,9 +207,6 @@
                 </menuItem>
                 <menuItem title="Play later" id="KzX-4I-EDr">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="playLaterAction:" target="-2" id="AHa-IG-1M0"/>
-                    </connections>
                 </menuItem>
             </items>
             <point key="canvasLocation" x="-379" y="233"/>
