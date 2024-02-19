@@ -82,6 +82,10 @@ class PlayQueueContainerViewController: NSViewController {
         }
         
         doSelectTab(at: playQueueUIState.currentView.rawValue)
+        
+        if playQueueDelegate.isBeingModified {
+            startedAddingTracks()
+        }
     }
     
     func setUpTheming() {

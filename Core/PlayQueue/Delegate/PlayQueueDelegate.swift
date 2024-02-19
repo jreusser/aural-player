@@ -25,11 +25,9 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     private let trackAddQueue: OperationQueue = OperationQueue()
     private let trackUpdateQueue: OperationQueue = OperationQueue()
 
-    private var addSession: TrackAddSession<PlayQueueTrackAddResult>!
-
     private let concurrentAddOpCount = (Double(SystemUtils.numberOfActiveCores) * 1.5).roundedInt
 
-    var isBeingModified: Bool {addSession != nil}
+    var isBeingModified: Bool {playQueue.isBeingModified}
     
     var currentTrack: Track? {playQueue.currentTrack}
     

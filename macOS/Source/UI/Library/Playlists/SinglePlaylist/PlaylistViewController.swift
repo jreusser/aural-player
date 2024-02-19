@@ -82,10 +82,6 @@ class PlaylistViewController: TrackListTableViewController {
         }
     }
     
-    override func tracksMovedByDragDrop(minReloadIndex: Int, maxReloadIndex: Int) {
-//        messenger.publish(.PlayQueue.updateSummary)
-    }
-    
     override func notifyReloadTable() {
         messenger.publish(.playlist_refresh)
     }

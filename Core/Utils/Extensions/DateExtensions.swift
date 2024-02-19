@@ -83,6 +83,12 @@ extension Date {
         
         return .pastHour
     }
+    
+    private static let timestampFormatter = DateFormatter(format: "H:mm:ss.SSS")
+    
+    static var nowTimestampString: String {
+        timestampFormatter.string(from: Date())
+    }
 }
 
 extension DateFormatter {
