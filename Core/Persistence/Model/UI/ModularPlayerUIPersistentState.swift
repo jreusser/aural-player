@@ -16,6 +16,8 @@ import Foundation
 ///
 struct ModularPlayerUIPersistentState: Codable {
     
+    let cornerRadius: CGFloat?
+    
     let showAlbumArt: Bool?
     let showArtist: Bool?
     let showAlbum: Bool?
@@ -26,7 +28,9 @@ struct ModularPlayerUIPersistentState: Codable {
     
     let trackTimeDisplayType: TrackTimeDisplayType?
     
-    init(showAlbumArt: Bool?, showArtist: Bool?, showAlbum: Bool?, showCurrentChapter: Bool?, showControls: Bool?, showTrackTime: Bool?, trackTimeDisplayType: TrackTimeDisplayType?) {
+    init(cornerRadius: CGFloat?, showAlbumArt: Bool?, showArtist: Bool?, showAlbum: Bool?, showCurrentChapter: Bool?, showControls: Bool?, showTrackTime: Bool?, trackTimeDisplayType: TrackTimeDisplayType?) {
+        
+        self.cornerRadius = cornerRadius
         
         self.showAlbumArt = showAlbumArt
         self.showArtist = showArtist
@@ -37,7 +41,9 @@ struct ModularPlayerUIPersistentState: Codable {
         self.trackTimeDisplayType = trackTimeDisplayType
     }
     
-    init(legacyPersistentState: LegacyPlayerUIPersistentState?) {
+    init(legacyPersistentState: LegacyPlayerUIPersistentState?, legacyWindowAppearanceState: LegacyWindowAppearancePersistentState?) {
+        
+        self.cornerRadius = legacyWindowAppearanceState?.cornerRadius
         
         self.showAlbumArt = legacyPersistentState?.showAlbumArt
         self.showArtist = legacyPersistentState?.showArtist

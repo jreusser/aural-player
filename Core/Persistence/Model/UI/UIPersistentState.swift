@@ -22,7 +22,6 @@ struct UIPersistentState: Codable {
     let themes: ThemesPersistentState?
     let fontSchemes: FontSchemesPersistentState?
     let colorSchemes: ColorSchemesPersistentState?
-    let windowAppearance: WindowAppearancePersistentState?
     
     let modularPlayer: ModularPlayerUIPersistentState?
     let unifiedPlayer: UnifiedPlayerUIPersistentState?
@@ -34,7 +33,7 @@ struct UIPersistentState: Codable {
     let visualizer: VisualizerUIPersistentState?
     let tuneBrowser: TuneBrowserUIPersistentState?
     
-    init(appMode: AppMode?, windowLayout: WindowLayoutsPersistentState?, themes: ThemesPersistentState?, fontSchemes: FontSchemesPersistentState?, colorSchemes: ColorSchemesPersistentState?, windowAppearance: WindowAppearancePersistentState?, modularPlayer: ModularPlayerUIPersistentState?, unifiedPlayer: UnifiedPlayerUIPersistentState?, menuBarPlayer: MenuBarPlayerUIPersistentState?, widgetPlayer: WidgetPlayerUIPersistentState?, compactPlayer: CompactPlayerUIPersistentState?, playQueue: PlayQueueUIPersistentState?, visualizer: VisualizerUIPersistentState?, tuneBrowser: TuneBrowserUIPersistentState?) {
+    init(appMode: AppMode?, windowLayout: WindowLayoutsPersistentState?, themes: ThemesPersistentState?, fontSchemes: FontSchemesPersistentState?, colorSchemes: ColorSchemesPersistentState?, modularPlayer: ModularPlayerUIPersistentState?, unifiedPlayer: UnifiedPlayerUIPersistentState?, menuBarPlayer: MenuBarPlayerUIPersistentState?, widgetPlayer: WidgetPlayerUIPersistentState?, compactPlayer: CompactPlayerUIPersistentState?, playQueue: PlayQueueUIPersistentState?, visualizer: VisualizerUIPersistentState?, tuneBrowser: TuneBrowserUIPersistentState?) {
         
         self.appMode = appMode
         
@@ -42,7 +41,6 @@ struct UIPersistentState: Codable {
         self.themes = themes
         self.fontSchemes = fontSchemes
         self.colorSchemes = colorSchemes
-        self.windowAppearance = windowAppearance
         
         self.modularPlayer = modularPlayer
         self.unifiedPlayer = unifiedPlayer
@@ -63,9 +61,9 @@ struct UIPersistentState: Codable {
         self.themes = nil
         self.fontSchemes = .init(legacyPersistentState: legacyPersistentState?.fontSchemes)
         self.colorSchemes = .init(legacyPersistentState: legacyPersistentState?.colorSchemes)
-        self.windowAppearance = .init(legacyPersistentState: legacyPersistentState?.windowAppearance)
         
-        self.modularPlayer = ModularPlayerUIPersistentState(legacyPersistentState: legacyPersistentState?.player)
+        self.modularPlayer = ModularPlayerUIPersistentState(legacyPersistentState: legacyPersistentState?.player,
+                                                            legacyWindowAppearanceState: legacyPersistentState?.windowAppearance)
         self.unifiedPlayer = nil
         self.menuBarPlayer = nil
         self.widgetPlayer = nil

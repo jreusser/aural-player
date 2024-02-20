@@ -24,6 +24,12 @@ struct FontSchemesPersistentState: Codable {
     let systemScheme: FontSchemePersistentState?
     let userSchemes: [FontSchemePersistentState]?
     
+    init(systemScheme: FontSchemePersistentState?, userSchemes: [FontSchemePersistentState]?) {
+        
+        self.systemScheme = systemScheme
+        self.userSchemes = userSchemes
+    }
+    
     init(legacyPersistentState: LegacyFontSchemesPersistentState?) {
         
         self.systemScheme = .init(legacyPersistentState: legacyPersistentState?.systemScheme)

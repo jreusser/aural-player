@@ -21,4 +21,14 @@ struct MenuBarPlayerUIPersistentState: Codable {
     let showArtist: Bool?
     let showAlbum: Bool?
     let showCurrentChapter: Bool?
+    
+    init(legacyPersistentState: LegacyMenuBarPlayerUIPersistentState?) {
+        
+        self.showPlayQueue = nil
+        
+        self.showAlbumArt = legacyPersistentState?.showAlbumArt
+        self.showArtist = legacyPersistentState?.showArtist
+        self.showAlbum = legacyPersistentState?.showAlbum
+        self.showCurrentChapter = legacyPersistentState?.showCurrentChapter
+    }
 }

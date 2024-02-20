@@ -30,7 +30,7 @@ struct ThemePersistentState: Codable {
     
     let fontScheme: FontSchemePersistentState?
     let colorScheme: ColorSchemePersistentState?
-    let windowAppearance: WindowAppearancePersistentState?
+    let cornerRadius: CGFloat?
     
 #if os(macOS)
     
@@ -39,7 +39,7 @@ struct ThemePersistentState: Codable {
         self.name = theme.name
         self.fontScheme = FontSchemePersistentState(theme.fontScheme)
         self.colorScheme = ColorSchemePersistentState(theme.colorScheme)
-        self.windowAppearance = WindowAppearancePersistentState(cornerRadius: theme.windowAppearance.cornerRadius)
+        self.cornerRadius = theme.cornerRadius
     }
     
 #endif

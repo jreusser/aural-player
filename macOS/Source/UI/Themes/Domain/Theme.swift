@@ -23,14 +23,14 @@ class Theme: UserManagedObject, PersistentModelObject {
     
     let fontScheme: FontScheme
     let colorScheme: ColorScheme
-    let windowAppearance: WindowAppearance
+    let cornerRadius: CGFloat
     
-    init(name: String, fontScheme: FontScheme, colorScheme: ColorScheme, windowAppearance: WindowAppearance, userDefined: Bool) {
+    init(name: String, fontScheme: FontScheme, colorScheme: ColorScheme, cornerRadius: CGFloat, userDefined: Bool) {
         
         self.name = name
         self.fontScheme = fontScheme
         self.colorScheme = colorScheme
-        self.windowAppearance = windowAppearance
+        self.cornerRadius = cornerRadius
         self.userDefined = userDefined
     }
     
@@ -54,7 +54,7 @@ class Theme: UserManagedObject, PersistentModelObject {
         
         self.fontScheme = fontScheme
         self.colorScheme = ColorScheme(persistentColorScheme, systemDefined)
-        self.windowAppearance = WindowAppearance(cornerRadius: persistentState.windowAppearance?.cornerRadius ?? WindowAppearanceState.defaultCornerRadius)
+        self.cornerRadius = persistentState.cornerRadius ?? PlayerUIDefaults.cornerRadius
     }
     
     var persistentState: ThemePersistentState {

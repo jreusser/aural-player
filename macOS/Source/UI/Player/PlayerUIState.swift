@@ -12,8 +12,9 @@ import Foundation
 // Convenient accessor for the current state of the player UI
 class PlayerUIState {
     
-    // Settings for individual track metadata fields
+    var cornerRadius: CGFloat
     
+    // Settings for individual track metadata fields
     var showAlbumArt: Bool
     var showArtist: Bool
     var showAlbum: Bool
@@ -25,6 +26,8 @@ class PlayerUIState {
     var trackTimeDisplayType: TrackTimeDisplayType
     
     init(persistentState: ModularPlayerUIPersistentState?) {
+        
+        cornerRadius = persistentState?.cornerRadius ?? PlayerUIDefaults.cornerRadius
         
         showAlbumArt = persistentState?.showAlbumArt ?? PlayerUIDefaults.showAlbumArt
         showArtist = persistentState?.showArtist ?? PlayerUIDefaults.showArtist
@@ -39,17 +42,20 @@ class PlayerUIState {
     
     var persistentState: ModularPlayerUIPersistentState {
         
-        ModularPlayerUIPersistentState(showAlbumArt: showAlbumArt,
-                                showArtist: showArtist,
-                                showAlbum: showAlbum,
-                                showCurrentChapter: showCurrentChapter,
-                                showControls: showControls,
-                                showTrackTime: showTrackTime,
-                                trackTimeDisplayType: trackTimeDisplayType)
+        ModularPlayerUIPersistentState(cornerRadius: cornerRadius,
+                                       showAlbumArt: showAlbumArt,
+                                       showArtist: showArtist,
+                                       showAlbum: showAlbum,
+                                       showCurrentChapter: showCurrentChapter,
+                                       showControls: showControls,
+                                       showTrackTime: showTrackTime,
+                                       trackTimeDisplayType: trackTimeDisplayType)
     }
 }
 
 struct PlayerUIDefaults {
+    
+    static let cornerRadius: CGFloat = 2
     
     static let showAlbumArt: Bool = true
     static let showArtist: Bool = true

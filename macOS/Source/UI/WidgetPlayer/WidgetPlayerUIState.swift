@@ -12,8 +12,11 @@ import Cocoa
 class WidgetPlayerUIState {
     
     var windowFrame: NSRect?
+    static let windowWidthRange: ClosedRange<CGFloat> = 610...10000
+    static let windowHeight: CGFloat = 50
     
     static let defaultCornerRadius: CGFloat = 3
+    static let cornerRadiusRange: ClosedRange<CGFloat> = 0...20
     var cornerRadius: CGFloat
     
     var trackInfoScrollingEnabled: Bool

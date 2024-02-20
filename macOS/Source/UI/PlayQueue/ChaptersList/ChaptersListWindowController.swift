@@ -22,8 +22,6 @@ class ChaptersListWindowController: NSWindowController, ModalComponentProtocol {
     
     private lazy var messenger = Messenger(for: self)
     
-    private lazy var uiState: WindowAppearanceState = windowAppearanceState
-    
     // The chapters list window is only considered modal when it is the key window AND
     // the search bar has focus (i.e. a search is being performed).
     var isModal: Bool {
@@ -37,7 +35,7 @@ class ChaptersListWindowController: NSWindowController, ModalComponentProtocol {
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainerBox)
         
-        rootContainerBox.cornerRadius = uiState.cornerRadius
+        rootContainerBox.cornerRadius = playerUIState.cornerRadius
         
         messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
     }

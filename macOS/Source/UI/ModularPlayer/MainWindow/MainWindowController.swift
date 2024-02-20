@@ -143,7 +143,7 @@ class MainWindowController: NSWindowController {
     // MARK: Message handling -----------------------------------------------------------
     
     private func applyTheme() {
-        changeWindowCornerRadius(windowAppearanceState.cornerRadius)
+        changeWindowCornerRadius(playerUIState.cornerRadius)
     }
     
     func changeWindowCornerRadius(_ radius: CGFloat) {

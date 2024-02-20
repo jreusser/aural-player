@@ -255,7 +255,7 @@ extension LibraryWindowController: ColorSchemeObserver {
     }
     
     private func applyTheme() {
-        changeWindowCornerRadius(windowAppearanceState.cornerRadius)
+        changeWindowCornerRadius(playerUIState.cornerRadius)
     }
     
     private func changeWindowCornerRadius(_ radius: CGFloat) {

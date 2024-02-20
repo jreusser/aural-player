@@ -57,7 +57,7 @@ class CreateThemeDialogController: SingletonWindowController, StringInputReceive
         initFontSchemesMenu()
         initColorSchemesMenu()
         
-        windowCornerRadiusStepper.integerValue = WindowAppearanceState.defaultCornerRadius.roundedInt
+        windowCornerRadiusStepper.integerValue = PlayerUIDefaults.cornerRadius.roundedInt
         lblWindowCornerRadius.stringValue = "\(windowCornerRadiusStepper.integerValue)px"
         
         errorBox.hide()
@@ -158,9 +158,8 @@ class CreateThemeDialogController: SingletonWindowController, StringInputReceive
         let themeFontScheme: FontScheme = FontScheme(name: "Font scheme for theme '\(string)'", copying: fontScheme)
         let themeColorScheme: ColorScheme = ColorScheme("Color scheme for theme '\(string)'", false, colorScheme)
         
-        let windowAppearance: WindowAppearance = WindowAppearance(cornerRadius: CGFloat(windowCornerRadiusStepper.integerValue))
-        
+        let cornerRadius: CGFloat = CGFloat(windowCornerRadiusStepper.integerValue)
         themesManager.addObject(Theme(name: string, fontScheme: themeFontScheme, colorScheme: themeColorScheme,
-                                      windowAppearance: windowAppearance, userDefined: true))
+                                      cornerRadius: cornerRadius, userDefined: true))
     }
 }

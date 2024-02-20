@@ -80,7 +80,7 @@ class EffectsWindowController: NSWindowController {
     // MARK: Theming
     
     private func applyTheme() {
-        changeWindowCornerRadius(windowAppearanceState.cornerRadius)
+        changeWindowCornerRadius(playerUIState.cornerRadius)
     }
     
     func changeWindowCornerRadius(_ radius: CGFloat) {

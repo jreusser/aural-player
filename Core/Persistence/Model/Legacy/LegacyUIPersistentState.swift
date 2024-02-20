@@ -18,14 +18,13 @@ struct LegacyUIPersistentState: Codable {
 //    let themes: ThemesPersistentState?
     let fontSchemes: LegacyFontSchemesPersistentState?
     let colorSchemes: LegacyColorSchemesPersistentState?
-    let windowAppearance: WindowAppearancePersistentState?
+    let windowAppearance: LegacyWindowAppearancePersistentState?
     
     let player: LegacyPlayerUIPersistentState?
-    let menuBarPlayer: MenuBarPlayerUIPersistentState?
-//    let controlBarPlayer: ControlBarPlayerUIPersistentState?
-//
-//    let playlist: PlaylistUIPersistentState?
-//    let visualizer: VisualizerUIPersistentState?
+    let menuBarPlayer: LegacyMenuBarPlayerUIPersistentState?
+    let controlBarPlayer: LegacyControlBarPlayerUIPersistentState?
+
+    let visualizer: VisualizerUIPersistentState?
 }
 
 enum LegacyAppMode: String, CaseIterable, Codable {
@@ -37,6 +36,8 @@ enum LegacyAppMode: String, CaseIterable, Codable {
 
 struct LegacyPlayerUIPersistentState: Codable {
     
+    let cornerRadius: CGFloat?
+    
     let showAlbumArt: Bool?
     let showArtist: Bool?
     let showAlbum: Bool?
@@ -44,4 +45,26 @@ struct LegacyPlayerUIPersistentState: Codable {
     
     let showControls: Bool?
     let showTimeElapsedRemaining: Bool?
+}
+
+struct LegacyMenuBarPlayerUIPersistentState: Codable {
+    
+    let showAlbumArt: Bool?
+    let showArtist: Bool?
+    let showAlbum: Bool?
+    let showCurrentChapter: Bool?
+}
+
+struct LegacyControlBarPlayerUIPersistentState: Codable {
+    
+    let windowFrame: NSRectPersistentState?
+    let cornerRadius: CGFloat?
+    
+    let trackInfoScrollingEnabled: Bool?
+    let showSeekPosition: Bool?
+}
+
+struct LegacyWindowAppearancePersistentState: Codable {
+    
+    let cornerRadius: CGFloat?
 }

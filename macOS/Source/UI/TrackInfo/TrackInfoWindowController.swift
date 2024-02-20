@@ -25,7 +25,7 @@ class TrackInfoWindowController: NSWindowController {
         
         super.windowDidLoad()
         
-        changeWindowCornerRadius(windowAppearanceState.cornerRadius)
+        changeWindowCornerRadius(playerUIState.cornerRadius)
         
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainer)
