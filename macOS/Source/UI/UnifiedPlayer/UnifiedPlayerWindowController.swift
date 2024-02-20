@@ -61,6 +61,8 @@ class UnifiedPlayerWindowController: NSWindowController {
         initWindow()
         theWindow.setIsVisible(false)
         
+        theWindow.delegate = self
+        
         setUpEventHandling()
         initSubscriptions()
         
@@ -193,5 +195,12 @@ extension UnifiedPlayerWindowController: ColorSchemeObserver {
         buttonColorChangeReceivers.forEach {
             $0.colorChanged(systemColorScheme.buttonColor)
         }
+    }
+}
+
+extension UnifiedPlayerWindowController: NSWindowDelegate {
+    
+    func windowDidResize(_ notification: Notification) {
+        playerController.windowResized()
     }
 }

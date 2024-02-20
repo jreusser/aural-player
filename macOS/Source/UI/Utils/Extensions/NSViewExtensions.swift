@@ -171,6 +171,13 @@ extension NSView {
         superview.constraints.filter {($0.firstItem === self && attributes?.contains($0.firstAttribute) ?? true) || ($0.secondItem === self && attributes?.contains($0.secondAttribute) ?? true)}.forEach {superview.deactivateAndRemoveConstraint($0)}
     }
     
+    func removeAllConstraintsRelatedToSuperview(attributes: [NSLayoutConstraint.Attribute]? = nil) {
+        
+        guard let superview = self.superview else {return}
+            
+        superview.constraints.filter {($0.firstItem === self && $0.secondItem === superview && attributes?.contains($0.firstAttribute) ?? true) || ($0.secondItem === self && $0.firstItem === superview && attributes?.contains($0.secondAttribute) ?? true)}.forEach {superview.deactivateAndRemoveConstraint($0)}
+    }
+    
     func removeAllConstraintsFromSuperview() {
         superview?.constraints.forEach {superview?.deactivateAndRemoveConstraint($0)}
     }
@@ -187,5 +194,11 @@ extension NSViewController {
     
     func startTrackingView(options: NSTrackingArea.Options) {
         view.addTrackingArea(.init(rect: view.bounds, options: options, owner: self))
+    }
+    
+    func restartTrackingView(options: NSTrackingArea.Options) {
+        
+        view.removeAllTrackingAreas()
+        startTrackingView(options: options)
     }
 }

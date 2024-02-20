@@ -243,7 +243,7 @@
                         <constraint firstAttribute="height" constant="55" id="zUv-lg-g64"/>
                     </constraints>
                 </box>
-                <box wantsLayer="YES" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="7BY-ME-fle" userLabel="Playing Track Info Box">
+                <box wantsLayer="YES" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="7BY-ME-fle" userLabel="Info Box">
                     <rect key="frame" x="80" y="55" width="786" height="70"/>
                     <view key="contentView" id="T0r-Cf-1AZ" customClass="MultilineTrackTextView" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="786" height="70"/>
@@ -394,7 +394,7 @@
             <constraints>
                 <constraint firstItem="I3Y-0e-Nm0" firstAttribute="leading" secondItem="aXk-ne-Q1U" secondAttribute="leading" id="4N0-nC-mEH"/>
                 <constraint firstItem="7BY-ME-fle" firstAttribute="leading" secondItem="I3Y-0e-Nm0" secondAttribute="trailing" constant="10" id="4Oe-BI-eKL"/>
-                <constraint firstItem="I3Y-0e-Nm0" firstAttribute="top" secondItem="aXk-ne-Q1U" secondAttribute="top" constant="5" id="5bE-vl-pnd"/>
+                <constraint firstItem="I3Y-0e-Nm0" firstAttribute="top" secondItem="7BY-ME-fle" secondAttribute="top" id="5bE-vl-pnd"/>
                 <constraint firstItem="8N2-K1-ceE" firstAttribute="leading" secondItem="aXk-ne-Q1U" secondAttribute="leading" id="8of-1p-6ZI"/>
                 <constraint firstAttribute="bottom" secondItem="8N2-K1-ceE" secondAttribute="bottom" id="Igd-u2-xfz"/>
                 <constraint firstItem="7BY-ME-fle" firstAttribute="top" secondItem="aXk-ne-Q1U" secondAttribute="top" constant="5" id="Iyp-u3-v2g"/>

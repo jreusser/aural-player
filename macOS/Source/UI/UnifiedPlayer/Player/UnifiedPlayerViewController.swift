@@ -53,6 +53,11 @@ class UnifiedPlayerViewController: PlayerViewController {
         startTrackingView(options: [.activeAlways, .mouseEnteredAndExited])
     }
     
+    func windowResized() {
+        restartTrackingView(options: [.activeAlways, .mouseEnteredAndExited])
+        print("Tracking ...")
+    }
+    
     override func updateTrackTextView(for track: Track?, playingChapterTitle: String? = nil) {
         updateMultilineTrackTextView(for: track, playingChapterTitle: playingChapterTitle)
     }

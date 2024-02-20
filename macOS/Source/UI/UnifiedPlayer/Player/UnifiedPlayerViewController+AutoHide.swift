@@ -12,9 +12,9 @@ import AppKit
 
 extension UnifiedPlayerViewController {
     
-    private static let infoBoxDefaultPosition: NSPoint = NSPoint(x: 85, y: 85)
-    private static let infoBoxCenteredPosition: NSPoint = NSPoint(x: 85, y: 65)
-    private static let infoBoxCenteredPosition_noArt: NSPoint = NSPoint(x: 15, y: 65)
+    private static let infoBoxDefaultPosition: NSPoint = NSPoint(x: 80, y: 55)
+    private static let infoBoxCenteredPosition: NSPoint = NSPoint(x: 80, y: 35)
+    private static let infoBoxCenteredPosition_noArt: NSPoint = NSPoint(x: 15, y: 35)
 
     private static let infoBoxDefaultWidth: CGFloat = 381
     private static let infoBoxWidth_noArt: CGFloat = 451
@@ -49,21 +49,49 @@ extension UnifiedPlayerViewController {
     private func moveInfoBoxTo(_ point: NSPoint) {
         
         infoBox.setFrameOrigin(point)
-        artView.frame.origin.y = infoBox.frame.origin.y + 2 // 5 is half the difference in height between infoBox and artView
+        artView.frame.origin.y = infoBox.frame.origin.y // 5 is half the difference in height between infoBox and artView
+    }
+    
+    private func moveInfoBoxToDefaultPosition() {
+        
+        infoBox.removeAllConstraintsRelatedToSuperview(attributes: [.top])
+        let newTopConstraint: NSLayoutConstraint = .topTopConstraint(forItem: infoBox, relatedTo: infoBox.superview, offset: 5)
+        infoBox.superview?.activateAndAddConstraint(newTopConstraint)
+        
+//        infoBox.removeAllConstraintsFromSuperview(attributes: [.top])
+//        let newTopConstraint: NSLayoutConstraint = .topTopConstraint(forItem: infoBox, relatedTo: infoBox.superview, offset: -5)
+//        
+//        infoBox.setFrameOrigin(point)
+//        artView.frame.origin.y = infoBox.frame.origin.y // 5 is half the difference in height between infoBox and artView
+    }
+    
+    private func moveInfoBoxToCenteredPosition() {
+        
+        infoBox.removeAllConstraintsRelatedToSuperview(attributes: [.top])
+        let newTopConstraint: NSLayoutConstraint = .topTopConstraint(forItem: infoBox, relatedTo: infoBox.superview, offset: 30)
+        infoBox.superview?.activateAndAddConstraint(newTopConstraint)
+        
+//        infoBox.removeAllConstraintsFromSuperview(attributes: [.top])
+//        let newTopConstraint: NSLayoutConstraint = .topTopConstraint(forItem: infoBox, relatedTo: infoBox.superview, offset: -5)
+//        
+//        infoBox.setFrameOrigin(point)
+//        artView.frame.origin.y = infoBox.frame.origin.y // 5 is half the difference in height between infoBox and artView
     }
     
     private func autoHideControls_show() {
         
         // Show controls
         controlsBox?.show()
-        moveInfoBoxTo(playerUIState.showAlbumArt ? Self.infoBoxDefaultPosition : Self.infoBoxDefaultPosition_noArt)
+//        moveInfoBoxTo(playerUIState.showAlbumArt ? Self.infoBoxDefaultPosition : Self.infoBoxDefaultPosition_noArt)
+        moveInfoBoxToDefaultPosition()
     }
     
     private func autoHideControls_hide() {
         
         // Hide controls
         controlsBox?.hide()
-        moveInfoBoxTo(playerUIState.showAlbumArt ? Self.infoBoxCenteredPosition : Self.infoBoxCenteredPosition_noArt)
+//        moveInfoBoxTo(playerUIState.showAlbumArt ? Self.infoBoxCenteredPosition : Self.infoBoxCenteredPosition_noArt)
+        moveInfoBoxToCenteredPosition()
     }
     
     private func resizeAndRepositionInfoBox() {
@@ -103,5 +131,7 @@ extension UnifiedPlayerViewController {
         } else {
             moveInfoBoxTo(playerUIState.showControls ? Self.infoBoxDefaultPosition_noArt : Self.infoBoxCenteredPosition_noArt)
         }
+        
+        playerUIState.showControls ? moveInfoBoxToDefaultPosition() : moveInfoBoxToCenteredPosition()
     }
 }
