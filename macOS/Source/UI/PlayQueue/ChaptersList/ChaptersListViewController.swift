@@ -49,8 +49,6 @@ class ChaptersListViewController: NSViewController {
     
     private lazy var messenger = Messenger(for: self)
     
-    //    private lazy var uiState: PlaylistUIState = playlistUIState
-    
     override func viewDidLoad() {
         
         scrollView.drawsBackground = false
@@ -232,11 +230,4 @@ class ChaptersListViewController: NSViewController {
     func playbackLoopChanged() {
         btnLoopChapter.onIf(player.chapterLoopExists)
     }
-    
-    private func applyTheme() {
-        
-//        applyFontScheme(systemFontScheme)
-//        applyColorScheme(systemColorScheme)
-    }
-    
 }

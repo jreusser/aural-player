@@ -44,8 +44,6 @@ class ViewMenuController: NSObject, NSMenuDelegate {
     
     private let player: PlaybackInfoDelegateProtocol = playbackInfoDelegate
     
-    private lazy var uiState: WindowAppearanceState = windowAppearanceState
-    
     func menuNeedsUpdate(_ menu: NSMenu) {
         
         manageLayoutsMenuItem.enableIf(!windowLayoutsManager.userDefinedObjects.isEmpty)
@@ -73,7 +71,7 @@ class ViewMenuController: NSObject, NSMenuDelegate {
 //        toggleChaptersListMenuItem.onIf(windowLayoutsManager.isShowingChaptersList)
 //        toggleVisualizerMenuItem.onIf(windowLayoutsManager.isShowingVisualizer)
         
-        cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
+        cornerRadiusStepper.integerValue = playerUIState.cornerRadius.roundedInt
         lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
     }
  

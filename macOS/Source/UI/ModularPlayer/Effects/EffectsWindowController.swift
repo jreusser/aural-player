@@ -46,7 +46,6 @@ class EffectsWindowController: NSWindowController {
         colorSchemesManager.registerSchemeObserver(self)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: btnClose)
         
-        applyTheme()
         initSubscriptions()
     }
     
@@ -70,18 +69,12 @@ class EffectsWindowController: NSWindowController {
     // MARK: Message handling
     
     private func initSubscriptions() {
-
-        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
+        messenger.subscribe(to: .Player.UI.changeCornerRadius, handler: changeWindowCornerRadius(_:))
     }
     
     // ------------------------------------------------------------------------
     
     // MARK: Theming
-    
-    private func applyTheme() {
-        changeWindowCornerRadius(playerUIState.cornerRadius)
-    }
     
     func changeWindowCornerRadius(_ radius: CGFloat) {
         containerViewController.rootContainerBox.cornerRadius = radius

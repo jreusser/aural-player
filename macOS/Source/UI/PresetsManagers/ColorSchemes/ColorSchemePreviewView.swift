@@ -63,8 +63,8 @@ class ColorSchemePreviewView: NSView {
     @IBOutlet weak var playlistSelectedTabButton: NSButton!
     @IBOutlet weak var playlistTabButton: NSButton!
     
-    @IBOutlet weak var playlistSelectedTabButtonCell: PlaylistPreviewTabButtonCell!
-    @IBOutlet weak var playlistTabButtonCell: PlaylistPreviewTabButtonCell!
+//    @IBOutlet weak var playlistSelectedTabButtonCell: PlaylistPreviewTabButtonCell!
+//    @IBOutlet weak var playlistTabButtonCell: PlaylistPreviewTabButtonCell!
     
     private var playerFunctionButtons: [TintedImageView] = []
     private var playlistIndexDurationLabels: [NSTextField] = []
@@ -285,21 +285,21 @@ class EQSliderConstantColorPreviewCell: EQSliderCell {
 //    }
 }
 
-class PlaylistPreviewTabButtonCell: TrackListViewsButtonCell {
-    
-    var tabButtonTextColor: NSColor = NSColor.white
-    var selectedTabButtonTextColor: NSColor = NSColor.white
-    var _selectionBoxColor: NSColor = .white15Percent
-    
-    override var unselectedTextColor: NSColor {tabButtonTextColor}
-    override var selectedTextColor: NSColor {selectedTabButtonTextColor}
-    override var selectionBoxColor: NSColor {_selectionBoxColor}
-    
-    override var textFont: NSFont {_textFont}
-    var _textFont: NSFont = .largeTabButtonFont
-    
-    override var boldTextFont: NSFont {_boldTextFont}
-    var _boldTextFont: NSFont = .largeTabButtonFont
-    
-    override var yOffset: CGFloat {1}
-}
+//class PlaylistPreviewTabButtonCell: TrackListViewsButtonCell {
+//    
+//    var tabButtonTextColor: NSColor = NSColor.white
+//    var selectedTabButtonTextColor: NSColor = NSColor.white
+//    var _selectionBoxColor: NSColor = .white15Percent
+//    
+//    override var unselectedTextColor: NSColor {tabButtonTextColor}
+//    override var selectedTextColor: NSColor {selectedTabButtonTextColor}
+//    override var selectionBoxColor: NSColor {_selectionBoxColor}
+//    
+//    override var textFont: NSFont {_textFont}
+//    var _textFont: NSFont = .largeTabButtonFont
+//    
+//    override var boldTextFont: NSFont {_boldTextFont}
+//    var _boldTextFont: NSFont = .largeTabButtonFont
+//    
+//    override var yOffset: CGFloat {1}
+//}

@@ -63,8 +63,8 @@ class ThemePreviewView: NSView {
     @IBOutlet weak var playlistSelectedTabButton: NSButton!
     @IBOutlet weak var playlistTabButton: NSButton!
     
-    @IBOutlet weak var playlistSelectedTabButtonCell: PlaylistPreviewTabButtonCell!
-    @IBOutlet weak var playlistTabButtonCell: PlaylistPreviewTabButtonCell!
+//    @IBOutlet weak var playlistSelectedTabButtonCell: PlaylistPreviewTabButtonCell!
+//    @IBOutlet weak var playlistTabButtonCell: PlaylistPreviewTabButtonCell!
     
     private var playerFunctionButtons: [TintedImageView] = []
     private var playlistIndexDurationLabels: [NSTextField] = []

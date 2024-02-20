@@ -54,8 +54,6 @@ class FontSchemesManager: UserManagedObjects<FontScheme> {
         systemSchemeChanged()
         
         schemeChanged = false
-        
-        messenger.publish(.applyFontScheme, payload: systemScheme)
     }
     
     private func systemSchemeChanged() {

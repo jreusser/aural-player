@@ -77,14 +77,12 @@ class MainWindowController: NSWindowController {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: logoImage)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainerBox)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceivers: buttonColorChangeReceivers)
-
-        applyTheme()
+        
+        changeWindowCornerRadius(playerUIState.cornerRadius)
     }
     
     private func initSubscriptions() {
-        
-        messenger.subscribe(to: .applyTheme, handler: applyTheme)
-        messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
+        messenger.subscribe(to: .Player.UI.changeCornerRadius, handler: changeWindowCornerRadius(_:))
     }
     
     override func destroy() {
@@ -141,10 +139,6 @@ class MainWindowController: NSWindowController {
     }
     
     // MARK: Message handling -----------------------------------------------------------
-    
-    private func applyTheme() {
-        changeWindowCornerRadius(playerUIState.cornerRadius)
-    }
     
     func changeWindowCornerRadius(_ radius: CGFloat) {
         rootContainerBox.cornerRadius = radius

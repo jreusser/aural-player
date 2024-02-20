@@ -197,5 +197,10 @@ extension Notification.Name {
         static let bookmarkLoop = Notification.Name("player_bookmarkLoop")
         
         static let trackInfo_refresh = Notification.Name("trackInfo_refresh")
+        
+        struct UI {
+            
+            static let changeCornerRadius = Notification.Name("player_ui_changeCornerRadius")
+        }
     }
 }

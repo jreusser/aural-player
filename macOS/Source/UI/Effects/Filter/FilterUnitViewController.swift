@@ -288,47 +288,4 @@ class FilterUnitViewController: EffectsUnitViewController {
         super.suppressedControlColorChanged(newColor)
         filterUnitView.redrawChart()
     }
-    
-//    override func applyFontScheme(_ fontScheme: FontScheme) {
-//
-//        super.applyFontScheme(fontScheme)
-//        filterUnitView.applyFontScheme(fontScheme)
-//    }
-//    
-////    override func applyColorScheme(_ scheme: ColorScheme) {
-////
-////        // Need to do this to avoid multiple redundant redraw() calls
-////
-////        super.changeFunctionButtonColor(scheme.buttonColor)
-//////        super.changeFunctionCaptionTextColor(scheme.secondaryTextColor)
-//////        super.changeFunctionValueTextColor(scheme.primaryTextColor)
-////
-////        super.changeActiveUnitStateColor(scheme.activeControlColor)
-////        super.changeBypassedUnitStateColor(scheme.inactiveControlColor)
-////        super.changeSuppressedUnitStateColor(scheme.suppressedControlColor)
-////
-////        filterUnitView.applyColorScheme(scheme)
-////    }
-//    
-//    override func changeSliderColors() {
-//        filterUnitView.changeSliderColors()
-//    }
-    
-//    override func changeFunctionCaptionTextColor(_ color: NSColor) {
-//
-//        super.changeFunctionCaptionTextColor(color)
-//        filterUnitView.changeFunctionCaptionTextColor(color)
-//    }
-//
-//    override func changeFunctionValueTextColor(_ color: NSColor) {
-//
-//        super.changeFunctionValueTextColor(color)
-//        filterUnitView.changeFunctionValueTextColor(color)
-//    }
-    
-//    override func changeFunctionButtonColor(_ color: NSColor) {
-//        
-//        super.changeFunctionButtonColor(color)
-//        filterUnitView.changeFunctionButtonColor(color)
-//    }
 }

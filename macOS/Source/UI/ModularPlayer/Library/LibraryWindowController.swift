@@ -98,7 +98,7 @@ class LibraryWindowController: NSWindowController {
         messenger.subscribeAsync(to: .Library.doneAddingTracks, handler: doneAddingTracks, filter: windowShownFilter)
         
         messenger.subscribe(to: .Library.showBrowserTabForItem, handler: showBrowserTab(forItem:))
-        messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
+        messenger.subscribe(to: .Player.UI.changeCornerRadius, handler: changeWindowCornerRadius(_:))
         
         fontSchemesManager.registerObserver(self)
         
@@ -107,7 +107,7 @@ class LibraryWindowController: NSWindowController {
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: btnClose)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
         
-        applyTheme()
+        changeWindowCornerRadius(playerUIState.cornerRadius)
         
         // TODO: Temporary, remove this !!!
         tabGroup.selectTabViewItem(at: 1)
@@ -252,10 +252,6 @@ extension LibraryWindowController: ColorSchemeObserver {
         rootContainer.fillColor = systemColorScheme.backgroundColor
         btnClose.contentTintColor = systemColorScheme.buttonColor
         lblCaption.textColor = systemColorScheme.captionTextColor
-    }
-    
-    private func applyTheme() {
-        changeWindowCornerRadius(playerUIState.cornerRadius)
     }
     
     private func changeWindowCornerRadius(_ radius: CGFloat) {

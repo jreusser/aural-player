@@ -81,21 +81,4 @@ class FilterUnitView: NSView {
     func redrawChart() {
         chart.redraw()
     }
-    
-    // ------------------------------------------------------------------------
-    
-    // MARK: Theming
-    
-    func applyColorScheme(_ scheme: ColorScheme) {
-        
-        redrawChart()
-        [btnAdd, btnRemove].forEach {$0?.redraw()}
-    }
-    
-    func changeBackgroundColor(_ color: NSColor) {
-        redrawChart()
-    }
-    
-    func changeSliderColors() {
-    }
 }

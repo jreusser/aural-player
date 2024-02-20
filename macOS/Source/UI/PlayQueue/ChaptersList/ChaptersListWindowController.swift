@@ -37,7 +37,7 @@ class ChaptersListWindowController: NSWindowController, ModalComponentProtocol {
         
         rootContainerBox.cornerRadius = playerUIState.cornerRadius
         
-        messenger.subscribe(to: .windowAppearance_changeCornerRadius, handler: changeWindowCornerRadius(_:))
+        messenger.subscribe(to: .Player.UI.changeCornerRadius, handler: changeWindowCornerRadius(_:))
     }
     
     @IBAction func closeWindowAction(_ sender: AnyObject) {

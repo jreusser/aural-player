@@ -18,17 +18,15 @@ class WindowCornerRadiusMenuItemView: NSView {
     
     private lazy var messenger = Messenger(for: self)
     
-    private lazy var uiState: WindowAppearanceState = windowAppearanceState
-    
     override func awakeFromNib() {
         [lblCornerRadius, lblCornerRadiusCaption].forEach {$0?.font = .menuFont}
     }
     
     @IBAction func cornerRadiusStepperAction(_ sender: NSStepper) {
         
-        uiState.cornerRadius = CGFloat(cornerRadiusStepper.integerValue)
+        playerUIState.cornerRadius = CGFloat(cornerRadiusStepper.integerValue)
         lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
         
-        messenger.publish(.windowAppearance_changeCornerRadius, payload: uiState.cornerRadius)
+        messenger.publish(.Player.UI.changeCornerRadius, payload: playerUIState.cornerRadius)
     }
 }

@@ -31,8 +31,6 @@ class SettingsPopupMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var cornerRadiusStepper: NSStepper!
     @IBOutlet weak var lblCornerRadius: NSTextField!
     
-    private lazy var uiState: WindowAppearanceState = windowAppearanceState
-    
     func menuNeedsUpdate(_ menu: NSMenu) {
         
         menu.font = .menuFont
@@ -45,7 +43,7 @@ class SettingsPopupMenuController: NSObject, NSMenuDelegate {
         let isShowingModalComponent: Bool = windowLayoutsManager.isShowingModalComponent
         [applyThemeMenuItem, saveThemeMenuItem, createThemeMenuItem, applyFontSchemeMenuItem, saveFontSchemeMenuItem, applyColorSchemeMenuItem, saveColorSchemeMenuItem].forEach {$0.enableIf(!isShowingModalComponent)}
         
-        cornerRadiusStepper.integerValue = uiState.cornerRadius.roundedInt
+        cornerRadiusStepper.integerValue = playerUIState.cornerRadius.roundedInt
         lblCornerRadius.stringValue = "\(cornerRadiusStepper.integerValue)px"
     }
     

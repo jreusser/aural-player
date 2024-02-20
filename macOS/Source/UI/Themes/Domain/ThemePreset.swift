@@ -61,7 +61,7 @@ enum ThemePreset: String, CaseIterable {
 
         switch self {
 
-        case .poolsideFM:   return WindowAppearanceState.defaultCornerRadius
+        case .poolsideFM:   return PlayerUIDefaults.cornerRadius
 
         }
     }
@@ -69,6 +69,6 @@ enum ThemePreset: String, CaseIterable {
     var theme: Theme {
         
         Theme(name: name, fontScheme: fontScheme, colorScheme: colorScheme,
-              windowAppearance: WindowAppearance(cornerRadius: windowCornerRadius), userDefined: false)
+              cornerRadius: windowCornerRadius, userDefined: false)
     }
 }

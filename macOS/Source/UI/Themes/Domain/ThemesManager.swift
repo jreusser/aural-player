@@ -16,8 +16,6 @@ class ThemesManager: UserManagedObjects<Theme> {
     
     private lazy var messenger = Messenger(for: self)
     
-    private lazy var uiState: WindowAppearanceState = windowAppearanceState
-    
     init(persistentState: ThemesPersistentState?, fontSchemesManager: FontSchemesManager) {
         
         let systemDefinedThemes = ThemePreset.allCases.map {$0.theme}
@@ -32,9 +30,7 @@ class ThemesManager: UserManagedObjects<Theme> {
         
         fontSchemesManager.applyScheme(theme.fontScheme)
         colorSchemesManager.applyScheme(theme.colorScheme)
-        uiState.cornerRadius = theme.windowAppearance.cornerRadius
-        
-        messenger.publish(.applyTheme)
+        playerUIState.cornerRadius = theme.cornerRadius
     }
     
     // Attempts to apply a theme to the system theme, looking up the scheme by the given display name, and if found, returns the modified system scheme.

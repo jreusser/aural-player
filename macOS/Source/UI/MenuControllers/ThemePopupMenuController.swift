@@ -23,8 +23,6 @@ class ThemePopupMenuController: GenericPresetPopupMenuController {
     override var userDefinedPresets: [UserManagedObject] {themesManager.userDefinedObjects}
     override var numberOfUserDefinedPresets: Int {themesManager.numberOfUserDefinedObjects}
     
-    private lazy var uiState: WindowAppearanceState = windowAppearanceState
-    
     override func presetExists(named name: String) -> Bool {
         themesManager.objectExists(named: name)
     }
@@ -35,9 +33,8 @@ class ThemePopupMenuController: GenericPresetPopupMenuController {
         // Copy the current system scheme into the new scheme, and name it with the user's given scheme name
         let fontScheme: FontScheme = FontScheme(name: "Font scheme for theme '\(name)'", copying: systemFontScheme)
         let colorScheme: ColorScheme = ColorScheme("Color scheme for theme '\(name)'", false, systemColorScheme)
-        let windowAppearance: WindowAppearance = WindowAppearance(cornerRadius: uiState.cornerRadius)
         
-        themesManager.addObject(Theme(name: name, fontScheme: fontScheme, colorScheme: colorScheme, windowAppearance: windowAppearance, userDefined: true))
+        themesManager.addObject(Theme(name: name, fontScheme: fontScheme, colorScheme: colorScheme, cornerRadius: playerUIState.cornerRadius, userDefined: true))
     }
     
     override func applyPreset(named name: String) {
