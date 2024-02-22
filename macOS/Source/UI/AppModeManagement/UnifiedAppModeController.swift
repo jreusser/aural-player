@@ -43,21 +43,3 @@ class UnifiedAppModeController: AppModeController {
         windowController = nil
     }
 }
-
-class UnifiedPlayerUIState {
-    
-    var windowFrame: NSRect?
-    
-    init(persistentState: UnifiedPlayerUIPersistentState?) {
-        self.windowFrame = persistentState?.windowFrame?.toNSRect()
-    }
-    
-    var persistentState: UnifiedPlayerUIPersistentState? {
-        
-        if let windowFrame = self.windowFrame {
-            return .init(windowFrame: NSRectPersistentState(rect: windowFrame))
-        } else {
-            return nil
-        }
-    }
-}

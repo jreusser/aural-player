@@ -7,7 +7,6 @@
 //  This software is licensed under the MIT software license.
 //  See the file "LICENSE" in the project root directory for license terms.
 //  
-
 import Cocoa
 
 class UnifiedPlayerViewController: PlayerViewController {
@@ -18,6 +17,9 @@ class UnifiedPlayerViewController: PlayerViewController {
     @IBOutlet weak var controlsBox: NSBox!
     @IBOutlet weak var functionsButton: NSPopUpButton!
     @IBOutlet weak var functionsMenuItem: TintedIconMenuItem!
+    @IBOutlet weak var functionsMenuDelegate: PlayingTrackFunctionsMenuDelegate!
+    
+    var mouseOverPlayer: Bool = false
     
     override var shouldEnableSeekTimer: Bool {
         
@@ -85,7 +87,7 @@ class UnifiedPlayerViewController: PlayerViewController {
         super.updateTrackInfo(for: track, playingChapterTitle: playingChapterTitle)
         
         artView.showIf(playerUIState.showAlbumArt)
-        functionsButton.showIf(track != nil)
+        functionsButton.showIf(mouseOverPlayer && track != nil)
     }
     
     override func setUpColorSchemePropertyObservation() {
@@ -94,7 +96,10 @@ class UnifiedPlayerViewController: PlayerViewController {
         
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceivers: [infoBox, controlsBox])
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, handler: multilineTrackTextView.backgroundColorChanged(_:))
-        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor], changeReceiver: multilineTrackTextView)
+        
+        colorSchemesManager.registerPropertyObserver(self, forProperties: [\.primaryTextColor, \.secondaryTextColor, \.tertiaryTextColor],
+                                                     changeReceiver: multilineTrackTextView)
+        
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, handler: artViewTintColorChanged(_:))
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: functionsMenuItem)
     }
@@ -109,5 +114,11 @@ class UnifiedPlayerViewController: PlayerViewController {
             functionsButton.hide()
             functionsButton.menu?.cancelTracking()
         }
+    }
+    
+    override func destroy() {
+        
+        super.destroy()
+        functionsMenuDelegate.destroy()
     }
 }

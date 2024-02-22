@@ -21,6 +21,7 @@
                 <outlet property="btnVolume" destination="tIh-JF-jbL" id="odU-21-mI2"/>
                 <outlet property="controlsBox" destination="tlk-RM-S0u" id="LTR-5y-vk2"/>
                 <outlet property="functionsButton" destination="iwf-qn-PJh" id="TGD-JM-Xof"/>
+                <outlet property="functionsMenuDelegate" destination="DlG-hJ-3cs" id="mxR-hr-gs4"/>
                 <outlet property="functionsMenuItem" destination="gVO-3W-k3p" id="pdc-JI-bP7"/>
                 <outlet property="infoBox" destination="Bp8-ZH-oj4" id="Z2Z-fX-1Ne"/>
                 <outlet property="lblTrackTime" destination="UMU-Of-gsK" id="scX-sn-NR5"/>
@@ -38,7 +39,7 @@
             <connections>
                 <outlet property="favoritesMenuItem" destination="FrP-jc-kMJ" id="Lby-jy-qyo"/>
                 <outlet property="playerWindowRootView" destination="ywj-Sd-BS4" id="kUb-bm-08g"/>
-                <outlet property="rememberLastPositionMenuItem" destination="AbS-M3-f1L" id="ard-uB-5Zf"/>
+                <outlet property="rememberLastPositionMenuItem" destination="AbS-M3-f1L" id="mNy-Fx-n1z"/>
             </connections>
         </customObject>
         <customView id="ywj-Sd-BS4" userLabel="Player View">

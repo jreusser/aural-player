@@ -18,6 +18,7 @@ class ModularPlayerViewController: PlayerViewController {
     @IBOutlet weak var controlsBox: NSBox!
     @IBOutlet weak var functionsButton: NSPopUpButton!
     @IBOutlet weak var functionsMenuItem: TintedIconMenuItem!
+    @IBOutlet weak var functionsMenuDelegate: PlayingTrackFunctionsMenuDelegate!
     
     override var shouldEnableSeekTimer: Bool {
         
@@ -104,5 +105,11 @@ class ModularPlayerViewController: PlayerViewController {
             functionsButton.hide()
             functionsButton.menu?.cancelTracking()
         }
+    }
+    
+    override func destroy() {
+        
+        super.destroy()
+        functionsMenuDelegate.destroy()
     }
 }

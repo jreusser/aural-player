@@ -25,6 +25,8 @@ extension UnifiedPlayerViewController {
     private static let infoBoxDefaultPosition_noArt: NSPoint = NSPoint(x: 15, y: 85)
     
     override func mouseEntered(with event: NSEvent) {
+        
+        mouseOverPlayer = true
 
         if multilineTrackTextView.trackInfo != nil {
             functionsButton.show()
@@ -36,6 +38,8 @@ extension UnifiedPlayerViewController {
     }
     
     override func mouseExited(with event: NSEvent) {
+        
+        mouseOverPlayer = false
 
         if multilineTrackTextView.trackInfo != nil {
             functionsButton.hide()
@@ -53,29 +57,23 @@ extension UnifiedPlayerViewController {
     }
     
     private func moveInfoBoxToDefaultPosition() {
-        
-        infoBox.removeAllConstraintsRelatedToSuperview(attributes: [.top])
-        let newTopConstraint: NSLayoutConstraint = .topTopConstraint(forItem: infoBox, relatedTo: infoBox.superview, offset: 5)
-        infoBox.superview?.activateAndAddConstraint(newTopConstraint)
-        
-//        infoBox.removeAllConstraintsFromSuperview(attributes: [.top])
-//        let newTopConstraint: NSLayoutConstraint = .topTopConstraint(forItem: infoBox, relatedTo: infoBox.superview, offset: -5)
-//        
-//        infoBox.setFrameOrigin(point)
-//        artView.frame.origin.y = infoBox.frame.origin.y // 5 is half the difference in height between infoBox and artView
+        moveInfoBoxVertically(offsetFromTop: 0)
     }
     
     private func moveInfoBoxToCenteredPosition() {
+        moveInfoBoxVertically(offsetFromTop: 30)
+    }
+    
+    private func moveInfoBoxVertically(offsetFromTop: CGFloat) {
         
         infoBox.removeAllConstraintsRelatedToSuperview(attributes: [.top])
-        let newTopConstraint: NSLayoutConstraint = .topTopConstraint(forItem: infoBox, relatedTo: infoBox.superview, offset: 30)
+        let newTopConstraint: NSLayoutConstraint = .topTopConstraint(forItem: infoBox, relatedTo: infoBox.superview, offset: offsetFromTop)
         infoBox.superview?.activateAndAddConstraint(newTopConstraint)
+    }
+    
+    private func moveInfoBoxHorizontally() {
         
-//        infoBox.removeAllConstraintsFromSuperview(attributes: [.top])
-//        let newTopConstraint: NSLayoutConstraint = .topTopConstraint(forItem: infoBox, relatedTo: infoBox.superview, offset: -5)
-//        
-//        infoBox.setFrameOrigin(point)
-//        artView.frame.origin.y = infoBox.frame.origin.y // 5 is half the difference in height between infoBox and artView
+        
     }
     
     private func autoHideControls_show() {
@@ -94,30 +92,26 @@ extension UnifiedPlayerViewController {
         moveInfoBoxToCenteredPosition()
     }
     
-    private func resizeAndRepositionInfoBox() {
-        
-        if playerUIState.showAlbumArt {
-            
-            moveInfoBoxTo(playerUIState.showControls ? Self.infoBoxDefaultPosition : Self.infoBoxCenteredPosition)
-            infoBox.resize(Self.infoBoxDefaultWidth, infoBox.height)
-            
-            multilineTrackTextView.clipView.enclosingScrollView?.resize(width: Self.textViewDefaultWidth)
-            
-        } else {
-            
-            moveInfoBoxTo(playerUIState.showControls ? Self.infoBoxDefaultPosition_noArt : Self.infoBoxCenteredPosition_noArt)
-            infoBox.resize(Self.infoBoxWidth_noArt, infoBox.height)
-            
-            multilineTrackTextView.clipView.enclosingScrollView?.resize(width: Self.textViewWidth_noArt)
-        }
-        
-        multilineTrackTextView.resized()
-    }
-    
     override func showOrHideAlbumArt() {
         
         artView.showIf(playerUIState.showAlbumArt)
-        resizeAndRepositionInfoBox()
+        
+        infoBox.removeAllConstraintsFromSuperview(attributes: [.leading])
+        let newConstraint: NSLayoutConstraint
+        
+        if playerUIState.showAlbumArt {
+            
+            newConstraint = .leadingTrailingConstraint(forItem: infoBox, relatedTo: artView, offset: 10)
+//            multilineTrackTextView.clipView.enclosingScrollView?.resize(width: Self.textViewDefaultWidth)
+            
+        } else {
+            
+            newConstraint = .leadingLeadingConstraint(forItem: infoBox, relatedTo: infoBox.superview, offset: 0)
+//            multilineTrackTextView.clipView.enclosingScrollView?.resize(width: Self.textViewWidth_noArt)
+        }
+        
+        infoBox.superview?.activateAndAddConstraint(newConstraint)
+        multilineTrackTextView.resized()
     }
     
     override func showOrHideMainControls() {
@@ -125,13 +119,6 @@ extension UnifiedPlayerViewController {
         controlsBox?.showIf(playerUIState.showControls)
         
         // Re-position the info box, art view, and functions box
-        
-        if playerUIState.showAlbumArt {
-            moveInfoBoxTo(playerUIState.showControls ? Self.infoBoxDefaultPosition : Self.infoBoxCenteredPosition)
-        } else {
-            moveInfoBoxTo(playerUIState.showControls ? Self.infoBoxDefaultPosition_noArt : Self.infoBoxCenteredPosition_noArt)
-        }
-        
         playerUIState.showControls ? moveInfoBoxToDefaultPosition() : moveInfoBoxToCenteredPosition()
     }
 }

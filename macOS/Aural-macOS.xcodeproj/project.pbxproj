@@ -21,6 +21,7 @@
 		3E05FD44283A455300EB7861 /* LibraryAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E05FD43283A455300EB7861 /* LibraryAlbumsViewController.swift */; };
 		3E0610852B7A8F48004C5B3B /* ModularPlayerViewController+AutoHide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0610842B7A8F48004C5B3B /* ModularPlayerViewController+AutoHide.swift */; };
 		3E0610882B7C27B7004C5B3B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0610872B7C27B7004C5B3B /* Logger.swift */; };
+		3E062AD92B87E8480000A4FC /* UnifiedPlayerUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E062AD82B87E8480000A4FC /* UnifiedPlayerUIState.swift */; };
 		3E08AC11281B214F004A53F7 /* TintableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E08AC10281B214F004A53F7 /* TintableTextField.swift */; };
 		3E08AC13281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E08AC12281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift */; };
 		3E10175628D741E7002C0D8E /* MediaKeyTapInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E10174828D741E7002C0D8E /* MediaKeyTapInternals.swift */; };
@@ -1051,6 +1052,7 @@
 		3E05FD43283A455300EB7861 /* LibraryAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryAlbumsViewController.swift; sourceTree = "<group>"; };
 		3E0610842B7A8F48004C5B3B /* ModularPlayerViewController+AutoHide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModularPlayerViewController+AutoHide.swift"; sourceTree = "<group>"; };
 		3E0610872B7C27B7004C5B3B /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		3E062AD82B87E8480000A4FC /* UnifiedPlayerUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayerUIState.swift; sourceTree = "<group>"; };
 		3E08AC10281B214F004A53F7 /* TintableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintableTextField.swift; sourceTree = "<group>"; };
 		3E08AC12281B27DF004A53F7 /* NSSlider+ColorSchemeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSlider+ColorSchemeObserver.swift"; sourceTree = "<group>"; };
 		3E10174828D741E7002C0D8E /* MediaKeyTapInternals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeyTapInternals.swift; sourceTree = "<group>"; };
@@ -3801,6 +3803,7 @@
 				3EB4202A285A6295007159CC /* UnifiedPlayer.xib */,
 				3EB4202C285A652D007159CC /* UnifiedPlayerViewController.swift */,
 				3E7204C52B854BFB00E40D87 /* UnifiedPlayerViewController+AutoHide.swift */,
+				3E062AD82B87E8480000A4FC /* UnifiedPlayerUIState.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -5575,6 +5578,7 @@
 				3E36BD4126A6905900B6E28B /* FileSystemTrackInfoViewController.swift in Sources */,
 				3EFE382D27864896006F8B8C /* GroupRemovalResult.swift in Sources */,
 				3EFE383527864896006F8B8C /* GroupedTrackAddResult.swift in Sources */,
+				3E062AD92B87E8480000A4FC /* UnifiedPlayerUIState.swift in Sources */,
 				3EFE397B27864897006F8B8C /* SavePlaybackProfileAction.swift in Sources */,
 				3E6C130B25CEBE8F00BF0D07 /* FileSystemTrackInfoViewDelegate.swift in Sources */,
 				3EAFB615267FF47200F0DC96 /* FilterBandSlider.swift in Sources */,

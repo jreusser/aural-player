@@ -21,6 +21,7 @@
                 <outlet property="btnVolume" destination="yT1-FX-1kd" id="Cdd-qL-l78"/>
                 <outlet property="controlsBox" destination="8N2-K1-ceE" id="7g0-Bt-Amy"/>
                 <outlet property="functionsButton" destination="Glt-fW-V9p" id="VDr-17-ho8"/>
+                <outlet property="functionsMenuDelegate" destination="YDH-Lw-Yxg" id="eQY-NZ-Yd8"/>
                 <outlet property="functionsMenuItem" destination="lV5-HH-E3d" id="01e-xt-Ogh"/>
                 <outlet property="infoBox" destination="7BY-ME-fle" id="N5a-6I-eKG"/>
                 <outlet property="lblTrackTime" destination="i4S-AL-UJd" id="h45-XF-9t0"/>
@@ -37,6 +38,14 @@
             <rect key="frame" x="0.0" y="0.0" width="866" height="130"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I3Y-0e-Nm0" userLabel="ArtView">
+                    <rect key="frame" x="0.0" y="60" width="70" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="EX3-Td-ADT"/>
+                        <constraint firstAttribute="height" constant="70" id="OFB-wx-N0e"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="SampleArt" id="O3e-Zm-Lis"/>
+                </imageView>
                 <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="8N2-K1-ceE" userLabel="Controls Box">
                     <rect key="frame" x="0.0" y="0.0" width="866" height="55"/>
                     <view key="contentView" id="tsv-bS-gEK">
@@ -44,7 +53,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oEj-bG-GWe" userLabel="Seek Slider">
-                                <rect key="frame" x="-2" y="42" width="870" height="15"/>
+                                <rect key="frame" x="-2" y="44" width="870" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="11" id="kjl-w4-EPz"/>
                                 </constraints>
@@ -230,7 +239,7 @@
                             <constraint firstItem="5dr-3X-wnA" firstAttribute="centerY" secondItem="EJg-gU-uia" secondAttribute="centerY" id="YXP-vS-9Of"/>
                             <constraint firstAttribute="trailing" secondItem="aTr-0e-W3c" secondAttribute="trailing" id="Ytv-hI-Yh7"/>
                             <constraint firstItem="qHm-ne-6Hn" firstAttribute="leading" secondItem="EJG-9b-UlM" secondAttribute="trailing" constant="10" symbolic="YES" id="ZpV-8v-UXt"/>
-                            <constraint firstItem="oEj-bG-GWe" firstAttribute="top" secondItem="tsv-bS-gEK" secondAttribute="top" id="bK3-RH-eiZ"/>
+                            <constraint firstItem="oEj-bG-GWe" firstAttribute="top" secondItem="tsv-bS-gEK" secondAttribute="top" constant="-2" id="bK3-RH-eiZ"/>
                             <constraint firstItem="Fuv-4b-0Pc" firstAttribute="leading" secondItem="tsv-bS-gEK" secondAttribute="leading" id="lkf-6W-inb"/>
                             <constraint firstItem="yWo-oQ-ngX" firstAttribute="leading" secondItem="Fuv-4b-0Pc" secondAttribute="trailing" constant="4" id="pW2-44-beL"/>
                             <constraint firstAttribute="bottom" secondItem="aTr-0e-W3c" secondAttribute="bottom" constant="16" id="qOP-Lw-JJu"/>
@@ -244,7 +253,7 @@
                     </constraints>
                 </box>
                 <box wantsLayer="YES" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="7BY-ME-fle" userLabel="Info Box">
-                    <rect key="frame" x="80" y="55" width="786" height="70"/>
+                    <rect key="frame" x="80" y="60" width="786" height="70"/>
                     <view key="contentView" id="T0r-Cf-1AZ" customClass="MultilineTrackTextView" customModule="Aural" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="786" height="70"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -382,14 +391,6 @@
                     <color key="borderColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </box>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I3Y-0e-Nm0" userLabel="ArtView">
-                    <rect key="frame" x="0.0" y="55" width="70" height="70"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="70" id="EX3-Td-ADT"/>
-                        <constraint firstAttribute="height" constant="70" id="OFB-wx-N0e"/>
-                    </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="SampleArt" id="O3e-Zm-Lis"/>
-                </imageView>
             </subviews>
             <constraints>
                 <constraint firstItem="I3Y-0e-Nm0" firstAttribute="leading" secondItem="aXk-ne-Q1U" secondAttribute="leading" id="4N0-nC-mEH"/>
@@ -397,7 +398,7 @@
                 <constraint firstItem="I3Y-0e-Nm0" firstAttribute="top" secondItem="7BY-ME-fle" secondAttribute="top" id="5bE-vl-pnd"/>
                 <constraint firstItem="8N2-K1-ceE" firstAttribute="leading" secondItem="aXk-ne-Q1U" secondAttribute="leading" id="8of-1p-6ZI"/>
                 <constraint firstAttribute="bottom" secondItem="8N2-K1-ceE" secondAttribute="bottom" id="Igd-u2-xfz"/>
-                <constraint firstItem="7BY-ME-fle" firstAttribute="top" secondItem="aXk-ne-Q1U" secondAttribute="top" constant="5" id="Iyp-u3-v2g"/>
+                <constraint firstItem="7BY-ME-fle" firstAttribute="top" secondItem="aXk-ne-Q1U" secondAttribute="top" id="Iyp-u3-v2g"/>
                 <constraint firstAttribute="trailing" secondItem="7BY-ME-fle" secondAttribute="trailing" id="Jzb-zL-InQ"/>
                 <constraint firstAttribute="trailing" secondItem="8N2-K1-ceE" secondAttribute="trailing" id="Val-Cg-vMk"/>
             </constraints>
