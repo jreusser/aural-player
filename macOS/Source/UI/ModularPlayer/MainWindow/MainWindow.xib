@@ -578,8 +578,6 @@
             <connections>
                 <outlet property="devicesMenu" destination="ESK-9z-tnn" id="38m-ZV-ozM"/>
                 <outlet property="eqMenu" destination="fOg-t0-0n5" id="jpE-F7-L4X"/>
-                <outlet property="halfOctaveAboveMenuItem" destination="5fw-rH-iZM" id="zA5-RF-lsH"/>
-                <outlet property="halfOctaveBelowMenuItem" destination="2JF-mM-1xu" id="g45-Af-doa"/>
                 <outlet property="masterBypassMenuItem" destination="UVM-iu-t1d" id="e17-j4-Tru"/>
                 <outlet property="oneOctaveAboveMenuItem" destination="eHM-bN-7VA" id="4au-0C-eZP"/>
                 <outlet property="oneOctaveBelowMenuItem" destination="A1n-Ge-AcR" id="8tY-Ux-fMa"/>
@@ -595,10 +593,6 @@
                 <outlet property="rate3MenuItem" destination="mjV-Cv-N3t" id="JRQ-PX-2t6"/>
                 <outlet property="rate4MenuItem" destination="jVw-6F-ux9" id="DHS-fa-daQ"/>
                 <outlet property="rememberSettingsMenuItem" destination="2cz-mQ-hvg" id="1li-Vp-fvP"/>
-                <outlet property="sixthOctaveAboveMenuItem" destination="Juh-nT-am7" id="IUS-Hw-0qg"/>
-                <outlet property="sixthOctaveBelowMenuItem" destination="Fxk-TK-4ci" id="apy-C7-JMv"/>
-                <outlet property="thirdOctaveAboveMenuItem" destination="7ZF-H6-589" id="FgF-cz-LHh"/>
-                <outlet property="thirdOctaveBelowMenuItem" destination="8MY-Lr-ry9" id="EPx-LV-CGZ"/>
                 <outlet property="timeMenu" destination="3nV-gO-6pc" id="YRP-hf-enq"/>
                 <outlet property="twoOctavesAboveMenuItem" destination="aX7-c2-zpM" id="7BO-Fi-H9f"/>
                 <outlet property="twoOctavesBelowMenuItem" destination="3CB-wb-vlw" id="RXx-Fr-04q"/>
@@ -1343,42 +1337,6 @@ CA
                                                 <action selector="setPitchAction:" target="l5y-V5-pVh" id="GIx-WB-7hG"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="-6 Semitones" tag="-4" id="2JF-mM-1xu" customClass="SoundParameterMenuItem" customModule="Aural" customModuleProvider="target">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="setPitchAction:" target="l5y-V5-pVh" id="fRn-jD-j5Q"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="-4 Semitones" tag="-4" id="8MY-Lr-ry9" customClass="SoundParameterMenuItem" customModule="Aural" customModuleProvider="target">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="setPitchAction:" target="l5y-V5-pVh" id="A5V-eZ-lY3"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="-2 Semitones" tag="-2" id="Fxk-TK-4ci" customClass="SoundParameterMenuItem" customModule="Aural" customModuleProvider="target">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="setPitchAction:" target="l5y-V5-pVh" id="4o1-v2-VjL"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="+2 Semitones" tag="2" id="Juh-nT-am7" customClass="SoundParameterMenuItem" customModule="Aural" customModuleProvider="target">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="setPitchAction:" target="l5y-V5-pVh" id="rkT-Xm-OSG"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="+4 Semitones" tag="4" id="7ZF-H6-589" customClass="SoundParameterMenuItem" customModule="Aural" customModuleProvider="target">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="setPitchAction:" target="l5y-V5-pVh" id="4O0-9a-reZ"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="+6 Semitones" tag="-4" id="5fw-rH-iZM" customClass="SoundParameterMenuItem" customModule="Aural" customModuleProvider="target">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="setPitchAction:" target="l5y-V5-pVh" id="S8d-hl-szV"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="+1 Octave" tag="12" id="eHM-bN-7VA" customClass="SoundParameterMenuItem" customModule="Aural" customModuleProvider="target">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -2062,7 +2020,7 @@ CA
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-96" y="-63"/>
+            <point key="canvasLocation" x="-65" y="-927"/>
         </menu>
     </objects>
     <resources>

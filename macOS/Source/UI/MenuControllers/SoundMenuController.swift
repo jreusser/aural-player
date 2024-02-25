@@ -33,13 +33,6 @@ class SoundMenuController: NSObject, NSMenuDelegate {
     // Pitch shift menu items (with specific pitch shift values)
     @IBOutlet weak var twoOctavesBelowMenuItem: SoundParameterMenuItem!
     @IBOutlet weak var oneOctaveBelowMenuItem: SoundParameterMenuItem!
-    @IBOutlet weak var halfOctaveBelowMenuItem: SoundParameterMenuItem!
-    @IBOutlet weak var thirdOctaveBelowMenuItem: SoundParameterMenuItem!
-    @IBOutlet weak var sixthOctaveBelowMenuItem: SoundParameterMenuItem!
-    
-    @IBOutlet weak var sixthOctaveAboveMenuItem: SoundParameterMenuItem!
-    @IBOutlet weak var thirdOctaveAboveMenuItem: SoundParameterMenuItem!
-    @IBOutlet weak var halfOctaveAboveMenuItem: SoundParameterMenuItem!
     @IBOutlet weak var oneOctaveAboveMenuItem: SoundParameterMenuItem!
     @IBOutlet weak var twoOctavesAboveMenuItem: SoundParameterMenuItem!
     
@@ -80,13 +73,6 @@ class SoundMenuController: NSObject, NSMenuDelegate {
         // Pitch shift menu items
 //        twoOctavesBelowMenuItem.paramValue = -2
 //        oneOctaveBelowMenuItem.paramValue = -1
-//        halfOctaveBelowMenuItem.paramValue = -0.5
-//        thirdOctaveBelowMenuItem.paramValue = -1/3
-//        sixthOctaveBelowMenuItem.paramValue = -1/6
-//        
-//        sixthOctaveAboveMenuItem.paramValue = 1/6
-//        thirdOctaveAboveMenuItem.paramValue = 1/3
-//        halfOctaveAboveMenuItem.paramValue = 0.5
 //        oneOctaveAboveMenuItem.paramValue = 1
 //        twoOctavesAboveMenuItem.paramValue = 2
 //        
