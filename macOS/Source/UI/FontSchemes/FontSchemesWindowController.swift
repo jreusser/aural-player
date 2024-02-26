@@ -14,18 +14,18 @@ import Cocoa
  */
 class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegate {
     
-    @IBOutlet weak var tabView: AuralTabView!
+    @IBOutlet weak var tabView: NSTabView!
     
     @IBOutlet weak var btnSave: NSButton!
     
-    @IBOutlet weak var btnUndo: NSButton!
-    @IBOutlet weak var btnUndoAll: NSButton!
+    @IBOutlet weak var btnUndo: NSToolbarItem!
+    @IBOutlet weak var btnUndoAll: NSToolbarItem!
     
-    @IBOutlet weak var btnRedo: NSButton!
-    @IBOutlet weak var btnRedoAll: NSButton!
+    @IBOutlet weak var btnRedo: NSToolbarItem!
+    @IBOutlet weak var btnRedoAll: NSToolbarItem!
     
-    private lazy var generalView: FontSchemesViewProtocol = GeneralFontSchemeViewController()
-    private lazy var playerView: FontSchemesViewProtocol = PlayerFontSchemeViewController()
+    private lazy var fontsView: FontSchemesViewProtocol = FontSchemeFontsViewController()
+    private lazy var sizesView: FontSchemesViewProtocol = FontSchemeSizesViewController()
     
     // Popover to collect user input (i.e. color scheme name) when saving new color schemes
     lazy var userSchemesPopover: StringInputPopoverViewController = .create(self)
@@ -46,12 +46,12 @@ class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegat
         self.window?.isMovableByWindowBackground = true
 
         // Add the subviews to the tab group
-        subViews = [generalView, playerView]
-        tabView.addViewsForTabs(subViews.map {$0.view})
+        subViews = [fontsView, sizesView]
         
-        // Register an observer that updates undo/redo button states whenever the history changes.
-        history.changeListener = {[weak self] in
-            self?.updateButtonStates()
+        for (index, subView) in subViews.enumerated() {
+            
+            tabView.tabViewItem(at: index).view?.addSubview(subView.view)
+            subView.view.anchorToSuperview()
         }
     }
     
@@ -62,7 +62,6 @@ class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegat
         
         // Reset the change history (every time the dialog is shown)
         history.begin()
-        updateButtonStates()
         
         // Reset the subviews according to the current system color scheme, and show the first tab
         tabView.selectTabViewItem(at: 0)
@@ -79,9 +78,9 @@ class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegat
         let context = FontSchemeChangeContext()
         let newScheme = FontScheme(name: "_temp", copying: .defaultScheme)
         
-        generalView.applyFontScheme(context, to: newScheme)
+        fontsView.applyFontScheme(context, to: newScheme)
         
-        [playerView].forEach {$0.applyFontScheme(context, to: newScheme)}
+        [sizesView].forEach {$0.applyFontScheme(context, to: newScheme)}
         fontSchemesManager.applyScheme(newScheme)
         
         let redoValue: FontScheme = systemFontScheme.clone()
@@ -107,8 +106,6 @@ class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegat
         let systemFontScheme = systemFontScheme
         
         subViews.forEach {$0.resetFields(systemFontScheme)}
-        
-        updateButtonStates()
     }
     
     // Undo all changes made to the system color scheme since the dialog last opened (i.e. this editing session)
@@ -153,16 +150,14 @@ class FontSchemesWindowController: SingletonWindowController, ModalDialogDelegat
         NSColorPanel.shared.close()
         theWindow.close()
     }
+}
+
+extension FontSchemesWindowController: NSToolbarItemValidation {
     
     // Updates the undo/redo function button states according to the current state of the change history,
     // i.e. depending on whether or not there are any changes to undo/redo.
-    private func updateButtonStates() {
-        
-        btnUndo.enableIf(history.canUndo)
-        btnUndoAll.enableIf(history.canUndo)
-        
-        btnRedo.enableIf(history.canRedo)
-        btnRedoAll.enableIf(history.canRedo)
+    func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
+        item.itemIdentifier.rawValue.hasPrefix("undo") ? history.canUndo : history.canRedo
     }
 }
 

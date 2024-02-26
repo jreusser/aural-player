@@ -14,18 +14,18 @@ enum UnifiedPlayerSidebarCategory: String, CaseIterable, CustomStringConvertible
     
     private static let libraryItems: [UnifiedPlayerSidebarItem] = [
         
-        UnifiedPlayerSidebarItem(displayName: "Tracks", browserTab: .libraryTracks, image: .imgTracks),
-        UnifiedPlayerSidebarItem(displayName: "Artists", browserTab: .libraryArtists, image: .imgArtistGroup),
-        UnifiedPlayerSidebarItem(displayName: "Albums", browserTab: .libraryAlbums, image: .imgAlbumGroup),
-        UnifiedPlayerSidebarItem(displayName: "Genres", browserTab: .libraryGenres, image: .imgGenreGroup),
-        UnifiedPlayerSidebarItem(displayName: "Decades", browserTab: .libraryDecades, image: .imgDecadeGroup),
+        UnifiedPlayerSidebarItem(category: .library, displayName: "Tracks", browserTab: .libraryTracks, image: .imgTracks),
+        UnifiedPlayerSidebarItem(category: .library, displayName: "Artists", browserTab: .libraryArtists, image: .imgArtistGroup),
+        UnifiedPlayerSidebarItem(category: .library, displayName: "Albums", browserTab: .libraryAlbums, image: .imgAlbumGroup),
+        UnifiedPlayerSidebarItem(category: .library, displayName: "Genres", browserTab: .libraryGenres, image: .imgGenreGroup),
+        UnifiedPlayerSidebarItem(category: .library, displayName: "Decades", browserTab: .libraryDecades, image: .imgDecadeGroup),
     ]
     
     private static let historyItems: [UnifiedPlayerSidebarItem] = [
         
-        UnifiedPlayerSidebarItem(displayName: "Recently Played", browserTab: .historyRecentlyPlayed),
-        UnifiedPlayerSidebarItem(displayName: "Most Played", browserTab: .historyMostPlayed),
-        UnifiedPlayerSidebarItem(displayName: "Recently Added", browserTab: .historyRecentlyAdded)
+        UnifiedPlayerSidebarItem(category: .history, displayName: "Recently Played", browserTab: .historyRecentlyPlayed),
+        UnifiedPlayerSidebarItem(category: .history, displayName: "Most Played", browserTab: .historyMostPlayed),
+        UnifiedPlayerSidebarItem(category: .history, displayName: "Recently Added", browserTab: .historyRecentlyAdded)
     ]
     
     case playQueue = "Play Queue"
@@ -99,7 +99,7 @@ enum UnifiedPlayerSidebarCategory: String, CaseIterable, CustomStringConvertible
             return libraryDelegate.fileSystemTrees.map {tree in
                 
                 let rootFolder = tree.root
-                return UnifiedPlayerSidebarItem(displayName: rootFolder.name, browserTab: .fileSystem, tuneBrowserFolder: rootFolder, tuneBrowserTree: tree)
+                return UnifiedPlayerSidebarItem(category: .tuneBrowser, displayName: rootFolder.name, browserTab: .fileSystem, tuneBrowserFolder: rootFolder, tuneBrowserTree: tree)
             }
             
             // TODO: Also add in the user folders from persistent TB state
@@ -108,7 +108,7 @@ enum UnifiedPlayerSidebarCategory: String, CaseIterable, CustomStringConvertible
             
         case .playlists:
             
-            return playlistsManager.playlistNames.map {UnifiedPlayerSidebarItem(displayName: $0, browserTab: .playlists)}
+            return playlistsManager.playlistNames.map {UnifiedPlayerSidebarItem(category: .playlists, displayName: $0, browserTab: .playlists)}
             
         case .history:
             
@@ -158,6 +158,8 @@ enum UnifiedPlayerSidebarCategory: String, CaseIterable, CustomStringConvertible
 // TODO: Consolidate this struct with 'LibrarySidebarItem'
 struct UnifiedPlayerSidebarItem {
     
+    let category: UnifiedPlayerSidebarCategory
+    
     let displayName: String
     let browserTab: UnifiedPlayerBrowserTab
     let image: PlatformImage?
@@ -165,7 +167,9 @@ struct UnifiedPlayerSidebarItem {
     let tuneBrowserFolder: FileSystemFolderItem?
     let tuneBrowserTree: FileSystemTree?
     
-    init(displayName: String, browserTab: UnifiedPlayerBrowserTab, tuneBrowserFolder: FileSystemFolderItem? = nil, tuneBrowserTree: FileSystemTree? = nil, image: PlatformImage? = nil) {
+    init(category: UnifiedPlayerSidebarCategory, displayName: String, browserTab: UnifiedPlayerBrowserTab, tuneBrowserFolder: FileSystemFolderItem? = nil, tuneBrowserTree: FileSystemTree? = nil, image: PlatformImage? = nil) {
+        
+        self.category = category
         
         self.displayName = displayName
         self.browserTab = browserTab

@@ -526,6 +526,7 @@
                 <outlet property="playSelectedTrackItem" destination="znY-NL-kCS" id="xvj-FR-YJp"/>
                 <outlet property="removeAllTracksItem" destination="vpH-Nr-Hbz" id="yYm-Pg-e2J"/>
                 <outlet property="removeSelectedTracksItem" destination="40z-L9-FMD" id="QKE-ot-53E"/>
+                <outlet property="rootMenuItem" destination="F2a-yz-Q7U" id="waf-Jq-Efx"/>
                 <outlet property="scrollToBottomItem" destination="W7v-ip-Y74" id="xZN-Us-23N"/>
                 <outlet property="scrollToTopItem" destination="1lZ-CH-JrA" id="7vg-QB-isq"/>
                 <outlet property="searchItem" destination="TlV-1I-l48" id="apk-Xa-0k1"/>

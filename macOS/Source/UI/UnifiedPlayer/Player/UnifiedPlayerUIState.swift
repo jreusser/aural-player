@@ -13,6 +13,8 @@ class UnifiedPlayerUIState {
     
     var windowFrame: NSRect?
     
+    var sidebarSelectedModule: UnifiedPlayerSidebarCategory = .playQueue
+    
     init(persistentState: UnifiedPlayerUIPersistentState?) {
         self.windowFrame = persistentState?.windowFrame?.toNSRect()
     }

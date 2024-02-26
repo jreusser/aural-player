@@ -12,6 +12,8 @@ import Cocoa
 
 class PlayQueueMenuController: NSObject, NSMenuDelegate {
     
+    @IBOutlet weak var rootMenuItem: NSMenuItem!
+    
     @IBOutlet weak var playSelectedTrackItem: NSMenuItem!
     
     @IBOutlet weak var exportToPlaylistItem: NSMenuItem!
@@ -44,6 +46,12 @@ class PlayQueueMenuController: NSObject, NSMenuDelegate {
     private lazy var messenger = Messenger(for: self)
     
     func menuNeedsUpdate(_ menu: NSMenu) {
+        
+        if appModeManager.currentMode == .unified, unifiedPlayerUIState.sidebarSelectedModule != .playQueue {
+            
+            menu.items.forEach {$0.disable()}
+            return
+        }
         
         let selRows = playQueueUIState.selectedRows
         let hasSelRows = selRows.isNonEmpty

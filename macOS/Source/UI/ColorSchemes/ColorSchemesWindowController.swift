@@ -12,7 +12,7 @@ import Cocoa
 /*
     Controller for the color scheme editor panel that allows the current system color scheme to be edited.
  */
-class ColorSchemesWindowController: SingletonWindowController, ModalDialogDelegate, NSToolbarItemValidation {
+class ColorSchemesWindowController: SingletonWindowController, ModalDialogDelegate {
     
     override var windowNibName: NSNib.Name? {"ColorSchemes"}
     
@@ -183,12 +183,6 @@ class ColorSchemesWindowController: SingletonWindowController, ModalDialogDelega
         }
     }
     
-    // Updates the undo/redo function button states according to the current state of the change history,
-    // i.e. depending on whether or not there are any changes to undo/redo.
-    func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
-        item.itemIdentifier.rawValue.hasPrefix("undo") ? history.canUndo : history.canRedo
-    }
-    
     // Dismisses the panel when the user is done making changes
     @IBAction func doneAction(_ sender: Any) {
         
@@ -201,6 +195,15 @@ class ColorSchemesWindowController: SingletonWindowController, ModalDialogDelega
         
         // Make sure the color panel closes before the app exits
         NSColorPanel.shared.close()
+    }
+}
+
+extension ColorSchemesWindowController: NSToolbarItemValidation {
+    
+    // Updates the undo/redo function button states according to the current state of the change history,
+    // i.e. depending on whether or not there are any changes to undo/redo.
+    func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
+        item.itemIdentifier.rawValue.hasPrefix("undo") ? history.canUndo : history.canRedo
     }
 }
 

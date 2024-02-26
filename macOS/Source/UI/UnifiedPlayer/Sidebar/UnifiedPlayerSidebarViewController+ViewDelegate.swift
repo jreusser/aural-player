@@ -105,15 +105,25 @@ extension UnifiedPlayerSidebarViewController: NSOutlineViewDelegate {
     
     func outlineViewSelectionDidChange(_ notification: Notification) {
         
-        guard respondToSelectionChange, let outlineView = notification.object as? NSOutlineView else {return}
+        guard let outlineView = notification.object as? NSOutlineView else {return}
         
         let item = outlineView.item(atRow: outlineView.selectedRow)
         
         if let selectedItem = item as? UnifiedPlayerSidebarItem {
-            messenger.publish(.unifiedPlayer_showBrowserTabForItem, payload: selectedItem)
+            
+            unifiedPlayerUIState.sidebarSelectedModule = selectedItem.category
+            
+            if respondToSelectionChange {
+                messenger.publish(.unifiedPlayer_showBrowserTabForItem, payload: selectedItem)
+            }
             
         } else if let selectedCategory = item as? UnifiedPlayerSidebarCategory {
-            messenger.publish(.unifiedPlayer_showBrowserTabForCategory, payload: selectedCategory)
+            
+            unifiedPlayerUIState.sidebarSelectedModule = selectedCategory
+            
+            if respondToSelectionChange {
+                messenger.publish(.unifiedPlayer_showBrowserTabForCategory, payload: selectedCategory)
+            }
         }
     }
 }

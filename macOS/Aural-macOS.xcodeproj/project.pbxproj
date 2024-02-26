@@ -131,8 +131,8 @@
 		3E433CED2B5C328E00D73976 /* LibraryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E433CEC2B5C328E00D73976 /* LibraryProtocols.swift */; };
 		3E433CEF2B5C356F00D73976 /* TuneBrowserViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E433CEE2B5C356F00D73976 /* TuneBrowserViewController+Actions.swift */; };
 		3E4574952B3DEEE600AF117E /* SearchViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4574942B3DEEE600AF117E /* SearchViewController+TableView.swift */; };
-		3E45C03325E1264C00C1519C /* PlayerFontScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E45C03225E1264C00C1519C /* PlayerFontScheme.xib */; };
-		3E45C03625E1269500C1519C /* PlayerFontSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E45C03525E1269500C1519C /* PlayerFontSchemeViewController.swift */; };
+		3E45C03325E1264C00C1519C /* FontSchemeSizes.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E45C03225E1264C00C1519C /* FontSchemeSizes.xib */; };
+		3E45C03625E1269500C1519C /* FontSchemeSizesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E45C03525E1269500C1519C /* FontSchemeSizesViewController.swift */; };
 		3E466C8F27FA296C00342C30 /* MainWindowController+EventHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E466C8E27FA296C00342C30 /* MainWindowController+EventHandling.swift */; };
 		3E47214D282AE3820097F1AB /* TrackListTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E47214C282AE3820097F1AB /* TrackListTabButton.swift */; };
 		3E47D2342815A5BD00938F20 /* ControlStatesColorScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E47D2322815A5BD00938F20 /* ControlStatesColorScheme.xib */; };
@@ -413,8 +413,8 @@
 		3E8FF9E027F63D9B009CEDDD /* PlayQueueNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FF9DF27F63D9B009CEDDD /* PlayQueueNotifications.swift */; };
 		3E8FF9E227F63E30009CEDDD /* PlayQueueTracksAddedNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FF9E127F63E30009CEDDD /* PlayQueueTracksAddedNotifications.swift */; };
 		3E91932425E0CE2500F30F81 /* FontSchemes.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E91932325E0CE2500F30F81 /* FontSchemes.xib */; };
-		3E91932925E0CF5D00F30F81 /* GeneralFontScheme.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E91932825E0CF5D00F30F81 /* GeneralFontScheme.xib */; };
-		3E91932C25E0D96A00F30F81 /* GeneralFontSchemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E91932B25E0D96A00F30F81 /* GeneralFontSchemeViewController.swift */; };
+		3E91932925E0CF5D00F30F81 /* FontSchemeFonts.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E91932825E0CF5D00F30F81 /* FontSchemeFonts.xib */; };
+		3E91932C25E0D96A00F30F81 /* FontSchemeFontsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E91932B25E0D96A00F30F81 /* FontSchemeFontsViewController.swift */; };
 		3E91932F25E0DA9C00F30F81 /* FontSchemesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E91932E25E0DA9C00F30F81 /* FontSchemesWindowController.swift */; };
 		3E95C6DD28303B5300E59B91 /* Grouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E95C6DC28303B5300E59B91 /* Grouping.swift */; };
 		3E95C6DF283040C900E59B91 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E95C6DE283040C900E59B91 /* Group.swift */; };
@@ -1167,8 +1167,8 @@
 		3E433CEC2B5C328E00D73976 /* LibraryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryProtocols.swift; sourceTree = "<group>"; };
 		3E433CEE2B5C356F00D73976 /* TuneBrowserViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuneBrowserViewController+Actions.swift"; sourceTree = "<group>"; };
 		3E4574942B3DEEE600AF117E /* SearchViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+TableView.swift"; sourceTree = "<group>"; };
-		3E45C03225E1264C00C1519C /* PlayerFontScheme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerFontScheme.xib; sourceTree = "<group>"; };
-		3E45C03525E1269500C1519C /* PlayerFontSchemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFontSchemeViewController.swift; sourceTree = "<group>"; };
+		3E45C03225E1264C00C1519C /* FontSchemeSizes.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FontSchemeSizes.xib; sourceTree = "<group>"; };
+		3E45C03525E1269500C1519C /* FontSchemeSizesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemeSizesViewController.swift; sourceTree = "<group>"; };
 		3E466C8E27FA296C00342C30 /* MainWindowController+EventHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainWindowController+EventHandling.swift"; sourceTree = "<group>"; };
 		3E47214C282AE3820097F1AB /* TrackListTabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTabButton.swift; sourceTree = "<group>"; };
 		3E47D2322815A5BD00938F20 /* ControlStatesColorScheme.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControlStatesColorScheme.xib; sourceTree = "<group>"; };
@@ -1451,8 +1451,8 @@
 		3E8FF9DF27F63D9B009CEDDD /* PlayQueueNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueNotifications.swift; sourceTree = "<group>"; };
 		3E8FF9E127F63E30009CEDDD /* PlayQueueTracksAddedNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueTracksAddedNotifications.swift; sourceTree = "<group>"; };
 		3E91932325E0CE2500F30F81 /* FontSchemes.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FontSchemes.xib; sourceTree = "<group>"; };
-		3E91932825E0CF5D00F30F81 /* GeneralFontScheme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralFontScheme.xib; sourceTree = "<group>"; };
-		3E91932B25E0D96A00F30F81 /* GeneralFontSchemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralFontSchemeViewController.swift; sourceTree = "<group>"; };
+		3E91932825E0CF5D00F30F81 /* FontSchemeFonts.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FontSchemeFonts.xib; sourceTree = "<group>"; };
+		3E91932B25E0D96A00F30F81 /* FontSchemeFontsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemeFontsViewController.swift; sourceTree = "<group>"; };
 		3E91932E25E0DA9C00F30F81 /* FontSchemesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSchemesWindowController.swift; sourceTree = "<group>"; };
 		3E95C6DC28303B5300E59B91 /* Grouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grouping.swift; sourceTree = "<group>"; };
 		3E95C6DE283040C900E59B91 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -2354,8 +2354,8 @@
 				3E91932E25E0DA9C00F30F81 /* FontSchemesWindowController.swift */,
 				3EB3A61526A762750060487C /* FontSchemesViewProtocol.swift */,
 				3EB3A62026A773350060487C /* FontSizeStepper.swift */,
-				3E91932725E0CF4200F30F81 /* General */,
-				3E45C03025E1261800C1519C /* Player */,
+				3E91932725E0CF4200F30F81 /* Fonts */,
+				3E45C03025E1261800C1519C /* Sizes */,
 				3E6361FE26850AA2006F5A2A /* Domain */,
 				3E63620526850C84006F5A2A /* Utils */,
 			);
@@ -2463,13 +2463,13 @@
 			path = WidgetPlayer;
 			sourceTree = "<group>";
 		};
-		3E45C03025E1261800C1519C /* Player */ = {
+		3E45C03025E1261800C1519C /* Sizes */ = {
 			isa = PBXGroup;
 			children = (
-				3E45C03225E1264C00C1519C /* PlayerFontScheme.xib */,
-				3E45C03525E1269500C1519C /* PlayerFontSchemeViewController.swift */,
+				3E45C03225E1264C00C1519C /* FontSchemeSizes.xib */,
+				3E45C03525E1269500C1519C /* FontSchemeSizesViewController.swift */,
 			);
-			path = Player;
+			path = Sizes;
 			sourceTree = "<group>";
 		};
 		3E47D2312815A5BD00938F20 /* ControlStates */ = {
@@ -3497,13 +3497,13 @@
 			path = Loader;
 			sourceTree = "<group>";
 		};
-		3E91932725E0CF4200F30F81 /* General */ = {
+		3E91932725E0CF4200F30F81 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				3E91932825E0CF5D00F30F81 /* GeneralFontScheme.xib */,
-				3E91932B25E0D96A00F30F81 /* GeneralFontSchemeViewController.swift */,
+				3E91932825E0CF5D00F30F81 /* FontSchemeFonts.xib */,
+				3E91932B25E0D96A00F30F81 /* FontSchemeFontsViewController.swift */,
 			);
-			path = General;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		3E95C6DB28303B4300E59B91 /* Grouping */ = {
@@ -5255,7 +5255,7 @@
 				3E43227D2687D65F009E8ADB /* WidgetPlayer.xib in Resources */,
 				3E6C12AD25CEBE2700BF0D07 /* StringInputPopover.xib in Resources */,
 				3EB462C32847E528000E3F85 /* PlaylistContainer.xib in Resources */,
-				3E45C03325E1264C00C1519C /* PlayerFontScheme.xib in Resources */,
+				3E45C03325E1264C00C1519C /* FontSchemeSizes.xib in Resources */,
 				3EAF96F428DCE1B6008561A7 /* AlmendraSC-Regular.ttf in Resources */,
 				3E6668B12ADB4AF500BBD119 /* WindowLayoutSetup.xib in Resources */,
 				3E6C12A725CEBE2700BF0D07 /* Alerts.xib in Resources */,
@@ -5265,7 +5265,7 @@
 				3E25B65027F7818900D10A5F /* PlayQueueWindow.xib in Resources */,
 				3E71FBEC2AE34B3C00AB6C18 /* LibraryImportedPlaylists.xib in Resources */,
 				3EB1274A2ADD8E1E00745603 /* LibraryHomeSetup.xib in Resources */,
-				3E91932925E0CF5D00F30F81 /* GeneralFontScheme.xib in Resources */,
+				3E91932925E0CF5D00F30F81 /* FontSchemeFonts.xib in Resources */,
 				3EAF96F628DCE1B6008561A7 /* ragingredlotus-bb.regular.ttf in Resources */,
 				3E2000BF267CDFFF008BAB70 /* MediaKeysPreferences.xib in Resources */,
 				3E2D09DD2AD4C5440062D3C9 /* RenderQualityMenu.xib in Resources */,
@@ -5632,7 +5632,7 @@
 				3EFE386527864896006F8B8C /* PitchShiftUnit.swift in Sources */,
 				3ECFA87F2AE1EB29001096DC /* EffectsContainerViewController.swift in Sources */,
 				3EFE38B127864896006F8B8C /* FilterBandType.swift in Sources */,
-				3E91932C25E0D96A00F30F81 /* GeneralFontSchemeViewController.swift in Sources */,
+				3E91932C25E0D96A00F30F81 /* FontSchemeFontsViewController.swift in Sources */,
 				3E3579D026835A6A009522A0 /* GenericPresetPopupMenuController.swift in Sources */,
 				3E9FD0FC2A1D58EB0038AF04 /* MarkLastPlaybackPositionAction.swift in Sources */,
 				3E8FF9E027F63D9B009CEDDD /* PlayQueueNotifications.swift in Sources */,
@@ -5812,7 +5812,7 @@
 				3E59E9D92B521E6A001DDCE9 /* FileSystemFolderChangedNotification.swift in Sources */,
 				3EB1274E2ADDCE1200745603 /* LibraryLoader.swift in Sources */,
 				3EFE397D27864897006F8B8C /* HaltPlaybackAction.swift in Sources */,
-				3E45C03625E1269500C1519C /* PlayerFontSchemeViewController.swift in Sources */,
+				3E45C03625E1269500C1519C /* FontSchemeSizesViewController.swift in Sources */,
 				3EFE398327864897006F8B8C /* StartPlaybackAction.swift in Sources */,
 				3EC079492B78559C008CB68C /* MenuBarSettingsWindowController.swift in Sources */,
 				3E7AF10528065441006DC98F /* PlayQueueMenuController.swift in Sources */,
