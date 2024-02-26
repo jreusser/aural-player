@@ -1,4 +1,5 @@
 import Foundation
+import OrderedCollections
 
 struct PlayQueueTrackAddResult {
     
@@ -88,45 +89,95 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
-
-    func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> IndexSet {
-
-        let indices = playQueue.enqueueTracks(newTracks, clearQueue: clearQueue)
-        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
-        return indices
-    }
     
+    // MARK: Play Now ---------------------------------------------------------------
+
     // Library (Tracks view) / Managed Playlists / Favorites / Bookmarks / History
     func enqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet {
+        doEnqueueToPlayNow(tracks: tracks, clearQueue: clearQueue)
+    }
+    
+    // Library (grouped views) / Favorites / History
+    func enqueueToPlayNow(groups: [Group], tracks: [Track], clearQueue: Bool) -> IndexSet {
+        doEnqueueToPlayNow(tracks: groups.flatMap {$0.tracks} + tracks, clearQueue: clearQueue)
+    }
+    
+    // Library (playlist files)
+    func enqueueToPlayNow(playlistFiles: [ImportedPlaylist], tracks: [Track], clearQueue: Bool) -> IndexSet {
+        doEnqueueToPlayNow(tracks: playlistFiles.flatMap {$0.tracks} + tracks, clearQueue: clearQueue)
+    }
+    
+    // Library (Managed Playlist)
+    func enqueueToPlayNow(playlist: Playlist, clearQueue: Bool) -> IndexSet {
+        doEnqueueToPlayNow(tracks: playlist.tracks, clearQueue: clearQueue)
+    }
+    
+    // Tune Browser
+    func enqueueToPlayNow(fileSystemItems: [FileSystemItem], clearQueue: Bool) -> IndexSet {
+        doEnqueueToPlayNow(tracks: fileSystemItems.flatMap {$0.tracks}, clearQueue: clearQueue)
+    }
+    
+    func doEnqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet {
         
         let indices = playQueue.enqueueTracks(tracks, clearQueue: clearQueue)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
     
-    // Library (grouped views) / Favorites / History
-    func enqueueToPlayNow(groups: [Group], tracks: [Track], clearQueue: Bool) -> IndexSet {
-        .empty
+    // MARK: Play Next ---------------------------------------------------------------
+    
+    func enqueueToPlayNext(tracks: [Track]) -> IndexSet {
+        doEnqueueToPlayNext(tracks: tracks)
     }
     
-    // Library (playlist files)
-    func enqueueToPlayNow(playlistFiles: [ImportedPlaylist], tracks: [Track], clearQueue: Bool) -> IndexSet {
-        .empty
+    func enqueueToPlayNext(groups: [Group], tracks: [Track]) -> IndexSet {
+        doEnqueueToPlayNext(tracks: groups.flatMap {$0.tracks} + tracks)
     }
     
-    // Library (Managed Playlist)
-    func enqueueToPlayNow(playlist: Playlist, clearQueue: Bool) -> IndexSet {
-        .empty
+    func enqueueToPlayNext(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet {
+        doEnqueueToPlayNext(tracks: playlistFiles.flatMap {$0.tracks} + tracks)
     }
     
-    // Tune Browser
-    func enqueueToPlayNow(folders: [FileSystemFolderItem], tracks: [FileSystemTrackItem], playlistFiles: [FileSystemPlaylistItem], clearQueue: Bool) -> IndexSet {
-        .empty
+    func enqueueToPlayNext(playlist: Playlist) -> IndexSet {
+        doEnqueueToPlayNext(tracks: playlist.tracks)
     }
-
-    func enqueueTracksToPlayNext(_ newTracks: [Track]) -> IndexSet {
-
-        let indices = playQueue.enqueueTracksAfterCurrentTrack(newTracks)
+    
+    func enqueueToPlayNext(fileSystemItems: [FileSystemItem]) -> IndexSet {
+        doEnqueueToPlayNext(tracks: fileSystemItems.flatMap {$0.tracks})
+    }
+    
+    private func doEnqueueToPlayNext(tracks: [Track]) -> IndexSet {
+        
+        let indices = playQueue.enqueueTracksAfterCurrentTrack(tracks)
+        messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
+        return indices
+    }
+    
+    // MARK: Play Later ---------------------------------------------------------------
+    
+    func enqueueToPlayLater(tracks: [Track]) -> IndexSet {
+        doEnqueueToPlayLater(tracks: tracks)
+    }
+    
+    func enqueueToPlayLater(groups: [Group], tracks: [Track]) -> IndexSet {
+        doEnqueueToPlayLater(tracks: groups.flatMap {$0.tracks} + tracks)
+    }
+    
+    func enqueueToPlayLater(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet {
+        doEnqueueToPlayLater(tracks: playlistFiles.flatMap {$0.tracks} + tracks)
+    }
+    
+    func enqueueToPlayLater(playlist: Playlist) -> IndexSet {
+        doEnqueueToPlayLater(tracks: playlist.tracks)
+    }
+    
+    func enqueueToPlayLater(fileSystemItems: [FileSystemItem]) -> IndexSet {
+        doEnqueueToPlayLater(tracks: fileSystemItems.flatMap {$0.tracks})
+    }
+    
+    private func doEnqueueToPlayLater(tracks: [Track]) -> IndexSet {
+        
+        let indices = playQueue.addTracks(tracks)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
         return indices
     }
@@ -199,68 +250,6 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     
     func exportToFile(_ file: URL) {
         playQueue.exportToFile(file)
-    }
-    
-    // MARK: Sequencing functions ---------------------------------------------------------------
-    
-    var repeatAndShuffleModes: (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
-        playQueue.repeatAndShuffleModes
-    }
-    
-    func toggleRepeatMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
-        playQueue.toggleRepeatMode()
-    }
-    
-    func toggleShuffleMode() -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
-        playQueue.toggleShuffleMode()
-    }
-    
-    func setRepeatMode(_ repeatMode: RepeatMode) -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
-        playQueue.setRepeatMode(repeatMode)
-    }
-    
-    func setShuffleMode(_ shuffleMode: ShuffleMode) -> (repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
-        playQueue.setShuffleMode(shuffleMode)
-    }
-    
-    func start() -> Track? {
-        playQueue.start()
-    }
-    
-    func stop() {
-        playQueue.stop()
-    }
-    
-    func subsequent() -> Track? {
-        playQueue.subsequent()
-    }
-    
-    func previous() -> Track? {
-        playQueue.previous()
-    }
-    
-    func next() -> Track? {
-        playQueue.next()
-    }
-    
-    func peekSubsequent() -> Track? {
-        playQueue.peekSubsequent()
-    }
-    
-    func peekPrevious() -> Track? {
-        playQueue.peekPrevious()
-    }
-    
-    func peekNext() -> Track? {
-        playQueue.peekNext()
-    }
-    
-    func select(trackAt index: Int) -> Track? {
-        playQueue.select(trackAt: index)
-    }
-    
-    func selectTrack(_ track: Track) -> Track? {
-        playQueue.selectTrack(track)
     }
     
     // MARK: Notification handling ---------------------------------------------------------------

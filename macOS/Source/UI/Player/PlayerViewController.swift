@@ -564,13 +564,13 @@ class PlayerViewController: NSViewController, FontSchemeObserver, ColorSchemeObs
         case .index:
             
             if let index = command.index {
-                playbackDelegate.play(index, .defaultParams())
+                playbackDelegate.play(trackAtIndex: index, .defaultParams())
             }
             
         case .track:
             
             if let track = command.track {
-                playbackDelegate.play(track, .defaultParams())
+                playbackDelegate.play(track: track, .defaultParams())
             }
         }
     }

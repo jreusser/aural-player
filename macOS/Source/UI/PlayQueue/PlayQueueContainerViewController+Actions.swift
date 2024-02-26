@@ -317,7 +317,7 @@ extension PlayQueueContainerViewController {
     // TODO: Perhaps use a new TrackRegistry to cache and reuse Tracks
     func enqueueAndPlayNow(_ command: EnqueueAndPlayNowCommand) {
         
-        let indices = playQueueDelegate.enqueueTracks(command.tracks, clearQueue: command.clearPlayQueue)
+        let indices = playQueueDelegate.enqueueToPlayNow(tracks: command.tracks, clearQueue: command.clearPlayQueue)
         
         if indices.isNonEmpty, !command.clearPlayQueue {
             

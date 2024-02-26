@@ -13,8 +13,7 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol, SequencingProtocol {
     // Tracks loaded directly from the file system (either Finder or on startup)
     func loadTracks(from files: [URL], atPosition position: Int?, clearQueue: Bool, autoplay: Bool)
     
-    // Adds tracks to the end of the queue, i.e. "Play Now" or "Play Later"
-    func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> IndexSet
+    // MARK: Play Now ---------------------------------------------------------------
     
     // Library (Tracks view) / Managed Playlists / Favorites / Bookmarks / History
     func enqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet
@@ -29,13 +28,36 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol, SequencingProtocol {
     func enqueueToPlayNow(playlist: Playlist, clearQueue: Bool) -> IndexSet
     
     // Tune Browser
-    func enqueueToPlayNow(folders: [FileSystemFolderItem], tracks: [FileSystemTrackItem], playlistFiles: [FileSystemPlaylistItem], clearQueue: Bool) -> IndexSet
+    func enqueueToPlayNow(fileSystemItems: [FileSystemItem], clearQueue: Bool) -> IndexSet
+    
+    // MARK: Play Next ---------------------------------------------------------------
     
     // Inserts tracks immediately after the current track, i.e. "Play Next"
-    func enqueueTracksToPlayNext(_ newTracks: [Track]) -> IndexSet
+    
+    func enqueueToPlayNext(tracks: [Track]) -> IndexSet
+    
+    func enqueueToPlayNext(groups: [Group], tracks: [Track]) -> IndexSet
+    
+    func enqueueToPlayNext(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet
+    
+    func enqueueToPlayNext(playlist: Playlist) -> IndexSet
+    
+    func enqueueToPlayNext(fileSystemItems: [FileSystemItem]) -> IndexSet
     
     // Moves tracks immediately after the current track, i.e. "Play Next"
     func moveTracksToPlayNext(from indices: IndexSet) -> IndexSet
+    
+    // MARK: Play Later ---------------------------------------------------------------
+    
+    func enqueueToPlayLater(tracks: [Track]) -> IndexSet
+    
+    func enqueueToPlayLater(groups: [Group], tracks: [Track]) -> IndexSet
+    
+    func enqueueToPlayLater(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet
+    
+    func enqueueToPlayLater(playlist: Playlist) -> IndexSet
+    
+    func enqueueToPlayLater(fileSystemItems: [FileSystemItem]) -> IndexSet
 }
 
 extension PlayQueueDelegateProtocol {

@@ -42,6 +42,10 @@ class FileSystemItem {
         children[child.url] = child
         childrenByName[child.name] = child
     }
+    
+    var tracks: [Track] {
+        []
+    }
 }
 
 class FileSystemFolderItem: FileSystemItem, Equatable {
@@ -52,7 +56,7 @@ class FileSystemFolderItem: FileSystemItem, Equatable {
     
     private var _tracks: [Track] = []
     
-    var tracks: [Track] {
+    override var tracks: [Track] {
         
         _tracks = []
         findTracksInFolder(self)
@@ -64,15 +68,16 @@ class FileSystemFolderItem: FileSystemItem, Equatable {
         
         for child in folder.children.values {
             
-            if child.isTrack, let trackItem = child as? FileSystemTrackItem {
-                _tracks.append(trackItem.track)
-                
-            } else if child.isDirectory, let subFolder = child as? FileSystemFolderItem {
-                findTracksInFolder(subFolder)
-                
-            } else if child.isPlaylist, let playlist = child as? FileSystemPlaylistItem {
-                _tracks.append(contentsOf: playlist.playlist.tracks)
-            }
+//            if child.isTrack, let trackItem = child as? FileSystemTrackItem {
+//                _tracks.append(trackItem.track)
+//                
+//            } else if child.isDirectory, let subFolder = child as? FileSystemFolderItem {
+//                findTracksInFolder(subFolder)
+//                
+//            } else if child.isPlaylist, let playlist = child as? FileSystemPlaylistItem {
+//                _tracks.append(contentsOf: playlist.playlist.tracks)
+//            }
+            _tracks.append(contentsOf: child.tracks)
         }
     }
     
@@ -186,6 +191,10 @@ class FileSystemTrackItem: FileSystemItem {
     
     let track: Track
     
+    override var tracks: [Track] {
+        [track]
+    }
+    
     init(track: Track) {
         
         self.track = track
@@ -198,6 +207,10 @@ class FileSystemTrackItem: FileSystemItem {
 class FileSystemPlaylistItem: FileSystemItem {
     
     let playlist: ImportedPlaylist
+    
+    override var tracks: [Track] {
+        playlist.tracks
+    }
     
     init(playlist: ImportedPlaylist) {
      

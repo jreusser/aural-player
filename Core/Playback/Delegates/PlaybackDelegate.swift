@@ -78,7 +78,7 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
             beginPlayback()
             
         } else if command.type.equalsOneOf(.playFirstAddedTrack, .playSpecificTrack), let track = command.candidateTrack {
-            play(track, PlaybackParams().withInterruptPlayback(command.interruptPlayback))
+            play(track: track, PlaybackParams().withInterruptPlayback(command.interruptPlayback))
         }
     }
     
@@ -119,11 +119,11 @@ class PlaybackDelegate: PlaybackDelegateProtocol {
         }
     }
     
-    func play(_ index: Int, _ params: PlaybackParams) {
+    func play(trackAtIndex index: Int, _ params: PlaybackParams) {
         doPlay({playQueue.select(trackAt: index)}, params)
     }
     
-    func play(_ track: Track, _ params: PlaybackParams) {
+    func play(track: Track, _ params: PlaybackParams) {
         doPlay({playQueue.selectTrack(track)}, params)
     }
     

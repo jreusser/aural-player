@@ -70,6 +70,7 @@
 		3E25B65927F78C0B00D10A5F /* TrackListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25B65827F78C0B00D10A5F /* TrackListTableViewController.swift */; };
 		3E25B65B27F78EE100D10A5F /* PlayQueueSimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25B65A27F78EE100D10A5F /* PlayQueueSimpleViewController.swift */; };
 		3E2976132629473500459272 /* WindowCornerRadiusMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2976122629473500459272 /* WindowCornerRadiusMenuItemView.swift */; };
+		3E29B2112B8D3BCB008DF933 /* PlayQueueDelegate+Sequencing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E29B2102B8D3BCB008DF933 /* PlayQueueDelegate+Sequencing.swift */; };
 		3E2A29FF2808DC42000F0539 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A29FE2808DC42000F0539 /* Globals.swift */; };
 		3E2A2A062809B68A000F0539 /* PlaylistNamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A2A052809B68A000F0539 /* PlaylistNamesTableViewController.swift */; };
 		3E2A2A0B280A032F000F0539 /* PlaylistTracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A2A0A280A032F000F0539 /* PlaylistTracksViewController.swift */; };
@@ -1106,6 +1107,7 @@
 		3E25B65827F78C0B00D10A5F /* TrackListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTableViewController.swift; sourceTree = "<group>"; };
 		3E25B65A27F78EE100D10A5F /* PlayQueueSimpleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayQueueSimpleViewController.swift; sourceTree = "<group>"; };
 		3E2976122629473500459272 /* WindowCornerRadiusMenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowCornerRadiusMenuItemView.swift; sourceTree = "<group>"; };
+		3E29B2102B8D3BCB008DF933 /* PlayQueueDelegate+Sequencing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueDelegate+Sequencing.swift"; sourceTree = "<group>"; };
 		3E2A29FE2808DC42000F0539 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		3E2A2A052809B68A000F0539 /* PlaylistNamesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistNamesTableViewController.swift; sourceTree = "<group>"; };
 		3E2A2A0A280A032F000F0539 /* PlaylistTracksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTracksViewController.swift; sourceTree = "<group>"; };
@@ -4071,6 +4073,7 @@
 				3EEFF58327DE842C002CB0FE /* PlayQueueDelegateProtocol.swift */,
 				3EEFF58427DE842C002CB0FE /* PlayQueueDelegate.swift */,
 				3ECBEDCD2B5AF19200563883 /* PlayQueueDelegate+Init.swift */,
+				3E29B2102B8D3BCB008DF933 /* PlayQueueDelegate+Sequencing.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -5335,6 +5338,7 @@
 				3E6C129925CEBE2700BF0D07 /* AuralTabView.swift in Sources */,
 				3E6C127D25CEBE1800BF0D07 /* AutoHidingView.swift in Sources */,
 				3E5F942C25E57190002DEF80 /* BassFFTData.swift in Sources */,
+				3E29B2112B8D3BCB008DF933 /* PlayQueueDelegate+Sequencing.swift in Sources */,
 				3EF1A0BE27E4E08A00E64F37 /* TrackList.swift in Sources */,
 				3EFE389927864896006F8B8C /* DelayPresets.swift in Sources */,
 				3E6C12EB25CEBE8100BF0D07 /* BookmarkNameInputReceiver.swift in Sources */,

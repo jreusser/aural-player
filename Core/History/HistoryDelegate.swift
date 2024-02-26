@@ -43,7 +43,6 @@ class HistoryDelegate: HistoryDelegateProtocol {
         
     }
     
-    
     // Recently added items
     var recentlyAddedItems: OrderedDictionary<String, HistoryItem>
     
@@ -132,9 +131,9 @@ class HistoryDelegate: HistoryDelegateProtocol {
         playQueue.addTracks([trackHistoryItem.track])
         
         if let seekPosition = position {
-            player.play(trackHistoryItem.track, PlaybackParams().withStartAndEndPosition(seekPosition))
+            player.play(track: trackHistoryItem.track, PlaybackParams().withStartAndEndPosition(seekPosition))
         } else {
-            player.play(trackHistoryItem.track)
+            player.play(track: trackHistoryItem.track)
         }
     }
     

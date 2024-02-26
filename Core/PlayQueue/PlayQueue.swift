@@ -61,9 +61,9 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
         }
     }
     
-    func enqueueTracks(_ newTracks: [Track]) -> IndexSet {
-        addTracks(newTracks)
-    }
+//    func enqueueTracks(_ newTracks: [Track]) -> IndexSet {
+//        addTracks(newTracks)
+//    }
     
     func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> IndexSet {
         
@@ -71,13 +71,13 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
             removeAllTracks()
         }
         
-        return enqueueTracks(newTracks)
+        return addTracks(newTracks)
     }
 
     func enqueueTracksAfterCurrentTrack(_ newTracks: [Track]) -> IndexSet {
         
         guard let curTrackIndex = self.currentTrackIndex else {
-            return enqueueTracks(newTracks)
+            return addTracks(newTracks)
         }
         
         var insertionIndex = curTrackIndex + 1

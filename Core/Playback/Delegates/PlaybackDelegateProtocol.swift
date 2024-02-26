@@ -34,14 +34,14 @@ protocol PlaybackDelegateProtocol: PlaybackInfoDelegateProtocol {
  
         NOTE - When a single index is specified, it is implied that the playlist from which this request originated was the flat "Tracks" playlist, because this playlist locates tracks by a single absolute index. Hence, this function is intended to be called only when playback originates from the "Tracks" playlist.
      */
-    func play(_ index: Int, _ params: PlaybackParams)
+    func play(trackAtIndex index: Int, _ params: PlaybackParams)
     
     /*
         Plays the given track.
         
         NOTE - When a track is specified, it is implied that the playlist from which this request originated was a grouping/hierarchical playlist, because such a playlist does not provide a single index to locate an item. It provides either a track or a group. Hence, this function is intended to be called only when playback originates from one of the grouping/hierarchical playlists.
      */
-    func play(_ track: Track, _ params: PlaybackParams)
+    func play(track: Track, _ params: PlaybackParams)
     
     /*
         Initiates playback of (tracks within) the given group. Returns complete track information for the track that is chosen to play first.
@@ -133,12 +133,12 @@ protocol PlaybackDelegateProtocol: PlaybackInfoDelegateProtocol {
 // Default function implementations
 extension PlaybackDelegateProtocol {
 
-    func play(_ index: Int, _ params: PlaybackParams = .defaultParams()) {
-        play(index, params)
+    func play(trackAtIndex index: Int) {
+        play(trackAtIndex: index, .defaultParams())
     }
     
-    func play(_ track: Track, _ params: PlaybackParams = .defaultParams()) {
-        play(track, params)
+    func play(track: Track) {
+        play(track: track, .defaultParams())
     }
     
 //    func play(_ group: Group, _ params: PlaybackParams = .defaultParams()) {

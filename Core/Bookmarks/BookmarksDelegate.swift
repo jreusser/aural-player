@@ -69,7 +69,7 @@ class BookmarksDelegate: BookmarksDelegateProtocol {
     func playBookmark(_ bookmark: Bookmark) throws {
 
         playQueue.addTracks([bookmark.track])
-        player.play(bookmark.track, PlaybackParams().withStartAndEndPosition(bookmark.startPosition, bookmark.endPosition))
+        player.play(track: bookmark.track, PlaybackParams().withStartAndEndPosition(bookmark.startPosition, bookmark.endPosition))
     }
     
     func renameBookmark(named name: String, to newName: String) {

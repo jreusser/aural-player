@@ -297,7 +297,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
             
         } else if let favPlaylistFile = favorite as? FavoritePlaylistFile {
             
-            if let importedPlaylist = library.findImportedPlaylist(atLocation: favPlaylistFile.playlistFile) {
+            if let importedPlaylist = libraryDelegate.findImportedPlaylist(atLocation: favPlaylistFile.playlistFile) {
                 messenger.publish(EnqueueAndPlayNowCommand(tracks: importedPlaylist.tracks, clearPlayQueue: false))
                 
             } else {
