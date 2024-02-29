@@ -203,10 +203,10 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, F
         guard let item = outlineView.selectedItem else {return}
         
         if let track = item as? Track {
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: [track], clearPlayQueue: false))
+            playQueueDelegate.enqueueToPlayNow(tracks: [track], clearQueue: false)
             
         } else if let group = item as? Group {
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: group.tracks, clearPlayQueue: false))
+            playQueueDelegate.enqueueToPlayNow(groups: [group], tracks: [], clearQueue: false)
         }
     }
     

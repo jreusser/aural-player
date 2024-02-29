@@ -151,7 +151,7 @@ class HistoryDelegate: HistoryDelegateProtocol {
         guard let group = libraryDelegate.findGroup(named: groupHistoryItem.groupName, ofType: groupHistoryItem.groupType) else {return}
         
         doGroupPlayed(group)
-        messenger.publish(EnqueueAndPlayNowCommand(tracks: group.tracks, clearPlayQueue: false))
+        playQueueDelegate.enqueueToPlayNow(groups: [group], tracks: [], clearQueue: false)
     }
     
     private func playFolderItem(_ folderHistoryItem: FolderHistoryItem) {

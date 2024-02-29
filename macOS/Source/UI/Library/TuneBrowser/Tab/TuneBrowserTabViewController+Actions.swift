@@ -20,11 +20,11 @@ extension TuneBrowserTabViewController {
         
         col.isHidden.toggle()
         
-//        if col.isHidden {
-//            tuneBrowserUIState.displayedColumns.removeValue(forKey: id.rawValue)
-//        } else {
-//            tuneBrowserUIState.displayedColumns[id.rawValue] = .init(id: id.rawValue, width: col.width)
-//        }
+        //        if col.isHidden {
+        //            tuneBrowserUIState.displayedColumns.removeValue(forKey: id.rawValue)
+        //        } else {
+        //            tuneBrowserUIState.displayedColumns[id.rawValue] = .init(id: id.rawValue, width: col.width)
+        //        }
     }
     
     @IBAction func doubleClickAction(_ sender: Any) {
@@ -32,11 +32,8 @@ extension TuneBrowserTabViewController {
         guard let item = browserView.item(atRow: browserView.selectedRow),
               let fsItem = item as? FileSystemItem else {return}
         
-        if fsItem.isTrack, let trackItem = fsItem as? FileSystemTrackItem {
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: [trackItem.track], clearPlayQueue: false))
-            
-        } else if fsItem.isPlaylist, let playlistItem = fsItem as? FileSystemPlaylistItem {
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: playlistItem.playlist.tracks, clearPlayQueue: false))
+        if fsItem.isTrack || fsItem.isPlaylist {
+            playQueueDelegate.enqueueToPlayNow(fileSystemItems: [fsItem], clearQueue: false)
             
         } else if let folderItem = fsItem as? FileSystemFolderItem {
             

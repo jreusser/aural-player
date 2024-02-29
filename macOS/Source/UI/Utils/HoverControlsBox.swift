@@ -116,14 +116,14 @@ class HoverControlsBox: NSBox {
         
         if let group = self.group {
             
-            messenger.publish(LibraryGroupPlayedNotification(group: group))
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: group.tracks, clearPlayQueue: clearPlayQueue))
+//            messenger.publish(LibraryGroupPlayedNotification(group: group))
+            playQueueDelegate.enqueueToPlayNow(groups: [group], tracks: [], clearQueue: clearPlayQueue)
         }
         
         if let playlist = self.playlist {
             
 //            messenger.publish(LibraryGroupPlayedNotification(group: group))
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: playlist.tracks, clearPlayQueue: clearPlayQueue))
+            playQueueDelegate.enqueueToPlayNow(playlistFiles: [playlist], tracks: [], clearQueue: clearPlayQueue)
         }
     }
 }

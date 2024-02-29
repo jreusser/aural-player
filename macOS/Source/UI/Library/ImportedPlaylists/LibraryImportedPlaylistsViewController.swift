@@ -174,10 +174,10 @@ class LibraryImportedPlaylistsViewController: NSViewController, NSOutlineViewDel
         let selectedItem = outlineView.selectedItem
         
         if let clickedPlaylist = selectedItem as? ImportedPlaylist {
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: clickedPlaylist.tracks, clearPlayQueue: false))
+            playQueueDelegate.enqueueToPlayNow(playlistFiles: [clickedPlaylist], tracks: [], clearQueue: false)
             
         } else if let clickedTrack = selectedItem as? IndexedTrack {
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: [clickedTrack.track], clearPlayQueue: false))
+            playQueueDelegate.enqueueToPlayNow(tracks: [clickedTrack.track], clearQueue: false)
         }
     }
 }

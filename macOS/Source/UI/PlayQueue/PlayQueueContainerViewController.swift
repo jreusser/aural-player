@@ -109,7 +109,7 @@ class PlayQueueContainerViewController: NSViewController {
         messenger.subscribe(to: .PlayQueue.cropSelection, handler: cropSelection)
         messenger.subscribe(to: .PlayQueue.removeAllTracks, handler: removeAllTracks)
         
-        messenger.subscribe(to: .PlayQueue.enqueueAndPlayNow, handler: enqueueAndPlayNow(_:))
+//        messenger.subscribe(to: .PlayQueue.enqueueAndPlayNow, handler: enqueueAndPlayNow(_:))
         messenger.subscribe(to: .PlayQueue.enqueueAndPlayNext, handler: enqueueAndPlayNext(_:))
         messenger.subscribe(to: .PlayQueue.enqueueAndPlayLater, handler: enqueueAndPlayLater(_:))
         

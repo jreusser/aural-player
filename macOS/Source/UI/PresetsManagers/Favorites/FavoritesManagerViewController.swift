@@ -69,7 +69,7 @@ class FavoritesManagerViewController: NSViewController {
             let allFavTracks = favoritesDelegate.allFavoriteTracks
             let selectedFavTracks: [FavoriteTrack] = tracksTable.selectedRowIndexes.map {allFavTracks[$0]}
             
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: selectedFavTracks.map {$0.track}, clearPlayQueue: false))
+            playQueueDelegate.enqueueToPlayNow(tracks: selectedFavTracks.map {$0.track}, clearQueue: false)
             
         default:
             return

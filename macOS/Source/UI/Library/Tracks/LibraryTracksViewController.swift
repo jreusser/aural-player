@@ -107,19 +107,19 @@ class LibraryTracksViewController: TrackListTableViewController {
     // MARK: Actions (context menu)
     
     @IBAction func playNowAction(_ sender: AnyObject) {
-        messenger.publish(EnqueueAndPlayNowCommand(tracks: selectedTracks, clearPlayQueue: false))
+        playQueueDelegate.enqueueToPlayNow(tracks: selectedTracks, clearQueue: false)
     }
     
     @IBAction func playNowClearingPlayQueueAction(_ sender: NSMenuItem) {
-//        messenger.publish(EnqueueAndPlayNowCommand(tracks: playlist[selectedRows], clearPlayQueue: true))
+        playQueueDelegate.enqueueToPlayNow(tracks: selectedTracks, clearQueue: true)
     }
     
     @IBAction func playNextAction(_ sender: NSMenuItem) {
-//        messenger.publish(.PlayQueue.enqueueAndPlayNext, payload: playlist[selectedRows])
+        playQueueDelegate.enqueueToPlayNext(tracks: selectedTracks)
     }
     
     @IBAction func playLaterAction(_ sender: NSMenuItem) {
-//        messenger.publish(.PlayQueue.enqueueAndPlayLater, payload: playlist[selectedRows])
+        playQueueDelegate.enqueueToPlayLater(tracks: selectedTracks)
     }
     
     // ---------------------------------------------------------------------------------------------------------

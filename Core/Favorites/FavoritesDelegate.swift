@@ -276,20 +276,19 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     func playFavorite(_ favorite: Favorite) {
 
         if let favTrack = favorite as? FavoriteTrack {
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: [favTrack.track], clearPlayQueue: false))
+            playQueueDelegate.enqueueToPlayNow(tracks: [favTrack.track], clearQueue: false)
             
         } else if let favGroup = favorite as? FavoriteGroup,
                   let group = libraryDelegate.findGroup(named: favGroup.groupName, ofType: favGroup.groupType) {
          
-            messenger.publish(LibraryGroupPlayedNotification(group: group))
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: group.tracks, clearPlayQueue: false))
+            playQueueDelegate.enqueueToPlayNow(groups: [group], tracks: [], clearQueue: false)
             
         } else if let favFolder = favorite as? FavoriteFolder {
             
             // Recursively get all tracks, then add them to the PQ before playing
             
             if let folder = libraryDelegate.findFileSystemFolder(atLocation: favFolder.folder) {
-                messenger.publish(EnqueueAndPlayNowCommand(tracks: folder.tracks, clearPlayQueue: false))
+                playQueueDelegate.enqueueToPlayNow(fileSystemItems: [folder], clearQueue: false)
                 
             } else {
                 playQueueDelegate.loadTracks(from: [favFolder.folder], autoplay: true)
@@ -298,7 +297,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         } else if let favPlaylistFile = favorite as? FavoritePlaylistFile {
             
             if let importedPlaylist = libraryDelegate.findImportedPlaylist(atLocation: favPlaylistFile.playlistFile) {
-                messenger.publish(EnqueueAndPlayNowCommand(tracks: importedPlaylist.tracks, clearPlayQueue: false))
+                playQueueDelegate.enqueueToPlayNow(playlistFiles: [importedPlaylist], tracks: [], clearQueue: false)
                 
             } else {
                 playQueueDelegate.loadTracks(from: [favPlaylistFile.playlistFile], autoplay: true)

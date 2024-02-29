@@ -130,7 +130,7 @@ class PlaylistTracksViewController: TrackListTableViewController {
         if let selRow: Int = selectedRows.first,
             let selTrack = playlist[selRow] {
             
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: [selTrack], clearPlayQueue: false))
+            playQueueDelegate.enqueueToPlayNow(tracks: [selTrack], clearQueue: false)
         }
     }
     
@@ -139,19 +139,19 @@ class PlaylistTracksViewController: TrackListTableViewController {
     // MARK: Actions (context menu)
     
     @IBAction func playNowAction(_ sender: NSMenuItem) {
-        messenger.publish(EnqueueAndPlayNowCommand(tracks: playlist[selectedRows], clearPlayQueue: false))
+        playQueueDelegate.enqueueToPlayNow(tracks: playlist[selectedRows], clearQueue: false)
     }
     
     @IBAction func playNowClearingPlayQueueAction(_ sender: NSMenuItem) {
-        messenger.publish(EnqueueAndPlayNowCommand(tracks: playlist[selectedRows], clearPlayQueue: true))
+        playQueueDelegate.enqueueToPlayNow(tracks: playlist[selectedRows], clearQueue: true)
     }
     
     @IBAction func playNextAction(_ sender: NSMenuItem) {
-        messenger.publish(.PlayQueue.enqueueAndPlayNext, payload: playlist[selectedRows])
+        playQueueDelegate.enqueueToPlayNext(tracks: playlist[selectedRows])
     }
     
     @IBAction func playLaterAction(_ sender: NSMenuItem) {
-        messenger.publish(.PlayQueue.enqueueAndPlayLater, payload: playlist[selectedRows])
+        playQueueDelegate.enqueueToPlayLater(tracks: playlist[selectedRows])
     }
     
     // ---------------------------------------------------------------------------------------------------------

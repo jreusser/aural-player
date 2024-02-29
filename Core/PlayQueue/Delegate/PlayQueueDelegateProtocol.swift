@@ -16,48 +16,48 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol, SequencingProtocol {
     // MARK: Play Now ---------------------------------------------------------------
     
     // Library (Tracks view) / Managed Playlists / Favorites / Bookmarks / History
-    func enqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet
+    @discardableResult func enqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet
     
     // Library (grouped views) / Favorites / History
-    func enqueueToPlayNow(groups: [Group], tracks: [Track], clearQueue: Bool) -> IndexSet
+    @discardableResult func enqueueToPlayNow(groups: [Group], tracks: [Track], clearQueue: Bool) -> IndexSet
     
     // Library (playlist files)
-    func enqueueToPlayNow(playlistFiles: [ImportedPlaylist], tracks: [Track], clearQueue: Bool) -> IndexSet
+    @discardableResult func enqueueToPlayNow(playlistFiles: [ImportedPlaylist], tracks: [Track], clearQueue: Bool) -> IndexSet
     
     // Library (Managed Playlist)
-    func enqueueToPlayNow(playlist: Playlist, clearQueue: Bool) -> IndexSet
+    @discardableResult func enqueueToPlayNow(playlist: Playlist, clearQueue: Bool) -> IndexSet
     
     // Tune Browser
-    func enqueueToPlayNow(fileSystemItems: [FileSystemItem], clearQueue: Bool) -> IndexSet
+    @discardableResult func enqueueToPlayNow(fileSystemItems: [FileSystemItem], clearQueue: Bool) -> IndexSet
     
     // MARK: Play Next ---------------------------------------------------------------
     
     // Inserts tracks immediately after the current track, i.e. "Play Next"
     
-    func enqueueToPlayNext(tracks: [Track]) -> IndexSet
+    @discardableResult func enqueueToPlayNext(tracks: [Track]) -> IndexSet
     
-    func enqueueToPlayNext(groups: [Group], tracks: [Track]) -> IndexSet
+    @discardableResult func enqueueToPlayNext(groups: [Group], tracks: [Track]) -> IndexSet
     
-    func enqueueToPlayNext(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet
+    @discardableResult func enqueueToPlayNext(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet
     
-    func enqueueToPlayNext(playlist: Playlist) -> IndexSet
+    @discardableResult func enqueueToPlayNext(playlist: Playlist) -> IndexSet
     
-    func enqueueToPlayNext(fileSystemItems: [FileSystemItem]) -> IndexSet
+    @discardableResult func enqueueToPlayNext(fileSystemItems: [FileSystemItem]) -> IndexSet
     
     // Moves tracks immediately after the current track, i.e. "Play Next"
-    func moveTracksToPlayNext(from indices: IndexSet) -> IndexSet
+    @discardableResult func moveTracksToPlayNext(from indices: IndexSet) -> IndexSet
     
     // MARK: Play Later ---------------------------------------------------------------
     
-    func enqueueToPlayLater(tracks: [Track]) -> IndexSet
+    @discardableResult func enqueueToPlayLater(tracks: [Track]) -> IndexSet
     
-    func enqueueToPlayLater(groups: [Group], tracks: [Track]) -> IndexSet
+    @discardableResult func enqueueToPlayLater(groups: [Group], tracks: [Track]) -> IndexSet
     
-    func enqueueToPlayLater(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet
+    @discardableResult func enqueueToPlayLater(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet
     
-    func enqueueToPlayLater(playlist: Playlist) -> IndexSet
+    @discardableResult func enqueueToPlayLater(playlist: Playlist) -> IndexSet
     
-    func enqueueToPlayLater(fileSystemItems: [FileSystemItem]) -> IndexSet
+    @discardableResult func enqueueToPlayLater(fileSystemItems: [FileSystemItem]) -> IndexSet
 }
 
 extension PlayQueueDelegateProtocol {

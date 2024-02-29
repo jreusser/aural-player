@@ -313,29 +313,27 @@ extension PlayQueueContainerViewController {
         currentViewController.tableView.selectRows(destRows)
     }
     
-    // TODO: what to do with tracks already in the PQ ???
-    // TODO: Perhaps use a new TrackRegistry to cache and reuse Tracks
-    func enqueueAndPlayNow(_ command: EnqueueAndPlayNowCommand) {
-        
-        let indices = playQueueDelegate.enqueueToPlayNow(tracks: command.tracks, clearQueue: command.clearPlayQueue)
-        
-        if indices.isNonEmpty, !command.clearPlayQueue {
-            
-            controllers.forEach {
-                $0.noteNumberOfRowsChanged()
-            }
-            
-        } else {
-            
-            controllers.forEach {
-                $0.reloadTable()
-            }
-        }
-        
-        if let firstTrack = command.tracks.first {
-            messenger.publish(TrackPlaybackCommandNotification(track: firstTrack))
-        }
-    }
+//    func enqueueAndPlayNow(_ command: EnqueueAndPlayNowCommand) {
+//        
+//        let indices = playQueueDelegate.enqueueToPlayNow(tracks: command.tracks, clearQueue: command.clearPlayQueue)
+//        
+//        if indices.isNonEmpty, !command.clearPlayQueue {
+//            
+//            controllers.forEach {
+//                $0.noteNumberOfRowsChanged()
+//            }
+//            
+//        } else {
+//            
+//            controllers.forEach {
+//                $0.reloadTable()
+//            }
+//        }
+//        
+//        if let firstTrack = command.tracks.first {
+//            messenger.publish(TrackPlaybackCommandNotification(track: firstTrack))
+//        }
+//    }
     
     func loadAndPlayNow(_ command: LoadAndPlayNowCommand) {
         

@@ -101,7 +101,7 @@ class PlaylistViewController: TrackListTableViewController {
     func playSelectedTrack() {
         
         if let firstSelectedRow = selectedRows.min(), let track = playlist[firstSelectedRow] {
-            messenger.publish(EnqueueAndPlayNowCommand(tracks: [track], clearPlayQueue: false))
+            playQueueDelegate.enqueueToPlayNow(tracks: [track], clearQueue: false)
         }
     }
     

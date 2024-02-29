@@ -121,6 +121,11 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         
         let indices = playQueue.enqueueTracks(tracks, clearQueue: clearQueue)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
+        
+        if let trackToPlay = tracks.first {
+            playbackDelegate.play(track: trackToPlay, .defaultParams())
+        }
+            
         return indices
     }
     
