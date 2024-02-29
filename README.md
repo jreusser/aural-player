@@ -1,4 +1,4 @@
-<img width="225" src="https://raw.githubusercontent.com/maculateConception/aural-player/master/Documentation/Screenshots/readmeLogo.png"/>
+<img width="225" src="https://raw.githubusercontent.com/maculateConception/aural-player/v4.0/Documentation/Screenshots/readmeLogo.png"/>
 
 ### Unified Mode
 <img width="900" src="https://github.com/kartik-venugopal/aural-player/raw/v4.0/UnifiedMode.png"/>
