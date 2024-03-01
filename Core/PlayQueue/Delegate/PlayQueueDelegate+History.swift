@@ -1,0 +1,290 @@
+//
+//  PlayQueueDelegate+History.swift
+//  Aural
+//
+//  Copyright © 2021 Kartik Venugopal. All rights reserved.
+//
+//  This software is licensed under the MIT software license.
+//  See the file "LICENSE" in the project root directory for license terms.
+//  
+
+import Foundation
+
+extension PlayQueueDelegate {
+    
+    var allRecentlyAddedItems: [HistoryItem] {
+        
+        // Reverse the array for chronological order (most recent items first).
+        recentlyAddedItems.values.reversed()
+    }
+    
+    var allRecentlyPlayedItems: [HistoryItem] {
+        
+        // Reverse the array for chronological order (most recent items first)
+        recentlyPlayedItems.values.reversed()
+    }
+    
+    func appWillExit() {
+        
+        if playbackInfoDelegate.state == .stopped {return}
+        
+        let playerPosition = playbackInfoDelegate.seekPosition.timeElapsed
+        
+        if playerPosition > 0 {
+            self.lastPlaybackPosition = playerPosition
+        }
+    }
+    
+    func resumeLastPlayedTrack() throws {
+        
+        if let lastPlayedItem = lastPlayedItem, lastPlaybackPosition > 0 {
+//            playTrackItem(lastPlayedItem, fromPosition: lastPlaybackPosition)
+        }
+    }
+    
+    // Whenever a track is played by the player, add an entry in the "Recently played" list
+    func trackPlayed(_ notification: TrackTransitionNotification) {
+        
+        if let newTrack = notification.endTrack {
+            
+            doTrackPlayed(newTrack)
+            messenger.publish(.history_updated)
+        }
+    }
+    
+    func tracksPlayed(_ tracks: [Track]) {
+        
+        for track in tracks {
+            doTrackPlayed(track)
+        }
+        
+        messenger.publish(.history_updated)
+    }
+    
+    func doTrackPlayed(_ track: Track) {
+        
+        let trackKey = track.file.path
+        
+        if let existingHistoryItem: TrackHistoryItem = recentlyPlayedItems[trackKey] as? TrackHistoryItem {
+            markNewEvent(forItem: existingHistoryItem)
+            
+        } else {
+            recentlyPlayedItems[trackKey] = TrackHistoryItem(track: track, lastEventTime: Date())
+        }
+    }
+    
+    func fileSystemItemsPlayed(_ notification: LibraryFileSystemItemsPlayedNotification) {
+        
+        for url in notification.filesAndFolders {
+            
+            if url.isSupportedPlaylistFile {
+                doPlaylistFilePlayed(url)
+                
+            } else if url.isDirectory {
+                doFolderPlayed(url)
+            }
+        }
+        
+        messenger.publish(.history_updated)
+    }
+    
+    func fileSystemItemsPlayed(_ fileSystemItems: [FileSystemItem]) {
+        
+        for fileSystemItem in fileSystemItems {
+            
+            if fileSystemItem.isTrack, let trackItem = fileSystemItem as? FileSystemTrackItem {
+                doTrackPlayed(trackItem.track)
+                
+            } else if fileSystemItem.isDirectory {
+                doFolderPlayed(fileSystemItem.url)
+                
+            } else {
+                doPlaylistFilePlayed(fileSystemItem.url)
+            }
+        }
+        
+        messenger.publish(.history_updated)
+    }
+    
+    func playlistFilesAndTracksPlayed(playlistFiles: [ImportedPlaylist], tracks: [Track]) {
+        
+        let deDupedTracks: [Track] = tracks.filter {track in
+            !playlistFiles.contains(where: {$0.hasTrack(forFile: track.file)})
+        }
+        
+        for playlistFile in playlistFiles {
+            doPlaylistFilePlayed(playlistFile.file)
+        }
+        
+        tracksPlayed(deDupedTracks)
+        
+        messenger.publish(.history_updated)
+    }
+    
+    func doPlaylistFilePlayed(_ playlistFile: URL) {
+        
+        let playlistFileKey = playlistFile.path
+        
+        if let existingHistoryItem: PlaylistFileHistoryItem = recentlyPlayedItems[playlistFileKey] as? PlaylistFileHistoryItem {
+            markNewEvent(forItem: existingHistoryItem)
+            
+        } else {
+            recentlyPlayedItems[playlistFileKey] = PlaylistFileHistoryItem(playlistFile: playlistFile, lastEventTime: Date())
+        }
+    }
+    
+    func groupPlayed(_ notif: LibraryGroupPlayedNotification) {
+        
+        doGroupPlayed(notif.group)
+        messenger.publish(.history_updated)
+    }
+    
+    func groupsAndTracksPlayed(groups: [Group], tracks: [Track]) {
+        
+        let deDupedTracks: [Track] = tracks.filter {track in
+            !groups.contains(where: {$0.hasTrack(forFile: track.file)})
+        }
+        
+        for group in groups {
+            doGroupPlayed(group)
+        }
+        
+        tracksPlayed(deDupedTracks)
+        
+        messenger.publish(.history_updated)
+    }
+    
+    private func doGroupPlayed(_ group: Group) {
+        
+        let groupKey = "\(group.type)_\(group.name)"
+        
+        if let existingHistoryItem: GroupHistoryItem = recentlyPlayedItems[groupKey] as? GroupHistoryItem {
+            markNewEvent(forItem: existingHistoryItem)
+            
+        } else {
+            recentlyPlayedItems[groupKey] = GroupHistoryItem(groupName: group.name, groupType: group.type, lastEventTime: Date())
+        }
+    }
+    
+    private func doFolderPlayed(_ folder: URL) {
+        
+        let folderKey = folder.path
+        
+        if let existingHistoryItem: FolderHistoryItem = recentlyPlayedItems[folderKey] as? FolderHistoryItem {
+            markNewEvent(forItem: existingHistoryItem)
+            
+        } else {
+            recentlyPlayedItems[folderKey] = FolderHistoryItem(folder: folder, lastEventTime: Date())
+        }
+    }
+    
+    func playlistPlayed(_ playlist: Playlist) {
+        
+        let playlistName = playlist.name
+        
+        if let existingHistoryItem: PlaylistHistoryItem = recentlyPlayedItems[playlistName] as? PlaylistHistoryItem {
+            markNewEvent(forItem: existingHistoryItem)
+            
+        } else {
+            recentlyPlayedItems[playlistName] = PlaylistHistoryItem(playlistName: playlistName, lastEventTime: Date())
+        }
+    }
+    
+    private func markNewEvent(forItem existingHistoryItem: HistoryItem) {
+        
+        existingHistoryItem.markEvent()
+        
+        // Move to bottom (i.e. most recent)
+        recentlyPlayedItems.removeValue(forKey: existingHistoryItem.key)
+        recentlyPlayedItems[existingHistoryItem.key] = existingHistoryItem
+    }
+    
+    // MARK: Playback of items ---------------------------------------------------------------------------------------------------------
+    
+    func addItem(_ item: URL) throws {
+        
+        if !item.exists {
+            throw FileNotFoundError(item)
+        }
+        
+//        playlist.addFiles([item])
+    }
+    
+    func playItem(_ item: HistoryItem) {
+        
+        if let trackHistoryItem = item as? TrackHistoryItem {
+            playTrackItem(trackHistoryItem)
+            
+        } else if let playlistFileHistoryItem = item as? PlaylistFileHistoryItem {
+            playPlaylistFileItem(playlistFileHistoryItem)
+            
+        } else if let folderHistoryItem = item as? FolderHistoryItem {
+            playFolderItem(folderHistoryItem)
+            
+        } else if let groupHistoryItem = item as? GroupHistoryItem {
+            playGroupItem(groupHistoryItem)
+        }
+    }
+    
+    private func playTrackItem(_ trackHistoryItem: TrackHistoryItem, fromPosition position: Double? = nil) {
+        
+        // Add it to the PQ
+        playQueue.addTracks([trackHistoryItem.track])
+        
+        if let seekPosition = position {
+            playbackDelegate.play(track: trackHistoryItem.track, PlaybackParams().withStartAndEndPosition(seekPosition))
+        } else {
+            playbackDelegate.play(track: trackHistoryItem.track)
+        }
+    }
+    
+    private func playPlaylistFileItem(_ playlistFileHistoryItem: PlaylistFileHistoryItem) {
+        
+        doPlaylistFilePlayed(playlistFileHistoryItem.playlistFile)
+        
+        // Add it to the PQ
+        if let importedPlaylist = libraryDelegate.findImportedPlaylist(atLocation: playlistFileHistoryItem.playlistFile) {
+            playQueueDelegate.enqueueToPlayNow(playlistFile: importedPlaylist, clearQueue: false)
+        } else {
+            playQueueDelegate.loadTracks(from: [playlistFileHistoryItem.playlistFile], autoplay: true)
+        }
+    }
+    
+    private func playGroupItem(_ groupHistoryItem: GroupHistoryItem) {
+        
+        guard let group = libraryDelegate.findGroup(named: groupHistoryItem.groupName, ofType: groupHistoryItem.groupType) else {return}
+        
+        doGroupPlayed(group)
+        playQueueDelegate.enqueueToPlayNow(group: group, clearQueue: false)
+    }
+    
+    private func playFolderItem(_ folderHistoryItem: FolderHistoryItem) {
+        
+        let folder = folderHistoryItem.folder
+        
+        doFolderPlayed(folder)
+        messenger.publish(LoadAndPlayNowCommand(files: [folder], clearPlayQueue: false))
+    }
+    
+    func deleteItem(_ item: HistoryItem) {
+//        recentlyPlayedItems.remove(item)
+    }
+    
+    func resizeLists(_ recentlyAddedListSize: Int, _ recentlyPlayedListSize: Int) {
+        
+//        recentlyAddedItems.resize(recentlyAddedListSize)
+//        recentlyPlayedItems.resize(recentlyPlayedListSize)
+//
+//        messenger.publish(.history_updated)
+    }
+    
+    func clearAllHistory() {
+        
+        recentlyAddedItems.removeAll()
+        recentlyPlayedItems.removeAll()
+    }
+    
+    func markLastPlaybackPosition(_ position: Double) {
+        self.lastPlaybackPosition = position
+    }
+}

@@ -62,6 +62,14 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol, SequencingProtocol {
 
 extension PlayQueueDelegateProtocol {
     
+    @discardableResult func enqueueToPlayNow(group: Group, clearQueue: Bool) -> IndexSet {
+        enqueueToPlayNow(group: group, clearQueue: clearQueue)
+    }
+    
+    @discardableResult func enqueueToPlayNow(playlistFile: ImportedPlaylist, clearQueue: Bool) -> IndexSet {
+        enqueueToPlayNow(playlistFiles: [playlistFile], tracks: [], clearQueue: clearQueue)
+    }
+    
     func loadTracks(from files: [URL], autoplay: Bool) {
         loadTracks(from: files, atPosition: nil, clearQueue: false, autoplay: autoplay)
     }

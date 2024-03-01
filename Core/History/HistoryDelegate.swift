@@ -87,14 +87,14 @@ class HistoryDelegate: HistoryDelegateProtocol {
         messenger.subscribe(to: .application_willExit, handler: appWillExit)
     }
     
-    func allRecentlyAddedItems() -> [HistoryItem] {
+    var allRecentlyAddedItems: [HistoryItem] {
         
         // Reverse the array for chronological order (most recent items first).
 //        recentlyAddedItems.toArray().reversed()
         []
     }
     
-    func allRecentlyPlayedItems() -> [HistoryItem] {
+    var allRecentlyPlayedItems: [HistoryItem] {
         
         // Reverse the array for chronological order (most recent items first)
         recentlyPlayedItems.values.reversed()
@@ -151,7 +151,7 @@ class HistoryDelegate: HistoryDelegateProtocol {
         guard let group = libraryDelegate.findGroup(named: groupHistoryItem.groupName, ofType: groupHistoryItem.groupType) else {return}
         
         doGroupPlayed(group)
-        playQueueDelegate.enqueueToPlayNow(groups: [group], tracks: [], clearQueue: false)
+        playQueueDelegate.enqueueToPlayNow(group: group, clearQueue: false)
     }
     
     private func playFolderItem(_ folderHistoryItem: FolderHistoryItem) {

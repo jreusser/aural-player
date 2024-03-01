@@ -281,7 +281,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         } else if let favGroup = favorite as? FavoriteGroup,
                   let group = libraryDelegate.findGroup(named: favGroup.groupName, ofType: favGroup.groupType) {
          
-            playQueueDelegate.enqueueToPlayNow(groups: [group], tracks: [], clearQueue: false)
+            playQueueDelegate.enqueueToPlayNow(group: group, clearQueue: false)
             
         } else if let favFolder = favorite as? FavoriteFolder {
             
@@ -297,7 +297,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         } else if let favPlaylistFile = favorite as? FavoritePlaylistFile {
             
             if let importedPlaylist = libraryDelegate.findImportedPlaylist(atLocation: favPlaylistFile.playlistFile) {
-                playQueueDelegate.enqueueToPlayNow(playlistFiles: [importedPlaylist], tracks: [], clearQueue: false)
+                playQueueDelegate.enqueueToPlayNow(playlistFile: importedPlaylist, clearQueue: false)
                 
             } else {
                 playQueueDelegate.loadTracks(from: [favPlaylistFile.playlistFile], autoplay: true)

@@ -142,6 +142,10 @@ class Group: PlayableItem {
     
     var hasTracks: Bool {!_tracks.isEmpty}
     
+    func hasTrack(forFile file: URL) -> Bool {
+        _tracks[file] != nil
+    }
+    
     /// Safe array access.
     subscript(index: Int) -> Track {
         _tracks.elements[index].value

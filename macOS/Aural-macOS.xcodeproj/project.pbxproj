@@ -49,6 +49,7 @@
 		3E1741462801EA0A00772ED1 /* TableCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1741452801EA0A00772ED1 /* TableCellBuilder.swift */; };
 		3E1741482801FDE500772ED1 /* TrackListTableViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1741472801FDE500772ED1 /* TrackListTableViewController+DataSource.swift */; };
 		3E1AEFAC2B7D67320081CF1B /* FavoriteFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AEFAB2B7D67320081CF1B /* FavoriteFolder.swift */; };
+		3E1B72512B9108D500BF010E /* PlayQueueDelegate+History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1B72502B9108D500BF010E /* PlayQueueDelegate+History.swift */; };
 		3E2000BF267CDFFF008BAB70 /* MediaKeysPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2000BE267CDFFF008BAB70 /* MediaKeysPreferences.xib */; };
 		3E2000C1267CE00E008BAB70 /* GesturesPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2000C0267CE00E008BAB70 /* GesturesPreferences.xib */; };
 		3E2000C3267CE019008BAB70 /* RemoteControlPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2000C2267CE019008BAB70 /* RemoteControlPreferences.xib */; };
@@ -394,6 +395,7 @@
 		3E7C35FE26AADD2A00B3552D /* FilterPresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C35FD26AADD2A00B3552D /* FilterPresetView.swift */; };
 		3E7C360126AADFA000B3552D /* FilterBandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C360026AADFA000B3552D /* FilterBandView.swift */; };
 		3E7C978D268BB8BE00287158 /* NSLayoutConstraintExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C978C268BB8BE00287158 /* NSLayoutConstraintExtensions.swift */; };
+		3E7EC9052B92593200FDE39B /* PlaylistHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7EC9042B92593200FDE39B /* PlaylistHistoryItem.swift */; };
 		3E81BCD7284AAB5100927E4A /* TuneBrowserItemsAddedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81BCD6284AAB5100927E4A /* TuneBrowserItemsAddedNotification.swift */; };
 		3E836E332868964D009371D4 /* PlayQueueContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E836E322868964D009371D4 /* PlayQueueContainer.xib */; };
 		3E836E392868A36F009371D4 /* UnifiedPlayerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E836E382868A36F009371D4 /* UnifiedPlayerNotifications.swift */; };
@@ -1081,6 +1083,7 @@
 		3E1741452801EA0A00772ED1 /* TableCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellBuilder.swift; sourceTree = "<group>"; };
 		3E1741472801FDE500772ED1 /* TrackListTableViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackListTableViewController+DataSource.swift"; sourceTree = "<group>"; };
 		3E1AEFAB2B7D67320081CF1B /* FavoriteFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteFolder.swift; sourceTree = "<group>"; };
+		3E1B72502B9108D500BF010E /* PlayQueueDelegate+History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayQueueDelegate+History.swift"; sourceTree = "<group>"; };
 		3E1D1DDD28DCEEC100E79674 /* build-iOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-iOS.sh"; sourceTree = "<group>"; };
 		3E1D1DDE28DCEEC100E79674 /* build-macOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "build-macOS.sh"; sourceTree = "<group>"; };
 		3E1D1DDF28DD016900E79674 /* macOS.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = macOS.sh; sourceTree = "<group>"; };
@@ -1433,6 +1436,7 @@
 		3E7C35FD26AADD2A00B3552D /* FilterPresetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresetView.swift; sourceTree = "<group>"; };
 		3E7C360026AADFA000B3552D /* FilterBandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBandView.swift; sourceTree = "<group>"; };
 		3E7C978C268BB8BE00287158 /* NSLayoutConstraintExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtensions.swift; sourceTree = "<group>"; };
+		3E7EC9042B92593200FDE39B /* PlaylistHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistHistoryItem.swift; sourceTree = "<group>"; };
 		3E81BCD6284AAB5100927E4A /* TuneBrowserItemsAddedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneBrowserItemsAddedNotification.swift; sourceTree = "<group>"; };
 		3E836E322868964D009371D4 /* PlayQueueContainer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayQueueContainer.xib; sourceTree = "<group>"; };
 		3E836E382868A36F009371D4 /* UnifiedPlayerNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayerNotifications.swift; sourceTree = "<group>"; };
@@ -4072,6 +4076,7 @@
 			children = (
 				3EEFF58327DE842C002CB0FE /* PlayQueueDelegateProtocol.swift */,
 				3EEFF58427DE842C002CB0FE /* PlayQueueDelegate.swift */,
+				3E1B72502B9108D500BF010E /* PlayQueueDelegate+History.swift */,
 				3ECBEDCD2B5AF19200563883 /* PlayQueueDelegate+Init.swift */,
 				3E29B2102B8D3BCB008DF933 /* PlayQueueDelegate+Sequencing.swift */,
 			);
@@ -4230,8 +4235,8 @@
 				3EFE365C27864895006F8B8C /* Favorites */,
 				3EFE36AE27864895006F8B8C /* Utils */,
 				3EFE36DE27864895006F8B8C /* Bookmarks */,
-				3EFE371827864895006F8B8C /* Persistence */,
 				3EFE374A27864895006F8B8C /* History */,
+				3EFE371827864895006F8B8C /* Persistence */,
 				3EFE375227864895006F8B8C /* RemoteControl */,
 				3EFE375627864895006F8B8C /* Messaging */,
 				3EFE377627864895006F8B8C /* TrackIO */,
@@ -4847,6 +4852,7 @@
 				3EFE0A8E2B4B373B00C9B121 /* PlaylistFileHistoryItem.swift */,
 				3EFE0A912B4B378600C9B121 /* FolderHistoryItem.swift */,
 				3EFE0A942B4B37B400C9B121 /* GroupHistoryItem.swift */,
+				3E7EC9042B92593200FDE39B /* PlaylistHistoryItem.swift */,
 				3EFE375027864895006F8B8C /* AddedItem.swift */,
 			);
 			path = Model;
@@ -5587,6 +5593,7 @@
 				3E6C130B25CEBE8F00BF0D07 /* FileSystemTrackInfoViewDelegate.swift in Sources */,
 				3EAFB615267FF47200F0DC96 /* FilterBandSlider.swift in Sources */,
 				3EBF29292686947700D87021 /* FilterBandsTabButtonCell.swift in Sources */,
+				3E1B72512B9108D500BF010E /* PlayQueueDelegate+History.swift in Sources */,
 				3E6C127025CEBE0600BF0D07 /* FilterPresetBandsViewDelegate.swift in Sources */,
 				3EFE3A4727864898006F8B8C /* WMParser.swift in Sources */,
 				3E6C12E625CEBE8100BF0D07 /* FilterBandViewController.swift in Sources */,
@@ -5905,6 +5912,7 @@
 				3EB462D82847FEC6000E3F85 /* FileSystemItem.swift in Sources */,
 				3EB462D62847FEC6000E3F85 /* TuneBrowserGlobals.swift in Sources */,
 				3EFE37F927864896006F8B8C /* GesturesControlsPreferences.swift in Sources */,
+				3E7EC9052B92593200FDE39B /* PlaylistHistoryItem.swift in Sources */,
 				3E6C12CE25CEBE6700BF0D07 /* ReverbUnitView.swift in Sources */,
 				3E6C12C525CEBE6700BF0D07 /* ReverbUnitViewController.swift in Sources */,
 				3E752744267F32A60092BB89 /* RoundedImageView.swift in Sources */,

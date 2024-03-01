@@ -206,7 +206,7 @@ class TrackListOutlineViewController: NSViewController, NSOutlineViewDelegate, F
             playQueueDelegate.enqueueToPlayNow(tracks: [track], clearQueue: false)
             
         } else if let group = item as? Group {
-            playQueueDelegate.enqueueToPlayNow(groups: [group], tracks: [], clearQueue: false)
+            playQueueDelegate.enqueueToPlayNow(group: group, clearQueue: false)
         }
     }
     

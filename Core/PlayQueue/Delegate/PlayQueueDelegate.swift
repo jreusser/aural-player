@@ -11,6 +11,18 @@ struct PlayQueueTrackAddResult {
 
 class PlayQueueDelegate: PlayQueueDelegateProtocol {
     
+    // Recently added items
+    var recentlyAddedItems: OrderedDictionary<String, HistoryItem> = OrderedDictionary()
+    
+    // Recently played items
+    var recentlyPlayedItems: OrderedDictionary<String, HistoryItem> = OrderedDictionary()
+    
+    var lastPlaybackPosition: Double = 0
+    
+    var lastPlayedItem: TrackHistoryItem? {
+        recentlyPlayedItems.values.reversed().first(where: {$0 is TrackHistoryItem}) as? TrackHistoryItem
+    }
+    
     var displayName: String {playQueue.displayName}
     
     let playQueue: PlayQueueProtocol
@@ -23,11 +35,6 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
 
     var summary: (size: Int, totalDuration: Double) {playQueue.summary}
     
-    private let trackAddQueue: OperationQueue = OperationQueue()
-    private let trackUpdateQueue: OperationQueue = OperationQueue()
-
-    private let concurrentAddOpCount = (Double(SystemUtils.numberOfActiveCores) * 1.5).roundedInt
-
     var isBeingModified: Bool {playQueue.isBeingModified}
     
     var currentTrack: Track? {playQueue.currentTrack}
@@ -94,17 +101,23 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
 
     // Library (Tracks view) / Managed Playlists / Favorites / Bookmarks / History
     func enqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet {
-        doEnqueueToPlayNow(tracks: tracks, clearQueue: clearQueue)
+        
+        tracksPlayed(tracks)
+        return doEnqueueToPlayNow(tracks: tracks, clearQueue: clearQueue)
     }
     
     // Library (grouped views) / Favorites / History
     func enqueueToPlayNow(groups: [Group], tracks: [Track], clearQueue: Bool) -> IndexSet {
-        doEnqueueToPlayNow(tracks: groups.flatMap {$0.tracks} + tracks, clearQueue: clearQueue)
+        
+        groupsAndTracksPlayed(groups: groups, tracks: tracks)
+        return doEnqueueToPlayNow(tracks: groups.flatMap {$0.tracks} + tracks, clearQueue: clearQueue)
     }
     
     // Library (playlist files)
     func enqueueToPlayNow(playlistFiles: [ImportedPlaylist], tracks: [Track], clearQueue: Bool) -> IndexSet {
-        doEnqueueToPlayNow(tracks: playlistFiles.flatMap {$0.tracks} + tracks, clearQueue: clearQueue)
+        
+        playlistFilesAndTracksPlayed(playlistFiles: playlistFiles, tracks: tracks)
+        return doEnqueueToPlayNow(tracks: playlistFiles.flatMap {$0.tracks} + tracks, clearQueue: clearQueue)
     }
     
     // Library (Managed Playlist)
@@ -114,7 +127,9 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
     
     // Tune Browser
     func enqueueToPlayNow(fileSystemItems: [FileSystemItem], clearQueue: Bool) -> IndexSet {
-        doEnqueueToPlayNow(tracks: fileSystemItems.flatMap {$0.tracks}, clearQueue: clearQueue)
+        
+        fileSystemItemsPlayed(fileSystemItems)
+        return doEnqueueToPlayNow(tracks: fileSystemItems.flatMap {$0.tracks}, clearQueue: clearQueue)
     }
     
     func doEnqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet {

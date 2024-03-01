@@ -26,10 +26,10 @@ protocol HistoryDelegateProtocol {
     func initialize(fromPersistentState persistentState: HistoryPersistentState?)
     
     // Retrieves all items from the Recently added list, in chronological order
-    func allRecentlyAddedItems() -> [HistoryItem]
+    var allRecentlyAddedItems: [HistoryItem] {get}
     
     // Retrieves all recently played items
-    func allRecentlyPlayedItems() -> [HistoryItem]
+    var allRecentlyPlayedItems: [HistoryItem] {get}
     
     // Adds a given item (file/folder) to the playlist
     func addItem(_ item: URL) throws
