@@ -24,10 +24,7 @@ import Foundation
 protocol HistoryDelegateProtocol {
     
     // Retrieves all items from the Recently added list, in chronological order
-    var allRecentlyAddedItems: [HistoryItem] {get}
-    
-    // Retrieves all recently played items
-    var allRecentlyPlayedItems: [HistoryItem] {get}
+    var allRecentItems: [HistoryItem] {get}
     
     // Adds a given item (file/folder) to the playlist
     func addItem(_ item: URL) throws
@@ -35,7 +32,7 @@ protocol HistoryDelegateProtocol {
     // Plays a given item.
     func playItem(_ item: HistoryItem)
     
-    func resizeLists(_ recentlyAddedListSize: Int, _ recentlyPlayedListSize: Int)
+    func resizeList(_ listSize: Int)
     
     func clearAllHistory()
     

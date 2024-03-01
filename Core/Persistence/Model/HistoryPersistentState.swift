@@ -18,21 +18,18 @@ import Foundation
 ///
 struct HistoryPersistentState: Codable {
     
-    let recentlyAdded: [HistoryItemPersistentState]?
-    let recentlyPlayed: [HistoryItemPersistentState]?
+    let recentItems: [HistoryItemPersistentState]?
     let lastPlaybackPosition: Double?
     
-    init(recentlyAdded: [HistoryItemPersistentState]?, recentlyPlayed: [HistoryItemPersistentState]?, lastPlaybackPosition: Double?) {
+    init(recentItems: [HistoryItemPersistentState], lastPlaybackPosition: Double) {
         
-        self.recentlyAdded = recentlyAdded
-        self.recentlyPlayed = recentlyPlayed
+        self.recentItems = recentItems
         self.lastPlaybackPosition = lastPlaybackPosition
     }
     
     init(legacyPersistentState: LegacyHistoryPersistentState?) {
         
-        self.recentlyAdded = nil
-        self.recentlyPlayed = legacyPersistentState?.recentlyPlayed?.map {HistoryItemPersistentState(legacyPersistentState: $0)}
+        self.recentItems = legacyPersistentState?.recentlyPlayed?.map {HistoryItemPersistentState(legacyPersistentState: $0)}
         self.lastPlaybackPosition = legacyPersistentState?.lastPlaybackPosition
     }
 }
@@ -113,11 +110,7 @@ struct HistoryItemPersistentState: Codable {
         self.itemType = .track
         self.eventCount = 1
         
-        if let dateString = legacyPersistentState.time {
-            self.lastEventTime = Date.fromString(dateString)
-        } else {
-            self.lastEventTime = nil
-        }
+        self.lastEventTime = legacyPersistentState.dateFromTimestamp
         
         if let filePath = legacyPersistentState.file {
             self.trackFile = URL(fileURLWithPath: filePath)

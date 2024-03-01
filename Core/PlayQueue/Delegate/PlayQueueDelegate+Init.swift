@@ -58,15 +58,10 @@ extension PlayQueueDelegate {
         // Move to a background thread to unblock the main thread.
         DispatchQueue.global(qos: .utility).async {
             
-            let recentlyPlayed = persistentState.recentlyPlayed ?? []
-            let recentlyAdded = persistentState.recentlyAdded ?? []
+            let recentItems = persistentState.recentItems ?? []
             
-            for item in recentlyPlayed.reversed().compactMap(self.historyItemForState) {
-                self.recentlyPlayedItems[item.key] = item
-            }
-            
-            for item in recentlyAdded.reversed().compactMap(self.historyItemForState) {
-                self.recentlyAddedItems[item.key] = item
+            for item in recentItems.reversed().compactMap(self.historyItemForState) {
+                self.recentItems[item.key] = item
             }
         }
     }

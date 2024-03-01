@@ -12,16 +12,10 @@ import Foundation
 
 extension PlayQueueDelegate {
     
-    var allRecentlyAddedItems: [HistoryItem] {
+    var allRecentItems: [HistoryItem] {
         
         // Reverse the array for chronological order (most recent items first).
-        recentlyAddedItems.values.reversed()
-    }
-    
-    var allRecentlyPlayedItems: [HistoryItem] {
-        
-        // Reverse the array for chronological order (most recent items first)
-        recentlyPlayedItems.values.reversed()
+        recentItems.values.reversed()
     }
     
     func appWillExit() {
@@ -65,27 +59,12 @@ extension PlayQueueDelegate {
         
         let trackKey = TrackHistoryItem.key(forTrack: track)
         
-        if let existingHistoryItem: TrackHistoryItem = recentlyPlayedItems[trackKey] as? TrackHistoryItem {
+        if let existingHistoryItem: TrackHistoryItem = recentItems[trackKey] as? TrackHistoryItem {
             markNewEvent(forItem: existingHistoryItem)
             
         } else {
-            recentlyPlayedItems[trackKey] = TrackHistoryItem(track: track, lastEventTime: Date())
+            recentItems[trackKey] = TrackHistoryItem(track: track, lastEventTime: Date())
         }
-    }
-    
-    func fileSystemItemsPlayed(_ notification: LibraryFileSystemItemsPlayedNotification) {
-        
-        for url in notification.filesAndFolders {
-            
-            if url.isSupportedPlaylistFile {
-                doPlaylistFilePlayed(url)
-                
-            } else if url.isDirectory {
-                doFolderPlayed(url)
-            }
-        }
-        
-        messenger.publish(.history_updated)
     }
     
     func fileSystemItemsPlayed(_ fileSystemItems: [FileSystemItem]) {
@@ -125,18 +104,12 @@ extension PlayQueueDelegate {
         
         let playlistFileKey = PlaylistFileHistoryItem.key(forPlaylistFile: playlistFile)
         
-        if let existingHistoryItem: PlaylistFileHistoryItem = recentlyPlayedItems[playlistFileKey] as? PlaylistFileHistoryItem {
+        if let existingHistoryItem: PlaylistFileHistoryItem = recentItems[playlistFileKey] as? PlaylistFileHistoryItem {
             markNewEvent(forItem: existingHistoryItem)
             
         } else {
-            recentlyPlayedItems[playlistFileKey] = PlaylistFileHistoryItem(playlistFile: playlistFile, lastEventTime: Date())
+            recentItems[playlistFileKey] = PlaylistFileHistoryItem(playlistFile: playlistFile, lastEventTime: Date())
         }
-    }
-    
-    func groupPlayed(_ notif: LibraryGroupPlayedNotification) {
-        
-        doGroupPlayed(notif.group)
-        messenger.publish(.history_updated)
     }
     
     func groupsAndTracksPlayed(groups: [Group], tracks: [Track]) {
@@ -158,11 +131,11 @@ extension PlayQueueDelegate {
         
         let groupKey = GroupHistoryItem.key(forGroupName: group.name, andType: group.type)
         
-        if let existingHistoryItem: GroupHistoryItem = recentlyPlayedItems[groupKey] as? GroupHistoryItem {
+        if let existingHistoryItem: GroupHistoryItem = recentItems[groupKey] as? GroupHistoryItem {
             markNewEvent(forItem: existingHistoryItem)
             
         } else {
-            recentlyPlayedItems[groupKey] = GroupHistoryItem(groupName: group.name, groupType: group.type, lastEventTime: Date())
+            recentItems[groupKey] = GroupHistoryItem(groupName: group.name, groupType: group.type, lastEventTime: Date())
         }
     }
     
@@ -170,11 +143,11 @@ extension PlayQueueDelegate {
         
         let folderKey = FolderHistoryItem.key(forFolder: folder)
         
-        if let existingHistoryItem: FolderHistoryItem = recentlyPlayedItems[folderKey] as? FolderHistoryItem {
+        if let existingHistoryItem: FolderHistoryItem = recentItems[folderKey] as? FolderHistoryItem {
             markNewEvent(forItem: existingHistoryItem)
             
         } else {
-            recentlyPlayedItems[folderKey] = FolderHistoryItem(folder: folder, lastEventTime: Date())
+            recentItems[folderKey] = FolderHistoryItem(folder: folder, lastEventTime: Date())
         }
     }
     
@@ -182,11 +155,11 @@ extension PlayQueueDelegate {
         
         let playlistKey = PlaylistHistoryItem.key(forPlaylistNamed: playlist.name)
         
-        if let existingHistoryItem: PlaylistHistoryItem = recentlyPlayedItems[playlistKey] as? PlaylistHistoryItem {
+        if let existingHistoryItem: PlaylistHistoryItem = recentItems[playlistKey] as? PlaylistHistoryItem {
             markNewEvent(forItem: existingHistoryItem)
             
         } else {
-            recentlyPlayedItems[playlistKey] = PlaylistHistoryItem(playlistName: playlist.name, lastEventTime: Date())
+            recentItems[playlistKey] = PlaylistHistoryItem(playlistName: playlist.name, lastEventTime: Date())
         }
     }
     
@@ -195,8 +168,8 @@ extension PlayQueueDelegate {
         existingHistoryItem.markEvent()
         
         // Move to bottom (i.e. most recent)
-        recentlyPlayedItems.removeValue(forKey: existingHistoryItem.key)
-        recentlyPlayedItems[existingHistoryItem.key] = existingHistoryItem
+        recentItems.removeValue(forKey: existingHistoryItem.key)
+        recentItems[existingHistoryItem.key] = existingHistoryItem
     }
     
     // MARK: Playback of items ---------------------------------------------------------------------------------------------------------
@@ -276,17 +249,13 @@ extension PlayQueueDelegate {
 //        recentlyPlayedItems.remove(item)
     }
     
-    func resizeLists(_ recentlyAddedListSize: Int, _ recentlyPlayedListSize: Int) {
+    func resizeList(_ listSize: Int) {
         
-//        recentlyAddedItems.resize(recentlyAddedListSize)
 //        recentlyPlayedItems.resize(recentlyPlayedListSize)
-//
 //        messenger.publish(.history_updated)
     }
     
     func clearAllHistory() {
-        
-        recentlyAddedItems.removeAll()
-        recentlyPlayedItems.removeAll()
+        recentItems.removeAll()
     }
 }

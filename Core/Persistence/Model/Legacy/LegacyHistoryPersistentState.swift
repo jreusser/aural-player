@@ -22,9 +22,15 @@ struct LegacyHistoryItemPersistentState: Codable {
     let file: URLPath?
     let name: String?
     let time: DateString?
+    
+    var dateFromTimestamp: Date? {
+        
+        guard let dateString = self.time else {return nil}
+        return Date.fromString(dateString)
+    }
 }
 
-extension Date {
+fileprivate extension Date {
     
     // Constructs a Date from a String of the format: YYYY_MM_DD_hh_mm (created by the serializableString() function).
     static func fromString(_ string: DateString) -> Date? {

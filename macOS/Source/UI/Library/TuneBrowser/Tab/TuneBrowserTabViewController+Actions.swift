@@ -47,23 +47,19 @@ extension TuneBrowserTabViewController {
         }
     }
     
+    /// Clear Queue and Play Now
     @IBAction func playNowAction(_ sender: Any) {
-        
-        // TODO: Folder B should not be contained within folder A
-        let files = browserView.selectedFileSystemItemURLs
-        
-        messenger.publish(LibraryFileSystemItemsPlayedNotification(filesAndFolders: files))
-        messenger.publish(LoadAndPlayNowCommand(files: files, clearPlayQueue: true))
+        doAddBrowserItemsToPlayQueue(items: browserView.selectedFileSystemItems, clearQueue: true, beginPlayback: true)
+    }
+    
+    /// Enqueue and Play Now
+    @IBAction func enqueueAndPlayBrowserItemsAction(_ sender: Any) {
+        doAddBrowserItemsToPlayQueue(items: browserView.selectedFileSystemItems, beginPlayback: true)
     }
     
     /// Play Later
     @IBAction func enqueueBrowserItemsAction(_ sender: Any) {
-        doAddBrowserItemsToPlayQueue(urls: browserView.selectedFileSystemItemURLs)
-    }
-    
-    // TODO: Clarify this use case (which items qualify for this) ?
-    @IBAction func enqueueAndPlayBrowserItemsAction(_ sender: Any) {
-        doAddBrowserItemsToPlayQueue(urls: browserView.selectedFileSystemItemURLs, beginPlayback: true)
+        doAddBrowserItemsToPlayQueue(items: browserView.selectedFileSystemItems)
     }
     
     @IBAction func addSidebarShortcutAction(_ sender: Any) {

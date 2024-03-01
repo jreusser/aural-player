@@ -36,10 +36,6 @@ extension Notification.Name {
         
         static let tracksDragDropped = Notification.Name("library_tracksDragDropped")
         
-        static let groupPlayed = Notification.Name("library_groupPlayed")
-        
-        static let fileSystemItemsPlayed = Notification.Name("library_fileSystemItemsPlayed")
-        
         static let sorted = Notification.Name("library_sorted")
         
         // Signifies that the summary for the library needs to be updated.

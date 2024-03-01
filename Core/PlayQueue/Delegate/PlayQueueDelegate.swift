@@ -11,16 +11,13 @@ struct PlayQueueTrackAddResult {
 
 class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
     
-    // Recently added items
-    var recentlyAddedItems: OrderedDictionary<CompositeKey, HistoryItem> = OrderedDictionary()
-    
     // Recently played items
-    var recentlyPlayedItems: OrderedDictionary<CompositeKey, HistoryItem> = OrderedDictionary()
+    var recentItems: OrderedDictionary<CompositeKey, HistoryItem> = OrderedDictionary()
     
     var lastPlaybackPosition: Double = 0
     
     var lastPlayedItem: TrackHistoryItem? {
-        recentlyPlayedItems.values.reversed().first(where: {$0 is TrackHistoryItem}) as? TrackHistoryItem
+        recentItems.values.reversed().first(where: {$0 is TrackHistoryItem}) as? TrackHistoryItem
     }
     
     var displayName: String {playQueue.displayName}
@@ -292,9 +289,7 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
     
     var historyPersistentState: HistoryPersistentState {
         
-        let recentlyAdded = allRecentlyAddedItems.compactMap(HistoryItemPersistentState.init)
-        let recentlyPlayed = allRecentlyPlayedItems.compactMap(HistoryItemPersistentState.init)
-        
-        return HistoryPersistentState(recentlyAdded: recentlyAdded, recentlyPlayed: recentlyPlayed, lastPlaybackPosition: lastPlaybackPosition)
+        let recentItems = recentItems.values.compactMap(HistoryItemPersistentState.init)
+        return HistoryPersistentState(recentItems: recentItems, lastPlaybackPosition: lastPlaybackPosition)
     }
 }

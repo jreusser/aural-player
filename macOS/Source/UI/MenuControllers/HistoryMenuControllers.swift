@@ -16,13 +16,27 @@ let menuItemCoverArtImageSize: NSSize = NSSize(width: 25, height: 25)
  */
 class HistoryMenuController: NSObject, NSMenuDelegate {
     
-    // Sub-menu that displays recently added files/folders. Clicking on any of these items will result in the item being added to the playlist if not already present.
-    @IBOutlet weak var recentlyAddedMenu: NSMenu!
+    // Sub-menu that displays recently played tracks. Clicking on any of these items will result in the track being played.
+    @IBOutlet weak var recentItemsMenu: NSMenu!
     
     @IBOutlet weak var resumeLastPlayedTrackItem: NSMenuItem!
     
     func menuWillOpen(_ menu: NSMenu) {
+        
+        recentItemsMenu.removeAllItems()
+        
+        // Retrieve the model and re-create all sub-menu items
+        createChronologicalMenu(historyDelegate.allRecentItems, recentItemsMenu, self, #selector(self.playSelectedItemAction(_:)))
+        
         resumeLastPlayedTrackItem.enableIf(player.state == .stopped && historyDelegate.lastPlaybackPosition > 0)
+    }
+    
+    // When a "Recently played" or "Favorites" menu item is clicked, the item is played
+    @IBAction fileprivate func playSelectedItemAction(_ sender: HistoryMenuItem) {
+        
+        if let item = sender.historyItem {
+            historyDelegate.playItem(item)
+        }
     }
     
     @IBAction fileprivate func resumeLastPlayedTrackAction(_ sender: NSMenuItem) {
@@ -109,69 +123,5 @@ fileprivate func createChronologicalMenu(_ items: [HistoryItem], _ menu: NSMenu,
         
         // Add the history menu item to the menu
         menu.addItem(menuItem)
-    }
-}
-
-class RecentlyAddedMenuController: NSObject, NSMenuDelegate {
-    
-    // Sub-menu that displays recently added files/folders. Clicking on any of these items will result in the item being added to the playlist if not already present.
-    @IBOutlet weak var recentlyAddedMenu: NSMenu!
-    
-    // Before the menu opens, re-create the menu items from the model
-    func menuWillOpen(_ menu: NSMenu) {
-        
-        recentlyAddedMenu.removeAllItems()
-        
-        // Retrieve the model and re-create all sub-menu items
-        createChronologicalMenu(historyDelegate.allRecentlyAddedItems, recentlyAddedMenu, self, #selector(self.addSelectedItemAction(_:)))
-    }
-    
-    // When a "Recently added" menu item is clicked, the item is added to the playlist
-    @IBAction fileprivate func addSelectedItemAction(_ sender: HistoryMenuItem) {
-        
-        // TODO: Different behavior based on type of item (track, folder, artist, etc)
-        
-//        if let item = sender.historyItem as? HistoryItem {
-//            
-//            do {
-//                try history.addItem(item.file)
-//                
-//            } catch {
-//                
-//                if let fnfError = error as? FileNotFoundError {
-//                    
-//                    // This needs to be done async. Otherwise, other open dialogs could hang.
-//                    DispatchQueue.main.async {
-//                        
-//                        // Position and display an alert with error info
-//                        _ = DialogsAndAlerts.historyItemNotAddedAlertWithError(fnfError, "Remove item from history").showModal()
-//                        self.history.deleteItem(item)
-//                    }
-//                }
-//            }
-//        }
-    }
-}
-
-class RecentlyPlayedMenuController: NSObject, NSMenuDelegate {
-    
-    // Sub-menu that displays recently played tracks. Clicking on any of these items will result in the track being played.
-    @IBOutlet weak var recentlyPlayedMenu: NSMenu!
-    
-    // Before the menu opens, re-create the menu items from the model
-    func menuWillOpen(_ menu: NSMenu) {
-        
-        recentlyPlayedMenu.removeAllItems()
-        
-        // Retrieve the model and re-create all sub-menu items
-        createChronologicalMenu(historyDelegate.allRecentlyPlayedItems, recentlyPlayedMenu, self, #selector(self.playSelectedItemAction(_:)))
-    }
-
-    // When a "Recently played" or "Favorites" menu item is clicked, the item is played
-    @IBAction fileprivate func playSelectedItemAction(_ sender: HistoryMenuItem) {
-        
-        if let item = sender.historyItem {
-            historyDelegate.playItem(item)
-        }
     }
 }

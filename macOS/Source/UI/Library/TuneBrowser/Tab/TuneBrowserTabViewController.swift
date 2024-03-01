@@ -203,15 +203,13 @@ class TuneBrowserTabViewController: NSViewController, NSMenuDelegate, FileSystem
         lblSummary.stringValue = summaryString.isEmpty ? "0 tracks" : summaryString
     }
         
-    // TODO: If some of these items already exist, playback won't begin.
-    // Need to modify playlist to always play the first item.
-    func doAddBrowserItemsToPlayQueue(urls: [URL], beginPlayback: Bool = false) {
+    func doAddBrowserItemsToPlayQueue(items: [FileSystemItem], clearQueue: Bool = false, beginPlayback: Bool = false) {
         
         if beginPlayback {
-            messenger.publish(LibraryFileSystemItemsPlayedNotification(filesAndFolders: urls))
+            playQueueDelegate.enqueueToPlayNow(fileSystemItems: items, clearQueue: clearQueue)
+        } else {
+            playQueueDelegate.enqueueToPlayLater(fileSystemItems: items)
         }
-        
-        playQueueDelegate.loadTracks(from: urls, autoplay: beginPlayback)
     }
 }
 
