@@ -94,4 +94,6 @@ protocol SequencingProtocol {
     
     // Returns the current repeat and shuffle modes
     var repeatAndShuffleModes: RepeatAndShuffleModes {get}
+    
+    
 }

@@ -14,17 +14,15 @@ class TrackHistoryItem: HistoryItem {
     
     let track: Track
     
-    override var displayName: String {
-        track.displayName
-    }
-    
-    override var key: String {
-        track.file.path
-    }
-    
     init(track: Track, lastEventTime: Date, eventCount: Int = 1) {
         
         self.track = track
-        super.init(lastEventTime: lastEventTime, eventCount: eventCount)
+        super.init(displayName: track.displayName,
+                   key: Self.key(forTrack: track),
+                   lastEventTime: lastEventTime, eventCount: eventCount)
+    }
+    
+    static func key(forTrack track: Track) -> CompositeKey {
+        .init(primaryKey: "track", secondaryKey: track.file.path)
     }
 }

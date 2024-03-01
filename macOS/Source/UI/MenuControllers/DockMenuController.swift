@@ -275,7 +275,7 @@ class DockMenuController: NSObject, NSMenuDelegate {
         recentlyPlayedMenu.removeAllItems()
         
         // Retrieve the model and re-create all sub-menu items
-        history.allRecentlyPlayedItems().forEach {
+        history.allRecentlyPlayedItems.forEach {
             recentlyPlayedMenu.addItem(createHistoryMenuItem($0))
         }
     }

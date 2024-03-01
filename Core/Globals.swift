@@ -56,7 +56,9 @@ let appModeManager: AppModeManager = AppModeManager(persistentState: appPersiste
 #endif
 
 fileprivate let playQueue: PlayQueue = PlayQueue()
-let playQueueDelegate: PlayQueueDelegateProtocol = PlayQueueDelegate(playQueue: playQueue,
+
+var playQueueDelegate: PlayQueueDelegateProtocol {_playQueueDelegate}
+fileprivate let _playQueueDelegate: PlayQueueDelegate = PlayQueueDelegate(playQueue: playQueue,
                                                                      persistentState: appPersistentState.playQueue)
 
 let library: Library = Library(persistentState: appPersistentState.library)
@@ -97,8 +99,7 @@ let playbackDelegate: PlaybackDelegateProtocol = {
 
 var playbackInfoDelegate: PlaybackInfoDelegateProtocol {playbackDelegate}
 
-var historyDelegate: HistoryDelegateProtocol {_historyDelegate}
-fileprivate let _historyDelegate: HistoryDelegate = HistoryDelegate(persistentState: appPersistentState.history, preferences.historyPreferences, playQueueDelegate, playbackDelegate)
+var historyDelegate: HistoryDelegateProtocol {playQueueDelegate}
 
 var favoritesDelegate: FavoritesDelegateProtocol {_favoritesDelegate}
 fileprivate let _favoritesDelegate: FavoritesDelegate = FavoritesDelegate(playQueueDelegate, playbackDelegate)
@@ -163,11 +164,10 @@ var persistentStateOnExit: AppPersistentState {
     persistentState.appVersion = appVersion
     
     persistentState.audioGraph = audioGraph.persistentState
-    persistentState.playQueue = playQueue.persistentState
+    persistentState.playQueue = _playQueueDelegate.persistentState
     
     persistentState.library = library.persistentState
     persistentState.playlists = playlistsManager.persistentState
-    persistentState.history = _historyDelegate.persistentState
     persistentState.favorites = _favoritesDelegate.persistentState
     persistentState.bookmarks = _bookmarksDelegate.persistentState
     

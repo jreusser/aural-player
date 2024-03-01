@@ -1,6 +1,6 @@
 import Foundation
 
-class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
+class PlayQueue: TrackList, PlayQueueProtocol {
     
     override var displayName: String {"The Play Queue"}
     
@@ -190,10 +190,6 @@ class PlayQueue: TrackList, PlayQueueProtocol, PersistentModelObject {
             
             currentTrackIndex = newPlayingTrackIndex
         }
-    }
-    
-    var persistentState: PlayQueuePersistentState {
-        .init(tracks: tracks.map {$0.file}, repeatMode: self.repeatMode, shuffleMode: self.shuffleMode)
     }
 }
 

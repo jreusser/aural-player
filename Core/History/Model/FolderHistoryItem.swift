@@ -14,17 +14,15 @@ class FolderHistoryItem: HistoryItem {
     
     let folder: URL
     
-    override var displayName: String {
-        folder.lastPathComponents(count: 2)
-    }
-    
-    override var key: String {
-        folder.path
-    }
-    
     init(folder: URL, lastEventTime: Date, eventCount: Int = 1) {
         
         self.folder = folder
-        super.init(lastEventTime: lastEventTime, eventCount: eventCount)
+        super.init(displayName: folder.lastPathComponents(count: 2), 
+                   key: Self.key(forFolder: folder),
+                   lastEventTime: lastEventTime, eventCount: eventCount)
+    }
+    
+    static func key(forFolder folder: URL) -> CompositeKey {
+        .init(primaryKey: "folder", secondaryKey: folder.path)
     }
 }

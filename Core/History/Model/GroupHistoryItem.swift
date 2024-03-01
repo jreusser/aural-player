@@ -15,19 +15,17 @@ class GroupHistoryItem: HistoryItem {
     let groupName: String
     let groupType: GroupType
     
-    override var displayName: String {
-        groupName
-    }
-    
-    override var key: String {
-        "\(groupType.rawValue)_\(groupName)"
-    }
-    
     init(groupName: String, groupType: GroupType, lastEventTime: Date, eventCount: Int = 1) {
         
         self.groupName = groupName
         self.groupType = groupType
         
-        super.init(lastEventTime: lastEventTime, eventCount: eventCount)
+        super.init(displayName: groupName,
+                   key: Self.key(forGroupName: groupName, andType: groupType),
+                   lastEventTime: lastEventTime, eventCount: eventCount)
+    }
+    
+    static func key(forGroupName groupName: String, andType groupType: GroupType) -> CompositeKey {
+        .init(primaryKey: "group", secondaryKey: "\(groupType.rawValue)_\(groupName)")
     }
 }

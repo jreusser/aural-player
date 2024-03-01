@@ -123,7 +123,7 @@ class RecentlyAddedMenuController: NSObject, NSMenuDelegate {
         recentlyAddedMenu.removeAllItems()
         
         // Retrieve the model and re-create all sub-menu items
-        createChronologicalMenu(historyDelegate.allRecentlyAddedItems(), recentlyAddedMenu, self, #selector(self.addSelectedItemAction(_:)))
+        createChronologicalMenu(historyDelegate.allRecentlyAddedItems, recentlyAddedMenu, self, #selector(self.addSelectedItemAction(_:)))
     }
     
     // When a "Recently added" menu item is clicked, the item is added to the playlist
@@ -164,7 +164,7 @@ class RecentlyPlayedMenuController: NSObject, NSMenuDelegate {
         recentlyPlayedMenu.removeAllItems()
         
         // Retrieve the model and re-create all sub-menu items
-        createChronologicalMenu(historyDelegate.allRecentlyPlayedItems(), recentlyPlayedMenu, self, #selector(self.playSelectedItemAction(_:)))
+        createChronologicalMenu(historyDelegate.allRecentlyPlayedItems, recentlyPlayedMenu, self, #selector(self.playSelectedItemAction(_:)))
     }
 
     // When a "Recently played" or "Favorites" menu item is clicked, the item is played

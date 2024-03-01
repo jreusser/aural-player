@@ -14,21 +14,16 @@ import Foundation
 ///
 class HistoryItem {
     
+    let displayName: String
+    let key: CompositeKey
+    
     var lastEventTime: Date
     var eventCount: Int
     
-    // Override this!
-    var displayName: String {
-        "HistoryItem"
-    }
-    
-    // Override this!
-    var key: String {
-        "HistoryItem"
-    }
-    
-    init(lastEventTime: Date, eventCount: Int) {
+    init(displayName: String, key: CompositeKey, lastEventTime: Date, eventCount: Int) {
         
+        self.displayName = displayName
+        self.key = key
         self.lastEventTime = lastEventTime
         self.eventCount = eventCount
     }

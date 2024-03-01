@@ -17,17 +17,15 @@ class PlaylistHistoryItem: HistoryItem {
     
     let playlistName: String
     
-    override var displayName: String {
-        playlistName
-    }
-    
-    override var key: String {
-        playlistName
-    }
-    
     init(playlistName: String, lastEventTime: Date, eventCount: Int = 1) {
         
         self.playlistName = playlistName
-        super.init(lastEventTime: lastEventTime, eventCount: eventCount)
+        super.init(displayName: playlistName,
+                   key: Self.key(forPlaylistNamed: playlistName),
+                   lastEventTime: lastEventTime, eventCount: eventCount)
+    }
+    
+    static func key(forPlaylistNamed playlistName: String) -> CompositeKey {
+        .init(primaryKey: "playlist", secondaryKey: playlistName)
     }
 }

@@ -9,13 +9,13 @@ struct PlayQueueTrackAddResult {
     let index: Int
 }
 
-class PlayQueueDelegate: PlayQueueDelegateProtocol {
+class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
     
     // Recently added items
-    var recentlyAddedItems: OrderedDictionary<String, HistoryItem> = OrderedDictionary()
+    var recentlyAddedItems: OrderedDictionary<CompositeKey, HistoryItem> = OrderedDictionary()
     
     // Recently played items
-    var recentlyPlayedItems: OrderedDictionary<String, HistoryItem> = OrderedDictionary()
+    var recentlyPlayedItems: OrderedDictionary<CompositeKey, HistoryItem> = OrderedDictionary()
     
     var lastPlaybackPosition: Double = 0
     
@@ -279,5 +279,20 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol {
         // When a duplicate notification is sent, don't autoplay ! Otherwise, always autoplay.
 //        addTracks(from: notification.filesToOpen, AutoplayOptions(!notification.isDuplicateNotification))
         loadTracks(from: notification.filesToOpen)
+    }
+    
+    var persistentState: PlayQueuePersistentState {
+        
+        let repeatAndShuffleModes = playQueue.repeatAndShuffleModes
+        return .init(tracks: tracks.map {$0.file}, repeatMode: repeatAndShuffleModes.repeatMode, shuffleMode: repeatAndShuffleModes.shuffleMode,
+                     history: self.historyPersistentState)
+    }
+    
+    var historyPersistentState: HistoryPersistentState {
+        
+        let recentlyAdded = allRecentlyAddedItems.compactMap(HistoryItemPersistentState.init)
+        let recentlyPlayed = allRecentlyPlayedItems.compactMap(HistoryItemPersistentState.init)
+        
+        return HistoryPersistentState(recentlyAdded: recentlyAdded, recentlyPlayed: recentlyPlayed, lastPlaybackPosition: lastPlaybackPosition)
     }
 }

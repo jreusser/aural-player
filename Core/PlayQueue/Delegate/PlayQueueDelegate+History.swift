@@ -38,7 +38,7 @@ extension PlayQueueDelegate {
     func resumeLastPlayedTrack() throws {
         
         if let lastPlayedItem = lastPlayedItem, lastPlaybackPosition > 0 {
-//            playTrackItem(lastPlayedItem, fromPosition: lastPlaybackPosition)
+            playTrackItem(lastPlayedItem, fromPosition: lastPlaybackPosition)
         }
     }
     
@@ -63,7 +63,7 @@ extension PlayQueueDelegate {
     
     func doTrackPlayed(_ track: Track) {
         
-        let trackKey = track.file.path
+        let trackKey = TrackHistoryItem.key(forTrack: track)
         
         if let existingHistoryItem: TrackHistoryItem = recentlyPlayedItems[trackKey] as? TrackHistoryItem {
             markNewEvent(forItem: existingHistoryItem)
@@ -123,7 +123,7 @@ extension PlayQueueDelegate {
     
     func doPlaylistFilePlayed(_ playlistFile: URL) {
         
-        let playlistFileKey = playlistFile.path
+        let playlistFileKey = PlaylistFileHistoryItem.key(forPlaylistFile: playlistFile)
         
         if let existingHistoryItem: PlaylistFileHistoryItem = recentlyPlayedItems[playlistFileKey] as? PlaylistFileHistoryItem {
             markNewEvent(forItem: existingHistoryItem)
@@ -156,7 +156,7 @@ extension PlayQueueDelegate {
     
     private func doGroupPlayed(_ group: Group) {
         
-        let groupKey = "\(group.type)_\(group.name)"
+        let groupKey = GroupHistoryItem.key(forGroupName: group.name, andType: group.type)
         
         if let existingHistoryItem: GroupHistoryItem = recentlyPlayedItems[groupKey] as? GroupHistoryItem {
             markNewEvent(forItem: existingHistoryItem)
@@ -168,7 +168,7 @@ extension PlayQueueDelegate {
     
     private func doFolderPlayed(_ folder: URL) {
         
-        let folderKey = folder.path
+        let folderKey = FolderHistoryItem.key(forFolder: folder)
         
         if let existingHistoryItem: FolderHistoryItem = recentlyPlayedItems[folderKey] as? FolderHistoryItem {
             markNewEvent(forItem: existingHistoryItem)
@@ -180,13 +180,13 @@ extension PlayQueueDelegate {
     
     func playlistPlayed(_ playlist: Playlist) {
         
-        let playlistName = playlist.name
+        let playlistKey = PlaylistHistoryItem.key(forPlaylistNamed: playlist.name)
         
-        if let existingHistoryItem: PlaylistHistoryItem = recentlyPlayedItems[playlistName] as? PlaylistHistoryItem {
+        if let existingHistoryItem: PlaylistHistoryItem = recentlyPlayedItems[playlistKey] as? PlaylistHistoryItem {
             markNewEvent(forItem: existingHistoryItem)
             
         } else {
-            recentlyPlayedItems[playlistName] = PlaylistHistoryItem(playlistName: playlistName, lastEventTime: Date())
+            recentlyPlayedItems[playlistKey] = PlaylistHistoryItem(playlistName: playlist.name, lastEventTime: Date())
         }
     }
     

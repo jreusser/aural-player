@@ -24,10 +24,7 @@ struct AppPersistentState: Codable {
     var audioGraph: AudioGraphPersistentState?
     var library: LibraryPersistentState?
     
-//    var metadata: MetadataPersistentState?
-    
     var playlists: PlaylistsPersistentState?
-    var history: HistoryPersistentState?
     var favorites: FavoritesPersistentState?
     var bookmarks: BookmarksPersistentState?
     
@@ -40,9 +37,8 @@ struct AppPersistentState: Codable {
     init(legacyAppPersistentState: LegacyAppPersistentState) {
         
         self.playQueue = .init(legacyPlaylistPersistentState: legacyAppPersistentState.playlist,
-                               legacyPlaybackSequencePersistentState: legacyAppPersistentState.playbackSequence)
-        
-        self.history = .init(legacyPersistentState: legacyAppPersistentState.history)
+                               legacyPlaybackSequencePersistentState: legacyAppPersistentState.playbackSequence,
+                               legacyHistoryPersistentState: legacyAppPersistentState.history)
         
         self.favorites = .init(legacyPersistentState: legacyAppPersistentState.favorites)
         

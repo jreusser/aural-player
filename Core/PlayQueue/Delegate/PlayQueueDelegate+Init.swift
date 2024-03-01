@@ -34,6 +34,8 @@ extension PlayQueueDelegate {
             }
         }
         
+//        initializeHistory(fromPersistentState: )
+        
         // TODO: Load from playlist / playlist file / folder / group
         
         //        } else if playlistPreferences.playlistOnStartup == .loadFile,
@@ -46,5 +48,75 @@ extension PlayQueueDelegate {
         //
         //            addFiles_async([folder], AutoplayOptions(playbackPreferences.autoplayOnStartup), userAction: false)
         //        }
+    }
+    
+    private func initializeHistory(fromPersistentState persistentState: HistoryPersistentState?) {
+        
+        // Restore the history model object from persistent state.
+        guard let persistentState = persistentState else {return}
+        
+        // Move to a background thread to unblock the main thread.
+        DispatchQueue.global(qos: .utility).async {
+            
+            let recentlyPlayed = persistentState.recentlyPlayed ?? []
+            let recentlyAdded = persistentState.recentlyAdded ?? []
+            
+            for item in recentlyPlayed.reversed().compactMap(self.historyItemForState) {
+                self.recentlyPlayedItems[item.key] = item
+            }
+            
+            for item in recentlyAdded.reversed().compactMap(self.historyItemForState) {
+                self.recentlyAddedItems[item.key] = item
+            }
+        }
+    }
+    
+    private func historyItemForState(_ state: HistoryItemPersistentState) -> HistoryItem? {
+        
+        guard let itemType = state.itemType, let lastEventTime = state.lastEventTime, let eventCount = state.eventCount else {return nil}
+        
+        var item: HistoryItem? = nil
+        
+        switch itemType {
+            
+        case .track:
+            
+            guard let trackFile = state.trackFile else {return nil}
+            
+            let track = Track(trackFile)
+            item = TrackHistoryItem(track: track, lastEventTime: lastEventTime, eventCount: eventCount)
+            
+            TrackLoader.mediumPriorityQueue.addOperation {
+                
+                do {
+                    
+                    let metadata = try fileReader.getPrimaryMetadata(for: trackFile)
+                    track.setPrimaryMetadata(from: FileMetadata(primary: metadata))
+                    
+                } catch {
+                    NSLog("Failed to read track metadata for file: '\(trackFile.path)'")
+                }
+            }
+            
+        case .playlistFile:
+            
+            if let playlistFile = state.playlistFile {
+                item = PlaylistFileHistoryItem(playlistFile: playlistFile, lastEventTime: lastEventTime, eventCount: eventCount)
+            }
+            
+        case .folder:
+            
+            if let folder = state.folder {
+                item = FolderHistoryItem(folder: folder, lastEventTime: lastEventTime, eventCount: eventCount)
+            }
+            
+        case .group:
+            
+            if let groupName = state.groupName, let groupType = state.groupType {
+                item = GroupHistoryItem(groupName: groupName, groupType: groupType, lastEventTime: lastEventTime, eventCount: eventCount)
+            }
+        }
+        
+        return item
     }
 }

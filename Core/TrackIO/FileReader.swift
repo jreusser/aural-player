@@ -33,7 +33,6 @@ class FileReader: FileReaderProtocol {
     
     func getPrimaryMetadata(for file: URL) throws -> PrimaryMetadata {
         
-        // TODO: Temporarily disabling the cache. Is this really useful ??? Benefit (performance) vs code complexity / probability of bugs.
         if let cachedMetadata = metadataRegistry[file] {
             hits.increment()
             return cachedMetadata
