@@ -14,7 +14,7 @@ import Foundation
 ///
 class HistoryItem {
     
-    let displayName: String
+    var displayName: String
     let key: CompositeKey
     
     var lastEventTime: Date

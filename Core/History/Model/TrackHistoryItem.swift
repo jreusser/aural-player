@@ -14,6 +14,14 @@ class TrackHistoryItem: HistoryItem {
     
     let track: Track
     
+    /// Hack that's required because a track's displayName can change (once metadata is loaded).
+    /// So, we need this to be computed on-the-fly.
+    override var displayName: String {
+        
+        get {track.displayName}
+        set {}
+    }
+    
     init(track: Track, lastEventTime: Date, eventCount: Int = 1) {
         
         self.track = track

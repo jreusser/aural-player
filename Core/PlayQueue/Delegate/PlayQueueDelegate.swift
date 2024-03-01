@@ -104,8 +104,8 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
     // Library (Tracks view) / Managed Playlists / Favorites / Bookmarks / History
     func enqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet {
         
-        tracksPlayed(tracks)
-        return doEnqueueToPlayNow(tracks: tracks, clearQueue: clearQueue)
+        
+        doEnqueueToPlayNow(tracks: tracks, clearQueue: clearQueue)
     }
     
     // Library (grouped views) / Favorites / History
