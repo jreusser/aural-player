@@ -60,7 +60,7 @@ class TuneBrowserViewController: NSViewController {
         super.viewDidLoad()
         
         messenger.subscribe(to: .tuneBrowser_openFolder, handler: openFolder(notif:))
-        messenger.subscribe(to: .application_willExit, handler: onAppExit)
+        messenger.subscribe(to: .Application.willExit, handler: onAppExit)
         
         // TODO: This is inefficient!!! Wait till library is built before doing this.
         messenger.subscribeAsync(to: .Library.doneAddingTracks) {[weak self] in

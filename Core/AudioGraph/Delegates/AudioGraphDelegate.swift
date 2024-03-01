@@ -146,7 +146,7 @@ class AudioGraphDelegate: AudioGraphDelegateProtocol {
         
         graph.captureSystemSoundProfile()
         
-        messenger.subscribe(to: .application_willExit, handler: onAppExit)
+        messenger.subscribe(to: .Application.willExit, handler: onAppExit)
         messenger.subscribe(to: .Player.preTrackPlayback, handler: preTrackPlayback(_:))
         
         messenger.subscribe(to: .Effects.saveSoundProfile, handler: saveSoundProfile)

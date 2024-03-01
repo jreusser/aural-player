@@ -55,7 +55,7 @@ class LibraryDelegate: LibraryDelegateProtocol {
     init() {
 
         // Subscribe to notifications
-        messenger.subscribe(to: .application_reopened, handler: appReopened(_:))
+        messenger.subscribe(to: .Application.reopened, handler: appReopened(_:))
         
         libraryMonitor.startMonitoring()
     }

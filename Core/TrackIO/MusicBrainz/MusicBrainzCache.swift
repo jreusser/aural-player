@@ -37,7 +37,7 @@ class MusicBrainzCache: PersistentModelObject {
     init(state: MusicBrainzCachePersistentState?, preferences: MusicBrainzPreferences) {
         
         self.preferences = preferences
-        messenger.subscribe(to: .application_willExit, handler: onAppExit)
+        messenger.subscribe(to: .Application.willExit, handler: onAppExit)
         
         guard preferences.enableCoverArtSearch && preferences.enableOnDiskCoverArtCache else {
             

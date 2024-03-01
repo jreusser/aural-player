@@ -158,6 +158,8 @@ extension Notification.Name {
         // Commands the player to toggle the shuffle mode.
         static let toggleShuffleMode = Notification.Name("player_toggleShuffleMode")
         
+        static let setRepeatAndShuffleModes = Notification.Name("player_setRepeatAndShuffleModes")
+        
         // ----------------------------------------------------------------------------------------
         
         // MARK: Player view commands

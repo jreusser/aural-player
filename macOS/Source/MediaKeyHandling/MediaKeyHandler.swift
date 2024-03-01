@@ -49,7 +49,7 @@ class MediaKeyHandler: MediaKeyTapDelegate {
     init(_ preferences: MediaKeysControlsPreferences) {
         
         self.preferences = preferences
-        messenger.subscribe(to: .application_launched, handler: startMonitoring, filter: {[weak self] in self?.preferences.enabled ?? false})
+        messenger.subscribe(to: .Application.launched, handler: startMonitoring, filter: {[weak self] in self?.preferences.enabled ?? false})
     }
     
     func startMonitoring() {

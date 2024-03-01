@@ -91,7 +91,7 @@ extension AppDelegate {
         appLaunched = true
         
         // Tell app components that the app has finished launching, and pass along any launch parameters (set of files to open)
-        messenger.publish(.application_launched, payload: filesToOpen)
+        messenger.publish(.Application.launched, payload: filesToOpen)
         
         // TODO: Temporary Autoplay hack !!!
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {

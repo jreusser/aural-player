@@ -71,8 +71,8 @@ import Foundation
 //        trackUpdateQueue = OperationQueue(opCount: concurrentAddOpCount, qos: .utility)
 //
 //        // Subscribe to notifications
-////        messenger.subscribe(to: .application_launched, handler: appLaunched(_:))
-////        messenger.subscribe(to: .application_reopened, handler: appReopened(_:))
+////        messenger.subscribe(to: .Application.launched, handler: appLaunched(_:))
+////        messenger.subscribe(to: .Application.reopened, handler: appReopened(_:))
 ////        messenger.subscribe(to: .playlist_currentPlaylistChanged, handler: currentPlaylistChanged)
 //    }
 //

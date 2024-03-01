@@ -63,7 +63,7 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol, SequencingProtocol, Histo
 extension PlayQueueDelegateProtocol {
     
     @discardableResult func enqueueToPlayNow(group: Group, clearQueue: Bool) -> IndexSet {
-        enqueueToPlayNow(group: group, clearQueue: clearQueue)
+        enqueueToPlayNow(groups: [group], tracks: [], clearQueue: clearQueue)
     }
     
     @discardableResult func enqueueToPlayNow(playlistFile: ImportedPlaylist, clearQueue: Bool) -> IndexSet {

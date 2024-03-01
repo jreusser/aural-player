@@ -176,7 +176,7 @@ extension PlayQueue {
     // MARK: Repeat/Shuffle -------------------------------------------------------------------------------------
     
     // Sets the repeat mode to a specific value. Returns the new repeat and shuffle mode after performing the toggle operation.
-    func setRepeatMode(_ repeatMode: RepeatMode) -> RepeatAndShuffleModes {
+    @discardableResult func setRepeatMode(_ repeatMode: RepeatMode) -> RepeatAndShuffleModes {
         
         self.repeatMode = repeatMode
         
@@ -191,7 +191,7 @@ extension PlayQueue {
     }
     
     // Sets the shuffle mode to a specific value. Returns the new repeat and shuffle mode after performing the toggle operation.
-    func setShuffleMode(_ shuffleMode: ShuffleMode) -> RepeatAndShuffleModes {
+    @discardableResult func setShuffleMode(_ shuffleMode: ShuffleMode) -> RepeatAndShuffleModes {
         
         // Execute this method only if the desired shuffle mode is different from the current shuffle mode.
         guard shuffleMode != self.shuffleMode else {return repeatAndShuffleModes}
@@ -214,6 +214,12 @@ extension PlayQueue {
         }
         
         return repeatAndShuffleModes
+    }
+    
+    func setRepeatAndShuffleModes(repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
+        
+        setRepeatMode(repeatMode)
+        setShuffleMode(shuffleMode)
     }
 
     // Toggles between repeat modes. See RepeatMode for more details. Returns the new repeat and shuffle mode after performing the toggle operation.

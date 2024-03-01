@@ -32,6 +32,10 @@ extension PlayQueueDelegate {
         playQueue.setShuffleMode(shuffleMode)
     }
     
+    func setRepeatAndShuffleModes(repeatMode: RepeatMode, shuffleMode: ShuffleMode) {
+        playQueue.setRepeatAndShuffleModes(repeatMode: repeatMode, shuffleMode: shuffleMode)
+    }
+    
     func start() -> Track? {
         playQueue.start()
     }

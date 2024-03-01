@@ -14,13 +14,16 @@ import Foundation
 ///
 extension Notification.Name {
     
-    // Signifies that the application has finished launching
-    static let application_launched = Notification.Name("application_launched")
-    
-    // Signifies that the application has been reopened after being launched previously.
-    static let application_reopened = Notification.Name("application_reopened")
-    
-    // Signifies that the application is about to exit/terminate, allowing observers
-    // to save any state or perform any kind of shutdown or cleanup prior to exiting.
-    static let application_willExit = Notification.Name("application_willExit")
+    struct Application {
+        
+        // Signifies that the application has finished launching
+        static let launched = Notification.Name("application_launched")
+        
+        // Signifies that the application has been reopened after being launched previously.
+        static let reopened = Notification.Name("application_reopened")
+        
+        // Signifies that the application is about to exit/terminate, allowing observers
+        // to save any state or perform any kind of shutdown or cleanup prior to exiting.
+        static let willExit = Notification.Name("application_willExit")
+    }
 }

@@ -51,7 +51,9 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
         _ = setShuffleMode(persistentState?.shuffleMode ?? .defaultMode)
         
         // Subscribe to notifications
-        messenger.subscribe(to: .application_reopened, handler: appReopened(_:))
+        messenger.subscribe(to: .Application.reopened, handler: appReopened(_:))
+        messenger.subscribe(to: .Player.trackTransitioned, handler: trackPlayed(_:))
+        messenger.subscribe(to: .Application.willExit, handler: appWillExit)
     }
     
     func hasTrack(_ track: Track) -> Bool {

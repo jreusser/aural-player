@@ -85,7 +85,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Broadcast a notification to all app components that the app will exit.
         // This call is synchronous, i.e. it will block till all observers have
         // finished saving their state or performing any cleanup.
-        messenger.publish(.application_willExit)
+        messenger.publish(.Application.willExit)
         
         // Perform a final shutdown.
         tearDown()

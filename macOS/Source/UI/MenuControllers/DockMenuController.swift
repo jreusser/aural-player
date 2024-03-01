@@ -70,7 +70,7 @@ class DockMenuController: NSObject, NSMenuDelegate {
         messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:),
                                  filter: {msg in msg.trackChanged})
         
-        messenger.subscribeAsync(to: .application_launched, handler: appLaunched(_:))
+        messenger.subscribeAsync(to: .Application.launched, handler: appLaunched(_:))
     }
     
     func menuNeedsUpdate(_ menu: NSMenu) {

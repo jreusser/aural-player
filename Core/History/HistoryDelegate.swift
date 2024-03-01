@@ -65,7 +65,7 @@
 //        messenger.subscribeAsync(to: .Library.fileSystemItemsPlayed, handler: fileSystemItemsPlayed(_:))
 //        messenger.subscribeAsync(to: .Library.groupPlayed, handler: groupPlayed(_:))
 //        
-//        messenger.subscribe(to: .application_willExit, handler: appWillExit)
+//        messenger.subscribe(to: .Application.willExit, handler: appWillExit)
 //    }
 //    
 //    var allRecentlyAddedItems: [HistoryItem] {

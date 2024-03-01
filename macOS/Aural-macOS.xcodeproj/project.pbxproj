@@ -397,6 +397,7 @@
 		3E7C978D268BB8BE00287158 /* NSLayoutConstraintExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C978C268BB8BE00287158 /* NSLayoutConstraintExtensions.swift */; };
 		3E7EC9052B92593200FDE39B /* PlaylistHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7EC9042B92593200FDE39B /* PlaylistHistoryItem.swift */; };
 		3E7EC9072B925E1400FDE39B /* CompositeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7EC9062B925E1400FDE39B /* CompositeKey.swift */; };
+		3E7EC9092B92712A00FDE39B /* RepeatAndShuffleModesCommandNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7EC9082B92712A00FDE39B /* RepeatAndShuffleModesCommandNotification.swift */; };
 		3E81BCD7284AAB5100927E4A /* TuneBrowserItemsAddedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81BCD6284AAB5100927E4A /* TuneBrowserItemsAddedNotification.swift */; };
 		3E836E332868964D009371D4 /* PlayQueueContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E836E322868964D009371D4 /* PlayQueueContainer.xib */; };
 		3E836E392868A36F009371D4 /* UnifiedPlayerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E836E382868A36F009371D4 /* UnifiedPlayerNotifications.swift */; };
@@ -1439,6 +1440,7 @@
 		3E7C978C268BB8BE00287158 /* NSLayoutConstraintExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtensions.swift; sourceTree = "<group>"; };
 		3E7EC9042B92593200FDE39B /* PlaylistHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistHistoryItem.swift; sourceTree = "<group>"; };
 		3E7EC9062B925E1400FDE39B /* CompositeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeKey.swift; sourceTree = "<group>"; };
+		3E7EC9082B92712A00FDE39B /* RepeatAndShuffleModesCommandNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatAndShuffleModesCommandNotification.swift; sourceTree = "<group>"; };
 		3E81BCD6284AAB5100927E4A /* TuneBrowserItemsAddedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneBrowserItemsAddedNotification.swift; sourceTree = "<group>"; };
 		3E836E322868964D009371D4 /* PlayQueueContainer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayQueueContainer.xib; sourceTree = "<group>"; };
 		3E836E382868A36F009371D4 /* UnifiedPlayerNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedPlayerNotifications.swift; sourceTree = "<group>"; };
@@ -4935,6 +4937,7 @@
 				3EFE377127864895006F8B8C /* AutoplayCommandNotification.swift */,
 				3EFE377227864895006F8B8C /* SelectSearchResultCommandNotification.swift */,
 				3EFE377327864895006F8B8C /* TrackPlaybackCommandNotification.swift */,
+				3E7EC9082B92712A00FDE39B /* RepeatAndShuffleModesCommandNotification.swift */,
 				3EFE377427864895006F8B8C /* PlaylistCommandNotification.swift */,
 				3E495B8628105BAD00D4766A /* EnqueueAndPlayNowCommand.swift */,
 				3EC856A92811CA4300647CF4 /* CopyTracksToPlaylistCommand.swift */,
@@ -5846,6 +5849,7 @@
 				3E98E5F8262D51AF00A65BCE /* PlayingTrackInfo.swift in Sources */,
 				3EFE0A8C2B4B364200C9B121 /* TrackHistoryItem.swift in Sources */,
 				3EA6C6292AD6AAA100B75166 /* FFmpegCodecContext.swift in Sources */,
+				3E7EC9092B92712A00FDE39B /* RepeatAndShuffleModesCommandNotification.swift in Sources */,
 				3ECF71A92B74F69600FDB69B /* CompactPlayQueueViewController+Actions.swift in Sources */,
 				3EFE39DD27864897006F8B8C /* EQUnitPersistentState.swift in Sources */,
 				3EFE380727864896006F8B8C /* SortField.swift in Sources */,

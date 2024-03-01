@@ -508,6 +508,7 @@ class PlayerViewController: NSViewController, FontSchemeObserver, ColorSchemeObs
         messenger.subscribe(to: .Player.toggleRepeatMode, handler: toggleRepeatMode)
         messenger.subscribe(to: .Player.setShuffleMode, handler: setShuffleMode(to:))
         messenger.subscribe(to: .Player.toggleShuffleMode, handler: toggleShuffleMode)
+        messenger.subscribe(to: .Player.setRepeatAndShuffleModes, handler: setRepeatAndShuffleModes(_:))
         
         messenger.subscribe(to: .Player.playChapter, handler: playChapter(index:))
         messenger.subscribe(to: .Player.previousChapter, handler: previousChapter)
@@ -852,6 +853,12 @@ class PlayerViewController: NSViewController, FontSchemeObserver, ColorSchemeObs
     
     func setShuffleMode(to shuffleMode: ShuffleMode) {
         updateRepeatAndShuffleControls(modes: playQueueDelegate.setShuffleMode(shuffleMode))
+    }
+    
+    func setRepeatAndShuffleModes(_ notif: RepeatAndShuffleModesCommandNotification) {
+        
+        playQueueDelegate.setRepeatAndShuffleModes(repeatMode: notif.repeatMode, shuffleMode: notif.shuffleMode)
+        updateRepeatAndShuffleControls(modes: playQueueDelegate.repeatAndShuffleModes)
     }
     
     @objc dynamic func showOrHideArtist() {

@@ -14,7 +14,7 @@ import Foundation
 ///
 struct AppReopenedNotification: NotificationPayload {
     
-    let notificationName: Notification.Name = .application_reopened
+    let notificationName: Notification.Name = .Application.reopened
     
     // Files specified as launch parameters (files that the app needs to open)
     let filesToOpen: [URL]

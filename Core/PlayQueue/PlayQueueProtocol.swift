@@ -92,8 +92,8 @@ protocol SequencingProtocol {
     // Sets the shuffle mode to a specific value. Returns the new repeat and shuffle mode after performing the toggle operation.
     func setShuffleMode(_ shuffleMode: ShuffleMode) -> RepeatAndShuffleModes
     
+    func setRepeatAndShuffleModes(repeatMode: RepeatMode, shuffleMode: ShuffleMode)
+    
     // Returns the current repeat and shuffle modes
     var repeatAndShuffleModes: RepeatAndShuffleModes {get}
-    
-    
 }

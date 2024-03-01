@@ -266,6 +266,12 @@ extension PlayQueueDelegate {
         messenger.publish(LoadAndPlayNowCommand(files: [folder], clearPlayQueue: false))
     }
     
+    func markLastPlaybackPosition(_ position: Double) {
+        self.lastPlaybackPosition = position
+    }
+    
+    // MARK: Management of history (cleanup, resizing) ---------------------------------------------------------------------------------------------------------
+    
     func deleteItem(_ item: HistoryItem) {
 //        recentlyPlayedItems.remove(item)
     }
@@ -282,9 +288,5 @@ extension PlayQueueDelegate {
         
         recentlyAddedItems.removeAll()
         recentlyPlayedItems.removeAll()
-    }
-    
-    func markLastPlaybackPosition(_ position: Double) {
-        self.lastPlaybackPosition = position
     }
 }

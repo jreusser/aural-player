@@ -34,7 +34,7 @@ extension PlayQueueDelegate {
             }
         }
         
-//        initializeHistory(fromPersistentState: )
+        initializeHistory(fromPersistentState: persistentState?.history)
         
         // TODO: Load from playlist / playlist file / folder / group
         
