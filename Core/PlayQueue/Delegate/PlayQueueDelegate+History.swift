@@ -36,26 +36,28 @@ extension PlayQueueDelegate {
         }
     }
     
+    // MARK: Event handling for Tracks ---------------------------------------------------------------
+    
     // Whenever a track is played by the player, add an entry in the "Recently played" list
     func trackPlayed(_ notification: TrackTransitionNotification) {
         
         if let newTrack = notification.endTrack {
             
-            doTrackPlayed(newTrack)
+            markEventForTrack(newTrack)
             messenger.publish(.history_updated)
         }
     }
     
-    func tracksPlayed(_ tracks: [Track]) {
+    func tracksEnqueued(_ tracks: [Track]) {
         
         for track in tracks {
-            doTrackPlayed(track)
+            markEventForTrack(track)
         }
         
         messenger.publish(.history_updated)
     }
     
-    func doTrackPlayed(_ track: Track) {
+    fileprivate func markEventForTrack(_ track: Track) {
         
         let trackKey = TrackHistoryItem.key(forTrack: track)
         
@@ -67,79 +69,27 @@ extension PlayQueueDelegate {
         }
     }
     
-    func fileSystemItemsPlayed(_ fileSystemItems: [FileSystemItem]) {
+    // MARK: Event handling for FileSystemItems ---------------------------------------------------------------
+    
+    func fileSystemItemsEnqueued(_ fileSystemItems: [FileSystemItem]) {
         
         for fileSystemItem in fileSystemItems {
             
             if fileSystemItem.isTrack, let trackItem = fileSystemItem as? FileSystemTrackItem {
-                doTrackPlayed(trackItem.track)
+                markEventForTrack(trackItem.track)
                 
             } else if fileSystemItem.isDirectory {
-                doFolderPlayed(fileSystemItem.url)
+                markEventForFolder(fileSystemItem.url)
                 
             } else {
-                doPlaylistFilePlayed(fileSystemItem.url)
+                markEventForPlaylistFile(fileSystemItem.url)
             }
         }
         
         messenger.publish(.history_updated)
     }
     
-    func playlistFilesAndTracksPlayed(playlistFiles: [ImportedPlaylist], tracks: [Track]) {
-        
-        let deDupedTracks: [Track] = tracks.filter {track in
-            !playlistFiles.contains(where: {$0.hasTrack(forFile: track.file)})
-        }
-        
-        for playlistFile in playlistFiles {
-            doPlaylistFilePlayed(playlistFile.file)
-        }
-        
-        tracksPlayed(deDupedTracks)
-        
-        messenger.publish(.history_updated)
-    }
-    
-    func doPlaylistFilePlayed(_ playlistFile: URL) {
-        
-        let playlistFileKey = PlaylistFileHistoryItem.key(forPlaylistFile: playlistFile)
-        
-        if let existingHistoryItem: PlaylistFileHistoryItem = recentItems[playlistFileKey] as? PlaylistFileHistoryItem {
-            markNewEvent(forItem: existingHistoryItem)
-            
-        } else {
-            recentItems[playlistFileKey] = PlaylistFileHistoryItem(playlistFile: playlistFile, lastEventTime: Date())
-        }
-    }
-    
-    func groupsAndTracksPlayed(groups: [Group], tracks: [Track]) {
-        
-        let deDupedTracks: [Track] = tracks.filter {track in
-            !groups.contains(where: {$0.hasTrack(forFile: track.file)})
-        }
-        
-        for group in groups {
-            doGroupPlayed(group)
-        }
-        
-        tracksPlayed(deDupedTracks)
-        
-        messenger.publish(.history_updated)
-    }
-    
-    private func doGroupPlayed(_ group: Group) {
-        
-        let groupKey = GroupHistoryItem.key(forGroupName: group.name, andType: group.type)
-        
-        if let existingHistoryItem: GroupHistoryItem = recentItems[groupKey] as? GroupHistoryItem {
-            markNewEvent(forItem: existingHistoryItem)
-            
-        } else {
-            recentItems[groupKey] = GroupHistoryItem(groupName: group.name, groupType: group.type, lastEventTime: Date())
-        }
-    }
-    
-    private func doFolderPlayed(_ folder: URL) {
+    fileprivate func markEventForFolder(_ folder: URL) {
         
         let folderKey = FolderHistoryItem.key(forFolder: folder)
         
@@ -151,7 +101,65 @@ extension PlayQueueDelegate {
         }
     }
     
-    func playlistPlayed(_ playlist: Playlist) {
+    func playlistFilesAndTracksEnqueued(playlistFiles: [ImportedPlaylist], tracks: [Track]) {
+        
+        let deDupedTracks: [Track] = tracks.filter {track in
+            !playlistFiles.contains(where: {$0.hasTrack(forFile: track.file)})
+        }
+        
+        for playlistFile in playlistFiles {
+            markEventForPlaylistFile(playlistFile.file)
+        }
+        
+        tracksEnqueued(deDupedTracks)
+        
+        messenger.publish(.history_updated)
+    }
+    
+    fileprivate func markEventForPlaylistFile(_ playlistFile: URL) {
+        
+        let playlistFileKey = PlaylistFileHistoryItem.key(forPlaylistFile: playlistFile)
+        
+        if let existingHistoryItem: PlaylistFileHistoryItem = recentItems[playlistFileKey] as? PlaylistFileHistoryItem {
+            markNewEvent(forItem: existingHistoryItem)
+            
+        } else {
+            recentItems[playlistFileKey] = PlaylistFileHistoryItem(playlistFile: playlistFile, lastEventTime: Date())
+        }
+    }
+    
+    // MARK: Event handling for Groups ---------------------------------------------------------------
+    
+    func groupsAndTracksEnqueued(groups: [Group], tracks: [Track]) {
+        
+        let deDupedTracks: [Track] = tracks.filter {track in
+            !groups.contains(where: {$0.hasTrack(forFile: track.file)})
+        }
+        
+        for group in groups {
+            markEventForGroup(group)
+        }
+        
+        tracksEnqueued(deDupedTracks)
+        
+        messenger.publish(.history_updated)
+    }
+    
+    fileprivate func markEventForGroup(_ group: Group) {
+        
+        let groupKey = GroupHistoryItem.key(forGroupName: group.name, andType: group.type)
+        
+        if let existingHistoryItem: GroupHistoryItem = recentItems[groupKey] as? GroupHistoryItem {
+            markNewEvent(forItem: existingHistoryItem)
+            
+        } else {
+            recentItems[groupKey] = GroupHistoryItem(groupName: group.name, groupType: group.type, lastEventTime: Date())
+        }
+    }
+    
+    // MARK: Event handling for Playlists ---------------------------------------------------------------
+    
+    func playlistEnqueued(_ playlist: Playlist) {
         
         let playlistKey = PlaylistHistoryItem.key(forPlaylistNamed: playlist.name)
         
@@ -173,15 +181,6 @@ extension PlayQueueDelegate {
     }
     
     // MARK: Playback of items ---------------------------------------------------------------------------------------------------------
-    
-    func addItem(_ item: URL) throws {
-        
-        if !item.exists {
-            throw FileNotFoundError(item)
-        }
-        
-//        playlist.addFiles([item])
-    }
     
     func playItem(_ item: HistoryItem) {
         
@@ -213,7 +212,7 @@ extension PlayQueueDelegate {
     
     private func playPlaylistFileItem(_ playlistFileHistoryItem: PlaylistFileHistoryItem) {
         
-        doPlaylistFilePlayed(playlistFileHistoryItem.playlistFile)
+        markEventForPlaylistFile(playlistFileHistoryItem.playlistFile)
         
         // Add it to the PQ
         if let importedPlaylist = libraryDelegate.findImportedPlaylist(atLocation: playlistFileHistoryItem.playlistFile) {
@@ -227,7 +226,7 @@ extension PlayQueueDelegate {
         
         guard let group = libraryDelegate.findGroup(named: groupHistoryItem.groupName, ofType: groupHistoryItem.groupType) else {return}
         
-        doGroupPlayed(group)
+        markEventForGroup(group)
         playQueueDelegate.enqueueToPlayNow(group: group, clearQueue: false)
     }
     
@@ -235,7 +234,7 @@ extension PlayQueueDelegate {
         
         let folder = folderHistoryItem.folder
         
-        doFolderPlayed(folder)
+        markEventForFolder(folder)
         messenger.publish(LoadAndPlayNowCommand(files: [folder], clearPlayQueue: false))
     }
     

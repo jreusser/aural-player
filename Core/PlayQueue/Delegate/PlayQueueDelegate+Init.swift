@@ -52,15 +52,17 @@ extension PlayQueueDelegate {
     
     private func initializeHistory(fromPersistentState persistentState: HistoryPersistentState?) {
         
+        if let lastPlaybackPosition = persistentState?.lastPlaybackPosition {
+            self.markLastPlaybackPosition(lastPlaybackPosition)
+        }
+        
         // Restore the history model object from persistent state.
-        guard let persistentState = persistentState else {return}
+        guard let recentItemsState = persistentState?.recentItems else {return}
         
         // Move to a background thread to unblock the main thread.
         DispatchQueue.global(qos: .utility).async {
             
-            let recentItems = persistentState.recentItems ?? []
-            
-            for item in recentItems.reversed().compactMap(self.historyItemForState) {
+            for item in recentItemsState.compactMap(self.historyItemForState) {
                 self.recentItems[item.key] = item
             }
         }

@@ -26,9 +26,6 @@ protocol HistoryDelegateProtocol {
     // Retrieves all items from the Recently added list, in chronological order
     var allRecentItems: [HistoryItem] {get}
     
-    // Adds a given item (file/folder) to the playlist
-    func addItem(_ item: URL) throws
-    
     // Plays a given item.
     func playItem(_ item: HistoryItem)
     

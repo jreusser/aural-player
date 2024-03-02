@@ -101,33 +101,35 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
     // Library (Tracks view) / Managed Playlists / Favorites / Bookmarks / History
     func enqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet {
         
-        
-        doEnqueueToPlayNow(tracks: tracks, clearQueue: clearQueue)
+        tracksEnqueued(tracks)
+        return doEnqueueToPlayNow(tracks: tracks, clearQueue: clearQueue)
     }
     
     // Library (grouped views) / Favorites / History
     func enqueueToPlayNow(groups: [Group], tracks: [Track], clearQueue: Bool) -> IndexSet {
         
-        groupsAndTracksPlayed(groups: groups, tracks: tracks)
+        groupsAndTracksEnqueued(groups: groups, tracks: tracks)
         return doEnqueueToPlayNow(tracks: groups.flatMap {$0.tracks} + tracks, clearQueue: clearQueue)
     }
     
     // Library (playlist files)
     func enqueueToPlayNow(playlistFiles: [ImportedPlaylist], tracks: [Track], clearQueue: Bool) -> IndexSet {
         
-        playlistFilesAndTracksPlayed(playlistFiles: playlistFiles, tracks: tracks)
+        playlistFilesAndTracksEnqueued(playlistFiles: playlistFiles, tracks: tracks)
         return doEnqueueToPlayNow(tracks: playlistFiles.flatMap {$0.tracks} + tracks, clearQueue: clearQueue)
     }
     
     // Library (Managed Playlist)
     func enqueueToPlayNow(playlist: Playlist, clearQueue: Bool) -> IndexSet {
-        doEnqueueToPlayNow(tracks: playlist.tracks, clearQueue: clearQueue)
+        
+        playlistEnqueued(playlist)
+        return doEnqueueToPlayNow(tracks: playlist.tracks, clearQueue: clearQueue)
     }
     
     // Tune Browser
     func enqueueToPlayNow(fileSystemItems: [FileSystemItem], clearQueue: Bool) -> IndexSet {
         
-        fileSystemItemsPlayed(fileSystemItems)
+        fileSystemItemsEnqueued(fileSystemItems)
         return doEnqueueToPlayNow(tracks: fileSystemItems.flatMap {$0.tracks}, clearQueue: clearQueue)
     }
     
@@ -146,23 +148,33 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
     // MARK: Play Next ---------------------------------------------------------------
     
     func enqueueToPlayNext(tracks: [Track]) -> IndexSet {
-        doEnqueueToPlayNext(tracks: tracks)
+        
+        tracksEnqueued(tracks)
+        return doEnqueueToPlayNext(tracks: tracks)
     }
     
     func enqueueToPlayNext(groups: [Group], tracks: [Track]) -> IndexSet {
-        doEnqueueToPlayNext(tracks: groups.flatMap {$0.tracks} + tracks)
+        
+        groupsAndTracksEnqueued(groups: groups, tracks: tracks)
+        return doEnqueueToPlayNext(tracks: groups.flatMap {$0.tracks} + tracks)
     }
     
     func enqueueToPlayNext(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet {
-        doEnqueueToPlayNext(tracks: playlistFiles.flatMap {$0.tracks} + tracks)
+        
+        playlistFilesAndTracksEnqueued(playlistFiles: playlistFiles, tracks: tracks)
+        return doEnqueueToPlayNext(tracks: playlistFiles.flatMap {$0.tracks} + tracks)
     }
     
     func enqueueToPlayNext(playlist: Playlist) -> IndexSet {
-        doEnqueueToPlayNext(tracks: playlist.tracks)
+        
+        playlistEnqueued(playlist)
+        return doEnqueueToPlayNext(tracks: playlist.tracks)
     }
     
     func enqueueToPlayNext(fileSystemItems: [FileSystemItem]) -> IndexSet {
-        doEnqueueToPlayNext(tracks: fileSystemItems.flatMap {$0.tracks})
+        
+        fileSystemItemsEnqueued(fileSystemItems)
+        return doEnqueueToPlayNext(tracks: fileSystemItems.flatMap {$0.tracks})
     }
     
     private func doEnqueueToPlayNext(tracks: [Track]) -> IndexSet {
@@ -175,23 +187,33 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
     // MARK: Play Later ---------------------------------------------------------------
     
     func enqueueToPlayLater(tracks: [Track]) -> IndexSet {
-        doEnqueueToPlayLater(tracks: tracks)
+        
+        tracksEnqueued(tracks)
+        return doEnqueueToPlayLater(tracks: tracks)
     }
     
     func enqueueToPlayLater(groups: [Group], tracks: [Track]) -> IndexSet {
-        doEnqueueToPlayLater(tracks: groups.flatMap {$0.tracks} + tracks)
+        
+        groupsAndTracksEnqueued(groups: groups, tracks: tracks)
+        return doEnqueueToPlayLater(tracks: groups.flatMap {$0.tracks} + tracks)
     }
     
     func enqueueToPlayLater(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet {
-        doEnqueueToPlayLater(tracks: playlistFiles.flatMap {$0.tracks} + tracks)
+        
+        playlistFilesAndTracksEnqueued(playlistFiles: playlistFiles, tracks: tracks)
+        return doEnqueueToPlayLater(tracks: playlistFiles.flatMap {$0.tracks} + tracks)
     }
     
     func enqueueToPlayLater(playlist: Playlist) -> IndexSet {
-        doEnqueueToPlayLater(tracks: playlist.tracks)
+        
+        playlistEnqueued(playlist)
+        return doEnqueueToPlayLater(tracks: playlist.tracks)
     }
     
     func enqueueToPlayLater(fileSystemItems: [FileSystemItem]) -> IndexSet {
-        doEnqueueToPlayLater(tracks: fileSystemItems.flatMap {$0.tracks})
+        
+        fileSystemItemsEnqueued(fileSystemItems)
+        return doEnqueueToPlayLater(tracks: fileSystemItems.flatMap {$0.tracks})
     }
     
     private func doEnqueueToPlayLater(tracks: [Track]) -> IndexSet {
