@@ -147,9 +147,9 @@ class PlayQueueViewController: TrackListTableViewController {
         
         // TODO: Load these 2 values from user preferences
         let clearQueue: Bool = false    // Append or replace ???
-        let autoplay: Bool = false       // Autoplay on add
+        let autoplay: Bool = preferences.playbackPreferences.autoplayAfterAddingTracks.value       // Autoplay on add
         
-        playQueueDelegate.loadTracks(from: files, atPosition: row, clearQueue: clearQueue, autoplay: autoplay)
+        playQueueDelegate.loadTracks(from: files, atPosition: row, params: .init(clearQueue: clearQueue, autoplay: autoplay))
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -157,6 +157,14 @@ class PlayQueueViewController: TrackListTableViewController {
     }
     
     // MARK: Method overrides --------------------------------------------------------------------------------
+    
+    // Invokes the Open file dialog, to allow the user to add tracks/playlists to the app playlist
+    override func importFilesAndFolders() {
+        
+        if fileOpenDialog.runModal() == .OK {
+            playQueueDelegate.loadTracks(from: fileOpenDialog.urls, params: .init(autoplay: preferences.playbackPreferences.autoplayAfterAddingTracks.value))
+        }
+    }
     
     /**
         The Play Queue needs to update the summary in the case when tracks were reordered, because, if a track

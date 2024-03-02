@@ -19,21 +19,21 @@ protocol PlayQueueProtocol: TrackListProtocol, SequencingProtocol {
     // Moves tracks immediately after the current track, i.e. "Play Next"
     func moveTracksAfterCurrentTrack(from indices: IndexSet) -> IndexSet
     
-    func loadTracks(from files: [URL], atPosition position: Int?, clearQueue: Bool, autoplay: Bool)
+    func loadTracks(from files: [URL], atPosition position: Int?, params: PlayQueueTrackLoadParams)
 }
 
 extension PlayQueueProtocol {
     
+    func loadTracks(from files: [URL]) {
+        loadTracks(from: files, atPosition: nil, params: .defaultParams)
+    }
+    
     func loadTracks(from files: [URL], atPosition position: Int?) {
-        loadTracks(from: files, atPosition: nil, clearQueue: false, autoplay: false)
+        loadTracks(from: files, atPosition: position, params: .defaultParams)
     }
     
-    func loadTracks(from files: [URL], autoplay: Bool) {
-        loadTracks(from: files, atPosition: nil, clearQueue: false, autoplay: autoplay)
-    }
-    
-    func loadTracks(from files: [URL], clearQueue: Bool, autoplay: Bool) {
-        loadTracks(from: files, atPosition: nil, clearQueue: clearQueue, autoplay: autoplay)
+    func loadTracks(from files: [URL], params: PlayQueueTrackLoadParams) {
+        loadTracks(from: files, atPosition: nil, params: params)
     }
 }
 
@@ -111,4 +111,41 @@ protocol SequencingProtocol {
     
     // Returns the current repeat and shuffle modes
     var repeatAndShuffleModes: RepeatAndShuffleModes {get}
+}
+
+struct PlayQueueTrackLoadParams {
+    
+    let clearQueue: Bool
+    let autoplay: Bool
+    let markLoadedItemsForHistory: Bool
+    
+    init(clearQueue: Bool, autoplay: Bool, markLoadedItemsForHistory: Bool) {
+        
+        self.clearQueue = clearQueue
+        self.autoplay = autoplay
+        self.markLoadedItemsForHistory = markLoadedItemsForHistory
+    }
+    
+    init(autoplay: Bool) {
+        
+        self.clearQueue = false
+        self.autoplay = autoplay
+        self.markLoadedItemsForHistory = true
+    }
+    
+    init(autoplay: Bool, markLoadedItemsForHistory: Bool) {
+        
+        self.clearQueue = false
+        self.autoplay = autoplay
+        self.markLoadedItemsForHistory = markLoadedItemsForHistory
+    }
+    
+    init(clearQueue: Bool, autoplay: Bool) {
+        
+        self.clearQueue = clearQueue
+        self.autoplay = autoplay
+        self.markLoadedItemsForHistory = true
+    }
+    
+    static let defaultParams: PlayQueueTrackLoadParams = .init(clearQueue: false, autoplay: false, markLoadedItemsForHistory: true)
 }

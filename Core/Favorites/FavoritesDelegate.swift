@@ -291,7 +291,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
                 playQueueDelegate.enqueueToPlayNow(fileSystemItems: [folder], clearQueue: false)
                 
             } else {
-                playQueueDelegate.loadTracks(from: [favFolder.folder], autoplay: true)
+                playQueueDelegate.loadTracks(from: [favFolder.folder], params: .init(autoplay: true))
             }
             
         } else if let favPlaylistFile = favorite as? FavoritePlaylistFile {
@@ -300,7 +300,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
                 playQueueDelegate.enqueueToPlayNow(playlistFile: importedPlaylist, clearQueue: false)
                 
             } else {
-                playQueueDelegate.loadTracks(from: [favPlaylistFile.playlistFile], autoplay: true)
+                playQueueDelegate.loadTracks(from: [favPlaylistFile.playlistFile], params: .init(autoplay: true))
             }
         }
     }

@@ -11,7 +11,7 @@ protocol PlayQueueDelegateProtocol: TrackListProtocol, SequencingProtocol, Histo
     // MARK: Mutating functions ---------------------------------------------------------------
     
     // Tracks loaded directly from the file system (either Finder or on startup)
-    func loadTracks(from files: [URL], atPosition position: Int?, clearQueue: Bool, autoplay: Bool)
+    func loadTracks(from files: [URL], atPosition position: Int?, params: PlayQueueTrackLoadParams)
     
     // MARK: Play Now ---------------------------------------------------------------
     
@@ -70,11 +70,15 @@ extension PlayQueueDelegateProtocol {
         enqueueToPlayNow(playlistFiles: [playlistFile], tracks: [], clearQueue: clearQueue)
     }
     
-    func loadTracks(from files: [URL], autoplay: Bool) {
-        loadTracks(from: files, atPosition: nil, clearQueue: false, autoplay: autoplay)
+    func loadTracks(from files: [URL]) {
+        loadTracks(from: files, atPosition: nil, params: .defaultParams)
     }
     
-    func loadTracks(from files: [URL], clearQueue: Bool, autoplay: Bool) {
-        loadTracks(from: files, atPosition: nil, clearQueue: clearQueue, autoplay: autoplay)
+    func loadTracks(from files: [URL], atPosition position: Int?) {
+        loadTracks(from: files, atPosition: position, params: .defaultParams)
+    }
+    
+    func loadTracks(from files: [URL], params: PlayQueueTrackLoadParams) {
+        loadTracks(from: files, atPosition: nil, params: params)
     }
 }

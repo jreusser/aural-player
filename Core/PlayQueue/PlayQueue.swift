@@ -31,33 +31,19 @@ class PlayQueue: TrackList, PlayQueueProtocol {
     
     private var autoplay: AtomicBool = AtomicBool(value: false)
     
-    func loadTracks(from files: [URL], atPosition position: Int?, clearQueue: Bool = false, autoplay: Bool = false) {
+    private var markLoadedItemsForHistory: AtomicBool = AtomicBool(value: true)
+    
+    func loadTracks(from files: [URL], atPosition position: Int?, params: PlayQueueTrackLoadParams) {
         
-        if clearQueue {
+        if params.clearQueue {
             removeAllTracks()
         }
         
-        if autoplay {
-            self.autoplay.setTrue()
-        }
+        autoplay.setValue(params.autoplay)
+        markLoadedItemsForHistory.setValue(params.markLoadedItemsForHistory)
         
         loadTracks(from: files, atPosition: position)
     }
-    
-    override func firstTrackLoaded(atIndex index: Int) {
-        
-        // Use for autoplay
-        if autoplay.value {
-            
-            autoplay.setFalse()
-            messenger.publish(TrackPlaybackCommandNotification(index: index))
-//            print("Autoplaying first file: '\(file.lastPathComponent)' at index: \(index)")
-        }
-    }
-    
-//    func enqueueTracks(_ newTracks: [Track]) -> IndexSet {
-//        addTracks(newTracks)
-//    }
     
     func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> IndexSet {
         
@@ -190,16 +176,24 @@ class PlayQueue: TrackList, PlayQueueProtocol {
         messenger.publish(.PlayQueue.startedAddingTracks)
     }
     
-    override func postTrackLoad() {
+    override func firstTrackLoaded(atIndex index: Int) {
         
-        messenger.publish(.PlayQueue.doneAddingTracks)
-        messenger.publish(HistoryItemsAddedNotification(items: session.historyItems))
-        
-        // Make sure this is reset after track load.
-        autoplay.setFalse()
+        // Use for autoplay
+        if autoplay.value {
+            messenger.publish(TrackPlaybackCommandNotification(index: index))
+        }
     }
     
     override func postBatchLoad(indices: IndexSet) {
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
+    }
+    
+    override func postTrackLoad() {
+        
+        messenger.publish(.PlayQueue.doneAddingTracks)
+        
+        if markLoadedItemsForHistory.value {
+            messenger.publish(HistoryItemsAddedNotification(items: session.historyItems))
+        }
     }
 }

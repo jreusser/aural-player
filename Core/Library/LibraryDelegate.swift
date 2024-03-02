@@ -114,8 +114,8 @@ class LibraryDelegate: LibraryDelegateProtocol {
         library.findTrack(forFile: file)
     }
     
+    // Not a valid user action
     func loadTracks(from files: [URL], atPosition position: Int?) {
-        library.loadTracks(from: files, atPosition: position)
     }
     
     func search(_ searchQuery: SearchQuery) -> SearchResults {

@@ -38,6 +38,25 @@ extension PlayQueueDelegate {
     
     // MARK: Event handling for Tracks ---------------------------------------------------------------
     
+    func itemsLoadedFromFileSystem(notif: HistoryItemsAddedNotification) {
+        
+        for url in notif.items {
+            
+            if url.isSupportedAudioFile {
+                
+                if let track = self.findTrack(forFile: url) {
+                    markEventForTrack(track)
+                }
+                
+            } else if url.isDirectory {
+                markEventForFolder(url)
+                
+            } else if url.isSupportedPlaylistFile {
+                markEventForPlaylistFile(url)
+            }
+        }
+    }
+    
     // Whenever a track is played by the player, add an entry in the "Recently played" list
     func trackPlayed(_ notification: TrackTransitionNotification) {
         
@@ -218,7 +237,7 @@ extension PlayQueueDelegate {
             enqueueToPlayNow(playlistFile: importedPlaylist, clearQueue: false)
             
         } else {
-            loadTracks(from: [playlistFileHistoryItem.playlistFile], autoplay: true)
+            loadTracks(from: [playlistFileHistoryItem.playlistFile], params: .init(autoplay: true))
         }
     }
     
@@ -236,7 +255,7 @@ extension PlayQueueDelegate {
             enqueueToPlayNow(fileSystemItems: [fsFolderItem], clearQueue: false)
             
         } else {
-            loadTracks(from: [folder], autoplay: true)
+            loadTracks(from: [folder], params: .init(autoplay: true))
         }
     }
     

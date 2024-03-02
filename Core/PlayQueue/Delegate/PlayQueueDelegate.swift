@@ -49,6 +49,7 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
         
         // Subscribe to notifications
         messenger.subscribe(to: .Application.reopened, handler: appReopened(_:))
+        messenger.subscribe(to: .History.itemsAdded, handler: itemsLoadedFromFileSystem(notif:))
         messenger.subscribe(to: .Player.trackTransitioned, handler: trackPlayed(_:))
         messenger.subscribe(to: .Application.willExit, handler: appWillExit)
     }
@@ -81,12 +82,8 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
         playQueue.search(searchQuery)
     }
     
-    func loadTracks(from files: [URL], atPosition position: Int? = nil) {
-        playQueue.loadTracks(from: files, atPosition: position)
-    }
-    
-    func loadTracks(from files: [URL], atPosition position: Int? = nil, clearQueue: Bool = false, autoplay: Bool = false) {
-        playQueue.loadTracks(from: files, atPosition: position, clearQueue: clearQueue, autoplay: autoplay)
+    func loadTracks(from files: [URL], atPosition position: Int? = nil, params: PlayQueueTrackLoadParams) {
+        playQueue.loadTracks(from: files, atPosition: position, params: params)
     }
     
     func addTracks(_ newTracks: [Track]) -> IndexSet {

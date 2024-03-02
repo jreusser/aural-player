@@ -21,7 +21,7 @@ extension PlayQueueDelegate {
         if appLaunchFiles.isNonEmpty {
             
             // Launch parameters  specified, override playlist saved state and add file paths in params to playlist
-            loadTracks(from: appLaunchFiles, autoplay: playbackPreferences.autoplayAfterOpeningTracks.value)
+            loadTracks(from: appLaunchFiles, params: .init(autoplay: playbackPreferences.autoplayAfterOpeningTracks.value, markLoadedItemsForHistory: false))
             
         } else {
             
@@ -30,7 +30,7 @@ extension PlayQueueDelegate {
             if playQueuePreferences.playQueueOnStartup.value == .rememberFromLastAppLaunch, let files = state.tracks {
                 
                 // No launch parameters specified, load playlist saved state if "Remember state from last launch" preference is selected
-                loadTracks(from: files, autoplay: playbackPreferences.autoplayOnStartup.value)
+                loadTracks(from: files, params: .init(autoplay: playbackPreferences.autoplayOnStartup.value, markLoadedItemsForHistory: false))
             }
         }
         
