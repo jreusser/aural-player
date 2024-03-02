@@ -21,6 +21,8 @@ class TrackReader {
     
     private lazy var messenger = Messenger(for: self)
     
+    private lazy var logger: Logger = .init(for: self)
+    
     init(_ fileReader: FileReaderProtocol, _ coverArtReader: CoverArtReaderProtocol) {
         
         self.fileReader = fileReader
@@ -45,6 +47,7 @@ class TrackReader {
         } catch {
             
             fileMetadata.validationError = (error as? DisplayableError) ?? InvalidTrackError(track.file, "Track is not playable.")
+            logger.error("Failed to read metadata for track: '\(track.file.path)'. Error: \(error.localizedDescription)")
         }
         
         track.setPrimaryMetadata(from: fileMetadata)

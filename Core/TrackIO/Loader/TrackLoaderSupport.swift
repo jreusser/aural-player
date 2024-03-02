@@ -104,15 +104,7 @@ class FileMetadataBatch {
     
     // TODO: Are some errors harmless and should we ignore them ???
     var firstSuccessfullyLoadedFile: FileRead? {
-        
-        for fileRead in files.values {
-            
-            if fileRead.result != .error {
-                return fileRead
-            }
-        }
-        
-        return nil
+        files.values.first(where: {$0.result != .error})
     }
     
     var filesToRead: [URL] {

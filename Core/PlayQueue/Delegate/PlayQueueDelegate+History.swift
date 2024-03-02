@@ -200,6 +200,7 @@ extension PlayQueueDelegate {
     
     private func playTrackItem(_ trackHistoryItem: TrackHistoryItem, fromPosition position: Double? = nil) {
         
+        // TODO: Augment enqueueToPlayNow() with a PlaybackParams parm so you can pass in position.
         // Add it to the PQ
         enqueueToPlayLater(tracks: [trackHistoryItem.track])
         
@@ -212,22 +213,19 @@ extension PlayQueueDelegate {
     
     private func playPlaylistFileItem(_ playlistFileHistoryItem: PlaylistFileHistoryItem) {
         
-        markEventForPlaylistFile(playlistFileHistoryItem.playlistFile)
-        
         // Add it to the PQ
         if let importedPlaylist = libraryDelegate.findImportedPlaylist(atLocation: playlistFileHistoryItem.playlistFile) {
-            playQueueDelegate.enqueueToPlayNow(playlistFile: importedPlaylist, clearQueue: false)
+            enqueueToPlayNow(playlistFile: importedPlaylist, clearQueue: false)
+            
         } else {
-            playQueueDelegate.loadTracks(from: [playlistFileHistoryItem.playlistFile], autoplay: true)
+            loadTracks(from: [playlistFileHistoryItem.playlistFile], autoplay: true)
         }
     }
     
     private func playGroupItem(_ groupHistoryItem: GroupHistoryItem) {
         
         guard let group = libraryDelegate.findGroup(named: groupHistoryItem.groupName, ofType: groupHistoryItem.groupType) else {return}
-        
-        markEventForGroup(group)
-        playQueueDelegate.enqueueToPlayNow(group: group, clearQueue: false)
+        enqueueToPlayNow(group: group, clearQueue: false)
     }
     
     private func playFolderItem(_ folderHistoryItem: FolderHistoryItem) {

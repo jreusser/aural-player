@@ -54,7 +54,6 @@ class TrackLoader {
     
     // ------------------------------------------
     
-    let priority: FileLoaderPriority
     let qOS: DispatchQoS.QoSClass
     
     private var session: FileReadSession!
@@ -67,7 +66,6 @@ class TrackLoader {
     
     init(priority: FileLoaderPriority, qOS: DispatchQoS.QoSClass) {
         
-        self.priority = priority
         self.qOS = qOS
         
 //        queue.maxConcurrentOperationCount = priority.concurrentOpCount
@@ -156,7 +154,7 @@ class TrackLoader {
             let resolvedFile = file.resolvedURL
             
             // TODO: Check if file exists, pass a parm to determine whether or not to check (check only if coming
-            // from Favs, Bookms, or History.
+            // from Favs, Bookms, or History).
             
             if file.isDirectory {
 

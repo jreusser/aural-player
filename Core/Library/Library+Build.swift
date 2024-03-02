@@ -27,20 +27,6 @@ fileprivate var fsItems: OrderedDictionary<URL, FileSystemItem> = OrderedDiction
 
 fileprivate var blockOpFunction: ((URL) -> BlockOperation)!
 
-//fileprivate let highPriorityQueue: OperationQueue = {
-//    
-//    let physicalCores: Int = System.physicalCores
-//    return OperationQueue(opCount: max(4, (Double(physicalCores) * 1.5).roundedInt),
-//                   qos: .userInteractive)
-//}()
-//
-//fileprivate let lowPriorityQueue: OperationQueue = {
-//    
-//    let physicalCores: Int = System.physicalCores
-//    return OperationQueue(opCount: max(2, physicalCores / 2),
-//                   qos: .background)
-//}()
-
 fileprivate var chosenQueue: OperationQueue!
 
 extension Library {
@@ -53,6 +39,8 @@ extension Library {
     }
     
     func buildLibrary(immediate: Bool) {
+        
+        // TODO: Reset all state variables each time!
         
         // TODO: Temporarily disabling Library building. Remove this !!!
 //        return
@@ -245,5 +233,18 @@ extension Library {
         }
         
         return fileMetadata
+    }
+}
+
+struct LibraryBuildStats {
+
+    let filesToRead: Int
+    let playlistsToRead: Int
+
+    let filesRead: Int
+    let playlistsRead: Int
+
+    var progressPercentage: Double {
+        Double(filesRead + playlistsRead) * 100 / Double(filesToRead + playlistsToRead)
     }
 }

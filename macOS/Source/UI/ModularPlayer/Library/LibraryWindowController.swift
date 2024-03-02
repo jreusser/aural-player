@@ -207,16 +207,6 @@ class LibraryWindowController: NSWindowController {
         tabGroup.selectTabViewItem(at: tab.rawValue)
     }
     
-    private func showBrowserTab(forCategory category: LibrarySidebarCategory) {
-        
-        let tab = category.browserTab
-        tabGroup.selectTabViewItem(at: tab.rawValue)
-        //
-        //        if tab == .playlists {
-        //
-        //        }
-    }
-    
     // MARK: Message handling -----------------------------------------------------------
     
     private func startedReadingFileSystem() {

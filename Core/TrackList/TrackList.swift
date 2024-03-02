@@ -11,14 +11,12 @@
 import Foundation
 import OrderedCollections
 
-class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
+class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver {
     
     static let empty: TrackList = .init()
     
     /// A type representing the sequence's elements.
     typealias Element = Track
-    
-    typealias Iterator = TrackListIterator
     
     /// Meant to be overriden
     var displayName: String {"Track List"}
@@ -51,11 +49,6 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver, Sequence {
     
     var summary: (size: Int, totalDuration: Double) {
         (size, duration)
-    }
-
-    /// Returns an iterator over the elements of this sequence.
-    func makeIterator() -> TrackListIterator {
-        TrackListIterator(trackList: self)
     }
     
     var isEmpty: Bool {

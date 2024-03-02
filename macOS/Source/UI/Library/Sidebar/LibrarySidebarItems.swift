@@ -22,13 +22,21 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         LibrarySidebarItem(displayName: "Playlist Files", browserTab: .libraryImportedPlaylists, image: .imgPlaylist)
     ]
     
+    private static let favoritesItems: [LibrarySidebarItem] = [
+        
+        LibrarySidebarItem(displayName: "Tracks", browserTab: .favoritesTracks, image: .imgTracks),
+        LibrarySidebarItem(displayName: "Artists", browserTab: .favoritesArtists, image: .imgArtistGroup),
+        LibrarySidebarItem(displayName: "Albums", browserTab: .favoritesAlbums, image: .imgAlbumGroup),
+        LibrarySidebarItem(displayName: "Genres", browserTab: .favoritesGenres, image: .imgGenreGroup),
+        LibrarySidebarItem(displayName: "Decades", browserTab: .favoritesDecades, image: .imgDecadeGroup),
+        LibrarySidebarItem(displayName: "Playlist Files", browserTab: .favoritesImportedPlaylists, image: .imgPlaylist),
+        LibrarySidebarItem(displayName: "Playlists", browserTab: .favoritesPlaylists, image: .imgPlaylist)
+    ]
+    
     case library = "Library"
     case tuneBrowser = "File System"
     case playlists = "Playlists"
-    
-    var browserTab: LibraryBrowserTab {
-        return .libraryTracks
-    }
+    case favorites = "Favorites"
     
     var description: String {rawValue}
     
@@ -47,6 +55,10 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         case .playlists:
             
             return playlistsManager.numberOfUserDefinedObjects
+            
+        case .favorites:
+            
+            return Self.favoritesItems.count
         }
     }
     
@@ -74,6 +86,10 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
             return playlistsManager.userDefinedObjects.map {
                 LibrarySidebarItem(displayName: $0.name, browserTab: .playlists)
             }
+            
+        case .favorites:
+            
+            return Self.favoritesItems
         }
     }
     
@@ -92,6 +108,10 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         case .playlists:
             
             return .imgPlaylist
+            
+        case .favorites:
+            
+            return .imgFavorite
         }
     }
 }
@@ -140,5 +160,12 @@ enum LibraryBrowserTab: Int {
          libraryDecades = 4,
          libraryImportedPlaylists = 5,
          fileSystem = 6,
-         playlists = 7
+         playlists = 7,
+         favoritesTracks = 8,
+         favoritesArtists = 9,
+         favoritesAlbums = 10,
+         favoritesGenres = 11,
+         favoritesDecades = 12,
+         favoritesImportedPlaylists = 13,
+         favoritesPlaylists = 14
 }

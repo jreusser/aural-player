@@ -69,7 +69,7 @@ class LibrarySidebarViewController: NSViewController {
         case .fileSystem:
             
             if let folder = sidebarItem.tuneBrowserFolder {
-                messenger.publish(LoadAndPlayNowCommand(files: [folder.url], clearPlayQueue: false))
+                playQueueDelegate.enqueueToPlayNow(fileSystemItems: [folder], clearQueue: false)
             }
             
         default:
