@@ -201,7 +201,7 @@ extension PlayQueueDelegate {
     private func playTrackItem(_ trackHistoryItem: TrackHistoryItem, fromPosition position: Double? = nil) {
         
         // Add it to the PQ
-        playQueue.addTracks([trackHistoryItem.track])
+        enqueueToPlayLater(tracks: [trackHistoryItem.track])
         
         if let seekPosition = position {
             playbackDelegate.play(track: trackHistoryItem.track, PlaybackParams().withStartAndEndPosition(seekPosition))
@@ -234,8 +234,12 @@ extension PlayQueueDelegate {
         
         let folder = folderHistoryItem.folder
         
-        markEventForFolder(folder)
-        messenger.publish(LoadAndPlayNowCommand(files: [folder], clearPlayQueue: false))
+        if let fsFolderItem = libraryDelegate.findFileSystemFolder(atLocation: folder) {
+            enqueueToPlayNow(fileSystemItems: [fsFolderItem], clearQueue: false)
+            
+        } else {
+            loadTracks(from: [folder], autoplay: true)
+        }
     }
     
     func markLastPlaybackPosition(_ position: Double) {

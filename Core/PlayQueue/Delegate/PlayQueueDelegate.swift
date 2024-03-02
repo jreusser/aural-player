@@ -99,41 +99,41 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
     // MARK: Play Now ---------------------------------------------------------------
 
     // Library (Tracks view) / Managed Playlists / Favorites / Bookmarks / History
-    func enqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet {
+    @discardableResult func enqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet {
         
         tracksEnqueued(tracks)
         return doEnqueueToPlayNow(tracks: tracks, clearQueue: clearQueue)
     }
     
     // Library (grouped views) / Favorites / History
-    func enqueueToPlayNow(groups: [Group], tracks: [Track], clearQueue: Bool) -> IndexSet {
+    @discardableResult func enqueueToPlayNow(groups: [Group], tracks: [Track], clearQueue: Bool) -> IndexSet {
         
         groupsAndTracksEnqueued(groups: groups, tracks: tracks)
         return doEnqueueToPlayNow(tracks: groups.flatMap {$0.tracks} + tracks, clearQueue: clearQueue)
     }
     
     // Library (playlist files)
-    func enqueueToPlayNow(playlistFiles: [ImportedPlaylist], tracks: [Track], clearQueue: Bool) -> IndexSet {
+    @discardableResult func enqueueToPlayNow(playlistFiles: [ImportedPlaylist], tracks: [Track], clearQueue: Bool) -> IndexSet {
         
         playlistFilesAndTracksEnqueued(playlistFiles: playlistFiles, tracks: tracks)
         return doEnqueueToPlayNow(tracks: playlistFiles.flatMap {$0.tracks} + tracks, clearQueue: clearQueue)
     }
     
     // Library (Managed Playlist)
-    func enqueueToPlayNow(playlist: Playlist, clearQueue: Bool) -> IndexSet {
+    @discardableResult func enqueueToPlayNow(playlist: Playlist, clearQueue: Bool) -> IndexSet {
         
         playlistEnqueued(playlist)
         return doEnqueueToPlayNow(tracks: playlist.tracks, clearQueue: clearQueue)
     }
     
     // Tune Browser
-    func enqueueToPlayNow(fileSystemItems: [FileSystemItem], clearQueue: Bool) -> IndexSet {
+    @discardableResult func enqueueToPlayNow(fileSystemItems: [FileSystemItem], clearQueue: Bool) -> IndexSet {
         
         fileSystemItemsEnqueued(fileSystemItems)
         return doEnqueueToPlayNow(tracks: fileSystemItems.flatMap {$0.tracks}, clearQueue: clearQueue)
     }
     
-    func doEnqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet {
+    @discardableResult func doEnqueueToPlayNow(tracks: [Track], clearQueue: Bool) -> IndexSet {
         
         let indices = playQueue.enqueueTracks(tracks, clearQueue: clearQueue)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
@@ -147,37 +147,37 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
     
     // MARK: Play Next ---------------------------------------------------------------
     
-    func enqueueToPlayNext(tracks: [Track]) -> IndexSet {
+    @discardableResult func enqueueToPlayNext(tracks: [Track]) -> IndexSet {
         
         tracksEnqueued(tracks)
         return doEnqueueToPlayNext(tracks: tracks)
     }
     
-    func enqueueToPlayNext(groups: [Group], tracks: [Track]) -> IndexSet {
+    @discardableResult func enqueueToPlayNext(groups: [Group], tracks: [Track]) -> IndexSet {
         
         groupsAndTracksEnqueued(groups: groups, tracks: tracks)
         return doEnqueueToPlayNext(tracks: groups.flatMap {$0.tracks} + tracks)
     }
     
-    func enqueueToPlayNext(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet {
+    @discardableResult func enqueueToPlayNext(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet {
         
         playlistFilesAndTracksEnqueued(playlistFiles: playlistFiles, tracks: tracks)
         return doEnqueueToPlayNext(tracks: playlistFiles.flatMap {$0.tracks} + tracks)
     }
     
-    func enqueueToPlayNext(playlist: Playlist) -> IndexSet {
+    @discardableResult func enqueueToPlayNext(playlist: Playlist) -> IndexSet {
         
         playlistEnqueued(playlist)
         return doEnqueueToPlayNext(tracks: playlist.tracks)
     }
     
-    func enqueueToPlayNext(fileSystemItems: [FileSystemItem]) -> IndexSet {
+    @discardableResult func enqueueToPlayNext(fileSystemItems: [FileSystemItem]) -> IndexSet {
         
         fileSystemItemsEnqueued(fileSystemItems)
         return doEnqueueToPlayNext(tracks: fileSystemItems.flatMap {$0.tracks})
     }
     
-    private func doEnqueueToPlayNext(tracks: [Track]) -> IndexSet {
+    @discardableResult private func doEnqueueToPlayNext(tracks: [Track]) -> IndexSet {
         
         let indices = playQueue.enqueueTracksAfterCurrentTrack(tracks)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
@@ -186,37 +186,37 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
     
     // MARK: Play Later ---------------------------------------------------------------
     
-    func enqueueToPlayLater(tracks: [Track]) -> IndexSet {
+    @discardableResult func enqueueToPlayLater(tracks: [Track]) -> IndexSet {
         
         tracksEnqueued(tracks)
         return doEnqueueToPlayLater(tracks: tracks)
     }
     
-    func enqueueToPlayLater(groups: [Group], tracks: [Track]) -> IndexSet {
+    @discardableResult func enqueueToPlayLater(groups: [Group], tracks: [Track]) -> IndexSet {
         
         groupsAndTracksEnqueued(groups: groups, tracks: tracks)
         return doEnqueueToPlayLater(tracks: groups.flatMap {$0.tracks} + tracks)
     }
     
-    func enqueueToPlayLater(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet {
+    @discardableResult func enqueueToPlayLater(playlistFiles: [ImportedPlaylist], tracks: [Track]) -> IndexSet {
         
         playlistFilesAndTracksEnqueued(playlistFiles: playlistFiles, tracks: tracks)
         return doEnqueueToPlayLater(tracks: playlistFiles.flatMap {$0.tracks} + tracks)
     }
     
-    func enqueueToPlayLater(playlist: Playlist) -> IndexSet {
+    @discardableResult func enqueueToPlayLater(playlist: Playlist) -> IndexSet {
         
         playlistEnqueued(playlist)
         return doEnqueueToPlayLater(tracks: playlist.tracks)
     }
     
-    func enqueueToPlayLater(fileSystemItems: [FileSystemItem]) -> IndexSet {
+    @discardableResult func enqueueToPlayLater(fileSystemItems: [FileSystemItem]) -> IndexSet {
         
         fileSystemItemsEnqueued(fileSystemItems)
         return doEnqueueToPlayLater(tracks: fileSystemItems.flatMap {$0.tracks})
     }
     
-    private func doEnqueueToPlayLater(tracks: [Track]) -> IndexSet {
+    @discardableResult private func doEnqueueToPlayLater(tracks: [Track]) -> IndexSet {
         
         let indices = playQueue.addTracks(tracks)
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
