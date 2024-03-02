@@ -11,7 +11,7 @@
 import Foundation
 import OrderedCollections
 
-class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver {
+class TrackList: TrackListProtocol {
     
     static let empty: TrackList = .init()
     
@@ -28,12 +28,19 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver {
         Array(_tracks.values)
     }
 
-    // TODO: Expose this only to subclasses
     var _isBeingModified: AtomicBool = AtomicBool(value: false)
     
     var isBeingModified: Bool {
         _isBeingModified.value
     }
+    
+    var trackLoadQoS: DispatchQoS.QoSClass {
+        .utility
+    }
+    
+    // Used when reading tracks from the file system.
+    var session: FileReadSession!
+    var batch: TrackLoadBatch!
     
     var size: Int {
         _tracks.count
@@ -207,31 +214,13 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver {
         }
     }
     
-    // MARK: TrackLoaderReceiver ---------------------------------------------------------------------------
-    
-    func loadTracks(from files: [URL], atPosition position: Int?, usingLoader loader: TrackLoader, observer: TrackLoaderObserver) {
-        
-        _isBeingModified.setValue(true)
-        
-        loader.loadMetadata(ofType: .primary, from: files, into: self, at: position, observer: observer) {[weak self] in
-            self?._isBeingModified.setValue(false)
-        }
+    func loadTracks(from files: [URL], atPosition position: Int?) {
+        loadTracksAsync(from: files, atPosition: position)
     }
-
-    func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet {
+    
+    func acceptBatch(_ batch: TrackLoadBatch) -> IndexSet {
         
-        let orderedMetadata = batch.orderedMetadata
-        
-        let tracks = orderedMetadata.map {(file, metadata) -> Track in
-            
-            let track = Track(file, fileMetadata: metadata)
-
-            do {
-                try trackReader.computePlaybackContext(for: track)
-            } catch {}
-
-            return track
-        }
+        let tracks = batch.tracks.values.map {$0.track}
         
         let indices: IndexSet
         
@@ -242,19 +231,18 @@ class TrackList: AbstractTrackListProtocol, TrackLoaderReceiver {
             indices = addTracks(tracks)
         }
         
-        let batchFiles = batch.files.elements.values
-        let indicesArray = indices.toArray()
-        
-        for (index, _) in orderedMetadata.enumerated() {
-            batchFiles[index].indexOfFileInTrackList = indicesArray[index]
-//            print("File '\(batchFiles[index].file.lastPathComponent)' added to PQ at index: \(batchFiles[index].indexOfFileInTrackList ?? -1)")
-        }
-        
         return indices
     }
     
-    // Dummy impl - subclasses should override!
-    func firstFileLoaded(file: URL, atIndex index: Int) {}
+    // Dummy impls - subclasses should override!
+    
+    func preTrackLoad() {}
+    
+    func firstTrackLoaded(atIndex index: Int) {}
+    
+    func postBatchLoad(indices: IndexSet) {}
+    
+    func postTrackLoad() {}
 }
 
 extension IndexSet {

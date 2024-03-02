@@ -65,40 +65,39 @@ class M3UPlaylistIO: PlaylistIOProtocol {
             } else {
                 
                 // Line contains track path
-                if !String.isEmpty(line) {
+                guard !String.isEmpty(line) else {continue}
+                
+                // Convert Windows paths to UNIX paths (this will not work for absolute Windows paths like "C:\...")
+                let trackFilePath: String = line.replacingOccurrences(of: "\\", with: "/")
+                
+                // If a scheme is defined, and it doesn't point to a local file, ignore the file.
+                if let scheme = URL(string: trackFilePath)?.scheme, scheme != "file" {
+                    continue
+                }
+                
+                var url: URL
+                if trackFilePath.hasPrefix("/") {
                     
-                    // Convert Windows paths to UNIX paths (this will not work for absolute Windows paths like "C:\...")
-                    let trackFilePath: String = line.replacingOccurrences(of: "\\", with: "/")
+                    // Absolute path
+                    url = URL(fileURLWithPath: trackFilePath)
                     
-                    // If a scheme is defined, and it doesn't point to a local file, ignore the file.
-                    if let scheme = URL(string: trackFilePath)?.scheme, scheme != "file" {
-                        continue
-                    }
+                } else if trackFilePath.hasPrefix(PlaylistIO.absoluteFilePathPrefix) {
                     
-                    var url: URL
-                    if trackFilePath.hasPrefix("/") {
-                        
-                        // Absolute path
-                        url = URL(fileURLWithPath: trackFilePath)
-                        
-                    } else if trackFilePath.hasPrefix(PlaylistIO.absoluteFilePathPrefix) {
-                        
-                        // Absolute path with prefix. Remove the prefix
-                        let cleanURLPath: String = trackFilePath.replacingOccurrences(of: PlaylistIO.absoluteFilePathPrefix, with: "/")
-                        url = URL(fileURLWithPath: cleanURLPath)
-                        
-                    } else {
-                        
-                        // Relative path
-                        let playlistFolder: URL = playlistFile.deletingLastPathComponent()
-                        url = playlistFolder.appendingPathComponent(trackFilePath, isDirectory: false)
-                    }
+                    // Absolute path with prefix. Remove the prefix
+                    let cleanURLPath: String = trackFilePath.replacingOccurrences(of: PlaylistIO.absoluteFilePathPrefix, with: "/")
+                    url = URL(fileURLWithPath: cleanURLPath)
                     
-                    let resolvedURL = url.resolvedURL
+                } else {
                     
-                    if resolvedURL.exists {
-                        tracks.append(resolvedURL)
-                    }
+                    // Relative path
+                    let playlistFolder: URL = playlistFile.deletingLastPathComponent()
+                    url = playlistFolder.appendingPathComponent(trackFilePath, isDirectory: false)
+                }
+                
+                let resolvedURL = url.resolvedURL
+                
+                if resolvedURL.exists {
+                    tracks.append(resolvedURL)
                 }
             }
         }

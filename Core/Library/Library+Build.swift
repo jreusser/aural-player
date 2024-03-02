@@ -47,11 +47,11 @@ extension Library {
         
         let start = Date()
         
-        chosenQueue = immediate ? TrackLoader.highPriorityQueue : TrackLoader.lowPriorityQueue
+        chosenQueue = immediate ? TrackReader.highPriorityQueue : TrackReader.lowPriorityQueue
         
         DispatchQueue.global(qos: immediate ? .userInitiated : .utility).async {
             
-            self._isBeingModified.setValue(true)
+            self._isBeingModified.setTrue()
             
             self.removeAllTracks()
             self._playlists.removeAll()
@@ -137,8 +137,8 @@ extension Library {
             
             chosenQueue.waitUntilAllOperationsAreFinished()
             
-            self._isBeingModified.setValue(false)
-            self._isBuilt.setValue(true)
+            self._isBeingModified.setFalse()
+            self._isBuilt.setTrue()
             
             self.messenger.publish(.Library.doneAddingTracks)
             

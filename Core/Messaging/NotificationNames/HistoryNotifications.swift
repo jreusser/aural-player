@@ -16,9 +16,12 @@ extension Notification.Name {
     
     // MARK: Notifications related to the History lists (recently added / recently played).
     
-    // Signifies that new items have been added to the playlist (ie. new items to be added to the recently added history list).
-    static let history_itemsAdded = Notification.Name("history_itemsAdded")
-    
-    // Signifies that the history lists have been updated.
-    static let history_updated = Notification.Name("history_updated")
+    struct History {
+        
+        // Signifies that new items have been added to the playlist (ie. new items to be added to the recently added history list).
+        static let itemsAdded = Notification.Name("history_itemsAdded")
+        
+        // Signifies that the history lists have been updated.
+        static let updated = Notification.Name("history_updated")
+    }
 }

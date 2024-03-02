@@ -44,7 +44,7 @@ extension PlayQueueDelegate {
         if let newTrack = notification.endTrack {
             
             markEventForTrack(newTrack)
-            messenger.publish(.history_updated)
+            messenger.publish(.History.updated)
         }
     }
     
@@ -54,7 +54,7 @@ extension PlayQueueDelegate {
             markEventForTrack(track)
         }
         
-        messenger.publish(.history_updated)
+        messenger.publish(.History.updated)
     }
     
     fileprivate func markEventForTrack(_ track: Track) {
@@ -86,7 +86,7 @@ extension PlayQueueDelegate {
             }
         }
         
-        messenger.publish(.history_updated)
+        messenger.publish(.History.updated)
     }
     
     fileprivate func markEventForFolder(_ folder: URL) {
@@ -113,7 +113,7 @@ extension PlayQueueDelegate {
         
         tracksEnqueued(deDupedTracks)
         
-        messenger.publish(.history_updated)
+        messenger.publish(.History.updated)
     }
     
     fileprivate func markEventForPlaylistFile(_ playlistFile: URL) {
@@ -142,7 +142,7 @@ extension PlayQueueDelegate {
         
         tracksEnqueued(deDupedTracks)
         
-        messenger.publish(.history_updated)
+        messenger.publish(.History.updated)
     }
     
     fileprivate func markEventForGroup(_ group: Group) {

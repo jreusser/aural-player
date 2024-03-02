@@ -21,8 +21,6 @@ class PlayQueue: TrackList, PlayQueueProtocol {
     // Contains a pre-computed shuffle sequence, when shuffleMode is .on
     lazy var shuffleSequence: ShuffleSequence = ShuffleSequence()
     
-    private lazy var loader: TrackLoader = TrackLoader(priority: .highest, qOS: .userInteractive)
-    
     private lazy var messenger = Messenger(for: self)
     
     override func search(_ searchQuery: SearchQuery) -> SearchResults {
@@ -33,10 +31,6 @@ class PlayQueue: TrackList, PlayQueueProtocol {
     
     private var autoplay: AtomicBool = AtomicBool(value: false)
     
-    func loadTracks(from files: [URL], atPosition position: Int?) {
-        loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
-    }
-    
     func loadTracks(from files: [URL], atPosition position: Int?, clearQueue: Bool = false, autoplay: Bool = false) {
         
         if clearQueue {
@@ -44,20 +38,20 @@ class PlayQueue: TrackList, PlayQueueProtocol {
         }
         
         if autoplay {
-            self.autoplay.setValue(true)
+            self.autoplay.setTrue()
         }
         
-        loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
+        loadTracks(from: files, atPosition: position)
     }
     
-    override func firstFileLoaded(file: URL, atIndex index: Int) {
+    override func firstTrackLoaded(atIndex index: Int) {
         
         // Use for autoplay
         if autoplay.value {
             
-            autoplay.setValue(false)
+            autoplay.setFalse()
             messenger.publish(TrackPlaybackCommandNotification(index: index))
-            print("Autoplaying first file: '\(file.lastPathComponent)' at index: \(index)")
+//            print("Autoplaying first file: '\(file.lastPathComponent)' at index: \(index)")
         }
     }
     
@@ -191,23 +185,21 @@ class PlayQueue: TrackList, PlayQueueProtocol {
             currentTrackIndex = newPlayingTrackIndex
         }
     }
-}
-
-extension PlayQueue: TrackLoaderObserver {
     
-    func preTrackLoad() {
+    override func preTrackLoad() {
         messenger.publish(.PlayQueue.startedAddingTracks)
     }
     
-    func postTrackLoad() {
+    override func postTrackLoad() {
         
         messenger.publish(.PlayQueue.doneAddingTracks)
+        messenger.publish(HistoryItemsAddedNotification(items: session.historyItems))
         
         // Make sure this is reset after track load.
-        autoplay.setValue(false)
+        autoplay.setFalse()
     }
     
-    func postBatchLoad(indices: IndexSet) {
+    override func postBatchLoad(indices: IndexSet) {
         messenger.publish(PlayQueueTracksAddedNotification(trackIndices: indices))
     }
 }

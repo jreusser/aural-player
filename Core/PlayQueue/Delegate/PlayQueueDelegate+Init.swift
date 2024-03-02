@@ -83,7 +83,7 @@ extension PlayQueueDelegate {
             let track = Track(trackFile)
             item = TrackHistoryItem(track: track, lastEventTime: lastEventTime, eventCount: eventCount)
             
-            TrackLoader.mediumPriorityQueue.addOperation {
+            TrackReader.mediumPriorityQueue.addOperation {
                 
                 do {
                     

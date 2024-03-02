@@ -30,7 +30,7 @@ extension BookmarksDelegate {
                 
                 tracksByFile[trackFile] = track
                 
-                TrackLoader.mediumPriorityQueue.addOperation {
+                TrackReader.mediumPriorityQueue.addOperation {
                     
                     do {
                         

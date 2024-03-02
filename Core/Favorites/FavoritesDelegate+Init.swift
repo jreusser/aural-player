@@ -25,7 +25,7 @@ extension FavoritesDelegate {
                 let track = Track(trackFile)
                 self.favoriteTracks[trackFile] = FavoriteTrack(track: track)
                 
-                TrackLoader.mediumPriorityQueue.addOperation {
+                TrackReader.mediumPriorityQueue.addOperation {
                     
                     do {
                         

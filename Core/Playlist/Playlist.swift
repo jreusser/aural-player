@@ -13,15 +13,13 @@ import Foundation
 /// A facade for all operations pertaining to the playlist. Delegates operations to the underlying
 /// playlists (flat and grouping/hierarchical), and aggregates results from those operations.
 ///
-class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObserver {
+class Playlist: TrackList, PlaylistProtocol, UserManagedObject {
     
     override var displayName: String {"The playlist '\(name)'"}
     
     var name: String
     
     let dateCreated: Date
-//    let dateModified: Date
-//    let datePlayed: Date
     
     private var persistentStateToLoad: PlaylistPersistentState? = nil
     
@@ -32,8 +30,6 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
     }
 
     let userDefined: Bool = true
-    
-    private lazy var loader: TrackLoader = TrackLoader(priority: .medium, qOS: .utility)
     
     private lazy var messenger: Messenger = Messenger(for: self)
 
@@ -64,30 +60,20 @@ class Playlist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObser
         return indices
     }
     
-    func loadTracks(from files: [URL], atPosition position: Int? = nil) {
-        loadTracks(from: files, atPosition: position, usingLoader: loader, observer: self)
-    }
-    
-    func preTrackLoad() {
+    override func preTrackLoad() {
         messenger.publish(.playlist_startedAddingTracks)
     }
     
-    func postTrackLoad() {
+    override func postTrackLoad() {
         
         // Now that the tracks have been loaded into the playlist, invalidate
         // and release the persistent state.
         persistentStateToLoad = nil
         
         messenger.publish(.playlist_doneAddingTracks, payload: name)
-        
-//        let grouping = DecadesGrouping()
-//        let groups = grouping.applyTo(trackList: self)
-//        
-////        print("\n\n**** TOP LEVEL GROUPS for Playlist '\(name)': \(groups.map {$0.name + " (\($0.subGroups.count) sub-groups)"})")
-//        print("\n\n**** TOP LEVEL GROUPS for Playlist '\(name)': \(groups.map {$0.name + " (\($0.tracks.size) tracks)"})")
     }
     
-    func postBatchLoad(indices: IndexSet) {
+    override func postBatchLoad(indices: IndexSet) {
         messenger.publish(PlaylistTracksAddedNotification(playlistName: name, trackIndices: indices))
     }
 }

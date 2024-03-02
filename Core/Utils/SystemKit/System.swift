@@ -45,11 +45,6 @@ public class System {
     // MARK: PUBLIC PROPERTIES
     //--------------------------------------------------------------------------
     
-    /// Size of physical memory on this machine
-    public static var physicalMemory: UInt64 {
-        hostBasicInfo.max_mem
-    }
-    
     /// Number of physical cores on this machine.
     public static var physicalCores: Int {
         

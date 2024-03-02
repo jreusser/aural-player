@@ -22,6 +22,21 @@ protocol PlayQueueProtocol: TrackListProtocol, SequencingProtocol {
     func loadTracks(from files: [URL], atPosition position: Int?, clearQueue: Bool, autoplay: Bool)
 }
 
+extension PlayQueueProtocol {
+    
+    func loadTracks(from files: [URL], atPosition position: Int?) {
+        loadTracks(from: files, atPosition: nil, clearQueue: false, autoplay: false)
+    }
+    
+    func loadTracks(from files: [URL], autoplay: Bool) {
+        loadTracks(from: files, atPosition: nil, clearQueue: false, autoplay: autoplay)
+    }
+    
+    func loadTracks(from files: [URL], clearQueue: Bool, autoplay: Bool) {
+        loadTracks(from: files, atPosition: nil, clearQueue: clearQueue, autoplay: autoplay)
+    }
+}
+
 /*
     Contract for a sequencer that provides convenient CRUD access to the playback sequence to select tracks/groups for playback and/or determine which track will play next.
  */

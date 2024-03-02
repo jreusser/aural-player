@@ -64,7 +64,7 @@ class DockMenuController: NSObject, NSMenuDelegate {
         messenger.subscribeAsync(to: .bookmarksList_trackAdded, handler: trackAddedToBookmarks(_:))
         messenger.subscribeAsync(to: .bookmarksList_tracksRemoved, handler: tracksRemovedFromBookmarks(_:))
         
-        messenger.subscribeAsync(to: .history_updated, handler: recreateHistoryMenus)
+        messenger.subscribeAsync(to: .History.updated, handler: recreateHistoryMenus)
         
         // Subscribe to notifications
         messenger.subscribeAsync(to: .Player.trackTransitioned, handler: trackTransitioned(_:),

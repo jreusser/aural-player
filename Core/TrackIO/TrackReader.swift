@@ -14,6 +14,10 @@ import Foundation
 ///
 class TrackReader {
     
+    static let highPriorityQueue: OperationQueue = .init(opCount: max(4, System.physicalCores), qos: .userInteractive)
+    static let mediumPriorityQueue: OperationQueue = .init(opCount: max(2, System.physicalCores / 2), qos: .utility)
+    static let lowPriorityQueue: OperationQueue = .init(opCount: max(2, System.physicalCores / 2), qos: .background)
+    
     // The delegate object that this object defers all read operations to.
     private var fileReader: FileReaderProtocol
     

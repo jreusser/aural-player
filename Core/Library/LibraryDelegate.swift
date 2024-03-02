@@ -53,10 +53,6 @@ class LibraryDelegate: LibraryDelegateProtocol {
     }
     
     init() {
-
-        // Subscribe to notifications
-        messenger.subscribe(to: .Application.reopened, handler: appReopened(_:))
-        
         libraryMonitor.startMonitoring()
     }
     
@@ -200,14 +196,5 @@ class LibraryDelegate: LibraryDelegateProtocol {
     
     func exportToFile(_ file: URL) {
         library.exportToFile(file)
-    }
-
-    // MARK: Notification handling ---------------------------------------------------------------
-    
-    func appReopened(_ notification: AppReopenedNotification) {
-        
-        // When a duplicate notification is sent, don't autoplay ! Otherwise, always autoplay.
-//        addTracks(from: notification.filesToOpen, AutoplayOptions(!notification.isDuplicateNotification))
-        loadTracks(from: notification.filesToOpen)
     }
 }

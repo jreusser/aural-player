@@ -10,8 +10,8 @@
 
 import Foundation
 
-class ImportedPlaylist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoaderObserver {
-
+class ImportedPlaylist: TrackList, PlaylistProtocol, UserManagedObject {
+    
     var file: URL
     var name: String
     
@@ -36,11 +36,5 @@ class ImportedPlaylist: TrackList, PlaylistProtocol, UserManagedObject, TrackLoa
         addTracks(tracks)
     }
     
-    func loadTracks(from files: [URL], atPosition position: Int?) {}
-    
-    func preTrackLoad() {}
-    
-    func postTrackLoad() {}
-    
-    func postBatchLoad(indices: IndexSet) {}
+    override func loadTracks(from files: [URL], atPosition position: Int?) {}
 }

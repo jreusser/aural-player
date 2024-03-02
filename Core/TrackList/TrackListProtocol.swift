@@ -10,7 +10,7 @@
 
 import Foundation
 
-protocol AbstractTrackListProtocol {
+protocol TrackListProtocol {
     
     var displayName: String {get}
     
@@ -40,6 +40,8 @@ protocol AbstractTrackListProtocol {
     func search(_ searchQuery: SearchQuery) -> SearchResults
     
     // MARK: Add and remove ------------------------------------------------------------------------
+    
+    func loadTracks(from files: [URL], atPosition position: Int?)
     
     @discardableResult func addTracks(_ newTracks: [Track]) -> IndexSet
     
@@ -75,24 +77,6 @@ protocol AbstractTrackListProtocol {
     func exportToFile(_ file: URL)
 }
 
-protocol SortedAbstractTrackListProtocol: AbstractTrackListProtocol {
-    
-    var sortOrder: TrackListSort {get set}
-}
-
-// TODO: Clean up the protocol hierarchy !!!
-protocol GroupedSortedAbstractTrackListProtocol: SortedAbstractTrackListProtocol {
-    
-    func remove(tracks: [GroupedTrack], andGroups groups: [Group], from grouping: Grouping) -> IndexSet
-    
-    func sort(grouping: Grouping, by sort: GroupedTrackListSort)
-}
-
-protocol TrackListProtocol: AbstractTrackListProtocol {
-    
-    func loadTracks(from files: [URL], atPosition position: Int?)
-}
-
 extension TrackListProtocol {
     
     func loadTracks(from files: [URL]) {
@@ -100,4 +84,39 @@ extension TrackListProtocol {
     }
 }
 
-protocol GroupedSortedTrackListProtocol: GroupedSortedAbstractTrackListProtocol, TrackListProtocol {}
+protocol TrackListFileSystemLoadingProtocol {
+    
+    // MARK: Loading tracks from the file system ------------------------------------------------------------------------
+    
+    func preTrackLoad()
+    
+    func firstTrackLoaded(atIndex index: Int)
+    
+    func acceptBatch(_ batch: TrackLoadBatch) -> IndexSet
+    
+    func postBatchLoad(indices: IndexSet)
+    
+    func postTrackLoad()
+}
+
+//extension TrackListFileSystemLoadingProtocol {
+//    
+//    func preTrackLoad() {}
+//    
+//    func postBatchLoad(indices: IndexSet) {}
+//    
+//    func postTrackLoad() {}
+//}
+
+protocol SortedTrackListProtocol: TrackListProtocol {
+    
+    var sortOrder: TrackListSort {get set}
+}
+
+// TODO: Clean up the protocol hierarchy !!!
+protocol GroupedSortedTrackListProtocol: SortedTrackListProtocol {
+    
+    func remove(tracks: [GroupedTrack], andGroups groups: [Group], from grouping: Grouping) -> IndexSet
+    
+    func sort(grouping: Grouping, by sort: GroupedTrackListSort)
+}

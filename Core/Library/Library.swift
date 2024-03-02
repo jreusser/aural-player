@@ -106,22 +106,8 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
         groupings[3] as! DecadesGrouping
     }
     
-    func loadTracks(from files: [URL], atPosition position: Int?) {
-        
-        _isBeingModified.setValue(true)
-        
-//        loader.loadMetadata(ofType: .primary, from: files) {[weak self] in
-//            self?._isBeingModified.setValue(false)
-//        }
-    }
-    
-    override func acceptBatch(_ batch: FileMetadataBatch) -> IndexSet {
-        
-        let tracks = batch.orderedMetadata.map {(file, metadata) -> Track in
-            Track(file, fileMetadata: metadata)
-        }
-        
-        return addTracks(tracks)
+    override func loadTracks(from files: [URL], atPosition position: Int?) {
+        // DO NOTHING (User cannot load tracks from the FS into the Library)
     }
     
     func findGroup(named groupName: String, ofType groupType: GroupType) -> Group? {
@@ -151,21 +137,6 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
     
     func findImportedPlaylist(atLocation location: URL) -> ImportedPlaylist? {
         _playlists[location]
-    }
-}
-
-extension Library: TrackLoaderObserver {
-    
-    func preTrackLoad() {
-        messenger.publish(.Library.startedAddingTracks)
-    }
-    
-    func postTrackLoad() {
-        messenger.publish(.Library.doneAddingTracks)
-    }
-    
-    func postBatchLoad(indices: IndexSet) {
-        messenger.publish(LibraryTracksAddedNotification(trackIndices: indices))
     }
 }
 

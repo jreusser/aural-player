@@ -36,7 +36,8 @@ class PlayQueueSimpleViewController: PlayQueueViewController {
             } else {
                 return builder.withText(text: "\(row + 1)",
                                         inFont: systemFontScheme.normalFont, andColor: systemColorScheme.tertiaryTextColor,
-                                        selectedTextColor: systemColorScheme.tertiarySelectedTextColor)
+                                        selectedTextColor: systemColorScheme.tertiarySelectedTextColor,
+                                        bottomYOffset: systemFontScheme.tableYOffset)
             }
             
         case .cid_trackName:
@@ -62,7 +63,8 @@ class PlayQueueSimpleViewController: PlayQueueViewController {
             
             return builder.withText(text: ValueFormatter.formatSecondsToHMS(track.duration),
                                     inFont: systemFontScheme.normalFont, andColor: systemColorScheme.tertiaryTextColor,
-                                    selectedTextColor: systemColorScheme.tertiarySelectedTextColor)
+                                    selectedTextColor: systemColorScheme.tertiarySelectedTextColor,
+                                    bottomYOffset: systemFontScheme.tableYOffset)
             
         default:
             
