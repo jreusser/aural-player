@@ -94,7 +94,7 @@ extension Library {
                         tracksToAdd.append(newTrack)
                         
                         chosenQueue.addOperation {
-                            newTrack.setPrimaryMetadata(from: self.metadata(forFile: file))
+                            trackReader.loadPrimaryMetadata(for: newTrack)
                         }
                     }
                     
@@ -196,7 +196,7 @@ extension Library {
         
         chosenQueue.addOperation {
             
-            newTrack.setPrimaryMetadata(from: self.metadata(forFile: file))
+            trackReader.loadPrimaryMetadata(for: newTrack)
             filesRead.increment()
         }
     }
@@ -220,19 +220,6 @@ extension Library {
             
             playlistsRead.increment()
         }
-    }
-    
-    private func metadata(forFile file: URL) -> FileMetadata {
-        
-        var fileMetadata = FileMetadata()
-        
-        do {
-            fileMetadata.primary = try fileReader.getPrimaryMetadata(for: file)
-        } catch {
-            fileMetadata.validationError = error as? DisplayableError
-        }
-        
-        return fileMetadata
     }
 }
 

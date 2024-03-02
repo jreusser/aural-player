@@ -14,6 +14,14 @@ class FavoriteTrack: Favorite {
     
     let track: Track
     
+    /// Hack that's required because a track's displayName can change (once metadata is loaded).
+    /// So, we need this to be computed on-the-fly.
+    override var name: String {
+        
+        get {track.displayName}
+        set {}
+    }
+    
     override var key: String {
         track.file.path
     }

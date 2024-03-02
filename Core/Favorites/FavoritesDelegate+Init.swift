@@ -26,15 +26,7 @@ extension FavoritesDelegate {
                 self.favoriteTracks[trackFile] = FavoriteTrack(track: track)
                 
                 TrackReader.mediumPriorityQueue.addOperation {
-                    
-                    do {
-                        
-                        let metadata = try fileReader.getPrimaryMetadata(for: trackFile)
-                        track.setPrimaryMetadata(from: FileMetadata(primary: metadata))
-                        
-                    } catch {
-                        NSLog("Failed to read track metadata for file: '\(trackFile.path)'")
-                    }
+                    trackReader.loadPrimaryMetadata(for: track)
                 }
             }
             
