@@ -24,6 +24,7 @@ class FavoritesManagerViewController: NSViewController {
     
     lazy var tracksViewController: FavoriteTracksViewController = .init()
     lazy var artistsViewController: FavoriteArtistsViewController = .init()
+    lazy var albumsViewController: FavoriteAlbumsViewController = .init()
     
     lazy var tracksTable: NSTableView = tracksViewController.tableView
     
@@ -38,6 +39,9 @@ class FavoritesManagerViewController: NSViewController {
         
         tabGroup.tabViewItem(at: 1).view?.addSubview(artistsViewController.view)
         artistsViewController.view.anchorToSuperview()
+        
+        tabGroup.tabViewItem(at: 2).view?.addSubview(albumsViewController.view)
+        albumsViewController.view.anchorToSuperview()
         
         updateCaption()
         updateSummary()
@@ -65,6 +69,9 @@ class FavoritesManagerViewController: NSViewController {
         case "Artists":
             tabGroup.selectTabViewItem(at: 1)
             
+        case "Albums":
+            tabGroup.selectTabViewItem(at: 2)
+            
         default:
             return
         }
@@ -82,6 +89,9 @@ class FavoritesManagerViewController: NSViewController {
             
         case 1:
             lblCaption.stringValue = "Artists"
+            
+        case 2:
+            lblCaption.stringValue = "Albums"
             
         default:
             return
@@ -103,6 +113,12 @@ class FavoritesManagerViewController: NSViewController {
             // Artists
             let numFavorites = favoritesDelegate.numberOfFavoriteArtists
             lblSummary.stringValue = "\(numFavorites)  favorite \(numFavorites == 1 ? "artist" : "artists")"
+            
+        case 2:
+            
+            // Albums
+            let numFavorites = favoritesDelegate.numberOfFavoriteAlbums
+            lblSummary.stringValue = "\(numFavorites)  favorite \(numFavorites == 1 ? "album" : "albums")"
             
         default:
             return

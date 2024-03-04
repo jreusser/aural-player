@@ -78,6 +78,15 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         favoriteAlbums.count
     }
     
+    func favoriteAlbum(atChronologicalIndex index: Int) -> FavoriteGroup? {
+        
+        if favoriteAlbums.indices.contains(index) {
+            return favoriteAlbums.values[favoriteAlbums.count - index - 1]
+        }
+        
+        return nil
+    }
+    
     var allFavoriteGenres: [FavoriteGroup] {
         Array(favoriteGenres.values)
     }

@@ -72,7 +72,7 @@ protocol FavoritesDelegateProtocol {
     
     var allFavoriteAlbums: [FavoriteGroup] {get}
     var numberOfFavoriteAlbums: Int {get}
-//    func favoriteAlbum(atChronologicalIndex index: Int) -> FavoriteGroup?
+    func favoriteAlbum(atChronologicalIndex index: Int) -> FavoriteGroup?
     
     var allFavoriteGenres: [FavoriteGroup] {get}
     var numberOfFavoriteGenres: Int {get}

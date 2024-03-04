@@ -39,10 +39,22 @@ class FavoritesContainerView: MouseTrackingView {
         let boxHeight = hoverControls.height / 2
         let rowHeight = rowView.height / 2
         
-        let conv = self.convert(NSMakePoint(rowView.frame.maxX, rowView.frame.minY + rowHeight - boxHeight - 5), from: rowView)
+        let conv = self.convert(NSMakePoint(rowView.frame.maxX, rowView.frame.minY + rowHeight - boxHeight), from: rowView)
         hoverControls.setFrameOrigin(NSMakePoint(tableView.frame.centerX, conv.y))
         hoverControls.show()
         hoverControls.bringToFront()
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        
+        super.mouseExited(with: event)
+        hoverControls.hide()
+    }
+    
+    override func viewDidHide() {
+        
+        super.viewDidHide()
+        hoverControls.hide()
     }
 }
 
@@ -50,6 +62,13 @@ class FavoriteArtistsContainerView: FavoritesContainerView {
     
     override var favoriteAtRowFunction: (Int) -> Favorite? {
         {row in favoritesDelegate.favoriteArtist(atChronologicalIndex: row)}
+    }
+}
+
+class FavoriteAlbumsContainerView: FavoritesContainerView {
+    
+    override var favoriteAtRowFunction: (Int) -> Favorite? {
+        {row in favoritesDelegate.favoriteAlbum(atChronologicalIndex: row)}
     }
 }
 

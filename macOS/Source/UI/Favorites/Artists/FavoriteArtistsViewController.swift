@@ -59,10 +59,12 @@ extension FavoriteArtistsViewController: NSTableViewDataSource, NSTableViewDeleg
               columnId == .cid_favoriteColumn,
               let artist = favoritesDelegate.favoriteArtist(atChronologicalIndex: row)?.groupName else {return nil}
         
-        let builder = TableCellBuilder().withText(text: artist,
-                                                  inFont: systemFontScheme.normalFont,
-                                                  andColor: systemColorScheme.primaryTextColor,
-                                                  selectedTextColor: systemColorScheme.primarySelectedTextColor).withImage(image: .imgArtistGroup)
+        let builder = TableCellBuilder()
+            .withText(text: artist,
+                      inFont: systemFontScheme.normalFont,
+                      andColor: systemColorScheme.primaryTextColor,
+                      selectedTextColor: systemColorScheme.primarySelectedTextColor)
+            .withImage(image: .imgArtistGroup)
         
         return builder.buildCell(forTableView: tableView, forColumnWithId: columnId, inRow: row)
     }

@@ -56,7 +56,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
-                        <tabViewItem label="Item 2" identifier="" id="yqD-gR-y50">
+                        <tabViewItem label="Albums" identifier="" id="yqD-gR-y50">
                             <view key="view" id="c5q-Oe-quw">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="418"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
