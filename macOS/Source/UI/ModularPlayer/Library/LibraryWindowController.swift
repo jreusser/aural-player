@@ -116,7 +116,7 @@ class LibraryWindowController: NSWindowController {
         changeWindowCornerRadius(playerUIState.cornerRadius)
         
         // TODO: Temporary, remove this !!!
-        tabGroup.selectTabViewItem(at: 1)
+        tabGroup.selectTabViewItem(at: 8)
         
         displayBuildProgress()
     }

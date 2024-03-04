@@ -144,7 +144,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         
         let favorite = FavoriteTrack(track: track)
         favoriteTracks[track.file] = favorite
-        messenger.publish(.favoritesList_itemAdded, payload: favorite)
+        messenger.publish(.Favorites.itemAdded, payload: favorite)
         
         print("Added fav track: '\(track.displayName)'")
     }
@@ -153,7 +153,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         
         let favorite = FavoriteGroup(groupName: artist, groupType: .artist)
         favoriteArtists[artist] = favorite
-        messenger.publish(.favoritesList_itemAdded, payload: favorite)
+        messenger.publish(.Favorites.itemAdded, payload: favorite)
         
         print("Added fav artist: '\(artist)'")
     }
@@ -162,7 +162,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         
         let favorite = FavoriteGroup(groupName: album, groupType: .album)
         favoriteAlbums[album] = favorite
-        messenger.publish(.favoritesList_itemAdded, payload: favorite)
+        messenger.publish(.Favorites.itemAdded, payload: favorite)
         
         print("Added fav album: '\(album)'")
     }
@@ -171,7 +171,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         
         let favorite = FavoriteGroup(groupName: genre, groupType: .genre)
         favoriteGenres[genre] = favorite
-        messenger.publish(.favoritesList_itemAdded, payload: favorite)
+        messenger.publish(.Favorites.itemAdded, payload: favorite)
         
         print("Added fav genre: '\(genre)'")
     }
@@ -180,7 +180,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         
         let favorite = FavoriteGroup(groupName: decade, groupType: .decade)
         favoriteDecades[decade] = favorite
-        messenger.publish(.favoritesList_itemAdded, payload: favorite)
+        messenger.publish(.Favorites.itemAdded, payload: favorite)
         
         print("Added fav decade: '\(decade)'")
     }
@@ -189,7 +189,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
      
         let favorite = FavoriteFolder(folder: folder)
         favoriteFolders[folder] = favorite
-        messenger.publish(.favoritesList_itemAdded, payload: favorite)
+        messenger.publish(.Favorites.itemAdded, payload: favorite)
         
         print("Added fav folder: '\(folder.path)'")
     }
@@ -198,7 +198,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         
         let favorite = FavoritePlaylistFile(playlistFile: playlistFile)
         favoritePlaylistFiles[playlistFile] = favorite
-        messenger.publish(.favoritesList_itemAdded, payload: favorite)
+        messenger.publish(.Favorites.itemAdded, payload: favorite)
         
         print("Added fav playlist file: '\(playlistFile.path)'")
     }
@@ -206,53 +206,86 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
 //    func addFavorite(playlist: Playlist) {
 //        Favorite(name: "", type: .album)
 //    }
-//    
+    
+    func removeFavorite(_ favorite: Favorite) {
+        
+        if let favTrack = favorite as? FavoriteTrack {
+            removeFavorite(track: favTrack.track)
+            
+        } else if let favGroup = favorite as? FavoriteGroup {
+            
+            switch favGroup.groupType {
+                
+            case .artist:
+                removeFavorite(artist: favGroup.groupName)
+                
+            case .album:
+                removeFavorite(album: favGroup.groupName)
+                
+            case .genre:
+                removeFavorite(genre: favGroup.groupName)
+                
+            case .decade:
+                removeFavorite(decade: favGroup.groupName)
+                
+            default:
+                return
+            }
+            
+        } else if let favFolder = favorite as? FavoriteFolder {
+            removeFavorite(folder: favFolder.folder)
+            
+        } else if let favPlaylistFile = favorite as? FavoritePlaylistFile {
+            removeFavorite(playlistFile: favPlaylistFile.playlistFile)
+        }
+    }
+    
     func removeFavorite(track: Track) {
         
         if let removedFav = favoriteTracks.removeValue(forKey: track.file) {
-            messenger.publish(.favoritesList_itemsRemoved, payload: Set<Favorite>([removedFav]))
+            messenger.publish(.Favorites.itemsRemoved, payload: Set<Favorite>([removedFav]))
         }
     }
     
     func removeFavorite(artist: String) {
         
         if let removedFav = favoriteArtists.removeValue(forKey: artist) {
-            messenger.publish(.favoritesList_itemsRemoved, payload: Set<Favorite>([removedFav]))
+            messenger.publish(.Favorites.itemsRemoved, payload: Set<Favorite>([removedFav]))
         }
     }
     
     func removeFavorite(album: String) {
         
         if let removedFav = favoriteAlbums.removeValue(forKey: album) {
-            messenger.publish(.favoritesList_itemsRemoved, payload: Set<Favorite>([removedFav]))
+            messenger.publish(.Favorites.itemsRemoved, payload: Set<Favorite>([removedFav]))
         }
     }
     
     func removeFavorite(genre: String) {
         
         if let removedFav = favoriteGenres.removeValue(forKey: genre) {
-            messenger.publish(.favoritesList_itemsRemoved, payload: Set<Favorite>([removedFav]))
+            messenger.publish(.Favorites.itemsRemoved, payload: Set<Favorite>([removedFav]))
         }
     }
     
     func removeFavorite(decade: String) {
         
         if let removedFav = favoriteDecades.removeValue(forKey: decade) {
-            messenger.publish(.favoritesList_itemsRemoved, payload: Set<Favorite>([removedFav]))
+            messenger.publish(.Favorites.itemsRemoved, payload: Set<Favorite>([removedFav]))
         }
     }
     
     func removeFavorite(folder: URL) {
         
         if let removedFav = favoriteFolders.removeValue(forKey: folder) {
-            messenger.publish(.favoritesList_itemsRemoved, payload: Set<Favorite>([removedFav]))
+            messenger.publish(.Favorites.itemsRemoved, payload: Set<Favorite>([removedFav]))
         }
     }
     
     func removeFavorite(playlistFile: URL) {
         
         if let removedFav = favoritePlaylistFiles.removeValue(forKey: playlistFile) {
-            messenger.publish(.favoritesList_itemsRemoved, payload: Set<Favorite>([removedFav]))
+            messenger.publish(.Favorites.itemsRemoved, payload: Set<Favorite>([removedFav]))
         }
     }
     
@@ -263,7 +296,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     func deleteFavorites(atIndices indices: IndexSet) {
         
 //        let deletedFavorites = favorites.deleteObjects(atIndices: indices)
-//        messenger.publish(.favoritesList_tracksRemoved, payload: Set(deletedFavorites))
+//        messenger.publish(.Favorites.tracksRemoved, payload: Set(deletedFavorites))
     }
     
     func favoriteExists(track: Track) -> Bool {
@@ -314,6 +347,38 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
                 
             } else {
                 playQueueDelegate.loadTracks(from: [favPlaylistFile.playlistFile], params: .init(autoplay: true))
+            }
+        }
+    }
+    
+    func enqueueFavorite(_ favorite: Favorite) {
+        
+        if let favTrack = favorite as? FavoriteTrack {
+            playQueueDelegate.enqueueToPlayLater(tracks: [favTrack.track])
+            
+        } else if let favGroup = favorite as? FavoriteGroup,
+                  let group = libraryDelegate.findGroup(named: favGroup.groupName, ofType: favGroup.groupType) {
+         
+            playQueueDelegate.enqueueToPlayLater(group: group)
+            
+        } else if let favFolder = favorite as? FavoriteFolder {
+            
+            // Recursively get all tracks, then add them to the PQ before playing
+            
+            if let folder = libraryDelegate.findFileSystemFolder(atLocation: favFolder.folder) {
+                playQueueDelegate.enqueueToPlayLater(fileSystemItems: [folder])
+                
+            } else {
+                playQueueDelegate.loadTracks(from: [favFolder.folder], params: .init(autoplay: false))
+            }
+            
+        } else if let favPlaylistFile = favorite as? FavoritePlaylistFile {
+            
+            if let importedPlaylist = libraryDelegate.findImportedPlaylist(atLocation: favPlaylistFile.playlistFile) {
+                playQueueDelegate.enqueueToPlayLater(playlistFile: importedPlaylist)
+                
+            } else {
+                playQueueDelegate.loadTracks(from: [favPlaylistFile.playlistFile], params: .init(autoplay: false))
             }
         }
     }

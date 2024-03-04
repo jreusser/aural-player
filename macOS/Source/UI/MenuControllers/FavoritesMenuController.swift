@@ -42,7 +42,7 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
     
     // Adds/removes the currently playing track, if there is one, to/from the "Favorites" list
     @IBAction func playingTrackFavoritesAction(_ sender: Any) {
-        messenger.publish(.favoritesList_addOrRemove)
+        messenger.publish(.Favorites.addOrRemove)
     }
     
     // Opens the presets manager to manage favorites

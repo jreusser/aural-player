@@ -14,13 +14,16 @@ import Foundation
 ///
 extension Notification.Name {
     
-    // Signifies that a track has been added to the favorites list.
-    static let favoritesList_itemAdded = Notification.Name("favoritesList_itemAdded")
-    
-    // Signifies that tracks have been removed from the favorites list.
-    static let favoritesList_itemsRemoved = Notification.Name("favoritesList_itemsRemoved")
-    
-    // Commands the Favorites list to add/remove the currently playing track to/from the list.
-    // Functions as a toggle: add/remove.
-    static let favoritesList_addOrRemove = Notification.Name("favoritesList_addOrRemove")
+    struct Favorites {
+        
+        // Signifies that a track has been added to the favorites list.
+        static let itemAdded = Notification.Name("favorites_itemAdded")
+        
+        // Signifies that tracks have been removed from the favorites list.
+        static let itemsRemoved = Notification.Name("favorites_itemsRemoved")
+        
+        // Commands the Favorites list to add/remove the currently playing track to/from the list.
+        // Functions as a toggle: add/remove.
+        static let addOrRemove = Notification.Name("favorites_addOrRemove")
+    }
 }

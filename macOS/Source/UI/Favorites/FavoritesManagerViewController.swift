@@ -16,11 +16,11 @@ class FavoritesManagerViewController: NSViewController {
     
     override var nibName: String? {"FavoritesManager"}
     
-    @IBOutlet weak var selectedTabCaption: NSTextField!
-    @IBOutlet weak var tabGroup: NSTabView!
-    
     @IBOutlet weak var containerBox: NSBox!
-    @IBOutlet weak var tabButtonsBox: NSBox!
+    
+    @IBOutlet weak var lblCaption: NSTextField!
+    @IBOutlet weak var tabGroup: NSTabView!
+    @IBOutlet weak var lblSummary: NSTextField!
     
     lazy var tracksViewController: FavoriteTracksViewController = .init()
     lazy var tracksTable: NSTableView = tracksViewController.tableView
@@ -34,9 +34,21 @@ class FavoritesManagerViewController: NSViewController {
         tabGroup.tabViewItem(at: 0).view?.addSubview(tracksViewController.view)
         tracksViewController.view.anchorToSuperview()
         
-//        //fontSchemesManager.registerObserver(selectedTabCaption, forProperty: \.captionFont)
-//        colorSchemesManager.registerObserver(selectedTabCaption, forProperties: [\.captionTextColor])
-//        colorSchemesManager.registerObservers([containerBox, tabButtonsBox], forProperties: [\.backgroundColor])
+        updateSummary()
+        
+        fontSchemesManager.registerObserver(self)
+        
+        colorSchemesManager.registerSchemeObserver(self)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: containerBox)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.captionTextColor, changeReceiver: lblCaption)
+        colorSchemesManager.registerPropertyObserver(self, forProperty: \.secondaryTextColor, changeReceiver: lblSummary)
+        
+        messenger.subscribe(to: .Favorites.itemAdded, handler: updateSummary)
+        messenger.subscribe(to: .Favorites.itemsRemoved, handler: updateSummary)
+    }
+    
+    func updateSummary() {
+        lblSummary.stringValue = "\(favoritesDelegate.numberOfFavoriteTracks)  favorite tracks"
     }
     
     @IBAction func deleteSelectedItemsAction(_ sender: NSButton) {
@@ -80,6 +92,24 @@ class FavoritesManagerViewController: NSViewController {
     
     @IBAction func doneAction(_ sender: NSButton) {
         view.window?.windowController?.close()
+    }
+}
+
+extension FavoritesManagerViewController: FontSchemeObserver {
+    
+    func fontSchemeChanged() {
+        
+        lblCaption.font = systemFontScheme.captionFont
+        lblSummary.font = systemFontScheme.smallFont
+    }
+}
+
+extension FavoritesManagerViewController: ColorSchemeObserver {
+    
+    func colorSchemeChanged() {
+        
+        lblCaption.textColor = systemColorScheme.captionTextColor
+        lblSummary.textColor = systemColorScheme.secondaryTextColor
     }
 }
 

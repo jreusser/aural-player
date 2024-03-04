@@ -65,6 +65,8 @@ class TrackLoadSession {
     
     func readTrack(forFile file: URL) {
         
+        guard tracks[file] == nil else {return}
+        
         let trackInList: Track? = loader.findTrack(forFile: file)
         let track = trackInList ?? Track(file)
         

@@ -189,13 +189,14 @@
 		3E5F943725E571A6002DEF80 /* SpectrogramBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F941A25E570A9002DEF80 /* SpectrogramBar.swift */; };
 		3E60BD552B9345250016909C /* TrackList+TrackIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60BD542B9345250016909C /* TrackList+TrackIO.swift */; };
 		3E60BD572B93B39B0016909C /* TrackIOSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60BD562B93B39B0016909C /* TrackIOSupport.swift */; };
+		3E60BD5D2B9663FF0016909C /* FavoritesHoverControlBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60BD5C2B9663FF0016909C /* FavoritesHoverControlBox.swift */; };
 		3E60EAD92B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60EAD82B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift */; };
 		3E62979426A3C0F100C96AB8 /* SnappingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */; };
 		3E62979A26A3CD3800C96AB8 /* Destroyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979926A3CD3800C96AB8 /* Destroyable.swift */; };
 		3E62979D26A3CEBF00C96AB8 /* Restorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979C26A3CEBF00C96AB8 /* Restorable.swift */; };
 		3E634D73284698A9008A47EC /* TrackListOutlineViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E634D72284698A9008A47EC /* TrackListOutlineViewController+DataSource.swift */; };
 		3E634D762846B8B9008A47EC /* MouseTrackingOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E634D752846B8B9008A47EC /* MouseTrackingOutlineView.swift */; };
-		3E634D782846BDE2008A47EC /* HoverControlsBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E634D772846BDE2008A47EC /* HoverControlsBox.swift */; };
+		3E634D782846BDE2008A47EC /* LibraryHoverControlsBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E634D772846BDE2008A47EC /* LibraryHoverControlsBox.swift */; };
 		3E6668B12ADB4AF500BBD119 /* WindowLayoutSetup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6668B02ADB4AF500BBD119 /* WindowLayoutSetup.xib */; };
 		3E6668B32ADB515600BBD119 /* PresetLayoutPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6668B22ADB515600BBD119 /* PresetLayoutPreviewView.swift */; };
 		3E6668B52ADB55A400BBD119 /* WindowLayoutSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6668B42ADB55A400BBD119 /* WindowLayoutSetupViewController.swift */; };
@@ -1219,13 +1220,14 @@
 		3E5F941F25E570A9002DEF80 /* Supernova.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supernova.swift; sourceTree = "<group>"; };
 		3E60BD542B9345250016909C /* TrackList+TrackIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackList+TrackIO.swift"; sourceTree = "<group>"; };
 		3E60BD562B93B39B0016909C /* TrackIOSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackIOSupport.swift; sourceTree = "<group>"; };
+		3E60BD5C2B9663FF0016909C /* FavoritesHoverControlBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesHoverControlBox.swift; sourceTree = "<group>"; };
 		3E60EAD82B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackListTableViewController+Actions.swift"; sourceTree = "<group>"; };
 		3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappingWindowDelegate.swift; sourceTree = "<group>"; };
 		3E62979926A3CD3800C96AB8 /* Destroyable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destroyable.swift; sourceTree = "<group>"; };
 		3E62979C26A3CEBF00C96AB8 /* Restorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restorable.swift; sourceTree = "<group>"; };
 		3E634D72284698A9008A47EC /* TrackListOutlineViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackListOutlineViewController+DataSource.swift"; sourceTree = "<group>"; };
 		3E634D752846B8B9008A47EC /* MouseTrackingOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseTrackingOutlineView.swift; sourceTree = "<group>"; };
-		3E634D772846BDE2008A47EC /* HoverControlsBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverControlsBox.swift; sourceTree = "<group>"; };
+		3E634D772846BDE2008A47EC /* LibraryHoverControlsBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryHoverControlsBox.swift; sourceTree = "<group>"; };
 		3E6668B02ADB4AF500BBD119 /* WindowLayoutSetup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WindowLayoutSetup.xib; sourceTree = "<group>"; };
 		3E6668B22ADB515600BBD119 /* PresetLayoutPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetLayoutPreviewView.swift; sourceTree = "<group>"; };
 		3E6668B42ADB55A400BBD119 /* WindowLayoutSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowLayoutSetupViewController.swift; sourceTree = "<group>"; };
@@ -2891,6 +2893,7 @@
 			children = (
 				3E6C0F6C25CEB98600BF0D07 /* FavoritesManager.xib */,
 				3E6C0F6B25CEB98600BF0D07 /* FavoritesManagerViewController.swift */,
+				3E60BD5C2B9663FF0016909C /* FavoritesHoverControlBox.swift */,
 				3E59E9CE2B52100E001DDCE9 /* Tracks */,
 				3EBFF5A12B528E2D0056D5B4 /* Artists */,
 			);
@@ -3607,7 +3610,6 @@
 				3EB3A60D26A744C80060487C /* SingletonPopoverViewController.swift */,
 				3E9CF7F426A7D36D0068A21B /* ChangeHistory.swift */,
 				3E59656A283BF91C00AF43FF /* ControlsContainerView.swift */,
-				3E634D772846BDE2008A47EC /* HoverControlsBox.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3986,6 +3988,7 @@
 			isa = PBXGroup;
 			children = (
 				3E59656C283BF9CE00AF43FF /* LibraryTracksControlsContainer.swift */,
+				3E634D772846BDE2008A47EC /* LibraryHoverControlsBox.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -5692,7 +5695,7 @@
 				3E3DFFD2260DA0560092F0BF /* MetadataPreferencesViewController.swift in Sources */,
 				3EFB9ED626A68B1F00EA8440 /* MetadataTrackInfoViewController.swift in Sources */,
 				3EBFF5A82B52C0CC0056D5B4 /* CompactPlayerWindowController.swift in Sources */,
-				3E634D782846BDE2008A47EC /* HoverControlsBox.swift in Sources */,
+				3E634D782846BDE2008A47EC /* LibraryHoverControlsBox.swift in Sources */,
 				3EFE39FD27864898006F8B8C /* RemoteControlManager.swift in Sources */,
 				3EFE391127864897006F8B8C /* LanguageExtensions.swift in Sources */,
 				3E6C130325CEBE8F00BF0D07 /* MetadataTrackInfoViewDelegate.swift in Sources */,
@@ -6004,6 +6007,7 @@
 				3EFE38FB27864897006F8B8C /* UserManagedObjects.swift in Sources */,
 				3EFE3A7D27864898006F8B8C /* MetadataFormat.swift in Sources */,
 				3E0397E82B83EB73004454DB /* AppDelegate+Init.swift in Sources */,
+				3E60BD5D2B9663FF0016909C /* FavoritesHoverControlBox.swift in Sources */,
 				3E7204C62B854BFB00E40D87 /* UnifiedPlayerViewController+AutoHide.swift in Sources */,
 				3EF30D3E28DC735200CB09EA /* ffmpeg.c in Sources */,
 				3EC530E3284B95A50036207C /* TuneBrowserTabViewController+DataSource.swift in Sources */,

@@ -37,6 +37,8 @@ protocol FavoritesDelegateProtocol {
     
 //    func addFavorite(playlist: Playlist)
     
+    func removeFavorite(_ favorite: Favorite)
+    
     func removeFavorite(track: Track)
     
     func removeFavorite(artist: String)
@@ -93,4 +95,6 @@ protocol FavoritesDelegateProtocol {
     func favoriteExists(decade: String) -> Bool
     
     func playFavorite(_ favorite: Favorite)
+    
+    func enqueueFavorite(_ favorite: Favorite)
 }

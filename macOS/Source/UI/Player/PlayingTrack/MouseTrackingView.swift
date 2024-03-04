@@ -18,6 +18,24 @@ class MouseTrackingView: NSView {
     // Flag that indicates whether or not this view is currently tracking mouse movements.
     private(set) var isTracking: Bool = false
     
+    override var frame: NSRect {
+        
+        get {
+            super.frame
+        }
+        
+        set {
+            super.frame = newValue
+            startTracking()
+        }
+    }
+    
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        startTracking()
+    }
+    
     // Signals the view to start tracking mouse movements.
     func startTracking() {
         

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -50,7 +49,7 @@
                     <rect key="frame" x="0.0" y="35" width="623" height="240"/>
                     <clipView key="contentView" copiesOnScroll="NO" id="3NR-Hn-QII">
                         <rect key="frame" x="0.0" y="0.0" width="608" height="240"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="plain" autosaveColumns="NO" rowHeight="90" viewBased="YES" indentationPerLevel="20" outlineTableColumn="aWV-XR-GvB" id="2vZ-YA-Oe2" userLabel="Imported Playlist Outline View">
                                 <rect key="frame" x="0.0" y="0.0" width="608" height="240"/>
@@ -78,7 +77,7 @@
                                                     <box boxType="custom" borderType="line" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="OUX-7h-t9b" userLabel="Separator Line">
                                                         <rect key="frame" x="0.0" y="59" width="428" height="1"/>
                                                         <view key="contentView" id="oYB-DR-xPW">
-                                                            <rect key="frame" x="1" y="1" width="426" height="0.0"/>
+                                                            <rect key="frame" x="1" y="0.5" width="426" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <constraints>
@@ -113,7 +112,7 @@
                                                     <box boxType="custom" borderType="line" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="htH-Zv-pJT" userLabel="Separator Line">
                                                         <rect key="frame" x="0.0" y="0.0" width="428" height="1"/>
                                                         <view key="contentView" id="inH-VP-Y6H">
-                                                            <rect key="frame" x="1" y="1" width="426" height="0.0"/>
+                                                            <rect key="frame" x="1" y="0.5" width="426" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <constraints>
@@ -202,7 +201,7 @@
                                                     <box boxType="custom" borderType="line" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="TdB-yF-kDU" userLabel="TopSeparator">
                                                         <rect key="frame" x="0.0" y="59" width="180" height="1"/>
                                                         <view key="contentView" id="O6M-pQ-Csc">
-                                                            <rect key="frame" x="1" y="1" width="178" height="0.0"/>
+                                                            <rect key="frame" x="1" y="0.5" width="178" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <constraints>
@@ -235,7 +234,7 @@
                                                     <box boxType="custom" borderType="line" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="b7O-zx-uSb" userLabel="BottomSeparator">
                                                         <rect key="frame" x="0.0" y="0.0" width="180" height="1"/>
                                                         <view key="contentView" id="ypn-pT-ig0">
-                                                            <rect key="frame" x="1" y="1" width="178" height="0.0"/>
+                                                            <rect key="frame" x="1" y="0.5" width="178" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <constraints>
@@ -527,7 +526,7 @@
                         <constraint firstAttribute="height" constant="13" id="Cd4-BD-cfj"/>
                     </constraints>
                 </button>
-                <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="M6p-EU-B2h" userLabel="Controls Overlay" customClass="HoverControlsBox" customModule="Aural" customModuleProvider="target">
+                <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="M6p-EU-B2h" userLabel="Controls Overlay" customClass="LibraryHoverControlsBox" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="252" y="144" width="160" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="bLg-DK-M1I">

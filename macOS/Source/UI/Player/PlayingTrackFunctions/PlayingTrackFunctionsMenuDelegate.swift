@@ -45,11 +45,11 @@ class PlayingTrackFunctionsMenuDelegate: NSObject, NSMenuDelegate, Destroyable {
         
         // Subscribe to various notifications
         
-        messenger.subscribe(to: .favoritesList_itemAdded, handler: trackAddedToFavorites(_:))
-        messenger.subscribe(to: .favoritesList_itemsRemoved, handler: tracksRemovedFromFavorites(_:))
+        messenger.subscribe(to: .Favorites.itemAdded, handler: trackAddedToFavorites(_:))
+        messenger.subscribe(to: .Favorites.itemsRemoved, handler: tracksRemovedFromFavorites(_:))
         
         messenger.subscribe(to: .Player.moreInfo, handler: moreInfo)
-        messenger.subscribe(to: .favoritesList_addOrRemove, handler: addOrRemoveFavorite)
+        messenger.subscribe(to: .Favorites.addOrRemove, handler: addOrRemoveFavorite)
         messenger.subscribe(to: .Player.bookmarkPosition, handler: bookmarkPosition)
         messenger.subscribe(to: .Player.bookmarkLoop, handler: bookmarkLoop)
         

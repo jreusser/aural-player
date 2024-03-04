@@ -58,8 +58,8 @@ class DockMenuController: NSObject, NSMenuDelegate {
         
         favoritesMenuItem.off()
         
-        messenger.subscribeAsync(to: .favoritesList_itemAdded, handler: trackAddedToFavorites(_:))
-        messenger.subscribeAsync(to: .favoritesList_itemsRemoved, handler: tracksRemovedFromFavorites(_:))
+        messenger.subscribeAsync(to: .Favorites.itemAdded, handler: trackAddedToFavorites(_:))
+        messenger.subscribeAsync(to: .Favorites.itemsRemoved, handler: tracksRemovedFromFavorites(_:))
         
         messenger.subscribeAsync(to: .bookmarksList_trackAdded, handler: trackAddedToBookmarks(_:))
         messenger.subscribeAsync(to: .bookmarksList_tracksRemoved, handler: tracksRemovedFromBookmarks(_:))
@@ -81,7 +81,7 @@ class DockMenuController: NSObject, NSMenuDelegate {
     
     // Adds/removes the currently playing track, if there is one, to/from the "Favorites" list
     @IBAction func favoritesAction(_ sender: Any) {
-        messenger.publish(.favoritesList_addOrRemove)
+        messenger.publish(.Favorites.addOrRemove)
     }
     
     // Responds to a notification that a track has been added to the Favorites list, by updating the Favorites menu.

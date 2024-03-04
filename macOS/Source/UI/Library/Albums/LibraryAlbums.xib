@@ -695,7 +695,7 @@
                         <action selector="collapseAllGroupsAction:" target="-2" id="hTn-sC-rJZ"/>
                     </connections>
                 </button>
-                <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ZEK-Mm-rNO" userLabel="Controls Overlay" customClass="HoverControlsBox" customModule="Aural" customModuleProvider="target">
+                <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ZEK-Mm-rNO" userLabel="Controls Overlay" customClass="LibraryHoverControlsBox" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="252" y="144" width="160" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="2wI-gn-irG">

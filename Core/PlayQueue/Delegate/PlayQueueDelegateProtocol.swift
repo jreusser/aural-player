@@ -70,6 +70,14 @@ extension PlayQueueDelegateProtocol {
         enqueueToPlayNow(playlistFiles: [playlistFile], tracks: [], clearQueue: clearQueue)
     }
     
+    @discardableResult func enqueueToPlayLater(group: Group) -> IndexSet {
+        enqueueToPlayLater(groups: [group], tracks: [])
+    }
+    
+    @discardableResult func enqueueToPlayLater(playlistFile: ImportedPlaylist) -> IndexSet {
+        enqueueToPlayLater(playlistFiles: [playlistFile], tracks: [])
+    }
+    
     func loadTracks(from urls: [URL]) {
         loadTracks(from: urls, atPosition: nil, params: .defaultParams)
     }

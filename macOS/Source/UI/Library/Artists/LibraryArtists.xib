@@ -833,7 +833,7 @@
                         <action selector="collapseAllGroupsAction:" target="-2" id="uvG-6O-aP7"/>
                     </connections>
                 </button>
-                <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-at-eQb" userLabel="Controls Overlay" customClass="HoverControlsBox" customModule="Aural" customModuleProvider="target">
+                <box hidden="YES" fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-at-eQb" userLabel="Controls Overlay" customClass="LibraryHoverControlsBox" customModule="Aural" customModuleProvider="target">
                     <rect key="frame" x="257" y="156" width="160" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="5US-5t-e4e">

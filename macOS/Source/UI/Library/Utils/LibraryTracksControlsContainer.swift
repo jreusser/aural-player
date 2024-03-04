@@ -72,7 +72,7 @@ class LibraryGroupedListControlsContainer: LibraryTracksControlsContainer {
     @IBOutlet weak var btnCollapseAll: TintedImageButton!
     
     @IBOutlet weak var outlineView: NSOutlineView!
-    @IBOutlet weak var hoverControls: HoverControlsBox!
+    @IBOutlet weak var hoverControls: LibraryHoverControlsBox!
     
     override func awakeFromNib() {
         

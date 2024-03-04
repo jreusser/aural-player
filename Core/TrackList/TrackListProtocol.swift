@@ -108,7 +108,6 @@ protocol SortedTrackListProtocol: TrackListProtocol {
     var sortOrder: TrackListSort {get set}
 }
 
-// TODO: Clean up the protocol hierarchy !!!
 protocol GroupedSortedTrackListProtocol: SortedTrackListProtocol {
     
     func remove(tracks: [GroupedTrack], andGroups groups: [Group], from grouping: Grouping) -> IndexSet

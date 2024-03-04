@@ -10,14 +10,10 @@
 
 import Foundation
 
-// TODO: How to deal with duplicate tracks ? (track is loaded individually and as part of a playlist)
-
 // TODO: *********** How about using an OrderedSet<Track> to collect the tracks ?
 
 // What if a track exists in a different track list ? (Play Queue / Library). Should we have a global track registry ?
 // What about notifications / errors ? Return a result ?
-// Create a track load session and a batch class
-// How to deal with 2 simultaneous sessions on startup ? Play queue / Library / Custom playlists ? Adjust batch size accordingly ?
 
 extension TrackList: TrackListFileSystemLoadingProtocol {
     
