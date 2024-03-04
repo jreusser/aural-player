@@ -208,6 +208,9 @@ class LibraryWindowController: NSWindowController {
            let folder = item.tuneBrowserFolder, let tree = item.tuneBrowserTree {
             
             tuneBrowserViewController.showFolder(folder, inTree: tree, updateHistory: true)
+            
+        } else if tab == .favorites {
+            favoritesViewController.showTab(for: item)
         }
         
         tabGroup.selectTabViewItem(at: tab.rawValue)

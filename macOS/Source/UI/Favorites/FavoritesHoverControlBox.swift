@@ -15,6 +15,10 @@ class FavoritesContainerView: MouseTrackingView {
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var hoverControls: FavoritesHoverControlsBox!
     
+    var favoriteAtRowFunction: (Int) -> Favorite? {
+        {row in favoritesDelegate.favoriteTrack(atChronologicalIndex: row)}
+    }
+    
     override func mouseMoved(with event: NSEvent) {
 
         super.mouseMoved(with: event)
@@ -30,7 +34,7 @@ class FavoritesContainerView: MouseTrackingView {
             return
         }
         
-        hoverControls.favorite = favoritesDelegate.favoriteTrack(atChronologicalIndex: row)
+        hoverControls.favorite = favoriteAtRowFunction(row)
         
         let boxHeight = hoverControls.height / 2
         let rowHeight = rowView.height / 2
@@ -39,6 +43,13 @@ class FavoritesContainerView: MouseTrackingView {
         hoverControls.setFrameOrigin(NSMakePoint(tableView.frame.centerX, conv.y))
         hoverControls.show()
         hoverControls.bringToFront()
+    }
+}
+
+class FavoriteArtistsContainerView: FavoritesContainerView {
+    
+    override var favoriteAtRowFunction: (Int) -> Favorite? {
+        {row in favoritesDelegate.favoriteArtist(atChronologicalIndex: row)}
     }
 }
 
@@ -59,7 +70,7 @@ class FavoritesHoverControlsBox: NSBox {
             guard let favorite = self.favorite else {return}
             
             btnPlay.toolTip = "Play '\(favorite.name)'"
-            btnEnqueueAndPlay.toolTip = "Enqueue and play '\(favorite.name)'"
+            btnEnqueueAndPlay.toolTip = "Enqueue '\(favorite.name)'"
             btnFavorite.toolTip = "Remove '\(favorite.name)' from Favorites"
         }
     }

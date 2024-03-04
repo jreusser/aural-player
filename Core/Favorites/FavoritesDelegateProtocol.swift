@@ -68,15 +68,19 @@ protocol FavoritesDelegateProtocol {
     
     var allFavoriteArtists: [FavoriteGroup] {get}
     var numberOfFavoriteArtists: Int {get}
+    func favoriteArtist(atChronologicalIndex index: Int) -> FavoriteGroup?
     
     var allFavoriteAlbums: [FavoriteGroup] {get}
     var numberOfFavoriteAlbums: Int {get}
+//    func favoriteAlbum(atChronologicalIndex index: Int) -> FavoriteGroup?
     
     var allFavoriteGenres: [FavoriteGroup] {get}
     var numberOfFavoriteGenres: Int {get}
+//    func favoriteGenre(atChronologicalIndex index: Int) -> FavoriteGroup?
     
     var allFavoriteDecades: [FavoriteGroup] {get}
     var numberOfFavoriteDecades: Int {get}
+//    func favoriteDecade(atChronologicalIndex index: Int) -> FavoriteGroup?
     
     var allFavoriteFolders: [FavoriteFolder] {get}
     var numberOfFavoriteFolders: Int {get}

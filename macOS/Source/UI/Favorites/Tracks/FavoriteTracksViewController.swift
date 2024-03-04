@@ -22,8 +22,6 @@ class FavoriteTracksViewController: NSViewController {
         
         super.viewDidLoad()
         
-        self.startTrackingView(options: [.activeAlways, .mouseMoved])
-        
         fontSchemesManager.registerObserver(self)
         
         colorSchemesManager.registerSchemeObserver(self)

@@ -40,8 +40,6 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     
     func favoriteTrack(atChronologicalIndex index: Int) -> FavoriteTrack? {
         
-        if favoriteTracks.isEmpty {return nil}
-        
         if favoriteTracks.indices.contains(index) {
         
             // Invert the index
@@ -61,6 +59,15 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     
     var numberOfFavoriteArtists: Int {
         favoriteArtists.count
+    }
+    
+    func favoriteArtist(atChronologicalIndex index: Int) -> FavoriteGroup? {
+        
+        if favoriteArtists.indices.contains(index) {
+            return favoriteArtists.values[favoriteArtists.count - index - 1]
+        }
+        
+        return nil
     }
     
     var allFavoriteAlbums: [FavoriteGroup] {

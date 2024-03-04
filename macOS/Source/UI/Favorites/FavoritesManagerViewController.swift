@@ -23,6 +23,8 @@ class FavoritesManagerViewController: NSViewController {
     @IBOutlet weak var lblSummary: NSTextField!
     
     lazy var tracksViewController: FavoriteTracksViewController = .init()
+    lazy var artistsViewController: FavoriteArtistsViewController = .init()
+    
     lazy var tracksTable: NSTableView = tracksViewController.tableView
     
     lazy var messenger: Messenger = .init(for: self)
@@ -34,6 +36,10 @@ class FavoritesManagerViewController: NSViewController {
         tabGroup.tabViewItem(at: 0).view?.addSubview(tracksViewController.view)
         tracksViewController.view.anchorToSuperview()
         
+        tabGroup.tabViewItem(at: 1).view?.addSubview(artistsViewController.view)
+        artistsViewController.view.anchorToSuperview()
+        
+        updateCaption()
         updateSummary()
         
         fontSchemesManager.registerObserver(self)
@@ -47,51 +53,60 @@ class FavoritesManagerViewController: NSViewController {
         messenger.subscribe(to: .Favorites.itemsRemoved, handler: updateSummary)
     }
     
+    func showTab(for sidebarItem: LibrarySidebarItem) {
+        
+        guard sidebarItem.browserTab == .favorites else {return}
+        
+        switch sidebarItem.displayName {
+            
+        case "Tracks":
+            tabGroup.selectTabViewItem(at: 0)
+            
+        case "Artists":
+            tabGroup.selectTabViewItem(at: 1)
+            
+        default:
+            return
+        }
+        
+        updateCaption()
+        updateSummary()
+    }
+    
+    func updateCaption() {
+        
+        switch tabGroup.selectedIndex {
+            
+        case 0:
+            lblCaption.stringValue = "Tracks"
+            
+        case 1:
+            lblCaption.stringValue = "Artists"
+            
+        default:
+            return
+        }
+    }
+    
     func updateSummary() {
-        lblSummary.stringValue = "\(favoritesDelegate.numberOfFavoriteTracks)  favorite tracks"
-    }
-    
-    @IBAction func deleteSelectedItemsAction(_ sender: NSButton) {
         
         switch tabGroup.selectedIndex {
             
         case 0:
             
-            let selectedFavTracks: [FavoriteTrack] = tracksTable.selectedRowIndexes.compactMap {favoritesDelegate.favoriteTrack(atChronologicalIndex: $0)}
+            // Tracks
+            let numFavorites = favoritesDelegate.numberOfFavoriteTracks
+            lblSummary.stringValue = "\(numFavorites)  favorite \(numFavorites == 1 ? "track" : "tracks")"
             
-            if selectedFavTracks.isNonEmpty {
-                
-                for fav in selectedFavTracks {
-                    favoritesDelegate.removeFavorite(track: fav.track)
-                }
-                
-                tracksTable.reloadData()
-            }
+        case 1:
             
-        default:
-            return
-        }
-    }
-    
-    @IBAction func playSelectedItemsAction(_ sender: NSButton) {
-        
-        switch tabGroup.selectedIndex {
-            
-        case 0:
-            
-            let selectedFavTracks: [FavoriteTrack] = tracksTable.selectedRowIndexes.compactMap {favoritesDelegate.favoriteTrack(atChronologicalIndex: $0)}
-            
-            if selectedFavTracks.isNonEmpty {
-                playQueueDelegate.enqueueToPlayNow(tracks: selectedFavTracks.map {$0.track}, clearQueue: false)
-            }
+            // Artists
+            let numFavorites = favoritesDelegate.numberOfFavoriteArtists
+            lblSummary.stringValue = "\(numFavorites)  favorite \(numFavorites == 1 ? "artist" : "artists")"
             
         default:
             return
         }
-    }
-    
-    @IBAction func doneAction(_ sender: NSButton) {
-        view.window?.windowController?.close()
     }
 }
 

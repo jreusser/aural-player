@@ -44,21 +44,21 @@
                     <rect key="frame" x="15" y="40" width="430" height="418"/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
-                        <tabViewItem label="Table View" identifier="" id="bUP-ax-Ysz">
+                        <tabViewItem label="Tracks" identifier="" id="bUP-ax-Ysz">
                             <view key="view" id="h7B-Yz-cdh">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="418"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
-                        <tabViewItem label="List View" identifier="" id="drd-LA-vL6">
+                        <tabViewItem label="Artists" identifier="" id="drd-LA-vL6">
                             <view key="view" id="csq-K0-IWM">
-                                <rect key="frame" x="0.0" y="0.0" width="430" height="400"/>
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="418"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Item 2" identifier="" id="yqD-gR-y50">
                             <view key="view" id="c5q-Oe-quw">
-                                <rect key="frame" x="0.0" y="0.0" width="430" height="400"/>
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="418"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>

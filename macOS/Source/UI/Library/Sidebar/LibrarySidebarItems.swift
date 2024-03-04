@@ -24,13 +24,13 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
     
     private static let favoritesItems: [LibrarySidebarItem] = [
         
-        LibrarySidebarItem(displayName: "Tracks", browserTab: .favoritesTracks, image: .imgTracks),
-        LibrarySidebarItem(displayName: "Artists", browserTab: .favoritesArtists, image: .imgArtistGroup),
-        LibrarySidebarItem(displayName: "Albums", browserTab: .favoritesAlbums, image: .imgAlbumGroup),
-        LibrarySidebarItem(displayName: "Genres", browserTab: .favoritesGenres, image: .imgGenreGroup),
-        LibrarySidebarItem(displayName: "Decades", browserTab: .favoritesDecades, image: .imgDecadeGroup),
-        LibrarySidebarItem(displayName: "Playlist Files", browserTab: .favoritesImportedPlaylists, image: .imgPlaylist),
-        LibrarySidebarItem(displayName: "Playlists", browserTab: .favoritesPlaylists, image: .imgPlaylist)
+        LibrarySidebarItem(displayName: "Tracks", browserTab: .favorites, image: .imgTracks),
+        LibrarySidebarItem(displayName: "Artists", browserTab: .favorites, image: .imgArtistGroup),
+        LibrarySidebarItem(displayName: "Albums", browserTab: .favorites, image: .imgAlbumGroup),
+        LibrarySidebarItem(displayName: "Genres", browserTab: .favorites, image: .imgGenreGroup),
+        LibrarySidebarItem(displayName: "Decades", browserTab: .favorites, image: .imgDecadeGroup),
+        LibrarySidebarItem(displayName: "Playlist Files", browserTab: .favorites, image: .imgPlaylist),
+        LibrarySidebarItem(displayName: "Playlists", browserTab: .favorites, image: .imgPlaylist)
     ]
     
     case library = "Library"
@@ -161,11 +161,5 @@ enum LibraryBrowserTab: Int {
          libraryImportedPlaylists = 5,
          fileSystem = 6,
          playlists = 7,
-         favoritesTracks = 8,
-         favoritesArtists = 9,
-         favoritesAlbums = 10,
-         favoritesGenres = 11,
-         favoritesDecades = 12,
-         favoritesImportedPlaylists = 13,
-         favoritesPlaylists = 14
+         favorites = 8
 }
