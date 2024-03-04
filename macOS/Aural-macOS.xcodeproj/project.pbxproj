@@ -193,6 +193,7 @@
 		3E60BD602B96793A0016909C /* FavoriteArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60BD5F2B96793A0016909C /* FavoriteArtistsViewController.swift */; };
 		3E60BD632B9681A20016909C /* FavoriteAlbums.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E60BD622B9681A20016909C /* FavoriteAlbums.xib */; };
 		3E60BD652B9681AC0016909C /* FavoriteAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60BD642B9681AC0016909C /* FavoriteAlbumsViewController.swift */; };
+		3E60BD672B9685760016909C /* FavoriteGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60BD662B9685760016909C /* FavoriteGroupsViewController.swift */; };
 		3E60EAD92B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60EAD82B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift */; };
 		3E62979426A3C0F100C96AB8 /* SnappingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */; };
 		3E62979A26A3CD3800C96AB8 /* Destroyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979926A3CD3800C96AB8 /* Destroyable.swift */; };
@@ -1227,6 +1228,7 @@
 		3E60BD5F2B96793A0016909C /* FavoriteArtistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteArtistsViewController.swift; sourceTree = "<group>"; };
 		3E60BD622B9681A20016909C /* FavoriteAlbums.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteAlbums.xib; sourceTree = "<group>"; };
 		3E60BD642B9681AC0016909C /* FavoriteAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAlbumsViewController.swift; sourceTree = "<group>"; };
+		3E60BD662B9685760016909C /* FavoriteGroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGroupsViewController.swift; sourceTree = "<group>"; };
 		3E60EAD82B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackListTableViewController+Actions.swift"; sourceTree = "<group>"; };
 		3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappingWindowDelegate.swift; sourceTree = "<group>"; };
 		3E62979926A3CD3800C96AB8 /* Destroyable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destroyable.swift; sourceTree = "<group>"; };
@@ -2909,6 +2911,7 @@
 				3E6C0F6C25CEB98600BF0D07 /* FavoritesManager.xib */,
 				3E6C0F6B25CEB98600BF0D07 /* FavoritesManagerViewController.swift */,
 				3E60BD5C2B9663FF0016909C /* FavoritesHoverControlBox.swift */,
+				3E60BD662B9685760016909C /* FavoriteGroupsViewController.swift */,
 				3E59E9CE2B52100E001DDCE9 /* Tracks */,
 				3EBFF5A12B528E2D0056D5B4 /* Artists */,
 				3E60BD612B9680200016909C /* Albums */,
@@ -5582,6 +5585,7 @@
 				3EA3CE6D25E3FE2000BC7D07 /* FontSchemePreviewView.swift in Sources */,
 				3ED2385C28207FD90048CF8E /* FilterBandEditorDialogController.swift in Sources */,
 				3EFE37F527864896006F8B8C /* ControlsPreferences.swift in Sources */,
+				3E60BD672B9685760016909C /* FavoriteGroupsViewController.swift in Sources */,
 				3E2D09DC2AD4C5440062D3C9 /* RenderQualityMenuViewController.swift in Sources */,
 				3E2ED4A925DBC50500732E79 /* FontSchemesManager.swift in Sources */,
 				3EA3CE6A25E3FDE000BC7D07 /* FontSchemesManagerViewController.swift in Sources */,
