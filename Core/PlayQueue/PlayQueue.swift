@@ -30,10 +30,9 @@ class PlayQueue: TrackList, PlayQueueProtocol {
     // MARK: Mutator functions ------------------------------------------------------------------------
     
     private var autoplay: AtomicBool = AtomicBool(value: false)
-    
     private var markLoadedItemsForHistory: AtomicBool = AtomicBool(value: true)
     
-    func loadTracks(from files: [URL], atPosition position: Int?, params: PlayQueueTrackLoadParams) {
+    func loadTracks(from urls: [URL], atPosition position: Int?, params: PlayQueueTrackLoadParams) {
         
         if params.clearQueue {
             removeAllTracks()
@@ -42,7 +41,7 @@ class PlayQueue: TrackList, PlayQueueProtocol {
         autoplay.setValue(params.autoplay)
         markLoadedItemsForHistory.setValue(params.markLoadedItemsForHistory)
         
-        loadTracks(from: files, atPosition: position)
+        loadTracks(from: urls, atPosition: position)
     }
     
     func enqueueTracks(_ newTracks: [Track], clearQueue: Bool) -> IndexSet {
@@ -190,10 +189,10 @@ class PlayQueue: TrackList, PlayQueueProtocol {
     
     override func postTrackLoad() {
         
-        messenger.publish(.PlayQueue.doneAddingTracks)
-        
         if markLoadedItemsForHistory.value {
-            messenger.publish(HistoryItemsAddedNotification(items: session.historyItems))
+            messenger.publish(HistoryItemsAddedNotification(itemURLs: session.urls))
         }
+        
+        messenger.publish(.PlayQueue.doneAddingTracks)
     }
 }

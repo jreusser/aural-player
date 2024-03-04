@@ -41,7 +41,7 @@ protocol TrackListProtocol {
     
     // MARK: Add and remove ------------------------------------------------------------------------
     
-    func loadTracks(from files: [URL], atPosition position: Int?)
+    func loadTracks(from urls: [URL], atPosition position: Int?)
     
     @discardableResult func addTracks(_ newTracks: [Track]) -> IndexSet
     
@@ -79,8 +79,8 @@ protocol TrackListProtocol {
 
 extension TrackListProtocol {
     
-    func loadTracks(from files: [URL]) {
-        loadTracks(from: files, atPosition: nil)
+    func loadTracks(from urls: [URL]) {
+        loadTracks(from: urls, atPosition: nil)
     }
 }
 
@@ -90,23 +90,18 @@ protocol TrackListFileSystemLoadingProtocol {
     
     func preTrackLoad()
     
+    func findTrack(forFile file: URL) -> Track?
+    
+    func indexOfTrack(_ track: Track) -> Int?
+    
     func firstTrackLoaded(atIndex index: Int)
     
-    func acceptBatch(_ batch: TrackLoadBatch) -> IndexSet
+    func acceptBatch(fromSession session: TrackLoadSession) -> IndexSet
     
     func postBatchLoad(indices: IndexSet)
     
     func postTrackLoad()
 }
-
-//extension TrackListFileSystemLoadingProtocol {
-//    
-//    func preTrackLoad() {}
-//    
-//    func postBatchLoad(indices: IndexSet) {}
-//    
-//    func postTrackLoad() {}
-//}
 
 protocol SortedTrackListProtocol: TrackListProtocol {
     

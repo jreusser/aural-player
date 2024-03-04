@@ -57,6 +57,7 @@ protocol FavoritesDelegateProtocol {
     
     var allFavoriteTracks: [FavoriteTrack] {get}
     var numberOfFavoriteTracks: Int {get}
+    func favoriteTrack(atChronologicalIndex index: Int) -> FavoriteTrack?
     
     var artistsFromFavoriteTracks: Set<String> {get}
     var albumsFromFavoriteTracks: Set<String> {get}

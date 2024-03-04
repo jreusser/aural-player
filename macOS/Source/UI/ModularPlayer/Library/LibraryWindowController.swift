@@ -46,6 +46,8 @@ class LibraryWindowController: NSWindowController {
     
     private lazy var playlistsViewController: PlaylistsViewController = PlaylistsViewController()
     
+    private lazy var favoritesViewController: FavoritesManagerViewController = FavoritesManagerViewController()
+    
     private lazy var messenger: Messenger = Messenger(for: self)
     
     private lazy var buildProgressUpdateTask: RepeatingTaskExecutor = .init(intervalMillis: 500, task: {[weak self] in self?.updateBuildProgress()}, queue: .main)
@@ -91,6 +93,10 @@ class LibraryWindowController: NSWindowController {
         let playlistsView: NSView = playlistsViewController.view
         tabGroup.tabViewItem(at: 7).view?.addSubview(playlistsView)
         playlistsView.anchorToSuperview()
+        
+        let favoritesView: NSView = favoritesViewController.view
+        tabGroup.tabViewItem(at: 8).view?.addSubview(favoritesView)
+        favoritesView.anchorToSuperview()
         
         let windowShownFilter = {[weak self] in self?.theWindow.isVisible ?? false}
         messenger.subscribeAsync(to: .Library.startedReadingFileSystem, handler: startedReadingFileSystem, filter: windowShownFilter)

@@ -25,3 +25,9 @@ extension Notification.Name {
         static let updated = Notification.Name("history_updated")
     }
 }
+
+struct HistoryItemsAddedNotification: NotificationPayload {
+    
+    let notificationName: Notification.Name = .History.itemsAdded
+    let itemURLs: [URL]
+}

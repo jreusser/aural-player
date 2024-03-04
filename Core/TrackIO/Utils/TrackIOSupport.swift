@@ -11,23 +11,46 @@
 import Foundation
 import OrderedCollections
 
-class TrackLoadBatch {
+class TrackLoadSession {
     
-    var counter: Int = 0
+    private let loader: TrackListFileSystemLoadingProtocol
+    let urls: [URL]
+    private(set) var tracks: OrderedDictionary<URL, TrackRead> = OrderedDictionary()
+    private(set) var insertionIndex: Int?
     
-    let size: Int
-    var tracks: OrderedDictionary<URL, FileRead> = OrderedDictionary()
+    private let queue: OperationQueue
+    private let batchSize: Int
     
-    // TODO: Are some errors harmless and should we ignore them ???
-    var firstSuccessfulRead: FileRead? {
-        tracks.values.first(where: {$0.result != .error})
+    // Progress
+    private(set) var errors: [DisplayableError] = []
+    
+    private var triggeredFirstReadCallback: Bool = false
+    
+    init(forLoader loader: TrackListFileSystemLoadingProtocol, withPriority priority: DispatchQoS.QoSClass, urls: [URL], insertionIndex: Int?) {
+        
+        self.loader = loader
+        self.urls = urls
+        self.insertionIndex = insertionIndex
+        
+        switch priority {
+            
+        case .userInitiated, .userInteractive:
+            self.queue = TrackReader.highPriorityQueue
+            
+        case .utility:
+            self.queue = TrackReader.mediumPriorityQueue
+            
+        case .background:
+            self.queue = TrackReader.lowPriorityQueue
+            
+        default:
+            self.queue = TrackReader.mediumPriorityQueue
+        }
+        
+        self.batchSize = self.queue.maxConcurrentOperationCount
+        
+        loader.preTrackLoad()
     }
-    
-    var tracksToRead: [Track] {
-        tracks.values.filter {$0.result != .existsInTrackList}.map {$0.track}
-    }
-    
-    var insertionIndex: Int?
     
     var trackListIndices: ClosedRange<Int> {
         
@@ -38,83 +61,98 @@ class TrackLoadBatch {
         return 0...(tracks.count - 1)
     }
     
-    var fileCount: Int {tracks.count}
+    var tracksCount: Int {tracks.count}
     
-    init(ofSize size: Int, insertionIndex: Int?) {
+    func readTrack(forFile file: URL) {
         
-        self.size = size
-        self.insertionIndex = insertionIndex
+        let trackInList: Track? = loader.findTrack(forFile: file)
+        let track = trackInList ?? Track(file)
+        
+        let trackRead: TrackRead = TrackRead(track: track,
+                                             result: trackInList != nil ? .existsInTrackList : .addedToTrackList)
+        
+        tracks[trackRead.track.file] = trackRead
+        
+        if tracks.count == batchSize {
+            processBatch()
+        }
     }
     
-    func append(fileRead: FileRead) -> Bool {
+    func processBatch() {
         
-        tracks[fileRead.track.file] = fileRead
-        return tracks.count == size
-    }
-    
-    func markReadErrors() {
+        let tracksToRead = tracks.values.filter {$0.result != .existsInTrackList}.map {$0.track}
         
-        for fileRead in self.tracks.values {
+        queue.addOperations(tracksToRead.map {track in
             
-            if fileRead.track.validationError != nil {
-                fileRead.result = .error
+            BlockOperation {
+                trackReader.loadPrimaryMetadata(for: track)
+            }
+            
+        }, waitUntilFinished: true)
+        markBatchReadErrors()
+        
+        loader.postBatchLoad(indices: loader.acceptBatch(fromSession: self))
+        
+        // For Autoplay
+        if !triggeredFirstReadCallback, 
+            let firstRead = tracks.values.first(where: {$0.result != .error}),
+            let indexOfTrack = loader.indexOfTrack(firstRead.track) {
+
+            loader.firstTrackLoaded(atIndex: indexOfTrack)
+            triggeredFirstReadCallback = true
+        }
+        
+        clearBatch()
+    }
+    
+    func addError(_ error: DisplayableError) {
+        errors.append(error)
+    }
+    
+    private func markBatchReadErrors() {
+        
+        for trackRead in self.tracks.values {
+            
+            if trackRead.track.validationError != nil {
+                trackRead.result = .error
             }
         }
     }
     
-    func clear() {
+    func clearBatch() {
         
         if let index = self.insertionIndex {
             self.insertionIndex = index + tracks.count
         }
         
         tracks.removeAll()
-        counter.increment()
+    }
+    
+    func allTracksRead() {
+        
+        if !tracks.isEmpty {
+            processBatch()
+        }
+        
+        loader.postTrackLoad()
     }
 }
 
-class FileRead {
+class TrackRead {
     
     let track: Track
-    var result: FileReadResult
+    var result: TrackReadResult
     
-    // TODO: Add a field for fileMetadata.validationError ???
+    // TODO: Add a field for track.validationError ???
     
-    init(track: Track, result: FileReadResult) {
+    init(track: Track, result: TrackReadResult) {
         
         self.track = track
         self.result = result
     }
 }
 
-enum FileReadResult {
+enum TrackReadResult {
     
     case existsInTrackList, addedToTrackList, error
-}
-
-class FileReadSession {
-
-    let trackList: TrackList
-    let insertionIndex: Int?
-    
-    // For history
-    var historyItems: [URL] = []
-    
-    // Progress
-    var filesProcessed: Int = 0
-    var errors: [DisplayableError] = []
-    
-    init(trackList: TrackList, insertionIndex: Int?) {
-        
-        self.trackList = trackList
-        self.insertionIndex = insertionIndex
-    }
-    
-    func addHistoryItem(_ item: URL) {
-        historyItems.append(item)
-    }
-    
-    func addError(_ error: DisplayableError) {
-        errors.append(error)
-    }
 }

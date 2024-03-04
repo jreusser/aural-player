@@ -38,6 +38,19 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         Array(favoriteTracks.values)
     }
     
+    func favoriteTrack(atChronologicalIndex index: Int) -> FavoriteTrack? {
+        
+        if favoriteTracks.isEmpty {return nil}
+        
+        if favoriteTracks.indices.contains(index) {
+        
+            // Invert the index
+            return favoriteTracks.values[favoriteTracks.count - index - 1]
+        }
+        
+        return nil
+    }
+    
     var numberOfFavoriteTracks: Int {
         favoriteTracks.count
     }

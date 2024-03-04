@@ -36,5 +36,5 @@ class ImportedPlaylist: TrackList, PlaylistProtocol, UserManagedObject {
         addTracks(tracks)
     }
     
-    override func loadTracks(from files: [URL], atPosition position: Int?) {}
+    override func loadTracks(from urls: [URL], atPosition position: Int?) {}
 }

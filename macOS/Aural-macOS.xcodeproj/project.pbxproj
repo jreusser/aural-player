@@ -170,8 +170,6 @@
 		3E59E98F2B50C356001DDCE9 /* FileWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E59E98C2B50C356001DDCE9 /* FileWatcher.swift */; };
 		3E59E9D02B521025001DDCE9 /* FavoriteTracks.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E59E9CF2B521025001DDCE9 /* FavoriteTracks.xib */; };
 		3E59E9D22B5211F4001DDCE9 /* FavoriteTracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E59E9D12B5211F4001DDCE9 /* FavoriteTracksViewController.swift */; };
-		3E59E9D52B5214F1001DDCE9 /* FavoritesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E59E9D42B5214F1001DDCE9 /* FavoritesWindow.xib */; };
-		3E59E9D72B521511001DDCE9 /* FavoritesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E59E9D62B521511001DDCE9 /* FavoritesWindowController.swift */; };
 		3E59E9D92B521E6A001DDCE9 /* FileSystemFolderChangedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E59E9D82B521E6A001DDCE9 /* FileSystemFolderChangedNotification.swift */; };
 		3E5AF9A82B5EF15400BA24B3 /* FileSystemFolderLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5AF9A72B5EF15400BA24B3 /* FileSystemFolderLocation.swift */; };
 		3E5EE2C928D90D5400E71B1A /* AlbumGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5EE2C828D90D5400E71B1A /* AlbumGroup.swift */; };
@@ -191,7 +189,6 @@
 		3E5F943725E571A6002DEF80 /* SpectrogramBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F941A25E570A9002DEF80 /* SpectrogramBar.swift */; };
 		3E60BD552B9345250016909C /* TrackList+TrackIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60BD542B9345250016909C /* TrackList+TrackIO.swift */; };
 		3E60BD572B93B39B0016909C /* TrackIOSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60BD562B93B39B0016909C /* TrackIOSupport.swift */; };
-		3E60BD592B93CBB40016909C /* HistoryItemsAddedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60BD582B93CBB40016909C /* HistoryItemsAddedNotification.swift */; };
 		3E60EAD92B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60EAD82B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift */; };
 		3E62979426A3C0F100C96AB8 /* SnappingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */; };
 		3E62979A26A3CD3800C96AB8 /* Destroyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979926A3CD3800C96AB8 /* Destroyable.swift */; };
@@ -1203,8 +1200,6 @@
 		3E59E98C2B50C356001DDCE9 /* FileWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileWatcher.swift; sourceTree = "<group>"; };
 		3E59E9CF2B521025001DDCE9 /* FavoriteTracks.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTracks.xib; sourceTree = "<group>"; };
 		3E59E9D12B5211F4001DDCE9 /* FavoriteTracksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTracksViewController.swift; sourceTree = "<group>"; };
-		3E59E9D42B5214F1001DDCE9 /* FavoritesWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesWindow.xib; sourceTree = "<group>"; };
-		3E59E9D62B521511001DDCE9 /* FavoritesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesWindowController.swift; sourceTree = "<group>"; };
 		3E59E9D82B521E6A001DDCE9 /* FileSystemFolderChangedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemFolderChangedNotification.swift; sourceTree = "<group>"; };
 		3E5AF9A72B5EF15400BA24B3 /* FileSystemFolderLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemFolderLocation.swift; sourceTree = "<group>"; };
 		3E5EE2C828D90D5400E71B1A /* AlbumGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumGroup.swift; sourceTree = "<group>"; };
@@ -1224,7 +1219,6 @@
 		3E5F941F25E570A9002DEF80 /* Supernova.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supernova.swift; sourceTree = "<group>"; };
 		3E60BD542B9345250016909C /* TrackList+TrackIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackList+TrackIO.swift"; sourceTree = "<group>"; };
 		3E60BD562B93B39B0016909C /* TrackIOSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackIOSupport.swift; sourceTree = "<group>"; };
-		3E60BD582B93CBB40016909C /* HistoryItemsAddedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItemsAddedNotification.swift; sourceTree = "<group>"; };
 		3E60EAD82B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackListTableViewController+Actions.swift"; sourceTree = "<group>"; };
 		3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappingWindowDelegate.swift; sourceTree = "<group>"; };
 		3E62979926A3CD3800C96AB8 /* Destroyable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destroyable.swift; sourceTree = "<group>"; };
@@ -2179,7 +2173,6 @@
 				3E10179228D79203002C0D8E /* Library */,
 				3E10179428D793B1002C0D8E /* Effects */,
 				3E2C4BD52B38E5D300FC65DD /* Search */,
-				3E59E9D32B5214E0001DDCE9 /* Favorites */,
 			);
 			path = ModularPlayer;
 			sourceTree = "<group>";
@@ -2573,15 +2566,6 @@
 			path = Tracks;
 			sourceTree = "<group>";
 		};
-		3E59E9D32B5214E0001DDCE9 /* Favorites */ = {
-			isa = PBXGroup;
-			children = (
-				3E59E9D42B5214F1001DDCE9 /* FavoritesWindow.xib */,
-				3E59E9D62B521511001DDCE9 /* FavoritesWindowController.swift */,
-			);
-			path = Favorites;
-			sourceTree = "<group>";
-		};
 		3E5F93F625E57081002DEF80 /* FFT */ = {
 			isa = PBXGroup;
 			children = (
@@ -2765,6 +2749,7 @@
 				3EF84D9F283623D3004EF57B /* Library */,
 				3E2C4BCE2B38D43400FC65DD /* Search */,
 				3E6C0FED25CEB98600BF0D07 /* Effects */,
+				3E6C0F6A25CEB98600BF0D07 /* Favorites */,
 				3E6C0F6925CEB98600BF0D07 /* PresetsManagers */,
 				3E5F941525E570A9002DEF80 /* Visualizer */,
 				3E6C0F2425CEB98500BF0D07 /* Preferences */,
@@ -2891,7 +2876,6 @@
 				3E6C0F9425CEB98600BF0D07 /* PresetsManagerWindowController.swift */,
 				3E3579D126837D3D009522A0 /* PresetsManagerViewController.swift */,
 				3E6C0F8925CEB98600BF0D07 /* Bookmarks */,
-				3E6C0F6A25CEB98600BF0D07 /* Favorites */,
 				3E6C0F6E25CEB98600BF0D07 /* EffectsPresets */,
 				3E51F344262AFDAF0048452F /* Themes */,
 				3EA3CE6525E3FD5300BC7D07 /* FontSchemes */,
@@ -4874,7 +4858,6 @@
 			children = (
 				3EFE376827864895006F8B8C /* TrackAddedNotification.swift */,
 				3E59E9D82B521E6A001DDCE9 /* FileSystemFolderChangedNotification.swift */,
-				3E60BD582B93CBB40016909C /* HistoryItemsAddedNotification.swift */,
 				3EFE376927864895006F8B8C /* TrackNotPlayedNotification.swift */,
 				3EFE376A27864895006F8B8C /* TrackTransitionNotification.swift */,
 				3EFE376B27864895006F8B8C /* AppReopenedNotification.swift */,
@@ -5172,7 +5155,6 @@
 				3EAF96FD28DCE1B6008561A7 /* coming-soon.regular.ttf in Resources */,
 				3E51CCF0285E8986002CBEF2 /* UnifiedPlayerSidebar.xib in Resources */,
 				3EFB9ECF26A689D800EA8440 /* MetadataTrackInfo.xib in Resources */,
-				3E59E9D52B5214F1001DDCE9 /* FavoritesWindow.xib in Resources */,
 				3E6C125E25CEBE0600BF0D07 /* ReverbPresetsManager.xib in Resources */,
 				3E6C12A425CEBE2700BF0D07 /* AboutDialog.xib in Resources */,
 				3E6C126025CEBE0600BF0D07 /* PresetsManagerWindow.xib in Resources */,
@@ -5637,7 +5619,6 @@
 				3E6C129D25CEBE2700BF0D07 /* AuralSliderCell.swift in Sources */,
 				3E7C360126AADFA000B3552D /* FilterBandView.swift in Sources */,
 				3EFE392527864897006F8B8C /* AtomicCounter.swift in Sources */,
-				3E60BD592B93CBB40016909C /* HistoryItemsAddedNotification.swift in Sources */,
 				3EFE3A2F27864898006F8B8C /* AutoplayCommandNotification.swift in Sources */,
 				3E6C12F625CEBE8F00BF0D07 /* InfoPopupViewController.swift in Sources */,
 				3E6C129325CEBE1800BF0D07 /* IntervalPicker.swift in Sources */,
@@ -5792,7 +5773,6 @@
 				3EEFF58927DE842C002CB0FE /* PlayQueueDelegateProtocol.swift in Sources */,
 				3EFE387927864896006F8B8C /* DelayUnit.swift in Sources */,
 				3EDCC4B8282C2223002AF3AE /* PlayQueueUIState.swift in Sources */,
-				3E59E9D72B521511001DDCE9 /* FavoritesWindowController.swift in Sources */,
 				3E6C12D725CEBE8100BF0D07 /* PlayerUIState.swift in Sources */,
 				3EA6C62E2AD6AAA100B75166 /* FFmpegAudioStream.swift in Sources */,
 				3EFE3A5327864898006F8B8C /* GenreMap.swift in Sources */,

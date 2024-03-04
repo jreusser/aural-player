@@ -40,7 +40,7 @@ extension PlayQueueDelegate {
     
     func itemsLoadedFromFileSystem(notif: HistoryItemsAddedNotification) {
         
-        for url in notif.items {
+        for url in notif.itemURLs {
             
             if url.isSupportedAudioFile {
                 

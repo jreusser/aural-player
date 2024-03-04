@@ -96,7 +96,7 @@ class M3UPlaylistIO: PlaylistIOProtocol {
                 
                 let resolvedURL = url.resolvedURL
                 
-                if resolvedURL.exists {
+                if resolvedURL.exists && resolvedURL.isSupportedAudioFile {
                     tracks.append(resolvedURL)
                 }
             }

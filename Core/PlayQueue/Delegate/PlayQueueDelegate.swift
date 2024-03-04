@@ -82,8 +82,8 @@ class PlayQueueDelegate: PlayQueueDelegateProtocol, PersistentModelObject {
         playQueue.search(searchQuery)
     }
     
-    func loadTracks(from files: [URL], atPosition position: Int? = nil, params: PlayQueueTrackLoadParams) {
-        playQueue.loadTracks(from: files, atPosition: position, params: params)
+    func loadTracks(from urls: [URL], atPosition position: Int? = nil, params: PlayQueueTrackLoadParams) {
+        playQueue.loadTracks(from: urls, atPosition: position, params: params)
     }
     
     func addTracks(_ newTracks: [Track]) -> IndexSet {

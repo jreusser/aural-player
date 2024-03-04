@@ -39,8 +39,7 @@ class TrackList: TrackListProtocol {
     }
     
     // Used when reading tracks from the file system.
-    var session: FileReadSession!
-    var batch: TrackLoadBatch!
+    var session: TrackLoadSession!
     
     var size: Int {
         _tracks.count
@@ -214,17 +213,17 @@ class TrackList: TrackListProtocol {
         }
     }
     
-    func loadTracks(from files: [URL], atPosition position: Int?) {
-        loadTracksAsync(from: files, atPosition: position)
+    func loadTracks(from urls: [URL], atPosition position: Int?) {
+        loadTracksAsync(from: urls, atPosition: position)
     }
     
-    func acceptBatch(_ batch: TrackLoadBatch) -> IndexSet {
+    func acceptBatch(fromSession session: TrackLoadSession) -> IndexSet {
         
-        let tracks = batch.tracks.values.map {$0.track}
+        let tracks = session.tracks.values.map {$0.track}
         
         let indices: IndexSet
         
-        if let insertionIndex = batch.insertionIndex {
+        if let insertionIndex = session.insertionIndex {
             indices = insertTracks(tracks, at: insertionIndex)
             
         } else {

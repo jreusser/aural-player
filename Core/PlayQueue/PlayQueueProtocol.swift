@@ -19,21 +19,21 @@ protocol PlayQueueProtocol: TrackListProtocol, SequencingProtocol {
     // Moves tracks immediately after the current track, i.e. "Play Next"
     func moveTracksAfterCurrentTrack(from indices: IndexSet) -> IndexSet
     
-    func loadTracks(from files: [URL], atPosition position: Int?, params: PlayQueueTrackLoadParams)
+    func loadTracks(from urls: [URL], atPosition position: Int?, params: PlayQueueTrackLoadParams)
 }
 
 extension PlayQueueProtocol {
     
-    func loadTracks(from files: [URL]) {
-        loadTracks(from: files, atPosition: nil, params: .defaultParams)
+    func loadTracks(from urls: [URL]) {
+        loadTracks(from: urls, atPosition: nil, params: .defaultParams)
     }
     
-    func loadTracks(from files: [URL], atPosition position: Int?) {
-        loadTracks(from: files, atPosition: position, params: .defaultParams)
+    func loadTracks(from urls: [URL], atPosition position: Int?) {
+        loadTracks(from: urls, atPosition: position, params: .defaultParams)
     }
     
-    func loadTracks(from files: [URL], params: PlayQueueTrackLoadParams) {
-        loadTracks(from: files, atPosition: nil, params: params)
+    func loadTracks(from urls: [URL], params: PlayQueueTrackLoadParams) {
+        loadTracks(from: urls, atPosition: nil, params: params)
     }
 }
 

@@ -131,6 +131,18 @@
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                         </tabViewItem>
+                                                        <tabViewItem label="Favorites" identifier="" id="846-f3-KCT">
+                                                            <view key="view" id="B9t-8X-Zns">
+                                                                <rect key="frame" x="0.0" y="0.0" width="716" height="451"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
+                                                        <tabViewItem label="Bookmarks" identifier="" id="v2d-Xl-ZHs">
+                                                            <view key="view" id="4bT-Z1-V0S">
+                                                                <rect key="frame" x="0.0" y="0.0" width="716" height="451"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                        </tabViewItem>
                                                         <tabViewItem label="History-RecentlyPlayed" identifier="" id="VCE-Ws-H2u">
                                                             <view key="view" id="Hbb-xH-nY3">
                                                                 <rect key="frame" x="0.0" y="0.0" width="716" height="451"/>
@@ -145,18 +157,6 @@
                                                         </tabViewItem>
                                                         <tabViewItem label="History-RecentlyAdded" identifier="" id="QFv-AD-pIq">
                                                             <view key="view" id="FrL-q3-uTB">
-                                                                <rect key="frame" x="0.0" y="0.0" width="716" height="451"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            </view>
-                                                        </tabViewItem>
-                                                        <tabViewItem label="Favorites" identifier="" id="846-f3-KCT">
-                                                            <view key="view" id="B9t-8X-Zns">
-                                                                <rect key="frame" x="0.0" y="0.0" width="716" height="451"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            </view>
-                                                        </tabViewItem>
-                                                        <tabViewItem label="Bookmarks" identifier="" id="v2d-Xl-ZHs">
-                                                            <view key="view" id="4bT-Z1-V0S">
                                                                 <rect key="frame" x="0.0" y="0.0" width="716" height="451"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>

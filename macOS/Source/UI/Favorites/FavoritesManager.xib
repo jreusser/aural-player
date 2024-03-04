@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="FavoritesManagerViewController" customModule="Aural" customModuleProvider="target">
+            <connections>
+                <outlet property="containerBox" destination="Wcl-GF-UWK" id="sgt-Vy-gmg"/>
+                <outlet property="selectedTabCaption" destination="fMA-Ty-1Q0" id="nxf-JO-Q0C"/>
+                <outlet property="tabGroup" destination="3DZ-HY-LNK" id="tQB-m5-E0U"/>
+                <outlet property="view" destination="Ovo-SL-XF4" id="EeS-wy-vgv"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Ovo-SL-XF4">
+            <rect key="frame" x="0.0" y="0.0" width="460" height="502"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Wcl-GF-UWK" userLabel="Container Box">
+                    <rect key="frame" x="0.0" y="0.0" width="460" height="502"/>
+                    <view key="contentView" id="8lP-ww-3HC">
+                        <rect key="frame" x="0.0" y="0.0" width="460" height="502"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </box>
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fMA-Ty-1Q0">
+                    <rect key="frame" x="25" y="464" width="260" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="256" id="tFG-y8-1Ko"/>
+                        <constraint firstAttribute="height" constant="26" id="w3a-pC-zYW"/>
+                    </constraints>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Tracks" id="EN0-qU-5yO">
+                        <font key="font" size="13" name="Play-Regular"/>
+                        <color key="textColor" white="0.84602864580000003" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="htq-Lq-qTq">
+                    <rect key="frame" x="84" y="14" width="55" height="19"/>
+                    <buttonCell key="cell" type="roundRect" title="Play" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1tm-2f-Khz" customClass="ModalDialogResponseButtonCell" customModule="Aural" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="cellTitle"/>
+                        <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                    </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="GT4-cS-ueC"/>
+                        <constraint firstAttribute="width" constant="55" id="hMj-hS-wIC"/>
+                    </constraints>
+                    <connections>
+                        <action selector="playSelectedItemsAction:" target="-2" id="TpG-DE-RmA"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="54W-bE-CZ4">
+                    <rect key="frame" x="15" y="14" width="63" height="19"/>
+                    <buttonCell key="cell" type="roundRect" title="Delete" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MEb-zO-bzZ" customClass="ModalDialogResponseButtonCell" customModule="Aural" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="cellTitle"/>
+                        <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                    </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="7cx-3K-BJW"/>
+                        <constraint firstAttribute="width" constant="63" id="yQ1-z1-zo4"/>
+                    </constraints>
+                    <connections>
+                        <action selector="deleteSelectedItemsAction:" target="-2" id="fOX-PW-xQw"/>
+                    </connections>
+                </button>
+                <tabView drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="3DZ-HY-LNK" userLabel="Tab Group">
+                    <rect key="frame" x="15" y="48" width="430" height="410"/>
+                    <font key="font" metaFont="system"/>
+                    <tabViewItems>
+                        <tabViewItem label="Table View" identifier="" id="bUP-ax-Ysz">
+                            <view key="view" id="h7B-Yz-cdh">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="410"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                        </tabViewItem>
+                        <tabViewItem label="List View" identifier="" id="drd-LA-vL6">
+                            <view key="view" id="csq-K0-IWM">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="400"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                        </tabViewItem>
+                        <tabViewItem label="Item 2" identifier="" id="yqD-gR-y50">
+                            <view key="view" id="c5q-Oe-quw">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="400"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                        </tabViewItem>
+                        <tabViewItem label="Item 3" identifier="" id="zO8-Iq-uum">
+                            <view key="view" id="7xb-GX-Xts">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="400"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                        </tabViewItem>
+                        <tabViewItem label="Item 4" identifier="" id="uwg-sO-quN">
+                            <view key="view" id="txE-vA-uP1">
+                                <autoresizingMask key="autoresizingMask"/>
+                            </view>
+                        </tabViewItem>
+                    </tabViewItems>
+                </tabView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="htq-Lq-qTq" firstAttribute="top" secondItem="3DZ-HY-LNK" secondAttribute="bottom" constant="15" id="1eH-A7-jPV"/>
+                <constraint firstItem="htq-Lq-qTq" firstAttribute="leading" secondItem="54W-bE-CZ4" secondAttribute="trailing" constant="6" id="1tJ-UY-Kf3"/>
+                <constraint firstItem="htq-Lq-qTq" firstAttribute="bottom" secondItem="54W-bE-CZ4" secondAttribute="bottom" id="A5p-td-spv"/>
+                <constraint firstAttribute="trailing" secondItem="Wcl-GF-UWK" secondAttribute="trailing" id="EA8-U5-tKV"/>
+                <constraint firstItem="3DZ-HY-LNK" firstAttribute="top" secondItem="fMA-Ty-1Q0" secondAttribute="bottom" constant="6" id="EzC-Ng-lFK"/>
+                <constraint firstAttribute="bottom" secondItem="54W-bE-CZ4" secondAttribute="bottom" constant="15" id="Kaa-s3-xLt"/>
+                <constraint firstItem="htq-Lq-qTq" firstAttribute="top" secondItem="3DZ-HY-LNK" secondAttribute="bottom" constant="15" id="LgR-Jx-6yV"/>
+                <constraint firstItem="fMA-Ty-1Q0" firstAttribute="leading" secondItem="Ovo-SL-XF4" secondAttribute="leading" constant="27" id="Z22-gr-3TU"/>
+                <constraint firstAttribute="bottom" secondItem="Wcl-GF-UWK" secondAttribute="bottom" id="bW2-ZO-3om"/>
+                <constraint firstItem="Wcl-GF-UWK" firstAttribute="leading" secondItem="Ovo-SL-XF4" secondAttribute="leading" id="dPf-xb-NDM"/>
+                <constraint firstItem="Wcl-GF-UWK" firstAttribute="top" secondItem="Ovo-SL-XF4" secondAttribute="top" id="exV-Au-yhO"/>
+                <constraint firstAttribute="trailing" secondItem="3DZ-HY-LNK" secondAttribute="trailing" constant="15" id="lWo-Wr-weq"/>
+                <constraint firstItem="3DZ-HY-LNK" firstAttribute="leading" secondItem="Ovo-SL-XF4" secondAttribute="leading" constant="15" id="nDL-28-712"/>
+                <constraint firstItem="54W-bE-CZ4" firstAttribute="leading" secondItem="Ovo-SL-XF4" secondAttribute="leading" constant="15" id="nrw-MG-BXC"/>
+                <constraint firstItem="fMA-Ty-1Q0" firstAttribute="top" secondItem="Ovo-SL-XF4" secondAttribute="top" constant="12" id="x2v-ni-5ln"/>
+            </constraints>
+            <point key="canvasLocation" x="-100" y="292"/>
+        </customView>
+    </objects>
+</document>

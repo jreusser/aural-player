@@ -106,7 +106,7 @@ class Library: GroupedSortedTrackList, LibraryProtocol {
         groupings[3] as! DecadesGrouping
     }
     
-    override func loadTracks(from files: [URL], atPosition position: Int?) {
+    override func loadTracks(from urls: [URL], atPosition position: Int?) {
         // DO NOTHING (User cannot load tracks from the FS into the Library)
     }
     

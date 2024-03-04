@@ -14,8 +14,6 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var addRemoveFavoritesMenuItem: ToggleMenuItem!
     @IBOutlet weak var manageFavoritesMenuItem: NSMenuItem!    
     
-    private lazy var managerWindowController: FavoritesWindowController = .init()
-    
     private lazy var messenger = Messenger(for: self)
     
     // One-time setup, when the menu loads
@@ -49,7 +47,7 @@ class FavoritesMenuController: NSObject, NSMenuDelegate {
     
     // Opens the presets manager to manage favorites
     @IBAction func manageFavoritesAction(_ sender: Any) {
-        managerWindowController.showWindow(self)
+        // TODO: Open Library and switch to the Favorite Tracks tab
     }
 }
 

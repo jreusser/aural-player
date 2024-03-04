@@ -115,7 +115,7 @@ class LibraryDelegate: LibraryDelegateProtocol {
     }
     
     // Not a valid user action
-    func loadTracks(from files: [URL], atPosition position: Int?) {
+    func loadTracks(from urls: [URL], atPosition position: Int?) {
     }
     
     func search(_ searchQuery: SearchQuery) -> SearchResults {
