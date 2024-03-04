@@ -194,6 +194,10 @@
 		3E60BD632B9681A20016909C /* FavoriteAlbums.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E60BD622B9681A20016909C /* FavoriteAlbums.xib */; };
 		3E60BD652B9681AC0016909C /* FavoriteAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60BD642B9681AC0016909C /* FavoriteAlbumsViewController.swift */; };
 		3E60BD672B9685760016909C /* FavoriteGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60BD662B9685760016909C /* FavoriteGroupsViewController.swift */; };
+		3E60BD6A2B96898B0016909C /* FavoriteGenres.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E60BD692B96898B0016909C /* FavoriteGenres.xib */; };
+		3E60BD6C2B96899A0016909C /* FavoriteGenresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60BD6B2B96899A0016909C /* FavoriteGenresViewController.swift */; };
+		3E60BD702B968BCA0016909C /* FavoriteDecades.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E60BD6E2B968BCA0016909C /* FavoriteDecades.xib */; };
+		3E60BD712B968BCA0016909C /* FavoriteDecadesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60BD6F2B968BCA0016909C /* FavoriteDecadesViewController.swift */; };
 		3E60EAD92B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60EAD82B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift */; };
 		3E62979426A3C0F100C96AB8 /* SnappingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */; };
 		3E62979A26A3CD3800C96AB8 /* Destroyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62979926A3CD3800C96AB8 /* Destroyable.swift */; };
@@ -1229,6 +1233,10 @@
 		3E60BD622B9681A20016909C /* FavoriteAlbums.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteAlbums.xib; sourceTree = "<group>"; };
 		3E60BD642B9681AC0016909C /* FavoriteAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAlbumsViewController.swift; sourceTree = "<group>"; };
 		3E60BD662B9685760016909C /* FavoriteGroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGroupsViewController.swift; sourceTree = "<group>"; };
+		3E60BD692B96898B0016909C /* FavoriteGenres.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteGenres.xib; sourceTree = "<group>"; };
+		3E60BD6B2B96899A0016909C /* FavoriteGenresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGenresViewController.swift; sourceTree = "<group>"; };
+		3E60BD6E2B968BCA0016909C /* FavoriteDecades.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteDecades.xib; sourceTree = "<group>"; };
+		3E60BD6F2B968BCA0016909C /* FavoriteDecadesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteDecadesViewController.swift; sourceTree = "<group>"; };
 		3E60EAD82B5D9DE2002EBFD3 /* TrackListTableViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackListTableViewController+Actions.swift"; sourceTree = "<group>"; };
 		3E62979326A3C0F100C96AB8 /* SnappingWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappingWindowDelegate.swift; sourceTree = "<group>"; };
 		3E62979926A3CD3800C96AB8 /* Destroyable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destroyable.swift; sourceTree = "<group>"; };
@@ -2619,6 +2627,24 @@
 			path = Albums;
 			sourceTree = "<group>";
 		};
+		3E60BD682B9689200016909C /* Genres */ = {
+			isa = PBXGroup;
+			children = (
+				3E60BD692B96898B0016909C /* FavoriteGenres.xib */,
+				3E60BD6B2B96899A0016909C /* FavoriteGenresViewController.swift */,
+			);
+			path = Genres;
+			sourceTree = "<group>";
+		};
+		3E60BD6D2B968BA00016909C /* Decades */ = {
+			isa = PBXGroup;
+			children = (
+				3E60BD6E2B968BCA0016909C /* FavoriteDecades.xib */,
+				3E60BD6F2B968BCA0016909C /* FavoriteDecadesViewController.swift */,
+			);
+			path = Decades;
+			sourceTree = "<group>";
+		};
 		3E634D742846B895008A47EC /* TableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2915,6 +2941,8 @@
 				3E59E9CE2B52100E001DDCE9 /* Tracks */,
 				3EBFF5A12B528E2D0056D5B4 /* Artists */,
 				3E60BD612B9680200016909C /* Albums */,
+				3E60BD682B9689200016909C /* Genres */,
+				3E60BD6D2B968BA00016909C /* Decades */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -5137,6 +5165,7 @@
 				3E6C136B25CEBFB900BF0D07 /* Application.xib in Resources */,
 				3E9CA7F2261A21E8006133B6 /* AudioUnitEditorDialog.xib in Resources */,
 				3ECFA87D2AE1EB01001096DC /* EffectsContainer.xib in Resources */,
+				3E60BD702B968BCA0016909C /* FavoriteDecades.xib in Resources */,
 				3E36BD4726A6909800B6E28B /* AudioTrackInfo.xib in Resources */,
 				3EAE9CBB2836ADF6004499FE /* LibraryTracks.xib in Resources */,
 				3E3DFFCE260D9BBA0092F0BF /* MetadataPreferences.xib in Resources */,
@@ -5231,6 +5260,7 @@
 				3E6C125925CEBE0600BF0D07 /* BookmarksManager.xib in Resources */,
 				3E6C121F25CEBDE600BF0D07 /* ControlsPreferences.xib in Resources */,
 				3EBFF5AA2B52C0F70056D5B4 /* CompactPlayerWindow.xib in Resources */,
+				3E60BD6A2B96898B0016909C /* FavoriteGenres.xib in Resources */,
 				3ECF71B22B7571D200FDB69B /* CompactPlayer.xib in Resources */,
 				3E6C122C25CEBDE600BF0D07 /* HistoryPreferences.xib in Resources */,
 				3E43227D2687D65F009E8ADB /* WidgetPlayer.xib in Resources */,
@@ -5526,6 +5556,7 @@
 				3E6C129E25CEBE2700BF0D07 /* EQSliderCell.swift in Sources */,
 				3EBFF5B32B53C0550056D5B4 /* LegacyAppPersistentState.swift in Sources */,
 				3E9FD1002A1D5C740038AF04 /* FFmpegDecoder+PCMBuffer.swift in Sources */,
+				3E60BD712B968BCA0016909C /* FavoriteDecadesViewController.swift in Sources */,
 				3EFE394727864897006F8B8C /* PlaybackSequence.swift in Sources */,
 				3EFFEB8727D9D33D006A333B /* FontSchemesManager+Observer.swift in Sources */,
 				3E10178C28D7713B002C0D8E /* FFmpegPacketFrames.swift in Sources */,
@@ -6098,6 +6129,7 @@
 				3E8FF9E227F63E30009CEDDD /* PlayQueueTracksAddedNotifications.swift in Sources */,
 				3EFE386327864896006F8B8C /* FilterUnitProtocol.swift in Sources */,
 				3E3BD0002AF1DDDB00FD893A /* SoundAdjustmentPreferencesViewController.swift in Sources */,
+				3E60BD6C2B96899A0016909C /* FavoriteGenresViewController.swift in Sources */,
 				3E10178B28D7713B002C0D8E /* FFmpegErrors.swift in Sources */,
 				3EFE39EB27864898006F8B8C /* FavoritePersistentState.swift in Sources */,
 				3E495B8728105BAD00D4766A /* EnqueueAndPlayNowCommand.swift in Sources */,

@@ -72,6 +72,20 @@ class FavoriteAlbumsContainerView: FavoritesContainerView {
     }
 }
 
+class FavoriteGenresContainerView: FavoritesContainerView {
+    
+    override var favoriteAtRowFunction: (Int) -> Favorite? {
+        {row in favoritesDelegate.favoriteGenre(atChronologicalIndex: row)}
+    }
+}
+
+class FavoriteDecadesContainerView: FavoritesContainerView {
+    
+    override var favoriteAtRowFunction: (Int) -> Favorite? {
+        {row in favoritesDelegate.favoriteDecade(atChronologicalIndex: row)}
+    }
+}
+
 class FavoritesHoverControlsBox: NSBox {
     
     @IBOutlet weak var btnPlay: TintedImageButton!

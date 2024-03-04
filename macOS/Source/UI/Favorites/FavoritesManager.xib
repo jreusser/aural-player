@@ -62,15 +62,16 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
-                        <tabViewItem label="Item 3" identifier="" id="zO8-Iq-uum">
+                        <tabViewItem label="Genres" identifier="" id="zO8-Iq-uum">
                             <view key="view" id="7xb-GX-Xts">
-                                <rect key="frame" x="0.0" y="0.0" width="430" height="400"/>
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="418"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
-                        <tabViewItem label="Item 4" identifier="" id="uwg-sO-quN">
+                        <tabViewItem label="Decades" identifier="" id="uwg-sO-quN">
                             <view key="view" id="txE-vA-uP1">
-                                <autoresizingMask key="autoresizingMask"/>
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="418"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
                     </tabViewItems>

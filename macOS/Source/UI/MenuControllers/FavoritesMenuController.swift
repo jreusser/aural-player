@@ -136,7 +136,15 @@ class FavoriteAlbumsMenuController: GenericFavoritesMenuController {
     }
     
     override var itemImageFunction: (Favorite) -> PlatformImage? {
-        {_ in .imgAlbumGroup_menu}
+        
+        {fav in
+            
+            if let favAlbum = fav as? FavoriteGroup {
+                return (libraryDelegate.findGroup(named: favAlbum.groupName, ofType: .album) as? AlbumGroup)?.art ?? .imgAlbumGroup_menu
+            }
+            
+            return .imgAlbumGroup_menu
+        }
     }
 }
 

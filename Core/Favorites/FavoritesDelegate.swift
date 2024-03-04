@@ -95,12 +95,30 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         favoriteGenres.count
     }
     
+    func favoriteGenre(atChronologicalIndex index: Int) -> FavoriteGroup? {
+        
+        if favoriteGenres.indices.contains(index) {
+            return favoriteGenres.values[favoriteGenres.count - index - 1]
+        }
+        
+        return nil
+    }
+    
     var allFavoriteDecades: [FavoriteGroup] {
         Array(favoriteDecades.values)
     }
     
     var numberOfFavoriteDecades: Int {
         favoriteDecades.count
+    }
+    
+    func favoriteDecade(atChronologicalIndex index: Int) -> FavoriteGroup? {
+        
+        if favoriteDecades.indices.contains(index) {
+            return favoriteDecades.values[favoriteDecades.count - index - 1]
+        }
+        
+        return nil
     }
     
     var allFavoriteFolders: [FavoriteFolder] {

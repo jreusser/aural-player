@@ -92,8 +92,12 @@ class LibraryHoverControlsBox: NSBox {
             case .album:
                 favoritesDelegate.addFavorite(album: group.name)
                 
-//            case .genre:
-//            case .decade:
+            case .genre:
+                favoritesDelegate.addFavorite(genre: group.name)
+                
+            case .decade:
+                favoritesDelegate.addFavorite(decade: group.name)
+                
 //            case .albumDisc:
                 
             default:

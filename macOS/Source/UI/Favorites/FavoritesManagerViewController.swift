@@ -25,6 +25,8 @@ class FavoritesManagerViewController: NSViewController {
     lazy var tracksViewController: FavoriteTracksViewController = .init()
     lazy var artistsViewController: FavoriteArtistsViewController = .init()
     lazy var albumsViewController: FavoriteAlbumsViewController = .init()
+    lazy var genresViewController: FavoriteGenresViewController = .init()
+    lazy var decadesViewController: FavoriteDecadesViewController = .init()
     
     lazy var tracksTable: NSTableView = tracksViewController.tableView
     
@@ -42,6 +44,12 @@ class FavoritesManagerViewController: NSViewController {
         
         tabGroup.tabViewItem(at: 2).view?.addSubview(albumsViewController.view)
         albumsViewController.view.anchorToSuperview()
+        
+        tabGroup.tabViewItem(at: 3).view?.addSubview(genresViewController.view)
+        genresViewController.view.anchorToSuperview()
+        
+        tabGroup.tabViewItem(at: 4).view?.addSubview(decadesViewController.view)
+        decadesViewController.view.anchorToSuperview()
         
         updateCaption()
         updateSummary()
@@ -72,6 +80,12 @@ class FavoritesManagerViewController: NSViewController {
         case "Albums":
             tabGroup.selectTabViewItem(at: 2)
             
+        case "Genres":
+            tabGroup.selectTabViewItem(at: 3)
+            
+        case "Decades":
+            tabGroup.selectTabViewItem(at: 4)
+            
         default:
             return
         }
@@ -92,6 +106,12 @@ class FavoritesManagerViewController: NSViewController {
             
         case 2:
             lblCaption.stringValue = "Albums"
+            
+        case 3:
+            lblCaption.stringValue = "Genres"
+            
+        case 4:
+            lblCaption.stringValue = "Decades"
             
         default:
             return
@@ -119,6 +139,18 @@ class FavoritesManagerViewController: NSViewController {
             // Albums
             let numFavorites = favoritesDelegate.numberOfFavoriteAlbums
             lblSummary.stringValue = "\(numFavorites)  favorite \(numFavorites == 1 ? "album" : "albums")"
+            
+        case 3:
+            
+            // Genres
+            let numFavorites = favoritesDelegate.numberOfFavoriteGenres
+            lblSummary.stringValue = "\(numFavorites)  favorite \(numFavorites == 1 ? "genre" : "genres")"
+            
+        case 4:
+            
+            // Decades
+            let numFavorites = favoritesDelegate.numberOfFavoriteDecades
+            lblSummary.stringValue = "\(numFavorites)  favorite \(numFavorites == 1 ? "decade" : "decades")"
             
         default:
             return

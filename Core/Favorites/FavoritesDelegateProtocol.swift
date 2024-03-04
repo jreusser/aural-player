@@ -76,11 +76,11 @@ protocol FavoritesDelegateProtocol {
     
     var allFavoriteGenres: [FavoriteGroup] {get}
     var numberOfFavoriteGenres: Int {get}
-//    func favoriteGenre(atChronologicalIndex index: Int) -> FavoriteGroup?
+    func favoriteGenre(atChronologicalIndex index: Int) -> FavoriteGroup?
     
     var allFavoriteDecades: [FavoriteGroup] {get}
     var numberOfFavoriteDecades: Int {get}
-//    func favoriteDecade(atChronologicalIndex index: Int) -> FavoriteGroup?
+    func favoriteDecade(atChronologicalIndex index: Int) -> FavoriteGroup?
     
     var allFavoriteFolders: [FavoriteFolder] {get}
     var numberOfFavoriteFolders: Int {get}

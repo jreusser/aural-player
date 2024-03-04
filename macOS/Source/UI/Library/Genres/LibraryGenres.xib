@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -51,7 +52,7 @@
                     <rect key="frame" x="0.0" y="35" width="623" height="240"/>
                     <clipView key="contentView" copiesOnScroll="NO" id="wd0-7i-GA9">
                         <rect key="frame" x="0.0" y="0.0" width="608" height="240"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="plain" autosaveColumns="NO" rowHeight="90" viewBased="YES" indentationPerLevel="20" outlineTableColumn="88Q-E4-vpT" id="W0C-CD-Col" userLabel="Genres Outline View">
                                 <rect key="frame" x="0.0" y="0.0" width="608" height="240"/>
@@ -79,7 +80,7 @@
                                                     <box boxType="custom" borderType="line" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="PhL-QY-btp" userLabel="Separator Line">
                                                         <rect key="frame" x="0.0" y="59" width="478" height="1"/>
                                                         <view key="contentView" id="G1s-Ee-EdM">
-                                                            <rect key="frame" x="1" y="0.5" width="476" height="0.0"/>
+                                                            <rect key="frame" x="1" y="1" width="476" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <constraints>
@@ -114,7 +115,7 @@
                                                     <box boxType="custom" borderType="line" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="gjC-Qz-4dW" userLabel="Separator Line">
                                                         <rect key="frame" x="0.0" y="0.0" width="478" height="1"/>
                                                         <view key="contentView" id="qBL-Fz-skq">
-                                                            <rect key="frame" x="1" y="0.5" width="476" height="0.0"/>
+                                                            <rect key="frame" x="1" y="1" width="476" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <constraints>
@@ -148,7 +149,7 @@
                                                     <box boxType="custom" borderType="line" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="cJy-dA-KJu" userLabel="Separator Line">
                                                         <rect key="frame" x="0.0" y="59" width="478" height="1"/>
                                                         <view key="contentView" id="UQu-Oq-Img">
-                                                            <rect key="frame" x="1" y="0.5" width="476" height="0.0"/>
+                                                            <rect key="frame" x="1" y="1" width="476" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <constraints>
@@ -183,7 +184,7 @@
                                                     <box boxType="custom" borderType="line" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="vb0-oK-b5V" userLabel="Separator Line">
                                                         <rect key="frame" x="0.0" y="0.0" width="478" height="1"/>
                                                         <view key="contentView" id="DkE-zm-3ux">
-                                                            <rect key="frame" x="1" y="0.5" width="476" height="0.0"/>
+                                                            <rect key="frame" x="1" y="1" width="476" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <constraints>
@@ -272,7 +273,7 @@
                                                     <box boxType="custom" borderType="line" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ZKf-wQ-8Vf" userLabel="TopSeparator">
                                                         <rect key="frame" x="0.0" y="59" width="130" height="1"/>
                                                         <view key="contentView" id="rtu-Z9-sOu">
-                                                            <rect key="frame" x="1" y="0.5" width="128" height="0.0"/>
+                                                            <rect key="frame" x="1" y="1" width="128" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <constraints>
@@ -305,7 +306,7 @@
                                                     <box boxType="custom" borderType="line" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="GIJ-Ui-RQm" userLabel="BottomSeparator">
                                                         <rect key="frame" x="0.0" y="0.0" width="130" height="1"/>
                                                         <view key="contentView" id="Vfx-hQ-OEd">
-                                                            <rect key="frame" x="1" y="0.5" width="128" height="0.0"/>
+                                                            <rect key="frame" x="1" y="1" width="128" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <constraints>
@@ -341,7 +342,7 @@
                                                     <box boxType="custom" borderType="line" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="WBh-IB-ZyK" userLabel="TopSeparator">
                                                         <rect key="frame" x="0.0" y="59" width="130" height="1"/>
                                                         <view key="contentView" id="vkN-nW-LaS">
-                                                            <rect key="frame" x="1" y="0.5" width="128" height="0.0"/>
+                                                            <rect key="frame" x="1" y="1" width="128" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <constraints>
@@ -374,7 +375,7 @@
                                                     <box boxType="custom" borderType="line" cornerRadius="1" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="X0l-I0-4hW" userLabel="BottomSeparator">
                                                         <rect key="frame" x="0.0" y="0.0" width="130" height="1"/>
                                                         <view key="contentView" id="NQe-a3-Kwc">
-                                                            <rect key="frame" x="1" y="0.5" width="128" height="0.0"/>
+                                                            <rect key="frame" x="1" y="1" width="128" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <constraints>
