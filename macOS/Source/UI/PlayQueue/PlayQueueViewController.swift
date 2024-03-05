@@ -38,6 +38,7 @@ class PlayQueueViewController: TrackListTableViewController {
     @IBOutlet weak var favoriteAlbumMenuItem: NSMenuItem!
     @IBOutlet weak var favoriteGenreMenuItem: NSMenuItem!
     @IBOutlet weak var favoriteDecadeMenuItem: NSMenuItem!
+    @IBOutlet weak var favoriteFolderMenuItem: NSMenuItem!
     
     @IBOutlet weak var moveTracksUpMenuItem: NSMenuItem!
     @IBOutlet weak var moveTracksDownMenuItem: NSMenuItem!

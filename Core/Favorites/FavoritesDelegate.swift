@@ -30,6 +30,27 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     var favoriteFolders: OrderedDictionary<URL, FavoriteFolder>
     var favoritePlaylistFiles: OrderedDictionary<URL, FavoritePlaylistFile>
     
+    private let playQueue: PlayQueueDelegateProtocol
+    
+    // Delegate used to perform playback
+    private let player: PlaybackDelegateProtocol
+    
+    private lazy var messenger = Messenger(for: self)
+    
+    init(_ playQueue: PlayQueueDelegateProtocol, _ player: PlaybackDelegateProtocol) {
+        
+        self.player = player
+        self.playQueue = playQueue
+        
+        self.favoriteTracks = OrderedDictionary()
+        self.favoriteArtists = OrderedDictionary()
+        self.favoriteAlbums = OrderedDictionary()
+        self.favoriteGenres = OrderedDictionary()
+        self.favoriteDecades = OrderedDictionary()
+        self.favoriteFolders = OrderedDictionary()
+        self.favoritePlaylistFiles = OrderedDictionary()
+    }
+    
     var hasAnyFavorites: Bool {
         favoriteTracks.values.isNonEmpty || favoriteArtists.values.isNonEmpty || favoriteAlbums.values.isNonEmpty || favoriteGenres.values.isNonEmpty || favoriteDecades.values.isNonEmpty || favoriteFolders.values.isNonEmpty
     }
@@ -171,34 +192,11 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         Set(favoriteTracks.values.compactMap {$0.track.decade})
     }
     
-    private let playQueue: PlayQueueDelegateProtocol
-    
-    // Delegate used to perform playback
-    private let player: PlaybackDelegateProtocol
-    
-    private lazy var messenger = Messenger(for: self)
-    
-    init(_ playQueue: PlayQueueDelegateProtocol, _ player: PlaybackDelegateProtocol) {
-        
-        self.player = player
-        self.playQueue = playQueue
-        
-        self.favoriteTracks = OrderedDictionary()
-        self.favoriteArtists = OrderedDictionary()
-        self.favoriteAlbums = OrderedDictionary()
-        self.favoriteGenres = OrderedDictionary()
-        self.favoriteDecades = OrderedDictionary()
-        self.favoriteFolders = OrderedDictionary()
-        self.favoritePlaylistFiles = OrderedDictionary()
-    }
-    
     func addFavorite(track: Track) {
         
         let favorite = FavoriteTrack(track: track)
         favoriteTracks[track.file] = favorite
         messenger.publish(.Favorites.itemAdded, payload: favorite)
-        
-        print("Added fav track: '\(track.displayName)'")
     }
     
     func addFavorite(artist: String) {
@@ -206,8 +204,6 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         let favorite = FavoriteGroup(groupName: artist, groupType: .artist)
         favoriteArtists[artist] = favorite
         messenger.publish(.Favorites.itemAdded, payload: favorite)
-        
-        print("Added fav artist: '\(artist)'")
     }
     
     func addFavorite(album: String) {
@@ -215,8 +211,6 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         let favorite = FavoriteGroup(groupName: album, groupType: .album)
         favoriteAlbums[album] = favorite
         messenger.publish(.Favorites.itemAdded, payload: favorite)
-        
-        print("Added fav album: '\(album)'")
     }
     
     func addFavorite(genre: String) {
@@ -224,8 +218,6 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         let favorite = FavoriteGroup(groupName: genre, groupType: .genre)
         favoriteGenres[genre] = favorite
         messenger.publish(.Favorites.itemAdded, payload: favorite)
-        
-        print("Added fav genre: '\(genre)'")
     }
 
     func addFavorite(decade: String) {
@@ -233,8 +225,6 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         let favorite = FavoriteGroup(groupName: decade, groupType: .decade)
         favoriteDecades[decade] = favorite
         messenger.publish(.Favorites.itemAdded, payload: favorite)
-        
-        print("Added fav decade: '\(decade)'")
     }
     
     func addFavorite(folder: URL) {
@@ -242,8 +232,6 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         let favorite = FavoriteFolder(folder: folder)
         favoriteFolders[folder] = favorite
         messenger.publish(.Favorites.itemAdded, payload: favorite)
-        
-        print("Added fav folder: '\(folder.path)'")
     }
     
     func addFavorite(playlistFile: URL) {
@@ -251,13 +239,7 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         let favorite = FavoritePlaylistFile(playlistFile: playlistFile)
         favoritePlaylistFiles[playlistFile] = favorite
         messenger.publish(.Favorites.itemAdded, payload: favorite)
-        
-        print("Added fav playlist file: '\(playlistFile.path)'")
     }
-    
-//    func addFavorite(playlist: Playlist) {
-//        Favorite(name: "", type: .album)
-//    }
     
     func removeFavorite(_ favorite: Favorite) {
         
@@ -341,16 +323,6 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         }
     }
     
-//    func getFavoriteAtIndex(_ index: Int) -> Favorite {
-//        favorites.userDefinedObjects[index]
-//    }
-    
-    func deleteFavorites(atIndices indices: IndexSet) {
-        
-//        let deletedFavorites = favorites.deleteObjects(atIndices: indices)
-//        messenger.publish(.Favorites.tracksRemoved, payload: Set(deletedFavorites))
-    }
-    
     func favoriteExists(track: Track) -> Bool {
         favoriteTracks[track.file] != nil
     }
@@ -369,6 +341,14 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
     
     func favoriteExists(decade: String) -> Bool {
         favoriteDecades[decade] != nil
+    }
+    
+    func favoriteExists(playlistFile: URL) -> Bool {
+        favoritePlaylistFiles[playlistFile] != nil
+    }
+    
+    func favoriteExists(folder: URL) -> Bool {
+        favoriteFolders[folder] != nil
     }
     
     func playFavorite(_ favorite: Favorite) {

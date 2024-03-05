@@ -126,6 +126,11 @@ extension PlayQueueViewController: NSMenuDelegate {
         } else {
             favoriteDecadeMenuItem.hide()
         }
+        
+        let parentFolder = theClickedTrack.file.parentDir
+        let titlePrefix2 = favoritesDelegate.favoriteExists(folder: parentFolder) ? "Remove" : "Add"
+        favoriteFolderMenuItem.title = "\(titlePrefix2) folder '\(parentFolder.lastPathComponents(count: 2))'"
+        favoriteFolderMenuItem.show()
     }
     
     @IBAction func viewChaptersListAction(_ sender: Any) {
@@ -181,7 +186,7 @@ extension PlayQueueViewController: NSMenuDelegate {
         
         guard let theClickedTrack = selectedTracks.first else {return}
 
-        if favoriteTrackMenuItem.isOn {
+        if favoritesDelegate.favoriteExists(track: theClickedTrack) {
 
             // Remove from Favorites list and display notification
             favoritesDelegate.removeFavorite(track: theClickedTrack)
@@ -210,7 +215,7 @@ extension PlayQueueViewController: NSMenuDelegate {
         guard let theClickedTrack = selectedTracks.first,
         let artist = theClickedTrack.artist else {return}
 
-        if favoriteArtistMenuItem.isOn {
+        if favoritesDelegate.favoriteExists(artist: artist) {
 
             // Remove from Favorites list and display notification
             favoritesDelegate.removeFavorite(artist: artist)
@@ -238,7 +243,7 @@ extension PlayQueueViewController: NSMenuDelegate {
         guard let theClickedTrack = selectedTracks.first,
         let album = theClickedTrack.album else {return}
 
-        if favoriteAlbumMenuItem.isOn {
+        if favoritesDelegate.favoriteExists(album: album) {
 
             // Remove from Favorites list and display notification
             favoritesDelegate.removeFavorite(album: album)
@@ -266,7 +271,7 @@ extension PlayQueueViewController: NSMenuDelegate {
         guard let theClickedTrack = selectedTracks.first,
         let genre = theClickedTrack.genre else {return}
 
-        if favoriteGenreMenuItem.isOn {
+        if favoritesDelegate.favoriteExists(genre: genre) {
 
             // Remove from Favorites list and display notification
             favoritesDelegate.removeFavorite(genre: genre)
@@ -294,7 +299,7 @@ extension PlayQueueViewController: NSMenuDelegate {
         guard let theClickedTrack = selectedTracks.first,
         let decade = theClickedTrack.decade else {return}
 
-        if favoriteDecadeMenuItem.isOn {
+        if favoritesDelegate.favoriteExists(decade: decade) {
 
             // Remove from Favorites list and display notification
             favoritesDelegate.removeFavorite(decade: decade)
@@ -310,6 +315,34 @@ extension PlayQueueViewController: NSMenuDelegate {
 
             if let rowView = selectedRowView {
                 infoPopup.showMessage("Decade added to Favorites !", rowView, .maxX)
+            }
+        }
+        
+        // If this isn't done, the app windows are hidden when the popover is displayed
+        windowLayoutsManager.mainWindow.makeKeyAndOrderFront(self)
+    }
+    
+    @IBAction func favoriteFolderAction(_ sender: NSMenuItem) {
+        
+        guard let theClickedTrack = selectedTracks.first else {return}
+        let parentFolder = theClickedTrack.file.parentDir
+
+        if favoritesDelegate.favoriteExists(folder: parentFolder) {
+
+            // Remove from Favorites list and display notification
+            favoritesDelegate.removeFavorite(folder: parentFolder)
+
+            if let rowView = selectedRowView {
+                infoPopup.showMessage("Folder removed from Favorites !", rowView, .maxX)
+            }
+
+        } else {
+
+            // Add to Favorites list and display notification
+            favoritesDelegate.addFavorite(folder: parentFolder)
+
+            if let rowView = selectedRowView {
+                infoPopup.showMessage("Folder added to Favorites !", rowView, .maxX)
             }
         }
         
