@@ -12,6 +12,10 @@ import AppKit
 
 class TrackInfoViewController: NSViewController {
     
+    override var nibName: NSNib.Name? {"TrackInfo"}
+    
+    @IBOutlet weak var rootContainer: NSBox!
+    
     @IBOutlet weak var tabView: AuralTabView!
     
     @IBOutlet weak var lblMainCaption: NSTextField!
@@ -62,6 +66,8 @@ class TrackInfoViewController: NSViewController {
         
         tabView.selectTabViewItem(at: 0)
         
+        changeWindowCornerRadius(playerUIState.cornerRadius)
+        
         fontSchemesManager.registerObserver(self)
         
         colorSchemesManager.registerSchemeObserver(self)
@@ -81,6 +87,8 @@ class TrackInfoViewController: NSViewController {
                                     msg.updatedFields.contains(.art)})
         
         messenger.subscribe(to: .Player.trackInfo_refresh, handler: refresh)
+        
+        messenger.subscribe(to: .Player.UI.changeCornerRadius, handler: changeWindowCornerRadius(_:))
     }
     
     override func viewWillAppear() {
@@ -128,6 +136,10 @@ class TrackInfoViewController: NSViewController {
     
     @IBAction func nextTabAction(_ sender: Any) {
         tabView.nextTab()
+    }
+    
+    func changeWindowCornerRadius(_ radius: CGFloat) {
+        rootContainer.cornerRadius = radius
     }
 }
 

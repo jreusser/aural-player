@@ -17,37 +17,30 @@ class TrackInfoWindowController: NSWindowController {
     override var windowNibName: String? {"TrackInfoWindow"}
     
     @IBOutlet weak var btnClose: NSButton!
-    @IBOutlet weak var rootContainer: NSBox!
     
     private lazy var messenger = Messenger(for: self)
+    
+    private let viewController = TrackInfoViewController()
     
     override func windowDidLoad() {
         
         super.windowDidLoad()
         
-        changeWindowCornerRadius(playerUIState.cornerRadius)
+        window?.contentView?.addSubview(viewController.view)
+        btnClose.bringToFront()
         
         colorSchemesManager.registerSchemeObserver(self)
-        colorSchemesManager.registerPropertyObserver(self, forProperty: \.backgroundColor, changeReceiver: rootContainer)
         colorSchemesManager.registerPropertyObserver(self, forProperty: \.buttonColor, changeReceiver: btnClose)
-        
-        messenger.subscribe(to: .Player.UI.changeCornerRadius, handler: changeWindowCornerRadius(_:))
     }
     
     @IBAction func closeAction(_ sender: Any) {
         close()
-    }
-    
-    func changeWindowCornerRadius(_ radius: CGFloat) {
-        rootContainer.cornerRadius = radius
     }
 }
 
 extension TrackInfoWindowController: ColorSchemeObserver {
     
     func colorSchemeChanged() {
-        
         btnClose.contentTintColor = systemColorScheme.buttonColor
-        rootContainer.fillColor = systemColorScheme.backgroundColor
     }
 }

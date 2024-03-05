@@ -34,6 +34,7 @@ extension TrackInfoViewController: ColorSchemeObserver {
         
         exportMenuIcon.colorChanged(systemColorScheme.buttonColor)
         
+        rootContainer.fillColor = systemColorScheme.backgroundColor
         tabButtonsBox.fillColor = systemColorScheme.backgroundColor
         tabButtons.forEach {
             $0.redraw()
@@ -46,6 +47,7 @@ extension TrackInfoViewController: ColorSchemeObserver {
     
     func backgroundColorChanged(_ newColor: PlatformColor) {
         
+        rootContainer.fillColor = newColor
         tabButtonsBox.fillColor = newColor
         
         tabViewControllers.forEach {

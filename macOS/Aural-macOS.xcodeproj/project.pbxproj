@@ -96,6 +96,7 @@
 		3E308D1B268A336900B0FD60 /* UpdatesDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E308D1A268A336900B0FD60 /* UpdatesDialog.xib */; };
 		3E308D1D268A356300B0FD60 /* UpdatesDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E308D1C268A356300B0FD60 /* UpdatesDialogController.swift */; };
 		3E30FC6326A866C800AE46C6 /* Visualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E30FC6226A866C800AE46C6 /* Visualizer.swift */; };
+		3E31B6722B97C20100AA0067 /* TrackInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E31B6712B97C20100AA0067 /* TrackInfo.xib */; };
 		3E3579D026835A6A009522A0 /* GenericPresetPopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3579CF26835A6A009522A0 /* GenericPresetPopupMenuController.swift */; };
 		3E3579D226837D3D009522A0 /* PresetsManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3579D126837D3D009522A0 /* PresetsManagerViewController.swift */; };
 		3E35AC9F25E6254500EBCCEB /* VisualizerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35AC9E25E6254500EBCCEB /* VisualizerContainer.swift */; };
@@ -1139,6 +1140,7 @@
 		3E308D1A268A336900B0FD60 /* UpdatesDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatesDialog.xib; sourceTree = "<group>"; };
 		3E308D1C268A356300B0FD60 /* UpdatesDialogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesDialogController.swift; sourceTree = "<group>"; };
 		3E30FC6226A866C800AE46C6 /* Visualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visualizer.swift; sourceTree = "<group>"; };
+		3E31B6712B97C20100AA0067 /* TrackInfo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackInfo.xib; sourceTree = "<group>"; };
 		3E3579CF26835A6A009522A0 /* GenericPresetPopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPresetPopupMenuController.swift; sourceTree = "<group>"; };
 		3E3579D126837D3D009522A0 /* PresetsManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsManagerViewController.swift; sourceTree = "<group>"; };
 		3E35AC9E25E6254500EBCCEB /* VisualizerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizerContainer.swift; sourceTree = "<group>"; };
@@ -3378,6 +3380,7 @@
 			isa = PBXGroup;
 			children = (
 				3E045D05281322450069DEFE /* TrackInfoWindow.xib */,
+				3E31B6712B97C20100AA0067 /* TrackInfo.xib */,
 				3E6C103A25CEB98600BF0D07 /* TrackInfoWindowController.swift */,
 				3E8836162B6E0AC30009ABE2 /* TrackInfoViewController.swift */,
 				3E1341292B6F0115009782B6 /* TrackInfoViewController+Theming.swift */,
@@ -5291,6 +5294,7 @@
 				3E6C121F25CEBDE600BF0D07 /* ControlsPreferences.xib in Resources */,
 				3EBFF5AA2B52C0F70056D5B4 /* CompactPlayerWindow.xib in Resources */,
 				3E60BD6A2B96898B0016909C /* FavoriteGenres.xib in Resources */,
+				3E31B6722B97C20100AA0067 /* TrackInfo.xib in Resources */,
 				3ECF71B22B7571D200FDB69B /* CompactPlayer.xib in Resources */,
 				3E6C122C25CEBDE600BF0D07 /* HistoryPreferences.xib in Resources */,
 				3E43227D2687D65F009E8ADB /* WidgetPlayer.xib in Resources */,
