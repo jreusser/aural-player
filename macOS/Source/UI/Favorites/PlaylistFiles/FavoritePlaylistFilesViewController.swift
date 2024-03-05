@@ -1,5 +1,5 @@
 //
-//  FavoriteArtistsViewController.swift
+//  FavoritePlaylistFilesViewController.swift
 //  Aural
 //
 //  Copyright © 2021 Kartik Venugopal. All rights reserved.
@@ -10,19 +10,20 @@
 
 import AppKit
 
-class FavoriteArtistsViewController: FavoritesTableViewController {
+class FavoritePlaylistFilesViewController: FavoritesTableViewController {
     
-    override var nibName: String? {"FavoriteArtists"}
+    override var nibName: String? {"FavoritePlaylistFiles"}
     
     override var numberOfFavorites: Int {
-        favoritesDelegate.numberOfFavoriteArtists
+        favoritesDelegate.numberOfFavoritePlaylistFiles
     }
     
     override func nameOfFavorite(forRow row: Int) -> String? {
-        favoritesDelegate.favoriteArtist(atChronologicalIndex: row)?.groupName
+        favoritesDelegate.favoritePlaylistFile(atChronologicalIndex: row)?.name
     }
     
     override func image(forRow row: Int) -> NSImage {
-        .imgArtistGroup
+        .imgPlaylist
     }
 }
+

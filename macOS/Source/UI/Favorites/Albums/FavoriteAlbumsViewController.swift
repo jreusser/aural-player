@@ -10,21 +10,21 @@
 
 import AppKit
 
-class FavoriteAlbumsViewController: FavoriteGroupsViewController {
+class FavoriteAlbumsViewController: FavoritesTableViewController {
     
     override var nibName: String? {"FavoriteAlbums"}
     
-    override var numberOfGroups: Int {
+    override var numberOfFavorites: Int {
         favoritesDelegate.numberOfFavoriteAlbums
     }
     
-    override func groupName(forRow row: Int) -> String? {
+    override func nameOfFavorite(forRow row: Int) -> String? {
         favoritesDelegate.favoriteAlbum(atChronologicalIndex: row)?.groupName
     }
     
     override func image(forRow row: Int) -> NSImage {
         
-        if let album = groupName(forRow: row) {
+        if let album = nameOfFavorite(forRow: row) {
             return (libraryDelegate.findGroup(named: album, ofType: .album) as? AlbumGroup)?.art ?? .imgAlbumGroup
         }
         

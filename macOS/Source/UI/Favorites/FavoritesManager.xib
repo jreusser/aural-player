@@ -74,6 +74,18 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </tabViewItem>
+                        <tabViewItem label="Playlist Files" identifier="" id="1y5-U6-kCd">
+                            <view key="view" id="sFZ-eq-gI4">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="418"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                        </tabViewItem>
+                        <tabViewItem label="Folders" identifier="" id="She-tD-oKX">
+                            <view key="view" id="7CH-vl-iPi">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="418"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                        </tabViewItem>
                     </tabViewItems>
                 </tabView>
                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MOk-aF-fbr" userLabel="Tracks summary" customClass="BottomTextLabel" customModule="Aural" customModuleProvider="target">

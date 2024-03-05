@@ -84,9 +84,11 @@ protocol FavoritesDelegateProtocol {
     
     var allFavoriteFolders: [FavoriteFolder] {get}
     var numberOfFavoriteFolders: Int {get}
+    func favoriteFolder(atChronologicalIndex index: Int) -> FavoriteFolder?
     
     var allFavoritePlaylistFiles: [FavoritePlaylistFile] {get}
     var numberOfFavoritePlaylistFiles: Int {get}
+    func favoritePlaylistFile(atChronologicalIndex index: Int) -> FavoritePlaylistFile?
     
     func favoriteExists(track: Track) -> Bool
     

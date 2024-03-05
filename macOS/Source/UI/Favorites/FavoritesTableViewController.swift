@@ -10,7 +10,7 @@
 
 import AppKit
 
-class FavoriteGroupsViewController: NSViewController {
+class FavoritesTableViewController: NSViewController {
     
     @IBOutlet weak var tableView: NSTableView!
     
@@ -37,15 +37,15 @@ class FavoriteGroupsViewController: NSViewController {
     }
 }
 
-extension FavoriteGroupsViewController: NSTableViewDataSource, NSTableViewDelegate {
+extension FavoritesTableViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     // Override this !!!
-    @objc var numberOfGroups: Int {
+    @objc var numberOfFavorites: Int {
         0
     }
     
     // Override this !!!
-    @objc func groupName(forRow row: Int) -> String? {
+    @objc func nameOfFavorite(forRow row: Int) -> String? {
         nil
     }
     
@@ -57,7 +57,7 @@ extension FavoriteGroupsViewController: NSTableViewDataSource, NSTableViewDelega
     // ----------------
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        numberOfGroups
+        numberOfFavorites
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
@@ -72,10 +72,10 @@ extension FavoriteGroupsViewController: NSTableViewDataSource, NSTableViewDelega
         
         guard let columnId = tableColumn?.identifier,
               columnId == .cid_favoriteColumn,
-              let groupName = groupName(forRow: row) else {return nil}
+              let nameOfFavorite = nameOfFavorite(forRow: row) else {return nil}
         
         let builder = TableCellBuilder()
-            .withText(text: groupName,
+            .withText(text: nameOfFavorite,
                       inFont: systemFontScheme.normalFont,
                       andColor: systemColorScheme.primaryTextColor,
                       selectedTextColor: systemColorScheme.primarySelectedTextColor)
@@ -85,14 +85,14 @@ extension FavoriteGroupsViewController: NSTableViewDataSource, NSTableViewDelega
     }
 }
 
-extension FavoriteGroupsViewController: FontSchemeObserver {
+extension FavoritesTableViewController: FontSchemeObserver {
     
     func fontSchemeChanged() {
         tableView.reloadData()
     }
 }
 
-extension FavoriteGroupsViewController: ColorSchemeObserver {
+extension FavoritesTableViewController: ColorSchemeObserver {
     
     func colorSchemeChanged() {
         

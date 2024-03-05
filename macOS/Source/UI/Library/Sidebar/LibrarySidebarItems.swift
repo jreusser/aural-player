@@ -30,7 +30,7 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         LibrarySidebarItem(displayName: "Genres", browserTab: .favorites, image: .imgGenreGroup),
         LibrarySidebarItem(displayName: "Decades", browserTab: .favorites, image: .imgDecadeGroup),
         LibrarySidebarItem(displayName: "Playlist Files", browserTab: .favorites, image: .imgPlaylist),
-        LibrarySidebarItem(displayName: "Playlists", browserTab: .favorites, image: .imgPlaylist)
+        LibrarySidebarItem(displayName: "Folders", browserTab: .favorites, image: .imgFileSystem)
     ]
     
     case library = "Library"

@@ -27,8 +27,8 @@ class FavoritesManagerViewController: NSViewController {
     lazy var albumsViewController: FavoriteAlbumsViewController = .init()
     lazy var genresViewController: FavoriteGenresViewController = .init()
     lazy var decadesViewController: FavoriteDecadesViewController = .init()
-    
-    lazy var tracksTable: NSTableView = tracksViewController.tableView
+    lazy var playlistFilesViewController: FavoritePlaylistFilesViewController = .init()
+    lazy var foldersViewController: FavoriteFoldersViewController = .init()
     
     lazy var messenger: Messenger = .init(for: self)
     
@@ -36,20 +36,12 @@ class FavoritesManagerViewController: NSViewController {
         
         super.viewDidLoad()
         
-        tabGroup.tabViewItem(at: 0).view?.addSubview(tracksViewController.view)
-        tracksViewController.view.anchorToSuperview()
-        
-        tabGroup.tabViewItem(at: 1).view?.addSubview(artistsViewController.view)
-        artistsViewController.view.anchorToSuperview()
-        
-        tabGroup.tabViewItem(at: 2).view?.addSubview(albumsViewController.view)
-        albumsViewController.view.anchorToSuperview()
-        
-        tabGroup.tabViewItem(at: 3).view?.addSubview(genresViewController.view)
-        genresViewController.view.anchorToSuperview()
-        
-        tabGroup.tabViewItem(at: 4).view?.addSubview(decadesViewController.view)
-        decadesViewController.view.anchorToSuperview()
+        [tracksViewController, artistsViewController, albumsViewController, genresViewController, decadesViewController, 
+         playlistFilesViewController, foldersViewController].enumerated().forEach {(index, vc) in
+            
+            tabGroup.tabViewItem(at: index).view?.addSubview(vc.view)
+            vc.view.anchorToSuperview()
+        }
         
         updateCaption()
         updateSummary()
@@ -86,6 +78,12 @@ class FavoritesManagerViewController: NSViewController {
         case "Decades":
             tabGroup.selectTabViewItem(at: 4)
             
+        case "Playlist Files":
+            tabGroup.selectTabViewItem(at: 5)
+            
+        case "Folders":
+            tabGroup.selectTabViewItem(at: 6)
+            
         default:
             return
         }
@@ -112,6 +110,12 @@ class FavoritesManagerViewController: NSViewController {
             
         case 4:
             lblCaption.stringValue = "Decades"
+            
+        case 5:
+            lblCaption.stringValue = "Playlist Files"
+            
+        case 6:
+            lblCaption.stringValue = "Folders"
             
         default:
             return
@@ -151,6 +155,18 @@ class FavoritesManagerViewController: NSViewController {
             // Decades
             let numFavorites = favoritesDelegate.numberOfFavoriteDecades
             lblSummary.stringValue = "\(numFavorites)  favorite \(numFavorites == 1 ? "decade" : "decades")"
+            
+        case 5:
+            
+            // Playlist Files
+            let numFavorites = favoritesDelegate.numberOfFavoritePlaylistFiles
+            lblSummary.stringValue = "\(numFavorites)  favorite playlist \(numFavorites == 1 ? "file" : "files")"
+            
+        case 6:
+            
+            // Folders
+            let numFavorites = favoritesDelegate.numberOfFavoriteFolders
+            lblSummary.stringValue = "\(numFavorites)  favorite \(numFavorites == 1 ? "folder" : "folders")"
             
         default:
             return

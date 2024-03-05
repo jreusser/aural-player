@@ -10,15 +10,15 @@
 
 import AppKit
 
-class FavoriteDecadesViewController: FavoriteGroupsViewController {
+class FavoriteDecadesViewController: FavoritesTableViewController {
     
     override var nibName: String? {"FavoriteDecades"}
     
-    override var numberOfGroups: Int {
+    override var numberOfFavorites: Int {
         favoritesDelegate.numberOfFavoriteDecades
     }
     
-    override func groupName(forRow row: Int) -> String? {
+    override func nameOfFavorite(forRow row: Int) -> String? {
         favoritesDelegate.favoriteDecade(atChronologicalIndex: row)?.groupName
     }
     

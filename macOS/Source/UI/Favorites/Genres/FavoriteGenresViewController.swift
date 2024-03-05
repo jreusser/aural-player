@@ -10,15 +10,15 @@
 
 import AppKit
 
-class FavoriteGenresViewController: FavoriteGroupsViewController {
+class FavoriteGenresViewController: FavoritesTableViewController {
     
     override var nibName: String? {"FavoriteGenres"}
     
-    override var numberOfGroups: Int {
+    override var numberOfFavorites: Int {
         favoritesDelegate.numberOfFavoriteGenres
     }
     
-    override func groupName(forRow row: Int) -> String? {
+    override func nameOfFavorite(forRow row: Int) -> String? {
         favoritesDelegate.favoriteGenre(atChronologicalIndex: row)?.groupName
     }
     

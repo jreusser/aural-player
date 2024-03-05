@@ -129,12 +129,30 @@ class FavoritesDelegate: FavoritesDelegateProtocol {
         favoriteFolders.count
     }
     
+    func favoriteFolder(atChronologicalIndex index: Int) -> FavoriteFolder? {
+        
+        if favoriteFolders.indices.contains(index) {
+            return favoriteFolders.values[favoriteFolders.count - index - 1]
+        }
+        
+        return nil
+    }
+    
     var allFavoritePlaylistFiles: [FavoritePlaylistFile] {
         Array(favoritePlaylistFiles.values)
     }
     
     var numberOfFavoritePlaylistFiles: Int {
         favoritePlaylistFiles.count
+    }
+    
+    func favoritePlaylistFile(atChronologicalIndex index: Int) -> FavoritePlaylistFile? {
+        
+        if favoritePlaylistFiles.indices.contains(index) {
+            return favoritePlaylistFiles.values[favoritePlaylistFiles.count - index - 1]
+        }
+        
+        return nil
     }
     
     var artistsFromFavoriteTracks: Set<String> {
