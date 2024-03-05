@@ -97,6 +97,8 @@
 		3E308D1D268A356300B0FD60 /* UpdatesDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E308D1C268A356300B0FD60 /* UpdatesDialogController.swift */; };
 		3E30FC6326A866C800AE46C6 /* Visualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E30FC6226A866C800AE46C6 /* Visualizer.swift */; };
 		3E31B6722B97C20100AA0067 /* TrackInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E31B6712B97C20100AA0067 /* TrackInfo.xib */; };
+		3E31B6752B97C5F400AA0067 /* TrackInfoSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E31B6742B97C5F400AA0067 /* TrackInfoSheetView.xib */; };
+		3E31B6772B97C69300AA0067 /* TrackInfoSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31B6762B97C69300AA0067 /* TrackInfoSheetViewController.swift */; };
 		3E3579D026835A6A009522A0 /* GenericPresetPopupMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3579CF26835A6A009522A0 /* GenericPresetPopupMenuController.swift */; };
 		3E3579D226837D3D009522A0 /* PresetsManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3579D126837D3D009522A0 /* PresetsManagerViewController.swift */; };
 		3E35AC9F25E6254500EBCCEB /* VisualizerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35AC9E25E6254500EBCCEB /* VisualizerContainer.swift */; };
@@ -1141,6 +1143,8 @@
 		3E308D1C268A356300B0FD60 /* UpdatesDialogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesDialogController.swift; sourceTree = "<group>"; };
 		3E30FC6226A866C800AE46C6 /* Visualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visualizer.swift; sourceTree = "<group>"; };
 		3E31B6712B97C20100AA0067 /* TrackInfo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackInfo.xib; sourceTree = "<group>"; };
+		3E31B6742B97C5F400AA0067 /* TrackInfoSheetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackInfoSheetView.xib; sourceTree = "<group>"; };
+		3E31B6762B97C69300AA0067 /* TrackInfoSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackInfoSheetViewController.swift; sourceTree = "<group>"; };
 		3E3579CF26835A6A009522A0 /* GenericPresetPopupMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPresetPopupMenuController.swift; sourceTree = "<group>"; };
 		3E3579D126837D3D009522A0 /* PresetsManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsManagerViewController.swift; sourceTree = "<group>"; };
 		3E35AC9E25E6254500EBCCEB /* VisualizerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizerContainer.swift; sourceTree = "<group>"; };
@@ -2418,6 +2422,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		3E31B6732B97C5E600AA0067 /* SheetView */ = {
+			isa = PBXGroup;
+			children = (
+				3E31B6742B97C5F400AA0067 /* TrackInfoSheetView.xib */,
+				3E31B6762B97C69300AA0067 /* TrackInfoSheetViewController.swift */,
+			);
+			path = SheetView;
+			sourceTree = "<group>";
+		};
 		3E36BD2F26A68E7800B6E28B /* Lyrics */ = {
 			isa = PBXGroup;
 			children = (
@@ -3379,6 +3392,7 @@
 		3E6C103625CEB98600BF0D07 /* TrackInfo */ = {
 			isa = PBXGroup;
 			children = (
+				3E31B6732B97C5E600AA0067 /* SheetView */,
 				3E045D05281322450069DEFE /* TrackInfoWindow.xib */,
 				3E31B6712B97C20100AA0067 /* TrackInfo.xib */,
 				3E6C103A25CEB98600BF0D07 /* TrackInfoWindowController.swift */,
@@ -5183,6 +5197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E31B6752B97C5F400AA0067 /* TrackInfoSheetView.xib in Resources */,
 				3E6EFFA32815309500C813AC /* TextColorScheme.xib in Resources */,
 				3E8DD6412844988500FED49D /* LibraryArtists.xib in Resources */,
 				3EB462DB2847FEC6000E3F85 /* TuneBrowserTab.xib in Resources */,
@@ -5520,6 +5535,7 @@
 				3E6C12E425CEBE8100BF0D07 /* CutoffFrequencySlider.swift in Sources */,
 				3E6C125D25CEBE0600BF0D07 /* DelayPresetsManagerViewController.swift in Sources */,
 				3E59E9512B507BA7001DDCE9 /* FavoriteTrack.swift in Sources */,
+				3E31B6772B97C69300AA0067 /* TrackInfoSheetViewController.swift in Sources */,
 				3EFE391527864897006F8B8C /* FloatingPointExtensions.swift in Sources */,
 				3EFE38FD27864897006F8B8C /* ValueFormatter.swift in Sources */,
 				3E60BD552B9345250016909C /* TrackList+TrackIO.swift in Sources */,

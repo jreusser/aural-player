@@ -359,11 +359,17 @@ extension PlayQueueViewController: NSMenuDelegate {
         trackReader.loadAuxiliaryMetadata(for: selectedTrack)
         TrackInfoViewContext.displayedTrack = selectedTrack
         
-        if windowLayoutsManager.isWindowLoaded(withId: .trackInfo) {
-            messenger.publish(.Player.trackInfo_refresh)
+        if appModeManager.currentMode == .modular {
+            
+            if windowLayoutsManager.isWindowLoaded(withId: .trackInfo) {
+                messenger.publish(.Player.trackInfo_refresh)
+            }
+            
+            windowLayoutsManager.showWindow(withId: .trackInfo)
+            
+        } else if appModeManager.currentMode == .unified {
+            self.presentAsSheet(trackInfoSheetViewController)
         }
-        
-        windowLayoutsManager.showWindow(withId: .trackInfo)
     }
     
     // Shows the selected tracks in Finder.
