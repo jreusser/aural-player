@@ -46,7 +46,7 @@ class BookmarksDelegate: BookmarksDelegateProtocol {
         let newBookmark = Bookmark(name: name, track: track, startPosition: startPosition, endPosition: endPosition)
         bookmarks.addObject(newBookmark)
         
-        messenger.publish(.bookmarksList_trackAdded, payload: newBookmark)
+        messenger.publish(.Bookmarks.added, payload: newBookmark)
         return newBookmark
     }
     
@@ -79,13 +79,13 @@ class BookmarksDelegate: BookmarksDelegateProtocol {
     func deleteBookmarks(atIndices indices: IndexSet) {
         
         let deletedBookmarks = bookmarks.deleteObjects(atIndices: indices)
-        messenger.publish(.bookmarksList_tracksRemoved, payload: Set(deletedBookmarks))
+        messenger.publish(.Bookmarks.removed, payload: Set(deletedBookmarks))
     }
     
     func deleteBookmarkWithName(_ name: String) {
         
         if let deletedBookmark = bookmarks.deleteObject(named: name) {
-            messenger.publish(.bookmarksList_tracksRemoved, payload: Set([deletedBookmark]))
+            messenger.publish(.Bookmarks.removed, payload: Set([deletedBookmark]))
         }
     }
     

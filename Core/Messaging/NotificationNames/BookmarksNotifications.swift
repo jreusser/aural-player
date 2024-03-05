@@ -14,9 +14,12 @@ import Foundation
 ///
 extension Notification.Name {
     
-    // Signifies that a track has been added to the bookmarks list.
-    static let bookmarksList_trackAdded = Notification.Name("bookmarksList_trackAdded")
-    
-    // Signifies that tracks have been removed from the bookmarks list.
-    static let bookmarksList_tracksRemoved = Notification.Name("bookmarksList_tracksRemoved")
+    struct Bookmarks {
+        
+        // Signifies that a bookmark has been added to the bookmarks list.
+        static let added = Notification.Name("bookmarks_added")
+        
+        // Signifies that bookmarks have been removed from the bookmarks list.
+        static let removed = Notification.Name("bookmarks_removed")
+    }
 }

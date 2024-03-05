@@ -99,7 +99,7 @@ extension LibrarySidebarViewController: NSOutlineViewDelegate {
     }
     
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        return !(item is LibrarySidebarCategory)
+        return (item is LibrarySidebarItem) || ((item as? LibrarySidebarCategory) == .bookmarks)
     }
     
     func outlineViewSelectionDidChange(_ notification: Notification) {

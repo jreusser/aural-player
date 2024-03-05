@@ -179,8 +179,6 @@ extension LibrarySidebarViewController: FontSchemeObserver, ColorSchemeObserver 
     func textSelectionColorChanged(_ newColor: PlatformColor) {
         sidebarView.redoRowSelection()
     }
-    
-    
 }
 
 extension LibrarySidebarViewController: NSTextFieldDelegate {

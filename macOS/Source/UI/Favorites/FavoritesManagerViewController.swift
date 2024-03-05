@@ -11,9 +11,6 @@ import Cocoa
 
 class FavoritesManagerViewController: NSViewController {
     
-    // Delegate that relays accessor operations to the bookmarks model
-    private let favorites: FavoritesDelegateProtocol = favoritesDelegate
-    
     override var nibName: String? {"FavoritesManager"}
     
     @IBOutlet weak var containerBox: NSBox!

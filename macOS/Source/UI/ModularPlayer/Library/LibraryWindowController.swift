@@ -43,10 +43,9 @@ class LibraryWindowController: NSWindowController {
     private lazy var libraryImportedPlaylistsController: LibraryImportedPlaylistsViewController = .init()
     
     private lazy var tuneBrowserViewController: TuneBrowserViewController = TuneBrowserViewController()
-    
     private lazy var playlistsViewController: PlaylistsViewController = PlaylistsViewController()
-    
     private lazy var favoritesViewController: FavoritesManagerViewController = FavoritesManagerViewController()
+    private lazy var bookmarksViewController: BookmarksManagerViewController = BookmarksManagerViewController()
     
     private lazy var messenger: Messenger = Messenger(for: self)
     
@@ -98,12 +97,17 @@ class LibraryWindowController: NSWindowController {
         tabGroup.tabViewItem(at: 8).view?.addSubview(favoritesView)
         favoritesView.anchorToSuperview()
         
+        let bookmarksView: NSView = bookmarksViewController.view
+        tabGroup.tabViewItem(at: 9).view?.addSubview(bookmarksView)
+        bookmarksView.anchorToSuperview()
+        
         let windowShownFilter = {[weak self] in self?.theWindow.isVisible ?? false}
         messenger.subscribeAsync(to: .Library.startedReadingFileSystem, handler: startedReadingFileSystem, filter: windowShownFilter)
         messenger.subscribeAsync(to: .Library.startedAddingTracks, handler: startedAddingTracks, filter: windowShownFilter)
         messenger.subscribeAsync(to: .Library.doneAddingTracks, handler: doneAddingTracks, filter: windowShownFilter)
         
         messenger.subscribe(to: .Library.showBrowserTabForItem, handler: showBrowserTab(forItem:))
+        messenger.subscribe(to: .Library.showBrowserTabForCategory, handler: showBrowserTab(forCategory:))
         messenger.subscribe(to: .Player.UI.changeCornerRadius, handler: changeWindowCornerRadius(_:))
         
         fontSchemesManager.registerObserver(self)
@@ -116,7 +120,7 @@ class LibraryWindowController: NSWindowController {
         changeWindowCornerRadius(playerUIState.cornerRadius)
         
         // TODO: Temporary, remove this !!!
-        tabGroup.selectTabViewItem(at: 8)
+        tabGroup.selectTabViewItem(at: 9)
         
         displayBuildProgress()
     }
@@ -214,6 +218,13 @@ class LibraryWindowController: NSWindowController {
         }
         
         tabGroup.selectTabViewItem(at: tab.rawValue)
+    }
+    
+    private func showBrowserTab(forCategory category: LibrarySidebarCategory) {
+
+        if category == .bookmarks {
+            tabGroup.selectTabViewItem(at: 9)
+        }
     }
     
     // MARK: Message handling -----------------------------------------------------------

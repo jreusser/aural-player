@@ -37,6 +37,7 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
     case tuneBrowser = "File System"
     case playlists = "Playlists"
     case favorites = "Favorites"
+    case bookmarks = "Bookmarks"
     
     var description: String {rawValue}
     
@@ -59,6 +60,10 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         case .favorites:
             
             return Self.favoritesItems.count
+            
+        case .bookmarks:
+            
+            return 0
         }
     }
     
@@ -90,6 +95,10 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         case .favorites:
             
             return Self.favoritesItems
+            
+        case .bookmarks:
+            
+            return []
         }
     }
     
@@ -112,6 +121,10 @@ enum LibrarySidebarCategory: String, CaseIterable, CustomStringConvertible {
         case .favorites:
             
             return .imgFavorite
+            
+        case .bookmarks:
+            
+            return .imgBookmark
         }
     }
 }
@@ -161,5 +174,6 @@ enum LibraryBrowserTab: Int {
          libraryImportedPlaylists = 5,
          fileSystem = 6,
          playlists = 7,
-         favorites = 8
+         favorites = 8,
+         bookmarks = 9
 }
