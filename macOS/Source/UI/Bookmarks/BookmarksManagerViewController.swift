@@ -66,16 +66,16 @@ extension BookmarksManagerViewController: NSTableViewDataSource, NSTableViewDele
         
         let bookmark = bookmarksDelegate.getBookmarkAtIndex(row)
         
-//        switch colID {
-//            
-//        case .cid_bookmarkNameColumn:
-//            
-//            return createTextCell(tableView, tableColumn!, row, bookmark.name, true)
-//            
-//        case .cid_bookmarkTrackColumn:
-//            
-//            return createTextCell(tableView, tableColumn!, row, bookmark.track.file.path, false)
-//            
+        switch colID {
+            
+        case .cid_bookmarkNameColumn:
+            
+            return createNameCell(tableView, tableColumn!, row, bookmark.name)
+            
+        case .cid_bookmarkTrackColumn:
+            
+            return createTrackCell(tableView, tableColumn!, row, bookmark.track)
+//
 //        case .cid_bookmarkStartPositionColumn:
 //            
 //            let formattedPosition = ValueFormatter.formatSecondsToHMS(bookmark.startPosition)
@@ -93,11 +93,57 @@ extension BookmarksManagerViewController: NSTableViewDataSource, NSTableViewDele
 //            
 //            return createTextCell(tableView, tableColumn!, row, formattedPosition, false)
 //            
-//        default:    return nil
+        default:    return nil
 //            
-//        }
+        }
         return nil
     }
+    
+    // Creates a cell view containing text
+    func createNameCell(_ tableView: NSTableView, _ column: NSTableColumn, _ row: Int, _ name: String) -> AuralTableCellView? {
+        
+        guard let cell = tableView.makeView(withIdentifier: column.identifier, owner: nil) as? AuralTableCellView,
+              let textField = cell.textField else {return nil}
+        
+        textField.stringValue = name
+        
+        textField.font = systemFontScheme.normalFont
+        textField.textColor = systemColorScheme.primaryTextColor
+        
+        // Name column is editable
+        textField.delegate = self
+        
+        return cell
+    }
+    
+    // Creates a cell view containing text
+    func createTrackCell(_ tableView: NSTableView, _ column: NSTableColumn, _ row: Int, _ track: Track) -> AuralTableCellView? {
+        
+        let builder = TableCellBuilder()
+        let titleAndArtist = track.titleAndArtist
+        
+        if let artist = titleAndArtist.artist {
+            
+            builder.withAttributedText(strings: [(text: artist + "  ", font: systemFontScheme.normalFont, color: systemColorScheme.secondaryTextColor),
+                                                        (text: titleAndArtist.title, font: systemFontScheme.normalFont, color: systemColorScheme.primaryTextColor)],
+                                              selectedTextColors: [systemColorScheme.secondarySelectedTextColor, systemColorScheme.primarySelectedTextColor],
+                                              bottomYOffset: systemFontScheme.tableYOffset)
+            
+        } else {
+            
+            builder.withAttributedText(strings: [(text: titleAndArtist.title,
+                                                         font: systemFontScheme.normalFont,
+                                                         color: systemColorScheme.primaryTextColor)], selectedTextColors: [systemColorScheme.primarySelectedTextColor],
+                                              bottomYOffset: systemFontScheme.tableYOffset)
+        }
+        
+        builder.withImage(image: track.art?.image ?? .imgPlayingArt)
+        
+        return builder.buildCell(forTableView: tableView, forColumnWithId: column.identifier, inRow: row)
+    }
+}
+
+extension BookmarksManagerViewController: NSTextFieldDelegate {
     
     // Renames the selected preset.
     func controlTextDidEndEditing(_ obj: Notification) {
@@ -118,20 +164,20 @@ extension BookmarksManagerViewController: NSTableViewDataSource, NSTableViewDele
         
         // Empty string is invalid, revert to old value
 //        if newPresetName.isEmptyAfterTrimming {
-//            
+//
 //            editedTextField.stringValue = oldPresetName
-//            
+//
 //            _ = DialogsAndAlerts.genericErrorAlert("Can't rename preset", "Preset name must have at least one non-whitespace character.", "Please type a valid name.").showModal()
-//            
+//
 //        } else if presetExists(named: newPresetName) {
-//            
+//
 //            // Another theme with that name exists, can't rename
 //            editedTextField.stringValue = oldPresetName
-//            
+//
 //            _ = DialogsAndAlerts.genericErrorAlert("Can't rename preset", "Another preset with that name already exists.", "Please type a unique name.").showModal()
-//            
+//
 //        } else {
-//            
+//
 //            // Update the preset name
 //            renamePreset(named: oldPresetName, to: newPresetName)
 //        }
