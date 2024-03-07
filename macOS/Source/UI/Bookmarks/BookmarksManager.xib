@@ -69,9 +69,11 @@
                                                 <rect key="frame" x="1" y="1" width="200" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jnI-3g-Tyg" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="5" y="0.0" width="195" height="25"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jnI-3g-Tyg" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="8HD-1z-IFu"/>
+                                                        </constraints>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="BFQ-XY-xKb">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -82,6 +84,11 @@
                                                         </connections>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="jnI-3g-Tyg" secondAttribute="trailing" constant="2" id="1LJ-B9-cf4"/>
+                                                    <constraint firstItem="jnI-3g-Tyg" firstAttribute="leading" secondItem="txv-wv-FF2" secondAttribute="leading" constant="2" id="2Lq-23-pSh"/>
+                                                    <constraint firstAttribute="bottom" secondItem="jnI-3g-Tyg" secondAttribute="bottom" id="L0T-nx-sfM"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="jnI-3g-Tyg" id="3X8-PF-EXM"/>
                                                 </connections>
@@ -104,16 +111,23 @@
                                                 <rect key="frame" x="204" y="1" width="200" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0cc-1A-wAr" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="3" y="0.0" width="200" height="25"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="Table View Cell" id="0Mc-DY-44c">
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0cc-1A-wAr" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
+                                                        <rect key="frame" x="3" y="0.0" width="199" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="MRZ-j8-a5I"/>
+                                                        </constraints>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="0Mc-DY-44c">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="0cc-1A-wAr" firstAttribute="leading" secondItem="KPd-lg-hbM" secondAttribute="leading" constant="5" id="3q7-4X-OiF"/>
+                                                    <constraint firstAttribute="trailing" secondItem="0cc-1A-wAr" secondAttribute="trailing" id="8Jf-k7-r06"/>
+                                                    <constraint firstAttribute="bottom" secondItem="0cc-1A-wAr" secondAttribute="bottom" id="aeO-Jo-mDe"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="0cc-1A-wAr" id="roA-Cn-pmg"/>
                                                 </connections>
@@ -132,20 +146,27 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
-                                            <tableCellView id="cJQ-dD-biF" customClass="PresetsManagerTableCellView" customModule="Aural" customModuleProvider="target">
+                                            <tableCellView id="cJQ-dD-biF" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
                                                 <rect key="frame" x="407" y="1" width="60" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wSc-9l-4on" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="5" y="0.0" width="60" height="25"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="4bM-Jc-ZiG">
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="wSc-9l-4on" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="62" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="3EF-lZ-BS4"/>
+                                                        </constraints>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Table View Cell" id="4bM-Jc-ZiG">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="wSc-9l-4on" secondAttribute="bottom" id="37z-iF-jIT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="wSc-9l-4on" secondAttribute="trailing" id="5ej-we-1fy"/>
+                                                    <constraint firstItem="wSc-9l-4on" firstAttribute="leading" secondItem="cJQ-dD-biF" secondAttribute="leading" constant="2" id="RlP-DV-je1"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="wSc-9l-4on" id="TA4-Hd-87I"/>
                                                 </connections>
@@ -164,20 +185,27 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
-                                            <tableCellView id="ZUf-rL-AXj" customClass="PresetsManagerTableCellView" customModule="Aural" customModuleProvider="target">
+                                            <tableCellView id="ZUf-rL-AXj" customClass="AuralTableCellView" customModule="Aural" customModuleProvider="target">
                                                 <rect key="frame" x="470" y="1" width="60" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SQN-g0-IqY" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
-                                                        <rect key="frame" x="5" y="0.0" width="60" height="25"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="elG-wy-Wch">
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SQN-g0-IqY" customClass="EditableTextField" customModule="Aural" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="62" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="ulm-TF-rfq"/>
+                                                        </constraints>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Table View Cell" id="elG-wy-Wch">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="SQN-g0-IqY" secondAttribute="trailing" id="0jv-az-Nhn"/>
+                                                    <constraint firstItem="SQN-g0-IqY" firstAttribute="leading" secondItem="ZUf-rL-AXj" secondAttribute="leading" constant="2" id="HOE-HP-JP3"/>
+                                                    <constraint firstAttribute="bottom" secondItem="SQN-g0-IqY" secondAttribute="bottom" id="wkW-Xz-T1n"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="SQN-g0-IqY" id="LbH-Re-gHe"/>
                                                 </connections>

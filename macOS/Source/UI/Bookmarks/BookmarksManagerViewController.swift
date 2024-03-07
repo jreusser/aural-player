@@ -62,7 +62,8 @@ extension BookmarksManagerViewController: NSTableViewDataSource, NSTableViewDele
     // Returns a view for a single column
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-        guard let colID = tableColumn?.identifier else {return nil}
+        guard let column = tableColumn else {return nil}
+        let colID = column.identifier
         
         let bookmark = bookmarksDelegate.getBookmarkAtIndex(row)
         
@@ -70,19 +71,20 @@ extension BookmarksManagerViewController: NSTableViewDataSource, NSTableViewDele
             
         case .cid_bookmarkNameColumn:
             
-            return createNameCell(tableView, tableColumn!, row, bookmark.name)
+            return createNameCell(tableView, column, row, bookmark.name)
             
         case .cid_bookmarkTrackColumn:
             
-            return createTrackCell(tableView, tableColumn!, row, bookmark.track)
+            return createTrackCell(tableView, column, row, bookmark.track)
+            
+        case .cid_bookmarkStartPositionColumn:
+            
+            return createTimeCell(tableView, column, row, time: bookmark.startPosition)
+
+        case .cid_bookmarkEndPositionColumn:
+            
+            return createTimeCell(tableView, column, row, time: bookmark.endPosition)
 //
-//        case .cid_bookmarkStartPositionColumn:
-//            
-//            let formattedPosition = ValueFormatter.formatSecondsToHMS(bookmark.startPosition)
-//            return createTextCell(tableView, tableColumn!, row, formattedPosition, false)
-//            
-//        case .cid_bookmarkEndPositionColumn:
-//            
 //            var formattedPosition: String = ""
 //            
 //            if let endPos = bookmark.endPosition {
@@ -94,9 +96,7 @@ extension BookmarksManagerViewController: NSTableViewDataSource, NSTableViewDele
 //            return createTextCell(tableView, tableColumn!, row, formattedPosition, false)
 //            
         default:    return nil
-//            
         }
-        return nil
     }
     
     // Creates a cell view containing text
@@ -140,6 +140,26 @@ extension BookmarksManagerViewController: NSTableViewDataSource, NSTableViewDele
         builder.withImage(image: track.art?.image ?? .imgPlayingArt)
         
         return builder.buildCell(forTableView: tableView, forColumnWithId: column.identifier, inRow: row)
+    }
+    
+    func createTimeCell(_ tableView: NSTableView, _ column: NSTableColumn, _ row: Int, time: Double?) -> AuralTableCellView? {
+        
+        guard let cell = tableView.makeView(withIdentifier: column.identifier, owner: nil) as? AuralTableCellView,
+              let textField = cell.textField else {return nil}
+        
+        if let time = time {
+            textField.stringValue = ValueFormatter.formatSecondsToHMS(time)
+        } else {
+            textField.stringValue = "-"
+        }
+        
+        textField.font = systemFontScheme.normalFont
+        textField.textColor = systemColorScheme.primaryTextColor
+        
+        // Name column is editable
+        textField.delegate = self
+        
+        return cell
     }
 }
 
